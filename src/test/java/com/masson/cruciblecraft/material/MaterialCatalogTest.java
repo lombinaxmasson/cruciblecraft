@@ -17,6 +17,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MaterialCatalogTest {
@@ -50,9 +51,30 @@ class MaterialCatalogTest {
                 false,
                 Map.of(),
                 false)));
+        assertTrue(MaterialCatalog.addStartupMaterial(new MaterialDefinition(
+                "nested_bronze",
+                "nested_bronze",
+                Optional.empty(),
+                1,
+                "#AA7744",
+                "metallic",
+                List.of(MaterialForm.DUST),
+                Map.of(),
+                new ThermalProperties(950),
+                false,
+                Map.of("bronze", 1, "copper", 1),
+                false)));
         MaterialCatalog.bootstrap(configDirectory);
 
-        assertEquals(12, MaterialCatalog.values().size());
+        assertEquals(13, MaterialCatalog.values().size());
+        assertEquals(
+                List.of(
+                        "copper", "tin", "bronze", "clay", "ceramic", "iron",
+                        "carbon", "steel", "gold", "zinc", "lead", "nickel"),
+                MaterialCatalog.values().stream()
+                        .limit(12)
+                        .map(MaterialDefinition::id)
+                        .toList());
         assertEquals(
                 java.util.List.of(MaterialForm.DUST),
                 MaterialCatalog.require("lead").forms());
@@ -75,6 +97,14 @@ class MaterialCatalogTest {
         assertFalse(MaterialCatalog.contains("missing"));
         assertEquals(4, MaterialCatalog.decompositionQuantum("bronze"));
         assertEquals(1, MaterialCatalog.decompositionQuantum("steel"));
+        assertEquals(Map.of("copper", 3, "tin", 1), MaterialCatalog.decompositionRatio("bronze"));
+        assertEquals(8, MaterialCatalog.decompositionQuantum("nested_bronze"));
+        assertEquals(
+                Map.of("copper", 7, "tin", 1),
+                MaterialCatalog.decompositionRatio("nested_bronze"));
+        assertSame(
+                MaterialCatalog.decompositionRatio("bronze"),
+                MaterialCatalog.decompositionRatio(MaterialCatalog.require("bronze")));
 
         var bronze = MaterialCatalog.alloys().match(Map.of("copper", 432, "tin", 144));
         assertTrue(bronze.isPresent());
@@ -88,9 +118,7 @@ class MaterialCatalogTest {
                         .id());
         var bronzeDrain = MoltenTransferMath.planDrain(
                 Map.of("copper", 432, "tin", 144),
-                MaterialCatalog.decompose(
-                        MaterialCatalog.require("bronze"),
-                        MaterialCatalog.decompositionQuantum("bronze")),
+                MaterialCatalog.decompositionRatio("bronze"),
                 144);
         assertEquals(144, bronzeDrain.orElseThrow().amount());
         assertEquals(Map.of("copper", 108, "tin", 36), bronzeDrain.orElseThrow().removals());

@@ -47,19 +47,24 @@ public class CrucibleBlock extends Block implements EntityBlock {
             Player player,
             InteractionHand hand,
             BlockHitResult hitResult) {
+        if (level.isClientSide) {
+            boolean predictsInteraction = MaterialUnits.resolve(stack).isPresent()
+                    || FluidUtil.getFluidHandler(stack).isPresent();
+            return predictsInteraction
+                    ? ItemInteractionResult.SUCCESS
+                    : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+
         if (level.getBlockEntity(pos) instanceof CrucibleBlockEntity fluidCrucible
                 && FluidUtil.interactWithFluidHandler(
                         player,
                         hand,
                         fluidCrucible.externalFluids())) {
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+            return ItemInteractionResult.SUCCESS;
         }
         var materialEntry = MaterialUnits.resolve(stack);
         if (materialEntry.isEmpty()) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        }
-        if (level.isClientSide) {
-            return ItemInteractionResult.SUCCESS;
         }
         if (!(level.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible)) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;

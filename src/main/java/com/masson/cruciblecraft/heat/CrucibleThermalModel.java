@@ -4,6 +4,7 @@ public final class CrucibleThermalModel {
     public static final double GRAMS_PER_ENERGY = 200.0;
     public static final int HOT_BUFFER_TICKS = 100;
     public static final int PASSIVE_DRIFT_INTERVAL = 10;
+    public static final float AMBIENT_EPSILON = 0.01F;
 
     private CrucibleThermalModel() {}
 
@@ -20,7 +21,12 @@ public final class CrucibleThermalModel {
             float ambientTemperature) {
         long requiredEnergyPerDegree =
                 1L + (long) Math.max(0.0, weightGrams / GRAMS_PER_ENERGY);
-        storedEnergy += Math.max(0.0f, incomingEnergy);
+        float acceptedIncoming = Float.isFinite(incomingEnergy)
+                ? Math.max(0.0F, incomingEnergy)
+                : 0.0F;
+        storedEnergy = Double.isFinite(storedEnergy) && storedEnergy > 0.0
+                ? storedEnergy + acceptedIncoming
+                : acceptedIncoming;
         long conversions = (long) (storedEnergy / requiredEnergyPerDegree);
 
         if (cooldownTicks > 0) {
@@ -31,12 +37,21 @@ public final class CrucibleThermalModel {
             temperature += conversions;
             cooldownTicks = HOT_BUFFER_TICKS;
         }
-        if (cooldownTicks <= 0) {
-            cooldownTicks = PASSIVE_DRIFT_INTERVAL;
-            if (temperature > ambientTemperature) {
-                temperature--;
-            } else if (temperature < ambientTemperature) {
-                temperature++;
+        if (acceptedIncoming <= 0.0F && conversions == 0L
+                && storedEnergy < requiredEnergyPerDegree) {
+            storedEnergy = 0.0;
+        }
+
+        if (atAmbient(temperature, ambientTemperature)) {
+            temperature = ambientTemperature;
+            cooldownTicks = 0;
+        } else if (cooldownTicks <= 0) {
+            temperature = driftToward(temperature, ambientTemperature);
+            if (atAmbient(temperature, ambientTemperature)) {
+                temperature = ambientTemperature;
+                cooldownTicks = 0;
+            } else {
+                cooldownTicks = PASSIVE_DRIFT_INTERVAL;
             }
         }
 
@@ -44,6 +59,33 @@ public final class CrucibleThermalModel {
         // ambient may establish a floor, but that floor is capped at 200 °C.
         temperature = Math.max(temperature, Math.min(200.0f, ambientTemperature));
         return new StepResult(temperature, storedEnergy, cooldownTicks);
+    }
+
+    /** Whether authoritative thermal state has fully settled and can stop ticking. */
+    public static boolean isQuiescent(
+            float temperature,
+            double storedEnergy,
+            int cooldownTicks,
+            float incomingEnergy,
+            float ambientTemperature) {
+        return atAmbient(temperature, ambientTemperature)
+                && Math.abs(storedEnergy) <= AMBIENT_EPSILON
+                && cooldownTicks == 0
+                && Math.abs(incomingEnergy) <= AMBIENT_EPSILON;
+    }
+
+    public static boolean atAmbient(float temperature, float ambientTemperature) {
+        return Float.isFinite(temperature)
+                && Float.isFinite(ambientTemperature)
+                && Math.abs(temperature - ambientTemperature) <= AMBIENT_EPSILON;
+    }
+
+    private static float driftToward(float temperature, float ambientTemperature) {
+        if (!Float.isFinite(temperature) || !Float.isFinite(ambientTemperature)) {
+            return ambientTemperature;
+        }
+        float difference = ambientTemperature - temperature;
+        return temperature + Math.copySign(Math.min(1.0F, Math.abs(difference)), difference);
     }
 
     public static float mixTemperature(

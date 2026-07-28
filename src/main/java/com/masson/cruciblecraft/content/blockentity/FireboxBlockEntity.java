@@ -33,6 +33,7 @@ public class FireboxBlockEntity extends BlockEntity implements IHeatSource {
         if (CheckpointDecisions.shouldCheckpoint(
                 firebox.dirtySinceCheckpoint,
                 level.getGameTime(),
+                pos.asLong(),
                 20)) {
             firebox.setChanged();
             firebox.syncToClient();

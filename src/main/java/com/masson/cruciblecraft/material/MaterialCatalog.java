@@ -11,7 +11,7 @@ import com.masson.cruciblecraft.recipe.AlloyIndex;
 
 public final class MaterialCatalog {
     private static Map<String, MaterialDefinition> definitions = Map.of();
-    private static Map<String, Integer> decompositionQuanta = Map.of();
+    private static Map<String, DecompositionInfo> decompositionInfo = Map.of();
     private static AlloyIndex alloyIndex = AlloyIndex.empty();
     private static final Map<String, MaterialDefinition> startupAdditions = new LinkedHashMap<>();
 
@@ -23,11 +23,14 @@ public final class MaterialCatalog {
         }
         definitions = MaterialLoader.load(configDirectory, startupAdditions.values());
         startupAdditions.clear();
-        LinkedHashMap<String, Integer> quanta = new LinkedHashMap<>();
+        LinkedHashMap<String, DecompositionInfo> info = new LinkedHashMap<>();
         for (MaterialDefinition definition : definitions.values()) {
-            quanta.put(definition.id(), calculateQuantum(definition, new LinkedHashMap<>()));
+            int quantum = calculateQuantum(definition, new LinkedHashMap<>());
+            info.put(
+                    definition.id(),
+                    new DecompositionInfo(quantum, decompose(definition, quantum)));
         }
-        decompositionQuanta = Map.copyOf(quanta);
+        decompositionInfo = Map.copyOf(info);
         alloyIndex = new AlloyIndex(definitions.values());
     }
 
@@ -77,16 +80,23 @@ public final class MaterialCatalog {
      * This is computed and validated once after the catalog becomes immutable.
      */
     public static int decompositionQuantum(String materialId) {
-        requireBootstrapped();
-        Integer quantum = decompositionQuanta.get(materialId);
-        if (quantum == null) {
-            throw new IllegalArgumentException("Unknown material: " + materialId);
-        }
-        return quantum;
+        return decompositionInfo(materialId).quantum();
     }
 
     public static int decompositionQuantum(MaterialDefinition material) {
         return decompositionQuantum(material.id());
+    }
+
+    /**
+     * Exact recursively flattened ratio for one decomposition quantum.
+     * The returned immutable map is cached and reference-stable after bootstrap.
+     */
+    public static Map<String, Integer> decompositionRatio(String materialId) {
+        return decompositionInfo(materialId).ratio();
+    }
+
+    public static Map<String, Integer> decompositionRatio(MaterialDefinition material) {
+        return decompositionRatio(material.id());
     }
 
     public static AlloyIndex alloys() {
@@ -143,10 +153,7 @@ public final class MaterialCatalog {
             }
         }
         visiting.remove(material.id());
-        int result = (int) quantum;
-        // Bootstrap validation protects all hot paths that rely on this exact quantum.
-        decompose(material, result);
-        return result;
+        return (int) quantum;
     }
 
     private static long gcd(long left, long right) {
@@ -167,6 +174,21 @@ public final class MaterialCatalog {
     private static void requireBootstrapped() {
         if (definitions.isEmpty()) {
             throw new IllegalStateException("Material catalog has not been bootstrapped");
+        }
+    }
+
+    private static DecompositionInfo decompositionInfo(String materialId) {
+        requireBootstrapped();
+        DecompositionInfo info = decompositionInfo.get(materialId);
+        if (info == null) {
+            throw new IllegalArgumentException("Unknown material: " + materialId);
+        }
+        return info;
+    }
+
+    private record DecompositionInfo(int quantum, Map<String, Integer> ratio) {
+        private DecompositionInfo {
+            ratio = Map.copyOf(ratio);
         }
     }
 }

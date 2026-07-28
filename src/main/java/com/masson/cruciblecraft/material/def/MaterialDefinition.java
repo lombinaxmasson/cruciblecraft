@@ -5,7 +5,9 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.masson.cruciblecraft.api.material.MaterialForm;
+import com.masson.cruciblecraft.material.MaterialColors;
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 public record MaterialDefinition(
@@ -23,13 +25,19 @@ public record MaterialDefinition(
         boolean noDecompose) {
     private static final java.util.Set<String> TINT_STYLES =
             java.util.Set.of("metallic", "matte", "shiny");
+    private static final Codec<String> COLOR_CODEC = Codec.STRING.comapFlatMap(
+            color -> MaterialColors.isValid(color)
+                    ? DataResult.success(color)
+                    : DataResult.error(() ->
+                            "Material color must use strict #RRGGBB format: " + color),
+            color -> color);
 
     public static final Codec<MaterialDefinition> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.fieldOf("id").forGetter(MaterialDefinition::id),
             Codec.STRING.optionalFieldOf("tag_name", "").forGetter(MaterialDefinition::tagName),
             Codec.STRING.optionalFieldOf("name_key").forGetter(MaterialDefinition::nameKey),
             Codec.INT.optionalFieldOf("tier", 0).forGetter(MaterialDefinition::tier),
-            Codec.STRING.optionalFieldOf("color", "#FFFFFF").forGetter(MaterialDefinition::color),
+            COLOR_CODEC.optionalFieldOf("color", "#FFFFFF").forGetter(MaterialDefinition::color),
             Codec.STRING.optionalFieldOf("tint_style", "metallic").forGetter(MaterialDefinition::tintStyle),
             MaterialForm.CODEC.listOf().optionalFieldOf("forms", List.of(MaterialForm.DUST))
                     .forGetter(MaterialDefinition::forms),
@@ -47,6 +55,7 @@ public record MaterialDefinition(
         if (!id.matches("[a-z0-9_]+")) {
             throw new IllegalArgumentException("Invalid material id: " + id);
         }
+        color = MaterialColors.requireValid(color);
         tagName = tagName.isBlank() ? id : tagName;
         forms = List.copyOf(forms);
         formItems = Map.copyOf(formItems);

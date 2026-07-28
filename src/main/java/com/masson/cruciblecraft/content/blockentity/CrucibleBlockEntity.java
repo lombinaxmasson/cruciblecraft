@@ -15,6 +15,7 @@ import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.FillPlan;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
 import com.masson.cruciblecraft.heat.CrucibleThermalModel;
 import com.masson.cruciblecraft.material.MaterialCatalog;
+import com.masson.cruciblecraft.material.MaterialColors;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
 import com.masson.cruciblecraft.machine.MachineMaterialRules.Device;
@@ -22,6 +23,8 @@ import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.recipe.AlloyIndex.AlloyMatch;
 import com.masson.cruciblecraft.recipe.SteelmakingProcess;
 import com.masson.cruciblecraft.recipe.SteelmakingProcess.Batch;
+import com.masson.cruciblecraft.recipe.SteelmakingTickDecisions;
+import com.masson.cruciblecraft.recipe.SteelmakingTickDecisions.Action;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModCapabilities;
 import com.masson.cruciblecraft.registry.ModFluids;
@@ -104,6 +107,7 @@ public class CrucibleBlockEntity extends BlockEntity {
         if (CheckpointDecisions.shouldCheckpoint(
                 crucible.dirtySinceCheckpoint,
                 level.getGameTime(),
+                pos.asLong(),
                 20)) {
             crucible.setChanged();
             crucible.dirtySinceCheckpoint = false;
@@ -111,7 +115,8 @@ public class CrucibleBlockEntity extends BlockEntity {
         if (CheckpointDecisions.shouldSync(
                 crucible.isActiveProcess(),
                 level.getGameTime(),
-                100)) {
+                pos.asLong(),
+                20)) {
             crucible.syncToClient();
         }
     }
@@ -188,10 +193,13 @@ public class CrucibleBlockEntity extends BlockEntity {
     }
 
     private boolean isThermallyQuiescent() {
-        return cachedEnergyPerTick <= 0.0F
-                && Float.compare(temperature, AMBIENT_TEMPERATURE) == 0
-                && storedEnergy == 0.0
-                && storedAir == 0.0F
+        return CrucibleThermalModel.isQuiescent(
+                        temperature,
+                        storedEnergy,
+                        cooldownTicks,
+                        cachedEnergyPerTick,
+                        AMBIENT_TEMPERATURE)
+                && Math.abs(storedAir) <= CrucibleThermalModel.AMBIENT_EPSILON
                 && steelBatchIronUnits == 0;
     }
 
@@ -223,8 +231,11 @@ public class CrucibleBlockEntity extends BlockEntity {
     }
 
     private void pullAdjacentAir(Level level, BlockPos pos) {
-        if (!level.getBlockState(pos.above()).isAir()
-                || airAcceptanceResult() != AirInjectionResult.ACCEPTABLE) {
+        if (!level.getBlockState(pos.above()).isAir()) {
+            return;
+        }
+        AirAcceptance acceptance = airAcceptance();
+        if (!acceptance.accepted()) {
             return;
         }
         float room = AirOutputModel.MAX_STORED_AIR - storedAir;
@@ -244,70 +255,79 @@ public class CrucibleBlockEntity extends BlockEntity {
                 continue;
             }
             float request = AirIntakeCoordinator.request(
-                    true,
-                    true,
                     room,
                     source.outputRate());
-            float simulated = source.extractAir(request, true);
-            if (!Float.isFinite(simulated) || simulated <= 0.0F) {
+            if (request <= 0.0F) {
                 continue;
             }
-            float extracted = source.extractAir(Math.min(request, simulated), false);
+            float extracted = source.extractAir(request, false);
             if (Float.isFinite(extracted) && extracted > 0.0F) {
-                float accepted = Math.min(room, extracted);
+                float accepted = Math.min(request, Math.min(room, extracted));
                 incomingAir += accepted;
                 room -= accepted;
             }
         }
         if (incomingAir > 0.0F) {
-            injectAir(incomingAir);
+            acceptAir(incomingAir, acceptance);
         }
     }
 
     public AirInjectionResult injectAir(float air) {
-        AirInjectionResult acceptance = airAcceptanceResult();
-        if (acceptance != AirInjectionResult.ACCEPTABLE) {
-            return acceptance;
-        }
-
-        Optional<Batch> batch = steelBatchIronUnits > 0
-                ? SteelmakingProcess.resume(steelBatchIronUnits)
-                : SteelmakingProcess.begin(composition);
-        boolean continuing = steelBatchIronUnits > 0;
-        steelBatchIronUnits = batch.orElseThrow().ironUnits();
-        storedAir = AirOutputModel.addToBuffer(storedAir, air);
-        dirtySinceCheckpoint = true;
-        return continuing ? AirInjectionResult.CONTINUED : AirInjectionResult.STARTED;
+        return acceptAir(air, airAcceptance());
     }
 
-    private AirInjectionResult airAcceptanceResult() {
+    private AirInjectionResult acceptAir(float air, AirAcceptance acceptance) {
+        Batch batch = acceptance.batch().orElse(null);
+        if (batch == null) {
+            return acceptance.result();
+        }
+
+        steelBatchIronUnits = batch.ironUnits();
+        storedAir = AirOutputModel.addToBuffer(storedAir, air);
+        dirtySinceCheckpoint = true;
+        return acceptance.result();
+    }
+
+    private AirAcceptance airAcceptance() {
         if (hasUnknownMaterials()) {
-            return AirInjectionResult.INVALID_CHARGE;
+            return AirAcceptance.rejected(AirInjectionResult.INVALID_CHARGE);
         }
         if (temperature
                 < MaterialCatalog.require(SteelmakingProcess.IRON).thermal().meltingPoint()) {
-            return AirInjectionResult.TOO_COLD;
+            return AirAcceptance.rejected(AirInjectionResult.TOO_COLD);
         }
+        boolean continuing = steelBatchIronUnits > 0;
         Optional<Batch> batch = steelBatchIronUnits > 0
                 ? SteelmakingProcess.resume(steelBatchIronUnits)
                 : SteelmakingProcess.begin(composition);
-        if (batch.isEmpty() || !matchesActiveSteelBatch(batch.get())) {
-            return AirInjectionResult.INVALID_CHARGE;
+        Batch candidate = batch.orElse(null);
+        if (candidate == null || !matchesActiveSteelBatch(candidate)) {
+            return AirAcceptance.rejected(AirInjectionResult.INVALID_CHARGE);
         }
-        return AirInjectionResult.ACCEPTABLE;
+        return AirAcceptance.accepted(
+                candidate,
+                continuing ? AirInjectionResult.CONTINUED : AirInjectionResult.STARTED);
     }
 
     private void processSteelmaking() {
-        if (storedAir < 1.0F || steelBatchIronUnits <= 0) {
+        SteelmakingTickDecisions.Decision decision = SteelmakingTickDecisions.evaluate(
+                composition,
+                steelBatchIronUnits,
+                storedAir);
+        if (decision.action() == Action.RESET_STALE) {
+            if (resetSteelmaking()) {
+                markImmediateMutation();
+            }
+            return;
+        }
+        if (decision.action() != Action.PROCESS) {
+            return;
+        }
+        Batch batch = decision.batch().orElse(null);
+        if (batch == null) {
             return;
         }
         storedAir = AirOutputModel.consumeProcessingTick(storedAir);
-
-        Optional<Batch> batch = SteelmakingProcess.resume(steelBatchIronUnits);
-        if (batch.isEmpty() || !matchesActiveSteelBatch(batch.get())) {
-            resetSteelmaking();
-            return;
-        }
         if (temperature
                 < MaterialCatalog.require(SteelmakingProcess.IRON).thermal().meltingPoint()) {
             return;
@@ -320,7 +340,7 @@ public class CrucibleBlockEntity extends BlockEntity {
         steelReactionTicks = 0;
 
         int carbon = composition.getOrDefault(SteelmakingProcess.CARBON, 0);
-        var carbonStep = SteelmakingProcess.consumeCarbon(batch.get(), carbon);
+        var carbonStep = SteelmakingProcess.consumeCarbon(batch, carbon);
         if (carbonStep.steelRangeReached()) {
             composition.remove(SteelmakingProcess.IRON);
             composition.remove(SteelmakingProcess.CARBON);
@@ -329,7 +349,7 @@ public class CrucibleBlockEntity extends BlockEntity {
             // therefore equal the iron units, with no per-stack metadata.
             composition.merge(
                     SteelmakingProcess.STEEL,
-                    batch.get().ironUnits(),
+                    batch.ironUnits(),
                     Integer::sum);
             resetSteelmaking();
         } else {
@@ -340,19 +360,17 @@ public class CrucibleBlockEntity extends BlockEntity {
     }
 
     private boolean matchesActiveSteelBatch(Batch batch) {
-        if (composition.size() != 2
-                || composition.getOrDefault(SteelmakingProcess.IRON, 0) != batch.ironUnits()) {
-            return false;
-        }
-        int carbon = composition.getOrDefault(SteelmakingProcess.CARBON, 0);
-        return carbon >= batch.minimumSteelCarbonUnits()
-                && carbon <= batch.ironUnits() / 3;
+        return SteelmakingTickDecisions.matches(composition, batch);
     }
 
-    private void resetSteelmaking() {
+    private boolean resetSteelmaking() {
+        boolean changed = storedAir != 0.0F
+                || steelBatchIronUnits != 0
+                || steelReactionTicks != 0;
         storedAir = 0.0F;
         steelBatchIronUnits = 0;
         steelReactionTicks = 0;
+        return changed;
     }
 
     public InsertResult insert(MaterialUnits.Entry entry, float inputTemperature) {
@@ -567,7 +585,7 @@ public class CrucibleBlockEntity extends BlockEntity {
         long blue = 0L;
         if (!cachedUnknownMaterials) {
             for (var entry : composition.entrySet()) {
-                int color = parseMaterialColor(MaterialCatalog.require(entry.getKey()).color());
+                int color = MaterialColors.parse(MaterialCatalog.require(entry.getKey()).color());
                 int units = entry.getValue();
                 total += units;
                 red += (long) ((color >> 16) & 0xFF) * units;
@@ -581,14 +599,6 @@ public class CrucibleBlockEntity extends BlockEntity {
                         | ((int) (green / total) << 8)
                         | (int) (blue / total);
         compositionCacheValid = true;
-    }
-
-    private static int parseMaterialColor(String color) {
-        try {
-            return Integer.parseInt(color.startsWith("#") ? color.substring(1) : color, 16) & 0xFFFFFF;
-        } catch (NumberFormatException ignored) {
-            return 0xFFFFFF;
-        }
     }
 
     private void invalidateCompositionCache() {
@@ -669,7 +679,7 @@ public class CrucibleBlockEntity extends BlockEntity {
             displayInterpolationTicks = 0;
             displayInitialized = true;
         } else {
-            displayInterpolationTicks = 10;
+            displayInterpolationTicks = 20;
         }
     }
 
@@ -724,8 +734,7 @@ public class CrucibleBlockEntity extends BlockEntity {
             return Optional.empty();
         }
         MaterialDefinition material = cachedResolvedMaterial.get();
-        int quantum = MaterialCatalog.decompositionQuantum(material);
-        Map<String, Integer> ratio = MaterialCatalog.decompose(material, quantum);
+        Map<String, Integer> ratio = MaterialCatalog.decompositionRatio(material);
         return MoltenTransferMath.planDrain(composition, ratio, requested)
                 .map(plan -> new DrainCandidate(material, plan));
     }
@@ -774,6 +783,20 @@ public class CrucibleBlockEntity extends BlockEntity {
             MaterialDefinition material,
             MoltenTransferMath.DrainPlan plan) {}
 
+    private record AirAcceptance(Optional<Batch> batch, AirInjectionResult result) {
+        private static AirAcceptance accepted(Batch batch, AirInjectionResult result) {
+            return new AirAcceptance(Optional.of(batch), result);
+        }
+
+        private static AirAcceptance rejected(AirInjectionResult result) {
+            return new AirAcceptance(Optional.empty(), result);
+        }
+
+        private boolean accepted() {
+            return batch.isPresent();
+        }
+    }
+
     public record CastTransfer(
             MaterialDefinition material,
             MaterialForm form,
@@ -781,7 +804,6 @@ public class CrucibleBlockEntity extends BlockEntity {
             float temperature) {}
 
     public enum AirInjectionResult {
-        ACCEPTABLE,
         STARTED,
         CONTINUED,
         TOO_COLD,

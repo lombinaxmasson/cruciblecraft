@@ -1,16 +1,11 @@
 package com.masson.cruciblecraft.air;
 
-/** Pure request planner used before any air source is simulated or executed. */
+/** Pure request limiter used after crucible top and charge checks pass. */
 public final class AirIntakeCoordinator {
     private AirIntakeCoordinator() {}
 
-    public static float request(
-            boolean topOpen,
-            boolean chargeCanAcceptAir,
-            float bufferRoom,
-            float sourceRate) {
-        if (!topOpen || !chargeCanAcceptAir
-                || !Float.isFinite(bufferRoom) || !Float.isFinite(sourceRate)
+    public static float request(float bufferRoom, float sourceRate) {
+        if (!Float.isFinite(bufferRoom) || !Float.isFinite(sourceRate)
                 || bufferRoom <= 0.0F || sourceRate <= 0.0F) {
             return 0.0F;
         }
