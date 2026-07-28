@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.client.color;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.content.item.MaterialItem;
 import com.masson.cruciblecraft.heat.ItemHeat;
+import com.masson.cruciblecraft.material.MaterialColors;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.ItemStack;
@@ -28,7 +29,7 @@ public final class MaterialItemColor {
         // tint. Canonical vanilla items already contain their cold color, so
         // white preserves that texture while still allowing the heat glow.
         int baseColor = stack.getItem() instanceof MaterialItem
-                ? styleColor(parseColor(material.color()), material.tintStyle())
+                ? styleColor(MaterialColors.parse(material.color()), material.tintStyle())
                 : 0xFFFFFF;
         Minecraft minecraft = Minecraft.getInstance();
         if (minecraft.level == null) {
@@ -61,13 +62,6 @@ public final class MaterialItemColor {
                 ? firstStage
                 : mix(FIRST_GLOW_COLOR, HOT_GLOW_COLOR, (glow - 0.5f) * 2.0f);
         return 0xFF000000 | result;
-    }
-
-    public static int parseColor(String color) {
-        if (color == null || !color.matches("#[0-9a-fA-F]{6}")) {
-            return 0xFFFFFF;
-        }
-        return Integer.parseInt(color.substring(1), 16);
     }
 
     private static int mix(int from, int to, float amount) {

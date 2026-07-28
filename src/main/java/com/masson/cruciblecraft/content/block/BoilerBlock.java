@@ -22,9 +22,14 @@ public final class BoilerBlock extends Block implements EntityBlock {
     public BoilerBlock(Properties properties) { super(properties); }
     @Override protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level,
             BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (level.isClientSide) {
+            return FluidUtil.getFluidHandler(stack).isPresent()
+                    ? ItemInteractionResult.SUCCESS
+                    : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
         if (level.getBlockEntity(pos) instanceof BoilerBlockEntity boiler
                 && FluidUtil.interactWithFluidHandler(player, hand, boiler.fluids(hit.getDirection()))) {
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+            return ItemInteractionResult.SUCCESS;
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }

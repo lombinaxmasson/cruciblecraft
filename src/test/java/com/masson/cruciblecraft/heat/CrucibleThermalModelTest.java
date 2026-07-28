@@ -1,7 +1,10 @@
 package com.masson.cruciblecraft.heat;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.masson.cruciblecraft.machine.CheckpointDecisions;
 
 import org.junit.jupiter.api.Test;
 
@@ -50,6 +53,52 @@ class CrucibleThermalModelTest {
         }
         assertEquals(999, cooling.temperature());
         assertEquals(10, cooling.cooldownTicks());
+    }
+
+    @Test
+    void stoppedHeatClearsRemainderAndEventuallyBecomesQuiescent() {
+        float ambient = 20.25F;
+        var state = CrucibleThermalModel.step(
+                ambient,
+                0,
+                0,
+                10,
+                CLAY_CASING_WEIGHT,
+                ambient);
+        assertTrue(state.temperature() > ambient);
+        assertTrue(state.storedEnergy() > 0.0);
+
+        state = CrucibleThermalModel.step(
+                state.temperature(),
+                state.storedEnergy(),
+                state.cooldownTicks(),
+                0,
+                CLAY_CASING_WEIGHT,
+                ambient);
+        assertEquals(0.0, state.storedEnergy());
+
+        for (int tick = 0; tick < 2_000; tick++) {
+            state = CrucibleThermalModel.step(
+                    state.temperature(),
+                    state.storedEnergy(),
+                    state.cooldownTicks(),
+                    0,
+                    CLAY_CASING_WEIGHT,
+                    ambient);
+        }
+
+        assertEquals(ambient, state.temperature());
+        assertEquals(0.0, state.storedEnergy());
+        assertEquals(0, state.cooldownTicks());
+        boolean quiescent = CrucibleThermalModel.isQuiescent(
+                state.temperature(),
+                state.storedEnergy(),
+                state.cooldownTicks(),
+                0,
+                ambient);
+        assertTrue(quiescent);
+        assertFalse(CheckpointDecisions.shouldSync(!quiescent, 40, 0, 20));
+        assertFalse(CheckpointDecisions.shouldCheckpoint(false, 40, 0, 20));
     }
 
     @Test

@@ -14,6 +14,7 @@ import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
+import com.masson.cruciblecraft.material.MaterialColors;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModComponents;
@@ -146,7 +147,7 @@ public class ClientSetup {
             }
         }, ModFluids.STEAM_TYPE.get());
         ModFluids.moltenFluids().forEach(entry -> {
-            int tint = 0xFF000000 | MaterialItemColor.parseColor(entry.material().color());
+            int tint = 0xFF000000 | MaterialColors.parse(entry.material().color());
             event.registerFluidType(new IClientFluidTypeExtensions() {
                 @Override
                 public ResourceLocation getStillTexture() {
@@ -171,7 +172,7 @@ public class ClientSetup {
             return 0xFF7F7F7F;
         }
         return MaterialLookup.byId(materialId)
-                .map(material -> 0xFF000000 | MaterialItemColor.parseColor(material.color()))
+                .map(material -> 0xFF000000 | MaterialColors.parse(material.color()))
                 .orElse(0xFFFFFFFF);
     }
 }

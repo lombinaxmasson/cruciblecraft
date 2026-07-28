@@ -41,4 +41,52 @@ class CrucibleInteractionContractTest {
         assertFalse(dropMethod.contains("BLOCK_ENTITY_DATA"));
         assertFalse(dropMethod.contains("saveWithoutMetadata"));
     }
+
+    @Test
+    void fluidTransferIsServerGuardedAndPrecedesServerMaterialInsertion() throws Exception {
+        String source = Files.readString(Path.of(
+                "src/main/java/com/masson/cruciblecraft/content/block/CrucibleBlock.java"));
+        String method = source.substring(
+                source.indexOf("protected ItemInteractionResult useItemOn"),
+                source.indexOf("protected InteractionResult useWithoutItem"));
+
+        int clientGuard = method.indexOf("if (level.isClientSide)");
+        int clientReturn = method.indexOf("return predictsInteraction");
+        int fluidInteraction = method.indexOf("FluidUtil.interactWithFluidHandler");
+        int serverMaterialResolution = method.indexOf("var materialEntry", fluidInteraction);
+
+        assertTrue(clientGuard >= 0);
+        assertTrue(clientGuard < clientReturn);
+        assertTrue(clientReturn < fluidInteraction);
+        assertTrue(fluidInteraction < serverMaterialResolution);
+        assertEquals(
+                fluidInteraction,
+                method.lastIndexOf("FluidUtil.interactWithFluidHandler"),
+                "the authoritative transfer helper must be called exactly once");
+    }
+
+    @Test
+    void publicAirInjectionResultsExposeOnlyTerminalOutcomes() throws Exception {
+        String source = Files.readString(Path.of(
+                "src/main/java/com/masson/cruciblecraft/content/blockentity/CrucibleBlockEntity.java"));
+        int enumStart = source.indexOf("public enum AirInjectionResult");
+        String enumBody = source.substring(enumStart, source.indexOf('}', enumStart));
+
+        assertTrue(enumBody.contains("STARTED"));
+        assertTrue(enumBody.contains("CONTINUED"));
+        assertTrue(enumBody.contains("TOO_COLD"));
+        assertTrue(enumBody.contains("INVALID_CHARGE"));
+        assertFalse(enumBody.contains("ACCEPTABLE"));
+    }
+
+    @Test
+    void otherFluidBlocksAlsoGuardAuthoritativeInteractionOnServer() throws Exception {
+        for (String block : java.util.List.of("BoilerBlock.java", "SteamEngineBlock.java")) {
+            String source = Files.readString(Path.of(
+                    "src/main/java/com/masson/cruciblecraft/content/block/" + block));
+            int clientGuard = source.indexOf("if (level.isClientSide)");
+            int interaction = source.indexOf("FluidUtil.interactWithFluidHandler");
+            assertTrue(clientGuard >= 0 && clientGuard < interaction, block);
+        }
+    }
 }

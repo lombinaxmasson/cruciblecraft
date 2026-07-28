@@ -35,10 +35,15 @@ public final class SteamEngineBlock extends Block implements EntityBlock {
     @Override protected ItemInteractionResult useItemOn(
             ItemStack stack, BlockState state, Level level, BlockPos pos, Player player,
             InteractionHand hand, BlockHitResult hit) {
+        if (level.isClientSide) {
+            return FluidUtil.getFluidHandler(stack).isPresent()
+                    ? ItemInteractionResult.SUCCESS
+                    : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
         if (level.getBlockEntity(pos) instanceof SteamEngineBlockEntity engine) {
             var handler = engine.fluids(hit.getDirection());
             if (handler != null && FluidUtil.interactWithFluidHandler(player, hand, handler)) {
-                return ItemInteractionResult.sidedSuccess(level.isClientSide);
+                return ItemInteractionResult.SUCCESS;
             }
         }
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;

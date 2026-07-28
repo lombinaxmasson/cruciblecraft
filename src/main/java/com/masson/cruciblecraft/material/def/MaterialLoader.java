@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -44,7 +45,7 @@ public final class MaterialLoader {
             }
         }
         removeInvalidReferences(materials);
-        return Map.copyOf(materials);
+        return Collections.unmodifiableMap(new LinkedHashMap<>(materials));
     }
 
     private static void loadBundled(Map<String, MaterialDefinition> output) {
