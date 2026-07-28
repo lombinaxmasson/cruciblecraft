@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "III",
+    " B ",
+    "III"
+  ],
+  "key": {
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "result": {
+    "id": "cruciblecraft:anvil",
+    "count": 1,
+    "components": {
+      "cruciblecraft:machine_material": "iron",
+      "cruciblecraft:machine_durability": {
+        "current": 5000000,
+        "max": 5000000
+      }
+    }
+  }
+}

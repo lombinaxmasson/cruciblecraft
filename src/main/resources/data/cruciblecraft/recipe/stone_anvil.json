@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": ["SSS", " C ", "SSS"],
+  "key": {
+    "S": {"item": "minecraft:stone"},
+    "C": {"item": "minecraft:cobblestone"}
+  },
+  "result": {
+    "id": "cruciblecraft:anvil",
+    "components": {
+      "cruciblecraft:machine_material": "stone",
+      "cruciblecraft:machine_durability": {"current": 10000, "max": 10000}
+    }
+  }
+}

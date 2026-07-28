@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    " P ",
+    "PCP",
+    " P "
+  ],
+  "key": {
+    "P": {
+      "item": "cruciblecraft:bronze_plate"
+    },
+    "C": {
+      "type": "neoforge:components",
+      "items": "cruciblecraft:crucible",
+      "components": {
+        "cruciblecraft:machine_material": "ceramic"
+      },
+      "strict": false
+    }
+  },
+  "result": {
+    "id": "cruciblecraft:crucible",
+    "components": {
+      "cruciblecraft:machine_material": "bronze"
+    }
+  }
+}
