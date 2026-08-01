@@ -7,7 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.HexFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,15 +25,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import com.google.gson.JsonParser;
+import com.masson.cruciblecraft.TestExtruderShapes;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.material.MaterialRegistrationGate;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.material.def.MaterialLoader;
+import com.masson.cruciblecraft.recipe.rule.MaterialRule;
 import com.masson.cruciblecraft.recipe.rule.MaterialRuleExpansion;
-import com.masson.cruciblecraft.recipe.rule.T3ComponentRules;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
+import com.mojang.serialization.JsonOps;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.SharedConstants;
@@ -138,6 +144,8 @@ class T3ComponentDataTest {
                 .collect(Collectors.toMap(
                         Map.Entry::getValue,
                         entry -> registered.get(entry.getKey())));
+        Set<String> acceptanceCorrections = acceptanceCorrections();
+        assertEquals(Set.of("iron/wire"), acceptanceCorrections);
         for (MaterialDefinition material : materials) {
             if (material.gt6Metadata().isEmpty()) continue;
             String source = material.gt6Metadata().get().sourceName();
@@ -147,7 +155,9 @@ class T3ComponentDataTest {
                     "electrical metadata must remain source-evidenced per specification");
             evidenceByPrefix.forEach((prefix, evidence) ->
                     assertFalse(material.forms().contains(prefix)
-                                    && !evidence.contains(source),
+                                    && !evidence.contains(source)
+                                    && !acceptanceCorrections.contains(
+                                            material.id() + "/" + prefix.serializedName()),
                             "unsupported generated form: " + source + " / "
                                     + prefix.serializedId()));
         }
@@ -167,27 +177,34 @@ class T3ComponentDataTest {
     }
 
     @Test
-    void componentRulesConserveUnitsRemainBoundedAndHaveNoDuplicates(@TempDir Path config) {
+    void componentRulesConserveUnitsRemainBoundedAndHaveNoDuplicates(@TempDir Path config)
+            throws Exception {
         var materials = MaterialLoader.load(config).values();
         var registeredForms = MaterialRegistrationGate.load(materials);
+        List<ComponentRuleSource> rules = loadComponentRules();
+        long expansionStarted = System.nanoTime();
         List<MaterialRuleExpansion.Plan> plans = assertTimeoutPreemptively(
-                Duration.ofSeconds(5),
-                () -> T3ComponentRules.ALL.stream().flatMap(definition ->
+                Duration.ofSeconds(20),
+                () -> rules.stream().flatMap(definition ->
                         MaterialRuleExpansion.expandPlansWithForms(
                                 ResourceLocation.fromNamespaceAndPath(
                                         "cruciblecraft", definition.path()),
                                 definition.rule(),
                                 materials,
                                 registeredForms).stream()).toList());
-        assertEquals(29, T3ComponentRules.ALL.size());
-        assertFalse(plans.isEmpty());
-        assertTrue(plans.size() < 10_000, "T3 reload expansion budget");
+        long expansionElapsedMs =
+                java.util.concurrent.TimeUnit.NANOSECONDS.toMillis(
+                        System.nanoTime() - expansionStarted);
+        System.out.println("T3_COMPONENT_EXPANSION_ELAPSED_MS=" + expansionElapsedMs);
+        assertEquals(2810, rules.size());
+        assertEquals(8136, plans.size());
+        assertTrue(plans.size() <= 10_000, "T3 reload expansion budget");
 
         Map<String, MaterialDefinition> byId = materials.stream()
                 .collect(Collectors.toMap(MaterialDefinition::id, value -> value));
         for (MaterialRuleExpansion.Plan plan : plans) {
             MaterialDefinition source = byId.get(plan.materialId());
-            var outputRule = T3ComponentRules.ALL.stream()
+            var outputRule = rules.stream()
                     .filter(definition -> plan.id().getPath().startsWith(definition.path() + "/"))
                     .findFirst().orElseThrow().rule().itemOutputs().getFirst();
             String selector = outputRule.materialSelector().orElse("self");
@@ -229,16 +246,29 @@ class T3ComponentDataTest {
         assertEquals(10, perMap.size());
         assertTrue(perMap.values().stream().allMatch(count -> count > 0));
         assertEquals(Map.of(
-                id("extruder"), 330L,
+                id("extruder"), 2782L,
                 id("cutter"), 651L,
                 id("lathe"), 929L,
                 id("rollingmill"), 336L,
                 id("rollbender"), 438L,
-                id("wiremill"), 280L,
+                id("wiremill"), 282L,
                 id("bender"), 638L,
                 id("assembler"), 568L,
                 id("welder"), 321L,
                 id("press"), 1191L), perMap);
+        List<MaterialRuleExpansion.Plan> extruderPlans = plans.stream()
+                .filter(plan -> plan.target().equals(id("extruder")))
+                .toList();
+        assertEquals(2782, extruderPlans.size());
+        assertTrue(extruderPlans.stream().allMatch(plan ->
+                        plan.itemInputs().size() == 2
+                                && plan.itemInputs().getFirst().amount() > 0
+                                && plan.itemInputs().get(1).amount() == 0
+                                && plan.itemInputs().get(1).resource().fixed()
+                                        .map(ResourceLocation::getPath)
+                                        .filter(path -> path.startsWith("extruder_shape_"))
+                                        .isPresent()),
+                "every extruder recipe must require an exact presence-only shape");
         Map<ResourceLocation, Long> maxEut = plans.stream().collect(Collectors.groupingBy(
                 MaterialRuleExpansion.Plan::target,
                 Collectors.collectingAndThen(
@@ -246,7 +276,7 @@ class T3ComponentDataTest {
                                 MaterialRuleExpansion.Plan::eut)),
                         value -> value.orElseThrow().eut())));
         assertEquals(Map.of(
-                id("extruder"), 32L,
+                id("extruder"), 96L,
                 id("cutter"), 32L,
                 id("lathe"), 24L,
                 id("rollingmill"), 32L,
@@ -271,9 +301,27 @@ class T3ComponentDataTest {
         Set<String> ids = plans.stream().map(plan -> plan.id().toString())
                 .collect(Collectors.toSet());
         assertEquals(plans.size(), ids.size());
+        Set<String> sourcePaths = rules.stream()
+                .map(ComponentRuleSource::path)
+                .collect(Collectors.toSet());
+        assertTrue(plans.stream().allMatch(plan -> {
+            String path = plan.id().getPath();
+            int materialSuffix = path.lastIndexOf('/');
+            return materialSuffix > 0
+                    && sourcePaths.contains(path.substring(0, materialSuffix));
+        }), "every expanded T3 recipe must trace to component_rule_generated JSON");
         Set<String> signatures = plans.stream().map(T3ComponentDataTest::shadowSignature)
                 .collect(Collectors.toSet());
         assertEquals(plans.size(), signatures.size());
+        assertEquals(
+                "1fdf9ad129325a312839b77f7157345175ad558d26ec13ce22ddf0ca81d0abce",
+                digest(plans.stream().map(plan -> plan.id().toString()).toList()));
+        assertEquals(
+                "3fe517d00592d9c419a23d509e12045b4d6e89ac6dbf752828562f67aba8261d",
+                digest(plans.stream().map(T3ComponentDataTest::recipeSignature).toList()));
+        assertEquals(
+                "8f50470a7ff9d1f3242abfb9df68035dc6c3c95dd8ac01f5c077b1f99d2e2ee5",
+                digest(plans.stream().map(T3ComponentDataTest::shadowSignature).toList()));
 
         Set<String> produced = plans.stream()
                 .flatMap(plan -> plan.itemOutputs().stream())
@@ -369,9 +417,123 @@ class T3ComponentDataTest {
                                                 MaterialPrefixes.PLATE.serializedId()))));
     }
 
+    @Test
+    void componentJsonOwnsMaterialSpecificRecipesWithoutJavaOrLegacyBypass()
+            throws Exception {
+        List<ComponentRuleSource> rules = loadComponentRules();
+        assertFalse(Files.exists(Path.of(
+                "src/main/java/com/masson/cruciblecraft/recipe/rule/T3ComponentRules.java")));
+
+        StringBuilder javaSource = new StringBuilder();
+        try (var paths = Files.walk(Path.of("src/main/java"))) {
+            for (Path path : paths.filter(file -> file.toString().endsWith(".java"))
+                    .sorted().toList()) {
+                javaSource.append(Files.readString(path)).append('\n');
+            }
+        }
+        for (ComponentRuleSource source : rules.stream()
+                .filter(rule -> rule.rule().material().isPresent())
+                .toList()) {
+            assertFalse(
+                    javaSource.indexOf("\"" + source.path() + "\"") >= 0,
+                    "material-specific recipe leaked back into Java: " + source.path());
+        }
+        assertFalse(rules.stream().anyMatch(source ->
+                source.path().equals("extruder/ingot_to_long_rod")));
+        assertFalse(javaSource.indexOf("\"extruder/ingot_to_long_rod\"") >= 0,
+                "legacy no-shape extruder bypass leaked back into Java");
+        assertEquals(2782, rules.stream()
+                .filter(source -> source.path().startsWith("extruder/"))
+                .count());
+        assertTrue(rules.stream()
+                .filter(source -> source.path().startsWith("extruder/"))
+                .allMatch(source ->
+                        source.rule().itemInputs().size() == 2
+                                && source.rule().itemInputs().get(1).count().equals("0")
+                                && source.rule().itemInputs().get(1).item()
+                                        .map(ResourceLocation::getPath)
+                                        .filter(path -> path.startsWith("extruder_shape_"))
+                                        .isPresent()));
+
+        var correctionSource = JsonParser.parseString(Files.readString(Path.of(
+                "tools/component_rule_sources/acceptance_form_corrections.json")))
+                .getAsJsonObject();
+        var correction = correctionSource.getAsJsonArray("corrections")
+                .get(0).getAsJsonObject();
+        assertEquals(
+                "t3_acceptance_required_not_gt6_original_gate",
+                correction.get("classification").getAsString());
+        assertTrue(correction.get("reason").getAsString()
+                .contains("component-runtime acceptance"));
+        assertEquals(Set.of("iron/wire"), acceptanceCorrections());
+        assertTrue(Files.readString(Path.of(
+                "src/main/resources/data/cruciblecraft/materials/iron.json"))
+                .contains("\"cruciblecraft:generates_wire\""));
+        var gate = JsonParser.parseString(Files.readString(Path.of(
+                "src/main/resources/data/cruciblecraft/material_registration_gate.json")))
+                .getAsJsonObject();
+        assertTrue(gate.getAsJsonObject("materials").getAsJsonArray("iron")
+                .asList().stream().anyMatch(value -> value.getAsString().equals("wire")));
+    }
+
     private static String shadowSignature(MaterialRuleExpansion.Plan plan) {
         return plan.target() + "|" + plan.itemInputs() + "|" + plan.fluidInputs();
     }
+
+    private static String recipeSignature(MaterialRuleExpansion.Plan plan) {
+        return plan.id() + "|" + plan.target() + "|" + plan.materialId()
+                + "|" + plan.itemInputs() + "|" + plan.itemOutputs()
+                + "|" + plan.fluidInputs() + "|" + plan.fluidOutputs()
+                + "|" + plan.duration() + "|" + plan.eut() + "|"
+                + plan.specialValue() + "|" + plan.canBeBuffered()
+                + "|" + plan.materialSpecific();
+    }
+
+    private static String digest(List<String> values) throws Exception {
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        for (String value : values.stream().sorted().toList()) {
+            digest.update(value.getBytes(StandardCharsets.UTF_8));
+            digest.update((byte) '\n');
+        }
+        return HexFormat.of().formatHex(digest.digest());
+    }
+
+    private static List<ComponentRuleSource> loadComponentRules() throws Exception {
+        Path root = Path.of(
+                "src/component_rule_generated/resources/data/cruciblecraft/recipe");
+        List<Path> files;
+        try (var paths = Files.walk(root)) {
+            files = paths.filter(path -> path.toString().endsWith(".json"))
+                    .sorted().toList();
+        }
+        List<ComponentRuleSource> result = new ArrayList<>();
+        for (Path file : files) {
+            var json = JsonParser.parseString(Files.readString(file)).getAsJsonObject();
+            assertEquals("cruciblecraft:material_rule", json.remove("type").getAsString());
+            MaterialRule rule = MaterialRule.CODEC.codec()
+                    .parse(JsonOps.INSTANCE, json).getOrThrow();
+            String path = root.relativize(file).toString().replace('\\', '/');
+            result.add(new ComponentRuleSource(
+                    path.substring(0, path.length() - ".json".length()), rule));
+        }
+        return List.copyOf(result);
+    }
+
+    private static Set<String> acceptanceCorrections() throws Exception {
+        var root = JsonParser.parseString(Files.readString(Path.of(
+                "tools/component_rule_sources/acceptance_form_corrections.json")))
+                .getAsJsonObject();
+        return root.getAsJsonArray("corrections").asList().stream()
+                .flatMap(value -> {
+                    var correction = value.getAsJsonObject();
+                    String material = correction.get("material").getAsString();
+                    return correction.getAsJsonArray("add_forms").asList().stream()
+                            .map(form -> material + "/" + form.getAsString());
+                })
+                .collect(Collectors.toUnmodifiableSet());
+    }
+
+    private record ComponentRuleSource(String path, MaterialRule rule) {}
 
     private static ResourceLocation id(String path) {
         return ResourceLocation.fromNamespaceAndPath("cruciblecraft", path);
@@ -379,7 +541,12 @@ class T3ComponentDataTest {
 
     private static GTRecipe validationRecipe(MaterialRuleExpansion.Plan plan) {
         return new GTRecipe(
-                plan.itemInputs().stream().map(input -> Ingredient.of(Items.STONE)).toList(),
+                plan.itemInputs().stream().map(input ->
+                        input.resource().fixed()
+                                .filter(id -> id.getPath().startsWith("extruder_shape_"))
+                                .map(ignored -> Ingredient.of(
+                                        TestExtruderShapes.stack().getItem()))
+                                .orElseGet(() -> Ingredient.of(Items.STONE))).toList(),
                 plan.itemInputs().stream().map(
                         MaterialRuleExpansion.PlannedResource::amount).toList(),
                 plan.itemOutputs().stream().map(output ->

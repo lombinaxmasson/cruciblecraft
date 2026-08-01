@@ -15,6 +15,9 @@ import com.masson.cruciblecraft.material.def.MaterialLoader;
 import com.masson.cruciblecraft.material.def.MaterialTuning;
 import com.masson.cruciblecraft.recipe.AlloyIndex;
 
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+
 public final class MaterialCatalog {
     private static final Set<String> REQUIRED_MATERIALS =
             Set.of("bronze", "carbon", "ceramic", "iron", "steel");
@@ -591,6 +594,31 @@ public final class MaterialCatalog {
                     throw new IllegalStateException(
                             "Duplicate material item registry name '"
                                     + registryName + "' for " + previous + " and " + owner);
+                }
+            }
+        }
+    }
+
+    /**
+     * Validates registry-backed overrides after every mod's RegisterEvent has run.
+     * Calling this during FMLConstructModEvent would reject valid deferred entries.
+     */
+    public static void validateFormItemMappings() {
+        validateFormItemMappings(requireState().definitions().values());
+    }
+
+    static void validateFormItemMappings(
+            Collection<MaterialDefinition> definitions) {
+        for (MaterialDefinition material : definitions) {
+            for (var override : material.formItems().entrySet()) {
+                ResourceLocation itemId = ResourceLocation.tryParse(override.getValue());
+                if (itemId == null || !BuiltInRegistries.ITEM.containsKey(itemId)) {
+                    throw new IllegalStateException(
+                            "Material " + material.id() + " prefix "
+                                    + override.getKey().serializedId()
+                                    + " declares missing form_items target "
+                                    + override.getValue()
+                                    + "; install the providing mod or remove the override");
                 }
             }
         }

@@ -1,0 +1,23 @@
+{
+  "duration": "160 * (144 * prefix_units(double_plate) / gcd(target_units(working) * 288, 144 * prefix_units(double_plate)))",
+  "eut": "48",
+  "item_inputs": [
+    {
+      "count": "1 * (144 * prefix_units(double_plate) / gcd(target_units(working) * 288, 144 * prefix_units(double_plate)))",
+      "prefix": "cruciblecraft:plate"
+    },
+    {
+      "count": "1 * (144 * prefix_units(double_plate) / gcd(target_units(working) * 288, 144 * prefix_units(double_plate)))",
+      "prefix": "cruciblecraft:plate"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "target_units(working) * 288 / gcd(target_units(working) * 288, 144 * prefix_units(double_plate))",
+      "material_selector": "processing_target:working",
+      "prefix": "cruciblecraft:double_plate"
+    }
+  ],
+  "target": "cruciblecraft:welder",
+  "type": "cruciblecraft:material_rule"
+}

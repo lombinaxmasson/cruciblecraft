@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
+import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
@@ -24,6 +25,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public final class ModCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CrucibleCraft.MODID);
+    private static final MaterialEntryPlanCache MATERIAL_ENTRY_PLAN =
+            new MaterialEntryPlanCache();
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN = CREATIVE_MODE_TABS.register(
             "main",
@@ -75,6 +78,8 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.ASSEMBLER.get());
                         output.accept(ModItems.WELDER.get());
                         output.accept(ModItems.PRESS.get());
+                        ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
+                                output.accept(ModItems.extruderShape(shape.id()).get()));
                         output.accept(ModItems.SMITHING_HAMMER.get().variant("bronze"));
                         output.accept(ModItems.SMITHING_HAMMER.get().variant("iron"));
                         output.accept(ModItems.SMITHING_HAMMER.get().variant("steel"));
@@ -136,7 +141,13 @@ public final class ModCreativeTabs {
                         .build());
     }
 
-    private static Map<MaterialCreativeTab, List<String>> materialEntryPlan() {
+    static Map<MaterialCreativeTab, List<String>> materialEntryPlan() {
+        return MATERIAL_ENTRY_PLAN.get(
+                MaterialCatalog.runtimeRevision(),
+                ModCreativeTabs::buildMaterialEntryPlan);
+    }
+
+    private static Map<MaterialCreativeTab, List<String>> buildMaterialEntryPlan() {
         var materials = MaterialCatalog.startupValues();
         Map<String, List<MaterialPrefix>> registeredForms = new LinkedHashMap<>();
         materials.forEach(material -> registeredForms.put(
@@ -160,6 +171,32 @@ public final class ModCreativeTabs {
                 "Material creative-tab plan references missing item {}", itemId);
         throw new IllegalStateException(
                 "Material creative-tab plan references missing item " + itemId);
+    }
+
+    static final class MaterialEntryPlanCache {
+        private volatile Snapshot snapshot = new Snapshot(Long.MIN_VALUE, Map.of());
+
+        Map<MaterialCreativeTab, List<String>> get(
+                long revision,
+                Supplier<Map<MaterialCreativeTab, List<String>>> planner) {
+            Snapshot current = snapshot;
+            if (current.revision() == revision) {
+                return current.plan();
+            }
+            synchronized (this) {
+                current = snapshot;
+                if (current.revision() == revision) {
+                    return current.plan();
+                }
+                Map<MaterialCreativeTab, List<String>> rebuilt = planner.get();
+                snapshot = new Snapshot(revision, rebuilt);
+                return rebuilt;
+            }
+        }
+
+        private record Snapshot(
+                long revision,
+                Map<MaterialCreativeTab, List<String>> plan) {}
     }
 
     private static ItemStack machineVariant(net.minecraft.world.item.Item item, String materialId) {

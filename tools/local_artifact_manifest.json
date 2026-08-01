@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "policy": "Metadata-only cache policy: large expanded or human-oriented replay artifacts are reproducible local caches, never ordinary-CI prerequisites. Their cryptographic metadata remains committed while ordinary CI validates compact evidence, builders, and tests.",
+  "history_consequence": "O-10 closed for the current tree: the large caches are absent and remain gitignored, but deleting them from a later commit does not remove their blobs from older commits. Existing remote/history size still requires a clean root, explicit history migration, or Git LFS if it must be reduced.",
+  "ordinary_ci_requires_local_cache": false,
+  "artifacts": [
+    {
+      "path": "tools/gt6_recipe_compare_report.json",
+      "bytes": 310595900,
+      "sha256": "de41dd708c128d9e44c16728f822889792ba8fa0e97d886b77f5f1a61c3318b3",
+      "source": "Current CrucibleCraft recipes, audited expectations and roadmap, plus the normalized GT6 reference or authoritative gt6_dump/gt6_recipe_dump",
+      "rebuild_command": "python tools/compare_gt6_recipes.py --write-report --full-replay"
+    },
+    {
+      "path": "tools/gt6_recipe_normalized_reference.json",
+      "bytes": 128905048,
+      "sha256": "b78ede945b19217ba206fac27977e09c29a3c90b3253ee3b365a11100de8aa95",
+      "source": "Authoritative local gt6_dump/gt6_recipe_dump normalized with tools/compare_gt6_recipes.py",
+      "rebuild_command": "python tools/compare_gt6_recipes.py --write-reference"
+    },
+    {
+      "path": "tools/gt6_extruder_templates_v5.json",
+      "bytes": 14057897,
+      "sha256": "560f998cd59cf8f129a6c2fa847598d950b03c71086e48bb683a8c0a451c1dc4",
+      "source": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.extruder.json plus the matching ore-dictionary materials and prefixes",
+      "rebuild_command": "python tools/gt6_extruder_templates.py"
+    }
+  ],
+  "committed_compact_evidence": [
+    "tools/gt6_recipe_compare_baseline.json",
+    "tools/gt6_recipe_expectations.json",
+    "tools/gt6_map_roadmap.json",
+    "tools/gt6_l1b_selected_recipe_operands.json",
+    "tools/gt6_ore_chain.json",
+    "tools/gt6_ore_chain_operands.json",
+    "tools/gt6_extruder_templates_index_v5.json",
+    "tools/gt6_extruder_templates_report.json",
+    "tools/component_selector_policy.json",
+    "tools/component_rule_manifest.json",
+    "tools/full_verification_report.json"
+  ]
+}

@@ -1,0 +1,35 @@
+package com.masson.cruciblecraft.datagen;
+
+import java.util.concurrent.CompletableFuture;
+
+import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
+import com.masson.cruciblecraft.registry.ModItemTags;
+import com.masson.cruciblecraft.registry.ModItems;
+
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.world.item.Item;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+
+public final class ModItemTagProvider extends TagsProvider<Item> {
+    public ModItemTagProvider(
+            PackOutput output,
+            CompletableFuture<HolderLookup.Provider> lookupProvider,
+            ExistingFileHelper existingFileHelper) {
+        super(
+                output,
+                net.minecraft.core.registries.Registries.ITEM,
+                lookupProvider,
+                CrucibleCraft.MODID,
+                existingFileHelper);
+    }
+
+    @Override
+    protected void addTags(HolderLookup.Provider provider) {
+        var shapes = tag(ModItemTags.EXTRUDER_SHAPES);
+        ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
+                shapes.add(ModItems.extruderShape(shape.id()).getKey()));
+    }
+}

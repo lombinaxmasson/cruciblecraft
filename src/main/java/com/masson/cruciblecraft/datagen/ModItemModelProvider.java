@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.datagen;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
@@ -26,6 +27,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         generated("coal_coke", "coal");
         generated("creosote_bucket", "water_bucket");
         generated("unknown_material", "barrier");
+        ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
+                generated(shape.registryPath(), "iron_nugget"));
         withExistingParent("smithing_hammer", mcLoc("item/handheld"))
                 .texture("layer0", mcLoc("item/iron_pickaxe"));
     }

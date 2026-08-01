@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.gametest;
 
 import java.util.List;
+import java.util.Map;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.energy.EnergyType;
@@ -9,6 +10,7 @@ import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrusherBlockEntity;
+import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.content.blockentity.FireboxBlockEntity;
 import com.masson.cruciblecraft.heat.FuelDefinition;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
@@ -17,6 +19,7 @@ import com.masson.cruciblecraft.recipe.gt.GTRecipeQuery;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModCapabilities;
+import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import com.masson.cruciblecraft.worldgen.LargeVeinConfiguration;
@@ -26,10 +29,12 @@ import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
@@ -47,6 +52,7 @@ import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
+import net.neoforged.neoforge.items.IItemHandler;
 
 /**
  * Final-gate block-world coverage. Recipes are those loaded by the production
@@ -634,6 +640,501 @@ public final class CrucibleCraftGameTests {
                 .thenSucceed();
     }
 
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void everyLiveT3RecipeTracesToGeneratedComponentJson(
+            GameTestHelper helper) {
+        Map<RecipeMap, Integer> expected = Map.of(
+                ModRecipeMaps.EXTRUDER, 2782,
+                ModRecipeMaps.CUTTER, 651,
+                ModRecipeMaps.LATHE, 929,
+                ModRecipeMaps.ROLLINGMILL, 336,
+                ModRecipeMaps.ROLLBENDER, 438,
+                ModRecipeMaps.WIREMILL, 282,
+                ModRecipeMaps.BENDER, 638,
+                ModRecipeMaps.ASSEMBLER, 568,
+                ModRecipeMaps.WELDER, 321,
+                ModRecipeMaps.PRESS, 1191);
+        int total = 0;
+        for (ProcessingMachineSpec spec : ModProcessingMachines.T3_MACHINES) {
+            RecipeMap map = spec.requireRecipeMap();
+            helper.assertTrue(
+                    map.entries().size() == expected.get(map),
+                    map.id() + " live count drifted from generated component manifest");
+            total += map.entries().size();
+            for (RecipeMap.Entry entry : map.entries()) {
+                String expandedPath = entry.id().getPath();
+                int materialSeparator = expandedPath.lastIndexOf('/');
+                helper.assertTrue(
+                        materialSeparator > 0,
+                        "T3 recipe lacks expanded material suffix: " + entry.id());
+                String sourcePath = "data/" + entry.id().getNamespace() + "/recipe/"
+                        + expandedPath.substring(0, materialSeparator) + ".json";
+                helper.assertTrue(
+                        CrucibleCraftGameTests.class.getClassLoader()
+                                .getResource(sourcePath) != null,
+                        "Live T3 recipe has no component-rule JSON source: "
+                                + entry.id() + " -> " + sourcePath);
+            }
+        }
+        helper.assertTrue(total == 8136, "Live T3 recipe total is not 8136: " + total);
+        for (RecipeMap.Entry entry : ModRecipeMaps.EXTRUDER.entries()) {
+            GTRecipe recipe = entry.recipe();
+            helper.assertTrue(
+                    recipe.itemInputs().size() == 2
+                            && recipe.itemInputCounts().equals(List.of(
+                                    recipe.itemInputCounts().getFirst(), 0))
+                            && recipe.itemInputCounts().getFirst() > 0,
+                    "Extruder recipe is not material + exact presence-only shape: "
+                            + entry.id());
+            helper.assertTrue(
+                    java.util.Arrays.stream(recipe.itemInputs().get(1).getItems())
+                            .allMatch(ExtruderShapeCatalog::isShape),
+                    "Extruder recipe retains a no-shape bypass: " + entry.id());
+        }
+        helper.succeed();
+    }
+
+    @GameTest(
+            template = TEMPLATE,
+            batch = "component_runtime_copper",
+            timeoutTicks = 2400)
+    public static void componentChainCopperThroughRealMachines(GameTestHelper helper) {
+        runComponentChain(helper, "copper");
+    }
+
+    @GameTest(
+            template = TEMPLATE,
+            batch = "component_runtime_tin",
+            timeoutTicks = 2400)
+    public static void componentChainTinThroughRealMachines(GameTestHelper helper) {
+        runComponentChain(helper, "tin");
+    }
+
+    @GameTest(
+            template = TEMPLATE,
+            batch = "component_runtime_iron",
+            timeoutTicks = 2400)
+    public static void componentChainIronThroughRealMachines(GameTestHelper helper) {
+        runComponentChain(helper, "iron");
+    }
+
+    @GameTest(
+            template = TEMPLATE,
+            batch = "component_runtime_gold",
+            timeoutTicks = 2400)
+    public static void componentChainGoldThroughRealMachines(GameTestHelper helper) {
+        runComponentChain(helper, "gold");
+    }
+
+    private static void runComponentChain(GameTestHelper helper, String materialId) {
+        ItemStack ingot = material(materialId, MaterialPrefixes.INGOT, 64);
+        ItemStack plate = material(materialId, MaterialPrefixes.PLATE, 64);
+        ItemStack foil = material(materialId, MaterialPrefixes.FOIL, 64);
+        ItemStack shape = new ItemStack(ModItems.extruderShape("long_rod").get());
+        shape.set(
+                DataComponents.CUSTOM_NAME,
+                Component.literal("component-chain-" + materialId));
+        ItemStack originalShape = shape.copy();
+
+        RecipeMap.Match rollingRecipe = requireComponentRecipe(
+                helper,
+                ModRecipeMaps.ROLLINGMILL,
+                materialId,
+                "rollingmill/ingot_to_plate/",
+                MaterialPrefixes.PLATE,
+                GTRecipeQuery.items(ingot));
+        RecipeMap.Match assemblerRecipe = requireComponentRecipe(
+                helper,
+                ModRecipeMaps.ASSEMBLER,
+                materialId,
+                "assembler/plates_to_gear/",
+                MaterialPrefixes.GEAR,
+                GTRecipeQuery.items(plate));
+        RecipeMap.Match latheRecipe = requireComponentRecipe(
+                helper,
+                ModRecipeMaps.LATHE,
+                materialId,
+                "lathe/ingot_to_rods/",
+                MaterialPrefixes.ROD,
+                GTRecipeQuery.items(ingot));
+        RecipeMap.Match extruderRecipe = requireComponentRecipeByPath(
+                helper,
+                ModRecipeMaps.EXTRUDER,
+                materialId,
+                "extruder/long_rod/" + materialId + "/",
+                MaterialPrefixes.LONG_ROD);
+        RecipeMap.Match wireRecipe = requireComponentRecipe(
+                helper,
+                ModRecipeMaps.WIREMILL,
+                materialId,
+                "wiremill/ingot_to_wire/",
+                MaterialPrefixes.WIRE,
+                GTRecipeQuery.items(ingot));
+        RecipeMap.Match cutterRecipe = requireComponentRecipe(
+                helper,
+                ModRecipeMaps.CUTTER,
+                materialId,
+                "cutter/plate_to_foil/",
+                MaterialPrefixes.FOIL,
+                GTRecipeQuery.items(plate));
+        RecipeMap.Match fineWireRecipe = requireComponentRecipe(
+                helper,
+                ModRecipeMaps.WIREMILL,
+                materialId,
+                "wiremill/foil_to_fine_wire/",
+                MaterialPrefixes.FINE_WIRE,
+                GTRecipeQuery.items(foil));
+        helper.assertTrue(
+                extruderRecipe.recipe().itemInputs().size() == 2
+                        && extruderRecipe.recipe().itemInputCounts().get(1) == 0
+                        && extruderRecipe.recipe().itemInputs().get(1).test(shape),
+                materialId + " extruder route does not require its exact shape presence-only");
+
+        ConfiguredProcessingMachineBlockEntity rolling = placeConfigured(
+                helper, new BlockPos(2, 2, 2),
+                ModBlocks.ROLLINGMILL.get(), ModProcessingMachines.ROLLINGMILL);
+        ConfiguredProcessingMachineBlockEntity assembler = placeConfigured(
+                helper, new BlockPos(6, 2, 2),
+                ModBlocks.ASSEMBLER.get(), ModProcessingMachines.ASSEMBLER);
+        ConfiguredProcessingMachineBlockEntity lathe = placeConfigured(
+                helper, new BlockPos(10, 2, 2),
+                ModBlocks.LATHE.get(), ModProcessingMachines.LATHE);
+        ConfiguredProcessingMachineBlockEntity extruder = placeConfigured(
+                helper, new BlockPos(14, 2, 2),
+                ModBlocks.EXTRUDER.get(), ModProcessingMachines.EXTRUDER);
+        ConfiguredProcessingMachineBlockEntity wiremill = placeConfigured(
+                helper, new BlockPos(18, 2, 2),
+                ModBlocks.WIREMILL.get(), ModProcessingMachines.WIREMILL);
+        ConfiguredProcessingMachineBlockEntity cutter = placeConfigured(
+                helper, new BlockPos(22, 2, 2),
+                ModBlocks.CUTTER.get(), ModProcessingMachines.CUTTER);
+
+        int cutterCycles = cyclesFor(
+                fineWireRecipe.recipe().itemInputCounts().getFirst(),
+                cutterRecipe.recipe().itemOutputs().getFirst().getCount());
+        int neededPlates = assemblerRecipe.recipe().itemInputCounts().getFirst()
+                + cutterRecipe.recipe().itemInputCounts().getFirst() * cutterCycles;
+        int rollingCycles = cyclesFor(
+                neededPlates, rollingRecipe.recipe().itemOutputs().getFirst().getCount());
+        ComponentStage rollingStage = stage(
+                rolling, rollingRecipe, rollingCycles, materialId + " rollingmill");
+        ComponentStage latheStage = stage(
+                lathe, latheRecipe, 1, materialId + " lathe");
+        ComponentStage extruderStage = stage(
+                extruder, extruderRecipe, 1, materialId + " extruder");
+        ComponentStage wireStage = stage(
+                wiremill, wireRecipe, 1, materialId + " wiremill ingot");
+
+        insertExact(
+                helper, rolling, 0,
+                ingredientSample(rollingRecipe.recipe(), 0, rollingCycles),
+                rollingStage.label());
+        insertExact(
+                helper, lathe, 0,
+                ingredientSample(latheRecipe.recipe(), 0, 1),
+                latheStage.label());
+        insertExact(
+                helper, extruder, 0,
+                ingredientSample(extruderRecipe.recipe(), 0, 1),
+                extruderStage.label());
+        insertExact(helper, extruder, 1, shape, extruderStage.label() + " shape");
+        insertExact(
+                helper, wiremill, 0,
+                ingredientSample(wireRecipe.recipe(), 0, 1),
+                wireStage.label());
+
+        ComponentStage[] firstPhase = {
+                rollingStage, latheStage, extruderStage, wireStage
+        };
+        int firstPhaseTicks = phaseTicks(firstPhase);
+        final ItemStack[] producedFoil = {ItemStack.EMPTY};
+
+        helper.startSequence()
+                .thenIdle(2)
+                .thenExecute(() -> assertDeclaredDurations(helper, firstPhase))
+                .thenExecuteFor(
+                        firstPhaseTicks,
+                        () -> powerUntilOutput(helper, firstPhase))
+                .thenExecute(() -> {
+                    ItemStack producedPlates = takeStageOutput(helper, rollingStage);
+                    takeStageOutput(helper, latheStage);
+                    takeStageOutput(helper, extruderStage);
+                    takeStageOutput(helper, wireStage);
+                    assertShapeUnchanged(helper, extruder, originalShape, materialId);
+
+                    int assemblerPlates =
+                            assemblerRecipe.recipe().itemInputCounts().getFirst();
+                    int cutterPlates =
+                            cutterRecipe.recipe().itemInputCounts().getFirst() * cutterCycles;
+                    ItemStack gearInput = producedPlates.split(assemblerPlates);
+                    ItemStack cutterInput = producedPlates.split(cutterPlates);
+                    helper.assertTrue(
+                            gearInput.getCount() == assemblerPlates
+                                    && cutterInput.getCount() == cutterPlates,
+                            materialId + " rollingmill output could not feed both plate routes");
+                    insertExact(
+                            helper, assembler, 0, gearInput,
+                            materialId + " assembler plate transfer");
+                    insertExact(
+                            helper, cutter, 0, cutterInput,
+                            materialId + " cutter plate transfer");
+                })
+                .thenIdle(2)
+                .thenExecute(() -> {
+                    assertDeclaredDuration(helper, assembler, assemblerRecipe, materialId);
+                    assertDeclaredDuration(helper, cutter, cutterRecipe, materialId);
+                })
+                .thenExecuteFor(
+                        phaseTicks(
+                                stage(assembler, assemblerRecipe, 1,
+                                        materialId + " assembler"),
+                                stage(cutter, cutterRecipe, cutterCycles,
+                                        materialId + " cutter")),
+                        new Runnable() {
+                            private final ComponentStage[] phase = {
+                                    stage(assembler, assemblerRecipe, 1,
+                                            materialId + " assembler"),
+                                    stage(cutter, cutterRecipe, cutterCycles,
+                                            materialId + " cutter")
+                            };
+                            @Override public void run() {
+                                powerUntilOutput(helper, phase);
+                            }
+                        })
+                .thenExecute(() -> {
+                    ComponentStage gearStage =
+                            stage(assembler, assemblerRecipe, 1, materialId + " assembler");
+                    ComponentStage foilStage =
+                            stage(cutter, cutterRecipe, cutterCycles, materialId + " cutter");
+                    takeStageOutput(helper, gearStage);
+                    producedFoil[0] = takeStageOutput(helper, foilStage);
+                    int fineWireFoils =
+                            fineWireRecipe.recipe().itemInputCounts().getFirst();
+                    ItemStack fineWireInput = producedFoil[0].split(fineWireFoils);
+                    helper.assertTrue(
+                            fineWireInput.getCount() == fineWireFoils,
+                            materialId + " cutter output could not feed fine-wire route");
+                    insertExact(
+                            helper, wiremill, 0, fineWireInput,
+                            materialId + " wiremill foil transfer");
+                })
+                .thenIdle(2)
+                .thenExecute(() ->
+                        assertDeclaredDuration(helper, wiremill, fineWireRecipe, materialId))
+                .thenExecuteFor(
+                        fineWireRecipe.recipe().duration() + 12,
+                        () -> powerUntilOutput(
+                                helper,
+                                stage(
+                                        wiremill,
+                                        fineWireRecipe,
+                                        1,
+                                        materialId + " wiremill foil")))
+                .thenExecute(() -> {
+                    takeStageOutput(
+                            helper,
+                            stage(
+                                    wiremill,
+                                    fineWireRecipe,
+                                    1,
+                                    materialId + " wiremill foil"));
+                    assertShapeUnchanged(helper, extruder, originalShape, materialId);
+                    CrucibleCraft.LOGGER.info(
+                            "component-runtime {}: rollingmill {}t -> {}; assembler {}t -> {}; "
+                                    + "lathe {}t -> {}; extruder {}t -> {}; wiremill-ingot {}t -> {}; "
+                                    + "cutter {}t -> {}; wiremill-foil {}t -> {}",
+                            materialId,
+                            rollingRecipe.recipe().duration(),
+                            rollingRecipe.recipe().itemOutputs().getFirst(),
+                            assemblerRecipe.recipe().duration(),
+                            assemblerRecipe.recipe().itemOutputs().getFirst(),
+                            latheRecipe.recipe().duration(),
+                            latheRecipe.recipe().itemOutputs().getFirst(),
+                            extruderRecipe.recipe().duration(),
+                            extruderRecipe.recipe().itemOutputs().getFirst(),
+                            wireRecipe.recipe().duration(),
+                            wireRecipe.recipe().itemOutputs().getFirst(),
+                            cutterRecipe.recipe().duration(),
+                            cutterRecipe.recipe().itemOutputs().getFirst(),
+                            fineWireRecipe.recipe().duration(),
+                            fineWireRecipe.recipe().itemOutputs().getFirst());
+                })
+                .thenSucceed();
+    }
+
+    private static RecipeMap.Match requireComponentRecipe(
+            GameTestHelper helper,
+            RecipeMap map,
+            String materialId,
+            String expectedPathPrefix,
+            com.masson.cruciblecraft.api.material.MaterialPrefix expectedOutput,
+            GTRecipeQuery query) {
+        RecipeMap.Match match = map.findMatch(query).orElse(null);
+        helper.assertTrue(
+                match != null,
+                map.id() + " has no live component recipe for " + materialId);
+        helper.assertTrue(
+                match.id().getPath().startsWith(expectedPathPrefix),
+                map.id() + " resolved unexpected recipe " + match.id());
+        GTRecipe recipe = match.recipe();
+        helper.assertTrue(
+                recipe.itemOutputs().size() == 1
+                        && recipe.outputChances().equals(List.of(GTRecipe.GUARANTEED_CHANCE))
+                        && ItemStack.isSameItemSameComponents(
+                                recipe.itemOutputs().getFirst(),
+                                material(materialId, expectedOutput, 1)),
+                match.id() + " does not guarantee the requested " + expectedOutput);
+        return match;
+    }
+
+    private static RecipeMap.Match requireComponentRecipeByPath(
+            GameTestHelper helper,
+            RecipeMap map,
+            String materialId,
+            String expectedPathPrefix,
+            com.masson.cruciblecraft.api.material.MaterialPrefix expectedOutput) {
+        RecipeMap.Entry entry = map.entries().stream()
+                .filter(candidate ->
+                        candidate.id().getPath().startsWith(expectedPathPrefix))
+                .findFirst()
+                .orElse(null);
+        helper.assertTrue(
+                entry != null,
+                map.id() + " has no live component recipe for " + materialId);
+        GTRecipe recipe = entry.recipe();
+        helper.assertTrue(
+                recipe.itemOutputs().size() == 1
+                        && recipe.outputChances().equals(List.of(GTRecipe.GUARANTEED_CHANCE))
+                        && ItemStack.isSameItemSameComponents(
+                                recipe.itemOutputs().getFirst(),
+                                material(materialId, expectedOutput, 1)),
+                entry.id() + " does not guarantee the requested " + expectedOutput);
+        return new RecipeMap.Match(entry.id(), recipe);
+    }
+
+    private static ComponentStage stage(
+            ConfiguredProcessingMachineBlockEntity machine,
+            RecipeMap.Match match,
+            int cycles,
+            String label) {
+        return new ComponentStage(machine, match, cycles, label);
+    }
+
+    private static int cyclesFor(int needed, int perCycle) {
+        return Math.floorDiv(needed + perCycle - 1, perCycle);
+    }
+
+    private static int phaseTicks(ComponentStage... stages) {
+        return java.util.Arrays.stream(stages)
+                .mapToInt(stage -> Math.multiplyExact(
+                        stage.match().recipe().duration(), stage.cycles()))
+                .max()
+                .orElseThrow() + 12;
+    }
+
+    private static ItemStack ingredientSample(
+            GTRecipe recipe, int index, int cycles) {
+        ItemStack input = recipe.itemInputs().get(index).getItems()[0].copy();
+        input.setCount(Math.multiplyExact(recipe.itemInputCounts().get(index), cycles));
+        return input;
+    }
+
+    private static void insertExact(
+            GameTestHelper helper,
+            ConfiguredProcessingMachineBlockEntity machine,
+            int inputSlot,
+            ItemStack input,
+            String label) {
+        IItemHandler automation = machine.items(Direction.WEST);
+        helper.assertTrue(automation != null, label + " input capability missing");
+        ItemStack remainder = automation.insertItem(inputSlot, input, false);
+        helper.assertTrue(remainder.isEmpty(), label + " rejected real input transfer");
+    }
+
+    private static void assertDeclaredDurations(
+            GameTestHelper helper, ComponentStage... stages) {
+        for (ComponentStage stage : stages) {
+            assertDeclaredDuration(
+                    helper, stage.machine(), stage.match(), stage.label());
+        }
+    }
+
+    private static void assertDeclaredDuration(
+            GameTestHelper helper,
+            ConfiguredProcessingMachineBlockEntity machine,
+            RecipeMap.Match match,
+            String label) {
+        helper.assertTrue(
+                machine.duration() == match.recipe().duration(),
+                label + " selected duration " + machine.duration()
+                        + " instead of live recipe duration " + match.recipe().duration());
+    }
+
+    private static void powerUntilOutput(
+            GameTestHelper helper, ComponentStage... stages) {
+        for (ComponentStage stage : stages) {
+            if (!stageOutputReady(stage)) {
+                fillKuCapability(helper, stage.machine());
+            }
+        }
+    }
+
+    private static boolean stageOutputReady(ComponentStage stage) {
+        ItemStack expected = stage.match().recipe().itemOutputs().getFirst();
+        ItemStack actual = stage.machine().inventory().getStackInSlot(
+                stage.machine().spec().items().outputs().getFirst());
+        return ItemStack.isSameItemSameComponents(actual, expected)
+                && actual.getCount() >= Math.multiplyExact(
+                        expected.getCount(), stage.cycles());
+    }
+
+    private static ItemStack takeStageOutput(
+            GameTestHelper helper, ComponentStage stage) {
+        ItemStack expected = stage.match().recipe().itemOutputs().getFirst();
+        int expectedCount = Math.multiplyExact(expected.getCount(), stage.cycles());
+        int outputSlot = stage.machine().spec().items().outputs().getFirst();
+        ItemStack observed = stage.machine().inventory().getStackInSlot(outputSlot);
+        helper.assertTrue(
+                ItemStack.isSameItemSameComponents(observed, expected)
+                        && observed.getCount() >= expectedCount,
+                stage.label() + " did not expose its real target output; observed "
+                        + observed + ", expected " + expected.copyWithCount(expectedCount));
+        IItemHandler automation = stage.machine().items(Direction.NORTH);
+        helper.assertTrue(automation != null, stage.label() + " output capability missing");
+        ItemStack extracted = automation.extractItem(0, expectedCount, false);
+        helper.assertTrue(
+                ItemStack.isSameItemSameComponents(extracted, expected)
+                        && extracted.getCount() == expectedCount,
+                stage.label() + " output capability did not transfer the observed output");
+        return extracted;
+    }
+
+    private static void assertShapeUnchanged(
+            GameTestHelper helper,
+            ConfiguredProcessingMachineBlockEntity extruder,
+            ItemStack originalShape,
+            String materialId) {
+        ItemStack retained = extruder.inventory().getStackInSlot(1);
+        helper.assertTrue(
+                retained.getCount() == originalShape.getCount()
+                        && ItemStack.isSameItemSameComponents(retained, originalShape),
+                materialId + " extruder consumed or changed the shape stack");
+        int shapeCount = 0;
+        for (int slot = 0; slot < extruder.inventory().getSlots(); slot++) {
+            ItemStack stack = extruder.inventory().getStackInSlot(slot);
+            if (ExtruderShapeCatalog.isShape(stack)) {
+                shapeCount += stack.getCount();
+            }
+        }
+        helper.assertTrue(shapeCount == 1, materialId + " extruder duplicated its shape");
+    }
+
+    private record ComponentStage(
+            ConfiguredProcessingMachineBlockEntity machine,
+            RecipeMap.Match match,
+            int cycles,
+            String label) {}
+
     private static ConfiguredProcessingMachineBlockEntity placeConfigured(
             GameTestHelper helper, BlockPos pos, Block block, ProcessingMachineSpec spec) {
         helper.setBlock(pos, block);
@@ -737,12 +1238,22 @@ public final class CrucibleCraftGameTests {
 
     private static void fillKuCapability(GameTestHelper helper, BlockPos pos) {
         BlockPos worldPos = helper.getBlockEntity(pos).getBlockPos();
+        fillKuCapability(helper, worldPos, pos.toString());
+    }
+
+    private static void fillKuCapability(
+            GameTestHelper helper, ConfiguredProcessingMachineBlockEntity machine) {
+        fillKuCapability(helper, machine.getBlockPos(), machine.spec().id().toString());
+    }
+
+    private static void fillKuCapability(
+            GameTestHelper helper, BlockPos worldPos, String label) {
         IEnergyHandler energy = helper.getLevel().getCapability(
                 ModCapabilities.ENERGY, worldPos, Direction.SOUTH);
-        helper.assertTrue(energy != null, "Back KU capability missing at " + pos);
+        helper.assertTrue(energy != null, "Back KU capability missing at " + label);
         long accepted = energy.insert(EnergyType.KINETIC, 256L, 16L, Direction.SOUTH, false);
         helper.assertTrue(accepted > 0L || energy.stored(EnergyType.KINETIC) > 0L,
-                "KU capability accepted no energy at " + pos);
+                "KU capability accepted no energy at " + label);
     }
 
     private static void fillKu(
@@ -768,7 +1279,7 @@ public final class CrucibleCraftGameTests {
             ConfiguredProcessingMachineBlockEntity machine, GTRecipe recipe) {
         for (int i = 0; i < recipe.itemInputs().size(); i++) {
             ItemStack sample = recipe.itemInputs().get(i).getItems()[0].copy();
-            sample.setCount(recipe.itemInputCounts().get(i));
+            sample.setCount(Math.max(1, recipe.itemInputCounts().get(i)));
             machine.inventory().setStackInSlot(machine.spec().items().inputs().get(i), sample);
         }
         for (int i = 0; i < recipe.fluidInputs().size(); i++) {

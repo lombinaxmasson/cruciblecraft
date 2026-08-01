@@ -55,6 +55,14 @@ class MaterialFormGateTest(unittest.TestCase):
         self.assertGreater(counts["recipe_gated_forms"], 0)
         self.assertGreater(counts["compatibility_forms"], 0)
         self.assertGreater(counts["ore_chain_forms"], 0)
+        self.assertEqual(1, counts["t3_acceptance_forms"])
+        self.assertEqual({"iron": ["wire"]}, self.gate["t3_acceptance_forms"])
+        self.assertEqual(
+            "t3_acceptance_required_not_gt6_original_gate",
+            self.gate["sources"]["t3_acceptance_form_corrections"][
+                "classification"
+            ],
+        )
         self.assertEqual(
             counts["registered_forms"],
             sum(map(len, self.gate["materials"].values())),

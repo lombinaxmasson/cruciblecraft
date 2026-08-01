@@ -195,7 +195,8 @@ public final class MaterialRuleExpansion {
                         resource.amount(),
                         context.forResource(resource.prefix(), selection.targetUnits()),
                         ruleId,
-                        resource.candidateSpecificAmount());
+                        resource.candidateSpecificAmount(),
+                        resource.fixed().isPresent());
                 if (count.isEmpty()) {
                     itemInputs.clear();
                     break;
@@ -222,7 +223,8 @@ public final class MaterialRuleExpansion {
                         context.forResource(resource.prefix(), selection.targetUnits());
                 Optional<Integer> count = evaluateResourceCount(
                         override.itemOutputCounts().get(Integer.toString(index)),
-                        resource.amount(), resourceContext, ruleId, resource.candidateSpecificAmount());
+                        resource.amount(), resourceContext, ruleId,
+                        resource.candidateSpecificAmount(), false);
                 if (count.isEmpty()) {
                     if (resource.optional()) continue;
                     itemOutputs.clear();
@@ -323,7 +325,8 @@ public final class MaterialRuleExpansion {
                     resource.amount(),
                     context.forResource(resource.prefix(), selection.targetUnits()),
                     ruleId,
-                    resource.candidateSpecificAmount());
+                    resource.candidateSpecificAmount(),
+                    resource.fixed().isPresent());
             if (count.isEmpty()) return Optional.empty();
             itemInputs.add(ingredient.get());
             inputCounts.add(count.get());
@@ -350,7 +353,8 @@ public final class MaterialRuleExpansion {
                     context.forResource(resource.prefix(), selection.targetUnits());
             Optional<Integer> count = evaluateResourceCount(
                     override.itemOutputCounts().get(Integer.toString(index)),
-                    resource.amount(), resourceContext, ruleId, resource.candidateSpecificAmount());
+                    resource.amount(), resourceContext, ruleId,
+                    resource.candidateSpecificAmount(), false);
             if (count.isEmpty()) {
                 if (resource.optional()) continue;
                 return Optional.empty();
@@ -609,9 +613,13 @@ public final class MaterialRuleExpansion {
             RuleExpression base,
             EvaluationContext context,
             ResourceLocation ruleId,
-            boolean selectorSpecific) {
+            boolean selectorSpecific,
+            boolean allowPresenceOnly) {
         try {
             int count = evaluateInt(override, base, context, ruleId);
+            if (count == 0 && allowPresenceOnly) {
+                return Optional.of(0);
+            }
             if (count <= 0) {
                 if (selectorSpecific) return Optional.empty();
                 throw new IllegalArgumentException(

@@ -28,6 +28,22 @@ class FullVerificationReportTest(unittest.TestCase):
             snapshot["python_test_count"],
             document["tests"]["python_unit_tests"]["tests"],
         )
+        component = document["component_pipeline_acceptance"]
+        self.assertEqual(31, component["shape_count"])
+        self.assertEqual(
+            {"playable": 20, "skipped": 42},
+            component["template_classifications"],
+        )
+        self.assertEqual(8136, component["expanded_recipes"])
+        self.assertEqual(2782, component["extruder_expanded_recipes"])
+        self.assertEqual(0, component["shadowed_recipes"])
+        self.assertEqual(
+            2810,
+            snapshot["trees"]["component_rule_generated"]["files"],
+        )
+        self.assertFalse(
+            document["artifact_policy"]["ordinary_ci_requires_local_cache"]
+        )
 
     def test_stale_ready_report_is_rejected(self):
         document = json.loads(MODULE.REPORT.read_text(encoding="utf-8"))
@@ -47,6 +63,7 @@ class FullVerificationReportTest(unittest.TestCase):
         snapshot = MODULE.current_snapshot()
         for path in (
             "tools/compare_gt6_recipes.py",
+            "tools/build_component_rules.py",
             "tools/tests/test_compare_gt6_recipes.py",
             "tools/gt6_process_expectations.json",
         ):

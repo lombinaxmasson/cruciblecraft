@@ -120,4 +120,74 @@ class RuleExpressionTest {
                                 .evaluateLong(CONTEXT))
                 .getMessage().contains("exact double range"));
     }
+
+    @Test
+    void enforcesSourceLengthBoundaryWithContext() {
+        String boundary = "1" + " ".repeat(RuleExpression.MAX_SOURCE_LENGTH - 1);
+        assertEquals(
+                1,
+                RuleExpression.numeric(boundary, "test:length-boundary")
+                        .evaluateInt(CONTEXT));
+
+        String oversized = boundary + " ";
+        IllegalArgumentException failure = assertThrows(
+                IllegalArgumentException.class,
+                () -> RuleExpression.numeric(oversized, "test:length-overflow"));
+        assertTrue(failure.getMessage().contains("test:length-overflow"));
+        assertTrue(failure.getMessage().contains(oversized));
+        assertTrue(failure.getMessage().contains("source length"));
+    }
+
+    @Test
+    void acceptsSixtyFourNestedParserAndEvaluationLayers() {
+        String parentheses = "(".repeat(RuleExpression.MAX_NESTING_DEPTH)
+                + "1"
+                + ")".repeat(RuleExpression.MAX_NESTING_DEPTH);
+        assertEquals(
+                1,
+                RuleExpression.numeric(parentheses, "test:parentheses-64")
+                        .evaluateInt(CONTEXT));
+
+        String functions = nestedFunctions(RuleExpression.MAX_NESTING_DEPTH);
+        assertEquals(
+                1,
+                RuleExpression.numeric(functions, "test:functions-64")
+                        .evaluateInt(CONTEXT));
+
+        String unary = "-".repeat(RuleExpression.MAX_NESTING_DEPTH) + "1";
+        assertEquals(
+                1,
+                RuleExpression.numeric(unary, "test:unary-64")
+                        .evaluateInt(CONTEXT));
+
+        String binary = "1+".repeat(RuleExpression.MAX_NESTING_DEPTH) + "1";
+        assertEquals(
+                RuleExpression.MAX_NESTING_DEPTH + 1,
+                RuleExpression.numeric(binary, "test:binary-64")
+                        .evaluateInt(CONTEXT));
+    }
+
+    @Test
+    void rejectsSixtyFiveNestedParserOrEvaluationLayersWithContext() {
+        int oversizedDepth = RuleExpression.MAX_NESTING_DEPTH + 1;
+        assertDepthFailure(
+                "(".repeat(oversizedDepth) + "1" + ")".repeat(oversizedDepth),
+                "test:parentheses-65");
+        assertDepthFailure(nestedFunctions(oversizedDepth), "test:functions-65");
+        assertDepthFailure("-".repeat(oversizedDepth) + "1", "test:unary-65");
+        assertDepthFailure("1+".repeat(oversizedDepth) + "1", "test:binary-65");
+    }
+
+    private static String nestedFunctions(int depth) {
+        return "ceil(".repeat(depth) + "1" + ")".repeat(depth);
+    }
+
+    private static void assertDepthFailure(String source, String ruleId) {
+        IllegalArgumentException failure = assertThrows(
+                IllegalArgumentException.class,
+                () -> RuleExpression.numeric(source, ruleId));
+        assertTrue(failure.getMessage().contains(ruleId));
+        assertTrue(failure.getMessage().contains(source));
+        assertTrue(failure.getMessage().contains("depth"));
+    }
 }

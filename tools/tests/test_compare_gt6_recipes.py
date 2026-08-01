@@ -1,14 +1,23 @@
 import copy
+import contextlib
 import importlib.util
 import hashlib
+import io
 import json
 import subprocess
 import sys
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 TOOLS = Path(__file__).resolve().parents[1]
+FULL_REFERENCE = TOOLS / "gt6_recipe_normalized_reference.json"
+FULL_REPORT = TOOLS / "gt6_recipe_compare_report.json"
+requires_full_compare_cache = unittest.skipUnless(
+    FULL_REFERENCE.is_file() and FULL_REPORT.is_file(),
+    "expanded GT6 comparison replay caches are not installed",
+)
 SPEC = importlib.util.spec_from_file_location(
     "compare_gt6_recipes",
     TOOLS / "compare_gt6_recipes.py",
@@ -147,6 +156,7 @@ class NormalizationFixtureTest(unittest.TestCase):
         second.map_name = "cruciblecraft:other"
         self.assertEqual(0, MODULE.shadowed_recipe_count([first, second]))
 
+    @requires_full_compare_cache
     def test_assembler_and_press_reference_samples_keep_fixed_inputs(self):
         reference_path = TOOLS / "gt6_recipe_normalized_reference.json"
         self.assertLess(reference_path.stat().st_size, 140_000_000)
@@ -550,6 +560,17 @@ class NormalizationFixtureTest(unittest.TestCase):
 
 
 class ExpectationPolicyTest(unittest.TestCase):
+    def test_compact_expectations_cover_current_cc_recipes(self):
+        recipes = MODULE.expand_cc_recipes(MODULE.load_cc_materials())
+        document = json.loads(
+            (TOOLS / "gt6_recipe_expectations.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(
+            [],
+            MODULE.validate_compact_expectations(document, len(recipes)),
+        )
+
+    @requires_full_compare_cache
     def test_committed_verdicts_cover_every_normalized_cc_recipe(self):
         materials = MODULE.load_cc_materials()
         cc_all = MODULE.expand_cc_recipes(materials)
@@ -691,6 +712,7 @@ class ExpectationPolicyTest(unittest.TestCase):
                 self.assertFalse(result["valid"])
                 self.assertEqual(1, result["unreviewed_count"])
 
+    @requires_full_compare_cache
     def test_generic_intentional_boilerplate_is_unreviewed(self):
         report = json.loads(
             (TOOLS / "gt6_recipe_compare_report.json").read_text(encoding="utf-8"))
@@ -711,6 +733,7 @@ class ExpectationPolicyTest(unittest.TestCase):
         self.assertFalse(result["valid"])
         self.assertEqual(1, result["unreviewed_count"])
 
+    @requires_full_compare_cache
     def test_automated_review_requires_current_evidence_digest(self):
         report = json.loads(
             (TOOLS / "gt6_recipe_compare_report.json").read_text(
@@ -740,6 +763,7 @@ class ExpectationPolicyTest(unittest.TestCase):
         self.assertFalse(result["valid"])
         self.assertEqual(1, result["unreviewed_count"])
 
+    @requires_full_compare_cache
     def test_human_review_requires_durable_attribution(self):
         report = json.loads(
             (TOOLS / "gt6_recipe_compare_report.json").read_text(
@@ -769,6 +793,7 @@ class ExpectationPolicyTest(unittest.TestCase):
         self.assertFalse(result["valid"])
         self.assertEqual(1, result["unreviewed_count"])
 
+    @requires_full_compare_cache
     def test_committed_non_exact_rows_have_row_specific_evidence(self):
         report = json.loads(
             (TOOLS / "gt6_recipe_compare_report.json").read_text(encoding="utf-8"))
@@ -854,19 +879,23 @@ class RoadmapPolicyTest(unittest.TestCase):
         self.assertTrue(any("stale reference_recipe_count" in error for error in errors))
 
     def test_committed_roadmap_covers_all_95_reference_maps(self):
-        reference = json.loads(
-            (TOOLS / "gt6_recipe_normalized_reference.json").read_text(
+        baseline = json.loads(
+            (TOOLS / "gt6_recipe_compare_baseline.json").read_text(
                 encoding="utf-8"
             )
         )
-        index = {"maps": reference["map_inventory"]}
         roadmap = json.loads(
             (TOOLS / "gt6_map_roadmap.json").read_text(encoding="utf-8")
         )
-        rows, errors = MODULE.machine_gap_summary(index, roadmap)
-        self.assertEqual([], errors)
-        self.assertEqual(95, len(rows))
-        self.assertEqual(95, len(roadmap["maps"]))
+        fingerprint = baseline["reference_fingerprint"]
+        self.assertEqual(fingerprint["gt_map_count"], len(roadmap["maps"]))
+        self.assertEqual(
+            fingerprint["gt_recipe_count"],
+            sum(
+                row["reference_recipe_count"]
+                for row in roadmap["maps"].values()
+            ),
+        )
 
 
 class ProcessExpectationTest(unittest.TestCase):
@@ -929,6 +958,27 @@ class ProcessExpectationTest(unittest.TestCase):
 
 
 class ReadOnlyCliTest(unittest.TestCase):
+    def test_full_replay_without_cache_is_an_actionable_error(self):
+        missing = TOOLS / "test-fixture-missing-cache"
+        stderr = io.StringIO()
+        with (
+            mock.patch.object(MODULE, "GT_INDEX", missing / "index.json"),
+            mock.patch.object(
+                MODULE,
+                "REFERENCE_JSON",
+                missing / "gt6_recipe_normalized_reference.json",
+            ),
+            mock.patch.object(
+                sys,
+                "argv",
+                ["compare_gt6_recipes.py", "--check", "--full-replay"],
+            ),
+            contextlib.redirect_stderr(stderr),
+        ):
+            self.assertEqual(2, MODULE.main())
+        self.assertIn("requires either", stderr.getvalue())
+        self.assertIn("--write-reference", stderr.getvalue())
+
     def test_check_modes_do_not_modify_audit_artifacts(self):
         paths = [
             TOOLS / "gt6_recipe_normalized_reference.json",

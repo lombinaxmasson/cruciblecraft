@@ -335,11 +335,16 @@ public final class GeneratedMaterialPack {
     }
 
     private static String outputGeneratorIdentity() {
-        try (InputStream input =
-                GeneratedMaterialPack.class.getResourceAsStream("GeneratedMaterialPack.class")) {
-            if (input == null) {
-                return OUTPUT_SCHEMA + ":class-unavailable";
-            }
+        return outputGeneratorIdentity(
+                GeneratedMaterialPack.class.getResourceAsStream("GeneratedMaterialPack.class"));
+    }
+
+    static String outputGeneratorIdentity(InputStream source) {
+        if (source == null) {
+            throw new IllegalStateException(
+                    "Generated material pack output generator class bytes are unavailable");
+        }
+        try (InputStream input = source) {
             MessageDigest digest = newSha256();
             byte[] buffer = new byte[8_192];
             int read;

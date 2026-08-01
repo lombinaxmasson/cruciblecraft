@@ -1,9 +1,12 @@
 package com.masson.cruciblecraft.recipe.rule;
 
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import com.google.gson.JsonParser;
 import com.mojang.serialization.JsonOps;
 import io.netty.buffer.Unpooled;
 import net.minecraft.SharedConstants;
@@ -15,10 +18,30 @@ import net.neoforged.fml.loading.LoadingModList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MaterialRuleCodecTest {
+    @Test
+    void generatedComponentRuleUsesTheRuntimeRecipeResourcePath() throws Exception {
+        String path = "data/cruciblecraft/recipe/extruder/long_rod/iron.json";
+        var stream = MaterialRuleCodecTest.class.getClassLoader().getResourceAsStream(path);
+        assertNotNull(stream, path);
+        try (stream; var reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
+            var json = JsonParser.parseReader(reader).getAsJsonObject();
+            assertEquals("cruciblecraft:material_rule", json.remove("type").getAsString());
+            MaterialRule decoded = MaterialRule.CODEC.codec()
+                    .parse(JsonOps.INSTANCE, json).getOrThrow();
+            assertEquals(Optional.of(id("extruder")), decoded.target());
+            assertEquals(2, decoded.itemInputs().size());
+            assertEquals("0", decoded.itemInputs().get(1).count());
+            assertEquals(
+                    Optional.of(id("extruder_shape_long_rod")),
+                    decoded.itemInputs().get(1).item());
+        }
+    }
+
     @Test
     void codecAndNetworkRoundTripActualRule() {
         LoadingModList.of(List.of(), List.of(), List.of(), List.of(), Map.of());

@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import copy
+import contextlib
+import io
 import json
 import unittest
+from unittest import mock
 
 from tools import gt6_extruder_templates as extruder
 
@@ -63,6 +66,63 @@ def external_recipe(item_meta: int, output_meta: int, duration: int) -> dict:
     return recipe
 
 
+class CompactExtruderEvidenceTest(unittest.TestCase):
+    def test_full_replay_without_cache_is_an_explicit_ci_skip(self) -> None:
+        missing = extruder.ROOT / "tools" / "test-fixture-missing-cache.json"
+        stdout = io.StringIO()
+        with (
+            mock.patch.object(extruder, "OUT", missing),
+            contextlib.redirect_stdout(stdout),
+        ):
+            self.assertEqual(0, extruder.main(["--verify"]))
+        self.assertIn("SKIP: full extruder replay was not executed", stdout.getvalue())
+        self.assertIn("compact index/report", stdout.getvalue())
+        self.assertIn("gt6_extruder_templates.py", stdout.getvalue())
+
+    def test_index_and_report_are_independently_consistent(self) -> None:
+        index = json.loads(extruder.INDEX_OUT.read_text(encoding="utf-8"))
+        report = json.loads(extruder.SUMMARY_OUT.read_text(encoding="utf-8"))
+
+        self.assertEqual(5, index["schema_version"])
+        self.assertEqual("gt.recipe.extruder", index["map"])
+        self.assertTrue(index["replay_verified"])
+        self.assertTrue(report["verification"]["replay_verified"])
+        self.assertTrue(report["verification"]["partition_verified"])
+        self.assertEqual(
+            report["source"]["recipe_count"],
+            index["source_recipe_count"],
+        )
+        self.assertEqual(
+            report["counts"]["shape_template_count"],
+            index["functional_template_count"],
+        )
+        self.assertEqual(
+            report["counts"]["logical_recipe_count"],
+            index["logical_recipe_count"],
+        )
+        self.assertEqual(
+            sum(row["expanded_count"] for row in index["templates"])
+            + sum(row["multiplicity"] for row in index["exact_remainder"]),
+            index["source_recipe_count"],
+        )
+        self.assertEqual(
+            len({row["template_id"] for row in index["templates"]}),
+            len(index["templates"]),
+        )
+        self.assertTrue(all(
+            row["replay_verified"] for row in index["templates"]
+        ))
+        self.assertEqual(
+            "one template per concrete extruder shape",
+            report["template_policy"]["template_identity"],
+        )
+        self.assertIn("sparse relation", report["template_policy"]["support"])
+
+
+@unittest.skipUnless(
+    extruder.MAP_PATH.is_file() and extruder.MATERIALS_PATH.is_file(),
+    "full GT6 extruder replay dump is not installed",
+)
 class ExtruderTemplateTest(unittest.TestCase):
     def test_sentinel_material_id_is_not_a_domain_identity(self) -> None:
         self.assertNotIn(-1, extruder._material_catalog())
@@ -222,6 +282,10 @@ class ExtruderTemplateTest(unittest.TestCase):
             extruder.multiset_digest(replay_counter),
         )
 
+    @unittest.skipUnless(
+        extruder.OUT.is_file(),
+        "expanded extruder replay cache is not installed",
+    )
     def test_pinned_extruder_artifact_replays_exactly(self) -> None:
         document = json.loads(extruder.OUT.read_text(encoding="utf-8"))
         result = extruder.verify_document(document)

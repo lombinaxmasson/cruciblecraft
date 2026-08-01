@@ -7,6 +7,7 @@ import java.util.function.Supplier;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.energy.EnergyType;
+import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -61,7 +62,7 @@ public final class ModProcessingMachines {
     public static final List<ProcessingMachineSpec> T2_MACHINES = List.of(
             SLUICE, BATH, CENTRIFUGE, SHREDDER, SIFTER, SMELTER, MORTAR);
     public static final ProcessingMachineSpec EXTRUDER =
-            t3("extruder", () -> ModRecipeMaps.EXTRUDER, 1, false);
+            t3("extruder", () -> ModRecipeMaps.EXTRUDER, 2, false, true);
     public static final ProcessingMachineSpec CUTTER =
             t3("cutter", () -> ModRecipeMaps.CUTTER, 1, false);
     public static final ProcessingMachineSpec LATHE =
@@ -196,6 +197,15 @@ public final class ModProcessingMachines {
             Supplier<RecipeMap> map,
             int itemInputs,
             boolean futureFluidInput) {
+        return t3(path, map, itemInputs, futureFluidInput, false);
+    }
+
+    private static ProcessingMachineSpec t3(
+            String path,
+            Supplier<RecipeMap> map,
+            int itemInputs,
+            boolean futureFluidInput,
+            boolean extruderTool) {
         List<Integer> inputs = java.util.stream.IntStream.range(0, itemInputs).boxed().toList();
         int outputSlot = itemInputs;
         var tanks = futureFluidInput
@@ -210,12 +220,25 @@ public final class ModProcessingMachines {
                         new ProcessingMachineSpec.SlotPosition(38, 35),
                         new ProcessingMachineSpec.SlotPosition(56, 35),
                         new ProcessingMachineSpec.SlotPosition(116, 35));
+        ProcessingMachineSpec.SlotLayout itemLayout = extruderTool
+                ? new ProcessingMachineSpec.SlotLayout(
+                        3,
+                        List.of(0, 1),
+                        List.of(2),
+                        Map.of(
+                                0, ProcessingMachineSpec.SlotRole.MATERIAL,
+                                1, ProcessingMachineSpec.SlotRole.TOOL,
+                                2, ProcessingMachineSpec.SlotRole.OUTPUT),
+                        (slot, stack) -> slot == 1
+                                ? ExtruderShapeCatalog.isShape(stack)
+                                : !ExtruderShapeCatalog.isShape(stack))
+                : new ProcessingMachineSpec.SlotLayout(
+                        itemInputs + 1, inputs, List.of(outputSlot));
         ProcessingMachineSpec spec = new ProcessingMachineSpec(
                 id(path),
                 id(path),
                 map,
-                new ProcessingMachineSpec.SlotLayout(
-                        itemInputs + 1, inputs, List.of(outputSlot)),
+                itemLayout,
                 tanks,
                 new ProcessingMachineSpec.EnergySpec(
                         EnergyType.KINETIC,
@@ -234,7 +257,8 @@ public final class ModProcessingMachines {
                         (front, side) -> side != null && side == front.getOpposite()
                                 ? ProcessingMachineSpec.CapabilityAccess.INPUT
                                 : ProcessingMachineSpec.CapabilityAccess.NONE),
-                recipe -> validateT3(recipe, itemInputs, futureFluidInput),
+                recipe -> validateT3(
+                        recipe, itemInputs, futureFluidInput, extruderTool),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 new ProcessingMachineSpec.UiLayout(
                         positions,
@@ -249,17 +273,30 @@ public final class ModProcessingMachines {
     private static Optional<String> validateT3(
             GTRecipe recipe,
             int itemInputs,
-            boolean fluidInput) {
+            boolean fluidInput,
+            boolean extruderTool) {
         if (recipe.itemInputs().size() > itemInputs
                 || recipe.itemOutputs().size() > 1
                 || recipe.fluidInputs().size() > (fluidInput ? 1 : 0)
                 || !recipe.fluidOutputs().isEmpty()) {
             return Optional.of("t3_recipe_shape");
         }
+        if (extruderTool
+                && (recipe.itemInputs().size() != 2
+                || recipe.itemInputCounts().size() != 2
+                || recipe.itemInputCounts().get(0) <= 0
+                || recipe.itemInputCounts().get(1) != 0
+                || java.util.Arrays.stream(recipe.itemInputs().get(1).getItems())
+                        .noneMatch(ExtruderShapeCatalog::isShape)
+                || java.util.Arrays.stream(recipe.itemInputs().get(1).getItems())
+                        .anyMatch(stack -> !ExtruderShapeCatalog.isShape(stack)))) {
+            return Optional.of("t3_extruder_tool_shape");
+        }
         if (recipe.eut() <= 0L || recipe.eut() > 256L || recipe.eut() > 4_096L) {
             return Optional.of("t3_recipe_energy");
         }
-        if (recipe.itemInputCounts().stream().anyMatch(count -> count <= 0 || count > 64)
+        if (recipe.itemInputCounts().stream().anyMatch(count ->
+                        count < 0 || count > 64 || !extruderTool && count == 0)
                 || recipe.itemOutputs().stream().anyMatch(stack ->
                         stack.isEmpty() || stack.getCount() <= 0)
                 || recipe.outputChances().stream().anyMatch(

@@ -1,3 +1,4 @@
+import json
 import sys
 import unittest
 from pathlib import Path
@@ -11,7 +12,7 @@ from tools import build_gt6_ore_chain as builder  # noqa: E402
 class OreChainBuilderTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.index, cls.operands, cls.files = builder.build_documents()
+        cls.index, cls.operands, cls.files = builder.load_committed_outputs()
 
     def test_acceptance_materials_have_all_six_stages(self):
         emitted = {
@@ -37,7 +38,7 @@ class OreChainBuilderTest(unittest.TestCase):
         ))
         for row in rows:
             relative = row["path"].split("ore_chain/", 1)[1]
-            document = __import__("json").loads(self.files[relative])
+            document = json.loads(self.files[relative])
             self.assertEqual(
                 "topology_fallback",
                 document["provenance"]["source_kind"],
@@ -63,7 +64,7 @@ class OreChainBuilderTest(unittest.TestCase):
         signatures = set()
         for row in self.index["recipes"]:
             relative = row["path"].split("ore_chain/", 1)[1]
-            document = __import__("json").loads(self.files[relative])
+            document = json.loads(self.files[relative])
             self.assertEqual(
                 row["semantic_hash"],
                 builder.value_hash({
@@ -90,7 +91,7 @@ class OreChainBuilderTest(unittest.TestCase):
     def test_every_concrete_recipe_exposes_runtime_provenance(self):
         for row in self.index["recipes"]:
             relative = row["path"].split("ore_chain/", 1)[1]
-            document = __import__("json").loads(self.files[relative])
+            document = json.loads(self.files[relative])
             provenance = document["provenance"]
             self.assertIn(
                 provenance["source_kind"],
@@ -203,7 +204,7 @@ class OreChainBuilderTest(unittest.TestCase):
 
         aquamarine = emitted["aquamarine"]
         relative = aquamarine["path"].split("ore_chain/", 1)[1]
-        document = __import__("json").loads(self.files[relative])
+        document = json.loads(self.files[relative])
         self.assertEqual([36], document["item_input_counts"])
         self.assertEqual(
             [{"count": 1, "id": "cruciblecraft:beryllium/ingot"}],
@@ -231,7 +232,7 @@ class OreChainBuilderTest(unittest.TestCase):
                 and row["material"] == "copper"
             )
             relative = row["path"].split("ore_chain/", 1)[1]
-            document = __import__("json").loads(self.files[relative])
+            document = json.loads(self.files[relative])
             signatures[family] = (
                 document["item_outputs"][1:],
                 document["output_chances"][1:],
@@ -246,7 +247,7 @@ class OreChainBuilderTest(unittest.TestCase):
             }:
                 continue
             relative = row["path"].split("ore_chain/", 1)[1]
-            document = __import__("json").loads(self.files[relative])
+            document = json.loads(self.files[relative])
             by_material.setdefault(row["material"], []).append((
                 document["item_outputs"][1:],
                 document["output_chances"][1:],
@@ -260,6 +261,10 @@ class OreChainBuilderTest(unittest.TestCase):
         ]
         self.assertEqual([], duplicated)
 
+    @unittest.skipUnless(
+        builder.REFERENCE.is_file(),
+        "full GT6 source replay cache is not installed",
+    )
     def test_copper_stage_chances_are_pinned_to_selected_gt6_evidence(self):
         expected = {
             "chain_sluice": (
@@ -287,7 +292,7 @@ class OreChainBuilderTest(unittest.TestCase):
                     and row["material"] == "copper"
                 )
                 relative = row["path"].split("ore_chain/", 1)[1]
-                document = __import__("json").loads(self.files[relative])
+                document = json.loads(self.files[relative])
                 self.assertEqual(source_hash, row["selected_source_recipe"])
                 self.assertIn(source_hash, row["gt6_evidence_hashes"])
                 self.assertEqual(

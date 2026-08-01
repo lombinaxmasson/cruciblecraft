@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.machine.processing;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.masson.cruciblecraft.TestExtruderShapes;
+import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeCache;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -112,6 +115,52 @@ class MachineTransactionTest {
     }
 
     @Test
+    void extruderPresenceToolSurvivesSuccessAndBlockedOutputWithComponents() {
+        ItemStack shape = TestExtruderShapes.stack();
+        shape.set(
+                net.minecraft.core.component.DataComponents.CUSTOM_NAME,
+                net.minecraft.network.chat.Component.literal("kept"));
+        GTRecipe recipe = new GTRecipe(
+                List.of(Ingredient.of(Items.IRON_INGOT), Ingredient.of(shape.getItem())),
+                List.of(1, 0),
+                List.of(new ItemStack(Items.IRON_NUGGET, 2)),
+                List.of(), List.of(), List.of(10_000), 20, 16, 0, true);
+        MemoryResources ready = new MemoryResources(
+                List.of(new ItemStack(Items.IRON_INGOT), shape, ItemStack.EMPTY),
+                List.of());
+
+        MachineTransaction transaction = MachineTransaction.prepare(
+                recipe, ready.items, List.of(0, 1), List.of(2),
+                ready.fluids, List.of(), List.of(), recipe.itemOutputs()).orElseThrow();
+        assertTrue(transaction.commit(ready));
+        assertTrue(ready.items.get(0).isEmpty());
+        assertEquals(1, ready.items.get(1).getCount());
+        assertTrue(ItemStack.isSameItemSameComponents(shape, ready.items.get(1)));
+        assertEquals(1, ready.items.stream()
+                .filter(ExtruderShapeCatalog::isShape)
+                .mapToInt(ItemStack::getCount)
+                .sum(), "successful transaction must not copy the presence-only shape");
+        assertFalse(ExtruderShapeCatalog.isShape(ready.items.get(2)));
+
+        MemoryResources blocked = new MemoryResources(
+                List.of(
+                        new ItemStack(Items.IRON_INGOT),
+                        shape,
+                        new ItemStack(Items.DIAMOND, 64)),
+                List.of());
+        assertTrue(MachineTransaction.prepare(
+                recipe, blocked.items, List.of(0, 1), List.of(2),
+                blocked.fluids, List.of(), List.of(), recipe.itemOutputs()).isEmpty());
+        assertEquals(1, blocked.items.get(0).getCount());
+        assertTrue(ItemStack.isSameItemSameComponents(shape, blocked.items.get(1)));
+        assertEquals(1, blocked.items.stream()
+                .filter(ExtruderShapeCatalog::isShape)
+                .mapToInt(ItemStack::getCount)
+                .sum(), "blocked output must leave exactly the original shape");
+        assertEquals(Items.DIAMOND, blocked.items.get(2).getItem());
+    }
+
+    @Test
     void chanceOutputsRollExactlyOnceWithDeterministicRng() {
         AtomicInteger calls = new AtomicInteger();
         List<ItemStack> rolled = ChanceOutputs.roll(
@@ -196,6 +245,26 @@ class MachineTransactionTest {
             assertFalse(recovered.valid());
             assertTrue(recovered.outputs().isEmpty());
         }
+    }
+
+    @Test
+    void chanceStateRejectsMoreOutputsThanTheReaderCanRestore() {
+        List<ItemStack> outputs = java.util.Collections.nCopies(
+                ChanceOutputState.MAX_SAVED_OUTPUTS + 1,
+                new ItemStack(Items.DIAMOND));
+
+        IllegalArgumentException failure = assertThrows(
+                IllegalArgumentException.class,
+                () -> new ChanceOutputState(
+                        true,
+                        "test:oversized",
+                        "fingerprint",
+                        outputs));
+
+        assertTrue(failure.getMessage().contains(
+                Integer.toString(ChanceOutputState.MAX_SAVED_OUTPUTS + 1)));
+        assertTrue(failure.getMessage().contains(
+                Integer.toString(ChanceOutputState.MAX_SAVED_OUTPUTS)));
     }
 
     @Test

@@ -26,8 +26,13 @@ public final class DataGenerators {
         generator.addProvider(event.includeClient(), new ModBlockStateProvider(output, existingFileHelper));
         generator.addProvider(event.includeClient(), new ModItemModelProvider(output, existingFileHelper));
         generator.addProvider(event.includeClient(), new ModLanguageProvider(output));
+        generator.addProvider(
+                event.includeClient(), new ModLanguageProvider(output, "zh_cn"));
 
         generator.addProvider(event.includeServer(), new ModLootTableProvider(output, lookupProvider));
+        generator.addProvider(
+                event.includeServer(),
+                new ModItemTagProvider(output, lookupProvider, existingFileHelper));
         generator.addProvider(
                 event.includeServer(),
                 new ModRecipeProvider(output, lookupProvider));

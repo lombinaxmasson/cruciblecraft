@@ -14,7 +14,6 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.recipe.rule.MaterialRule;
 import com.masson.cruciblecraft.recipe.rule.MaterialRuleRecipe;
 import com.masson.cruciblecraft.recipe.rule.T2ChainRules;
-import com.masson.cruciblecraft.recipe.rule.T3ComponentRules;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
 import com.masson.cruciblecraft.registry.ModFluids;
@@ -118,8 +117,6 @@ public final class ModRecipeProvider extends RecipeProvider {
                         !T2ChainRules.CONCRETE_ORE_CHAIN_PATHS.contains(definition.path()))
                 .forEach(definition -> output.accept(
                         id(definition.path()), new MaterialRuleRecipe(definition.rule()), null));
-        T3ComponentRules.ALL.forEach(definition -> output.accept(
-                id(definition.path()), new MaterialRuleRecipe(definition.rule()), null));
     }
 
     private static void machineCrafting(RecipeOutput output, Item result, String id) {

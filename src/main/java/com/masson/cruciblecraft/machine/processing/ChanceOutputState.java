@@ -18,6 +18,12 @@ public record ChanceOutputState(
     public ChanceOutputState {
         recipeId = recipeId == null ? "" : recipeId;
         recipeFingerprint = recipeFingerprint == null ? "" : recipeFingerprint;
+        if (outputs.size() > MAX_SAVED_OUTPUTS) {
+            throw new IllegalArgumentException(
+                    "Chance output state has " + outputs.size()
+                            + " stacks; maximum persisted count is "
+                            + MAX_SAVED_OUTPUTS);
+        }
         outputs = outputs.stream().map(ItemStack::copy).toList();
     }
 

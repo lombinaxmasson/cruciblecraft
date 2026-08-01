@@ -36,6 +36,9 @@ MANIFEST = TOOLS / "gt6_oredict_import_manifest.json"
 ALIASES = TOOLS / "gt6_material_alias_overrides.json"
 ACTIVATION_OVERRIDES = TOOLS / "gt6_material_activation_overrides.json"
 AUTHORED_BASELINE = TOOLS / "gt6_authored_material_baseline.json"
+ACCEPTANCE_FORM_CORRECTIONS = (
+    TOOLS / "component_rule_sources" / "acceptance_form_corrections.json"
+)
 GATE_OPERANDS = TOOLS / "gt6_l1b_selected_recipe_operands.json"
 ORE_CHAIN = TOOLS / "gt6_ore_chain.json"
 ORE_CHAIN_OPERANDS = TOOLS / "gt6_ore_chain_operands.json"
@@ -101,8 +104,8 @@ PREFIX_UNITS = {
     "cable": 72, "double_cable": 144, "quadruple_cable": 288,
     "octuple_cable": 576, "dodecuple_cable": 864,
 }
-# Mirrors enabled T3ComponentRules. Fixed-point closure intentionally has no
-# cable routes until an obtainable insulation input is modeled.
+# Mirrors enabled tools/component_rule_sources rules. Fixed-point closure
+# intentionally has no cable routes until an obtainable insulation input is modeled.
 T3_PRODUCTION_ROUTES = (
     ("working", (("ingot", 1),), "long_rod"),
     ("cutting", (("plate", 1),), "foil"),
@@ -300,6 +303,48 @@ def stable_hash(value: Any) -> str:
 def structural_material(value: dict[str, Any]) -> dict[str, Any]:
     result = dict(value)
     result.pop("gt6_metadata", None)
+    return result
+
+
+def apply_acceptance_form_encoding(
+    material: dict[str, Any],
+    material_id: str,
+    desired_forms: Iterable[str],
+    l3_document: dict[str, Any],
+) -> dict[str, Any]:
+    corrections = json.loads(
+        ACCEPTANCE_FORM_CORRECTIONS.read_text(encoding="utf-8")
+    ).get("corrections") or []
+    corrected_forms = {
+        form
+        for correction in corrections
+        if correction.get("material") == material_id
+        for form in correction.get("add_forms") or []
+    }
+    if not corrected_forms:
+        return material
+    result = dict(material)
+    flags = set(result.get("generation_flags") or [])
+    includes = set(result.get("include_prefixes") or [])
+    for form in corrected_forms:
+        plan = l3_document["prefixes"].get(form)
+        if plan is None:
+            raise ImportError(
+                f"acceptance form correction has no L3 prefix plan: {material_id}/{form}"
+            )
+        flags.add(plan["generation_flag"])
+        includes.discard(form)
+    result["generation_flags"] = sorted(flags)
+    if includes:
+        result["include_prefixes"] = sorted(includes)
+    else:
+        result.pop("include_prefixes", None)
+    if gt6_l3_materials.resolve_material_forms(result, l3_document) != set(
+        gt6_l3_materials.close_implied_prefixes(desired_forms)
+    ):
+        raise ImportError(
+            f"acceptance generation-flag encoding changed forms: {material_id}"
+        )
     return result
 
 
@@ -1183,9 +1228,6 @@ def choose_policy(
             *source_forms[source],
             *sorted(explicit_forms - set(source_forms[source])),
         ]
-    metadata_only_sources = {
-        source for source in active if not source_forms[source]
-    }
     for source, forms in activation["form_include"].items():
         if source not in active:
             raise ImportError(f"form_include source is not ACTIVE: {source}")
@@ -1194,6 +1236,42 @@ def choose_policy(
             raise ImportError(
                 f"form_include {source} lacks GT prefix evidence: {sorted(unsupported)}")
         source_forms[source] = list(forms)
+    gt6_original_forms = {
+        source: list(forms) for source, forms in source_forms.items()
+    }
+    corrections = json.loads(
+        ACCEPTANCE_FORM_CORRECTIONS.read_text(encoding="utf-8")
+    ).get("corrections") or []
+    acceptance_by_source: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    source_by_cc = {cc_id: source for source, cc_id in source_to_cc.items()}
+    for correction in corrections:
+        if (
+            correction.get("classification")
+            != "t3_acceptance_required_not_gt6_original_gate"
+        ):
+            raise ImportError("acceptance form correction classification drift")
+        material_id = correction.get("material")
+        source = source_by_cc.get(material_id)
+        if source is None:
+            raise ImportError(
+                f"acceptance form correction references inactive material: {material_id}"
+            )
+        forms = correction.get("add_forms") or []
+        if not forms or any(form not in T0_PREFIXES.values() for form in forms):
+            raise ImportError(
+                f"acceptance form correction has unsupported forms: {material_id}"
+            )
+        source_forms[source] = [
+            *source_forms[source],
+            *sorted(set(forms) - set(source_forms[source])),
+        ]
+        acceptance_by_source[source].append(correction)
+    metadata_only_sources = {
+        source for source in active if not source_forms[source]
+    }
+    validation_counts["t3_acceptance_form_corrections"] = sum(
+        len(row["add_forms"]) for row in corrections
+    )
     validation_counts["component_form_candidates"] = sum(
         len(set(forms) & T3_COMPONENT_FORMS) for forms in source_forms.values())
     validation_counts["retained_component_forms"] = validation_counts[
@@ -1253,8 +1331,14 @@ def choose_policy(
                 + (
                     "; reviewed insulation form include from GT6 cable Rubber-plate evidence"
                     if source in activation["form_include"] else "")
+                + (
+                    "; T3 acceptance form correction explicitly not present in "
+                    "the original GT6 registration gate"
+                    if source in acceptance_by_source else "")
             ),
             t0_forms=source_forms[source],
+            gt6_original_t0_forms=gt6_original_forms[source],
+            acceptance_form_corrections=acceptance_by_source.get(source, []),
             pre_gate_registered_forms=pre_gate_registered_forms.get(source, []),
             metadata_only=source in metadata_only_sources,
             activation_provenance=provenance)
@@ -1395,6 +1479,12 @@ def build_material_files(
                 l3_document,
                 metadata_only=metadata_only,
             )
+            authored = apply_acceptance_form_encoding(
+                authored,
+                cc_id,
+                source_forms[source],
+                l3_document,
+            )
             authored["gt6_metadata"] = metadata_for(
                 value, source_to_cc, by_name, canonical_by_id, strict=True)
             files[path.as_posix()] = stable_json(authored)
@@ -1451,6 +1541,12 @@ def build_material_files(
             source_forms[source],
             l3_document,
             metadata_only=metadata_only,
+        )
+        result = apply_acceptance_form_encoding(
+            result,
+            cc_id,
+            source_forms[source],
+            l3_document,
         )
         files[path.as_posix()] = stable_json(result)
     index = [f"{cc_id}.json" for cc_id in sorted(source_to_cc.values())]
@@ -1729,6 +1825,12 @@ def build_outputs(dump_root: Path) -> ImportResult:
             "non_integral_u": "DEFERRED",
             "authored_materials": dict(sorted(AUTHORED_IDS.items())),
             "activation_overrides_sha256": file_hash(ACTIVATION_OVERRIDES),
+            "acceptance_form_corrections_sha256": file_hash(
+                ACCEPTANCE_FORM_CORRECTIONS
+            ),
+            "acceptance_form_correction_classification": (
+                "t3_acceptance_required_not_gt6_original_gate"
+            ),
             "evidence_maps": activation["evidence_maps"],
         },
         "counts": dict(sorted(statuses.items())),
@@ -1757,6 +1859,9 @@ def build_outputs(dump_root: Path) -> ImportResult:
             CROSS_REFERENCE.name: stable_hash(cross_reference),
             ALIASES.name: stable_hash(overrides),
             ACTIVATION_OVERRIDES.name: stable_hash(activation),
+            "acceptance_form_corrections.json": stable_hash(json.loads(
+                ACCEPTANCE_FORM_CORRECTIONS.read_text(encoding="utf-8")
+            )),
             AUTHORED_BASELINE.name: stable_hash(authored_baseline_doc),
             gt6_l3_materials.GENERATION_BITS_PATH.name: stable_hash(json.loads(
                 gt6_l3_materials.GENERATION_BITS_PATH.read_text(encoding="utf-8")
@@ -1817,6 +1922,7 @@ def validate_manifest_artifact_hashes(
         CROSS_REFERENCE.name,
         ALIASES.name,
         ACTIVATION_OVERRIDES.name,
+        "acceptance_form_corrections.json",
         AUTHORED_BASELINE.name,
         gt6_l3_materials.GENERATION_BITS_PATH.name,
         gt6_l3_materials.MAPPING_PATH.name,
@@ -1837,6 +1943,9 @@ def validate_manifest_artifact_hashes(
         path = (
             REGISTRATION_GATE
             if filename == REGISTRATION_GATE_MANIFEST_KEY
+            and tools_dir.resolve() == TOOLS.resolve()
+            else ACCEPTANCE_FORM_CORRECTIONS
+            if filename == "acceptance_form_corrections.json"
             and tools_dir.resolve() == TOOLS.resolve()
             else tools_dir / filename
         )

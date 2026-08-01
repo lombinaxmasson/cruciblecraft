@@ -9,6 +9,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.item.MaterialItem;
 import com.masson.cruciblecraft.content.item.CeramicMoldBlockItem;
+import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.content.item.MaterialMachineBlockItem;
 import com.masson.cruciblecraft.content.item.SmithingHammerItem;
 import com.masson.cruciblecraft.content.item.UnknownMaterialItem;
@@ -27,6 +28,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public final class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(CrucibleCraft.MODID);
+    public static final Map<String, DeferredItem<Item>> EXTRUDER_SHAPES =
+            ExtruderShapeCatalog.registerAll(ITEMS);
     private static final Map<String, DeferredItem<MaterialItem>> MATERIAL_ITEMS = new LinkedHashMap<>();
     private static final Map<ModBlocks.OreBlockKey, DeferredItem<BlockItem>>
             MATERIAL_ORE_ITEMS = new LinkedHashMap<>();
@@ -193,6 +196,18 @@ public final class ModItems {
 
     public static Collection<DeferredItem<BlockItem>> oreItems() {
         return java.util.Collections.unmodifiableCollection(MATERIAL_ORE_ITEMS.values());
+    }
+
+    public static DeferredItem<Item> extruderShape(String id) {
+        DeferredItem<Item> item = EXTRUDER_SHAPES.get(id);
+        if (item == null) {
+            throw new IllegalArgumentException("No extruder shape " + id);
+        }
+        return item;
+    }
+
+    public static Collection<DeferredItem<Item>> extruderShapes() {
+        return EXTRUDER_SHAPES.values();
     }
 
     public static DeferredItem<CeramicMoldBlockItem> moldItem(MoldShape shape) {
