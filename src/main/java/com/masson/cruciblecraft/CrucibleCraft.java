@@ -83,6 +83,10 @@ public class CrucibleCraft {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            // Deferred registers from every mod are populated only after
+            // construction, so registry-backed material overrides are first
+            // knowable here.
+            MaterialCatalog.validateFormItemMappings();
             ModFluids.finalizeMaterialLookup();
             MissingMaterialStackCodec.verifyInstalled();
         });

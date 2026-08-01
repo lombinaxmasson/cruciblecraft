@@ -21,6 +21,7 @@ from tools import compare_gt6_recipes as compare  # noqa: E402
 
 SELECTED = TOOLS / "gt6_l1b_selected.json"
 REFERENCE = TOOLS / "gt6_recipe_normalized_reference.json"
+LOCAL_ARTIFACT_MANIFEST = TOOLS / "local_artifact_manifest.json"
 INDEX_OUT = TOOLS / "gt6_ore_chain.json"
 OPERANDS_OUT = TOOLS / "gt6_ore_chain_operands.json"
 PREFIX_ROOT = (
@@ -1113,6 +1114,82 @@ def check_outputs(
     return errors
 
 
+def load_committed_outputs() -> tuple[
+    dict[str, Any],
+    dict[str, Any],
+    dict[str, str],
+]:
+    index = load(INDEX_OUT)
+    operands = load(OPERANDS_OUT)
+    files = {
+        path.relative_to(OUTPUT_ROOT).as_posix(): path.read_text(encoding="utf-8")
+        for path in OUTPUT_ROOT.rglob("*.json")
+    } if OUTPUT_ROOT.is_dir() else {}
+    return index, operands, files
+
+
+def check_committed_outputs() -> list[str]:
+    errors: list[str] = []
+    index, operands, files = load_committed_outputs()
+    manifest = load(LOCAL_ARTIFACT_MANIFEST)
+    reference_metadata = next(
+        (
+            row for row in manifest.get("artifacts") or []
+            if row.get("path") == "tools/gt6_recipe_normalized_reference.json"
+        ),
+        None,
+    )
+    if reference_metadata is None:
+        errors.append("tools/local_artifact_manifest.json: reference metadata")
+    elif (
+        index.get("inputs", {}).get("gt6_reference", {}).get("sha256")
+        != reference_metadata.get("sha256")
+    ):
+        errors.append("tools/gt6_ore_chain.json: GT6 reference hash")
+
+    recipes = index.get("recipes") or []
+    expected_files = {
+        row["path"].split("ore_chain/", 1)[1]
+        for row in recipes
+    }
+    if set(files) != expected_files:
+        errors.append(str(OUTPUT_ROOT.relative_to(ROOT)))
+    for row in recipes:
+        relative = row["path"].split("ore_chain/", 1)[1]
+        content = files.get(relative)
+        if content is None:
+            continue
+        document = json.loads(content)
+        semantic = {
+            key: value
+            for key, value in document.items()
+            if key != "provenance"
+        }
+        if value_hash(semantic) != row.get("semantic_hash"):
+            errors.append(row["path"] + ": semantic hash")
+        provenance = document.get("provenance") or {}
+        if provenance.get("evidence_hashes") != row.get("gt6_evidence_hashes"):
+            errors.append(row["path"] + ": evidence hashes")
+
+    operand_rows = operands.get("recipes") or []
+    if int(index.get("counts", {}).get("recipes") or -1) != len(recipes):
+        errors.append("tools/gt6_ore_chain.json: recipe count")
+    if int(operands.get("counts", {}).get("recipes") or -1) != len(operand_rows):
+        errors.append("tools/gt6_ore_chain_operands.json: recipe count")
+    indexed_ids = {
+        path.removesuffix(".json")
+        for path in expected_files
+    }
+    if indexed_ids != {row.get("recipe") for row in operand_rows}:
+        errors.append("tools/gt6_ore_chain_operands.json: recipe index")
+    source_rows = index.get("source_accounting") or []
+    if int(index.get("counts", {}).get("normalized_sources") or -1) != len(
+        source_rows
+    ):
+        errors.append("tools/gt6_ore_chain.json: source accounting")
+    return sorted(set(errors))
+
+
 def write_outputs(
     index: dict[str, Any],
     operands: dict[str, Any],
@@ -1136,6 +1213,32 @@ def main() -> int:
     args = parser.parse_args()
     if sum((args.write, args.check, args.review)) != 1:
         parser.error("choose exactly one of --write, --check, or --review")
+    if args.check and not REFERENCE.is_file():
+        errors = check_committed_outputs()
+        if errors:
+            print(
+                "Compact ore-chain artifact validation failed:\n"
+                + "\n".join(f"- {error}" for error in errors),
+                file=sys.stderr,
+            )
+            return 1
+        print("Compact ore-chain artifacts are internally current.")
+        print(
+            "SKIP: full ore-chain regeneration requires "
+            "tools/gt6_recipe_normalized_reference.json. Restore it with "
+            "python tools/compare_gt6_recipes.py --write-reference, then rerun "
+            "--check for full replay."
+        )
+        return 0
+    if not REFERENCE.is_file():
+        print(
+            "Ore-chain regeneration requires "
+            "tools/gt6_recipe_normalized_reference.json. Restore the "
+            "authoritative gt6_dump and run "
+            "python tools/compare_gt6_recipes.py --write-reference.",
+            file=sys.stderr,
+        )
+        return 2
     index, operands, output_files = build_documents()
     if args.review:
         print(stable_json({

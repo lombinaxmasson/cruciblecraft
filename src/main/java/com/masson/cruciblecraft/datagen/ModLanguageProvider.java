@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.datagen;
 import java.util.Locale;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
@@ -13,12 +14,24 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class ModLanguageProvider extends LanguageProvider {
+    private final boolean chinese;
+
     public ModLanguageProvider(PackOutput output) {
-        super(output, CrucibleCraft.MODID, "en_us");
+        this(output, "en_us");
+    }
+
+    public ModLanguageProvider(PackOutput output, String locale) {
+        super(output, CrucibleCraft.MODID, locale);
+        this.chinese = locale.equals("zh_cn");
     }
 
     @Override
     protected void addTranslations() {
+        if (chinese) {
+            ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
+                    addItem(ModItems.extruderShape(shape.id()), shape.chineseName()));
+            return;
+        }
         add("itemGroup.cruciblecraft", "Crucible Craft");
         add("itemGroup.cruciblecraft.ores", "Crucible Craft: Ores");
         add("itemGroup.cruciblecraft.ore_processing", "Crucible Craft: Ore Processing");
@@ -84,6 +97,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add("jade.cruciblecraft.crusher", "Power: %s KU/t, Progress: %s/%s (%s)");
         addItem(ModItems.SMITHING_HAMMER, "Smithing Hammer");
         addItem(ModItems.UNKNOWN_MATERIAL, "Unknown Material");
+        ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
+                addItem(ModItems.extruderShape(shape.id()), shape.englishName()));
         ModBlocks.oreBlockPaths().keySet().forEach(key -> addBlock(
                 ModBlocks.oreBlock(key.materialId(), key.host()),
                 (key.host() == Host.DEEPSLATE ? "Deepslate " : "")

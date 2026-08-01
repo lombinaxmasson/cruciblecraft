@@ -468,6 +468,32 @@ class MaterialCatalogTest {
                 "cycle_a -> cycle_b -> cycle_a"));
     }
 
+    @Test
+    void rejectsMissingFormItemTargetsAfterRegistriesPopulate() {
+        MaterialDefinition missing = new MaterialDefinition(
+                "missing_override",
+                "missing_override",
+                Optional.empty(),
+                0,
+                "#808080",
+                "matte",
+                List.of(MaterialPrefixes.INGOT),
+                Map.of(MaterialPrefixes.INGOT, "missingmod:not_installed"),
+                new ThermalProperties(1.0),
+                false,
+                Map.of(),
+                false);
+
+        IllegalStateException failure = assertThrows(
+                IllegalStateException.class,
+                () -> MaterialCatalog.validateFormItemMappings(List.of(missing)));
+
+        assertTrue(failure.getMessage().contains("missing_override"));
+        assertTrue(failure.getMessage().contains(MaterialPrefixes.INGOT.serializedId()));
+        assertTrue(failure.getMessage().contains("missingmod:not_installed"));
+        assertTrue(failure.getMessage().contains("install the providing mod"));
+    }
+
     private static MaterialDefinition material(
             String id,
             Map<String, Integer> composition) {

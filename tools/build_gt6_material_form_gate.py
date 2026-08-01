@@ -16,6 +16,9 @@ DUMP = ROOT / "gt6_dump" / "gt6_recipe_dump"
 MATERIALS = ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft" / "materials"
 OPERANDS_OUT = TOOLS / "gt6_l1b_selected_recipe_operands.json"
 ORE_CHAIN_OPERANDS = TOOLS / "gt6_ore_chain_operands.json"
+ACCEPTANCE_FORM_CORRECTIONS = (
+    TOOLS / "component_rule_sources" / "acceptance_form_corrections.json"
+)
 GATE_OUT = (
     ROOT
     / "src"
@@ -261,6 +264,22 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
                 f"{material_id}/{sorted(missing)}"
             )
         ore_source_forms[material_id] = set(required_ore_source_forms)
+    acceptance_document = load(ACCEPTANCE_FORM_CORRECTIONS)
+    acceptance_forms: dict[str, set[str]] = defaultdict(set)
+    for correction in acceptance_document.get("corrections") or []:
+        if (
+            correction.get("classification")
+            != "t3_acceptance_required_not_gt6_original_gate"
+        ):
+            raise ValueError("acceptance form correction classification drift")
+        material_id = correction["material"]
+        forms = set(correction["add_forms"])
+        if material_id not in factual_forms or not forms <= factual_forms[material_id]:
+            raise ValueError(
+                f"acceptance form correction exceeds factual runtime forms: "
+                f"{material_id}/{sorted(forms)}"
+            )
+        acceptance_forms[material_id].update(forms)
     compatibility_forms: dict[str, list[str]] = {}
     gated_forms: dict[str, list[str]] = {}
     for material_id in sorted(material_docs):
@@ -268,7 +287,13 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
         recipe_selected = recipe_forms.get(material_id, set())
         ore_chain_selected = ore_chain_forms.get(material_id, set())
         ore_source_selected = ore_source_forms.get(material_id, set())
-        selected_forms = recipe_selected | ore_chain_selected | ore_source_selected
+        acceptance_selected = acceptance_forms.get(material_id, set())
+        selected_forms = (
+            recipe_selected
+            | ore_chain_selected
+            | ore_source_selected
+            | acceptance_selected
+        )
         compatibility = (
             pre_gate_forms.get(material_id, set()) - selected_forms
         ) & factual
@@ -346,6 +371,16 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
                 "path": "src/main/resources/data/cruciblecraft/materials/*.json",
                 "field": "resolved factual prefix `ore`",
             },
+            "t3_acceptance_form_corrections": {
+                "path": (
+                    "tools/component_rule_sources/"
+                    "acceptance_form_corrections.json"
+                ),
+                "sha256": sha256(ACCEPTANCE_FORM_CORRECTIONS),
+                "classification": (
+                    "t3_acceptance_required_not_gt6_original_gate"
+                ),
+            },
         },
         "policy": (
             "recipe-projected forms plus factual ore-source closure registrations and "
@@ -371,10 +406,15 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             "ore_source_materials": len(ore_source_forms),
             "ore_source_forms": sum(map(len, ore_source_forms.values())),
             "ore_source_blocks": len(ore_source_forms) * 2,
+            "t3_acceptance_forms": sum(map(len, acceptance_forms.values())),
             "compatibility_forms": sum(map(len, compatibility_forms.values())),
             "registered_forms": sum(map(len, gated_forms.values())),
         },
         "compatibility_forms": compatibility_forms,
+        "t3_acceptance_forms": {
+            material: sorted(forms)
+            for material, forms in sorted(acceptance_forms.items())
+        },
         "materials": gated_forms,
     }
     return operand_document, gate_document

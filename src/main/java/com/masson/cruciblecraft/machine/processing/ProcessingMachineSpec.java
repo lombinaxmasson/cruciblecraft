@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.machine.processing;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -13,6 +14,7 @@ import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 
 /** Immutable registry-safe machine shape and policy. */
 public record ProcessingMachineSpec(
@@ -52,10 +54,26 @@ public record ProcessingMachineSpec(
         return map;
     }
 
-    public record SlotLayout(int slotCount, List<Integer> inputs, List<Integer> outputs) {
+    public record SlotLayout(
+            int slotCount,
+            List<Integer> inputs,
+            List<Integer> outputs,
+            Map<Integer, SlotRole> roles,
+            SlotAcceptance acceptance) {
+        public SlotLayout(int slotCount, List<Integer> inputs, List<Integer> outputs) {
+            this(
+                    slotCount,
+                    inputs,
+                    outputs,
+                    defaultRoles(inputs, outputs),
+                    (slot, stack) -> inputs.contains(slot));
+        }
+
         public SlotLayout {
             inputs = List.copyOf(inputs);
             outputs = List.copyOf(outputs);
+            roles = Map.copyOf(roles);
+            Objects.requireNonNull(acceptance, "acceptance");
             if (slotCount < 0) {
                 throw new IllegalArgumentException("Slot count must not be negative");
             }
@@ -66,7 +84,45 @@ public record ProcessingMachineSpec(
             if (!overlap.isEmpty()) {
                 throw new IllegalArgumentException("Input/output slots overlap: " + overlap);
             }
+            for (int slot = 0; slot < slotCount; slot++) {
+                SlotRole role = roles.get(slot);
+                if (role == null) {
+                    throw new IllegalArgumentException("Missing role for slot " + slot);
+                }
+                if (inputs.contains(slot) == (role == SlotRole.OUTPUT)) {
+                    throw new IllegalArgumentException(
+                            "Slot role disagrees with input/output layout at " + slot);
+                }
+            }
         }
+
+        public SlotRole role(int slot) {
+            return Objects.requireNonNull(roles.get(slot), "slot role");
+        }
+
+        public boolean accepts(int slot, ItemStack stack) {
+            return inputs.contains(slot) && !stack.isEmpty() && acceptance.accepts(slot, stack);
+        }
+
+        private static Map<Integer, SlotRole> defaultRoles(
+                List<Integer> inputs,
+                List<Integer> outputs) {
+            java.util.LinkedHashMap<Integer, SlotRole> roles = new java.util.LinkedHashMap<>();
+            inputs.forEach(slot -> roles.put(slot, SlotRole.MATERIAL));
+            outputs.forEach(slot -> roles.put(slot, SlotRole.OUTPUT));
+            return roles;
+        }
+    }
+
+    public enum SlotRole {
+        MATERIAL,
+        TOOL,
+        OUTPUT
+    }
+
+    @FunctionalInterface
+    public interface SlotAcceptance {
+        boolean accepts(int slot, ItemStack stack);
     }
 
     public record TankLayout(List<TankSpec> inputs, List<TankSpec> outputs) {

@@ -29,6 +29,8 @@ class OreResourceTest {
     private static final String COMPAT_SHORTCUT_GROUP = "cruciblecraft:compat_shortcut";
     private static final Path RESOURCES = Path.of("src/main/resources");
     private static final Path GENERATED_RESOURCES = Path.of("src/generated/resources");
+    private static final Path COMPONENT_RULE_RESOURCES =
+            Path.of("src/component_rule_generated/resources");
     private static final Path WORLDGEN_RESOURCES =
             Path.of("src/worldgen_generated/resources");
     private static final Path ORE_CHAIN_INDEX = Path.of("tools/gt6_ore_chain.json");
@@ -202,7 +204,11 @@ class OreResourceTest {
                                     || normalized.contains("/tags/block/");
                         })
                         .toList();
-                assertEquals(List.of(), snapshots, "dynamic tags must not ship in the jar");
+                assertEquals(
+                        List.of(generatedData.resolve(
+                                "cruciblecraft/tags/item/extruder_shapes.json")),
+                        snapshots,
+                        "only the catalog-driven static extruder tag may ship in generated data");
             }
         }
     }
@@ -335,7 +341,9 @@ class OreResourceTest {
         Path generatedRecipes = GENERATED_RESOURCES.resolve("data/cruciblecraft/recipe");
         Path generatedAdvancements = GENERATED_RESOURCES.resolve(
                 "data/cruciblecraft/advancement/recipes");
-        assertEquals(820, countRegularFiles(generatedRecipes));
+        assertEquals(791, countRegularFiles(generatedRecipes));
+        assertEquals(2810, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
+                "data/cruciblecraft/recipe")));
         assertEquals(0, countRegularFiles(generatedAdvancements));
         try (var paths = Files.walk(generatedRecipes)) {
             Set<String> actual = paths

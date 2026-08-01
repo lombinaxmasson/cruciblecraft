@@ -134,7 +134,9 @@ public abstract class ProcessingMachineMenu extends AbstractContainerMenu {
         } else {
             slot.setChanged();
         }
-        slot.onTake(player, original);
+        // Match vanilla quick-move semantics: onTake observes the live remainder,
+        // which is empty when the complete stack moved.
+        slot.onTake(player, source);
         return original;
     }
 
@@ -174,6 +176,9 @@ public abstract class ProcessingMachineMenu extends AbstractContainerMenu {
                 return;
             }
             ItemStack current = getItem().copy();
+            // External machine writes can make lastNotified stale, but
+            // moveItemStackTo only calls this method after mutating this slot.
+            // Re-publishing current therefore reports the real transfer once.
             if (ItemStack.matches(lastNotified, current)) {
                 return;
             }

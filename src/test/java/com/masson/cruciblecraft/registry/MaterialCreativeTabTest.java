@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.registry;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -110,7 +112,7 @@ class MaterialCreativeTabTest {
                         Map.entry(MaterialCreativeTab.PLATES, 2_328),
                         Map.entry(MaterialCreativeTab.PARTS, 3_248),
                         Map.entry(MaterialCreativeTab.MECHANICAL_PARTS, 1_890),
-                        Map.entry(MaterialCreativeTab.WIRES, 281),
+                        Map.entry(MaterialCreativeTab.WIRES, 282),
                         Map.entry(MaterialCreativeTab.CABLES, 118),
                         Map.entry(MaterialCreativeTab.MISC, 0)),
                 counts);
@@ -161,5 +163,26 @@ class MaterialCreativeTabTest {
                 3,
                 plan.values().stream().mapToInt(List::size).sum(),
                 "the shared preferred item must only appear once");
+    }
+
+    @Test
+    void materialEntryPlanIsBuiltOncePerRuntimeRevision() {
+        ModCreativeTabs.MaterialEntryPlanCache cache =
+                new ModCreativeTabs.MaterialEntryPlanCache();
+        AtomicInteger builds = new AtomicInteger();
+        java.util.function.Supplier<Map<MaterialCreativeTab, List<String>>> planner = () -> {
+            builds.incrementAndGet();
+            return Map.of(MaterialCreativeTab.MISC, List.of("test:item"));
+        };
+
+        Map<MaterialCreativeTab, List<String>> first = cache.get(4L, planner);
+        for (MaterialCreativeTab ignored : MaterialCreativeTab.values()) {
+            assertSame(first, cache.get(4L, planner));
+        }
+        assertEquals(1, builds.get(), "ten tabs must share one plan for a revision");
+
+        Map<MaterialCreativeTab, List<String>> reloaded = cache.get(5L, planner);
+        assertEquals(2, builds.get());
+        assertSame(reloaded, cache.get(5L, planner));
     }
 }

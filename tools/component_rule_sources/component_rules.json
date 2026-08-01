@@ -1,0 +1,452 @@
+{
+  "schema_version": 1,
+  "namespace": "cruciblecraft",
+  "unit_scale": 144,
+  "prefix_units": {
+    "bolt": 18,
+    "double_plate": 288,
+    "double_wire": 144,
+    "foil": 36,
+    "gear": 576,
+    "ingot": 144,
+    "long_rod": 144,
+    "octuple_wire": 576,
+    "plate": 144,
+    "quadruple_plate": 576,
+    "quadruple_wire": 288,
+    "ring": 36,
+    "rod": 72,
+    "triple_plate": 432,
+    "wire": 72
+  },
+  "rules": [
+    {
+      "id": "assembler/dodecuple_wire_and_rubber_to_dodecuple_cable",
+      "kind": "cable",
+      "wire": "dodecuple_wire",
+      "cable": "dodecuple_cable",
+      "rubber_plates": 4,
+      "duration": 300,
+      "eut": 64
+    },
+    {
+      "id": "assembler/double_wire_and_rubber_to_double_cable",
+      "kind": "cable",
+      "wire": "double_wire",
+      "cable": "double_cable",
+      "rubber_plates": 1,
+      "duration": 140,
+      "eut": 32
+    },
+    {
+      "id": "assembler/octuple_wire_and_rubber_to_octuple_cable",
+      "kind": "cable",
+      "wire": "octuple_wire",
+      "cable": "octuple_cable",
+      "rubber_plates": 3,
+      "duration": 240,
+      "eut": 64
+    },
+    {
+      "id": "assembler/plates_and_ring_to_rotor",
+      "kind": "target_transform",
+      "map": "assembler",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "plate",
+          "count": 4
+        },
+        {
+          "prefix": "ring",
+          "count": 1
+        }
+      ],
+      "output": "rotor",
+      "source_units": 612,
+      "duration": 300,
+      "eut": 64
+    },
+    {
+      "id": "assembler/plates_to_gear",
+      "kind": "target_transform",
+      "map": "assembler",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "plate",
+          "count": 4
+        }
+      ],
+      "output": "gear",
+      "source_units": 576,
+      "duration": 240,
+      "eut": 48
+    },
+    {
+      "id": "assembler/quadruple_wire_and_rubber_to_quadruple_cable",
+      "kind": "cable",
+      "wire": "quadruple_wire",
+      "cable": "quadruple_cable",
+      "rubber_plates": 2,
+      "duration": 180,
+      "eut": 48
+    },
+    {
+      "id": "assembler/wire_and_rubber_to_cable",
+      "kind": "cable",
+      "wire": "wire",
+      "cable": "cable",
+      "rubber_plates": 1,
+      "duration": 120,
+      "eut": 32
+    },
+    {
+      "id": "bender/long_rod_to_spring",
+      "kind": "target_transform",
+      "map": "bender",
+      "selector": "bending",
+      "inputs": [
+        {
+          "prefix": "long_rod",
+          "count": 1
+        }
+      ],
+      "output": "spring",
+      "source_units": 144,
+      "duration": 120,
+      "eut": 32
+    },
+    {
+      "id": "bender/rod_to_small_springs",
+      "kind": "target_transform",
+      "map": "bender",
+      "selector": "bending",
+      "inputs": [
+        {
+          "prefix": "rod",
+          "count": 1
+        }
+      ],
+      "output": "small_spring",
+      "source_units": 72,
+      "duration": 80,
+      "eut": 24
+    },
+    {
+      "id": "cutter/gear_to_small_gears",
+      "kind": "target_transform",
+      "map": "cutter",
+      "selector": "cutting",
+      "inputs": [
+        {
+          "prefix": "gear",
+          "count": 1
+        }
+      ],
+      "output": "small_gear",
+      "source_units": 576,
+      "duration": 120,
+      "eut": 32
+    },
+    {
+      "id": "cutter/plate_to_foil",
+      "kind": "target_transform",
+      "map": "cutter",
+      "selector": "cutting",
+      "inputs": [
+        {
+          "prefix": "plate",
+          "count": 1
+        }
+      ],
+      "output": "foil",
+      "source_units": 144,
+      "duration": 80,
+      "eut": 24
+    },
+    {
+      "id": "lathe/bolts_to_screws",
+      "kind": "target_transform",
+      "map": "lathe",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "bolt",
+          "count": 1
+        }
+      ],
+      "output": "screw",
+      "source_units": 18,
+      "duration": 64,
+      "eut": 16
+    },
+    {
+      "id": "lathe/ingot_to_rods",
+      "kind": "target_transform",
+      "map": "lathe",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "ingot",
+          "count": 1
+        }
+      ],
+      "output": "rod",
+      "source_units": 144,
+      "duration": 120,
+      "eut": 24
+    },
+    {
+      "id": "press/double_and_plate_to_triple_plate",
+      "kind": "target_transform",
+      "map": "press",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "double_plate",
+          "count": 1
+        },
+        {
+          "prefix": "plate",
+          "count": 1
+        }
+      ],
+      "output": "triple_plate",
+      "source_units": 432,
+      "duration": 180,
+      "eut": 48
+    },
+    {
+      "id": "press/double_plates_to_quadruple_plate",
+      "kind": "target_transform",
+      "map": "press",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "double_plate",
+          "count": 2
+        }
+      ],
+      "output": "quadruple_plate",
+      "source_units": 576,
+      "duration": 220,
+      "eut": 64
+    },
+    {
+      "id": "press/quadruple_and_plate_to_quintuple_plate",
+      "kind": "target_transform",
+      "map": "press",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "quadruple_plate",
+          "count": 1
+        },
+        {
+          "prefix": "plate",
+          "count": 1
+        }
+      ],
+      "output": "quintuple_plate",
+      "source_units": 720,
+      "duration": 260,
+      "eut": 64
+    },
+    {
+      "id": "press/slime_ball_to_rubber_plate",
+      "kind": "compatibility_bridge",
+      "map": "press",
+      "material": "rubber",
+      "input_item": "minecraft:slime_ball",
+      "output": "plate",
+      "duration": 120,
+      "eut": 32,
+      "reason": "survival bridge pending GT rubber-tree and chemical processing"
+    },
+    {
+      "id": "press/triple_plates_to_dense_plate",
+      "kind": "target_transform",
+      "map": "press",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "triple_plate",
+          "count": 3
+        }
+      ],
+      "output": "dense_plate",
+      "source_units": 1296,
+      "duration": 400,
+      "eut": 96
+    },
+    {
+      "id": "rollbender/rod_to_rings",
+      "kind": "target_transform",
+      "map": "rollbender",
+      "selector": "bending",
+      "inputs": [
+        {
+          "prefix": "rod",
+          "count": 1
+        }
+      ],
+      "output": "ring",
+      "source_units": 72,
+      "duration": 80,
+      "eut": 24
+    },
+    {
+      "id": "rollingmill/ingot_to_plate",
+      "kind": "target_transform",
+      "map": "rollingmill",
+      "selector": "bending",
+      "inputs": [
+        {
+          "prefix": "ingot",
+          "count": 1
+        }
+      ],
+      "output": "plate",
+      "source_units": 144,
+      "duration": 100,
+      "eut": 32
+    },
+    {
+      "id": "welder/plates_to_double_plate",
+      "kind": "target_transform",
+      "map": "welder",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "plate",
+          "count": 1
+        },
+        {
+          "prefix": "plate",
+          "count": 1
+        }
+      ],
+      "output": "double_plate",
+      "source_units": 288,
+      "duration": 160,
+      "eut": 48
+    },
+    {
+      "id": "wiremill/double_to_quadruple_wire",
+      "kind": "target_transform",
+      "map": "wiremill",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "double_wire",
+          "count": 1
+        }
+      ],
+      "output": "quadruple_wire",
+      "source_units": 144,
+      "duration": 100,
+      "eut": 32
+    },
+    {
+      "id": "wiremill/foil_to_fine_wire",
+      "kind": "target_transform",
+      "map": "wiremill",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "foil",
+          "count": 1
+        }
+      ],
+      "output": "fine_wire",
+      "source_units": 36,
+      "duration": 80,
+      "eut": 24
+    },
+    {
+      "id": "wiremill/ingot_to_wire",
+      "kind": "target_transform",
+      "map": "wiremill",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "ingot",
+          "count": 1
+        }
+      ],
+      "output": "wire",
+      "source_units": 144,
+      "duration": 120,
+      "eut": 32
+    },
+    {
+      "id": "wiremill/octuple_and_quadruple_to_dodecuple_wire",
+      "kind": "target_transform",
+      "map": "wiremill",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "octuple_wire",
+          "count": 1
+        },
+        {
+          "prefix": "quadruple_wire",
+          "count": 1
+        }
+      ],
+      "output": "dodecuple_wire",
+      "source_units": 864,
+      "duration": 160,
+      "eut": 48
+    },
+    {
+      "id": "wiremill/octuple_to_hexadecuple_wire",
+      "kind": "target_transform",
+      "map": "wiremill",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "octuple_wire",
+          "count": 2
+        }
+      ],
+      "output": "hexadecuple_wire",
+      "source_units": 1152,
+      "duration": 200,
+      "eut": 48
+    },
+    {
+      "id": "wiremill/quadruple_to_octuple_wire",
+      "kind": "target_transform",
+      "map": "wiremill",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "quadruple_wire",
+          "count": 1
+        }
+      ],
+      "output": "octuple_wire",
+      "source_units": 288,
+      "duration": 120,
+      "eut": 32
+    },
+    {
+      "id": "wiremill/wire_to_double_wire",
+      "kind": "target_transform",
+      "map": "wiremill",
+      "selector": "working",
+      "inputs": [
+        {
+          "prefix": "wire",
+          "count": 1
+        }
+      ],
+      "output": "double_wire",
+      "source_units": 72,
+      "duration": 80,
+      "eut": 24
+    }
+  ]
+}

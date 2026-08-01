@@ -82,6 +82,28 @@ Their main-output units match the six-stage route; staged byproducts are the
 machine chain's additional value. Shortcut counts are derived into the ledger,
 but are not evidence that the six-machine route was exercised.
 
+### Component-rule sources
+
+The T3 component rules are authored as compact semantic JSON under
+`tools/component_rule_sources`. They compile to runtime
+`cruciblecraft:material_rule` recipes in the independent committed
+`src/component_rule_generated/resources` root:
+
+```text
+python tools/build_component_rules.py
+python tools/build_component_rules.py --check
+```
+
+The generated manifest locks 28 non-extruder semantic rules plus 2,782 playable
+extruder sparse rows. Runtime expansion is 8,136 recipes: assembler 568, bender
+638, cutter 651, extruder 2,782, lathe 929, press 1,191, roll bender 438,
+rolling mill 336, welder 321, and wire mill 282. It also locks unit
+conservation, recipe/shadow signature digests (zero shadows), the 10,000-recipe
+budget, 31 reusable shapes, and all 62 extruder-template classifications
+(20 playable, 42 skipped, zero unclassified). Runtime expansion remains owned
+solely by `MaterialRuleExpansion` and `GTRecipeMapLoader`; CI needs no
+gitignored GT6 replay artifact.
+
 Topology fallbacks retain reviewed gameplay defaults when GT6 has no directly
 expressible row. When a normalized GT6 row can be represented within the target
 machine limits, its duration, EU/t, chance outputs, and ordered stage
@@ -138,6 +160,12 @@ python tools/gt6_tag_domain_analysis.py
 python tools/build_gt6_generation_bits.py
 ```
 
+`component_selector_policy.json` locks the machine-specific selector decision:
+extruder uses one concrete shape plus an explicit sparse support relation;
+bath retains its T2 byproduct selector; shredder retains its T2
+`processing_target` selector; mixer is deferred to T5. Shape selection is not a
+generic component-map pattern.
+
 Extruder v5 uses one template per concrete shape (31 normal + 31 low-heat);
 material/external identity, input/output form, counts, EU, and duration are
 stored in a sparse support relation. Axes are stored once per template and
@@ -153,6 +181,16 @@ prefixes are content-hashed dependencies. The extractor uses stable IDs and
 hard-fails unless replay reproduces the pinned 325595-recipe multiset with zero
 missing/extra rows. `gt6_tag_domain_analysis.py` writes the reproducible
 namespace/domain audit to `gt6_tag_domain_report.json`.
+
+The expanded `gt6_extruder_templates_v5.json` is a gitignored local replay
+cache. The committed `gt6_extruder_templates_index_v5.json` and
+`gt6_extruder_templates_report.json` are the compact T3 builder inputs and are
+checked for internal count, identity, policy, partition, and replay consistency
+without the expanded cache. `--verify` performs full replay only when both the
+expanded cache and authoritative dump are installed. Otherwise it exits
+successfully with an explicit `SKIP` message; that message does not claim a full
+replay, and ordinary CI still verifies compact evidence through the builder and
+unit tests.
 
 `build_gt6_generation_bits.py` writes `gt6_generation_bits.json` v3. It retains
 the 13 exact `ITEMGENERATOR` single-tag domains covering 70 prefixes, then
@@ -187,12 +225,28 @@ independent of JSON whitespace.
 ## CI-equivalent check
 
 ```text
-./gradlew build
+python tools/build_component_rules.py --check
+python tools/gt6_extruder_templates.py --verify
+./gradlew runData
+./gradlew runData
+./gradlew test
 ./gradlew runGameTestServer
 python -m unittest discover -s tools/tests -p "test_*.py"
 python tools/import_gt6_oredict.py --check --reference-only
-python tools/compare_gt6_recipes.py --check --reference-only
+python tools/compare_gt6_recipes.py --check
+python tools/verify_full_verification_report.py --check
 ```
+
+The comparator's ordinary `--check` validates current CC fingerprints,
+reachability, constants, compact GT6 reference metadata, roadmap accounting,
+expectations, and their evidence digests against the reviewed baseline. It
+prints an explicit full-replay skip when no local expanded cache is used. Run
+`python tools/compare_gt6_recipes.py --check --full-replay` to require a full
+GT6 replay; this fails with an actionable cache/dump restoration message when
+the required local data is absent. `build_gt6_ore_chain.py --check` follows the
+same model: it validates committed concrete recipes and compact ledgers without
+the normalized cache, while write/review regeneration still requires that
+cache.
 
 This checks all of the following:
 
@@ -244,6 +298,12 @@ Review `gt6_recipe_compare_report.json`, update expectations or roadmap entries
 explicitly, then update the baseline. A changed reference fingerprint is
 reported separately from CC recipe drift.
 
+`gt6_recipe_normalized_reference.json` and `gt6_recipe_compare_report.json` are
+gitignored local caches. `local_artifact_manifest.json` records their measured
+byte sizes, SHA-256 digests, provenance, and rebuild commands. The report is
+human/full-replay evidence; the baseline, expectations, roadmap, and manifest
+are the committed compact evidence used by ordinary CI.
+
 ### Expectations are inputs, never regenerated outputs
 
 `gt6_recipe_expectations.json` is an audited input (same class of bug as
@@ -280,9 +340,15 @@ Review `gt6_recipe_expectations_suggested.json` (and roadmap) before appending
 any missing keys or updating the baseline. The roadmap generator preserves
 reviewed statuses and reasons while refreshing pinned map counts.
 
-The full dump and human-oriented report are local artifacts. The normalized
-reference, baseline, expectations, roadmap, script, fixtures, and tests are
-version-controlled.
+The full dump, normalized reference, expanded extruder document, and
+human-oriented comparison report are local artifacts. The compact baseline,
+expectations, roadmap, extruder index/report, selector policy, artifact
+manifest, scripts, fixtures, and tests are version-controlled.
+
+Deleting a large artifact from the current tree does not remove its blob from
+older Git commits. A future push can therefore still require a clean new root,
+an explicit history migration, or Git LFS; ordinary follow-up deletion alone
+does not shrink existing history.
 
 ## T2 ore-chain verification
 
@@ -301,11 +367,12 @@ machines resolving and advancing real loaded recipes.
 
 `T3ComponentDataTest` validates the normalized GT6 prefix amount and
 registered-material evidence for every activated component prefix, expands the
-29 compact rules through the production projector, and checks exact target
-ratios, atomic multi-input shapes, duplicate signatures, and all ten playable
-maps. Expansion uses the immutable prefix-to-material index and has a
-five-second/10,000-plan CI budget; the current reference expands 2,804 T3
-recipes. Import generation closes component prerequisites to a fixed point:
+committed compact rules through the production projector, and checks exact
+target ratios, atomic multi-input shapes, duplicate signatures, and all ten
+playable maps. Expansion uses the immutable prefix-to-material index and has a
+20-second/10,000-plan CI budget; the current reference expands 8,136 T3 recipes,
+including 2,782 shape-selected extruder recipes. Import generation closes
+component prerequisites to a fixed point:
 2,470 material/component forms are retained and the committed unproduced count
 is zero. The 112 retained cable forms consume matching conductor wire plus
 1/1/2/3/4 Rubber plates for gauges 1/2/4/8/12. This insulation model follows
@@ -340,3 +407,30 @@ GameTest server covers real block entities, capabilities, recipe maps, ticking,
 HEAT/KU progress, rollback, completion, and persistence. Automated client-side
 visual inspection remains unavailable; models and menu resources are validated
 structurally by datagen tests rather than claimed as browser-verified.
+
+The final report is not hand-edited to `READY`. Refresh it after all source and
+documentation edits, then record each actual run:
+
+```text
+python tools/verify_full_verification_report.py --write-tooling-snapshot
+python tools/verify_full_verification_report.py --mark-builder-passed --builder-elapsed-ms <ms> --extruder-replay-result <PASS|SKIP>
+python tools/verify_full_verification_report.py --mark-datagen-passed --datagen-run-1-hash <sha256> --datagen-run-2-hash <sha256> --datagen-run-1-seconds <s> --datagen-run-2-seconds <s>
+python tools/verify_full_verification_report.py --mark-java-passed --java-elapsed-seconds <s>
+python tools/verify_full_verification_report.py --mark-gametest-passed --gametest-log run/logs/latest.log --gametest-elapsed-seconds <s>
+python tools/verify_full_verification_report.py --mark-python-passed --python-elapsed-seconds <s>
+python tools/verify_full_verification_report.py --mark-ready
+python tools/verify_full_verification_report.py --check
+```
+
+The report binds builder/source/manifest hashes, the complete generated
+component tree, shape catalog/resources, selector policy, compact artifact
+manifest, Java XML metrics, the four material GameTest routes with declared
+durations and outputs, and both drift-free datagen hashes. The metadata-only
+cache policy means ordinary CI does not restore O-10 artifacts. Removing a
+large file from the current tree does not erase its blob from older commits;
+history reduction still needs a clean root, history migration, or LFS.
+
+At T3 closeout the exact suites are 282 Java unit tests (73 suites), 148 Python
+unit tests, and 18 production GameTests. The GameTests include four independent
+copper/tin/iron/gold component routes, live per-map count/source tracing, all
+ten placed T3 machines, and the retained T2 runtime acceptance coverage.

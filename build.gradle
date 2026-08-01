@@ -24,10 +24,17 @@ sourceSets.main.resources {
     srcDir('src/ore_chain_generated/resources')
     // Semantic vein sources compile to runtime worldgen resources offline.
     srcDir('src/worldgen_generated/resources')
+    // Compact component sources compile to runtime material-rule recipes offline.
+    srcDir('src/component_rule_generated/resources')
 
     // Exclude common development only resources from finalized outputs
     exclude("**/*.bbmodel") // BlockBench project files
     exclude("src/generated/**/.cache") // datagen cache files
+}
+
+tasks.withType(ProcessResources).configureEach {
+    // Empty material/tag directory shells are not runtime resources.
+    includeEmptyDirs = false
 }
 
 repositories {
@@ -145,6 +152,14 @@ neoForge {
         "${mod_id}" {
             sourceSet(sourceSets.main)
         }
+    }
+}
+
+tasks.named('runData').configure {
+    doFirst {
+        // Datagen is authoritative for this directory; remove stale files and
+        // empty directory shells before producing the next complete snapshot.
+        delete file('src/generated/resources')
     }
 }
 

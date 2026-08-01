@@ -145,6 +145,15 @@ class GeneratedMaterialPackCacheTest {
                         "server"));
     }
 
+    @Test
+    void generatorIdentityFailsWhenClassBytesAreUnavailable() {
+        IllegalStateException failure = assertThrows(
+                IllegalStateException.class,
+                () -> GeneratedMaterialPack.outputGeneratorIdentity(null));
+
+        assertTrue(failure.getMessage().contains("class bytes are unavailable"));
+    }
+
     private static MaterialDefinition material(int tier) {
         return new MaterialDefinition(
                 "testium",

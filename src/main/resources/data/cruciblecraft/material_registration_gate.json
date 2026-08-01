@@ -4,7 +4,7 @@
     "note": "audit-only legacy baseline; the builder never reads the previous material_registration_gate.json",
     "path": "tools/gt6_material_activation_policy.json",
     "recursive": false,
-    "sha256": "f4c652306eb11579bee367783ca7adb10925e7c3041383867cef8b22598c4742"
+    "sha256": "527f2e39cd922a7d6624ea466de745289310aa2016f3897cf8db6056ef4c70a1"
   },
   "compatibility_forms": {
     "adamantine": [
@@ -1796,7 +1796,8 @@
     "ore_source_forms": 822,
     "ore_source_materials": 137,
     "recipe_gated_forms": 12927,
-    "registered_forms": 14785
+    "registered_forms": 14786,
+    "t3_acceptance_forms": 1
   },
   "materials": {
     "abyssal_oat": [
@@ -10039,7 +10040,8 @@
       "spring",
       "tiny_dust",
       "triple_plate",
-      "washed_crushed_ore"
+      "washed_crushed_ore",
+      "wire"
     ],
     "iron_compressed": [
       "block",
@@ -19339,11 +19341,21 @@
     },
     "l1b_recipe_operands": {
       "path": "tools/gt6_l1b_selected_recipe_operands.json",
-      "sha256": "679e9d8139998d743abb547af219141012b4e29ecbedd69ac6cbc4c6c414a350"
+      "sha256": "58bdc00c5eecb5ac39ceb435cd5a28beb1e2c20687d53292b9ad53e936330f16"
     },
     "ore_chain_operands": {
       "path": "tools/gt6_ore_chain_operands.json",
       "sha256": "1a6e03e08e18077629cee66a3d841f6411109061b9f0c2e8360bbe93850010d8"
+    },
+    "t3_acceptance_form_corrections": {
+      "classification": "t3_acceptance_required_not_gt6_original_gate",
+      "path": "tools/component_rule_sources/acceptance_form_corrections.json",
+      "sha256": "9481d1987206d370bc9b211609b9c51677882489a79f3f7926b64501df5d620a"
     }
+  },
+  "t3_acceptance_forms": {
+    "iron": [
+      "wire"
+    ]
   }
 }

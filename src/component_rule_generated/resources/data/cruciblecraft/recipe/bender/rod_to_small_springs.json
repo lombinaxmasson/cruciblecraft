@@ -1,0 +1,19 @@
+{
+  "duration": "80 * (144 * prefix_units(small_spring) / gcd(target_units(bending) * 72, 144 * prefix_units(small_spring)))",
+  "eut": "24",
+  "item_inputs": [
+    {
+      "count": "1 * (144 * prefix_units(small_spring) / gcd(target_units(bending) * 72, 144 * prefix_units(small_spring)))",
+      "prefix": "cruciblecraft:rod"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "target_units(bending) * 72 / gcd(target_units(bending) * 72, 144 * prefix_units(small_spring))",
+      "material_selector": "processing_target:bending",
+      "prefix": "cruciblecraft:small_spring"
+    }
+  ],
+  "target": "cruciblecraft:bender",
+  "type": "cruciblecraft:material_rule"
+}

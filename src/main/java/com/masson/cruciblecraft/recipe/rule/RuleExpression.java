@@ -1,6 +1,8 @@
 package com.masson.cruciblecraft.recipe.rule;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 import java.util.Locale;
 
@@ -9,6 +11,8 @@ import java.util.Locale;
  * reflection, script-engine, allocation, or arbitrary call escape hatch.
  */
 public final class RuleExpression {
+    public static final int MAX_SOURCE_LENGTH = 4096;
+    public static final int MAX_NESTING_DEPTH = 64;
     private static final double MAX_SAFE_INTEGER = 9_007_199_254_740_991.0;
     public enum Type { NUMBER, BOOLEAN }
 
@@ -89,9 +93,15 @@ public final class RuleExpression {
         if (source == null || source.isBlank()) {
             throw new IllegalArgumentException(label(ruleId) + "empty expression");
         }
+        if (source.length() > MAX_SOURCE_LENGTH) {
+            throw new IllegalArgumentException(
+                    label(ruleId) + "'" + source + "': source length "
+                            + source.length() + " exceeds " + MAX_SOURCE_LENGTH);
+        }
         try {
             Parser parser = new Parser(source);
             Node root = parser.parse();
+            validateAstDepth(root);
             if (root.type() != expected) {
                 throw new IllegalArgumentException(
                         "expected " + expected.name().toLowerCase(Locale.ROOT)
@@ -102,6 +112,34 @@ public final class RuleExpression {
             throw new IllegalArgumentException(
                     label(ruleId) + "'" + source + "': " + exception.getMessage(),
                     exception);
+        }
+    }
+
+    private static void validateAstDepth(Node root) {
+        Deque<NodeDepth> pending = new ArrayDeque<>();
+        pending.push(new NodeDepth(root, 0));
+        while (!pending.isEmpty()) {
+            NodeDepth current = pending.pop();
+            if (current.depth() > MAX_NESTING_DEPTH) {
+                throw new IllegalArgumentException(
+                        "AST evaluation depth exceeds " + MAX_NESTING_DEPTH);
+            }
+            int childDepth = current.depth() + 1;
+            switch (current.node()) {
+                case Unary unary -> pending.push(new NodeDepth(unary.operand(), childDepth));
+                case Binary binary -> {
+                    pending.push(new NodeDepth(binary.right(), childDepth));
+                    pending.push(new NodeDepth(binary.left(), childDepth));
+                }
+                case Function function -> {
+                    for (Node argument : function.arguments()) {
+                        pending.push(new NodeDepth(argument, childDepth));
+                    }
+                }
+                default -> {
+                    // Leaf nodes do not recurse during evaluation.
+                }
+            }
         }
     }
 
@@ -133,6 +171,8 @@ public final class RuleExpression {
         Type type();
         Value eval(Context context);
     }
+
+    private record NodeDepth(Node node, int depth) {}
 
     private record Value(Type type, double number, boolean bool) {
         static Value number(double value) { return new Value(Type.NUMBER, finite(value, "non-finite result"), false); }
@@ -273,6 +313,7 @@ public final class RuleExpression {
     private static final class Parser {
         private final Lexer lexer;
         private Token token;
+        private int nestingDepth;
 
         private Parser(String source) {
             lexer = new Lexer(source);
@@ -359,7 +400,13 @@ public final class RuleExpression {
         private Node parseUnary() {
             if (List.of("+", "-", "!").contains(token.text)) {
                 String operator = consume().text;
-                Node operand = parseUnary();
+                enterNesting();
+                Node operand;
+                try {
+                    operand = parseUnary();
+                } finally {
+                    exitNesting();
+                }
                 Type type = operator.equals("!") ? Type.BOOLEAN : Type.NUMBER;
                 require(operand, type, operator);
                 return new Unary(operator, operand, type);
@@ -383,7 +430,13 @@ public final class RuleExpression {
             }
             if (token.text.equals("(")) {
                 consume();
-                Node nested = parseOr();
+                enterNesting();
+                Node nested;
+                try {
+                    nested = parseOr();
+                } finally {
+                    exitNesting();
+                }
                 expect(")");
                 return nested;
             }
@@ -414,10 +467,15 @@ public final class RuleExpression {
                 return new Lookup(name, argument);
             }
             List<Node> arguments = new ArrayList<>();
-            if (!token.text.equals(")")) {
-                do {
-                    arguments.add(parseOr());
-                } while (accept(","));
+            enterNesting();
+            try {
+                if (!token.text.equals(")")) {
+                    do {
+                        arguments.add(parseOr());
+                    } while (accept(","));
+                }
+            } finally {
+                exitNesting();
             }
             expect(")");
             if (!List.of("min", "max", "ceil", "floor", "tier_voltage", "gcd").contains(name)) {
@@ -458,6 +516,17 @@ public final class RuleExpression {
             if (node.type() != type) {
                 throw error(operator + " requires " + type.name().toLowerCase(Locale.ROOT) + " operands");
             }
+        }
+
+        private void enterNesting() {
+            nestingDepth++;
+            if (nestingDepth > MAX_NESTING_DEPTH) {
+                throw error("parser nesting depth exceeds " + MAX_NESTING_DEPTH);
+            }
+        }
+
+        private void exitNesting() {
+            nestingDepth--;
         }
 
         private IllegalArgumentException error(String message) {

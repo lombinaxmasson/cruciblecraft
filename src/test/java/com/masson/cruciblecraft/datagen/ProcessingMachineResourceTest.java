@@ -55,6 +55,25 @@ class ProcessingMachineResourceTest {
         }
     }
 
+    @Test
+    void chineseLanguageFileDeclaresOnlyItsRealTranslationCoverage() throws Exception {
+        var english = JsonParser.parseString(Files.readString(GENERATED.resolve(
+                "assets/cruciblecraft/lang/en_us.json"))).getAsJsonObject();
+        var chinese = JsonParser.parseString(Files.readString(GENERATED.resolve(
+                "assets/cruciblecraft/lang/zh_cn.json"))).getAsJsonObject();
+
+        assertTrue(english.keySet().containsAll(chinese.keySet()));
+        long translated = chinese.keySet().stream()
+                .filter(key -> !english.get(key).getAsString()
+                        .equals(chinese.get(key).getAsString()))
+                .count();
+        assertEquals(31L, translated, "declared Chinese translation coverage");
+        assertEquals(chinese.size(), translated,
+                "zh_cn must not hide untranslated keys behind copied English values");
+        assertTrue(english.size() > translated,
+                "partial localization must remain visibly partial until separately completed");
+    }
+
     private static List<String> values(Path rootPath, String path) throws Exception {
         var root = JsonParser.parseString(
                 Files.readString(rootPath.resolve(path))).getAsJsonObject();

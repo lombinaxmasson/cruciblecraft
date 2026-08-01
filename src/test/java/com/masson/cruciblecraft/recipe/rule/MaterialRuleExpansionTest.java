@@ -339,6 +339,58 @@ class MaterialRuleExpansionTest {
     }
 
     @Test
+    void fixedItemCountZeroExpandsAsExactPresenceRequirement() {
+        bootstrapVanillaItems();
+        MaterialDefinition iron = material(
+                "iron", 1, MaterialPrefixes.INGOT, MaterialPrefixes.ROD);
+        MaterialRule rule = new MaterialRule(
+                Optional.of(ResourceLocation.fromNamespaceAndPath(
+                        "cruciblecraft", "extruder")),
+                List.of(
+                        prefix(MaterialPrefixes.INGOT, "1", "10000"),
+                        new MaterialRule.ItemResource(
+                                Optional.empty(),
+                                Optional.of(ResourceLocation.withDefaultNamespace("flint")),
+                                "0",
+                                "10000")),
+                List.of(prefix(MaterialPrefixes.ROD, "2", "10000")),
+                List.of(), List.of(), "20", "16", "0", true,
+                Optional.of("iron"), Map.of(), List.of(), Optional.empty(), List.of());
+        MaterialRuleExpansion.ResourceResolver resolver =
+                new MaterialRuleExpansion.ResourceResolver() {
+                    @Override public Optional<Ingredient> itemInput(
+                            MaterialDefinition material,
+                            Optional<MaterialPrefix> prefix,
+                            Optional<ResourceLocation> fixed) {
+                        return Optional.of(Ingredient.of(
+                                fixed.isPresent() ? Items.FLINT : Items.IRON_INGOT));
+                    }
+                    @Override public Optional<Item> itemOutput(
+                            MaterialDefinition material,
+                            Optional<MaterialPrefix> prefix,
+                            Optional<ResourceLocation> fixed) {
+                        return Optional.of(Items.IRON_NUGGET);
+                    }
+                    @Override public Optional<Fluid> fluid(
+                            MaterialDefinition material,
+                            Optional<MaterialPrefix> prefix,
+                            Optional<ResourceLocation> fixed) {
+                        return Optional.empty();
+                    }
+                };
+
+        var plan = MaterialRuleExpansion.expandPlans(
+                id("extruder/rod"), rule, List.of(iron)).getFirst();
+        assertEquals(List.of(1, 0), plan.itemInputs().stream()
+                .map(MaterialRuleExpansion.PlannedResource::amount).toList());
+        var recipe = MaterialRuleExpansion.expand(
+                id("extruder/rod"), rule, List.of(iron), resolver).getFirst().recipe();
+        assertEquals(List.of(1, 0), recipe.itemInputCounts());
+        assertTrue(recipe.itemInputs().get(1).test(new ItemStack(Items.FLINT)));
+        assertFalse(recipe.itemInputs().get(1).test(new ItemStack(Items.COAL)));
+    }
+
+    @Test
     void targetUnitsProduceExactReducedBatchesWithoutRounding() {
         MaterialDefinition ingotTarget = material("ingot_target", 1, MaterialPrefixes.INGOT);
         MaterialDefinition zircon = material("zircon", 1, MaterialPrefixes.DUST)

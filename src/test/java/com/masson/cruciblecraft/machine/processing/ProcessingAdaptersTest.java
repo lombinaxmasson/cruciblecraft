@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.masson.cruciblecraft.TestExtruderShapes;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
@@ -118,6 +119,42 @@ class ProcessingAdaptersTest {
         assertEquals(0, mutations.get());
         assertTrue(items.getStackInSlot(0).isEmpty());
         assertEquals(2, items.getStackInSlot(1).getCount());
+    }
+
+    @Test
+    void itemAutomationPartialTransfersKeepSimulateAndExecuteConsistent() {
+        ItemStackHandler items = new ItemStackHandler(2);
+        items.setStackInSlot(0, new ItemStack(Items.COAL, 60));
+        items.setStackInSlot(1, new ItemStack(Items.IRON_INGOT, 10));
+        AtomicInteger mutations = new AtomicInteger();
+        SidedItemHandler input = new SidedItemHandler(
+                items, List.of(0), ProcessingMachineSpec.CapabilityAccess.INPUT,
+                mutations::incrementAndGet);
+        SidedItemHandler output = new SidedItemHandler(
+                items, List.of(1), ProcessingMachineSpec.CapabilityAccess.OUTPUT,
+                mutations::incrementAndGet);
+
+        ItemStack simulatedRemainder =
+                input.insertItem(0, new ItemStack(Items.COAL, 10), true);
+        assertEquals(6, simulatedRemainder.getCount());
+        assertEquals(60, items.getStackInSlot(0).getCount());
+        assertEquals(0, mutations.get());
+        ItemStack executedRemainder =
+                input.insertItem(0, new ItemStack(Items.COAL, 10), false);
+        assertEquals(simulatedRemainder.getCount(), executedRemainder.getCount());
+        assertEquals(64, items.getStackInSlot(0).getCount());
+        assertEquals(1, mutations.get());
+
+        ItemStack simulatedExtraction = output.extractItem(0, 6, true);
+        assertEquals(6, simulatedExtraction.getCount());
+        assertEquals(10, items.getStackInSlot(1).getCount());
+        assertEquals(1, mutations.get());
+        ItemStack executedExtraction = output.extractItem(0, 6, false);
+        assertTrue(ItemStack.isSameItemSameComponents(
+                simulatedExtraction, executedExtraction));
+        assertEquals(simulatedExtraction.getCount(), executedExtraction.getCount());
+        assertEquals(4, items.getStackInSlot(1).getCount());
+        assertEquals(2, mutations.get());
     }
 
     @Test
@@ -338,6 +375,7 @@ class ProcessingAdaptersTest {
             assertEquals(spec.items().inputs(), ranges.inputSlots());
         }
         for (ProcessingMachineSpec spec : List.of(
+                ModProcessingMachines.EXTRUDER,
                 ModProcessingMachines.WIREMILL,
                 ModProcessingMachines.ASSEMBLER,
                 ModProcessingMachines.WELDER,
@@ -350,6 +388,47 @@ class ProcessingAdaptersTest {
                 ModProcessingMachines.ASSEMBLER, 0, new FluidStack(Fluids.LAVA, 250)));
         assertFalse(ProcessingMachineFluidPolicy.accepts(
                 ModProcessingMachines.ASSEMBLER, 1, new FluidStack(Fluids.LAVA, 250)));
+    }
+
+    @Test
+    void extruderRolesAndAutomationEnforceMaterialAndToolSlots() {
+        ProcessingMachineSpec spec = ModProcessingMachines.EXTRUDER;
+        ItemStack shape = TestExtruderShapes.stack();
+        ItemStack material = new ItemStack(Items.IRON_INGOT);
+        assertEquals(ProcessingMachineSpec.SlotRole.MATERIAL, spec.items().role(0));
+        assertEquals(ProcessingMachineSpec.SlotRole.TOOL, spec.items().role(1));
+        assertEquals(ProcessingMachineSpec.SlotRole.OUTPUT, spec.items().role(2));
+        assertFalse(spec.items().accepts(0, shape));
+        assertTrue(spec.items().accepts(0, material));
+        assertTrue(spec.items().accepts(1, shape));
+        assertFalse(spec.items().accepts(1, material));
+
+        ItemStackHandler inventory = new ItemStackHandler(3) {
+            @Override public boolean isItemValid(int slot, ItemStack stack) {
+                return spec.items().accepts(slot, stack);
+            }
+        };
+        SidedItemHandler automation = new SidedItemHandler(
+                inventory,
+                spec.items().inputs(),
+                ProcessingMachineSpec.CapabilityAccess.INPUT);
+        assertEquals(1, automation.insertItem(0, shape.copy(), false).getCount());
+        assertTrue(automation.insertItem(1, shape.copy(), false).isEmpty());
+        assertEquals(1, automation.insertItem(1, material.copy(), false).getCount());
+        assertTrue(automation.insertItem(0, material.copy(), false).isEmpty());
+
+        GTRecipe valid = new GTRecipe(
+                List.of(Ingredient.of(Items.IRON_INGOT), Ingredient.of(shape.getItem())),
+                List.of(1, 0),
+                List.of(new ItemStack(Items.IRON_NUGGET)),
+                List.of(), List.of(), List.of(10_000), 20, 24, 0, true);
+        assertTrue(spec.validator().validate(valid).isEmpty());
+        GTRecipe nonShapeTool = new GTRecipe(
+                List.of(Ingredient.of(Items.IRON_INGOT), Ingredient.of(Items.STICK)),
+                List.of(1, 0),
+                List.of(new ItemStack(Items.IRON_NUGGET)),
+                List.of(), List.of(), List.of(10_000), 20, 24, 0, true);
+        assertTrue(spec.validator().validate(nonShapeTool).isPresent());
     }
 
     @Test

@@ -36,10 +36,20 @@ CC_REGISTRATION_GATE = (
 L3_PREFIX_PLAN = ROOT / "tools" / "gt6_l3_prefix_plan.json"
 CC_HAND = ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft" / "recipe"
 CC_GEN = ROOT / "src" / "generated" / "resources" / "data" / "cruciblecraft" / "recipe"
+CC_COMPONENT_GEN = (
+    ROOT
+    / "src"
+    / "component_rule_generated"
+    / "resources"
+    / "data"
+    / "cruciblecraft"
+    / "recipe"
+)
 ORE_CHAIN_INDEX = ROOT / "tools" / "gt6_ore_chain.json"
 OUT_JSON = ROOT / "tools" / "gt6_recipe_compare_report.json"
 BASELINE_JSON = ROOT / "tools" / "gt6_recipe_compare_baseline.json"
 REFERENCE_JSON = ROOT / "tools" / "gt6_recipe_normalized_reference.json"
+LOCAL_ARTIFACT_MANIFEST = ROOT / "tools" / "local_artifact_manifest.json"
 EXPECTATIONS_JSON = ROOT / "tools" / "gt6_recipe_expectations.json"
 EXPECTATIONS_SUGGESTED_JSON = ROOT / "tools" / "gt6_recipe_expectations_suggested.json"
 REFERENCE_METADATA_JSON = ROOT / "tools" / "gt6_reference_metadata.json"
@@ -1032,7 +1042,7 @@ def resource_expression_variables(
     prefix: str, target_units: int | None
 ) -> dict[str, float]:
     result: dict[str, float] = {}
-    if prefix:
+    if prefix in CC_PREFIX_UNITS:
         result["resource.prefix.units"] = float(CC_PREFIX_UNITS[prefix])
     if target_units is not None:
         result["target.units"] = float(target_units)
@@ -1061,8 +1071,14 @@ def expand_cc_recipes(materials: dict[str, dict[str, Any]]) -> list[NormRecipe]:
         )
     )
 
-    # Every parametric process is read from the same declarative rule shape.
-    for path in sorted(CC_GEN.rglob("*.json")):
+    # Every parametric process is read from the same declarative rule shape,
+    # regardless of whether datagen or the component builder owns the root.
+    rule_paths = [
+        (owner, path)
+        for owner in (CC_GEN, CC_COMPONENT_GEN)
+        for path in owner.rglob("*.json")
+    ]
+    for owner, path in sorted(rule_paths, key=lambda row: row[1].as_posix()):
         rule = json.loads(path.read_text(encoding="utf-8"))
         if rule.get("type") != "cruciblecraft:material_rule":
             continue
@@ -1133,7 +1149,17 @@ def expand_cc_recipes(materials: dict[str, dict[str, Any]]) -> list[NormRecipe]:
                         inputs = []
                         break
                     raise
-                if input_count <= 0 or input_count > 64:
+                presence_only_fixed_item = (
+                    input_count == 0
+                    and bool(resource.get("item"))
+                    and not resource.get("prefix")
+                )
+                if (
+                    input_count < 0
+                    or input_count > 64
+                    or input_count == 0
+                    and not presence_only_fixed_item
+                ):
                     inputs = []
                     break
                 inputs.append(Resource("item", resource_id, input_count))
@@ -1247,7 +1273,7 @@ def expand_cc_recipes(materials: dict[str, dict[str, Any]]) -> list[NormRecipe]:
                     special_value=special,
                     chances=chances,
                     notes=[f"special_value={special}"] if special else [],
-                    raw_hint=path.relative_to(CC_GEN).as_posix(),
+                    raw_hint=path.relative_to(owner).as_posix(),
                 )
             )
 
@@ -3683,6 +3709,178 @@ def write_normalized_reference(reference: dict[str, Any]) -> None:
     print(f"Wrote {REFERENCE_JSON}")
 
 
+def validate_compact_expectations(
+    document: dict[str, Any],
+    expected_count: int,
+) -> list[str]:
+    errors: list[str] = []
+    decisions = document.get("expectations")
+    if not isinstance(decisions, dict):
+        return ["compact expectations document has no expectations object"]
+    if len(decisions) != expected_count:
+        errors.append(
+            "compact expectation count does not cover current CC recipes: "
+            f"{len(decisions)} != {expected_count}"
+        )
+    for row_id, decision in decisions.items():
+        if not isinstance(decision, dict):
+            errors.append(f"{row_id}: expectation is not an object")
+            continue
+        verdict = decision.get("verdict")
+        if verdict not in VERDICTS:
+            errors.append(f"{row_id}: invalid verdict {verdict!r}")
+        if decision.get("match_tier") not in MATCH_TIERS:
+            errors.append(f"{row_id}: invalid match tier")
+        evidence = decision.get("evidence")
+        if (
+            evidence is None
+            or decision.get("evidence_digest") != stable_hash(evidence)
+        ):
+            errors.append(f"{row_id}: compact evidence digest is missing or stale")
+        mode = decision.get("review_mode")
+        if mode == "automated":
+            if (
+                is_placeholder_text(decision.get("evidence_source"))
+                or is_placeholder_text(decision.get("evidence_method"))
+            ):
+                errors.append(f"{row_id}: automated evidence metadata is incomplete")
+        elif mode == "human":
+            if (
+                not str(decision.get("reviewed_by") or "").strip()
+                or not str(decision.get("reviewed_at") or "").strip()
+            ):
+                errors.append(f"{row_id}: human review attribution is incomplete")
+        else:
+            errors.append(f"{row_id}: decision lacks valid review_mode")
+        rationale = (
+            decision.get("reason")
+            if verdict in {"INTENTIONAL", "OUT_OF_SCOPE"}
+            else decision.get("issue")
+        )
+        if verdict != "EXACT" and is_placeholder_text(rationale):
+            errors.append(f"{row_id}: verdict rationale is missing or placeholder")
+        if verdict == "INTENTIONAL" and any(
+            fragment in str(rationale or "").lower()
+            for fragment in GENERIC_RATIONALE_FRAGMENTS
+        ):
+            errors.append(f"{row_id}: INTENTIONAL rationale is generic")
+    return errors
+
+
+def compact_check() -> int:
+    if not BASELINE_JSON.is_file():
+        print(f"Missing regression baseline: {BASELINE_JSON}", file=sys.stderr)
+        return 1
+    baseline = json.loads(BASELINE_JSON.read_text(encoding="utf-8"))
+    expected = baseline.get("snapshot")
+    reference_fingerprint = baseline.get("reference_fingerprint")
+    if not isinstance(expected, dict) or not isinstance(reference_fingerprint, dict):
+        print(
+            "Regression baseline lacks compact snapshot/reference metadata.",
+            file=sys.stderr,
+        )
+        return 1
+
+    materials = load_cc_materials()
+    cc_all = expand_cc_recipes(materials)
+    hand_snapshot = hand_authored_recipe_snapshot()
+    reachability = build_reachability(materials, cc_all)
+    energy_constants = energy_constants_snapshot()
+    current = {
+        "cc_recipe_fingerprints": sorted(
+            recipe_fingerprint(recipe) for recipe in cc_all
+        ),
+        "hand_authored_recipe_fingerprints": sorted(
+            row["fingerprint"] for row in hand_snapshot
+        ),
+        "programmatic_process_fingerprints": sorted(
+            f"{edge['id']}|sha256={stable_hash(edge)}"
+            for edge in reachability["programmatic_processes"]
+        ),
+        "reachability_fingerprints": sorted(
+            (
+                f"{row['item']}|producer={row['has_producer']}"
+                f"|consumer={row['has_consumer']}|reachable={row['reachable']}"
+            )
+            for row in reachability["matrix"]
+        ),
+        "critical_reachability": sorted(
+            f"{name}|{row['item']}|reachable={row['reachable']}"
+            for name, row in reachability["critical_nodes"].items()
+        ),
+        "energy_constant_fingerprints": sorted(
+            energy_constant_fingerprint(name, group)
+            for name, group in energy_constants["groups"].items()
+        ),
+    }
+    errors: list[str] = []
+    expected_current = {key: expected.get(key, []) for key in current}
+    differences = regression_diff(expected_current, current)
+    if differences:
+        errors.append(
+            "compact CC regression snapshot changed: "
+            + json.dumps(differences, ensure_ascii=False)
+        )
+    if shadowed_recipe_count(cc_all):
+        errors.append("CC contains shadowed same-map input signatures")
+
+    metadata = load_reference_metadata()
+    for key in ("gt6_version", "config_digest", "dump_tool_version"):
+        if metadata.get(key) != reference_fingerprint.get(key):
+            errors.append(f"reference metadata {key} differs from the baseline")
+    roadmap = json.loads(ROADMAP_JSON.read_text(encoding="utf-8"))
+    maps = roadmap.get("maps") or {}
+    if len(maps) != int(reference_fingerprint.get("gt_map_count") or -1):
+        errors.append("roadmap map count differs from compact reference metadata")
+    if sum(int(row.get("reference_recipe_count") or 0) for row in maps.values()) != int(
+        reference_fingerprint.get("gt_recipe_count") or -1
+    ):
+        errors.append("roadmap recipe count differs from compact reference metadata")
+
+    expectations = json.loads(EXPECTATIONS_JSON.read_text(encoding="utf-8"))
+    errors.extend(validate_compact_expectations(expectations, len(cc_all)))
+    process_expectations = json.loads(
+        PROCESS_EXPECTATIONS_JSON.read_text(encoding="utf-8")
+    )
+    errors.extend(
+        validate_process_expectations(
+            energy_constants,
+            process_expectations,
+        )["errors"]
+    )
+    manifest = json.loads(
+        LOCAL_ARTIFACT_MANIFEST.read_text(encoding="utf-8")
+    )
+    cache_paths = {
+        row.get("path")
+        for row in manifest.get("artifacts") or []
+        if isinstance(row, dict)
+        and isinstance(row.get("bytes"), int)
+        and row["bytes"] > 0
+        and re.fullmatch(r"[0-9a-f]{64}", str(row.get("sha256") or ""))
+        and str(row.get("rebuild_command") or "").strip()
+    }
+    required_cache_paths = {
+        "tools/gt6_recipe_compare_report.json",
+        "tools/gt6_recipe_normalized_reference.json",
+        "tools/gt6_extruder_templates_v5.json",
+    }
+    if cache_paths != required_cache_paths:
+        errors.append("local artifact manifest is incomplete or malformed")
+
+    if errors:
+        print("Compact recipe regression validation failed:", file=sys.stderr)
+        print("\n".join(f"- {error}" for error in errors), file=sys.stderr)
+        return 1
+    print("Compact recipe regression snapshot matches the baseline.")
+    print(
+        "SKIP: full GT6 recipe replay requires the local normalized cache or "
+        "authoritative gt6_dump. Run with --check --full-replay after restoring "
+        "or rebuilding the cache."
+    )
+    return 0
+
+
 def main() -> int:
     args = set(sys.argv[1:])
     known_args = {
@@ -3697,6 +3895,7 @@ def main() -> int:
         "--write-automated-expectations",
         "--write-process-expectations-evidence",
         "--write-report",
+        "--full-replay",
     }
     unknown_args = sorted(args - known_args)
     if unknown_args:
@@ -3715,6 +3914,7 @@ def main() -> int:
         "--write-process-expectations-evidence" in args
     )
     write_report = "--write-report" in args
+    full_replay = "--full-replay" in args
     if check_baseline and update_baseline:
         print("--check and --update-baseline are mutually exclusive.", file=sys.stderr)
         return 2
@@ -3746,6 +3946,32 @@ def main() -> int:
     if append_missing and not write_expectations:
         # Append needs a fresh suggestion set from this run's family reports.
         write_expectations = True
+    if check_baseline and not full_replay:
+        return compact_check()
+    if write_reference and not GT_INDEX.is_file():
+        print(
+            "--write-reference requires gt6_dump/gt6_recipe_dump. Restore the "
+            "authoritative dump, then rerun the command.",
+            file=sys.stderr,
+        )
+        return 2
+    if reference_only and not REFERENCE_JSON.is_file():
+        print(
+            f"Full replay cache is missing: {REFERENCE_JSON}. Rebuild it with "
+            "python tools/compare_gt6_recipes.py --write-reference (requires "
+            "gt6_dump/gt6_recipe_dump), or omit --reference-only when the raw "
+            "dump is available.",
+            file=sys.stderr,
+        )
+        return 2
+    if not GT_INDEX.is_file() and not REFERENCE_JSON.is_file():
+        print(
+            "Full recipe replay requires either gt6_dump/gt6_recipe_dump or "
+            f"{REFERENCE_JSON}. Restore the dump and run --write-reference; "
+            "ordinary CI should use --check without --full-replay.",
+            file=sys.stderr,
+        )
+        return 2
 
     materials = load_cc_materials()
     print(f"CC materials: {len(materials)}")
@@ -3781,22 +4007,17 @@ def main() -> int:
             gt_by_family, anvil_audit, coverage, index
         )
         reference_fingerprint = generated_reference["reference_fingerprint"]
-        if check_baseline:
-            if not REFERENCE_JSON.is_file():
+        if check_baseline and REFERENCE_JSON.is_file():
+            committed_reference = json.loads(
+                REFERENCE_JSON.read_text(encoding="utf-8")
+            )
+            if stable_hash(committed_reference) != stable_hash(
+                generated_reference
+            ):
                 reference_integrity_errors.append(
-                    "Missing committed normalized GT reference."
+                    "Committed normalized GT reference differs from raw dump "
+                    "normalization; rerun with --write-reference after review."
                 )
-            else:
-                committed_reference = json.loads(
-                    REFERENCE_JSON.read_text(encoding="utf-8")
-                )
-                if stable_hash(committed_reference) != stable_hash(
-                    generated_reference
-                ):
-                    reference_integrity_errors.append(
-                        "Committed normalized GT reference differs from raw dump "
-                        "normalization; rerun with --write-reference after review."
-                    )
         if write_reference:
             write_normalized_reference(generated_reference)
     else:

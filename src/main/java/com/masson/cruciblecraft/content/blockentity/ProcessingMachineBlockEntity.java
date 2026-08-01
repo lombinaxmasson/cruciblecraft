@@ -88,7 +88,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 : null;
         this.inventory = new ItemStackHandler(spec.items().slotCount()) {
             @Override public boolean isItemValid(int slot, ItemStack stack) {
-                return spec.items().inputs().contains(slot);
+                return spec.items().accepts(slot, stack);
             }
             @Override protected void onContentsChanged(int slot) {
                 resourcesChanged();

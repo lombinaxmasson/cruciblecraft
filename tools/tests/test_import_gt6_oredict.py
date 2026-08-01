@@ -208,6 +208,7 @@ class DumpSchemaTest(unittest.TestCase):
             MODULE.CROSS_REFERENCE.name,
             MODULE.ALIASES.name,
             MODULE.ACTIVATION_OVERRIDES.name,
+            "acceptance_form_corrections.json",
             MODULE.AUTHORED_BASELINE.name,
             MODULE.gt6_l3_materials.GENERATION_BITS_PATH.name,
             MODULE.gt6_l3_materials.MAPPING_PATH.name,
@@ -395,6 +396,17 @@ class NormalizedDataTest(unittest.TestCase):
             (MODULE.MATERIAL_DIR / "alumite.json").read_text(encoding="utf-8")
         )
         self.assertTrue(alumite_runtime["no_decompose"])
+        iron = policy["iron"]
+        self.assertEqual(
+            ["wire"],
+            iron["acceptance_form_corrections"][0]["add_forms"],
+        )
+        self.assertEqual(
+            "t3_acceptance_required_not_gt6_original_gate",
+            iron["acceptance_form_corrections"][0]["classification"],
+        )
+        self.assertNotIn("wire", iron["gt6_original_t0_forms"])
+        self.assertIn("wire", iron["t0_forms"])
 
     def test_metadata_only_materials_have_no_mappable_gt6_prefix(self):
         active = {

@@ -18,6 +18,7 @@ import argparse
 import copy
 import hashlib
 import json
+import sys
 from collections import Counter, defaultdict
 from fractions import Fraction
 from pathlib import Path
@@ -2086,10 +2087,33 @@ def main(argv: list[str] | None = None) -> int:
     )
     args = parser.parse_args(argv)
     if args.verify:
+        missing = [
+            path.relative_to(ROOT).as_posix()
+            for path in (OUT, MAP_PATH, MATERIALS_PATH)
+            if not path.is_file()
+        ]
+        if missing:
+            print(
+                "SKIP: full extruder replay was not executed because local raw/cache "
+                f"artifacts are absent: {', '.join(missing)}. Ordinary CI instead "
+                "validates the committed compact index/report, selector policy, "
+                "component builder projection, and their tests. Restore "
+                "gt6_dump/gt6_recipe_dump and run "
+                "python tools/gt6_extruder_templates.py to perform a full replay."
+            )
+            return 0
         document = json.loads(OUT.read_text(encoding="utf-8"))
         result = verify_document(document)
         print(json.dumps(result, indent=2))
         return 0 if result["replay_verified"] else 2
+    if not MAP_PATH.is_file() or not MATERIALS_PATH.is_file():
+        print(
+            "Extruder extraction requires the authoritative "
+            "gt6_dump/gt6_recipe_dump map and ore-dictionary files. Restore "
+            "the local dump, then rerun this command.",
+            file=sys.stderr,
+        )
+        return 2
     document = extract()
     print(f"Wrote {OUT}")
     print(f"Wrote {SUMMARY_OUT}")
