@@ -4,7 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import com.masson.cruciblecraft.api.material.MaterialForm;
+import com.masson.cruciblecraft.api.material.MaterialPrefix;
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 
 public final class MoldCastingRules {
     public static final float HEAT_RESISTANCE_BONUS = 1.25F;
@@ -15,7 +16,7 @@ public final class MoldCastingRules {
 
     public static Optional<Batch> smallestBatch(
             Map<String, Integer> costPerIngot,
-            MaterialForm form) {
+            MaterialPrefix form) {
         if (costPerIngot.isEmpty()) {
             return Optional.empty();
         }
@@ -24,11 +25,11 @@ public final class MoldCastingRules {
             boolean integral = true;
             for (var component : costPerIngot.entrySet()) {
                 long scaled = (long) component.getValue() * form.units() * outputCount;
-                if (scaled % MaterialForm.INGOT.units() != 0L) {
+                if (scaled % MaterialPrefixes.INGOT.units() != 0L) {
                     integral = false;
                     break;
                 }
-                int units = Math.toIntExact(scaled / MaterialForm.INGOT.units());
+                int units = Math.toIntExact(scaled / MaterialPrefixes.INGOT.units());
                 if (units <= 0) {
                     integral = false;
                     break;

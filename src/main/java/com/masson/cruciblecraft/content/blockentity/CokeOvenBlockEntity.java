@@ -1,18 +1,26 @@
 package com.masson.cruciblecraft.content.blockentity;
 
+import java.util.List;
 import java.util.Optional;
 
-import com.masson.cruciblecraft.api.heat.IHeatSource;
+import com.masson.cruciblecraft.api.energy.EnergyType;
+import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.CokeOvenBlock;
 import com.masson.cruciblecraft.content.menu.CokeOvenMenu;
 import com.masson.cruciblecraft.content.multiblock.CokeOvenStructure;
-import com.masson.cruciblecraft.recipe.CokeOvenRecipe;
-import com.masson.cruciblecraft.recipe.CokeOvenRecipeInput;
-import com.masson.cruciblecraft.recipe.CokeOvenProcess;
+import com.masson.cruciblecraft.machine.CheckpointDecisions;
+import com.masson.cruciblecraft.machine.component.CheckpointTracker;
+import com.masson.cruciblecraft.machine.component.RecipeProcessor;
+import com.masson.cruciblecraft.machine.processing.AdjacentEnergyConsumer;
+import com.masson.cruciblecraft.machine.processing.MachineTransaction;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
+import com.masson.cruciblecraft.recipe.gt.GTRecipe;
+import com.masson.cruciblecraft.recipe.gt.GTRecipeCache;
+import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModCapabilities;
 import com.masson.cruciblecraft.registry.ModFluids;
-import com.masson.cruciblecraft.registry.ModRecipes;
+import com.masson.cruciblecraft.registry.ModRecipeMaps;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,7 +35,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -43,7 +50,7 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
     public static final int OUTPUT_SLOT = 1;
     public static final int TANK_CAPACITY = 32_000;
     /** The coke oven consumes a minimal steady 1 HU for each processing tick. */
-    public static final double PROCESS_HEAT_PER_TICK = 1.0;
+    public static final long PROCESS_HEAT_PER_TICK = 1L;
     private static final int IGNITION_WINDOW_TICKS = 40;
 
     private final ItemStackHandler inventory = new ItemStackHandler(2) {
@@ -54,7 +61,7 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
 
         @Override
         protected void onContentsChanged(int slot) {
-            setChanged();
+            markCapabilityMutation();
         }
     };
     private final FluidTank tank = new FluidTank(
@@ -62,7 +69,7 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
             stack -> stack.is(ModFluids.CREOSOTE_SOURCE.get())) {
         @Override
         protected void onContentsChanged() {
-            setChanged();
+            markCapabilityMutation();
         }
     };
     private final IItemHandler externalItems = new ExternalItemHandler();
@@ -71,12 +78,12 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
         @Override
         public int get(int index) {
             return switch (index) {
-                case 0 -> progress;
-                case 1 -> recipeDuration;
+                case 0 -> processor.progress();
+                case 1 -> processor.duration();
                 case 2 -> tank.getFluidAmount();
                 case 3 -> tank.getCapacity();
                 case 4 -> structureValid ? 1 : 0;
-                case 5 -> isHeated() ? 1 : 0;
+                case 5 -> heated ? 1 : 0;
                 default -> 0;
             };
         }
@@ -84,8 +91,8 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
         @Override
         public void set(int index, int value) {
             switch (index) {
-                case 0 -> progress = value;
-                case 1 -> recipeDuration = value;
+                case 0 -> processor.setProgress(value);
+                case 1 -> processor.setDuration(value);
                 case 4 -> structureValid = value != 0;
                 default -> {
                 }
@@ -98,11 +105,13 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
         }
     };
 
-    private int progress;
-    private int recipeDuration;
+    private final RecipeProcessor processor = new RecipeProcessor();
+    private final GTRecipeCache recipeCache = new GTRecipeCache(ModRecipeMaps.COKE_OVEN);
+    private final CheckpointTracker checkpoint = new CheckpointTracker();
     private int ignitionTicks;
     private boolean structureValid;
-    private ResourceLocation activeRecipeId;
+    private boolean heated;
+    private MachineTransaction pendingTransaction;
 
     public CokeOvenBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.COKE_OVEN.get(), pos, blockState);
@@ -113,7 +122,8 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
             BlockPos pos,
             BlockState state,
             CokeOvenBlockEntity cokeOven) {
-        if (level.getGameTime() % 20L == 0L) {
+        long phaseKey = CheckpointDecisions.phaseKey(pos.getX(), pos.getY(), pos.getZ());
+        if (CheckpointDecisions.onPositionPhase(level.getGameTime(), phaseKey, 20)) {
             boolean previousStructure = cokeOven.structureValid;
             cokeOven.structureValid = CokeOvenStructure.isValid(
                     level,
@@ -122,11 +132,13 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
             if (previousStructure != cokeOven.structureValid) {
                 cokeOven.setChanged();
                 cokeOven.syncToClient();
+                cokeOven.checkpoint.checkpointed();
+                cokeOven.checkpoint.synced();
             }
         }
 
-        boolean heated = cokeOven.isHeated();
-        if (!cokeOven.structureValid || !heated) {
+        cokeOven.heated = cokeOven.queryHeated();
+        if (!cokeOven.structureValid || !cokeOven.heated) {
             cokeOven.ignitionTicks = 0;
             cokeOven.setLit(false);
             return;
@@ -135,13 +147,14 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
             cokeOven.ignitionTicks--;
         }
 
-        Optional<RecipeHolder<CokeOvenRecipe>> recipe = cokeOven.findRecipe();
-        if (recipe.isEmpty()) {
+        Optional<RecipeMap.Match> match = cokeOven.findRecipe();
+        if (match.isEmpty()) {
             cokeOven.resetProgress();
             cokeOven.setLit(false);
             return;
         }
-        if (!cokeOven.selectRecipe(recipe.get())) {
+        GTRecipe recipe = match.get().recipe();
+        if (!cokeOven.selectRecipe(match.get())) {
             cokeOven.setLit(false);
             return;
         }
@@ -150,7 +163,7 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
             return;
         }
         cokeOven.ignitionTicks = IGNITION_WINDOW_TICKS;
-        if (!cokeOven.canStoreOutputs(recipe.get().value())) {
+        if (!cokeOven.canStoreOutputs(recipe)) {
             cokeOven.setLit(false);
             return;
         }
@@ -159,119 +172,150 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
             return;
         }
 
-        cokeOven.progress = CokeOvenProcess.advance(
-                cokeOven.progress,
-                cokeOven.recipeDuration);
+        cokeOven.processor.advance();
+        cokeOven.checkpoint.markDirty();
         cokeOven.setLit(true);
-        if (cokeOven.progress >= cokeOven.recipeDuration) {
-            cokeOven.complete(recipe.get().value());
+        if (cokeOven.processor.complete()) {
+            cokeOven.complete(recipe);
         }
-        if (cokeOven.progress % 20 == 0) {
+        if (cokeOven.checkpoint.shouldCheckpoint(level.getGameTime(), phaseKey, 20)) {
             cokeOven.setChanged();
             cokeOven.syncToClient();
+            cokeOven.checkpoint.checkpointed();
+            cokeOven.checkpoint.synced();
         }
     }
 
     public boolean ignite() {
-        if (level == null || level.isClientSide || !structureValid || !isHeated()) {
+        if (level == null || level.isClientSide || !structureValid) {
+            return false;
+        }
+        if (!heated) {
+            heated = queryHeated();
+        }
+        if (!heated) {
             return false;
         }
         ignitionTicks = IGNITION_WINDOW_TICKS;
         setChanged();
         syncToClient();
+        checkpoint.checkpointed();
+        checkpoint.synced();
         return true;
     }
 
-    private Optional<RecipeHolder<CokeOvenRecipe>> findRecipe() {
+    private Optional<RecipeMap.Match> findRecipe() {
         if (level == null || inventory.getStackInSlot(INPUT_SLOT).isEmpty()) {
             return Optional.empty();
         }
-        return level.getRecipeManager().getRecipeFor(
-                ModRecipes.COKE_OVEN_TYPE.get(),
-                new CokeOvenRecipeInput(inventory.getStackInSlot(INPUT_SLOT)),
-                level);
+        return recipeCache.findItems(inventory.getStackInSlot(INPUT_SLOT));
     }
 
-    private boolean selectRecipe(RecipeHolder<CokeOvenRecipe> holder) {
-        if (holder.id().equals(activeRecipeId)) {
-            return true;
+    private boolean selectRecipe(
+            RecipeMap.Match match) {
+        GTRecipe recipe = match.recipe();
+        ItemStack output = recipe.itemOutputs().stream().findFirst().orElse(ItemStack.EMPTY);
+        if (output.isEmpty()) {
+            return false;
         }
-        activeRecipeId = holder.id();
-        progress = 0;
-        recipeDuration = holder.value().duration();
-        setChanged();
+        String identity = match.id().toString();
+        if (processor.select(identity, recipe.duration())) {
+            setChanged();
+        }
         return true;
     }
 
-    private boolean canStoreOutputs(CokeOvenRecipe recipe) {
-        ItemStack currentOutput = inventory.getStackInSlot(OUTPUT_SLOT);
-        ItemStack recipeOutput = recipe.output();
-        boolean compatible = currentOutput.isEmpty()
-                || ItemStack.isSameItemSameComponents(currentOutput, recipeOutput);
-        if (!CokeOvenProcess.hasItemCapacity(
-                currentOutput.getCount(),
-                currentOutput.isEmpty()
-                        ? recipeOutput.getMaxStackSize()
-                        : currentOutput.getMaxStackSize(),
-                recipeOutput.getCount(),
-                compatible)) {
+    private boolean canStoreOutputs(GTRecipe recipe) {
+        if (recipe.itemOutputs().size() != 1
+                || recipe.fluidOutputs().size() != 1
+                || recipe.outputChances().getFirst() != GTRecipe.GUARANTEED_CHANCE) {
             return false;
         }
-        return CokeOvenProcess.hasFluidCapacity(
-                tank.getFluidAmount(),
-                tank.getCapacity(),
-                recipe.fluidOutput().getAmount())
-                && tank.fill(recipe.fluidOutput(), IFluidHandler.FluidAction.SIMULATE)
-                == recipe.fluidOutput().getAmount();
+        pendingTransaction = MachineTransaction.prepare(
+                recipe,
+                List.of(
+                        inventory.getStackInSlot(INPUT_SLOT),
+                        inventory.getStackInSlot(OUTPUT_SLOT)),
+                List.of(INPUT_SLOT),
+                List.of(OUTPUT_SLOT),
+                List.of(tank.getFluid()),
+                List.of(),
+                List.of(new ProcessingMachineSpec.TankSpec(0, tank.getCapacity())),
+                recipe.itemOutputs()).orElse(null);
+        return pendingTransaction != null;
     }
 
-    private void complete(CokeOvenRecipe recipe) {
-        inventory.extractItem(INPUT_SLOT, 1, false);
-        ItemStack currentOutput = inventory.getStackInSlot(OUTPUT_SLOT);
-        if (currentOutput.isEmpty()) {
-            inventory.setStackInSlot(OUTPUT_SLOT, recipe.output().copy());
-        } else {
-            currentOutput.grow(recipe.output().getCount());
-            inventory.setStackInSlot(OUTPUT_SLOT, currentOutput);
+    private void complete(GTRecipe recipe) {
+        if (pendingTransaction == null || !pendingTransaction.commit(transactionResources())) {
+            return;
         }
-        tank.fill(recipe.fluidOutput(), IFluidHandler.FluidAction.EXECUTE);
-        progress = 0;
-        activeRecipeId = null;
-        Optional<RecipeHolder<CokeOvenRecipe>> next = findRecipe();
-        recipeDuration = next.map(holder -> holder.value().duration()).orElse(0);
+        pendingTransaction = null;
+        Optional<RecipeMap.Match> next = findRecipe();
+        processor.clearActive(next.map(match -> match.recipe().duration()).orElse(0));
         setChanged();
         syncToClient();
+        checkpoint.checkpointed();
+        checkpoint.synced();
     }
 
     private void resetProgress() {
-        if (progress != 0 || recipeDuration != 0 || activeRecipeId != null) {
-            progress = 0;
-            recipeDuration = 0;
-            activeRecipeId = null;
+        if (processor.reset()) {
             setChanged();
         }
     }
 
-    private boolean isHeated() {
+    private boolean queryHeated() {
         var source = heatSource();
-        return source != null
-                && source.extractHeat(PROCESS_HEAT_PER_TICK, true) >= PROCESS_HEAT_PER_TICK;
+        return transferProcessingHeat(source, true);
     }
 
     private boolean consumeProcessingHeat() {
         var source = heatSource();
-        return source != null
-                && source.extractHeat(PROCESS_HEAT_PER_TICK, false) >= PROCESS_HEAT_PER_TICK;
+        return transferProcessingHeat(source, false);
     }
 
-    private IHeatSource heatSource() {
+    private boolean transferProcessingHeat(IEnergyHandler source, boolean simulate) {
+        return AdjacentEnergyConsumer.consume(
+                source,
+                EnergyType.HEAT,
+                Direction.UP,
+                PROCESS_HEAT_PER_TICK,
+                simulate);
+    }
+
+    private MachineTransaction.ResourceAccess transactionResources() {
+        return new MachineTransaction.ResourceAccess() {
+            @Override public int itemCount() { return inventory.getSlots(); }
+            @Override public ItemStack item(int slot) {
+                return inventory.getStackInSlot(slot).copy();
+            }
+            @Override public void setItem(int slot, ItemStack stack) {
+                inventory.setStackInSlot(slot, stack);
+            }
+            @Override public int fluidCount() { return 1; }
+            @Override public FluidStack fluid(int index) {
+                return index == 0 ? tank.getFluid().copy() : FluidStack.EMPTY;
+            }
+            @Override public void setFluid(int index, FluidStack stack) {
+                if (index != 0) {
+                    throw new IndexOutOfBoundsException(index);
+                }
+                tank.setFluid(stack);
+            }
+        };
+    }
+
+    private IEnergyHandler heatSource() {
         if (level == null) {
             return null;
         }
         Direction facing = getBlockState().getValue(CokeOvenBlock.FACING);
         BlockPos heatSource = CokeOvenStructure.heatSource(worldPosition, facing);
+        if (!level.hasChunkAt(heatSource)) {
+            return null;
+        }
         return level.getCapability(
-                ModCapabilities.HEAT_SOURCE,
+                ModCapabilities.ENERGY,
                 heatSource,
                 Direction.UP);
     }
@@ -291,11 +335,11 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
     }
 
     public int progress() {
-        return progress;
+        return processor.progress();
     }
 
     public int recipeDuration() {
-        return recipeDuration;
+        return processor.duration();
     }
 
     public int creosoteAmount() {
@@ -365,13 +409,15 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
             inventory.deserializeNBT(registries, tag.getCompound("inventory"));
         }
         tank.readFromNBT(registries, tag.getCompound("tank"));
-        progress = Math.max(0, tag.getInt("progress"));
-        recipeDuration = Math.max(0, tag.getInt("recipe_duration"));
-        ignitionTicks = Math.max(0, tag.getInt("ignition_ticks"));
-        structureValid = tag.getBoolean("structure_valid");
-        activeRecipeId = tag.contains("active_recipe")
+        ResourceLocation savedRecipe = tag.contains("active_recipe")
                 ? ResourceLocation.tryParse(tag.getString("active_recipe"))
                 : null;
+        processor.restore(
+                savedRecipe == null ? "" : savedRecipe.toString(),
+                tag.getInt("progress"),
+                tag.getInt("recipe_duration"));
+        ignitionTicks = Math.max(0, tag.getInt("ignition_ticks"));
+        structureValid = tag.getBoolean("structure_valid");
     }
 
     @Override
@@ -379,12 +425,12 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
         super.saveAdditional(tag, registries);
         tag.put("inventory", inventory.serializeNBT(registries));
         tag.put("tank", tank.writeToNBT(registries, new CompoundTag()));
-        tag.putInt("progress", progress);
-        tag.putInt("recipe_duration", recipeDuration);
+        tag.putInt("progress", processor.progress());
+        tag.putInt("recipe_duration", processor.duration());
         tag.putInt("ignition_ticks", ignitionTicks);
         tag.putBoolean("structure_valid", structureValid);
-        if (activeRecipeId != null) {
-            tag.putString("active_recipe", activeRecipeId.toString());
+        if (!processor.activeId().isEmpty()) {
+            tag.putString("active_recipe", processor.activeId());
         }
     }
 
@@ -405,6 +451,11 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
             BlockState state = getBlockState();
             level.sendBlockUpdated(worldPosition, state, state, Block.UPDATE_CLIENTS);
         }
+    }
+
+    private void markCapabilityMutation() {
+        setChanged();
+        checkpoint.markDirty();
     }
 
     private final class ExternalItemHandler implements IItemHandler {

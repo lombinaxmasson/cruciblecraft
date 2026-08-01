@@ -5,18 +5,17 @@ import java.util.List;
 import java.util.Optional;
 
 import com.masson.cruciblecraft.CrucibleCraft;
-import com.masson.cruciblecraft.api.material.MaterialForm;
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
+import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.content.mold.MoldCastingRules;
 import com.masson.cruciblecraft.content.mold.MoldShape;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
-import com.masson.cruciblecraft.recipe.AnvilRecipe;
-import com.masson.cruciblecraft.recipe.CokeOvenRecipe;
-import com.masson.cruciblecraft.recipe.CrusherRecipe;
+import com.masson.cruciblecraft.recipe.AnvilMode;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModItems;
-import com.masson.cruciblecraft.registry.ModRecipes;
+import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
@@ -30,7 +29,6 @@ import dev.emi.emi.api.stack.EmiStack;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeHolder;
 
 @EmiEntrypoint
 public final class CrucibleCraftEmiPlugin implements EmiPlugin {
@@ -78,7 +76,8 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         for (MaterialDefinition material : MaterialCatalog.values()) {
             if (material.composition().isEmpty()
                     || material.noDecompose()
-                    || !material.forms().contains(MaterialForm.INGOT)) {
+                    || !MaterialCatalog.isFormRegistered(
+                            material, MaterialPrefixes.INGOT)) {
                 continue;
             }
 
@@ -95,7 +94,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                 outputCount += component.getValue();
             }
 
-            Optional<Item> output = MaterialLookup.item(material.id(), MaterialForm.INGOT);
+            Optional<Item> output = MaterialLookup.item(material.id(), MaterialPrefixes.INGOT);
             if (complete && output.isPresent()) {
                 registry.addRecipe(new AlloyEmiRecipe(
                         material.id(),
@@ -106,35 +105,24 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
     }
 
     private static void registerAnvilRecipes(EmiRegistry registry) {
-        for (RecipeHolder<AnvilRecipe> holder :
-                registry.getRecipeManager().getAllRecipesFor(ModRecipes.ANVIL_TYPE.get())) {
-            AnvilRecipe recipe = holder.value();
-            for (MaterialDefinition material : MaterialCatalog.values()) {
-                if (recipe.material().isPresent()
-                        && !recipe.material().get().equals(material.id())) {
+        for (AnvilMode mode : AnvilMode.values()) {
+            var map = ModRecipeMaps.anvil(mode);
+            for (var entry : map.entries()) {
+                var recipe = entry.recipe();
+                ItemStack[] primaryItems = recipe.itemInputs().getFirst().getItems();
+                if (primaryItems.length == 0) {
                     continue;
                 }
-                Optional<Item> input = MaterialLookup.item(material.id(), recipe.input());
-                Optional<Item> secondInput = recipe.secondInput()
-                        .flatMap(form -> MaterialLookup.item(material.id(), form));
-                Optional<Item> output = MaterialLookup.item(material.id(), recipe.output());
-                Optional<Item> secondaryOutput = recipe.secondaryOutput()
-                        .flatMap(form -> MaterialLookup.item(material.id(), form));
-                if (input.isEmpty() || output.isEmpty()
-                        || (recipe.secondInput().isPresent() && secondInput.isEmpty())
-                        || (recipe.secondaryOutput().isPresent() && secondaryOutput.isEmpty())) {
-                    continue;
-                }
-                String workstationMaterial = material.tier() <= 0
+                int materialTier = MaterialUnits.resolve(primaryItems[0])
+                        .map(materialEntry -> materialEntry.material().tier())
+                        .orElse(1);
+                String workstationMaterial = materialTier <= 0
                         ? "stone"
-                        : material.tier() == 1 ? "bronze" : material.tier() == 2 ? "iron" : "steel";
+                        : materialTier == 1 ? "bronze" : materialTier == 2 ? "iron" : "steel";
                 registry.addRecipe(new AnvilEmiRecipe(
-                        holder,
-                        material.id(),
-                        input.get(),
-                        secondInput.orElse(null),
-                        output.get(),
-                        secondaryOutput.orElse(null),
+                        entry.id(),
+                        mode,
+                        recipe,
                         ModItems.SMITHING_HAMMER.get().variant(
                                 "stone".equals(workstationMaterial) ? "bronze" : workstationMaterial),
                         anvilVariant(workstationMaterial)));
@@ -143,16 +131,17 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
     }
 
     private static Optional<Item> displayItem(String materialId) {
-        Optional<Item> ingot = MaterialLookup.item(materialId, MaterialForm.INGOT);
+        Optional<Item> ingot = MaterialLookup.item(materialId, MaterialPrefixes.INGOT);
         return ingot.isPresent()
                 ? ingot
-                : MaterialLookup.item(materialId, MaterialForm.DUST);
+                : MaterialLookup.item(materialId, MaterialPrefixes.DUST);
     }
 
     private static void registerCokeOvenRecipes(EmiRegistry registry) {
-        for (RecipeHolder<CokeOvenRecipe> holder :
-                registry.getRecipeManager().getAllRecipesFor(ModRecipes.COKE_OVEN_TYPE.get())) {
-            registry.addRecipe(new CokeOvenEmiRecipe(holder));
+        for (var entry : ModRecipeMaps.COKE_OVEN.entries()) {
+            registry.addRecipe(new CokeOvenEmiRecipe(
+                    entry.id(),
+                    entry.recipe()));
         }
     }
 
@@ -163,12 +152,12 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
                 continue;
             }
             var costPerIngot = material.composition().isEmpty() || material.noDecompose()
-                    ? java.util.Map.of(material.id(), MaterialForm.INGOT.units())
+                    ? java.util.Map.of(material.id(), MaterialPrefixes.INGOT.units())
                     : com.masson.cruciblecraft.material.MaterialCatalog.decompose(
                             material,
-                            MaterialForm.INGOT.units());
+                            MaterialPrefixes.INGOT.units());
             for (MoldShape shape : MoldShape.values()) {
-                if (!material.forms().contains(shape.form())) {
+                if (!MaterialCatalog.isFormRegistered(material, shape.form())) {
                     continue;
                 }
                 Optional<Item> output = MaterialLookup.item(material.id(), shape.form());
@@ -188,17 +177,10 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
     }
 
     private static void registerCrusherRecipes(EmiRegistry registry) {
-        for (RecipeHolder<CrusherRecipe> holder :
-                registry.getRecipeManager().getAllRecipesFor(ModRecipes.CRUSHER_TYPE.get())) {
-            CrusherRecipe recipe = holder.value();
-            for (MaterialDefinition material : MaterialCatalog.values()) {
-                Optional<Item> input = MaterialLookup.item(material.id(), recipe.input());
-                Optional<Item> output = MaterialLookup.item(material.id(), recipe.output());
-                if (input.isPresent() && output.isPresent()) {
-                    registry.addRecipe(new CrusherEmiRecipe(
-                            holder, material.id(), input.get(), output.get()));
-                }
-            }
+        for (var entry : ModRecipeMaps.CRUSHER.entries()) {
+            registry.addRecipe(new CrusherEmiRecipe(
+                    entry.id(),
+                    entry.recipe()));
         }
     }
 

@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "evidence_maps": [
+    "gt.recipe.bath",
+    "gt.recipe.cruciblealloying",
+    "gt.recipe.crusher",
+    "gt.recipe.cutter",
+    "gt.recipe.extruder",
+    "gt.recipe.lathe",
+    "gt.recipe.melter",
+    "gt.recipe.mixer",
+    "gt.recipe.mortar",
+    "gt.recipe.press",
+    "gt.recipe.rollbender",
+    "gt.recipe.rollingmill",
+    "gt.recipe.shredder",
+    "gt.recipe.smelter",
+    "gt.recipe.wiremill"
+  ],
+  "include": {
+    "Bronze": "Existing authored CrucibleCraft gameplay material.",
+    "Carbon": "Existing authored CrucibleCraft gameplay material.",
+    "Ceramic": "Existing authored CrucibleCraft gameplay material.",
+    "Clay": "Existing authored CrucibleCraft gameplay material.",
+    "Copper": "Existing authored CrucibleCraft gameplay material.",
+    "Gold": "Existing authored CrucibleCraft gameplay material.",
+    "Iron": "Existing authored CrucibleCraft gameplay material.",
+    "Lead": "Existing authored CrucibleCraft gameplay material.",
+    "Nickel": "Existing authored CrucibleCraft gameplay material.",
+    "Steel": "Existing authored CrucibleCraft gameplay material.",
+    "Tin": "Existing authored CrucibleCraft gameplay material.",
+    "Zinc": "Existing authored CrucibleCraft gameplay material."
+  },
+  "dependency_include": {
+    "Ice": "Legitimate solid phase required by Water processing-target closure.",
+    "Water": "Legitimate ambient liquid required by authored Clay composition closure."
+  },
+  "form_include": {
+    "Rubber": [
+      "plate"
+    ]
+  },
+  "exclude": {
+    "Bedrock": "Special indestructible block identity, not a process material.",
+    "Bedrockium": "Compatibility/special material excluded from the native T1 set.",
+    "Butter": "Food represented as a GT ingot; not a structural process material.",
+    "SaltedButter": "Food represented as a GT ingot; not a structural process material."
+  },
+  "excluded_tags": {
+    "PROPERTIES.DONT_SHOW_THIS_COMPONENT": "Generic color/component marker.",
+    "PROPERTIES.FOOD": "Food ingredient rather than a structural process material."
+  }
+}

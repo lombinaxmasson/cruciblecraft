@@ -1,23 +1,238 @@
 {
-  "id": "tin",
-  "tag_name": "tin",
-  "tier": 1,
   "color": "#D8E0E8",
-  "tint_style": "metallic",
-  "forms": [
-    "raw_ore",
-    "crushed_ore",
-    "ingot",
-    "dust",
-    "plate",
-    "rod",
-    "bolt"
+  "exclude_prefixes": [
+    "block",
+    "nugget",
+    "small_dust"
   ],
   "form_items": {},
-  "thermal": {
-    "melting_point": 231.9,
-    "boiling_point": 2602,
-    "density": 7.31
+  "generation_flags": [
+    "cruciblecraft:generates_block",
+    "cruciblecraft:generates_cable",
+    "cruciblecraft:generates_centrifuged_crushed_ore",
+    "cruciblecraft:generates_crushed_ore",
+    "cruciblecraft:generates_dodecuple_cable",
+    "cruciblecraft:generates_dodecuple_wire",
+    "cruciblecraft:generates_double_cable",
+    "cruciblecraft:generates_double_wire",
+    "cruciblecraft:generates_dust",
+    "cruciblecraft:generates_fine_wire",
+    "cruciblecraft:generates_hexadecuple_wire",
+    "cruciblecraft:generates_ingot",
+    "cruciblecraft:generates_nugget",
+    "cruciblecraft:generates_octuple_cable",
+    "cruciblecraft:generates_octuple_wire",
+    "cruciblecraft:generates_ore",
+    "cruciblecraft:generates_plate",
+    "cruciblecraft:generates_purified_dust",
+    "cruciblecraft:generates_quadruple_cable",
+    "cruciblecraft:generates_quadruple_wire",
+    "cruciblecraft:generates_small_spring",
+    "cruciblecraft:generates_spring",
+    "cruciblecraft:generates_tiny_crushed_ore",
+    "cruciblecraft:generates_washed_crushed_ore",
+    "cruciblecraft:generates_wire",
+    "gt6:itemgenerator/denseplates",
+    "gt6:itemgenerator/foils",
+    "gt6:itemgenerator/multiplates",
+    "gt6:itemgenerator/ores",
+    "gt6:itemgenerator/parts",
+    "gt6:itemgenerator/sticks"
+  ],
+  "gt6_metadata": {
+    "aliases": [],
+    "byproducts": [
+      {
+        "material": "molybdenite",
+        "source_id": 9123,
+        "source_name": "Molybdenite"
+      },
+      {
+        "material": "wolframite",
+        "source_id": 9217,
+        "source_name": "Wolframite"
+      },
+      {
+        "material": "black_fluorite",
+        "source_id": 8440,
+        "source_name": "BlackFluorite"
+      },
+      {
+        "material": "arsenopyrite",
+        "source_id": 9216,
+        "source_name": "Arsenopyrite"
+      },
+      {
+        "material": "stannite",
+        "source_id": 9214,
+        "source_name": "Stannite"
+      },
+      {
+        "material": "sperrylite",
+        "source_id": 9212,
+        "source_name": "Sperrylite"
+      },
+      {
+        "material": "huebnerite",
+        "source_id": 9195,
+        "source_name": "Huebnerite"
+      },
+      {
+        "material": "apatite",
+        "source_id": 8209,
+        "source_name": "Apatite"
+      }
+    ],
+    "electrical_by_specification": {},
+    "explosion_damage": 0.0,
+    "formula": "Sn",
+    "generation_tags": [
+      "ITEMGENERATOR.ARMORS",
+      "ITEMGENERATOR.DENSEPLATES",
+      "ITEMGENERATOR.DUSTS",
+      "ITEMGENERATOR.FOILS",
+      "ITEMGENERATOR.INGOTS",
+      "ITEMGENERATOR.INGOTS_HOT",
+      "ITEMGENERATOR.MOLTEN",
+      "ITEMGENERATOR.MULTIINGOTS",
+      "ITEMGENERATOR.MULTIPLATES",
+      "ITEMGENERATOR.ORES",
+      "ITEMGENERATOR.PARTS",
+      "ITEMGENERATOR.PLANTS",
+      "ITEMGENERATOR.PLATES",
+      "ITEMGENERATOR.PROJECTILES",
+      "ITEMGENERATOR.STICKS"
+    ],
+    "heat_damage": 0.0,
+    "material_tags": [
+      "ATOMIC.CRYSTALLOGEN",
+      "ATOMIC.ELEMENT",
+      "ATOMIC.METAL",
+      "ATOMIC.POST_TRANSITION_METAL",
+      "PROCESSING.EXTRUDABLE",
+      "PROCESSING.EXTRUDABLE_SIMPLE",
+      "PROCESSING.FURNACE",
+      "PROCESSING.MELTING",
+      "PROCESSING.MORTAR_GRINDABLE",
+      "PROCESSING.SMITHABLE",
+      "PROCESSING.SOLDERING_MATERIAL",
+      "PROCESSING.UUM_SYNTHESISABLE",
+      "PROPERTIES.COMMON_ORE",
+      "PROPERTIES.SOFT"
+    ],
+    "processing_targets": {
+      "bending": {
+        "cc_units": 144,
+        "material": "tin",
+        "numerator_u": 648648000,
+        "source_material_id": 500,
+        "source_material_name": "Tin"
+      },
+      "burning": {
+        "cc_units": 0,
+        "material": "tin",
+        "numerator_u": 0,
+        "source_material_id": 500,
+        "source_material_name": "Tin"
+      },
+      "compressing": {
+        "cc_units": 144,
+        "material": "tin",
+        "numerator_u": 648648000,
+        "source_material_id": 500,
+        "source_material_name": "Tin"
+      },
+      "crushing": {
+        "cc_units": 144,
+        "material": "tin",
+        "numerator_u": 648648000,
+        "source_material_id": 500,
+        "source_material_name": "Tin"
+      },
+      "cutting": {
+        "cc_units": 144,
+        "material": "tin",
+        "numerator_u": 648648000,
+        "source_material_id": 500,
+        "source_material_name": "Tin"
+      },
+      "forging": {
+        "cc_units": 144,
+        "material": "tin",
+        "numerator_u": 648648000,
+        "source_material_id": 500,
+        "source_material_name": "Tin"
+      },
+      "generifying": {
+        "cc_units": 144,
+        "material": "tin",
+        "numerator_u": 648648000,
+        "source_material_id": 500,
+        "source_material_name": "Tin"
+      },
+      "pulver": {
+        "cc_units": 144,
+        "material": "tin",
+        "numerator_u": 648648000,
+        "source_material_id": 500,
+        "source_material_name": "Tin"
+      },
+      "smashing": {
+        "cc_units": 144,
+        "material": "tin",
+        "numerator_u": 648648000,
+        "source_material_id": 500,
+        "source_material_name": "Tin"
+      },
+      "smelting": {
+        "cc_units": 144,
+        "material": "tin",
+        "numerator_u": 648648000,
+        "source_material_id": 500,
+        "source_material_name": "Tin"
+      },
+      "solidifying": {
+        "cc_units": 144,
+        "material": "tin",
+        "numerator_u": 648648000,
+        "source_material_id": 500,
+        "source_material_name": "Tin"
+      },
+      "working": {
+        "cc_units": 144,
+        "material": "tin",
+        "numerator_u": 648648000,
+        "source_material_id": 500,
+        "source_material_name": "Tin"
+      }
+    },
+    "source_id": 500,
+    "source_name": "Tin",
+    "source_thermal": {
+      "boiling_point_celsius": 2601.85,
+      "boiling_point_kelvin": 2875,
+      "density": 7.287,
+      "melting_point_celsius": 231.85000000000002,
+      "melting_point_kelvin": 505,
+      "plasma_point_celsius": 287226.85,
+      "plasma_point_kelvin": 287500
+    },
+    "state": "solid",
+    "tool": {
+      "durability": 0,
+      "quality": 0,
+      "speed": 1.0,
+      "types": 0
+    }
   },
-  "molten_fluid": true
+  "id": "tin",
+  "molten_fluid": true,
+  "tag_name": "tin",
+  "thermal": {
+    "boiling_point": 2602,
+    "density": 7.31,
+    "melting_point": 231.9
+  },
+  "tier": 1,
+  "tint_style": "metallic"
 }

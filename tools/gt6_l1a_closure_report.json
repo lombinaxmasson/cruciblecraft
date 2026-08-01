@@ -1,0 +1,157 @@
+{
+  "schema_version": 2,
+  "universe": {
+    "materials": 2214,
+    "keys": 2214,
+    "positive_id": 1773,
+    "name_only_stubs": 441,
+    "sentinel_identity": "name:<nameInternal>",
+    "negative_id_lookup_keys_allowed": false
+  },
+  "structural_class": {
+    "counts": {
+      "empty": 1,
+      "element": 118,
+      "isotope": 26,
+      "fictional_material": 701,
+      "alloy_compound": 539,
+      "organic_misc": 388,
+      "no_id": 441
+    },
+    "id_range_semantics": {
+      "transuranium_1000_1180_total": 20,
+      "verified_periodic_elements_z_100_118": 19,
+      "transuranium_isotopes": 1,
+      "fictional_material_1181_7999": 701,
+      "note": "Raw protons verify ids 1000..1180 as Z=100..118 plus isotope Flerovium298(1148). Full-range query classifies 1181..7999 as fictional/sci-fi/magic/joke material ids."
+    },
+    "nuclear_identity_cross_check": {
+      "element_mismatch_count": 0,
+      "element_mismatches": [],
+      "isotope_mismatch_count": 0,
+      "isotope_mismatches": [],
+      "protons_positive_outside_element_or_isotope": 2061,
+      "ok": true,
+      "note": "Nuclear fields cross-validate identity candidates; they cannot classify identity alone because compounds and fictional materials also carry aggregate proton/neutron/electron/mass values."
+    },
+    "element_completeness_z_1_118": {
+      "z_range": [
+        1,
+        118
+      ],
+      "present_count": 118,
+      "missing_z": [],
+      "missing_count": 0,
+      "extra_z_outside_range": [],
+      "ok": true,
+      "by_z_sample": {
+        "1": [
+          {
+            "source_id": 10,
+            "source_name": "Hydrogen",
+            "original_mod": "gregapi"
+          }
+        ],
+        "2": [
+          {
+            "source_id": 20,
+            "source_name": "Helium",
+            "original_mod": "gregapi"
+          }
+        ],
+        "3": [
+          {
+            "source_id": 30,
+            "source_name": "Lithium",
+            "original_mod": "gregtech"
+          }
+        ],
+        "4": [
+          {
+            "source_id": 40,
+            "source_name": "Beryllium",
+            "original_mod": "gregtech"
+          }
+        ],
+        "5": [
+          {
+            "source_id": 50,
+            "source_name": "Boron",
+            "original_mod": "gregapi"
+          }
+        ]
+      }
+    }
+  },
+  "graphs": {
+    "components": {
+      "nodes_with_edges": 663,
+      "edge_count": 1533,
+      "dangling": [],
+      "dangling_count": 0,
+      "stub_materialId_negative_refs": 0,
+      "edge_source_x_target_identity": {
+        "stable_id_to_stable_id": 1524,
+        "stable_id_to_name_only": 0,
+        "name_only_to_stable_id": 9,
+        "name_only_to_name_only": 0
+      },
+      "stable_source_to_name_only_target_count": 0,
+      "stable_source_to_name_only_target_sample": []
+    },
+    "targets": {
+      "nodes_with_edges": 2214,
+      "edge_count": 26568,
+      "dangling": [],
+      "dangling_count": 0,
+      "edge_source_x_target_identity": {
+        "stable_id_to_stable_id": 21276,
+        "stable_id_to_name_only": 0,
+        "name_only_to_stable_id": 420,
+        "name_only_to_name_only": 4872
+      },
+      "stable_source_to_name_only_target_count": 0,
+      "stable_source_to_name_only_target_sample": []
+    },
+    "byProducts": {
+      "nodes_with_edges": 306,
+      "edge_count": 1029,
+      "dangling": [],
+      "dangling_count": 0,
+      "edge_source_x_target_identity": {
+        "stable_id_to_stable_id": 1029,
+        "stable_id_to_name_only": 0,
+        "name_only_to_stable_id": 0,
+        "name_only_to_name_only": 0
+      },
+      "stable_source_to_name_only_target_count": 0,
+      "stable_source_to_name_only_target_sample": []
+    },
+    "recipe_refs": {
+      "recipes_scanned": 720841,
+      "resolved_meta_refs": 1537245,
+      "distinct_materials_touched": 1202,
+      "dangling_meta_count": 0,
+      "dangling_meta_distinct": 0,
+      "dangling_meta_sample": []
+    }
+  },
+  "cycles": {
+    "count": 0,
+    "samples": []
+  },
+  "removeInvalidReferences_simulation": {
+    "rounds": 0,
+    "removed_total": 0,
+    "remaining": 2214,
+    "detail": []
+  },
+  "closure_violations": {
+    "dangling_components": 0,
+    "dangling_targets": 0,
+    "dangling_byproducts": 0,
+    "composition_cycles": 0,
+    "recipe_dangling_meta_distinct": 0
+  },
+  "verdict": "PASS"
+}

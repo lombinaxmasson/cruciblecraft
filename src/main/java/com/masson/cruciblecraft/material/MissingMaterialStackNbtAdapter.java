@@ -1,10 +1,7 @@
 package com.masson.cruciblecraft.material;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
-
-import com.masson.cruciblecraft.api.material.MaterialForm;
-import com.masson.cruciblecraft.api.material.MaterialLookup;
+import java.util.function.Predicate;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -26,7 +23,25 @@ public final class MissingMaterialStackNbtAdapter {
                 || !MaterialCatalog.isBootstrapped()) {
             return input;
         }
-        var plan = MissingMaterialStackRewriter.plan(itemId, canonicalMappings());
+        return rewrite(
+                input,
+                MaterialCatalog.canonicalItemMappings(),
+                MissingMaterialStackCodec::itemExists);
+    }
+
+    static CompoundTag rewrite(
+            CompoundTag input,
+            Map<String, String> canonicalMappings,
+            Predicate<String> itemExists) {
+        String itemId = input.getString("id");
+        if (!itemId.startsWith("cruciblecraft:")
+                || itemId.equals(MissingMaterialStackRewriter.UNKNOWN_ITEM_ID)) {
+            return input;
+        }
+        var plan = MissingMaterialStackRewriter.plan(
+                itemId,
+                canonicalMappings,
+                itemExists);
         if (plan.kind() == MissingMaterialStackRewriter.Kind.UNCHANGED) {
             return input;
         }
@@ -45,18 +60,5 @@ public final class MissingMaterialStackNbtAdapter {
             rewritten.put("components", components);
         }
         return rewritten;
-    }
-
-    private static Map<String, String> canonicalMappings() {
-        Map<String, String> mappings = new LinkedHashMap<>();
-        for (var material : MaterialCatalog.values()) {
-            for (MaterialForm form : material.forms()) {
-                MaterialLookup.itemId(material.id(), form).ifPresent(id ->
-                        mappings.put(
-                                material.id() + "/" + form.serializedName(),
-                                id.toString()));
-            }
-        }
-        return mappings;
     }
 }

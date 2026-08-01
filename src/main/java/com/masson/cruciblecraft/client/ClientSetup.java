@@ -10,6 +10,7 @@ import com.masson.cruciblecraft.client.render.AnvilRenderer;
 import com.masson.cruciblecraft.client.render.CrucibleRenderer;
 import com.masson.cruciblecraft.client.screen.CokeOvenScreen;
 import com.masson.cruciblecraft.client.screen.CrusherScreen;
+import com.masson.cruciblecraft.client.screen.ConfiguredProcessingMachineScreen;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
@@ -110,6 +111,23 @@ public class ClientSetup {
     static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(ModMenus.COKE_OVEN.get(), CokeOvenScreen::new);
         event.register(ModMenus.CRUSHER.get(), CrusherScreen::new);
+        event.register(ModMenus.SLUICE.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.BATH.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.CENTRIFUGE.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.SHREDDER.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.SIFTER.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.SMELTER.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.MORTAR.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.EXTRUDER.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.CUTTER.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.LATHE.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.ROLLINGMILL.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.ROLLBENDER.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.WIREMILL.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.BENDER.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.ASSEMBLER.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.WELDER.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.PRESS.get(), ConfiguredProcessingMachineScreen::new);
     }
 
     @SubscribeEvent
@@ -147,7 +165,6 @@ public class ClientSetup {
             }
         }, ModFluids.STEAM_TYPE.get());
         ModFluids.moltenFluids().forEach(entry -> {
-            int tint = 0xFF000000 | MaterialColors.parse(entry.material().color());
             event.registerFluidType(new IClientFluidTypeExtensions() {
                 @Override
                 public ResourceLocation getStillTexture() {
@@ -161,7 +178,8 @@ public class ClientSetup {
 
                 @Override
                 public int getTintColor() {
-                    return tint;
+                    return 0xFF000000
+                            | MaterialColors.parse(entry.material().color());
                 }
             }, entry.type().get());
         });

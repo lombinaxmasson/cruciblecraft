@@ -2,9 +2,9 @@ package com.masson.cruciblecraft.air;
 
 public final class AirOutputModel {
     public static final float STEEL_STEAM_ENGINE_NOMINAL = 16.0F;
-    public static final float BELLOWS_AIR_PER_TICK = STEEL_STEAM_ENGINE_NOMINAL;
+    public static final long BELLOWS_AIR_PER_TICK = 16L;
     public static final int BELLOWS_STROKE_TICKS = 40;
-    public static final float MAX_STORED_AIR = 1_200.0F;
+    public static final long MAX_STORED_AIR = 1_200L;
 
     private AirOutputModel() {}
 
@@ -18,27 +18,26 @@ public final class AirOutputModel {
         return nominalOutput * (state + 1) / 16.0F;
     }
 
-    public static float bellowsStrokeTotal() {
+    public static long bellowsStrokeTotal() {
         return BELLOWS_AIR_PER_TICK * BELLOWS_STROKE_TICKS;
     }
 
-    public static float addToBuffer(float storedAir, float incomingAir) {
-        float safeStoredAir = clampStoredAir(storedAir);
-        if (!Float.isFinite(incomingAir) || incomingAir <= 0.0F) {
+    public static long addToBuffer(long storedAir, long incomingAir) {
+        long safeStoredAir = clampStoredAir(storedAir);
+        if (incomingAir <= 0L) {
             return safeStoredAir;
         }
-        return Math.min(MAX_STORED_AIR, safeStoredAir + incomingAir);
+        return incomingAir >= MAX_STORED_AIR - safeStoredAir
+                ? MAX_STORED_AIR
+                : safeStoredAir + incomingAir;
     }
 
-    public static float consumeProcessingTick(float storedAir) {
-        float safeStoredAir = clampStoredAir(storedAir);
-        return safeStoredAir >= 1.0F ? safeStoredAir - 1.0F : safeStoredAir;
+    public static long consumeProcessingTick(long storedAir) {
+        long safeStoredAir = clampStoredAir(storedAir);
+        return safeStoredAir >= 1L ? safeStoredAir - 1L : safeStoredAir;
     }
 
-    public static float clampStoredAir(float storedAir) {
-        if (!Float.isFinite(storedAir)) {
-            return 0.0F;
-        }
-        return Math.max(0.0F, Math.min(MAX_STORED_AIR, storedAir));
+    public static long clampStoredAir(long storedAir) {
+        return Math.max(0L, Math.min(MAX_STORED_AIR, storedAir));
     }
 }

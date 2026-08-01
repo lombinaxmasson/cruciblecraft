@@ -2,8 +2,9 @@ package com.masson.cruciblecraft.material;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Predicate;
 
-import com.masson.cruciblecraft.api.material.MaterialForm;
+import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 
 /**
  * Rewrites the raw 1.21.1 ItemStack NBT before its item id is decoded.
@@ -17,9 +18,15 @@ public final class MissingMaterialStackRewriter {
 
     private MissingMaterialStackRewriter() {}
 
-    public static Plan plan(String itemId, Map<String, String> canonicalItems) {
+    public static Plan plan(
+            String itemId,
+            Map<String, String> canonicalItems,
+            Predicate<String> itemExists) {
         if (itemId == null || itemId.equals(UNKNOWN_ITEM_ID)
                 || !itemId.startsWith(MOD_ID + ":")) {
+            return Plan.unchanged(itemId);
+        }
+        if (itemExists.test(itemId)) {
             return Plan.unchanged(itemId);
         }
         Optional<Identity> identity = parseLegacyIdentity(
@@ -39,15 +46,12 @@ public final class MissingMaterialStackRewriter {
     }
 
     static Optional<Identity> parseLegacyIdentity(String path) {
-        for (MaterialForm form : java.util.Arrays.stream(MaterialForm.values())
-                .sorted(java.util.Comparator.comparingInt(
-                        (MaterialForm value) -> value.serializedName().length()).reversed())
-                .toList()) {
-            String suffix = "_" + form.serializedName();
+        for (var entry : MaterialPrefixCatalog.legacySuffixesLongestFirst()) {
+            String suffix = "_" + entry.value();
             if (path.endsWith(suffix) && path.length() > suffix.length()) {
                 return Optional.of(new Identity(
                         path.substring(0, path.length() - suffix.length()),
-                        form.serializedName()));
+                        entry.canonicalPath()));
             }
         }
         return Optional.empty();

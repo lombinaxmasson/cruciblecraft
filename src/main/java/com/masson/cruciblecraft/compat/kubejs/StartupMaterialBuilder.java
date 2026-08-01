@@ -1,44 +1,30 @@
 package com.masson.cruciblecraft.compat.kubejs;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
-import com.masson.cruciblecraft.api.material.MaterialForm;
-import com.masson.cruciblecraft.material.def.MaterialDefinition;
-import com.masson.cruciblecraft.material.def.ThermalProperties;
+import com.masson.cruciblecraft.material.def.MaterialTuning;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class StartupMaterialBuilder {
+    private static final Logger LOGGER = LoggerFactory.getLogger(StartupMaterialBuilder.class);
     private final String id;
-    private String tagName;
-    private String nameKey;
-    private int tier;
-    private String color = "#FFFFFF";
-    private String tintStyle = "metallic";
-    private final List<MaterialForm> forms = new ArrayList<>(List.of(MaterialForm.DUST));
-    private final Map<MaterialForm, String> formItems = new LinkedHashMap<>();
-    private double meltingPoint;
+    private Integer tier;
+    private String color;
+    private Double meltingPoint;
     private Double boilingPoint;
-    private double density = 1.0;
-    private boolean moltenFluid;
-    private final Map<String, Integer> composition = new LinkedHashMap<>();
-    private boolean noDecompose;
+    private Double density;
 
     public StartupMaterialBuilder(String id) {
         this.id = id;
-        this.tagName = id;
     }
 
     public StartupMaterialBuilder tagName(String tagName) {
-        this.tagName = tagName;
-        return this;
+        return structuralOverride("tagName");
     }
 
     public StartupMaterialBuilder nameKey(String nameKey) {
-        this.nameKey = nameKey;
-        return this;
+        return structuralOverride("nameKey");
     }
 
     public StartupMaterialBuilder tier(int tier) {
@@ -52,21 +38,15 @@ public final class StartupMaterialBuilder {
     }
 
     public StartupMaterialBuilder tintStyle(String tintStyle) {
-        this.tintStyle = tintStyle;
-        return this;
+        return structuralOverride("tintStyle");
     }
 
     public StartupMaterialBuilder forms(String... forms) {
-        this.forms.clear();
-        for (String form : forms) {
-            this.forms.add(MaterialForm.parse(form));
-        }
-        return this;
+        return structuralOverride("forms");
     }
 
     public StartupMaterialBuilder formItem(String form, String itemId) {
-        this.formItems.put(MaterialForm.parse(form), itemId);
-        return this;
+        return structuralOverride("formItem");
     }
 
     public StartupMaterialBuilder meltingPoint(double meltingPoint) {
@@ -85,36 +65,32 @@ public final class StartupMaterialBuilder {
     }
 
     public StartupMaterialBuilder moltenFluid(boolean moltenFluid) {
-        this.moltenFluid = moltenFluid;
-        return this;
+        return structuralOverride("moltenFluid");
     }
 
     public StartupMaterialBuilder component(String materialId, int parts) {
-        this.composition.put(materialId, parts);
-        return this;
+        return structuralOverride("component");
     }
 
     public StartupMaterialBuilder noDecompose(boolean noDecompose) {
-        this.noDecompose = noDecompose;
-        return this;
+        return structuralOverride("noDecompose");
     }
 
-    public MaterialDefinition build() {
-        return new MaterialDefinition(
+    public MaterialTuning build() {
+        return new MaterialTuning(
                 id,
-                tagName,
-                Optional.ofNullable(nameKey),
-                tier,
-                color,
-                tintStyle,
-                forms,
-                formItems,
-                new ThermalProperties(
-                        meltingPoint,
-                        boilingPoint == null ? meltingPoint * 2.0 : boilingPoint,
-                        density),
-                moltenFluid,
-                composition,
-                noDecompose);
+                Optional.ofNullable(tier),
+                Optional.ofNullable(color),
+                Optional.ofNullable(meltingPoint),
+                Optional.ofNullable(boilingPoint),
+                Optional.ofNullable(density));
+    }
+
+    private StartupMaterialBuilder structuralOverride(String field) {
+        LOGGER.warn(
+                "Ignoring KubeJS material field '{}' for {}; registry shape must come from bundled or addon-mod definitions",
+                field,
+                id);
+        return this;
     }
 }

@@ -23,6 +23,23 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.ANVIL.get());
         dropSelf(ModBlocks.COKE_OVEN.get());
         dropSelf(ModBlocks.BELLOWS.get());
+        dropSelf(ModBlocks.SLUICE.get());
+        dropSelf(ModBlocks.BATH.get());
+        dropSelf(ModBlocks.CENTRIFUGE.get());
+        dropSelf(ModBlocks.SHREDDER.get());
+        dropSelf(ModBlocks.SIFTER.get());
+        dropSelf(ModBlocks.SMELTER.get());
+        dropSelf(ModBlocks.MORTAR.get());
+        dropSelf(ModBlocks.EXTRUDER.get());
+        dropSelf(ModBlocks.CUTTER.get());
+        dropSelf(ModBlocks.LATHE.get());
+        dropSelf(ModBlocks.ROLLINGMILL.get());
+        dropSelf(ModBlocks.ROLLBENDER.get());
+        dropSelf(ModBlocks.WIREMILL.get());
+        dropSelf(ModBlocks.BENDER.get());
+        dropSelf(ModBlocks.ASSEMBLER.get());
+        dropSelf(ModBlocks.WELDER.get());
+        dropSelf(ModBlocks.PRESS.get());
     }
 
     @Override
@@ -33,6 +50,23 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.CRUCIBLE.get(),
                 ModBlocks.ANVIL.get(),
                 ModBlocks.COKE_OVEN.get(),
-                ModBlocks.BELLOWS.get()).toList();
+                ModBlocks.BELLOWS.get(),
+                ModBlocks.SLUICE.get(),
+                ModBlocks.BATH.get(),
+                ModBlocks.CENTRIFUGE.get(),
+                ModBlocks.SHREDDER.get(),
+                ModBlocks.SIFTER.get(),
+                ModBlocks.SMELTER.get(),
+                ModBlocks.MORTAR.get(),
+                ModBlocks.EXTRUDER.get(),
+                ModBlocks.CUTTER.get(),
+                ModBlocks.LATHE.get(),
+                ModBlocks.ROLLINGMILL.get(),
+                ModBlocks.ROLLBENDER.get(),
+                ModBlocks.WIREMILL.get(),
+                ModBlocks.BENDER.get(),
+                ModBlocks.ASSEMBLER.get(),
+                ModBlocks.WELDER.get(),
+                ModBlocks.PRESS.get()).toList();
     }
 }

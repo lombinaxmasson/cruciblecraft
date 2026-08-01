@@ -1,0 +1,1113 @@
+{
+  "schema_version": 1,
+  "_notes": [
+    "Skeleton generated from materials.original_mod. Not a name-pattern recognizer.",
+    "Human fills has_121_version / major_rewrite / registers_own_materials for non-native mods.",
+    "display_name is null until dump emits ModData.mName alongside mID."
+  ],
+  "mods": {
+    "gregapi": {
+      "mod_id": "gregapi",
+      "display_name": null,
+      "material_count": 1058,
+      "by_structural_class": {
+        "fictional_material": 688,
+        "organic_misc": 150,
+        "alloy_compound": 110,
+        "element": 85,
+        "isotope": 23,
+        "no_id": 2
+      },
+      "native_for_ownership": true,
+      "has_121_version": true,
+      "major_rewrite": false,
+      "registers_own_materials": false,
+      "notes": "Native GT/vanilla — ownership gate does not apply."
+    },
+    "(none)": {
+      "mod_id": null,
+      "display_name": null,
+      "material_count": 402,
+      "by_structural_class": {
+        "no_id": 402
+      },
+      "native_for_ownership": true,
+      "has_121_version": true,
+      "major_rewrite": false,
+      "registers_own_materials": false,
+      "notes": "Native GT/vanilla — ownership gate does not apply."
+    },
+    "gregtech": {
+      "mod_id": "gregtech",
+      "display_name": null,
+      "material_count": 73,
+      "by_structural_class": {
+        "alloy_compound": 35,
+        "organic_misc": 23,
+        "fictional_material": 7,
+        "no_id": 4,
+        "element": 4
+      },
+      "native_for_ownership": true,
+      "has_121_version": true,
+      "major_rewrite": false,
+      "registers_own_materials": false,
+      "notes": "Native GT/vanilla — ownership gate does not apply."
+    },
+    "minecraft": {
+      "mod_id": "minecraft",
+      "display_name": null,
+      "material_count": 66,
+      "by_structural_class": {
+        "alloy_compound": 46,
+        "organic_misc": 16,
+        "element": 2,
+        "no_id": 1,
+        "empty": 1
+      },
+      "native_for_ownership": true,
+      "has_121_version": true,
+      "major_rewrite": false,
+      "registers_own_materials": false,
+      "notes": "Native GT/vanilla — ownership gate does not apply."
+    },
+    "Forestry": {
+      "mod_id": "Forestry",
+      "display_name": null,
+      "material_count": 42,
+      "by_structural_class": {
+        "organic_misc": 33,
+        "alloy_compound": 8,
+        "element": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "Metallurgy": {
+      "mod_id": "Metallurgy",
+      "display_name": null,
+      "material_count": 34,
+      "by_structural_class": {
+        "alloy_compound": 33,
+        "fictional_material": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "hbm": {
+      "mod_id": "hbm",
+      "display_name": null,
+      "material_count": 33,
+      "by_structural_class": {
+        "no_id": 15,
+        "alloy_compound": 9,
+        "organic_misc": 4,
+        "element": 3,
+        "isotope": 2
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "ExtraTrees": {
+      "mod_id": "ExtraTrees",
+      "display_name": null,
+      "material_count": 29,
+      "by_structural_class": {
+        "organic_misc": 29
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "ExtraPlanets": {
+      "mod_id": "ExtraPlanets",
+      "display_name": null,
+      "material_count": 27,
+      "by_structural_class": {
+        "organic_misc": 22,
+        "alloy_compound": 5
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "harvestcraft": {
+      "mod_id": "harvestcraft",
+      "display_name": null,
+      "material_count": 20,
+      "by_structural_class": {
+        "organic_misc": 18,
+        "alloy_compound": 2
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "terrafirmacraft": {
+      "mod_id": "terrafirmacraft",
+      "display_name": null,
+      "material_count": 18,
+      "by_structural_class": {
+        "alloy_compound": 12,
+        "organic_misc": 5,
+        "element": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "Botania": {
+      "mod_id": "Botania",
+      "display_name": null,
+      "material_count": 17,
+      "by_structural_class": {
+        "alloy_compound": 17
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "IC2": {
+      "mod_id": "IC2",
+      "display_name": null,
+      "material_count": 17,
+      "by_structural_class": {
+        "alloy_compound": 6,
+        "element": 4,
+        "organic_misc": 4,
+        "no_id": 2,
+        "isotope": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "Thaumcraft": {
+      "mod_id": "Thaumcraft",
+      "display_name": null,
+      "material_count": 17,
+      "by_structural_class": {
+        "alloy_compound": 15,
+        "element": 1,
+        "organic_misc": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "globbypotato_rockhounding": {
+      "mod_id": "globbypotato_rockhounding",
+      "display_name": null,
+      "material_count": 17,
+      "by_structural_class": {
+        "alloy_compound": 17
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "EnderIO": {
+      "mod_id": "EnderIO",
+      "display_name": null,
+      "material_count": 16,
+      "by_structural_class": {
+        "alloy_compound": 16
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "ThermalExpansion": {
+      "mod_id": "ThermalExpansion",
+      "display_name": null,
+      "material_count": 16,
+      "by_structural_class": {
+        "alloy_compound": 13,
+        "element": 2,
+        "organic_misc": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "RotaryCraft": {
+      "mod_id": "RotaryCraft",
+      "display_name": null,
+      "material_count": 15,
+      "by_structural_class": {
+        "alloy_compound": 12,
+        "organic_misc": 2,
+        "element": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "TwilightForest": {
+      "mod_id": "TwilightForest",
+      "display_name": null,
+      "material_count": 15,
+      "by_structural_class": {
+        "alloy_compound": 14,
+        "organic_misc": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "Redpower": {
+      "mod_id": "Redpower",
+      "display_name": null,
+      "material_count": 14,
+      "by_structural_class": {
+        "alloy_compound": 12,
+        "element": 2
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "BiomesOPlenty": {
+      "mod_id": "BiomesOPlenty",
+      "display_name": null,
+      "material_count": 13,
+      "by_structural_class": {
+        "organic_misc": 9,
+        "alloy_compound": 4
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "thebetweenlands": {
+      "mod_id": "thebetweenlands",
+      "display_name": null,
+      "material_count": 13,
+      "by_structural_class": {
+        "alloy_compound": 13
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "ReactorCraft": {
+      "mod_id": "ReactorCraft",
+      "display_name": null,
+      "material_count": 11,
+      "by_structural_class": {
+        "alloy_compound": 10,
+        "element": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "divinerpg": {
+      "mod_id": "divinerpg",
+      "display_name": null,
+      "material_count": 11,
+      "by_structural_class": {
+        "no_id": 11
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "GalacticraftCore": {
+      "mod_id": "GalacticraftCore",
+      "display_name": null,
+      "material_count": 10,
+      "by_structural_class": {
+        "alloy_compound": 8,
+        "no_id": 1,
+        "organic_misc": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "arsmagica2": {
+      "mod_id": "arsmagica2",
+      "display_name": null,
+      "material_count": 9,
+      "by_structural_class": {
+        "alloy_compound": 8,
+        "organic_misc": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "ihl": {
+      "mod_id": "ihl",
+      "display_name": null,
+      "material_count": 9,
+      "by_structural_class": {
+        "alloy_compound": 8,
+        "organic_misc": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "netherlicious": {
+      "mod_id": "netherlicious",
+      "display_name": null,
+      "material_count": 9,
+      "by_structural_class": {
+        "organic_misc": 5,
+        "alloy_compound": 4
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "GalaxySpace": {
+      "mod_id": "GalaxySpace",
+      "display_name": null,
+      "material_count": 8,
+      "by_structural_class": {
+        "alloy_compound": 8
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "Railcraft": {
+      "mod_id": "Railcraft",
+      "display_name": null,
+      "material_count": 8,
+      "by_structural_class": {
+        "alloy_compound": 5,
+        "element": 2,
+        "organic_misc": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "ExtrabiomesXL": {
+      "mod_id": "ExtrabiomesXL",
+      "display_name": null,
+      "material_count": 7,
+      "by_structural_class": {
+        "organic_misc": 7
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "aether": {
+      "mod_id": "aether",
+      "display_name": null,
+      "material_count": 7,
+      "by_structural_class": {
+        "alloy_compound": 7
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "erebus": {
+      "mod_id": "erebus",
+      "display_name": null,
+      "material_count": 7,
+      "by_structural_class": {
+        "organic_misc": 4,
+        "alloy_compound": 3
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "etfuturum": {
+      "mod_id": "etfuturum",
+      "display_name": null,
+      "material_count": 7,
+      "by_structural_class": {
+        "organic_misc": 4,
+        "alloy_compound": 2,
+        "element": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "tropicraft": {
+      "mod_id": "tropicraft",
+      "display_name": null,
+      "material_count": 7,
+      "by_structural_class": {
+        "alloy_compound": 3,
+        "organic_misc": 3,
+        "element": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "ActuallyAdditions": {
+      "mod_id": "ActuallyAdditions",
+      "display_name": null,
+      "material_count": 6,
+      "by_structural_class": {
+        "alloy_compound": 6
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "Mariculture": {
+      "mod_id": "Mariculture",
+      "display_name": null,
+      "material_count": 6,
+      "by_structural_class": {
+        "organic_misc": 5,
+        "element": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "PFAAGeologica": {
+      "mod_id": "PFAAGeologica",
+      "display_name": null,
+      "material_count": 6,
+      "by_structural_class": {
+        "organic_misc": 6
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "TConstruct": {
+      "mod_id": "TConstruct",
+      "display_name": null,
+      "material_count": 6,
+      "by_structural_class": {
+        "alloy_compound": 4,
+        "element": 2
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "BigReactors": {
+      "mod_id": "BigReactors",
+      "display_name": null,
+      "material_count": 5,
+      "by_structural_class": {
+        "alloy_compound": 5
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "Mekanism": {
+      "mod_id": "Mekanism",
+      "display_name": null,
+      "material_count": 5,
+      "by_structural_class": {
+        "no_id": 2,
+        "alloy_compound": 2,
+        "element": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "alfheim": {
+      "mod_id": "alfheim",
+      "display_name": null,
+      "material_count": 5,
+      "by_structural_class": {
+        "alloy_compound": 5
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "appliedenergistics2": {
+      "mod_id": "appliedenergistics2",
+      "display_name": null,
+      "material_count": 5,
+      "by_structural_class": {
+        "alloy_compound": 4,
+        "element": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "factorization": {
+      "mod_id": "factorization",
+      "display_name": null,
+      "material_count": 5,
+      "by_structural_class": {
+        "organic_misc": 3,
+        "element": 1,
+        "alloy_compound": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "hexcraft": {
+      "mod_id": "hexcraft",
+      "display_name": null,
+      "material_count": 5,
+      "by_structural_class": {
+        "organic_misc": 5
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "meteors": {
+      "mod_id": "meteors",
+      "display_name": null,
+      "material_count": 5,
+      "by_structural_class": {
+        "alloy_compound": 5
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "abyssalcraft": {
+      "mod_id": "abyssalcraft",
+      "display_name": null,
+      "material_count": 4,
+      "by_structural_class": {
+        "fictional_material": 4
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "candycraftmod": {
+      "mod_id": "candycraftmod",
+      "display_name": null,
+      "material_count": 4,
+      "by_structural_class": {
+        "organic_misc": 4
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "mo": {
+      "mod_id": "mo",
+      "display_name": null,
+      "material_count": 4,
+      "by_structural_class": {
+        "alloy_compound": 3,
+        "fictional_material": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "Avaritia": {
+      "mod_id": "Avaritia",
+      "display_name": null,
+      "material_count": 3,
+      "by_structural_class": {
+        "alloy_compound": 3
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "BinnieCore": {
+      "mod_id": "BinnieCore",
+      "display_name": null,
+      "material_count": 3,
+      "by_structural_class": {
+        "organic_misc": 2,
+        "alloy_compound": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "MagicBees": {
+      "mod_id": "MagicBees",
+      "display_name": null,
+      "material_count": 3,
+      "by_structural_class": {
+        "alloy_compound": 3
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "MineFactoryReloaded": {
+      "mod_id": "MineFactoryReloaded",
+      "display_name": null,
+      "material_count": 3,
+      "by_structural_class": {
+        "organic_misc": 2,
+        "alloy_compound": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "UndergroundBiomes": {
+      "mod_id": "UndergroundBiomes",
+      "display_name": null,
+      "material_count": 3,
+      "by_structural_class": {
+        "organic_misc": 2,
+        "alloy_compound": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "enderlicious": {
+      "mod_id": "enderlicious",
+      "display_name": null,
+      "material_count": 3,
+      "by_structural_class": {
+        "alloy_compound": 3
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "enhancedbiomes": {
+      "mod_id": "enhancedbiomes",
+      "display_name": null,
+      "material_count": 3,
+      "by_structural_class": {
+        "organic_misc": 3
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "netheriteplus": {
+      "mod_id": "netheriteplus",
+      "display_name": null,
+      "material_count": 3,
+      "by_structural_class": {
+        "alloy_compound": 3
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "voltzengine": {
+      "mod_id": "voltzengine",
+      "display_name": null,
+      "material_count": 3,
+      "by_structural_class": {
+        "alloy_compound": 3
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "witchery": {
+      "mod_id": "witchery",
+      "display_name": null,
+      "material_count": 3,
+      "by_structural_class": {
+        "organic_misc": 3
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "BuildCraft|Core": {
+      "mod_id": "BuildCraft|Core",
+      "display_name": null,
+      "material_count": 2,
+      "by_structural_class": {
+        "organic_misc": 2
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "DraconicEvolution": {
+      "mod_id": "DraconicEvolution",
+      "display_name": null,
+      "material_count": 2,
+      "by_structural_class": {
+        "alloy_compound": 2
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "ExtraUtilities": {
+      "mod_id": "ExtraUtilities",
+      "display_name": null,
+      "material_count": 2,
+      "by_structural_class": {
+        "alloy_compound": 2
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "HardcoreEnderExpansion": {
+      "mod_id": "HardcoreEnderExpansion",
+      "display_name": null,
+      "material_count": 2,
+      "by_structural_class": {
+        "alloy_compound": 1,
+        "organic_misc": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "ImmersiveEngineering": {
+      "mod_id": "ImmersiveEngineering",
+      "display_name": null,
+      "material_count": 2,
+      "by_structural_class": {
+        "alloy_compound": 2
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "MoCreatures": {
+      "mod_id": "MoCreatures",
+      "display_name": null,
+      "material_count": 2,
+      "by_structural_class": {
+        "organic_misc": 2
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "ProjectE": {
+      "mod_id": "ProjectE",
+      "display_name": null,
+      "material_count": 2,
+      "by_structural_class": {
+        "alloy_compound": 2
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "RandomThings": {
+      "mod_id": "RandomThings",
+      "display_name": null,
+      "material_count": 2,
+      "by_structural_class": {
+        "alloy_compound": 2
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "advancedRocketry": {
+      "mod_id": "advancedRocketry",
+      "display_name": null,
+      "material_count": 2,
+      "by_structural_class": {
+        "alloy_compound": 2
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "steamcraft2": {
+      "mod_id": "steamcraft2",
+      "display_name": null,
+      "material_count": 2,
+      "by_structural_class": {
+        "alloy_compound": 1,
+        "organic_misc": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "ForbiddenMagic": {
+      "mod_id": "ForbiddenMagic",
+      "display_name": null,
+      "material_count": 1,
+      "by_structural_class": {
+        "organic_misc": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "Growthcraft": {
+      "mod_id": "Growthcraft",
+      "display_name": null,
+      "material_count": 1,
+      "by_structural_class": {
+        "organic_misc": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "PneumaticCraft": {
+      "mod_id": "PneumaticCraft",
+      "display_name": null,
+      "material_count": 1,
+      "by_structural_class": {
+        "alloy_compound": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "ProjRed|Core": {
+      "mod_id": "ProjRed|Core",
+      "display_name": null,
+      "material_count": 1,
+      "by_structural_class": {
+        "alloy_compound": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "SaltMod": {
+      "mod_id": "SaltMod",
+      "display_name": null,
+      "material_count": 1,
+      "by_structural_class": {
+        "alloy_compound": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "Techguns": {
+      "mod_id": "Techguns",
+      "display_name": null,
+      "material_count": 1,
+      "by_structural_class": {
+        "alloy_compound": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "ThaumcraftExtras": {
+      "mod_id": "ThaumcraftExtras",
+      "display_name": null,
+      "material_count": 1,
+      "by_structural_class": {
+        "alloy_compound": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "bluepower": {
+      "mod_id": "bluepower",
+      "display_name": null,
+      "material_count": 1,
+      "by_structural_class": {
+        "alloy_compound": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "fossil": {
+      "mod_id": "fossil",
+      "display_name": null,
+      "material_count": 1,
+      "by_structural_class": {
+        "alloy_compound": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "gravisuite": {
+      "mod_id": "gravisuite",
+      "display_name": null,
+      "material_count": 1,
+      "by_structural_class": {
+        "element": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    },
+    "rocketscience": {
+      "mod_id": "rocketscience",
+      "display_name": null,
+      "material_count": 1,
+      "by_structural_class": {
+        "no_id": 1
+      },
+      "native_for_ownership": false,
+      "has_121_version": null,
+      "major_rewrite": null,
+      "registers_own_materials": null,
+      "notes": "Fill the three decision fields; PENDING_T0B alloys/organics wait on this."
+    }
+  }
+}

@@ -1,5 +1,7 @@
 package com.masson.cruciblecraft.heat;
 
+import com.masson.cruciblecraft.energy.EnergyPackets;
+
 public final class CrucibleThermalModel {
     public static final double GRAMS_PER_ENERGY = 200.0;
     public static final int HOT_BUFFER_TICKS = 100;
@@ -14,19 +16,15 @@ public final class CrucibleThermalModel {
      */
     public static StepResult step(
             float temperature,
-            double storedEnergy,
+            long storedEnergy,
             int cooldownTicks,
-            float incomingEnergy,
+            long incomingEnergy,
             double weightGrams,
             float ambientTemperature) {
         long requiredEnergyPerDegree =
                 1L + (long) Math.max(0.0, weightGrams / GRAMS_PER_ENERGY);
-        float acceptedIncoming = Float.isFinite(incomingEnergy)
-                ? Math.max(0.0F, incomingEnergy)
-                : 0.0F;
-        storedEnergy = Double.isFinite(storedEnergy) && storedEnergy > 0.0
-                ? storedEnergy + acceptedIncoming
-                : acceptedIncoming;
+        long acceptedIncoming = Math.max(0L, incomingEnergy);
+        storedEnergy = EnergyPackets.add(storedEnergy, acceptedIncoming);
         long conversions = (long) (storedEnergy / requiredEnergyPerDegree);
 
         if (cooldownTicks > 0) {
@@ -37,9 +35,9 @@ public final class CrucibleThermalModel {
             temperature += conversions;
             cooldownTicks = HOT_BUFFER_TICKS;
         }
-        if (acceptedIncoming <= 0.0F && conversions == 0L
+        if (acceptedIncoming == 0L && conversions == 0L
                 && storedEnergy < requiredEnergyPerDegree) {
-            storedEnergy = 0.0;
+            storedEnergy = 0L;
         }
 
         if (atAmbient(temperature, ambientTemperature)) {
@@ -64,14 +62,14 @@ public final class CrucibleThermalModel {
     /** Whether authoritative thermal state has fully settled and can stop ticking. */
     public static boolean isQuiescent(
             float temperature,
-            double storedEnergy,
+            long storedEnergy,
             int cooldownTicks,
-            float incomingEnergy,
+            long incomingEnergy,
             float ambientTemperature) {
         return atAmbient(temperature, ambientTemperature)
-                && Math.abs(storedEnergy) <= AMBIENT_EPSILON
+                && storedEnergy == 0L
                 && cooldownTicks == 0
-                && Math.abs(incomingEnergy) <= AMBIENT_EPSILON;
+                && incomingEnergy == 0L;
     }
 
     public static boolean atAmbient(float temperature, float ambientTemperature) {
@@ -116,5 +114,5 @@ public final class CrucibleThermalModel {
         return ticksRemaining <= 0 ? target : displayed + (target - displayed) / ticksRemaining;
     }
 
-    public record StepResult(float temperature, double storedEnergy, int cooldownTicks) {}
+    public record StepResult(float temperature, long storedEnergy, int cooldownTicks) {}
 }

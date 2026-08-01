@@ -1,0 +1,3229 @@
+{
+  "schema_version": 2,
+  "excludes_sentinels": true,
+  "universe": 1773,
+  "source_record_count": 2214,
+  "recipe_map_inventory": {
+    "index_map_count": 95,
+    "named_map_count_scanned": 94,
+    "empty_unnamed_map_count": 1,
+    "nonempty_unscanned_map_count": 0
+  },
+  "sentinel_compatibility_surface": {
+    "silent_zone_investigation_status": "CLOSED",
+    "record_count": 441,
+    "all_classified_never": true,
+    "closure_promoted_count": 0,
+    "zero_full_appearance_count": 441,
+    "zero_reviewed_appearance_count": 441,
+    "registered_any_prefix_count": 308,
+    "registered_t0_prefix_and_zero_appearance_count": 263,
+    "stable_registered_t0_prefix_and_zero_appearance_count": 1,
+    "stable_registered_t0_prefix_and_zero_appearance_names": [
+      "ClayBrick"
+    ],
+    "same_name_overlap_with_stable_silent_zone_count": 0,
+    "registered_prefix_count_histogram": {
+      "0": 133,
+      "1": 25,
+      "2": 3,
+      "3": 1,
+      "6": 17,
+      "14": 31,
+      "15": 2,
+      "16": 2,
+      "24": 1,
+      "38": 8,
+      "39": 1,
+      "45": 1,
+      "48": 1,
+      "52": 16,
+      "53": 5,
+      "54": 1,
+      "55": 1,
+      "56": 1,
+      "57": 3,
+      "58": 3,
+      "59": 4,
+      "60": 1,
+      "61": 6,
+      "65": 5,
+      "67": 1,
+      "68": 2,
+      "69": 4,
+      "75": 2,
+      "76": 2,
+      "77": 4,
+      "80": 1,
+      "84": 2,
+      "85": 15,
+      "86": 11,
+      "87": 3,
+      "88": 2,
+      "89": 1,
+      "93": 6,
+      "96": 2,
+      "98": 1,
+      "99": 10,
+      "101": 1,
+      "103": 2,
+      "105": 2,
+      "106": 1,
+      "107": 2,
+      "108": 2,
+      "109": 1,
+      "115": 2,
+      "116": 1,
+      "121": 20,
+      "122": 6,
+      "123": 3,
+      "127": 1,
+      "128": 1,
+      "129": 3,
+      "136": 1,
+      "137": 23,
+      "138": 8,
+      "139": 1,
+      "140": 3,
+      "144": 1,
+      "145": 1,
+      "146": 1,
+      "147": 2,
+      "151": 1,
+      "157": 1,
+      "159": 1,
+      "161": 4,
+      "162": 1,
+      "167": 1,
+      "168": 1,
+      "183": 1
+    },
+    "original_mod_known_count": 39,
+    "original_mod_distribution": {
+      "<unknown>": 402,
+      "hbm": 15,
+      "divinerpg": 11,
+      "gregtech": 4,
+      "IC2": 2,
+      "Mekanism": 2,
+      "gregapi": 2,
+      "rocketscience": 1,
+      "minecraft": 1,
+      "GalacticraftCore": 1
+    },
+    "negative_id_fluid_map_records": [
+      {
+        "fluid": "molten.euphemium",
+        "material": "Euphemium"
+      },
+      {
+        "fluid": "molten.schrabidium",
+        "material": "Schrabidium"
+      }
+    ],
+    "interpretation": "Name-only compatibility surface: prefix registration proves an OreDict item registration event, while zero recipe appearance shows no recipe-map use in this dump environment.",
+    "silent_zone_conclusion": "The earlier ~285-290 registered-item/zero-recipe estimate was the name-only sentinel population. Under the stable T0-prefix scope only ClayBrick remains; this is not a missed-recipe bulk population."
+  },
+  "rule_invariants": {
+    "registered_prefix_zero_stable_material_count": 0,
+    "classifier_uses_registered_prefix_count": false,
+    "recipe_item_evidence_is_not_prefix_registration": true,
+    "note": "No L1b classifier rule uses registered_prefix_count. Rules named *item_evidence* refer only to recipe-map item appearances, so they remain live even though every stable material has at least one registered prefix."
+  },
+  "closure_gate": {
+    "ok": true,
+    "hard_component_violation_count": 0,
+    "all_reference_violation_count": 126,
+    "promotion_event_count": 23,
+    "promoted_material_count": 23,
+    "blocked_promotion_count": 0,
+    "policy": "components dependencies auto-promote transitively to the strongest consumer layer; unresolved or explicitly blocked CORE components hard-fail. Processing targets degrade routes; byproducts are stripped.",
+    "edge_type_x_target_layer": {
+      "byproducts": {
+        "PENDING_T0B": 77
+      },
+      "targets": {
+        "PENDING_T0B": 49
+      }
+    }
+  },
+  "closure_promotions": [
+    {
+      "iteration": 1,
+      "material": "SiliconDioxide",
+      "from_layer": "PENDING_T0B",
+      "to_layer": "CORE",
+      "consumer": "Almandine",
+      "path": [
+        "Almandine",
+        "SiliconDioxide"
+      ],
+      "original_rule": "pending_t0b_non_native_ownership"
+    },
+    {
+      "iteration": 1,
+      "material": "Bronze",
+      "from_layer": "PENDING_T0B",
+      "to_layer": "CORE",
+      "consumer": "ArsenicBronze",
+      "path": [
+        "ArsenicBronze",
+        "Bronze"
+      ],
+      "original_rule": "pending_t0b_non_native_ownership"
+    },
+    {
+      "iteration": 1,
+      "material": "Rutile",
+      "from_layer": "PENDING_T0B",
+      "to_layer": "CORE",
+      "consumer": "Bauxite",
+      "path": [
+        "Bauxite",
+        "Rutile"
+      ],
+      "original_rule": "pending_t0b_non_native_ownership"
+    },
+    {
+      "iteration": 1,
+      "material": "Brass",
+      "from_layer": "PENDING_T0B",
+      "to_layer": "CORE",
+      "consumer": "CobaltBrass",
+      "path": [
+        "CobaltBrass",
+        "Brass"
+      ],
+      "original_rule": "pending_t0b_non_native_ownership"
+    },
+    {
+      "iteration": 1,
+      "material": "Sapphire",
+      "from_layer": "PENDING_T0B",
+      "to_layer": "CORE",
+      "consumer": "Diatomite",
+      "path": [
+        "Diatomite",
+        "Sapphire"
+      ],
+      "original_rule": "pending_t0b_non_native_ownership"
+    },
+    {
+      "iteration": 1,
+      "material": "DuraniumElemental",
+      "from_layer": "SHELVED_FICTIONAL",
+      "to_layer": "CORE",
+      "consumer": "DiduraniumTrioxide",
+      "path": [
+        "DiduraniumTrioxide",
+        "DuraniumElemental"
+      ],
+      "original_rule": "fictional_material_shelved"
+    },
+    {
+      "iteration": 1,
+      "material": "Electrum",
+      "from_layer": "PENDING_T0B",
+      "to_layer": "CORE",
+      "consumer": "ElectrumFlux",
+      "path": [
+        "ElectrumFlux",
+        "Electrum"
+      ],
+      "original_rule": "pending_t0b_non_native_ownership"
+    },
+    {
+      "iteration": 1,
+      "material": "Magic",
+      "from_layer": "SHELVED_FICTIONAL",
+      "to_layer": "CORE",
+      "consumer": "EnderPearl",
+      "path": [
+        "EnderPearl",
+        "Magic"
+      ],
+      "original_rule": "fictional_material_shelved"
+    },
+    {
+      "iteration": 1,
+      "material": "Nikolite",
+      "from_layer": "PENDING_T0B",
+      "to_layer": "CORE",
+      "consumer": "EnergiumCyan",
+      "path": [
+        "EnergiumCyan",
+        "Nikolite"
+      ],
+      "original_rule": "pending_t0b_non_native_ownership"
+    },
+    {
+      "iteration": 1,
+      "material": "Peridot",
+      "from_layer": "PENDING_T0B",
+      "to_layer": "CORE",
+      "consumer": "Gabbro",
+      "path": [
+        "Gabbro",
+        "Peridot"
+      ],
+      "original_rule": "pending_t0b_non_native_ownership"
+    },
+    {
+      "iteration": 1,
+      "material": "WroughtIron",
+      "from_layer": "PENDING_T0B",
+      "to_layer": "CORE",
+      "consumer": "Kanthal",
+      "path": [
+        "Kanthal",
+        "WroughtIron"
+      ],
+      "original_rule": "pending_t0b_non_native_ownership"
+    },
+    {
+      "iteration": 1,
+      "material": "RareEarth",
+      "from_layer": "PENDING_T0B",
+      "to_layer": "CORE",
+      "consumer": "Monazite",
+      "path": [
+        "Monazite",
+        "RareEarth"
+      ],
+      "original_rule": "pending_t0b_non_native_ownership"
+    },
+    {
+      "iteration": 1,
+      "material": "Fuel",
+      "from_layer": "PENDING_T0B",
+      "to_layer": "CORE",
+      "consumer": "NitroFuel",
+      "path": [
+        "NitroFuel",
+        "Fuel"
+      ],
+      "original_rule": "pending_t0b_non_native_ownership"
+    },
+    {
+      "iteration": 1,
+      "material": "CertusQuartz",
+      "from_layer": "PENDING_T0B",
+      "to_layer": "CORE",
+      "consumer": "QuartzSand",
+      "path": [
+        "QuartzSand",
+        "CertusQuartz"
+      ],
+      "original_rule": "pending_t0b_non_native_ownership"
+    },
+    {
+      "iteration": 1,
+      "material": "Ruby",
+      "from_layer": "PENDING_T0B",
+      "to_layer": "CORE",
+      "consumer": "Redstone",
+      "path": [
+        "Redstone",
+        "Ruby"
+      ],
+      "original_rule": "pending_t0b_non_native_ownership"
+    },
+    {
+      "iteration": 1,
+      "material": "Salt",
+      "from_layer": "PENDING_T0B",
+      "to_layer": "CORE",
+      "consumer": "Saltwater",
+      "path": [
+        "Saltwater",
+        "Salt"
+      ],
+      "original_rule": "pending_t0b_non_native_ownership"
+    },
+    {
+      "iteration": 1,
+      "material": "Invar",
+      "from_layer": "PENDING_T0B",
+      "to_layer": "CORE",
+      "consumer": "StainlessSteel",
+      "path": [
+        "StainlessSteel",
+        "Invar"
+      ],
+      "original_rule": "pending_t0b_non_native_ownership"
+    },
+    {
+      "iteration": 1,
+      "material": "Steel",
+      "from_layer": "PENDING_T0B",
+      "to_layer": "CORE",
+      "consumer": "SteelGalvanized",
+      "path": [
+        "SteelGalvanized",
+        "Steel"
+      ],
+      "original_rule": "pending_t0b_non_native_ownership"
+    },
+    {
+      "iteration": 1,
+      "material": "Trinium",
+      "from_layer": "SHELVED_FICTIONAL",
+      "to_layer": "CORE",
+      "consumer": "Trinaquadalloy",
+      "path": [
+        "Trinaquadalloy",
+        "Trinium"
+      ],
+      "original_rule": "fictional_material_shelved"
+    },
+    {
+      "iteration": 1,
+      "material": "Naquadah",
+      "from_layer": "SHELVED_FICTIONAL",
+      "to_layer": "CORE",
+      "consumer": "Trinaquadalloy",
+      "path": [
+        "Trinaquadalloy",
+        "Naquadah"
+      ],
+      "original_rule": "fictional_material_shelved"
+    },
+    {
+      "iteration": 1,
+      "material": "TritaniumElemental",
+      "from_layer": "SHELVED_FICTIONAL",
+      "to_layer": "CORE",
+      "consumer": "TritaniumDioxide",
+      "path": [
+        "TritaniumDioxide",
+        "TritaniumElemental"
+      ],
+      "original_rule": "fictional_material_shelved"
+    },
+    {
+      "iteration": 1,
+      "material": "Vibranium",
+      "from_layer": "SHELVED_FICTIONAL",
+      "to_layer": "CORE",
+      "consumer": "Vibramantium",
+      "path": [
+        "Vibramantium",
+        "Vibranium"
+      ],
+      "original_rule": "fictional_material_shelved"
+    },
+    {
+      "iteration": 1,
+      "material": "Adamantium",
+      "from_layer": "SHELVED_FICTIONAL",
+      "to_layer": "CORE",
+      "consumer": "Vibramantium",
+      "path": [
+        "Vibramantium",
+        "Adamantium"
+      ],
+      "original_rule": "fictional_material_shelved"
+    }
+  ],
+  "blocked_closure_promotions": [],
+  "closure_violations": [
+    {
+      "material": "Fluorine",
+      "edge": "targets.crushing",
+      "edge_type": "targets",
+      "target": "Fluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Phosphor",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Apatite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Phosphor",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "YellowFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Phosphor",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "RedPhosphorus",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Phosphor",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "WhitePhosphorus",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Sulfur",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Sphalerite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Sulfur",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Cinnabar",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Sulfur",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Galena",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Cobalt",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "OrangeFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Selenium",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Galena",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Selenium",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Sphalerite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Niobium",
+      "edge": "targets.crushing",
+      "edge_type": "targets",
+      "target": "Columbite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Cadmium",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Sphalerite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Tin",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "BlackFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Tin",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Apatite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Antimony",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Cinnabar",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Antimony",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Galena",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Hafnium",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Zircon",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Tantalum",
+      "edge": "targets.crushing",
+      "edge_type": "targets",
+      "target": "Tantalite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Gold",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Cinnabar",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Bismuth",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Galena",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Adamantium",
+      "edge": "targets.crushing",
+      "edge_type": "targets",
+      "target": "Adamantine",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "SodiumNitrate",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "PotassiumNitrate",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "SodiumNitrate",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Niter",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Soulsand",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Niter",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Soulsand",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Gloomstone",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "DarkAshes",
+      "edge": "targets.generifying",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "VolcanicAshes",
+      "edge": "targets.generifying",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Phosphate",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Apatite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Phosphate",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "YellowFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Phosphate",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "RedPhosphorus",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Phosphate",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "WhitePhosphorus",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Phosphorus",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Apatite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Phosphorus",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "YellowFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Phosphorus",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "RedPhosphorus",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Phosphorus",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "WhitePhosphorus",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Clay",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Kaolinite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Clay",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Palygorskite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Paper",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Gunpowder",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Wood",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Wood",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Phosphorite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Apatite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Phosphorite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "YellowFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Phosphorite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "RedPhosphorus",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Phosphorite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "WhitePhosphorus",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "WaxParaffin",
+      "edge": "targets.generifying",
+      "edge_type": "targets",
+      "target": "Wax",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Dynamite",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "WoodPolished",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "WoodPolished",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Diamond",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "OrangeSapphire",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "GreenSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "OrangeSapphire",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "BlueSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "YellowSapphire",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "GreenSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "YellowSapphire",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "BlueSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Spinel",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "BalasRuby",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Redstone",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Cinnabar",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Coal",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Lignite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Charcoal",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Glowstone",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Gloomstone",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Glowstone",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "YellowFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "NetherQuartz",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Efrine",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "NetherQuartz",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "WhiteFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "PurpleSapphire",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "GreenSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "PurpleSapphire",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "BlueSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Bamboo",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Bamboo",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "DiamondIndustrial",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "PinkDiamond",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "ClayRed",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Bentonite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "VoidQuartz",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Efrine",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "VoidQuartz",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "MagentaFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Endstone",
+      "edge": "targets.generifying",
+      "edge_type": "targets",
+      "target": "WhiteEndSand",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Hematite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "GraniticMineralSand",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Bauxite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Kaolinite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Cassiterite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "WhiteFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Cassiterite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Apatite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Cobaltite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "OrangeFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Stibnite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Cinnabar",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Stibnite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Galena",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Wulfenite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Galena",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Biotite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Asbestos",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Vermiculite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Asbestos",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Malachite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Azurite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Mica",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Asbestos",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Trona",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "SodiumHydrogencarbonate",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Gypsum",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Asbestos",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Graphite",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Graphene",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Huebnerite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "GreenFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Huebnerite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Topaz",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "DuraniumHexafluoride",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "PinkFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "TritaniumHexafluoride",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "MagentaFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Arsenopyrite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "OrangeFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Oak",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Oak",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Birch",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Birch",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Spruce",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Spruce",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Junglewood",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Junglewood",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Acacia",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Acacia",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "DarkOak",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "DarkOak",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "WoodCompressed",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "WoodCompressed",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "WoodRotten",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "WoodRotten",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "WoodMossy",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "WoodMossy",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "WoodFrozen",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "WoodFrozen",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Rainbowood",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Rainbowood",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "BlueSpruce",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "BlueSpruce",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Wheat",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Potato",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE"
+    },
+    {
+      "material": "Ruby",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "GreenSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Ruby",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "BlueSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Sapphire",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "GreenSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Sapphire",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "BlueSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Nikolite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Azurite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    },
+    {
+      "material": "Rutile",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Zircon",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS"
+    }
+  ],
+  "degraded_paths": [
+    {
+      "material": "Fluorine",
+      "edge": "targets.crushing",
+      "edge_type": "targets",
+      "target": "Fluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "crushing",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Niobium",
+      "edge": "targets.crushing",
+      "edge_type": "targets",
+      "target": "Columbite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "crushing",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Tantalum",
+      "edge": "targets.crushing",
+      "edge_type": "targets",
+      "target": "Tantalite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "crushing",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Adamantium",
+      "edge": "targets.crushing",
+      "edge_type": "targets",
+      "target": "Adamantine",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "crushing",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "DarkAshes",
+      "edge": "targets.generifying",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "generifying",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "VolcanicAshes",
+      "edge": "targets.generifying",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "generifying",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Paper",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Gunpowder",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Wood",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Wood",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "smelting",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "WaxParaffin",
+      "edge": "targets.generifying",
+      "edge_type": "targets",
+      "target": "Wax",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "generifying",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Dynamite",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "WoodPolished",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "WoodPolished",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "smelting",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Diamond",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Charcoal",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Bamboo",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Bamboo",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "smelting",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "DiamondIndustrial",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "PinkDiamond",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Endstone",
+      "edge": "targets.generifying",
+      "edge_type": "targets",
+      "target": "WhiteEndSand",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "generifying",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Graphite",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Graphene",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Oak",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Oak",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "smelting",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Birch",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Birch",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "smelting",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Spruce",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Spruce",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "smelting",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Junglewood",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Junglewood",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "smelting",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Acacia",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Acacia",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "smelting",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "DarkOak",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "DarkOak",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "smelting",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "WoodCompressed",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "WoodCompressed",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "smelting",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "WoodRotten",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "WoodRotten",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "smelting",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "WoodMossy",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "WoodMossy",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "smelting",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "WoodFrozen",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "WoodFrozen",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "smelting",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Rainbowood",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Rainbowood",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "smelting",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "BlueSpruce",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "BlueSpruce",
+      "edge": "targets.smelting",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "smelting",
+      "prerequisite_stage": "T2_MINERAL_CHAIN",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Wheat",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    },
+    {
+      "material": "Potato",
+      "edge": "targets.burning",
+      "edge_type": "targets",
+      "target": "Ashes",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "DEGRADED_ROUTE",
+      "target_type": "burning",
+      "prerequisite_stage": "T2_SCOPE_REVIEW",
+      "action": "retain_source_without_this_generated_route"
+    }
+  ],
+  "byproduct_stripping": [
+    {
+      "material": "Phosphor",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Apatite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Phosphor",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "YellowFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Phosphor",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "RedPhosphorus",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Phosphor",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "WhitePhosphorus",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Sulfur",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Sphalerite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Sulfur",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Cinnabar",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Sulfur",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Galena",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Cobalt",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "OrangeFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Selenium",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Galena",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Selenium",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Sphalerite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Cadmium",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Sphalerite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Tin",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "BlackFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Tin",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Apatite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Antimony",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Cinnabar",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Antimony",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Galena",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Hafnium",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Zircon",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Gold",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Cinnabar",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Bismuth",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Galena",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "SodiumNitrate",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "PotassiumNitrate",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "SodiumNitrate",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Niter",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Soulsand",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Niter",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Soulsand",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Gloomstone",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Phosphate",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Apatite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Phosphate",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "YellowFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Phosphate",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "RedPhosphorus",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Phosphate",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "WhitePhosphorus",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Phosphorus",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Apatite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Phosphorus",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "YellowFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Phosphorus",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "RedPhosphorus",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Phosphorus",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "WhitePhosphorus",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Clay",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Kaolinite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Clay",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Palygorskite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Phosphorite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Apatite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Phosphorite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "YellowFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Phosphorite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "RedPhosphorus",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Phosphorite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "WhitePhosphorus",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "OrangeSapphire",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "GreenSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "OrangeSapphire",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "BlueSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "YellowSapphire",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "GreenSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "YellowSapphire",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "BlueSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Spinel",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "BalasRuby",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Redstone",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Cinnabar",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Coal",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Lignite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Glowstone",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Gloomstone",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Glowstone",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "YellowFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "NetherQuartz",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Efrine",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "NetherQuartz",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "WhiteFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "PurpleSapphire",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "GreenSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "PurpleSapphire",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "BlueSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "ClayRed",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Bentonite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "VoidQuartz",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Efrine",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "VoidQuartz",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "MagentaFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Hematite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "GraniticMineralSand",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Bauxite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Kaolinite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Cassiterite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "WhiteFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Cassiterite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Apatite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Cobaltite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "OrangeFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Stibnite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Cinnabar",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Stibnite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Galena",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Wulfenite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Galena",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Biotite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Asbestos",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Vermiculite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Asbestos",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Malachite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Azurite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Mica",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Asbestos",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Trona",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "SodiumHydrogencarbonate",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Gypsum",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Asbestos",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Huebnerite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "GreenFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Huebnerite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Topaz",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "DuraniumHexafluoride",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "PinkFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "TritaniumHexafluoride",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "MagentaFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Arsenopyrite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "OrangeFluorite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Ruby",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "GreenSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Ruby",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "BlueSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Sapphire",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "GreenSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Sapphire",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "BlueSapphire",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Nikolite",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Azurite",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    },
+    {
+      "material": "Rutile",
+      "edge": "byproducts",
+      "edge_type": "byproducts",
+      "target": "Zircon",
+      "source_layer": "CORE",
+      "target_layer": "PENDING_T0B",
+      "severity": "OPTIONAL_LOSS",
+      "action": "strip_reference_during_L3_generation"
+    }
+  ],
+  "layer_counts": {
+    "CORE": 509,
+    "PHASE_2": 0,
+    "PHASE_3": 0,
+    "PHASE_LATER": 38,
+    "SHELVED_FICTIONAL": 694,
+    "NEEDS_REVIEW": 0,
+    "PENDING_T0B": 531,
+    "COMPAT_DEAD": 0,
+    "NEVER": 1
+  },
+  "rule_counts": {
+    "fictional_material_shelved": 701,
+    "pending_t0b_non_native_ownership": 547,
+    "active_item_evidence": 311,
+    "element_active_item_evidence": 98,
+    "active_fluid_or_dependency_closure": 52,
+    "isotope_obscure_deferred": 20,
+    "active_without_classified_evidence": 15,
+    "authored_include": 10,
+    "element_active_fluid_or_dependency": 9,
+    "isotope_common_active_loose": 3,
+    "isotope_common_active": 3,
+    "element_active_unclassified": 3,
+    "empty_material_slot": 1
+  },
+  "rule_basis_counts": {
+    "verified": 1172,
+    "inferred": 18,
+    "external": 583
+  },
+  "rules": {
+    "active_fluid_or_dependency_closure": {
+      "basis": "verified",
+      "reason": "Direct fluid/dependency evidence requires retention to preserve observed closure.",
+      "falsifier": "A row hits this rule without fluid evidence or an explicit dependency/transitive activation reason.",
+      "falsifier_test": "test_active_closure_rule_requires_direct_evidence",
+      "hit_count": 52
+    },
+    "active_item_evidence": {
+      "basis": "verified",
+      "reason": "ACTIVE row has registered forms and direct recipe item evidence.",
+      "falsifier": null,
+      "falsifier_test": null,
+      "hit_count": 311
+    },
+    "active_without_classified_evidence": {
+      "basis": "inferred",
+      "reason": "Fallback for ACTIVE rows lacking a stronger evidence classification.",
+      "falsifier": "A hit is not ACTIVE, is element-like, or satisfies a stronger item/fluid/dependency evidence rule.",
+      "falsifier_test": "test_active_fallback_rules_match_only_their_declared_domain",
+      "hit_count": 15
+    },
+    "authored_include": {
+      "basis": "external",
+      "reason": "Existing authored CrucibleCraft material is a reviewed human input.",
+      "falsifier": null,
+      "falsifier_test": null,
+      "hit_count": 10
+    },
+    "element_active_fluid_or_dependency": {
+      "basis": "verified",
+      "reason": "Element encoding is L1a-verified and the row has direct fluid/dependency evidence.",
+      "falsifier": null,
+      "falsifier_test": null,
+      "hit_count": 9
+    },
+    "element_active_item_evidence": {
+      "basis": "verified",
+      "reason": "Element encoding is L1a-verified and ACTIVE has registered forms plus recipe item evidence.",
+      "falsifier": null,
+      "falsifier_test": null,
+      "hit_count": 98
+    },
+    "element_active_unclassified": {
+      "basis": "inferred",
+      "reason": "Fallback for ACTIVE element-like rows not covered by stronger evidence rules.",
+      "falsifier": "A hit is not ACTIVE, is not element-like, or satisfies a stronger element evidence rule.",
+      "falsifier_test": "test_active_fallback_rules_match_only_their_declared_domain",
+      "hit_count": 3
+    },
+    "empty_material_slot": {
+      "basis": "verified",
+      "reason": "Material id 0 / Empty is the reserved empty slot.",
+      "falsifier": null,
+      "falsifier_test": null,
+      "hit_count": 1
+    },
+    "fictional_material_shelved": {
+      "basis": "verified",
+      "reason": "Full-range query identifies ids 1181..7999 as post-periodic fictional/sci-fi/magic/joke materials.",
+      "falsifier": "A canonical real periodic element or isotope exists with material id in 1181..7999.",
+      "falsifier_test": "test_fictional_band_starts_after_verified_periodic_table",
+      "hit_count": 701
+    },
+    "isotope_common_active": {
+      "basis": "external",
+      "reason": "Common-isotope allowlist is a human phase/scope decision.",
+      "falsifier": null,
+      "falsifier_test": null,
+      "hit_count": 3
+    },
+    "isotope_common_active_loose": {
+      "basis": "external",
+      "reason": "Common-isotope allowlist is a human phase/scope decision.",
+      "falsifier": null,
+      "falsifier_test": null,
+      "hit_count": 3
+    },
+    "isotope_obscure_deferred": {
+      "basis": "external",
+      "reason": "The common-isotope boundary and phase placement are human scope decisions.",
+      "external_dependency": "L2 nuclear-phase scope decision.",
+      "falsifier": null,
+      "falsifier_test": null,
+      "hit_count": 20
+    },
+    "pending_t0b_non_native_ownership": {
+      "basis": "external",
+      "reason": "Non-native alloy/organic ownership awaits T0b 1.21.1 mod inventory decisions.",
+      "falsifier": null,
+      "falsifier_test": null,
+      "hit_count": 547
+    }
+  },
+  "inferred_review_priority": {
+    "candidate_count": 18,
+    "by_rule": {
+      "active_without_classified_evidence": 15,
+      "element_active_unclassified": 3
+    },
+    "note": "These rows are natural needs_review priority candidates; basis alone does not yet route them into a review bucket."
+  },
+  "inferred_falsifier_debt": {
+    "rule_count_without_falsifier": 0,
+    "material_count_without_falsifier": 0,
+    "rules_without_falsifier": {},
+    "rule_count_with_regression_test": 2
+  },
+  "external_dependencies": {
+    "material_count": 20,
+    "by_dependency": {
+      "L2 nuclear-phase scope decision.": 20
+    }
+  },
+  "selected_count": 1241,
+  "dropped_count": 1,
+  "dropped_record_count_including_sentinels": 442,
+  "needs_review_count": 0,
+  "needs_review_diagnostics": {},
+  "pending_t0b_count": 531,
+  "core_count": 509,
+  "partition": {
+    "ok": true,
+    "overlap": [],
+    "missing": [],
+    "extra": []
+  },
+  "histograms": {
+    "excludes_sentinels": true,
+    "source_record_count": 2214,
+    "summary_material_count": 1773,
+    "recipe_appearances_full": {
+      "0": 570,
+      "1-49": 183,
+      "50+": 1020
+    },
+    "reviewed_appearances": {
+      "0": 602,
+      "1-49": 243,
+      "50+": 928
+    },
+    "registered_prefix_count": {
+      "0": 0,
+      "1": 578,
+      "5+": 1195
+    },
+    "registered_prefix_count_fine": {
+      "0": 0,
+      "1": 578,
+      "2-4": 2,
+      "5+": 1193
+    },
+    "single_prefix_name": {
+      "chemtube": 578
+    },
+    "conflict_types": {
+      "active_without_evidence": 570,
+      "pending_t0b_with_hot_full_evidence": 540,
+      "case_collision": 11,
+      "pending_t0b_with_full_evidence": 6,
+      "override_exclude_but_live_evidence": 4,
+      "active_fluid_only": 1
+    },
+    "materials_with_any_conflict": 1123,
+    "case_collision_groups": 1,
+    "hot_out_count": 1,
+    "structural_class_x_layer": {
+      "alloy_compound": {
+        "PENDING_T0B": 335,
+        "CORE": 201,
+        "PHASE_LATER": 3
+      },
+      "element": {
+        "CORE": 115,
+        "PHASE_LATER": 3
+      },
+      "empty": {
+        "NEVER": 1
+      },
+      "fictional_material": {
+        "SHELVED_FICTIONAL": 694,
+        "CORE": 7
+      },
+      "isotope": {
+        "PHASE_LATER": 20,
+        "CORE": 6
+      },
+      "organic_misc": {
+        "PENDING_T0B": 196,
+        "CORE": 180,
+        "PHASE_LATER": 12
+      }
+    },
+    "cross_recipe_x_prefix_layers": {
+      "0": {
+        "0": {},
+        "1": {
+          "SHELVED_FICTIONAL": 558,
+          "PHASE_LATER": 5
+        },
+        "5+": {
+          "PHASE_LATER": 5,
+          "SHELVED_FICTIONAL": 1,
+          "PENDING_T0B": 1
+        }
+      },
+      "1-49": {
+        "0": {},
+        "1": {
+          "CORE": 7,
+          "PHASE_LATER": 3
+        },
+        "5+": {
+          "SHELVED_FICTIONAL": 124,
+          "CORE": 34,
+          "PHASE_LATER": 10,
+          "PENDING_T0B": 5
+        }
+      },
+      "50+": {
+        "0": {},
+        "1": {
+          "CORE": 5
+        },
+        "5+": {
+          "PENDING_T0B": 525,
+          "CORE": 463,
+          "PHASE_LATER": 15,
+          "SHELVED_FICTIONAL": 11,
+          "NEVER": 1
+        }
+      }
+    },
+    "hot_out_sample": [
+      {
+        "source_name": "Empty",
+        "recipe_appearances": 11123,
+        "reviewed_appearances": 5433,
+        "layer": "NEVER",
+        "rule": "empty_material_slot",
+        "activation_status": "ACTIVE",
+        "activation_reason": "stable canonical GT6 material imported for factual metadata/forms; metadata_only=true (no GT6-registered prefix maps to a CC prefix); runtime decomposition disabled (source ratio is not exactly representable)",
+        "registered_prefix_count": 13,
+        "registered_prefixes_head": [
+          "arrowGtPlastic",
+          "arrowGtWood",
+          "book",
+          "bottle",
+          "bulletGtLarge",
+          "bulletGtMedium",
+          "bulletGtSmall",
+          "chemtube"
+        ]
+      }
+    ]
+  },
+  "closure_all_clean": false,
+  "notes": [
+    "All layer/rule/conflict/histogram summaries exclude source_id < 0; name-only records remain in sentinel_compatibility_surface and the complete dropped-record artifact.",
+    "Layers are 2D: structural_class × originalMod (elements ignore ownership).",
+    "PENDING_T0B = alloy/organic/midband-other with non-native originalMod; await T0b inventory.",
+    "Element-like is verified periodic Z=1..118 only; id%10 alone is not identity outside id 10..1180.",
+    "SHELVED_FICTIONAL is the verified id 1181..7999 band; residual hidden rows route to NEEDS_REVIEW.",
+    "recipe_appearances is FULL expanded map count; template_appearances is the decombinatorialized heat from gt6_recipe_templates.",
+    "reviewed_appearances is evidence_maps only.",
+    "pending_t0b hot conflicts use template_appearances>=3 when available.",
+    "case_collision belongs in L1a alias merge, not L2 review.",
+    "Intentional hot drops (FOOD / DONT_SHOW) excluded from OOS conflict tags.",
+    "Conflict tags are advisory for review; they do not themselves rewrite tier. Tier correction for component deps is promote_component_closure.",
+    "pending_t0b_with_hot_full_evidence flags ACTIVE/hot rows parked only by non-native originalMod (SiliconDioxide class)."
+  ]
+}

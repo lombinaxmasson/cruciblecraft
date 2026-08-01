@@ -3,7 +3,8 @@ package com.masson.cruciblecraft.config;
 import net.neoforged.neoforge.common.ModConfigSpec;
 
 /**
- * Client-only preferences. Balance values belong in datapacks, not here (§5.5).
+ * Client-only preferences. Recipe and machine balance belongs in datapacks.
+ * Startup material tuning is handled separately and cannot alter registry shape.
  */
 public final class ModConfig {
     private static final ModConfigSpec.Builder CLIENT_BUILDER = new ModConfigSpec.Builder();

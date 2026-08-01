@@ -3,8 +3,14 @@ package com.masson.cruciblecraft;
 import org.slf4j.Logger;
 
 import com.masson.cruciblecraft.compat.kubejs.KubeJSCompat;
+import com.masson.cruciblecraft.api.material.MaterialPrefixRegistrationEvent;
+import com.masson.cruciblecraft.api.material.MaterialRegistrationEvent;
 import com.masson.cruciblecraft.material.MaterialCatalog;
+import com.masson.cruciblecraft.material.MaterialStressFixture;
+import com.masson.cruciblecraft.material.MissingMaterialStackCodec;
 import com.masson.cruciblecraft.material.gen.GeneratedMaterialPack;
+import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
+import com.masson.cruciblecraft.network.MaterialConfigurationHandshake;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModComponents;
@@ -18,6 +24,7 @@ import com.masson.cruciblecraft.registry.ModRecipes;
 import com.mojang.logging.LogUtils;
 
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModLoader;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
@@ -36,6 +43,8 @@ public class CrucibleCraft {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(GeneratedMaterialPack::addPackFinders);
         modEventBus.addListener(ModCapabilities::register);
+        modEventBus.addListener(MaterialConfigurationHandshake::registerPayloads);
+        modEventBus.addListener(MaterialConfigurationHandshake::registerTask);
 
         ModFluids.FLUID_TYPES.register(modEventBus);
         ModFluids.FLUIDS.register(modEventBus);
@@ -54,17 +63,29 @@ public class CrucibleCraft {
 
     private void construct(FMLConstructModEvent event) {
         var configRoot = FMLPaths.CONFIGDIR.get().resolve(MODID);
+        // NeoForge dispatches this synchronously and reentrantly during construction;
+        // listeners may only add startup prefixes and must not bootstrap catalogs.
+        ModLoader.postEvent(new MaterialPrefixRegistrationEvent());
+        MaterialPrefixCatalog.bootstrap(configRoot.resolve("material_prefixes"));
+        // NeoForge dispatches this synchronously and reentrantly during construction;
+        // listeners may only add startup materials and must not bootstrap catalogs.
+        ModLoader.postEvent(new MaterialRegistrationEvent());
         if (ModList.get().isLoaded("kubejs")) {
             KubeJSCompat.fireMaterialRegistration();
         }
+        MaterialStressFixture.installFromSystemProperties();
         MaterialCatalog.bootstrap(configRoot.resolve("materials"));
         ModFluids.registerMaterials(MaterialCatalog.values());
+        ModBlocks.registerMaterials(MaterialCatalog.values());
         ModItems.registerMaterials(MaterialCatalog.values());
         GeneratedMaterialPack.initialize(configRoot);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(ModFluids::finalizeMaterialLookup);
+        event.enqueueWork(() -> {
+            ModFluids.finalizeMaterialLookup();
+            MissingMaterialStackCodec.verifyInstalled();
+        });
         LOGGER.info("CrucibleCraft common setup");
     }
 }

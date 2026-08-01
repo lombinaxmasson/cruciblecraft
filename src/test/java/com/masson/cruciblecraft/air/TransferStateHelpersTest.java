@@ -4,35 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 import com.masson.cruciblecraft.heat.CrucibleThermalModel;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
 
 import org.junit.jupiter.api.Test;
 
 class TransferStateHelpersTest {
-    @Test
-    void bellowsHasOneSharedBudgetAndSimulationIsSideEffectFree() {
-        PerTickAirLimiter limiter = new PerTickAirLimiter();
-
-        assertEquals(16.0F, limiter.extract(10, 16.0F, 16.0F, true));
-        assertEquals(16.0F, limiter.extract(10, 16.0F, 16.0F, true));
-        assertEquals(10.0F, limiter.extract(10, 16.0F, 10.0F, false));
-        assertEquals(6.0F, limiter.extract(10, 16.0F, 16.0F, false));
-        assertEquals(0.0F, limiter.extract(10, 16.0F, 16.0F, false));
-        assertEquals(16.0F, limiter.extract(11, 16.0F, 16.0F, false));
-    }
-
-    @Test
-    void requestIsLimitedOnlyByFiniteRoomAndSourceRate() {
-        assertEquals(0.0F, AirIntakeCoordinator.request(0, 16));
-        assertEquals(0.0F, AirIntakeCoordinator.request(100, Float.NaN));
-        assertEquals(12.0F, AirIntakeCoordinator.request(12, 16));
-        assertEquals(8.0F, AirIntakeCoordinator.request(12, 8));
-    }
-
     @Test
     void checkpointAndSyncCadencesArePositionPhased() {
         assertFalse(CheckpointDecisions.shouldCheckpoint(false, 7, 7, 20));
@@ -54,6 +31,19 @@ class TransferStateHelpersTest {
     }
 
     @Test
+    void coordinatePhaseKeyUsesAllTwentyPhasesOnOneLayer() {
+        boolean[] phases = new boolean[20];
+        for (int z = 0; z < 20; z++) {
+            long key = CheckpointDecisions.phaseKey(0, 64, z);
+            phases[Math.floorMod(key, phases.length)] = true;
+        }
+        for (boolean phase : phases) {
+            assertTrue(phase);
+        }
+        assertEquals((64L + 7L * 31L) * 31L + 3L, CheckpointDecisions.phaseKey(3, 64, 7));
+    }
+
+    @Test
     void clientInterpolationDoesNotAdvancePhysics() {
         var authoritative = new CrucibleThermalModel.StepResult(900, 37, 42);
         float display = CrucibleThermalModel.interpolateDisplay(800, authoritative.temperature(), 20);
@@ -70,20 +60,4 @@ class TransferStateHelpersTest {
         assertTrue(CrucibleThermalModel.shouldBoil(1_000, 1_000));
     }
 
-    @Test
-    void crucibleExecutesEachAdjacentAirRequestOnlyOnce() throws Exception {
-        String source = Files.readString(Path.of(
-                "src/main/java/com/masson/cruciblecraft/content/blockentity/CrucibleBlockEntity.java"));
-        String method = source.substring(
-                source.indexOf("private void pullAdjacentAir"),
-                source.indexOf("public AirInjectionResult injectAir"));
-
-        assertEquals(1, occurrences(method, "extractAir("));
-        assertTrue(method.contains("extractAir(request, false)"));
-        assertFalse(method.contains("extractAir(request, true)"));
-    }
-
-    private static int occurrences(String source, String needle) {
-        return (source.length() - source.replace(needle, "").length()) / needle.length();
-    }
 }

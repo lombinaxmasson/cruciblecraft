@@ -1,26 +1,193 @@
 {
-  "id": "iron",
-  "tag_name": "iron",
-  "tier": 2,
   "color": "#C8C8C8",
-  "tint_style": "metallic",
-  "forms": [
-    "raw_ore",
-    "crushed_ore",
-    "ingot",
-    "dust",
-    "plate",
-    "rod",
-    "bolt"
+  "exclude_prefixes": [
+    "block",
+    "nugget",
+    "small_dust"
   ],
   "form_items": {
     "ingot": "minecraft:iron_ingot",
     "raw_ore": "minecraft:raw_iron"
   },
-  "thermal": {
-    "melting_point": 1538,
-    "boiling_point": 2861,
-    "density": 7.874
+  "generation_flags": [
+    "cruciblecraft:generates_block",
+    "cruciblecraft:generates_dust",
+    "cruciblecraft:generates_fine_wire",
+    "cruciblecraft:generates_ingot",
+    "cruciblecraft:generates_nugget",
+    "cruciblecraft:generates_plate",
+    "cruciblecraft:generates_small_spring",
+    "cruciblecraft:generates_spring",
+    "gt6:itemgenerator/denseplates",
+    "gt6:itemgenerator/foils",
+    "gt6:itemgenerator/multiplates",
+    "gt6:itemgenerator/ores",
+    "gt6:itemgenerator/parts",
+    "gt6:itemgenerator/sticks"
+  ],
+  "gt6_metadata": {
+    "aliases": [
+      "AnyIron",
+      "AnyIronOrSteel"
+    ],
+    "byproducts": [],
+    "electrical_by_specification": {},
+    "explosion_damage": 0.0,
+    "formula": "Fe",
+    "generation_tags": [
+      "ITEMGENERATOR.ARMORS",
+      "ITEMGENERATOR.DENSEPLATES",
+      "ITEMGENERATOR.DUSTS",
+      "ITEMGENERATOR.FOILS",
+      "ITEMGENERATOR.INGOTS",
+      "ITEMGENERATOR.INGOTS_HOT",
+      "ITEMGENERATOR.MOLTEN",
+      "ITEMGENERATOR.MULTIINGOTS",
+      "ITEMGENERATOR.MULTIPLATES",
+      "ITEMGENERATOR.ORES",
+      "ITEMGENERATOR.PARTS",
+      "ITEMGENERATOR.PLANTS",
+      "ITEMGENERATOR.PLATES",
+      "ITEMGENERATOR.PROJECTILES",
+      "ITEMGENERATOR.RAILS",
+      "ITEMGENERATOR.STICKS"
+    ],
+    "heat_damage": 0.0,
+    "material_tags": [
+      "ATOMIC.ELEMENT",
+      "ATOMIC.IRON_GROUP",
+      "ATOMIC.METAL",
+      "ATOMIC.TRANSITION_METAL",
+      "PROCESSING.EXTRUDABLE",
+      "PROCESSING.FUSION_SYNTHESISABLE",
+      "PROCESSING.MELTING",
+      "PROCESSING.MORTAR_GRINDABLE",
+      "PROCESSING.NEVER_FURNACE",
+      "PROCESSING.SMITHABLE",
+      "PROCESSING.UUM_SYNTHESISABLE",
+      "PROPERTIES.HAS_TOOL_STATS",
+      "PROPERTIES.MAGNETIC_PASSIVE"
+    ],
+    "processing_targets": {
+      "bending": {
+        "cc_units": 144,
+        "material": "iron",
+        "numerator_u": 648648000,
+        "source_material_id": 260,
+        "source_material_name": "Iron"
+      },
+      "burning": {
+        "cc_units": 0,
+        "material": "iron",
+        "numerator_u": 0,
+        "source_material_id": 260,
+        "source_material_name": "Iron"
+      },
+      "compressing": {
+        "cc_units": 144,
+        "material": "iron",
+        "numerator_u": 648648000,
+        "source_material_id": 260,
+        "source_material_name": "Iron"
+      },
+      "crushing": {
+        "cc_units": 144,
+        "material": "hematite",
+        "numerator_u": 648648000,
+        "source_material_id": 9104,
+        "source_material_name": "Hematite"
+      },
+      "cutting": {
+        "cc_units": 144,
+        "material": "iron",
+        "numerator_u": 648648000,
+        "source_material_id": 260,
+        "source_material_name": "Iron"
+      },
+      "forging": {
+        "cc_units": 144,
+        "material": "iron",
+        "numerator_u": 648648000,
+        "source_material_id": 260,
+        "source_material_name": "Iron"
+      },
+      "generifying": {
+        "cc_units": 144,
+        "material": "iron",
+        "numerator_u": 648648000,
+        "source_material_id": 260,
+        "source_material_name": "Iron"
+      },
+      "pulver": {
+        "cc_units": 144,
+        "material": "iron",
+        "numerator_u": 648648000,
+        "source_material_id": 260,
+        "source_material_name": "Iron"
+      },
+      "smashing": {
+        "cc_units": 144,
+        "material": "iron",
+        "numerator_u": 648648000,
+        "source_material_id": 260,
+        "source_material_name": "Iron"
+      },
+      "smelting": {
+        "cc_units": 144,
+        "material": "iron",
+        "numerator_u": 648648000,
+        "source_material_id": 260,
+        "source_material_name": "Iron"
+      },
+      "solidifying": {
+        "cc_units": 144,
+        "material": "iron",
+        "numerator_u": 648648000,
+        "source_material_id": 260,
+        "source_material_name": "Iron"
+      },
+      "working": {
+        "cc_units": 144,
+        "material": "iron",
+        "numerator_u": 648648000,
+        "source_material_id": 260,
+        "source_material_name": "Iron"
+      }
+    },
+    "source_id": 260,
+    "source_name": "Iron",
+    "source_thermal": {
+      "boiling_point_celsius": 2860.85,
+      "boiling_point_kelvin": 3134,
+      "density": 7.874,
+      "melting_point_celsius": 1537.85,
+      "melting_point_kelvin": 1811,
+      "plasma_point_celsius": 313126.85,
+      "plasma_point_kelvin": 313400
+    },
+    "state": "solid",
+    "tool": {
+      "durability": 256,
+      "quality": 2,
+      "speed": 6.0,
+      "types": 3
+    }
   },
-  "molten_fluid": true
+  "id": "iron",
+  "include_prefixes": [
+    "centrifuged_crushed_ore",
+    "crushed_ore",
+    "ore",
+    "purified_dust",
+    "washed_crushed_ore"
+  ],
+  "molten_fluid": true,
+  "tag_name": "iron",
+  "thermal": {
+    "boiling_point": 2861,
+    "density": 7.874,
+    "melting_point": 1538
+  },
+  "tier": 2,
+  "tint_style": "metallic"
 }

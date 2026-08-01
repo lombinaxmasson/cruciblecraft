@@ -130,23 +130,22 @@ anvil working, coke oven, and ceramic mold casting categories.
 
 ## Ores and large veins
 
-Copper, tin, iron, gold, zinc, lead, and nickel have dedicated stone and
-deepslate ore blocks. Silk Touch preserves the block; normal mining drops one
-raw ore and Fortune applies the vanilla ore-drop formula. Raw and crushed ore
-represent 144 material units (one ingot), and either form can be smelted or
-blasted into one ingot. Copper, iron, and gold use Minecraft's canonical raw
-items and vanilla raw-ore cooking recipes; CrucibleCraft only adds cooking
-recipes for their crushed forms.
+Every factual, gate-registered `ORE` material has a dedicated stone/deepslate
+block pair. Silk Touch preserves the block; normal mining drops one raw ore and
+Fortune applies the vanilla ore-drop formula. Raw and crushed ore represent 144
+material units (one ingot).
 
-Large veins are configured in
-`data/cruciblecraft/worldgen/configured_feature`. The `top`, `bottom`,
-`between`, and `spread` properties are weighted lists of objects containing a
-block `state` and positive integer `weight`. Other fields set the Y range,
-ellipsoid radii, block density, replacement block tag, region size, and region
-generation chance. Every configuration also requires a unique integer `salt`;
-it separates that family's anchor, chance roll, and center seed from every
-other family. Four initial families (copper, tin, iron, and gold) mix all seven
-ore materials.
+Large-vein authors edit one schema-version-1 document per family under
+`src/main/resources/data/cruciblecraft/veins`. The `top`, `bottom`, `between`,
+and `spread` fields contain weighted CC material IDs, never block registry
+paths. Y range, ellipsoid radii, density, region size, generation chance,
+globally unique salt, and provenance live in the same document.
+`python tools/build_gt6_veins.py --write` validates factual and registered ore
+forms, then creates configured features, placed features, and their aggregate
+biome modifier under `src/worldgen_generated/resources`. Runtime states compile
+consistently to the stone variant; host adaptation selects stone or deepslate
+during placement. The five authored families are copper, tin, iron, gold, and
+tungsten.
 
 The placed features run once per candidate chunk, but the feature hashes the
 world seed and region coordinates to select exactly one anchor chunk in each
@@ -155,7 +154,7 @@ world seed and region coordinates to select exactly one anchor chunk in each
 order-dependent duplicate ellipsoids. The implementation writes a bounded
 cross-chunk ellipsoid through the world-generation region; it is intentionally
 an adaptation to vanilla stone/deepslate rather than GT6's full stone-layer
-system. Before placement, each of the fourteen cataloged CrucibleCraft ore
+system. Before placement, each cataloged CrucibleCraft ore
 states is converted to its stone or deepslate counterpart according to the
 actual replaceable host block. Unknown external states are preserved, while a
 missing cataloged counterpart safely skips placement.

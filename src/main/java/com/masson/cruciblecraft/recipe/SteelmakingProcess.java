@@ -3,7 +3,7 @@ package com.masson.cruciblecraft.recipe;
 import java.util.Map;
 import java.util.Optional;
 
-import com.masson.cruciblecraft.api.material.MaterialForm;
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 
 /**
  * Integer-unit steelmaking rules. A high-carbon 3:1 iron/carbon charge is
@@ -24,7 +24,7 @@ public final class SteelmakingProcess {
         }
         int ironUnits = composition.getOrDefault(IRON, 0);
         int carbonUnits = composition.getOrDefault(CARBON, 0);
-        int threeIngots = MaterialForm.INGOT.units() * 3;
+        int threeIngots = MaterialPrefixes.INGOT.units() * 3;
         if (ironUnits <= 0
                 || ironUnits % threeIngots != 0
                 || carbonUnits <= 0
@@ -35,11 +35,11 @@ public final class SteelmakingProcess {
     }
 
     public static Optional<Batch> resume(int ironUnits) {
-        int threeIngots = MaterialForm.INGOT.units() * 3;
+        int threeIngots = MaterialPrefixes.INGOT.units() * 3;
         if (ironUnits <= 0 || ironUnits % threeIngots != 0) {
             return Optional.empty();
         }
-        int ingots = ironUnits / MaterialForm.INGOT.units();
+        int ingots = ironUnits / MaterialPrefixes.INGOT.units();
         return Optional.of(new Batch(ironUnits, ingots, ingots * 2));
     }
 

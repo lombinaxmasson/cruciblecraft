@@ -1,14 +1,161 @@
 {
-  "id": "carbon",
-  "tag_name": "carbon",
-  "tier": 2,
   "color": "#141414",
-  "tint_style": "matte",
-  "forms": ["dust", "small_dust", "rod"],
-  "thermal": {
-    "melting_point": 3527,
-    "boiling_point": 4027,
-    "density": 2.267
+  "exclude_prefixes": [
+    "bolt",
+    "crushed_ore",
+    "raw_ore"
+  ],
+  "generation_flags": [
+    "cruciblecraft:generates_centrifuged_crushed_ore",
+    "cruciblecraft:generates_crushed_ore",
+    "cruciblecraft:generates_dust",
+    "cruciblecraft:generates_purified_dust",
+    "cruciblecraft:generates_tiny_crushed_ore",
+    "cruciblecraft:generates_washed_crushed_ore",
+    "gt6:itemgenerator/ores",
+    "gt6:itemgenerator/sticks"
+  ],
+  "gt6_metadata": {
+    "aliases": [
+      "AnyCarbon",
+      "AnyCoalCarbon"
+    ],
+    "byproducts": [],
+    "electrical_by_specification": {},
+    "explosion_damage": 0.0,
+    "formula": "C",
+    "generation_tags": [
+      "ITEMGENERATOR.DUSTS",
+      "ITEMGENERATOR.MOLTEN",
+      "ITEMGENERATOR.ORES",
+      "ITEMGENERATOR.PLANTS",
+      "ITEMGENERATOR.STICKS"
+    ],
+    "heat_damage": 0.0,
+    "material_tags": [
+      "ATOMIC.CRYSTALLOGEN",
+      "ATOMIC.ELEMENT",
+      "ATOMIC.NONMETAL",
+      "ATOMIC.POLYATOMIC_NONMETAL",
+      "PROCESSING.FUSION_SYNTHESISABLE",
+      "PROCESSING.MELTING",
+      "PROCESSING.MORTAR_GRINDABLE",
+      "PROCESSING.UUM_SYNTHESISABLE",
+      "PROPERTIES.FLAMMABLE"
+    ],
+    "processing_targets": {
+      "bending": {
+        "cc_units": 144,
+        "material": "carbon",
+        "numerator_u": 648648000,
+        "source_material_id": 60,
+        "source_material_name": "Carbon"
+      },
+      "burning": {
+        "cc_units": 0,
+        "material": "carbon",
+        "numerator_u": 0,
+        "source_material_id": 60,
+        "source_material_name": "Carbon"
+      },
+      "compressing": {
+        "cc_units": 144,
+        "material": "carbon",
+        "numerator_u": 648648000,
+        "source_material_id": 60,
+        "source_material_name": "Carbon"
+      },
+      "crushing": {
+        "cc_units": 144,
+        "material": "carbon",
+        "numerator_u": 648648000,
+        "source_material_id": 60,
+        "source_material_name": "Carbon"
+      },
+      "cutting": {
+        "cc_units": 144,
+        "material": "carbon",
+        "numerator_u": 648648000,
+        "source_material_id": 60,
+        "source_material_name": "Carbon"
+      },
+      "forging": {
+        "cc_units": 144,
+        "material": "carbon",
+        "numerator_u": 648648000,
+        "source_material_id": 60,
+        "source_material_name": "Carbon"
+      },
+      "generifying": {
+        "cc_units": 144,
+        "material": "carbon",
+        "numerator_u": 648648000,
+        "source_material_id": 60,
+        "source_material_name": "Carbon"
+      },
+      "pulver": {
+        "cc_units": 144,
+        "material": "carbon",
+        "numerator_u": 648648000,
+        "source_material_id": 60,
+        "source_material_name": "Carbon"
+      },
+      "smashing": {
+        "cc_units": 144,
+        "material": "carbon",
+        "numerator_u": 648648000,
+        "source_material_id": 60,
+        "source_material_name": "Carbon"
+      },
+      "smelting": {
+        "cc_units": 144,
+        "material": "carbon",
+        "numerator_u": 648648000,
+        "source_material_id": 60,
+        "source_material_name": "Carbon"
+      },
+      "solidifying": {
+        "cc_units": 144,
+        "material": "carbon",
+        "numerator_u": 648648000,
+        "source_material_id": 60,
+        "source_material_name": "Carbon"
+      },
+      "working": {
+        "cc_units": 144,
+        "material": "carbon",
+        "numerator_u": 648648000,
+        "source_material_id": 60,
+        "source_material_name": "Carbon"
+      }
+    },
+    "source_id": 60,
+    "source_name": "Carbon",
+    "source_thermal": {
+      "boiling_point_celsius": 4026.85,
+      "boiling_point_kelvin": 4300,
+      "density": 2.267,
+      "melting_point_celsius": 3526.85,
+      "melting_point_kelvin": 3800,
+      "plasma_point_celsius": 429726.85,
+      "plasma_point_kelvin": 430000
+    },
+    "state": "solid",
+    "tool": {
+      "durability": 0,
+      "quality": 0,
+      "speed": 1.0,
+      "types": 0
+    }
   },
-  "molten_fluid": true
+  "id": "carbon",
+  "molten_fluid": true,
+  "tag_name": "carbon",
+  "thermal": {
+    "boiling_point": 4027,
+    "density": 2.267,
+    "melting_point": 3527
+  },
+  "tier": 2,
+  "tint_style": "matte"
 }

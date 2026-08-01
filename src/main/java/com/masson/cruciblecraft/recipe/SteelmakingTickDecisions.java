@@ -12,7 +12,7 @@ public final class SteelmakingTickDecisions {
     public static Decision evaluate(
             Map<String, Integer> composition,
             int steelBatchIronUnits,
-            float storedAir) {
+            long storedAir) {
         if (steelBatchIronUnits <= 0) {
             return new Decision(Action.INACTIVE, Optional.empty());
         }
@@ -22,7 +22,7 @@ public final class SteelmakingTickDecisions {
             return new Decision(Action.RESET_STALE, Optional.empty());
         }
         return new Decision(
-                storedAir >= 1.0F ? Action.PROCESS : Action.WAIT_FOR_AIR,
+                storedAir >= 1L ? Action.PROCESS : Action.WAIT_FOR_AIR,
                 batch);
     }
 

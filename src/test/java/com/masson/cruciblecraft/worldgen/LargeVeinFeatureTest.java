@@ -13,6 +13,7 @@ class LargeVeinFeatureTest {
     private static final int TIN_SALT = 1414090289;
     private static final int IRON_SALT = 1229737806;
     private static final int GOLD_SALT = 1196379204;
+    private static final int TUNGSTEN_SALT = 1414876756;
 
     @Test
     void anchorIsStableAndInsideRegion() {
@@ -35,8 +36,9 @@ class LargeVeinFeatureTest {
                 LargeVeinLayout.center(worldSeed, 4, -6, 7, COPPER_SALT, -64, 96),
                 LargeVeinLayout.center(worldSeed, 4, -6, 8, TIN_SALT, -64, 96),
                 LargeVeinLayout.center(worldSeed, 4, -6, 7, IRON_SALT, -64, 96),
-                LargeVeinLayout.center(worldSeed, 4, -6, 10, GOLD_SALT, -64, 96));
-        assertEquals(4, centers.size());
+                LargeVeinLayout.center(worldSeed, 4, -6, 10, GOLD_SALT, -64, 96),
+                LargeVeinLayout.center(worldSeed, 4, -6, 12, TUNGSTEN_SALT, -64, 96));
+        assertEquals(5, centers.size());
         assertNotEquals(
                 LargeVeinLayout.generationRoll(worldSeed, 4, -6, COPPER_SALT),
                 LargeVeinLayout.generationRoll(worldSeed, 4, -6, IRON_SALT));

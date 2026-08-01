@@ -1,0 +1,27 @@
+{
+  "limits": {
+    "catalog_bootstrap_ms": 8000,
+    "cold_cache_ms": 424000,
+    "deferred_register_queue_ms": 5000,
+    "full_server_elapsed_ms": 300000,
+    "generated_pack_ms": 5000,
+    "handshake_4000_round_trip_ms": 2000,
+    "handshake_entry_cap": 4096,
+    "hot_cache_ms": 2000,
+    "max_generated_pack_bytes": 100000000
+  },
+  "policy": "Manual 20k stress measurements must remain below 2x the committed baseline (rounded up); the wire protocol remains capped at 4096 entries.",
+  "required_assertions": {
+    "factual_ore_materials": 137,
+    "gt6_ore_direct_domain_materials": 135,
+    "metadata_only_registered_items": 0,
+    "ore_material_exceptions": 2,
+    "over_cap_encode_or_decode_must_fail": true,
+    "registered_ore_blocks": 274,
+    "registered_ore_materials": 137,
+    "single_dust_registered_items": 20000,
+    "synthetic_materials": 20000,
+    "within_cap_round_trip_entries": 4000
+  },
+  "schema_version": 1
+}

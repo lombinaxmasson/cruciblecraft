@@ -1,26 +1,220 @@
 {
-  "id": "gold",
-  "tag_name": "gold",
-  "tier": 2,
   "color": "#FFD700",
-  "tint_style": "shiny",
-  "forms": [
-    "raw_ore",
-    "crushed_ore",
-    "ingot",
-    "dust",
-    "plate",
-    "rod",
-    "bolt"
+  "exclude_prefixes": [
+    "block",
+    "nugget",
+    "small_dust"
   ],
   "form_items": {
     "ingot": "minecraft:gold_ingot",
     "raw_ore": "minecraft:raw_gold"
   },
-  "thermal": {
-    "melting_point": 1064.2,
-    "boiling_point": 2856,
-    "density": 19.32
+  "generation_flags": [
+    "cruciblecraft:generates_block",
+    "cruciblecraft:generates_cable",
+    "cruciblecraft:generates_centrifuged_crushed_ore",
+    "cruciblecraft:generates_crushed_ore",
+    "cruciblecraft:generates_dodecuple_cable",
+    "cruciblecraft:generates_dodecuple_wire",
+    "cruciblecraft:generates_double_cable",
+    "cruciblecraft:generates_double_wire",
+    "cruciblecraft:generates_dust",
+    "cruciblecraft:generates_fine_wire",
+    "cruciblecraft:generates_hexadecuple_wire",
+    "cruciblecraft:generates_ingot",
+    "cruciblecraft:generates_nugget",
+    "cruciblecraft:generates_octuple_cable",
+    "cruciblecraft:generates_octuple_wire",
+    "cruciblecraft:generates_ore",
+    "cruciblecraft:generates_plate",
+    "cruciblecraft:generates_purified_dust",
+    "cruciblecraft:generates_quadruple_cable",
+    "cruciblecraft:generates_quadruple_wire",
+    "cruciblecraft:generates_small_spring",
+    "cruciblecraft:generates_spring",
+    "cruciblecraft:generates_tiny_crushed_ore",
+    "cruciblecraft:generates_washed_crushed_ore",
+    "cruciblecraft:generates_wire",
+    "gt6:itemgenerator/denseplates",
+    "gt6:itemgenerator/foils",
+    "gt6:itemgenerator/multiplates",
+    "gt6:itemgenerator/ores",
+    "gt6:itemgenerator/parts",
+    "gt6:itemgenerator/sticks"
+  ],
+  "gt6_metadata": {
+    "aliases": [],
+    "byproducts": [
+      {
+        "material": "copper",
+        "source_id": 290,
+        "source_name": "Copper"
+      },
+      {
+        "material": "nickel",
+        "source_id": 280,
+        "source_name": "Nickel"
+      },
+      {
+        "material": "cinnabar",
+        "source_id": 9114,
+        "source_name": "Cinnabar"
+      }
+    ],
+    "electrical_by_specification": {},
+    "explosion_damage": 0.0,
+    "formula": "Au",
+    "generation_tags": [
+      "ITEMGENERATOR.ARMORS",
+      "ITEMGENERATOR.DENSEPLATES",
+      "ITEMGENERATOR.DUSTS",
+      "ITEMGENERATOR.FOILS",
+      "ITEMGENERATOR.INGOTS",
+      "ITEMGENERATOR.INGOTS_HOT",
+      "ITEMGENERATOR.MOLTEN",
+      "ITEMGENERATOR.MULTIINGOTS",
+      "ITEMGENERATOR.MULTIPLATES",
+      "ITEMGENERATOR.ORES",
+      "ITEMGENERATOR.PARTS",
+      "ITEMGENERATOR.PLANTS",
+      "ITEMGENERATOR.PLATES",
+      "ITEMGENERATOR.PROJECTILES",
+      "ITEMGENERATOR.RAILS",
+      "ITEMGENERATOR.STICKS"
+    ],
+    "heat_damage": 0.0,
+    "material_tags": [
+      "ATOMIC.COPPER_GROUP",
+      "ATOMIC.ELEMENT",
+      "ATOMIC.METAL",
+      "ATOMIC.NOBLE_METAL",
+      "ATOMIC.PRECIOUS_METAL",
+      "ATOMIC.TRANSITION_METAL",
+      "PROCESSING.EXTRUDABLE",
+      "PROCESSING.MELTING",
+      "PROCESSING.MORTAR_GRINDABLE",
+      "PROCESSING.SMITHABLE",
+      "PROCESSING.UUM_SYNTHESISABLE",
+      "PROCESSING.WASHING_MERCURY",
+      "PROPERTIES.COMMON_ORE",
+      "PROPERTIES.HAS_TOOL_STATS",
+      "PROPERTIES.SOFT",
+      "PROPERTIES.VALUABLE",
+      "PROPERTIES.WITHER_PROOF"
+    ],
+    "processing_targets": {
+      "bending": {
+        "cc_units": 144,
+        "material": "gold",
+        "numerator_u": 648648000,
+        "source_material_id": 790,
+        "source_material_name": "Gold"
+      },
+      "burning": {
+        "cc_units": 0,
+        "material": "gold",
+        "numerator_u": 0,
+        "source_material_id": 790,
+        "source_material_name": "Gold"
+      },
+      "compressing": {
+        "cc_units": 144,
+        "material": "gold",
+        "numerator_u": 648648000,
+        "source_material_id": 790,
+        "source_material_name": "Gold"
+      },
+      "crushing": {
+        "cc_units": 144,
+        "material": "gold",
+        "numerator_u": 648648000,
+        "source_material_id": 790,
+        "source_material_name": "Gold"
+      },
+      "cutting": {
+        "cc_units": 144,
+        "material": "gold",
+        "numerator_u": 648648000,
+        "source_material_id": 790,
+        "source_material_name": "Gold"
+      },
+      "forging": {
+        "cc_units": 144,
+        "material": "gold",
+        "numerator_u": 648648000,
+        "source_material_id": 790,
+        "source_material_name": "Gold"
+      },
+      "generifying": {
+        "cc_units": 144,
+        "material": "gold",
+        "numerator_u": 648648000,
+        "source_material_id": 790,
+        "source_material_name": "Gold"
+      },
+      "pulver": {
+        "cc_units": 144,
+        "material": "gold",
+        "numerator_u": 648648000,
+        "source_material_id": 790,
+        "source_material_name": "Gold"
+      },
+      "smashing": {
+        "cc_units": 144,
+        "material": "gold",
+        "numerator_u": 648648000,
+        "source_material_id": 790,
+        "source_material_name": "Gold"
+      },
+      "smelting": {
+        "cc_units": 144,
+        "material": "gold",
+        "numerator_u": 648648000,
+        "source_material_id": 790,
+        "source_material_name": "Gold"
+      },
+      "solidifying": {
+        "cc_units": 144,
+        "material": "gold",
+        "numerator_u": 648648000,
+        "source_material_id": 790,
+        "source_material_name": "Gold"
+      },
+      "working": {
+        "cc_units": 144,
+        "material": "gold",
+        "numerator_u": 648648000,
+        "source_material_id": 790,
+        "source_material_name": "Gold"
+      }
+    },
+    "source_id": 790,
+    "source_name": "Gold",
+    "source_thermal": {
+      "boiling_point_celsius": 2855.85,
+      "boiling_point_kelvin": 3129,
+      "density": 19.282,
+      "melting_point_celsius": 1063.85,
+      "melting_point_kelvin": 1337,
+      "plasma_point_celsius": 312626.85,
+      "plasma_point_kelvin": 312900
+    },
+    "state": "solid",
+    "tool": {
+      "durability": 64,
+      "quality": 2,
+      "speed": 12.5,
+      "types": 3
+    }
   },
-  "molten_fluid": true
+  "id": "gold",
+  "molten_fluid": true,
+  "tag_name": "gold",
+  "thermal": {
+    "boiling_point": 2856,
+    "density": 19.32,
+    "melting_point": 1064.2
+  },
+  "tier": 2,
+  "tint_style": "shiny"
 }

@@ -1,15 +1,204 @@
 {
-  "id": "steel",
-  "tag_name": "steel",
-  "tier": 3,
   "color": "#828282",
-  "tint_style": "metallic",
-  "forms": ["ingot", "dust", "plate", "rod", "bolt"],
-  "thermal": {
-    "melting_point": 1773,
-    "boiling_point": 2861,
-    "density": 7.874
+  "exclude_prefixes": [
+    "block",
+    "crushed_ore",
+    "nugget",
+    "raw_ore",
+    "small_dust"
+  ],
+  "generation_flags": [
+    "cruciblecraft:generates_block",
+    "cruciblecraft:generates_cable",
+    "cruciblecraft:generates_centrifuged_crushed_ore",
+    "cruciblecraft:generates_crushed_ore",
+    "cruciblecraft:generates_dodecuple_cable",
+    "cruciblecraft:generates_dodecuple_wire",
+    "cruciblecraft:generates_double_cable",
+    "cruciblecraft:generates_double_wire",
+    "cruciblecraft:generates_dust",
+    "cruciblecraft:generates_fine_wire",
+    "cruciblecraft:generates_hexadecuple_wire",
+    "cruciblecraft:generates_ingot",
+    "cruciblecraft:generates_nugget",
+    "cruciblecraft:generates_octuple_cable",
+    "cruciblecraft:generates_octuple_wire",
+    "cruciblecraft:generates_plate",
+    "cruciblecraft:generates_purified_dust",
+    "cruciblecraft:generates_quadruple_cable",
+    "cruciblecraft:generates_quadruple_wire",
+    "cruciblecraft:generates_small_spring",
+    "cruciblecraft:generates_spring",
+    "cruciblecraft:generates_tiny_crushed_ore",
+    "cruciblecraft:generates_washed_crushed_ore",
+    "cruciblecraft:generates_wire",
+    "gt6:itemgenerator/denseplates",
+    "gt6:itemgenerator/foils",
+    "gt6:itemgenerator/multiplates",
+    "gt6:itemgenerator/ores",
+    "gt6:itemgenerator/parts",
+    "gt6:itemgenerator/sticks"
+  ],
+  "gt6_metadata": {
+    "aliases": [
+      "AnyIronOrSteel",
+      "AnyIronSteel"
+    ],
+    "byproducts": [
+      {
+        "material": "hematite",
+        "source_id": 9104,
+        "source_name": "Hematite"
+      }
+    ],
+    "electrical_by_specification": {},
+    "explosion_damage": 0.0,
+    "formula": "Fe",
+    "generation_tags": [
+      "ITEMGENERATOR.ARMORS",
+      "ITEMGENERATOR.DENSEPLATES",
+      "ITEMGENERATOR.DUSTS",
+      "ITEMGENERATOR.FOILS",
+      "ITEMGENERATOR.INGOTS",
+      "ITEMGENERATOR.INGOTS_HOT",
+      "ITEMGENERATOR.MOLTEN",
+      "ITEMGENERATOR.MULTIINGOTS",
+      "ITEMGENERATOR.MULTIPLATES",
+      "ITEMGENERATOR.ORES",
+      "ITEMGENERATOR.PARTS",
+      "ITEMGENERATOR.PLANTS",
+      "ITEMGENERATOR.PLATES",
+      "ITEMGENERATOR.PROJECTILES",
+      "ITEMGENERATOR.RAILS",
+      "ITEMGENERATOR.STICKS"
+    ],
+    "heat_damage": 0.0,
+    "material_tags": [
+      "COMPOUNDS.ALLOY",
+      "COMPOUNDS.DECOMPOSABLE",
+      "PROCESSING.EXTRUDABLE",
+      "PROCESSING.MELTING",
+      "PROCESSING.MORTAR_GRINDABLE",
+      "PROCESSING.NEVER_FURNACE",
+      "PROCESSING.SMITHABLE",
+      "PROCESSING.UUM_SYNTHESISABLE",
+      "PROPERTIES.HAS_TOOL_STATS",
+      "PROPERTIES.MAGNETIC_PASSIVE"
+    ],
+    "processing_targets": {
+      "bending": {
+        "cc_units": 144,
+        "material": "steel",
+        "numerator_u": 648648000,
+        "source_material_id": 8630,
+        "source_material_name": "Steel"
+      },
+      "burning": {
+        "cc_units": 0,
+        "material": "steel",
+        "numerator_u": 0,
+        "source_material_id": 8630,
+        "source_material_name": "Steel"
+      },
+      "compressing": {
+        "cc_units": 144,
+        "material": "steel",
+        "numerator_u": 648648000,
+        "source_material_id": 8630,
+        "source_material_name": "Steel"
+      },
+      "crushing": {
+        "cc_units": 144,
+        "material": "steel",
+        "numerator_u": 648648000,
+        "source_material_id": 8630,
+        "source_material_name": "Steel"
+      },
+      "cutting": {
+        "cc_units": 144,
+        "material": "steel",
+        "numerator_u": 648648000,
+        "source_material_id": 8630,
+        "source_material_name": "Steel"
+      },
+      "forging": {
+        "cc_units": 144,
+        "material": "steel",
+        "numerator_u": 648648000,
+        "source_material_id": 8630,
+        "source_material_name": "Steel"
+      },
+      "generifying": {
+        "cc_units": 144,
+        "material": "steel",
+        "numerator_u": 648648000,
+        "source_material_id": 8630,
+        "source_material_name": "Steel"
+      },
+      "pulver": {
+        "cc_units": 144,
+        "material": "steel",
+        "numerator_u": 648648000,
+        "source_material_id": 8630,
+        "source_material_name": "Steel"
+      },
+      "smashing": {
+        "cc_units": 144,
+        "material": "steel",
+        "numerator_u": 648648000,
+        "source_material_id": 8630,
+        "source_material_name": "Steel"
+      },
+      "smelting": {
+        "cc_units": 144,
+        "material": "steel",
+        "numerator_u": 648648000,
+        "source_material_id": 8630,
+        "source_material_name": "Steel"
+      },
+      "solidifying": {
+        "cc_units": 144,
+        "material": "steel",
+        "numerator_u": 648648000,
+        "source_material_id": 8630,
+        "source_material_name": "Steel"
+      },
+      "working": {
+        "cc_units": 144,
+        "material": "steel",
+        "numerator_u": 648648000,
+        "source_material_id": 8630,
+        "source_material_name": "Steel"
+      }
+    },
+    "source_id": 8630,
+    "source_name": "Steel",
+    "source_thermal": {
+      "boiling_point_celsius": 2860.85,
+      "boiling_point_kelvin": 3134,
+      "density": 7.874,
+      "melting_point_celsius": 1772.85,
+      "melting_point_kelvin": 2046,
+      "plasma_point_celsius": 313126.85,
+      "plasma_point_kelvin": 313400
+    },
+    "state": "solid",
+    "tool": {
+      "durability": 512,
+      "quality": 2,
+      "speed": 6.0,
+      "types": 3
+    }
   },
+  "id": "steel",
   "molten_fluid": true,
-  "no_decompose": true
+  "no_decompose": true,
+  "tag_name": "steel",
+  "thermal": {
+    "boiling_point": 2861,
+    "density": 7.874,
+    "melting_point": 1773
+  },
+  "tier": 3,
+  "tint_style": "metallic"
 }

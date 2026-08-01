@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "_notes": "Verdicts are pinned to the local authoritative GT6 checkout. TODO_PORT means no directly comparable constant model was found.",
+  "groups": {
+    "air": {
+      "verdict": "TODO_PORT",
+      "issue": "GT6 exposes kinetic/air mechanics through machine-specific behavior; no stored-air bellows quantity equivalent to CC's per-tick/stroke/capacity tuple was found.",
+      "source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/tileentity (searched Bellows and air-output implementations)",
+      "review_mode": "automated",
+      "evidence_method": "pinned_cc_constants_and_gt6_source_fingerprints",
+      "evidence": {
+        "group": "air",
+        "cc_source_path": "src/main/java/com/masson/cruciblecraft/air/AirOutputModel.java",
+        "cc_source_sha256": "717acf239080e671fee2affd233a28921e6fd7ddb0f1aaf50ff43477816a12d7",
+        "cc_constants": {
+          "BELLOWS_AIR_PER_TICK": 16,
+          "BELLOWS_STROKE_TICKS": 40,
+          "MAX_STORED_AIR": 1200
+        },
+        "gt6_reference_status": "TODO_PORT",
+        "gt6_source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/tileentity (searched Bellows and air-output implementations)",
+        "gt6_source_fingerprints": {
+          "gt6_code/gregtech6/src/main/java/gregtech/tileentity": "0111e61a27fdea3009066d407866ecbd3260d5a1b84b368147590624f1fdab47"
+        },
+        "verdict": "TODO_PORT",
+        "declared_gt6_constants": null
+      },
+      "evidence_digest": "dbfd7b63ea2c335cfbe0e6d5209e82d1184ce9bb1823d45cdae956625c7a6be1"
+    },
+    "firebox": {
+      "verdict": "TODO_PORT",
+      "issue": "GT6 combustion machines use energy networks and machine storage, not CC's equivalent-fuel-tick firebox buffer.",
+      "source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_Fuels.java",
+      "review_mode": "automated",
+      "evidence_method": "pinned_cc_constants_and_gt6_source_fingerprints",
+      "evidence": {
+        "group": "firebox",
+        "cc_source_path": "src/main/java/com/masson/cruciblecraft/heat/FireboxHeatBuffer.java",
+        "cc_source_sha256": "24d0acff84695f74d311bea4dea5fa5e043dcf435daff71f21cabeecf15cf268",
+        "cc_constants": {
+          "MAX_EQUIVALENT_TICKS": 12000
+        },
+        "gt6_reference_status": "TODO_PORT",
+        "gt6_source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_Fuels.java",
+        "gt6_source_fingerprints": {
+          "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_Fuels.java": "5ffdc49cde921c1e54d1aa2db36193af76ddb86a1a0b7cb5d94c7f3d24c31305"
+        },
+        "verdict": "TODO_PORT",
+        "declared_gt6_constants": null
+      },
+      "evidence_digest": "5a3e2da7a6d55635766b18fc0b3ad9f0991ecdacd82f10341e70d99b915bdb34"
+    },
+    "fuels": {
+      "verdict": "TODO_PORT",
+      "issue": "GT6 derives fuel recipes from per-material mFurnaceBurnTime and target-burning metadata; CC stores fixed HU/t and duration profiles, so the tuples are not directly comparable.",
+      "source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_Fuels.java:34-43",
+      "review_mode": "automated",
+      "evidence_method": "pinned_cc_constants_and_gt6_source_fingerprints",
+      "evidence": {
+        "group": "fuels",
+        "cc_source_path": "src/main/java/com/masson/cruciblecraft/heat/FuelDefinition.java",
+        "cc_source_sha256": "e842baed7e9021405bd78b7201afb8456966de9349c67c117d65920c6acdc7fe",
+        "cc_constants": {
+          "CHARCOAL": {
+            "id": "charcoal",
+            "energy_per_tick": 8,
+            "burn_ticks": 1600
+          },
+          "COAL_COKE": {
+            "id": "coal_coke",
+            "energy_per_tick": 8,
+            "burn_ticks": 3200
+          }
+        },
+        "gt6_reference_status": "TODO_PORT",
+        "gt6_source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_Fuels.java:34-43",
+        "gt6_source_fingerprints": {
+          "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_Fuels.java": "5ffdc49cde921c1e54d1aa2db36193af76ddb86a1a0b7cb5d94c7f3d24c31305"
+        },
+        "verdict": "TODO_PORT",
+        "declared_gt6_constants": null
+      },
+      "evidence_digest": "1194a0f3f8eddf9d19ef7078c5d9ef57c1fae4e97ee18f75d74136152c88db6f"
+    },
+    "steam": {
+      "verdict": "EXACT",
+      "gt6_constants": {
+        "HU_PER_BATCH": 80,
+        "WATER_PER_BATCH": 1,
+        "STEAM_PER_BATCH": 160,
+        "STEAM_PER_KU": 2
+      },
+      "source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityBoilerTank.java:96,115-124 and gt6_code/gregtech6/src/main/java/gregapi/data/CS.java:240; fluid amounts are liters/mB and energy is HU/KU",
+      "review_mode": "automated",
+      "evidence_method": "pinned_cc_constants_and_gt6_source_fingerprints",
+      "evidence": {
+        "group": "steam",
+        "cc_source_path": "src/main/java/com/masson/cruciblecraft/steam/SteamConversion.java",
+        "cc_source_sha256": "d1b0eb3ffee3b72b82681e2c82d99b3efb00dfe6812bada03d8e7a8abeb191e5",
+        "cc_constants": {
+          "HU_PER_BATCH": 80,
+          "WATER_PER_BATCH": 1,
+          "STEAM_PER_BATCH": 160,
+          "STEAM_PER_KU": 2
+        },
+        "gt6_reference_status": "TODO_PORT",
+        "gt6_source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityBoilerTank.java:96,115-124 and gt6_code/gregtech6/src/main/java/gregapi/data/CS.java:240; fluid amounts are liters/mB and energy is HU/KU",
+        "gt6_source_fingerprints": {
+          "gt6_code/gregtech6/src/main/java/gregapi/data/CS.java": "947391068b8078c35cc126ebd1513fa348aa81a98964227f20dbb3574a124e26",
+          "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityBoilerTank.java": "958738fcf2362ea5ccb030218021a4f03fb6fadc7a535b1f7a2c2fe6c56ab465"
+        },
+        "verdict": "EXACT",
+        "declared_gt6_constants": {
+          "HU_PER_BATCH": 80,
+          "WATER_PER_BATCH": 1,
+          "STEAM_PER_BATCH": 160,
+          "STEAM_PER_KU": 2
+        }
+      },
+      "evidence_digest": "2fc9874e1c8cb8f2b6e67edc2acd85aa48217db9713e880eb11ea8dc8b933421"
+    },
+    "steam_engine": {
+      "verdict": "TODO_PORT",
+      "issue": "GT6 steam-engine capacity/output are NBT-configured per registered machine variant; CC's single bronze 24 KU/t profile has no source-level universal tuple.",
+      "source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityEngineSteam.java:58-80,96-103",
+      "review_mode": "automated",
+      "evidence_method": "pinned_cc_constants_and_gt6_source_fingerprints",
+      "evidence": {
+        "group": "steam_engine",
+        "cc_source_path": "src/main/java/com/masson/cruciblecraft/content/blockentity/SteamEngineBlockEntity.java",
+        "cc_source_sha256": "be7966ea673cb887bddcd58f1cb180aa557794164ab7d8fa5f69f607b9168468",
+        "cc_constants": {
+          "STEAM_CAPACITY": 16000,
+          "KU_CAPACITY": 1024,
+          "OUTPUT_RATE": 24
+        },
+        "gt6_reference_status": "TODO_PORT",
+        "gt6_source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityEngineSteam.java:58-80,96-103",
+        "gt6_source_fingerprints": {
+          "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityEngineSteam.java": "c700ce5b285ddcecd034708615a5f25fbaa7bb1e5584e5a14c3f79d531ec14e6"
+        },
+        "verdict": "TODO_PORT",
+        "declared_gt6_constants": null
+      },
+      "evidence_digest": "f1a4a1673b2222f27fbe96043a70b51d784be5e509205cf69e18980f14be3a66"
+    },
+    "steelmaking": {
+      "verdict": "TODO_PORT",
+      "issue": "GT6 crucible steelmaking is composition-, gas-, and kinetic-energy-driven rather than a fixed reaction interval/carbon-per-cycle controller.",
+      "source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrucible.java",
+      "review_mode": "automated",
+      "evidence_method": "pinned_cc_constants_and_gt6_source_fingerprints",
+      "evidence": {
+        "group": "steelmaking",
+        "cc_source_path": "src/main/java/com/masson/cruciblecraft/recipe/SteelmakingProcess.java",
+        "cc_source_sha256": "6f8da5bd89aab71e0a60b1ac244a50a5f9be02b8daf5a062eedfc3296a41b52b",
+        "cc_constants": {
+          "REACTION_INTERVAL_TICKS": 20,
+          "CARBON_CONSUMED_PER_CYCLE": 10
+        },
+        "gt6_reference_status": "TODO_PORT",
+        "gt6_source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrucible.java",
+        "gt6_source_fingerprints": {
+          "gt6_code/gregtech6/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrucible.java": "39acad7dc3a1e840a83f24cc6af750b7e64ac4a466b0c5902c928c5fd312b789"
+        },
+        "verdict": "TODO_PORT",
+        "declared_gt6_constants": null
+      },
+      "evidence_digest": "733621ce3807af2d31bc82166046b57346e2704260e2e6050aa8b0e3fe2bf74c"
+    },
+    "thermal": {
+      "verdict": "INTENTIONAL",
+      "reason": "CC preserves GT6's accumulator, 100-tick hot buffer, 10-tick ambient drift, and 200-degree ambient floor cap, but scales thermal mass in grams for CC material units instead of GT6 kilograms.",
+      "cc_constants": {
+        "GRAMS_PER_ENERGY": 200.0,
+        "HOT_BUFFER_TICKS": 100,
+        "PASSIVE_DRIFT_INTERVAL": 10
+      },
+      "gt6_constants": {
+        "KG_PER_ENERGY": 100,
+        "HOT_BUFFER_TICKS": 100,
+        "PASSIVE_DRIFT_INTERVAL": 10,
+        "AMBIENT_FLOOR_CAP_K": 200
+      },
+      "source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrucible.java:79-85,192-193,353; GT6 temperatures are Kelvin and weight divisor is kilograms",
+      "review_mode": "automated",
+      "evidence_method": "pinned_cc_constants_and_gt6_source_fingerprints",
+      "evidence": {
+        "group": "thermal",
+        "cc_source_path": "src/main/java/com/masson/cruciblecraft/heat/CrucibleThermalModel.java",
+        "cc_source_sha256": "1e2e7b2b09b38f900619c8c1efffc3808b7b3894e96d5e36732a71a4f220c8fe",
+        "cc_constants": {
+          "GRAMS_PER_ENERGY": 200.0,
+          "HOT_BUFFER_TICKS": 100,
+          "PASSIVE_DRIFT_INTERVAL": 10
+        },
+        "gt6_reference_status": "TODO_PORT",
+        "gt6_source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrucible.java:79-85,192-193,353; GT6 temperatures are Kelvin and weight divisor is kilograms",
+        "gt6_source_fingerprints": {
+          "gt6_code/gregtech6/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrucible.java": "39acad7dc3a1e840a83f24cc6af750b7e64ac4a466b0c5902c928c5fd312b789"
+        },
+        "verdict": "INTENTIONAL",
+        "declared_gt6_constants": {
+          "KG_PER_ENERGY": 100,
+          "HOT_BUFFER_TICKS": 100,
+          "PASSIVE_DRIFT_INTERVAL": 10,
+          "AMBIENT_FLOOR_CAP_K": 200
+        }
+      },
+      "evidence_digest": "f351133d9862673e044cb4468b37d02f55da23ccb98cf849cd8df5a973a47573"
+    }
+  }
+}

@@ -1,15 +1,145 @@
 {
-  "id": "ceramic",
-  "tag_name": "ceramic",
-  "tier": 0,
   "color": "#DC8246",
-  "tint_style": "matte",
-  "forms": ["dust", "plate"],
-  "thermal": {
-    "melting_point": 1727,
-    "boiling_point": 3454,
-    "density": 1.9
+  "exclude_prefixes": [
+    "small_dust"
+  ],
+  "generation_flags": [
+    "cruciblecraft:generates_dust",
+    "cruciblecraft:generates_plate"
+  ],
+  "gt6_metadata": {
+    "aliases": [],
+    "byproducts": [],
+    "electrical_by_specification": {},
+    "explosion_damage": 0.0,
+    "formula": "(Al₂O₃)(SiO₂)₄",
+    "generation_tags": [
+      "ITEMGENERATOR.DUSTS",
+      "ITEMGENERATOR.PLANTS",
+      "ITEMGENERATOR.PLATES"
+    ],
+    "heat_damage": 0.0,
+    "material_tags": [
+      "COMPOUNDS.DECOMPOSABLE",
+      "PROCESSING.ELECTROLYSABLE",
+      "PROCESSING.MORTAR_GRINDABLE",
+      "PROCESSING.UUM_SYNTHESISABLE",
+      "PROPERTIES.BRITTLE"
+    ],
+    "processing_targets": {
+      "bending": {
+        "cc_units": 0,
+        "material": "ceramic",
+        "numerator_u": 0,
+        "source_material_id": 8225,
+        "source_material_name": "Ceramic"
+      },
+      "burning": {
+        "cc_units": 0,
+        "material": "ceramic",
+        "numerator_u": 0,
+        "source_material_id": 8225,
+        "source_material_name": "Ceramic"
+      },
+      "compressing": {
+        "cc_units": 0,
+        "material": "ceramic",
+        "numerator_u": 0,
+        "source_material_id": 8225,
+        "source_material_name": "Ceramic"
+      },
+      "crushing": {
+        "cc_units": 144,
+        "material": "ceramic",
+        "numerator_u": 648648000,
+        "source_material_id": 8225,
+        "source_material_name": "Ceramic"
+      },
+      "cutting": {
+        "cc_units": 144,
+        "material": "ceramic",
+        "numerator_u": 648648000,
+        "source_material_id": 8225,
+        "source_material_name": "Ceramic"
+      },
+      "forging": {
+        "cc_units": 0,
+        "material": "ceramic",
+        "numerator_u": 0,
+        "source_material_id": 8225,
+        "source_material_name": "Ceramic"
+      },
+      "generifying": {
+        "cc_units": 144,
+        "material": "ceramic",
+        "numerator_u": 648648000,
+        "source_material_id": 8225,
+        "source_material_name": "Ceramic"
+      },
+      "pulver": {
+        "cc_units": 144,
+        "material": "ceramic",
+        "numerator_u": 648648000,
+        "source_material_id": 8225,
+        "source_material_name": "Ceramic"
+      },
+      "smashing": {
+        "cc_units": 0,
+        "material": "ceramic",
+        "numerator_u": 0,
+        "source_material_id": 8225,
+        "source_material_name": "Ceramic"
+      },
+      "smelting": {
+        "cc_units": 144,
+        "material": "ceramic",
+        "numerator_u": 648648000,
+        "source_material_id": 8225,
+        "source_material_name": "Ceramic"
+      },
+      "solidifying": {
+        "cc_units": 144,
+        "material": "ceramic",
+        "numerator_u": 648648000,
+        "source_material_id": 8225,
+        "source_material_name": "Ceramic"
+      },
+      "working": {
+        "cc_units": 144,
+        "material": "ceramic",
+        "numerator_u": 648648000,
+        "source_material_id": 8225,
+        "source_material_name": "Ceramic"
+      }
+    },
+    "source_id": 8225,
+    "source_name": "Ceramic",
+    "source_thermal": {
+      "boiling_point_celsius": 3726.85,
+      "boiling_point_kelvin": 4000,
+      "density": 0.8183399444444446,
+      "melting_point_celsius": 1726.85,
+      "melting_point_kelvin": 2000,
+      "plasma_point_celsius": 399726.85,
+      "plasma_point_kelvin": 400000
+    },
+    "state": "solid",
+    "tool": {
+      "durability": 0,
+      "quality": 0,
+      "speed": 1.0,
+      "types": 0
+    }
   },
+  "id": "ceramic",
   "molten_fluid": false,
-  "no_decompose": true
+  "no_decompose": true,
+  "tag_name": "ceramic",
+  "thermal": {
+    "boiling_point": 3454,
+    "density": 1.9,
+    "melting_point": 1727
+  },
+  "tier": 0,
+  "tint_style": "matte"
 }

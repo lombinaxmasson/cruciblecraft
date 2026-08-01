@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.google.gson.JsonParser;
-import com.masson.cruciblecraft.api.material.MaterialForm;
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.material.def.ThermalProperties;
 import com.mojang.serialization.JsonOps;
@@ -50,7 +50,7 @@ class MaterialColorsTest {
                 0,
                 color,
                 "metallic",
-                List.of(MaterialForm.DUST),
+                List.of(MaterialPrefixes.DUST),
                 Map.of(),
                 new ThermalProperties(100),
                 false,

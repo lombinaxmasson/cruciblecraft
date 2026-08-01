@@ -11,9 +11,9 @@ import org.junit.jupiter.api.Test;
 
 class CokeOvenResourceTest {
     @Test
-    void handwrittenAndFallbackGeneratedJsonIsValid() throws IOException {
+    void machineAndGeneratedJsonIsValid() throws IOException {
         List<Path> paths = List.of(
-                Path.of("src/main/resources/data/cruciblecraft/recipe/coke_oven/coal.json"),
+                Path.of("src/generated/resources/data/cruciblecraft/recipe/coke_oven/coal.json"),
                 Path.of("src/main/resources/data/cruciblecraft/recipe/coke_oven_controller.json"),
                 Path.of("src/generated/resources/assets/cruciblecraft/blockstates/coke_oven.json"),
                 Path.of("src/generated/resources/assets/cruciblecraft/models/block/coke_oven.json"),

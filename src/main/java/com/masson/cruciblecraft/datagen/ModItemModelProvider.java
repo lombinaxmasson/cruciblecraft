@@ -1,8 +1,6 @@
 package com.masson.cruciblecraft.datagen;
 
 import com.masson.cruciblecraft.CrucibleCraft;
-import com.masson.cruciblecraft.api.material.MaterialForm;
-import com.masson.cruciblecraft.registry.ModItems;
 
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
@@ -15,12 +13,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        ModItems.materialItems().forEach(holder -> {
-            var item = holder.get();
-            generated(
-                    item.material().registryName(item.form()),
-                    textureFor(item.form()));
-        });
         generated("raw_ceramic_crucible", "clay_ball");
         generated("raw_ceramic_mold", "clay_ball");
         generated("raw_ingot_mold", "clay_ball");
@@ -36,20 +28,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         generated("unknown_material", "barrier");
         withExistingParent("smithing_hammer", mcLoc("item/handheld"))
                 .texture("layer0", mcLoc("item/iron_pickaxe"));
-    }
-
-    private static String textureFor(MaterialForm form) {
-        return switch (form) {
-            case INGOT -> "iron_ingot";
-            case DUST, SMALL_DUST -> "gunpowder";
-            case RAW_ORE -> "raw_iron";
-            case CRUSHED_ORE -> "flint";
-            case NUGGET -> "iron_nugget";
-            case BLOCK -> "iron_block";
-            case PLATE -> "paper";
-            case ROD -> "bone";
-            case BOLT -> "flint";
-        };
     }
 
     private void generated(String name, String vanillaTexture) {

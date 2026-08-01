@@ -25,4 +25,20 @@ public final class CapabilitySideRules {
     public static boolean crusherExtractsItems(Face front, Face side) {
         return side != Face.UNSIDED && side == front;
     }
+
+    public static boolean crusherAcceptsKinetic(Face front, Face side) {
+        return side != Face.UNSIDED && side == opposite(front);
+    }
+
+    private static Face opposite(Face face) {
+        return switch (face) {
+            case DOWN -> Face.UP;
+            case UP -> Face.DOWN;
+            case NORTH -> Face.SOUTH;
+            case SOUTH -> Face.NORTH;
+            case WEST -> Face.EAST;
+            case EAST -> Face.WEST;
+            case UNSIDED -> Face.UNSIDED;
+        };
+    }
 }

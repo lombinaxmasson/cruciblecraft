@@ -101,7 +101,7 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
             }
             tooltip.add(Component.translatable(
                     "jade.cruciblecraft.firebox_heat",
-                    Math.round(firebox.storedHeat()),
+                    firebox.storedHeat(),
                     firebox.remainingSeconds()));
             tooltip.add(Component.translatable(
                     "jade.cruciblecraft.firebox_output",
@@ -152,7 +152,7 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                         "jade.cruciblecraft.contents",
                         contents,
                         crucible.totalUnits(),
-                        CrucibleBlockEntity.MAX_UNITS));
+                        CrucibleBlockEntity.maxUnits()));
             }
         }
 

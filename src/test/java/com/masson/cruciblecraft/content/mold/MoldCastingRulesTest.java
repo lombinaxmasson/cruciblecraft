@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Map;
 
-import com.masson.cruciblecraft.api.material.MaterialForm;
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,9 +21,9 @@ class MoldCastingRulesTest {
     @Test
     void pureMaterialUsesTheFormUnitCost() {
         var batch = MoldCastingRules.smallestBatch(
-                Map.of("copper", MaterialForm.INGOT.units()),
-                MaterialForm.ROD).orElseThrow();
-        assertEquals(Map.of("copper", MaterialForm.ROD.units()), batch.cost());
+                Map.of("copper", MaterialPrefixes.INGOT.units()),
+                MaterialPrefixes.ROD).orElseThrow();
+        assertEquals(Map.of("copper", MaterialPrefixes.ROD.units()), batch.cost());
         assertEquals(1, batch.outputCount());
     }
 
@@ -31,7 +31,7 @@ class MoldCastingRulesTest {
     void threeToOneAlloyBoltUsesTheSmallestIntegralBatch() {
         var batch = MoldCastingRules.smallestBatch(
                 Map.of("copper", 108, "tin", 36),
-                MaterialForm.BOLT).orElseThrow();
+                MaterialPrefixes.BOLT).orElseThrow();
         assertEquals(2, batch.outputCount());
         assertEquals(Map.of("copper", 27, "tin", 9), batch.cost());
     }

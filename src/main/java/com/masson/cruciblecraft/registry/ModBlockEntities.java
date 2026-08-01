@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrusherBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FireboxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
 
@@ -80,6 +81,28 @@ public final class ModBlockEntities {
                     () -> BlockEntityType.Builder.of(
                             CrusherBlockEntity::new,
                             ModBlocks.BRONZE_CRUSHER.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ConfiguredProcessingMachineBlockEntity>>
+            PROCESSING_MACHINE = BLOCK_ENTITIES.register(
+                    "processing_machine",
+                    () -> BlockEntityType.Builder.of(
+                            ConfiguredProcessingMachineBlockEntity::new,
+                            ModBlocks.SLUICE.get(),
+                            ModBlocks.BATH.get(),
+                            ModBlocks.CENTRIFUGE.get(),
+                            ModBlocks.SHREDDER.get(),
+                            ModBlocks.SIFTER.get(),
+                            ModBlocks.SMELTER.get(),
+                            ModBlocks.MORTAR.get(),
+                            ModBlocks.EXTRUDER.get(),
+                            ModBlocks.CUTTER.get(),
+                            ModBlocks.LATHE.get(),
+                            ModBlocks.ROLLINGMILL.get(),
+                            ModBlocks.ROLLBENDER.get(),
+                            ModBlocks.WIREMILL.get(),
+                            ModBlocks.BENDER.get(),
+                            ModBlocks.ASSEMBLER.get(),
+                            ModBlocks.WELDER.get(),
+                            ModBlocks.PRESS.get()).build(null));
 
     private ModBlockEntities() {}
 }

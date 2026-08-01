@@ -2,9 +2,10 @@ package com.masson.cruciblecraft.content.item;
 
 import java.util.List;
 
-import com.masson.cruciblecraft.api.material.MaterialForm;
+import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.material.MissingMaterialComponent;
+import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.registry.ModComponents;
 
 import net.minecraft.ChatFormatting;
@@ -51,9 +52,9 @@ public final class UnknownMaterialItem extends Item {
         if (missing == null) {
             return;
         }
-        MaterialForm form;
+        MaterialPrefix form;
         try {
-            form = MaterialForm.parse(missing.form());
+            form = MaterialPrefixCatalog.require(missing.form());
         } catch (IllegalArgumentException exception) {
             return;
         }

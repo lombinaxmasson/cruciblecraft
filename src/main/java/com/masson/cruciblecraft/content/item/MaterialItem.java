@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.content.item;
 
-import com.masson.cruciblecraft.api.material.MaterialForm;
+import com.masson.cruciblecraft.api.material.MaterialPrefix;
+import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 
 import net.minecraft.network.chat.Component;
@@ -8,22 +9,24 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class MaterialItem extends Item {
-    public static final int INGOT_UNITS = 144;
+    private final String materialId;
+    private final MaterialPrefix form;
 
-    private final MaterialDefinition material;
-    private final MaterialForm form;
-
-    public MaterialItem(MaterialDefinition material, MaterialForm form, Properties properties) {
+    public MaterialItem(MaterialDefinition material, MaterialPrefix form, Properties properties) {
         super(properties);
-        this.material = material;
+        this.materialId = material.id();
         this.form = form;
     }
 
     public MaterialDefinition material() {
-        return material;
+        return MaterialCatalog.require(materialId);
     }
 
-    public MaterialForm form() {
+    public String materialId() {
+        return materialId;
+    }
+
+    public MaterialPrefix form() {
         return form;
     }
 
@@ -33,6 +36,7 @@ public class MaterialItem extends Item {
 
     @Override
     public Component getName(ItemStack stack) {
+        MaterialDefinition material = material();
         Component materialName = material.nameKey()
                 .<Component>map(Component::translatable)
                 .orElseGet(() -> Component.literal(title(material.id())));
