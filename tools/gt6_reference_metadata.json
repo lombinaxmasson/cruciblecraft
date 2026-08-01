@@ -1,0 +1,63 @@
+{
+  "schema_version": 2,
+  "gt6_version": "6.17.06-22-g3703e4030",
+  "config_digest": "2f0c1e99d2bcddbbf2ab733c521bdc4f52396d7c23038ced4dba106485518a2e",
+  "dump_tool_version": "gt6dump-1.0",
+  "provenance_status": "verified",
+  "runtime_mod_inventory": {
+    "run_mods_jars": [],
+    "runtime_classpath": [
+      "gregtech_1.7.10-6.17.06-22-g3703e4030-dev.jar",
+      "CodeChickenLib:1.7.10-1.1.3.140:dev",
+      "CodeChickenCore:1.7.10-1.0.7.47:dev",
+      "ForgeMultipart:1.7.10-1.2.0.347:dev",
+      "NotEnoughItems:1.7.10-1.0.5.120:dev",
+      "Waila:1.5.11-RC2-NONEI_1.7.10:dev"
+    ],
+    "minecraft": "1.7.10",
+    "forge": "10.13.4.1614",
+    "source": "gt6_dump_mod/build.gradle and gt6_dump_mod/run/mods",
+    "note": "No HBM, DivineRPG, IC2, Mekanism, or Galacticraft jar was present. originalMod on compatibility materials denotes GT6 ownership metadata, not proof that the source mod was loaded."
+  },
+  "compatibility_surface": {
+    "sentinel_record_count": 441,
+    "name_only_material_count": 441,
+    "name_only_material_name_set_sha256": "931a3e850b3cedb9786016a503d2606e3190def6f18377021f8b6f515b79e0be",
+    "name_only_registered_any_prefix_count": 308,
+    "name_only_registered_t0_prefix_count": 263,
+    "name_only_zero_full_appearance_count": 441,
+    "name_only_zero_reviewed_appearance_count": 441,
+    "negative_id_fluid_map_count": 2,
+    "negative_id_fluid_materials": [
+      "Euphemium",
+      "Schrabidium"
+    ],
+    "original_mod_known_count": 39,
+    "original_mod_unknown_count": 402,
+    "original_mod_distribution": {
+      "<unknown>": 402,
+      "hbm": 15,
+      "divinerpg": 11,
+      "gregtech": 4,
+      "gregapi": 2,
+      "IC2": 2,
+      "Mekanism": 2,
+      "GalacticraftCore": 1,
+      "rocketscience": 1,
+      "minecraft": 1
+    },
+    "stable_to_name_only_component_edges": 0,
+    "stable_to_name_only_target_edges": 0,
+    "stable_to_name_only_byproduct_edges": 0,
+    "silent_zone_investigation_status": "CLOSED",
+    "stable_registered_t0_prefix_zero_appearance_count": 1,
+    "stable_registered_t0_prefix_zero_appearance_names": [
+      "ClayBrick"
+    ],
+    "sentinel_stable_silent_zone_name_overlap_count": 0,
+    "source_mod_attribution": "partial: originalMod identifies 39 records; the current dump does not retain the owning ItemStack mod id for each OreDict registration event",
+    "interpretation": "Environment-dependent GT6 OreDict compatibility surface. Prefix registration proves an ItemStack registration event, while zero recipe appearance shows that no dumped recipe map consumed these name-only materials.",
+    "silent_zone_conclusion": "The earlier ~285-290 registered-item/zero-recipe estimate was the name-only sentinel population, not a bulk stable-material recipe-reference miss."
+  },
+  "note": "Filled from T1 dump: GT jar gregtech_1.7.10-6.17.06-22-g3703e4030-dev.jar, dump tool gt6dump-1.0.jar, config_digest = sha256 of sorted config_digest/*.json file digests (index.json + configs_gt.json + cfg_files.json). Name-only compatibility metrics fingerprint the loaded 1.7.10 OreDict environment and must be refreshed with every new dump/mod combination."
+}

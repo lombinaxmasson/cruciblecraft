@@ -33,6 +33,13 @@ public record LargeVeinConfiguration(
         float generationChance,
         int salt) implements FeatureConfiguration {
 
+    /*
+     * Large veins run inside a 3x3-chunk WorldGenRegion. Its anchor is min + 8,
+     * leaving 24 blocks toward the minimum edge but only 23 toward the maximum
+     * edge, so 23 is the largest radius that is safe in both directions.
+     */
+    static final int MAX_SAFE_HORIZONTAL_RADIUS = 23;
+
     private static final Codec<TagKey<Block>> BLOCK_TAG_CODEC = ResourceLocation.CODEC.xmap(
             id -> TagKey.create(Registries.BLOCK, id),
             TagKey::location);
@@ -45,7 +52,8 @@ public record LargeVeinConfiguration(
             WeightedState.CODEC.listOf().fieldOf("spread").forGetter(LargeVeinConfiguration::spread),
             Codec.intRange(-64, 320).fieldOf("min_y").forGetter(LargeVeinConfiguration::minY),
             Codec.intRange(-64, 320).fieldOf("max_y").forGetter(LargeVeinConfiguration::maxY),
-            Codec.intRange(4, 48).fieldOf("horizontal_radius").forGetter(LargeVeinConfiguration::horizontalRadius),
+            Codec.intRange(4, MAX_SAFE_HORIZONTAL_RADIUS).fieldOf("horizontal_radius")
+                    .forGetter(LargeVeinConfiguration::horizontalRadius),
             Codec.intRange(2, 24).fieldOf("vertical_radius").forGetter(LargeVeinConfiguration::verticalRadius),
             Codec.floatRange(0.01F, 1.0F).fieldOf("density").forGetter(LargeVeinConfiguration::density),
             BLOCK_TAG_CODEC.fieldOf("replaceable").forGetter(LargeVeinConfiguration::replaceable),
@@ -62,6 +70,12 @@ public record LargeVeinConfiguration(
         }
         if (config.top.isEmpty() || config.bottom.isEmpty()) {
             return DataResult.error(() -> "top and bottom weighted lists must not be empty");
+        }
+        // Keep this invariant explicit even if a future codec stops using intRange.
+        if (config.horizontalRadius > MAX_SAFE_HORIZONTAL_RADIUS) {
+            return DataResult.error(() -> "horizontal_radius must not exceed "
+                    + MAX_SAFE_HORIZONTAL_RADIUS
+                    + " for the 3x3 WorldGenRegion anchor-at-min+8 assumption");
         }
         return DataResult.success(config);
     }

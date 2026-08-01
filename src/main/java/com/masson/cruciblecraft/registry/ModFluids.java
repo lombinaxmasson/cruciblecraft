@@ -9,7 +9,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 
 import com.masson.cruciblecraft.CrucibleCraft;
-import com.masson.cruciblecraft.fluid.MoltenTransferMath;
+import com.masson.cruciblecraft.material.GT6ImportUnits;
+import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -26,9 +27,9 @@ public final class ModFluids {
             DeferredRegister.create(NeoForgeRegistries.Keys.FLUID_TYPES, CrucibleCraft.MODID);
     public static final DeferredRegister<Fluid> FLUIDS =
             DeferredRegister.create(BuiltInRegistries.FLUID, CrucibleCraft.MODID);
-    private static final Map<String, MoltenFluidEntry> MOLTEN_BY_MATERIAL = new LinkedHashMap<>();
-    private static volatile Map<Fluid, MaterialDefinition> materialByFluid;
-    private static Collection<MoltenFluidEntry> moltenFluids = java.util.List.of();
+    private static volatile MoltenRegistration moltenRegistration =
+            MoltenRegistration.empty();
+    private static volatile Map<Fluid, String> materialByFluid;
 
     public static final Supplier<FluidType> CREOSOTE_TYPE = FLUID_TYPES.register(
             "creosote",
@@ -69,10 +70,12 @@ public final class ModFluids {
                 .levelDecreasePerBlock(2);
     }
 
-    public static void registerMaterials(Collection<MaterialDefinition> definitions) {
-        if (!MOLTEN_BY_MATERIAL.isEmpty()) {
+    public static synchronized void registerMaterials(
+            Collection<MaterialDefinition> definitions) {
+        if (!moltenRegistration.byMaterial().isEmpty()) {
             throw new IllegalStateException("Molten material fluids already registered");
         }
+        LinkedHashMap<String, MoltenFluidEntry> registered = new LinkedHashMap<>();
         for (MaterialDefinition material : definitions) {
             if (!material.moltenFluid()) {
                 continue;
@@ -82,7 +85,7 @@ public final class ModFluids {
             Supplier<FluidType> type = FLUID_TYPES.register(
                     sourceId,
                     () -> new FluidType(FluidType.Properties.create()
-                            .temperature(MoltenTransferMath.celsiusToKelvin(
+                            .temperature(GT6ImportUnits.celsiusToRoundedKelvin(
                                     material.thermal().meltingPoint()))
                             .density(Math.max(1, (int) Math.round(material.thermal().density() * 1_000.0)))
                             .viscosity(6_000)));
@@ -94,11 +97,13 @@ public final class ModFluids {
                     () -> flowing.get().get());
             source.set(FLUIDS.register(sourceId, () -> new BaseFlowingFluid.Source(properties.get())));
             flowing.set(FLUIDS.register(flowingId, () -> new BaseFlowingFluid.Flowing(properties.get())));
-            MOLTEN_BY_MATERIAL.put(
+            registered.put(
                     material.id(),
-                    new MoltenFluidEntry(material, type, source.get(), flowing.get()));
+                    new MoltenFluidEntry(material.id(), type, source.get(), flowing.get()));
         }
-        moltenFluids = java.util.List.copyOf(MOLTEN_BY_MATERIAL.values());
+        moltenRegistration = new MoltenRegistration(
+                registered,
+                registered.values());
     }
 
     /**
@@ -109,40 +114,58 @@ public final class ModFluids {
         if (materialByFluid != null) {
             return;
         }
-        IdentityHashMap<Fluid, MaterialDefinition> reverse = new IdentityHashMap<>();
-        for (MoltenFluidEntry entry : moltenFluids) {
+        IdentityHashMap<Fluid, String> reverse = new IdentityHashMap<>();
+        for (MoltenFluidEntry entry : moltenRegistration.entries()) {
             if (!entry.source().isBound() || !entry.flowing().isBound()) {
                 throw new IllegalStateException(
                         "Molten fluid lookup finalized before registries were bound");
             }
-            reverse.put(entry.source().get(), entry.material());
-            reverse.put(entry.flowing().get(), entry.material());
+            reverse.put(entry.source().get(), entry.materialId());
+            reverse.put(entry.flowing().get(), entry.materialId());
         }
         materialByFluid = java.util.Collections.unmodifiableMap(reverse);
     }
 
     public static Optional<MoltenFluidEntry> molten(String materialId) {
-        return Optional.ofNullable(MOLTEN_BY_MATERIAL.get(materialId));
+        return Optional.ofNullable(
+                moltenRegistration.byMaterial().get(materialId));
     }
 
     public static Optional<MaterialDefinition> material(Fluid fluid) {
-        Map<Fluid, MaterialDefinition> lookup = materialByFluid;
+        Map<Fluid, String> lookup = materialByFluid;
         if (lookup == null) {
             throw new IllegalStateException(
                     "Molten fluid lookup used before common setup finalized it");
         }
-        return Optional.ofNullable(lookup.get(fluid));
+        return Optional.ofNullable(lookup.get(fluid)).map(MaterialCatalog::require);
     }
 
     public static Collection<MoltenFluidEntry> moltenFluids() {
-        return moltenFluids;
+        return moltenRegistration.entries();
     }
 
     public record MoltenFluidEntry(
-            MaterialDefinition material,
+            String materialId,
             Supplier<FluidType> type,
             DeferredHolder<Fluid, FlowingFluid> source,
-            DeferredHolder<Fluid, FlowingFluid> flowing) {}
+            DeferredHolder<Fluid, FlowingFluid> flowing) {
+        public MaterialDefinition material() {
+            return MaterialCatalog.require(materialId);
+        }
+    }
+
+    private record MoltenRegistration(
+            Map<String, MoltenFluidEntry> byMaterial,
+            Collection<MoltenFluidEntry> entries) {
+        private MoltenRegistration {
+            byMaterial = Map.copyOf(byMaterial);
+            entries = java.util.List.copyOf(entries);
+        }
+
+        private static MoltenRegistration empty() {
+            return new MoltenRegistration(Map.of(), java.util.List.of());
+        }
+    }
 
     private ModFluids() {}
 }

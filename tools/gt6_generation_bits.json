@@ -1,0 +1,6017 @@
+{
+  "schema_version": 3,
+  "artifact_kind": "gt6_generation_bits",
+  "identity_policy": {
+    "material_key": "nameInternal",
+    "canonical_filter": "material.id >= 0",
+    "sentinel_policy": "id=-1 name-only records are excluded from set equality and reported only as noncanonical diagnostics"
+  },
+  "rule_language": {
+    "max_expression_tags": 3,
+    "operators": [
+      "union",
+      "intersection",
+      "difference"
+    ],
+    "replay": "(evaluate(expression) - exclude_materials) | include_materials",
+    "prefix_acceptance": {
+      "exception_budget": "max(16, ceil(0.05 * target_material_count))",
+      "minimum_exception_count": 16,
+      "target_exception_ratio": 0.05
+    },
+    "fluid_acceptance": {
+      "max_exception_count": 16,
+      "max_exception_ratio": 0.1
+    },
+    "diagnostic_policy": "The best candidate is reported for core prefixes even when its exception set is too large to be a generation rule.",
+    "search_policy": "All stable-material tags participate in one- and two-tag searches. Three-tag searches use direct target anchors plus tags ranked by residual coverage and spill."
+  },
+  "source": {
+    "materials": "gt6_dump/gt6_recipe_dump/oredict/materials.json",
+    "materials_raw_sha256": "d5f6397b29ee7dc75248a458da34ab4e16e50aafbe9009e39602dd1910bbc3ff",
+    "materials_canonical_sha256": "8b2b0f2d25c52394d64de06dd5be4a67148e5afa2e4e11b9a8ef824102678e68",
+    "prefixes": "gt6_dump/gt6_recipe_dump/oredict/prefixes.json",
+    "prefixes_raw_sha256": "176c8b17b2f9152192c05bc9b07b6acd2e6e50c05255b97add77f2f2ba9b9e89",
+    "prefixes_canonical_sha256": "c84c13f98e60b23fe101f94a76cbebae97c2f0463015d7bbb2e5f704b00bfaf8",
+    "fluid_map": "gt6_dump/gt6_recipe_dump/oredict/fluid_map.json",
+    "fluid_map_raw_sha256": "576d2dad3b7669e3045cf64ad07d98148b9a2ec127dd4cc92725df6679a12f0d",
+    "fluid_map_canonical_sha256": "202161d0d2e10558f83f86eeb6c2aeaddeeac49aa77d93f3f40838ac32cfac38"
+  },
+  "generation_tag_flags": {
+    "ATOMIC.ACTINIDE": "gt6:atomic/actinide",
+    "ATOMIC.ALKALINE_EARTH_METAL": "gt6:atomic/alkaline_earth_metal",
+    "ATOMIC.ALKALI_METAL": "gt6:atomic/alkali_metal",
+    "ATOMIC.ANTIMATTER": "gt6:atomic/antimatter",
+    "ATOMIC.CHALCOGEN": "gt6:atomic/chalcogen",
+    "ATOMIC.CHROMIUM_GROUP": "gt6:atomic/chromium_group",
+    "ATOMIC.COBALT_GROUP": "gt6:atomic/cobalt_group",
+    "ATOMIC.COPPER_GROUP": "gt6:atomic/copper_group",
+    "ATOMIC.CRYSTALLOGEN": "gt6:atomic/crystallogen",
+    "ATOMIC.DIATOMIC_NONMETAL": "gt6:atomic/diatomic_nonmetal",
+    "ATOMIC.ELEMENT": "gt6:atomic/element",
+    "ATOMIC.HALOGEN": "gt6:atomic/halogen",
+    "ATOMIC.ICOSAGEN": "gt6:atomic/icosagen",
+    "ATOMIC.IRON_GROUP": "gt6:atomic/iron_group",
+    "ATOMIC.LANTHANIDE": "gt6:atomic/lanthanide",
+    "ATOMIC.MANGANESE_GROUP": "gt6:atomic/manganese_group",
+    "ATOMIC.METAL": "gt6:atomic/metal",
+    "ATOMIC.METALLOID": "gt6:atomic/metalloid",
+    "ATOMIC.NICKEL_GROUP": "gt6:atomic/nickel_group",
+    "ATOMIC.NOBLE_GAS": "gt6:atomic/noble_gas",
+    "ATOMIC.NOBLE_METAL": "gt6:atomic/noble_metal",
+    "ATOMIC.NONMETAL": "gt6:atomic/nonmetal",
+    "ATOMIC.PARTICLE": "gt6:atomic/particle",
+    "ATOMIC.PLATINUM_GROUP": "gt6:atomic/platinum_group",
+    "ATOMIC.PNICTOGEN": "gt6:atomic/pnictogen",
+    "ATOMIC.POLYATOMIC_NONMETAL": "gt6:atomic/polyatomic_nonmetal",
+    "ATOMIC.POST_TRANSITION_METAL": "gt6:atomic/post_transition_metal",
+    "ATOMIC.PRECIOUS_METAL": "gt6:atomic/precious_metal",
+    "ATOMIC.REFRACTORY_METAL": "gt6:atomic/refractory_metal",
+    "ATOMIC.SCANDIUM_GROUP": "gt6:atomic/scandium_group",
+    "ATOMIC.TITANIUM_GROUP": "gt6:atomic/titanium_group",
+    "ATOMIC.TRANSITION_METAL": "gt6:atomic/transition_metal",
+    "ATOMIC.VANADIUM_GROUP": "gt6:atomic/vanadium_group",
+    "ATOMIC.ZINC_GROUP": "gt6:atomic/zinc_group",
+    "COMPOUNDS.ALLOY": "gt6:compounds/alloy",
+    "COMPOUNDS.APPROXIMATE": "gt6:compounds/approximate",
+    "COMPOUNDS.COATED": "gt6:compounds/coated",
+    "COMPOUNDS.DECOMPOSABLE": "gt6:compounds/decomposable",
+    "COMPOUNDS.LAYERED": "gt6:compounds/layered",
+    "ITEMGENERATOR.ARMORS": "gt6:itemgenerator/armors",
+    "ITEMGENERATOR.CONTAINERS": "gt6:itemgenerator/containers",
+    "ITEMGENERATOR.CONTAINERS_FLUID": "gt6:itemgenerator/containers_fluid",
+    "ITEMGENERATOR.CONTAINERS_GAS": "gt6:itemgenerator/containers_gas",
+    "ITEMGENERATOR.DENSEPLATES": "gt6:itemgenerator/denseplates",
+    "ITEMGENERATOR.DUSTS": "gt6:itemgenerator/dusts",
+    "ITEMGENERATOR.EMPTY": "gt6:itemgenerator/empty",
+    "ITEMGENERATOR.FOILS": "gt6:itemgenerator/foils",
+    "ITEMGENERATOR.GASES": "gt6:itemgenerator/gases",
+    "ITEMGENERATOR.GEMS": "gt6:itemgenerator/gems",
+    "ITEMGENERATOR.INGOTS": "gt6:itemgenerator/ingots",
+    "ITEMGENERATOR.INGOTS_HOT": "gt6:itemgenerator/ingots_hot",
+    "ITEMGENERATOR.LENSES": "gt6:itemgenerator/lenses",
+    "ITEMGENERATOR.LIQUID": "gt6:itemgenerator/liquid",
+    "ITEMGENERATOR.MOLTEN": "gt6:itemgenerator/molten",
+    "ITEMGENERATOR.MULTIINGOTS": "gt6:itemgenerator/multiingots",
+    "ITEMGENERATOR.MULTIPLATES": "gt6:itemgenerator/multiplates",
+    "ITEMGENERATOR.ORES": "gt6:itemgenerator/ores",
+    "ITEMGENERATOR.PARTS": "gt6:itemgenerator/parts",
+    "ITEMGENERATOR.PLANTS": "gt6:itemgenerator/plants",
+    "ITEMGENERATOR.PLATES": "gt6:itemgenerator/plates",
+    "ITEMGENERATOR.PROJECTILES": "gt6:itemgenerator/projectiles",
+    "ITEMGENERATOR.RAILS": "gt6:itemgenerator/rails",
+    "ITEMGENERATOR.STICKS": "gt6:itemgenerator/sticks",
+    "ITEMGENERATOR.WIRES": "gt6:itemgenerator/wires",
+    "PROCESSING.BLACKLISTED_SMELTER": "gt6:processing/blacklisted_smelter",
+    "PROCESSING.CENTRIFUGABLE": "gt6:processing/centrifugable",
+    "PROCESSING.COOL2CRYSTAL": "gt6:processing/cool2crystal",
+    "PROCESSING.CRUCIBLE_ALLOY": "gt6:processing/crucible_alloy",
+    "PROCESSING.CRYSTALLISABLE": "gt6:processing/crystallisable",
+    "PROCESSING.ELECTROLYSABLE": "gt6:processing/electrolysable",
+    "PROCESSING.EXTRUDABLE": "gt6:processing/extrudable",
+    "PROCESSING.EXTRUDABLE_SIMPLE": "gt6:processing/extrudable_simple",
+    "PROCESSING.FURNACE": "gt6:processing/furnace",
+    "PROCESSING.FUSION_SYNTHESISABLE": "gt6:processing/fusion_synthesisable",
+    "PROCESSING.MELTING": "gt6:processing/melting",
+    "PROCESSING.MORTAR_GRINDABLE": "gt6:processing/mortar_grindable",
+    "PROCESSING.NEVER_FURNACE": "gt6:processing/never_furnace",
+    "PROCESSING.PULVERIZING_CINNABAR": "gt6:processing/pulverizing_cinnabar",
+    "PROCESSING.SMITHABLE": "gt6:processing/smithable",
+    "PROCESSING.SOLDERING_MATERIAL": "gt6:processing/soldering_material",
+    "PROCESSING.SOLDERING_MATERIAL_BAD": "gt6:processing/soldering_material_bad",
+    "PROCESSING.SOLDERING_MATERIAL_GOOD": "gt6:processing/soldering_material_good",
+    "PROCESSING.UNRECYCLABLE": "gt6:processing/unrecyclable",
+    "PROCESSING.UUM_SYNTHESISABLE": "gt6:processing/uum_synthesisable",
+    "PROCESSING.WASHING_FIRESTONE": "gt6:processing/washing_firestone",
+    "PROCESSING.WASHING_MERCURY": "gt6:processing/washing_mercury",
+    "PROCESSING.WASHING_PERSULFATE": "gt6:processing/washing_persulfate",
+    "PROPERTIES.ACID": "gt6:properties/acid",
+    "PROPERTIES.AUTO_BLACKLIST": "gt6:properties/auto_blacklist",
+    "PROPERTIES.AUTO_COLLECTING": "gt6:properties/auto_collecting",
+    "PROPERTIES.BETWEENLANDS": "gt6:properties/betweenlands",
+    "PROPERTIES.BOUNCY": "gt6:properties/bouncy",
+    "PROPERTIES.BRITTLE": "gt6:properties/brittle",
+    "PROPERTIES.BURNING": "gt6:properties/burning",
+    "PROPERTIES.COAL": "gt6:properties/coal",
+    "PROPERTIES.COMMON_ORE": "gt6:properties/common_ore",
+    "PROPERTIES.CRYSTAL": "gt6:properties/crystal",
+    "PROPERTIES.DONT_SHOW_THIS_COMPONENT": "gt6:properties/dont_show_this_component",
+    "PROPERTIES.ENDER_DRAGON_PROOF": "gt6:properties/ender_dragon_proof",
+    "PROPERTIES.EXPLODES_IN_NONVANILLA_CRAFTING_GRID": "gt6:properties/explodes_in_nonvanilla_crafting_grid",
+    "PROPERTIES.EXPLOSIVE": "gt6:properties/explosive",
+    "PROPERTIES.FLAMMABLE": "gt6:properties/flammable",
+    "PROPERTIES.FOOD": "gt6:properties/food",
+    "PROPERTIES.GLOWING": "gt6:properties/glowing",
+    "PROPERTIES.HAS_TOOL_STATS": "gt6:properties/has_tool_stats",
+    "PROPERTIES.LIGHTING": "gt6:properties/lighting",
+    "PROPERTIES.MAGICAL": "gt6:properties/magical",
+    "PROPERTIES.MAGNETIC_ACTIVE": "gt6:properties/magnetic_active",
+    "PROPERTIES.MAGNETIC_PASSIVE": "gt6:properties/magnetic_passive",
+    "PROPERTIES.MAZEBREAKER": "gt6:properties/mazebreaker",
+    "PROPERTIES.MEAT": "gt6:properties/meat",
+    "PROPERTIES.NO_ADVANCED_TOOLS": "gt6:properties/no_advanced_tools",
+    "PROPERTIES.PEARL": "gt6:properties/pearl",
+    "PROPERTIES.QUARTZ": "gt6:properties/quartz",
+    "PROPERTIES.RANDOM_SMALL_GEM_ORE": "gt6:properties/random_small_gem_ore",
+    "PROPERTIES.ROTTEN": "gt6:properties/rotten",
+    "PROPERTIES.SOFT": "gt6:properties/soft",
+    "PROPERTIES.STONE": "gt6:properties/stone",
+    "PROPERTIES.STRETCHY": "gt6:properties/stretchy",
+    "PROPERTIES.TRANSPARENT": "gt6:properties/transparent",
+    "PROPERTIES.UNBURNABLE": "gt6:properties/unburnable",
+    "PROPERTIES.UNUSED_MATERIAL": "gt6:properties/unused_material",
+    "PROPERTIES.VALUABLE": "gt6:properties/valuable",
+    "PROPERTIES.WARPING": "gt6:properties/warping",
+    "PROPERTIES.WITHER_PROOF": "gt6:properties/wither_proof",
+    "PROPERTIES.WOOD": "gt6:properties/wood"
+  },
+  "itemgenerator_to_prefixes": {
+    "ITEMGENERATOR.DENSEPLATES": [
+      "plateDense"
+    ],
+    "ITEMGENERATOR.DUSTS": [
+      "blockDust",
+      "crateGt64Dust",
+      "crateGtDust",
+      "dustDiv72",
+      "dustSmall",
+      "dustTiny"
+    ],
+    "ITEMGENERATOR.EMPTY": [
+      "book",
+      "paper"
+    ],
+    "ITEMGENERATOR.FOILS": [
+      "foil"
+    ],
+    "ITEMGENERATOR.INGOTS": [
+      "billet",
+      "blockIngot",
+      "chunkGt",
+      "crateGt64Ingot",
+      "crateGtIngot"
+    ],
+    "ITEMGENERATOR.LENSES": [
+      "lens"
+    ],
+    "ITEMGENERATOR.MULTIINGOTS": [
+      "ingotDouble",
+      "ingotQuadruple",
+      "ingotQuintuple",
+      "ingotTriple"
+    ],
+    "ITEMGENERATOR.MULTIPLATES": [
+      "plateDouble",
+      "plateQuadruple",
+      "plateQuintuple",
+      "plateTriple"
+    ],
+    "ITEMGENERATOR.ORES": [
+      "blockRaw",
+      "crateGt64Raw",
+      "crateGtRaw",
+      "oreAndesite",
+      "oreBasalt",
+      "oreBedrock",
+      "oreBlackgranite",
+      "oreBlueschist",
+      "oreDarkprismarine",
+      "oreDiorite",
+      "oreEndstone",
+      "oreGravel",
+      "oreGreenschist",
+      "oreKimberlite",
+      "oreKomatiite",
+      "oreLightprismarine",
+      "oreLimestone",
+      "oreMarble",
+      "oreMud",
+      "oreNetherrack",
+      "oreQuartzite",
+      "oreRaw",
+      "oreRedSand",
+      "oreRedgranite",
+      "oreSand",
+      "oreSandstone",
+      "oreShale",
+      "oreSlate",
+      "oreSmall",
+      "oreVanillagranite",
+      "oreVanillastone"
+    ],
+    "ITEMGENERATOR.PARTS": [
+      "casingSmall",
+      "chain",
+      "gearGt",
+      "gearGtSmall",
+      "ring",
+      "rotor"
+    ],
+    "ITEMGENERATOR.PLANTS": [
+      "plantGtBerry",
+      "plantGtBlossom",
+      "plantGtFiber",
+      "plantGtTwig",
+      "plantGtWart"
+    ],
+    "ITEMGENERATOR.RAILS": [
+      "railGt"
+    ],
+    "ITEMGENERATOR.STICKS": [
+      "bolt",
+      "screw",
+      "stickLong"
+    ]
+  },
+  "prefix_generation_rules": {
+    "arrowGtPlastic": {
+      "status": "exact",
+      "expression": {
+        "op": "union",
+        "args": [
+          {
+            "op": "intersection",
+            "args": [
+              {
+                "op": "tag",
+                "tag": "ITEMGENERATOR.PROJECTILES"
+              },
+              {
+                "op": "tag",
+                "tag": "PROPERTIES.HAS_TOOL_STATS"
+              }
+            ]
+          },
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.EMPTY"
+          }
+        ]
+      },
+      "expression_text": "((ITEMGENERATOR.PROJECTILES & PROPERTIES.HAS_TOOL_STATS) | ITEMGENERATOR.EMPTY)",
+      "expression_tag_count": 3,
+      "base_material_count": 542,
+      "target_material_count": 542,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "cf51a8535b6b0fa12a5f2e85d04a599f70a6e58dfe02ea34ac461605f0e82a5b",
+      "replay_verified": true,
+      "discriminating_tag_count": 34
+    },
+    "arrowGtWood": {
+      "status": "exact",
+      "expression": {
+        "op": "union",
+        "args": [
+          {
+            "op": "intersection",
+            "args": [
+              {
+                "op": "tag",
+                "tag": "ITEMGENERATOR.PROJECTILES"
+              },
+              {
+                "op": "tag",
+                "tag": "PROPERTIES.HAS_TOOL_STATS"
+              }
+            ]
+          },
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.EMPTY"
+          }
+        ]
+      },
+      "expression_text": "((ITEMGENERATOR.PROJECTILES & PROPERTIES.HAS_TOOL_STATS) | ITEMGENERATOR.EMPTY)",
+      "expression_tag_count": 3,
+      "base_material_count": 542,
+      "target_material_count": 542,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "cf51a8535b6b0fa12a5f2e85d04a599f70a6e58dfe02ea34ac461605f0e82a5b",
+      "replay_verified": true,
+      "discriminating_tag_count": 34
+    },
+    "billet": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.INGOTS"
+      },
+      "expression_text": "ITEMGENERATOR.INGOTS",
+      "expression_tag_count": 1,
+      "base_material_count": 483,
+      "target_material_count": 483,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 25,
+      "target_set_sha256": "7c17404920751640877c4ce4deff857d0862afff59c4c2fbb0f149ce8491acfd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "blockDust": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.DUSTS"
+      },
+      "expression_text": "ITEMGENERATOR.DUSTS",
+      "expression_tag_count": 1,
+      "base_material_count": 1096,
+      "target_material_count": 1096,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 55,
+      "target_set_sha256": "ef4d61b0303ee2d4591d99f27192fd3be557905b45142922487de48d68ba0205",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "blockGem": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.GEMS"
+      },
+      "expression_text": "ITEMGENERATOR.GEMS",
+      "expression_tag_count": 1,
+      "base_material_count": 217,
+      "target_material_count": 221,
+      "exclude_materials": [],
+      "include_materials": [
+        "IodineSalt",
+        "Salt",
+        "Sylvite",
+        "Tantalum"
+      ],
+      "exception_count": 4,
+      "exception_ratio": 0.01809954751131222,
+      "exception_budget": 16,
+      "target_set_sha256": "fcd3e96c06d674816b7f890847224c30cea91735b57bc89bf48ed79b5562af4c",
+      "replay_verified": true,
+      "discriminating_tag_count": 20
+    },
+    "blockIngot": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.INGOTS"
+      },
+      "expression_text": "ITEMGENERATOR.INGOTS",
+      "expression_tag_count": 1,
+      "base_material_count": 483,
+      "target_material_count": 483,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 25,
+      "target_set_sha256": "7c17404920751640877c4ce4deff857d0862afff59c4c2fbb0f149ce8491acfd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "blockPlate": {
+      "status": "exact",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.PLATES"
+        },
+        "right": {
+          "op": "difference",
+          "left": {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.GEMS"
+          },
+          "right": {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.INGOTS"
+          }
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.PLATES - (ITEMGENERATOR.GEMS - ITEMGENERATOR.INGOTS))",
+      "expression_tag_count": 3,
+      "base_material_count": 673,
+      "target_material_count": 673,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 34,
+      "target_set_sha256": "b90023bf6f7fdbc5971350527cb689deaf26380d32b0ca8673fb9a8adc92b935",
+      "replay_verified": true,
+      "discriminating_tag_count": 30
+    },
+    "blockPlateGem": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.GEMS"
+          },
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PLATES"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.GEMS & ITEMGENERATOR.PLATES)",
+      "expression_tag_count": 2,
+      "base_material_count": 203,
+      "target_material_count": 208,
+      "exclude_materials": [],
+      "include_materials": [
+        "Germanium",
+        "NikolineAlloy",
+        "RedstoneAlloy",
+        "Silicon",
+        "Tantalum"
+      ],
+      "exception_count": 5,
+      "exception_ratio": 0.02403846153846154,
+      "exception_budget": 16,
+      "target_set_sha256": "3e2c15ae25cac7abf1d9f12c87a38b2ae89e670e995b78a844842a2a13f43aaf",
+      "replay_verified": true,
+      "discriminating_tag_count": 20
+    },
+    "blockRaw": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "blockSolid": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "union",
+        "args": [
+          {
+            "op": "intersection",
+            "args": [
+              {
+                "op": "tag",
+                "tag": "ITEMGENERATOR.GEMS"
+              },
+              {
+                "op": "tag",
+                "tag": "PROCESSING.EXTRUDABLE"
+              }
+            ]
+          },
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.INGOTS"
+          }
+        ]
+      },
+      "expression_text": "((ITEMGENERATOR.GEMS & PROCESSING.EXTRUDABLE) | ITEMGENERATOR.INGOTS)",
+      "expression_tag_count": 3,
+      "base_material_count": 487,
+      "target_material_count": 506,
+      "exclude_materials": [],
+      "include_materials": [
+        "Andesite",
+        "Basalt",
+        "Blueschist",
+        "Diorite",
+        "Endstone",
+        "Granite",
+        "GraniteBlack",
+        "GraniteRed",
+        "Greenschist",
+        "Kimberlite",
+        "Komatiite",
+        "Limestone",
+        "Marble",
+        "Netherrack",
+        "Obsidian",
+        "Sand",
+        "Shale",
+        "Slate",
+        "Stone"
+      ],
+      "exception_count": 19,
+      "exception_ratio": 0.037549407114624504,
+      "exception_budget": 26,
+      "target_set_sha256": "60e22bdf462ef88979f6ff8596d51de0111890eeb090dd4b0453d1423e859e93",
+      "replay_verified": true,
+      "discriminating_tag_count": 30
+    },
+    "bolt": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.STICKS"
+      },
+      "expression_text": "ITEMGENERATOR.STICKS",
+      "expression_tag_count": 1,
+      "base_material_count": 846,
+      "target_material_count": 846,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 43,
+      "target_set_sha256": "f69f783c053464366820814df2c45fcf7a0b2c1b2af588a93ff4372d197cc56f",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "bottle": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.CONTAINERS"
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.FOOD"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.CONTAINERS & PROPERTIES.FOOD)",
+      "expression_tag_count": 2,
+      "base_material_count": 19,
+      "target_material_count": 17,
+      "exclude_materials": [
+        "FreshWater",
+        "FryingOilHot",
+        "HeavyWater",
+        "Ice",
+        "SemiheavyWater",
+        "TritiatedWater",
+        "WaterDistilled"
+      ],
+      "include_materials": [
+        "Empty",
+        "Glue",
+        "HolyWater",
+        "Lubricant",
+        "Mercury"
+      ],
+      "exception_count": 12,
+      "exception_ratio": 0.7058823529411765,
+      "exception_budget": 16,
+      "target_set_sha256": "f558f9ef588bcdb8d1f40de73583866db6d96a76f4131bd38c27ea71f3e75acd",
+      "replay_verified": true,
+      "discriminating_tag_count": 13
+    },
+    "bouleGt": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "PROCESSING.CENTRIFUGABLE"
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.RANDOM_SMALL_GEM_ORE"
+          }
+        ]
+      },
+      "expression_text": "(PROCESSING.CENTRIFUGABLE & PROPERTIES.RANDOM_SMALL_GEM_ORE)",
+      "expression_tag_count": 2,
+      "base_material_count": 7,
+      "target_material_count": 16,
+      "exclude_materials": [],
+      "include_materials": [
+        "Germanium",
+        "HexoriumBlack",
+        "HexoriumBlue",
+        "HexoriumGreen",
+        "HexoriumRed",
+        "HexoriumWhite",
+        "NikolineAlloy",
+        "RedstoneAlloy",
+        "Silicon"
+      ],
+      "exception_count": 9,
+      "exception_ratio": 0.5625,
+      "exception_budget": 16,
+      "target_set_sha256": "a71cb308fb392fead50d21811a00a9fae188ebdff9d1d2b918d2ea2e7613c5df",
+      "replay_verified": true,
+      "discriminating_tag_count": 12
+    },
+    "bulletGtLarge": {
+      "status": "exact",
+      "expression": {
+        "op": "union",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.EMPTY"
+          },
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PROJECTILES"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.EMPTY | ITEMGENERATOR.PROJECTILES)",
+      "expression_tag_count": 2,
+      "base_material_count": 855,
+      "target_material_count": 855,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 43,
+      "target_set_sha256": "a9bd51aca0e2b8a67cd2b3539acff5f84ac5f4fc59452cca8d92054d4d7b4bac",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "bulletGtMedium": {
+      "status": "exact",
+      "expression": {
+        "op": "union",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.EMPTY"
+          },
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PROJECTILES"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.EMPTY | ITEMGENERATOR.PROJECTILES)",
+      "expression_tag_count": 2,
+      "base_material_count": 855,
+      "target_material_count": 855,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 43,
+      "target_set_sha256": "a9bd51aca0e2b8a67cd2b3539acff5f84ac5f4fc59452cca8d92054d4d7b4bac",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "bulletGtSmall": {
+      "status": "exact",
+      "expression": {
+        "op": "union",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.EMPTY"
+          },
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PROJECTILES"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.EMPTY | ITEMGENERATOR.PROJECTILES)",
+      "expression_tag_count": 2,
+      "base_material_count": 855,
+      "target_material_count": 855,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 43,
+      "target_set_sha256": "a9bd51aca0e2b8a67cd2b3539acff5f84ac5f4fc59452cca8d92054d4d7b4bac",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "casingMachine": {
+      "status": "exact",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PARTS"
+          },
+          {
+            "op": "tag",
+            "tag": "PROCESSING.SMITHABLE"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.PARTS & PROCESSING.SMITHABLE)",
+      "expression_tag_count": 2,
+      "base_material_count": 210,
+      "target_material_count": 210,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 16,
+      "target_set_sha256": "dd642192caa79466c9ae7de5fbe237e62a7371558a234e70282b9d1ed76f8c20",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "casingMachineDense": {
+      "status": "exact",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PARTS"
+          },
+          {
+            "op": "tag",
+            "tag": "PROCESSING.SMITHABLE"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.PARTS & PROCESSING.SMITHABLE)",
+      "expression_tag_count": 2,
+      "base_material_count": 210,
+      "target_material_count": 210,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 16,
+      "target_set_sha256": "dd642192caa79466c9ae7de5fbe237e62a7371558a234e70282b9d1ed76f8c20",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "casingMachineDouble": {
+      "status": "exact",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PARTS"
+          },
+          {
+            "op": "tag",
+            "tag": "PROCESSING.SMITHABLE"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.PARTS & PROCESSING.SMITHABLE)",
+      "expression_tag_count": 2,
+      "base_material_count": 210,
+      "target_material_count": 210,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 16,
+      "target_set_sha256": "dd642192caa79466c9ae7de5fbe237e62a7371558a234e70282b9d1ed76f8c20",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "casingMachineQuadruple": {
+      "status": "exact",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PARTS"
+          },
+          {
+            "op": "tag",
+            "tag": "PROCESSING.SMITHABLE"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.PARTS & PROCESSING.SMITHABLE)",
+      "expression_tag_count": 2,
+      "base_material_count": 210,
+      "target_material_count": 210,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 16,
+      "target_set_sha256": "dd642192caa79466c9ae7de5fbe237e62a7371558a234e70282b9d1ed76f8c20",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "casingSmall": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.PARTS"
+      },
+      "expression_text": "ITEMGENERATOR.PARTS",
+      "expression_tag_count": 1,
+      "base_material_count": 572,
+      "target_material_count": 572,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 29,
+      "target_set_sha256": "2c8ebd4d5ddcd23652c914abe46b5f8ae26abbee33c686a62d7f954c0d68b15a",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "chain": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.PARTS"
+      },
+      "expression_text": "ITEMGENERATOR.PARTS",
+      "expression_tag_count": 1,
+      "base_material_count": 572,
+      "target_material_count": 572,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 29,
+      "target_set_sha256": "2c8ebd4d5ddcd23652c914abe46b5f8ae26abbee33c686a62d7f954c0d68b15a",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "chemtube": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "union",
+        "args": [
+          {
+            "op": "union",
+            "args": [
+              {
+                "op": "tag",
+                "tag": "ATOMIC.ELEMENT"
+              },
+              {
+                "op": "tag",
+                "tag": "ITEMGENERATOR.PLANTS"
+              }
+            ]
+          },
+          {
+            "op": "tag",
+            "tag": "PROCESSING.MELTING"
+          }
+        ]
+      },
+      "expression_text": "((ATOMIC.ELEMENT | ITEMGENERATOR.PLANTS) | PROCESSING.MELTING)",
+      "expression_tag_count": 3,
+      "base_material_count": 1762,
+      "target_material_count": 1773,
+      "exclude_materials": [],
+      "include_materials": [
+        "AntiNeutrino",
+        "AntiNeutron",
+        "AntiPhoton",
+        "AntiProton",
+        "Electron",
+        "Empty",
+        "Neutrino",
+        "Neutron",
+        "Photon",
+        "Positron",
+        "Proton"
+      ],
+      "exception_count": 11,
+      "exception_ratio": 0.006204173716864072,
+      "exception_budget": 89,
+      "target_set_sha256": "02140829902362d17ebbf2ac3e15d23be15dbefc87125eac421951046d6dd216",
+      "replay_verified": true,
+      "discriminating_tag_count": 18
+    },
+    "chunkGt": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.INGOTS"
+      },
+      "expression_text": "ITEMGENERATOR.INGOTS",
+      "expression_tag_count": 1,
+      "base_material_count": 483,
+      "target_material_count": 483,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 25,
+      "target_set_sha256": "7c17404920751640877c4ce4deff857d0862afff59c4c2fbb0f149ce8491acfd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "crateGt64Dust": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.DUSTS"
+      },
+      "expression_text": "ITEMGENERATOR.DUSTS",
+      "expression_tag_count": 1,
+      "base_material_count": 1096,
+      "target_material_count": 1096,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 55,
+      "target_set_sha256": "ef4d61b0303ee2d4591d99f27192fd3be557905b45142922487de48d68ba0205",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "crateGt64Gem": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.GEMS"
+      },
+      "expression_text": "ITEMGENERATOR.GEMS",
+      "expression_tag_count": 1,
+      "base_material_count": 217,
+      "target_material_count": 221,
+      "exclude_materials": [],
+      "include_materials": [
+        "IodineSalt",
+        "Salt",
+        "Sylvite",
+        "Tantalum"
+      ],
+      "exception_count": 4,
+      "exception_ratio": 0.01809954751131222,
+      "exception_budget": 16,
+      "target_set_sha256": "fcd3e96c06d674816b7f890847224c30cea91735b57bc89bf48ed79b5562af4c",
+      "replay_verified": true,
+      "discriminating_tag_count": 20
+    },
+    "crateGt64Ingot": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.INGOTS"
+      },
+      "expression_text": "ITEMGENERATOR.INGOTS",
+      "expression_tag_count": 1,
+      "base_material_count": 483,
+      "target_material_count": 483,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 25,
+      "target_set_sha256": "7c17404920751640877c4ce4deff857d0862afff59c4c2fbb0f149ce8491acfd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "crateGt64Plate": {
+      "status": "exact",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.PLATES"
+        },
+        "right": {
+          "op": "difference",
+          "left": {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.GEMS"
+          },
+          "right": {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.INGOTS"
+          }
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.PLATES - (ITEMGENERATOR.GEMS - ITEMGENERATOR.INGOTS))",
+      "expression_tag_count": 3,
+      "base_material_count": 673,
+      "target_material_count": 673,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 34,
+      "target_set_sha256": "b90023bf6f7fdbc5971350527cb689deaf26380d32b0ca8673fb9a8adc92b935",
+      "replay_verified": true,
+      "discriminating_tag_count": 30
+    },
+    "crateGt64PlateGem": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.GEMS"
+          },
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PLATES"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.GEMS & ITEMGENERATOR.PLATES)",
+      "expression_tag_count": 2,
+      "base_material_count": 203,
+      "target_material_count": 208,
+      "exclude_materials": [],
+      "include_materials": [
+        "Germanium",
+        "NikolineAlloy",
+        "RedstoneAlloy",
+        "Silicon",
+        "Tantalum"
+      ],
+      "exception_count": 5,
+      "exception_ratio": 0.02403846153846154,
+      "exception_budget": 16,
+      "target_set_sha256": "3e2c15ae25cac7abf1d9f12c87a38b2ae89e670e995b78a844842a2a13f43aaf",
+      "replay_verified": true,
+      "discriminating_tag_count": 20
+    },
+    "crateGt64Raw": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "crateGtDust": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.DUSTS"
+      },
+      "expression_text": "ITEMGENERATOR.DUSTS",
+      "expression_tag_count": 1,
+      "base_material_count": 1096,
+      "target_material_count": 1096,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 55,
+      "target_set_sha256": "ef4d61b0303ee2d4591d99f27192fd3be557905b45142922487de48d68ba0205",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "crateGtGem": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.GEMS"
+      },
+      "expression_text": "ITEMGENERATOR.GEMS",
+      "expression_tag_count": 1,
+      "base_material_count": 217,
+      "target_material_count": 221,
+      "exclude_materials": [],
+      "include_materials": [
+        "IodineSalt",
+        "Salt",
+        "Sylvite",
+        "Tantalum"
+      ],
+      "exception_count": 4,
+      "exception_ratio": 0.01809954751131222,
+      "exception_budget": 16,
+      "target_set_sha256": "fcd3e96c06d674816b7f890847224c30cea91735b57bc89bf48ed79b5562af4c",
+      "replay_verified": true,
+      "discriminating_tag_count": 20
+    },
+    "crateGtIngot": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.INGOTS"
+      },
+      "expression_text": "ITEMGENERATOR.INGOTS",
+      "expression_tag_count": 1,
+      "base_material_count": 483,
+      "target_material_count": 483,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 25,
+      "target_set_sha256": "7c17404920751640877c4ce4deff857d0862afff59c4c2fbb0f149ce8491acfd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "crateGtPlate": {
+      "status": "exact",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.PLATES"
+        },
+        "right": {
+          "op": "difference",
+          "left": {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.GEMS"
+          },
+          "right": {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.INGOTS"
+          }
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.PLATES - (ITEMGENERATOR.GEMS - ITEMGENERATOR.INGOTS))",
+      "expression_tag_count": 3,
+      "base_material_count": 673,
+      "target_material_count": 673,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 34,
+      "target_set_sha256": "b90023bf6f7fdbc5971350527cb689deaf26380d32b0ca8673fb9a8adc92b935",
+      "replay_verified": true,
+      "discriminating_tag_count": 30
+    },
+    "crateGtPlateGem": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.GEMS"
+          },
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PLATES"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.GEMS & ITEMGENERATOR.PLATES)",
+      "expression_tag_count": 2,
+      "base_material_count": 203,
+      "target_material_count": 208,
+      "exclude_materials": [],
+      "include_materials": [
+        "Germanium",
+        "NikolineAlloy",
+        "RedstoneAlloy",
+        "Silicon",
+        "Tantalum"
+      ],
+      "exception_count": 5,
+      "exception_ratio": 0.02403846153846154,
+      "exception_budget": 16,
+      "target_set_sha256": "3e2c15ae25cac7abf1d9f12c87a38b2ae89e670e995b78a844842a2a13f43aaf",
+      "replay_verified": true,
+      "discriminating_tag_count": 20
+    },
+    "crateGtRaw": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "crushed": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.ORES"
+        },
+        "right": {
+          "op": "intersection",
+          "args": [
+            {
+              "op": "tag",
+              "tag": "ATOMIC.METAL"
+            },
+            {
+              "op": "tag",
+              "tag": "PROCESSING.NEVER_FURNACE"
+            }
+          ]
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.ORES - (ATOMIC.METAL & PROCESSING.NEVER_FURNACE))",
+      "expression_tag_count": 3,
+      "base_material_count": 615,
+      "target_material_count": 609,
+      "exclude_materials": [
+        "Adamantium",
+        "Aluminium",
+        "Dilithium",
+        "Niobium",
+        "Silicon",
+        "Tantalum"
+      ],
+      "include_materials": [],
+      "exception_count": 6,
+      "exception_ratio": 0.009852216748768473,
+      "exception_budget": 31,
+      "target_set_sha256": "eff5eb2a6dd6b4ef70bd0b78776856f7668b1734c38ce577dc160b3f493d2c87",
+      "replay_verified": true,
+      "discriminating_tag_count": 33
+    },
+    "crushedCentrifuged": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.ORES"
+        },
+        "right": {
+          "op": "intersection",
+          "args": [
+            {
+              "op": "tag",
+              "tag": "ATOMIC.METAL"
+            },
+            {
+              "op": "tag",
+              "tag": "PROCESSING.NEVER_FURNACE"
+            }
+          ]
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.ORES - (ATOMIC.METAL & PROCESSING.NEVER_FURNACE))",
+      "expression_tag_count": 3,
+      "base_material_count": 615,
+      "target_material_count": 609,
+      "exclude_materials": [
+        "Adamantium",
+        "Aluminium",
+        "Dilithium",
+        "Niobium",
+        "Silicon",
+        "Tantalum"
+      ],
+      "include_materials": [],
+      "exception_count": 6,
+      "exception_ratio": 0.009852216748768473,
+      "exception_budget": 31,
+      "target_set_sha256": "eff5eb2a6dd6b4ef70bd0b78776856f7668b1734c38ce577dc160b3f493d2c87",
+      "replay_verified": true,
+      "discriminating_tag_count": 33
+    },
+    "crushedCentrifugedTiny": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.ORES"
+        },
+        "right": {
+          "op": "intersection",
+          "args": [
+            {
+              "op": "tag",
+              "tag": "ATOMIC.METAL"
+            },
+            {
+              "op": "tag",
+              "tag": "PROCESSING.NEVER_FURNACE"
+            }
+          ]
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.ORES - (ATOMIC.METAL & PROCESSING.NEVER_FURNACE))",
+      "expression_tag_count": 3,
+      "base_material_count": 615,
+      "target_material_count": 609,
+      "exclude_materials": [
+        "Adamantium",
+        "Aluminium",
+        "Dilithium",
+        "Niobium",
+        "Silicon",
+        "Tantalum"
+      ],
+      "include_materials": [],
+      "exception_count": 6,
+      "exception_ratio": 0.009852216748768473,
+      "exception_budget": 31,
+      "target_set_sha256": "eff5eb2a6dd6b4ef70bd0b78776856f7668b1734c38ce577dc160b3f493d2c87",
+      "replay_verified": true,
+      "discriminating_tag_count": 33
+    },
+    "crushedPurified": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.ORES"
+        },
+        "right": {
+          "op": "intersection",
+          "args": [
+            {
+              "op": "tag",
+              "tag": "ATOMIC.METAL"
+            },
+            {
+              "op": "tag",
+              "tag": "PROCESSING.NEVER_FURNACE"
+            }
+          ]
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.ORES - (ATOMIC.METAL & PROCESSING.NEVER_FURNACE))",
+      "expression_tag_count": 3,
+      "base_material_count": 615,
+      "target_material_count": 609,
+      "exclude_materials": [
+        "Adamantium",
+        "Aluminium",
+        "Dilithium",
+        "Niobium",
+        "Silicon",
+        "Tantalum"
+      ],
+      "include_materials": [],
+      "exception_count": 6,
+      "exception_ratio": 0.009852216748768473,
+      "exception_budget": 31,
+      "target_set_sha256": "eff5eb2a6dd6b4ef70bd0b78776856f7668b1734c38ce577dc160b3f493d2c87",
+      "replay_verified": true,
+      "discriminating_tag_count": 33
+    },
+    "crushedPurifiedTiny": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.ORES"
+        },
+        "right": {
+          "op": "intersection",
+          "args": [
+            {
+              "op": "tag",
+              "tag": "ATOMIC.METAL"
+            },
+            {
+              "op": "tag",
+              "tag": "PROCESSING.NEVER_FURNACE"
+            }
+          ]
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.ORES - (ATOMIC.METAL & PROCESSING.NEVER_FURNACE))",
+      "expression_tag_count": 3,
+      "base_material_count": 615,
+      "target_material_count": 609,
+      "exclude_materials": [
+        "Adamantium",
+        "Aluminium",
+        "Dilithium",
+        "Niobium",
+        "Silicon",
+        "Tantalum"
+      ],
+      "include_materials": [],
+      "exception_count": 6,
+      "exception_ratio": 0.009852216748768473,
+      "exception_budget": 31,
+      "target_set_sha256": "eff5eb2a6dd6b4ef70bd0b78776856f7668b1734c38ce577dc160b3f493d2c87",
+      "replay_verified": true,
+      "discriminating_tag_count": 33
+    },
+    "crushedTiny": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.ORES"
+        },
+        "right": {
+          "op": "intersection",
+          "args": [
+            {
+              "op": "tag",
+              "tag": "ATOMIC.METAL"
+            },
+            {
+              "op": "tag",
+              "tag": "PROCESSING.NEVER_FURNACE"
+            }
+          ]
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.ORES - (ATOMIC.METAL & PROCESSING.NEVER_FURNACE))",
+      "expression_tag_count": 3,
+      "base_material_count": 615,
+      "target_material_count": 609,
+      "exclude_materials": [
+        "Adamantium",
+        "Aluminium",
+        "Dilithium",
+        "Niobium",
+        "Silicon",
+        "Tantalum"
+      ],
+      "include_materials": [],
+      "exception_count": 6,
+      "exception_ratio": 0.009852216748768473,
+      "exception_budget": 31,
+      "target_set_sha256": "eff5eb2a6dd6b4ef70bd0b78776856f7668b1734c38ce577dc160b3f493d2c87",
+      "replay_verified": true,
+      "discriminating_tag_count": 33
+    },
+    "crystal": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.COMMON_ORE"
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.QUARTZ"
+          }
+        ]
+      },
+      "expression_text": "(PROPERTIES.COMMON_ORE & PROPERTIES.QUARTZ)",
+      "expression_tag_count": 2,
+      "base_material_count": 5,
+      "target_material_count": 3,
+      "exclude_materials": [
+        "ChargedCertusQuartz",
+        "Firestone"
+      ],
+      "include_materials": [],
+      "exception_count": 2,
+      "exception_ratio": 0.6666666666666666,
+      "exception_budget": 16,
+      "target_set_sha256": "954d009d2b19fe88fb3e40644128b90670c7084608b3748a3114b3ae393d5e23",
+      "replay_verified": true,
+      "discriminating_tag_count": 12
+    },
+    "dust": {
+      "status": "exact",
+      "expression": {
+        "op": "union",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.DUSTS"
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.BRITTLE"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.DUSTS | PROPERTIES.BRITTLE)",
+      "expression_tag_count": 2,
+      "base_material_count": 1097,
+      "target_material_count": 1097,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 55,
+      "target_set_sha256": "6e44a5719506569ac1984a796ed1853cc6ad5821552e9720650e2a8e1f752150",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "dustDiv72": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.DUSTS"
+      },
+      "expression_text": "ITEMGENERATOR.DUSTS",
+      "expression_tag_count": 1,
+      "base_material_count": 1096,
+      "target_material_count": 1096,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 55,
+      "target_set_sha256": "ef4d61b0303ee2d4591d99f27192fd3be557905b45142922487de48d68ba0205",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "dustSmall": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.DUSTS"
+      },
+      "expression_text": "ITEMGENERATOR.DUSTS",
+      "expression_tag_count": 1,
+      "base_material_count": 1096,
+      "target_material_count": 1096,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 55,
+      "target_set_sha256": "ef4d61b0303ee2d4591d99f27192fd3be557905b45142922487de48d68ba0205",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "dustTiny": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.DUSTS"
+      },
+      "expression_text": "ITEMGENERATOR.DUSTS",
+      "expression_tag_count": 1,
+      "base_material_count": 1096,
+      "target_material_count": 1096,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 55,
+      "target_set_sha256": "ef4d61b0303ee2d4591d99f27192fd3be557905b45142922487de48d68ba0205",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "foil": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.FOILS"
+      },
+      "expression_text": "ITEMGENERATOR.FOILS",
+      "expression_tag_count": 1,
+      "base_material_count": 566,
+      "target_material_count": 566,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 29,
+      "target_set_sha256": "12165d1445aa3c7dad55247fc4368e47d8dcc1df63907b5fe68070610e46778f",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "gearGt": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.PARTS"
+      },
+      "expression_text": "ITEMGENERATOR.PARTS",
+      "expression_tag_count": 1,
+      "base_material_count": 572,
+      "target_material_count": 572,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 29,
+      "target_set_sha256": "2c8ebd4d5ddcd23652c914abe46b5f8ae26abbee33c686a62d7f954c0d68b15a",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "gearGtSmall": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.PARTS"
+      },
+      "expression_text": "ITEMGENERATOR.PARTS",
+      "expression_tag_count": 1,
+      "base_material_count": 572,
+      "target_material_count": 572,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 29,
+      "target_set_sha256": "2c8ebd4d5ddcd23652c914abe46b5f8ae26abbee33c686a62d7f954c0d68b15a",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "gem": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.GEMS"
+      },
+      "expression_text": "ITEMGENERATOR.GEMS",
+      "expression_tag_count": 1,
+      "base_material_count": 217,
+      "target_material_count": 220,
+      "exclude_materials": [
+        "Flint"
+      ],
+      "include_materials": [
+        "IodineSalt",
+        "Salt",
+        "Sylvite",
+        "Tantalum"
+      ],
+      "exception_count": 5,
+      "exception_ratio": 0.022727272727272728,
+      "exception_budget": 16,
+      "target_set_sha256": "9a7b903ac34f0f146ce6d0e591900b6cb0d6225bc35f75b138126767c25b0009",
+      "replay_verified": true,
+      "discriminating_tag_count": 20
+    },
+    "gemChipped": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "intersection",
+          "args": [
+            {
+              "op": "tag",
+              "tag": "ITEMGENERATOR.LENSES"
+            },
+            {
+              "op": "tag",
+              "tag": "PROPERTIES.CRYSTAL"
+            }
+          ]
+        },
+        "right": {
+          "op": "tag",
+          "tag": "PROPERTIES.PEARL"
+        }
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES & PROPERTIES.CRYSTAL) - PROPERTIES.PEARL)",
+      "expression_tag_count": 3,
+      "base_material_count": 109,
+      "target_material_count": 115,
+      "exclude_materials": [],
+      "include_materials": [
+        "Firestone",
+        "Ice",
+        "IodineSalt",
+        "Salt",
+        "Sugar",
+        "Sylvite"
+      ],
+      "exception_count": 6,
+      "exception_ratio": 0.05217391304347826,
+      "exception_budget": 16,
+      "target_set_sha256": "926c8d559dcef5ff876787ddd66b48e208a35557dc1b084d2031117111fd65cc",
+      "replay_verified": true,
+      "discriminating_tag_count": 22
+    },
+    "gemExquisite": {
+      "status": "exact",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "intersection",
+          "args": [
+            {
+              "op": "tag",
+              "tag": "ITEMGENERATOR.LENSES"
+            },
+            {
+              "op": "tag",
+              "tag": "PROPERTIES.CRYSTAL"
+            }
+          ]
+        },
+        "right": {
+          "op": "tag",
+          "tag": "PROPERTIES.PEARL"
+        }
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES & PROPERTIES.CRYSTAL) - PROPERTIES.PEARL)",
+      "expression_tag_count": 3,
+      "base_material_count": 109,
+      "target_material_count": 109,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 16,
+      "target_set_sha256": "84f3b722c50d23379fbb41528a752bd1c097d035d2ce0d606b5b975282a15278",
+      "replay_verified": true,
+      "discriminating_tag_count": 22
+    },
+    "gemFlawed": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "intersection",
+          "args": [
+            {
+              "op": "tag",
+              "tag": "ITEMGENERATOR.LENSES"
+            },
+            {
+              "op": "tag",
+              "tag": "PROPERTIES.CRYSTAL"
+            }
+          ]
+        },
+        "right": {
+          "op": "tag",
+          "tag": "PROPERTIES.PEARL"
+        }
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES & PROPERTIES.CRYSTAL) - PROPERTIES.PEARL)",
+      "expression_tag_count": 3,
+      "base_material_count": 109,
+      "target_material_count": 114,
+      "exclude_materials": [],
+      "include_materials": [
+        "Firestone",
+        "Ice",
+        "IodineSalt",
+        "Salt",
+        "Sylvite"
+      ],
+      "exception_count": 5,
+      "exception_ratio": 0.043859649122807015,
+      "exception_budget": 16,
+      "target_set_sha256": "a5b17e60ec79397d47649498f2af6ed866f5ae22ad16d30a0c676e2bf8c3aab5",
+      "replay_verified": true,
+      "discriminating_tag_count": 22
+    },
+    "gemFlawless": {
+      "status": "exact",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "intersection",
+          "args": [
+            {
+              "op": "tag",
+              "tag": "ITEMGENERATOR.LENSES"
+            },
+            {
+              "op": "tag",
+              "tag": "PROPERTIES.CRYSTAL"
+            }
+          ]
+        },
+        "right": {
+          "op": "tag",
+          "tag": "PROPERTIES.PEARL"
+        }
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES & PROPERTIES.CRYSTAL) - PROPERTIES.PEARL)",
+      "expression_tag_count": 3,
+      "base_material_count": 109,
+      "target_material_count": 109,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 16,
+      "target_set_sha256": "84f3b722c50d23379fbb41528a752bd1c097d035d2ce0d606b5b975282a15278",
+      "replay_verified": true,
+      "discriminating_tag_count": 22
+    },
+    "gemLegendary": {
+      "status": "exact",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "intersection",
+          "args": [
+            {
+              "op": "tag",
+              "tag": "ITEMGENERATOR.LENSES"
+            },
+            {
+              "op": "tag",
+              "tag": "PROPERTIES.CRYSTAL"
+            }
+          ]
+        },
+        "right": {
+          "op": "tag",
+          "tag": "PROPERTIES.PEARL"
+        }
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES & PROPERTIES.CRYSTAL) - PROPERTIES.PEARL)",
+      "expression_tag_count": 3,
+      "base_material_count": 109,
+      "target_material_count": 109,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 16,
+      "target_set_sha256": "84f3b722c50d23379fbb41528a752bd1c097d035d2ce0d606b5b975282a15278",
+      "replay_verified": true,
+      "discriminating_tag_count": 22
+    },
+    "ingot": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.INGOTS"
+        },
+        "right": {
+          "op": "tag",
+          "tag": "PROPERTIES.AUTO_BLACKLIST"
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.INGOTS - PROPERTIES.AUTO_BLACKLIST)",
+      "expression_tag_count": 2,
+      "base_material_count": 482,
+      "target_material_count": 484,
+      "exclude_materials": [],
+      "include_materials": [
+        "ClayBrick",
+        "NetherBrick"
+      ],
+      "exception_count": 2,
+      "exception_ratio": 0.004132231404958678,
+      "exception_budget": 25,
+      "target_set_sha256": "3d0aedc5f4b0bc07fe23ab2fd91709d048b03ce79c7e2673f4f6bac52357fe7f",
+      "replay_verified": true,
+      "discriminating_tag_count": 31
+    },
+    "ingotDouble": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.MULTIINGOTS"
+      },
+      "expression_text": "ITEMGENERATOR.MULTIINGOTS",
+      "expression_tag_count": 1,
+      "base_material_count": 435,
+      "target_material_count": 435,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 22,
+      "target_set_sha256": "a10fe735da8c8a81ea9e887ec9e9ce5eb4600e0b698c99a28bb5c2591c70cebc",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "ingotQuadruple": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.MULTIINGOTS"
+      },
+      "expression_text": "ITEMGENERATOR.MULTIINGOTS",
+      "expression_tag_count": 1,
+      "base_material_count": 435,
+      "target_material_count": 435,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 22,
+      "target_set_sha256": "a10fe735da8c8a81ea9e887ec9e9ce5eb4600e0b698c99a28bb5c2591c70cebc",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "ingotQuintuple": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.MULTIINGOTS"
+      },
+      "expression_text": "ITEMGENERATOR.MULTIINGOTS",
+      "expression_tag_count": 1,
+      "base_material_count": 435,
+      "target_material_count": 435,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 22,
+      "target_set_sha256": "a10fe735da8c8a81ea9e887ec9e9ce5eb4600e0b698c99a28bb5c2591c70cebc",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "ingotTriple": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.MULTIINGOTS"
+      },
+      "expression_text": "ITEMGENERATOR.MULTIINGOTS",
+      "expression_tag_count": 1,
+      "base_material_count": 435,
+      "target_material_count": 435,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 22,
+      "target_set_sha256": "a10fe735da8c8a81ea9e887ec9e9ce5eb4600e0b698c99a28bb5c2591c70cebc",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "lens": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.LENSES"
+      },
+      "expression_text": "ITEMGENERATOR.LENSES",
+      "expression_tag_count": 1,
+      "base_material_count": 121,
+      "target_material_count": 121,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 16,
+      "target_set_sha256": "4fc1cd0ff91e516e66222ce0e79626a68d73f9e96ef7098637bda21125a23a06",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "minecartWheels": {
+      "status": "exact",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PARTS"
+          },
+          {
+            "op": "tag",
+            "tag": "PROCESSING.SMITHABLE"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.PARTS & PROCESSING.SMITHABLE)",
+      "expression_tag_count": 2,
+      "base_material_count": 210,
+      "target_material_count": 210,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 16,
+      "target_set_sha256": "dd642192caa79466c9ae7de5fbe237e62a7371558a234e70282b9d1ed76f8c20",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "nugget": {
+      "status": "exact",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.INGOTS"
+        },
+        "right": {
+          "op": "tag",
+          "tag": "PROPERTIES.AUTO_BLACKLIST"
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.INGOTS - PROPERTIES.AUTO_BLACKLIST)",
+      "expression_tag_count": 2,
+      "base_material_count": 482,
+      "target_material_count": 482,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 25,
+      "target_set_sha256": "dad80f648724bec5ff1b1bcf4a6fc2d3cca2d5915960ff524d17ac8449a89ab3",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "ore": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.ORES"
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.COMMON_ORE"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.ORES & PROPERTIES.COMMON_ORE)",
+      "expression_tag_count": 2,
+      "base_material_count": 139,
+      "target_material_count": 136,
+      "exclude_materials": [
+        "Endium",
+        "Mercury",
+        "Moonstone",
+        "NetherQuartz"
+      ],
+      "include_materials": [
+        "Iron"
+      ],
+      "exception_count": 5,
+      "exception_ratio": 0.03676470588235294,
+      "exception_budget": 16,
+      "target_set_sha256": "94dccd17079e05848afc88ce2f1660c4ccadefa2877beecf07aa29455e46a7ce",
+      "replay_verified": true,
+      "discriminating_tag_count": 15
+    },
+    "oreAndesite": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreBasalt": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreBedrock": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreBlackgranite": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreBlueschist": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreDarkprismarine": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreDiorite": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreEnd": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ATOMIC.HALOGEN"
+          },
+          {
+            "op": "tag",
+            "tag": "ATOMIC.METAL"
+          }
+        ]
+      },
+      "expression_text": "(ATOMIC.HALOGEN & ATOMIC.METAL)",
+      "expression_tag_count": 2,
+      "base_material_count": 0,
+      "target_material_count": 1,
+      "exclude_materials": [],
+      "include_materials": [
+        "Endium"
+      ],
+      "exception_count": 1,
+      "exception_ratio": 1.0,
+      "exception_budget": 16,
+      "target_set_sha256": "6f57c805abe4d505a0ed13671a094c1b333959b93c118d775b3510870eb91225",
+      "replay_verified": true,
+      "discriminating_tag_count": 12
+    },
+    "oreEndstone": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreGravel": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreGreenschist": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreKimberlite": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreKomatiite": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreLightprismarine": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreLimestone": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreMarble": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreMoon": {
+      "status": "exact",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.MOLTEN"
+          },
+          {
+            "op": "tag",
+            "tag": "PROCESSING.UNRECYCLABLE"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.MOLTEN & PROCESSING.UNRECYCLABLE)",
+      "expression_tag_count": 2,
+      "base_material_count": 1,
+      "target_material_count": 1,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 16,
+      "target_set_sha256": "8f456255f6d39f472507a2a775212fb8d4326c7a7921806870c9c95840d03a78",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreMud": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreNetherrack": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreQuartzite": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreRaw": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreRedSand": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreRedgranite": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreSand": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreSandstone": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreShale": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreSlate": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreSmall": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreVanillagranite": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "oreVanillastone": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "plantGtBerry": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.PLANTS"
+      },
+      "expression_text": "ITEMGENERATOR.PLANTS",
+      "expression_tag_count": 1,
+      "base_material_count": 1179,
+      "target_material_count": 1179,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 59,
+      "target_set_sha256": "a3b8fd5f9078dc5b2fe79b6ffff4946b423b06126a6452792c2dc5e8308dcdb4",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "plantGtBlossom": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.PLANTS"
+      },
+      "expression_text": "ITEMGENERATOR.PLANTS",
+      "expression_tag_count": 1,
+      "base_material_count": 1179,
+      "target_material_count": 1179,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 59,
+      "target_set_sha256": "a3b8fd5f9078dc5b2fe79b6ffff4946b423b06126a6452792c2dc5e8308dcdb4",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "plantGtFiber": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.PLANTS"
+      },
+      "expression_text": "ITEMGENERATOR.PLANTS",
+      "expression_tag_count": 1,
+      "base_material_count": 1179,
+      "target_material_count": 1179,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 59,
+      "target_set_sha256": "a3b8fd5f9078dc5b2fe79b6ffff4946b423b06126a6452792c2dc5e8308dcdb4",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "plantGtTwig": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.PLANTS"
+      },
+      "expression_text": "ITEMGENERATOR.PLANTS",
+      "expression_tag_count": 1,
+      "base_material_count": 1179,
+      "target_material_count": 1179,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 59,
+      "target_set_sha256": "a3b8fd5f9078dc5b2fe79b6ffff4946b423b06126a6452792c2dc5e8308dcdb4",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "plantGtWart": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.PLANTS"
+      },
+      "expression_text": "ITEMGENERATOR.PLANTS",
+      "expression_tag_count": 1,
+      "base_material_count": 1179,
+      "target_material_count": 1179,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 59,
+      "target_set_sha256": "a3b8fd5f9078dc5b2fe79b6ffff4946b423b06126a6452792c2dc5e8308dcdb4",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "plate": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "difference",
+          "left": {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PLATES"
+          },
+          "right": {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.GEMS"
+          }
+        },
+        "right": {
+          "op": "tag",
+          "tag": "PROPERTIES.WOOD"
+        }
+      },
+      "expression_text": "((ITEMGENERATOR.PLATES - ITEMGENERATOR.GEMS) - PROPERTIES.WOOD)",
+      "expression_tag_count": 3,
+      "base_material_count": 531,
+      "target_material_count": 556,
+      "exclude_materials": [],
+      "include_materials": [
+        "Anthracite",
+        "Charcoal",
+        "Coal",
+        "CoalCoke",
+        "Coralium",
+        "Fireleaf",
+        "Fluorite",
+        "Force",
+        "Glass",
+        "Ironwood",
+        "Lazurite",
+        "Lignite",
+        "LigniteCoke",
+        "Lonsdaleite",
+        "NetherizedDiamond",
+        "Paper",
+        "PetrifiedWood",
+        "PetroleumCoke",
+        "Prismane",
+        "Rainbowood",
+        "Sodalite",
+        "Steeleaf",
+        "Wood",
+        "WoodTreated",
+        "Zirconium"
+      ],
+      "exception_count": 25,
+      "exception_ratio": 0.044964028776978415,
+      "exception_budget": 28,
+      "target_set_sha256": "acc13ce6538eb09fa97ea056d28157a132f52e3997d8be6859c486a11e5f0d80",
+      "replay_verified": true,
+      "discriminating_tag_count": 29
+    },
+    "plateCurved": {
+      "status": "exact",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.PLATES"
+        },
+        "right": {
+          "op": "difference",
+          "left": {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.GEMS"
+          },
+          "right": {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.INGOTS"
+          }
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.PLATES - (ITEMGENERATOR.GEMS - ITEMGENERATOR.INGOTS))",
+      "expression_tag_count": 3,
+      "base_material_count": 673,
+      "target_material_count": 673,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 34,
+      "target_set_sha256": "b90023bf6f7fdbc5971350527cb689deaf26380d32b0ca8673fb9a8adc92b935",
+      "replay_verified": true,
+      "discriminating_tag_count": 30
+    },
+    "plateDense": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.DENSEPLATES"
+      },
+      "expression_text": "ITEMGENERATOR.DENSEPLATES",
+      "expression_tag_count": 1,
+      "base_material_count": 436,
+      "target_material_count": 436,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 22,
+      "target_set_sha256": "06b8a04f2c7786bb39096e40daa9673fd11029c640a9c691422a3203d09398db",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "plateDouble": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.MULTIPLATES"
+      },
+      "expression_text": "ITEMGENERATOR.MULTIPLATES",
+      "expression_tag_count": 1,
+      "base_material_count": 434,
+      "target_material_count": 434,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 22,
+      "target_set_sha256": "59f9a3a30b8470aeab22f6b3999b542813800136fca873f64186bf49a84deefc",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "plateGem": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.GEMS"
+          },
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PLATES"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.GEMS & ITEMGENERATOR.PLATES)",
+      "expression_tag_count": 2,
+      "base_material_count": 203,
+      "target_material_count": 208,
+      "exclude_materials": [],
+      "include_materials": [
+        "Germanium",
+        "NikolineAlloy",
+        "RedstoneAlloy",
+        "Silicon",
+        "Tantalum"
+      ],
+      "exception_count": 5,
+      "exception_ratio": 0.02403846153846154,
+      "exception_budget": 16,
+      "target_set_sha256": "3e2c15ae25cac7abf1d9f12c87a38b2ae89e670e995b78a844842a2a13f43aaf",
+      "replay_verified": true,
+      "discriminating_tag_count": 20
+    },
+    "plateGemTiny": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.GEMS"
+          },
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PLATES"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.GEMS & ITEMGENERATOR.PLATES)",
+      "expression_tag_count": 2,
+      "base_material_count": 203,
+      "target_material_count": 208,
+      "exclude_materials": [],
+      "include_materials": [
+        "Germanium",
+        "NikolineAlloy",
+        "RedstoneAlloy",
+        "Silicon",
+        "Tantalum"
+      ],
+      "exception_count": 5,
+      "exception_ratio": 0.02403846153846154,
+      "exception_budget": 16,
+      "target_set_sha256": "3e2c15ae25cac7abf1d9f12c87a38b2ae89e670e995b78a844842a2a13f43aaf",
+      "replay_verified": true,
+      "discriminating_tag_count": 20
+    },
+    "plateQuadruple": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.MULTIPLATES"
+      },
+      "expression_text": "ITEMGENERATOR.MULTIPLATES",
+      "expression_tag_count": 1,
+      "base_material_count": 434,
+      "target_material_count": 434,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 22,
+      "target_set_sha256": "59f9a3a30b8470aeab22f6b3999b542813800136fca873f64186bf49a84deefc",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "plateQuintuple": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.MULTIPLATES"
+      },
+      "expression_text": "ITEMGENERATOR.MULTIPLATES",
+      "expression_tag_count": 1,
+      "base_material_count": 434,
+      "target_material_count": 434,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 22,
+      "target_set_sha256": "59f9a3a30b8470aeab22f6b3999b542813800136fca873f64186bf49a84deefc",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "plateTiny": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.PLATES"
+        },
+        "right": {
+          "op": "difference",
+          "left": {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.GEMS"
+          },
+          "right": {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.INGOTS"
+          }
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.PLATES - (ITEMGENERATOR.GEMS - ITEMGENERATOR.INGOTS))",
+      "expression_tag_count": 3,
+      "base_material_count": 673,
+      "target_material_count": 674,
+      "exclude_materials": [],
+      "include_materials": [
+        "Paper"
+      ],
+      "exception_count": 1,
+      "exception_ratio": 0.001483679525222552,
+      "exception_budget": 34,
+      "target_set_sha256": "fc1cdab3f68693a009caff0f17508941f6079be8c0c0e0c255afd0e7ebd06534",
+      "replay_verified": true,
+      "discriminating_tag_count": 30
+    },
+    "plateTriple": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.MULTIPLATES"
+      },
+      "expression_text": "ITEMGENERATOR.MULTIPLATES",
+      "expression_tag_count": 1,
+      "base_material_count": 434,
+      "target_material_count": 434,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 22,
+      "target_set_sha256": "59f9a3a30b8470aeab22f6b3999b542813800136fca873f64186bf49a84deefc",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "railGt": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.RAILS"
+      },
+      "expression_text": "ITEMGENERATOR.RAILS",
+      "expression_tag_count": 1,
+      "base_material_count": 28,
+      "target_material_count": 28,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 16,
+      "target_set_sha256": "d5faf29361f0fe91ada8c4404ab709fb7df7310701eaaaac735cda815b9eb07b",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "ring": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.PARTS"
+      },
+      "expression_text": "ITEMGENERATOR.PARTS",
+      "expression_tag_count": 1,
+      "base_material_count": 572,
+      "target_material_count": 572,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 29,
+      "target_set_sha256": "2c8ebd4d5ddcd23652c914abe46b5f8ae26abbee33c686a62d7f954c0d68b15a",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "rockGt": {
+      "status": "exact",
+      "expression": {
+        "op": "union",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.ORES"
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.STONE"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.ORES | PROPERTIES.STONE)",
+      "expression_tag_count": 2,
+      "base_material_count": 698,
+      "target_material_count": 698,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 35,
+      "target_set_sha256": "b9d0303e9d1fcc9210d31f83bf2f5df1872659d81aeede9b06a82198ad50612a",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "rotor": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.PARTS"
+      },
+      "expression_text": "ITEMGENERATOR.PARTS",
+      "expression_tag_count": 1,
+      "base_material_count": 572,
+      "target_material_count": 572,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 29,
+      "target_set_sha256": "2c8ebd4d5ddcd23652c914abe46b5f8ae26abbee33c686a62d7f954c0d68b15a",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "round": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "union",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.FOILS"
+          },
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PARTS"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.FOILS | ITEMGENERATOR.PARTS)",
+      "expression_tag_count": 2,
+      "base_material_count": 781,
+      "target_material_count": 791,
+      "exclude_materials": [],
+      "include_materials": [
+        "Anthracite",
+        "Charcoal",
+        "Coal",
+        "CoalCoke",
+        "Fluorite",
+        "Lignite",
+        "LigniteCoke",
+        "Lonsdaleite",
+        "PetroleumCoke",
+        "Prismane"
+      ],
+      "exception_count": 10,
+      "exception_ratio": 0.012642225031605562,
+      "exception_budget": 40,
+      "target_set_sha256": "408f4426a5dc650950c60ded3c888c92421be081122f05a2ded18638b8ada80e",
+      "replay_verified": true,
+      "discriminating_tag_count": 30
+    },
+    "scrapGt": {
+      "status": "exact",
+      "expression": {
+        "op": "union",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.DUSTS"
+          },
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.INGOTS"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.DUSTS | ITEMGENERATOR.INGOTS)",
+      "expression_tag_count": 2,
+      "base_material_count": 1107,
+      "target_material_count": 1107,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 56,
+      "target_set_sha256": "af9442ff9768b26e0ddfdcd99007dd008e27541d84f36d3cb45624ef718249e6",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "screw": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.STICKS"
+      },
+      "expression_text": "ITEMGENERATOR.STICKS",
+      "expression_tag_count": 1,
+      "base_material_count": 846,
+      "target_material_count": 846,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 43,
+      "target_set_sha256": "f69f783c053464366820814df2c45fcf7a0b2c1b2af588a93ff4372d197cc56f",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "spring": {
+      "status": "exact",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.PARTS"
+        },
+        "right": {
+          "op": "difference",
+          "left": {
+            "op": "tag",
+            "tag": "PROPERTIES.BRITTLE"
+          },
+          "right": {
+            "op": "tag",
+            "tag": "COMPOUNDS.APPROXIMATE"
+          }
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.PARTS - (PROPERTIES.BRITTLE - COMPOUNDS.APPROXIMATE))",
+      "expression_tag_count": 3,
+      "base_material_count": 446,
+      "target_material_count": 446,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 23,
+      "target_set_sha256": "55978de9ca814ea9ea75d2a839c6e4255a541dbc0f8367a1d11f42fdd33dce2b",
+      "replay_verified": true,
+      "discriminating_tag_count": 34
+    },
+    "springSmall": {
+      "status": "exact",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.PARTS"
+        },
+        "right": {
+          "op": "difference",
+          "left": {
+            "op": "tag",
+            "tag": "PROPERTIES.BRITTLE"
+          },
+          "right": {
+            "op": "tag",
+            "tag": "COMPOUNDS.APPROXIMATE"
+          }
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.PARTS - (PROPERTIES.BRITTLE - COMPOUNDS.APPROXIMATE))",
+      "expression_tag_count": 3,
+      "base_material_count": 446,
+      "target_material_count": 446,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 23,
+      "target_set_sha256": "55978de9ca814ea9ea75d2a839c6e4255a541dbc0f8367a1d11f42fdd33dce2b",
+      "replay_verified": true,
+      "discriminating_tag_count": 34
+    },
+    "stick": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.STICKS"
+      },
+      "expression_text": "ITEMGENERATOR.STICKS",
+      "expression_tag_count": 1,
+      "base_material_count": 846,
+      "target_material_count": 845,
+      "exclude_materials": [
+        "Bone"
+      ],
+      "include_materials": [],
+      "exception_count": 1,
+      "exception_ratio": 0.001183431952662722,
+      "exception_budget": 43,
+      "target_set_sha256": "37ba600a1b398838c8763569b738ff09a7c7789b1bc5ff3a496a8c6ebd7beaed",
+      "replay_verified": true,
+      "discriminating_tag_count": 35
+    },
+    "stickLong": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.STICKS"
+      },
+      "expression_text": "ITEMGENERATOR.STICKS",
+      "expression_tag_count": 1,
+      "base_material_count": 846,
+      "target_material_count": 846,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 43,
+      "target_set_sha256": "f69f783c053464366820814df2c45fcf7a0b2c1b2af588a93ff4372d197cc56f",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadArrow": {
+      "status": "exact",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PROJECTILES"
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.HAS_TOOL_STATS"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.PROJECTILES & PROPERTIES.HAS_TOOL_STATS)",
+      "expression_tag_count": 2,
+      "base_material_count": 541,
+      "target_material_count": 541,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "b2ead34b00d5df4537fc34ec1dd9ceba0d7ff82bbdfa0546de23c79f185ede7c",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadAxe": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "PROPERTIES.HAS_TOOL_STATS"
+      },
+      "expression_text": "PROPERTIES.HAS_TOOL_STATS",
+      "expression_tag_count": 1,
+      "base_material_count": 546,
+      "target_material_count": 546,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "06825b9cdf1a5441a00ab271d315d5f45378476c7ce99d729e7845e6d148cf1b",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadAxeDouble": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "union",
+            "args": [
+              {
+                "op": "tag",
+                "tag": "ITEMGENERATOR.LENSES"
+              },
+              {
+                "op": "tag",
+                "tag": "PROCESSING.SMITHABLE"
+              }
+            ]
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.HAS_TOOL_STATS"
+          }
+        ]
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES | PROCESSING.SMITHABLE) & PROPERTIES.HAS_TOOL_STATS)",
+      "expression_tag_count": 3,
+      "base_material_count": 302,
+      "target_material_count": 314,
+      "exclude_materials": [
+        "Glass",
+        "Ice"
+      ],
+      "include_materials": [
+        "Chimerite",
+        "DarkMatter",
+        "Firestone",
+        "Force",
+        "Frezarite",
+        "Licorice",
+        "Magic",
+        "Moonstone",
+        "PEZ",
+        "RedMatter",
+        "RedMeteor",
+        "Sunstone",
+        "Vinteum",
+        "VinteumPurified"
+      ],
+      "exception_count": 16,
+      "exception_ratio": 0.050955414012738856,
+      "exception_budget": 16,
+      "target_set_sha256": "c816a58bc316816fda677bfe92164f2ea3e53a2d4489308f9302450b8e4727e5",
+      "replay_verified": true,
+      "discriminating_tag_count": 26
+    },
+    "toolHeadBuilderwand": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "union",
+            "args": [
+              {
+                "op": "tag",
+                "tag": "ITEMGENERATOR.LENSES"
+              },
+              {
+                "op": "tag",
+                "tag": "PROCESSING.SMITHABLE"
+              }
+            ]
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.HAS_TOOL_STATS"
+          }
+        ]
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES | PROCESSING.SMITHABLE) & PROPERTIES.HAS_TOOL_STATS)",
+      "expression_tag_count": 3,
+      "base_material_count": 302,
+      "target_material_count": 314,
+      "exclude_materials": [
+        "Glass",
+        "Ice"
+      ],
+      "include_materials": [
+        "Chimerite",
+        "DarkMatter",
+        "Firestone",
+        "Force",
+        "Frezarite",
+        "Licorice",
+        "Magic",
+        "Moonstone",
+        "PEZ",
+        "RedMatter",
+        "RedMeteor",
+        "Sunstone",
+        "Vinteum",
+        "VinteumPurified"
+      ],
+      "exception_count": 16,
+      "exception_ratio": 0.050955414012738856,
+      "exception_budget": 16,
+      "target_set_sha256": "c816a58bc316816fda677bfe92164f2ea3e53a2d4489308f9302450b8e4727e5",
+      "replay_verified": true,
+      "discriminating_tag_count": 26
+    },
+    "toolHeadBuzzSaw": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "union",
+            "args": [
+              {
+                "op": "tag",
+                "tag": "ITEMGENERATOR.LENSES"
+              },
+              {
+                "op": "tag",
+                "tag": "PROCESSING.SMITHABLE"
+              }
+            ]
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.HAS_TOOL_STATS"
+          }
+        ]
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES | PROCESSING.SMITHABLE) & PROPERTIES.HAS_TOOL_STATS)",
+      "expression_tag_count": 3,
+      "base_material_count": 302,
+      "target_material_count": 314,
+      "exclude_materials": [
+        "Glass",
+        "Ice"
+      ],
+      "include_materials": [
+        "Chimerite",
+        "DarkMatter",
+        "Firestone",
+        "Force",
+        "Frezarite",
+        "Licorice",
+        "Magic",
+        "Moonstone",
+        "PEZ",
+        "RedMatter",
+        "RedMeteor",
+        "Sunstone",
+        "Vinteum",
+        "VinteumPurified"
+      ],
+      "exception_count": 16,
+      "exception_ratio": 0.050955414012738856,
+      "exception_budget": 16,
+      "target_set_sha256": "c816a58bc316816fda677bfe92164f2ea3e53a2d4489308f9302450b8e4727e5",
+      "replay_verified": true,
+      "discriminating_tag_count": 26
+    },
+    "toolHeadChisel": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "union",
+            "args": [
+              {
+                "op": "tag",
+                "tag": "ITEMGENERATOR.LENSES"
+              },
+              {
+                "op": "tag",
+                "tag": "PROCESSING.SMITHABLE"
+              }
+            ]
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.HAS_TOOL_STATS"
+          }
+        ]
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES | PROCESSING.SMITHABLE) & PROPERTIES.HAS_TOOL_STATS)",
+      "expression_tag_count": 3,
+      "base_material_count": 302,
+      "target_material_count": 314,
+      "exclude_materials": [
+        "Glass",
+        "Ice"
+      ],
+      "include_materials": [
+        "Chimerite",
+        "DarkMatter",
+        "Firestone",
+        "Force",
+        "Frezarite",
+        "Licorice",
+        "Magic",
+        "Moonstone",
+        "PEZ",
+        "RedMatter",
+        "RedMeteor",
+        "Sunstone",
+        "Vinteum",
+        "VinteumPurified"
+      ],
+      "exception_count": 16,
+      "exception_ratio": 0.050955414012738856,
+      "exception_budget": 16,
+      "target_set_sha256": "c816a58bc316816fda677bfe92164f2ea3e53a2d4489308f9302450b8e4727e5",
+      "replay_verified": true,
+      "discriminating_tag_count": 26
+    },
+    "toolHeadConstructionPickaxe": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "union",
+            "args": [
+              {
+                "op": "tag",
+                "tag": "ITEMGENERATOR.LENSES"
+              },
+              {
+                "op": "tag",
+                "tag": "PROCESSING.SMITHABLE"
+              }
+            ]
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.HAS_TOOL_STATS"
+          }
+        ]
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES | PROCESSING.SMITHABLE) & PROPERTIES.HAS_TOOL_STATS)",
+      "expression_tag_count": 3,
+      "base_material_count": 302,
+      "target_material_count": 314,
+      "exclude_materials": [
+        "Glass",
+        "Ice"
+      ],
+      "include_materials": [
+        "Chimerite",
+        "DarkMatter",
+        "Firestone",
+        "Force",
+        "Frezarite",
+        "Licorice",
+        "Magic",
+        "Moonstone",
+        "PEZ",
+        "RedMatter",
+        "RedMeteor",
+        "Sunstone",
+        "Vinteum",
+        "VinteumPurified"
+      ],
+      "exception_count": 16,
+      "exception_ratio": 0.050955414012738856,
+      "exception_budget": 16,
+      "target_set_sha256": "c816a58bc316816fda677bfe92164f2ea3e53a2d4489308f9302450b8e4727e5",
+      "replay_verified": true,
+      "discriminating_tag_count": 26
+    },
+    "toolHeadFile": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "union",
+            "args": [
+              {
+                "op": "tag",
+                "tag": "ITEMGENERATOR.LENSES"
+              },
+              {
+                "op": "tag",
+                "tag": "PROCESSING.SMITHABLE"
+              }
+            ]
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.HAS_TOOL_STATS"
+          }
+        ]
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES | PROCESSING.SMITHABLE) & PROPERTIES.HAS_TOOL_STATS)",
+      "expression_tag_count": 3,
+      "base_material_count": 302,
+      "target_material_count": 314,
+      "exclude_materials": [
+        "Glass",
+        "Ice"
+      ],
+      "include_materials": [
+        "Chimerite",
+        "DarkMatter",
+        "Firestone",
+        "Force",
+        "Frezarite",
+        "Licorice",
+        "Magic",
+        "Moonstone",
+        "PEZ",
+        "RedMatter",
+        "RedMeteor",
+        "Sunstone",
+        "Vinteum",
+        "VinteumPurified"
+      ],
+      "exception_count": 16,
+      "exception_ratio": 0.050955414012738856,
+      "exception_budget": 16,
+      "target_set_sha256": "c816a58bc316816fda677bfe92164f2ea3e53a2d4489308f9302450b8e4727e5",
+      "replay_verified": true,
+      "discriminating_tag_count": 26
+    },
+    "toolHeadHammer": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "PROPERTIES.HAS_TOOL_STATS"
+        },
+        "right": {
+          "op": "tag",
+          "tag": "PROCESSING.COOL2CRYSTAL"
+        }
+      },
+      "expression_text": "(PROPERTIES.HAS_TOOL_STATS - PROCESSING.COOL2CRYSTAL)",
+      "expression_tag_count": 2,
+      "base_material_count": 544,
+      "target_material_count": 536,
+      "exclude_materials": [
+        "AnnealedCopper",
+        "Chert",
+        "Concrete",
+        "Copper",
+        "Netherrack",
+        "Shale",
+        "Siltstone",
+        "Slate"
+      ],
+      "include_materials": [],
+      "exception_count": 8,
+      "exception_ratio": 0.014925373134328358,
+      "exception_budget": 27,
+      "target_set_sha256": "137b0fbe0e1baa66281b2d48565c17897a1681ca5eda281d73cb8e38ab998e62",
+      "replay_verified": true,
+      "discriminating_tag_count": 33
+    },
+    "toolHeadHoe": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "PROPERTIES.HAS_TOOL_STATS"
+      },
+      "expression_text": "PROPERTIES.HAS_TOOL_STATS",
+      "expression_tag_count": 1,
+      "base_material_count": 546,
+      "target_material_count": 546,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "06825b9cdf1a5441a00ab271d315d5f45378476c7ce99d729e7845e6d148cf1b",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadPickaxe": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "PROPERTIES.HAS_TOOL_STATS"
+      },
+      "expression_text": "PROPERTIES.HAS_TOOL_STATS",
+      "expression_tag_count": 1,
+      "base_material_count": 546,
+      "target_material_count": 546,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "06825b9cdf1a5441a00ab271d315d5f45378476c7ce99d729e7845e6d148cf1b",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadPickaxeGem": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PARTS"
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.TRANSPARENT"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.PARTS & PROPERTIES.TRANSPARENT)",
+      "expression_tag_count": 2,
+      "base_material_count": 100,
+      "target_material_count": 98,
+      "exclude_materials": [
+        "AntiVibranium",
+        "EnderEye",
+        "EnderPearl",
+        "Vibranium"
+      ],
+      "include_materials": [
+        "Empty",
+        "Firestone"
+      ],
+      "exception_count": 6,
+      "exception_ratio": 0.061224489795918366,
+      "exception_budget": 16,
+      "target_set_sha256": "d871e4d6d9f01f125c90d874ca617941c4a57c6f33c2252df86cc04bf22ab558",
+      "replay_verified": true,
+      "discriminating_tag_count": 20
+    },
+    "toolHeadPlow": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "PROPERTIES.HAS_TOOL_STATS"
+      },
+      "expression_text": "PROPERTIES.HAS_TOOL_STATS",
+      "expression_tag_count": 1,
+      "base_material_count": 546,
+      "target_material_count": 546,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "06825b9cdf1a5441a00ab271d315d5f45378476c7ce99d729e7845e6d148cf1b",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadRawArrow": {
+      "status": "exact",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PROJECTILES"
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.HAS_TOOL_STATS"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.PROJECTILES & PROPERTIES.HAS_TOOL_STATS)",
+      "expression_tag_count": 2,
+      "base_material_count": 541,
+      "target_material_count": 541,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "b2ead34b00d5df4537fc34ec1dd9ceba0d7ff82bbdfa0546de23c79f185ede7c",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadRawAxe": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "PROPERTIES.HAS_TOOL_STATS"
+      },
+      "expression_text": "PROPERTIES.HAS_TOOL_STATS",
+      "expression_tag_count": 1,
+      "base_material_count": 546,
+      "target_material_count": 546,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "06825b9cdf1a5441a00ab271d315d5f45378476c7ce99d729e7845e6d148cf1b",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadRawAxeDouble": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "union",
+            "args": [
+              {
+                "op": "tag",
+                "tag": "ITEMGENERATOR.LENSES"
+              },
+              {
+                "op": "tag",
+                "tag": "PROCESSING.SMITHABLE"
+              }
+            ]
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.HAS_TOOL_STATS"
+          }
+        ]
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES | PROCESSING.SMITHABLE) & PROPERTIES.HAS_TOOL_STATS)",
+      "expression_tag_count": 3,
+      "base_material_count": 302,
+      "target_material_count": 314,
+      "exclude_materials": [
+        "Glass",
+        "Ice"
+      ],
+      "include_materials": [
+        "Chimerite",
+        "DarkMatter",
+        "Firestone",
+        "Force",
+        "Frezarite",
+        "Licorice",
+        "Magic",
+        "Moonstone",
+        "PEZ",
+        "RedMatter",
+        "RedMeteor",
+        "Sunstone",
+        "Vinteum",
+        "VinteumPurified"
+      ],
+      "exception_count": 16,
+      "exception_ratio": 0.050955414012738856,
+      "exception_budget": 16,
+      "target_set_sha256": "c816a58bc316816fda677bfe92164f2ea3e53a2d4489308f9302450b8e4727e5",
+      "replay_verified": true,
+      "discriminating_tag_count": 26
+    },
+    "toolHeadRawChisel": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "union",
+            "args": [
+              {
+                "op": "tag",
+                "tag": "ITEMGENERATOR.LENSES"
+              },
+              {
+                "op": "tag",
+                "tag": "PROCESSING.SMITHABLE"
+              }
+            ]
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.HAS_TOOL_STATS"
+          }
+        ]
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES | PROCESSING.SMITHABLE) & PROPERTIES.HAS_TOOL_STATS)",
+      "expression_tag_count": 3,
+      "base_material_count": 302,
+      "target_material_count": 314,
+      "exclude_materials": [
+        "Glass",
+        "Ice"
+      ],
+      "include_materials": [
+        "Chimerite",
+        "DarkMatter",
+        "Firestone",
+        "Force",
+        "Frezarite",
+        "Licorice",
+        "Magic",
+        "Moonstone",
+        "PEZ",
+        "RedMatter",
+        "RedMeteor",
+        "Sunstone",
+        "Vinteum",
+        "VinteumPurified"
+      ],
+      "exception_count": 16,
+      "exception_ratio": 0.050955414012738856,
+      "exception_budget": 16,
+      "target_set_sha256": "c816a58bc316816fda677bfe92164f2ea3e53a2d4489308f9302450b8e4727e5",
+      "replay_verified": true,
+      "discriminating_tag_count": 26
+    },
+    "toolHeadRawHoe": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "PROPERTIES.HAS_TOOL_STATS"
+      },
+      "expression_text": "PROPERTIES.HAS_TOOL_STATS",
+      "expression_tag_count": 1,
+      "base_material_count": 546,
+      "target_material_count": 546,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "06825b9cdf1a5441a00ab271d315d5f45378476c7ce99d729e7845e6d148cf1b",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadRawPickaxe": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "PROPERTIES.HAS_TOOL_STATS"
+      },
+      "expression_text": "PROPERTIES.HAS_TOOL_STATS",
+      "expression_tag_count": 1,
+      "base_material_count": 546,
+      "target_material_count": 546,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "06825b9cdf1a5441a00ab271d315d5f45378476c7ce99d729e7845e6d148cf1b",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadRawPlow": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "PROPERTIES.HAS_TOOL_STATS"
+      },
+      "expression_text": "PROPERTIES.HAS_TOOL_STATS",
+      "expression_tag_count": 1,
+      "base_material_count": 546,
+      "target_material_count": 546,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "06825b9cdf1a5441a00ab271d315d5f45378476c7ce99d729e7845e6d148cf1b",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadRawSaw": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "union",
+            "args": [
+              {
+                "op": "tag",
+                "tag": "ITEMGENERATOR.LENSES"
+              },
+              {
+                "op": "tag",
+                "tag": "PROCESSING.SMITHABLE"
+              }
+            ]
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.HAS_TOOL_STATS"
+          }
+        ]
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES | PROCESSING.SMITHABLE) & PROPERTIES.HAS_TOOL_STATS)",
+      "expression_tag_count": 3,
+      "base_material_count": 302,
+      "target_material_count": 314,
+      "exclude_materials": [
+        "Glass",
+        "Ice"
+      ],
+      "include_materials": [
+        "Chimerite",
+        "DarkMatter",
+        "Firestone",
+        "Force",
+        "Frezarite",
+        "Licorice",
+        "Magic",
+        "Moonstone",
+        "PEZ",
+        "RedMatter",
+        "RedMeteor",
+        "Sunstone",
+        "Vinteum",
+        "VinteumPurified"
+      ],
+      "exception_count": 16,
+      "exception_ratio": 0.050955414012738856,
+      "exception_budget": 16,
+      "target_set_sha256": "c816a58bc316816fda677bfe92164f2ea3e53a2d4489308f9302450b8e4727e5",
+      "replay_verified": true,
+      "discriminating_tag_count": 26
+    },
+    "toolHeadRawSense": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "PROPERTIES.HAS_TOOL_STATS"
+      },
+      "expression_text": "PROPERTIES.HAS_TOOL_STATS",
+      "expression_tag_count": 1,
+      "base_material_count": 546,
+      "target_material_count": 546,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "06825b9cdf1a5441a00ab271d315d5f45378476c7ce99d729e7845e6d148cf1b",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadRawShovel": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "PROPERTIES.HAS_TOOL_STATS"
+      },
+      "expression_text": "PROPERTIES.HAS_TOOL_STATS",
+      "expression_tag_count": 1,
+      "base_material_count": 546,
+      "target_material_count": 546,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "06825b9cdf1a5441a00ab271d315d5f45378476c7ce99d729e7845e6d148cf1b",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadRawSpade": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "PROPERTIES.HAS_TOOL_STATS"
+      },
+      "expression_text": "PROPERTIES.HAS_TOOL_STATS",
+      "expression_tag_count": 1,
+      "base_material_count": 546,
+      "target_material_count": 546,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "06825b9cdf1a5441a00ab271d315d5f45378476c7ce99d729e7845e6d148cf1b",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadRawSword": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "PROPERTIES.HAS_TOOL_STATS"
+      },
+      "expression_text": "PROPERTIES.HAS_TOOL_STATS",
+      "expression_tag_count": 1,
+      "base_material_count": 546,
+      "target_material_count": 546,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "06825b9cdf1a5441a00ab271d315d5f45378476c7ce99d729e7845e6d148cf1b",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadRawUniversalSpade": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "union",
+            "args": [
+              {
+                "op": "tag",
+                "tag": "ITEMGENERATOR.LENSES"
+              },
+              {
+                "op": "tag",
+                "tag": "PROCESSING.SMITHABLE"
+              }
+            ]
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.HAS_TOOL_STATS"
+          }
+        ]
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES | PROCESSING.SMITHABLE) & PROPERTIES.HAS_TOOL_STATS)",
+      "expression_tag_count": 3,
+      "base_material_count": 302,
+      "target_material_count": 314,
+      "exclude_materials": [
+        "Glass",
+        "Ice"
+      ],
+      "include_materials": [
+        "Chimerite",
+        "DarkMatter",
+        "Firestone",
+        "Force",
+        "Frezarite",
+        "Licorice",
+        "Magic",
+        "Moonstone",
+        "PEZ",
+        "RedMatter",
+        "RedMeteor",
+        "Sunstone",
+        "Vinteum",
+        "VinteumPurified"
+      ],
+      "exception_count": 16,
+      "exception_ratio": 0.050955414012738856,
+      "exception_budget": 16,
+      "target_set_sha256": "c816a58bc316816fda677bfe92164f2ea3e53a2d4489308f9302450b8e4727e5",
+      "replay_verified": true,
+      "discriminating_tag_count": 26
+    },
+    "toolHeadSaw": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "union",
+            "args": [
+              {
+                "op": "tag",
+                "tag": "ITEMGENERATOR.LENSES"
+              },
+              {
+                "op": "tag",
+                "tag": "PROCESSING.SMITHABLE"
+              }
+            ]
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.HAS_TOOL_STATS"
+          }
+        ]
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES | PROCESSING.SMITHABLE) & PROPERTIES.HAS_TOOL_STATS)",
+      "expression_tag_count": 3,
+      "base_material_count": 302,
+      "target_material_count": 314,
+      "exclude_materials": [
+        "Glass",
+        "Ice"
+      ],
+      "include_materials": [
+        "Chimerite",
+        "DarkMatter",
+        "Firestone",
+        "Force",
+        "Frezarite",
+        "Licorice",
+        "Magic",
+        "Moonstone",
+        "PEZ",
+        "RedMatter",
+        "RedMeteor",
+        "Sunstone",
+        "Vinteum",
+        "VinteumPurified"
+      ],
+      "exception_count": 16,
+      "exception_ratio": 0.050955414012738856,
+      "exception_budget": 16,
+      "target_set_sha256": "c816a58bc316816fda677bfe92164f2ea3e53a2d4489308f9302450b8e4727e5",
+      "replay_verified": true,
+      "discriminating_tag_count": 26
+    },
+    "toolHeadScrewdriver": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "union",
+            "args": [
+              {
+                "op": "tag",
+                "tag": "ITEMGENERATOR.LENSES"
+              },
+              {
+                "op": "tag",
+                "tag": "PROCESSING.SMITHABLE"
+              }
+            ]
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.HAS_TOOL_STATS"
+          }
+        ]
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES | PROCESSING.SMITHABLE) & PROPERTIES.HAS_TOOL_STATS)",
+      "expression_tag_count": 3,
+      "base_material_count": 302,
+      "target_material_count": 314,
+      "exclude_materials": [
+        "Glass",
+        "Ice"
+      ],
+      "include_materials": [
+        "Chimerite",
+        "DarkMatter",
+        "Firestone",
+        "Force",
+        "Frezarite",
+        "Licorice",
+        "Magic",
+        "Moonstone",
+        "PEZ",
+        "RedMatter",
+        "RedMeteor",
+        "Sunstone",
+        "Vinteum",
+        "VinteumPurified"
+      ],
+      "exception_count": 16,
+      "exception_ratio": 0.050955414012738856,
+      "exception_budget": 16,
+      "target_set_sha256": "c816a58bc316816fda677bfe92164f2ea3e53a2d4489308f9302450b8e4727e5",
+      "replay_verified": true,
+      "discriminating_tag_count": 26
+    },
+    "toolHeadSense": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "PROPERTIES.HAS_TOOL_STATS"
+      },
+      "expression_text": "PROPERTIES.HAS_TOOL_STATS",
+      "expression_tag_count": 1,
+      "base_material_count": 546,
+      "target_material_count": 546,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "06825b9cdf1a5441a00ab271d315d5f45378476c7ce99d729e7845e6d148cf1b",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadShovel": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "PROPERTIES.HAS_TOOL_STATS"
+      },
+      "expression_text": "PROPERTIES.HAS_TOOL_STATS",
+      "expression_tag_count": 1,
+      "base_material_count": 546,
+      "target_material_count": 546,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "06825b9cdf1a5441a00ab271d315d5f45378476c7ce99d729e7845e6d148cf1b",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadSpade": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "PROPERTIES.HAS_TOOL_STATS"
+      },
+      "expression_text": "PROPERTIES.HAS_TOOL_STATS",
+      "expression_tag_count": 1,
+      "base_material_count": 546,
+      "target_material_count": 546,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "06825b9cdf1a5441a00ab271d315d5f45378476c7ce99d729e7845e6d148cf1b",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadSword": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "PROPERTIES.HAS_TOOL_STATS"
+      },
+      "expression_text": "PROPERTIES.HAS_TOOL_STATS",
+      "expression_tag_count": 1,
+      "base_material_count": 546,
+      "target_material_count": 546,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 28,
+      "target_set_sha256": "06825b9cdf1a5441a00ab271d315d5f45378476c7ce99d729e7845e6d148cf1b",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "toolHeadUniversalSpade": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "union",
+            "args": [
+              {
+                "op": "tag",
+                "tag": "ITEMGENERATOR.LENSES"
+              },
+              {
+                "op": "tag",
+                "tag": "PROCESSING.SMITHABLE"
+              }
+            ]
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.HAS_TOOL_STATS"
+          }
+        ]
+      },
+      "expression_text": "((ITEMGENERATOR.LENSES | PROCESSING.SMITHABLE) & PROPERTIES.HAS_TOOL_STATS)",
+      "expression_tag_count": 3,
+      "base_material_count": 302,
+      "target_material_count": 314,
+      "exclude_materials": [
+        "Glass",
+        "Ice"
+      ],
+      "include_materials": [
+        "Chimerite",
+        "DarkMatter",
+        "Firestone",
+        "Force",
+        "Frezarite",
+        "Licorice",
+        "Magic",
+        "Moonstone",
+        "PEZ",
+        "RedMatter",
+        "RedMeteor",
+        "Sunstone",
+        "Vinteum",
+        "VinteumPurified"
+      ],
+      "exception_count": 16,
+      "exception_ratio": 0.050955414012738856,
+      "exception_budget": 16,
+      "target_set_sha256": "c816a58bc316816fda677bfe92164f2ea3e53a2d4489308f9302450b8e4727e5",
+      "replay_verified": true,
+      "discriminating_tag_count": 26
+    },
+    "wireFine": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PARTS"
+          },
+          {
+            "op": "tag",
+            "tag": "PROCESSING.SMITHABLE"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.PARTS & PROCESSING.SMITHABLE)",
+      "expression_tag_count": 2,
+      "base_material_count": 210,
+      "target_material_count": 223,
+      "exclude_materials": [],
+      "include_materials": [
+        "Bakelite",
+        "BlueAlloy",
+        "ElectrotineAlloy",
+        "Graphene",
+        "HardPlastic",
+        "Mingrade",
+        "PVC",
+        "Plastic",
+        "PurpleAlloy",
+        "RedAlloy",
+        "Rubber",
+        "SolderingAlloy",
+        "Teflon"
+      ],
+      "exception_count": 13,
+      "exception_ratio": 0.05829596412556054,
+      "exception_budget": 16,
+      "target_set_sha256": "d5e528fdfb7a7d85396f1152ad66c4359b652bfc6e77966746fac9d74df5514c",
+      "replay_verified": true,
+      "discriminating_tag_count": 37
+    }
+  },
+  "explicit_prefix_domains": {
+    "cableGt01": {
+      "status": "explicit_enumeration",
+      "materials": [
+        "Aluminium",
+        "AnnealedCopper",
+        "BlueAlloy",
+        "Carborundum",
+        "Constantan",
+        "Copper",
+        "Efrine",
+        "ElectrotineAlloy",
+        "Electrum",
+        "Gold",
+        "HSLASteel",
+        "Iridium",
+        "Kanthal",
+        "Lead",
+        "Lumium",
+        "Naquadah",
+        "Netherite",
+        "Nichrome",
+        "NiobiumTitanium",
+        "Osmiridium",
+        "OsmiumElemental",
+        "Platinum",
+        "RedAlloy",
+        "Signalum",
+        "Silver",
+        "Steel",
+        "Tin",
+        "Tungsten",
+        "Tungstensteel",
+        "VanadiumGallium",
+        "YttriumBariumCuprate"
+      ],
+      "target_material_count": 31,
+      "target_set_sha256": "31b31ffe55d6ae3af3ece95f3e0304116db354d6c3d58c34818432027132a6ab",
+      "replay_verified": true
+    },
+    "cableGt02": {
+      "status": "explicit_enumeration",
+      "materials": [
+        "Aluminium",
+        "AnnealedCopper",
+        "BlueAlloy",
+        "Carborundum",
+        "Constantan",
+        "Copper",
+        "Efrine",
+        "ElectrotineAlloy",
+        "Electrum",
+        "Gold",
+        "HSLASteel",
+        "Iridium",
+        "Kanthal",
+        "Lead",
+        "Naquadah",
+        "Netherite",
+        "Nichrome",
+        "NiobiumTitanium",
+        "Osmiridium",
+        "OsmiumElemental",
+        "Platinum",
+        "Silver",
+        "Steel",
+        "Tin",
+        "Tungsten",
+        "Tungstensteel",
+        "VanadiumGallium",
+        "YttriumBariumCuprate"
+      ],
+      "target_material_count": 28,
+      "target_set_sha256": "f6bfbdd2837a2e03a3c78126af055fe51ef801564cbff5d9b137bbcfaffd8657",
+      "replay_verified": true
+    },
+    "cableGt04": {
+      "status": "explicit_enumeration",
+      "materials": [
+        "Aluminium",
+        "AnnealedCopper",
+        "BlueAlloy",
+        "Carborundum",
+        "Constantan",
+        "Copper",
+        "Efrine",
+        "ElectrotineAlloy",
+        "Electrum",
+        "Gold",
+        "HSLASteel",
+        "Iridium",
+        "Kanthal",
+        "Lead",
+        "Naquadah",
+        "Netherite",
+        "Nichrome",
+        "NiobiumTitanium",
+        "Osmiridium",
+        "OsmiumElemental",
+        "Platinum",
+        "Silver",
+        "Steel",
+        "Tin",
+        "Tungsten",
+        "Tungstensteel",
+        "VanadiumGallium",
+        "YttriumBariumCuprate"
+      ],
+      "target_material_count": 28,
+      "target_set_sha256": "f6bfbdd2837a2e03a3c78126af055fe51ef801564cbff5d9b137bbcfaffd8657",
+      "replay_verified": true
+    },
+    "cableGt08": {
+      "status": "explicit_enumeration",
+      "materials": [
+        "Aluminium",
+        "AnnealedCopper",
+        "BlueAlloy",
+        "Carborundum",
+        "Constantan",
+        "Copper",
+        "Efrine",
+        "ElectrotineAlloy",
+        "Electrum",
+        "Gold",
+        "HSLASteel",
+        "Iridium",
+        "Kanthal",
+        "Lead",
+        "Naquadah",
+        "Netherite",
+        "Nichrome",
+        "NiobiumTitanium",
+        "Osmiridium",
+        "OsmiumElemental",
+        "Platinum",
+        "Silver",
+        "Steel",
+        "Tin",
+        "Tungsten",
+        "Tungstensteel",
+        "VanadiumGallium",
+        "YttriumBariumCuprate"
+      ],
+      "target_material_count": 28,
+      "target_set_sha256": "f6bfbdd2837a2e03a3c78126af055fe51ef801564cbff5d9b137bbcfaffd8657",
+      "replay_verified": true
+    },
+    "cableGt12": {
+      "status": "explicit_enumeration",
+      "materials": [
+        "Aluminium",
+        "AnnealedCopper",
+        "BlueAlloy",
+        "Carborundum",
+        "Constantan",
+        "Copper",
+        "Efrine",
+        "ElectrotineAlloy",
+        "Electrum",
+        "Gold",
+        "HSLASteel",
+        "Iridium",
+        "Kanthal",
+        "Lead",
+        "Naquadah",
+        "Netherite",
+        "Nichrome",
+        "NiobiumTitanium",
+        "Osmiridium",
+        "OsmiumElemental",
+        "Platinum",
+        "Silver",
+        "Steel",
+        "Tin",
+        "Tungsten",
+        "Tungstensteel",
+        "VanadiumGallium",
+        "YttriumBariumCuprate"
+      ],
+      "target_material_count": 28,
+      "target_set_sha256": "f6bfbdd2837a2e03a3c78126af055fe51ef801564cbff5d9b137bbcfaffd8657",
+      "replay_verified": true
+    },
+    "wireGt01": {
+      "status": "explicit_enumeration",
+      "materials": [
+        "Aluminium",
+        "AnnealedCopper",
+        "BlueAlloy",
+        "Carborundum",
+        "Constantan",
+        "Copper",
+        "Efrine",
+        "ElectrotineAlloy",
+        "Electrum",
+        "Gold",
+        "Graphene",
+        "HSLASteel",
+        "Iridium",
+        "Kanthal",
+        "Lead",
+        "Lumium",
+        "Naquadah",
+        "Netherite",
+        "Nichrome",
+        "NiobiumTitanium",
+        "Osmiridium",
+        "OsmiumElemental",
+        "Platinum",
+        "RedAlloy",
+        "Signalum",
+        "Silver",
+        "Steel",
+        "Tin",
+        "Tungsten",
+        "Tungstensteel",
+        "VanadiumGallium",
+        "YttriumBariumCuprate"
+      ],
+      "target_material_count": 32,
+      "target_set_sha256": "73571860424a2b1b2436e55102495610371db3d25f90c6f8a675ae8cf89e13f0",
+      "replay_verified": true
+    },
+    "wireGt02": {
+      "status": "explicit_enumeration",
+      "materials": [
+        "Aluminium",
+        "AnnealedCopper",
+        "BlueAlloy",
+        "Carborundum",
+        "Constantan",
+        "Copper",
+        "Efrine",
+        "ElectrotineAlloy",
+        "Electrum",
+        "Gold",
+        "Graphene",
+        "HSLASteel",
+        "Iridium",
+        "Kanthal",
+        "Lead",
+        "Naquadah",
+        "Netherite",
+        "Nichrome",
+        "NiobiumTitanium",
+        "Osmiridium",
+        "OsmiumElemental",
+        "Platinum",
+        "Silver",
+        "Steel",
+        "Tin",
+        "Tungsten",
+        "Tungstensteel",
+        "VanadiumGallium",
+        "YttriumBariumCuprate"
+      ],
+      "target_material_count": 29,
+      "target_set_sha256": "4335a9d00824d732e50dc926add4ddc7260b2853dd07fca248d8a7271cc49d33",
+      "replay_verified": true
+    },
+    "wireGt04": {
+      "status": "explicit_enumeration",
+      "materials": [
+        "Aluminium",
+        "AnnealedCopper",
+        "BlueAlloy",
+        "Carborundum",
+        "Constantan",
+        "Copper",
+        "Efrine",
+        "ElectrotineAlloy",
+        "Electrum",
+        "Gold",
+        "Graphene",
+        "HSLASteel",
+        "Iridium",
+        "Kanthal",
+        "Lead",
+        "Naquadah",
+        "Netherite",
+        "Nichrome",
+        "NiobiumTitanium",
+        "Osmiridium",
+        "OsmiumElemental",
+        "Platinum",
+        "Silver",
+        "Steel",
+        "Tin",
+        "Tungsten",
+        "Tungstensteel",
+        "VanadiumGallium",
+        "YttriumBariumCuprate"
+      ],
+      "target_material_count": 29,
+      "target_set_sha256": "4335a9d00824d732e50dc926add4ddc7260b2853dd07fca248d8a7271cc49d33",
+      "replay_verified": true
+    },
+    "wireGt08": {
+      "status": "explicit_enumeration",
+      "materials": [
+        "Aluminium",
+        "AnnealedCopper",
+        "BlueAlloy",
+        "Carborundum",
+        "Constantan",
+        "Copper",
+        "Efrine",
+        "ElectrotineAlloy",
+        "Electrum",
+        "Gold",
+        "Graphene",
+        "HSLASteel",
+        "Iridium",
+        "Kanthal",
+        "Lead",
+        "Naquadah",
+        "Netherite",
+        "Nichrome",
+        "NiobiumTitanium",
+        "Osmiridium",
+        "OsmiumElemental",
+        "Platinum",
+        "Silver",
+        "Steel",
+        "Tin",
+        "Tungsten",
+        "Tungstensteel",
+        "VanadiumGallium",
+        "YttriumBariumCuprate"
+      ],
+      "target_material_count": 29,
+      "target_set_sha256": "4335a9d00824d732e50dc926add4ddc7260b2853dd07fca248d8a7271cc49d33",
+      "replay_verified": true
+    },
+    "wireGt12": {
+      "status": "explicit_enumeration",
+      "materials": [
+        "Aluminium",
+        "AnnealedCopper",
+        "BlueAlloy",
+        "Carborundum",
+        "Constantan",
+        "Copper",
+        "Efrine",
+        "ElectrotineAlloy",
+        "Electrum",
+        "Gold",
+        "Graphene",
+        "HSLASteel",
+        "Iridium",
+        "Kanthal",
+        "Lead",
+        "Naquadah",
+        "Netherite",
+        "Nichrome",
+        "NiobiumTitanium",
+        "Osmiridium",
+        "OsmiumElemental",
+        "Platinum",
+        "Silver",
+        "Steel",
+        "Tin",
+        "Tungsten",
+        "Tungstensteel",
+        "VanadiumGallium",
+        "YttriumBariumCuprate"
+      ],
+      "target_material_count": 29,
+      "target_set_sha256": "4335a9d00824d732e50dc926add4ddc7260b2853dd07fca248d8a7271cc49d33",
+      "replay_verified": true
+    },
+    "wireGt16": {
+      "status": "explicit_enumeration",
+      "materials": [
+        "Aluminium",
+        "AnnealedCopper",
+        "BlueAlloy",
+        "Carborundum",
+        "Constantan",
+        "Copper",
+        "Efrine",
+        "ElectrotineAlloy",
+        "Electrum",
+        "Gold",
+        "Graphene",
+        "HSLASteel",
+        "Iridium",
+        "Kanthal",
+        "Lead",
+        "Naquadah",
+        "Netherite",
+        "Nichrome",
+        "NiobiumTitanium",
+        "Osmiridium",
+        "OsmiumElemental",
+        "Platinum",
+        "Silver",
+        "Steel",
+        "Tin",
+        "Tungsten",
+        "Tungstensteel",
+        "VanadiumGallium",
+        "YttriumBariumCuprate"
+      ],
+      "target_material_count": 29,
+      "target_set_sha256": "4335a9d00824d732e50dc926add4ddc7260b2853dd07fca248d8a7271cc49d33",
+      "replay_verified": true
+    }
+  },
+  "compatibility_absorption_prefixes": {
+    "beam": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 1,
+      "target_set_sha256": "96c8c020152bc98b9b9622cf04eee1fe9dbb6a65d9951b93da1ae7ded0c6db0a",
+      "replay_verified": true
+    },
+    "block": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 362,
+      "target_set_sha256": "8fea99a01c5aeafcfad20ff06c9af058e656475b313a01dc73417416dcd02062",
+      "replay_verified": true
+    },
+    "blockGlass": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 16,
+      "target_set_sha256": "55ed9cadb13189834d0940e70477ffc3055f458c7af70f67c4166f0d0b320384",
+      "replay_verified": true
+    },
+    "book": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 1,
+      "target_set_sha256": "49935a75c5458b2e833e683d6b657945c5d51973a2475e180ba0269bc2a2e7d4",
+      "replay_verified": true
+    },
+    "boule": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 1,
+      "target_set_sha256": "9f6b3015b6c3fbcc770956304b4e111b74cb7d74989a86a3979c941978326e93",
+      "replay_verified": true
+    },
+    "brick": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 1,
+      "target_set_sha256": "13bddea9d7d7860e8f51d2f7c14b6ba444848fcc3daf029ea0463a7ae3a78060",
+      "replay_verified": true
+    },
+    "bucket": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 3,
+      "target_set_sha256": "1f0920f78b5fed5186d452ac91f4d418f4454b1d3e35dc655cde888c5a3b205a",
+      "replay_verified": true
+    },
+    "circuit": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 3,
+      "target_set_sha256": "513431b1d6aba553e22a7007eb1a02191a4c44c9d51ea88ec00803d1de6a113b",
+      "replay_verified": true
+    },
+    "crafting": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 1,
+      "target_set_sha256": "f0e83b73e61e9bb2de1d7837af5f14a95c2f2db5f4b06ac4aa220d2cc924e467",
+      "replay_verified": true
+    },
+    "crop": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 13,
+      "target_set_sha256": "fa9094c84ebb7ec6de29ac7ab5f42d51a15e7708e2c455939e81ee2b69cd8a64",
+      "replay_verified": true
+    },
+    "dye": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 16,
+      "target_set_sha256": "55ed9cadb13189834d0940e70477ffc3055f458c7af70f67c4166f0d0b320384",
+      "replay_verified": true
+    },
+    "dyeMixable": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 16,
+      "target_set_sha256": "55ed9cadb13189834d0940e70477ffc3055f458c7af70f67c4166f0d0b320384",
+      "replay_verified": true
+    },
+    "food": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 4,
+      "target_set_sha256": "1651935300b47460a402c610858dc356d2463b97ba8ce93e0647885cd4051df7",
+      "replay_verified": true
+    },
+    "gear": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 21,
+      "target_set_sha256": "091077fc4ee40b983ce1033a452cc159c556d9698b72050011edb8b7b688c85c",
+      "replay_verified": true
+    },
+    "item": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 13,
+      "target_set_sha256": "c501b45611240c6ab31c7f7c5cf3198480aaa024dddd15d2e11384b189453c2b",
+      "replay_verified": true
+    },
+    "log": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 2,
+      "target_set_sha256": "87a42e659c0af8e463258f93d9862890b335f5110c2d4a87f5aef35b92609278",
+      "replay_verified": true
+    },
+    "mana": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 1,
+      "target_set_sha256": "4064829cbf147547e1e0f37f28254f5cf0ae92112c5aca4cba8dcb82e6b4fecc",
+      "replay_verified": true
+    },
+    "material": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 2,
+      "target_set_sha256": "1fa4b90038c3b210711ac02452a014d99cd78c516aa8c9c6f93f3ef696d8dd0d",
+      "replay_verified": true
+    },
+    "paneGlass": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 16,
+      "target_set_sha256": "55ed9cadb13189834d0940e70477ffc3055f458c7af70f67c4166f0d0b320384",
+      "replay_verified": true
+    },
+    "paper": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 1,
+      "target_set_sha256": "49935a75c5458b2e833e683d6b657945c5d51973a2475e180ba0269bc2a2e7d4",
+      "replay_verified": true
+    },
+    "plank": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 3,
+      "target_set_sha256": "151673799534e32ea25f0d739c1bd2d78c2e54e36e688c91a9c3173ed9a4044c",
+      "replay_verified": true
+    },
+    "powder": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 1,
+      "target_set_sha256": "545cd3f664b793539fb232538dc89b76414940fda630fdc653a5d0bbf357c09c",
+      "replay_verified": true
+    },
+    "rod": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 1,
+      "target_set_sha256": "8f456255f6d39f472507a2a775212fb8d4326c7a7921806870c9c95840d03a78",
+      "replay_verified": true
+    },
+    "seed": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 1,
+      "target_set_sha256": "f1681062f7a984348554daae83c7894491f930e39877472a11f5f21e6fc079b2",
+      "replay_verified": true
+    },
+    "sheet": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 2,
+      "target_set_sha256": "d8538be6ae874803229a8cd6b31ee419cbb541b669b4f235aa3d41c1c0841149",
+      "replay_verified": true
+    },
+    "slab": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 1,
+      "target_set_sha256": "96c8c020152bc98b9b9622cf04eee1fe9dbb6a65d9951b93da1ae7ded0c6db0a",
+      "replay_verified": true
+    },
+    "stair": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 1,
+      "target_set_sha256": "96c8c020152bc98b9b9622cf04eee1fe9dbb6a65d9951b93da1ae7ded0c6db0a",
+      "replay_verified": true
+    },
+    "stoneBricks": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 17,
+      "target_set_sha256": "5a780b6def451eb1e3bb0dbcfd5dd164ce8983c48204c116690e16282d39dbb0",
+      "replay_verified": true
+    },
+    "stoneChiseled": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 17,
+      "target_set_sha256": "5a780b6def451eb1e3bb0dbcfd5dd164ce8983c48204c116690e16282d39dbb0",
+      "replay_verified": true
+    },
+    "stoneCobble": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 17,
+      "target_set_sha256": "5a780b6def451eb1e3bb0dbcfd5dd164ce8983c48204c116690e16282d39dbb0",
+      "replay_verified": true
+    },
+    "stoneCracked": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 17,
+      "target_set_sha256": "5a780b6def451eb1e3bb0dbcfd5dd164ce8983c48204c116690e16282d39dbb0",
+      "replay_verified": true
+    },
+    "stoneMossy": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 17,
+      "target_set_sha256": "5a780b6def451eb1e3bb0dbcfd5dd164ce8983c48204c116690e16282d39dbb0",
+      "replay_verified": true
+    },
+    "stonePolished": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 17,
+      "target_set_sha256": "5a780b6def451eb1e3bb0dbcfd5dd164ce8983c48204c116690e16282d39dbb0",
+      "replay_verified": true
+    },
+    "stoneSmooth": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 17,
+      "target_set_sha256": "5a780b6def451eb1e3bb0dbcfd5dd164ce8983c48204c116690e16282d39dbb0",
+      "replay_verified": true
+    },
+    "tiny": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 482,
+      "target_set_sha256": "dad80f648724bec5ff1b1bcf4a6fc2d3cca2d5915960ff524d17ac8449a89ab3",
+      "replay_verified": true
+    },
+    "wire": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 6,
+      "target_set_sha256": "06e262bca207465e566535e7b4a4e7ff6d9b15e404dbd01ba411904abba8f773",
+      "replay_verified": true
+    },
+    "wood": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 1,
+      "target_set_sha256": "20719ac66d671f9d5f4059b77fe74cc861ef2f6d7023964b1b0933b8147f581b",
+      "replay_verified": true
+    }
+  },
+  "core_prefix_diagnostics": {
+    "ingot": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.INGOTS"
+        },
+        "right": {
+          "op": "tag",
+          "tag": "PROPERTIES.AUTO_BLACKLIST"
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.INGOTS - PROPERTIES.AUTO_BLACKLIST)",
+      "expression_tag_count": 2,
+      "base_material_count": 482,
+      "target_material_count": 484,
+      "exclude_materials": [],
+      "include_materials": [
+        "ClayBrick",
+        "NetherBrick"
+      ],
+      "exception_count": 2,
+      "exception_ratio": 0.004132231404958678,
+      "exception_budget": 25,
+      "target_set_sha256": "3d0aedc5f4b0bc07fe23ab2fd91709d048b03ce79c7e2673f4f6bac52357fe7f",
+      "replay_verified": true,
+      "discriminating_tag_count": 31
+    },
+    "dust": {
+      "status": "exact",
+      "expression": {
+        "op": "union",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.DUSTS"
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.BRITTLE"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.DUSTS | PROPERTIES.BRITTLE)",
+      "expression_tag_count": 2,
+      "base_material_count": 1097,
+      "target_material_count": 1097,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 55,
+      "target_set_sha256": "6e44a5719506569ac1984a796ed1853cc6ad5821552e9720650e2a8e1f752150",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "plate": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "difference",
+          "left": {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PLATES"
+          },
+          "right": {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.GEMS"
+          }
+        },
+        "right": {
+          "op": "tag",
+          "tag": "PROPERTIES.WOOD"
+        }
+      },
+      "expression_text": "((ITEMGENERATOR.PLATES - ITEMGENERATOR.GEMS) - PROPERTIES.WOOD)",
+      "expression_tag_count": 3,
+      "base_material_count": 531,
+      "target_material_count": 556,
+      "exclude_materials": [],
+      "include_materials": [
+        "Anthracite",
+        "Charcoal",
+        "Coal",
+        "CoalCoke",
+        "Coralium",
+        "Fireleaf",
+        "Fluorite",
+        "Force",
+        "Glass",
+        "Ironwood",
+        "Lazurite",
+        "Lignite",
+        "LigniteCoke",
+        "Lonsdaleite",
+        "NetherizedDiamond",
+        "Paper",
+        "PetrifiedWood",
+        "PetroleumCoke",
+        "Prismane",
+        "Rainbowood",
+        "Sodalite",
+        "Steeleaf",
+        "Wood",
+        "WoodTreated",
+        "Zirconium"
+      ],
+      "exception_count": 25,
+      "exception_ratio": 0.044964028776978415,
+      "exception_budget": 28,
+      "target_set_sha256": "acc13ce6538eb09fa97ea056d28157a132f52e3997d8be6859c486a11e5f0d80",
+      "replay_verified": true,
+      "discriminating_tag_count": 29
+    },
+    "stick": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.STICKS"
+      },
+      "expression_text": "ITEMGENERATOR.STICKS",
+      "expression_tag_count": 1,
+      "base_material_count": 846,
+      "target_material_count": 845,
+      "exclude_materials": [
+        "Bone"
+      ],
+      "include_materials": [],
+      "exception_count": 1,
+      "exception_ratio": 0.001183431952662722,
+      "exception_budget": 43,
+      "target_set_sha256": "37ba600a1b398838c8763569b738ff09a7c7789b1bc5ff3a496a8c6ebd7beaed",
+      "replay_verified": true,
+      "discriminating_tag_count": 35
+    },
+    "nugget": {
+      "status": "exact",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.INGOTS"
+        },
+        "right": {
+          "op": "tag",
+          "tag": "PROPERTIES.AUTO_BLACKLIST"
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.INGOTS - PROPERTIES.AUTO_BLACKLIST)",
+      "expression_tag_count": 2,
+      "base_material_count": 482,
+      "target_material_count": 482,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 25,
+      "target_set_sha256": "dad80f648724bec5ff1b1bcf4a6fc2d3cca2d5915960ff524d17ac8449a89ab3",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "gem": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.GEMS"
+      },
+      "expression_text": "ITEMGENERATOR.GEMS",
+      "expression_tag_count": 1,
+      "base_material_count": 217,
+      "target_material_count": 220,
+      "exclude_materials": [
+        "Flint"
+      ],
+      "include_materials": [
+        "IodineSalt",
+        "Salt",
+        "Sylvite",
+        "Tantalum"
+      ],
+      "exception_count": 5,
+      "exception_ratio": 0.022727272727272728,
+      "exception_budget": 16,
+      "target_set_sha256": "9a7b903ac34f0f146ce6d0e591900b6cb0d6225bc35f75b138126767c25b0009",
+      "replay_verified": true,
+      "discriminating_tag_count": 20
+    },
+    "block": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 362,
+      "target_set_sha256": "8fea99a01c5aeafcfad20ff06c9af058e656475b313a01dc73417416dcd02062",
+      "replay_verified": true
+    },
+    "wire": {
+      "status": "compatibility_absorption",
+      "reason": "materialBased=false without a direct generation marker",
+      "target_material_count": 6,
+      "target_set_sha256": "06e262bca207465e566535e7b4a4e7ff6d9b15e404dbd01ba411904abba8f773",
+      "replay_verified": true
+    },
+    "wireFine": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.PARTS"
+          },
+          {
+            "op": "tag",
+            "tag": "PROCESSING.SMITHABLE"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.PARTS & PROCESSING.SMITHABLE)",
+      "expression_tag_count": 2,
+      "base_material_count": 210,
+      "target_material_count": 223,
+      "exclude_materials": [],
+      "include_materials": [
+        "Bakelite",
+        "BlueAlloy",
+        "ElectrotineAlloy",
+        "Graphene",
+        "HardPlastic",
+        "Mingrade",
+        "PVC",
+        "Plastic",
+        "PurpleAlloy",
+        "RedAlloy",
+        "Rubber",
+        "SolderingAlloy",
+        "Teflon"
+      ],
+      "exception_count": 13,
+      "exception_ratio": 0.05829596412556054,
+      "exception_budget": 16,
+      "target_set_sha256": "d5e528fdfb7a7d85396f1152ad66c4359b652bfc6e77966746fac9d74df5514c",
+      "replay_verified": true,
+      "discriminating_tag_count": 37
+    },
+    "wireGt01": {
+      "status": "explicit_enumeration",
+      "materials": [
+        "Aluminium",
+        "AnnealedCopper",
+        "BlueAlloy",
+        "Carborundum",
+        "Constantan",
+        "Copper",
+        "Efrine",
+        "ElectrotineAlloy",
+        "Electrum",
+        "Gold",
+        "Graphene",
+        "HSLASteel",
+        "Iridium",
+        "Kanthal",
+        "Lead",
+        "Lumium",
+        "Naquadah",
+        "Netherite",
+        "Nichrome",
+        "NiobiumTitanium",
+        "Osmiridium",
+        "OsmiumElemental",
+        "Platinum",
+        "RedAlloy",
+        "Signalum",
+        "Silver",
+        "Steel",
+        "Tin",
+        "Tungsten",
+        "Tungstensteel",
+        "VanadiumGallium",
+        "YttriumBariumCuprate"
+      ],
+      "target_material_count": 32,
+      "target_set_sha256": "73571860424a2b1b2436e55102495610371db3d25f90c6f8a675ae8cf89e13f0",
+      "replay_verified": true
+    },
+    "crushed": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.ORES"
+        },
+        "right": {
+          "op": "intersection",
+          "args": [
+            {
+              "op": "tag",
+              "tag": "ATOMIC.METAL"
+            },
+            {
+              "op": "tag",
+              "tag": "PROCESSING.NEVER_FURNACE"
+            }
+          ]
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.ORES - (ATOMIC.METAL & PROCESSING.NEVER_FURNACE))",
+      "expression_tag_count": 3,
+      "base_material_count": 615,
+      "target_material_count": 609,
+      "exclude_materials": [
+        "Adamantium",
+        "Aluminium",
+        "Dilithium",
+        "Niobium",
+        "Silicon",
+        "Tantalum"
+      ],
+      "include_materials": [],
+      "exception_count": 6,
+      "exception_ratio": 0.009852216748768473,
+      "exception_budget": 31,
+      "target_set_sha256": "eff5eb2a6dd6b4ef70bd0b78776856f7668b1734c38ce577dc160b3f493d2c87",
+      "replay_verified": true,
+      "discriminating_tag_count": 33
+    },
+    "crushedTiny": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.ORES"
+        },
+        "right": {
+          "op": "intersection",
+          "args": [
+            {
+              "op": "tag",
+              "tag": "ATOMIC.METAL"
+            },
+            {
+              "op": "tag",
+              "tag": "PROCESSING.NEVER_FURNACE"
+            }
+          ]
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.ORES - (ATOMIC.METAL & PROCESSING.NEVER_FURNACE))",
+      "expression_tag_count": 3,
+      "base_material_count": 615,
+      "target_material_count": 609,
+      "exclude_materials": [
+        "Adamantium",
+        "Aluminium",
+        "Dilithium",
+        "Niobium",
+        "Silicon",
+        "Tantalum"
+      ],
+      "include_materials": [],
+      "exception_count": 6,
+      "exception_ratio": 0.009852216748768473,
+      "exception_budget": 31,
+      "target_set_sha256": "eff5eb2a6dd6b4ef70bd0b78776856f7668b1734c38ce577dc160b3f493d2c87",
+      "replay_verified": true,
+      "discriminating_tag_count": 33
+    },
+    "crushedPurified": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.ORES"
+        },
+        "right": {
+          "op": "intersection",
+          "args": [
+            {
+              "op": "tag",
+              "tag": "ATOMIC.METAL"
+            },
+            {
+              "op": "tag",
+              "tag": "PROCESSING.NEVER_FURNACE"
+            }
+          ]
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.ORES - (ATOMIC.METAL & PROCESSING.NEVER_FURNACE))",
+      "expression_tag_count": 3,
+      "base_material_count": 615,
+      "target_material_count": 609,
+      "exclude_materials": [
+        "Adamantium",
+        "Aluminium",
+        "Dilithium",
+        "Niobium",
+        "Silicon",
+        "Tantalum"
+      ],
+      "include_materials": [],
+      "exception_count": 6,
+      "exception_ratio": 0.009852216748768473,
+      "exception_budget": 31,
+      "target_set_sha256": "eff5eb2a6dd6b4ef70bd0b78776856f7668b1734c38ce577dc160b3f493d2c87",
+      "replay_verified": true,
+      "discriminating_tag_count": 33
+    },
+    "crushedCentrifuged": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "difference",
+        "left": {
+          "op": "tag",
+          "tag": "ITEMGENERATOR.ORES"
+        },
+        "right": {
+          "op": "intersection",
+          "args": [
+            {
+              "op": "tag",
+              "tag": "ATOMIC.METAL"
+            },
+            {
+              "op": "tag",
+              "tag": "PROCESSING.NEVER_FURNACE"
+            }
+          ]
+        }
+      },
+      "expression_text": "(ITEMGENERATOR.ORES - (ATOMIC.METAL & PROCESSING.NEVER_FURNACE))",
+      "expression_tag_count": 3,
+      "base_material_count": 615,
+      "target_material_count": 609,
+      "exclude_materials": [
+        "Adamantium",
+        "Aluminium",
+        "Dilithium",
+        "Niobium",
+        "Silicon",
+        "Tantalum"
+      ],
+      "include_materials": [],
+      "exception_count": 6,
+      "exception_ratio": 0.009852216748768473,
+      "exception_budget": 31,
+      "target_set_sha256": "eff5eb2a6dd6b4ef70bd0b78776856f7668b1734c38ce577dc160b3f493d2c87",
+      "replay_verified": true,
+      "discriminating_tag_count": 33
+    },
+    "ore": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "intersection",
+        "args": [
+          {
+            "op": "tag",
+            "tag": "ITEMGENERATOR.ORES"
+          },
+          {
+            "op": "tag",
+            "tag": "PROPERTIES.COMMON_ORE"
+          }
+        ]
+      },
+      "expression_text": "(ITEMGENERATOR.ORES & PROPERTIES.COMMON_ORE)",
+      "expression_tag_count": 2,
+      "base_material_count": 139,
+      "target_material_count": 136,
+      "exclude_materials": [
+        "Endium",
+        "Mercury",
+        "Moonstone",
+        "NetherQuartz"
+      ],
+      "include_materials": [
+        "Iron"
+      ],
+      "exception_count": 5,
+      "exception_ratio": 0.03676470588235294,
+      "exception_budget": 16,
+      "target_set_sha256": "94dccd17079e05848afc88ce2f1660c4ccadefa2877beecf07aa29455e46a7ce",
+      "replay_verified": true,
+      "discriminating_tag_count": 15
+    },
+    "oreRaw": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.ORES"
+      },
+      "expression_text": "ITEMGENERATOR.ORES",
+      "expression_tag_count": 1,
+      "base_material_count": 618,
+      "target_material_count": 618,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 31,
+      "target_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    },
+    "blockIngot": {
+      "status": "exact",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.INGOTS"
+      },
+      "expression_text": "ITEMGENERATOR.INGOTS",
+      "expression_tag_count": 1,
+      "base_material_count": 483,
+      "target_material_count": 483,
+      "exclude_materials": [],
+      "include_materials": [],
+      "exception_count": 0,
+      "exception_ratio": 0.0,
+      "exception_budget": 25,
+      "target_set_sha256": "7c17404920751640877c4ce4deff857d0862afff59c4c2fbb0f149ce8491acfd",
+      "replay_verified": true,
+      "discriminating_tag_count": 0
+    }
+  },
+  "fluid_generation_rules": {
+    "molten": {
+      "status": "accepted_with_exceptions",
+      "expression": {
+        "op": "tag",
+        "tag": "ITEMGENERATOR.MOLTEN"
+      },
+      "expression_text": "ITEMGENERATOR.MOLTEN",
+      "expression_tag_count": 1,
+      "base_material_count": 184,
+      "target_material_count": 200,
+      "exclude_materials": [],
+      "include_materials": [
+        "Alumina",
+        "Cheese",
+        "Chocolate",
+        "EnderPearl",
+        "Latex",
+        "Redstone",
+        "Rubber",
+        "Sugar",
+        "Wax",
+        "WaxAmnesic",
+        "WaxBee",
+        "WaxMagic",
+        "WaxParaffin",
+        "WaxPlant",
+        "WaxRefractory",
+        "WaxSoulful"
+      ],
+      "exception_count": 16,
+      "exception_ratio": 0.08,
+      "exception_budget": 16,
+      "target_set_sha256": "719621eee09263180ab1d4570be878f325e6aa688578f3983e42f1fe3129d553",
+      "replay_verified": true,
+      "target": "fluid_map keys with molten.*",
+      "full_fluid_record_count": 202,
+      "canonical_fluid_material_count": 200,
+      "molten_or_liquid_trial": {
+        "status": "diagnostic_only",
+        "expression": {
+          "op": "union",
+          "args": [
+            {
+              "op": "tag",
+              "tag": "ITEMGENERATOR.LIQUID"
+            },
+            {
+              "op": "tag",
+              "tag": "ITEMGENERATOR.MOLTEN"
+            }
+          ]
+        },
+        "expression_text": "(ITEMGENERATOR.LIQUID | ITEMGENERATOR.MOLTEN)",
+        "base_material_count": 216,
+        "exception_count": 48,
+        "exception_ratio": 0.24
+      },
+      "liquid_incremental_material_count": 32,
+      "sentinel_fluid_record_count": 2
+    }
+  },
+  "verification": {
+    "canonical_set_equality_verified": true,
+    "mapped_tag_count": 13,
+    "mapped_prefix_count": 70,
+    "all_noncanonical_differences_are_sentinel_names": true,
+    "source_generation_tag_count": 126,
+    "source_itemgenerator_tag_count": 25,
+    "unmapped_itemgenerator_tags": [
+      "ITEMGENERATOR.ARMORS",
+      "ITEMGENERATOR.CONTAINERS",
+      "ITEMGENERATOR.CONTAINERS_FLUID",
+      "ITEMGENERATOR.CONTAINERS_GAS",
+      "ITEMGENERATOR.GASES",
+      "ITEMGENERATOR.GEMS",
+      "ITEMGENERATOR.INGOTS_HOT",
+      "ITEMGENERATOR.LIQUID",
+      "ITEMGENERATOR.MOLTEN",
+      "ITEMGENERATOR.PLATES",
+      "ITEMGENERATOR.PROJECTILES",
+      "ITEMGENERATOR.WIRES"
+    ],
+    "unmapped_itemgenerator_tags_semantics": "No exact single-tag prefix domain; tags may still appear in Boolean prefix rules or fluid rules.",
+    "base_boolean_candidate_domain_count": 12690,
+    "accepted_prefix_rule_count": 155,
+    "exact_prefix_rule_count": 110,
+    "exception_prefix_rule_count": 45,
+    "accepted_core_prefixes": [
+      "blockIngot",
+      "crushed",
+      "crushedCentrifuged",
+      "crushedPurified",
+      "crushedTiny",
+      "dust",
+      "gem",
+      "ingot",
+      "nugget",
+      "ore",
+      "oreRaw",
+      "plate",
+      "stick",
+      "wireFine"
+    ],
+    "compatibility_absorption_core_prefixes": [
+      "block",
+      "wire"
+    ],
+    "explicit_core_prefixes": [
+      "wireGt01"
+    ],
+    "unresolved_core_prefixes": [],
+    "all_prefix_rules_replay_exactly": true,
+    "molten_rule_replays_exactly": true,
+    "canonical_material_count": 1773,
+    "sentinel_record_count": 441,
+    "full_name_exact_tag_count": 1,
+    "records": [
+      {
+        "tag": "ITEMGENERATOR.DENSEPLATES",
+        "canonical_material_count": 436,
+        "prefix_count": 1,
+        "canonical_set_sha256": "06b8a04f2c7786bb39096e40daa9673fd11029c640a9c691422a3203d09398db",
+        "tag_sentinel_record_count": 30,
+        "prefix_sentinel_record_count": 117,
+        "tag_only_sentinel_count": 30,
+        "prefix_only_sentinel_count": 117,
+        "full_name_sets_equal": false
+      },
+      {
+        "tag": "ITEMGENERATOR.DUSTS",
+        "canonical_material_count": 1096,
+        "prefix_count": 6,
+        "canonical_set_sha256": "ef4d61b0303ee2d4591d99f27192fd3be557905b45142922487de48d68ba0205",
+        "tag_sentinel_record_count": 55,
+        "prefix_sentinel_record_count": 259,
+        "tag_only_sentinel_count": 54,
+        "prefix_only_sentinel_count": 258,
+        "full_name_sets_equal": false
+      },
+      {
+        "tag": "ITEMGENERATOR.EMPTY",
+        "canonical_material_count": 1,
+        "prefix_count": 2,
+        "canonical_set_sha256": "49935a75c5458b2e833e683d6b657945c5d51973a2475e180ba0269bc2a2e7d4",
+        "tag_sentinel_record_count": 0,
+        "prefix_sentinel_record_count": 0,
+        "tag_only_sentinel_count": 0,
+        "prefix_only_sentinel_count": 0,
+        "full_name_sets_equal": true
+      },
+      {
+        "tag": "ITEMGENERATOR.FOILS",
+        "canonical_material_count": 566,
+        "prefix_count": 1,
+        "canonical_set_sha256": "12165d1445aa3c7dad55247fc4368e47d8dcc1df63907b5fe68070610e46778f",
+        "tag_sentinel_record_count": 30,
+        "prefix_sentinel_record_count": 137,
+        "tag_only_sentinel_count": 30,
+        "prefix_only_sentinel_count": 137,
+        "full_name_sets_equal": false
+      },
+      {
+        "tag": "ITEMGENERATOR.INGOTS",
+        "canonical_material_count": 483,
+        "prefix_count": 5,
+        "canonical_set_sha256": "7c17404920751640877c4ce4deff857d0862afff59c4c2fbb0f149ce8491acfd",
+        "tag_sentinel_record_count": 30,
+        "prefix_sentinel_record_count": 140,
+        "tag_only_sentinel_count": 30,
+        "prefix_only_sentinel_count": 140,
+        "full_name_sets_equal": false
+      },
+      {
+        "tag": "ITEMGENERATOR.LENSES",
+        "canonical_material_count": 121,
+        "prefix_count": 1,
+        "canonical_set_sha256": "4fc1cd0ff91e516e66222ce0e79626a68d73f9e96ef7098637bda21125a23a06",
+        "tag_sentinel_record_count": 0,
+        "prefix_sentinel_record_count": 38,
+        "tag_only_sentinel_count": 0,
+        "prefix_only_sentinel_count": 38,
+        "full_name_sets_equal": false
+      },
+      {
+        "tag": "ITEMGENERATOR.MULTIINGOTS",
+        "canonical_material_count": 435,
+        "prefix_count": 4,
+        "canonical_set_sha256": "a10fe735da8c8a81ea9e887ec9e9ce5eb4600e0b698c99a28bb5c2591c70cebc",
+        "tag_sentinel_record_count": 30,
+        "prefix_sentinel_record_count": 117,
+        "tag_only_sentinel_count": 30,
+        "prefix_only_sentinel_count": 117,
+        "full_name_sets_equal": false
+      },
+      {
+        "tag": "ITEMGENERATOR.MULTIPLATES",
+        "canonical_material_count": 434,
+        "prefix_count": 4,
+        "canonical_set_sha256": "59f9a3a30b8470aeab22f6b3999b542813800136fca873f64186bf49a84deefc",
+        "tag_sentinel_record_count": 30,
+        "prefix_sentinel_record_count": 117,
+        "tag_only_sentinel_count": 30,
+        "prefix_only_sentinel_count": 117,
+        "full_name_sets_equal": false
+      },
+      {
+        "tag": "ITEMGENERATOR.ORES",
+        "canonical_material_count": 618,
+        "prefix_count": 31,
+        "canonical_set_sha256": "ef16df9f0ac3f6048a19695cfb9f7f62f3e507f59ec070fd8a3c7950c17f36fd",
+        "tag_sentinel_record_count": 23,
+        "prefix_sentinel_record_count": 170,
+        "tag_only_sentinel_count": 22,
+        "prefix_only_sentinel_count": 169,
+        "full_name_sets_equal": false
+      },
+      {
+        "tag": "ITEMGENERATOR.PARTS",
+        "canonical_material_count": 572,
+        "prefix_count": 6,
+        "canonical_set_sha256": "2c8ebd4d5ddcd23652c914abe46b5f8ae26abbee33c686a62d7f954c0d68b15a",
+        "tag_sentinel_record_count": 46,
+        "prefix_sentinel_record_count": 151,
+        "tag_only_sentinel_count": 11,
+        "prefix_only_sentinel_count": 116,
+        "full_name_sets_equal": false
+      },
+      {
+        "tag": "ITEMGENERATOR.PLANTS",
+        "canonical_material_count": 1179,
+        "prefix_count": 5,
+        "canonical_set_sha256": "a3b8fd5f9078dc5b2fe79b6ffff4946b423b06126a6452792c2dc5e8308dcdb4",
+        "tag_sentinel_record_count": 55,
+        "prefix_sentinel_record_count": 276,
+        "tag_only_sentinel_count": 54,
+        "prefix_only_sentinel_count": 275,
+        "full_name_sets_equal": false
+      },
+      {
+        "tag": "ITEMGENERATOR.RAILS",
+        "canonical_material_count": 28,
+        "prefix_count": 1,
+        "canonical_set_sha256": "d5faf29361f0fe91ada8c4404ab709fb7df7310701eaaaac735cda815b9eb07b",
+        "tag_sentinel_record_count": 0,
+        "prefix_sentinel_record_count": 21,
+        "tag_only_sentinel_count": 0,
+        "prefix_only_sentinel_count": 21,
+        "full_name_sets_equal": false
+      },
+      {
+        "tag": "ITEMGENERATOR.STICKS",
+        "canonical_material_count": 846,
+        "prefix_count": 3,
+        "canonical_set_sha256": "f69f783c053464366820814df2c45fcf7a0b2c1b2af588a93ff4372d197cc56f",
+        "tag_sentinel_record_count": 68,
+        "prefix_sentinel_record_count": 181,
+        "tag_only_sentinel_count": 33,
+        "prefix_only_sentinel_count": 146,
+        "full_name_sets_equal": false
+      }
+    ]
+  }
+}

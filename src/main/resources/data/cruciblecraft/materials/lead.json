@@ -1,23 +1,211 @@
 {
-  "id": "lead",
-  "tag_name": "lead",
-  "tier": 2,
   "color": "#5C6274",
-  "tint_style": "metallic",
-  "forms": [
-    "raw_ore",
-    "crushed_ore",
-    "ingot",
-    "dust",
-    "plate",
-    "rod",
-    "bolt"
+  "exclude_prefixes": [
+    "block",
+    "nugget",
+    "small_dust"
   ],
   "form_items": {},
-  "thermal": {
-    "melting_point": 327.5,
-    "boiling_point": 1749,
-    "density": 11.34
+  "generation_flags": [
+    "cruciblecraft:generates_block",
+    "cruciblecraft:generates_cable",
+    "cruciblecraft:generates_centrifuged_crushed_ore",
+    "cruciblecraft:generates_crushed_ore",
+    "cruciblecraft:generates_dodecuple_cable",
+    "cruciblecraft:generates_dodecuple_wire",
+    "cruciblecraft:generates_double_cable",
+    "cruciblecraft:generates_double_wire",
+    "cruciblecraft:generates_dust",
+    "cruciblecraft:generates_fine_wire",
+    "cruciblecraft:generates_hexadecuple_wire",
+    "cruciblecraft:generates_ingot",
+    "cruciblecraft:generates_nugget",
+    "cruciblecraft:generates_octuple_cable",
+    "cruciblecraft:generates_octuple_wire",
+    "cruciblecraft:generates_ore",
+    "cruciblecraft:generates_plate",
+    "cruciblecraft:generates_purified_dust",
+    "cruciblecraft:generates_quadruple_cable",
+    "cruciblecraft:generates_quadruple_wire",
+    "cruciblecraft:generates_small_spring",
+    "cruciblecraft:generates_spring",
+    "cruciblecraft:generates_tiny_crushed_ore",
+    "cruciblecraft:generates_washed_crushed_ore",
+    "cruciblecraft:generates_wire",
+    "gt6:itemgenerator/denseplates",
+    "gt6:itemgenerator/foils",
+    "gt6:itemgenerator/multiplates",
+    "gt6:itemgenerator/ores",
+    "gt6:itemgenerator/parts",
+    "gt6:itemgenerator/sticks"
+  ],
+  "gt6_metadata": {
+    "aliases": [],
+    "byproducts": [
+      {
+        "material": "silver",
+        "source_id": 470,
+        "source_name": "Silver"
+      },
+      {
+        "material": "sulfur",
+        "source_id": 160,
+        "source_name": "Sulfur"
+      }
+    ],
+    "electrical_by_specification": {},
+    "explosion_damage": 0.0,
+    "formula": "Pb",
+    "generation_tags": [
+      "ITEMGENERATOR.ARMORS",
+      "ITEMGENERATOR.DENSEPLATES",
+      "ITEMGENERATOR.DUSTS",
+      "ITEMGENERATOR.FOILS",
+      "ITEMGENERATOR.INGOTS",
+      "ITEMGENERATOR.INGOTS_HOT",
+      "ITEMGENERATOR.MOLTEN",
+      "ITEMGENERATOR.MULTIINGOTS",
+      "ITEMGENERATOR.MULTIPLATES",
+      "ITEMGENERATOR.ORES",
+      "ITEMGENERATOR.PARTS",
+      "ITEMGENERATOR.PLANTS",
+      "ITEMGENERATOR.PLATES",
+      "ITEMGENERATOR.PROJECTILES",
+      "ITEMGENERATOR.STICKS"
+    ],
+    "heat_damage": 0.0,
+    "material_tags": [
+      "ATOMIC.CRYSTALLOGEN",
+      "ATOMIC.ELEMENT",
+      "ATOMIC.METAL",
+      "ATOMIC.POST_TRANSITION_METAL",
+      "PROCESSING.EXTRUDABLE",
+      "PROCESSING.EXTRUDABLE_SIMPLE",
+      "PROCESSING.FURNACE",
+      "PROCESSING.MELTING",
+      "PROCESSING.MORTAR_GRINDABLE",
+      "PROCESSING.SMITHABLE",
+      "PROCESSING.SOLDERING_MATERIAL",
+      "PROCESSING.SOLDERING_MATERIAL_BAD",
+      "PROCESSING.UUM_SYNTHESISABLE",
+      "PROPERTIES.COMMON_ORE",
+      "PROPERTIES.HAS_TOOL_STATS",
+      "PROPERTIES.NO_ADVANCED_TOOLS",
+      "PROPERTIES.SOFT"
+    ],
+    "processing_targets": {
+      "bending": {
+        "cc_units": 144,
+        "material": "lead",
+        "numerator_u": 648648000,
+        "source_material_id": 820,
+        "source_material_name": "Lead"
+      },
+      "burning": {
+        "cc_units": 0,
+        "material": "lead",
+        "numerator_u": 0,
+        "source_material_id": 820,
+        "source_material_name": "Lead"
+      },
+      "compressing": {
+        "cc_units": 144,
+        "material": "lead",
+        "numerator_u": 648648000,
+        "source_material_id": 820,
+        "source_material_name": "Lead"
+      },
+      "crushing": {
+        "cc_units": 144,
+        "material": "lead",
+        "numerator_u": 648648000,
+        "source_material_id": 820,
+        "source_material_name": "Lead"
+      },
+      "cutting": {
+        "cc_units": 144,
+        "material": "lead",
+        "numerator_u": 648648000,
+        "source_material_id": 820,
+        "source_material_name": "Lead"
+      },
+      "forging": {
+        "cc_units": 144,
+        "material": "lead",
+        "numerator_u": 648648000,
+        "source_material_id": 820,
+        "source_material_name": "Lead"
+      },
+      "generifying": {
+        "cc_units": 144,
+        "material": "lead",
+        "numerator_u": 648648000,
+        "source_material_id": 820,
+        "source_material_name": "Lead"
+      },
+      "pulver": {
+        "cc_units": 144,
+        "material": "lead",
+        "numerator_u": 648648000,
+        "source_material_id": 820,
+        "source_material_name": "Lead"
+      },
+      "smashing": {
+        "cc_units": 144,
+        "material": "lead",
+        "numerator_u": 648648000,
+        "source_material_id": 820,
+        "source_material_name": "Lead"
+      },
+      "smelting": {
+        "cc_units": 144,
+        "material": "lead",
+        "numerator_u": 648648000,
+        "source_material_id": 820,
+        "source_material_name": "Lead"
+      },
+      "solidifying": {
+        "cc_units": 144,
+        "material": "lead",
+        "numerator_u": 648648000,
+        "source_material_id": 820,
+        "source_material_name": "Lead"
+      },
+      "working": {
+        "cc_units": 144,
+        "material": "lead",
+        "numerator_u": 648648000,
+        "source_material_id": 820,
+        "source_material_name": "Lead"
+      }
+    },
+    "source_id": 820,
+    "source_name": "Lead",
+    "source_thermal": {
+      "boiling_point_celsius": 1748.85,
+      "boiling_point_kelvin": 2022,
+      "density": 11.342,
+      "melting_point_celsius": 326.85,
+      "melting_point_kelvin": 600,
+      "plasma_point_celsius": 201926.85,
+      "plasma_point_kelvin": 202200
+    },
+    "state": "solid",
+    "tool": {
+      "durability": 64,
+      "quality": 1,
+      "speed": 8.0,
+      "types": 2
+    }
   },
-  "molten_fluid": true
+  "id": "lead",
+  "molten_fluid": true,
+  "tag_name": "lead",
+  "thermal": {
+    "boiling_point": 1749,
+    "density": 11.34,
+    "melting_point": 327.5
+  },
+  "tier": 2,
+  "tint_style": "metallic"
 }

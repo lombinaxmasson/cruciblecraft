@@ -1,13 +1,18 @@
 package com.masson.cruciblecraft.content.blockentity;
 
-import com.masson.cruciblecraft.api.heat.IHeatSource;
+import com.masson.cruciblecraft.api.energy.EnergyType;
+import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.FireboxBlock;
+import com.masson.cruciblecraft.energy.EnergyEmitter;
+import com.masson.cruciblecraft.energy.PerTickEnergyBudget;
 import com.masson.cruciblecraft.heat.FireboxHeatBuffer;
 import com.masson.cruciblecraft.heat.FuelDefinition;
+import com.masson.cruciblecraft.machine.component.CheckpointTracker;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -16,9 +21,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class FireboxBlockEntity extends BlockEntity implements IHeatSource {
+public class FireboxBlockEntity extends BlockEntity implements IEnergyHandler {
     private FireboxHeatBuffer heat = new FireboxHeatBuffer();
-    private boolean dirtySinceCheckpoint;
+    private final PerTickEnergyBudget outputBudget = new PerTickEnergyBudget();
+    private final CheckpointTracker checkpoint = new CheckpointTracker();
 
     public FireboxBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.FIREBOX.get(), pos, blockState);
@@ -29,15 +35,14 @@ public class FireboxBlockEntity extends BlockEntity implements IHeatSource {
             BlockPos pos,
             BlockState state,
             FireboxBlockEntity firebox) {
+        EnergyEmitter.emit(level, pos, firebox, EnergyType.HEAT, Direction.UP);
         firebox.updateLitState();
-        if (CheckpointDecisions.shouldCheckpoint(
-                firebox.dirtySinceCheckpoint,
-                level.getGameTime(),
-                pos.asLong(),
-                20)) {
+        long phaseKey = CheckpointDecisions.phaseKey(pos.getX(), pos.getY(), pos.getZ());
+        if (firebox.checkpoint.shouldCheckpoint(level.getGameTime(), phaseKey, 20)) {
             firebox.setChanged();
             firebox.syncToClient();
-            firebox.dirtySinceCheckpoint = false;
+            firebox.checkpoint.checkpointed();
+            firebox.checkpoint.synced();
         }
     }
 
@@ -46,9 +51,10 @@ public class FireboxBlockEntity extends BlockEntity implements IHeatSource {
             return false;
         }
         setChanged();
-        dirtySinceCheckpoint = false;
+        checkpoint.checkpointed();
         updateLitState();
         syncToClient();
+        checkpoint.synced();
         return true;
     }
 
@@ -62,8 +68,8 @@ public class FireboxBlockEntity extends BlockEntity implements IHeatSource {
     }
 
     /** Compatibility display value; heat is only spent through extraction. */
-    public float energyPerTick() {
-        return outputRate();
+    public long energyPerTick() {
+        return heat.outputRate();
     }
 
     public int remainingSeconds() {
@@ -75,30 +81,75 @@ public class FireboxBlockEntity extends BlockEntity implements IHeatSource {
     }
 
     @Override
-    public double extractHeat(double maxAmount, boolean simulate) {
+    public boolean handles(EnergyType type, Direction side) {
+        return type == EnergyType.HEAT && side == Direction.UP;
+    }
+
+    @Override
+    public long outputSize(EnergyType type, Direction side) {
+        return handles(type, side)
+                        && heat.hasHeat()
+                        && outputBudget.claim(gameTime(), heat.outputRate(), 1L, true) > 0L
+                ? 1L
+                : 0L;
+    }
+
+    @Override
+    public long extract(
+            EnergyType type,
+            long size,
+            long maxAmount,
+            Direction side,
+            boolean simulate) {
+        if (!handles(type, side) || size != 1L || maxAmount <= 0L) {
+            return 0L;
+        }
         boolean effectiveSimulation = simulate || (level != null && level.isClientSide);
-        boolean wasBurning = heat.hasHeat();
-        double extracted = heat.extract(maxAmount, effectiveSimulation);
-        if (extracted > 0.0 && !effectiveSimulation) {
-            dirtySinceCheckpoint = true;
-            updateLitState();
-            if (wasBurning && !heat.hasHeat()) {
-                setChanged();
-                syncToClient();
-                dirtySinceCheckpoint = false;
-            }
+        long available = heat.extract(maxAmount, true);
+        long offered = outputBudget.claim(
+                gameTime(),
+                heat.outputRate(),
+                available,
+                true);
+        if (effectiveSimulation) {
+            return offered;
+        }
+        long claimed = outputBudget.claim(
+                gameTime(),
+                heat.outputRate(),
+                offered,
+                false);
+        long extracted = heat.extract(claimed, false);
+        if (extracted > 0L && !effectiveSimulation) {
+            checkpoint.markDirty();
         }
         return extracted;
     }
 
-    @Override
-    public float outputRate() {
+    private long gameTime() {
+        return level == null ? Long.MIN_VALUE : level.getGameTime();
+    }
+
+    public long outputRate() {
         return heat.outputRate();
     }
 
-    @Override
-    public double storedHeat() {
+    public long storedHeat() {
         return heat.storedHeat();
+    }
+
+    @Override
+    public long stored(EnergyType type) {
+        return type == EnergyType.HEAT ? heat.storedHeat() : 0L;
+    }
+
+    @Override
+    public long capacity(EnergyType type) {
+        return type == EnergyType.HEAT
+                ? FireboxHeatBuffer.capacity(Math.max(
+                        FuelDefinition.CHARCOAL.energyPerTick(),
+                        heat.outputRate()))
+                : 0L;
     }
 
     @Override
@@ -106,8 +157,8 @@ public class FireboxBlockEntity extends BlockEntity implements IHeatSource {
         super.loadAdditional(tag, registries);
         if (tag.contains("stored_hu", Tag.TAG_ANY_NUMERIC)) {
             heat = new FireboxHeatBuffer(
-                    tag.getDouble("stored_hu"),
-                    tag.getFloat("output_rate"),
+                    Math.max(0L, tag.getLong("stored_hu")),
+                    Math.max(0L, tag.getLong("output_rate")),
                     tag.getString("fuel_id"));
         } else {
             int legacyTicks = tag.getInt("burn_ticks");
@@ -124,8 +175,8 @@ public class FireboxBlockEntity extends BlockEntity implements IHeatSource {
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        tag.putDouble("stored_hu", heat.storedHeat());
-        tag.putFloat("output_rate", heat.outputRate());
+        tag.putLong("stored_hu", heat.storedHeat());
+        tag.putLong("output_rate", heat.outputRate());
         tag.putString("fuel_id", heat.fuelId());
     }
 
@@ -148,7 +199,7 @@ public class FireboxBlockEntity extends BlockEntity implements IHeatSource {
         level.setBlock(
                 worldPosition,
                 getBlockState().setValue(FireboxBlock.LIT, heat.hasHeat()),
-                Block.UPDATE_ALL);
+                Block.UPDATE_CLIENTS);
     }
 
     private void syncToClient() {

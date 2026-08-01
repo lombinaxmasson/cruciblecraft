@@ -5,7 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import com.masson.cruciblecraft.CrucibleCraft;
-import com.masson.cruciblecraft.api.material.MaterialForm;
+import com.masson.cruciblecraft.api.material.MaterialPrefix;
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.item.MaterialItem;
 import com.masson.cruciblecraft.content.item.CeramicMoldBlockItem;
 import com.masson.cruciblecraft.content.item.MaterialMachineBlockItem;
@@ -13,7 +14,9 @@ import com.masson.cruciblecraft.content.item.SmithingHammerItem;
 import com.masson.cruciblecraft.content.item.UnknownMaterialItem;
 import com.masson.cruciblecraft.machine.MachineMaterialRules.Device;
 import com.masson.cruciblecraft.content.mold.MoldShape;
+import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
+import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
@@ -25,6 +28,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public final class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(CrucibleCraft.MODID);
     private static final Map<String, DeferredItem<MaterialItem>> MATERIAL_ITEMS = new LinkedHashMap<>();
+    private static final Map<ModBlocks.OreBlockKey, DeferredItem<BlockItem>>
+            MATERIAL_ORE_ITEMS = new LinkedHashMap<>();
 
     public static final DeferredItem<BlockItem> FIREBRICK = ITEMS.registerSimpleBlockItem("firebrick", ModBlocks.FIREBRICK);
     public static final DeferredItem<BlockItem> FIREBOX = ITEMS.registerSimpleBlockItem("firebox", ModBlocks.FIREBOX);
@@ -81,6 +86,40 @@ public final class ModItems {
             ITEMS.registerSimpleBlockItem("bronze_steam_engine", ModBlocks.BRONZE_STEAM_ENGINE);
     public static final DeferredItem<BlockItem> BRONZE_CRUSHER =
             ITEMS.registerSimpleBlockItem("bronze_crusher", ModBlocks.BRONZE_CRUSHER);
+    public static final DeferredItem<BlockItem> SLUICE =
+            ITEMS.registerSimpleBlockItem("sluice", ModBlocks.SLUICE);
+    public static final DeferredItem<BlockItem> BATH =
+            ITEMS.registerSimpleBlockItem("bath", ModBlocks.BATH);
+    public static final DeferredItem<BlockItem> CENTRIFUGE =
+            ITEMS.registerSimpleBlockItem("centrifuge", ModBlocks.CENTRIFUGE);
+    public static final DeferredItem<BlockItem> SHREDDER =
+            ITEMS.registerSimpleBlockItem("shredder", ModBlocks.SHREDDER);
+    public static final DeferredItem<BlockItem> SIFTER =
+            ITEMS.registerSimpleBlockItem("sifter", ModBlocks.SIFTER);
+    public static final DeferredItem<BlockItem> SMELTER =
+            ITEMS.registerSimpleBlockItem("smelter", ModBlocks.SMELTER);
+    public static final DeferredItem<BlockItem> MORTAR =
+            ITEMS.registerSimpleBlockItem("mortar", ModBlocks.MORTAR);
+    public static final DeferredItem<BlockItem> EXTRUDER =
+            ITEMS.registerSimpleBlockItem("extruder", ModBlocks.EXTRUDER);
+    public static final DeferredItem<BlockItem> CUTTER =
+            ITEMS.registerSimpleBlockItem("cutter", ModBlocks.CUTTER);
+    public static final DeferredItem<BlockItem> LATHE =
+            ITEMS.registerSimpleBlockItem("lathe", ModBlocks.LATHE);
+    public static final DeferredItem<BlockItem> ROLLINGMILL =
+            ITEMS.registerSimpleBlockItem("rollingmill", ModBlocks.ROLLINGMILL);
+    public static final DeferredItem<BlockItem> ROLLBENDER =
+            ITEMS.registerSimpleBlockItem("rollbender", ModBlocks.ROLLBENDER);
+    public static final DeferredItem<BlockItem> WIREMILL =
+            ITEMS.registerSimpleBlockItem("wiremill", ModBlocks.WIREMILL);
+    public static final DeferredItem<BlockItem> BENDER =
+            ITEMS.registerSimpleBlockItem("bender", ModBlocks.BENDER);
+    public static final DeferredItem<BlockItem> ASSEMBLER =
+            ITEMS.registerSimpleBlockItem("assembler", ModBlocks.ASSEMBLER);
+    public static final DeferredItem<BlockItem> WELDER =
+            ITEMS.registerSimpleBlockItem("welder", ModBlocks.WELDER);
+    public static final DeferredItem<BlockItem> PRESS =
+            ITEMS.registerSimpleBlockItem("press", ModBlocks.PRESS);
     public static final DeferredItem<SmithingHammerItem> SMITHING_HAMMER =
             ITEMS.register(
                     "smithing_hammer",
@@ -89,28 +128,26 @@ public final class ModItems {
                                     .IRON_HAMMER_DURABILITY)));
     public static final DeferredItem<UnknownMaterialItem> UNKNOWN_MATERIAL =
             ITEMS.register("unknown_material", () -> new UnknownMaterialItem(new Item.Properties()));
-    public static final DeferredItem<BlockItem> COPPER_ORE = oreItem("copper_ore", ModBlocks.COPPER_ORE);
-    public static final DeferredItem<BlockItem> DEEPSLATE_COPPER_ORE = oreItem("deepslate_copper_ore", ModBlocks.DEEPSLATE_COPPER_ORE);
-    public static final DeferredItem<BlockItem> TIN_ORE = oreItem("tin_ore", ModBlocks.TIN_ORE);
-    public static final DeferredItem<BlockItem> DEEPSLATE_TIN_ORE = oreItem("deepslate_tin_ore", ModBlocks.DEEPSLATE_TIN_ORE);
-    public static final DeferredItem<BlockItem> IRON_ORE = oreItem("iron_ore", ModBlocks.IRON_ORE);
-    public static final DeferredItem<BlockItem> DEEPSLATE_IRON_ORE = oreItem("deepslate_iron_ore", ModBlocks.DEEPSLATE_IRON_ORE);
-    public static final DeferredItem<BlockItem> GOLD_ORE = oreItem("gold_ore", ModBlocks.GOLD_ORE);
-    public static final DeferredItem<BlockItem> DEEPSLATE_GOLD_ORE = oreItem("deepslate_gold_ore", ModBlocks.DEEPSLATE_GOLD_ORE);
-    public static final DeferredItem<BlockItem> ZINC_ORE = oreItem("zinc_ore", ModBlocks.ZINC_ORE);
-    public static final DeferredItem<BlockItem> DEEPSLATE_ZINC_ORE = oreItem("deepslate_zinc_ore", ModBlocks.DEEPSLATE_ZINC_ORE);
-    public static final DeferredItem<BlockItem> LEAD_ORE = oreItem("lead_ore", ModBlocks.LEAD_ORE);
-    public static final DeferredItem<BlockItem> DEEPSLATE_LEAD_ORE = oreItem("deepslate_lead_ore", ModBlocks.DEEPSLATE_LEAD_ORE);
-    public static final DeferredItem<BlockItem> NICKEL_ORE = oreItem("nickel_ore", ModBlocks.NICKEL_ORE);
-    public static final DeferredItem<BlockItem> DEEPSLATE_NICKEL_ORE = oreItem("deepslate_nickel_ore", ModBlocks.DEEPSLATE_NICKEL_ORE);
-
     public static void registerMaterials(Collection<MaterialDefinition> definitions) {
-        if (!MATERIAL_ITEMS.isEmpty()) {
-            throw new IllegalStateException("Material items already registered");
+        if (!MATERIAL_ITEMS.isEmpty() || !MATERIAL_ORE_ITEMS.isEmpty()) {
+            throw new IllegalStateException("Material items or ore items already registered");
         }
         for (MaterialDefinition material : definitions) {
-            for (MaterialForm form : material.forms()) {
-                if (material.formItems().containsKey(form)) {
+            if (!MaterialCatalog.registeredForms(material).contains(MaterialPrefixes.ORE)) {
+                continue;
+            }
+            for (Host host : Host.values()) {
+                ModBlocks.OreBlockKey key = new ModBlocks.OreBlockKey(material.id(), host);
+                String registryName = ModBlocks.oreRegistryName(material.id(), host);
+                MATERIAL_ORE_ITEMS.put(
+                        key,
+                        registerOreItem(registryName, ModBlocks.oreBlock(material.id(), host)));
+            }
+        }
+        for (MaterialDefinition material : definitions) {
+            for (MaterialPrefix form : MaterialCatalog.registeredForms(material)) {
+                if (form.equals(MaterialPrefixes.ORE)
+                        || material.formItems().containsKey(form)) {
                     continue;
                 }
                 String registryName = material.registryName(form);
@@ -123,7 +160,7 @@ public final class ModItems {
         }
     }
 
-    public static DeferredItem<MaterialItem> materialItem(String materialId, MaterialForm form) {
+    public static DeferredItem<MaterialItem> materialItem(String materialId, MaterialPrefix form) {
         DeferredItem<MaterialItem> item = MATERIAL_ITEMS.get(key(materialId, form));
         if (item == null) {
             throw new IllegalArgumentException("No " + form.serializedName() + " for material " + materialId);
@@ -131,12 +168,31 @@ public final class ModItems {
         return item;
     }
 
-    public static boolean hasMaterialItem(String materialId, MaterialForm form) {
+    public static boolean hasMaterialItem(String materialId, MaterialPrefix form) {
         return MATERIAL_ITEMS.containsKey(key(materialId, form));
     }
 
     public static Collection<DeferredItem<MaterialItem>> materialItems() {
         return MATERIAL_ITEMS.values();
+    }
+
+    public static DeferredItem<BlockItem> oreItem(String materialId, Host host) {
+        DeferredItem<BlockItem> item =
+                MATERIAL_ORE_ITEMS.get(new ModBlocks.OreBlockKey(materialId, host));
+        if (item == null) {
+            throw new IllegalArgumentException(
+                    "No " + host.name().toLowerCase(java.util.Locale.ROOT)
+                            + " ore item for material " + materialId);
+        }
+        return item;
+    }
+
+    public static boolean hasOreItem(String materialId, Host host) {
+        return MATERIAL_ORE_ITEMS.containsKey(new ModBlocks.OreBlockKey(materialId, host));
+    }
+
+    public static Collection<DeferredItem<BlockItem>> oreItems() {
+        return java.util.Collections.unmodifiableCollection(MATERIAL_ORE_ITEMS.values());
     }
 
     public static DeferredItem<CeramicMoldBlockItem> moldItem(MoldShape shape) {
@@ -157,13 +213,13 @@ public final class ModItems {
                         new Item.Properties().stacksTo(1)));
     }
 
-    private static DeferredItem<BlockItem> oreItem(
+    private static DeferredItem<BlockItem> registerOreItem(
             String id,
             net.neoforged.neoforge.registries.DeferredBlock<? extends net.minecraft.world.level.block.Block> block) {
         return ITEMS.registerSimpleBlockItem(id, block);
     }
 
-    private static String key(String materialId, MaterialForm form) {
+    private static String key(String materialId, MaterialPrefix form) {
         return materialId + "/" + form.serializedName();
     }
 

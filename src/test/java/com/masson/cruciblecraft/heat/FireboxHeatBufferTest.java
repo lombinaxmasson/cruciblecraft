@@ -39,8 +39,8 @@ class FireboxHeatBufferTest {
 
     @Test
     void cokeKeepsFireboxRateAndDoublesBurnDuration() {
-        assertEquals(8.0F, FuelDefinition.COAL_COKE.energyPerTick());
-        assertEquals(25_600.0, FuelDefinition.COAL_COKE.totalEnergy());
+        assertEquals(8L, FuelDefinition.COAL_COKE.energyPerTick());
+        assertEquals(25_600L, FuelDefinition.COAL_COKE.totalEnergy());
         assertEquals(3_200, FuelDefinition.COAL_COKE.burnTicks());
     }
 
@@ -48,12 +48,12 @@ class FireboxHeatBufferTest {
     void simulationAndExtractionRespectOutputRate() {
         FireboxHeatBuffer buffer = new FireboxHeatBuffer();
         buffer.deposit(FuelDefinition.CHARCOAL);
-        double initial = buffer.storedHeat();
+        long initial = buffer.storedHeat();
 
-        assertEquals(8.0, buffer.extract(100.0, true));
+        assertEquals(8L, buffer.extract(100L, true));
         assertEquals(initial, buffer.storedHeat());
-        assertEquals(8.0, buffer.extract(100.0, false));
-        assertEquals(initial - 8.0, buffer.storedHeat());
+        assertEquals(8L, buffer.extract(100L, false));
+        assertEquals(initial - 8L, buffer.storedHeat());
     }
 
     @Test
@@ -61,18 +61,18 @@ class FireboxHeatBufferTest {
         FireboxHeatBuffer buffer = new FireboxHeatBuffer();
         buffer.deposit(FuelDefinition.CHARCOAL);
 
-        assertFalse(buffer.deposit(new FuelDefinition("hotter", 16.0F, 100)));
+        assertFalse(buffer.deposit(new FuelDefinition("hotter", 16L, 100)));
         assertEquals(FuelDefinition.CHARCOAL.totalEnergy(), buffer.storedHeat());
     }
 
     @Test
-    void legacyMigrationMultipliesTicksBySavedFloatRateExactly() {
+    void legacyMigrationFloorsFractionalHuAndClampsCapacity() {
         float legacyRate = 8.25F;
         FireboxHeatBuffer buffer =
                 FireboxHeatBuffer.migrateLegacy(12_345, legacyRate, "legacy");
 
-        assertEquals((double) 12_345 * legacyRate, buffer.storedHeat());
-        assertEquals(legacyRate, buffer.outputRate());
+        assertEquals(FireboxHeatBuffer.capacity(8L), buffer.storedHeat());
+        assertEquals(8L, buffer.outputRate());
         assertEquals("legacy", buffer.fuelId());
     }
 }

@@ -1,14 +1,22 @@
 package com.masson.cruciblecraft.registry;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
+
 import com.masson.cruciblecraft.CrucibleCraft;
-import com.masson.cruciblecraft.api.material.MaterialLookup;
+import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -50,28 +58,109 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.BRONZE_BOILER.get());
                         output.accept(ModItems.BRONZE_STEAM_ENGINE.get());
                         output.accept(ModItems.BRONZE_CRUSHER.get());
+                        output.accept(ModItems.SLUICE.get());
+                        output.accept(ModItems.BATH.get());
+                        output.accept(ModItems.CENTRIFUGE.get());
+                        output.accept(ModItems.SHREDDER.get());
+                        output.accept(ModItems.SIFTER.get());
+                        output.accept(ModItems.SMELTER.get());
+                        output.accept(ModItems.MORTAR.get());
+                        output.accept(ModItems.EXTRUDER.get());
+                        output.accept(ModItems.CUTTER.get());
+                        output.accept(ModItems.LATHE.get());
+                        output.accept(ModItems.ROLLINGMILL.get());
+                        output.accept(ModItems.ROLLBENDER.get());
+                        output.accept(ModItems.WIREMILL.get());
+                        output.accept(ModItems.BENDER.get());
+                        output.accept(ModItems.ASSEMBLER.get());
+                        output.accept(ModItems.WELDER.get());
+                        output.accept(ModItems.PRESS.get());
                         output.accept(ModItems.SMITHING_HAMMER.get().variant("bronze"));
                         output.accept(ModItems.SMITHING_HAMMER.get().variant("iron"));
                         output.accept(ModItems.SMITHING_HAMMER.get().variant("steel"));
-                        java.util.List.of(
-                                ModItems.COPPER_ORE, ModItems.DEEPSLATE_COPPER_ORE,
-                                ModItems.TIN_ORE, ModItems.DEEPSLATE_TIN_ORE,
-                                ModItems.IRON_ORE, ModItems.DEEPSLATE_IRON_ORE,
-                                ModItems.GOLD_ORE, ModItems.DEEPSLATE_GOLD_ORE,
-                                ModItems.ZINC_ORE, ModItems.DEEPSLATE_ZINC_ORE,
-                                ModItems.LEAD_ORE, ModItems.DEEPSLATE_LEAD_ORE,
-                                ModItems.NICKEL_ORE, ModItems.DEEPSLATE_NICKEL_ORE)
-                                .forEach(item -> output.accept(item.get()));
-                        var materialItems = java.util.Collections.newSetFromMap(
-                                new java.util.IdentityHashMap<net.minecraft.world.item.Item, Boolean>());
-                        MaterialCatalog.values().forEach(material -> material.forms().forEach(form ->
-                                MaterialLookup.item(material.id(), form).ifPresent(item -> {
-                                    if (materialItems.add(item)) {
-                                        output.accept(item);
-                                    }
-                                })));
                     })
                     .build());
+
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ORES =
+            materialTab(
+                    MaterialCreativeTab.ORES,
+                    () -> ModItems.BRONZE_CRUSHER.get().getDefaultInstance());
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ORE_PROCESSING =
+            materialTab(
+                    MaterialCreativeTab.ORE_PROCESSING,
+                    () -> ModItems.SLUICE.get().getDefaultInstance());
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> DUSTS =
+            materialTab(
+                    MaterialCreativeTab.DUSTS,
+                    () -> ModItems.MORTAR.get().getDefaultInstance());
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> METALS_GEMS =
+            materialTab(
+                    MaterialCreativeTab.METALS_GEMS,
+                    () -> machineVariant(ModItems.ANVIL.get(), "iron"));
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PLATES =
+            materialTab(
+                    MaterialCreativeTab.PLATES,
+                    () -> ModItems.PLATE_MOLD.get().getDefaultInstance());
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PARTS =
+            materialTab(
+                    MaterialCreativeTab.PARTS,
+                    () -> ModItems.LATHE.get().getDefaultInstance());
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MECHANICAL_PARTS =
+            materialTab(
+                    MaterialCreativeTab.MECHANICAL_PARTS,
+                    () -> ModItems.ROLLBENDER.get().getDefaultInstance());
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> WIRES =
+            materialTab(
+                    MaterialCreativeTab.WIRES,
+                    () -> ModItems.WIREMILL.get().getDefaultInstance());
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> CABLES =
+            materialTab(
+                    MaterialCreativeTab.CABLES,
+                    () -> ModItems.ASSEMBLER.get().getDefaultInstance());
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MISC =
+            materialTab(
+                    MaterialCreativeTab.MISC,
+                    () -> ModItems.UNKNOWN_MATERIAL.get().getDefaultInstance());
+
+    private static DeferredHolder<CreativeModeTab, CreativeModeTab> materialTab(
+            MaterialCreativeTab tab,
+            Supplier<ItemStack> icon) {
+        return CREATIVE_MODE_TABS.register(
+                tab.registryName(),
+                () -> CreativeModeTab.builder()
+                        .title(Component.translatable(tab.translationKey()))
+                        .icon(icon)
+                        .displayItems((parameters, output) ->
+                                materialEntryPlan().get(tab).forEach(itemId ->
+                                        output.accept(requirePlannedItem(itemId))))
+                        .build());
+    }
+
+    private static Map<MaterialCreativeTab, List<String>> materialEntryPlan() {
+        var materials = MaterialCatalog.startupValues();
+        Map<String, List<MaterialPrefix>> registeredForms = new LinkedHashMap<>();
+        materials.forEach(material -> registeredForms.put(
+                material.id(),
+                MaterialCatalog.registeredForms(material)));
+        return MaterialCreativeTab.planEntryIds(
+                materials,
+                registeredForms,
+                MaterialCatalog.runtimePreferences());
+    }
+
+    static Item requirePlannedItem(String itemId) {
+        ResourceLocation location = ResourceLocation.tryParse(itemId);
+        if (location != null) {
+            var item = BuiltInRegistries.ITEM.getOptional(location);
+            if (item.isPresent()) {
+                return item.orElseThrow();
+            }
+        }
+        CrucibleCraft.LOGGER.error(
+                "Material creative-tab plan references missing item {}", itemId);
+        throw new IllegalStateException(
+                "Material creative-tab plan references missing item " + itemId);
+    }
 
     private static ItemStack machineVariant(net.minecraft.world.item.Item item, String materialId) {
         ItemStack stack = new ItemStack(item);

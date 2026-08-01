@@ -1,0 +1,19 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "duration": "100 * (144 * prefix_units(plate) / gcd(target_units(bending) * 144, 144 * prefix_units(plate)))",
+  "eut": "32",
+  "item_inputs": [
+    {
+      "count": "1 * (144 * prefix_units(plate) / gcd(target_units(bending) * 144, 144 * prefix_units(plate)))",
+      "prefix": "cruciblecraft:ingot"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "target_units(bending) * 144 / gcd(target_units(bending) * 144, 144 * prefix_units(plate))",
+      "material_selector": "processing_target:bending",
+      "prefix": "cruciblecraft:plate"
+    }
+  ],
+  "target": "cruciblecraft:rollingmill"
+}

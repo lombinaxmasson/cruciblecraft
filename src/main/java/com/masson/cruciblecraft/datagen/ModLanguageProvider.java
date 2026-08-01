@@ -3,10 +3,11 @@ package com.masson.cruciblecraft.datagen;
 import java.util.Locale;
 
 import com.masson.cruciblecraft.CrucibleCraft;
-import com.masson.cruciblecraft.api.material.MaterialForm;
 import com.masson.cruciblecraft.material.MaterialCatalog;
+import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModItems;
+import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
 
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
@@ -19,6 +20,16 @@ public class ModLanguageProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("itemGroup.cruciblecraft", "Crucible Craft");
+        add("itemGroup.cruciblecraft.ores", "Crucible Craft: Ores");
+        add("itemGroup.cruciblecraft.ore_processing", "Crucible Craft: Ore Processing");
+        add("itemGroup.cruciblecraft.dusts", "Crucible Craft: Dusts");
+        add("itemGroup.cruciblecraft.metals_gems", "Crucible Craft: Metals & Gems");
+        add("itemGroup.cruciblecraft.plates", "Crucible Craft: Plates");
+        add("itemGroup.cruciblecraft.parts", "Crucible Craft: Parts");
+        add("itemGroup.cruciblecraft.mechanical_parts", "Crucible Craft: Mechanical Parts");
+        add("itemGroup.cruciblecraft.wires", "Crucible Craft: Wires");
+        add("itemGroup.cruciblecraft.cables", "Crucible Craft: Cables");
+        add("itemGroup.cruciblecraft.misc", "Crucible Craft: Miscellaneous Materials");
         addBlock(ModBlocks.FIREBRICK, "Firebrick");
         addBlock(ModBlocks.FIREBOX, "Solid Fuel Firebox");
         addBlock(ModBlocks.CRUCIBLE, "Crucible");
@@ -43,6 +54,29 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.BRONZE_BOILER, "Bronze Boiler");
         addBlock(ModBlocks.BRONZE_STEAM_ENGINE, "Bronze Steam Engine");
         addBlock(ModBlocks.BRONZE_CRUSHER, "Bronze Crusher");
+        addBlock(ModBlocks.SLUICE, "Sluice");
+        addBlock(ModBlocks.BATH, "Ore Washing Bath");
+        addBlock(ModBlocks.CENTRIFUGE, "Centrifuge");
+        addBlock(ModBlocks.SHREDDER, "Shredder");
+        addBlock(ModBlocks.SIFTER, "Sifter");
+        addBlock(ModBlocks.SMELTER, "Smelter");
+        addBlock(ModBlocks.MORTAR, "Powered Mortar");
+        addBlock(ModBlocks.EXTRUDER, "Extruder");
+        addBlock(ModBlocks.CUTTER, "Cutter");
+        addBlock(ModBlocks.LATHE, "Lathe");
+        addBlock(ModBlocks.ROLLINGMILL, "Rolling Mill");
+        addBlock(ModBlocks.ROLLBENDER, "Roll Bender");
+        addBlock(ModBlocks.WIREMILL, "Wire Mill");
+        addBlock(ModBlocks.BENDER, "Bender");
+        addBlock(ModBlocks.ASSEMBLER, "Assembler");
+        addBlock(ModBlocks.WELDER, "Welder");
+        addBlock(ModBlocks.PRESS, "Press");
+        add("screen.cruciblecraft.processing.status.idle", "Idle");
+        add("screen.cruciblecraft.processing.status.running", "Running");
+        add("screen.cruciblecraft.processing.status.invalid_recipe", "Invalid recipe");
+        add("screen.cruciblecraft.processing.status.output_blocked", "Output blocked");
+        add("screen.cruciblecraft.processing.status.underpowered", "Underpowered");
+        add("screen.cruciblecraft.processing.tank", "%s/%s mB");
         add("container.cruciblecraft.bronze_crusher", "Bronze Crusher");
         add("emi.category.cruciblecraft.crusher", "Crusher");
         add("jade.cruciblecraft.boiler", "Water: %s/%s mB, Steam: %s/%s mB, Heat: %s/80 HU");
@@ -50,35 +84,36 @@ public class ModLanguageProvider extends LanguageProvider {
         add("jade.cruciblecraft.crusher", "Power: %s KU/t, Progress: %s/%s (%s)");
         addItem(ModItems.SMITHING_HAMMER, "Smithing Hammer");
         addItem(ModItems.UNKNOWN_MATERIAL, "Unknown Material");
-        addBlock(ModBlocks.COPPER_ORE, "Copper Ore");
-        addBlock(ModBlocks.DEEPSLATE_COPPER_ORE, "Deepslate Copper Ore");
-        addBlock(ModBlocks.TIN_ORE, "Tin Ore");
-        addBlock(ModBlocks.DEEPSLATE_TIN_ORE, "Deepslate Tin Ore");
-        addBlock(ModBlocks.IRON_ORE, "Iron Ore");
-        addBlock(ModBlocks.DEEPSLATE_IRON_ORE, "Deepslate Iron Ore");
-        addBlock(ModBlocks.GOLD_ORE, "Gold Ore");
-        addBlock(ModBlocks.DEEPSLATE_GOLD_ORE, "Deepslate Gold Ore");
-        addBlock(ModBlocks.ZINC_ORE, "Zinc Ore");
-        addBlock(ModBlocks.DEEPSLATE_ZINC_ORE, "Deepslate Zinc Ore");
-        addBlock(ModBlocks.LEAD_ORE, "Lead Ore");
-        addBlock(ModBlocks.DEEPSLATE_LEAD_ORE, "Deepslate Lead Ore");
-        addBlock(ModBlocks.NICKEL_ORE, "Nickel Ore");
-        addBlock(ModBlocks.DEEPSLATE_NICKEL_ORE, "Deepslate Nickel Ore");
+        ModBlocks.oreBlockPaths().keySet().forEach(key -> addBlock(
+                ModBlocks.oreBlock(key.materialId(), key.host()),
+                (key.host() == Host.DEEPSLATE ? "Deepslate " : "")
+                        + title(key.materialId()) + " Ore"));
         add("tooltip.cruciblecraft.unknown_material", "Missing material: %s (%s)");
         add("tooltip.cruciblecraft.machine_material", "Casing: %s (material tier %s)");
         add("tooltip.cruciblecraft.tool_material", "Head: %s (material tier %s)");
         add("tooltip.cruciblecraft.durability", "Durability: %s / %s");
         add("tooltip.cruciblecraft.max_temperature", "Maximum temperature: %s °C");
         add("message.cruciblecraft.materials_changed", "CrucibleCraft's material definitions changed since this world was last opened. Missing materials are preserved but machines using them are paused.");
+        add(
+                "disconnect.cruciblecraft.material_mismatch",
+                "CrucibleCraft material definitions do not match the server: %s. Install the same addons and material definitions as the server.");
+        add(
+                "disconnect.cruciblecraft.material_handshake_missing",
+                "The client cannot perform CrucibleCraft's material compatibility check. Install the same CrucibleCraft version as the server.");
+        add(
+                "disconnect.cruciblecraft.material_handshake_too_large",
+                "The server's CrucibleCraft material configuration has %s entries, exceeding the supported limit of %s.");
 
-        for (MaterialForm form : MaterialForm.values()) {
+        for (var form : MaterialPrefixCatalog.values()) {
             add(
                     "item.cruciblecraft.material_form." + form.serializedName(),
                     "%s " + title(form.serializedName()));
         }
-        MaterialCatalog.values().forEach(material ->
+        MaterialCatalog.startupValues().forEach(material ->
                 add(material.translationKey(), title(material.id())));
-        add("material.cruciblecraft.stone", "Stone");
+        if (!MaterialCatalog.contains("stone")) {
+            add("material.cruciblecraft.stone", "Stone");
+        }
 
         add("message.cruciblecraft.firebox_fueled", "Firebox fueled: %s HU stored (%s seconds remaining)");
         add("message.cruciblecraft.firebox_fuel_rejected", "The firebox cannot accept this fuel right now");

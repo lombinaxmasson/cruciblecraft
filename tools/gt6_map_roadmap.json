@@ -1,0 +1,743 @@
+{
+  "schema_version": 1,
+  "_notes": "Every active and empty GT map in the pinned index has an explicit planning status.",
+  "maps": {
+    "": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: <unnamed> has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 0,
+      "deferral_category": "EMPTY_PINNED_MAP"
+    },
+    "gt.recipe.anvil": {
+      "status": "OUT_OF_SCOPE",
+      "reason": "gt.recipe.anvil has 9228 pinned recipes dominated by GT6 hand-tool, zero-count-tool, and broad crafting semantics; CC ports the bounded bend maps separately and does not claim this base map as a machine implementation.",
+      "owner": "CrucibleCraft compatibility policy",
+      "phase": "N/A",
+      "reference_recipe_count": 9228
+    },
+    "gt.recipe.anvil.bend.big": {
+      "status": "PORTED",
+      "reason": "The playable CC bender executes declarative large plate-bending transformations through the shared KU runtime.",
+      "owner": "CrucibleCraft component-machine data/runtime",
+      "phase": "T3",
+      "reference_recipe_count": 723
+    },
+    "gt.recipe.anvil.bend.small": {
+      "status": "PORTED",
+      "reason": "The playable CC bender executes declarative small plate-bending transformations through the shared KU runtime.",
+      "owner": "CrucibleCraft component-machine data/runtime",
+      "phase": "T3",
+      "reference_recipe_count": 507
+    },
+    "gt.recipe.assembler": {
+      "status": "PORTED",
+      "reason": "Playable assembler block supports atomic two-item recipes and an optional fluid input through the shared KU runtime.",
+      "owner": "CrucibleCraft component-machine data/runtime",
+      "phase": "T3",
+      "reference_recipe_count": 1582
+    },
+    "gt.recipe.autoclave": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.autoclave has 392 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 392,
+      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+    },
+    "gt.recipe.autocrafting": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.autocrafting has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 0,
+      "deferral_category": "EMPTY_PINNED_MAP"
+    },
+    "gt.recipe.bath": {
+      "status": "PORTED",
+      "reason": "T2 ships a playable water-bath ore-washing subset backed by declarative metadata rules.",
+      "owner": "CrucibleCraft ore-chain data/runtime",
+      "phase": "T2",
+      "reference_recipe_count": 59855
+    },
+    "gt.recipe.bedrockorelist": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[REFERENCE_OR_ANALYSIS_MAP]: gt.recipe.bedrockorelist has 52 pinned recipe(s); the current audited scope does not expose GT6 list, scanner, or analysis-map semantics as executable CrucibleCraft recipes.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 52,
+      "deferral_category": "REFERENCE_OR_ANALYSIS_MAP"
+    },
+    "gt.recipe.blastfurnace": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.blastfurnace has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 0,
+      "deferral_category": "EMPTY_PINNED_MAP"
+    },
+    "gt.recipe.boxinator": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[PACKAGING_OR_AUTOMATION]: gt.recipe.boxinator has 27291 pinned recipe(s); the current audited scope does not implement packaging, container, printing, generic conversion, or autocrafting machines.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 27291,
+      "deferral_category": "PACKAGING_OR_AUTOMATION"
+    },
+    "gt.recipe.bumblelyzer": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.bumblelyzer has 1440 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 1440,
+      "deferral_category": "BIOLOGICAL_PROCESSING"
+    },
+    "gt.recipe.bumblequeen": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.bumblequeen has 80 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 80,
+      "deferral_category": "BIOLOGICAL_PROCESSING"
+    },
+    "gt.recipe.burnmixer": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.burnmixer has 29 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 29,
+      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+    },
+    "gt.recipe.byproductlist": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[REFERENCE_OR_ANALYSIS_MAP]: gt.recipe.byproductlist has 289 pinned recipe(s); the current audited scope does not expose GT6 list, scanner, or analysis-map semantics as executable CrucibleCraft recipes.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 289,
+      "deferral_category": "REFERENCE_OR_ANALYSIS_MAP"
+    },
+    "gt.recipe.calciner": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.calciner has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 0,
+      "deferral_category": "EMPTY_PINNED_MAP"
+    },
+    "gt.recipe.canner": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[PACKAGING_OR_AUTOMATION]: gt.recipe.canner has 3609 pinned recipe(s); the current audited scope does not implement packaging, container, printing, generic conversion, or autocrafting machines.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 3609,
+      "deferral_category": "PACKAGING_OR_AUTOMATION"
+    },
+    "gt.recipe.catalyticcracking": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.catalyticcracking has 3 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 3,
+      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+    },
+    "gt.recipe.centrifuge": {
+      "status": "PORTED",
+      "reason": "T2 ships the playable washed-to-centrifuged ore subset with ordered byproducts.",
+      "owner": "CrucibleCraft ore-chain data/runtime",
+      "phase": "T2",
+      "reference_recipe_count": 1296
+    },
+    "gt.recipe.chisel": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.chisel has 2 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 2,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.clustermill": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.clustermill has 307 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 307,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.cncmachine": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.cncmachine has 38 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 38,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.coagulator": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.coagulator has 5 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 5,
+      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+    },
+    "gt.recipe.cokeoven": {
+      "status": "PORTED",
+      "reason": "The playable coke oven implements the committed coal-to-coke and creosote route; this is a bounded subset of the pinned GT6 map.",
+      "owner": "CrucibleCraft coke-oven data/runtime",
+      "phase": "T0",
+      "reference_recipe_count": 124
+    },
+    "gt.recipe.compressor": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.compressor has 1472 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 1472,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.cooker": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.cooker has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 0,
+      "deferral_category": "EMPTY_PINNED_MAP"
+    },
+    "gt.recipe.cruciblealloying": {
+      "status": "OUT_OF_SCOPE",
+      "reason": "gt.recipe.cruciblealloying has 414 pinned fake/reference recipes; CC alloying is composition- and thermal-model-driven, so the comparator audits semantic parity without exposing a direct GT6-map runtime.",
+      "owner": "CrucibleCraft compatibility policy",
+      "phase": "N/A",
+      "reference_recipe_count": 414
+    },
+    "gt.recipe.cruciblesmelting": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.cruciblesmelting has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 0,
+      "deferral_category": "EMPTY_PINNED_MAP"
+    },
+    "gt.recipe.crusher": {
+      "status": "PORTED",
+      "reason": "The playable crusher route implements the committed ore-chain subset through declarative material rules; unmodeled GT6 recipes remain comparison TODOs.",
+      "owner": "CrucibleCraft ore-chain data/runtime",
+      "phase": "T2",
+      "reference_recipe_count": 12932
+    },
+    "gt.recipe.cryodistillationtower": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.cryodistillationtower has 3 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 3,
+      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+    },
+    "gt.recipe.cryomixer": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.cryomixer has 57 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 57,
+      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+    },
+    "gt.recipe.crystallisationcrucible": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.crystallisationcrucible has 132 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 132,
+      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+    },
+    "gt.recipe.cutter": {
+      "status": "PORTED",
+      "reason": "Playable cutter block executes the bounded T3 declarative recipe map through the shared KU runtime.",
+      "owner": "CrucibleCraft component-machine data/runtime",
+      "phase": "T3",
+      "reference_recipe_count": 27454
+    },
+    "gt.recipe.distillationtower": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.distillationtower has 8 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 8,
+      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+    },
+    "gt.recipe.distillery": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.distillery has 1517 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 1517,
+      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+    },
+    "gt.recipe.drying": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.drying has 217 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 217,
+      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+    },
+    "gt.recipe.electrolyzer": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.electrolyzer has 290 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 290,
+      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+    },
+    "gt.recipe.extruder": {
+      "status": "PORTED",
+      "reason": "Playable extruder block executes the bounded T3 declarative recipe map through the shared KU runtime.",
+      "owner": "CrucibleCraft component-machine data/runtime",
+      "phase": "T3",
+      "reference_recipe_count": 325595
+    },
+    "gt.recipe.fermenter": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.fermenter has 6435 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 6435,
+      "deferral_category": "BIOLOGICAL_PROCESSING"
+    },
+    "gt.recipe.freezer": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.freezer has 957 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 957,
+      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+    },
+    "gt.recipe.fuels.burn": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.burn has 49 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 49,
+      "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
+    },
+    "gt.recipe.fuels.engine": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.engine has 21 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 21,
+      "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
+    },
+    "gt.recipe.fuels.fluidbed": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.fluidbed has 55 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 55,
+      "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
+    },
+    "gt.recipe.fuels.gas": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.gas has 9 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 9,
+      "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
+    },
+    "gt.recipe.fuels.hot": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.hot has 12 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 12,
+      "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
+    },
+    "gt.recipe.fuels.magic": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.fuels.magic has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 0,
+      "deferral_category": "EMPTY_PINNED_MAP"
+    },
+    "gt.recipe.fuels.plasma": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.fuels.plasma has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 0,
+      "deferral_category": "EMPTY_PINNED_MAP"
+    },
+    "gt.recipe.fuels.turbine": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.turbine has 1 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 1,
+      "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
+    },
+    "gt.recipe.fusionreactor": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fusionreactor has 18 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 18,
+      "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
+    },
+    "gt.recipe.generifier": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[PACKAGING_OR_AUTOMATION]: gt.recipe.generifier has 10236 pinned recipe(s); the current audited scope does not implement packaging, container, printing, generic conversion, or autocrafting machines.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 10236,
+      "deferral_category": "PACKAGING_OR_AUTOMATION"
+    },
+    "gt.recipe.hammer": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.hammer has 309 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 309,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.implosioncompressor": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.implosioncompressor has 1072 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 1072,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.injector": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.injector has 638 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 638,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.juicer": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.juicer has 96 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 96,
+      "deferral_category": "BIOLOGICAL_PROCESSING"
+    },
+    "gt.recipe.laminator": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.laminator has 498 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 498,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.laserengraver": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.laserengraver has 1787 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 1787,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.lathe": {
+      "status": "PORTED",
+      "reason": "Playable lathe block executes the bounded T3 declarative recipe map through the shared KU runtime.",
+      "owner": "CrucibleCraft component-machine data/runtime",
+      "phase": "T3",
+      "reference_recipe_count": 2528
+    },
+    "gt.recipe.lightning": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.lightning has 12 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 12,
+      "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
+    },
+    "gt.recipe.loom": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.loom has 1334 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 1334,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.magneticseparator": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.magneticseparator has 179 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 179,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.massfab": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.massfab has 920 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 920,
+      "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
+    },
+    "gt.recipe.melter": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.melter has 6756 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 6756,
+      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+    },
+    "gt.recipe.microwave": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.microwave has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 0,
+      "deferral_category": "EMPTY_PINNED_MAP"
+    },
+    "gt.recipe.mixer": {
+      "status": "PLANNED_PHASE_3",
+      "reason": "gt.recipe.mixer has 64245 pinned recipes spanning multi-item and fluid chemistry; implementation is assigned to POST_T3 after the current bounded solid-component machine scope.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 64245
+    },
+    "gt.recipe.mortar": {
+      "status": "PORTED",
+      "reason": "T2 ships a playable crushed-ore to dust mechanical alternative.",
+      "owner": "CrucibleCraft ore-chain data/runtime",
+      "phase": "T2",
+      "reference_recipe_count": 6318
+    },
+    "gt.recipe.nanofab": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.nanofab has 64 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 64,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.other": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[REFERENCE_OR_ANALYSIS_MAP]: gt.recipe.other has 71 pinned recipe(s); the current audited scope does not expose GT6 list, scanner, or analysis-map semantics as executable CrucibleCraft recipes.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 71,
+      "deferral_category": "REFERENCE_OR_ANALYSIS_MAP"
+    },
+    "gt.recipe.plantalyzer": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.plantalyzer has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 0,
+      "deferral_category": "EMPTY_PINNED_MAP"
+    },
+    "gt.recipe.polarizer": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.polarizer has 943 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 943,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.press": {
+      "status": "PORTED",
+      "reason": "Playable press block supports atomic two-item plate aggregation through the shared KU runtime.",
+      "owner": "CrucibleCraft component-machine data/runtime",
+      "phase": "T3",
+      "reference_recipe_count": 8160
+    },
+    "gt.recipe.pressurewasher": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.pressurewasher has 312 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 312,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.printer": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[PACKAGING_OR_AUTOMATION]: gt.recipe.printer has 22 pinned recipe(s); the current audited scope does not implement packaging, container, printing, generic conversion, or autocrafting machines.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 22,
+      "deferral_category": "PACKAGING_OR_AUTOMATION"
+    },
+    "gt.recipe.replicator": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.replicator has 895 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 895,
+      "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
+    },
+    "gt.recipe.roaster": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.roaster has 115 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 115,
+      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+    },
+    "gt.recipe.rollbender": {
+      "status": "PORTED",
+      "reason": "Playable roll bender block executes the bounded T3 declarative recipe map through the shared KU runtime.",
+      "owner": "CrucibleCraft component-machine data/runtime",
+      "phase": "T3",
+      "reference_recipe_count": 940
+    },
+    "gt.recipe.rollformer": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.rollformer has 28 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 28,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.rollingmill": {
+      "status": "PORTED",
+      "reason": "Playable rolling mill block executes the bounded T3 declarative recipe map through the shared KU runtime.",
+      "owner": "CrucibleCraft component-machine data/runtime",
+      "phase": "T3",
+      "reference_recipe_count": 2438
+    },
+    "gt.recipe.scannermolecular": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.scannermolecular has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 0,
+      "deferral_category": "EMPTY_PINNED_MAP"
+    },
+    "gt.recipe.scannervisuals": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[REFERENCE_OR_ANALYSIS_MAP]: gt.recipe.scannervisuals has 50 pinned recipe(s); the current audited scope does not expose GT6 list, scanner, or analysis-map semantics as executable CrucibleCraft recipes.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 50,
+      "deferral_category": "REFERENCE_OR_ANALYSIS_MAP"
+    },
+    "gt.recipe.sharpener": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.sharpener has 7637 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 7637,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.shredder": {
+      "status": "PORTED",
+      "reason": "T2 ships the playable centrifuged-ore to purified-dust subset.",
+      "owner": "CrucibleCraft ore-chain data/runtime",
+      "phase": "T2",
+      "reference_recipe_count": 41246
+    },
+    "gt.recipe.sifter": {
+      "status": "PORTED",
+      "reason": "T2 ships the playable purified-dust finishing subset.",
+      "owner": "CrucibleCraft ore-chain data/runtime",
+      "phase": "T2",
+      "reference_recipe_count": 2877
+    },
+    "gt.recipe.slicer": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.slicer has 33 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 33,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.sluice": {
+      "status": "PORTED",
+      "reason": "T2 ships a playable water-fed ore-washing route with ordered byproducts.",
+      "owner": "CrucibleCraft ore-chain data/runtime",
+      "phase": "T2",
+      "reference_recipe_count": 4840
+    },
+    "gt.recipe.smelter": {
+      "status": "PORTED",
+      "reason": "T2 ships a playable adjacent-HEAT dust-to-ingot subset using GT processing targets.",
+      "owner": "CrucibleCraft ore-chain data/runtime",
+      "phase": "T2",
+      "reference_recipe_count": 21969
+    },
+    "gt.recipe.squeezer": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.squeezer has 5322 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 5322,
+      "deferral_category": "BIOLOGICAL_PROCESSING"
+    },
+    "gt.recipe.steamcracking": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.steamcracking has 7746 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 7746,
+      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+    },
+    "gt.recipe.toolhead": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.toolhead has 10960 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 10960,
+      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+    },
+    "gt.recipe.trees": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.trees has 15 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 15,
+      "deferral_category": "BIOLOGICAL_PROCESSING"
+    },
+    "gt.recipe.unboxinator": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[PACKAGING_OR_AUTOMATION]: gt.recipe.unboxinator has 17513 pinned recipe(s); the current audited scope does not implement packaging, container, printing, generic conversion, or autocrafting machines.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 17513,
+      "deferral_category": "PACKAGING_OR_AUTOMATION"
+    },
+    "gt.recipe.vacuumfreezer": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.vacuumfreezer has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 0,
+      "deferral_category": "EMPTY_PINNED_MAP"
+    },
+    "gt.recipe.welder": {
+      "status": "PORTED",
+      "reason": "Playable welder block supports atomic two-item recipes and an optional fluid input through the shared KU runtime.",
+      "owner": "CrucibleCraft component-machine data/runtime",
+      "phase": "T3",
+      "reference_recipe_count": 4762
+    },
+    "gt.recipe.wiremill": {
+      "status": "PORTED",
+      "reason": "Playable wire mill block supports the current one- and two-item gauge transformations through shared KU runtime.",
+      "owner": "CrucibleCraft component-machine data/runtime",
+      "phase": "T3",
+      "reference_recipe_count": 455
+    },
+    "mc.recipe.furnace": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: mc.recipe.furnace has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 0,
+      "deferral_category": "EMPTY_PINNED_MAP"
+    },
+    "mc.recipe.furnacefuel": {
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: mc.recipe.furnacefuel has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
+      "reference_recipe_count": 0,
+      "deferral_category": "EMPTY_PINNED_MAP"
+    }
+  }
+}

@@ -59,7 +59,7 @@ public class FireboxBlock extends Block implements EntityBlock {
                 player.displayClientMessage(
                         Component.translatable(
                                 "message.cruciblecraft.firebox_fueled",
-                                Math.round(firebox.storedHeat()),
+                                firebox.storedHeat(),
                                 firebox.remainingSeconds()),
                         true);
             } else {

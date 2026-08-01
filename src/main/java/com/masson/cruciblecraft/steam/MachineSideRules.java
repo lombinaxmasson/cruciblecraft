@@ -26,6 +26,10 @@ public final class MachineSideRules {
         return CapabilitySideRules.crusherExtractsItems(face(front), face(side));
     }
 
+    public static boolean crusherAcceptsKinetic(Direction front, Direction side) {
+        return CapabilitySideRules.crusherAcceptsKinetic(face(front), face(side));
+    }
+
     private static CapabilitySideRules.Face face(Direction direction) {
         return direction == null
                 ? CapabilitySideRules.Face.UNSIDED

@@ -9,13 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MoltenTransferMathTest {
     @Test
-    void convertsCelsiusMeltingPointsToKelvin() {
-        assertEquals(505, MoltenTransferMath.celsiusToKelvin(232));
-        assertEquals(1_223, MoltenTransferMath.celsiusToKelvin(950));
-        assertEquals(1_811, MoltenTransferMath.celsiusToKelvin(1_538));
-    }
-
-    @Test
     void oneIngotIsExactly144MillibucketsAndMaterialUnits() {
         assertEquals(144, MoltenTransferMath.MILLIBUCKETS_PER_INGOT);
     }

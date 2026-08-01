@@ -17,10 +17,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        simpleBlockWithItem(ModBlocks.FIREBRICK.get(), cubeAll(ModBlocks.FIREBRICK.get()));
+        var firebrickTexture = mcLoc("block/bricks");
+        simpleBlockWithItem(
+                ModBlocks.FIREBRICK.get(),
+                models().cubeAll("firebrick", firebrickTexture));
         simpleBlockWithItem(
                 ModBlocks.FIREBOX.get(),
-                models().cubeAll("firebox", modLoc("block/firebrick")));
+                models().cubeAll("firebox", firebrickTexture));
         simpleBlockWithItem(
                 ModBlocks.CRUCIBLE.get(),
                 models().getExistingFile(modLoc("block/crucible")));
@@ -29,7 +32,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(ModBlocks.ANVIL.get(), anvil);
         simpleBlockWithItem(
                 ModBlocks.COKE_OVEN.get(),
-                models().cubeAll("coke_oven", modLoc("block/firebrick")));
+                models().cubeAll("coke_oven", firebrickTexture));
+        configuredMachine("sluice", ModBlocks.SLUICE.get());
+        configuredMachine("bath", ModBlocks.BATH.get());
+        configuredMachine("centrifuge", ModBlocks.CENTRIFUGE.get());
+        configuredMachine("shredder", ModBlocks.SHREDDER.get());
+        configuredMachine("sifter", ModBlocks.SIFTER.get());
+        configuredMachine("smelter", ModBlocks.SMELTER.get());
+        configuredMachine("mortar", ModBlocks.MORTAR.get());
+        configuredMachine("extruder", ModBlocks.EXTRUDER.get());
+        configuredMachine("cutter", ModBlocks.CUTTER.get());
+        configuredMachine("lathe", ModBlocks.LATHE.get());
+        configuredMachine("rollingmill", ModBlocks.ROLLINGMILL.get());
+        configuredMachine("rollbender", ModBlocks.ROLLBENDER.get());
+        configuredMachine("wiremill", ModBlocks.WIREMILL.get());
+        configuredMachine("bender", ModBlocks.BENDER.get());
+        configuredMachine("assembler", ModBlocks.ASSEMBLER.get());
+        configuredMachine("welder", ModBlocks.WELDER.get());
+        configuredMachine("press", ModBlocks.PRESS.get());
         var bellows = models().orientable(
                 "bellows",
                 mcLoc("block/oak_planks"),
@@ -48,17 +68,27 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(ModBlocks.BELLOWS.get(), bellows);
         var emptyMold = models().slab(
                 "ceramic_mold",
-                modLoc("block/firebrick"),
-                modLoc("block/firebrick"),
-                modLoc("block/firebrick"));
+                firebrickTexture,
+                firebrickTexture,
+                firebrickTexture);
         var filledMold = models().slab(
                 "ceramic_mold_filled",
-                modLoc("block/firebrick"),
+                firebrickTexture,
                 mcLoc("block/magma"),
-                modLoc("block/firebrick"));
+                firebrickTexture);
         getVariantBuilder(ModBlocks.CERAMIC_MOLD.get()).forAllStates(state ->
                 ConfiguredModel.builder()
                         .modelFile(state.getValue(CeramicMoldBlock.FILLED) ? filledMold : emptyMold)
                         .build());
+    }
+
+    private void configuredMachine(String id, net.minecraft.world.level.block.Block block) {
+        var model = models().orientable(
+                id,
+                mcLoc("block/copper_block"),
+                mcLoc("block/furnace_front"),
+                mcLoc("block/cut_copper"));
+        horizontalBlock(block, model);
+        simpleBlockItem(block, model);
     }
 }

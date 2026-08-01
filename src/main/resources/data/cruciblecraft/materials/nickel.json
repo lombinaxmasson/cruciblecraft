@@ -1,23 +1,207 @@
 {
-  "id": "nickel",
-  "tag_name": "nickel",
-  "tier": 2,
   "color": "#D8D0A8",
-  "tint_style": "metallic",
-  "forms": [
-    "raw_ore",
-    "crushed_ore",
-    "ingot",
-    "dust",
-    "plate",
-    "rod",
-    "bolt"
+  "exclude_prefixes": [
+    "block",
+    "nugget",
+    "small_dust"
   ],
   "form_items": {},
-  "thermal": {
-    "melting_point": 1455,
-    "boiling_point": 2913,
-    "density": 8.908
+  "generation_flags": [
+    "cruciblecraft:generates_block",
+    "cruciblecraft:generates_centrifuged_crushed_ore",
+    "cruciblecraft:generates_crushed_ore",
+    "cruciblecraft:generates_dust",
+    "cruciblecraft:generates_fine_wire",
+    "cruciblecraft:generates_ingot",
+    "cruciblecraft:generates_nugget",
+    "cruciblecraft:generates_ore",
+    "cruciblecraft:generates_plate",
+    "cruciblecraft:generates_purified_dust",
+    "cruciblecraft:generates_small_spring",
+    "cruciblecraft:generates_spring",
+    "cruciblecraft:generates_tiny_crushed_ore",
+    "cruciblecraft:generates_washed_crushed_ore",
+    "gt6:itemgenerator/denseplates",
+    "gt6:itemgenerator/foils",
+    "gt6:itemgenerator/multiplates",
+    "gt6:itemgenerator/ores",
+    "gt6:itemgenerator/parts",
+    "gt6:itemgenerator/sticks"
+  ],
+  "gt6_metadata": {
+    "aliases": [],
+    "byproducts": [
+      {
+        "material": "cobaltite",
+        "source_id": 9115,
+        "source_name": "Cobaltite"
+      },
+      {
+        "material": "cooperite",
+        "source_id": 9116,
+        "source_name": "Cooperite"
+      },
+      {
+        "material": "hematite",
+        "source_id": 9104,
+        "source_name": "Hematite"
+      },
+      {
+        "material": "pentlandite",
+        "source_id": 9145,
+        "source_name": "Pentlandite"
+      }
+    ],
+    "electrical_by_specification": {},
+    "explosion_damage": 0.0,
+    "formula": "Ni",
+    "generation_tags": [
+      "ITEMGENERATOR.ARMORS",
+      "ITEMGENERATOR.DENSEPLATES",
+      "ITEMGENERATOR.DUSTS",
+      "ITEMGENERATOR.FOILS",
+      "ITEMGENERATOR.INGOTS",
+      "ITEMGENERATOR.INGOTS_HOT",
+      "ITEMGENERATOR.MOLTEN",
+      "ITEMGENERATOR.MULTIINGOTS",
+      "ITEMGENERATOR.MULTIPLATES",
+      "ITEMGENERATOR.ORES",
+      "ITEMGENERATOR.PARTS",
+      "ITEMGENERATOR.PLANTS",
+      "ITEMGENERATOR.PLATES",
+      "ITEMGENERATOR.PROJECTILES",
+      "ITEMGENERATOR.STICKS"
+    ],
+    "heat_damage": 0.0,
+    "material_tags": [
+      "ATOMIC.ELEMENT",
+      "ATOMIC.METAL",
+      "ATOMIC.NICKEL_GROUP",
+      "ATOMIC.TRANSITION_METAL",
+      "PROCESSING.EXTRUDABLE",
+      "PROCESSING.MELTING",
+      "PROCESSING.MORTAR_GRINDABLE",
+      "PROCESSING.SMITHABLE",
+      "PROCESSING.UUM_SYNTHESISABLE",
+      "PROCESSING.WASHING_PERSULFATE",
+      "PROPERTIES.COMMON_ORE",
+      "PROPERTIES.HAS_TOOL_STATS",
+      "PROPERTIES.MAGNETIC_PASSIVE",
+      "PROPERTIES.NO_ADVANCED_TOOLS"
+    ],
+    "processing_targets": {
+      "bending": {
+        "cc_units": 144,
+        "material": "nickel",
+        "numerator_u": 648648000,
+        "source_material_id": 280,
+        "source_material_name": "Nickel"
+      },
+      "burning": {
+        "cc_units": 0,
+        "material": "nickel",
+        "numerator_u": 0,
+        "source_material_id": 280,
+        "source_material_name": "Nickel"
+      },
+      "compressing": {
+        "cc_units": 144,
+        "material": "nickel",
+        "numerator_u": 648648000,
+        "source_material_id": 280,
+        "source_material_name": "Nickel"
+      },
+      "crushing": {
+        "cc_units": 144,
+        "material": "nickel",
+        "numerator_u": 648648000,
+        "source_material_id": 280,
+        "source_material_name": "Nickel"
+      },
+      "cutting": {
+        "cc_units": 144,
+        "material": "nickel",
+        "numerator_u": 648648000,
+        "source_material_id": 280,
+        "source_material_name": "Nickel"
+      },
+      "forging": {
+        "cc_units": 144,
+        "material": "nickel",
+        "numerator_u": 648648000,
+        "source_material_id": 280,
+        "source_material_name": "Nickel"
+      },
+      "generifying": {
+        "cc_units": 144,
+        "material": "nickel",
+        "numerator_u": 648648000,
+        "source_material_id": 280,
+        "source_material_name": "Nickel"
+      },
+      "pulver": {
+        "cc_units": 144,
+        "material": "nickel",
+        "numerator_u": 648648000,
+        "source_material_id": 280,
+        "source_material_name": "Nickel"
+      },
+      "smashing": {
+        "cc_units": 144,
+        "material": "nickel",
+        "numerator_u": 648648000,
+        "source_material_id": 280,
+        "source_material_name": "Nickel"
+      },
+      "smelting": {
+        "cc_units": 144,
+        "material": "nickel",
+        "numerator_u": 648648000,
+        "source_material_id": 280,
+        "source_material_name": "Nickel"
+      },
+      "solidifying": {
+        "cc_units": 144,
+        "material": "nickel",
+        "numerator_u": 648648000,
+        "source_material_id": 280,
+        "source_material_name": "Nickel"
+      },
+      "working": {
+        "cc_units": 144,
+        "material": "nickel",
+        "numerator_u": 648648000,
+        "source_material_id": 280,
+        "source_material_name": "Nickel"
+      }
+    },
+    "source_id": 280,
+    "source_name": "Nickel",
+    "source_thermal": {
+      "boiling_point_celsius": 2912.85,
+      "boiling_point_kelvin": 3186,
+      "density": 8.912,
+      "melting_point_celsius": 1454.85,
+      "melting_point_kelvin": 1728,
+      "plasma_point_celsius": 318326.85,
+      "plasma_point_kelvin": 318600
+    },
+    "state": "solid",
+    "tool": {
+      "durability": 64,
+      "quality": 2,
+      "speed": 6.0,
+      "types": 2
+    }
   },
-  "molten_fluid": true
+  "id": "nickel",
+  "molten_fluid": true,
+  "tag_name": "nickel",
+  "thermal": {
+    "boiling_point": 2913,
+    "density": 8.908,
+    "melting_point": 1455
+  },
+  "tier": 2,
+  "tint_style": "metallic"
 }

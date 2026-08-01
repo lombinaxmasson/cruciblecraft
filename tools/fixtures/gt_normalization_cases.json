@@ -1,0 +1,107 @@
+{
+  "display_names": [
+    {
+      "display": "Iron Ingot",
+      "known": ["iron", "wrought_iron"],
+      "expected": null
+    },
+    {
+      "display": "Wrought Iron Plate",
+      "known": ["iron", "wrought_iron"],
+      "expected": null
+    },
+    {
+      "display": "Small Pile of Copper Dust",
+      "known": ["copper"],
+      "expected": null
+    },
+    {
+      "display": "Tiny Pile of Copper Dust",
+      "known": ["copper"],
+      "expected": null
+    },
+    {
+      "display": "Coal Coke Gem",
+      "known": ["carbon"],
+      "expected": null
+    },
+    {
+      "display": "Bronze Plate",
+      "known": ["bronze"],
+      "expected": null
+    },
+    {
+      "display": "AnyCopper Ingot",
+      "known": ["copper", "annealed_copper"],
+      "expected": null
+    }
+  ],
+  "items": [
+    {
+      "raw": {
+        "item": "minecraft:iron_ingot",
+        "count": 1,
+        "displayName": "Iron Ingot"
+      },
+      "materials": ["iron"],
+      "meta_map": {},
+      "expected": "item:iron:ingotx1"
+    },
+    {
+      "raw": {
+        "item": "gregtech:gt.meta.plate",
+        "meta": 25,
+        "count": 2,
+        "displayName": "Copper Plate"
+      },
+      "materials": ["copper"],
+      "meta_map": {
+        "25": "copper"
+      },
+      "expected": "item:copper:platex2"
+    },
+    {
+      "raw": {
+        "item": "gregtech:gt.meta.dust",
+        "meta": 99,
+        "count": 1,
+        "displayName": "Tin Dust"
+      },
+      "materials": ["tin"],
+      "meta_map": {},
+      "expected": "item:fixed:gregtech:gt.meta.dust@99x1"
+    },
+    {
+      "raw": {
+        "item": "gregtech:gt.meta.dust",
+        "meta": 99,
+        "count": 0,
+        "displayName": "Tin Dust"
+      },
+      "materials": ["tin"],
+      "meta_map": {},
+      "expected": null
+    },
+    {
+      "raw": {
+        "item": "gregtech:gt.multiitem.randomtools",
+        "count": 1,
+        "displayName": "Extruder Shape (Plate)"
+      },
+      "materials": ["iron"],
+      "meta_map": {},
+      "expected": "item:fixed:gregtech:gt.multiitem.randomtools@nonex1"
+    },
+    {
+      "raw": {
+        "item": "gregtech:gt.meta.dust",
+        "meta": 123456,
+        "count": 1,
+        "displayName": "Unknownium Dust"
+      },
+      "materials": ["copper", "iron", "tin", "bronze"],
+      "meta_map": {},
+      "expected": "item:fixed:gregtech:gt.meta.dust@123456x1"
+    }
+  ]
+}

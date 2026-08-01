@@ -1,0 +1,57 @@
+{
+  "by_field": {
+    "Material.handleMaterial": {
+      "skipped_invalid": 39,
+      "tunable_unchanged": 546
+    },
+    "Material.oreMultiplier": {
+      "skipped_invalid": 441,
+      "tunable_unchanged": 1773
+    },
+    "Material.oreProcessingMultiplier": {
+      "skipped_invalid": 441,
+      "tunable_unchanged": 1773
+    },
+    "Material.toolDurability": {
+      "skipped_invalid": 39,
+      "tunable_unchanged": 546
+    },
+    "Material.toolQuality": {
+      "skipped_invalid": 441,
+      "tunable_unchanged": 1773
+    },
+    "Material.toolSpeed": {
+      "skipped_invalid": 39,
+      "tunable_unchanged": 546
+    },
+    "Prefix.configStackSize": {
+      "skipped_invalid": 142,
+      "tunable_unchanged": 326
+    }
+  },
+  "dump_mismatch": [],
+  "interpretation": {
+    "dump_mismatch": "oredict live ≠ config live → unexpected post-config mutation or dump bug",
+    "missing_config": "expected apply target but no cfg prop (should be rare for valid materials/prefixes)",
+    "orphan_config": "cfg prop with no matching dump subject",
+    "overridden": "config live ≠ default embedded in key → player/pack changed this value",
+    "skipped_invalid": "INVALID_MATERIAL / PREFIX_UNUSED — GT skips apply; dump may still show source fields",
+    "source_fixed": "meltingPoint, components, tags, amount, texture sets, etc. are NOT config-overridable",
+    "tunable_unchanged": "mapped and equal → adjustable but currently at source default"
+  },
+  "missing_config_count": 0,
+  "missing_config_sample": [],
+  "orphan_config_count": 0,
+  "orphan_config_sample": [],
+  "overridden": [],
+  "schema": "gt6_config_overlay_report/v1",
+  "summary": {
+    "dump_mismatch": 0,
+    "entries": 8865,
+    "missing_config": 0,
+    "orphan_config": 0,
+    "overridden": 0,
+    "skipped_invalid": 1582,
+    "tunable_unchanged": 7283
+  }
+}

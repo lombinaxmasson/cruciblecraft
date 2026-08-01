@@ -1,23 +1,193 @@
 {
-  "id": "zinc",
-  "tag_name": "zinc",
-  "tier": 1,
   "color": "#B8C4C2",
-  "tint_style": "metallic",
-  "forms": [
-    "raw_ore",
-    "crushed_ore",
-    "ingot",
-    "dust",
-    "plate",
-    "rod",
-    "bolt"
+  "exclude_prefixes": [
+    "block",
+    "nugget",
+    "small_dust"
   ],
   "form_items": {},
-  "thermal": {
-    "melting_point": 419.5,
-    "boiling_point": 907,
-    "density": 7.14
+  "generation_flags": [
+    "cruciblecraft:generates_block",
+    "cruciblecraft:generates_centrifuged_crushed_ore",
+    "cruciblecraft:generates_crushed_ore",
+    "cruciblecraft:generates_dust",
+    "cruciblecraft:generates_ingot",
+    "cruciblecraft:generates_nugget",
+    "cruciblecraft:generates_ore",
+    "cruciblecraft:generates_plate",
+    "cruciblecraft:generates_purified_dust",
+    "cruciblecraft:generates_tiny_crushed_ore",
+    "cruciblecraft:generates_washed_crushed_ore",
+    "gt6:itemgenerator/denseplates",
+    "gt6:itemgenerator/foils",
+    "gt6:itemgenerator/multiplates",
+    "gt6:itemgenerator/ores",
+    "gt6:itemgenerator/sticks"
+  ],
+  "gt6_metadata": {
+    "aliases": [],
+    "byproducts": [
+      {
+        "material": "tin",
+        "source_id": 500,
+        "source_name": "Tin"
+      },
+      {
+        "material": "gallium",
+        "source_id": 310,
+        "source_name": "Gallium"
+      }
+    ],
+    "electrical_by_specification": {},
+    "explosion_damage": 0.0,
+    "formula": "Zn",
+    "generation_tags": [
+      "ITEMGENERATOR.ARMORS",
+      "ITEMGENERATOR.DENSEPLATES",
+      "ITEMGENERATOR.DUSTS",
+      "ITEMGENERATOR.FOILS",
+      "ITEMGENERATOR.INGOTS",
+      "ITEMGENERATOR.INGOTS_HOT",
+      "ITEMGENERATOR.MOLTEN",
+      "ITEMGENERATOR.MULTIINGOTS",
+      "ITEMGENERATOR.MULTIPLATES",
+      "ITEMGENERATOR.ORES",
+      "ITEMGENERATOR.PLANTS",
+      "ITEMGENERATOR.PLATES",
+      "ITEMGENERATOR.PROJECTILES",
+      "ITEMGENERATOR.STICKS"
+    ],
+    "heat_damage": 0.0,
+    "material_tags": [
+      "ATOMIC.ELEMENT",
+      "ATOMIC.METAL",
+      "ATOMIC.TRANSITION_METAL",
+      "ATOMIC.ZINC_GROUP",
+      "PROCESSING.EXTRUDABLE",
+      "PROCESSING.EXTRUDABLE_SIMPLE",
+      "PROCESSING.FURNACE",
+      "PROCESSING.MELTING",
+      "PROCESSING.MORTAR_GRINDABLE",
+      "PROCESSING.SMITHABLE",
+      "PROCESSING.UUM_SYNTHESISABLE",
+      "PROCESSING.WASHING_MERCURY",
+      "PROCESSING.WASHING_PERSULFATE",
+      "PROPERTIES.COMMON_ORE",
+      "PROPERTIES.SOFT"
+    ],
+    "processing_targets": {
+      "bending": {
+        "cc_units": 144,
+        "material": "zinc",
+        "numerator_u": 648648000,
+        "source_material_id": 300,
+        "source_material_name": "Zinc"
+      },
+      "burning": {
+        "cc_units": 0,
+        "material": "zinc",
+        "numerator_u": 0,
+        "source_material_id": 300,
+        "source_material_name": "Zinc"
+      },
+      "compressing": {
+        "cc_units": 144,
+        "material": "zinc",
+        "numerator_u": 648648000,
+        "source_material_id": 300,
+        "source_material_name": "Zinc"
+      },
+      "crushing": {
+        "cc_units": 144,
+        "material": "zinc",
+        "numerator_u": 648648000,
+        "source_material_id": 300,
+        "source_material_name": "Zinc"
+      },
+      "cutting": {
+        "cc_units": 144,
+        "material": "zinc",
+        "numerator_u": 648648000,
+        "source_material_id": 300,
+        "source_material_name": "Zinc"
+      },
+      "forging": {
+        "cc_units": 144,
+        "material": "zinc",
+        "numerator_u": 648648000,
+        "source_material_id": 300,
+        "source_material_name": "Zinc"
+      },
+      "generifying": {
+        "cc_units": 144,
+        "material": "zinc",
+        "numerator_u": 648648000,
+        "source_material_id": 300,
+        "source_material_name": "Zinc"
+      },
+      "pulver": {
+        "cc_units": 144,
+        "material": "zinc",
+        "numerator_u": 648648000,
+        "source_material_id": 300,
+        "source_material_name": "Zinc"
+      },
+      "smashing": {
+        "cc_units": 144,
+        "material": "zinc",
+        "numerator_u": 648648000,
+        "source_material_id": 300,
+        "source_material_name": "Zinc"
+      },
+      "smelting": {
+        "cc_units": 144,
+        "material": "zinc",
+        "numerator_u": 648648000,
+        "source_material_id": 300,
+        "source_material_name": "Zinc"
+      },
+      "solidifying": {
+        "cc_units": 144,
+        "material": "zinc",
+        "numerator_u": 648648000,
+        "source_material_id": 300,
+        "source_material_name": "Zinc"
+      },
+      "working": {
+        "cc_units": 144,
+        "material": "zinc",
+        "numerator_u": 648648000,
+        "source_material_id": 300,
+        "source_material_name": "Zinc"
+      }
+    },
+    "source_id": 300,
+    "source_name": "Zinc",
+    "source_thermal": {
+      "boiling_point_celsius": 906.85,
+      "boiling_point_kelvin": 1180,
+      "density": 7.134,
+      "melting_point_celsius": 418.85,
+      "melting_point_kelvin": 692,
+      "plasma_point_celsius": 117726.85,
+      "plasma_point_kelvin": 118000
+    },
+    "state": "solid",
+    "tool": {
+      "durability": 0,
+      "quality": 0,
+      "speed": 1.0,
+      "types": 0
+    }
   },
-  "molten_fluid": true
+  "id": "zinc",
+  "molten_fluid": true,
+  "tag_name": "zinc",
+  "thermal": {
+    "boiling_point": 907,
+    "density": 7.14,
+    "melting_point": 419.5
+  },
+  "tier": 1,
+  "tint_style": "metallic"
 }

@@ -1,0 +1,19 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "duration": "220 * (144 * prefix_units(quadruple_plate) / gcd(target_units(working) * 576, 144 * prefix_units(quadruple_plate)))",
+  "eut": "64",
+  "item_inputs": [
+    {
+      "count": "2 * (144 * prefix_units(quadruple_plate) / gcd(target_units(working) * 576, 144 * prefix_units(quadruple_plate)))",
+      "prefix": "cruciblecraft:double_plate"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "target_units(working) * 576 / gcd(target_units(working) * 576, 144 * prefix_units(quadruple_plate))",
+      "material_selector": "processing_target:working",
+      "prefix": "cruciblecraft:quadruple_plate"
+    }
+  ],
+  "target": "cruciblecraft:press"
+}

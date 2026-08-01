@@ -6,7 +6,7 @@ import com.masson.cruciblecraft.registry.ModBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
 
 public final class CokeOvenStructure {
     private CokeOvenStructure() {}
@@ -26,15 +26,20 @@ public final class CokeOvenStructure {
     }
 
     public static boolean isValid(
-            BlockGetter level,
+            LevelReader level,
             BlockPos controller,
             Direction facing) {
-        if (!level.getBlockState(controller).is(ModBlocks.COKE_OVEN.get())
-                || !level.getBlockState(center(controller, facing)).isAir()) {
+        BlockPos center = center(controller, facing);
+        if (!level.hasChunkAt(controller)
+                || !level.hasChunkAt(center)
+                || !level.getBlockState(controller).is(ModBlocks.COKE_OVEN.get())
+                || !level.getBlockState(center).isAir()) {
             return false;
         }
         for (BlockPos offset : firebrickOffsets(facing)) {
-            if (!level.getBlockState(controller.offset(offset)).is(ModBlocks.FIREBRICK.get())) {
+            BlockPos firebrick = controller.offset(offset);
+            if (!level.hasChunkAt(firebrick)
+                    || !level.getBlockState(firebrick).is(ModBlocks.FIREBRICK.get())) {
                 return false;
             }
         }

@@ -12,13 +12,6 @@ public final class MoltenTransferMath {
 
     private MoltenTransferMath() {}
 
-    public static int celsiusToKelvin(double celsius) {
-        if (!Double.isFinite(celsius)) {
-            throw new IllegalArgumentException("Temperature must be finite");
-        }
-        return Math.max(0, (int) Math.round(celsius + 273.15));
-    }
-
     public static int planFill(int requested, int availableCapacity, int compositionQuantum) {
         if (requested <= 0 || availableCapacity <= 0 || compositionQuantum <= 0) {
             return 0;

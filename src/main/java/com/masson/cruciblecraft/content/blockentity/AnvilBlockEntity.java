@@ -1,27 +1,32 @@
 package com.masson.cruciblecraft.content.blockentity;
 
-import java.util.Comparator;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
+import com.masson.cruciblecraft.heat.HeatComponent;
 import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
-import com.masson.cruciblecraft.recipe.AnvilRecipe;
-import com.masson.cruciblecraft.recipe.AnvilRecipeInput;
 import com.masson.cruciblecraft.recipe.AnvilMode;
-import com.masson.cruciblecraft.recipe.AnvilRecipeRules;
+import com.masson.cruciblecraft.recipe.gt.GTRecipe;
+import com.masson.cruciblecraft.recipe.gt.AnvilRecipeExecutionRules;
+import com.masson.cruciblecraft.recipe.gt.GTRecipeCache;
+import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
 import com.masson.cruciblecraft.machine.MachineMaterialRules.Device;
+import com.masson.cruciblecraft.machine.processing.ChanceOutputs;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
-import com.masson.cruciblecraft.registry.ModRecipes;
+import com.masson.cruciblecraft.registry.ModComponents;
+import com.masson.cruciblecraft.registry.ModRecipeMaps;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Containers;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -34,6 +39,7 @@ public final class AnvilBlockEntity extends BlockEntity {
     private long durability = MachineMaterialRules.anvilMaxDurability(materialId);
     private long maxDurability = durability;
     private String activeRecipe = "";
+    private final Map<AnvilMode, GTRecipeCache> recipeCaches = createRecipeCaches();
 
     public AnvilBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.ANVIL.get(), pos, blockState);
@@ -63,15 +69,15 @@ public final class AnvilBlockEntity extends BlockEntity {
             return Optional.empty();
         }
 
-        AnvilRecipeInput input = input(mode);
-        Optional<RecipeHolder<AnvilRecipe>> matched = findRecipe(input);
+        Optional<AnvilMatch> matched = findRecipe(mode);
         if (matched.isEmpty()) {
             return Optional.empty();
         }
 
-        AnvilRecipe recipe = matched.get().value();
-        AnvilRecipe.MatchPlan plan = recipe.matchPlan(input).orElseThrow();
-        int workpieceTier = MaterialUnits.resolve(input.getItem(plan.primarySlot()))
+        AnvilMatch match = matched.get();
+        GTRecipe recipe = match.recipe();
+        ItemStack source = workpieces[match.primarySlot()];
+        int workpieceTier = MaterialUnits.resolve(source)
                 .map(entry -> entry.material().tier())
                 .orElse(Integer.MAX_VALUE);
         if (hammerTier < workpieceTier
@@ -79,34 +85,41 @@ public final class AnvilBlockEntity extends BlockEntity {
             return Optional.empty();
         }
 
-        String recipeId = matched.get().id().toString();
+        String recipeId = match.id().toString();
         if (!recipeId.equals(activeRecipe)) {
             strikes = 0;
             activeRecipe = recipeId;
         }
         strikes++;
-        boolean completed = strikes >= recipe.hits();
-        ItemStack result = input.getItem(plan.primarySlot()).copy();
+        int requiredHits = Math.toIntExact(recipe.specialValue());
+        boolean completed = strikes >= requiredHits;
+        ItemStack result = source.copy();
         List<ItemStack> overflow = new java.util.ArrayList<>();
         boolean exhausted = false;
         if (completed) {
-            ItemStack primaryOutput = recipe.assemble(input, level.registryAccess());
+            List<ItemStack> outputs = recipe.itemOutputs();
+            ItemStack primaryOutput = outputs.getFirst();
+            copyHeat(source, primaryOutput);
             ItemStack craftedResult = primaryOutput.copy();
-            ItemStack secondaryOutput = AnvilRecipeRules.secondarySucceeds(
-                    recipe.secondaryChance(), level.random.nextDouble())
-                    ? recipe.assembleSecondary(input)
+            ItemStack secondaryOutput = outputs.size() > 1
+                    ? ChanceOutputs.roll(
+                            outputs.get(1),
+                            recipe.outputChances().get(1),
+                            level.random::nextInt)
                     : ItemStack.EMPTY;
-            consume(plan);
-            placeOutput(primaryOutput, plan.primarySlot(), overflow);
-            placeOutput(secondaryOutput, plan.secondarySlot() >= 0 ? plan.secondarySlot() : 1 - plan.primarySlot(), overflow);
-            durability = Math.max(0L, durability - MachineMaterialRules.anvilWear(recipe.recipePower()));
+            consume(match.allocation());
+            placeOutput(primaryOutput, match.primarySlot(), overflow);
+            placeOutput(secondaryOutput, 1 - match.primarySlot(), overflow);
+            durability = Math.max(
+                    0L,
+                    durability - MachineMaterialRules.anvilWear(recipe.eut()));
             exhausted = durability == 0L;
             result = craftedResult;
             resetProgress();
         }
         setChangedAndSync();
         return Optional.of(new StrikeResult(
-                completed, strikes, recipe.hits(), result.copy(), List.copyOf(overflow), exhausted));
+                completed, strikes, requiredHits, result.copy(), List.copyOf(overflow), exhausted));
     }
 
     public ItemStack extract(int slot) {
@@ -210,48 +223,57 @@ public final class AnvilBlockEntity extends BlockEntity {
         setMaterial(materialId, null);
     }
 
-    private Optional<RecipeHolder<AnvilRecipe>> findRecipe(AnvilRecipeInput input) {
-        return level.getRecipeManager().getRecipesFor(
-                ModRecipes.ANVIL_TYPE.get(),
-                input,
-                level).stream()
-                .max(Comparator.comparing(holder -> holder.value().material().isPresent()));
+    private Optional<AnvilMatch> findRecipe(AnvilMode mode) {
+        RecipeMap.Match cached = recipeCaches.get(mode)
+                .findItems(workpieces[0], workpieces[1])
+                .filter(match -> validAnvilRecipe(match.recipe()))
+                .orElse(null);
+        if (cached == null) {
+            return Optional.empty();
+        }
+        GTRecipe recipe = cached.recipe();
+        long[][] allocation = recipe.itemAllocation(List.of(workpieces)).orElse(null);
+        if (allocation == null || allocation.length == 0) {
+            return Optional.empty();
+        }
+        int primarySlot = -1;
+        for (int slot = 0; slot < allocation[0].length; slot++) {
+            if (allocation[0][slot] > 0L) {
+                primarySlot = slot;
+                break;
+            }
+        }
+        return primarySlot < 0
+                ? Optional.empty()
+                : Optional.of(new AnvilMatch(
+                        cached.id(),
+                        recipe,
+                        allocation,
+                        primarySlot));
     }
 
     private boolean hasPotentialRecipe() {
-        return level.getRecipeManager().getAllRecipesFor(ModRecipes.ANVIL_TYPE.get()).stream()
-                .anyMatch(holder -> {
-                    AnvilRecipe recipe = holder.value();
-                    if (recipe.matchPlan(input(recipe.mode())).isPresent()) {
-                        return true;
-                    }
-                    return isPotentialIngredient(workpieces[0], recipe)
-                            || isPotentialIngredient(workpieces[1], recipe);
-                });
+        for (RecipeMap map : List.of(
+                ModRecipeMaps.ANVIL,
+                ModRecipeMaps.ANVIL_BEND_SMALL,
+                ModRecipeMaps.ANVIL_BEND_BIG)) {
+            if (map.hasCandidate(workpieces[0]) || map.hasCandidate(workpieces[1])) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    private static boolean isPotentialIngredient(ItemStack stack, AnvilRecipe recipe) {
-        return MaterialUnits.resolve(stack)
-                .filter(entry -> recipe.material().isEmpty()
-                        || recipe.material().get().equals(entry.material().id()))
-                .filter(entry -> entry.form() == recipe.input()
-                        || recipe.secondInput().filter(form -> form == entry.form()).isPresent())
-                .isPresent();
-    }
-
-    private AnvilRecipeInput input(AnvilMode mode) {
-        return new AnvilRecipeInput(workpieces[0], workpieces[1], mode);
-    }
-
-    private void consume(AnvilRecipe.MatchPlan plan) {
-        var remaining = AnvilRecipeRules.consume(
+    private void consume(long[][] allocation) {
+        int[] counts = {
                 workpieces[0].getCount(),
-                workpieces[1].getCount(),
-                plan.primarySlot(),
-                plan.primaryCount(),
-                plan.secondarySlot(),
-                plan.secondaryCount());
-        int[] counts = {remaining.first(), remaining.second()};
+                workpieces[1].getCount()
+        };
+        for (long[] requirement : allocation) {
+            for (int slot = 0; slot < requirement.length; slot++) {
+                counts[slot] = Math.subtractExact(counts[slot], Math.toIntExact(requirement[slot]));
+            }
+        }
         for (int slot = 0; slot < workpieces.length; slot++) {
             if (counts[slot] == 0) {
                 workpieces[slot] = ItemStack.EMPTY;
@@ -260,6 +282,40 @@ public final class AnvilBlockEntity extends BlockEntity {
             }
         }
     }
+
+    private static boolean validAnvilRecipe(GTRecipe recipe) {
+        return recipe.specialValue() > 0L
+                && recipe.specialValue() <= Integer.MAX_VALUE
+                && recipe.eut() > 0L
+                && AnvilRecipeExecutionRules.supportsOutputs(
+                        recipe.itemOutputs().size(),
+                        recipe.outputChances().isEmpty()
+                                ? -1
+                                : recipe.outputChances().getFirst())
+                && recipe.fluidInputs().isEmpty()
+                && recipe.fluidOutputs().isEmpty();
+    }
+
+    private static void copyHeat(ItemStack source, ItemStack output) {
+        HeatComponent heat = source.get(ModComponents.HEAT.get());
+        if (heat != null) {
+            output.set(ModComponents.HEAT.get(), heat);
+        }
+    }
+
+    private static Map<AnvilMode, GTRecipeCache> createRecipeCaches() {
+        EnumMap<AnvilMode, GTRecipeCache> caches = new EnumMap<>(AnvilMode.class);
+        for (AnvilMode mode : AnvilMode.values()) {
+            caches.put(mode, new GTRecipeCache(ModRecipeMaps.anvil(mode)));
+        }
+        return Map.copyOf(caches);
+    }
+
+    private record AnvilMatch(
+            ResourceLocation id,
+            GTRecipe recipe,
+            long[][] allocation,
+            int primarySlot) {}
 
     private void placeOutput(ItemStack output, int preferredSlot, List<ItemStack> overflow) {
         if (output.isEmpty()) {

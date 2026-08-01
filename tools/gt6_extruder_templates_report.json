@@ -1,0 +1,313 @@
+{
+  "schema_version": 5,
+  "map": "gt.recipe.extruder",
+  "source": {
+    "recipe_count": 325595,
+    "canonical_multiset_sha256": "8908e6b91361244179bc441904343e80e8824f1b5ed33592ffd21cd287b616f6",
+    "materials_raw_sha256": "d5f6397b29ee7dc75248a458da34ab4e16e50aafbe9009e39602dd1910bbc3ff",
+    "materials_canonical_sha256": "8b2b0f2d25c52394d64de06dd5be4a67148e5afa2e4e11b9a8ef824102678e68",
+    "prefixes_raw_sha256": "176c8b17b2f9152192c05bc9b07b6acd2e6e50c05255b97add77f2f2ba9b9e89",
+    "prefixes_canonical_sha256": "8b4b2547d84468a9f1ad596dff591430ba9158eb508a9f35b9013482f0c4bc9f"
+  },
+  "template_policy": {
+    "template_identity": "one template per concrete extruder shape",
+    "normal_low_heat": "normal and low-heat shape metas remain separate templates",
+    "support": "all observed subject/form/count/EU/duration combinations are stored as an exact sparse relation using template-local integer indexes and positional columns; no Cartesian product is inferred",
+    "support_row_ids": "omitted; rows are internal encoding, while template IDs remain stable content addresses"
+  },
+  "axis_analysis": {
+    "pure_material_recipe_count": 283775,
+    "shape_count": 62,
+    "pure_material_shape_count": 46,
+    "external_only_shape_count": 16,
+    "form_operation_count": 1199,
+    "observed_shape_form_pairs": 2334,
+    "possible_cartesian_pairs": 55154,
+    "cartesian_density": 0.042318,
+    "shape_to_form_degree": {
+      "17": 2,
+      "38": 5,
+      "46": 1,
+      "47": 3,
+      "48": 3,
+      "50": 1,
+      "55": 8,
+      "56": 22,
+      "57": 1
+    },
+    "form_to_shape_degree": {
+      "1": 64,
+      "2": 1135
+    },
+    "template_axis": "concrete extruder shape",
+    "support_axes": "subject plus ordered input/output forms and counts",
+    "support_is_sparse": true,
+    "one_to_one": false
+  },
+  "external_axis_diagnostics": {
+    "external_input_recipe_count": 24035,
+    "mergeable_logic_family_count": 886,
+    "mergeable_recipe_count": 23317,
+    "small_review_group_count": 285,
+    "small_review_recipe_count": 677,
+    "discrete_logic_group_count": 37,
+    "discrete_recipe_count": 41,
+    "note": "These are support-table diagnostics, not template counts. Template identity remains the extruder shape."
+  },
+  "counts": {
+    "logical_recipe_count": 63,
+    "expanded_rows_per_logical_recipe": 5168.174603,
+    "shape_template_count": 62,
+    "normal_shape_template_count": 31,
+    "low_heat_shape_template_count": 31,
+    "templated_expanded_rows": 325594,
+    "tag_derived_eu_rows": 283775,
+    "tag_derived_eu_value_counts": {
+      "16": 120202,
+      "96": 163571,
+      "512": 2
+    },
+    "explicit_eu_rows": 41819,
+    "constant_domain_group_count": 1438,
+    "constant_domain_recipe_count": 97996,
+    "replaced_explicit_member_count": 97996,
+    "stored_domain_exception_count": 368,
+    "explicit_support_row_count": 227594,
+    "discrete_recipe_rows": 1
+  },
+  "verification": {
+    "replay_verified": true,
+    "partition_verified": true,
+    "template_local_replay_verified": true,
+    "expected_count": 325595,
+    "actual_count": 325595,
+    "expected_multiset_sha256": "8908e6b91361244179bc441904343e80e8824f1b5ed33592ffd21cd287b616f6",
+    "actual_multiset_sha256": "8908e6b91361244179bc441904343e80e8824f1b5ed33592ffd21cd287b616f6",
+    "missing_count": 0,
+    "extra_count": 0
+  },
+  "largest_templates": [
+    {
+      "template_id": "sha256:cdec26fc2a86745df1ebe7fa1add1dc7400f7babac5d2ab5c8c1b9cbb7817f83",
+      "shape_meta": 10030,
+      "base_shape_meta": 10030,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 14573,
+      "distinct_subject_count": 1234,
+      "input_form_count": 82,
+      "output_form_count": 23
+    },
+    {
+      "template_id": "sha256:e9e781ce8305f6e139db43ec0651b955b61aca08a0272f6611e0de4b9b156b6a",
+      "shape_meta": 10027,
+      "base_shape_meta": 10027,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 14542,
+      "distinct_subject_count": 1266,
+      "input_form_count": 90,
+      "output_form_count": 25
+    },
+    {
+      "template_id": "sha256:3795e6fb1aadb3184d987c858b1e130ef300c77e7283aad4ea201fd57b7436ec",
+      "shape_meta": 10003,
+      "base_shape_meta": 10003,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 14541,
+      "distinct_subject_count": 1266,
+      "input_form_count": 91,
+      "output_form_count": 24
+    },
+    {
+      "template_id": "sha256:4e45b4b7a936480b1e2a39e0893ab191695b528498fe3d79e218f009cbe5e397",
+      "shape_meta": 10001,
+      "base_shape_meta": 10001,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 14245,
+      "distinct_subject_count": 1270,
+      "input_form_count": 88,
+      "output_form_count": 18
+    },
+    {
+      "template_id": "sha256:56b4a23456158441b20a3c125967177af1a549cc466e0a9c1a5014aea9607c76",
+      "shape_meta": 10025,
+      "base_shape_meta": 10025,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 14218,
+      "distinct_subject_count": 1267,
+      "input_form_count": 86,
+      "output_form_count": 13
+    },
+    {
+      "template_id": "sha256:f39e4369f8799e5ab9eefd5d993d34cd052851027ebcf4df73f3de874fe10f83",
+      "shape_meta": 10002,
+      "base_shape_meta": 10002,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 14159,
+      "distinct_subject_count": 1267,
+      "input_form_count": 92,
+      "output_form_count": 13
+    },
+    {
+      "template_id": "sha256:ea07e00743367d3fa5279e417896c2159c446c7194749cde4721b4093563b3ba",
+      "shape_meta": 10006,
+      "base_shape_meta": 10006,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 12924,
+      "distinct_subject_count": 1185,
+      "input_form_count": 81,
+      "output_form_count": 59
+    },
+    {
+      "template_id": "sha256:756ad05ac088278a57e74de6f22d0a80c9237a4ae5803238aec13fbb714b1466",
+      "shape_meta": 10008,
+      "base_shape_meta": 10008,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 11567,
+      "distinct_subject_count": 1060,
+      "input_form_count": 88,
+      "output_form_count": 21
+    },
+    {
+      "template_id": "sha256:8dd7758831d4610fc6357fcb1dfa9f8de9c326c56964474dad4901caaa326748",
+      "shape_meta": 10004,
+      "base_shape_meta": 10004,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 11567,
+      "distinct_subject_count": 1060,
+      "input_form_count": 88,
+      "output_form_count": 23
+    },
+    {
+      "template_id": "sha256:467c0a3ea7fd83160ff1edba5f23e7fa3e61d3c294960441c24361ce319711e3",
+      "shape_meta": 10023,
+      "base_shape_meta": 10023,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 11316,
+      "distinct_subject_count": 1099,
+      "input_form_count": 94,
+      "output_form_count": 5
+    },
+    {
+      "template_id": "sha256:8b8b4db32e978b3d5f3114cda38a087ef7cbf9f59352f247199b1176608f8213",
+      "shape_meta": 10026,
+      "base_shape_meta": 10026,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 11316,
+      "distinct_subject_count": 1099,
+      "input_form_count": 91,
+      "output_form_count": 13
+    },
+    {
+      "template_id": "sha256:159705c345e819aaec8dc9d6ce59cb83eab5e4a9d5edd858fc8336bf9e9566ef",
+      "shape_meta": 10015,
+      "base_shape_meta": 10015,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 10973,
+      "distinct_subject_count": 1046,
+      "input_form_count": 93,
+      "output_form_count": 8
+    },
+    {
+      "template_id": "sha256:951129974253e590be266da1011361be0dfbd899abfad404ef350c6f174d864a",
+      "shape_meta": 10018,
+      "base_shape_meta": 10018,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 10973,
+      "distinct_subject_count": 1046,
+      "input_form_count": 94,
+      "output_form_count": 6
+    },
+    {
+      "template_id": "sha256:b463c41ffaa28f96695ea08168fd7b6a6278ca979a40a150355f4dced923fc46",
+      "shape_meta": 10017,
+      "base_shape_meta": 10017,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 10973,
+      "distinct_subject_count": 1046,
+      "input_form_count": 92,
+      "output_form_count": 13
+    },
+    {
+      "template_id": "sha256:c3148241bf025d9a2ed5925469f7fbba3f75b6d5b2fb4fcad274e542b06a27a3",
+      "shape_meta": 10016,
+      "base_shape_meta": 10016,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 10973,
+      "distinct_subject_count": 1046,
+      "input_form_count": 94,
+      "output_form_count": 6
+    },
+    {
+      "template_id": "sha256:d9c76dd806a7ebe04266f8bef65bc4a8f6401adfa191dd19f2e1ae0f061139fd",
+      "shape_meta": 10019,
+      "base_shape_meta": 10019,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 10973,
+      "distinct_subject_count": 1046,
+      "input_form_count": 93,
+      "output_form_count": 8
+    },
+    {
+      "template_id": "sha256:5f4183ad782e5aa32b99505c1fc17c22293fe59e1d108dbff4e98ec3d8384573",
+      "shape_meta": 10014,
+      "base_shape_meta": 10014,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 10740,
+      "distinct_subject_count": 1179,
+      "input_form_count": 82,
+      "output_form_count": 28
+    },
+    {
+      "template_id": "sha256:d770cbe930c6fcd5ab0c85f9a13dbdefea9f3f17b0ca128117783b4e793bb21f",
+      "shape_meta": 10020,
+      "base_shape_meta": 10020,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 10702,
+      "distinct_subject_count": 989,
+      "input_form_count": 91,
+      "output_form_count": 4
+    },
+    {
+      "template_id": "sha256:87ada4bc8aca5733af2ded25adb6cd345322da540449ba1170e107fdbd33f64f",
+      "shape_meta": 10022,
+      "base_shape_meta": 10022,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 9172,
+      "distinct_subject_count": 884,
+      "input_form_count": 65,
+      "output_form_count": 8
+    },
+    {
+      "template_id": "sha256:a7f3c9d8abea074363bd37367100dc0eb79dd2bf070d99fce9812a0bbe2eabcd",
+      "shape_meta": 10021,
+      "base_shape_meta": 10021,
+      "heat_mode": "normal",
+      "shape_item": "gregtech:gt.multiitem.technological",
+      "expanded_count": 9172,
+      "distinct_subject_count": 884,
+      "input_form_count": 65,
+      "output_form_count": 10
+    }
+  ],
+  "artifact": "tools/gt6_extruder_templates_v5.json",
+  "coverage_index": "tools/gt6_extruder_templates_index_v5.json"
+}

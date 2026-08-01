@@ -1,29 +1,28 @@
 package com.masson.cruciblecraft.heat;
 
+import com.masson.cruciblecraft.energy.EnergyPackets;
+
 /**
  * Pure heat-storage model used by the firebox.
  */
 public final class FireboxHeatBuffer {
     public static final int MAX_EQUIVALENT_TICKS = 12_000;
 
-    private double storedHeat;
-    private float outputRate;
+    private long storedHeat;
+    private long outputRate;
     private String fuelId;
 
     public FireboxHeatBuffer() {
-        this(0.0, 0.0F, "");
+        this(0L, 0L, "");
     }
 
-    public FireboxHeatBuffer(double storedHeat, float outputRate, String fuelId) {
-        if (!Double.isFinite(storedHeat)
-                || storedHeat <= 0.0
-                || !Float.isFinite(outputRate)
-                || outputRate <= 0.0F) {
+    public FireboxHeatBuffer(long storedHeat, long outputRate, String fuelId) {
+        if (storedHeat <= 0L || outputRate <= 0L) {
             clear();
             return;
         }
         this.outputRate = outputRate;
-        this.storedHeat = storedHeat;
+        this.storedHeat = Math.min(storedHeat, capacity(outputRate));
         this.fuelId = fuelId == null ? "" : fuelId;
     }
 
@@ -31,22 +30,23 @@ public final class FireboxHeatBuffer {
             int burnTicks,
             float energyPerTick,
             String fuelId) {
-        if (burnTicks <= 0) {
+        if (burnTicks <= 0 || !Float.isFinite(energyPerTick) || energyPerTick <= 0.0F) {
             return new FireboxHeatBuffer();
         }
+        long rate = Math.max(1L, (long) Math.floor(energyPerTick));
         return new FireboxHeatBuffer(
-                (double) burnTicks * energyPerTick,
-                energyPerTick,
+                Math.max(0L, (long) Math.floor((double) burnTicks * energyPerTick)),
+                rate,
                 fuelId);
     }
 
     public boolean deposit(FuelDefinition fuel) {
-        if (hasHeat() && Float.compare(outputRate, fuel.energyPerTick()) != 0) {
+        if (hasHeat() && outputRate != fuel.energyPerTick()) {
             return false;
         }
-        float depositRate = hasHeat() ? outputRate : fuel.energyPerTick();
-        double accepted = Math.min(fuel.totalEnergy(), capacity(depositRate) - storedHeat);
-        if (accepted <= 0.0) {
+        long depositRate = hasHeat() ? outputRate : fuel.energyPerTick();
+        long accepted = Math.min(fuel.totalEnergy(), capacity(depositRate) - storedHeat);
+        if (accepted <= 0L) {
             return false;
         }
         if (!hasHeat()) {
@@ -57,26 +57,26 @@ public final class FireboxHeatBuffer {
         return true;
     }
 
-    public double extract(double maxAmount, boolean simulate) {
-        if (!Double.isFinite(maxAmount) || maxAmount <= 0.0 || !hasHeat()) {
-            return 0.0;
+    public long extract(long maxAmount, boolean simulate) {
+        if (maxAmount <= 0L || !hasHeat()) {
+            return 0L;
         }
-        double extracted = Math.min(Math.min(maxAmount, outputRate), storedHeat);
+        long extracted = Math.min(Math.min(maxAmount, outputRate), storedHeat);
         if (!simulate) {
             storedHeat -= extracted;
-            if (storedHeat <= 0.0) {
+            if (storedHeat <= 0L) {
                 clear();
             }
         }
         return extracted;
     }
 
-    public double storedHeat() {
+    public long storedHeat() {
         return storedHeat;
     }
 
-    public float outputRate() {
-        return hasHeat() ? outputRate : 0.0F;
+    public long outputRate() {
+        return hasHeat() ? outputRate : 0L;
     }
 
     public String fuelId() {
@@ -84,24 +84,26 @@ public final class FireboxHeatBuffer {
     }
 
     public boolean hasHeat() {
-        return storedHeat > 0.0 && outputRate > 0.0F;
+        return storedHeat > 0L && outputRate > 0L;
     }
 
     public int equivalentTicks() {
-        return hasHeat() ? (int) Math.ceil(storedHeat / outputRate) : 0;
+        return hasHeat() ? (int) Math.min(
+                Integer.MAX_VALUE,
+                1L + (storedHeat - 1L) / outputRate) : 0;
     }
 
     public int equivalentSeconds() {
         return (int) Math.ceil(equivalentTicks() / 20.0);
     }
 
-    public static double capacity(float outputRate) {
-        return (double) outputRate * MAX_EQUIVALENT_TICKS;
+    public static long capacity(long outputRate) {
+        return EnergyPackets.units(outputRate, MAX_EQUIVALENT_TICKS);
     }
 
     private void clear() {
-        storedHeat = 0.0;
-        outputRate = 0.0F;
+        storedHeat = 0L;
+        outputRate = 0L;
         fuelId = "";
     }
 }

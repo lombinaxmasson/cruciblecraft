@@ -26,8 +26,29 @@ jobs:
       - name: Make Gradle wrapper executable
         run: chmod +x ./gradlew
 
-      - name: Build with Gradle
+      - name: Build and run Java unit tests
         run: ./gradlew build --no-daemon
+
+      - name: Verify deterministic generated data
+        run: |
+          ./gradlew runData --no-daemon
+          git diff --exit-code -- src/generated/resources
+          test -z "$(git status --porcelain --untracked-files=all -- src/generated/resources)"
+          ./gradlew runData --no-daemon
+          git diff --exit-code -- src/generated/resources
+          test -z "$(git status --porcelain --untracked-files=all -- src/generated/resources)"
+
+      - name: Test GT6 recipe normalizer
+        run: python3 -m unittest discover -s tools/tests -p 'test_*.py'
+
+      - name: Verify normalized GT6 ore dictionary import
+        run: python3 tools/import_gt6_oredict.py --check --reference-only
+
+      - name: Verify GT6 recipe, process, and roadmap baselines
+        run: python3 tools/compare_gt6_recipes.py --check --reference-only
+
+      - name: Run NeoForge GameTest server
+        run: ./gradlew runGameTestServer --no-daemon
 
       - name: Verify no common→client imports
         run: |

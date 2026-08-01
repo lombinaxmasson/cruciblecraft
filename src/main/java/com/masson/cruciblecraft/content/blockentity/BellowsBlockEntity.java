@@ -1,12 +1,15 @@
 package com.masson.cruciblecraft.content.blockentity;
 
 import com.masson.cruciblecraft.air.AirOutputModel;
-import com.masson.cruciblecraft.air.PerTickAirLimiter;
-import com.masson.cruciblecraft.api.air.IAirSource;
+import com.masson.cruciblecraft.api.energy.EnergyType;
+import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.BellowsBlock;
+import com.masson.cruciblecraft.energy.EnergyEmitter;
+import com.masson.cruciblecraft.energy.PerTickEnergyBudget;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
@@ -14,10 +17,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-public final class BellowsBlockEntity extends BlockEntity implements IAirSource {
+public final class BellowsBlockEntity extends BlockEntity implements IEnergyHandler {
     private long activeUntil = Long.MIN_VALUE;
     private int loadedRemainingTicks;
-    private final PerTickAirLimiter extractionLimiter = new PerTickAirLimiter();
+    private final PerTickEnergyBudget outputBudget = new PerTickEnergyBudget();
 
     public BellowsBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.BELLOWS.get(), pos, blockState);
@@ -29,6 +32,14 @@ public final class BellowsBlockEntity extends BlockEntity implements IAirSource 
             BlockState state,
             BellowsBlockEntity bellows) {
         bellows.initializeDeadline();
+        if (bellows.isActive()) {
+            EnergyEmitter.emit(
+                    level,
+                    pos,
+                    bellows,
+                    EnergyType.AIR,
+                    state.getValue(BellowsBlock.FACING));
+        }
         if (state.getValue(BellowsBlock.ACTIVE) && !bellows.isActive()) {
             level.setBlock(
                     pos,
@@ -60,22 +71,47 @@ public final class BellowsBlockEntity extends BlockEntity implements IAirSource 
     }
 
     @Override
-    public float outputRate() {
-        return isActive() ? AirOutputModel.BELLOWS_AIR_PER_TICK : 0.0F;
+    public boolean handles(EnergyType type, Direction side) {
+        BlockState state = getBlockState();
+        return type == EnergyType.AIR
+                && side != null
+                && state.hasProperty(BellowsBlock.FACING)
+                && side == state.getValue(BellowsBlock.FACING);
     }
 
     @Override
-    public float extractAir(float maxAmount, boolean simulate) {
-        if (!Float.isFinite(maxAmount) || maxAmount <= 0.0F || !isActive()) {
-            return 0.0F;
+    public long outputSize(EnergyType type, Direction side) {
+        return handles(type, side)
+                        && isActive()
+                        && outputBudget.claim(
+                                gameTime(),
+                                AirOutputModel.BELLOWS_AIR_PER_TICK,
+                                1L,
+                                true) > 0L
+                ? 1L
+                : 0L;
+    }
+
+    @Override
+    public long extract(
+            EnergyType type,
+            long size,
+            long maxAmount,
+            Direction side,
+            boolean simulate) {
+        if (!handles(type, side) || size != 1L || maxAmount <= 0L || !isActive()) {
+            return 0L;
         }
         boolean effectiveSimulation = simulate || level == null || level.isClientSide;
-        long gameTime = level == null ? Long.MIN_VALUE : level.getGameTime();
-        return extractionLimiter.extract(
-                gameTime,
-                outputRate(),
+        return outputBudget.claim(
+                gameTime(),
+                AirOutputModel.BELLOWS_AIR_PER_TICK,
                 maxAmount,
                 effectiveSimulation);
+    }
+
+    private long gameTime() {
+        return level == null ? Long.MIN_VALUE : level.getGameTime();
     }
 
     private void initializeDeadline() {

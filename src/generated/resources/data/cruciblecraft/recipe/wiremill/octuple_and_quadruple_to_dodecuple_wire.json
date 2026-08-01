@@ -1,0 +1,23 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "duration": "160 * (144 * prefix_units(dodecuple_wire) / gcd(target_units(working) * 864, 144 * prefix_units(dodecuple_wire)))",
+  "eut": "48",
+  "item_inputs": [
+    {
+      "count": "1 * (144 * prefix_units(dodecuple_wire) / gcd(target_units(working) * 864, 144 * prefix_units(dodecuple_wire)))",
+      "prefix": "cruciblecraft:octuple_wire"
+    },
+    {
+      "count": "1 * (144 * prefix_units(dodecuple_wire) / gcd(target_units(working) * 864, 144 * prefix_units(dodecuple_wire)))",
+      "prefix": "cruciblecraft:quadruple_wire"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "target_units(working) * 864 / gcd(target_units(working) * 864, 144 * prefix_units(dodecuple_wire))",
+      "material_selector": "processing_target:working",
+      "prefix": "cruciblecraft:dodecuple_wire"
+    }
+  ],
+  "target": "cruciblecraft:wiremill"
+}

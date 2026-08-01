@@ -20,7 +20,9 @@ public final class MaterialFingerprintSavedData extends SavedData {
             MaterialFingerprintSavedData::load,
             DataFixTypes.LEVEL);
 
-    private String fingerprint = "";
+    private String structureFingerprint = "";
+    private String tuningFingerprint = "";
+    private String legacyFingerprint = "";
     private boolean changedOnLoad;
     private Set<String> materialIds = Set.of();
     private Set<String> missingOnLoad = Set.of();
@@ -31,7 +33,9 @@ public final class MaterialFingerprintSavedData extends SavedData {
             CompoundTag tag,
             HolderLookup.Provider registries) {
         MaterialFingerprintSavedData data = new MaterialFingerprintSavedData();
-        data.fingerprint = tag.getString("fingerprint");
+        data.structureFingerprint = tag.getString("structure_fingerprint");
+        data.tuningFingerprint = tag.getString("tuning_fingerprint");
+        data.legacyFingerprint = tag.getString("fingerprint");
         if (tag.contains("material_ids", Tag.TAG_LIST)) {
             LinkedHashSet<String> ids = new LinkedHashSet<>();
             ListTag list = tag.getList("material_ids", Tag.TAG_STRING);
@@ -42,32 +46,60 @@ public final class MaterialFingerprintSavedData extends SavedData {
     }
 
     public void compareWithCurrent() {
-        String current = MaterialFingerprint.compute(MaterialCatalog.values());
+        String currentStructure = MaterialFingerprint.structure(MaterialCatalog.values());
+        String currentTuning = MaterialFingerprint.tuning(MaterialCatalog.values());
         Set<String> currentIds = MaterialCatalog.values().stream()
                 .map(definition -> definition.id())
                 .collect(java.util.stream.Collectors.toCollection(java.util.TreeSet::new));
         missingOnLoad = materialIds.stream()
                 .filter(id -> !currentIds.contains(id))
                 .collect(java.util.stream.Collectors.toUnmodifiableSet());
-        changedOnLoad = !fingerprint.isEmpty() && !fingerprint.equals(current);
-        if (fingerprint.isEmpty() || changedOnLoad) {
-            if (changedOnLoad) {
-                CrucibleCraft.LOGGER.warn(
-                        "Material definitions changed for this world (saved {}, current {}). "
-                                + "Unknown contents will be preserved and affected machines paused.",
-                        fingerprint,
-                        current);
-                if (!missingOnLoad.isEmpty()) {
-                    CrucibleCraft.LOGGER.warn("Missing world materials: {}", missingOnLoad);
-                }
-            } else {
-                CrucibleCraft.LOGGER.info("Recording material fingerprint {} for this world", current);
-            }
-            fingerprint = current;
+        boolean legacyMigration = structureFingerprint.isEmpty() && !legacyFingerprint.isEmpty();
+        if (legacyMigration) {
+            changedOnLoad = !missingOnLoad.isEmpty();
+            CrucibleCraft.LOGGER.info(
+                    "Migrating legacy material fingerprint {} to structural {} and tuning {}",
+                    legacyFingerprint,
+                    currentStructure,
+                    currentTuning);
+        } else {
+            changedOnLoad = !structureFingerprint.isEmpty()
+                    && !structureFingerprint.equals(currentStructure);
+        }
+
+        boolean tuningChanged = !tuningFingerprint.isEmpty()
+                && !tuningFingerprint.equals(currentTuning);
+        if (changedOnLoad) {
+            CrucibleCraft.LOGGER.warn(
+                    "Material registry/save structure changed for this world (saved {}, current {}). "
+                            + "Unknown contents will be preserved and affected machines paused.",
+                    structureFingerprint,
+                    currentStructure);
+        }
+        if (!missingOnLoad.isEmpty()) {
+            CrucibleCraft.LOGGER.warn("Missing world materials: {}", missingOnLoad);
+        }
+        if (tuningChanged) {
+            CrucibleCraft.LOGGER.info(
+                    "Material tuning changed for this world (saved {}, current {})",
+                    tuningFingerprint,
+                    currentTuning);
+        }
+
+        boolean needsSave = structureFingerprint.isEmpty()
+                || tuningFingerprint.isEmpty()
+                || !structureFingerprint.equals(currentStructure)
+                || !tuningFingerprint.equals(currentTuning)
+                || !materialIds.equals(currentIds);
+        if (needsSave) {
+            structureFingerprint = currentStructure;
+            tuningFingerprint = currentTuning;
+            legacyFingerprint = "";
             materialIds = Set.copyOf(currentIds);
             setDirty();
         } else {
-            CrucibleCraft.LOGGER.info("Material fingerprint matches this world ({})", current);
+            CrucibleCraft.LOGGER.info(
+                    "Material structure and tuning fingerprints match this world");
         }
     }
 
@@ -81,7 +113,8 @@ public final class MaterialFingerprintSavedData extends SavedData {
 
     @Override
     public CompoundTag save(CompoundTag tag, HolderLookup.Provider registries) {
-        tag.putString("fingerprint", fingerprint);
+        tag.putString("structure_fingerprint", structureFingerprint);
+        tag.putString("tuning_fingerprint", tuningFingerprint);
         ListTag ids = new ListTag();
         materialIds.stream().sorted().map(StringTag::valueOf).forEach(ids::add);
         tag.put("material_ids", ids);

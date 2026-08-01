@@ -3,10 +3,12 @@ package com.masson.cruciblecraft.registry;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.recipe.AnvilRecipe;
 import com.masson.cruciblecraft.recipe.AnvilRecipeSerializer;
-import com.masson.cruciblecraft.recipe.CokeOvenRecipe;
-import com.masson.cruciblecraft.recipe.CokeOvenRecipeSerializer;
 import com.masson.cruciblecraft.recipe.CrusherRecipe;
 import com.masson.cruciblecraft.recipe.CrusherRecipeSerializer;
+import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
+import com.masson.cruciblecraft.recipe.gt.GTRecipeEntrySerializer;
+import com.masson.cruciblecraft.recipe.rule.MaterialRuleRecipe;
+import com.masson.cruciblecraft.recipe.rule.MaterialRuleSerializer;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -31,17 +33,6 @@ public final class ModRecipes {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<AnvilRecipe>> ANVIL_SERIALIZER =
             RECIPE_SERIALIZERS.register("anvil", AnvilRecipeSerializer::new);
 
-    public static final DeferredHolder<RecipeType<?>, RecipeType<CokeOvenRecipe>> COKE_OVEN_TYPE =
-            RECIPE_TYPES.register(
-                    "coke_oven",
-                    () -> RecipeType.<CokeOvenRecipe>simple(ResourceLocation.fromNamespaceAndPath(
-                            CrucibleCraft.MODID,
-                            "coke_oven")));
-
-    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<CokeOvenRecipe>>
-            COKE_OVEN_SERIALIZER =
-                    RECIPE_SERIALIZERS.register("coke_oven", CokeOvenRecipeSerializer::new);
-
     public static final DeferredHolder<RecipeType<?>, RecipeType<CrusherRecipe>> CRUSHER_TYPE =
             RECIPE_TYPES.register(
                     "crusher",
@@ -51,6 +42,26 @@ public final class ModRecipes {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<CrusherRecipe>>
             CRUSHER_SERIALIZER =
                     RECIPE_SERIALIZERS.register("crusher", CrusherRecipeSerializer::new);
+
+    public static final DeferredHolder<RecipeType<?>, RecipeType<GTRecipeEntry>> GT_RECIPE_TYPE =
+            RECIPE_TYPES.register(
+                    "gt_recipe",
+                    () -> RecipeType.<GTRecipeEntry>simple(ResourceLocation.fromNamespaceAndPath(
+                            CrucibleCraft.MODID,
+                            "gt_recipe")));
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<GTRecipeEntry>>
+            GT_RECIPE_SERIALIZER =
+                    RECIPE_SERIALIZERS.register("gt_recipe", GTRecipeEntrySerializer::new);
+
+    public static final DeferredHolder<RecipeType<?>, RecipeType<MaterialRuleRecipe>> MATERIAL_RULE_TYPE =
+            RECIPE_TYPES.register(
+                    "material_rule",
+                    () -> RecipeType.<MaterialRuleRecipe>simple(ResourceLocation.fromNamespaceAndPath(
+                            CrucibleCraft.MODID,
+                            "material_rule")));
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<MaterialRuleRecipe>>
+            MATERIAL_RULE_SERIALIZER =
+                    RECIPE_SERIALIZERS.register("material_rule", MaterialRuleSerializer::new);
 
     private ModRecipes() {}
 }

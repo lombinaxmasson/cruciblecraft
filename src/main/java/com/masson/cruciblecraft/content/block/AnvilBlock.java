@@ -5,7 +5,7 @@ import java.util.List;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.item.SmithingHammerItem;
-import com.masson.cruciblecraft.api.material.MaterialForm;
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
 import com.masson.cruciblecraft.recipe.AnvilStrikeContext;
@@ -73,7 +73,12 @@ public final class AnvilBlock extends Block implements EntityBlock {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
         if (level.isClientSide) {
-            return ItemInteractionResult.SUCCESS;
+            boolean acceptedFace = hammer
+                    ? strikeContext(state, pos, hitResult).mode().isPresent()
+                    : hitResult.getDirection() == Direction.UP;
+            return acceptedFace
+                    ? ItemInteractionResult.SUCCESS
+                    : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
         if (!(level.getBlockEntity(pos) instanceof AnvilBlockEntity anvil)) {
             return ItemInteractionResult.FAIL;
@@ -246,7 +251,7 @@ public final class AnvilBlock extends Block implements EntityBlock {
         if ("stone".equals(materialId)) {
             return new ItemStack(Items.COBBLESTONE, 2);
         }
-        return MaterialLookup.item(materialId, MaterialForm.INGOT)
+        return MaterialLookup.item(materialId, MaterialPrefixes.INGOT)
                 .map(item -> new ItemStack(item, 1))
                 .orElseGet(() -> new ItemStack(Items.IRON_NUGGET, 4));
     }

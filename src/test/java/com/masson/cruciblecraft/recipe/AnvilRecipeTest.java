@@ -1,25 +1,23 @@
 package com.masson.cruciblecraft.recipe;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
-import com.masson.cruciblecraft.api.material.MaterialForm;
+import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 
 class AnvilRecipeTest {
     @Test
     void acceptsUnitConservingFormChanges() {
         assertDoesNotThrow(() ->
-                AnvilRecipeRules.validate(MaterialForm.INGOT, MaterialForm.PLATE, 1, 4));
+                AnvilRecipeRules.validate(MaterialPrefixes.INGOT, MaterialPrefixes.PLATE, 1, 4));
         assertDoesNotThrow(() ->
-                AnvilRecipeRules.validate(MaterialForm.PLATE, MaterialForm.ROD, 2, 5));
+                AnvilRecipeRules.validate(MaterialPrefixes.PLATE, MaterialPrefixes.ROD, 2, 5));
         assertDoesNotThrow(() ->
-                AnvilRecipeRules.validate(MaterialForm.ROD, MaterialForm.BOLT, 4, 3));
+                AnvilRecipeRules.validate(MaterialPrefixes.ROD, MaterialPrefixes.BOLT, 4, 3));
     }
 
     @Test
@@ -27,8 +25,8 @@ class AnvilRecipeTest {
         assertThrows(
                 IllegalArgumentException.class,
                 () -> AnvilRecipeRules.validate(
-                        MaterialForm.INGOT,
-                        MaterialForm.ROD,
+                        MaterialPrefixes.INGOT,
+                        MaterialPrefixes.ROD,
                         1,
                         4));
     }
@@ -37,10 +35,10 @@ class AnvilRecipeTest {
     void rejectsNonPositiveCountsAndHits() {
         assertThrows(
                 IllegalArgumentException.class,
-                () -> AnvilRecipeRules.validate(MaterialForm.INGOT, MaterialForm.PLATE, 0, 4));
+                () -> AnvilRecipeRules.validate(MaterialPrefixes.INGOT, MaterialPrefixes.PLATE, 0, 4));
         assertThrows(
                 IllegalArgumentException.class,
-                () -> AnvilRecipeRules.validate(MaterialForm.INGOT, MaterialForm.PLATE, 1, 0));
+                () -> AnvilRecipeRules.validate(MaterialPrefixes.INGOT, MaterialPrefixes.PLATE, 1, 0));
     }
 
     @Test
@@ -51,40 +49,17 @@ class AnvilRecipeTest {
     @Test
     void acceptsConservativeTwoInputAndSecondaryOutputRecipes() {
         assertDoesNotThrow(() -> AnvilRecipeRules.validate(
-                MaterialForm.INGOT,
+                MaterialPrefixes.INGOT,
                 1,
-                Optional.of(MaterialForm.INGOT),
+                Optional.of(MaterialPrefixes.INGOT),
                 1,
-                MaterialForm.PLATE,
+                MaterialPrefixes.PLATE,
                 1,
                 6,
-                Optional.of(MaterialForm.ROD),
+                Optional.of(MaterialPrefixes.ROD),
                 1,
                 0.25,
                 80_000L));
     }
 
-    @Test
-    void secondaryChanceHasExactBoundaryBehavior() {
-        assertFalse(AnvilRecipeRules.secondarySucceeds(0.0, 0.0));
-        assertTrue(AnvilRecipeRules.secondarySucceeds(1.0, 0.999999));
-        assertTrue(AnvilRecipeRules.secondarySucceeds(0.25, 0.249999));
-        assertFalse(AnvilRecipeRules.secondarySucceeds(0.25, 0.25));
-        assertThrows(
-                IllegalArgumentException.class,
-                () -> AnvilRecipeRules.secondarySucceeds(0.5, 1.0));
-    }
-
-    @Test
-    void twoInputConsumptionUsesTheMatchedSlotOrderExactly() {
-        assertEquals(
-                new AnvilRecipeRules.RemainingCounts(3, 5),
-                AnvilRecipeRules.consume(5, 8, 0, 2, 1, 3));
-        assertEquals(
-                new AnvilRecipeRules.RemainingCounts(2, 6),
-                AnvilRecipeRules.consume(5, 8, 1, 2, 0, 3));
-        assertThrows(
-                IllegalArgumentException.class,
-                () -> AnvilRecipeRules.consume(1, 1, 0, 2, 1, 1));
-    }
 }

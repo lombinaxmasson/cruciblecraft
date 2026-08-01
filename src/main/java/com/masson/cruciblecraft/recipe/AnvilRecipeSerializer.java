@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.recipe;
 
-import com.masson.cruciblecraft.api.material.MaterialForm;
+import com.masson.cruciblecraft.api.material.MaterialPrefix;
+import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
@@ -11,13 +12,13 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 
 public final class AnvilRecipeSerializer implements RecipeSerializer<AnvilRecipe> {
     public static final MapCodec<AnvilRecipe> CODEC = RecordCodecBuilder.mapCodec(instance -> instance.group(
-            MaterialForm.CODEC.fieldOf("input").forGetter(AnvilRecipe::input),
+            MaterialPrefix.CODEC.fieldOf("input").forGetter(AnvilRecipe::input),
             com.mojang.serialization.Codec.INT.optionalFieldOf("input_count", 1)
                     .forGetter(AnvilRecipe::inputCount),
-            MaterialForm.CODEC.optionalFieldOf("second_input").forGetter(AnvilRecipe::secondInput),
+            MaterialPrefix.CODEC.optionalFieldOf("second_input").forGetter(AnvilRecipe::secondInput),
             com.mojang.serialization.Codec.INT.optionalFieldOf("second_input_count", 1)
                     .forGetter(AnvilRecipe::secondInputCount),
-            MaterialForm.CODEC.fieldOf("output").forGetter(AnvilRecipe::output),
+            MaterialPrefix.CODEC.fieldOf("output").forGetter(AnvilRecipe::output),
             com.mojang.serialization.Codec.INT.optionalFieldOf("output_count", 1)
                     .forGetter(AnvilRecipe::outputCount),
             com.mojang.serialization.Codec.INT.optionalFieldOf("hits", 4)
@@ -26,7 +27,7 @@ public final class AnvilRecipeSerializer implements RecipeSerializer<AnvilRecipe
                     .forGetter(AnvilRecipe::material),
             AnvilMode.CODEC.optionalFieldOf("mode", AnvilMode.ANVIL)
                     .forGetter(AnvilRecipe::mode),
-            MaterialForm.CODEC.optionalFieldOf("secondary_output")
+            MaterialPrefix.CODEC.optionalFieldOf("secondary_output")
                     .forGetter(AnvilRecipe::secondaryOutput),
             com.mojang.serialization.Codec.INT.optionalFieldOf("secondary_output_count", 1)
                     .forGetter(AnvilRecipe::secondaryOutputCount),
@@ -72,22 +73,22 @@ public final class AnvilRecipeSerializer implements RecipeSerializer<AnvilRecipe
                 buffer.readVarLong());
     }
 
-    private static void writeForm(RegistryFriendlyByteBuf buffer, MaterialForm form) {
-        buffer.writeUtf(form.serializedName());
+    private static void writeForm(RegistryFriendlyByteBuf buffer, MaterialPrefix form) {
+        buffer.writeUtf(form.serializedId());
     }
 
-    private static MaterialForm readForm(RegistryFriendlyByteBuf buffer) {
-        return MaterialForm.parse(buffer.readUtf());
+    private static MaterialPrefix readForm(RegistryFriendlyByteBuf buffer) {
+        return MaterialPrefixCatalog.require(buffer.readUtf());
     }
 
     private static void writeOptionalForm(
             RegistryFriendlyByteBuf buffer,
-            Optional<MaterialForm> form) {
+            Optional<MaterialPrefix> form) {
         buffer.writeBoolean(form.isPresent());
         form.ifPresent(value -> writeForm(buffer, value));
     }
 
-    private static Optional<MaterialForm> readOptionalForm(RegistryFriendlyByteBuf buffer) {
+    private static Optional<MaterialPrefix> readOptionalForm(RegistryFriendlyByteBuf buffer) {
         return buffer.readBoolean() ? Optional.of(readForm(buffer)) : Optional.empty();
     }
 

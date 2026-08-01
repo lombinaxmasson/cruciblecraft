@@ -7,9 +7,9 @@ import org.junit.jupiter.api.Test;
 class AirOutputModelTest {
     @Test
     void bellowsStrokePreservesThePreviousManualBurst() {
-        assertEquals(16.0F, AirOutputModel.BELLOWS_AIR_PER_TICK);
+        assertEquals(16L, AirOutputModel.BELLOWS_AIR_PER_TICK);
         assertEquals(40, AirOutputModel.BELLOWS_STROKE_TICKS);
-        assertEquals(640.0F, AirOutputModel.bellowsStrokeTotal());
+        assertEquals(640L, AirOutputModel.bellowsStrokeTotal());
     }
 
     @Test
@@ -23,10 +23,10 @@ class AirOutputModelTest {
 
     @Test
     void airBufferCapsMigratedAndIncomingValues() {
-        assertEquals(640.0F, AirOutputModel.addToBuffer(0.0F, 640.0F));
-        assertEquals(1_200.0F, AirOutputModel.addToBuffer(1_190.0F, 16.0F));
-        assertEquals(0.0F, AirOutputModel.clampStoredAir(Float.NaN));
-        assertEquals(1_200.0F, AirOutputModel.clampStoredAir(2_000.0F));
-        assertEquals(639.0F, AirOutputModel.consumeProcessingTick(640.0F));
+        assertEquals(640L, AirOutputModel.addToBuffer(0L, 640L));
+        assertEquals(1_200L, AirOutputModel.addToBuffer(1_190L, 16L));
+        assertEquals(0L, AirOutputModel.clampStoredAir(-1L));
+        assertEquals(1_200L, AirOutputModel.clampStoredAir(2_000L));
+        assertEquals(639L, AirOutputModel.consumeProcessingTick(640L));
     }
 }

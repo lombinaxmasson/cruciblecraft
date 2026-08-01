@@ -20,6 +20,11 @@ public final class CheckpointDecisions {
         return active && onPositionPhase(gameTime, positionKey, interval);
     }
 
+    /** Stable coordinate mix whose low bits vary across both rows and columns. */
+    public static long phaseKey(int x, int y, int z) {
+        return (y + z * 31L) * 31L + x;
+    }
+
     public static boolean onPositionPhase(long gameTime, long positionKey, int interval) {
         return interval > 0
                 && Math.floorMod(gameTime, interval) == Math.floorMod(positionKey, interval);

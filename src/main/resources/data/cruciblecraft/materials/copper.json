@@ -1,26 +1,233 @@
 {
-  "id": "copper",
-  "tag_name": "copper",
-  "tier": 1,
   "color": "#FF7F3F",
-  "tint_style": "metallic",
-  "forms": [
-    "raw_ore",
-    "crushed_ore",
-    "ingot",
-    "dust",
-    "plate",
-    "rod",
-    "bolt"
+  "exclude_prefixes": [
+    "block",
+    "nugget",
+    "small_dust"
   ],
   "form_items": {
     "ingot": "minecraft:copper_ingot",
     "raw_ore": "minecraft:raw_copper"
   },
-  "thermal": {
-    "melting_point": 1085,
-    "boiling_point": 2562,
-    "density": 8.96
+  "generation_flags": [
+    "cruciblecraft:generates_block",
+    "cruciblecraft:generates_cable",
+    "cruciblecraft:generates_centrifuged_crushed_ore",
+    "cruciblecraft:generates_crushed_ore",
+    "cruciblecraft:generates_dodecuple_cable",
+    "cruciblecraft:generates_dodecuple_wire",
+    "cruciblecraft:generates_double_cable",
+    "cruciblecraft:generates_double_wire",
+    "cruciblecraft:generates_dust",
+    "cruciblecraft:generates_fine_wire",
+    "cruciblecraft:generates_hexadecuple_wire",
+    "cruciblecraft:generates_ingot",
+    "cruciblecraft:generates_nugget",
+    "cruciblecraft:generates_octuple_cable",
+    "cruciblecraft:generates_octuple_wire",
+    "cruciblecraft:generates_ore",
+    "cruciblecraft:generates_plate",
+    "cruciblecraft:generates_purified_dust",
+    "cruciblecraft:generates_quadruple_cable",
+    "cruciblecraft:generates_quadruple_wire",
+    "cruciblecraft:generates_small_spring",
+    "cruciblecraft:generates_spring",
+    "cruciblecraft:generates_tiny_crushed_ore",
+    "cruciblecraft:generates_washed_crushed_ore",
+    "cruciblecraft:generates_wire",
+    "gt6:itemgenerator/denseplates",
+    "gt6:itemgenerator/foils",
+    "gt6:itemgenerator/multiplates",
+    "gt6:itemgenerator/ores",
+    "gt6:itemgenerator/parts",
+    "gt6:itemgenerator/sticks"
+  ],
+  "gt6_metadata": {
+    "aliases": [
+      "AnyCopper"
+    ],
+    "byproducts": [
+      {
+        "material": "cobaltite",
+        "source_id": 9115,
+        "source_name": "Cobaltite"
+      },
+      {
+        "material": "gold",
+        "source_id": 790,
+        "source_name": "Gold"
+      },
+      {
+        "material": "nickel",
+        "source_id": 280,
+        "source_name": "Nickel"
+      },
+      {
+        "material": "malachite",
+        "source_id": 9156,
+        "source_name": "Malachite"
+      },
+      {
+        "material": "arsenic",
+        "source_id": 330,
+        "source_name": "Arsenic"
+      }
+    ],
+    "electrical_by_specification": {},
+    "explosion_damage": 0.0,
+    "formula": "Cu",
+    "generation_tags": [
+      "ITEMGENERATOR.ARMORS",
+      "ITEMGENERATOR.DENSEPLATES",
+      "ITEMGENERATOR.DUSTS",
+      "ITEMGENERATOR.FOILS",
+      "ITEMGENERATOR.INGOTS",
+      "ITEMGENERATOR.INGOTS_HOT",
+      "ITEMGENERATOR.MOLTEN",
+      "ITEMGENERATOR.MULTIINGOTS",
+      "ITEMGENERATOR.MULTIPLATES",
+      "ITEMGENERATOR.ORES",
+      "ITEMGENERATOR.PARTS",
+      "ITEMGENERATOR.PLANTS",
+      "ITEMGENERATOR.PLATES",
+      "ITEMGENERATOR.PROJECTILES",
+      "ITEMGENERATOR.RAILS",
+      "ITEMGENERATOR.STICKS"
+    ],
+    "heat_damage": 0.0,
+    "material_tags": [
+      "ATOMIC.COPPER_GROUP",
+      "ATOMIC.ELEMENT",
+      "ATOMIC.METAL",
+      "ATOMIC.NOBLE_METAL",
+      "ATOMIC.PRECIOUS_METAL",
+      "ATOMIC.TRANSITION_METAL",
+      "PROCESSING.EXTRUDABLE",
+      "PROCESSING.EXTRUDABLE_SIMPLE",
+      "PROCESSING.FURNACE",
+      "PROCESSING.MELTING",
+      "PROCESSING.MORTAR_GRINDABLE",
+      "PROCESSING.SMITHABLE",
+      "PROCESSING.UUM_SYNTHESISABLE",
+      "PROCESSING.WASHING_PERSULFATE",
+      "PROPERTIES.COMMON_ORE",
+      "PROPERTIES.HAS_TOOL_STATS",
+      "PROPERTIES.NO_ADVANCED_TOOLS",
+      "PROPERTIES.SOFT"
+    ],
+    "processing_targets": {
+      "bending": {
+        "cc_units": 144,
+        "material": "copper",
+        "numerator_u": 648648000,
+        "source_material_id": 290,
+        "source_material_name": "Copper"
+      },
+      "burning": {
+        "cc_units": 0,
+        "material": "copper",
+        "numerator_u": 0,
+        "source_material_id": 290,
+        "source_material_name": "Copper"
+      },
+      "compressing": {
+        "cc_units": 144,
+        "material": "copper",
+        "numerator_u": 648648000,
+        "source_material_id": 290,
+        "source_material_name": "Copper"
+      },
+      "crushing": {
+        "cc_units": 144,
+        "material": "copper",
+        "numerator_u": 648648000,
+        "source_material_id": 290,
+        "source_material_name": "Copper"
+      },
+      "cutting": {
+        "cc_units": 144,
+        "material": "copper",
+        "numerator_u": 648648000,
+        "source_material_id": 290,
+        "source_material_name": "Copper"
+      },
+      "forging": {
+        "cc_units": 144,
+        "material": "copper",
+        "numerator_u": 648648000,
+        "source_material_id": 290,
+        "source_material_name": "Copper"
+      },
+      "generifying": {
+        "cc_units": 144,
+        "material": "copper",
+        "numerator_u": 648648000,
+        "source_material_id": 290,
+        "source_material_name": "Copper"
+      },
+      "pulver": {
+        "cc_units": 144,
+        "material": "copper",
+        "numerator_u": 648648000,
+        "source_material_id": 290,
+        "source_material_name": "Copper"
+      },
+      "smashing": {
+        "cc_units": 144,
+        "material": "copper",
+        "numerator_u": 648648000,
+        "source_material_id": 290,
+        "source_material_name": "Copper"
+      },
+      "smelting": {
+        "cc_units": 144,
+        "material": "copper",
+        "numerator_u": 648648000,
+        "source_material_id": 290,
+        "source_material_name": "Copper"
+      },
+      "solidifying": {
+        "cc_units": 144,
+        "material": "copper",
+        "numerator_u": 648648000,
+        "source_material_id": 290,
+        "source_material_name": "Copper"
+      },
+      "working": {
+        "cc_units": 144,
+        "material": "copper",
+        "numerator_u": 648648000,
+        "source_material_id": 290,
+        "source_material_name": "Copper"
+      }
+    },
+    "source_id": 290,
+    "source_name": "Copper",
+    "source_thermal": {
+      "boiling_point_celsius": 2561.85,
+      "boiling_point_kelvin": 2835,
+      "density": 8.96,
+      "melting_point_celsius": 1083.85,
+      "melting_point_kelvin": 1357,
+      "plasma_point_celsius": 283226.85,
+      "plasma_point_kelvin": 283500
+    },
+    "state": "solid",
+    "tool": {
+      "durability": 64,
+      "quality": 0,
+      "speed": 4.0,
+      "types": 2
+    }
   },
-  "molten_fluid": true
+  "id": "copper",
+  "molten_fluid": true,
+  "tag_name": "copper",
+  "thermal": {
+    "boiling_point": 2562,
+    "density": 8.96,
+    "melting_point": 1085
+  },
+  "tier": 1,
+  "tint_style": "metallic"
 }

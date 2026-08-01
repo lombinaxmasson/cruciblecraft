@@ -30,6 +30,6 @@ public final class DataGenerators {
         generator.addProvider(event.includeServer(), new ModLootTableProvider(output, lookupProvider));
         generator.addProvider(
                 event.includeServer(),
-                new ModItemTagProvider(output, lookupProvider, existingFileHelper));
+                new ModRecipeProvider(output, lookupProvider));
     }
 }

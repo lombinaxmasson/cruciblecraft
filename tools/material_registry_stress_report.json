@@ -1,0 +1,84 @@
+{
+  "environment": {
+    "logical_cpus": 32,
+    "os": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+    "python": "3.12.9"
+  },
+  "full_server_runs": {
+    "metadata_only": {
+      "elapsed_ms": 58207.5,
+      "exit_code": 0,
+      "game_tests_passed": true,
+      "scenario": "metadata_only",
+      "synthetic_materials": 20000
+    },
+    "single_dust": {
+      "elapsed_ms": 70908.9,
+      "exit_code": 0,
+      "game_tests_passed": true,
+      "scenario": "single_dust",
+      "synthetic_materials": 20000
+    }
+  },
+  "measured_at": "2026-07-31T10:06:27.981061+00:00",
+  "scenarios": {
+    "metadata_only": {
+      "catalog_bootstrap_ms": 3959.7,
+      "catalog_enqueue_ms": 680.5,
+      "catalog_materials": 21773,
+      "cold_cache_changed": true,
+      "cold_cache_ms": 69032.9,
+      "deferred_register_queue_ms": 67.4,
+      "fingerprint_ms": 839.2,
+      "generated_client_models": 14542,
+      "generated_pack_bytes": 3918008,
+      "generated_pack_ms": 713.0,
+      "generated_server_files": 15563,
+      "handshake_20k_expected_failure": "Invalid material fingerprint count: 21815",
+      "handshake_4000_round_trip_entries": 4000,
+      "handshake_4000_round_trip_ms": 252.5,
+      "handshake_encode_ms": 11.4,
+      "handshake_encoded_bytes": 0,
+      "handshake_entries": 21815,
+      "hot_cache_changed": false,
+      "hot_cache_ms": 220.5,
+      "max_heap_bytes": 4294967296,
+      "registered_synthetic_items": 0,
+      "scenario": "metadata_only",
+      "synthetic_materials": 20000,
+      "used_heap_bytes": 187655048
+    },
+    "single_dust": {
+      "catalog_bootstrap_ms": 3696.2,
+      "catalog_enqueue_ms": 625.9,
+      "catalog_materials": 21773,
+      "cold_cache_changed": true,
+      "cold_cache_ms": 211586.7,
+      "deferred_register_queue_ms": 271.0,
+      "fingerprint_ms": 878.8,
+      "generated_client_models": 34542,
+      "generated_pack_bytes": 9738008,
+      "generated_pack_ms": 1569.8,
+      "generated_server_files": 55563,
+      "handshake_20k_expected_failure": "Invalid material fingerprint count: 21815",
+      "handshake_4000_round_trip_entries": 4000,
+      "handshake_4000_round_trip_ms": 294.3,
+      "handshake_encode_ms": 13.7,
+      "handshake_encoded_bytes": 0,
+      "handshake_entries": 21815,
+      "hot_cache_changed": false,
+      "hot_cache_ms": 400.7,
+      "max_heap_bytes": 4294967296,
+      "registered_synthetic_items": 20000,
+      "scenario": "single_dust",
+      "synthetic_materials": 20000,
+      "used_heap_bytes": 334681872
+    }
+  },
+  "schema_version": 1,
+  "scope": {
+    "full_dedicated_join_20k": "expected protocol rejection; StructurePayload encode/decode cap is 4096",
+    "within_cap_sync": "actual StructurePayload codec encode/decode round trip at 4000 entries"
+  }
+}

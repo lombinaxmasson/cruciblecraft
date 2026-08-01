@@ -1,14 +1,196 @@
 {
-  "id": "bronze",
-  "tag_name": "bronze",
-  "tier": 1,
   "color": "#CD7F32",
-  "tint_style": "metallic",
-  "forms": ["ingot", "dust", "plate", "rod", "bolt"],
-  "thermal": { "melting_point": 950, "density": 8.8 },
-  "molten_fluid": true,
   "composition": {
     "copper": 3,
     "tin": 1
-  }
+  },
+  "exclude_prefixes": [
+    "block",
+    "nugget",
+    "small_dust"
+  ],
+  "generation_flags": [
+    "cruciblecraft:generates_block",
+    "cruciblecraft:generates_dust",
+    "cruciblecraft:generates_fine_wire",
+    "cruciblecraft:generates_ingot",
+    "cruciblecraft:generates_nugget",
+    "cruciblecraft:generates_plate",
+    "cruciblecraft:generates_small_spring",
+    "cruciblecraft:generates_spring",
+    "gt6:itemgenerator/denseplates",
+    "gt6:itemgenerator/foils",
+    "gt6:itemgenerator/multiplates",
+    "gt6:itemgenerator/parts",
+    "gt6:itemgenerator/sticks"
+  ],
+  "gt6_metadata": {
+    "aliases": [],
+    "byproducts": [
+      {
+        "material": "copper",
+        "source_id": 290,
+        "source_name": "Copper"
+      },
+      {
+        "material": "tin",
+        "source_id": 500,
+        "source_name": "Tin"
+      },
+      {
+        "material": "arsenic",
+        "source_id": 330,
+        "source_name": "Arsenic"
+      }
+    ],
+    "electrical_by_specification": {},
+    "explosion_damage": 0.0,
+    "formula": "Cu₃Sn",
+    "generation_tags": [
+      "ITEMGENERATOR.ARMORS",
+      "ITEMGENERATOR.DENSEPLATES",
+      "ITEMGENERATOR.DUSTS",
+      "ITEMGENERATOR.FOILS",
+      "ITEMGENERATOR.INGOTS",
+      "ITEMGENERATOR.INGOTS_HOT",
+      "ITEMGENERATOR.MOLTEN",
+      "ITEMGENERATOR.MULTIINGOTS",
+      "ITEMGENERATOR.MULTIPLATES",
+      "ITEMGENERATOR.PARTS",
+      "ITEMGENERATOR.PLANTS",
+      "ITEMGENERATOR.PLATES",
+      "ITEMGENERATOR.PROJECTILES",
+      "ITEMGENERATOR.RAILS",
+      "ITEMGENERATOR.STICKS"
+    ],
+    "heat_damage": 0.0,
+    "material_tags": [
+      "COMPOUNDS.ALLOY",
+      "COMPOUNDS.DECOMPOSABLE",
+      "PROCESSING.CENTRIFUGABLE",
+      "PROCESSING.CRUCIBLE_ALLOY",
+      "PROCESSING.EXTRUDABLE",
+      "PROCESSING.EXTRUDABLE_SIMPLE",
+      "PROCESSING.FURNACE",
+      "PROCESSING.MELTING",
+      "PROCESSING.MORTAR_GRINDABLE",
+      "PROCESSING.SMITHABLE",
+      "PROCESSING.UUM_SYNTHESISABLE",
+      "PROPERTIES.HAS_TOOL_STATS",
+      "PROPERTIES.SOFT"
+    ],
+    "processing_targets": {
+      "bending": {
+        "cc_units": 144,
+        "material": "bronze",
+        "numerator_u": 648648000,
+        "source_material_id": 8610,
+        "source_material_name": "Bronze"
+      },
+      "burning": {
+        "cc_units": 0,
+        "material": "bronze",
+        "numerator_u": 0,
+        "source_material_id": 8610,
+        "source_material_name": "Bronze"
+      },
+      "compressing": {
+        "cc_units": 144,
+        "material": "bronze",
+        "numerator_u": 648648000,
+        "source_material_id": 8610,
+        "source_material_name": "Bronze"
+      },
+      "crushing": {
+        "cc_units": 144,
+        "material": "bronze",
+        "numerator_u": 648648000,
+        "source_material_id": 8610,
+        "source_material_name": "Bronze"
+      },
+      "cutting": {
+        "cc_units": 144,
+        "material": "bronze",
+        "numerator_u": 648648000,
+        "source_material_id": 8610,
+        "source_material_name": "Bronze"
+      },
+      "forging": {
+        "cc_units": 144,
+        "material": "bronze",
+        "numerator_u": 648648000,
+        "source_material_id": 8610,
+        "source_material_name": "Bronze"
+      },
+      "generifying": {
+        "cc_units": 144,
+        "material": "bronze",
+        "numerator_u": 648648000,
+        "source_material_id": 8610,
+        "source_material_name": "Bronze"
+      },
+      "pulver": {
+        "cc_units": 144,
+        "material": "bronze",
+        "numerator_u": 648648000,
+        "source_material_id": 8610,
+        "source_material_name": "Bronze"
+      },
+      "smashing": {
+        "cc_units": 144,
+        "material": "bronze",
+        "numerator_u": 648648000,
+        "source_material_id": 8610,
+        "source_material_name": "Bronze"
+      },
+      "smelting": {
+        "cc_units": 144,
+        "material": "bronze",
+        "numerator_u": 648648000,
+        "source_material_id": 8610,
+        "source_material_name": "Bronze"
+      },
+      "solidifying": {
+        "cc_units": 144,
+        "material": "bronze",
+        "numerator_u": 648648000,
+        "source_material_id": 8610,
+        "source_material_name": "Bronze"
+      },
+      "working": {
+        "cc_units": 144,
+        "material": "bronze",
+        "numerator_u": 648648000,
+        "source_material_id": 8610,
+        "source_material_name": "Bronze"
+      }
+    },
+    "source_id": 8610,
+    "source_name": "Bronze",
+    "source_thermal": {
+      "boiling_point_celsius": 2561.85,
+      "boiling_point_kelvin": 2835,
+      "density": 8.54175,
+      "melting_point_celsius": 1083.85,
+      "melting_point_kelvin": 1357,
+      "plasma_point_celsius": 283226.85,
+      "plasma_point_kelvin": 283500
+    },
+    "state": "solid",
+    "tool": {
+      "durability": 448,
+      "quality": 2,
+      "speed": 5.5,
+      "types": 3
+    }
+  },
+  "id": "bronze",
+  "molten_fluid": true,
+  "tag_name": "bronze",
+  "thermal": {
+    "density": 8.8,
+    "melting_point": 950
+  },
+  "tier": 1,
+  "tint_style": "metallic"
 }
