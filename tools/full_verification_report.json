@@ -1,19 +1,19 @@
 {
-  "schema_version": 5,
-  "verified_on": "2026-08-01",
+  "schema_version": 6,
+  "verified_on": "2026-08-03",
   "status": "READY",
   "catalog": {
-    "startup_prefixes": 43,
+    "startup_prefixes": 45,
     "normalized_gt6_prefixes": 468,
     "active_materials": 1773,
     "active_item_bearing_materials": 1110,
     "metadata_only_materials": 663,
     "generated_material_definitions": 1761,
-    "factual_material_forms": 19313,
-    "registered_material_forms": 14786
+    "factual_material_forms": 20130,
+    "registered_material_forms": 14799
   },
   "rules": {
-    "declarative_rule_definitions": 2810,
+    "declarative_rule_definitions": 2833,
     "expanded_recipes_per_map": {
       "cruciblecraft:crusher_raw_to_crushed": 357,
       "cruciblecraft:anvil_raw_to_crushed": 412,
@@ -23,35 +23,45 @@
       "cruciblecraft:shredder": 357,
       "cruciblecraft:sifter": 357,
       "cruciblecraft:smelter": 195,
-      "cruciblecraft:mortar": 457,
+      "cruciblecraft:mortar": 691,
       "cruciblecraft:extruder": 2782,
       "cruciblecraft:cutter": 651,
       "cruciblecraft:lathe": 929,
       "cruciblecraft:rollingmill": 336,
       "cruciblecraft:rollbender": 438,
-      "cruciblecraft:wiremill": 282,
+      "cruciblecraft:wiremill": 287,
       "cruciblecraft:bender": 638,
-      "cruciblecraft:assembler": 568,
+      "cruciblecraft:assembler": 4020,
       "cruciblecraft:welder": 321,
       "cruciblecraft:press": 1191
     },
-    "t3_expanded_total": 8136,
+    "t3_expanded_total": 8141,
     "t3_expansion_budget": 10000,
-    "observed_t3_expansion_ms": 5654,
-    "shadowed_recipes": 0
+    "observed_t3_expansion_ms": 9942,
+    "shadowed_recipes": 0,
+    "t3_declarative_rule_definitions": 2810,
+    "t4_declarative_rule_definitions": 21,
+    "t4_expanded_total": 3452,
+    "t4_expansion_budget": 4000,
+    "live_t3_map_total": 11594,
+    "live_t3_map_budget": 13000,
+    "t7_declarative_rule_definitions": 2,
+    "t7_expanded_total": 220,
+    "all_published_total": 17189,
+    "all_published_budget": 18000
   },
   "compatibility": {
     "roadmap_maps": 95,
-    "normalized_cc_recipes": 13840,
+    "normalized_cc_recipes": 13845,
     "verdicts": {
       "EXACT": 337,
       "INTENTIONAL": 2223,
-      "TODO_PORT": 10897,
+      "TODO_PORT": 10902,
       "OUT_OF_SCOPE": 383
     },
     "review_evidence": {
       "human_reviewed": 0,
-      "automated_evidence_reviewed": 13840,
+      "automated_evidence_reviewed": 13845,
       "unreviewed": 0
     },
     "unresolved_authoritative_gt_items": 0
@@ -85,35 +95,36 @@
       "exit_code": 0
     },
     "python_unit_tests": {
-      "tests": 148,
+      "tests": 206,
       "failures": 0,
       "command": "python -m unittest discover -s tools/tests -p \"test_*.py\"",
       "result": "PASS",
       "exit_code": 0,
-      "passing_attempt_duration_seconds": 1177.895
+      "passing_attempt_duration_seconds": 273.216
     },
     "java_unit_tests": {
       "command": ".\\gradlew.bat test",
       "result": "PASS",
       "exit_code": 0,
-      "suites": 73,
-      "tests": 282,
+      "suites": 96,
+      "tests": 399,
       "failures": 0,
       "errors": 0,
       "skipped": 0,
-      "elapsed_seconds": 117.969,
-      "t3_expansion_elapsed_ms": 5654
+      "elapsed_seconds": 67.468,
+      "t3_expansion_elapsed_ms": 9942
     },
     "production_game_tests": {
       "command": ".\\gradlew.bat runGameTestServer",
       "result": "PASS",
       "exit_code": 0,
-      "required_tests": 18,
-      "passed": 18,
+      "required_tests": 39,
+      "passed": 39,
       "failed": 0,
-      "server_summary": "All 18 required tests passed",
-      "elapsed_seconds": 87.643,
-      "evidence_log": "run/logs/latest.log"
+      "server_summary": "All 39 required tests passed",
+      "elapsed_seconds": 72.376,
+      "evidence_log": "run/logs/latest.log",
+      "evidence_log_sha256": "fe4526765dc2760da9c783d923524151b3bba6b64aafa93f64a20414a9501f4b"
     },
     "read_only_checks": {
       "importer_raw": {
@@ -162,39 +173,67 @@
     "result": "PASS",
     "command": ".\\gradlew.bat runData",
     "runs": 2,
-    "run_1_tree_sha256": "bd463ccab39abb02577cf9bac386e564337359f64dabd51f802c9d4ff9635aab",
-    "run_2_tree_sha256": "bd463ccab39abb02577cf9bac386e564337359f64dabd51f802c9d4ff9635aab",
-    "run_1_elapsed_seconds": 70.361,
-    "run_2_elapsed_seconds": 91.519,
+    "run_1_tree_sha256": "e15851db8b999b2789313579bab9db39accf4df10a2569393824e5771e9d2e80",
+    "run_2_tree_sha256": "e15851db8b999b2789313579bab9db39accf4df10a2569393824e5771e9d2e80",
+    "run_1_elapsed_seconds": 30.615,
+    "run_2_elapsed_seconds": 57.583,
     "drift_files": 0,
     "generated_resource_root": "src/generated/resources"
   },
   "artifact_sha256": {
-    "component_rule_manifest.json": "555b4f1721f11c49fe6c740d40d69b3530ac479189e83dff0bef4c77d85fb070",
+    "component_rule_manifest.json": "5088c61acbf581c1ce8acf380ac8e80d1b9f300ac4521d7e58749c7aa598372e",
     "component_selector_policy.json": "32e30e05d2db6f436c309c2037c8c7fb18323c640c6d812ee8c9b9635b948c77",
+    "gt6_electrical_source.json": "3a9c7649387c016723d60e1738faf6e20ab2a2c3301b4cf006761231fa3b5238",
     "gt6_extruder_templates_index_v5.json": "f802bd465b6c7e5303f18740b1d53dee0ac4f02f15326dbf0b1a7acdafd48f7e",
     "gt6_extruder_templates_report.json": "59fd8bfb96704a9cc9b0c14a626aa7cbbb20afdc66c4b1f03a0b841826b4f1ef",
-    "gt6_l1b_selected_recipe_operands.json": "91dc1b91a7056a001e3109b57c2c97d56037bea5057327ff3f9e4dfe21b68ce1",
-    "gt6_map_roadmap.json": "47e35d9b3934a4356b47ea47e9a6bccaf9ee56b34d5379d8bea2d5af4beb67dd",
-    "gt6_ore_chain.json": "2cea2a246a1a8e06680bd836a5bc77240ab136500ece050ee85238d457a53bf3",
-    "gt6_ore_chain_closure.json": "4e41ac478c1bd90b311deb69e7d94773115030e147dba7197fdc8c16b8588ba4",
-    "gt6_ore_chain_operands.json": "1a6e03e08e18077629cee66a3d841f6411109061b9f0c2e8360bbe93850010d8",
-    "gt6_oredict_import_manifest.json": "626698c86dbefcb5bfd1e9421d38694ddb690fa6dc260c97eb0d19f8a9fc7cd0",
-    "gt6_process_expectations.json": "b60f73f298a1c517eabc17703cb68e9ed28d7b2d8de85d58626b21fb7e228b0d",
-    "gt6_recipe_compare_baseline.json": "743782461a9a787062d96f73ff08c29f1bb1c827897b3d1bd1799f7ceff0203e",
-    "gt6_recipe_expectations.json": "d57be5dcfe4988eef2cedd0e2cdebdff5b1ce6f72648ecf2f52a6b556f54e2d2",
+    "gt6_l1b_selected_recipe_operands.json": "1f64c2efb3a1b8cc6ce01c31da5e84b73a8fee938d63c807d9431d7b0d4e53e2",
+    "gt6_map_roadmap.json": "7a4c2a844a2cc5379954927f899660061e1168c10bf76b178a96373c29c29bc0",
+    "gt6_ore_chain.json": "1fc978840ea525f2d8e1dfd687076b6662509fc6693c3992bec5c9c52ac95ae3",
+    "gt6_ore_chain_closure.json": "99a9febf982454d3301d62fca359f4ac0fa5535cff4c9555520ee74fdbc2834a",
+    "gt6_ore_chain_operands.json": "7da4daf4fc97dd1750c04e759d57773267fe12c357e3129d52ba434ad67562d6",
+    "gt6_oredict_import_manifest.json": "b596627ec60b677a4713b3fe8115d3ac4f243686adef49b8bc1bca7fa92fd05b",
+    "gt6_process_expectations.json": "eeff5cdcdb2af7a0794bcc59ac662bc58340c73baa2806ddf82b136acd887ca9",
+    "gt6_recipe_compare_baseline.json": "609dd8dae57412269b8fffb47f2c4c969b134e650b0ce0a76a8f36fbb6068603",
+    "gt6_recipe_expectations.json": "4bb6b91f93fa8e1d5047a91189b4074a90b6d2bf91d6e0fc8f99b936ba8a615a",
     "local_artifact_manifest.json": "e3cca68ab5adcbdcff1e3f5bd41ec8f08fa49ad24caf79aab854a3beb428ccb9",
+    "machine_crafting_policy.json": "17f59f34292914845da1781651309de07d08f8cc43ea1eed1cc27a7e39027e5e",
+    "machine_crafting_readiness.json": "cc2cfbe6ef2f6a162dbdf5f3e0ea48774acf9bb2f0b212d894a39c501466f367",
     "material_registry_budget.json": "85840a12b58c0a293fb90b30e46a20d2e86f4023af0235f0f125cc018e44ae5e",
     "material_registry_stress_report.json": "9c66140c8270ddbdb718b43eb24b01d92c27963977707c28b43479295c89f58e",
+    "src/main/java/com/masson/cruciblecraft/api/energy/EnergyType.java": "0d55f4975307ed488ab8e021d21fdccb4961b5622050e85270e02010ed14fed9",
+    "src/main/java/com/masson/cruciblecraft/client/tooltip/MaterialMetadataTooltip.java": "af6d38b9337e9efc963ff2dc71e51585348840ece6adae5e67ad8962d3f4e142",
     "src/main/java/com/masson/cruciblecraft/content/item/ExtruderShapeCatalog.java": "a72938f277b26ea83c3b8058b214ceb42e025abcd2a79616acdd3e178a19f170",
-    "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java": "d01accd7067d6f0190e71c694613e98462089d49dda6978c60bf844835d03711",
-    "src/main/resources/data/cruciblecraft/material_registration_gate.json": "71a5ab2d1a828ef8e7299abf10f3f6af5fec1545fd3769f505cd41f06806d110",
+    "src/main/java/com/masson/cruciblecraft/energy/BronzeDynamoEnergy.java": "4a6934424d87f27ee58806c19c19be83912c942d12491b3d198a56185c75e89e",
+    "src/main/java/com/masson/cruciblecraft/energy/cable/CableNetworkTraversal.java": "b2a253d21372afe8ed7dedd975ba01a82b6e213685f77220727243230466daf0",
+    "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java": "0cf4efc744e2f596806665c54da984438e2c240dca6a0f7e6014ad0f94f4d4f8",
+    "src/main/java/com/masson/cruciblecraft/machine/processing/MachineTransaction.java": "2ac0ea25a5122bb878b3a1f7190ce3347f150ae5d6297dc42c7d9a6b5d76624d",
+    "src/main/java/com/masson/cruciblecraft/machine/processing/SidedFluidHandler.java": "2f25ebe74fa148df89e00d6bdf5856c103cbaee582136fb9f26027e3c6b7fb59",
+    "src/main/java/com/masson/cruciblecraft/material/ChemicalFluidRegistrationGate.java": "98187c82a35d3523a4d605ffb4a0f11b0324c951b3823fb388f2bed9cdfae13e",
+    "src/main/java/com/masson/cruciblecraft/material/def/GT6MaterialMetadata.java": "336215bb283e2dd3be5420027bd43175643f6863c4af07ff1aa81aa2555ae313",
+    "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapLoader.java": "452272c4ac7e5c8616959549db4a8f8f6b5db5eeca98af11b509f8faabd73e9f",
+    "src/main/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansion.java": "90feba8fb3bfb8edda6176f75ed0a0996c5b638dbcbfbd83c1cd887013ae22ea",
+    "src/main/java/com/masson/cruciblecraft/recipe/rule/RuleExpression.java": "36a344db0b8638ec22e569e50d1782697dee8fbf51a737d487f250da09b7bd72",
+    "src/main/java/com/masson/cruciblecraft/registry/ModFluids.java": "af367aaa2e769ef4f19059e614d6ac44675a6874ec7e5de2d746135f7826c3fe",
+    "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java": "678d4832e080c8f9bf08fb8237daf3b25b41587f2dc36331dff1030f09c99595",
+    "src/main/resources/data/cruciblecraft/material_registration_gate.json": "aebb0232e7c07710adce01b137454ab57f54f48ddf7649d1f037f0bc07e19ab6",
+    "src/main/resources/data/cruciblecraft/recipe/mortar/gem_to_dust.json": "fc7ba6aad05d0afac64b34543ecfdc56a1fa0da815fcc26948f364c173d91314",
+    "src/main/resources/data/cruciblecraft/recipe/mortar/ingot_to_dust.json": "58398e1ed3ed6e4adb993b3658985faef95321499bff4ca3b786f9fe50bf1e79",
     "src/main/resources/data/cruciblecraft/veins/large_copper_vein.json": "62c6e0121460e05b272b25b16919e03863f0fd2b3016baedd0f62bbdaf159771",
     "src/main/resources/data/cruciblecraft/veins/large_gold_vein.json": "e714d6514a53b527375fb895df5f44ecb4c9a1194005360a5204dd13f3a8263c",
     "src/main/resources/data/cruciblecraft/veins/large_iron_vein.json": "54e623a71d15e966d872ed8329a384099a15df9bdf1f2cf6ed9dd1830be2a1bd",
     "src/main/resources/data/cruciblecraft/veins/large_tin_vein.json": "4c16b71c5bbcad1cb93f358c250d3b9b187cd2e4ebcf0a8de62cd187f43e3b8e",
     "src/main/resources/data/cruciblecraft/veins/large_tungsten_vein.json": "d7844dbc29cec68bdb139b3186bb012206bf415ef402e233552435b6eb268596",
-    "src/test/java/com/masson/cruciblecraft/material/prefix/T3ComponentDataTest.java": "a4b67da0aedc2eeb6596d8d34d43fbacc02d0a41afcec684981de9696a66ea54",
+    "src/test/java/com/masson/cruciblecraft/client/tooltip/MaterialMetadataTooltipTest.java": "7e85ae617e0653db57e0878bfefe2d0ec4c42d6cf20a84df79e76a79fab3107f",
+    "src/test/java/com/masson/cruciblecraft/datagen/T5ChemicalResourceTest.java": "0ea60479eb7484f0e244152b09217fd913e02642c5c10b350e267c9e41c52e27",
+    "src/test/java/com/masson/cruciblecraft/energy/BronzeDynamoEnergyTest.java": "64b548227afa014e039825c4441dd9ec8e72585e840d3e0bd5a75371838ba33e",
+    "src/test/java/com/masson/cruciblecraft/energy/cable/CableLoadStateTest.java": "a2b2da5ede5364ed19587c34be3abbbc2bdf1ad80ce3fea168630f05f7e1687e",
+    "src/test/java/com/masson/cruciblecraft/machine/processing/MachineTransactionTest.java": "db1edde4a97bb8df00d7fde862c0b639a8b787bec9242587c2ebfe0c6eb9e88d",
+    "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java": "526955fd7cc449b706014283f541a0a1bc98b1ec9eb1e5d719b6f9327e9d5089",
+    "src/test/java/com/masson/cruciblecraft/material/prefix/T3ComponentDataTest.java": "d79ffac2bcf518719e848099984fc51bd41f9e54c9ac9a4fac25e3ed6b70b919",
+    "src/test/java/com/masson/cruciblecraft/material/prefix/T7MaterialRuleDataTest.java": "82c42e5d571090f6a5ca25d65a124e606b446e259e881612c8e974cd2f0b88ea",
+    "src/test/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansionTest.java": "cc43952f165fbe50515fd83b54f75f00cf0004b61ae03bbc176f04ea917930c6",
+    "src/test/java/com/masson/cruciblecraft/recipe/rule/RuleExpressionTest.java": "d5d506b951e78999560e20a161bdb90642fcb3b5d5297d075121b68639409c3a",
+    "src/test/java/com/masson/cruciblecraft/registry/T5ProcessingMachineSpecTest.java": "1e8df481dcdc20e2357dadccdb2fbb8a492576f2d45d026b13c9f13a069a876e",
     "src/worldgen_generated/resources/data/cruciblecraft/neoforge/biome_modifier/add_large_veins.json": "3ccb8e54258b48e14e04708401981efb5e3034e6f3e88c7d0c319c5fe9522e45",
     "src/worldgen_generated/resources/data/cruciblecraft/worldgen/configured_feature/large_copper_vein.json": "66557fd7fde498008881205d3d9c015d8eea6e63ea31a7cbe9734d4ba5466019",
     "src/worldgen_generated/resources/data/cruciblecraft/worldgen/configured_feature/large_gold_vein.json": "056a83a31f983b7fcb243814f0badd043bb936c361c5bdf97b82acb1d111a1e6",
@@ -206,38 +245,63 @@
     "src/worldgen_generated/resources/data/cruciblecraft/worldgen/placed_feature/large_iron_vein.json": "71ea4371a0ba8a7e66896db84bac83b90cf09d54b4a68add159730157c81584e",
     "src/worldgen_generated/resources/data/cruciblecraft/worldgen/placed_feature/large_tin_vein.json": "baef01836e61ee97b1056c82446c299753de50292fd75e97cf15c96bfb1d4ffe",
     "src/worldgen_generated/resources/data/cruciblecraft/worldgen/placed_feature/large_tungsten_vein.json": "6271080a2dfd0373e127177fd44710c84f7ce7ac2b3c7c0a55d4e6f7adc4967a",
-    "tools/README.md": "869a6a597dfc32fc439d2142087a653fa5b1208509ac5f11ca096d2ab374b967",
-    "tools/build_component_rules.py": "cbd9b0bb61b543679c77cd80124f55f8e5bd57e08048a8537f265d90546496f1",
-    "tools/build_gt6_material_form_gate.py": "14dbae7acdc3218a24b165bf8bb555d9edce9c26f9a5c5567b5e9e4e66a98d53",
+    "t4_tool_policy.json": "9989c9ae85cbbbc138b7733165ec5bbb24a71a262a2e1ef11cad363ba40fb4cf",
+    "t4_tool_readiness.json": "67c5dcf4b081d43cde6c57bd1d078a6e7d83b5e43588a25aef24dcaf27038b4b",
+    "t5_chemical_policy.json": "5e366cf4824d5f55fe79ce48451d35b031b964a4ef6023a21227b1282cfaebbc",
+    "t5_chemical_readiness.json": "a12c57b235039a9052e8fd192d0746cf133c227d9a1bda0e0885f65e33e0e63d",
+    "t5_chemical_recipe_manifest.json": "25bb0c1b303ec67e4556fc5af16bd81d4d7d43a4384a1ac07bcc445e9a34b6be",
+    "t5_distillery_projection.json": "561b03f1b6e31447f727470a10335786a3b99c66ed1127b512e17b20a8afb51a",
+    "t6_electrical_policy.json": "384ed6210ee8e826066658fad1bb93df0cda43f9293354bb0c34280511d3fb8e",
+    "t6_electrical_readiness.json": "7fda64a52f3c55576c91993b4481e1f67dc698dd73784b6a8429c688751ae9d1",
+    "t7_material_tag_policy.json": "33142a79db1522aaa9a3229ee588db72b185427c468ecdf2a235f8ea00e88c24",
+    "t7_material_tag_readiness.json": "9a8166b0807687497ff735d77980bf7fb57238520915e4111a42ccd25ecd4e82",
+    "tools/README.md": "ceee97b7472e1e59df880aa7743b23cf5184b384b83e40a22ce04459c48917d4",
+    "tools/build_component_rules.py": "0ef6c718abb994b186dc755494b066bece90af1f6eae00c53eab7f704cb9bb88",
+    "tools/build_gt6_material_form_gate.py": "1c51c0424ad3da72cbdaeb38d20f36ff25b5bbf228604513b7b46376cdbfb680",
     "tools/build_gt6_ore_chain.py": "24dc0df5624539e7c480da166c2a5b36558d6cf8432eb07da460d9265b4373ee",
-    "tools/build_gt6_ore_chain_closure.py": "4dcaf124008354efd8d38437eb3ddd38de11325987de70f0455520f83863fc1e",
+    "tools/build_gt6_ore_chain_closure.py": "8d9ccff740b180101df8fafe9645a9aa7a8cddd735e12794cdda672975db0fc4",
     "tools/build_gt6_veins.py": "aa38dc2cd776959da798e645967435fd3ea54b54076c985d53d0df3df7758913",
-    "tools/compare_gt6_recipes.py": "c94de0fa2663de09cfcb65ea77410685231834bec361ef7cc429d860c4c9ab21",
+    "tools/build_machine_crafting_readiness.py": "0857bd4a709a4e63acbf87aa6045f2a921789d271a4dfb547bc099fabc3e8e8d",
+    "tools/build_t4_tool_readiness.py": "eb101b2ce36bf9afb6e938b8fb23b30eab49b04f99830d464fac317913a61a6c",
+    "tools/build_t5_chemical_readiness.py": "0f42d13d45b9ffb1a0a1891b97d94b7b2194352032cf984840682e746b185979",
+    "tools/build_t5_chemical_recipes.py": "f64c7bee1f604d3085a79ce5c47102db5bfb462458b08fcdab51175158d18d9a",
+    "tools/build_t5_distillery_projection.py": "519c3b1130e6287e1b3ecdb438ba27fcac3d6c6a5bf25542549d814f72157cac",
+    "tools/build_t6_electrical_readiness.py": "8c3b82a469754bed88ef11b3a6d46af88182ff992ac0b44acd3242f2101ce747",
+    "tools/build_t7_material_tag_readiness.py": "fc58b9703aa74bd1b22f3ffcb8f44df564c787be1e64dba82d206222e8f29de8",
+    "tools/compare_gt6_recipes.py": "7c03b711c3dc7568635491a123d837f3b2f347b55ad0de4b60d492ded57333f8",
     "tools/component_rule_sources/acceptance_form_corrections.json": "9481d1987206d370bc9b211609b9c51677882489a79f3f7926b64501df5d620a",
     "tools/component_rule_sources/component_baseline.json": "e91f0413a5b9e592ad108553fbb94eff7d8dd1e67a5806d4a7ac2382251b05ed",
     "tools/component_rule_sources/component_rules.json": "d66b11497fbdc83e0959ba903abeaf0196655e449e37761d36e56af07f104efc",
     "tools/component_rule_sources/extruder_shapes.json": "61993e313febd2a33100cd10328631d75170b8d732bedd192e3361d82d85fe63",
+    "tools/gt6_electrical.py": "bbed9dfebc69590b30602e67a7658ec4b7b78a743de8fd827892b1fbdfa15aba",
     "tools/gt6_extruder_templates.py": "1bdcfd2dc6d9d362b0f9cbbf164d02b24579713c3ca0e07db4f1852cdc43a3cd",
-    "tools/gt6_process_expectations.json": "b60f73f298a1c517eabc17703cb68e9ed28d7b2d8de85d58626b21fb7e228b0d",
-    "tools/import_gt6_oredict.py": "190d06653a870c50045970ba8c78b2d4dd0614eeaeaa1ce820a961902a010a35",
+    "tools/gt6_process_expectations.json": "eeff5cdcdb2af7a0794bcc59ac662bc58340c73baa2806ddf82b136acd887ca9",
+    "tools/import_gt6_oredict.py": "ce127456d8a535cf8f6b2b9835cb9360168278129614206c1c4d0f8acca42f28",
     "tools/run_material_registry_stress.py": "bd50c9110fcfefaaee61d94da2957b1058bcb600edf08539be386eb47883cffc",
-    "tools/tests/test_build_component_rules.py": "1ed4fef2cba1dd8cc7ac2115574f0ef0f25933f26dedcd5f0e7be6fb150780f8",
-    "tools/tests/test_build_gt6_material_form_gate.py": "24e106213a76176c0614680d71eb76a965f876822b57b85104bc23476591948b",
-    "tools/tests/test_build_gt6_ore_chain.py": "0af471ebc2e6b1f7c4765c181f663e03b7c9d96a4531539b60be517d5708bc00",
+    "tools/tests/test_build_component_rules.py": "2e659a3652c73a8a5c95a347652ef47ce2d491b6a6ed7a9f70f238cf5f9cf230",
+    "tools/tests/test_build_gt6_material_form_gate.py": "52c5c97743c4bada95e1325ff3cd18b9cdffb2229145cefe12205bf5867fc721",
+    "tools/tests/test_build_gt6_ore_chain.py": "637f04e8954ecfa7d5906fb6fd52ed828226692fa2b3217388021690f786b649",
     "tools/tests/test_build_gt6_ore_chain_closure.py": "cedcd4769a420c3de71d7f019d0c29d68a92e395860f0e7328eccd2058e98725",
     "tools/tests/test_build_gt6_veins.py": "1b3b65e9e0134b04906c07e49004dfba721f74ab5263af67ed2b868f7d75fc23",
-    "tools/tests/test_compare_gt6_recipes.py": "f7acba07e61022b138a8bfb1980f5df58c19bed2f357eb9fbb11f69319f77040",
+    "tools/tests/test_build_machine_crafting_readiness.py": "67c93e9270065404eb24b3ad19296cf72320d1317d21efabf86304fffbab1342",
+    "tools/tests/test_build_t4_tool_readiness.py": "55154578f2a28a29eede1a50db7d28199e69b5cf9fda2cb3b1f229a8285c2da0",
+    "tools/tests/test_build_t5_chemical_readiness.py": "f3d95d591664f0cf0c9bbda51babe807dd4959f4d55da1cdc445e0de1adc9627",
+    "tools/tests/test_build_t5_chemical_recipes.py": "1b7f52ce6ee65ecc93fb45c275a1b62ad23c311c9da4b0f3adae18d8786a5fe3",
+    "tools/tests/test_build_t5_distillery_projection.py": "ffebec796eade1821d2b0be3373e83e2948caf606d81c03a55f24c98a2d0a17a",
+    "tools/tests/test_build_t6_electrical_readiness.py": "7f280997690f957181e61d20ae14e6598642c09c79f667f72632d2e63b008eb0",
+    "tools/tests/test_build_t7_material_tag_readiness.py": "6d2b3cdf67fea837a293f79c0bdd11b5f2742d8726ff9d189c1c721ecf9f38a5",
+    "tools/tests/test_compare_gt6_recipes.py": "1e9892326367044c503a431d169fc80ab3fefbe83e14eb7e8f831e74298fdc4d",
     "tools/tests/test_component_selector_policy.py": "bd0ea3fa24e04c42d0d770ec287e87cb7964605b3eaddcc15b7c0eee1ec6cb0c",
-    "tools/tests/test_full_verification_report.py": "48898b8919b604b76e5c7370844708ff8fd49281ab0291a15d9a5163b1f1afa5",
+    "tools/tests/test_full_verification_report.py": "ab2bd38745b3b6c701071892eba203fdcc2799ad1eba39414f9908f6637b6392",
     "tools/tests/test_gt6_extruder_templates.py": "0a1557785bf5c0bf8865bc7beb4435e3343b837b7d8c28e2a16e2650689e22c9",
     "tools/tests/test_gt6_generation_bits.py": "e7623ed4ee86518a8e35d18399371ba8ce4f03149edd4d0145b92f845535e6a3",
     "tools/tests/test_gt6_l1b_layer_select.py": "01ebabc5a603d1b9b229ad7db86cdbfd9df729c347891e87c4965da00342d0a3",
-    "tools/tests/test_gt6_l3_materials.py": "414d60347a642afa3466d8d77f79d03500591f8d6a3e8c81188eb16f0057015e",
+    "tools/tests/test_gt6_l3_materials.py": "af95f2e09997d2b6441cfb17f03feeba7959633b9c36ab218016fbb61638f2a9",
     "tools/tests/test_gt6_mapping.py": "8c0ccf1bb9e4e4f5bb02a39876cbaec3b348e43d738ff0ae784f802c9915fa80",
     "tools/tests/test_gt6_recipe_templates.py": "a5779c6bf2333a7375b98f433f99f4b89b5000cd048cc472776263b5d7581744",
-    "tools/tests/test_import_gt6_oredict.py": "92be96756f3986854355ea4723291f65ba111f8118c7170c991ec6063a358f48",
+    "tools/tests/test_import_gt6_oredict.py": "6bc3b22eb054b2d55acce6082de8133a2691992b377bbb474ff95717d2c5f7ef",
     "tools/tests/test_material_registry_stress.py": "076b95d43972f38eed8ee72c78fa520e21db186535673acb0b17e85b2f35c84b",
-    "tools/verify_full_verification_report.py": "72548ca7d99a93ba2364078ecf63c551494b65202c144c747b324f37f1c41a9f"
+    "tools/verify_full_verification_report.py": "4f558e688340c0b009ce00b00b57d2af6138227c75b47c241cd921e6c9cf2d48"
   },
   "known_limitations": [
     "No automated client/browser visual inspection was available; generated models and menu assets are covered by structural tests.",
@@ -245,17 +309,43 @@
     "Git reported LF-to-CRLF working-copy conversion warnings during git diff --check; these were warnings only and the check exited successfully."
   ],
   "tooling_snapshot": {
-    "python_test_count": 148,
+    "java_source_test_count": 399,
+    "python_test_count": 206,
     "files_sha256": {
+      "src/main/java/com/masson/cruciblecraft/api/energy/EnergyType.java": "0d55f4975307ed488ab8e021d21fdccb4961b5622050e85270e02010ed14fed9",
+      "src/main/java/com/masson/cruciblecraft/client/tooltip/MaterialMetadataTooltip.java": "af6d38b9337e9efc963ff2dc71e51585348840ece6adae5e67ad8962d3f4e142",
       "src/main/java/com/masson/cruciblecraft/content/item/ExtruderShapeCatalog.java": "a72938f277b26ea83c3b8058b214ceb42e025abcd2a79616acdd3e178a19f170",
-      "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java": "d01accd7067d6f0190e71c694613e98462089d49dda6978c60bf844835d03711",
-      "src/main/resources/data/cruciblecraft/material_registration_gate.json": "71a5ab2d1a828ef8e7299abf10f3f6af5fec1545fd3769f505cd41f06806d110",
+      "src/main/java/com/masson/cruciblecraft/energy/BronzeDynamoEnergy.java": "4a6934424d87f27ee58806c19c19be83912c942d12491b3d198a56185c75e89e",
+      "src/main/java/com/masson/cruciblecraft/energy/cable/CableNetworkTraversal.java": "b2a253d21372afe8ed7dedd975ba01a82b6e213685f77220727243230466daf0",
+      "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java": "0cf4efc744e2f596806665c54da984438e2c240dca6a0f7e6014ad0f94f4d4f8",
+      "src/main/java/com/masson/cruciblecraft/machine/processing/MachineTransaction.java": "2ac0ea25a5122bb878b3a1f7190ce3347f150ae5d6297dc42c7d9a6b5d76624d",
+      "src/main/java/com/masson/cruciblecraft/machine/processing/SidedFluidHandler.java": "2f25ebe74fa148df89e00d6bdf5856c103cbaee582136fb9f26027e3c6b7fb59",
+      "src/main/java/com/masson/cruciblecraft/material/ChemicalFluidRegistrationGate.java": "98187c82a35d3523a4d605ffb4a0f11b0324c951b3823fb388f2bed9cdfae13e",
+      "src/main/java/com/masson/cruciblecraft/material/def/GT6MaterialMetadata.java": "336215bb283e2dd3be5420027bd43175643f6863c4af07ff1aa81aa2555ae313",
+      "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapLoader.java": "452272c4ac7e5c8616959549db4a8f8f6b5db5eeca98af11b509f8faabd73e9f",
+      "src/main/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansion.java": "90feba8fb3bfb8edda6176f75ed0a0996c5b638dbcbfbd83c1cd887013ae22ea",
+      "src/main/java/com/masson/cruciblecraft/recipe/rule/RuleExpression.java": "36a344db0b8638ec22e569e50d1782697dee8fbf51a737d487f250da09b7bd72",
+      "src/main/java/com/masson/cruciblecraft/registry/ModFluids.java": "af367aaa2e769ef4f19059e614d6ac44675a6874ec7e5de2d746135f7826c3fe",
+      "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java": "678d4832e080c8f9bf08fb8237daf3b25b41587f2dc36331dff1030f09c99595",
+      "src/main/resources/data/cruciblecraft/material_registration_gate.json": "aebb0232e7c07710adce01b137454ab57f54f48ddf7649d1f037f0bc07e19ab6",
+      "src/main/resources/data/cruciblecraft/recipe/mortar/gem_to_dust.json": "fc7ba6aad05d0afac64b34543ecfdc56a1fa0da815fcc26948f364c173d91314",
+      "src/main/resources/data/cruciblecraft/recipe/mortar/ingot_to_dust.json": "58398e1ed3ed6e4adb993b3658985faef95321499bff4ca3b786f9fe50bf1e79",
       "src/main/resources/data/cruciblecraft/veins/large_copper_vein.json": "62c6e0121460e05b272b25b16919e03863f0fd2b3016baedd0f62bbdaf159771",
       "src/main/resources/data/cruciblecraft/veins/large_gold_vein.json": "e714d6514a53b527375fb895df5f44ecb4c9a1194005360a5204dd13f3a8263c",
       "src/main/resources/data/cruciblecraft/veins/large_iron_vein.json": "54e623a71d15e966d872ed8329a384099a15df9bdf1f2cf6ed9dd1830be2a1bd",
       "src/main/resources/data/cruciblecraft/veins/large_tin_vein.json": "4c16b71c5bbcad1cb93f358c250d3b9b187cd2e4ebcf0a8de62cd187f43e3b8e",
       "src/main/resources/data/cruciblecraft/veins/large_tungsten_vein.json": "d7844dbc29cec68bdb139b3186bb012206bf415ef402e233552435b6eb268596",
-      "src/test/java/com/masson/cruciblecraft/material/prefix/T3ComponentDataTest.java": "a4b67da0aedc2eeb6596d8d34d43fbacc02d0a41afcec684981de9696a66ea54",
+      "src/test/java/com/masson/cruciblecraft/client/tooltip/MaterialMetadataTooltipTest.java": "7e85ae617e0653db57e0878bfefe2d0ec4c42d6cf20a84df79e76a79fab3107f",
+      "src/test/java/com/masson/cruciblecraft/datagen/T5ChemicalResourceTest.java": "0ea60479eb7484f0e244152b09217fd913e02642c5c10b350e267c9e41c52e27",
+      "src/test/java/com/masson/cruciblecraft/energy/BronzeDynamoEnergyTest.java": "64b548227afa014e039825c4441dd9ec8e72585e840d3e0bd5a75371838ba33e",
+      "src/test/java/com/masson/cruciblecraft/energy/cable/CableLoadStateTest.java": "a2b2da5ede5364ed19587c34be3abbbc2bdf1ad80ce3fea168630f05f7e1687e",
+      "src/test/java/com/masson/cruciblecraft/machine/processing/MachineTransactionTest.java": "db1edde4a97bb8df00d7fde862c0b639a8b787bec9242587c2ebfe0c6eb9e88d",
+      "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingAdaptersTest.java": "526955fd7cc449b706014283f541a0a1bc98b1ec9eb1e5d719b6f9327e9d5089",
+      "src/test/java/com/masson/cruciblecraft/material/prefix/T3ComponentDataTest.java": "d79ffac2bcf518719e848099984fc51bd41f9e54c9ac9a4fac25e3ed6b70b919",
+      "src/test/java/com/masson/cruciblecraft/material/prefix/T7MaterialRuleDataTest.java": "82c42e5d571090f6a5ca25d65a124e606b446e259e881612c8e974cd2f0b88ea",
+      "src/test/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansionTest.java": "cc43952f165fbe50515fd83b54f75f00cf0004b61ae03bbc176f04ea917930c6",
+      "src/test/java/com/masson/cruciblecraft/recipe/rule/RuleExpressionTest.java": "d5d506b951e78999560e20a161bdb90642fcb3b5d5297d075121b68639409c3a",
+      "src/test/java/com/masson/cruciblecraft/registry/T5ProcessingMachineSpecTest.java": "1e8df481dcdc20e2357dadccdb2fbb8a492576f2d45d026b13c9f13a069a876e",
       "src/worldgen_generated/resources/data/cruciblecraft/neoforge/biome_modifier/add_large_veins.json": "3ccb8e54258b48e14e04708401981efb5e3034e6f3e88c7d0c319c5fe9522e45",
       "src/worldgen_generated/resources/data/cruciblecraft/worldgen/configured_feature/large_copper_vein.json": "66557fd7fde498008881205d3d9c015d8eea6e63ea31a7cbe9734d4ba5466019",
       "src/worldgen_generated/resources/data/cruciblecraft/worldgen/configured_feature/large_gold_vein.json": "056a83a31f983b7fcb243814f0badd043bb936c361c5bdf97b82acb1d111a1e6",
@@ -267,57 +357,77 @@
       "src/worldgen_generated/resources/data/cruciblecraft/worldgen/placed_feature/large_iron_vein.json": "71ea4371a0ba8a7e66896db84bac83b90cf09d54b4a68add159730157c81584e",
       "src/worldgen_generated/resources/data/cruciblecraft/worldgen/placed_feature/large_tin_vein.json": "baef01836e61ee97b1056c82446c299753de50292fd75e97cf15c96bfb1d4ffe",
       "src/worldgen_generated/resources/data/cruciblecraft/worldgen/placed_feature/large_tungsten_vein.json": "6271080a2dfd0373e127177fd44710c84f7ce7ac2b3c7c0a55d4e6f7adc4967a",
-      "tools/README.md": "869a6a597dfc32fc439d2142087a653fa5b1208509ac5f11ca096d2ab374b967",
-      "tools/build_component_rules.py": "cbd9b0bb61b543679c77cd80124f55f8e5bd57e08048a8537f265d90546496f1",
-      "tools/build_gt6_material_form_gate.py": "14dbae7acdc3218a24b165bf8bb555d9edce9c26f9a5c5567b5e9e4e66a98d53",
+      "tools/README.md": "ceee97b7472e1e59df880aa7743b23cf5184b384b83e40a22ce04459c48917d4",
+      "tools/build_component_rules.py": "0ef6c718abb994b186dc755494b066bece90af1f6eae00c53eab7f704cb9bb88",
+      "tools/build_gt6_material_form_gate.py": "1c51c0424ad3da72cbdaeb38d20f36ff25b5bbf228604513b7b46376cdbfb680",
       "tools/build_gt6_ore_chain.py": "24dc0df5624539e7c480da166c2a5b36558d6cf8432eb07da460d9265b4373ee",
-      "tools/build_gt6_ore_chain_closure.py": "4dcaf124008354efd8d38437eb3ddd38de11325987de70f0455520f83863fc1e",
+      "tools/build_gt6_ore_chain_closure.py": "8d9ccff740b180101df8fafe9645a9aa7a8cddd735e12794cdda672975db0fc4",
       "tools/build_gt6_veins.py": "aa38dc2cd776959da798e645967435fd3ea54b54076c985d53d0df3df7758913",
-      "tools/compare_gt6_recipes.py": "c94de0fa2663de09cfcb65ea77410685231834bec361ef7cc429d860c4c9ab21",
+      "tools/build_machine_crafting_readiness.py": "0857bd4a709a4e63acbf87aa6045f2a921789d271a4dfb547bc099fabc3e8e8d",
+      "tools/build_t4_tool_readiness.py": "eb101b2ce36bf9afb6e938b8fb23b30eab49b04f99830d464fac317913a61a6c",
+      "tools/build_t5_chemical_readiness.py": "0f42d13d45b9ffb1a0a1891b97d94b7b2194352032cf984840682e746b185979",
+      "tools/build_t5_chemical_recipes.py": "f64c7bee1f604d3085a79ce5c47102db5bfb462458b08fcdab51175158d18d9a",
+      "tools/build_t5_distillery_projection.py": "519c3b1130e6287e1b3ecdb438ba27fcac3d6c6a5bf25542549d814f72157cac",
+      "tools/build_t6_electrical_readiness.py": "8c3b82a469754bed88ef11b3a6d46af88182ff992ac0b44acd3242f2101ce747",
+      "tools/build_t7_material_tag_readiness.py": "fc58b9703aa74bd1b22f3ffcb8f44df564c787be1e64dba82d206222e8f29de8",
+      "tools/compare_gt6_recipes.py": "7c03b711c3dc7568635491a123d837f3b2f347b55ad0de4b60d492ded57333f8",
       "tools/component_rule_sources/acceptance_form_corrections.json": "9481d1987206d370bc9b211609b9c51677882489a79f3f7926b64501df5d620a",
       "tools/component_rule_sources/component_baseline.json": "e91f0413a5b9e592ad108553fbb94eff7d8dd1e67a5806d4a7ac2382251b05ed",
       "tools/component_rule_sources/component_rules.json": "d66b11497fbdc83e0959ba903abeaf0196655e449e37761d36e56af07f104efc",
       "tools/component_rule_sources/extruder_shapes.json": "61993e313febd2a33100cd10328631d75170b8d732bedd192e3361d82d85fe63",
+      "tools/gt6_electrical.py": "bbed9dfebc69590b30602e67a7658ec4b7b78a743de8fd827892b1fbdfa15aba",
       "tools/gt6_extruder_templates.py": "1bdcfd2dc6d9d362b0f9cbbf164d02b24579713c3ca0e07db4f1852cdc43a3cd",
-      "tools/gt6_process_expectations.json": "b60f73f298a1c517eabc17703cb68e9ed28d7b2d8de85d58626b21fb7e228b0d",
-      "tools/import_gt6_oredict.py": "190d06653a870c50045970ba8c78b2d4dd0614eeaeaa1ce820a961902a010a35",
+      "tools/gt6_process_expectations.json": "eeff5cdcdb2af7a0794bcc59ac662bc58340c73baa2806ddf82b136acd887ca9",
+      "tools/import_gt6_oredict.py": "ce127456d8a535cf8f6b2b9835cb9360168278129614206c1c4d0f8acca42f28",
       "tools/run_material_registry_stress.py": "bd50c9110fcfefaaee61d94da2957b1058bcb600edf08539be386eb47883cffc",
-      "tools/tests/test_build_component_rules.py": "1ed4fef2cba1dd8cc7ac2115574f0ef0f25933f26dedcd5f0e7be6fb150780f8",
-      "tools/tests/test_build_gt6_material_form_gate.py": "24e106213a76176c0614680d71eb76a965f876822b57b85104bc23476591948b",
-      "tools/tests/test_build_gt6_ore_chain.py": "0af471ebc2e6b1f7c4765c181f663e03b7c9d96a4531539b60be517d5708bc00",
+      "tools/tests/test_build_component_rules.py": "2e659a3652c73a8a5c95a347652ef47ce2d491b6a6ed7a9f70f238cf5f9cf230",
+      "tools/tests/test_build_gt6_material_form_gate.py": "52c5c97743c4bada95e1325ff3cd18b9cdffb2229145cefe12205bf5867fc721",
+      "tools/tests/test_build_gt6_ore_chain.py": "637f04e8954ecfa7d5906fb6fd52ed828226692fa2b3217388021690f786b649",
       "tools/tests/test_build_gt6_ore_chain_closure.py": "cedcd4769a420c3de71d7f019d0c29d68a92e395860f0e7328eccd2058e98725",
       "tools/tests/test_build_gt6_veins.py": "1b3b65e9e0134b04906c07e49004dfba721f74ab5263af67ed2b868f7d75fc23",
-      "tools/tests/test_compare_gt6_recipes.py": "f7acba07e61022b138a8bfb1980f5df58c19bed2f357eb9fbb11f69319f77040",
+      "tools/tests/test_build_machine_crafting_readiness.py": "67c93e9270065404eb24b3ad19296cf72320d1317d21efabf86304fffbab1342",
+      "tools/tests/test_build_t4_tool_readiness.py": "55154578f2a28a29eede1a50db7d28199e69b5cf9fda2cb3b1f229a8285c2da0",
+      "tools/tests/test_build_t5_chemical_readiness.py": "f3d95d591664f0cf0c9bbda51babe807dd4959f4d55da1cdc445e0de1adc9627",
+      "tools/tests/test_build_t5_chemical_recipes.py": "1b7f52ce6ee65ecc93fb45c275a1b62ad23c311c9da4b0f3adae18d8786a5fe3",
+      "tools/tests/test_build_t5_distillery_projection.py": "ffebec796eade1821d2b0be3373e83e2948caf606d81c03a55f24c98a2d0a17a",
+      "tools/tests/test_build_t6_electrical_readiness.py": "7f280997690f957181e61d20ae14e6598642c09c79f667f72632d2e63b008eb0",
+      "tools/tests/test_build_t7_material_tag_readiness.py": "6d2b3cdf67fea837a293f79c0bdd11b5f2742d8726ff9d189c1c721ecf9f38a5",
+      "tools/tests/test_compare_gt6_recipes.py": "1e9892326367044c503a431d169fc80ab3fefbe83e14eb7e8f831e74298fdc4d",
       "tools/tests/test_component_selector_policy.py": "bd0ea3fa24e04c42d0d770ec287e87cb7964605b3eaddcc15b7c0eee1ec6cb0c",
-      "tools/tests/test_full_verification_report.py": "48898b8919b604b76e5c7370844708ff8fd49281ab0291a15d9a5163b1f1afa5",
+      "tools/tests/test_full_verification_report.py": "ab2bd38745b3b6c701071892eba203fdcc2799ad1eba39414f9908f6637b6392",
       "tools/tests/test_gt6_extruder_templates.py": "0a1557785bf5c0bf8865bc7beb4435e3343b837b7d8c28e2a16e2650689e22c9",
       "tools/tests/test_gt6_generation_bits.py": "e7623ed4ee86518a8e35d18399371ba8ce4f03149edd4d0145b92f845535e6a3",
       "tools/tests/test_gt6_l1b_layer_select.py": "01ebabc5a603d1b9b229ad7db86cdbfd9df729c347891e87c4965da00342d0a3",
-      "tools/tests/test_gt6_l3_materials.py": "414d60347a642afa3466d8d77f79d03500591f8d6a3e8c81188eb16f0057015e",
+      "tools/tests/test_gt6_l3_materials.py": "af95f2e09997d2b6441cfb17f03feeba7959633b9c36ab218016fbb61638f2a9",
       "tools/tests/test_gt6_mapping.py": "8c0ccf1bb9e4e4f5bb02a39876cbaec3b348e43d738ff0ae784f802c9915fa80",
       "tools/tests/test_gt6_recipe_templates.py": "a5779c6bf2333a7375b98f433f99f4b89b5000cd048cc472776263b5d7581744",
-      "tools/tests/test_import_gt6_oredict.py": "92be96756f3986854355ea4723291f65ba111f8118c7170c991ec6063a358f48",
+      "tools/tests/test_import_gt6_oredict.py": "6bc3b22eb054b2d55acce6082de8133a2691992b377bbb474ff95717d2c5f7ef",
       "tools/tests/test_material_registry_stress.py": "076b95d43972f38eed8ee72c78fa520e21db186535673acb0b17e85b2f35c84b",
-      "tools/verify_full_verification_report.py": "72548ca7d99a93ba2364078ecf63c551494b65202c144c747b324f37f1c41a9f"
+      "tools/verify_full_verification_report.py": "4f558e688340c0b009ce00b00b57d2af6138227c75b47c241cd921e6c9cf2d48"
     },
     "trees": {
       "component_rule_generated": {
         "algorithm": "sha256(sorted relative path and file sha256)",
-        "files": 2810,
-        "sha256": "c7e239eb2b918eea7a5c36697c3ec4e17333c521fef8d56a01b3d346839de954"
+        "files": 2811,
+        "sha256": "6a8a8cf31c6e766dce0936849898bd29b8ee87bd14254ef360994c3daf018183"
+      },
+      "t5_chemical_generated": {
+        "algorithm": "sha256(sorted relative path and file sha256)",
+        "files": 153,
+        "sha256": "4be82ac9a971fc217d3adcd9f0fed05112969b00f911b31f1e7d8f3579449138"
       },
       "datagen_generated": {
         "algorithm": "sha256(sorted relative path and file sha256)",
-        "files": 933,
-        "sha256": "bd463ccab39abb02577cf9bac386e564337359f64dabd51f802c9d4ff9635aab"
+        "files": 1467,
+        "sha256": "e15851db8b999b2789313579bab9db39accf4df10a2569393824e5771e9d2e80"
       },
       "extruder_shape_resources": {
         "algorithm": "sha256(sorted relative path and file sha256)",
         "files": 34,
-        "sha256": "4ee2196af89dfad9d27a7dbecf449cf8e498bef20745690bed17efb2c6bff7ff"
+        "sha256": "fd49dcd4b0903a7b6069f7eca5aa80951c73c1f74b1d951a385f36f785484c6a"
       }
     },
-    "snapshot_sha256": "55d594769cd0214f729adc418e51549a5d70a87dd878048743e98b5b4a49af8c"
+    "snapshot_sha256": "9f8b47b45ca26c18c678fc54a8ef290433823a0fd82cf576ac918d8cf919ca9e"
   },
   "report_refresh_required_after": "Record builder, two datagen runs, Java, GameTest, and Python results through this verifier, then use --mark-ready and --check.",
   "ore_pipeline_acceptance": {
@@ -333,8 +443,8 @@
       "smelter": 195
     },
     "projected_material_form_pairs": 2296,
-    "gt6_source_parameterized_recipes": 1412,
-    "topology_fallback_recipes": 568,
+    "gt6_source_parameterized_recipes": 1060,
+    "topology_fallback_recipes": 920,
     "source_accounting_complete": true,
     "duplicate_input_signatures": 0,
     "gate_operand_misses": 0,
@@ -349,7 +459,7 @@
     "worldgen_ore_materials": 8,
     "crusher_without_worldgen": 349,
     "sifter_dust_without_smelter": 162,
-    "closure_sha256": "4e41ac478c1bd90b311deb69e7d94773115030e147dba7197fdc8c16b8588ba4",
+    "closure_sha256": "99a9febf982454d3301d62fca359f4ac0fa5535cff4c9555520ee74fdbc2834a",
     "closure_matches_ore_chain": true,
     "crusher_classifications": {
       "byproduct_only": 110,
@@ -358,8 +468,8 @@
     },
     "sifter_classifications": {
       "add_smelter": 0,
-      "gt6_dead_end": 0,
-      "t5_chemical": 162
+      "gt6_dead_end": 17,
+      "t5_chemical": 145
     },
     "unclassified_count": 0,
     "furnace_shortcut_recipes": 766,
@@ -377,8 +487,8 @@
     },
     "unclassified_templates": 0,
     "source_rules": 2810,
-    "expanded_recipes": 8136,
-    "non_extruder_expanded_recipes": 5354,
+    "expanded_recipes": 8141,
+    "non_extruder_expanded_recipes": 5359,
     "extruder_expanded_recipes": 2782,
     "expanded_recipes_per_map": {
       "assembler": 568,
@@ -390,49 +500,52 @@
       "rollbender": 438,
       "rollingmill": 336,
       "welder": 321,
-      "wiremill": 282
+      "wiremill": 287
     },
     "expansion_budget": 10000,
     "within_budget": true,
     "shadowed_recipes": 0,
-    "source_sha256": "c38e388270b54e1c4cbc32826c88e7e71dfa57652ac46b0767733c6bfd1fe571",
+    "source_sha256": "e6370bd8df75bb806a4f72af0ff98b0e7f0d5334b758556e6b487131010beea3",
     "source_files_sha256": {
       "acceptance_form_corrections.json": "9481d1987206d370bc9b211609b9c51677882489a79f3f7926b64501df5d620a",
       "component_baseline.json": "e91f0413a5b9e592ad108553fbb94eff7d8dd1e67a5806d4a7ac2382251b05ed",
       "component_rules.json": "d66b11497fbdc83e0959ba903abeaf0196655e449e37761d36e56af07f104efc",
-      "extruder_shapes.json": "61993e313febd2a33100cd10328631d75170b8d732bedd192e3361d82d85fe63"
+      "extruder_shapes.json": "61993e313febd2a33100cd10328631d75170b8d732bedd192e3361d82d85fe63",
+      "material_groups.json": "a0710e7272614c03dd1fecc86cc3735577d5a0532ff263934f7dd4f2a3aa9015"
     },
     "builder": {
       "source": "tools/build_component_rules.py",
-      "source_sha256": "cbd9b0bb61b543679c77cd80124f55f8e5bd57e08048a8537f265d90546496f1"
+      "source_sha256": "0ef6c718abb994b186dc755494b066bece90af1f6eae00c53eab7f704cb9bb88"
     },
     "build_inputs_sha256": {
-      "src/main/resources/data/cruciblecraft/material_registration_gate.json": "71a5ab2d1a828ef8e7299abf10f3f6af5fec1545fd3769f505cd41f06806d110",
+      "src/main/resources/data/cruciblecraft/material_registration_gate.json": "aebb0232e7c07710adce01b137454ab57f54f48ddf7649d1f037f0bc07e19ab6",
       "tools/component_selector_policy.json": "32e30e05d2db6f436c309c2037c8c7fb18323c640c6d812ee8c9b9635b948c77",
+      "tools/gt6_electrical_source.json": "3a9c7649387c016723d60e1738faf6e20ab2a2c3301b4cf006761231fa3b5238",
       "tools/gt6_extruder_templates_index_v5.json": "f802bd465b6c7e5303f18740b1d53dee0ac4f02f15326dbf0b1a7acdafd48f7e",
-      "tools/gt6_extruder_templates_report.json": "59fd8bfb96704a9cc9b0c14a626aa7cbbb20afdc66c4b1f03a0b841826b4f1ef"
+      "tools/gt6_extruder_templates_report.json": "59fd8bfb96704a9cc9b0c14a626aa7cbbb20afdc66c4b1f03a0b841826b4f1ef",
+      "tools/gt6_material_activation_policy.json": "3c863cf10bb24b7185f762b47518b106e971a1d1b0cfc5ce2e94a60069881c9b"
     },
     "generated_tree": {
       "algorithm": "sha256(relative-path NUL file-sha256)",
       "files": 2810,
-      "sha256": "984e1bf69944f1bc51cecd966183c115f1da78fd4a989ecb352961d5a988ce29"
+      "sha256": "199ad8322406cfaaefe36f5506a83ab31582add8cd561d9bf6607d8f8e28aa1b"
     },
     "recipe_ids": {
-      "algorithm": "sha256(non-extruder baseline plus acceptance corrections plus sorted extruder ids)",
-      "count": 8136,
-      "digest": "034610ecb3699f0a5de085d996aaa0e7d0a9940b285a6eb433f95118e4831c3e"
+      "algorithm": "sha256(non-extruder baseline plus acceptance corrections plus T6 electrical form expansion plus sorted extruder ids)",
+      "count": 8141,
+      "digest": "2bf02d2f5f05e3f0faf62e3f6790e8fc898532135124a36230cc537e6691756f"
     },
     "recipe_signatures": {
-      "algorithm": "sha256(non-extruder baseline plus acceptance corrections plus sparse extruder rows)",
-      "count": 8136,
-      "digest": "9bceb8446f72476fe1dd8d171478c28ec6254f9355470daffe7714d82c4ec781"
+      "algorithm": "sha256(non-extruder baseline plus acceptance corrections plus T6 electrical form expansion plus sparse extruder rows)",
+      "count": 8141,
+      "digest": "da27fd82671e83d86a0e429bd3679b53f0c3dea75b50c440118da8bbbd121548"
     },
     "shadow_signatures": {
-      "algorithm": "sha256(non-extruder baseline plus acceptance corrections plus extruder target/input signatures)",
-      "digest": "a1af814eb707a68ae7516b32b6d606697a1945e1147bade6023cc78464a94fb1",
+      "algorithm": "sha256(non-extruder baseline plus acceptance corrections plus T6 electrical form expansion plus extruder target/input signatures)",
+      "digest": "296824baaa68c4be1ee513bcc5e28220821138aeb2721b5411ed47decc7a844b",
       "duplicates": 0,
-      "total": 8136,
-      "unique": 8136
+      "total": 8141,
+      "unique": 8141
     },
     "selector": {
       "policy": "tools/component_selector_policy.json",
@@ -503,9 +616,23 @@
   "verification_runs": {
     "builder": {
       "result": "PASS",
-      "command": "python tools/build_component_rules.py --check",
-      "elapsed_ms": 3994.0,
+      "commands": [
+        "python tools/build_component_rules.py --check",
+        "python tools/build_t4_tool_readiness.py --check",
+        "python tools/build_t5_distillery_projection.py --check",
+        "python tools/build_machine_crafting_readiness.py --check",
+        "python tools/build_t6_electrical_readiness.py --check",
+        "python tools/build_t7_material_tag_readiness.py --check",
+        "python tools/build_t5_chemical_readiness.py --check",
+        "python tools/build_t5_chemical_recipes.py --check"
+      ],
+      "elapsed_ms": 8773.173,
       "compact_evidence_result": "PASS",
+      "t4_readiness_result": "PASS",
+      "t5_projection_result": "PASS",
+      "t55_readiness_result": "PASS",
+      "t6_readiness_result": "PASS",
+      "t7_readiness_result": "PASS",
       "extruder_full_replay": {
         "command": "python tools/gt6_extruder_templates.py --verify",
         "result": "SKIP",
@@ -517,28 +644,28 @@
       "result": "PASS",
       "command": ".\\gradlew.bat runData",
       "runs": 2,
-      "run_1_tree_sha256": "bd463ccab39abb02577cf9bac386e564337359f64dabd51f802c9d4ff9635aab",
-      "run_2_tree_sha256": "bd463ccab39abb02577cf9bac386e564337359f64dabd51f802c9d4ff9635aab",
-      "run_1_elapsed_seconds": 70.361,
-      "run_2_elapsed_seconds": 91.519,
+      "run_1_tree_sha256": "e15851db8b999b2789313579bab9db39accf4df10a2569393824e5771e9d2e80",
+      "run_2_tree_sha256": "e15851db8b999b2789313579bab9db39accf4df10a2569393824e5771e9d2e80",
+      "run_1_elapsed_seconds": 30.615,
+      "run_2_elapsed_seconds": 57.583,
       "drift_files": 0
     },
     "java": {
       "result": "PASS",
-      "elapsed_seconds": 117.969,
+      "elapsed_seconds": 67.468,
       "test_result_xml": "build/test-results/test/TEST-*.xml",
-      "t3_expansion_elapsed_ms": 5654
+      "t3_expansion_elapsed_ms": 9942
     },
     "gametest": {
       "result": "PASS",
-      "elapsed_seconds": 87.643,
-      "required_tests": 18,
-      "passed": 18
+      "elapsed_seconds": 72.376,
+      "required_tests": 39,
+      "passed": 39
     },
     "python": {
       "result": "PASS",
-      "tests": 148,
-      "elapsed_seconds": 1177.895
+      "tests": 206,
+      "elapsed_seconds": 273.216
     }
   },
   "component_runtime_acceptance": {
@@ -675,8 +802,230 @@
       }
     }
   },
+  "t4_tool_acceptance": {
+    "delivery_model": "21 compact MaterialRule routes -> flattened assembler recipes",
+    "source_rules": 21,
+    "tool_types": 11,
+    "material_candidates": 546,
+    "tool_material_pairs": 6006,
+    "unclassified": 0,
+    "expanded_recipes": 3452,
+    "expanded_recipes_by_tool": {
+      "axe": 329,
+      "chisel": 307,
+      "file": 92,
+      "hoe": 329,
+      "pickaxe": 330,
+      "saw": 307,
+      "screwdriver": 309,
+      "shovel": 412,
+      "smithing_hammer": 317,
+      "sword": 412,
+      "wrench": 308
+    },
+    "signature_collisions": 0,
+    "eligible_without_route": {
+      "total": 1020,
+      "by_tool": {
+        "axe": 209,
+        "chisel": 2,
+        "file": 56,
+        "hoe": 209,
+        "pickaxe": 208,
+        "saw": 2,
+        "screwdriver": 0,
+        "shovel": 126,
+        "smithing_hammer": 80,
+        "sword": 126,
+        "wrench": 2
+      }
+    },
+    "eligibility_predicate_sources": {
+      "observed_tag_populations": {
+        "antimatter_exclusion": 2,
+        "bouncy_exclusion_with_screwdriver_exception": 6,
+        "coated_exclusion_with_wrench_exception": 5,
+        "hammer_wood_exclusion": 128,
+        "stretchy_exclusion_with_screwdriver_exception": 1
+      },
+      "pinned_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "predicate_count": 9
+    },
+    "identity_literals": [
+      "stone",
+      "wood"
+    ],
+    "budget_policy": {
+      "kind": "measured_strategy_not_source_fact",
+      "projected_counts": {
+        "t3_component": 8141,
+        "t4_tool": 3452,
+        "live_t3_map": 11593
+      },
+      "count_limits": {
+        "t3_component": 10000,
+        "t4_tool": 4000,
+        "live_t3_map": 13000
+      },
+      "performance_limits": {
+        "reload_ms": 10000,
+        "index_build_ms": 1000,
+        "lookup_average_ns": 1000000,
+        "lookup_average_candidates": 64
+      },
+      "performance_measurement_policy": {
+        "lookup": "Explicit verification only; production recipe reload does not execute the benchmark.",
+        "memory": "No heap-delta gate. used_after-used_before without controlled GC or allocation instrumentation is not retained-memory evidence."
+      },
+      "observed_2026_08_02_conservative_baseline": {
+        "sampling": "256 evenly spaced recipes across all 11 tools, 4 timed rounds",
+        "reload_ms": 5332,
+        "index_build_ms": 100,
+        "lookup_samples": 1024,
+        "lookup_average_ns": 218226,
+        "lookup_average_candidates": 10
+      }
+    }
+  },
+  "t5_chemical_acceptance": {
+    "delivery_model": "pinned GT6 dump -> source-dead-end judgement -> one executable live route per terminal dust and a closed required-fluid registry",
+    "gt6_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "readiness_status": "SOURCE_REPLAY_VERIFIED",
+    "terminal_dust_denominator": 145,
+    "terminal_readiness_classifications": {
+      "decomposable_without_route": 36,
+      "route_ready": 18,
+      "route_tagged_but_quarantined": 57,
+      "unresolved_deferred": 34
+    },
+    "terminal_dust_live_routes": 145,
+    "terminal_dust_unresolved": 0,
+    "closure_ready": true,
+    "generated_recipes": 152,
+    "generated_recipes_by_map": {
+      "assembler": 1,
+      "autoclave": 17,
+      "bath": 6,
+      "centrifuge": 14,
+      "compressor": 5,
+      "distillery": 1,
+      "drying": 5,
+      "electrolyzer": 62,
+      "mixer": 34,
+      "smelter": 7
+    },
+    "source_dead_ends": 17,
+    "non_molten_fluid_candidates": 119,
+    "registered_chemical_fluids": 15,
+    "source_replay": {
+      "reason": "The pinned GT6 dump is present and every required source map has been replayed by the final T5 source selectors, including the exhaustive T5.5 distillery classification.",
+      "required_maps": {
+        "gt.recipe.assembler": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.assembler.json",
+        "gt.recipe.autoclave": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.autoclave.json",
+        "gt.recipe.bath": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.bath.json",
+        "gt.recipe.centrifuge": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.centrifuge.json",
+        "gt.recipe.compressor": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.compressor.json",
+        "gt.recipe.distillery": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json",
+        "gt.recipe.drying": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.drying.json",
+        "gt.recipe.electrolyzer": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.electrolyzer.json",
+        "gt.recipe.mixer": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.mixer.json",
+        "gt.recipe.smelter": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json"
+      },
+      "source": {
+        "index": "gt6_dump/gt6_recipe_dump/index.json",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "selector": "tools/build_t5_source_projection.py"
+      },
+      "status": "pinned_dump_verified"
+    }
+  },
+  "t7_material_fact_acceptance": {
+    "delivery_model": "pinned GT6 material facts -> closed 62-tag policy -> authored MaterialRule predicates -> live RecipeMap expansion",
+    "gt6_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "readiness_status": "READY",
+    "ledger_current": true,
+    "classified_tags": 62,
+    "unclassified_tags": 0,
+    "classification_counts": {
+      "build-time-only": 7,
+      "deferred": 21,
+      "not-applicable": 4,
+      "rule-input": 30
+    },
+    "fact_counts": {
+      "formula_count": 952,
+      "material_count": 1773,
+      "mortar_gem_to_dust_count": 94,
+      "mortar_ingot_to_dust_count": 126,
+      "mortar_registered_ingot_count": 133,
+      "mortar_tagged_material_count": 603,
+      "new_mortar_rule_expansion_count": 220,
+      "nonzero_explosion_damage_count": 0,
+      "nonzero_heat_damage_count": 0,
+      "processing_tag_count": 23,
+      "property_tag_count": 39,
+      "tag_assignment_count": 6752
+    },
+    "rule_language": {
+      "damage_numeric_comparison": true,
+      "energy_types": [
+        "HEAT",
+        "KINETIC",
+        "AIR",
+        "ELECTRIC"
+      ],
+      "registered_form_predicate": "has_registered",
+      "tag_predicate": "material.tag",
+      "thermal_numeric_comparison": true,
+      "zero_loss_cable_domain": true
+    },
+    "energy_type_decision": {
+      "kept": [
+        "HEAT",
+        "KINETIC",
+        "AIR",
+        "ELECTRIC"
+      ],
+      "removed": {
+        "COOLING": "No direct source-backed packet consumer exists; a later cooling system must introduce its own proven contract.",
+        "MAGNETIC": "Magnetism is represented by exact material tags and machine behavior, not an energy packet.",
+        "ROTATION": "GT6 RU is intentionally represented by the existing KINETIC packet type."
+      }
+    },
+    "mortar_rule_counts": {
+      "gem_to_dust": 94,
+      "ingot_to_dust": 126
+    },
+    "mortar_material_set_sha256": {
+      "gem_to_dust": "aed1052991913685e9e17565130d8cff60634217e1ab7d0308d8498ddbddaeda",
+      "ingot_to_dust": "b3803f28fb179686478d7d260ad5e642edcf36014f401de60f92140c76cbd494"
+    },
+    "runtime_publication": {
+      "all_published_recipe_budget": 18000,
+      "measurement": "production runGameTestServer recipe reload",
+      "post_t7_all_published_recipes": 17189,
+      "post_t7_mortar_recipes": 691,
+      "pre_t7_all_published_recipes": 16969,
+      "pre_t7_mortar_recipes": 471,
+      "shadowed_input_signatures": 0,
+      "t7_added_mortar_recipes": 220
+    },
+    "within_publication_budget": true,
+    "input_sha256": {
+      "src/main/java/com/masson/cruciblecraft/api/energy/EnergyType.java": "0d55f4975307ed488ab8e021d21fdccb4961b5622050e85270e02010ed14fed9",
+      "src/main/java/com/masson/cruciblecraft/energy/cable/CableNetworkTraversal.java": "b2a253d21372afe8ed7dedd975ba01a82b6e213685f77220727243230466daf0",
+      "src/main/java/com/masson/cruciblecraft/material/def/GT6MaterialMetadata.java": "336215bb283e2dd3be5420027bd43175643f6863c4af07ff1aa81aa2555ae313",
+      "src/main/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansion.java": "90feba8fb3bfb8edda6176f75ed0a0996c5b638dbcbfbd83c1cd887013ae22ea",
+      "src/main/java/com/masson/cruciblecraft/recipe/rule/RuleExpression.java": "36a344db0b8638ec22e569e50d1782697dee8fbf51a737d487f250da09b7bd72",
+      "src/main/resources/data/cruciblecraft/material_registration_gate.json": "aebb0232e7c07710adce01b137454ab57f54f48ddf7649d1f037f0bc07e19ab6",
+      "src/main/resources/data/cruciblecraft/materials/index.json": "ff3ecf3970191f4feaddb84eb7795ea7714cab665df3fb6822f61c8382e66e05",
+      "tools/gt6_reference_metadata.json": "1b62ce423c6a6a62dcd3b3eaade997dbc7e7afc29931c6f9432f040a43e88164",
+      "tools/t7_material_tag_policy.json": "33142a79db1522aaa9a3229ee588db72b185427c468ecdf2a235f8ea00e88c24"
+    },
+    "material_directory_sha256": "545b99ff2ee341c366c76fe44d126176b0d7b18a313109808ffc96fd9f41f6a5"
+  },
   "ready_binding": {
-    "tooling_snapshot_sha256": "55d594769cd0214f729adc418e51549a5d70a87dd878048743e98b5b4a49af8c",
-    "marked_after_all_verification_at": "2026-08-01T16:48:03.597924+00:00"
+    "tooling_snapshot_sha256": "9f8b47b45ca26c18c678fc54a8ef290433823a0fd82cf576ac918d8cf919ca9e",
+    "marked_after_all_verification_at": "2026-08-03T18:30:40.313412+00:00"
   }
 }
