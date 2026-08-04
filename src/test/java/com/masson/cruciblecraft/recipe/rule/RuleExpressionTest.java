@@ -11,15 +11,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RuleExpressionTest {
     private static final RuleExpression.Context CONTEXT = new RuleExpression.Context() {
-        private final Map<String, Double> values = Map.of(
-                "material.tier", 2.0,
-                "material.mass", 288.0,
-                "material.thermal.melting_point", 1538.0,
-                "material.thermal.boiling_point", 2861.0,
-                "material.thermal.density", 7.874,
-                "prefix.units", 144.0,
-                "input.units", 144.0,
-                "output.units", 72.0);
+        private final Map<String, Double> values = Map.ofEntries(
+                Map.entry("material.tier", 2.0),
+                Map.entry("material.mass", 288.0),
+                Map.entry("material.thermal.melting_point", 1538.0),
+                Map.entry("material.thermal.boiling_point", 2861.0),
+                Map.entry("material.thermal.density", 7.874),
+                Map.entry("material.explosion_damage", 3.5),
+                Map.entry("material.heat_damage", 7.25),
+                Map.entry("material.tool.quality", 2.0),
+                Map.entry("prefix.units", 144.0),
+                Map.entry("input.units", 144.0),
+                Map.entry("output.units", 72.0));
 
         @Override public double number(String name) {
             Double value = values.get(name);
@@ -39,7 +42,26 @@ class RuleExpressionTest {
             return Set.of("metal", "cruciblecraft:metal").contains(flag);
         }
 
-        @Override public boolean hasPrefix(String prefix) {
+        @Override public boolean materialTag(String tag) {
+            return tag.equals("PROPERTIES.HAS_TOOL_STATS");
+        }
+
+        @Override public boolean materialIs(String materialId) {
+            MaterialRule.requireMaterialId(materialId, "material.is argument");
+            if (!materialId.equals("iron")) {
+                throw new IllegalArgumentException(
+                        "Unknown material.is material: " + materialId);
+            }
+            return materialId.equals("iron");
+        }
+
+        @Override public boolean hasForm(String prefix) {
+            return Set.of(
+                    "ingot", "cruciblecraft:ingot",
+                    "plate", "cruciblecraft:plate").contains(prefix);
+        }
+
+        @Override public boolean hasRegistered(String prefix) {
             return Set.of("ingot", "cruciblecraft:ingot").contains(prefix);
         }
     };
@@ -61,7 +83,17 @@ class RuleExpressionTest {
     @Test
     void evaluatesTypedConditions() {
         assertTrue(RuleExpression.bool(
-                        "material.has(metal) && has_prefix(cruciblecraft:ingot) && material.tier >= 2",
+                        "material.has(metal)"
+                                + " && material.is(iron)"
+                                + " && has_form(cruciblecraft:plate)"
+                                + " && !has_registered(cruciblecraft:plate)"
+                                + " && has_registered(cruciblecraft:ingot)"
+                                + " && material.thermal.melting_point >= 1500"
+                                + " && material.thermal.boiling_point < 3000"
+                                + " && material.explosion_damage == 3.5"
+                                + " && material.heat_damage > 7"
+                                + " && material.tool.quality <= 2"
+                                + " && material.tier >= 2",
                         "test:condition")
                 .evaluateBoolean(CONTEXT));
     }
@@ -106,6 +138,22 @@ class RuleExpressionTest {
                 IllegalArgumentException.class,
                 () -> RuleExpression.numeric("9223372036854775808", "test:overflow")
                         .evaluateLong(CONTEXT));
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> RuleExpression.bool(
+                        "material.tag_contains(\"CRYSTAL\")",
+                        "test:unsafe-tag-substring"));
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> RuleExpression.bool(
+                        "has_prefix(plate)",
+                        "test:ambiguous-prefix-semantics"));
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> RuleExpression.bool(
+                                "material.is(stnoe)",
+                                "test:unknown-material-identity")
+                        .evaluateBoolean(CONTEXT));
         assertTrue(assertThrows(
                         IllegalArgumentException.class,
                         () -> RuleExpression.numeric(

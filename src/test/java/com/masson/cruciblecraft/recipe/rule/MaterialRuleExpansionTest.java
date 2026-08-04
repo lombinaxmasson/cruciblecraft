@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MaterialRuleExpansionTest {
@@ -48,7 +49,8 @@ class MaterialRuleExpansionTest {
                 List.of(), Optional.empty(), List.of());
 
         List<MaterialRuleExpansion.Plan> crushed =
-                MaterialRuleExpansion.expandPlans(id("crusher/raw"), crusher, materials);
+                MaterialRuleExpansion.expandFactualPlans(
+                        id("crusher/raw"), crusher, materials);
         assertEquals(2, crushed.size(), "only materials with both referenced prefixes expand");
         assertEquals(
                 List.of("crusher/raw/iron", "crusher/raw/lead"),
@@ -72,7 +74,8 @@ class MaterialRuleExpansionTest {
                 id("crusher/raw"),
                 crusher,
                 materials,
-                resolver(Map.of(MaterialPrefixes.CRUSHED_ORE, Items.IRON_INGOT)));
+                resolver(Map.of(MaterialPrefixes.CRUSHED_ORE, Items.IRON_INGOT)),
+                MaterialRuleExpansion.FormIndexes.factualOnly(materials));
         assertEquals(List.of(id("crusher/raw/iron"), id("crusher/raw/lead")),
                 projectedCrusher.stream().map(MaterialRuleExpansion.Expanded::id).toList());
         var leadRecipe = projectedCrusher.get(1).recipe();
@@ -93,7 +96,8 @@ class MaterialRuleExpansionTest {
                 List.of(), List.of(),
                 "1", "10000", "4", true, Optional.empty(),
                 Map.of(), List.of(), Optional.empty(), List.of());
-        var plates = MaterialRuleExpansion.expandPlans(id("anvil/plate"), anvil, materials);
+        var plates = MaterialRuleExpansion.expandFactualPlans(
+                id("anvil/plate"), anvil, materials);
         assertEquals(1, plates.size());
         assertEquals("anvil/plate/iron", plates.getFirst().id().getPath());
         assertEquals(
@@ -110,7 +114,8 @@ class MaterialRuleExpansionTest {
                 id("anvil/plate"),
                 anvil,
                 materials,
-                resolver(Map.of(MaterialPrefixes.PLATE, Items.GOLD_INGOT)));
+                resolver(Map.of(MaterialPrefixes.PLATE, Items.GOLD_INGOT)),
+                MaterialRuleExpansion.FormIndexes.factualOnly(materials));
         assertEquals(1, projectedAnvil.size());
         assertEquals(id("anvil/plate/iron"), projectedAnvil.getFirst().id());
         var anvilRecipe = projectedAnvil.getFirst().recipe();
@@ -121,6 +126,101 @@ class MaterialRuleExpansionTest {
         assertEquals(1, anvilRecipe.duration());
         assertEquals(10_000, anvilRecipe.eut());
         assertEquals(4, anvilRecipe.specialValue());
+    }
+
+    @Test
+    void factualAndRegisteredFormPredicatesRemainDistinct() {
+        MaterialDefinition stone = material(
+                "stone", 1, MaterialPrefixes.PLATE, MaterialPrefixes.ROD);
+        List<MaterialDefinition> materials = List.of(stone);
+        MaterialRule rule = new MaterialRule(
+                Optional.of(CRUSHER),
+                List.of(prefix(MaterialPrefixes.ROD, "1", "10000")),
+                List.of(prefix(MaterialPrefixes.ROD, "1", "10000")),
+                List.of(),
+                List.of(),
+                "1",
+                "1",
+                "0",
+                true,
+                Optional.of("stone"),
+                Map.of(),
+                List.of(
+                        "material.is(stone)",
+                        "has_form(plate)",
+                        "!has_registered(plate)",
+                        "has_registered(rod)"),
+                Optional.empty(),
+                List.of());
+
+        assertEquals(
+                1,
+                MaterialRuleExpansion.expandPlansWithRegisteredForms(
+                                id("registered_forms"),
+                                rule,
+                                materials,
+                                Map.of("stone", List.of(MaterialPrefixes.ROD)))
+                        .size());
+        assertTrue(MaterialRuleExpansion.expandFactualPlans(
+                id("factual_only"), rule, materials).isEmpty());
+        IllegalArgumentException unknownMaterial = assertThrows(
+                IllegalArgumentException.class,
+                () -> MaterialRuleExpansion.expandFactualPlans(
+                        id("unknown_material"),
+                        withConditions(rule, List.of("material.is(stnoe)")),
+                        materials));
+        assertTrue(unknownMaterial.getMessage().contains("test:unknown_material"));
+        assertTrue(unknownMaterial.getMessage().contains("stnoe"));
+    }
+
+    @Test
+    void tagThermalAndDamageFactsDriveExpansionWithMissingMetadataDefaults() {
+        MaterialDefinition reactive = material(
+                "reactive", 0, MaterialPrefixes.INGOT, MaterialPrefixes.DUST)
+                .withImportedMetadata(metadata(
+                        List.of(),
+                        Map.of(),
+                        List.of("PROCESSING.MORTAR_GRINDABLE"),
+                        2.5,
+                        4.0));
+        MaterialDefinition plain = material(
+                "plain", 0, MaterialPrefixes.INGOT, MaterialPrefixes.DUST);
+        MaterialRule rule = new MaterialRule(
+                Optional.of(CRUSHER),
+                List.of(prefix(MaterialPrefixes.INGOT, "1", "10000")),
+                List.of(prefix(MaterialPrefixes.DUST, "1", "10000")),
+                List.of(), List.of(), "20", "8", "0", true,
+                Optional.empty(), Map.of(),
+                List.of(
+                        "material.tag(\"PROCESSING.MORTAR_GRINDABLE\")",
+                        "material.thermal.melting_point >= 1000",
+                        "material.explosion_damage == 2.5",
+                        "material.heat_damage == 4",
+                        "has_registered(ingot) && has_registered(dust)"),
+                Optional.empty(), List.of());
+        Map<String, List<MaterialPrefix>> registered = Map.of(
+                "reactive", List.of(MaterialPrefixes.INGOT, MaterialPrefixes.DUST),
+                "plain", List.of(MaterialPrefixes.INGOT, MaterialPrefixes.DUST));
+
+        List<MaterialRuleExpansion.Plan> plans =
+                MaterialRuleExpansion.expandPlansWithRegisteredForms(
+                        id("material_facts"), rule, List.of(reactive, plain), registered);
+        assertEquals(1, plans.size());
+        assertEquals("reactive", plans.getFirst().materialId());
+
+        MaterialRule missingDefaults = withConditions(
+                rule,
+                List.of(
+                        "!material.tag(\"PROCESSING.MORTAR_GRINDABLE\")",
+                        "material.explosion_damage == 0",
+                        "material.heat_damage == 0"));
+        plans = MaterialRuleExpansion.expandPlansWithRegisteredForms(
+                id("missing_metadata_defaults"),
+                missingDefaults,
+                List.of(reactive, plain),
+                registered);
+        assertEquals(1, plans.size());
+        assertEquals("plain", plans.getFirst().materialId());
     }
 
     @Test
@@ -146,7 +246,7 @@ class MaterialRuleExpansionTest {
                 List.of(), List.of(),
                 "material.tier*10", "8", "0", false, Optional.empty(),
                 Map.of(),
-                List.of("material.tier >= 2 && has_prefix(ingot)"),
+                List.of("material.tier >= 2 && has_form(ingot)"),
                 Optional.empty(), List.of());
 
         bootstrapVanillaItems();
@@ -183,12 +283,18 @@ class MaterialRuleExpansionTest {
                     public Optional<Fluid> fluid(
                             MaterialDefinition material,
                             Optional<MaterialPrefix> prefix,
-                            Optional<ResourceLocation> fixed) {
+                            Optional<ResourceLocation> fixed,
+                            Optional<String> materialFluid) {
                         return Optional.empty();
                     }
                 };
         List<MaterialRuleExpansion.Expanded> expanded =
-                MaterialRuleExpansion.expand(id("multi"), rule, materials, resolver);
+                MaterialRuleExpansion.expand(
+                        id("multi"),
+                        rule,
+                        materials,
+                        resolver,
+                        MaterialRuleExpansion.FormIndexes.factualOnly(materials));
         assertEquals(1, expanded.size(), "condition filters the lower-tier material");
         MaterialRuleExpansion.Expanded result = expanded.getFirst();
         assertEquals(id("multi/iron"), result.id());
@@ -256,10 +362,11 @@ class MaterialRuleExpansionTest {
                     }
                     @Override public Optional<Fluid> fluid(
                             MaterialDefinition material, Optional<MaterialPrefix> prefix,
-                            Optional<ResourceLocation> fixed) {
+                            Optional<ResourceLocation> fixed,
+                            Optional<String> materialFluid) {
                         return Optional.empty();
                     }
-                });
+                }, MaterialRuleExpansion.FormIndexes.factualOnly(materials));
         assertEquals(1, expanded.size());
         assertEquals(List.of(Items.IRON_INGOT, Items.REDSTONE),
                 expanded.getFirst().recipe().itemOutputs().stream()
@@ -267,7 +374,8 @@ class MaterialRuleExpansionTest {
         assertEquals(List.of(10_000, 2_500),
                 expanded.getFirst().recipe().outputChances());
         assertEquals(List.of("target", "first"),
-                MaterialRuleExpansion.expandPlans(id("selectors"), rule, materials).getFirst()
+                MaterialRuleExpansion.expandFactualPlans(
+                                id("selectors"), rule, materials).getFirst()
                         .itemOutputs().stream().map(value -> value.resource().materialId()).toList());
     }
 
@@ -296,16 +404,19 @@ class MaterialRuleExpansionTest {
                 (material, prefix, preferences) -> Optional.of(
                         preferences.get(key).equals("test:second")
                                 ? Items.DIAMOND : Items.GOLD_INGOT));
+        List<MaterialDefinition> materials = List.of(iron);
+        MaterialRuleExpansion.FormIndexes forms =
+                MaterialRuleExpansion.FormIndexes.factualOnly(materials);
 
         assertSame(
                 Items.GOLD_INGOT,
                 MaterialRuleExpansion.expand(
-                        id("candidate_first"), rule, List.of(iron), firstResolver)
+                        id("candidate_first"), rule, materials, firstResolver, forms)
                         .getFirst().recipe().itemOutputs().getFirst().getItem());
         assertSame(
                 Items.DIAMOND,
                 MaterialRuleExpansion.expand(
-                        id("candidate_second"), rule, List.of(iron), secondResolver)
+                        id("candidate_second"), rule, materials, secondResolver, forms)
                         .getFirst().recipe().itemOutputs().getFirst().getItem());
     }
 
@@ -327,7 +438,7 @@ class MaterialRuleExpansionTest {
                 List.of(), List.of(), "120", "32", "0", true,
                 Optional.of("copper"), Map.of(), List.of(), Optional.empty(), List.of());
 
-        var plan = MaterialRuleExpansion.expandPlans(
+        var plan = MaterialRuleExpansion.expandFactualPlans(
                 id("cable"), rule, List.of(copper, rubber)).getFirst();
         assertEquals(List.of("copper", "rubber"),
                 plan.itemInputs().stream()
@@ -374,17 +485,24 @@ class MaterialRuleExpansionTest {
                     @Override public Optional<Fluid> fluid(
                             MaterialDefinition material,
                             Optional<MaterialPrefix> prefix,
-                            Optional<ResourceLocation> fixed) {
+                            Optional<ResourceLocation> fixed,
+                            Optional<String> materialFluid) {
                         return Optional.empty();
                     }
                 };
 
-        var plan = MaterialRuleExpansion.expandPlans(
-                id("extruder/rod"), rule, List.of(iron)).getFirst();
+        List<MaterialDefinition> materials = List.of(iron);
+        var plan = MaterialRuleExpansion.expandFactualPlans(
+                id("extruder/rod"), rule, materials).getFirst();
         assertEquals(List.of(1, 0), plan.itemInputs().stream()
                 .map(MaterialRuleExpansion.PlannedResource::amount).toList());
         var recipe = MaterialRuleExpansion.expand(
-                id("extruder/rod"), rule, List.of(iron), resolver).getFirst().recipe();
+                id("extruder/rod"),
+                rule,
+                materials,
+                resolver,
+                MaterialRuleExpansion.FormIndexes.factualOnly(materials))
+                .getFirst().recipe();
         assertEquals(List.of(1, 0), recipe.itemInputCounts());
         assertTrue(recipe.itemInputs().get(1).test(new ItemStack(Items.FLINT)));
         assertFalse(recipe.itemInputs().get(1).test(new ItemStack(Items.COAL)));
@@ -408,7 +526,7 @@ class MaterialRuleExpansionTest {
         MaterialRule smelter = T2ChainRules.ALL.stream()
                 .filter(definition -> definition.path().startsWith("smelter/"))
                 .findFirst().orElseThrow().rule();
-        var plans = MaterialRuleExpansion.expandPlans(
+        var plans = MaterialRuleExpansion.expandFactualPlans(
                 id("smelter/exact"), smelter,
                 List.of(zircon, multi, overCapacity, ingotTarget));
         assertEquals(List.of("multi", "zircon"), plans.stream()
@@ -426,7 +544,7 @@ class MaterialRuleExpansionTest {
         MaterialRule crusher = T2ChainRules.ALL.stream()
                 .filter(definition -> definition.path().equals("crusher/ingot_to_dust"))
                 .findFirst().orElseThrow().rule();
-        var plans = MaterialRuleExpansion.expandPlans(
+        var plans = MaterialRuleExpansion.expandFactualPlans(
                 id("crusher/ingot_to_dust"),
                 crusher,
                 List.of(
@@ -447,6 +565,15 @@ class MaterialRuleExpansionTest {
     private static GT6MaterialMetadata metadata(
             List<GT6MaterialMetadata.MaterialReference> byproducts,
             Map<String, GT6MaterialMetadata.MaterialAmount> targets) {
+        return metadata(byproducts, targets, List.of(), 0, 0);
+    }
+
+    private static GT6MaterialMetadata metadata(
+            List<GT6MaterialMetadata.MaterialReference> byproducts,
+            Map<String, GT6MaterialMetadata.MaterialAmount> targets,
+            List<String> materialTags,
+            double explosionDamage,
+            double heatDamage) {
         return new GT6MaterialMetadata(
                 1, "Source", List.of(), "solid", Optional.empty(),
                 new GT6MaterialMetadata.SourceThermal(
@@ -454,7 +581,8 @@ class MaterialRuleExpansionTest {
                 GT6MaterialMetadata.ToolStats.EMPTY,
                 byproducts,
                 targets,
-                List.of(), List.of(), 0, 0, Optional.empty(), Map.of());
+                materialTags, List.of(), explosionDamage, heatDamage,
+                Optional.empty(), Map.of());
     }
 
     private static MaterialDefinition material(
@@ -490,6 +618,26 @@ class MaterialRuleExpansionTest {
                 Map.of(), Map.of(), Map.of(), Map.of());
     }
 
+    private static MaterialRule withConditions(
+            MaterialRule rule,
+            List<String> conditions) {
+        return new MaterialRule(
+                rule.target(),
+                rule.itemInputs(),
+                rule.itemOutputs(),
+                rule.fluidInputs(),
+                rule.fluidOutputs(),
+                rule.duration(),
+                rule.eut(),
+                rule.specialValue(),
+                rule.canBeBuffered(),
+                rule.material(),
+                rule.materialOverrides(),
+                conditions,
+                rule.tuning(),
+                rule.unification());
+    }
+
     private static ResourceLocation id(String path) {
         return ResourceLocation.fromNamespaceAndPath("test", path);
     }
@@ -523,7 +671,8 @@ class MaterialRuleExpansionTest {
             public Optional<Fluid> fluid(
                     MaterialDefinition material,
                     Optional<MaterialPrefix> prefix,
-                    Optional<ResourceLocation> fixed) {
+                    Optional<ResourceLocation> fixed,
+                    Optional<String> materialFluid) {
                 return Optional.empty();
             }
         };

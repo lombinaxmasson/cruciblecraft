@@ -14,18 +14,25 @@ import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.material.MaterialCatalog;
-import com.masson.cruciblecraft.material.MaterialRegistrationGate;
+import com.masson.cruciblecraft.material.MaterialComponentPolicies;
+import com.masson.cruciblecraft.material.def.GT6MaterialMetadata;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
+import com.masson.cruciblecraft.recipe.gt.ComponentIngredientIndex;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
+import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
 import com.masson.cruciblecraft.registry.ModFluids;
 
+import net.minecraft.core.component.DataComponentPredicate;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluid;
+import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 /** One generic projection path for every declarative and legacy-adapted rule. */
@@ -33,55 +40,61 @@ public final class MaterialRuleExpansion {
     private static final int MAX_ITEM_BATCH = 64;
     private MaterialRuleExpansion() {}
 
-    public static List<Expanded> expand(
-            ResourceLocation ruleId,
-            MaterialRule rule) {
-        return expand(
-                ruleId,
-                rule,
-                MaterialCatalog.values(),
-                DEFAULT_RESOLVER,
-                MaterialCatalog.prefixIndex());
+    /** One explicit factual/registered form snapshot shared by a full expansion pass. */
+    public record FormIndexes(
+            Map<MaterialPrefix, List<MaterialDefinition>> factual,
+            Map<MaterialPrefix, List<MaterialDefinition>> registered) {
+        public FormIndexes {
+            factual = Map.copyOf(factual);
+            registered = Map.copyOf(registered);
+        }
+
+        public static FormIndexes factualOnly(
+                Collection<MaterialDefinition> materials) {
+            Map<MaterialPrefix, List<MaterialDefinition>> factual =
+                    buildPrefixIndex(materials);
+            return new FormIndexes(factual, factual);
+        }
+
+        public static FormIndexes withRegisteredForms(
+                Collection<MaterialDefinition> materials,
+                Map<String, List<MaterialPrefix>> registeredForms) {
+            return new FormIndexes(
+                    buildPrefixIndex(materials),
+                    buildPrefixIndex(materials, registeredForms));
+        }
     }
 
     public static List<Expanded> expand(
-            ResourceLocation ruleId,
-            MaterialRule rule,
-            java.util.Collection<MaterialDefinition> availableMaterials,
-            ResourceResolver resolver) {
-        return expand(
-                ruleId,
-                rule,
-                availableMaterials,
-                resolver,
-                buildPrefixIndex(availableMaterials));
-    }
-
-    public static List<Expanded> expand(
-            ResourceLocation ruleId,
-            MaterialRule rule,
-            java.util.Collection<MaterialDefinition> availableMaterials) {
-        return expand(ruleId, rule, availableMaterials, DEFAULT_RESOLVER);
-    }
-
-    public static List<Expanded> expand(
-            ResourceLocation ruleId,
-            MaterialRule rule,
-            java.util.Collection<MaterialDefinition> availableMaterials,
-            Map<String, String> candidatePreferences) {
-        return expand(
-                ruleId,
-                rule,
-                availableMaterials,
-                candidateResolver(candidatePreferences));
-    }
-
-    private static List<Expanded> expand(
             ResourceLocation ruleId,
             MaterialRule rule,
             java.util.Collection<MaterialDefinition> availableMaterials,
             ResourceResolver resolver,
-            Map<MaterialPrefix, List<MaterialDefinition>> prefixIndex) {
+            FormIndexes formIndexes) {
+        return expandInternal(
+                ruleId, rule, availableMaterials, resolver, formIndexes);
+    }
+
+    public static List<Expanded> expand(
+            ResourceLocation ruleId,
+            MaterialRule rule,
+            java.util.Collection<MaterialDefinition> availableMaterials,
+            Map<String, String> candidatePreferences,
+            FormIndexes formIndexes) {
+        return expandInternal(
+                ruleId,
+                rule,
+                availableMaterials,
+                candidateResolver(candidatePreferences),
+                formIndexes);
+    }
+
+    private static List<Expanded> expandInternal(
+            ResourceLocation ruleId,
+            MaterialRule rule,
+            java.util.Collection<MaterialDefinition> availableMaterials,
+            ResourceResolver resolver,
+            FormIndexes formIndexes) {
         if (rule.target().isEmpty()) {
             return List.of();
         }
@@ -89,12 +102,17 @@ public final class MaterialRuleExpansion {
         Map<String, MaterialDefinition> materialsById = index(availableMaterials);
         List<MaterialDefinition> candidates =
                 candidateMaterials(
-                        rule, compiled.requiredPrefixes(), availableMaterials, prefixIndex);
+                        rule,
+                        compiled.requiredPrefixes(),
+                        availableMaterials,
+                        formIndexes.registered());
         List<Expanded> result = new ArrayList<>();
         for (MaterialDefinition material : candidates) {
             EvaluationContext context = new EvaluationContext(
                     material,
-                    indexedPrefixes(material, prefixIndex),
+                    materialsById.keySet(),
+                    indexedPrefixes(material, formIndexes.factual()),
+                    indexedPrefixes(material, formIndexes.registered()),
                     compiled.inputUnit(),
                     compiled.outputUnit(),
                     compiled.singlePrefixUnit());
@@ -103,7 +121,15 @@ public final class MaterialRuleExpansion {
                 continue;
             }
             Optional<GTRecipe> projected =
-                    project(ruleId, rule, compiled, material, context, materialsById, resolver);
+                    project(
+                            ruleId,
+                            rule,
+                            compiled,
+                            material,
+                            context,
+                            materialsById,
+                            resolver,
+                            formIndexes.registered());
             projected.ifPresent(recipe -> result.add(new Expanded(
                     expandedId(ruleId, material.id()),
                     rule.target().orElseThrow(),
@@ -113,11 +139,8 @@ public final class MaterialRuleExpansion {
         return List.copyOf(result);
     }
 
-    /**
-     * Registry-independent expansion plan used for validation and parity tests.
-     * Runtime projection resolves these refs to tags/items/fluids afterwards.
-     */
-    public static List<Plan> expandPlans(
+    /** Test-only plan expansion that deliberately treats every factual form as registered. */
+    public static List<Plan> expandFactualPlans(
             ResourceLocation ruleId,
             MaterialRule rule,
             java.util.Collection<MaterialDefinition> availableMaterials) {
@@ -125,22 +148,11 @@ public final class MaterialRuleExpansion {
                 ruleId,
                 rule,
                 availableMaterials,
-                buildPrefixIndex(availableMaterials));
+                FormIndexes.factualOnly(availableMaterials));
     }
 
-    /** Registry-independent plan expansion using the committed registration gate. */
-    public static List<Plan> expandRegisteredPlans(
-            ResourceLocation ruleId,
-            MaterialRule rule,
-            java.util.Collection<MaterialDefinition> availableMaterials) {
-        return expandPlansWithForms(
-                ruleId,
-                rule,
-                availableMaterials,
-                MaterialRegistrationGate.load(availableMaterials));
-    }
-
-    public static List<Plan> expandPlansWithForms(
+    /** Plan expansion with an explicit player-obtainable form snapshot. */
+    public static List<Plan> expandPlansWithRegisteredForms(
             ResourceLocation ruleId,
             MaterialRule rule,
             java.util.Collection<MaterialDefinition> availableMaterials,
@@ -149,14 +161,15 @@ public final class MaterialRuleExpansion {
                 ruleId,
                 rule,
                 availableMaterials,
-                buildPrefixIndex(availableMaterials, formsByMaterial));
+                FormIndexes.withRegisteredForms(
+                        availableMaterials, formsByMaterial));
     }
 
     private static List<Plan> expandPlans(
             ResourceLocation ruleId,
             MaterialRule rule,
             java.util.Collection<MaterialDefinition> availableMaterials,
-            Map<MaterialPrefix, List<MaterialDefinition>> prefixIndex) {
+            FormIndexes formIndexes) {
         if (rule.target().isEmpty()) {
             return List.of();
         }
@@ -165,10 +178,15 @@ public final class MaterialRuleExpansion {
         List<Plan> plans = new ArrayList<>();
         for (MaterialDefinition material
                 : candidateMaterials(
-                        rule, compiled.requiredPrefixes(), availableMaterials, prefixIndex)) {
+                        rule,
+                        compiled.requiredPrefixes(),
+                        availableMaterials,
+                        formIndexes.registered())) {
             EvaluationContext context = new EvaluationContext(
                     material,
-                    indexedPrefixes(material, prefixIndex),
+                    materialsById.keySet(),
+                    indexedPrefixes(material, formIndexes.factual()),
+                    indexedPrefixes(material, formIndexes.registered()),
                     compiled.inputUnit(),
                     compiled.outputUnit(),
                     compiled.singlePrefixUnit());
@@ -180,13 +198,16 @@ public final class MaterialRuleExpansion {
                     rule.materialOverrides().getOrDefault(
                             material.id(), MaterialRule.MaterialOverride.empty());
             List<PlannedResource> itemInputs = new ArrayList<>();
+            List<ItemInputAction> itemInputActions = new ArrayList<>();
             for (int index = 0; index < compiled.itemInputs().size(); index++) {
                 CompiledItem resource = compiled.itemInputs().get(index);
                 SelectedMaterial selection = selectMaterial(
                         material, resource.materialSelector(), materialsById).orElse(null);
                 if (selection == null || resource.prefix().isPresent()
                         && !hasIndexedPrefix(
-                                selection.material(), resource.prefix().get(), prefixIndex)) {
+                                selection.material(),
+                                resource.prefix().get(),
+                                formIndexes.registered())) {
                     itemInputs.clear();
                     break;
                 }
@@ -196,15 +217,23 @@ public final class MaterialRuleExpansion {
                         context.forResource(resource.prefix(), selection.targetUnits()),
                         ruleId,
                         resource.candidateSpecificAmount(),
-                        resource.fixed().isPresent());
+                        resource.fixed().isPresent()
+                                || resource.tag().isPresent());
                 if (count.isEmpty()) {
                     itemInputs.clear();
                     break;
                 }
                 itemInputs.add(new PlannedResource(
-                        ref(resource.prefix(), resource.fixed(), selection.material().id()),
+                        ref(
+                                resource.prefix(),
+                                resource.fixed(),
+                                resource.tag(),
+                                selection.material().id(),
+                                resolveStringComponents(
+                                        resource.stringComponents(), material)),
                         count.get(),
                         GTRecipe.GUARANTEED_CHANCE));
+                itemInputActions.add(inputAction(resource, count.get()));
             }
             if (itemInputs.size() != compiled.itemInputs().size()) continue;
             List<PlannedResource> itemOutputs = new ArrayList<>();
@@ -214,7 +243,9 @@ public final class MaterialRuleExpansion {
                         material, resource.materialSelector(), materialsById).orElse(null);
                 if (selection == null || resource.prefix().isPresent()
                         && !hasIndexedPrefix(
-                                selection.material(), resource.prefix().get(), prefixIndex)) {
+                                selection.material(),
+                                resource.prefix().get(),
+                                formIndexes.registered())) {
                     if (resource.optional()) continue;
                     itemOutputs.clear();
                     break;
@@ -231,7 +262,12 @@ public final class MaterialRuleExpansion {
                     break;
                 }
                 itemOutputs.add(new PlannedResource(
-                        ref(resource.prefix(), resource.fixed(), selection.material().id()),
+                        ref(
+                                resource.prefix(),
+                                resource.fixed(),
+                                selection.material().id(),
+                                resolveStringComponents(
+                                        resource.stringComponents(), material)),
                         count.get(),
                         evaluateInt(
                                 override.outputChances().get(Integer.toString(index)),
@@ -247,6 +283,7 @@ public final class MaterialRuleExpansion {
                     rule.target().orElseThrow(),
                     material.id(),
                     itemInputs,
+                    itemInputActions,
                     itemOutputs,
                     fluidInputs,
                     fluidOutputs,
@@ -271,7 +308,10 @@ public final class MaterialRuleExpansion {
         for (int index = 0; index < resources.size(); index++) {
             CompiledFluid resource = resources.get(index);
             result.add(new PlannedResource(
-                    ref(resource.prefix(), resource.fixed()),
+                    refFluid(
+                            resource.prefix(),
+                            resource.fixed(),
+                            resource.materialFluid()),
                     evaluateInt(
                             override.fluidAmounts().get(side + ":" + index),
                             resource.amount(), context, ruleId),
@@ -283,17 +323,58 @@ public final class MaterialRuleExpansion {
     private static ResourceRef ref(
             Optional<MaterialPrefix> prefix,
             Optional<ResourceLocation> fixed,
-            String materialId) {
+            Optional<ResourceLocation> tag,
+            String materialId,
+            Map<ResourceLocation, String> stringComponents) {
+        if (tag.isPresent()) {
+            return new ResourceRef(
+                    Optional.of("tag:" + tag.orElseThrow()),
+                    Optional.empty(),
+                    materialId,
+                    stringComponents);
+        }
         return new ResourceRef(
                 prefix.map(MaterialPrefix::serializedId),
                 fixed,
-                materialId);
+                materialId,
+                stringComponents);
+    }
+
+    private static ResourceRef ref(
+            Optional<MaterialPrefix> prefix,
+            Optional<ResourceLocation> fixed,
+            String materialId,
+            Map<ResourceLocation, String> stringComponents) {
+        return ref(
+                prefix,
+                fixed,
+                Optional.empty(),
+                materialId,
+                stringComponents);
+    }
+
+    private static ResourceRef ref(
+            Optional<MaterialPrefix> prefix,
+            Optional<ResourceLocation> fixed,
+            String materialId) {
+        return ref(prefix, fixed, materialId, Map.of());
     }
 
     private static ResourceRef ref(
             Optional<MaterialPrefix> prefix,
             Optional<ResourceLocation> fixed) {
         return ref(prefix, fixed, "");
+    }
+
+    private static ResourceRef refFluid(
+            Optional<MaterialPrefix> prefix,
+            Optional<ResourceLocation> fixed,
+            Optional<String> materialFluid) {
+        return materialFluid
+                .map(selector -> new ResourceRef(
+                        Optional.of("material_fluid:" + selector),
+                        Optional.empty()))
+                .orElseGet(() -> ref(prefix, fixed));
     }
 
     private static Optional<GTRecipe> project(
@@ -303,22 +384,32 @@ public final class MaterialRuleExpansion {
             MaterialDefinition material,
             EvaluationContext context,
             Map<String, MaterialDefinition> materialsById,
-            ResourceResolver resolver) {
+            ResourceResolver resolver,
+            Map<MaterialPrefix, List<MaterialDefinition>> registeredPrefixIndex) {
         MaterialRule.MaterialOverride override =
                 rule.materialOverrides().getOrDefault(
                         material.id(), MaterialRule.MaterialOverride.empty());
         List<Ingredient> itemInputs = new ArrayList<>();
         List<Integer> inputCounts = new ArrayList<>();
+        List<ItemInputAction> itemInputActions = new ArrayList<>();
         for (int index = 0; index < compiled.itemInputs().size(); index++) {
             CompiledItem resource = compiled.itemInputs().get(index);
             SelectedMaterial selection = selectMaterial(
                     material, resource.materialSelector(), materialsById).orElse(null);
             if (selection == null || resource.prefix().isPresent()
-                    && !selection.material().forms().contains(resource.prefix().get())) {
+                    && !hasIndexedPrefix(
+                            selection.material(),
+                            resource.prefix().get(),
+                            registeredPrefixIndex)) {
                 return Optional.empty();
             }
-            Optional<Ingredient> ingredient = resolver.itemInput(
-                    selection.material(), resource.prefix(), resource.fixed());
+            Optional<Ingredient> ingredient = resource.tag()
+                    .map(tag -> Ingredient.of(TagKey.create(
+                            Registries.ITEM, tag)))
+                    .or(() -> resolver.itemInput(
+                            selection.material(),
+                            resource.prefix(),
+                            resource.fixed()));
             if (ingredient.isEmpty()) return Optional.empty();
             Optional<Integer> count = evaluateResourceCount(
                     override.itemInputCounts().get(Integer.toString(index)),
@@ -326,10 +417,13 @@ public final class MaterialRuleExpansion {
                     context.forResource(resource.prefix(), selection.targetUnits()),
                     ruleId,
                     resource.candidateSpecificAmount(),
-                    resource.fixed().isPresent());
+                    resource.fixed().isPresent()
+                            || resource.tag().isPresent());
             if (count.isEmpty()) return Optional.empty();
-            itemInputs.add(ingredient.get());
+            itemInputs.add(withStringComponents(
+                    ingredient.get(), resource, material));
             inputCounts.add(count.get());
+            itemInputActions.add(inputAction(resource, count.get()));
         }
 
         List<ItemStack> itemOutputs = new ArrayList<>();
@@ -339,7 +433,10 @@ public final class MaterialRuleExpansion {
             SelectedMaterial selection = selectMaterial(
                     material, resource.materialSelector(), materialsById).orElse(null);
             if (selection == null || resource.prefix().isPresent()
-                    && !selection.material().forms().contains(resource.prefix().get())) {
+                    && !hasIndexedPrefix(
+                            selection.material(),
+                            resource.prefix().get(),
+                            registeredPrefixIndex)) {
                 if (resource.optional()) continue;
                 return Optional.empty();
             }
@@ -364,7 +461,13 @@ public final class MaterialRuleExpansion {
                     resource.chance(),
                     resourceContext,
                     ruleId);
-            itemOutputs.add(new ItemStack(item.get(), count.get()));
+            ItemStack stack = new ItemStack(item.get(), count.get());
+            applyStringComponents(
+                    stack,
+                    resolveStringComponents(
+                            resource.stringComponents(), material),
+                    ruleId);
+            itemOutputs.add(stack);
             chances.add(chance);
         }
 
@@ -384,6 +487,7 @@ public final class MaterialRuleExpansion {
         return Optional.of(new GTRecipe(
                 itemInputs,
                 inputCounts,
+                itemInputActions,
                 itemOutputs,
                 fluidInputs,
                 fluidOutputs,
@@ -391,7 +495,74 @@ public final class MaterialRuleExpansion {
                 duration,
                 eut,
                 special,
-                rule.canBeBuffered()));
+                rule.canBeBuffered(),
+                Optional.empty()));
+    }
+
+    private static ItemInputAction inputAction(
+            CompiledItem resource,
+            int count) {
+        return resource.inputAction().orElseGet(() ->
+                count == 0 ? ItemInputAction.PRESERVE : ItemInputAction.CONSUME);
+    }
+
+    private static Ingredient withStringComponents(
+            Ingredient ingredient,
+            CompiledItem resource,
+            MaterialDefinition material) {
+        if (resource.stringComponents().isEmpty()) {
+            return ingredient;
+        }
+        Item item = BuiltInRegistries.ITEM.getOptional(
+                        resource.fixed().orElseThrow())
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Unknown fixed component item "
+                                + resource.fixed().orElseThrow()));
+        DataComponentPredicate.Builder predicate = DataComponentPredicate.builder();
+        resolveStringComponents(resource.stringComponents(), material)
+                .forEach((componentId, value) -> predicate.expect(
+                        ComponentIngredientIndex.stringComponentType(componentId)
+                                .orElseThrow(() -> new IllegalArgumentException(
+                                        "Unsupported indexed string component "
+                                                + componentId)),
+                        value));
+        return DataComponentIngredient.of(false, predicate.build(), item);
+    }
+
+    private static void applyStringComponents(
+            ItemStack stack,
+            Map<ResourceLocation, String> components,
+            ResourceLocation ruleId) {
+        ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(stack.getItem());
+        components.forEach((componentId, value) -> {
+            if (!MaterialComponentPolicies.isValid(
+                    itemId.toString(),
+                    componentId.toString(),
+                    value,
+                    MaterialCatalog::contains)) {
+                throw new IllegalArgumentException(
+                        "material rule " + ruleId
+                                + ": output " + itemId
+                                + " rejects " + componentId
+                                + "=" + value);
+            }
+            stack.set(
+                ComponentIngredientIndex.stringComponentType(componentId)
+                        .orElseThrow(() -> new IllegalArgumentException(
+                                "Unsupported indexed string component "
+                                        + componentId)),
+                value);
+        });
+    }
+
+    private static Map<ResourceLocation, String> resolveStringComponents(
+            Map<ResourceLocation, String> components,
+            MaterialDefinition material) {
+        LinkedHashMap<ResourceLocation, String> resolved = new LinkedHashMap<>();
+        components.forEach((componentId, value) -> resolved.put(
+                componentId,
+                value.equals("$material") ? material.id() : value));
+        return Map.copyOf(resolved);
     }
 
     private static List<FluidStack> resolveFluids(
@@ -406,7 +577,10 @@ public final class MaterialRuleExpansion {
         for (int index = 0; index < resources.size(); index++) {
             CompiledFluid resource = resources.get(index);
             Optional<Fluid> fluid = resolver.fluid(
-                    material, resource.prefix(), resource.fixed());
+                    material,
+                    resource.prefix(),
+                    resource.fixed(),
+                    resource.materialFluid());
             if (fluid.isEmpty()) return null;
             String key = side + ":" + index;
             int amount = evaluateInt(
@@ -576,10 +750,13 @@ public final class MaterialRuleExpansion {
         return new CompiledItem(
                 resource.prefix().map(MaterialPrefixCatalog::require),
                 resource.item(),
+                resource.tag(),
                 RuleExpression.numeric(resource.count(), diagnostic),
                 RuleExpression.numeric(resource.chance(), diagnostic),
                 resource.materialSelector().orElse("self"),
-                resource.optional());
+                resource.optional(),
+                resource.stringComponents(),
+                resource.inputAction());
     }
 
     private static CompiledFluid compile(
@@ -588,6 +765,7 @@ public final class MaterialRuleExpansion {
         return new CompiledFluid(
                 resource.prefix().map(MaterialPrefixCatalog::require),
                 resource.fluid(),
+                resource.materialFluid(),
                 RuleExpression.numeric(resource.amount(), diagnostic));
     }
 
@@ -672,9 +850,31 @@ public final class MaterialRuleExpansion {
     public record ResourceRef(
             Optional<String> prefix,
             Optional<ResourceLocation> fixed,
-            String materialId) {
+            String materialId,
+            Map<ResourceLocation, String> stringComponents) {
+        public ResourceRef {
+            stringComponents = Map.copyOf(stringComponents);
+        }
+
+        public ResourceRef(
+                Optional<String> prefix,
+                Optional<ResourceLocation> fixed,
+                String materialId) {
+            this(prefix, fixed, materialId, Map.of());
+        }
+
         public ResourceRef(Optional<String> prefix, Optional<ResourceLocation> fixed) {
-            this(prefix, fixed, "");
+            this(prefix, fixed, "", Map.of());
+        }
+
+        @Override
+        public String toString() {
+            String legacy = "ResourceRef[prefix=" + prefix
+                    + ", fixed=" + fixed
+                    + ", materialId=" + materialId;
+            return stringComponents.isEmpty()
+                    ? legacy + "]"
+                    : legacy + ", stringComponents=" + stringComponents + "]";
         }
     }
 
@@ -685,6 +885,7 @@ public final class MaterialRuleExpansion {
             ResourceLocation target,
             String materialId,
             List<PlannedResource> itemInputs,
+            List<ItemInputAction> itemInputActions,
             List<PlannedResource> itemOutputs,
             List<PlannedResource> fluidInputs,
             List<PlannedResource> fluidOutputs,
@@ -695,6 +896,7 @@ public final class MaterialRuleExpansion {
             boolean materialSpecific) {
         public Plan {
             itemInputs = List.copyOf(itemInputs);
+            itemInputActions = List.copyOf(itemInputActions);
             itemOutputs = List.copyOf(itemOutputs);
             fluidInputs = List.copyOf(fluidInputs);
             fluidOutputs = List.copyOf(fluidOutputs);
@@ -715,7 +917,8 @@ public final class MaterialRuleExpansion {
         Optional<Fluid> fluid(
                 MaterialDefinition material,
                 Optional<MaterialPrefix> prefix,
-                Optional<ResourceLocation> fixed);
+                Optional<ResourceLocation> fixed,
+                Optional<String> materialFluid);
     }
 
     public static ResourceResolver candidateResolver(
@@ -756,9 +959,25 @@ public final class MaterialRuleExpansion {
             public Optional<Fluid> fluid(
                     MaterialDefinition material,
                     Optional<MaterialPrefix> prefix,
-                    Optional<ResourceLocation> fixed) {
-                if (prefix.isEmpty()) {
+                    Optional<ResourceLocation> fixed,
+                    Optional<String> materialFluid) {
+                if (materialFluid.isPresent()) {
+                    return switch (materialFluid.orElseThrow()) {
+                        case "chemical" -> ModFluids.chemical(material.id())
+                                .map(registration -> registration.source().get());
+                        case "molten" -> ModFluids.molten(material.id())
+                                .map(registration -> registration.source().get());
+                        default -> throw new IllegalStateException(
+                                "Compiled unsupported material fluid selector: "
+                                        + materialFluid.orElseThrow());
+                    };
+                }
+                if (fixed.isPresent()) {
                     return BuiltInRegistries.FLUID.getOptional(fixed.orElseThrow());
+                }
+                if (prefix.isEmpty()) {
+                    throw new IllegalStateException(
+                            "Compiled fluid resource has no selector");
                 }
                 if (!material.forms().contains(prefix.get()) || !material.moltenFluid()) {
                     return Optional.empty();
@@ -777,43 +996,6 @@ public final class MaterialRuleExpansion {
                 Map<String, String> preferences);
     }
 
-    private static final ResourceResolver DEFAULT_RESOLVER = new ResourceResolver() {
-        @Override
-        public Optional<Ingredient> itemInput(
-                MaterialDefinition material,
-                Optional<MaterialPrefix> prefix,
-                Optional<ResourceLocation> fixed) {
-            return prefix.isPresent()
-                    ? MaterialLookup.ingredient(material.id(), prefix.get())
-                    : BuiltInRegistries.ITEM.getOptional(fixed.orElseThrow()).map(Ingredient::of);
-        }
-
-        @Override
-        public Optional<Item> itemOutput(
-                MaterialDefinition material,
-                Optional<MaterialPrefix> prefix,
-                Optional<ResourceLocation> fixed) {
-            return prefix.isPresent()
-                    ? MaterialLookup.item(material.id(), prefix.get())
-                    : BuiltInRegistries.ITEM.getOptional(fixed.orElseThrow());
-        }
-
-        @Override
-        public Optional<Fluid> fluid(
-                MaterialDefinition material,
-                Optional<MaterialPrefix> prefix,
-                Optional<ResourceLocation> fixed) {
-            if (prefix.isEmpty()) {
-                return BuiltInRegistries.FLUID.getOptional(fixed.orElseThrow());
-            }
-            if (!material.forms().contains(prefix.get()) || !material.moltenFluid()) {
-                return Optional.empty();
-            }
-            return ModFluids.molten(material.id())
-                    .map(registration -> registration.source().get());
-        }
-    };
-
     private record Compiled(
             List<CompiledItem> itemInputs,
             List<CompiledItem> itemOutputs,
@@ -831,10 +1013,13 @@ public final class MaterialRuleExpansion {
     private record CompiledItem(
             Optional<MaterialPrefix> prefix,
             Optional<ResourceLocation> fixed,
+            Optional<ResourceLocation> tag,
             RuleExpression amount,
             RuleExpression chance,
             String materialSelector,
-            boolean optional) {
+            boolean optional,
+            Map<ResourceLocation, String> stringComponents,
+            Optional<ItemInputAction> inputAction) {
         boolean selectsSelf() {
             return materialSelector.equals("self");
         }
@@ -849,11 +1034,14 @@ public final class MaterialRuleExpansion {
     private record CompiledFluid(
             Optional<MaterialPrefix> prefix,
             Optional<ResourceLocation> fixed,
+            Optional<String> materialFluid,
             RuleExpression amount) {}
 
     private record EvaluationContext(
             MaterialDefinition material,
-            Set<MaterialPrefix> availablePrefixes,
+            Set<String> knownMaterialIds,
+            Set<MaterialPrefix> factualForms,
+            Set<MaterialPrefix> registeredForms,
             Double inputUnit,
             Double outputUnit,
             Double prefixUnit,
@@ -861,13 +1049,17 @@ public final class MaterialRuleExpansion {
             Double resourcePrefixUnits) implements RuleExpression.Context {
         EvaluationContext(
                 MaterialDefinition material,
-                Set<MaterialPrefix> availablePrefixes,
+                Set<String> knownMaterialIds,
+                Set<MaterialPrefix> factualForms,
+                Set<MaterialPrefix> registeredForms,
                 Double inputUnit,
                 Double outputUnit,
                 Double prefixUnit) {
             this(
                     material,
-                    availablePrefixes,
+                    knownMaterialIds,
+                    factualForms,
+                    registeredForms,
                     inputUnit,
                     outputUnit,
                     prefixUnit,
@@ -880,7 +1072,9 @@ public final class MaterialRuleExpansion {
                 Double selectedTargetUnits) {
             return new EvaluationContext(
                     material,
-                    availablePrefixes,
+                    knownMaterialIds,
+                    factualForms,
+                    registeredForms,
                     inputUnit,
                     outputUnit,
                     prefixUnit,
@@ -896,6 +1090,18 @@ public final class MaterialRuleExpansion {
                 case "material.thermal.melting_point" -> material.thermal().meltingPoint();
                 case "material.thermal.boiling_point" -> material.thermal().boilingPoint();
                 case "material.thermal.density" -> material.thermal().density();
+                case "material.explosion_damage" -> material.gt6Metadata()
+                        .map(GT6MaterialMetadata::explosionDamage)
+                        .orElse(0.0D);
+                case "material.heat_damage" -> material.gt6Metadata()
+                        .map(GT6MaterialMetadata::heatDamage)
+                        .orElse(0.0D);
+                case "material.tool.types" -> material.gt6Metadata()
+                        .map(metadata -> (double) metadata.tool().types())
+                        .orElse(0.0D);
+                case "material.tool.quality" -> material.gt6Metadata()
+                        .map(metadata -> (double) metadata.tool().quality())
+                        .orElse(0.0D);
                 case "input.units" -> requireUnit(inputUnit, name);
                 case "output.units" -> requireUnit(outputUnit, name);
                 case "prefix.units" -> requireUnit(prefixUnit, name);
@@ -933,8 +1139,30 @@ public final class MaterialRuleExpansion {
         }
 
         @Override
-        public boolean hasPrefix(String prefix) {
-            return availablePrefixes.contains(MaterialPrefixCatalog.require(prefix));
+        public boolean materialTag(String tag) {
+            return material.gt6Metadata()
+                    .map(metadata -> metadata.materialTags().contains(tag))
+                    .orElse(false);
+        }
+
+        @Override
+        public boolean materialIs(String materialId) {
+            MaterialRule.requireMaterialId(materialId, "material.is argument");
+            if (!knownMaterialIds.contains(materialId)) {
+                throw new IllegalArgumentException(
+                        "Unknown material.is material: " + materialId);
+            }
+            return material.id().equals(materialId);
+        }
+
+        @Override
+        public boolean hasForm(String prefix) {
+            return factualForms.contains(MaterialPrefixCatalog.require(prefix));
+        }
+
+        @Override
+        public boolean hasRegistered(String prefix) {
+            return registeredForms.contains(MaterialPrefixCatalog.require(prefix));
         }
 
         private static double requireUnit(Double value, String name) {

@@ -4,10 +4,13 @@ import java.util.Locale;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
+import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
+import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.registry.ModItems;
+import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
 
 import net.minecraft.data.PackOutput;
@@ -30,6 +33,135 @@ public class ModLanguageProvider extends LanguageProvider {
         if (chinese) {
             ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                     addItem(ModItems.extruderShape(shape.id()), shape.chineseName()));
+            ToolPatternCatalog.DEFINITIONS.forEach(pattern ->
+                    addItem(ModItems.toolPattern(pattern.id()), pattern.chineseName()));
+            addItem(ModItems.FLINT_KNIFE, "燧石刀");
+            add("screen.cruciblecraft.processing.status.unsupported_version",
+                    "存档版本不受支持（版本 %s）");
+            add("screen.cruciblecraft.processing.status.material_quarantined",
+                    "机器材料已隔离");
+            add("screen.cruciblecraft.processing.status.unknown", "未知状态");
+            add("screen.cruciblecraft.processing.status.idle", "空闲");
+            add("screen.cruciblecraft.processing.status.running", "运行中");
+            add("screen.cruciblecraft.processing.status.invalid_recipe", "配方无效");
+            add("screen.cruciblecraft.processing.status.output_blocked", "输出受阻");
+            add("screen.cruciblecraft.processing.status.underpowered", "供能不足");
+            add("screen.cruciblecraft.processing.status.inventory_layout_quarantined",
+                    "库存布局不兼容（存档槽位：%s）");
+            add("screen.cruciblecraft.processing.tank_empty", "空罐（容量 %s mB）");
+            add("screen.cruciblecraft.processing.tank_named", "%s：%s/%s mB");
+            add("message.cruciblecraft.anvil_material_quarantined",
+                    "砧的材料 %s 已被隔离");
+            add("message.cruciblecraft.crucible_casing_quarantined",
+                    "坩埚外壳材料 %s 已被隔离");
+            add("message.cruciblecraft.invalid_hammer_material",
+                    "锤头材料 %s 无效");
+            add("message.cruciblecraft.invalid_machine_material",
+                    "%s材料 %s 无效");
+            add("tooltip.cruciblecraft.invalid_tool_material",
+                    "无效工具材料：%s");
+            add("tooltip.cruciblecraft.invalid_machine_material",
+                    "无效%s材料：%s");
+            add("tooltip.cruciblecraft.material_formula", "化学式：%s");
+            add("jade.cruciblecraft.material_quarantined",
+                    "%s材料已隔离：%s");
+            add("jade.cruciblecraft.processing_machine",
+                    "功率：%s/t，进度：%s/%s（%s）");
+            add("jade.cruciblecraft.processing_tank",
+                    "罐 %s：%s，%s/%s mB");
+            add("jade.cruciblecraft.cable",
+                    "%s / %s：%s V，%s A，损耗 %s EU/方块，负载 %s A，烧毁 %s/16");
+            add("tooltip.cruciblecraft.electrical.specification",
+                    "GT6 规格：%s");
+            add("tooltip.cruciblecraft.electrical.rating",
+                    "额定：%s V，%s A，损耗 %s EU/方块");
+            add("tooltip.cruciblecraft.electrical.insulated", "绝缘电缆");
+            add("tooltip.cruciblecraft.electrical.bare", "裸线");
+            add("death.attack.electricity", "%s 被电死了");
+            addItem(ModItems.PORTABLE_FLUID_TANK, "便携流体罐");
+            add("tooltip.cruciblecraft.portable_fluid_tank.empty",
+                    "空（容量 %s mB）");
+            add("tooltip.cruciblecraft.portable_fluid_tank.contents",
+                    "%s：%s/%s mB");
+            addBlock(ModBlocks.ELECTROLYZER, "电解机");
+            addBlock(ModBlocks.MIXER, "混合机");
+            addBlock(ModBlocks.DISTILLERY, "蒸馏机");
+            addBlock(ModBlocks.AUTOCLAVE, "高压釜");
+            addBlock(ModBlocks.DRYING, "干燥机");
+            addBlock(ModBlocks.COMPRESSOR, "压缩机");
+            java.util.Map.ofEntries(
+                    java.util.Map.entry("sluice", "溜槽"),
+                    java.util.Map.entry("bath", "洗矿浴池"),
+                    java.util.Map.entry("centrifuge", "离心机"),
+                    java.util.Map.entry("shredder", "粉碎机"),
+                    java.util.Map.entry("sifter", "筛选机"),
+                    java.util.Map.entry("smelter", "熔炼炉"),
+                    java.util.Map.entry("mortar", "动力研钵"),
+                    java.util.Map.entry("extruder", "挤压机"),
+                    java.util.Map.entry("cutter", "切割机"),
+                    java.util.Map.entry("lathe", "车床"),
+                    java.util.Map.entry("rollingmill", "轧机"),
+                    java.util.Map.entry("rollbender", "卷板机"),
+                    java.util.Map.entry("wiremill", "线材轧机"),
+                    java.util.Map.entry("bender", "折弯机"),
+                    java.util.Map.entry("assembler", "装配机"),
+                    java.util.Map.entry("welder", "焊机"),
+                    java.util.Map.entry("press", "压机"),
+                    java.util.Map.entry("electrolyzer", "电解机"),
+                    java.util.Map.entry("mixer", "混合机"),
+                    java.util.Map.entry("distillery", "蒸馏机"),
+                    java.util.Map.entry("autoclave", "高压釜"),
+                    java.util.Map.entry("drying", "干燥机"),
+                    java.util.Map.entry("compressor", "压缩机"))
+                    .forEach((id, name) ->
+                            add("emi.category.cruciblecraft." + id, name));
+            add("emi.cruciblecraft.processing.preserved", "保留，不消耗");
+            add("emi.cruciblecraft.processing.wear", "工具耐久消耗：%s");
+            add("emi.cruciblecraft.processing.chance", "产出概率：%s%%");
+            add("emi.cruciblecraft.processing.duration", "耗时：%s tick（%s 秒）");
+            add("emi.cruciblecraft.processing.power.kinetic", "功率：%s KU/t");
+            add("emi.cruciblecraft.processing.power.electric", "功率：%s EU/t");
+            add("emi.cruciblecraft.processing.power.heat", "热功率：%s HU/t");
+            java.util.Map.ofEntries(
+                    java.util.Map.entry("molten_alumina", "熔融氧化铝"),
+                    java.util.Map.entry("bromine", "溴"),
+                    java.util.Map.entry("carbon_dioxide", "二氧化碳"),
+                    java.util.Map.entry("chlorine", "氯气"),
+                    java.util.Map.entry("fluorine", "氟气"),
+                    java.util.Map.entry("glue", "胶水"),
+                    java.util.Map.entry("helium", "氦气"),
+                    java.util.Map.entry("hydrochloric_acid", "盐酸"),
+                    java.util.Map.entry("hydrogen", "氢气"),
+                    java.util.Map.entry("hydrogen_fluoride", "氟化氢"),
+                    java.util.Map.entry("latex", "乳胶"),
+                    java.util.Map.entry("nitrogen", "氮气"),
+                    java.util.Map.entry("oxygen", "氧气"),
+                    java.util.Map.entry("sulfur_trioxide", "三氧化硫"),
+                    java.util.Map.entry("water_distilled", "蒸馏水"))
+                    .forEach((id, name) ->
+                            add("fluid_type.cruciblecraft." + id, name));
+            add("device.cruciblecraft.anvil", "砧");
+            add("device.cruciblecraft.crucible", "坩埚");
+            add("device.cruciblecraft.hammer", "锤");
+            add("item.cruciblecraft.material_pickaxe", "%s镐");
+            add("item.cruciblecraft.material_shovel", "%s铲");
+            add("item.cruciblecraft.material_axe", "%s斧");
+            add("item.cruciblecraft.material_hoe", "%s锄");
+            add("item.cruciblecraft.material_sword", "%s剑");
+            add("item.cruciblecraft.smithing_hammer", "%s锻造锤");
+            add("item.cruciblecraft.material_file", "%s锉刀");
+            add("item.cruciblecraft.material_chisel", "%s凿子");
+            add("item.cruciblecraft.material_saw", "%s锯");
+            add("item.cruciblecraft.material_screwdriver", "%s螺丝刀");
+            add("item.cruciblecraft.material_wrench", "%s扳手");
+            ModBlocks.electricalConductorBlocks().forEach(holder -> {
+                var conductor = holder.get().conductor();
+                add(
+                        "block." + CrucibleCraft.MODID + "."
+                                + conductor.registryName(),
+                        title(conductor.materialId()) + " "
+                                + (conductor.bareWire() ? "裸线" : "电缆"));
+            });
             return;
         }
         add("itemGroup.cruciblecraft", "Crucible Craft");
@@ -59,13 +191,20 @@ public class ModLanguageProvider extends LanguageProvider {
         addItem(ModItems.ROD_MOLD, "Rod Mold");
         addItem(ModItems.BOLT_MOLD, "Bolt Mold");
         addItem(ModItems.COAL_COKE, "Coal Coke");
+        addItem(ModItems.MATCH, "Match");
         addBlock(ModBlocks.BELLOWS, "Bellows");
         addItem(ModItems.CREOSOTE_BUCKET, "Creosote Bucket");
         add("fluid_type.cruciblecraft.creosote", "Creosote");
         addItem(ModItems.STEAM_BUCKET, "Steam Bucket");
         add("fluid_type.cruciblecraft.steam", "Steam");
+        addItem(ModItems.PORTABLE_FLUID_TANK, "Portable Fluid Tank");
+        add("tooltip.cruciblecraft.portable_fluid_tank.empty",
+                "Empty (capacity: %s mB)");
+        add("tooltip.cruciblecraft.portable_fluid_tank.contents",
+                "%s: %s/%s mB");
         addBlock(ModBlocks.BRONZE_BOILER, "Bronze Boiler");
         addBlock(ModBlocks.BRONZE_STEAM_ENGINE, "Bronze Steam Engine");
+        addBlock(ModBlocks.BRONZE_DYNAMO, "Bronze Dynamo");
         addBlock(ModBlocks.BRONZE_CRUSHER, "Bronze Crusher");
         addBlock(ModBlocks.SLUICE, "Sluice");
         addBlock(ModBlocks.BATH, "Ore Washing Bath");
@@ -84,28 +223,82 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.ASSEMBLER, "Assembler");
         addBlock(ModBlocks.WELDER, "Welder");
         addBlock(ModBlocks.PRESS, "Press");
+        addBlock(ModBlocks.ELECTROLYZER, "Electrolyzer");
+        addBlock(ModBlocks.MIXER, "Mixer");
+        addBlock(ModBlocks.DISTILLERY, "Distillery");
+        addBlock(ModBlocks.AUTOCLAVE, "Autoclave");
+        addBlock(ModBlocks.DRYING, "Drying Machine");
+        addBlock(ModBlocks.COMPRESSOR, "Compressor");
         add("screen.cruciblecraft.processing.status.idle", "Idle");
         add("screen.cruciblecraft.processing.status.running", "Running");
         add("screen.cruciblecraft.processing.status.invalid_recipe", "Invalid recipe");
         add("screen.cruciblecraft.processing.status.output_blocked", "Output blocked");
         add("screen.cruciblecraft.processing.status.underpowered", "Underpowered");
+        add("screen.cruciblecraft.processing.status.unsupported_version",
+                "Unsupported saved version (%s)");
+        add("screen.cruciblecraft.processing.status.inventory_layout_quarantined",
+                "Inventory layout quarantined (saved slots: %s)");
+        add("screen.cruciblecraft.processing.status.material_quarantined",
+                "Machine material quarantined");
+        add("screen.cruciblecraft.processing.status.unknown", "Unknown status");
         add("screen.cruciblecraft.processing.tank", "%s/%s mB");
+        add("screen.cruciblecraft.processing.tank_empty", "Empty (capacity: %s mB)");
+        add("screen.cruciblecraft.processing.tank_named", "%s: %s/%s mB");
         add("container.cruciblecraft.bronze_crusher", "Bronze Crusher");
         add("emi.category.cruciblecraft.crusher", "Crusher");
         add("jade.cruciblecraft.boiler", "Water: %s/%s mB, Steam: %s/%s mB, Heat: %s/80 HU");
         add("jade.cruciblecraft.steam_engine", "Steam: %s/%s mB, KU: %s/%s (%s stroke)");
         add("jade.cruciblecraft.crusher", "Power: %s KU/t, Progress: %s/%s (%s)");
-        addItem(ModItems.SMITHING_HAMMER, "Smithing Hammer");
+        add("jade.cruciblecraft.processing_machine",
+                "Power: %s/t, Progress: %s/%s (%s)");
+        add("jade.cruciblecraft.processing_tank",
+                "Tank %s: %s, %s/%s mB");
+        add("jade.cruciblecraft.cable",
+                "%s / %s: %s V, %s A, loss %s EU/block, load %s A, burn %s/16");
+        add("tooltip.cruciblecraft.electrical.specification",
+                "GT6 specification: %s");
+        add("tooltip.cruciblecraft.electrical.rating",
+                "Rating: %s V, %s A, loss %s EU/block");
+        add("tooltip.cruciblecraft.electrical.insulated",
+                "Insulated cable");
+        add("tooltip.cruciblecraft.electrical.bare", "Bare wire");
+        add("death.attack.electricity",
+                "%s was electrocuted");
+        add("item.cruciblecraft.smithing_hammer", "%s Smithing Hammer");
+        addItem(ModItems.FLINT_KNIFE, "Flint Knife");
+        add("item.cruciblecraft.material_pickaxe", "%s Pickaxe");
+        add("item.cruciblecraft.material_shovel", "%s Shovel");
+        add("item.cruciblecraft.material_axe", "%s Axe");
+        add("item.cruciblecraft.material_hoe", "%s Hoe");
+        add("item.cruciblecraft.material_sword", "%s Sword");
+        add("item.cruciblecraft.material_file", "%s File");
+        add("item.cruciblecraft.material_chisel", "%s Chisel");
+        add("item.cruciblecraft.material_saw", "%s Saw");
+        add("item.cruciblecraft.material_screwdriver", "%s Screwdriver");
+        add("item.cruciblecraft.material_wrench", "%s Wrench");
         addItem(ModItems.UNKNOWN_MATERIAL, "Unknown Material");
         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                 addItem(ModItems.extruderShape(shape.id()), shape.englishName()));
+        ToolPatternCatalog.DEFINITIONS.forEach(pattern ->
+                addItem(ModItems.toolPattern(pattern.id()), pattern.englishName()));
         ModBlocks.oreBlockPaths().keySet().forEach(key -> addBlock(
                 ModBlocks.oreBlock(key.materialId(), key.host()),
                 (key.host() == Host.DEEPSLATE ? "Deepslate " : "")
                         + title(key.materialId()) + " Ore"));
+        ModBlocks.electricalConductorBlocks().forEach(holder -> {
+            var conductor = holder.get().conductor();
+            add(
+                    "block." + CrucibleCraft.MODID + "."
+                            + conductor.registryName(),
+                    title(conductor.materialId()) + " "
+                            + title(conductor.form().serializedName()));
+        });
         add("tooltip.cruciblecraft.unknown_material", "Missing material: %s (%s)");
         add("tooltip.cruciblecraft.machine_material", "Casing: %s (material tier %s)");
         add("tooltip.cruciblecraft.tool_material", "Head: %s (material tier %s)");
+        add("tooltip.cruciblecraft.invalid_tool_material", "Invalid tool material: %s");
+        add("tooltip.cruciblecraft.invalid_machine_material", "Invalid %s material: %s");
+        add("tooltip.cruciblecraft.material_formula", "Formula: %s");
         add("tooltip.cruciblecraft.durability", "Durability: %s / %s");
         add("tooltip.cruciblecraft.max_temperature", "Maximum temperature: %s °C");
         add("message.cruciblecraft.materials_changed", "CrucibleCraft's material definitions changed since this world was last opened. Missing materials are preserved but machines using them are paused.");
@@ -126,9 +319,28 @@ public class ModLanguageProvider extends LanguageProvider {
         }
         MaterialCatalog.startupValues().forEach(material ->
                 add(material.translationKey(), title(material.id())));
+        ModFluids.moltenFluids().forEach(entry ->
+                add(
+                        "fluid_type.cruciblecraft.molten_" + entry.materialId(),
+                        "Molten " + title(entry.materialId())));
+        ModFluids.chemicalFluids().forEach(entry ->
+                add(
+                        "fluid_type.cruciblecraft." + entry.id(),
+                        title(entry.id())));
         if (!MaterialCatalog.contains("stone")) {
             add("material.cruciblecraft.stone", "Stone");
         }
+        ModProcessingMachines.CONFIGURED_MACHINES.forEach(spec ->
+                add(
+                        "emi.category.cruciblecraft." + spec.id().getPath(),
+                        title(spec.id().getPath())));
+        add("emi.cruciblecraft.processing.preserved", "Preserved, not consumed");
+        add("emi.cruciblecraft.processing.wear", "Tool damage: %s");
+        add("emi.cruciblecraft.processing.chance", "Output chance: %s%%");
+        add("emi.cruciblecraft.processing.duration", "Duration: %s ticks (%s s)");
+        add("emi.cruciblecraft.processing.power.kinetic", "Power: %s KU/t");
+        add("emi.cruciblecraft.processing.power.electric", "Power: %s EU/t");
+        add("emi.cruciblecraft.processing.power.heat", "Heat: %s HU/t");
 
         add("message.cruciblecraft.firebox_fueled", "Firebox fueled: %s HU stored (%s seconds remaining)");
         add("message.cruciblecraft.firebox_fuel_rejected", "The firebox cannot accept this fuel right now");
@@ -158,6 +370,10 @@ public class ModLanguageProvider extends LanguageProvider {
                 "That amount cannot be decomposed into whole material units");
         add("message.cruciblecraft.invalid_material",
                 "This material cannot be added to the crucible");
+        add("message.cruciblecraft.crucible_casing_quarantined",
+                "This crucible's casing material is quarantined: %s");
+        add("message.cruciblecraft.invalid_machine_material",
+                "Cannot place this block: invalid %s material %s");
         add("message.cruciblecraft.material_cast", "Cast one %s ingot");
         add("message.cruciblecraft.not_ready", "Composition is not castable or is below melting temperature");
         add("message.cruciblecraft.mold_filled", "Molten material poured into the mold");
@@ -172,6 +388,8 @@ public class ModLanguageProvider extends LanguageProvider {
         add("jade.cruciblecraft.firebox_output", "Output: %s HU/t");
         add("jade.cruciblecraft.casing", "Casing: %s (tier %s, process tier %s)");
         add("jade.cruciblecraft.machine_material", "Material: %s (tier %s)");
+        add("jade.cruciblecraft.material_quarantined",
+                "%s material quarantined: %s");
         add("jade.cruciblecraft.max_temperature", "Maximum temperature: %s %s");
         add("jade.cruciblecraft.contents", "%s (%s/%s u)");
         add("jade.cruciblecraft.anvil_workpiece", "Workpiece: %s");
@@ -187,11 +405,18 @@ public class ModLanguageProvider extends LanguageProvider {
         add("message.cruciblecraft.anvil_inserted", "Workpiece placed on the anvil");
         add("message.cruciblecraft.anvil_rejected", "This item has no matching anvil recipe");
         add("message.cruciblecraft.anvil_no_recipe", "Place a valid workpiece on the anvil first");
+        add("message.cruciblecraft.anvil_material_quarantined",
+                "This anvil's material is quarantined: %s");
+        add("message.cruciblecraft.invalid_hammer_material",
+                "This hammer has an invalid material: %s");
         add("message.cruciblecraft.anvil_progress", "Hammering: %s/%s");
         add("message.cruciblecraft.anvil_completed", "Forged %s");
         add("emi.category.cruciblecraft.crucible", "Crucible Alloying");
         add("emi.category.cruciblecraft.anvil", "Anvil Working");
         add("emi.category.cruciblecraft.mold_casting", "Ceramic Mold Casting");
+        add("device.cruciblecraft.anvil", "anvil");
+        add("device.cruciblecraft.crucible", "crucible");
+        add("device.cruciblecraft.hammer", "hammer");
 
         add("cruciblecraft.configuration.title", "Crucible Craft");
         add("cruciblecraft.configuration.section.cruciblecraft.client.toml", "Client");

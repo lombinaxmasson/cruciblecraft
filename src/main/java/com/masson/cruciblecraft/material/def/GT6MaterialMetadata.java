@@ -181,18 +181,35 @@ public record GT6MaterialMetadata(
         }
     }
 
-    /** Electrical values are keyed by prefix/specification; no false global scalar. */
-    public record ElectricalProperties(long voltage, long amperage, double resistance) {
+    /**
+     * Direct GT6 wire/cable registration values keyed by source specification.
+     *
+     * <p>GT6 defines integral EU loss per traversed block, not physical
+     * resistance. Insulation and contact damage are specification properties,
+     * not material-wide scalars.
+     */
+    public record ElectricalProperties(
+            long maxVoltage,
+            long maxAmperage,
+            long lossPerMeter,
+            boolean insulated,
+            boolean contactDamage) {
         public static final Codec<ElectricalProperties> CODEC =
                 RecordCodecBuilder.create(instance -> instance.group(
-                        Codec.LONG.fieldOf("voltage").forGetter(ElectricalProperties::voltage),
-                        Codec.LONG.fieldOf("amperage").forGetter(ElectricalProperties::amperage),
-                        Codec.DOUBLE.fieldOf("resistance").forGetter(ElectricalProperties::resistance)
+                        Codec.LONG.fieldOf("max_voltage")
+                                .forGetter(ElectricalProperties::maxVoltage),
+                        Codec.LONG.fieldOf("max_amperage")
+                                .forGetter(ElectricalProperties::maxAmperage),
+                        Codec.LONG.fieldOf("loss_per_meter")
+                                .forGetter(ElectricalProperties::lossPerMeter),
+                        Codec.BOOL.fieldOf("insulated")
+                                .forGetter(ElectricalProperties::insulated),
+                        Codec.BOOL.fieldOf("contact_damage")
+                                .forGetter(ElectricalProperties::contactDamage)
                 ).apply(instance, ElectricalProperties::new));
 
         public ElectricalProperties {
-            if (voltage < 0 || amperage < 0
-                    || !Double.isFinite(resistance) || resistance < 0.0) {
+            if (maxVoltage <= 0 || maxAmperage <= 0 || lossPerMeter < 0) {
                 throw new IllegalArgumentException("Invalid GT6 electrical metadata");
             }
         }

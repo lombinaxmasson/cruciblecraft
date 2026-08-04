@@ -11,8 +11,5 @@ public enum EnergyType {
     HEAT,
     KINETIC,
     AIR,
-    ELECTRIC,
-    ROTATION,
-    MAGNETIC,
-    COOLING
+    ELECTRIC
 }
