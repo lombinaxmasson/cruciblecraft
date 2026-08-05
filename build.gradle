@@ -24,8 +24,12 @@ sourceSets.main.resources {
     srcDir('src/ore_chain_generated/resources')
     // Semantic vein sources compile to runtime worldgen resources offline.
     srcDir('src/worldgen_generated/resources')
+    // T9 ledger-backed ore veins and finite fluid deposits.
+    srcDir('src/worldgen_catalog_generated/resources')
     // Compact component sources compile to runtime material-rule recipes offline.
     srcDir('src/component_rule_generated/resources')
+    // Audited T5 chemical fluids and recipes are generated from pinned GT6 data.
+    srcDir('src/t5_chemical_generated/resources')
 
     // Exclude common development only resources from finalized outputs
     exclude("**/*.bbmodel") // BlockBench project files
@@ -155,12 +159,32 @@ neoForge {
     }
 }
 
+def normalizeResourceJsonNewlines = tasks.register(
+        'normalizeResourceJsonNewlines') {
+    group = 'verification'
+    description = 'Normalizes resource JSON files to repository LF endings.'
+    doLast {
+        fileTree('src') {
+            include '**/*.json'
+        }.files.each { generated ->
+            String original = generated.getText('UTF-8')
+            String normalized = original
+                    .replace('\r\n', '\n')
+                    .replace('\r', '\n')
+            if (normalized != original) {
+                generated.write(normalized, 'UTF-8')
+            }
+        }
+    }
+}
+
 tasks.named('runData').configure {
     doFirst {
         // Datagen is authoritative for this directory; remove stale files and
         // empty directory shells before producing the next complete snapshot.
         delete file('src/generated/resources')
     }
+    finalizedBy normalizeResourceJsonNewlines
 }
 
 // Sets up a dependency configuration called 'localRuntime'.

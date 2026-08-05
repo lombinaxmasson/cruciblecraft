@@ -8,6 +8,8 @@ import java.util.Optional;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import com.masson.cruciblecraft.recipe.gt.ComponentIngredientIndex;
+import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
 
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -99,6 +101,14 @@ public record MaterialRule(
         if (itemInputs.stream().anyMatch(ItemResource::optional)) {
             throw new IllegalArgumentException("Material-rule inputs cannot be optional");
         }
+        if (itemOutputs.stream().anyMatch(resource -> resource.inputAction().isPresent())) {
+            throw new IllegalArgumentException(
+                    "Material-rule output resources cannot declare input_action");
+        }
+        if (itemOutputs.stream().anyMatch(resource -> resource.tag().isPresent())) {
+            throw new IllegalArgumentException(
+                    "Material-rule output resources cannot declare a tag");
+        }
         itemOutputs.stream().filter(ItemResource::optional).forEach(resource -> {
             if (resource.materialSelector().isEmpty()
                     || !resource.materialSelector().get().startsWith("byproduct:")) {
@@ -108,7 +118,7 @@ public record MaterialRule(
         });
     }
 
-    private static void requireMaterialId(String value, String field) {
+    static void requireMaterialId(String value, String field) {
         if (!value.matches("[a-z0-9_]+")) {
             throw new IllegalArgumentException("Invalid " + field + ": " + value);
         }
@@ -129,37 +139,107 @@ public record MaterialRule(
     public record ItemResource(
             Optional<String> prefix,
             Optional<ResourceLocation> item,
+            Optional<ResourceLocation> tag,
             String count,
             String chance,
             Optional<String> materialSelector,
-            boolean optional) {
+            boolean optional,
+            Map<ResourceLocation, String> stringComponents,
+            Optional<ItemInputAction> inputAction) {
         public static final MapCodec<ItemResource> CODEC =
                 RecordCodecBuilder.mapCodec(instance -> instance.group(
                         Codec.STRING.optionalFieldOf("prefix").forGetter(ItemResource::prefix),
                         ResourceLocation.CODEC.optionalFieldOf("item").forGetter(ItemResource::item),
+                        ResourceLocation.CODEC.optionalFieldOf("tag")
+                                .forGetter(ItemResource::tag),
                         Codec.STRING.optionalFieldOf("count", "1").forGetter(ItemResource::count),
                         Codec.STRING.optionalFieldOf("chance", "10000").forGetter(ItemResource::chance),
                         Codec.STRING.optionalFieldOf("material_selector")
                                 .forGetter(ItemResource::materialSelector),
                         Codec.BOOL.optionalFieldOf("optional", false)
-                                .forGetter(ItemResource::optional)
+                                .forGetter(ItemResource::optional),
+                        Codec.unboundedMap(ResourceLocation.CODEC, Codec.STRING)
+                                .optionalFieldOf("string_components", Map.of())
+                                .forGetter(ItemResource::stringComponents),
+                        ItemInputAction.CODEC.optionalFieldOf("input_action")
+                                .forGetter(ItemResource::inputAction)
                 ).apply(instance, ItemResource::new));
 
         public ItemResource {
             prefix = prefix == null ? Optional.empty() : prefix;
             item = item == null ? Optional.empty() : item;
+            tag = tag == null ? Optional.empty() : tag;
             count = Objects.requireNonNull(count, "count");
             chance = Objects.requireNonNull(chance, "chance");
             materialSelector = materialSelector == null ? Optional.empty() : materialSelector;
-            if (prefix.isPresent() == item.isPresent()) {
+            stringComponents = Map.copyOf(stringComponents);
+            inputAction = inputAction == null ? Optional.empty() : inputAction;
+            if ((prefix.isPresent() ? 1 : 0)
+                    + (item.isPresent() ? 1 : 0)
+                    + (tag.isPresent() ? 1 : 0) != 1) {
                 throw new IllegalArgumentException(
-                        "Item resource must declare exactly one of prefix or item");
+                        "Item resource must declare exactly one of prefix, item, or tag");
             }
             materialSelector.ifPresent(MaterialRule::requireMaterialSelector);
-            if (item.isPresent() && materialSelector.isPresent()) {
+            if ((item.isPresent() || tag.isPresent())
+                    && materialSelector.isPresent()) {
                 throw new IllegalArgumentException(
-                        "Fixed item resources cannot select another material");
+                        "Fixed item/tag resources cannot select another material");
             }
+            if (!item.isPresent() && !stringComponents.isEmpty()) {
+                throw new IllegalArgumentException(
+                        "String component predicates require a fixed item resource");
+            }
+            stringComponents.forEach((componentId, value) -> {
+                if (!ComponentIngredientIndex.isIndexableStringComponent(componentId)) {
+                    throw new IllegalArgumentException(
+                            "Unsupported indexed string component: " + componentId);
+                }
+                if (!value.equals("$material") && !value.matches("[a-z0-9_]+")) {
+                    throw new IllegalArgumentException(
+                            "Invalid string component value: " + value);
+                }
+            });
+        }
+
+        public ItemResource(
+                Optional<String> prefix,
+                Optional<ResourceLocation> item,
+                String count,
+                String chance,
+                Optional<String> materialSelector,
+                boolean optional,
+                Map<ResourceLocation, String> stringComponents,
+                Optional<ItemInputAction> inputAction) {
+            this(
+                    prefix,
+                    item,
+                    Optional.empty(),
+                    count,
+                    chance,
+                    materialSelector,
+                    optional,
+                    stringComponents,
+                    inputAction);
+        }
+
+        public ItemResource(
+                Optional<String> prefix,
+                Optional<ResourceLocation> item,
+                String count,
+                String chance,
+                Optional<String> materialSelector,
+                boolean optional) {
+            this(
+                    prefix,
+                    item,
+                    Optional.empty(),
+                    count,
+                    chance,
+                    materialSelector,
+                    optional,
+                    Map.of(),
+                    Optional.empty());
         }
 
         public ItemResource(
@@ -167,29 +247,61 @@ public record MaterialRule(
                 Optional<ResourceLocation> item,
                 String count,
                 String chance) {
-            this(prefix, item, count, chance, Optional.empty(), false);
+            this(
+                    prefix,
+                    item,
+                    Optional.empty(),
+                    count,
+                    chance,
+                    Optional.empty(),
+                    false,
+                    Map.of(),
+                    Optional.empty());
         }
     }
 
     public record FluidResource(
             Optional<String> prefix,
             Optional<ResourceLocation> fluid,
+            Optional<String> materialFluid,
             String amount) {
         public static final MapCodec<FluidResource> CODEC =
                 RecordCodecBuilder.mapCodec(instance -> instance.group(
                         Codec.STRING.optionalFieldOf("prefix").forGetter(FluidResource::prefix),
                         ResourceLocation.CODEC.optionalFieldOf("fluid").forGetter(FluidResource::fluid),
+                        Codec.STRING.optionalFieldOf("material_fluid")
+                                .forGetter(FluidResource::materialFluid),
                         Codec.STRING.optionalFieldOf("amount", "1").forGetter(FluidResource::amount)
                 ).apply(instance, FluidResource::new));
 
         public FluidResource {
             prefix = prefix == null ? Optional.empty() : prefix;
             fluid = fluid == null ? Optional.empty() : fluid;
+            materialFluid = materialFluid == null ? Optional.empty() : materialFluid;
             amount = Objects.requireNonNull(amount, "amount");
-            if (prefix.isPresent() == fluid.isPresent()) {
+            long selectors = java.util.stream.Stream.of(
+                            prefix, fluid, materialFluid)
+                    .filter(Optional::isPresent)
+                    .count();
+            if (selectors != 1) {
                 throw new IllegalArgumentException(
-                        "Fluid resource must declare exactly one of prefix or fluid");
+                        "Fluid resource must declare exactly one of prefix, fluid, "
+                                + "or material_fluid");
             }
+            if (materialFluid.isPresent()
+                    && !java.util.Set.of("chemical", "molten")
+                            .contains(materialFluid.orElseThrow())) {
+                throw new IllegalArgumentException(
+                        "Unsupported material_fluid selector: "
+                                + materialFluid.orElseThrow());
+            }
+        }
+
+        public FluidResource(
+                Optional<String> prefix,
+                Optional<ResourceLocation> fluid,
+                String amount) {
+            this(prefix, fluid, Optional.empty(), amount);
         }
     }
 

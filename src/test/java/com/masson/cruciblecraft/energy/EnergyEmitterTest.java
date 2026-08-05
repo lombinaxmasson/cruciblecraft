@@ -1,7 +1,6 @@
 package com.masson.cruciblecraft.energy;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -46,7 +45,7 @@ class EnergyEmitterTest {
     }
 
     @Test
-    void consumerReturningMoreThanOfferedFailsBeforeMutation() {
+    void consumerReturningMoreThanOfferedIsRejectedWithoutMutation() {
         BufferHandler source = BufferHandler.source(10L);
         IEnergyHandler consumer = new IEnergyHandler() {
             @Override
@@ -60,28 +59,23 @@ class EnergyEmitterTest {
             }
         };
 
-        IllegalStateException failure = assertThrows(
-                IllegalStateException.class,
-                () -> EnergyEmitter.executePlan(
-                        SOURCE_POSITION,
-                        source,
-                        TYPE,
-                        SIZE,
-                        Direction.NORTH,
-                        List.of(consumer),
-                        List.of(FIRST_POSITION),
-                        List.of(Direction.SOUTH),
-                        new long[] {4L}));
+        long delivered = EnergyEmitter.executePlan(
+                SOURCE_POSITION,
+                source,
+                TYPE,
+                SIZE,
+                Direction.NORTH,
+                List.of(consumer),
+                List.of(FIRST_POSITION),
+                List.of(Direction.SOUTH),
+                new long[] {4L});
 
-        assertTrue(failure.getMessage().contains("consumer 0 simulation"));
-        assertTrue(failure.getMessage().contains("returned 5 packets for request 4"));
-        assertTrue(failure.getMessage().contains(FIRST_POSITION.toString()));
-        assertTrue(failure.getMessage().contains(consumer.getClass().getName()));
+        assertEquals(0L, delivered);
         assertEquals(10L, source.packets);
     }
 
     @Test
-    void consumerExecutionMustMatchItsIdenticalSimulation() {
+    void consumerExecutionViolationDissipatesWithoutEscaping() {
         BufferHandler source = BufferHandler.source(10L);
         IEnergyHandler consumer = new IEnergyHandler() {
             @Override
@@ -95,29 +89,24 @@ class EnergyEmitterTest {
             }
         };
 
-        IllegalStateException failure = assertThrows(
-                IllegalStateException.class,
-                () -> EnergyEmitter.executePlan(
-                        SOURCE_POSITION,
-                        source,
-                        TYPE,
-                        SIZE,
-                        Direction.NORTH,
-                        List.of(consumer),
-                        List.of(FIRST_POSITION),
-                        List.of(Direction.SOUTH),
-                        new long[] {4L}));
+        long delivered = EnergyEmitter.executePlan(
+                SOURCE_POSITION,
+                source,
+                TYPE,
+                SIZE,
+                Direction.NORTH,
+                List.of(consumer),
+                List.of(FIRST_POSITION),
+                List.of(Direction.SOUTH),
+                new long[] {4L});
 
-        assertTrue(failure.getMessage().contains("consumer 0 execution"));
-        assertTrue(failure.getMessage().contains("after simulating 4"));
-        assertTrue(failure.getMessage().contains(FIRST_POSITION.toString()));
-        assertTrue(failure.getMessage().contains(consumer.getClass().getName()));
+        assertEquals(0L, delivered);
         assertEquals(6L, source.packets,
-                "source executes first so an endpoint violation cannot duplicate energy");
+                "source executes first so a broken endpoint can only lose energy");
     }
 
     @Test
-    void laterConsumerViolationFailsTowardEnergyLossNotDuplication() {
+    void laterConsumerViolationCannotBlockEarlierDeliveryOrEscape() {
         BufferHandler source = BufferHandler.source(10L);
         BufferHandler first = BufferHandler.consumer(10L);
         IEnergyHandler second = new IEnergyHandler() {
@@ -132,22 +121,18 @@ class EnergyEmitterTest {
             }
         };
 
-        IllegalStateException failure = assertThrows(
-                IllegalStateException.class,
-                () -> EnergyEmitter.executePlan(
-                        SOURCE_POSITION,
-                        source,
-                        TYPE,
-                        SIZE,
-                        Direction.NORTH,
-                        List.of(first, second),
-                        List.of(FIRST_POSITION, SECOND_POSITION),
-                        List.of(Direction.SOUTH, Direction.WEST),
-                        new long[] {4L, 4L}));
+        long delivered = EnergyEmitter.executePlan(
+                SOURCE_POSITION,
+                source,
+                TYPE,
+                SIZE,
+                Direction.NORTH,
+                List.of(first, second),
+                List.of(FIRST_POSITION, SECOND_POSITION),
+                List.of(Direction.SOUTH, Direction.WEST),
+                new long[] {4L, 4L});
 
-        assertTrue(failure.getMessage().contains("consumer 1 execution"));
-        assertTrue(failure.getMessage().contains(SECOND_POSITION.toString()));
-        assertTrue(failure.getMessage().contains(second.getClass().getName()));
+        assertEquals(4L, delivered);
         assertEquals(2L, source.packets);
         assertEquals(4L, first.packets);
         assertTrue(source.packets + first.packets <= 10L,
@@ -155,7 +140,7 @@ class EnergyEmitterTest {
     }
 
     @Test
-    void sourceExecutionMustMatchItsIdenticalSimulation() {
+    void sourceExecutionShortfallReducesTheConsumerCommit() {
         BufferHandler consumer = BufferHandler.consumer(10L);
         IEnergyHandler source = new IEnergyHandler() {
             @Override
@@ -169,29 +154,23 @@ class EnergyEmitterTest {
             }
         };
 
-        IllegalStateException failure = assertThrows(
-                IllegalStateException.class,
-                () -> EnergyEmitter.executePlan(
-                        SOURCE_POSITION,
-                        source,
-                        TYPE,
-                        SIZE,
-                        Direction.NORTH,
-                        List.of(consumer),
-                        List.of(FIRST_POSITION),
-                        List.of(Direction.SOUTH),
-                        new long[] {4L}));
+        long delivered = EnergyEmitter.executePlan(
+                SOURCE_POSITION,
+                source,
+                TYPE,
+                SIZE,
+                Direction.NORTH,
+                List.of(consumer),
+                List.of(FIRST_POSITION),
+                List.of(Direction.SOUTH),
+                new long[] {4L});
 
-        assertTrue(failure.getMessage().contains("source execution"));
-        assertTrue(failure.getMessage().contains("after simulating 4"));
-        assertTrue(failure.getMessage().contains(SOURCE_POSITION.toString()));
-        assertTrue(failure.getMessage().contains(source.getClass().getName()));
-        assertEquals(0L, consumer.packets,
-                "a source execution violation must fail before consumer mutation");
+        assertEquals(3L, delivered);
+        assertEquals(3L, consumer.packets);
     }
 
     @Test
-    void sourceShortfallIsRejectedBeforeAnyConsumerMutation() {
+    void sourceSimulationShortfallCommitsOnlyAvailablePackets() {
         BufferHandler consumer = BufferHandler.consumer(10L);
         IEnergyHandler source = new IEnergyHandler() {
             @Override
@@ -205,23 +184,73 @@ class EnergyEmitterTest {
             }
         };
 
-        IllegalStateException failure = assertThrows(
-                IllegalStateException.class,
-                () -> EnergyEmitter.executePlan(
-                        SOURCE_POSITION,
-                        source,
-                        TYPE,
-                        SIZE,
-                        Direction.NORTH,
-                        List.of(consumer),
-                        List.of(FIRST_POSITION),
-                        List.of(Direction.SOUTH),
-                        new long[] {4L}));
+        long delivered = EnergyEmitter.executePlan(
+                SOURCE_POSITION,
+                source,
+                TYPE,
+                SIZE,
+                Direction.NORTH,
+                List.of(consumer),
+                List.of(FIRST_POSITION),
+                List.of(Direction.SOUTH),
+                new long[] {4L});
 
-        assertTrue(failure.getMessage().contains("source simulation"));
-        assertTrue(failure.getMessage().contains("returned 3"));
-        assertEquals(0L, consumer.packets,
-                "source capacity must be confirmed before consumers execute");
+        assertEquals(2L, delivered);
+        assertEquals(2L, consumer.packets);
+    }
+
+    @Test
+    void sharedConsumerAliasesAreResimulatedAfterEachCommit() {
+        BufferHandler source = BufferHandler.source(10L);
+        BufferHandler shared = BufferHandler.consumer(5L);
+
+        long delivered = EnergyEmitter.executePlan(
+                SOURCE_POSITION,
+                source,
+                TYPE,
+                SIZE,
+                Direction.NORTH,
+                List.of(shared, shared),
+                List.of(FIRST_POSITION, SECOND_POSITION),
+                List.of(Direction.SOUTH, Direction.WEST),
+                new long[] {4L, 4L});
+
+        assertEquals(5L, delivered);
+        assertEquals(5L, source.packets);
+        assertEquals(5L, shared.packets);
+    }
+
+    @Test
+    void consumerExceptionIsContainedAfterSourceFirstExtraction() {
+        BufferHandler source = BufferHandler.source(10L);
+        IEnergyHandler throwing = new IEnergyHandler() {
+            @Override
+            public long insert(
+                    EnergyType type,
+                    long size,
+                    long amount,
+                    Direction side,
+                    boolean simulate) {
+                if (!simulate) {
+                    throw new IllegalStateException("broken endpoint");
+                }
+                return amount;
+            }
+        };
+
+        long delivered = EnergyEmitter.executePlan(
+                SOURCE_POSITION,
+                source,
+                TYPE,
+                SIZE,
+                Direction.NORTH,
+                List.of(throwing),
+                List.of(FIRST_POSITION),
+                List.of(Direction.SOUTH),
+                new long[] {4L});
+
+        assertEquals(0L, delivered);
+        assertEquals(6L, source.packets);
     }
 
     private static final class BufferHandler implements IEnergyHandler {

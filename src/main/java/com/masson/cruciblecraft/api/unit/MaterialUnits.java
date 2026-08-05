@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
-import com.masson.cruciblecraft.content.item.MaterialItem;
+import com.masson.cruciblecraft.content.item.MaterialFormItem;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 
@@ -27,7 +27,7 @@ public final class MaterialUnits {
     private MaterialUnits() {}
 
     public static Optional<Entry> resolve(ItemStack stack) {
-        if (stack.getItem() instanceof MaterialItem materialItem) {
+        if (stack.getItem() instanceof MaterialFormItem materialItem) {
             return Optional.of(new Entry(
                     materialItem.materialId(),
                     materialItem.form(),
@@ -55,7 +55,7 @@ public final class MaterialUnits {
                                 Registries.ITEM,
                                 ResourceLocation.parse(override.getValue())))
                         .map(holder -> holder.value())
-                        .filter(item -> !(item instanceof MaterialItem))
+                        .filter(item -> !(item instanceof MaterialFormItem))
                         .ifPresent(item -> rebuilt.putIfAbsent(
                                 item,
                                 new Entry(material.id(), override.getKey(), override.getKey().units())));
@@ -68,7 +68,7 @@ public final class MaterialUnits {
                                 form.tagDirectory() + "/" + material.tagName()));
                 itemRegistry.get(tag).ifPresent(holders ->
                         holders.forEach(holder -> {
-                            if (!(holder.value() instanceof MaterialItem)) {
+                            if (!(holder.value() instanceof MaterialFormItem)) {
                                 rebuilt.putIfAbsent(
                                         holder.value(),
                                         new Entry(material.id(), form, form.units()));

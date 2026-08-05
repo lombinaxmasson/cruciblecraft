@@ -14,6 +14,9 @@ public final class MaterialPrefixes {
             builtin("centrifuged_crushed_ore");
     public static final MaterialPrefix PURIFIED_DUST = builtin("purified_dust");
     public static final MaterialPrefix INGOT = builtin("ingot");
+    public static final MaterialPrefix DOUBLE_INGOT = builtin("double_ingot");
+    public static final MaterialPrefix TRIPLE_INGOT = builtin("triple_ingot");
+    public static final MaterialPrefix INGOT_HOT = builtin("ingot_hot");
     public static final MaterialPrefix DUST = builtin("dust");
     public static final MaterialPrefix PLATE = builtin("plate");
     public static final MaterialPrefix ROD = builtin("rod");
@@ -45,6 +48,20 @@ public final class MaterialPrefixes {
     public static final MaterialPrefix QUADRUPLE_CABLE = builtin("quadruple_cable");
     public static final MaterialPrefix OCTUPLE_CABLE = builtin("octuple_cable");
     public static final MaterialPrefix DODECUPLE_CABLE = builtin("dodecuple_cable");
+    public static final MaterialPrefix TINY_FLUID_PIPE =
+            builtin("tiny_fluid_pipe");
+    public static final MaterialPrefix SMALL_FLUID_PIPE =
+            builtin("small_fluid_pipe");
+    public static final MaterialPrefix FLUID_PIPE = builtin("fluid_pipe");
+    public static final MaterialPrefix LARGE_FLUID_PIPE =
+            builtin("large_fluid_pipe");
+    public static final MaterialPrefix HUGE_FLUID_PIPE =
+            builtin("huge_fluid_pipe");
+    public static final MaterialPrefix ITEM_PIPE = builtin("item_pipe");
+    public static final MaterialPrefix LARGE_ITEM_PIPE =
+            builtin("large_item_pipe");
+    public static final MaterialPrefix HUGE_ITEM_PIPE =
+            builtin("huge_item_pipe");
     public static final MaterialPrefix NUGGET = builtin("nugget");
     public static final MaterialPrefix GEM = builtin("gem");
     public static final MaterialPrefix TINY_DUST = builtin("tiny_dust");

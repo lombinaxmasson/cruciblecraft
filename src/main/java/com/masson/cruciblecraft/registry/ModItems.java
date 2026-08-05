@@ -8,15 +8,35 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.item.MaterialItem;
+import com.masson.cruciblecraft.content.item.CableBlockItem;
+import com.masson.cruciblecraft.content.item.CellItem;
 import com.masson.cruciblecraft.content.item.CeramicMoldBlockItem;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
+import com.masson.cruciblecraft.content.item.FlintKnifeItem;
+import com.masson.cruciblecraft.content.item.MaterialAxeItem;
+import com.masson.cruciblecraft.content.item.MaterialChiselItem;
+import com.masson.cruciblecraft.content.item.MaterialFileItem;
+import com.masson.cruciblecraft.content.item.MaterialHoeItem;
 import com.masson.cruciblecraft.content.item.MaterialMachineBlockItem;
+import com.masson.cruciblecraft.content.item.MaterialPickaxeItem;
+import com.masson.cruciblecraft.content.item.MaterialSawItem;
+import com.masson.cruciblecraft.content.item.MaterialScrewdriverItem;
+import com.masson.cruciblecraft.content.item.MaterialShovelItem;
+import com.masson.cruciblecraft.content.item.MaterialSwordItem;
+import com.masson.cruciblecraft.content.item.MaterialWrenchItem;
+import com.masson.cruciblecraft.content.item.PortableFluidTankItem;
+import com.masson.cruciblecraft.content.item.PipeBlockItem;
+import com.masson.cruciblecraft.content.item.PipeCoverItem;
 import com.masson.cruciblecraft.content.item.SmithingHammerItem;
+import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.content.item.UnknownMaterialItem;
 import com.masson.cruciblecraft.machine.MachineMaterialRules.Device;
 import com.masson.cruciblecraft.content.mold.MoldShape;
+import com.masson.cruciblecraft.material.CellContentGate;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
+import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
+import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverType;
 import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
 
 import net.minecraft.world.item.BlockItem;
@@ -30,7 +50,10 @@ public final class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(CrucibleCraft.MODID);
     public static final Map<String, DeferredItem<Item>> EXTRUDER_SHAPES =
             ExtruderShapeCatalog.registerAll(ITEMS);
-    private static final Map<String, DeferredItem<MaterialItem>> MATERIAL_ITEMS = new LinkedHashMap<>();
+    public static final Map<String, DeferredItem<Item>> TOOL_PATTERNS =
+            ToolPatternCatalog.registerAll(ITEMS);
+    private static final Map<String, DeferredItem<? extends Item>>
+            MATERIAL_ITEMS = new LinkedHashMap<>();
     private static final Map<ModBlocks.OreBlockKey, DeferredItem<BlockItem>>
             MATERIAL_ORE_ITEMS = new LinkedHashMap<>();
 
@@ -69,6 +92,8 @@ public final class ModItems {
     public static final DeferredItem<CeramicMoldBlockItem> BOLT_MOLD = mold("bolt_mold", MoldShape.BOLT);
     public static final DeferredItem<Item> COAL_COKE =
             ITEMS.registerSimpleItem("coal_coke", new Item.Properties());
+    public static final DeferredItem<Item> MATCH =
+            ITEMS.registerSimpleItem("match", new Item.Properties());
     public static final DeferredItem<BlockItem> BELLOWS =
             ITEMS.registerSimpleBlockItem("bellows", ModBlocks.BELLOWS);
     public static final DeferredItem<BucketItem> CREOSOTE_BUCKET = ITEMS.register(
@@ -83,10 +108,46 @@ public final class ModItems {
             () -> new BucketItem(
                     ModFluids.STEAM_SOURCE.get(),
                     new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1)));
+    public static final DeferredItem<PortableFluidTankItem> PORTABLE_FLUID_TANK =
+            ITEMS.register(
+                    "portable_fluid_tank",
+                    () -> new PortableFluidTankItem(new Item.Properties()));
+    public static final DeferredItem<CellItem> FLUID_CELL = ITEMS.register(
+            "fluid_cell",
+            () -> new CellItem(
+                    new Item.Properties(),
+                    ModComponents.FLUID_CELL_CONTENT,
+                    CellContentGate.Kind.FLUID));
+    public static final DeferredItem<CellItem> GAS_CELL = ITEMS.register(
+            "gas_cell",
+            () -> new CellItem(
+                    new Item.Properties(),
+                    ModComponents.GAS_CELL_CONTENT,
+                    CellContentGate.Kind.GAS));
+    public static final DeferredItem<PipeCoverItem> PIPE_FILTER_COVER =
+            ITEMS.register(
+                    "pipe_filter_cover",
+                    () -> new PipeCoverItem(
+                            PipeCoverType.FILTER,
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> PIPE_VALVE_COVER =
+            ITEMS.register(
+                    "pipe_valve_cover",
+                    () -> new PipeCoverItem(
+                            PipeCoverType.ONE_WAY_VALVE,
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> PIPE_PUMP_COVER =
+            ITEMS.register(
+                    "pipe_pump_cover",
+                    () -> new PipeCoverItem(
+                            PipeCoverType.OUTPUT_PUMP,
+                            new Item.Properties()));
     public static final DeferredItem<BlockItem> BRONZE_BOILER =
             ITEMS.registerSimpleBlockItem("bronze_boiler", ModBlocks.BRONZE_BOILER);
     public static final DeferredItem<BlockItem> BRONZE_STEAM_ENGINE =
             ITEMS.registerSimpleBlockItem("bronze_steam_engine", ModBlocks.BRONZE_STEAM_ENGINE);
+    public static final DeferredItem<BlockItem> BRONZE_DYNAMO =
+            ITEMS.registerSimpleBlockItem("bronze_dynamo", ModBlocks.BRONZE_DYNAMO);
     public static final DeferredItem<BlockItem> BRONZE_CRUSHER =
             ITEMS.registerSimpleBlockItem("bronze_crusher", ModBlocks.BRONZE_CRUSHER);
     public static final DeferredItem<BlockItem> SLUICE =
@@ -123,12 +184,66 @@ public final class ModItems {
             ITEMS.registerSimpleBlockItem("welder", ModBlocks.WELDER);
     public static final DeferredItem<BlockItem> PRESS =
             ITEMS.registerSimpleBlockItem("press", ModBlocks.PRESS);
+    public static final DeferredItem<BlockItem> ELECTROLYZER =
+            ITEMS.registerSimpleBlockItem("electrolyzer", ModBlocks.ELECTROLYZER);
+    public static final DeferredItem<BlockItem> MIXER =
+            ITEMS.registerSimpleBlockItem("mixer", ModBlocks.MIXER);
+    public static final DeferredItem<BlockItem> DISTILLERY =
+            ITEMS.registerSimpleBlockItem("distillery", ModBlocks.DISTILLERY);
+    public static final DeferredItem<BlockItem> AUTOCLAVE =
+            ITEMS.registerSimpleBlockItem("autoclave", ModBlocks.AUTOCLAVE);
+    public static final DeferredItem<BlockItem> DRYING =
+            ITEMS.registerSimpleBlockItem("drying", ModBlocks.DRYING);
+    public static final DeferredItem<BlockItem> COMPRESSOR =
+            ITEMS.registerSimpleBlockItem("compressor", ModBlocks.COMPRESSOR);
     public static final DeferredItem<SmithingHammerItem> SMITHING_HAMMER =
             ITEMS.register(
                     "smithing_hammer",
-                    () -> new SmithingHammerItem(new Item.Properties()
-                            .durability(com.masson.cruciblecraft.machine.MachineMaterialRules
-                                    .IRON_HAMMER_DURABILITY)));
+                    () -> new SmithingHammerItem(new Item.Properties()));
+    public static final DeferredItem<MaterialPickaxeItem> MATERIAL_PICKAXE =
+            ITEMS.register(
+                    "material_pickaxe",
+                    () -> new MaterialPickaxeItem(new Item.Properties()));
+    public static final DeferredItem<MaterialFileItem> MATERIAL_FILE =
+            ITEMS.register(
+                    "material_file",
+                    () -> new MaterialFileItem(new Item.Properties()));
+    public static final DeferredItem<MaterialShovelItem> MATERIAL_SHOVEL =
+            ITEMS.register(
+                    "material_shovel",
+                    () -> new MaterialShovelItem(new Item.Properties()));
+    public static final DeferredItem<MaterialAxeItem> MATERIAL_AXE =
+            ITEMS.register(
+                    "material_axe",
+                    () -> new MaterialAxeItem(new Item.Properties()));
+    public static final DeferredItem<MaterialHoeItem> MATERIAL_HOE =
+            ITEMS.register(
+                    "material_hoe",
+                    () -> new MaterialHoeItem(new Item.Properties()));
+    public static final DeferredItem<MaterialSwordItem> MATERIAL_SWORD =
+            ITEMS.register(
+                    "material_sword",
+                    () -> new MaterialSwordItem(new Item.Properties()));
+    public static final DeferredItem<MaterialChiselItem> MATERIAL_CHISEL =
+            ITEMS.register(
+                    "material_chisel",
+                    () -> new MaterialChiselItem(new Item.Properties()));
+    public static final DeferredItem<MaterialSawItem> MATERIAL_SAW =
+            ITEMS.register(
+                    "material_saw",
+                    () -> new MaterialSawItem(new Item.Properties()));
+    public static final DeferredItem<MaterialScrewdriverItem> MATERIAL_SCREWDRIVER =
+            ITEMS.register(
+                    "material_screwdriver",
+                    () -> new MaterialScrewdriverItem(new Item.Properties()));
+    public static final DeferredItem<MaterialWrenchItem> MATERIAL_WRENCH =
+            ITEMS.register(
+                    "material_wrench",
+                    () -> new MaterialWrenchItem(new Item.Properties()));
+    public static final DeferredItem<FlintKnifeItem> FLINT_KNIFE =
+            ITEMS.register(
+                    "flint_knife",
+                    () -> new FlintKnifeItem(new Item.Properties()));
     public static final DeferredItem<UnknownMaterialItem> UNKNOWN_MATERIAL =
             ITEMS.register("unknown_material", () -> new UnknownMaterialItem(new Item.Properties()));
     public static void registerMaterials(Collection<MaterialDefinition> definitions) {
@@ -154,17 +269,63 @@ public final class ModItems {
                     continue;
                 }
                 String registryName = material.registryName(form);
-                MATERIAL_ITEMS.put(
-                        key(material.id(), form),
-                        ITEMS.register(
-                                registryName,
-                                () -> new MaterialItem(material, form, new Item.Properties())));
+                DeferredItem<? extends Item> item;
+                if (ModBlocks.hasElectricalConductorBlock(
+                        material.id(), form)) {
+                    item = ITEMS.register(
+                            registryName,
+                            () -> new CableBlockItem(
+                                    ModBlocks.electricalConductorBlock(
+                                            material.id(), form).get(),
+                                    com.masson.cruciblecraft.energy.cable
+                                            .ElectricalConductorCatalog
+                                            .require(material.id(), form),
+                                    new Item.Properties()));
+                } else if (PipeCatalog.contains(
+                        material.id(), form, PipeCatalog.Kind.FLUID)) {
+                    item = pipeItem(
+                            registryName,
+                            material.id(),
+                            form,
+                            PipeCatalog.Kind.FLUID);
+                } else if (PipeCatalog.contains(
+                        material.id(), form, PipeCatalog.Kind.ITEM)) {
+                    item = pipeItem(
+                            registryName,
+                            material.id(),
+                            form,
+                            PipeCatalog.Kind.ITEM);
+                } else {
+                    item = ITEMS.register(
+                            registryName,
+                            () -> new MaterialItem(
+                                    material,
+                                    form,
+                                    new Item.Properties()));
+                }
+                MATERIAL_ITEMS.put(key(material.id(), form), item);
             }
         }
     }
 
-    public static DeferredItem<MaterialItem> materialItem(String materialId, MaterialPrefix form) {
-        DeferredItem<MaterialItem> item = MATERIAL_ITEMS.get(key(materialId, form));
+    private static DeferredItem<PipeBlockItem> pipeItem(
+            String registryName,
+            String materialId,
+            MaterialPrefix form,
+            PipeCatalog.Kind kind) {
+        return ITEMS.register(
+                registryName,
+                () -> new PipeBlockItem(
+                        ModBlocks.pipeBlock(
+                                materialId, form, kind).get(),
+                        PipeCatalog.require(materialId, form, kind),
+                        new Item.Properties()));
+    }
+
+    public static DeferredItem<? extends Item> materialItem(
+            String materialId, MaterialPrefix form) {
+        DeferredItem<? extends Item> item =
+                MATERIAL_ITEMS.get(key(materialId, form));
         if (item == null) {
             throw new IllegalArgumentException("No " + form.serializedName() + " for material " + materialId);
         }
@@ -175,7 +336,7 @@ public final class ModItems {
         return MATERIAL_ITEMS.containsKey(key(materialId, form));
     }
 
-    public static Collection<DeferredItem<MaterialItem>> materialItems() {
+    public static Collection<DeferredItem<? extends Item>> materialItems() {
         return MATERIAL_ITEMS.values();
     }
 
@@ -208,6 +369,18 @@ public final class ModItems {
 
     public static Collection<DeferredItem<Item>> extruderShapes() {
         return EXTRUDER_SHAPES.values();
+    }
+
+    public static DeferredItem<Item> toolPattern(String id) {
+        DeferredItem<Item> item = TOOL_PATTERNS.get(id);
+        if (item == null) {
+            throw new IllegalArgumentException("No tool pattern " + id);
+        }
+        return item;
+    }
+
+    public static Collection<DeferredItem<Item>> toolPatterns() {
+        return TOOL_PATTERNS.values();
     }
 
     public static DeferredItem<CeramicMoldBlockItem> moldItem(MoldShape shape) {

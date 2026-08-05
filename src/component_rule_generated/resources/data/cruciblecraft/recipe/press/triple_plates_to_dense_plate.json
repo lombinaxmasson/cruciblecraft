@@ -1,4 +1,7 @@
 {
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", dense_plate)"
+  ],
   "duration": "400 * (144 * prefix_units(dense_plate) / gcd(target_units(working) * 1296, 144 * prefix_units(dense_plate)))",
   "eut": "96",
   "item_inputs": [

@@ -77,8 +77,31 @@ public class ModLanguageProvider extends LanguageProvider {
                     "额定：%s V，%s A，损耗 %s EU/方块");
             add("tooltip.cruciblecraft.electrical.insulated", "绝缘电缆");
             add("tooltip.cruciblecraft.electrical.bare", "裸线");
+            add("tooltip.cruciblecraft.pipe.specification",
+                    "管道规格：%s");
+            add("tooltip.cruciblecraft.pipe.fluid_rating",
+                    "容量：%s mB，最高温度：%s K");
+            add("tooltip.cruciblecraft.pipe.item_rating",
+                    "吞吐：%s 组/秒，路径成本：%s");
+            add("jade.cruciblecraft.fluid_pipe",
+                    "%s：%s/%s mB，近 20 tick 传输 %s mB，失效 %s");
+            add("jade.cruciblecraft.item_pipe",
+                    "%s：实际送达 %s，堵塞 %s，Cover %s");
             add("death.attack.electricity", "%s 被电死了");
             addItem(ModItems.PORTABLE_FLUID_TANK, "便携流体罐");
+            addItem(ModItems.FLUID_CELL, "通用流体单元");
+            addItem(ModItems.GAS_CELL, "通用气体单元");
+            add("tooltip.cruciblecraft.fluid_cell.empty",
+                    "空流体单元（容量 %s mB）");
+            add("tooltip.cruciblecraft.fluid_cell.contents",
+                    "%s：%s/%s mB");
+            add("tooltip.cruciblecraft.gas_cell.empty",
+                    "空气体单元（容量 %s mB）");
+            add("tooltip.cruciblecraft.gas_cell.contents",
+                    "%s：%s/%s mB");
+            addItem(ModItems.PIPE_FILTER_COVER, "管道过滤器 Cover");
+            addItem(ModItems.PIPE_VALVE_COVER, "管道单向阀 Cover");
+            addItem(ModItems.PIPE_PUMP_COVER, "管道输出泵 Cover");
             add("tooltip.cruciblecraft.portable_fluid_tank.empty",
                     "空（容量 %s mB）");
             add("tooltip.cruciblecraft.portable_fluid_tank.contents",
@@ -198,6 +221,16 @@ public class ModLanguageProvider extends LanguageProvider {
         addItem(ModItems.STEAM_BUCKET, "Steam Bucket");
         add("fluid_type.cruciblecraft.steam", "Steam");
         addItem(ModItems.PORTABLE_FLUID_TANK, "Portable Fluid Tank");
+        addItem(ModItems.FLUID_CELL, "Universal Fluid Cell");
+        addItem(ModItems.GAS_CELL, "Universal Gas Cell");
+        add("tooltip.cruciblecraft.fluid_cell.empty",
+                "Empty fluid cell (capacity: %s mB)");
+        add("tooltip.cruciblecraft.fluid_cell.contents",
+                "%s: %s/%s mB");
+        add("tooltip.cruciblecraft.gas_cell.empty",
+                "Empty gas cell (capacity: %s mB)");
+        add("tooltip.cruciblecraft.gas_cell.contents",
+                "%s: %s/%s mB");
         add("tooltip.cruciblecraft.portable_fluid_tank.empty",
                 "Empty (capacity: %s mB)");
         add("tooltip.cruciblecraft.portable_fluid_tank.contents",
@@ -262,8 +295,21 @@ public class ModLanguageProvider extends LanguageProvider {
         add("tooltip.cruciblecraft.electrical.insulated",
                 "Insulated cable");
         add("tooltip.cruciblecraft.electrical.bare", "Bare wire");
+        add("tooltip.cruciblecraft.pipe.specification",
+                "Pipe specification: %s");
+        add("tooltip.cruciblecraft.pipe.fluid_rating",
+                "Capacity: %s mB, maximum temperature: %s K");
+        add("tooltip.cruciblecraft.pipe.item_rating",
+                "Throughput: %s stacks/s, route cost: %s");
+        add("jade.cruciblecraft.fluid_pipe",
+                "%s: %s/%s mB, last 20 ticks %s mB, failure %s");
+        add("jade.cruciblecraft.item_pipe",
+                "%s: actual delivery %s, clogged %s, covers %s");
         add("death.attack.electricity",
                 "%s was electrocuted");
+        addItem(ModItems.PIPE_FILTER_COVER, "Pipe Filter Cover");
+        addItem(ModItems.PIPE_VALVE_COVER, "Pipe One-Way Valve Cover");
+        addItem(ModItems.PIPE_PUMP_COVER, "Pipe Output Pump Cover");
         add("item.cruciblecraft.smithing_hammer", "%s Smithing Hammer");
         addItem(ModItems.FLINT_KNIFE, "Flint Knife");
         add("item.cruciblecraft.material_pickaxe", "%s Pickaxe");
@@ -292,6 +338,14 @@ public class ModLanguageProvider extends LanguageProvider {
                             + conductor.registryName(),
                     title(conductor.materialId()) + " "
                             + title(conductor.form().serializedName()));
+        });
+        ModBlocks.pipeBlocks().forEach(holder -> {
+            var pipe = holder.get().pipe();
+            add(
+                    "block." + CrucibleCraft.MODID + "."
+                            + pipe.registryName(),
+                    title(pipe.materialId()) + " "
+                            + title(pipe.form().serializedName()));
         });
         add("tooltip.cruciblecraft.unknown_material", "Missing material: %s (%s)");
         add("tooltip.cruciblecraft.machine_material", "Casing: %s (material tier %s)");

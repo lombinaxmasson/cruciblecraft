@@ -180,24 +180,25 @@ class MaterialPrefixCatalogTest {
                         MaterialPrefixes.TINY_CRUSHED_ORE,
                         MaterialPrefixes.WASHED_CRUSHED_ORE,
                         MaterialPrefixes.CENTRIFUGED_CRUSHED_ORE,
+                        MaterialPrefixCatalog.require(
+                                "tiny_centrifuged_crushed_ore"),
                         MaterialPrefixes.PURIFIED_DUST,
                         MaterialPrefixes.INGOT,
                         MaterialPrefixes.DUST,
                         MaterialPrefixes.PLATE,
+                        MaterialPrefixCatalog.require("plate_gem"),
                         MaterialPrefixes.ROD,
-                        MaterialPrefixes.SMALL_DUST,
-                        MaterialPrefixes.BOLT,
-                        MaterialPrefixes.NUGGET),
+                        MaterialPrefixes.SMALL_DUST),
                 List.copyOf(MaterialPrefixCatalog.values()).subList(0, 15));
-        assertEquals(43, MaterialPrefixCatalog.values().size());
+        assertEquals(56, MaterialPrefixCatalog.values().size());
         assertEquals(16, MaterialPrefixes.TINY_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.WASHED_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.CENTRIFUGED_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.PURIFIED_DUST.units());
         assertEquals(
                 List.of(
-                        1296, 144, 144, 144, 16, 144, 144, 144,
-                        144, 144, 144, 72, 36, 18, 16),
+                        1296, 144, 144, 144, 16, 144, 144, 22,
+                        144, 144, 144, 144, 144, 72, 36),
                 List.copyOf(MaterialPrefixCatalog.values()).subList(0, 15).stream()
                         .map(MaterialPrefix::units).toList());
         assertEquals("small_dusts", MaterialPrefixes.SMALL_DUST.tagDirectory());
@@ -211,6 +212,18 @@ class MaterialPrefixCatalogTest {
         assertEquals(MaterialPrefixes.CRUSHED_ORE, MaterialPrefixCatalog.require("crushed"));
         assertEquals(MaterialPrefixes.SMALL_DUST, MaterialPrefixCatalog.require("dustsmall"));
         assertEquals(MaterialPrefixes.TINY_DUST, MaterialPrefixCatalog.require("dusttiny"));
+        assertEquals(MaterialPrefixes.DOUBLE_INGOT, MaterialPrefixCatalog.require("ingotdouble"));
+        assertEquals(MaterialPrefixes.TRIPLE_INGOT, MaterialPrefixCatalog.require("ingottriple"));
+        assertEquals(MaterialPrefixes.INGOT_HOT, MaterialPrefixCatalog.require("ingothot"));
+        assertEquals(288, MaterialPrefixes.DOUBLE_INGOT.units());
+        assertEquals(432, MaterialPrefixes.TRIPLE_INGOT.units());
+        assertEquals(144, MaterialPrefixes.INGOT_HOT.units());
+        assertEquals(
+                3.0,
+                MaterialPrefixCatalog.definition(MaterialPrefixes.INGOT_HOT).heatDamage());
+        assertEquals(
+                0.0,
+                MaterialPrefixCatalog.definition(MaterialPrefixes.INGOT).heatDamage());
         assertEquals(
                 MaterialPrefixes.TINY_CRUSHED_ORE,
                 MaterialPrefixCatalog.require("crushedtiny"));
@@ -222,6 +235,7 @@ class MaterialPrefixCatalogTest {
                         MaterialPrefixes.INGOT,
                         MaterialPrefixes.DUST,
                         MaterialPrefixes.PLATE,
+                        MaterialPrefixCatalog.require("plate_gem"),
                         MaterialPrefixes.ROD,
                         MaterialPrefixes.NUGGET,
                         MaterialPrefixes.GEM,
@@ -230,7 +244,7 @@ class MaterialPrefixCatalogTest {
                         .filter(prefix -> prefix.tagNamespace().equals("c"))
                         .collect(java.util.stream.Collectors.toUnmodifiableSet()));
         assertEquals(
-                "minecraft:item/iron_ingot",
+                "cruciblecraft:item/material/ingot",
                 MaterialPrefixCatalog.definition(MaterialPrefixes.INGOT).modelTexture());
     }
 

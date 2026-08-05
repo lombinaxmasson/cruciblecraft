@@ -1,4 +1,7 @@
 {
+  "conditions": [
+    "has_registered_for(\"processing_target:bending\", small_spring)"
+  ],
   "duration": "80 * (144 * prefix_units(small_spring) / gcd(target_units(bending) * 72, 144 * prefix_units(small_spring)))",
   "eut": "24",
   "item_inputs": [

@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.machine;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -10,11 +11,20 @@ import com.masson.cruciblecraft.machine.MachineMaterialRules.Device;
 
 class MachineMaterialRulesTest {
     @Test
-    void defaultsPreserveOldStacksAndWorlds() {
+    void defaultsAreExplicitAndInvalidMaterialsFailLoudly() {
         assertEquals("ceramic", MachineMaterialRules.defaultMaterial(Device.CRUCIBLE));
         assertEquals("iron", MachineMaterialRules.defaultMaterial(Device.ANVIL));
         assertEquals("iron", MachineMaterialRules.defaultMaterial(Device.HAMMER));
-        assertEquals("ceramic", MachineMaterialRules.sanitize(Device.CRUCIBLE, "invalid"));
+        IllegalArgumentException failure = assertThrows(
+                IllegalArgumentException.class,
+                () -> MachineMaterialRules.requireAllowed(Device.CRUCIBLE, "invalid"));
+        assertTrue(failure.getMessage().contains("crucible"));
+        assertTrue(failure.getMessage().contains("invalid"));
+
+        var external = MachineMaterialRules.resolveExternal(Device.ANVIL, "gold");
+        assertEquals("iron", external.effectiveMaterial());
+        assertEquals("gold", external.quarantinedMaterial().orElseThrow());
+        assertTrue(external.quarantined());
     }
 
     @Test

@@ -40,11 +40,21 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.ASSEMBLER.get());
         dropSelf(ModBlocks.WELDER.get());
         dropSelf(ModBlocks.PRESS.get());
+        dropSelf(ModBlocks.ELECTROLYZER.get());
+        dropSelf(ModBlocks.MIXER.get());
+        dropSelf(ModBlocks.DISTILLERY.get());
+        dropSelf(ModBlocks.AUTOCLAVE.get());
+        dropSelf(ModBlocks.DRYING.get());
+        dropSelf(ModBlocks.COMPRESSOR.get());
+        ModBlocks.electricalConductorBlocks().forEach(
+                block -> dropSelf(block.get()));
+        ModBlocks.pipeBlocks().forEach(
+                block -> dropSelf(block.get()));
     }
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return Stream.of(
+        return Stream.concat(Stream.concat(Stream.of(
                 (Block) ModBlocks.FIREBRICK.get(),
                 ModBlocks.FIREBOX.get(),
                 ModBlocks.CRUCIBLE.get(),
@@ -67,6 +77,16 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.BENDER.get(),
                 ModBlocks.ASSEMBLER.get(),
                 ModBlocks.WELDER.get(),
-                ModBlocks.PRESS.get()).toList();
+                ModBlocks.PRESS.get(),
+                ModBlocks.ELECTROLYZER.get(),
+                ModBlocks.MIXER.get(),
+                ModBlocks.DISTILLERY.get(),
+                ModBlocks.AUTOCLAVE.get(),
+                ModBlocks.DRYING.get(),
+                ModBlocks.COMPRESSOR.get()),
+                ModBlocks.electricalConductorBlocks().stream()
+                        .map(holder -> (Block) holder.get())),
+                ModBlocks.pipeBlocks().stream()
+                        .map(holder -> (Block) holder.get())).toList();
     }
 }

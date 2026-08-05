@@ -1,5 +1,7 @@
 package com.masson.cruciblecraft.machine.processing;
 
+import java.util.Optional;
+
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.energy.EnergyPackets;
@@ -10,25 +12,57 @@ import net.minecraft.core.Direction;
 public final class AdjacentEnergyConsumer {
     private AdjacentEnergyConsumer() {}
 
+    /**
+     * Captures the exact handler and packet request that accepted simulation.
+     * Executing this plan therefore cannot silently switch to another adjacent
+     * capability between the two phases.
+     */
+    public static Optional<Plan> plan(
+            IEnergyHandler source,
+            EnergyType type,
+            Direction sourceSide,
+            long units) {
+        if (source == null || units <= 0L || !source.handles(type, sourceSide)) {
+            return Optional.empty();
+        }
+        long size = source.outputSize(type, sourceSide);
+        long magnitude = EnergyPackets.magnitude(size);
+        if (magnitude == 0L) {
+            return Optional.empty();
+        }
+        long packets = 1L + (units - 1L) / magnitude;
+        if (source.extract(type, size, packets, sourceSide, true) != packets) {
+            return Optional.empty();
+        }
+        return Optional.of(new Plan(source, type, sourceSide, size, packets));
+    }
+
     public static boolean consume(
             IEnergyHandler source,
             EnergyType type,
             Direction sourceSide,
             long units,
             boolean simulate) {
-        if (source == null || units <= 0L || !source.handles(type, sourceSide)) {
-            return false;
+        Optional<Plan> plan = plan(source, type, sourceSide, units);
+        return plan.isPresent() && (simulate || plan.get().execute());
+    }
+
+    public record Plan(
+            IEnergyHandler source,
+            EnergyType type,
+            Direction sourceSide,
+            long packetSize,
+            long packetCount) {
+        public Plan {
+            if (source == null || type == null || sourceSide == null
+                    || packetSize == 0L || packetCount <= 0L) {
+                throw new IllegalArgumentException("Invalid adjacent energy plan");
+            }
         }
-        long size = source.outputSize(type, sourceSide);
-        long magnitude = EnergyPackets.magnitude(size);
-        if (magnitude == 0L) {
-            return false;
+
+        public boolean execute() {
+            return source.extract(
+                    type, packetSize, packetCount, sourceSide, false) == packetCount;
         }
-        long packets = 1L + (units - 1L) / magnitude;
-        if (source.extract(type, size, packets, sourceSide, true) != packets) {
-            return false;
-        }
-        return simulate
-                || source.extract(type, size, packets, sourceSide, false) == packets;
     }
 }

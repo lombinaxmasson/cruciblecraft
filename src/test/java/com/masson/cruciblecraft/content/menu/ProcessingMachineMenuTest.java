@@ -13,6 +13,7 @@ import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
+import com.masson.cruciblecraft.registry.ModProcessingMachines;
 
 import net.minecraft.SharedConstants;
 import net.minecraft.resources.ResourceLocation;
@@ -22,6 +23,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.fml.loading.LoadingModList;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
@@ -172,6 +175,22 @@ class ProcessingMachineMenuTest {
         assertTrue(materialMachine.getStackInSlot(1).isEmpty());
     }
 
+    @Test
+    void exactClientStateBypassesShortSizedMenuData() {
+        SimpleContainerData truncated = new SimpleContainerData(
+                ConfiguredProcessingMachineMenu.dataCount());
+        truncated.set(0, 30_000);
+        truncated.set(1, -5_536);
+        ExactStateMenu menu = new ExactStateMenu(
+                new SimpleContainer(36),
+                truncated);
+
+        assertEquals(9, menu.scaledProgress(18));
+        assertEquals(60_000, menu.duration());
+        assertEquals(409_600, menu.tankAmount(0));
+        assertEquals(2_500_000, menu.tankCapacity(0));
+    }
+
     private static SimpleContainer blockedPlayerInventory(int openSlot) {
         SimpleContainer player = new SimpleContainer(36);
         for (int slot = 0; slot < player.getContainerSize(); slot++) {
@@ -293,6 +312,40 @@ class ProcessingMachineMenuTest {
                     new SimpleContainerData(0),
                     spec,
                     ignored -> true);
+        }
+    }
+
+    private static final class ExactStateMenu extends ProcessingMachineMenu {
+        private final FluidStack fluid = new FluidStack(Fluids.WATER, 409_600);
+
+        private ExactStateMenu(
+                SimpleContainer player,
+                SimpleContainerData truncated) {
+            super(
+                    null,
+                    0,
+                    player,
+                    new ItemStackHandler(
+                            ModProcessingMachines.AUTOCLAVE.items().slotCount()),
+                    truncated,
+                    ModProcessingMachines.AUTOCLAVE,
+                    ignored -> true);
+        }
+
+        @Override public int progress() {
+            return 30_000;
+        }
+
+        @Override public int duration() {
+            return 60_000;
+        }
+
+        @Override public FluidStack tankFluid(int tank) {
+            return tank == 0 ? fluid.copy() : FluidStack.EMPTY;
+        }
+
+        @Override public int tankAmount(int tank) {
+            return tankFluid(tank).getAmount();
         }
     }
 

@@ -19,6 +19,7 @@ public record MaterialPrefixDefinition(
         String modelTexture,
         List<String> aliases,
         List<String> impliedPrefixes,
+        double heatDamage,
         Set<String> capabilities) {
 
     public static final Codec<MaterialPrefixDefinition> CODEC =
@@ -43,6 +44,8 @@ public record MaterialPrefixDefinition(
                             .forGetter(MaterialPrefixDefinition::aliases),
                     Codec.STRING.listOf().optionalFieldOf("implied_prefixes", List.of())
                             .forGetter(MaterialPrefixDefinition::impliedPrefixes),
+                    Codec.DOUBLE.optionalFieldOf("heat_damage", 0.0)
+                            .forGetter(MaterialPrefixDefinition::heatDamage),
                     Codec.STRING.listOf().xmap(Set::copyOf, List::copyOf)
                             .optionalFieldOf("capabilities", Set.of())
                             .forGetter(MaterialPrefixDefinition::capabilities)
@@ -74,6 +77,35 @@ public record MaterialPrefixDefinition(
                 modelTexture,
                 aliases,
                 List.of(),
+                0.0,
+                capabilities);
+    }
+
+    /** Source-compatible constructor for definitions without prefix facts. */
+    public MaterialPrefixDefinition(
+            MaterialPrefix prefix,
+            String serializedPath,
+            int units,
+            String generationFlag,
+            String tagDirectory,
+            String tagNamespace,
+            String modelTemplate,
+            String modelTexture,
+            List<String> aliases,
+            List<String> impliedPrefixes,
+            Set<String> capabilities) {
+        this(
+                prefix,
+                serializedPath,
+                units,
+                generationFlag,
+                tagDirectory,
+                tagNamespace,
+                modelTemplate,
+                modelTexture,
+                aliases,
+                impliedPrefixes,
+                0.0,
                 capabilities);
     }
 
@@ -86,6 +118,10 @@ public record MaterialPrefixDefinition(
         }
         if (units <= 0) {
             throw new IllegalArgumentException("Prefix units must be positive: " + prefix.id());
+        }
+        if (!Double.isFinite(heatDamage)) {
+            throw new IllegalArgumentException(
+                    "Prefix heat damage must be finite: " + prefix.id());
         }
         if (!tagDirectory.matches("[a-z0-9][a-z0-9_./-]*")) {
             throw new IllegalArgumentException("Invalid prefix tag directory: " + tagDirectory);

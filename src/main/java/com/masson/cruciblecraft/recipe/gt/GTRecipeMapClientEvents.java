@@ -2,11 +2,13 @@ package com.masson.cruciblecraft.recipe.gt;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 
+import net.minecraft.client.Minecraft;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RecipesUpdatedEvent;
+import net.neoforged.neoforge.server.ServerLifecycleHooks;
 
 @EventBusSubscriber(modid = CrucibleCraft.MODID, value = Dist.CLIENT)
 public final class GTRecipeMapClientEvents {
@@ -15,7 +17,14 @@ public final class GTRecipeMapClientEvents {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void recipesUpdated(RecipesUpdatedEvent event) {
         var manager = event.getRecipeManager();
-        if (GTRecipeReloadDecision.onClientRecipesUpdated(manager)) {
+        Minecraft minecraft = Minecraft.getInstance();
+        boolean integratedServer = minecraft.hasSingleplayerServer()
+                || minecraft.getConnection() != null
+                        && minecraft.getConnection().getConnection().isMemoryConnection()
+                || ServerLifecycleHooks.getCurrentServer() != null;
+        if (GTRecipeReloadDecision.onClientRecipesUpdated(
+                manager,
+                integratedServer)) {
             GTRecipeMapLoader.reload(manager);
         }
     }

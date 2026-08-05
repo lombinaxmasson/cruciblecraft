@@ -31,6 +31,23 @@ REPLACEABLE_TAG = "cruciblecraft:large_vein_replaceables"
 # A 3x3-chunk WorldGenRegion anchored at min + 8 has 24 blocks toward its
 # minimum edge and 23 toward its maximum edge. Keep authored radii symmetric.
 MAX_SAFE_HORIZONTAL_RADIUS = 23
+T8_PIPE_FORMS = {
+    "tiny_fluid_pipe",
+    "small_fluid_pipe",
+    "fluid_pipe",
+    "large_fluid_pipe",
+    "huge_fluid_pipe",
+    "item_pipe",
+    "large_item_pipe",
+    "huge_item_pipe",
+}
+T10_FORM_FLAGS = {
+    "gt6:itemgenerator/multiingots": {
+        "double_ingot",
+        "triple_ingot",
+    },
+    "gt6:itemgenerator/hotingots": {"ingot_hot"},
+}
 
 
 def load(path: Path) -> Any:
@@ -57,9 +74,16 @@ def material_capabilities() -> dict[str, dict[str, set[str]]]:
     for material_id in sorted(documents):
         registered = set(gate[material_id])
         factual = set(factual_forms[material_id])
-        if not registered <= factual:
+        flags = set(documents[material_id].get("generation_flags") or [])
+        t10_forms = set().union(*(
+            forms
+            for flag, forms in T10_FORM_FLAGS.items()
+            if flag in flags
+        )) if flags & set(T10_FORM_FLAGS) else set()
+        if not (registered - factual) <= T8_PIPE_FORMS | t10_forms:
             raise ValueError(
-                f"registration gate exceeds factual forms for {material_id}"
+                "registration gate exceeds factual or source-backed T8/T10 "
+                f"forms for {material_id}"
             )
         capabilities[material_id] = {
             "factual": factual,
@@ -309,7 +333,7 @@ def write_outputs(files: dict[str, str]) -> None:
     for relative, content in files.items():
         path = OUTPUT_RESOURCE_ROOT / relative
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(content, encoding="utf-8")
+        path.write_text(content, encoding="utf-8", newline="\n")
 
 
 def review_document(

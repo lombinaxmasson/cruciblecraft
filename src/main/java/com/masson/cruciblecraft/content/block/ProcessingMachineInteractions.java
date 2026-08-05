@@ -10,8 +10,9 @@ public final class ProcessingMachineInteractions {
 
     public enum FluidTransfer {
         NONE,
-        FILL,
-        DRAIN
+        FILL_INPUT,
+        DRAIN_INPUT,
+        DRAIN_OUTPUT
     }
 
     public static FluidTransfer fluidTransfer(
@@ -21,14 +22,45 @@ public final class ProcessingMachineInteractions {
             boolean sneaking,
             boolean hasFluidContainer,
             boolean containerHasFluid) {
+        return fluidTransfer(
+                spec,
+                front,
+                clickedSide,
+                sneaking,
+                hasFluidContainer,
+                containerHasFluid,
+                !containerHasFluid);
+    }
+
+    public static FluidTransfer fluidTransfer(
+            ProcessingMachineSpec spec,
+            Direction front,
+            Direction clickedSide,
+            boolean sneaking,
+            boolean hasFluidContainer,
+            boolean containerHasFluid,
+            boolean containerCanAcceptFluid) {
         if (sneaking
-                || !hasFluidContainer
-                || spec.fluids().inputs().isEmpty()
-                || spec.sidedIo().fluids().resolve(front, clickedSide)
-                        != ProcessingMachineSpec.CapabilityAccess.INPUT) {
+                || !hasFluidContainer) {
             return FluidTransfer.NONE;
         }
-        return containerHasFluid ? FluidTransfer.FILL : FluidTransfer.DRAIN;
+        ProcessingMachineSpec.CapabilityAccess access =
+                spec.sidedIo().fluids().resolve(front, clickedSide);
+        if (access == ProcessingMachineSpec.CapabilityAccess.INPUT
+                && !spec.fluids().inputs().isEmpty()) {
+            if (containerHasFluid) {
+                return FluidTransfer.FILL_INPUT;
+            }
+            if (containerCanAcceptFluid) {
+                return FluidTransfer.DRAIN_INPUT;
+            }
+            return FluidTransfer.NONE;
+        }
+        return containerCanAcceptFluid
+                && access == ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                && !spec.fluids().outputs().isEmpty()
+                ? FluidTransfer.DRAIN_OUTPUT
+                : FluidTransfer.NONE;
     }
 
     public static boolean shouldTransferFluid(

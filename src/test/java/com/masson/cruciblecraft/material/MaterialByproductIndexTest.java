@@ -28,7 +28,8 @@ class MaterialByproductIndexTest {
                         List.of(
                                 new GT6MaterialMetadata.MaterialReference("copper", 2, "Copper"),
                                 new GT6MaterialMetadata.MaterialReference("gold", 3, "Gold")),
-                        Map.of(), List.of(), List.of(), 0, 0, Optional.empty(), Map.of()));
+                        Map.of(), List.of(), List.of(), 0, 0, Optional.empty(),
+                        Map.of(), GT6MaterialMetadata.PipeProperties.EMPTY));
         MaterialByproductIndex.publish(List.of(source), 17);
         assertEquals(17, MaterialByproductIndex.snapshot().revision());
         assertEquals(List.of("copper", "gold"), MaterialByproductIndex.byproducts("source"));

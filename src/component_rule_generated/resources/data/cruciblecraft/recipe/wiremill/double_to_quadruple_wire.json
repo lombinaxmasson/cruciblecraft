@@ -1,4 +1,7 @@
 {
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", quadruple_wire)"
+  ],
   "duration": "100 * (144 * prefix_units(quadruple_wire) / gcd(target_units(working) * 144, 144 * prefix_units(quadruple_wire)))",
   "eut": "32",
   "item_inputs": [

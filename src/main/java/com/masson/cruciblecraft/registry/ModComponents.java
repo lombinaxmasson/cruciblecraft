@@ -3,10 +3,11 @@ package com.masson.cruciblecraft.registry;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.heat.HeatComponent;
 import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
+import com.masson.cruciblecraft.material.MaterialId;
 import com.masson.cruciblecraft.material.MissingMaterialComponent;
-import com.mojang.serialization.Codec;
 
 import net.minecraft.network.codec.ByteBufCodecs;
+import net.neoforged.neoforge.fluids.SimpleFluidContent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -40,7 +41,7 @@ public final class ModComponents {
             COMPONENTS.registerComponentType(
                     "machine_material",
                     builder -> builder
-                            .persistent(Codec.STRING)
+                            .persistent(MaterialId.CODEC)
                             .networkSynchronized(ByteBufCodecs.STRING_UTF8));
 
     public static final DeferredHolder<
@@ -49,7 +50,7 @@ public final class ModComponents {
             COMPONENTS.registerComponentType(
                     "tool_material",
                     builder -> builder
-                            .persistent(Codec.STRING)
+                            .persistent(MaterialId.CODEC)
                             .networkSynchronized(ByteBufCodecs.STRING_UTF8));
 
     public static final DeferredHolder<
@@ -60,6 +61,33 @@ public final class ModComponents {
                     builder -> builder
                             .persistent(MachineDurabilityComponent.CODEC)
                             .networkSynchronized(MachineDurabilityComponent.STREAM_CODEC));
+
+    public static final DeferredHolder<
+            net.minecraft.core.component.DataComponentType<?>,
+            net.minecraft.core.component.DataComponentType<SimpleFluidContent>> PORTABLE_FLUID =
+            COMPONENTS.registerComponentType(
+                    "portable_fluid",
+                    builder -> builder
+                            .persistent(SimpleFluidContent.CODEC)
+                            .networkSynchronized(SimpleFluidContent.STREAM_CODEC));
+
+    public static final DeferredHolder<
+            net.minecraft.core.component.DataComponentType<?>,
+            net.minecraft.core.component.DataComponentType<SimpleFluidContent>> FLUID_CELL_CONTENT =
+            COMPONENTS.registerComponentType(
+                    "fluid_cell_content",
+                    builder -> builder
+                            .persistent(SimpleFluidContent.CODEC)
+                            .networkSynchronized(SimpleFluidContent.STREAM_CODEC));
+
+    public static final DeferredHolder<
+            net.minecraft.core.component.DataComponentType<?>,
+            net.minecraft.core.component.DataComponentType<SimpleFluidContent>> GAS_CELL_CONTENT =
+            COMPONENTS.registerComponentType(
+                    "gas_cell_content",
+                    builder -> builder
+                            .persistent(SimpleFluidContent.CODEC)
+                            .networkSynchronized(SimpleFluidContent.STREAM_CODEC));
 
     private ModComponents() {}
 }

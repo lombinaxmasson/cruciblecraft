@@ -1,4 +1,7 @@
 {
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", fine_wire)"
+  ],
   "duration": "80 * (144 * prefix_units(fine_wire) / gcd(target_units(working) * 36, 144 * prefix_units(fine_wire)))",
   "eut": "24",
   "item_inputs": [

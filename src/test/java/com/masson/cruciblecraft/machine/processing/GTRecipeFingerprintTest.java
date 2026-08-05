@@ -7,9 +7,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeProvenance;
+import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
+import com.google.gson.JsonParser;
 import com.mojang.serialization.JsonOps;
 
 import net.minecraft.SharedConstants;
@@ -45,6 +49,24 @@ class GTRecipeFingerprintTest {
         bindComponentIngredientType();
         registries = new RegistryAccess.ImmutableRegistryAccess(
                 BuiltInRegistries.REGISTRY.stream().toList());
+    }
+
+    @Test
+    void generatedFluidClosureRecipeDecodesWithAlignedItemInputs()
+            throws Exception {
+        String source = Files.readString(Path.of(
+                "src/t5_chemical_generated/resources/data/cruciblecraft/recipe/"
+                        + "t5/centrifuge/fluid_closure_glue_and_latex.json"))
+                .replace("cruciblecraft:latex", "minecraft:water")
+                .replace("cruciblecraft:glue", "minecraft:water");
+        var json = JsonParser.parseString(source);
+        GTRecipe decoded = GTRecipe.CODEC.parse(
+                RegistryOps.create(JsonOps.INSTANCE, registries),
+                json).getOrThrow();
+
+        assertEquals(1, decoded.itemInputs().size());
+        assertEquals(List.of(1), decoded.itemInputCounts());
+        assertEquals(2, decoded.fluidOutputs().size());
     }
 
     @Test
@@ -92,6 +114,32 @@ class GTRecipeFingerprintTest {
         assertEquals(fingerprint(gt6), fingerprint(topology));
     }
 
+    @Test
+    void wearActionRoundTripsAndChangesTheSemanticFingerprint() {
+        GTRecipe wearOne = actionRecipe(ItemInputAction.wear(1));
+        GTRecipe wearTwo = actionRecipe(ItemInputAction.wear(2));
+        var ops = RegistryOps.create(JsonOps.INSTANCE, registries);
+        var encoded = GTRecipe.CODEC.encodeStart(ops, wearOne).getOrThrow();
+
+        assertTrue(encoded.getAsJsonObject().has("item_input_actions"));
+        assertEquals(
+                wearOne.itemInputActions(),
+                GTRecipe.CODEC.parse(ops, encoded).getOrThrow()
+                        .itemInputActions());
+        assertNotEquals(fingerprint(wearOne), fingerprint(wearTwo));
+    }
+
+    @Test
+    void unknownInputActionKindReturnsACodecError() {
+        var result = ItemInputAction.CODEC.parse(
+                JsonOps.INSTANCE,
+                JsonParser.parseString("{\"kind\":\"consumee\"}"));
+
+        assertTrue(result.error().isPresent());
+        assertTrue(result.error().orElseThrow().message()
+                .contains("Unknown item input action kind"));
+    }
+
     private static String fingerprint(GTRecipe recipe) {
         var result = GTRecipeFingerprint.recipe(
                 ResourceLocation.fromNamespaceAndPath("test", "machine"),
@@ -131,6 +179,24 @@ class GTRecipeFingerprintTest {
                         sourceKind,
                         Optional.of("source-hash"),
                         List.of("evidence-hash"))));
+    }
+
+    private static GTRecipe actionRecipe(ItemInputAction toolAction) {
+        return new GTRecipe(
+                List.of(
+                        Ingredient.of(Items.STONE),
+                        Ingredient.of(Items.IRON_PICKAXE)),
+                List.of(1, 0),
+                List.of(ItemInputAction.CONSUME, toolAction),
+                List.of(plainOutput()),
+                List.of(),
+                List.of(),
+                List.of(5_000),
+                20,
+                16,
+                3,
+                false,
+                Optional.empty());
     }
 
     private static ItemStack namedStone(String name) {

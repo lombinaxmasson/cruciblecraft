@@ -17,7 +17,8 @@ import net.neoforged.fml.event.IModBusEvent;
  *
  * <p>Addons should prefer {@link MaterialCatalog#addStartupMaterial} from an
  * explicitly ordered startup hook. Event listeners are only reliable when mod
- * ordering guarantees that the listener exists before this event is posted.
+ * ordering guarantees that the listener exists before this event is posted;
+ * an unordered addon, or one ordered after CrucibleCraft, may never receive it.
  */
 public final class MaterialRegistrationEvent extends Event implements IModBusEvent {
     public boolean register(MaterialDefinition definition) {

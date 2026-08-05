@@ -115,9 +115,9 @@ class CrucibleThermalModelTest {
     }
 
     @Test
-    void coalCokeKeepsFireboxThroughputAndDoublesFuelEnergy() {
+    void coalCokeDoublesFireboxThroughputAndFuelEnergy() {
         assertEquals(
-                FuelDefinition.CHARCOAL.energyPerTick(),
+                FuelDefinition.CHARCOAL.energyPerTick() * 2L,
                 FuelDefinition.COAL_COKE.energyPerTick());
         assertEquals(
                 FuelDefinition.CHARCOAL.totalEnergy() * 2.0,

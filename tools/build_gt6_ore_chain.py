@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import json
 import math
@@ -24,6 +25,10 @@ REFERENCE = TOOLS / "gt6_recipe_normalized_reference.json"
 LOCAL_ARTIFACT_MANIFEST = TOOLS / "local_artifact_manifest.json"
 INDEX_OUT = TOOLS / "gt6_ore_chain.json"
 OPERANDS_OUT = TOOLS / "gt6_ore_chain_operands.json"
+REGISTRATION_GATE = (
+    ROOT
+    / "src/main/resources/data/cruciblecraft/material_registration_gate.json"
+)
 PREFIX_ROOT = (
     ROOT / "src/main/resources/data/cruciblecraft/material_prefixes"
 )
@@ -34,15 +39,24 @@ OUTPUT_ROOT = (
 
 FAMILY_TO_MAP = {
     "crush_raw_to_crushed": "crusher",
+    "crush_ore_block_to_crushed": "crusher",
     "chain_sluice": "sluice",
     "chain_centrifuge": "centrifuge",
     "chain_shredder": "shredder",
     "chain_sifter": "sifter",
     "chain_smelter": "smelter",
 }
-STAGE_ORDER = tuple(FAMILY_TO_MAP)
+STAGE_ORDER = (
+    "crush_raw_to_crushed",
+    "chain_sluice",
+    "chain_centrifuge",
+    "chain_shredder",
+    "chain_sifter",
+    "chain_smelter",
+)
 STAGE_FORMS = {
     "crush_raw_to_crushed": ("raw_ore", "crushed_ore"),
+    "crush_ore_block_to_crushed": ("ore", "crushed_ore"),
     "chain_sluice": ("crushed_ore", "washed_crushed_ore"),
     "chain_centrifuge": (
         "washed_crushed_ore",
@@ -55,6 +69,9 @@ STAGE_FORMS = {
     "chain_sifter": ("purified_dust", "dust"),
     "chain_smelter": ("dust", "ingot"),
 }
+ORE_BLOCK_ROUTE_FAMILY = "crush_ore_block_to_crushed"
+ORE_BLOCK_OUTPUT_COUNT = 5
+ORE_BLOCK_SOURCE_KIND = "high_version_ore_block_projection"
 ACCEPTANCE_MATERIALS = ("copper", "tin", "iron", "gold", "tungsten")
 COMPAT_SHORTCUT_GROUP = "cruciblecraft:compat_shortcut"
 MACHINE_LIMITS = {
@@ -688,12 +705,13 @@ def expand_offline_chain(
 
 def build_documents() -> tuple[dict[str, Any], dict[str, Any], dict[str, str]]:
     selected = load(SELECTED)
+    registration_gate = load(REGISTRATION_GATE)
     core = {
         record["cc_id"]
         for record in selected["records"].values()
         if record.get("layer") == "CORE" and record.get("cc_id")
     }
-    materials = compare.load_cc_materials()
+    materials = compare.cached_cc_materials()
     worldgen_materials = worldgen_ore_materials(materials)
     for material in materials.values():
         material["_resolved_forms"] = list(material["_factual_forms"])
@@ -715,7 +733,7 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any], dict[str, str]]:
 
     evidence: dict[tuple[str, str], list[str]] = defaultdict(list)
     reference_rows: list[tuple[str, str | None, str]] = []
-    for family in FAMILY_TO_MAP:
+    for family in STAGE_ORDER:
         for row in reference["families"][family]:
             material = row.get("material")
             source_hash = value_hash(row)
@@ -804,9 +822,123 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any], dict[str, str]]:
             ),
             "selected_source_recipe": selected_source,
             "gt6_evidence_hashes": gt_evidence,
+            **(
+                {"input_substituted": True}
+                if family == "crush_raw_to_crushed"
+                else {}
+            ),
             "operands": operands,
         })
         map_counts[FAMILY_TO_MAP[family]] += 1
+
+    base_crusher_rows = {
+        row["material"]: row
+        for row in emitted
+        if row["family"] == "crush_raw_to_crushed"
+    }
+    registered_ore_materials = {
+        material_id
+        for material_id, forms in registration_gate["materials"].items()
+        if "ore" in forms
+    }
+    missing_base_crusher = registered_ore_materials - set(base_crusher_rows)
+    if missing_base_crusher:
+        raise ValueError(
+            "registered ore materials lack raw-ore crusher baselines: "
+            + json.dumps(sorted(missing_base_crusher))
+        )
+    ore_prefix = prefixes["ore"]
+    ore_tag_namespace = ore_prefix.get("tag_namespace") or "cruciblecraft"
+    for material_id in sorted(registered_ore_materials):
+        baseline = base_crusher_rows[material_id]
+        baseline_relative = baseline["path"].split("ore_chain/", 1)[1]
+        baseline_document = json.loads(output_files[baseline_relative])
+        if (
+            len(baseline_document.get("item_inputs", [])) != 1
+            or baseline_document.get("item_input_counts") != [1]
+            or len(baseline_document.get("item_outputs", [])) != 1
+            or baseline_document.get("fluid_inputs")
+            or baseline_document.get("fluid_outputs")
+        ):
+            raise ValueError(
+                f"{material_id}: raw-ore crusher baseline is not a one-in/one-out "
+                "item recipe"
+            )
+        document = {
+            key: copy.deepcopy(value)
+            for key, value in baseline_document.items()
+            if key != "provenance"
+        }
+        tag_name = materials[material_id].get("tag_name") or material_id
+        document["item_inputs"] = [{
+            "tag": (
+                f"{ore_tag_namespace}:{ore_prefix['tag_directory']}/{tag_name}"
+            )
+        }]
+        document["item_outputs"][0]["count"] = ORE_BLOCK_OUTPUT_COUNT
+        signature = value_hash(
+            {
+                "map": document["map"],
+                "item_inputs": document.get("item_inputs", []),
+                "item_input_counts": document.get("item_input_counts", []),
+                "fluid_inputs": document.get("fluid_inputs", []),
+            },
+            64,
+        )
+        signature_key = (document["map"], signature)
+        if signature_key in signatures:
+            raise ValueError(
+                "duplicate concrete ore-block input signature in "
+                f"{document['map']}: {material_id}"
+            )
+        signatures.add(signature_key)
+        semantic_hash = value_hash(document)
+        runtime_source = (
+            f"ore_block_projection:{baseline['semantic_hash']}:"
+            f"k{ORE_BLOCK_OUTPUT_COUNT}"
+        )
+        document["provenance"] = {
+            "source_kind": ORE_BLOCK_SOURCE_KIND,
+            "selected_source_recipe": runtime_source,
+            "evidence_hashes": [],
+        }
+        relative = (
+            f"crusher/{material_id}/{semantic_hash}.json"
+        )
+        output_files[relative] = stable_json(document)
+        operands = [
+            {"material": material_id, "form": "crushed_ore", "side": "output"},
+            {"material": material_id, "form": "ore", "side": "input"},
+        ]
+        operand_rows.append({
+            "recipe": relative.removesuffix(".json"),
+            "operands": operands,
+        })
+        emitted.append({
+            "family": ORE_BLOCK_ROUTE_FAMILY,
+            "map": document["map"],
+            "material": material_id,
+            "path": (
+                "src/ore_chain_generated/resources/data/cruciblecraft/recipe/"
+                f"ore_chain/{relative}"
+            ),
+            "semantic_hash": semantic_hash,
+            "source": ORE_BLOCK_SOURCE_KIND,
+            "selected_source_recipe": None,
+            "gt6_evidence_hashes": [],
+            "derivation": {
+                "base_recipe_path": baseline["path"],
+                "base_recipe_semantic_hash": baseline["semantic_hash"],
+                "output_count": ORE_BLOCK_OUTPUT_COUNT,
+                "output_multiplier": {
+                    "numerator": ORE_BLOCK_OUTPUT_COUNT,
+                    "denominator": baseline_document["item_outputs"][0]["count"],
+                },
+                "runtime_source": runtime_source,
+            },
+            "operands": operands,
+        })
+        map_counts["crusher"] += 1
 
     emitted_keys = {
         (row["family"], row["material"]) for row in emitted
@@ -959,6 +1091,22 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any], dict[str, str]]:
                 for family in STAGE_ORDER[1:]
             )
         },
+        "ore_block_crusher_ingress": {
+            "policy": (
+                "registered high-version ore blocks provide an additional "
+                "crusher ingress without changing the six-stage chain"
+            ),
+            "registered_ore_materials": len(registered_ore_materials),
+            "raw_ore_crusher_materials": len(crusher_materials),
+            "intersection": len(registered_ore_materials & crusher_materials),
+            "ore_without_raw_crusher": sorted(
+                registered_ore_materials - crusher_materials
+            ),
+            "raw_crusher_without_ore": sorted(
+                crusher_materials - registered_ore_materials
+            ),
+            "output_count": ORE_BLOCK_OUTPUT_COUNT,
+        },
         "furnace_shortcut_policy": {
             "decision": "retained compatibility route",
             "scope": "generated raw/crushed ore smelting and blasting recipes",
@@ -987,6 +1135,16 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any], dict[str, str]]:
         "gt6_reference": {
             "path": "tools/gt6_recipe_normalized_reference.json",
             "sha256": sha256(REFERENCE),
+        },
+        "material_registration_gate": {
+            "path": (
+                "src/main/resources/data/cruciblecraft/"
+                "material_registration_gate.json"
+            ),
+            "field": "materials with registered ore form",
+            "registered_ore_material_set_sha256": value_hash(
+                sorted(registered_ore_materials), 64
+            ),
         },
         "material_catalog": {
             "path": "src/main/resources/data/cruciblecraft/materials",
@@ -1033,13 +1191,14 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any], dict[str, str]]:
         for material in ACCEPTANCE_MATERIALS
     }
     index = {
-        "schema_version": 2,
+        "schema_version": 3,
         "policy": (
             "upstream-closed concrete six-stage chain for the union of L1b CORE "
             "and factual ore declarations; "
             "topology falls back to reviewed constants, while directly "
             "expressible stage parameters and byproducts use a deterministic "
-            "normalized GT6 representative"
+            "normalized GT6 representative; registered high-version ore blocks "
+            "add a derived crusher ingress with K=5 and no GT6 evidence claim"
         ),
         "inputs": source_inputs,
         "counts": {
@@ -1049,10 +1208,16 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any], dict[str, str]]:
             "recipes": len(emitted),
             "recipes_by_map": dict(sorted(map_counts.items())),
             "gt6_evidenced_recipes": sum(
-                bool(row["selected_source_recipe"]) for row in emitted
+                row["source"] == "gt6_normalized_stage_evidence_projection"
+                for row in emitted
             ),
             "projected_recipes": sum(
-                not row["selected_source_recipe"] for row in emitted
+                row["source"] == "data_driven_ore_topology_projection"
+                for row in emitted
+            ),
+            "high_version_ore_block_recipes": sum(
+                row["source"] == ORE_BLOCK_SOURCE_KIND
+                for row in emitted
             ),
             "normalized_sources": len(source_accounting),
             "source_accounting": dict(sorted(accounting_counts.items())),
@@ -1195,14 +1360,18 @@ def write_outputs(
     operands: dict[str, Any],
     output_files: dict[str, str],
 ) -> None:
-    INDEX_OUT.write_text(compact_json(index), encoding="utf-8")
-    OPERANDS_OUT.write_text(compact_json(operands), encoding="utf-8")
+    INDEX_OUT.write_text(
+        compact_json(index), encoding="utf-8", newline="\n"
+    )
+    OPERANDS_OUT.write_text(
+        compact_json(operands), encoding="utf-8", newline="\n"
+    )
     if OUTPUT_ROOT.exists():
         shutil.rmtree(OUTPUT_ROOT)
     for relative, content in output_files.items():
         path = OUTPUT_ROOT / relative
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(content, encoding="utf-8")
+        path.write_text(content, encoding="utf-8", newline="\n")
 
 
 def main() -> int:

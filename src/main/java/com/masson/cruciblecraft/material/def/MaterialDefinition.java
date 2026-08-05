@@ -106,6 +106,7 @@ public final class MaterialDefinition {
     private final Optional<String> nameKey;
     private final int tier;
     private final String color;
+    private final int colorRgb;
     private final String tintStyle;
     private final List<String> generationFlagIds;
     private final BitSet generationFlags;
@@ -245,6 +246,7 @@ public final class MaterialDefinition {
         this.nameKey = nameKey == null ? Optional.empty() : nameKey;
         this.tier = tier;
         this.color = MaterialColors.requireValid(color);
+        this.colorRgb = Integer.parseInt(this.color.substring(1), 16);
         this.tintStyle = tintStyle;
         this.generationFlagIds = List.copyOf(generationFlagIds);
         this.generationFlags = MaterialPrefixCatalog.compileGenerationFlags(generationFlagIds);
@@ -308,6 +310,7 @@ public final class MaterialDefinition {
     public Optional<String> nameKey() { return nameKey; }
     public int tier() { return tier; }
     public String color() { return color; }
+    public int colorRgb() { return colorRgb; }
     public String tintStyle() { return tintStyle; }
     public List<String> generationFlagIds() { return generationFlagIds; }
     public BitSet generationFlags() { return (BitSet) generationFlags.clone(); }

@@ -32,20 +32,17 @@ public final class ConfiguredProcessingMachineBlockEntity
     private final ContainerData data = new ContainerData() {
         @Override public int get(int index) {
             return switch (index) {
-                case 0 -> progress();
-                case 1 -> duration();
-                case 2 -> (int) Math.min(Integer.MAX_VALUE, powerDemandLong());
-                case 3 -> ProcessingMachineDisplayData.statusIndex(spec(), pausedReason());
-                case 4 -> ProcessingMachineDisplayData.tankAmount(tanks());
-                case 5 -> ProcessingMachineDisplayData.tankCapacity(tanks());
+                case ConfiguredProcessingMachineMenu.STATUS_DATA_INDEX ->
+                        ProcessingMachineDisplayData.statusIndex(spec(), pausedReason());
+                case ConfiguredProcessingMachineMenu.STATUS_ARGUMENT_DATA_INDEX ->
+                        statusArgument();
                 default -> 0;
             };
         }
-        @Override public void set(int index, int value) {
-            if (index == 0) runtime().processor().setProgress(value);
-            if (index == 1) runtime().processor().setDuration(value);
+        @Override public void set(int index, int value) {}
+        @Override public int getCount() {
+            return ConfiguredProcessingMachineMenu.dataCount();
         }
-        @Override public int getCount() { return ConfiguredProcessingMachineMenu.DATA_COUNT; }
     };
 
     public ConfiguredProcessingMachineBlockEntity(BlockPos pos, BlockState state) {

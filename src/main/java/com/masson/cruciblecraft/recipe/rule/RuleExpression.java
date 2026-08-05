@@ -22,7 +22,14 @@ public final class RuleExpression {
             throw new IllegalArgumentException("lookup is unavailable: " + function + "(" + key + ")");
         }
         boolean materialHas(String flag);
-        boolean hasPrefix(String prefix);
+        boolean materialTag(String tag);
+        boolean materialIs(String materialId);
+        boolean hasForm(String prefix);
+        boolean hasRegistered(String prefix);
+        default boolean hasRegisteredFor(String selector, String prefix) {
+            throw new IllegalArgumentException(
+                    "has_registered_for is unavailable: " + selector + ", " + prefix);
+        }
     }
 
     private final String source;
@@ -298,13 +305,18 @@ public final class RuleExpression {
         }
     }
 
-    private record Predicate(String name, String argument) implements Node {
+    private record Predicate(String name, List<String> arguments) implements Node {
         @Override public Type type() { return Type.BOOLEAN; }
         @Override
         public Value eval(Context context) {
             return Value.bool(switch (name) {
-                case "material.has" -> context.materialHas(argument);
-                case "has_prefix" -> context.hasPrefix(argument);
+                case "material.has" -> context.materialHas(arguments.getFirst());
+                case "material.tag" -> context.materialTag(arguments.getFirst());
+                case "material.is" -> context.materialIs(arguments.getFirst());
+                case "has_form" -> context.hasForm(arguments.getFirst());
+                case "has_registered" -> context.hasRegistered(arguments.getFirst());
+                case "has_registered_for" ->
+                        context.hasRegisteredFor(arguments.get(0), arguments.get(1));
                 default -> throw new IllegalArgumentException("unknown predicate " + name);
             });
         }
@@ -450,13 +462,30 @@ public final class RuleExpression {
             if (!accept("(")) {
                 return new Variable(name);
             }
-            if (name.equals("material.has") || name.equals("has_prefix")) {
+            if (name.equals("material.has")
+                    || name.equals("material.tag")
+                    || name.equals("material.is")
+                    || name.equals("has_form")
+                    || name.equals("has_registered")) {
                 if (token.kind != TokenKind.IDENTIFIER && token.kind != TokenKind.STRING) {
                     throw error(name + " requires one flag/prefix argument");
                 }
                 String argument = consume().text;
                 expect(")");
-                return new Predicate(name, argument);
+                return new Predicate(name, List.of(argument));
+            }
+            if (name.equals("has_registered_for")) {
+                if (token.kind != TokenKind.IDENTIFIER && token.kind != TokenKind.STRING) {
+                    throw error(name + " requires a material selector and prefix");
+                }
+                String selector = consume().text;
+                expect(",");
+                if (token.kind != TokenKind.IDENTIFIER && token.kind != TokenKind.STRING) {
+                    throw error(name + " requires a material selector and prefix");
+                }
+                String prefix = consume().text;
+                expect(")");
+                return new Predicate(name, List.of(selector, prefix));
             }
             if (name.equals("target_units") || name.equals("prefix_units")) {
                 if (token.kind != TokenKind.IDENTIFIER && token.kind != TokenKind.STRING) {

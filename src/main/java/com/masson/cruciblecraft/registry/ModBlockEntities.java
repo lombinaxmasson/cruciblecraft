@@ -6,11 +6,16 @@ import com.masson.cruciblecraft.content.blockentity.BellowsBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrusherBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.DynamoBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FireboxBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.SubsurfaceFluidDepositBlockEntity;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -75,6 +80,12 @@ public final class ModBlockEntities {
                     () -> BlockEntityType.Builder.of(
                             SteamEngineBlockEntity::new,
                             ModBlocks.BRONZE_STEAM_ENGINE.get()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DynamoBlockEntity>>
+            DYNAMO = BLOCK_ENTITIES.register(
+                    "bronze_dynamo",
+                    () -> BlockEntityType.Builder.of(
+                            DynamoBlockEntity::new,
+                            ModBlocks.BRONZE_DYNAMO.get()).build(null));
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CrusherBlockEntity>> CRUSHER =
             BLOCK_ENTITIES.register(
                     "bronze_crusher",
@@ -86,23 +97,34 @@ public final class ModBlockEntities {
                     "processing_machine",
                     () -> BlockEntityType.Builder.of(
                             ConfiguredProcessingMachineBlockEntity::new,
-                            ModBlocks.SLUICE.get(),
-                            ModBlocks.BATH.get(),
-                            ModBlocks.CENTRIFUGE.get(),
-                            ModBlocks.SHREDDER.get(),
-                            ModBlocks.SIFTER.get(),
-                            ModBlocks.SMELTER.get(),
-                            ModBlocks.MORTAR.get(),
-                            ModBlocks.EXTRUDER.get(),
-                            ModBlocks.CUTTER.get(),
-                            ModBlocks.LATHE.get(),
-                            ModBlocks.ROLLINGMILL.get(),
-                            ModBlocks.ROLLBENDER.get(),
-                            ModBlocks.WIREMILL.get(),
-                            ModBlocks.BENDER.get(),
-                            ModBlocks.ASSEMBLER.get(),
-                            ModBlocks.WELDER.get(),
-                            ModBlocks.PRESS.get()).build(null));
+                            ModBlocks.configuredProcessingBlocks()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CableBlockEntity>>
+            CABLE = BLOCK_ENTITIES.register(
+                    "cable",
+                    () -> BlockEntityType.Builder.of(
+                            CableBlockEntity::new,
+                            ModBlocks.electricalConductorBlockArray()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FluidPipeBlockEntity>>
+            FLUID_PIPE = BLOCK_ENTITIES.register(
+                    "fluid_pipe",
+                    () -> BlockEntityType.Builder.of(
+                            FluidPipeBlockEntity::new,
+                            ModBlocks.fluidPipeBlockArray()).build(null));
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ItemPipeBlockEntity>>
+            ITEM_PIPE = BLOCK_ENTITIES.register(
+                    "item_pipe",
+                    () -> BlockEntityType.Builder.of(
+                            ItemPipeBlockEntity::new,
+                            ModBlocks.itemPipeBlockArray()).build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<SubsurfaceFluidDepositBlockEntity>>
+                    SUBSURFACE_FLUID_DEPOSIT = BLOCK_ENTITIES.register(
+                            "subsurface_fluid_deposit",
+                            () -> BlockEntityType.Builder.of(
+                                    SubsurfaceFluidDepositBlockEntity::new,
+                                    ModBlocks.SUBSURFACE_FLUID_DEPOSIT.get())
+                                    .build(null));
 
     private ModBlockEntities() {}
 }

@@ -92,14 +92,23 @@ public final class CeramicMoldBlockEntity extends BlockEntity {
         if (!solidified || !isFilled() || MaterialLookup.byId(materialId).isEmpty()) {
             return ItemStack.EMPTY;
         }
+        ItemStack result = contentsStack();
+        if (!result.isEmpty()) {
+            clear();
+        }
+        return result;
+    }
+
+    public ItemStack contentsStack() {
+        if (!isFilled() || MaterialLookup.byId(materialId).isEmpty()) {
+            return ItemStack.EMPTY;
+        }
         ItemStack result = MaterialLookup.item(materialId, shape.form())
                 .map(item -> new ItemStack(item, outputCount))
                 .orElse(ItemStack.EMPTY);
-        if (result.isEmpty()) {
-            return result;
+        if (!result.isEmpty()) {
+            ItemHeat.set(result, temperature, level == null ? 0L : level.getGameTime());
         }
-        ItemHeat.set(result, temperature, level == null ? 0L : level.getGameTime());
-        clear();
         return result;
     }
 

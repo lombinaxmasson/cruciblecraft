@@ -100,8 +100,10 @@ public final class MaterialRuleExpansion {
         }
         Compiled compiled = compile(ruleId, rule);
         Map<String, MaterialDefinition> materialsById = index(availableMaterials);
+        Set<String> knownMaterialTags = knownMaterialTags(availableMaterials);
         List<MaterialDefinition> candidates =
                 candidateMaterials(
+                        ruleId,
                         rule,
                         compiled.requiredPrefixes(),
                         availableMaterials,
@@ -110,9 +112,11 @@ public final class MaterialRuleExpansion {
         for (MaterialDefinition material : candidates) {
             EvaluationContext context = new EvaluationContext(
                     material,
-                    materialsById.keySet(),
+                    materialsById,
+                    knownMaterialTags,
                     indexedPrefixes(material, formIndexes.factual()),
                     indexedPrefixes(material, formIndexes.registered()),
+                    formIndexes.registered(),
                     compiled.inputUnit(),
                     compiled.outputUnit(),
                     compiled.singlePrefixUnit());
@@ -175,18 +179,22 @@ public final class MaterialRuleExpansion {
         }
         Compiled compiled = compile(ruleId, rule);
         Map<String, MaterialDefinition> materialsById = index(availableMaterials);
+        Set<String> knownMaterialTags = knownMaterialTags(availableMaterials);
         List<Plan> plans = new ArrayList<>();
         for (MaterialDefinition material
                 : candidateMaterials(
+                        ruleId,
                         rule,
                         compiled.requiredPrefixes(),
                         availableMaterials,
                         formIndexes.registered())) {
             EvaluationContext context = new EvaluationContext(
                     material,
-                    materialsById.keySet(),
+                    materialsById,
+                    knownMaterialTags,
                     indexedPrefixes(material, formIndexes.factual()),
                     indexedPrefixes(material, formIndexes.registered()),
+                    formIndexes.registered(),
                     compiled.inputUnit(),
                     compiled.outputUnit(),
                     compiled.singlePrefixUnit());
@@ -208,8 +216,8 @@ public final class MaterialRuleExpansion {
                                 selection.material(),
                                 resource.prefix().get(),
                                 formIndexes.registered())) {
-                    itemInputs.clear();
-                    break;
+                    throw unresolvedRequiredResource(
+                            ruleId, material, "item input", index, resource);
                 }
                 Optional<Integer> count = evaluateResourceCount(
                         override.itemInputCounts().get(Integer.toString(index)),
@@ -247,8 +255,8 @@ public final class MaterialRuleExpansion {
                                 resource.prefix().get(),
                                 formIndexes.registered())) {
                     if (resource.optional()) continue;
-                    itemOutputs.clear();
-                    break;
+                    throw unresolvedRequiredResource(
+                            ruleId, material, "item output", index, resource);
                 }
                 EvaluationContext resourceContext =
                         context.forResource(resource.prefix(), selection.targetUnits());
@@ -401,7 +409,8 @@ public final class MaterialRuleExpansion {
                             selection.material(),
                             resource.prefix().get(),
                             registeredPrefixIndex)) {
-                return Optional.empty();
+                throw unresolvedRequiredResource(
+                        ruleId, material, "item input", index, resource);
             }
             Optional<Ingredient> ingredient = resource.tag()
                     .map(tag -> Ingredient.of(TagKey.create(
@@ -410,7 +419,10 @@ public final class MaterialRuleExpansion {
                             selection.material(),
                             resource.prefix(),
                             resource.fixed()));
-            if (ingredient.isEmpty()) return Optional.empty();
+            if (ingredient.isEmpty()) {
+                throw unresolvedRequiredResource(
+                        ruleId, material, "item input", index, resource);
+            }
             Optional<Integer> count = evaluateResourceCount(
                     override.itemInputCounts().get(Integer.toString(index)),
                     resource.amount(),
@@ -419,7 +431,9 @@ public final class MaterialRuleExpansion {
                     resource.candidateSpecificAmount(),
                     resource.fixed().isPresent()
                             || resource.tag().isPresent());
-            if (count.isEmpty()) return Optional.empty();
+            if (count.isEmpty()) {
+                return Optional.empty();
+            }
             itemInputs.add(withStringComponents(
                     ingredient.get(), resource, material));
             inputCounts.add(count.get());
@@ -438,13 +452,15 @@ public final class MaterialRuleExpansion {
                             resource.prefix().get(),
                             registeredPrefixIndex)) {
                 if (resource.optional()) continue;
-                return Optional.empty();
+                throw unresolvedRequiredResource(
+                        ruleId, material, "item output", index, resource);
             }
             Optional<Item> item = resolver.itemOutput(
                     selection.material(), resource.prefix(), resource.fixed());
             if (item.isEmpty()) {
                 if (resource.optional()) continue;
-                return Optional.empty();
+                throw unresolvedRequiredResource(
+                        ruleId, material, "item output", index, resource);
             }
             EvaluationContext resourceContext =
                     context.forResource(resource.prefix(), selection.targetUnits());
@@ -581,7 +597,12 @@ public final class MaterialRuleExpansion {
                     resource.prefix(),
                     resource.fixed(),
                     resource.materialFluid());
-            if (fluid.isEmpty()) return null;
+            if (fluid.isEmpty()) {
+                throw new IllegalArgumentException(
+                        "material rule " + ruleId + ": required fluid " + side
+                                + " " + index + " did not resolve for material "
+                                + material.id());
+            }
             String key = side + ":" + index;
             int amount = evaluateInt(
                     override.fluidAmounts().get(key),
@@ -594,6 +615,7 @@ public final class MaterialRuleExpansion {
     }
 
     private static List<MaterialDefinition> candidateMaterials(
+            ResourceLocation ruleId,
             MaterialRule rule,
             Set<MaterialPrefix> required,
             java.util.Collection<MaterialDefinition> availableMaterials,
@@ -604,10 +626,20 @@ public final class MaterialRuleExpansion {
                     .findFirst()
                     .orElseThrow(() -> new IllegalArgumentException(
                             "Unknown material " + rule.material().get()));
-            return required.stream().allMatch(prefix ->
-                    prefixIndex.getOrDefault(prefix, List.of()).contains(selected))
-                    ? List.of(selected)
-                    : List.of();
+            List<String> missing = required.stream()
+                    .filter(prefix -> !prefixIndex
+                            .getOrDefault(prefix, List.of())
+                            .contains(selected))
+                    .map(MaterialPrefix::serializedId)
+                    .sorted()
+                    .toList();
+            if (!missing.isEmpty()) {
+                throw new IllegalArgumentException(
+                        "material rule " + ruleId + ": explicit material "
+                                + selected.id() + " lacks required registered forms "
+                                + missing);
+            }
+            return List.of(selected);
         }
         List<MaterialDefinition> smallestIndexed = required.stream()
                 .map(prefix -> prefixIndex.getOrDefault(prefix, List.of()))
@@ -665,6 +697,31 @@ public final class MaterialRuleExpansion {
         LinkedHashMap<String, MaterialDefinition> result = new LinkedHashMap<>();
         materials.forEach(material -> result.put(material.id(), material));
         return Map.copyOf(result);
+    }
+
+    private static Set<String> knownMaterialTags(
+            Collection<MaterialDefinition> materials) {
+        return materials.stream()
+                .flatMap(material -> material.gt6Metadata().stream())
+                .flatMap(metadata -> metadata.materialTags().stream())
+                .collect(java.util.stream.Collectors.toUnmodifiableSet());
+    }
+
+    private static IllegalArgumentException unresolvedRequiredResource(
+            ResourceLocation ruleId,
+            MaterialDefinition material,
+            String side,
+            int index,
+            CompiledItem resource) {
+        String reference = resource.prefix()
+                .map(MaterialPrefix::serializedId)
+                .or(() -> resource.fixed().map(ResourceLocation::toString))
+                .or(() -> resource.tag().map(tag -> "#" + tag))
+                .orElse("<unknown>");
+        return new IllegalArgumentException(
+                "material rule " + ruleId + ": required " + side + " "
+                        + index + " (" + reference
+                        + ") did not resolve for material " + material.id());
     }
 
     private static Optional<SelectedMaterial> selectMaterial(
@@ -1039,9 +1096,11 @@ public final class MaterialRuleExpansion {
 
     private record EvaluationContext(
             MaterialDefinition material,
-            Set<String> knownMaterialIds,
+            Map<String, MaterialDefinition> knownMaterials,
+            Set<String> knownMaterialTags,
             Set<MaterialPrefix> factualForms,
             Set<MaterialPrefix> registeredForms,
+            Map<MaterialPrefix, List<MaterialDefinition>> registeredPrefixIndex,
             Double inputUnit,
             Double outputUnit,
             Double prefixUnit,
@@ -1049,17 +1108,21 @@ public final class MaterialRuleExpansion {
             Double resourcePrefixUnits) implements RuleExpression.Context {
         EvaluationContext(
                 MaterialDefinition material,
-                Set<String> knownMaterialIds,
+                Map<String, MaterialDefinition> knownMaterials,
+                Set<String> knownMaterialTags,
                 Set<MaterialPrefix> factualForms,
                 Set<MaterialPrefix> registeredForms,
+                Map<MaterialPrefix, List<MaterialDefinition>> registeredPrefixIndex,
                 Double inputUnit,
                 Double outputUnit,
                 Double prefixUnit) {
             this(
                     material,
-                    knownMaterialIds,
+                    knownMaterials,
+                    knownMaterialTags,
                     factualForms,
                     registeredForms,
+                    registeredPrefixIndex,
                     inputUnit,
                     outputUnit,
                     prefixUnit,
@@ -1072,9 +1135,11 @@ public final class MaterialRuleExpansion {
                 Double selectedTargetUnits) {
             return new EvaluationContext(
                     material,
-                    knownMaterialIds,
+                    knownMaterials,
+                    knownMaterialTags,
                     factualForms,
                     registeredForms,
+                    registeredPrefixIndex,
                     inputUnit,
                     outputUnit,
                     prefixUnit,
@@ -1095,6 +1160,26 @@ public final class MaterialRuleExpansion {
                         .orElse(0.0D);
                 case "material.heat_damage" -> material.gt6Metadata()
                         .map(GT6MaterialMetadata::heatDamage)
+                        .orElse(0.0D);
+                case "material.pipe.fluid_recipe" -> material.gt6Metadata()
+                        .map(metadata -> metadata.pipeProperties()
+                                .fluidBySpecification()
+                                .values()
+                                .stream()
+                                .anyMatch(GT6MaterialMetadata
+                                        .FluidPipeProperties::recipe)
+                                ? 1.0D
+                                : 0.0D)
+                        .orElse(0.0D);
+                case "material.pipe.item_recipe" -> material.gt6Metadata()
+                        .map(metadata -> metadata.pipeProperties()
+                                .itemBySpecification()
+                                .values()
+                                .stream()
+                                .anyMatch(GT6MaterialMetadata
+                                        .ItemPipeProperties::recipe)
+                                ? 1.0D
+                                : 0.0D)
                         .orElse(0.0D);
                 case "material.tool.types" -> material.gt6Metadata()
                         .map(metadata -> (double) metadata.tool().types())
@@ -1140,6 +1225,10 @@ public final class MaterialRuleExpansion {
 
         @Override
         public boolean materialTag(String tag) {
+            if (!knownMaterialTags.contains(tag)) {
+                throw new IllegalArgumentException(
+                        "Unknown material.tag value: " + tag);
+            }
             return material.gt6Metadata()
                     .map(metadata -> metadata.materialTags().contains(tag))
                     .orElse(false);
@@ -1148,7 +1237,7 @@ public final class MaterialRuleExpansion {
         @Override
         public boolean materialIs(String materialId) {
             MaterialRule.requireMaterialId(materialId, "material.is argument");
-            if (!knownMaterialIds.contains(materialId)) {
+            if (!knownMaterials.containsKey(materialId)) {
                 throw new IllegalArgumentException(
                         "Unknown material.is material: " + materialId);
             }
@@ -1163,6 +1252,15 @@ public final class MaterialRuleExpansion {
         @Override
         public boolean hasRegistered(String prefix) {
             return registeredForms.contains(MaterialPrefixCatalog.require(prefix));
+        }
+
+        @Override
+        public boolean hasRegisteredFor(String selector, String prefix) {
+            MaterialPrefix required = MaterialPrefixCatalog.require(prefix);
+            return selectMaterial(material, selector, knownMaterials)
+                    .map(selected -> hasIndexedPrefix(
+                            selected.material(), required, registeredPrefixIndex))
+                    .orElse(false);
         }
 
         private static double requireUnit(Double value, String name) {

@@ -8,13 +8,18 @@
     "cruciblecraft:generates_block",
     "cruciblecraft:generates_dust",
     "cruciblecraft:generates_fine_wire",
+    "cruciblecraft:generates_huge_item_pipe",
     "cruciblecraft:generates_ingot",
+    "cruciblecraft:generates_item_pipe",
+    "cruciblecraft:generates_large_item_pipe",
     "cruciblecraft:generates_nugget",
     "cruciblecraft:generates_plate",
     "cruciblecraft:generates_small_spring",
     "cruciblecraft:generates_spring",
     "gt6:itemgenerator/denseplates",
     "gt6:itemgenerator/foils",
+    "gt6:itemgenerator/hotingots",
+    "gt6:itemgenerator/multiingots",
     "gt6:itemgenerator/multiplates",
     "gt6:itemgenerator/parts",
     "gt6:itemgenerator/sticks"
@@ -56,6 +61,29 @@
       "PROPERTIES.MAZEBREAKER",
       "PROPERTIES.UNBURNABLE"
     ],
+    "pipe_properties": {
+      "fluid_by_specification": {},
+      "item_by_specification": {
+        "pipeHuge": {
+          "blocking": true,
+          "recipe": true,
+          "stacks_per_second": 2048,
+          "step_size": 16
+        },
+        "pipeLarge": {
+          "blocking": true,
+          "recipe": true,
+          "stacks_per_second": 1024,
+          "step_size": 32
+        },
+        "pipeMedium": {
+          "blocking": true,
+          "recipe": true,
+          "stacks_per_second": 512,
+          "step_size": 64
+        }
+      }
+    },
     "processing_targets": {
       "bending": {
         "cc_units": 144,

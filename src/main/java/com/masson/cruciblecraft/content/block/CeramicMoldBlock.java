@@ -106,6 +106,10 @@ public final class CeramicMoldBlock extends Block implements EntityBlock {
         if (!level.isClientSide && !player.getAbilities().instabuild
                 && level.getBlockEntity(pos) instanceof CeramicMoldBlockEntity mold) {
             popResource(level, pos, mold.moldStack());
+            ItemStack contents = mold.contentsStack();
+            if (!contents.isEmpty()) {
+                popResource(level, pos, contents);
+            }
         }
         return super.playerWillDestroy(level, pos, state, player);
     }

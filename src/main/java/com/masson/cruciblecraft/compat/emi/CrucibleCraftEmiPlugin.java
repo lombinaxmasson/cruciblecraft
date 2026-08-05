@@ -1,7 +1,10 @@
 package com.masson.cruciblecraft.compat.emi;
 
 import java.util.ArrayList;
+import java.util.IdentityHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 import com.masson.cruciblecraft.CrucibleCraft;
@@ -12,9 +15,11 @@ import com.masson.cruciblecraft.content.mold.MoldCastingRules;
 import com.masson.cruciblecraft.content.mold.MoldShape;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.AnvilMode;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModItems;
+import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
@@ -70,6 +75,7 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         registerCokeOvenRecipes(registry);
         registerMoldCasting(registry);
         registerCrusherRecipes(registry);
+        registerProcessingMachines(registry);
     }
 
     private static void registerAlloys(EmiRegistry registry) {
@@ -181,6 +187,34 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
             registry.addRecipe(new CrusherEmiRecipe(
                     entry.id(),
                     entry.recipe()));
+        }
+    }
+
+    private static void registerProcessingMachines(EmiRegistry registry) {
+        ProcessingEmiRegistrationPlan plan = ProcessingEmiRegistrationPlan.create(
+                ModProcessingMachines.CONFIGURED_MACHINES);
+        Map<ProcessingMachineSpec, EmiRecipeCategory> categories =
+                new IdentityHashMap<>();
+        for (ProcessingEmiRegistrationPlan.MachineRegistration machine
+                : plan.machines()) {
+            EmiStack workstation = EmiStack.of(
+                    ModBlocks.configuredProcessingBlock(machine.spec()));
+            EmiRecipeCategory category = new EmiRecipeCategory(
+                    machine.categoryId(), workstation);
+            categories.put(machine.spec(), category);
+            registry.addCategory(category);
+            registry.addWorkstation(category, workstation);
+        }
+        for (ProcessingEmiRegistrationPlan.RecipeRegistration recipe
+                : plan.recipes()) {
+            EmiRecipeCategory category = Objects.requireNonNull(
+                    categories.get(recipe.machine().spec()),
+                    "Missing processing EMI category");
+            registry.addRecipe(new ProcessingEmiRecipe(
+                    recipe.id(),
+                    category,
+                    recipe.machine().spec(),
+                    recipe.recipe()));
         }
     }
 

@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.worldgen;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
+import java.util.Map;
 
 import com.mojang.serialization.JsonOps;
 
@@ -13,6 +14,7 @@ import net.minecraft.server.Bootstrap;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.fml.loading.LoadingModList;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -20,6 +22,7 @@ import org.junit.jupiter.api.Test;
 class LargeVeinConfigurationTest {
     @BeforeAll
     static void bootstrap() {
+        LoadingModList.of(List.of(), List.of(), List.of(), List.of(), Map.of());
         SharedConstants.tryDetectVersion();
         Bootstrap.bootStrap();
     }

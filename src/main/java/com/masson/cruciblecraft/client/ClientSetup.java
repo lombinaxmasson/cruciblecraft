@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.client;
 
 import java.util.Collections;
 import java.util.IdentityHashMap;
+import java.util.List;
 import java.util.Set;
 
 import com.masson.cruciblecraft.CrucibleCraft;
@@ -58,6 +59,18 @@ public class ClientSetup {
     static void registerItemColors(RegisterColorHandlersEvent.Item event) {
         Set<Item> materialItems = Collections.newSetFromMap(new IdentityHashMap<>());
         ModItems.materialItems().forEach(item -> materialItems.add(item.get()));
+        materialItems.addAll(List.of(
+                ModItems.MATERIAL_PICKAXE.get(),
+                ModItems.MATERIAL_SHOVEL.get(),
+                ModItems.MATERIAL_AXE.get(),
+                ModItems.MATERIAL_HOE.get(),
+                ModItems.MATERIAL_SWORD.get(),
+                ModItems.SMITHING_HAMMER.get(),
+                ModItems.MATERIAL_FILE.get(),
+                ModItems.MATERIAL_CHISEL.get(),
+                ModItems.MATERIAL_SAW.get(),
+                ModItems.MATERIAL_SCREWDRIVER.get(),
+                ModItems.MATERIAL_WRENCH.get()));
         com.masson.cruciblecraft.material.MaterialCatalog.values().forEach(material ->
                 material.formItems().keySet().forEach(form ->
                         MaterialLookup.item(material.id(), form).ifPresent(materialItems::add)));
@@ -77,6 +90,40 @@ public class ClientSetup {
 
     @SubscribeEvent
     static void registerBlockColors(RegisterColorHandlersEvent.Block event) {
+        event.register(
+                (state, level, pos, tintIndex) -> {
+                    if (tintIndex != 0
+                            || !(state.getBlock()
+                                    instanceof com.masson.cruciblecraft
+                                            .content.block.CableBlock cable)) {
+                        return 0xFFFFFFFF;
+                    }
+                    return com.masson.cruciblecraft.material.MaterialCatalog
+                            .find(cable.conductor().materialId())
+                            .map(material ->
+                                    0xFF000000 | material.colorRgb())
+                            .orElse(0xFFFFFFFF);
+                },
+                ModBlocks.electricalConductorBlockArray());
+        event.register(
+                (state, level, pos, tintIndex) -> {
+                    if (tintIndex != 0
+                            || !(state.getBlock()
+                                    instanceof com.masson.cruciblecraft
+                                            .content.block.AbstractPipeBlock
+                                            pipe)) {
+                        return 0xFFFFFFFF;
+                    }
+                    return com.masson.cruciblecraft.material.MaterialCatalog
+                            .find(pipe.pipe().materialId())
+                            .map(material ->
+                                    0xFF000000 | material.colorRgb())
+                            .orElse(0xFFFFFFFF);
+                },
+                ModBlocks.pipeBlocks().stream()
+                        .map(holder -> (net.minecraft.world.level.block.Block)
+                                holder.get())
+                        .toArray(net.minecraft.world.level.block.Block[]::new));
         event.register(
                 (state, level, pos, tintIndex) -> {
                     if (tintIndex != 0 || level == null || pos == null) {
@@ -128,6 +175,12 @@ public class ClientSetup {
         event.register(ModMenus.ASSEMBLER.get(), ConfiguredProcessingMachineScreen::new);
         event.register(ModMenus.WELDER.get(), ConfiguredProcessingMachineScreen::new);
         event.register(ModMenus.PRESS.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.ELECTROLYZER.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.MIXER.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.DISTILLERY.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.AUTOCLAVE.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.DRYING.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.COMPRESSOR.get(), ConfiguredProcessingMachineScreen::new);
     }
 
     @SubscribeEvent
@@ -165,6 +218,8 @@ public class ClientSetup {
             }
         }, ModFluids.STEAM_TYPE.get());
         ModFluids.moltenFluids().forEach(entry -> {
+            int tintColor = 0xFF000000
+                    | entry.material().colorRgb();
             event.registerFluidType(new IClientFluidTypeExtensions() {
                 @Override
                 public ResourceLocation getStillTexture() {
@@ -178,8 +233,27 @@ public class ClientSetup {
 
                 @Override
                 public int getTintColor() {
-                    return 0xFF000000
-                            | MaterialColors.parse(entry.material().color());
+                    return tintColor;
+                }
+            }, entry.type().get());
+        });
+        ModFluids.chemicalFluids().forEach(entry -> {
+            int tintColor = 0xFF000000
+                    | MaterialColors.parse(entry.color());
+            event.registerFluidType(new IClientFluidTypeExtensions() {
+                @Override
+                public ResourceLocation getStillTexture() {
+                    return ResourceLocation.withDefaultNamespace("block/water_still");
+                }
+
+                @Override
+                public ResourceLocation getFlowingTexture() {
+                    return ResourceLocation.withDefaultNamespace("block/water_flow");
+                }
+
+                @Override
+                public int getTintColor() {
+                    return tintColor;
                 }
             }, entry.type().get());
         });
@@ -190,7 +264,7 @@ public class ClientSetup {
             return 0xFF7F7F7F;
         }
         return MaterialLookup.byId(materialId)
-                .map(material -> 0xFF000000 | MaterialColors.parse(material.color()))
+                .map(material -> 0xFF000000 | material.colorRgb())
                 .orElse(0xFFFFFFFF);
     }
 }

@@ -1,4 +1,7 @@
 {
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", screw)"
+  ],
   "duration": "64 * (144 * prefix_units(screw) / gcd(target_units(working) * 18, 144 * prefix_units(screw)))",
   "eut": "16",
   "item_inputs": [

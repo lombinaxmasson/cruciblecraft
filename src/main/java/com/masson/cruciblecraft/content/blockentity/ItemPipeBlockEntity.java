@@ -1,0 +1,493 @@
+package com.masson.cruciblecraft.content.blockentity;
+
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
+import com.masson.cruciblecraft.content.block.ItemPipeBlock;
+import com.masson.cruciblecraft.logistics.pipe.PipeTopology;
+import com.masson.cruciblecraft.logistics.pipe.PipeTransferDiagnostics;
+import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
+import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverSet;
+import com.masson.cruciblecraft.logistics.pipe.item
+        .ItemPipeNetworkTraversal;
+import com.masson.cruciblecraft.logistics.pipe.item
+        .ItemPipeNetworkTraversal.Route;
+import com.masson.cruciblecraft.logistics.pipe.item
+        .ItemPipeTransferPlan;
+import com.masson.cruciblecraft.registry.ModBlockEntities;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.items.IItemHandler;
+
+/** Cached-route item pipe with source-first active pump covers. */
+public final class ItemPipeBlockEntity extends BlockEntity {
+    private static final int TRANSFER_INTERVAL = 5;
+
+    private final PipeCoverSet covers = new PipeCoverSet();
+    private final EnumMap<Direction, IItemHandler> sidedHandlers =
+            new EnumMap<>(Direction.class);
+    private final Map<RouteKey, List<Route>> routeCache = new HashMap<>();
+    private long cachedTopologyVersion = Long.MIN_VALUE;
+    private long windowStart = Long.MIN_VALUE;
+    private int consumedThisWindow;
+    private int deliveredThisWindow;
+    private long totalDelivered;
+    private long clogEvents;
+    private int nextRoute;
+    private int recoveredInvalidCoverRows;
+    private boolean recoveryWarningLogged;
+
+    public ItemPipeBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.ITEM_PIPE.get(), pos, state);
+        for (Direction side : Direction.values()) {
+            sidedHandlers.put(side, new SidedHandler(side));
+        }
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        if (!recoveryWarningLogged
+                && recoveredInvalidCoverRows > 0
+                && level != null
+                && !level.isClientSide) {
+            recoveryWarningLogged = true;
+            CrucibleCraft.LOGGER.warn(
+                    "Recovered {} invalid item-pipe cover row(s) at {} {}; "
+                            + "invalid rows were omitted",
+                    recoveredInvalidCoverRows,
+                    level.dimension().location(),
+                    worldPosition);
+        }
+    }
+
+    public static void serverTick(
+            Level level,
+            BlockPos pos,
+            BlockState state,
+            ItemPipeBlockEntity pipe) {
+        pipe.rollWindow(level.getGameTime());
+        if (Math.floorMod(
+                        level.getGameTime()
+                                + pos.getX() * 31L
+                                + pos.getY() * 17L
+                                + pos.getZ(),
+                        TRANSFER_INTERVAL)
+                == 0L) {
+            pipe.pullFromPumps(level);
+        }
+    }
+
+    public IItemHandler itemHandler(Direction side) {
+        return side == null ? null : sidedHandlers.get(side);
+    }
+
+    public boolean acceptsIncoming(
+            Direction side, ItemStack stack) {
+        return covers.allowsIncoming(side)
+                && covers.matches(side, stack);
+    }
+
+    public boolean allowsOutgoing(
+            Direction side, ItemStack stack) {
+        return covers.matches(side, stack);
+    }
+
+    public int availableItems() {
+        rollWindow(level == null ? 0L : level.getGameTime());
+        return Math.max(0, itemLimit() - consumedThisWindow);
+    }
+
+    public int deliveredThisWindow() {
+        rollWindow(level == null ? 0L : level.getGameTime());
+        return deliveredThisWindow;
+    }
+
+    public long clogEvents() {
+        return clogEvents;
+    }
+
+    public long totalDelivered() {
+        return totalDelivered;
+    }
+
+    public Map<Direction, PipeCover> coverSnapshot() {
+        return covers.snapshot();
+    }
+
+    public boolean setCover(Direction side, PipeCover cover) {
+        if (!covers.set(side, cover)) {
+            return false;
+        }
+        invalidateRoutes();
+        setChanged();
+        if (level != null && !level.isClientSide) {
+            PipeTopology.invalidate(level, worldPosition);
+            syncToClient();
+        }
+        return true;
+    }
+
+    public void recordTransferred(int consumed, int delivered) {
+        if (consumed < 0 || delivered < 0 || delivered > consumed) {
+            throw new IllegalArgumentException(
+                    "Invalid item pipe transfer accounting");
+        }
+        rollWindow(level == null ? 0L : level.getGameTime());
+        consumedThisWindow = Math.min(
+                Integer.MAX_VALUE, consumedThisWindow + consumed);
+        deliveredThisWindow = Math.min(
+                Integer.MAX_VALUE, deliveredThisWindow + delivered);
+        totalDelivered = Math.addExact(totalDelivered, delivered);
+        if (consumed > 0) {
+            setChanged();
+        }
+    }
+
+    private void pullFromPumps(Level level) {
+        if (availableItems() <= 0) {
+            return;
+        }
+        for (Direction side : Direction.values()) {
+            if (!covers.hasPump(side)
+                    || !AbstractPipeBlock.isConnected(
+                            liveState(), side)
+                    || availableItems() <= 0) {
+                continue;
+            }
+            BlockPos sourcePos = worldPosition.relative(side);
+            if (!level.hasChunkAt(sourcePos)) {
+                continue;
+            }
+            IItemHandler source;
+            try {
+                source = level.getCapability(
+                        Capabilities.ItemHandler.BLOCK,
+                        sourcePos,
+                        side.getOpposite());
+            } catch (RuntimeException failure) {
+                PipeTransferDiagnostics.warnOnce(
+                        "item pump discovery",
+                        null,
+                        "Item pump discovery failed at " + sourcePos,
+                        failure);
+                continue;
+            }
+            if (source == null) {
+                continue;
+            }
+            pumpOne(source, side);
+        }
+    }
+
+    private void pumpOne(IItemHandler source, Direction side) {
+        try {
+            for (int slot = 0;
+                    slot < source.getSlots() && availableItems() > 0;
+                    slot++) {
+                ItemStack simulated = source.extractItem(
+                        slot, availableItems(), true);
+                if (simulated.isEmpty()
+                        || !covers.matches(side, simulated)) {
+                    continue;
+                }
+                ItemStack simulatedRemainder = insert(
+                        side, simulated, true);
+                int accepted = simulated.getCount()
+                        - simulatedRemainder.getCount();
+                if (accepted <= 0) {
+                    continue;
+                }
+                ItemStack extracted = source.extractItem(
+                        slot, accepted, false);
+                if (extracted.isEmpty()
+                        || extracted.getCount() > accepted
+                        || !ItemStack.isSameItemSameComponents(
+                                extracted, simulated)) {
+                    PipeTransferDiagnostics.warnOnce(
+                            "item pump execution",
+                            source,
+                            "Item pump source violated simulated extraction");
+                    return;
+                }
+                ItemStack remainder = insert(side, extracted, false);
+                if (!remainder.isEmpty()) {
+                    ItemStack unrecovered = returnToSource(
+                            source, slot, remainder);
+                    if (!unrecovered.isEmpty()) {
+                        clogEvents = Math.addExact(
+                                clogEvents, unrecovered.getCount());
+                        recordTransferred(
+                                unrecovered.getCount(), 0);
+                    }
+                }
+                return;
+            }
+        } catch (RuntimeException failure) {
+            PipeTransferDiagnostics.warnOnce(
+                    "item pump", source, "Item pump transfer failed", failure);
+        }
+    }
+
+    private ItemStack returnToSource(
+            IItemHandler source, int slot, ItemStack remainder) {
+        try {
+            ItemStack returned = source.insertItem(
+                    slot, remainder, false);
+            if (returned == null
+                    || returned.getCount() < 0
+                    || returned.getCount() > remainder.getCount()
+                    || (!returned.isEmpty()
+                            && !ItemStack.isSameItemSameComponents(
+                                    remainder, returned))) {
+                PipeTransferDiagnostics.warnOnce(
+                        "item pump recovery",
+                        source,
+                        "Item source returned invalid recovery remainder");
+                return remainder;
+            }
+            return returned;
+        } catch (RuntimeException failure) {
+            PipeTransferDiagnostics.warnOnce(
+                    "item pump recovery",
+                    source,
+                    "Item source rejected route-failure recovery",
+                    failure);
+            return remainder;
+        }
+    }
+
+    private ItemStack insert(
+            Direction ingress, ItemStack stack, boolean simulate) {
+        if (stack.isEmpty()
+                || !AbstractPipeBlock.isConnected(
+                        liveState(), ingress)
+                || !acceptsIncoming(ingress, stack)
+                || level == null
+                || level.isClientSide
+                || availableItems() <= 0) {
+            return stack;
+        }
+        List<Route> routes = routes(ingress, stack);
+        ItemPipeTransferPlan plan = ItemPipeTransferPlan.plan(
+                level, stack, routes, availableItems());
+        if (simulate) {
+            return stack.copyWithCount(stack.getCount() - plan.accepted());
+        }
+        ItemPipeTransferPlan.Execution execution = plan.execute(level);
+        int consumed = Math.min(stack.getCount(), execution.consumed());
+        if (execution.delivered() > 0 && !routes.isEmpty()) {
+            nextRoute = Math.floorMod(nextRoute + 1, routes.size());
+            setChanged();
+        }
+        if (consumed < plan.accepted()) {
+            clogEvents += plan.accepted() - consumed;
+            setChanged();
+        }
+        return consumed == stack.getCount()
+                ? ItemStack.EMPTY
+                : stack.copyWithCount(stack.getCount() - consumed);
+    }
+
+    private List<Route> routes(
+            Direction ingress, ItemStack stack) {
+        long version = PipeTopology.version(level, worldPosition);
+        if (version != cachedTopologyVersion) {
+            routeCache.clear();
+            cachedTopologyVersion = version;
+        }
+        String itemId = BuiltInRegistries.ITEM.getKey(
+                stack.getItem()).toString();
+        RouteKey key = new RouteKey(ingress, itemId);
+        List<Route> cached = routeCache.computeIfAbsent(
+                key,
+                ignored -> ItemPipeNetworkTraversal.discover(
+                        level, worldPosition, ingress, stack));
+        if (cached.size() < 2) {
+            return cached;
+        }
+        long bestCost = cached.getFirst().cost();
+        int equalPriority = 1;
+        while (equalPriority < cached.size()
+                && cached.get(equalPriority).cost() == bestCost) {
+            equalPriority++;
+        }
+        int offset = Math.floorMod(nextRoute, equalPriority);
+        if (offset == 0) {
+            return cached;
+        }
+        java.util.ArrayList<Route> rotated =
+                new java.util.ArrayList<>(cached.size());
+        rotated.addAll(cached.subList(offset, equalPriority));
+        rotated.addAll(cached.subList(0, offset));
+        rotated.addAll(cached.subList(equalPriority, cached.size()));
+        return List.copyOf(rotated);
+    }
+
+    private void invalidateRoutes() {
+        routeCache.clear();
+        cachedTopologyVersion = Long.MIN_VALUE;
+    }
+
+    private int itemLimit() {
+        long value = (long) pipe().pipe().item().stacksPerSecond() * 64L;
+        return (int) Math.min(Integer.MAX_VALUE, Math.max(1L, value));
+    }
+
+    private void rollWindow(long tick) {
+        long start = tick - Math.floorMod(tick, 20L);
+        if (windowStart != start) {
+            windowStart = start;
+            consumedThisWindow = 0;
+            deliveredThisWindow = 0;
+        }
+    }
+
+    private ItemPipeBlock pipe() {
+        if (liveState().getBlock() instanceof ItemPipeBlock pipe) {
+            return pipe;
+        }
+        throw new IllegalStateException(
+                "Item pipe block entity has non-pipe state");
+    }
+
+    @Override
+    protected void saveAdditional(
+            CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        covers.save(tag, registries);
+        tag.putLong("window_start", windowStart);
+        tag.putInt("consumed_window", consumedThisWindow);
+        tag.putInt("delivered_window", deliveredThisWindow);
+        tag.putLong("total_delivered", totalDelivered);
+        tag.putLong("clog_events", clogEvents);
+        tag.putInt("next_route", nextRoute);
+    }
+
+    @Override
+    protected void loadAdditional(
+            CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        recoveredInvalidCoverRows = covers.load(tag, registries);
+        windowStart = tag.getLong("window_start");
+        consumedThisWindow = tag.getInt("consumed_window");
+        deliveredThisWindow = tag.getInt("delivered_window");
+        totalDelivered = tag.getLong("total_delivered");
+        clogEvents = tag.getLong("clog_events");
+        nextRoute = Math.max(0, tag.getInt("next_route"));
+        invalidateRoutes();
+    }
+
+    @Override
+    public CompoundTag getUpdateTag(
+            HolderLookup.Provider registries) {
+        CompoundTag tag = new CompoundTag();
+        covers.save(tag, registries);
+        tag.putInt("consumed_window", consumedThisWindow);
+        tag.putInt("delivered_window", deliveredThisWindow);
+        tag.putLong("total_delivered", totalDelivered);
+        tag.putLong("clog_events", clogEvents);
+        return tag;
+    }
+
+    @Override
+    public void handleUpdateTag(
+            CompoundTag tag, HolderLookup.Provider registries) {
+        covers.load(tag, registries);
+        consumedThisWindow = tag.getInt("consumed_window");
+        deliveredThisWindow = tag.getInt("delivered_window");
+        totalDelivered = tag.getLong("total_delivered");
+        clogEvents = tag.getLong("clog_events");
+        invalidateRoutes();
+    }
+
+    @Override
+    public void onDataPacket(
+            Connection connection,
+            ClientboundBlockEntityDataPacket packet,
+            HolderLookup.Provider registries) {
+        if (packet.getTag() != null) {
+            handleUpdateTag(packet.getTag(), registries);
+        }
+    }
+
+    @Override
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
+    }
+
+    private void syncToClient() {
+        if (level != null && !level.isClientSide) {
+            BlockState state = liveState();
+            level.sendBlockUpdated(
+                    worldPosition,
+                    state,
+                    state,
+                    Block.UPDATE_CLIENTS);
+        }
+    }
+
+    private BlockState liveState() {
+        return level == null
+                ? getBlockState()
+                : level.getBlockState(worldPosition);
+    }
+
+    private record RouteKey(Direction ingress, String itemId) {}
+
+    private final class SidedHandler implements IItemHandler {
+        private final Direction side;
+
+        private SidedHandler(Direction side) {
+            this.side = side;
+        }
+
+        @Override
+        public int getSlots() {
+            return 1;
+        }
+
+        @Override
+        public ItemStack getStackInSlot(int slot) {
+            return ItemStack.EMPTY;
+        }
+
+        @Override
+        public ItemStack insertItem(
+                int slot, ItemStack stack, boolean simulate) {
+            return insert(side, stack, simulate);
+        }
+
+        @Override
+        public ItemStack extractItem(
+                int slot, int amount, boolean simulate) {
+            return ItemStack.EMPTY;
+        }
+
+        @Override
+        public int getSlotLimit(int slot) {
+            return itemLimit();
+        }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+            return acceptsIncoming(side, stack);
+        }
+    }
+}

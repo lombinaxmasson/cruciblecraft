@@ -9,8 +9,14 @@
     "cruciblecraft:generates_centrifuged_crushed_ore",
     "cruciblecraft:generates_crushed_ore",
     "cruciblecraft:generates_dust",
+    "cruciblecraft:generates_fluid_pipe",
+    "cruciblecraft:generates_huge_fluid_pipe",
+    "cruciblecraft:generates_large_fluid_pipe",
     "cruciblecraft:generates_purified_dust",
+    "cruciblecraft:generates_small_fluid_pipe",
+    "cruciblecraft:generates_tiny_centrifuged_crushed_ore",
     "cruciblecraft:generates_tiny_crushed_ore",
+    "cruciblecraft:generates_tiny_fluid_pipe",
     "cruciblecraft:generates_washed_crushed_ore",
     "gt6:itemgenerator/ores",
     "gt6:itemgenerator/sticks"
@@ -43,6 +49,71 @@
       "PROCESSING.UUM_SYNTHESISABLE",
       "PROPERTIES.FLAMMABLE"
     ],
+    "pipe_properties": {
+      "fluid_by_specification": {
+        "pipeHuge": {
+          "acid_proof": false,
+          "blocking": true,
+          "capacity_mb": 24000,
+          "contact_damage": false,
+          "flammable": false,
+          "gas_proof": true,
+          "magic_proof": false,
+          "max_temperature_kelvin": 4750,
+          "plasma_proof": false,
+          "recipe": false
+        },
+        "pipeLarge": {
+          "acid_proof": false,
+          "blocking": true,
+          "capacity_mb": 12000,
+          "contact_damage": false,
+          "flammable": false,
+          "gas_proof": true,
+          "magic_proof": false,
+          "max_temperature_kelvin": 4750,
+          "plasma_proof": false,
+          "recipe": false
+        },
+        "pipeMedium": {
+          "acid_proof": false,
+          "blocking": true,
+          "capacity_mb": 6000,
+          "contact_damage": false,
+          "flammable": false,
+          "gas_proof": true,
+          "magic_proof": false,
+          "max_temperature_kelvin": 4750,
+          "plasma_proof": false,
+          "recipe": false
+        },
+        "pipeSmall": {
+          "acid_proof": false,
+          "blocking": true,
+          "capacity_mb": 2000,
+          "contact_damage": false,
+          "flammable": false,
+          "gas_proof": true,
+          "magic_proof": false,
+          "max_temperature_kelvin": 4750,
+          "plasma_proof": false,
+          "recipe": false
+        },
+        "pipeTiny": {
+          "acid_proof": false,
+          "blocking": true,
+          "capacity_mb": 1000,
+          "contact_damage": false,
+          "flammable": false,
+          "gas_proof": true,
+          "magic_proof": false,
+          "max_temperature_kelvin": 4750,
+          "plasma_proof": false,
+          "recipe": false
+        }
+      },
+      "item_by_specification": {}
+    },
     "processing_targets": {
       "bending": {
         "cc_units": 144,

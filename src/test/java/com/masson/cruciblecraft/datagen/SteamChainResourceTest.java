@@ -45,17 +45,41 @@ class SteamChainResourceTest {
 
     private static void assertCrusherRecipe(String material, int duration) throws Exception {
         Path directory = ORE_CHAIN_CRUSHER.resolve(material);
-        Path path;
+        java.util.List<Path> recipePaths;
         try (var paths = Files.list(directory)) {
-            path = paths.filter(Files::isRegularFile).findFirst().orElseThrow();
+            recipePaths = paths.filter(Files::isRegularFile).toList();
         }
-        var recipe = JsonParser.parseString(Files.readString(path)).getAsJsonObject();
-        assertEquals("cruciblecraft:gt_recipe", recipe.get("type").getAsString());
+        assertEquals(2, recipePaths.size());
+        com.google.gson.JsonObject rawRecipe = null;
+        com.google.gson.JsonObject oreBlockRecipe = null;
+        for (Path path : recipePaths) {
+            var recipe = JsonParser.parseString(Files.readString(path)).getAsJsonObject();
+            String tag = recipe.getAsJsonArray("item_inputs")
+                    .get(0).getAsJsonObject().get("tag").getAsString();
+            if (tag.equals("c:raw_materials/" + material)) {
+                rawRecipe = recipe;
+            } else if (tag.equals("c:ores/" + material)) {
+                oreBlockRecipe = recipe;
+            }
+        }
+        assertTrue(rawRecipe != null, material + " raw-ore crusher recipe missing");
+        assertTrue(oreBlockRecipe != null, material + " ore-block crusher recipe missing");
+        assertEquals("cruciblecraft:gt_recipe", rawRecipe.get("type").getAsString());
         assertEquals(
                 2,
-                recipe.getAsJsonArray("item_outputs")
+                rawRecipe.getAsJsonArray("item_outputs")
                         .get(0).getAsJsonObject()
                         .get("count").getAsInt());
-        assertEquals(duration, recipe.get("duration").getAsInt());
+        assertEquals(
+                5,
+                oreBlockRecipe.getAsJsonArray("item_outputs")
+                        .get(0).getAsJsonObject()
+                        .get("count").getAsInt());
+        assertEquals(duration, rawRecipe.get("duration").getAsInt());
+        assertEquals(duration, oreBlockRecipe.get("duration").getAsInt());
+        assertEquals(rawRecipe.get("eut"), oreBlockRecipe.get("eut"));
+        assertEquals(
+                rawRecipe.get("output_chances"),
+                oreBlockRecipe.get("output_chances"));
     }
 }

@@ -1,4 +1,7 @@
 {
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", rotor)"
+  ],
   "duration": "300 * (144 * prefix_units(rotor) / gcd(target_units(working) * 612, 144 * prefix_units(rotor)))",
   "eut": "64",
   "item_inputs": [

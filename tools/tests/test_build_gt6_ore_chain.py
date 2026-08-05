@@ -13,6 +13,7 @@ class OreChainBuilderTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.index, cls.operands, cls.files = builder.load_committed_outputs()
+        cls.materials = builder.compare.load_cc_materials()
 
     def test_acceptance_materials_have_all_six_stages(self):
         emitted = {
@@ -28,6 +29,7 @@ class OreChainBuilderTest(unittest.TestCase):
             row
             for row in self.index["recipes"]
             if row["material"] == "tungsten"
+            and row["family"] in builder.STAGE_ORDER
         ]
         self.assertEqual(set(builder.STAGE_ORDER), {
             row["family"] for row in rows
@@ -45,7 +47,7 @@ class OreChainBuilderTest(unittest.TestCase):
             )
 
     def test_processing_candidates_include_all_factual_ore_declarations(self):
-        materials = builder.compare.load_cc_materials()
+        materials = self.materials
         factual_ores = {
             material_id
             for material_id, document in materials.items()
@@ -95,13 +97,24 @@ class OreChainBuilderTest(unittest.TestCase):
             provenance = document["provenance"]
             self.assertIn(
                 provenance["source_kind"],
-                {"gt6_evidence", "topology_fallback"},
+                {
+                    "gt6_evidence",
+                    "topology_fallback",
+                    builder.ORE_BLOCK_SOURCE_KIND,
+                },
             )
             self.assertEqual(
                 row["gt6_evidence_hashes"],
                 provenance["evidence_hashes"],
             )
-            if row["selected_source_recipe"]:
+            if row["source"] == builder.ORE_BLOCK_SOURCE_KIND:
+                self.assertIsNone(row["selected_source_recipe"])
+                self.assertEqual(
+                    row["derivation"]["runtime_source"],
+                    provenance["selected_source_recipe"],
+                )
+                self.assertEqual([], provenance["evidence_hashes"])
+            elif row["selected_source_recipe"]:
                 self.assertEqual(
                     row["selected_source_recipe"],
                     provenance["selected_source_recipe"],
@@ -115,6 +128,93 @@ class OreChainBuilderTest(unittest.TestCase):
                 row["source"]
                 == "gt6_normalized_stage_evidence_projection",
                 provenance["source_kind"] == "gt6_evidence",
+            )
+
+    def test_registered_ore_blocks_have_exact_derived_crusher_ingress(self):
+        gate = builder.load(builder.REGISTRATION_GATE)
+        materials = self.materials
+        ore_materials = {
+            material_id
+            for material_id, forms in gate["materials"].items()
+            if "ore" in forms
+        }
+        raw_rows = {
+            row["material"]: row
+            for row in self.index["recipes"]
+            if row["family"] == "crush_raw_to_crushed"
+        }
+        ore_rows = {
+            row["material"]: row
+            for row in self.index["recipes"]
+            if row["family"] == builder.ORE_BLOCK_ROUTE_FAMILY
+        }
+        self.assertEqual(137, len(ore_materials))
+        self.assertEqual(357, len(raw_rows))
+        self.assertEqual(ore_materials, set(ore_rows))
+        self.assertEqual(ore_materials, ore_materials & set(raw_rows))
+        self.assertEqual(set(), ore_materials - set(raw_rows))
+        self.assertEqual(220, len(set(raw_rows) - ore_materials))
+        self.assertEqual(
+            137,
+            self.index["counts"]["high_version_ore_block_recipes"],
+        )
+        self.assertEqual(494, self.index["counts"]["recipes_by_map"]["crusher"])
+        self.assertEqual(2117, self.index["counts"]["recipes"])
+        self.assertTrue(all(
+            row.get("input_substituted") is True
+            for row in raw_rows.values()
+        ))
+        self.assertEqual(
+            357,
+            sum("input_substituted" in row for row in self.index["recipes"]),
+        )
+
+        for material_id, row in ore_rows.items():
+            baseline = raw_rows[material_id]
+            baseline_document = json.loads(
+                self.files[
+                    baseline["path"].split("ore_chain/", 1)[1]
+                ]
+            )
+            document = json.loads(
+                self.files[row["path"].split("ore_chain/", 1)[1]]
+            )
+            tag_name = materials[material_id].get("tag_name") or material_id
+            self.assertEqual(
+                [{"tag": f"c:ores/{tag_name}"}],
+                document["item_inputs"],
+            )
+            self.assertEqual([1], document["item_input_counts"])
+            self.assertEqual(
+                builder.ORE_BLOCK_OUTPUT_COUNT,
+                document["item_outputs"][0]["count"],
+            )
+            self.assertEqual(
+                baseline_document["item_outputs"][0]["id"],
+                document["item_outputs"][0]["id"],
+            )
+            for field in ("duration", "eut", "output_chances"):
+                self.assertEqual(
+                    baseline_document[field],
+                    document[field],
+                    f"{material_id}: {field}",
+                )
+            self.assertEqual(
+                builder.ORE_BLOCK_SOURCE_KIND,
+                document["provenance"]["source_kind"],
+            )
+            self.assertEqual([], document["provenance"]["evidence_hashes"])
+            self.assertEqual(
+                baseline["semantic_hash"],
+                row["derivation"]["base_recipe_semantic_hash"],
+            )
+            self.assertEqual(
+                baseline["path"],
+                row["derivation"]["base_recipe_path"],
+            )
+            self.assertEqual(
+                {"numerator": 5, "denominator": 2},
+                row["derivation"]["output_multiplier"],
             )
 
     def test_operand_projection_matches_recipe_index(self):
@@ -173,7 +273,7 @@ class OreChainBuilderTest(unittest.TestCase):
             for row in self.index["recipes"]
             if row["family"] == "chain_smelter"
         }
-        materials = builder.compare.load_cc_materials()
+        materials = self.materials
         eligible = set()
         for material, document in materials.items():
             target = (
@@ -271,17 +371,13 @@ class OreChainBuilderTest(unittest.TestCase):
                 "df9eede93e9972ef7067",
                 [10_000, 300, 300, 300],
             ),
-            "chain_centrifuge": (
-                "a8b2117b1b15f513c670",
-                [10_000, 1_000, 1_000, 1_000],
-            ),
             "chain_shredder": (
                 "fe6db051602d4e6833dd",
                 [10_000],
             ),
         }
         reference = builder.load(builder.REFERENCE)
-        materials = builder.compare.load_cc_materials()
+        materials = self.materials
         prefixes = builder.prefix_definitions()
         for family, (source_hash, chances) in expected.items():
             with self.subTest(family=family):
@@ -321,6 +417,20 @@ class OreChainBuilderTest(unittest.TestCase):
                 self.assertEqual(f"gt6:{source_hash}", normalized.raw_hint)
                 self.assertEqual(chances, list(normalized.chances))
                 self.assertEqual(chances, document["output_chances"])
+        centrifuge = next(
+            row
+            for row in self.index["recipes"]
+            if row["family"] == "chain_centrifuge"
+            and row["material"] == "copper"
+        )
+        self.assertIsNone(centrifuge["selected_source_recipe"])
+        document = json.loads(
+            self.files[centrifuge["path"].split("ore_chain/", 1)[1]]
+        )
+        self.assertEqual(
+            "topology_fallback",
+            document["provenance"]["source_kind"],
+        )
 
     def test_t2_coverage_debts_are_committed_as_ledger(self):
         ledger = self.index["coverage_ledger"]

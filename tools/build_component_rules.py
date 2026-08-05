@@ -22,6 +22,7 @@ SOURCE_FILES = (
     "component_baseline.json",
     "component_rules.json",
     "extruder_shapes.json",
+    "material_groups.json",
 )
 EXTRUDER_INDEX = ROOT / "tools" / "gt6_extruder_templates_index_v5.json"
 EXTRUDER_REPORT = ROOT / "tools" / "gt6_extruder_templates_report.json"
@@ -63,6 +64,16 @@ OUTPUT_ROOT = (
     / "recipe"
 )
 MANIFEST = ROOT / "tools" / "component_rule_manifest.json"
+GT6_ELECTRICAL_SOURCE = ROOT / "tools" / "gt6_electrical_source.json"
+MATERIAL_ACTIVATION_POLICY = (
+    ROOT / "tools" / "gt6_material_activation_policy.json"
+)
+ANY_RUBBER_TAG = "cruciblecraft:any_rubber_plates"
+ANY_RUBBER_TAG_OUTPUT = (
+    ROOT
+    / "src/component_rule_generated/resources/data/cruciblecraft/tags/item"
+    / "any_rubber_plates.json"
+)
 RULE_ID = re.compile(r"^[a-z0-9_]+(?:/[a-z0-9_]+)+$")
 TOKEN = re.compile(r"^[a-z0-9_]+$")
 RESOURCE = re.compile(r"^[a-z0-9_.-]+:[a-z0-9_./-]+$")
@@ -75,6 +86,7 @@ class SourceError(ValueError):
 @dataclass(frozen=True)
 class BuildBundle:
     generated: dict[str, bytes]
+    any_rubber_tag: bytes
     manifest: bytes
 
 
@@ -103,6 +115,148 @@ def _generated_tree_hash(generated: dict[str, bytes]) -> str:
         digest.update(b"\0")
         digest.update(hashlib.sha256(content).digest())
     return digest.hexdigest()
+
+
+def _build_any_rubber_tag(
+    groups_document: dict[str, Any],
+    electrical_source: dict[str, Any],
+    material_dir: Path,
+) -> tuple[bytes, dict[str, Any]]:
+    _require_exact_keys(
+        groups_document,
+        {"schema_version", "groups"},
+        set(),
+        "material_groups.json",
+    )
+    if groups_document["schema_version"] != 1:
+        raise SourceError("material_groups.json: unsupported schema_version")
+    groups = groups_document["groups"]
+    if not isinstance(groups, dict) or set(groups) != {"any_rubber"}:
+        raise SourceError("material_groups.json: expected only any_rubber")
+    group = groups["any_rubber"]
+    _require_exact_keys(
+        group,
+        {
+            "source_group",
+            "source_member_names",
+            "member_materials",
+            "prefix",
+            "item_tag",
+        },
+        set(),
+        "material_groups.json.groups.any_rubber",
+    )
+    insulation = electrical_source.get("insulation") or {}
+    if (
+        group["source_group"] != "ANY.Rubber"
+        or group["source_member_names"]
+        != insulation.get("material_source_names")
+        or group["item_tag"] != ANY_RUBBER_TAG
+        or group["prefix"] != "plate"
+    ):
+        raise SourceError(
+            "ANY.Rubber group drifted from gt6_electrical_source.json"
+        )
+    source_to_material: dict[str, str] = {}
+    tag_name_by_material: dict[str, str] = {}
+    for path in sorted(material_dir.glob("*.json")):
+        if path.name in {"index.json", "README.md"}:
+            continue
+        material = _read_json(path)
+        source_name = (
+            material.get("gt6_metadata") or {}
+        ).get("source_name")
+        if source_name:
+            source_to_material[source_name] = material["id"]
+            tag_name_by_material[material["id"]] = material.get(
+                "tag_name", material["id"]
+            )
+    expected_materials = [
+        source_to_material[name]
+        for name in insulation["material_source_names"]
+    ]
+    if group["member_materials"] != expected_materials:
+        raise SourceError(
+            "ANY.Rubber member material ids drifted from live source mapping"
+        )
+    tag_values = [
+        f"#c:plates/{tag_name_by_material[material]}"
+        for material in expected_materials
+    ]
+    return _stable_bytes({
+        "replace": False,
+        "values": tag_values,
+    }), group
+
+
+def _build_t6_electrical_expansion_overlay(
+    registration_gate_path: Path,
+) -> list[dict[str, str]]:
+    gate = _read_json(registration_gate_path)
+    t6_forms = gate.get("t6_electrical_wire_forms")
+    materials = gate.get("materials")
+    if not isinstance(t6_forms, dict) or not isinstance(materials, dict):
+        raise SourceError(
+            f"{registration_gate_path}: missing T6 electrical wire gate"
+        )
+    activation = _read_json(MATERIAL_ACTIVATION_POLICY)
+    records = activation.get("records")
+    if not isinstance(records, list):
+        raise SourceError(
+            f"{MATERIAL_ACTIVATION_POLICY}: missing activation records"
+        )
+    pre_gate = {
+        record["cc_id"]: set(record["pre_gate_registered_forms"])
+        for record in records
+        if isinstance(record, dict)
+        and isinstance(record.get("cc_id"), str)
+        and isinstance(record.get("pre_gate_registered_forms"), list)
+    }
+    newly_registered = sorted(
+        material
+        for material, forms in t6_forms.items()
+        if forms == ["wire"]
+        and "wire" not in pre_gate.get(material, set())
+    )
+    expected_new = [
+        "blue_alloy",
+        "electrotine_alloy",
+        "graphene",
+        "hslasteel",
+        "naquadah",
+        "yttrium_barium_cuprate",
+    ]
+    if newly_registered != expected_new:
+        raise SourceError(
+            "T6 electrical wire registration delta drifted: "
+            f"{newly_registered}"
+        )
+    enabled = [
+        material
+        for material in newly_registered
+        if "ingot" in materials.get(material, [])
+    ]
+    expected_enabled = [
+        "blue_alloy",
+        "electrotine_alloy",
+        "hslasteel",
+        "naquadah",
+        "yttrium_barium_cuprate",
+    ]
+    if enabled != expected_enabled:
+        raise SourceError(
+            "T6 electrical component expansion delta drifted: "
+            f"{enabled}"
+        )
+    return [
+        {
+            "material": material,
+            "form": "wire",
+            "rule": "wiremill/ingot_to_wire",
+            "classification": "t6_source_backed_runtime_required",
+        }
+        for material in enabled
+    ]
 
 
 def _require_exact_keys(
@@ -479,6 +633,12 @@ def _compile_rule(rule: dict[str, Any], unit_scale: int) -> dict[str, Any]:
         batch_outputs = f"{numerator} / {divisor}"
         return {
             "type": "cruciblecraft:material_rule",
+            "conditions": [
+                (
+                    "has_registered_for("
+                    f"\"processing_target:{selector}\", {output})"
+                )
+            ],
             "duration": f"{rule['duration']} * ({batch_inputs})",
             "eut": str(rule["eut"]),
             "item_inputs": [
@@ -498,7 +658,7 @@ def _compile_rule(rule: dict[str, Any], unit_scale: int) -> dict[str, Any]:
             "target": f"cruciblecraft:{rule['map']}",
         }
     if kind == "cable":
-        insulation = _prefixed("plate", material_selector="material:rubber")
+        insulation = {"tag": ANY_RUBBER_TAG}
         if rule["rubber_plates"] != 1:
             insulation["count"] = str(rule["rubber_plates"])
         return {
@@ -536,6 +696,7 @@ def _validate_extruder_source(
     selector_policy_path: Path,
     allowed_prefixes: set[str],
     registration_gate_path: Path,
+    material_dir: Path,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]], str]:
     index = _read_json(index_path)
     report = _read_json(report_path)
@@ -544,9 +705,17 @@ def _validate_extruder_source(
     registered_forms = registration_gate.get("materials")
     if registration_gate.get("schema_version") != 1 or not isinstance(registered_forms, dict):
         raise SourceError(f"{registration_gate_path}: invalid material registration gate")
-    if len(allowed_prefixes) != 43:
+    material_tags = {
+        document["id"]: set(
+            (document.get("gt6_metadata") or {}).get("material_tags") or []
+        )
+        for path in material_dir.glob("*.json")
+        if path.name != "index.json"
+        for document in [_read_json(path)]
+    }
+    if len(allowed_prefixes) != 56:
         raise SourceError(
-            f"component_rules.json: expected 43 registered prefixes, "
+            f"component_rules.json: expected 56 registered prefixes, "
             f"got {len(allowed_prefixes)}"
         )
     if (
@@ -673,6 +842,23 @@ def _validate_extruder_source(
             raise SourceError(
                 f"extruder recipe {offset}: material is absent from registration gate"
             )
+        tags = material_tags.get(recipe["material"])
+        if tags is None:
+            raise SourceError(
+                f"extruder recipe {offset}: material definition is absent"
+            )
+        if "PROCESSING.EXTRUDABLE" not in tags:
+            raise SourceError(
+                f"extruder recipe {offset}: material lacks PROCESSING.EXTRUDABLE"
+            )
+        expected_eut = (
+            16 if "PROCESSING.EXTRUDABLE_SIMPLE" in tags else 96
+        )
+        if recipe["eut"] != expected_eut:
+            raise SourceError(
+                f"extruder recipe {offset}: EU/t is not the exact "
+                "PROCESSING.EXTRUDABLE_SIMPLE function"
+            )
         for side in ("input", "output"):
             resource = recipe[side]
             _require_exact_keys(
@@ -763,6 +949,12 @@ def build_bundle(
         source_dir / "acceptance_form_corrections.json"
     )
     extruder_source = _read_json(source_dir / "extruder_shapes.json")
+    groups_document = _read_json(source_dir / "material_groups.json")
+    any_rubber_tag, any_rubber_group = _build_any_rubber_tag(
+        groups_document,
+        _read_json(GT6_ELECTRICAL_SOURCE),
+        material_dir,
+    )
     rules = _validate_rules(rules_document)
     _validate_baseline(baseline, rules)
     corrections = _validate_acceptance_corrections(
@@ -770,6 +962,9 @@ def build_bundle(
         rules,
         registration_gate,
         material_dir,
+    )
+    t6_overlay = _build_t6_electrical_expansion_overlay(
+        registration_gate
     )
     allowed_prefixes = {
         path.stem
@@ -784,12 +979,18 @@ def build_bundle(
             selector_policy,
             allowed_prefixes,
             registration_gate,
+            material_dir,
         )
     )
     correction_delta = sum(
         correction["expected_expansion_delta"] for correction in corrections
     )
-    non_extruder_expanded = baseline["expanded_recipes"] + correction_delta
+    t6_overlay_delta = len(t6_overlay)
+    non_extruder_expanded = (
+        baseline["expanded_recipes"]
+        + correction_delta
+        + t6_overlay_delta
+    )
     total_expanded = non_extruder_expanded + len(extruder_recipes)
     if total_expanded > baseline["expansion_budget"]:
         raise SourceError(
@@ -827,6 +1028,7 @@ def build_bundle(
         per_rule_delta = delta // len(affected_rules)
         for rule_id in affected_rules:
             per_map_expanded[_map_for(rules_by_id[rule_id])] += per_rule_delta
+    per_map_expanded["wiremill"] += t6_overlay_delta
     per_map_expanded["extruder"] = len(extruder_recipes)
     per_rule_expanded = dict(baseline["per_rule_expanded"])
     for correction in corrections:
@@ -835,6 +1037,7 @@ def build_bundle(
         per_rule_delta = delta // len(affected_rules)
         for rule_id in affected_rules:
             per_rule_expanded[rule_id] += per_rule_delta
+    per_rule_expanded["wiremill/ingot_to_wire"] += t6_overlay_delta
     per_rule_expanded.update({
         f"extruder/{recipe['shape']}/{recipe['material']}": 1
         for recipe in extruder_recipes
@@ -852,14 +1055,17 @@ def build_bundle(
     adjusted_id_digest = _sha256(_stable_bytes({
         "baseline": baseline["digests"]["expanded_recipe_ids_sha256"],
         "acceptance_form_corrections": corrections,
+        "t6_electrical_form_expansion": t6_overlay,
     }))
     adjusted_signature_digest = _sha256(_stable_bytes({
         "baseline": baseline["digests"]["expanded_recipe_signatures_sha256"],
         "acceptance_form_corrections": corrections,
+        "t6_electrical_form_expansion": t6_overlay,
     }))
     adjusted_shadow_digest = _sha256(_stable_bytes({
         "baseline": baseline["digests"]["shadow_signatures_sha256"],
         "acceptance_form_corrections": corrections,
+        "t6_electrical_form_expansion": t6_overlay,
     }))
     composite_id_digest = _sha256(_stable_bytes({
         "non_extruder": adjusted_id_digest,
@@ -912,6 +1118,20 @@ def build_bundle(
             registration_gate.relative_to(ROOT).as_posix(): _sha256(
                 registration_gate.read_bytes()
             ),
+            GT6_ELECTRICAL_SOURCE.relative_to(ROOT).as_posix(): _sha256(
+                GT6_ELECTRICAL_SOURCE.read_bytes()
+            ),
+            MATERIAL_ACTIVATION_POLICY.relative_to(ROOT).as_posix(): _sha256(
+                MATERIAL_ACTIVATION_POLICY.read_bytes()
+            ),
+        },
+        "material_groups": {
+            "any_rubber": any_rubber_group,
+            "generated_tag": (
+                "src/component_rule_generated/resources/data/cruciblecraft/"
+                "tags/item/any_rubber_plates.json"
+            ),
+            "generated_tag_sha256": _sha256(any_rubber_tag),
         },
         "runtime_codec": "cruciblecraft:material_rule/MaterialRule.CODEC",
         "source_rules": len(rules) + len(extruder_recipes),
@@ -931,6 +1151,11 @@ def build_bundle(
             ),
             "expansion_delta": correction_delta,
             "entries": corrections,
+        },
+        "t6_electrical_form_expansion": {
+            "classification": "t6_source_backed_runtime_required",
+            "expansion_delta": t6_overlay_delta,
+            "entries": t6_overlay,
         },
         "per_map": {
             map_id: {
@@ -957,7 +1182,7 @@ def build_bundle(
         "recipe_ids": {
             "algorithm": (
                 "sha256(non-extruder baseline plus acceptance corrections "
-                "plus sorted extruder ids)"
+                "plus T6 electrical form expansion plus sorted extruder ids)"
             ),
             "digest": composite_id_digest,
             "count": total_expanded,
@@ -965,7 +1190,7 @@ def build_bundle(
         "recipe_signatures": {
             "algorithm": (
                 "sha256(non-extruder baseline plus acceptance corrections "
-                "plus sparse extruder rows)"
+                "plus T6 electrical form expansion plus sparse extruder rows)"
             ),
             "digest": composite_signature_digest,
             "count": total_expanded,
@@ -973,7 +1198,8 @@ def build_bundle(
         "shadow_signatures": {
             "algorithm": (
                 "sha256(non-extruder baseline plus acceptance corrections "
-                "plus extruder target/input signatures)"
+                "plus T6 electrical form expansion plus extruder "
+                "target/input signatures)"
             ),
             "digest": composite_shadow_digest,
             "total": total_expanded,
@@ -1025,7 +1251,11 @@ def build_bundle(
             "sha256": generated_tree_sha256,
         },
     }
-    return BuildBundle(generated, _stable_bytes(manifest))
+    return BuildBundle(
+        generated,
+        any_rubber_tag,
+        _stable_bytes(manifest),
+    )
 
 
 def write_bundle(
@@ -1033,12 +1263,19 @@ def write_bundle(
     output_root: Path = OUTPUT_ROOT,
     manifest_path: Path = MANIFEST,
 ) -> None:
+    tag_output = (
+        ANY_RUBBER_TAG_OUTPUT
+        if output_root == OUTPUT_ROOT
+        else output_root.parent / "any_rubber_plates.json"
+    )
     if output_root.exists():
         shutil.rmtree(output_root)
     for relative, content in bundle.generated.items():
         path = output_root / relative
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(content)
+    tag_output.parent.mkdir(parents=True, exist_ok=True)
+    tag_output.write_bytes(bundle.any_rubber_tag)
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
     manifest_path.write_bytes(bundle.manifest)
 
@@ -1049,6 +1286,11 @@ def check_bundle(
     manifest_path: Path = MANIFEST,
 ) -> list[str]:
     errors: list[str] = []
+    tag_output = (
+        ANY_RUBBER_TAG_OUTPUT
+        if output_root == OUTPUT_ROOT
+        else output_root.parent / "any_rubber_plates.json"
+    )
     expected = set(bundle.generated)
     actual = (
         {
@@ -1070,6 +1312,12 @@ def check_bundle(
         errors.append(f"missing manifest: {manifest_path}")
     elif manifest_path.read_bytes() != bundle.manifest:
         errors.append(f"manifest content drift: {manifest_path}")
+    if not tag_output.is_file():
+        errors.append(f"missing generated tag: {tag_output}")
+    elif tag_output.read_bytes() != bundle.any_rubber_tag:
+        errors.append(
+            f"generated tag content drift: {tag_output}"
+        )
     return errors
 
 

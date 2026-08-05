@@ -43,6 +43,17 @@ public record ProcessingMachineSpec(
         if (ui.machineSlots().size() != items.slotCount()) {
             throw new IllegalArgumentException("UI must position every machine slot");
         }
+        Set<Integer> positionedTanks = ui.tanks().stream()
+                .map(TankPosition::tank)
+                .collect(java.util.stream.Collectors.toSet());
+        Set<Integer> configuredTanks = fluids.all().stream()
+                .map(TankSpec::index)
+                .collect(java.util.stream.Collectors.toSet());
+        if (ui.tanks().size() != fluids.tankCount()
+                || !positionedTanks.equals(configuredTanks)) {
+            throw new IllegalArgumentException(
+                    "UI must position every fluid tank exactly once");
+        }
     }
 
     public RecipeMap requireRecipeMap() {

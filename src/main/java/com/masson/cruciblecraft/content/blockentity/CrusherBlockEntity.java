@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.content.blockentity;
 import com.masson.cruciblecraft.content.block.CrusherBlock;
 import com.masson.cruciblecraft.content.menu.CrusherMenu;
 import com.masson.cruciblecraft.machine.processing.CrusherLegacyMigration;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineDisplayData;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
@@ -36,6 +37,9 @@ public final class CrusherBlockEntity extends ProcessingMachineBlockEntity
                 case 0 -> progress();
                 case 1 -> duration();
                 case 2 -> powerDemand();
+                case 3 -> ProcessingMachineDisplayData.statusIndex(
+                        ModProcessingMachines.CRUSHER, pausedReason());
+                case 6 -> statusArgument();
                 default -> 0;
             };
         }
@@ -46,7 +50,7 @@ public final class CrusherBlockEntity extends ProcessingMachineBlockEntity
                 runtime().processor().setDuration(value);
             }
         }
-        @Override public int getCount() { return 3; }
+        @Override public int getCount() { return 7; }
     };
 
     public CrusherBlockEntity(BlockPos pos, BlockState state) {

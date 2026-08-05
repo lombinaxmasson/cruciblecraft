@@ -1,0 +1,489 @@
+{
+  "schema_version": 1,
+  "delivery_boundary": "T5.5_machine_crafting_source_readiness_only",
+  "replacement_authorized": false,
+  "gt6_source": {
+    "repository": "GregTech6/gregtech6",
+    "repository_url": "https://github.com/GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "commit_url": "https://github.com/GregTech6/gregtech6/commit/3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "tree_sha1": "a164302f62a326208fd2076de6fb7cdb0b4602ee",
+    "resolution_status": "resolved_exact_official_revision",
+    "resolution_reason": "The dump version 6.17.06-22-g3703e4030 resolves to this exact commit in the official GregTech6/gregtech6 repository; no fork or substitute revision is used.",
+    "dump_metadata": {
+      "path": "tools/gt6_reference_metadata.json",
+      "version_field": "gt6_version",
+      "expected_version": "6.17.06-22-g3703e4030"
+    },
+    "recipe_map_dump_scope": {
+      "index_path": "gt6_dump/gt6_recipe_dump/index.json",
+      "map_count": 95,
+      "recipe_count": 720841,
+      "contains_machine_block_crafting": false,
+      "reason": "The dump enumerates GT6 RecipeMap processing/fuel rows. MultiTileEntity shaped crafting registration is Java source data and is not a RecipeMap in this dump."
+    },
+    "source_files": {
+      "multitile_loader": {
+        "path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "git_blob_sha1": "cf80887c5e572ee0942f087d1c75238115ca5255"
+      },
+      "material_tiers": {
+        "path": "src/main/java/gregapi/data/MT.java",
+        "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/data/MT.java",
+        "git_blob_sha1": "1681c2072f28ad2d31bc285aef1c6fd2a3bcef92"
+      }
+    },
+    "fetch_command": "python tools/build_machine_crafting_readiness.py --fetch-source build/gt6-machine-crafting-source",
+    "verify_command": "python tools/build_machine_crafting_readiness.py --check --verify-source build/gt6-machine-crafting-source"
+  },
+  "source_anchors": {
+    "material_tier_arrays": {
+      "file": "material_tiers",
+      "lines": "3689-3691",
+      "required_tokens": [
+        "Heat_T                  = {ANY.Stone",
+        "Kinetic_T               = {ANY.Wood",
+        "Electric_T              = {TinAlloy"
+      ],
+      "reason": "These arrays resolve the material identity hidden behind each indexed GT6 machine tier."
+    },
+    "bronze_boiler": {
+      "file": "multitile_loader",
+      "lines": "555",
+      "required_tokens": ["Steam Boiler Tank", "MT.Bronze", "OP.plateDouble.dat(aMat)"],
+      "reason": "Pins the GT6 bronze boiler-tank crafting identity."
+    },
+    "bronze_steam_engine": {
+      "file": "multitile_loader",
+      "lines": "586",
+      "required_tokens": ["Steam Engine", "MT.Bronze", "OP.springSmall.dat(aMat)"],
+      "reason": "Pins the GT6 bronze steam-engine crafting identity."
+    },
+    "electric_dynamo_tiers": {
+      "file": "multitile_loader",
+      "lines": "946-950",
+      "required_tokens": ["Electric Dynamo", "MT.DATA.Electric_T[1]", "OP.casingMachineDouble.dat(aMat)"],
+      "reason": "The nearest GT6 RU-to-EU dynamo identity is tiered and starts at galvanized steel, not bronze."
+    },
+    "bronze_crucible": {
+      "file": "multitile_loader",
+      "lines": "256,265",
+      "required_tokens": ["MT.Ceramic", "MT.Bronze", "Smelting Crucible"],
+      "reason": "Pins the separate ceramic and bronze GT6 crucible identities."
+    },
+    "kinetic_shredder": {
+      "file": "multitile_loader",
+      "lines": "1293-1297",
+      "required_tokens": ["Shredder", "MT.DATA.Kinetic_T[1]", "OP.casingMachineDouble.dat(aMat)"],
+      "reason": "Pins the four GT6 kinetic shredder tiers and their shaped recipe operands."
+    },
+    "bronze_crusher": {
+      "file": "multitile_loader",
+      "lines": "1300",
+      "required_tokens": ["Crusher", "MT.DATA.Kinetic_T[1]", "OP.spring.dat(aMat)"],
+      "reason": "Tier-array evidence resolves this T1 kinetic crusher to bronze."
+    },
+    "kinetic_lathe": {
+      "file": "multitile_loader",
+      "lines": "1305-1309",
+      "required_tokens": ["Lathe", "MT.DATA.Kinetic_T[1]", "OP.casingMachineDouble.dat(aMat)"],
+      "reason": "Pins the four GT6 kinetic lathe tiers."
+    },
+    "kinetic_sifter": {
+      "file": "multitile_loader",
+      "lines": "1311-1315",
+      "required_tokens": ["Sifter", "MT.DATA.Kinetic_T[1]", "OP.wireFine.dat(aMat)"],
+      "reason": "Pins the four GT6 kinetic sifter tiers."
+    },
+    "kinetic_buzzsaw": {
+      "file": "multitile_loader",
+      "lines": "1317-1321",
+      "required_tokens": ["Buzzsaw", "RM.Cutter", "OP.toolHeadBuzzSaw.dat"],
+      "reason": "GT6 names the machine Buzzsaw while binding it to the Cutter recipe map."
+    },
+    "kinetic_centrifuge": {
+      "file": "multitile_loader",
+      "lines": "1329-1333",
+      "required_tokens": ["Centrifuge", "MT.DATA.Kinetic_T[1]", "RM.Centrifuge"],
+      "reason": "Pins the four GT6 kinetic centrifuge tiers."
+    },
+    "electric_electrolyzer": {
+      "file": "multitile_loader",
+      "lines": "1335-1340",
+      "required_tokens": ["Electrolyzer", "MT.DATA.Electric_T[1]", "MT.DATA.CABLES_01[1]"],
+      "reason": "Pins the five GT6 electric electrolyzer tiers and tiered cable operand."
+    },
+    "kinetic_compressor": {
+      "file": "multitile_loader",
+      "lines": "1342-1346",
+      "required_tokens": ["Compressor", "MT.DATA.Kinetic_T[1]", "OP.plateQuintuple.dat(aMat)"],
+      "reason": "Pins the four GT6 kinetic compressor tiers."
+    },
+    "kinetic_rolling_mill": {
+      "file": "multitile_loader",
+      "lines": "1348-1352",
+      "required_tokens": ["Rolling Mill", "MT.DATA.Kinetic_T[1]", "RM.RollingMill"],
+      "reason": "Pins the four GT6 kinetic rolling-mill tiers."
+    },
+    "kinetic_roll_bender": {
+      "file": "multitile_loader",
+      "lines": "1354-1358",
+      "required_tokens": ["Roll Bender", "MT.DATA.Kinetic_T[1]", "RM.RollBender"],
+      "reason": "Pins the four GT6 roll-bender tiers; this is not evidence for the separate CrucibleCraft bender identity."
+    },
+    "kinetic_wiremill": {
+      "file": "multitile_loader",
+      "lines": "1372-1376",
+      "required_tokens": ["Wiremill", "MT.DATA.Kinetic_T[1]", "RM.Wiremill"],
+      "reason": "Pins the four GT6 kinetic wiremill tiers."
+    },
+    "heat_distillery": {
+      "file": "multitile_loader",
+      "lines": "1397-1401",
+      "required_tokens": ["Distillery", "MT.DATA.Heat_T[1]", "RM.Distillery"],
+      "reason": "Pins the four GT6 heat-tier distilleries."
+    },
+    "heat_extruder": {
+      "file": "multitile_loader",
+      "lines": "1405-1409",
+      "required_tokens": ["Low Heat Extruder", "MT.DATA.Heat_T[1]", "RM.Extruder"],
+      "reason": "Pins the four GT6 heat-tier extruders."
+    },
+    "kinetic_press": {
+      "file": "multitile_loader",
+      "lines": "1424-1428",
+      "required_tokens": ["Press", "MT.DATA.Kinetic_T[1]", "RM.Press"],
+      "reason": "Pins the four GT6 kinetic press tiers."
+    },
+    "heat_smelter": {
+      "file": "multitile_loader",
+      "lines": "1430-1434",
+      "required_tokens": ["Smelter", "MT.DATA.Heat_T[1]", "RM.Smelter"],
+      "reason": "Pins the four GT6 heat-tier smelters and their tier-dependent crucible operand."
+    },
+    "kinetic_sluice": {
+      "file": "multitile_loader",
+      "lines": "1463-1467",
+      "required_tokens": ["Sluice", "MT.DATA.Kinetic_T[1]", "RM.Sluice"],
+      "reason": "Pins the four GT6 kinetic sluice tiers."
+    },
+    "heat_dryer": {
+      "file": "multitile_loader",
+      "lines": "1476-1480",
+      "required_tokens": ["Dryer", "MT.DATA.Heat_T[1]", "RM.Drying"],
+      "reason": "Pins the four GT6 heat-tier dryers; CrucibleCraft calls the configured block drying."
+    },
+    "electric_laser_welder": {
+      "file": "multitile_loader",
+      "lines": "1489-1494",
+      "required_tokens": ["Laser Welder (T1)", "RM.Welder", "OD_CIRCUITS[1]"],
+      "reason": "Pins the five GT6 laser-welder tiers and their circuit/lens operands."
+    },
+    "electric_mixer": {
+      "file": "multitile_loader",
+      "lines": "1503-1508",
+      "required_tokens": ["Electric Mixer", "MT.DATA.Electric_T[1]", "IL.MOTORS[1]"],
+      "reason": "Pins the five GT6 electric mixer tiers and tiered motor operand."
+    },
+    "fixed_bath": {
+      "file": "multitile_loader",
+      "lines": "1653",
+      "required_tokens": ["aRegistry.add(\"Bath\"", "OP.casingMachine.dat(aMat)", "OP.casingSmall.dat(aMat)"],
+      "reason": "Pins the untiered stainless-steel TU Bath identity."
+    },
+    "fixed_autoclave": {
+      "file": "multitile_loader",
+      "lines": "1655",
+      "required_tokens": ["aRegistry.add(\"Autoclave\"", "OP.casingMachineQuadruple.dat(aMat)", "OP.casingSmall.dat(aMat)"],
+      "reason": "Pins the untiered stainless-steel TU Autoclave identity."
+    },
+    "manual_mortar": {
+      "file": "multitile_loader",
+      "lines": "2179-2183",
+      "required_tokens": ["aRegistry.add(\"Mortar\"", "IL.Ceramic_Bowl", "RM.Mortar"],
+      "reason": "Pins GT6's manual ceramic mortar variants rather than inventing a powered machine recipe."
+    },
+    "bronze_anvil": {
+      "file": "multitile_loader",
+      "lines": "2190",
+      "required_tokens": ["MT.Bronze", "Anvil", "OP.ingot.dat(aMat)"],
+      "reason": "Pins the GT6 bronze anvil identity and durability."
+    },
+    "no_exact_bender_or_assembler": {
+      "file": "multitile_loader",
+      "lines": "1-2243",
+      "required_absent_patterns": [
+        "aRegistry.add(\"Bender",
+        "aRegistry.add(\"Assembler"
+      ],
+      "reason": "The complete pinned MultiTileEntity loader has no exact Bender or Assembler registration; Roll Bender is a distinct identity and the RecipeMap dump is not machine-crafting evidence."
+    }
+  },
+  "component_mappings": {
+    "OP.casingMachine": {
+      "cc_identity": null,
+      "status": "missing_cc_component",
+      "reason": "CrucibleCraft has no machine-casing material prefix or component item."
+    },
+    "OP.casingMachineDouble": {
+      "cc_identity": null,
+      "status": "missing_cc_component",
+      "reason": "CrucibleCraft has no double machine-casing component identity."
+    },
+    "OP.casingMachineQuadruple": {
+      "cc_identity": null,
+      "status": "missing_cc_component",
+      "reason": "CrucibleCraft has no quadruple machine-casing component identity."
+    },
+    "OP.casingSmall": {
+      "cc_identity": null,
+      "status": "missing_cc_component",
+      "reason": "CrucibleCraft has no small-casing component identity."
+    },
+    "IL.MOTORS[tier]": {
+      "cc_identity": null,
+      "status": "missing_cc_component",
+      "reason": "CrucibleCraft has no motor item family or audited GT6 tier mapping."
+    },
+    "OD_CIRCUITS[tier]": {
+      "cc_identity": null,
+      "status": "missing_cc_component",
+      "reason": "CrucibleCraft has no circuit item family or audited GT6 tier mapping."
+    },
+    "MT.DATA.CABLES_01[tier]": {
+      "cc_identity": "cruciblecraft:<material>/cable",
+      "status": "tier_identity_missing",
+      "reason": "A generic cable form exists, but no audited GT6 electric-tier-to-material identity has been selected for machine crafting."
+    },
+    "IL.Ceramic_Bowl": {
+      "cc_identity": null,
+      "status": "missing_cc_component",
+      "reason": "CrucibleCraft has no exact ceramic-bowl component identity."
+    },
+    "OP.toolHeadBuzzSaw": {
+      "cc_identity": null,
+      "status": "missing_cc_component",
+      "reason": "The existing material saw is a completed tool, not a source-equivalent buzz-saw head component."
+    },
+    "DYE_OREDICTS_LENS": {
+      "cc_identity": null,
+      "status": "missing_cc_component",
+      "reason": "CrucibleCraft has no color-lens component family."
+    }
+  },
+  "classifications": {
+    "directly_projectable": "An exact source identity, tier decision, and all ingredient mappings are present.",
+    "tier_collapsed_pending_t6": "GT6 exposes multiple material/energy tiers while CrucibleCraft exposes one configured block; T6 must select or collapse the identity before a recipe can be projected.",
+    "missing_cc_component": "The source recipe is identified, but at least one required source component has no exact CrucibleCraft identity.",
+    "source_identity_unresolved": "No exact machine registration exists in the pinned MultiTileEntity crafting source; a similarly named map or machine may not be substituted.",
+    "existing_cc_recipe_retained": "A hand-authored CrucibleCraft bronze-chain recipe already exists and is evidence only in this non-replacement task."
+  },
+  "configured_machines": {
+    "sluice": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "GT6 has four RU kinetic sluices (T1 bronze through T4 tungsten steel); the single CrucibleCraft sluice has no selected source tier.",
+      "source_evidence": ["material_tier_arrays", "kinetic_sluice"],
+      "blocking_components": ["OP.casingMachineDouble"],
+      "replacement_prerequisites": ["Select one GT6 sluice tier or approve a deterministic tier-collapse rule in T6.", "Implement and make reachable every selected source component, including double machine casing.", "Add a source-signature test before replacing the placeholder."]
+    },
+    "bath": {
+      "classification": "missing_cc_component",
+      "reason": "The exact untiered GT6 Bath is identifiable, but its machine casing and small casings do not exist in CrucibleCraft.",
+      "source_evidence": ["fixed_bath"],
+      "blocking_components": ["OP.casingMachine", "OP.casingSmall"],
+      "replacement_prerequisites": ["Define exact CrucibleCraft machine-casing and small-casing identities.", "Prove those components are survival-reachable.", "Project the pinned Bath pattern only after both mappings exist."]
+    },
+    "centrifuge": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "GT6 has four RU kinetic centrifuge tiers, while CrucibleCraft has one configured centrifuge.",
+      "source_evidence": ["material_tier_arrays", "kinetic_centrifuge"],
+      "blocking_components": ["OP.casingMachineDouble"],
+      "replacement_prerequisites": ["Select or collapse the four GT6 centrifuge tiers in T6.", "Implement the selected double machine casing.", "Lock the chosen source tier and shaped signature in tests."]
+    },
+    "shredder": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "GT6 has four RU kinetic shredder tiers; choosing the bronze/steel/titanium/tungsten-steel identity is a T6 policy decision.",
+      "source_evidence": ["material_tier_arrays", "kinetic_shredder"],
+      "blocking_components": ["OP.casingMachineDouble"],
+      "replacement_prerequisites": ["Select or collapse the GT6 shredder tier family.", "Implement the selected double machine casing and verify all remaining forms.", "Add exact source-pattern and reachability tests."]
+    },
+    "sifter": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "GT6 defines four KU kinetic sifter tiers, but the CrucibleCraft sifter has no tier identity.",
+      "source_evidence": ["material_tier_arrays", "kinetic_sifter"],
+      "blocking_components": ["OP.casingMachineDouble"],
+      "replacement_prerequisites": ["Select or collapse the GT6 sifter tier family.", "Implement the selected double machine casing.", "Verify spring, fine-wire, rod, and casing routes before replacement."]
+    },
+    "smelter": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "GT6 defines four HU smelter tiers with tier-specific crucibles; CrucibleCraft has one adjacent-heat smelter.",
+      "source_evidence": ["material_tier_arrays", "heat_smelter"],
+      "blocking_components": ["OP.casingMachine"],
+      "replacement_prerequisites": ["Select a GT6 heat tier and its exact crucible identity in T6.", "Implement the selected machine casing and preserve the crucible distinction.", "Test firebox/heat progression and recipe reachability before replacement."]
+    },
+    "mortar": {
+      "classification": "missing_cc_component",
+      "reason": "GT6's source identity is a manual ceramic mortar using a ceramic bowl; CrucibleCraft currently exposes a powered configured block and lacks that component.",
+      "source_evidence": ["manual_mortar"],
+      "blocking_components": ["IL.Ceramic_Bowl"],
+      "replacement_prerequisites": ["Decide whether the configured block intentionally represents the manual GT6 mortar.", "Add an exact ceramic-bowl identity if parity is selected.", "Test the resulting manual-versus-powered progression decision."]
+    },
+    "extruder": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "GT6 has four HU extruder tiers and a source buzz-saw-head operand; the single CrucibleCraft KU machine does not encode that identity.",
+      "source_evidence": ["material_tier_arrays", "heat_extruder"],
+      "blocking_components": ["OP.casingMachineDouble", "OP.toolHeadBuzzSaw"],
+      "replacement_prerequisites": ["Resolve the GT6 HU-to-CrucibleCraft KU semantic difference and choose a tier in T6.", "Implement exact casing and buzz-saw-head component mappings.", "Verify all operands and lock the chosen pattern."]
+    },
+    "cutter": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "The GT6 Cutter-map machine is named Buzzsaw and has four RU tiers; CrucibleCraft has one cutter identity.",
+      "source_evidence": ["material_tier_arrays", "kinetic_buzzsaw"],
+      "blocking_components": ["OP.casingMachineDouble", "OP.toolHeadBuzzSaw"],
+      "replacement_prerequisites": ["Approve the Buzzsaw-to-cutter identity mapping and tier selection.", "Implement exact casing and buzz-saw-head components.", "Test the pinned RM.Cutter registration signature."]
+    },
+    "lathe": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "GT6 defines four RU kinetic lathes; CrucibleCraft has one untiered KU lathe.",
+      "source_evidence": ["material_tier_arrays", "kinetic_lathe"],
+      "blocking_components": ["OP.casingMachineDouble"],
+      "replacement_prerequisites": ["Select or collapse the GT6 lathe tiers in T6.", "Implement the selected double machine casing and verify gem-plate operands.", "Lock source identity and reachability in tests."]
+    },
+    "rollingmill": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "GT6 defines four RU rolling-mill tiers and CrucibleCraft exposes one configured rolling mill.",
+      "source_evidence": ["material_tier_arrays", "kinetic_rolling_mill"],
+      "blocking_components": ["OP.casingMachineDouble"],
+      "replacement_prerequisites": ["Select or collapse the GT6 rolling-mill tiers.", "Implement the selected double machine casing.", "Lock the selected source pattern and reachable ingredients."]
+    },
+    "rollbender": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "GT6 defines four RU Roll Bender tiers; this exact identity maps to CrucibleCraft rollbender, not bender.",
+      "source_evidence": ["material_tier_arrays", "kinetic_roll_bender"],
+      "blocking_components": ["OP.casingMachineDouble"],
+      "replacement_prerequisites": ["Select or collapse the GT6 Roll Bender tiers.", "Implement the selected double machine casing.", "Keep this identity distinct from the unresolved bender row in tests."]
+    },
+    "wiremill": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "GT6 defines four RU wiremill tiers and CrucibleCraft exposes one configured wiremill.",
+      "source_evidence": ["material_tier_arrays", "kinetic_wiremill"],
+      "blocking_components": ["OP.casingMachine"],
+      "replacement_prerequisites": ["Select or collapse the GT6 wiremill tiers.", "Implement the selected machine casing.", "Lock the selected tier and shaped signature."]
+    },
+    "bender": {
+      "classification": "source_identity_unresolved",
+      "reason": "The complete pinned machine-crafting loader has no exact Bender registration; GT6 Roll Bender cannot silently stand in for both configured blocks.",
+      "source_evidence": ["no_exact_bender_or_assembler", "kinetic_roll_bender"],
+      "blocking_components": [],
+      "replacement_prerequisites": ["Locate an exact authoritative GT6 Bender machine-crafting identity or document a reviewed CrucibleCraft-only divergence.", "Do not infer a block recipe from the RecipeMap dump.", "Add a uniqueness test preventing Roll Bender reuse before replacement."]
+    },
+    "assembler": {
+      "classification": "source_identity_unresolved",
+      "reason": "The complete pinned machine-crafting loader has no exact Assembler registration; the assembler RecipeMap does not prove a craftable GT6 machine block.",
+      "source_evidence": ["no_exact_bender_or_assembler"],
+      "blocking_components": [],
+      "replacement_prerequisites": ["Locate exact authoritative GT6 machine-crafting evidence or approve a reviewed CrucibleCraft-only recipe.", "Do not infer hull, motor, pump, circuit, or tier operands from other forks.", "Lock the chosen divergence or source identity before replacement."]
+    },
+    "welder": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "GT6 exposes five LU Laser Welder tiers with tiered circuits and lenses; CrucibleCraft exposes one KU welder without those component identities.",
+      "source_evidence": ["material_tier_arrays", "electric_laser_welder"],
+      "blocking_components": ["OP.casingMachine", "OD_CIRCUITS[tier]", "DYE_OREDICTS_LENS"],
+      "replacement_prerequisites": ["Resolve LU-to-KU semantics and select or collapse the five GT6 tiers in T6.", "Implement exact casing, circuit, and lens identities.", "Verify every selected operand is reachable and test the source pattern."]
+    },
+    "press": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "GT6 defines four KU press tiers and CrucibleCraft exposes one configured press.",
+      "source_evidence": ["material_tier_arrays", "kinetic_press"],
+      "blocking_components": ["OP.casingMachine"],
+      "replacement_prerequisites": ["Select or collapse the GT6 press tiers.", "Implement the selected machine casing.", "Lock plate, spring, rod, and tier identity in tests."]
+    },
+    "electrolyzer": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "GT6 defines five EU electrolyzer tiers with tier-indexed machine material and cable; CrucibleCraft exposes one electric block.",
+      "source_evidence": ["material_tier_arrays", "electric_electrolyzer"],
+      "blocking_components": ["OP.casingMachine", "MT.DATA.CABLES_01[tier]"],
+      "replacement_prerequisites": ["Select or collapse the five GT6 electric tiers in T6.", "Implement machine casing and bind the selected cable tier to an exact material.", "Test the exact source signature and ingredient reachability."]
+    },
+    "mixer": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "The closest energy-compatible GT6 identity is a five-tier Electric Mixer requiring tiered motors; CrucibleCraft has one electric mixer and no motor family.",
+      "source_evidence": ["material_tier_arrays", "electric_mixer"],
+      "blocking_components": ["OP.casingMachine", "IL.MOTORS[tier]"],
+      "replacement_prerequisites": ["Select or collapse the five GT6 electric mixer tiers in T6.", "Implement exact machine-casing and motor identities.", "Verify rotor/plate choices and lock the source signature."]
+    },
+    "distillery": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "GT6 defines four HU distillery tiers while CrucibleCraft exposes one electric distillery; source energy and tier identity are unresolved.",
+      "source_evidence": ["material_tier_arrays", "heat_distillery"],
+      "blocking_components": ["OP.casingMachine"],
+      "replacement_prerequisites": ["Resolve HU-to-electric semantics and select or collapse the GT6 distillery tiers in T6.", "Implement the selected machine casing and exact wire/pipe forms.", "Lock the selected tier and source pattern."]
+    },
+    "autoclave": {
+      "classification": "missing_cc_component",
+      "reason": "The exact untiered GT6 Autoclave is identifiable, but quadruple machine casing and small casings have no CrucibleCraft identity.",
+      "source_evidence": ["fixed_autoclave"],
+      "blocking_components": ["OP.casingMachineQuadruple", "OP.casingSmall"],
+      "replacement_prerequisites": ["Define exact quadruple machine-casing and small-casing components.", "Prove those components and required pipes/gears are reachable.", "Project and test only the pinned untiered Autoclave pattern."]
+    },
+    "drying": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "GT6 calls the machine Dryer and defines four HU tiers; CrucibleCraft has one electric drying block.",
+      "source_evidence": ["material_tier_arrays", "heat_dryer"],
+      "blocking_components": ["OP.casingMachine"],
+      "replacement_prerequisites": ["Approve Dryer-to-drying identity, resolve HU-to-electric semantics, and choose a tier in T6.", "Implement the selected machine casing.", "Lock the source identity and ingredient reachability."]
+    },
+    "compressor": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "GT6 defines four KU kinetic compressors; CrucibleCraft currently exposes one electric compressor.",
+      "source_evidence": ["material_tier_arrays", "kinetic_compressor"],
+      "blocking_components": ["OP.casingMachineDouble"],
+      "replacement_prerequisites": ["Resolve KU-to-electric semantics and select or collapse the GT6 compressor tiers in T6.", "Implement the selected double machine casing.", "Verify quintuple plate, spring, rod, and source signature."]
+    }
+  },
+  "existing_bronze_resources": {
+    "bronze_anvil": {
+      "classification": "existing_cc_recipe_retained",
+      "reason": "The current component-bearing bronze anvil craft is hand-authored and has direct GT6 bronze-anvil identity evidence.",
+      "source_evidence": ["bronze_anvil"],
+      "replacement_prerequisites": ["A separate reviewed task must authorize any change and preserve machine material/durability components."]
+    },
+    "bronze_boiler": {
+      "classification": "existing_cc_recipe_retained",
+      "reason": "The current bronze boiler craft is already survival-facing; the pinned GT6 boiler uses double plates and tool-shaped crafting, so parity is not silently claimed.",
+      "source_evidence": ["bronze_boiler"],
+      "replacement_prerequisites": ["A separate reviewed task must decide whether to retain the current bucket recipe or project the pinned GT6 pattern."]
+    },
+    "bronze_crucible_upgrade": {
+      "classification": "existing_cc_recipe_retained",
+      "reason": "CrucibleCraft models ceramic-to-bronze as a component-preserving upgrade, while GT6 registers separate ceramic and bronze crucibles.",
+      "source_evidence": ["bronze_crucible"],
+      "replacement_prerequisites": ["A separate reviewed task must explicitly choose upgrade semantics or separate GT6 identities and preserve component data."]
+    },
+    "bronze_crusher": {
+      "classification": "existing_cc_recipe_retained",
+      "reason": "The current bronze crusher craft predates T5.5; GT6 T1 resolves to bronze but requires a machine casing, spring, and diamonds rather than a bronze-wrapped anvil.",
+      "source_evidence": ["material_tier_arrays", "bronze_crusher"],
+      "replacement_prerequisites": ["A separate reviewed task must add the missing casing identity and decide whether GT6 parity replaces the existing anvil-based craft."]
+    },
+    "bronze_dynamo": {
+      "classification": "existing_cc_recipe_retained",
+      "reason": "The current bronze KU-to-electric bridge has no bronze GT6 Electric Dynamo identity; the nearest source family starts at galvanized steel.",
+      "source_evidence": ["material_tier_arrays", "electric_dynamo_tiers"],
+      "replacement_prerequisites": ["A separate reviewed task must document this CrucibleCraft divergence or select an exact non-bronze GT6 dynamo tier."]
+    },
+    "bronze_smithing_hammer": {
+      "classification": "existing_cc_recipe_retained",
+      "reason": "The current component-bearing bronze smithing hammer is a hand-authored tool craft; this machine-block source audit did not pin separate GT6 tool-generation evidence and no replacement is authorized here.",
+      "source_evidence": [],
+      "replacement_prerequisites": ["A separate tool-recipe task must provide exact GT6 tool-generation evidence before changing this craft."]
+    },
+    "bronze_steam_engine": {
+      "classification": "existing_cc_recipe_retained",
+      "reason": "The current piston-based bronze steam engine is hand-authored; pinned GT6 instead uses double plates, rods, and a small spring.",
+      "source_evidence": ["bronze_steam_engine"],
+      "replacement_prerequisites": ["A separate reviewed task must decide between the current piston recipe and exact pinned GT6 component projection."]
+    }
+  }
+}

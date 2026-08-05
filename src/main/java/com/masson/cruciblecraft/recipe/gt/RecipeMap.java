@@ -89,8 +89,8 @@ public final class RecipeMap {
     }
 
     /**
-     * Finds the first concrete recipe in declaration order, then asks handlers
-     * in registration order to synthesize a result.
+     * Finds the unique maximal concrete recipe under the requirement-superset
+     * relation, then asks handlers in registration order to synthesize a result.
      */
     public Optional<GTRecipe> find(GTRecipeQuery query) {
         return findMatch(query).map(Match::recipe);
@@ -99,32 +99,28 @@ public final class RecipeMap {
     public Optional<Match> findMatch(GTRecipeQuery query) {
         Objects.requireNonNull(query, "query");
         Index snapshot = index;
-        TreeSet<Integer> candidates = new TreeSet<>();
-        for (ItemStack stack : query.itemInputsView()) {
-            if (!stack.isEmpty()) {
-                candidates.addAll(snapshot.byItem().getOrDefault(stack.getItem(), List.of()));
-            }
-        }
-        for (FluidStack stack : query.fluidInputsView()) {
-            if (!stack.isEmpty()) {
-                candidates.addAll(snapshot.byFluid().getOrDefault(stack.getFluid(), List.of()));
-            }
-        }
-        candidates.addAll(snapshot.unindexed());
-
-        Match best = null;
+        TreeSet<Integer> candidates = candidates(snapshot, query);
+        List<Match> maximal = new ArrayList<>();
         for (int recipeIndex : candidates) {
             Entry entry = snapshot.entries().get(recipeIndex);
             if (entry.recipe().matches(query)) {
                 Match candidate = new Match(entry.id(), entry.recipe());
-                if (best == null || isStrictRequirementSuperset(
-                        candidate.recipe(), best.recipe())) {
-                    best = candidate;
+                boolean dominated = maximal.stream().anyMatch(existing ->
+                        isStrictRequirementSuperset(
+                                existing.recipe(), candidate.recipe()));
+                if (!dominated) {
+                    maximal.removeIf(existing -> isStrictRequirementSuperset(
+                            candidate.recipe(), existing.recipe()));
+                    maximal.add(candidate);
                 }
             }
         }
-        if (best != null) {
-            return Optional.of(best);
+        if (!maximal.isEmpty()) {
+            // Candidate indexes are declaration ordered. Dominance removes
+            // less-specific matches; incomparable maximal recipes describe
+            // multiple valid jobs, so use the first declared one just as GT6
+            // does instead of throwing from the per-tick player input path.
+            return Optional.of(maximal.getFirst());
         }
         for (RecipeHandler handler : handlers) {
             Optional<Entry> entry = Objects.requireNonNull(
@@ -135,6 +131,34 @@ public final class RecipeMap {
             }
         }
         return Optional.empty();
+    }
+
+    public int indexedCandidateCount(GTRecipeQuery query) {
+        Objects.requireNonNull(query, "query");
+        return candidates(index, query).size();
+    }
+
+    private static TreeSet<Integer> candidates(
+            Index snapshot,
+            GTRecipeQuery query) {
+        TreeSet<Integer> candidates = new TreeSet<>();
+        for (ItemStack stack : query.itemInputsView()) {
+            if (!stack.isEmpty()) {
+                candidates.addAll(snapshot.byItem().getOrDefault(stack.getItem(), List.of()));
+                for (ComponentIngredientIndex.Key key
+                        : ComponentIngredientIndex.keys(stack)) {
+                    candidates.addAll(snapshot.byComponent()
+                            .getOrDefault(key, List.of()));
+                }
+            }
+        }
+        for (FluidStack stack : query.fluidInputsView()) {
+            if (!stack.isEmpty()) {
+                candidates.addAll(snapshot.byFluid().getOrDefault(stack.getFluid(), List.of()));
+            }
+        }
+        candidates.addAll(snapshot.unindexed());
+        return candidates;
     }
 
     static boolean isStrictRequirementSuperset(GTRecipe candidate, GTRecipe other) {
@@ -171,7 +195,8 @@ public final class RecipeMap {
                             .filter(stack -> !stack.isEmpty())
                             .map(ItemStack::getItem)
                             .collect(java.util.stream.Collectors.toUnmodifiableSet()),
-                    ingredient.isSimple() ? null : ingredient);
+                    ingredient.isSimple() ? null : ingredient,
+                    recipe.itemInputActions().get(i));
             result.merge(key, recipe.itemInputCounts().get(i), Integer::sum);
         }
         return result;
@@ -185,7 +210,11 @@ public final class RecipeMap {
         return result;
     }
 
-    private record IngredientKey(String type, Set<Item> items, Object customIdentity) {}
+    private record IngredientKey(
+            String type,
+            Set<Item> items,
+            Object customIdentity,
+            ItemInputAction action) {}
 
     public boolean hasCandidate(ItemStack stack) {
         if (stack.isEmpty()) {
@@ -193,6 +222,8 @@ public final class RecipeMap {
         }
         Index snapshot = index;
         return snapshot.byItem().containsKey(stack.getItem())
+                || ComponentIngredientIndex.keys(stack).stream()
+                        .anyMatch(snapshot.byComponent()::containsKey)
                 || !snapshot.unindexed().isEmpty();
     }
 
@@ -235,16 +266,20 @@ public final class RecipeMap {
             List<Entry> entries,
             List<GTRecipe> recipes,
             Map<Item, List<Integer>> byItem,
+            Map<ComponentIngredientIndex.Key, List<Integer>> byComponent,
             Map<Fluid, List<Integer>> byFluid,
             List<Integer> unindexed) {
 
         private static Index empty() {
-            return new Index(0L, List.of(), List.of(), Map.of(), Map.of(), List.of());
+            return new Index(
+                    0L, List.of(), List.of(), Map.of(), Map.of(), Map.of(), List.of());
         }
 
         private static Index build(List<Entry> entries, long revision) {
             List<GTRecipe> recipes = entries.stream().map(Entry::recipe).toList();
             Map<Item, List<Integer>> byItem = new HashMap<>();
+            Map<ComponentIngredientIndex.Key, List<Integer>> byComponent =
+                    new HashMap<>();
             Map<Fluid, List<Integer>> byFluid = new HashMap<>();
             List<Integer> unindexed = new ArrayList<>();
 
@@ -253,17 +288,43 @@ public final class RecipeMap {
                 boolean indexed = false;
                 boolean requiresFallbackScan = false;
                 Set<Item> indexedItems = new HashSet<>();
-                for (Ingredient ingredient : recipe.itemInputs()) {
-                    requiresFallbackScan |= !ingredient.isSimple();
-                    for (ItemStack stack : ingredient.getItems()) {
-                        if (!stack.isEmpty()) {
-                            indexedItems.add(stack.getItem());
-                            indexed = true;
+                Set<ComponentIngredientIndex.Key> indexedComponents =
+                        new HashSet<>();
+                Set<Item> fallbackItems = new HashSet<>();
+                Set<ComponentIngredientIndex.Key> fallbackComponents =
+                        new HashSet<>();
+                for (int inputIndex = 0;
+                        inputIndex < recipe.itemInputs().size();
+                        inputIndex++) {
+                    Ingredient ingredient = recipe.itemInputs().get(inputIndex);
+                    boolean primary = recipe.itemInputActions().get(inputIndex).kind()
+                            == ItemInputAction.Kind.CONSUME;
+                    if (ingredient.isSimple()) {
+                        for (ItemStack stack : ingredient.getItems()) {
+                            if (!stack.isEmpty()) {
+                                (primary ? indexedItems : fallbackItems)
+                                        .add(stack.getItem());
+                                indexed |= primary;
+                            }
                         }
+                        continue;
+                    }
+                    ComponentIngredientIndex.Extraction extraction =
+                            ComponentIngredientIndex.extract(ingredient);
+                    if (extraction.supported()) {
+                        (primary ? indexedComponents : fallbackComponents)
+                                .addAll(extraction.keys());
+                        indexed |= primary;
+                    } else {
+                        requiresFallbackScan = true;
                     }
                 }
                 for (Item item : indexedItems) {
                     byItem.computeIfAbsent(item, ignored -> new ArrayList<>())
+                            .add(recipeIndex);
+                }
+                for (ComponentIngredientIndex.Key key : indexedComponents) {
+                    byComponent.computeIfAbsent(key, ignored -> new ArrayList<>())
                             .add(recipeIndex);
                 }
                 Set<Fluid> indexedFluids = new HashSet<>();
@@ -277,6 +338,20 @@ public final class RecipeMap {
                     byFluid.computeIfAbsent(fluid, ignored -> new ArrayList<>())
                             .add(recipeIndex);
                 }
+                if (!indexed) {
+                    indexedItems.addAll(fallbackItems);
+                    indexedComponents.addAll(fallbackComponents);
+                    for (Item item : fallbackItems) {
+                        byItem.computeIfAbsent(item, ignored -> new ArrayList<>())
+                                .add(recipeIndex);
+                    }
+                    for (ComponentIngredientIndex.Key key : fallbackComponents) {
+                        byComponent.computeIfAbsent(key, ignored -> new ArrayList<>())
+                                .add(recipeIndex);
+                    }
+                    indexed = !fallbackItems.isEmpty()
+                            || !fallbackComponents.isEmpty();
+                }
                 if (!indexed || requiresFallbackScan) {
                     unindexed.add(recipeIndex);
                 }
@@ -286,6 +361,7 @@ public final class RecipeMap {
                     entries,
                     recipes,
                     immutableIndex(byItem),
+                    immutableIndex(byComponent),
                     immutableIndex(byFluid),
                     List.copyOf(unindexed));
         }

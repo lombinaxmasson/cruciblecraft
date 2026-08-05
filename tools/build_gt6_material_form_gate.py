@@ -16,6 +16,20 @@ DUMP = ROOT / "gt6_dump" / "gt6_recipe_dump"
 MATERIALS = ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft" / "materials"
 OPERANDS_OUT = TOOLS / "gt6_l1b_selected_recipe_operands.json"
 ORE_CHAIN_OPERANDS = TOOLS / "gt6_ore_chain_operands.json"
+ORE_CHAIN = TOOLS / "gt6_ore_chain.json"
+T5_CHEMICAL_POLICY = TOOLS / "t5_chemical_policy.json"
+T6_ELECTRICAL_SOURCE = TOOLS / "gt6_electrical_source.json"
+T7_MATERIAL_TAG_POLICY = (
+    ROOT
+    / "src"
+    / "main"
+    / "resources"
+    / "data"
+    / "cruciblecraft"
+    / "material_tag_policy.json"
+)
+T8_PIPE_READINESS = TOOLS / "t8_pipe_readiness.json"
+T10_PREFLIGHT = TOOLS / "t10_preflight_projection.json"
 ACCEPTANCE_FORM_CORRECTIONS = (
     TOOLS / "component_rule_sources" / "acceptance_form_corrections.json"
 )
@@ -116,6 +130,7 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
     selected = load(selected_path)
     cross = load(cross_path)
     policy = load(policy_path)
+    t5_policy = load(T5_CHEMICAL_POLICY)
     material_docs, factual_forms = material_documents()
 
     selected_ids = {
@@ -123,6 +138,17 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
         for record in selected["records"].values()
         if record.get("layer") == "CORE" and int(record.get("source_id", -1)) >= 0
     }
+    dead_ends = set(
+        t5_policy["source_dead_end_policy"]["materials"]
+    )
+    terminal_materials = set(
+        load(ORE_CHAIN)["coverage_ledger"]["sifter_dust_without_smelter"]
+    ) - dead_ends
+    if len(terminal_materials) != 145:
+        raise ValueError(
+            "T5 material-form gate denominator drifted: "
+            f"{len(terminal_materials)}"
+        )
     prefix_by_item = cross["prefix_item_to_gt_prefix"]
     prefix_dictionary = sorted(set(prefix_by_item.values()))
     prefix_indexes = {
@@ -208,6 +234,19 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
         for source_id, cc_id in cross["material_id_to_cc"].items()
     }
     cc_form_by_gt_prefix = cross["gt_prefix_to_cc"]
+    t5_required_forms = {
+        material: set(forms)
+        for material, forms in t5_policy["required_form_overrides"]["forms"].items()
+    }
+    t5_scoped_prefixes = {
+        form for forms in t5_required_forms.values() for form in forms
+    }
+    for material_id, forms in t5_required_forms.items():
+        if material_id not in factual_forms or not forms <= factual_forms[material_id]:
+            raise ValueError(
+                f"T5 required form exceeds factual runtime forms: "
+                f"{material_id}/{sorted(forms)}"
+            )
     recipe_forms: dict[str, set[str]] = defaultdict(set)
     ignored_pairs: list[dict[str, Any]] = []
     for source_id, gt_prefix in sorted(projected_pairs):
@@ -220,6 +259,11 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             reason = "GT6 prefix has no CC prefix mapping"
         elif cc_form not in factual_forms[material_id]:
             reason = "operand form is absent from the material's GT6 factual forms"
+        elif (
+            cc_form in t5_scoped_prefixes
+            and cc_form not in t5_required_forms.get(material_id, set())
+        ):
+            reason = "newly mapped prefix is outside selected T5 source routes"
         if reason is not None:
             ignored_pairs.append({
                 "source_id": source_id,
@@ -280,6 +324,120 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
                 f"{material_id}/{sorted(forms)}"
             )
         acceptance_forms[material_id].update(forms)
+    electrical_wire_forms: dict[str, set[str]] = {}
+    for material_id, document in material_docs.items():
+        electrical = (
+            document.get("gt6_metadata", {})
+            .get("electrical_by_specification", {})
+        )
+        if "wireGt01" not in electrical:
+            continue
+        if "wire" not in factual_forms[material_id]:
+            raise ValueError(
+                f"T6 wireGt01 source exceeds factual forms: {material_id}"
+            )
+        electrical_wire_forms[material_id] = {"wire"}
+    expected_electrical_wires = len(
+        load(T6_ELECTRICAL_SOURCE)["conductors"]
+    ) - 1  # live catalog intentionally lacks Superconductor
+    if len(electrical_wire_forms) != expected_electrical_wires:
+        raise ValueError(
+            "T6 electrical wire registration denominator drifted: "
+            f"{len(electrical_wire_forms)} != {expected_electrical_wires}"
+        )
+    fluid_pipe_forms = {
+        "pipeTiny": "tiny_fluid_pipe",
+        "pipeSmall": "small_fluid_pipe",
+        "pipeMedium": "fluid_pipe",
+        "pipeLarge": "large_fluid_pipe",
+        "pipeHuge": "huge_fluid_pipe",
+    }
+    item_pipe_forms = {
+        "pipeMedium": "item_pipe",
+        "pipeLarge": "large_item_pipe",
+        "pipeHuge": "huge_item_pipe",
+    }
+    pipe_form_flags = {
+        "tiny_fluid_pipe": "cruciblecraft:generates_tiny_fluid_pipe",
+        "small_fluid_pipe": "cruciblecraft:generates_small_fluid_pipe",
+        "fluid_pipe": "cruciblecraft:generates_fluid_pipe",
+        "large_fluid_pipe": "cruciblecraft:generates_large_fluid_pipe",
+        "huge_fluid_pipe": "cruciblecraft:generates_huge_fluid_pipe",
+        "item_pipe": "cruciblecraft:generates_item_pipe",
+        "large_item_pipe": "cruciblecraft:generates_large_item_pipe",
+        "huge_item_pipe": "cruciblecraft:generates_huge_item_pipe",
+    }
+    t8_pipe_forms: dict[str, set[str]] = {}
+    for material_id, document in material_docs.items():
+        pipe_properties = (
+            document.get("gt6_metadata", {}).get("pipe_properties", {})
+        )
+        forms = {
+            fluid_pipe_forms[specification]
+            for specification in (
+                pipe_properties.get("fluid_by_specification") or {}
+            )
+        } | {
+            item_pipe_forms[specification]
+            for specification in (
+                pipe_properties.get("item_by_specification") or {}
+            )
+        }
+        if not forms:
+            continue
+        generation_flags = set(document.get("generation_flags") or [])
+        missing_flags = {
+            pipe_form_flags[form]
+            for form in forms
+            if pipe_form_flags[form] not in generation_flags
+        }
+        if missing_flags:
+            raise ValueError(
+                f"T8 pipe source lacks generation flags: "
+                f"{material_id}/{sorted(missing_flags)}"
+            )
+        t8_pipe_forms[material_id] = forms
+    expected_t8_pipe_forms = int(
+        load(T8_PIPE_READINESS)["counts"]["combined_runtime_blocks"]
+    )
+    actual_t8_pipe_forms = sum(map(len, t8_pipe_forms.values()))
+    if actual_t8_pipe_forms != expected_t8_pipe_forms:
+        raise ValueError(
+            "T8 pipe registration denominator drifted: "
+            f"{actual_t8_pipe_forms} != {expected_t8_pipe_forms}"
+        )
+    t10_projection = load(T10_PREFLIGHT)["route_projections"]
+    t10_known_forms: dict[str, set[str]] = defaultdict(set)
+    for material_id in t10_projection["multi_ingot"]["materials"]:
+        t10_known_forms[material_id].update({
+            "double_ingot",
+            "triple_ingot",
+        })
+    for material_id in t10_projection["hot_ingot"]["materials"]:
+        t10_known_forms[material_id].add("ingot_hot")
+    t10_form_flags = {
+        "double_ingot": "gt6:itemgenerator/multiingots",
+        "triple_ingot": "gt6:itemgenerator/multiingots",
+        "ingot_hot": "gt6:itemgenerator/hotingots",
+    }
+    for material_id, forms in t10_known_forms.items():
+        flags = set(material_docs[material_id].get("generation_flags") or [])
+        missing_flags = {
+            t10_form_flags[form]
+            for form in forms
+            if t10_form_flags[form] not in flags
+        }
+        if missing_flags:
+            raise ValueError(
+                f"T10 known-form source lacks generation flags: "
+                f"{material_id}/{sorted(missing_flags)}"
+            )
+    actual_t10_known_forms = sum(map(len, t10_known_forms.values()))
+    if actual_t10_known_forms != 967:
+        raise ValueError(
+            "T10 known-form registration denominator drifted: "
+            f"{actual_t10_known_forms} != 967"
+        )
     compatibility_forms: dict[str, list[str]] = {}
     gated_forms: dict[str, list[str]] = {}
     for material_id in sorted(material_docs):
@@ -293,10 +451,14 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             | ore_chain_selected
             | ore_source_selected
             | acceptance_selected
+            | t5_required_forms.get(material_id, set())
+            | electrical_wire_forms.get(material_id, set())
+            | t8_pipe_forms.get(material_id, set())
+            | t10_known_forms.get(material_id, set())
         )
-        compatibility = (
+        compatibility = ((
             pre_gate_forms.get(material_id, set()) - selected_forms
-        ) & factual
+        ) & factual) - t5_scoped_prefixes
         if compatibility:
             compatibility_forms[material_id] = sorted(compatibility)
         gated_forms[material_id] = sorted(selected_forms | compatibility)
@@ -306,6 +468,11 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             "path": "tools/gt6_l1b_selected.json",
             "sha256": sha256(selected_path),
             "selected_layer": "CORE",
+            "t5_terminal_path": "tools/gt6_ore_chain.json",
+            "t5_terminal_sha256": sha256(ORE_CHAIN),
+            "t5_policy_path": "tools/t5_chemical_policy.json",
+            "t5_policy_sha256": sha256(T5_CHEMICAL_POLICY),
+            "t5_terminal_materials": len(terminal_materials),
         },
         "prefix_mapping": {
             "path": "tools/gt6_prefix_mapping.json",
@@ -381,10 +548,50 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
                     "t3_acceptance_required_not_gt6_original_gate"
                 ),
             },
+            "t5_selected_source_route_forms": {
+                "path": "tools/t5_chemical_policy.json",
+                "field": "required_form_overrides.forms",
+                "sha256": sha256(T5_CHEMICAL_POLICY),
+                "classification": "t5_selected_source_route_required",
+            },
+            "t6_source_backed_wire_forms": {
+                "path": "tools/gt6_electrical_source.json",
+                "field": "conductors[] plus live material wireGt01 specification",
+                "sha256": sha256(T6_ELECTRICAL_SOURCE),
+                "classification": "t6_source_backed_runtime_required",
+            },
+            "t7_material_tag_policy": {
+                "path": (
+                    "src/main/resources/data/cruciblecraft/"
+                    "material_tag_policy.json"
+                ),
+                "field": "tags[] classification and acceptance",
+                "sha256": sha256(T7_MATERIAL_TAG_POLICY),
+                "classification": "audit_only_non_form_source",
+            },
+            "t8_source_backed_pipe_forms": {
+                "path": "tools/t8_pipe_readiness.json",
+                "field": "fluid_domain/item_domain material_catalog",
+                "sha256": sha256(T8_PIPE_READINESS),
+                "classification": "t8_source_backed_runtime_required",
+            },
+            "t10_known_forms": {
+                "path": "tools/t10_preflight_projection.json",
+                "field": "route_projections.multi_ingot/hot_ingot.materials",
+                "multi_material_set_sha256": t10_projection[
+                    "multi_ingot"
+                ]["material_set_sha256"],
+                "hot_material_set_sha256": t10_projection[
+                    "hot_ingot"
+                ]["material_set_sha256"],
+                "classification": "t10_source_domain_runtime_required",
+            },
         },
         "policy": (
             "recipe-projected forms plus factual ore-source closure registrations and "
-            "explicit compatibility retention from the pre-gate registered catalog"
+            "route-scoped T5 forms plus source-backed T6 wireGt01 forms plus explicit "
+            "source-backed T8 pipe forms plus T10 multi/hot known forms plus "
+            "compatibility retention from the pre-gate registered catalog"
         ),
         "compatibility_baseline": {
             "path": "tools/gt6_material_activation_policy.json",
@@ -407,6 +614,12 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             "ore_source_forms": sum(map(len, ore_source_forms.values())),
             "ore_source_blocks": len(ore_source_forms) * 2,
             "t3_acceptance_forms": sum(map(len, acceptance_forms.values())),
+            "t5_required_forms": sum(map(len, t5_required_forms.values())),
+            "t6_electrical_wire_forms": sum(
+                map(len, electrical_wire_forms.values())
+            ),
+            "t8_pipe_forms": actual_t8_pipe_forms,
+            "t10_known_forms": actual_t10_known_forms,
             "compatibility_forms": sum(map(len, compatibility_forms.values())),
             "registered_forms": sum(map(len, gated_forms.values())),
         },
@@ -414,6 +627,22 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
         "t3_acceptance_forms": {
             material: sorted(forms)
             for material, forms in sorted(acceptance_forms.items())
+        },
+        "t5_required_forms": {
+            material: sorted(forms)
+            for material, forms in sorted(t5_required_forms.items())
+        },
+        "t6_electrical_wire_forms": {
+            material: sorted(forms)
+            for material, forms in sorted(electrical_wire_forms.items())
+        },
+        "t8_pipe_forms": {
+            material: sorted(forms)
+            for material, forms in sorted(t8_pipe_forms.items())
+        },
+        "t10_known_forms": {
+            material: sorted(forms)
+            for material, forms in sorted(t10_known_forms.items())
         },
         "materials": gated_forms,
     }
@@ -423,7 +652,7 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
 def check_or_write(path: Path, content: str, write: bool) -> bool:
     if write:
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(content, encoding="utf-8")
+        path.write_text(content, encoding="utf-8", newline="\n")
         return True
     return path.is_file() and path.read_text(encoding="utf-8") == content
 

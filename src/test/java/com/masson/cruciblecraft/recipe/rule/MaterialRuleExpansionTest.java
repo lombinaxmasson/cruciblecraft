@@ -224,6 +224,74 @@ class MaterialRuleExpansionTest {
     }
 
     @Test
+    void unknownTagsAndRequiredResourcesFailLoudly() {
+        MaterialDefinition material = material(
+                "iron", 1, MaterialPrefixes.INGOT, MaterialPrefixes.DUST)
+                .withImportedMetadata(metadata(
+                        List.of(),
+                        Map.of(),
+                        List.of("PROCESSING.MORTAR_GRINDABLE"),
+                        0.0,
+                        0.0));
+        MaterialRule generic = new MaterialRule(
+                Optional.of(CRUSHER),
+                List.of(prefix(MaterialPrefixes.INGOT, "1", "10000")),
+                List.of(prefix(MaterialPrefixes.DUST, "1", "10000")),
+                List.of(), List.of(), "20", "8", "0", true,
+                Optional.empty(), Map.of(),
+                List.of("material.tag(\"PROCESSING.MORTAR_GRINDIBLE\")"),
+                Optional.empty(), List.of());
+
+        IllegalArgumentException unknownTag = assertThrows(
+                IllegalArgumentException.class,
+                () -> MaterialRuleExpansion.expandFactualPlans(
+                        id("unknown_tag"), generic, List.of(material)));
+        assertTrue(unknownTag.getMessage().contains("unknown_tag"));
+        assertTrue(unknownTag.getMessage().contains(
+                "PROCESSING.MORTAR_GRINDIBLE"));
+
+        MaterialRule explicit = new MaterialRule(
+                generic.target(),
+                generic.itemInputs(),
+                generic.itemOutputs(),
+                generic.fluidInputs(),
+                generic.fluidOutputs(),
+                generic.duration(),
+                generic.eut(),
+                generic.specialValue(),
+                generic.canBeBuffered(),
+                Optional.of("iron"),
+                generic.materialOverrides(),
+                List.of(),
+                generic.tuning(),
+                generic.unification());
+        IllegalArgumentException missingForm = assertThrows(
+                IllegalArgumentException.class,
+                () -> MaterialRuleExpansion.expandPlansWithRegisteredForms(
+                        id("missing_explicit_form"),
+                        explicit,
+                        List.of(material),
+                        Map.of("iron", List.of(MaterialPrefixes.INGOT))));
+        assertTrue(missingForm.getMessage().contains("missing_explicit_form"));
+        assertTrue(missingForm.getMessage().contains("cruciblecraft:dust"));
+
+        bootstrapVanillaItems();
+        IllegalArgumentException unresolvedOutput = assertThrows(
+                IllegalArgumentException.class,
+                () -> MaterialRuleExpansion.expand(
+                        id("unresolved_required_output"),
+                        explicit,
+                        List.of(material),
+                        resolver(Map.of()),
+                        MaterialRuleExpansion.FormIndexes.factualOnly(
+                                List.of(material))));
+        assertTrue(unresolvedOutput.getMessage().contains(
+                "required item output"));
+        assertTrue(unresolvedOutput.getMessage().contains(
+                "cruciblecraft:dust"));
+    }
+
+    @Test
     void conditionsAndArbitraryMultiIoExpandGenerically() {
         List<MaterialDefinition> materials = List.of(
                 material("iron", 2, MaterialPrefixes.INGOT, MaterialPrefixes.DUST,
@@ -377,6 +445,42 @@ class MaterialRuleExpansionTest {
                 MaterialRuleExpansion.expandFactualPlans(
                                 id("selectors"), rule, materials).getFirst()
                         .itemOutputs().stream().map(value -> value.resource().materialId()).toList());
+
+        MaterialDefinition noTarget = material(
+                "no_target", 1, MaterialPrefixes.CRUSHED_ORE, MaterialPrefixes.INGOT);
+        MaterialRule missingRequiredTarget = new MaterialRule(
+                rule.target(), rule.itemInputs(), rule.itemOutputs(),
+                rule.fluidInputs(), rule.fluidOutputs(), rule.duration(), rule.eut(),
+                rule.specialValue(), rule.canBeBuffered(), Optional.of("no_target"),
+                rule.materialOverrides(), rule.conditions(), rule.tuning(),
+                rule.unification());
+        IllegalArgumentException missing = assertThrows(
+                IllegalArgumentException.class,
+                () -> MaterialRuleExpansion.expandFactualPlans(
+                        id("missing_selector_target"),
+                        missingRequiredTarget,
+                        List.of(noTarget, target, first)));
+        assertTrue(missing.getMessage().contains("required item output"));
+        assertTrue(missing.getMessage().contains("missing_selector_target"));
+
+        MaterialRule guarded = new MaterialRule(
+                rule.target(), rule.itemInputs(), rule.itemOutputs(),
+                rule.fluidInputs(), rule.fluidOutputs(), rule.duration(), rule.eut(),
+                rule.specialValue(), rule.canBeBuffered(), rule.material(),
+                rule.materialOverrides(),
+                List.of(
+                        "has_registered_for("
+                                + "\"processing_target:smelting\", ingot)"),
+                rule.tuning(), rule.unification());
+        assertTrue(MaterialRuleExpansion.expandPlansWithRegisteredForms(
+                        id("guarded_selector_target"),
+                        guarded,
+                        materials,
+                        Map.of(
+                                "source", List.of(MaterialPrefixes.CRUSHED_ORE),
+                                "first", List.of(MaterialPrefixes.DUST),
+                                "target", List.of()))
+                .isEmpty());
     }
 
     @Test
@@ -582,7 +686,8 @@ class MaterialRuleExpansionTest {
                 byproducts,
                 targets,
                 materialTags, List.of(), explosionDamage, heatDamage,
-                Optional.empty(), Map.of());
+                Optional.empty(), Map.of(),
+                GT6MaterialMetadata.PipeProperties.EMPTY);
     }
 
     private static MaterialDefinition material(

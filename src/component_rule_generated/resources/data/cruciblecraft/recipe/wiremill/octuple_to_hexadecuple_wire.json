@@ -1,4 +1,7 @@
 {
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", hexadecuple_wire)"
+  ],
   "duration": "200 * (144 * prefix_units(hexadecuple_wire) / gcd(target_units(working) * 1152, 144 * prefix_units(hexadecuple_wire)))",
   "eut": "48",
   "item_inputs": [

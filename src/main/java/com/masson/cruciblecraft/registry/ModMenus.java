@@ -14,6 +14,7 @@ import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
+import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -67,6 +68,18 @@ public final class ModMenus {
             processing("welder", ModProcessingMachines.WELDER);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> PRESS =
             processing("press", ModProcessingMachines.PRESS);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            ELECTROLYZER = processing("electrolyzer", ModProcessingMachines.ELECTROLYZER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> MIXER =
+            processing("mixer", ModProcessingMachines.MIXER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            DISTILLERY = processing("distillery", ModProcessingMachines.DISTILLERY);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            AUTOCLAVE = processing("autoclave", ModProcessingMachines.AUTOCLAVE);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            DRYING = processing("drying", ModProcessingMachines.DRYING);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            COMPRESSOR = processing("compressor", ModProcessingMachines.COMPRESSOR);
 
     static {
         validateProcessingMenuMapping(
@@ -78,10 +91,13 @@ public final class ModMenus {
             String id,
             ProcessingMachineSpec spec) {
         DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> holder =
-                MENUS.register(id, () -> new MenuType<>(
-                        (containerId, inventory) -> new ConfiguredProcessingMachineMenu(
-                                containerId, inventory, spec),
-                        FeatureFlags.DEFAULT_FLAGS));
+                MENUS.register(id, () -> IMenuTypeExtension.create(
+                        (containerId, inventory, data) ->
+                                new ConfiguredProcessingMachineMenu(
+                                        containerId,
+                                        inventory,
+                                        spec,
+                                        data.readBlockPos())));
         DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>> previous =
                 PROCESSING_MENUS.put(spec, holder);
         if (previous != null) {

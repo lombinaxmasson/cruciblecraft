@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.client.screen;
 
 import com.masson.cruciblecraft.content.menu.ProcessingMachineMenu;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineDisplayData;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 
 import net.minecraft.client.gui.GuiGraphics;
@@ -8,12 +9,15 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.fluids.FluidStack;
 
 /** Shared spec-driven machine background and progress rendering. */
 public abstract class ProcessingMachineScreen<M extends ProcessingMachineMenu>
         extends AbstractContainerScreen<M> {
     protected ProcessingMachineScreen(M menu, Inventory inventory, Component title) {
         super(menu, inventory, title);
+        inventoryLabelY = -10_000;
     }
 
     protected abstract ResourceLocation texture();
@@ -34,6 +38,38 @@ public abstract class ProcessingMachineScreen<M extends ProcessingMachineMenu>
                     topPos + progress.y() + progress.height(),
                     0xFFC88634);
         }
+        for (ProcessingMachineSpec.TankPosition tank : menu.machineSpec().ui().tanks()) {
+            FluidStack fluid = menu.tankFluid(tank.tank());
+            int amount = fluid.getAmount();
+            int capacity = menu.tankCapacity(tank.tank());
+            int innerHeight = Math.max(0, tank.height() - 2);
+            int filled = capacity <= 0
+                    ? 0
+                    : (int) Math.min(
+                            innerHeight,
+                            (long) amount * innerHeight / capacity);
+            int x = leftPos + tank.x();
+            int y = topPos + tank.y();
+            graphics.fill(x, y, x + tank.width(), y + tank.height(), 0xFF303030);
+            graphics.fill(
+                    x + 1,
+                    y + 1,
+                    x + tank.width() - 1,
+                    y + tank.height() - 1,
+                    0xFFB8B8B8);
+            if (filled > 0) {
+                int tint = fluid.isEmpty()
+                        ? 0xFF3F76E4
+                        : IClientFluidTypeExtensions.of(fluid.getFluid())
+                                .getTintColor(fluid);
+                graphics.fill(
+                        x + 1,
+                        y + tank.height() - 1 - filled,
+                        x + tank.width() - 1,
+                        y + tank.height() - 1,
+                        tint);
+            }
+        }
     }
 
     @Override protected void renderLabels(
@@ -41,24 +77,12 @@ public abstract class ProcessingMachineScreen<M extends ProcessingMachineMenu>
         super.renderLabels(graphics, mouseX, mouseY);
         graphics.drawString(
                 font,
-                Component.translatable(
-                        "screen.cruciblecraft.processing.status." + menu.status()),
+                ProcessingMachineDisplayData.statusComponent(
+                        menu.status(), menu.statusArgument()),
                 8,
-                70,
+                74,
                 0x404040,
                 false);
-        if (menu.tankCapacity() > 0) {
-            graphics.drawString(
-                    font,
-                    Component.translatable(
-                            "screen.cruciblecraft.processing.tank",
-                            menu.tankAmount(),
-                            menu.tankCapacity()),
-                    80,
-                    70,
-                    0x404040,
-                    false);
-        }
     }
 
     @Override public void render(
@@ -68,5 +92,25 @@ public abstract class ProcessingMachineScreen<M extends ProcessingMachineMenu>
             float partialTick) {
         super.render(graphics, mouseX, mouseY, partialTick);
         renderTooltip(graphics, mouseX, mouseY);
+        for (ProcessingMachineSpec.TankPosition tank : menu.machineSpec().ui().tanks()) {
+            if (isHovering(
+                    tank.x(), tank.y(), tank.width(), tank.height(), mouseX, mouseY)) {
+                FluidStack fluid = menu.tankFluid(tank.tank());
+                graphics.renderTooltip(
+                        font,
+                        fluid.isEmpty()
+                                ? Component.translatable(
+                                        "screen.cruciblecraft.processing.tank_empty",
+                                        menu.tankCapacity(tank.tank()))
+                                : Component.translatable(
+                                        "screen.cruciblecraft.processing.tank_named",
+                                        fluid.getHoverName(),
+                                        fluid.getAmount(),
+                                        menu.tankCapacity(tank.tank())),
+                        mouseX,
+                        mouseY);
+                break;
+            }
+        }
     }
 }

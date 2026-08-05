@@ -75,6 +75,36 @@ class MaterialFingerprintTest {
     }
 
     @Test
+    void heatDamageIsCanonicalPrefixFingerprintInput() {
+        List<MaterialPrefixDefinition> changed =
+                new ArrayList<>(MaterialPrefixCatalog.definitions());
+        MaterialPrefixDefinition hotIngot =
+                MaterialPrefixCatalog.definition(MaterialPrefixes.INGOT_HOT);
+        int index = changed.indexOf(hotIngot);
+        changed.set(index, new MaterialPrefixDefinition(
+                hotIngot.prefix(),
+                hotIngot.serializedPath(),
+                hotIngot.units(),
+                hotIngot.generationFlag(),
+                hotIngot.tagDirectory(),
+                hotIngot.tagNamespace(),
+                hotIngot.modelTemplate(),
+                hotIngot.modelTexture(),
+                hotIngot.aliases(),
+                hotIngot.impliedPrefixes(),
+                hotIngot.heatDamage() + 1.0,
+                hotIngot.capabilities()));
+
+        Map<String, String> base =
+                MaterialFingerprint.structureEntries(List.of());
+        Map<String, String> modified =
+                MaterialFingerprint.structureEntries(List.of(), changed);
+        assertNotEquals(
+                base.get("@prefix/cruciblecraft:ingot_hot"),
+                modified.get("@prefix/cruciblecraft:ingot_hot"));
+    }
+
+    @Test
     void isOrderIndependentAndIncludesFormOverrides() {
         MaterialDefinition copper = definition(
                 "copper",

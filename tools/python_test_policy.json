@@ -1,0 +1,202 @@
+{
+  "schema_version": 1,
+  "default_suite": "fast",
+  "closure_only_test_patterns": [
+    "test_full_verification_report.*",
+    "*.test_check_mode_is_immutable",
+    "*.test_check_modes_do_not_modify_*",
+    "*.test_committed_report_matches_current_tooling_snapshot",
+    "*.test_committed_outputs_are_current",
+    "*.test_generation_is_deterministic",
+    "*.test_repository_outputs_are_byte_exact"
+  ],
+  "source_replay_test_patterns": [
+    "*.test_assembler_and_press_reference_samples_keep_fixed_inputs",
+    "*.test_committed_verdicts_cover_every_normalized_cc_recipe",
+    "*.test_generic_intentional_boilerplate_is_unreviewed",
+    "*.test_automated_review_requires_current_evidence_digest",
+    "*.test_human_review_requires_durable_attribution",
+    "*.test_committed_non_exact_rows_have_row_specific_evidence"
+  ],
+  "affected_rules": [
+    {
+      "paths": [
+        "tools/run_python_tests.py",
+        "tools/python_test_policy.json",
+        "tools/tests/test_python_test_workflow.py"
+      ],
+      "test_modules": [
+        "test_python_test_workflow"
+      ]
+    },
+    {
+      "paths": [
+        "tools/compare_gt6_recipes.py",
+        "tools/gt6_recipe_*.json",
+        "src/main/resources/data/cruciblecraft/recipe/**"
+      ],
+      "test_modules": [
+        "test_compare_gt6_recipes",
+        "test_build_gt6_ore_chain",
+        "test_full_verification_report"
+      ]
+    },
+    {
+      "paths": [
+        "tools/import_gt6_oredict.py",
+        "tools/gt6_oredict_*.json",
+        "src/main/resources/data/cruciblecraft/materials/**",
+        "src/main/resources/data/cruciblecraft/material_prefixes/**"
+      ],
+      "test_modules": [
+        "test_import_gt6_oredict",
+        "test_gt6_l3_materials",
+        "test_build_gt6_material_form_gate",
+        "test_compare_gt6_recipes",
+        "test_full_verification_report"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_component_rules.py",
+        "tools/component_rule_sources/**",
+        "src/component_rule_generated/**"
+      ],
+      "test_modules": [
+        "test_build_component_rules",
+        "test_component_selector_policy",
+        "test_full_verification_report"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t4_*.py",
+        "tools/t4_*.json"
+      ],
+      "test_modules": [
+        "test_build_t4_tool_readiness",
+        "test_full_verification_report"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t5_*.py",
+        "tools/t5_*.json",
+        "src/t5_chemical_generated/**"
+      ],
+      "test_modules": [
+        "test_build_t5_chemical_readiness",
+        "test_build_t5_chemical_recipes",
+        "test_build_t5_distillery_projection",
+        "test_build_machine_crafting_readiness",
+        "test_full_verification_report"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t6_*.py",
+        "tools/t6_*.json"
+      ],
+      "test_modules": [
+        "test_build_t6_electrical_readiness",
+        "test_full_verification_report"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t7_*.py",
+        "tools/t7_*.json"
+      ],
+      "test_modules": [
+        "test_build_t7_material_tag_readiness",
+        "test_full_verification_report"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t8_*.py",
+        "tools/apply_t8_*.py",
+        "tools/t8_*.json"
+      ],
+      "test_modules": [
+        "test_build_t8_pipe_readiness",
+        "test_apply_t8_pipe_metadata",
+        "test_full_verification_report"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t10_*.py",
+        "tools/apply_t10_*.py",
+        "tools/t10_*.json",
+        "src/main/resources/data/cruciblecraft/recipe/t10/**"
+      ],
+      "test_modules": [
+        "test_build_t10_preflight_projection",
+        "test_build_t10_container_readiness",
+        "test_apply_t10_form_flags",
+        "test_full_verification_report"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_worldgen_catalog.py",
+        "tools/build_gt6_veins.py",
+        "src/main/resources/data/cruciblecraft/worldgen_catalog/**",
+        "src/main/resources/data/cruciblecraft/veins/**",
+        "src/worldgen_*"
+      ],
+      "test_modules": [
+        "test_build_worldgen_catalog",
+        "test_build_gt6_veins",
+        "test_full_verification_report"
+      ]
+    },
+    {
+      "paths": [
+        "tools/verify_full_verification_report.py",
+        "tools/verification_context.py",
+        "tools/full_verification_report.json",
+        "CrucibleCraft-总体规划.md",
+        "CrucibleCraft-第二阶段总体规划.md"
+      ],
+      "test_modules": [
+        "test_full_verification_report"
+      ]
+    },
+    {
+      "paths": [
+        "tools/tests/test_*.py"
+      ],
+      "test_modules": [
+        "$changed_test_module"
+      ]
+    }
+  ],
+  "source_replay_commands": [
+    {
+      "name": "GT6 OreDict raw replay",
+      "required_paths": [
+        "gt6_dump/gt6_recipe_dump/index.json"
+      ],
+      "command": [
+        "$PYTHON",
+        "tools/import_gt6_oredict.py",
+        "--check"
+      ]
+    },
+    {
+      "name": "GT6 recipe full replay",
+      "required_any_paths": [
+        "gt6_dump/gt6_recipe_dump/index.json",
+        "tools/gt6_recipe_normalized_reference.json"
+      ],
+      "command": [
+        "$PYTHON",
+        "tools/compare_gt6_recipes.py",
+        "--check",
+        "--full-replay"
+      ]
+    }
+  ]
+}

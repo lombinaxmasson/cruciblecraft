@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
 import com.masson.cruciblecraft.heat.HeatComponent;
 import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
@@ -36,17 +37,38 @@ public final class AnvilBlockEntity extends BlockEntity {
     private final ItemStack[] workpieces = {ItemStack.EMPTY, ItemStack.EMPTY};
     private int strikes;
     private String materialId = MachineMaterialRules.DEFAULT_ANVIL_MATERIAL;
+    private String quarantinedMaterialId = "";
     private long durability = MachineMaterialRules.anvilMaxDurability(materialId);
     private long maxDurability = durability;
     private String activeRecipe = "";
+    private boolean quarantineWarningLogged;
     private final Map<AnvilMode, GTRecipeCache> recipeCaches = createRecipeCaches();
 
     public AnvilBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.ANVIL.get(), pos, blockState);
     }
 
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        if (!quarantineWarningLogged
+                && level != null
+                && !level.isClientSide
+                && materialQuarantined()) {
+            quarantineWarningLogged = true;
+            CrucibleCraft.LOGGER.warn(
+                    "Quarantined anvil at {} {}: unsupported material {}",
+                    level.dimension().location(),
+                    worldPosition,
+                    quarantinedMaterialId);
+        }
+    }
+
     public boolean insert(int slot, ItemStack heldStack) {
-        if (level == null || slot < 0 || slot >= workpieces.length
+        if (!quarantinedMaterialId.isEmpty()
+                || level == null
+                || slot < 0
+                || slot >= workpieces.length
                 || !workpieces[slot].isEmpty() || heldStack.isEmpty()) {
             return false;
         }
@@ -65,7 +87,9 @@ public final class AnvilBlockEntity extends BlockEntity {
     }
 
     public Optional<StrikeResult> strike(AnvilMode mode, int hammerTier) {
-        if (level == null || (workpieces[0].isEmpty() && workpieces[1].isEmpty())) {
+        if (!quarantinedMaterialId.isEmpty()
+                || level == null
+                || (workpieces[0].isEmpty() && workpieces[1].isEmpty())) {
             return Optional.empty();
         }
 
@@ -192,6 +216,14 @@ public final class AnvilBlockEntity extends BlockEntity {
         return materialId;
     }
 
+    public boolean materialQuarantined() {
+        return !quarantinedMaterialId.isEmpty();
+    }
+
+    public String quarantinedMaterialId() {
+        return quarantinedMaterialId;
+    }
+
     public int materialTier() {
         return MachineMaterialRules.processingTier(Device.ANVIL, materialId);
     }
@@ -209,9 +241,10 @@ public final class AnvilBlockEntity extends BlockEntity {
     }
 
     public void setMaterial(String materialId, MachineDurabilityComponent savedDurability) {
-        String sanitized = MachineMaterialRules.sanitize(Device.ANVIL, materialId);
-        this.materialId = sanitized;
-        long expectedMax = MachineMaterialRules.anvilMaxDurability(sanitized);
+        String material = MachineMaterialRules.requireAllowed(Device.ANVIL, materialId);
+        this.materialId = material;
+        this.quarantinedMaterialId = "";
+        long expectedMax = MachineMaterialRules.anvilMaxDurability(material);
         this.maxDurability = savedDurability == null ? expectedMax : savedDurability.max();
         this.durability = savedDurability == null
                 ? expectedMax
@@ -358,17 +391,22 @@ public final class AnvilBlockEntity extends BlockEntity {
                 : ItemStack.EMPTY;
         strikes = tag.getInt("strikes");
         activeRecipe = tag.getString("active_recipe");
-        materialId = MachineMaterialRules.sanitize(
-                Device.ANVIL,
-                tag.contains("material_id", Tag.TAG_STRING)
-                        ? tag.getString("material_id")
-                        : MachineMaterialRules.DEFAULT_ANVIL_MATERIAL);
-        maxDurability = tag.contains("max_durability", Tag.TAG_LONG)
+        String requestedMaterial = tag.contains("material_id", Tag.TAG_STRING)
+                ? tag.getString("material_id")
+                : MachineMaterialRules.DEFAULT_ANVIL_MATERIAL;
+        var resolution = MachineMaterialRules.resolveExternal(
+                Device.ANVIL, requestedMaterial);
+        materialId = resolution.effectiveMaterial();
+        quarantinedMaterialId = resolution.quarantinedMaterial().orElse("");
+        long expectedMax = MachineMaterialRules.anvilMaxDurability(materialId);
+        long savedMax = tag.contains("max_durability", Tag.TAG_LONG)
                 ? tag.getLong("max_durability")
-                : MachineMaterialRules.anvilMaxDurability(materialId);
-        durability = tag.contains("durability", Tag.TAG_LONG)
-                ? Math.min(tag.getLong("durability"), maxDurability)
+                : expectedMax;
+        maxDurability = savedMax > 0L ? savedMax : expectedMax;
+        long savedDurability = tag.contains("durability", Tag.TAG_LONG)
+                ? tag.getLong("durability")
                 : maxDurability;
+        durability = Math.max(0L, Math.min(savedDurability, maxDurability));
     }
 
     @Override
@@ -382,7 +420,11 @@ public final class AnvilBlockEntity extends BlockEntity {
         }
         tag.putInt("strikes", strikes);
         tag.putString("active_recipe", activeRecipe);
-        tag.putString("material_id", materialId);
+        tag.putString(
+                "material_id",
+                quarantinedMaterialId.isEmpty()
+                        ? materialId
+                        : quarantinedMaterialId);
         tag.putLong("durability", durability);
         tag.putLong("max_durability", maxDurability);
     }

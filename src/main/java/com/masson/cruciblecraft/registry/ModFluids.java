@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.material.ChemicalFluidRegistrationGate;
 import com.masson.cruciblecraft.material.GT6ImportUnits;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
@@ -29,6 +30,8 @@ public final class ModFluids {
             DeferredRegister.create(BuiltInRegistries.FLUID, CrucibleCraft.MODID);
     private static volatile MoltenRegistration moltenRegistration =
             MoltenRegistration.empty();
+    private static volatile ChemicalRegistration chemicalRegistration =
+            ChemicalRegistration.empty();
     private static volatile Map<Fluid, String> materialByFluid;
 
     public static final Supplier<FluidType> CREOSOTE_TYPE = FLUID_TYPES.register(
@@ -72,9 +75,11 @@ public final class ModFluids {
 
     public static synchronized void registerMaterials(
             Collection<MaterialDefinition> definitions) {
-        if (!moltenRegistration.byMaterial().isEmpty()) {
-            throw new IllegalStateException("Molten material fluids already registered");
+        if (!moltenRegistration.byMaterial().isEmpty()
+                || !chemicalRegistration.byMaterial().isEmpty()) {
+            throw new IllegalStateException("Material fluids already registered");
         }
+        registerChemicalMaterials(definitions);
         LinkedHashMap<String, MoltenFluidEntry> registered = new LinkedHashMap<>();
         for (MaterialDefinition material : definitions) {
             if (!material.moltenFluid()) {
@@ -106,6 +111,53 @@ public final class ModFluids {
                 registered.values());
     }
 
+    private static void registerChemicalMaterials(
+            Collection<MaterialDefinition> definitions) {
+        LinkedHashMap<String, ChemicalFluidEntry> registered = new LinkedHashMap<>();
+        for (ChemicalFluidRegistrationGate.Entry entry
+                : ChemicalFluidRegistrationGate.load(definitions)) {
+            Supplier<FluidType> type = FLUID_TYPES.register(
+                    entry.id(),
+                    () -> new FluidType(FluidType.Properties.create()
+                            .temperature(entry.temperatureKelvin())
+                            .density(entry.density())
+                            .viscosity(entry.viscosity())));
+            AtomicReference<DeferredHolder<Fluid, FlowingFluid>> source =
+                    new AtomicReference<>();
+            AtomicReference<DeferredHolder<Fluid, FlowingFluid>> flowing =
+                    new AtomicReference<>();
+            Supplier<BaseFlowingFluid.Properties> properties =
+                    () -> new BaseFlowingFluid.Properties(
+                            type,
+                            () -> source.get().get(),
+                            () -> flowing.get().get());
+            source.set(FLUIDS.register(
+                    entry.id(),
+                    () -> new BaseFlowingFluid.Source(properties.get())));
+            flowing.set(FLUIDS.register(
+                    "flowing_" + entry.id(),
+                    () -> new BaseFlowingFluid.Flowing(properties.get())));
+            ChemicalFluidEntry registration = new ChemicalFluidEntry(
+                    entry.id(),
+                    entry.materialId(),
+                    entry.state(),
+                    entry.color(),
+                    type,
+                    source.get(),
+                    flowing.get());
+            ChemicalFluidEntry previous =
+                    registered.putIfAbsent(entry.materialId(), registration);
+            if (previous != null) {
+                throw new IllegalStateException(
+                        "Multiple chemical fluids selected for material "
+                                + entry.materialId());
+            }
+        }
+        chemicalRegistration = new ChemicalRegistration(
+                registered,
+                registered.values());
+    }
+
     /**
      * Called from common setup after deferred holders have bound. Publication is
      * volatile so capability queries on either logical side only see a complete map.
@@ -123,12 +175,36 @@ public final class ModFluids {
             reverse.put(entry.source().get(), entry.materialId());
             reverse.put(entry.flowing().get(), entry.materialId());
         }
+        for (ChemicalFluidEntry entry : chemicalRegistration.entries()) {
+            if (!entry.source().isBound() || !entry.flowing().isBound()) {
+                throw new IllegalStateException(
+                        "Chemical fluid lookup finalized before registries were bound");
+            }
+            reverse.put(entry.source().get(), entry.materialId());
+            reverse.put(entry.flowing().get(), entry.materialId());
+        }
         materialByFluid = java.util.Collections.unmodifiableMap(reverse);
     }
 
     public static Optional<MoltenFluidEntry> molten(String materialId) {
         return Optional.ofNullable(
                 moltenRegistration.byMaterial().get(materialId));
+    }
+
+    public static Optional<ChemicalFluidEntry> chemical(String materialId) {
+        return Optional.ofNullable(
+                chemicalRegistration.byMaterial().get(materialId));
+    }
+
+    /**
+     * Resolves the registered ambient chemical form first, then the molten form.
+     */
+    public static Optional<Fluid> materialFluid(String materialId) {
+        Optional<ChemicalFluidEntry> chemical = chemical(materialId);
+        if (chemical.isPresent()) {
+            return Optional.of(chemical.orElseThrow().source().get());
+        }
+        return molten(materialId).map(entry -> entry.source().get());
     }
 
     public static Optional<MaterialDefinition> material(Fluid fluid) {
@@ -144,8 +220,25 @@ public final class ModFluids {
         return moltenRegistration.entries();
     }
 
+    public static Collection<ChemicalFluidEntry> chemicalFluids() {
+        return chemicalRegistration.entries();
+    }
+
     public record MoltenFluidEntry(
             String materialId,
+            Supplier<FluidType> type,
+            DeferredHolder<Fluid, FlowingFluid> source,
+            DeferredHolder<Fluid, FlowingFluid> flowing) {
+        public MaterialDefinition material() {
+            return MaterialCatalog.require(materialId);
+        }
+    }
+
+    public record ChemicalFluidEntry(
+            String id,
+            String materialId,
+            ChemicalFluidRegistrationGate.State state,
+            String color,
             Supplier<FluidType> type,
             DeferredHolder<Fluid, FlowingFluid> source,
             DeferredHolder<Fluid, FlowingFluid> flowing) {
@@ -164,6 +257,19 @@ public final class ModFluids {
 
         private static MoltenRegistration empty() {
             return new MoltenRegistration(Map.of(), java.util.List.of());
+        }
+    }
+
+    private record ChemicalRegistration(
+            Map<String, ChemicalFluidEntry> byMaterial,
+            Collection<ChemicalFluidEntry> entries) {
+        private ChemicalRegistration {
+            byMaterial = Map.copyOf(byMaterial);
+            entries = java.util.List.copyOf(entries);
+        }
+
+        private static ChemicalRegistration empty() {
+            return new ChemicalRegistration(Map.of(), java.util.List.of());
         }
     }
 

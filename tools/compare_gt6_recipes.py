@@ -8,6 +8,7 @@ Comparison IR:
 
 from __future__ import annotations
 
+import copy
 import json
 import hashlib
 import ast
@@ -16,6 +17,7 @@ import re
 import sys
 from collections import Counter, defaultdict
 from dataclasses import dataclass, field
+from functools import cache
 from pathlib import Path
 from typing import Any
 
@@ -44,6 +46,13 @@ CC_COMPONENT_GEN = (
     / "data"
     / "cruciblecraft"
     / "recipe"
+)
+CC_COMPONENT_TAGS = (
+    ROOT
+    / "src"
+    / "component_rule_generated"
+    / "resources"
+    / "data"
 )
 ORE_CHAIN_INDEX = ROOT / "tools" / "gt6_ore_chain.json"
 OUT_JSON = ROOT / "tools" / "gt6_recipe_compare_report.json"
@@ -441,7 +450,49 @@ def recipe_row_id(recipe: NormRecipe) -> str:
     return f"{recipe.family}/{material}/{signature_hash}"
 
 
-def load_cc_materials() -> dict[str, dict[str, Any]]:
+def resolve_t8_pipe_forms(material: dict[str, Any]) -> set[str]:
+    fluid_forms = {
+        "pipeTiny": "tiny_fluid_pipe",
+        "pipeSmall": "small_fluid_pipe",
+        "pipeMedium": "fluid_pipe",
+        "pipeLarge": "large_fluid_pipe",
+        "pipeHuge": "huge_fluid_pipe",
+    }
+    item_forms = {
+        "pipeMedium": "item_pipe",
+        "pipeLarge": "large_item_pipe",
+        "pipeHuge": "huge_item_pipe",
+    }
+    properties = (
+        material.get("gt6_metadata", {}).get("pipe_properties", {})
+    )
+    forms = {
+        fluid_forms[specification]
+        for specification in (
+            properties.get("fluid_by_specification") or {}
+        )
+    } | {
+        item_forms[specification]
+        for specification in (
+            properties.get("item_by_specification") or {}
+        )
+    }
+    generation_flags = set(material.get("generation_flags") or [])
+    missing = {
+        f"cruciblecraft:generates_{form}"
+        for form in forms
+        if f"cruciblecraft:generates_{form}" not in generation_flags
+    }
+    if missing:
+        raise ValueError(
+            f"T8 pipe forms lack generation flags for "
+            f"{material.get('id')}: {sorted(missing)}"
+        )
+    return forms
+
+
+@cache
+def _load_cc_materials_cached() -> dict[str, dict[str, Any]]:
     materials: dict[str, dict[str, Any]] = {}
     index = json.loads((CC_MATERIALS / "index.json").read_text(encoding="utf-8"))
     gate = json.loads(CC_REGISTRATION_GATE.read_text(encoding="utf-8"))["materials"]
@@ -455,12 +506,19 @@ def load_cc_materials() -> dict[str, dict[str, Any]]:
         if filename != f"{data['id']}.json":
             raise ValueError(f"Material index/file id mismatch: {filename}")
         factual_forms = resolve_material_forms(data)
+        source_backed_pipe_forms = resolve_t8_pipe_forms(data)
+        source_backed_t10_forms = resolve_t10_known_forms(data)
         if data["id"] not in gate:
             raise ValueError(f"Registration gate omits indexed material: {data['id']}")
         registered_forms = set(gate[data["id"]])
-        if not registered_forms <= factual_forms:
+        if not registered_forms <= (
+            factual_forms
+            | source_backed_pipe_forms
+            | source_backed_t10_forms
+        ):
             raise ValueError(
-                f"Registration gate exceeds factual forms for {data['id']}"
+                "Registration gate exceeds factual or source-backed T8/T10 "
+                f"forms for {data['id']}"
             )
         data["_factual_forms"] = sorted(factual_forms)
         data["_resolved_forms"] = sorted(registered_forms)
@@ -470,9 +528,28 @@ def load_cc_materials() -> dict[str, dict[str, Any]]:
     return materials
 
 
-def resolve_material_forms(material: dict[str, Any]) -> set[str]:
-    if material.get("metadata_only"):
-        return set()
+def load_cc_materials() -> dict[str, dict[str, Any]]:
+    """Return an isolated view of the process-cached material catalog."""
+    return copy.deepcopy(_load_cc_materials_cached())
+
+
+def cached_cc_materials() -> dict[str, dict[str, Any]]:
+    """Return the shared read-only-by-contract catalog for internal scanners."""
+    return _load_cc_materials_cached()
+
+
+def resolve_t10_known_forms(material: dict[str, Any]) -> set[str]:
+    flags = set(material.get("generation_flags") or [])
+    forms: set[str] = set()
+    if "gt6:itemgenerator/multiingots" in flags:
+        forms.update(("double_ingot", "triple_ingot"))
+    if "gt6:itemgenerator/hotingots" in flags:
+        forms.add("ingot_hot")
+    return forms
+
+
+@cache
+def _prefix_resolution_inputs() -> tuple[dict[str, str], dict[str, Any]]:
     prefix_index = json.loads((CC_PREFIXES / "index.json").read_text(encoding="utf-8"))
     aliases: dict[str, str] = {}
     for filename in prefix_index:
@@ -482,6 +559,14 @@ def resolve_material_forms(material: dict[str, Any]) -> set[str]:
         aliases[form] = form
         for alias in definition.get("aliases") or []:
             aliases[alias] = form
+    document = json.loads(L3_PREFIX_PLAN.read_text(encoding="utf-8"))
+    return aliases, document
+
+
+def resolve_material_forms(material: dict[str, Any]) -> set[str]:
+    if material.get("metadata_only"):
+        return set()
+    aliases, document = _prefix_resolution_inputs()
     generation_flags = material.get("generation_flags") or []
     includes = material.get("include_prefixes") or []
     excludes = material.get("exclude_prefixes") or []
@@ -507,7 +592,6 @@ def resolve_material_forms(material: dict[str, Any]) -> set[str]:
                         f"prefix: {prefix}"
                     )
                 normalized[field].append(aliases[key])
-        document = json.loads(L3_PREFIX_PLAN.read_text(encoding="utf-8"))
         return gt6_l3_materials.resolve_material_forms(normalized, document)
 
     forms = set()
@@ -517,6 +601,13 @@ def resolve_material_forms(material: dict[str, Any]) -> set[str]:
             raise ValueError(f"Unknown legacy material prefix: {prefix}")
         forms.add(aliases[key])
     return forms
+
+
+def clear_process_caches() -> None:
+    """Clear process-local source caches after an intentional fixture mutation."""
+    _load_cc_materials_cached.cache_clear()
+    _prefix_resolution_inputs.cache_clear()
+    _load_and_expand_cc_recipes_cached.cache_clear()
 
 
 def material_forms(material: dict[str, Any]) -> set[str]:
@@ -672,6 +763,10 @@ def load_ore_chain_concrete_recipes(
     normalized: list[NormRecipe] = []
     index = json.loads(ORE_CHAIN_INDEX.read_text(encoding="utf-8"))
     for row in index["recipes"]:
+        if row.get("source") == "high_version_ore_block_projection":
+            # This is a Minecraft-version compatibility ingress derived from
+            # the committed raw-ore recipe, not a GT6-equivalence candidate.
+            continue
         path = ROOT / row["path"]
         document = json.loads(path.read_text(encoding="utf-8"))
         item_inputs = []
@@ -1049,6 +1144,45 @@ def resource_expression_variables(
     return result
 
 
+def resolve_material_rule_tag(
+    tag: str,
+    materials: dict[str, dict[str, Any]],
+) -> str:
+    namespace, separator, path = tag.partition(":")
+    if not separator:
+        raise ValueError(f"invalid material-rule item tag: {tag}")
+    tag_path = (
+        CC_COMPONENT_TAGS
+        / namespace
+        / "tags"
+        / "item"
+        / f"{path}.json"
+    )
+    document = json.loads(tag_path.read_text(encoding="utf-8"))
+    values = document.get("values")
+    if not isinstance(values, list) or len(values) != 1:
+        raise ValueError(
+            f"comparator requires one concrete member for item tag {tag}"
+        )
+    member = str(values[0])
+    marker = "#c:plates/"
+    if not member.startswith(marker):
+        raise ValueError(
+            f"unsupported material-rule item tag member: {member}"
+        )
+    material_tag = member[len(marker):]
+    matches = sorted(
+        mid
+        for mid, material in materials.items()
+        if str(material.get("tag_name") or mid) == material_tag
+    )
+    if len(matches) != 1:
+        raise ValueError(
+            f"item tag {tag} member {member} resolves to {matches}"
+        )
+    return f"{matches[0]}:plate"
+
+
 def expand_cc_recipes(materials: dict[str, dict[str, Any]]) -> list[NormRecipe]:
     recipes: list[NormRecipe] = []
 
@@ -1095,6 +1229,11 @@ def expand_cc_recipes(materials: dict[str, dict[str, Any]]) -> list[NormRecipe]:
         fluid_outputs = rule.get("fluid_outputs") or []
         if not item_inputs or not item_outputs:
             continue
+        if any(
+            resource.get("string_components")
+            for resource in item_inputs + item_outputs
+        ):
+            continue
         input_prefix = str(item_inputs[0].get("prefix") or "").split(":")[-1]
         output_prefix = str(item_outputs[0].get("prefix") or "").split(":")[-1]
         family = material_rule_family(rule["target"], input_prefix, output_prefix)
@@ -1131,7 +1270,13 @@ def expand_cc_recipes(materials: dict[str, dict[str, Any]]) -> list[NormRecipe]:
                     inputs = []
                     break
                 resource_id = (
-                    f"{resource_mid}:{prefix}" if prefix else str(resource["item"])
+                    f"{resource_mid}:{prefix}"
+                    if prefix
+                    else resolve_material_rule_tag(
+                        str(resource["tag"]), materials
+                    )
+                    if resource.get("tag")
+                    else str(resource["item"])
                 )
                 try:
                     input_count = evaluate_rule_expression(
@@ -1338,6 +1483,21 @@ def expand_cc_recipes(materials: dict[str, dict[str, Any]]) -> list[NormRecipe]:
                 )
 
     return recipes
+
+
+@cache
+def _load_and_expand_cc_recipes_cached() -> tuple[NormRecipe, ...]:
+    return tuple(expand_cc_recipes(cached_cc_materials()))
+
+
+def load_and_expand_cc_recipes() -> list[NormRecipe]:
+    """Return an isolated copy of the standard expanded CC recipe projection."""
+    return copy.deepcopy(list(_load_and_expand_cc_recipes_cached()))
+
+
+def cached_expanded_cc_recipes() -> tuple[NormRecipe, ...]:
+    """Return the shared read-only-by-contract standard recipe projection."""
+    return _load_and_expand_cc_recipes_cached()
 
 
 def source_derived_gt_recipes(
@@ -2656,7 +2816,12 @@ def roadmap_template(
 
 
 def valid_roadmap_status(status: str) -> bool:
-    return status in {"PORTED", "DEFERRED", "OUT_OF_SCOPE"} or (
+    return status in {
+        "PORTED",
+        "BOUNDED_SUBSET_PORTED",
+        "DEFERRED",
+        "OUT_OF_SCOPE",
+    } or (
         status.startswith("PLANNED_PHASE_")
         and status.removeprefix("PLANNED_PHASE_").isdigit()
     )
@@ -2703,7 +2868,9 @@ def machine_gap_summary(
             "A direct or partial CC implementation is regression-covered.",
         }:
             errors.append(f"{name}: formulaic roadmap rationale is not reviewable")
-        if status in {"PORTED"} or status.startswith("PLANNED_PHASE_"):
+        if status in {"PORTED", "BOUNDED_SUBSET_PORTED"} or status.startswith(
+            "PLANNED_PHASE_"
+        ):
             if not plan.get("owner"):
                 errors.append(f"{name}: {status} roadmap entry requires owner")
             if not plan.get("phase"):
@@ -3781,8 +3948,8 @@ def compact_check() -> int:
         )
         return 1
 
-    materials = load_cc_materials()
-    cc_all = expand_cc_recipes(materials)
+    materials = cached_cc_materials()
+    cc_all = list(cached_expanded_cc_recipes())
     hand_snapshot = hand_authored_recipe_snapshot()
     reachability = build_reachability(materials, cc_all)
     energy_constants = energy_constants_snapshot()
@@ -3973,9 +4140,9 @@ def main() -> int:
         )
         return 2
 
-    materials = load_cc_materials()
+    materials = cached_cc_materials()
     print(f"CC materials: {len(materials)}")
-    cc_all = expand_cc_recipes(materials)
+    cc_all = list(cached_expanded_cc_recipes())
     cc_shadowed = shadowed_recipe_count(cc_all)
     print(f"CC expanded/normalized recipes: {len(cc_all)}")
     if refresh_source_reference:

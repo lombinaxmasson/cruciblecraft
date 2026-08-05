@@ -16,7 +16,10 @@
     "cruciblecraft:generates_dust",
     "cruciblecraft:generates_fine_wire",
     "cruciblecraft:generates_hexadecuple_wire",
+    "cruciblecraft:generates_huge_item_pipe",
     "cruciblecraft:generates_ingot",
+    "cruciblecraft:generates_item_pipe",
+    "cruciblecraft:generates_large_item_pipe",
     "cruciblecraft:generates_nugget",
     "cruciblecraft:generates_octuple_cable",
     "cruciblecraft:generates_octuple_wire",
@@ -26,11 +29,14 @@
     "cruciblecraft:generates_quadruple_wire",
     "cruciblecraft:generates_small_spring",
     "cruciblecraft:generates_spring",
+    "cruciblecraft:generates_tiny_centrifuged_crushed_ore",
     "cruciblecraft:generates_tiny_crushed_ore",
     "cruciblecraft:generates_washed_crushed_ore",
     "cruciblecraft:generates_wire",
     "gt6:itemgenerator/denseplates",
     "gt6:itemgenerator/foils",
+    "gt6:itemgenerator/hotingots",
+    "gt6:itemgenerator/multiingots",
     "gt6:itemgenerator/multiplates",
     "gt6:itemgenerator/ores",
     "gt6:itemgenerator/parts",
@@ -50,7 +56,155 @@
         "source_name": "Silver"
       }
     ],
-    "electrical_by_specification": {},
+    "electrical_by_specification": {
+      "cableGt01": {
+        "contact_damage": false,
+        "insulated": true,
+        "loss_per_meter": 1,
+        "max_amperage": 2,
+        "max_voltage": 1024
+      },
+      "cableGt02": {
+        "contact_damage": false,
+        "insulated": true,
+        "loss_per_meter": 1,
+        "max_amperage": 4,
+        "max_voltage": 1024
+      },
+      "cableGt04": {
+        "contact_damage": false,
+        "insulated": true,
+        "loss_per_meter": 1,
+        "max_amperage": 8,
+        "max_voltage": 1024
+      },
+      "cableGt08": {
+        "contact_damage": false,
+        "insulated": true,
+        "loss_per_meter": 1,
+        "max_amperage": 16,
+        "max_voltage": 1024
+      },
+      "cableGt12": {
+        "contact_damage": false,
+        "insulated": true,
+        "loss_per_meter": 1,
+        "max_amperage": 24,
+        "max_voltage": 1024
+      },
+      "wireGt01": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 2,
+        "max_voltage": 1024
+      },
+      "wireGt02": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 4,
+        "max_voltage": 1024
+      },
+      "wireGt03": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 6,
+        "max_voltage": 1024
+      },
+      "wireGt04": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 8,
+        "max_voltage": 1024
+      },
+      "wireGt05": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 10,
+        "max_voltage": 1024
+      },
+      "wireGt06": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 12,
+        "max_voltage": 1024
+      },
+      "wireGt07": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 14,
+        "max_voltage": 1024
+      },
+      "wireGt08": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 16,
+        "max_voltage": 1024
+      },
+      "wireGt09": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 18,
+        "max_voltage": 1024
+      },
+      "wireGt10": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 20,
+        "max_voltage": 1024
+      },
+      "wireGt11": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 22,
+        "max_voltage": 1024
+      },
+      "wireGt12": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 24,
+        "max_voltage": 1024
+      },
+      "wireGt13": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 26,
+        "max_voltage": 1024
+      },
+      "wireGt14": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 28,
+        "max_voltage": 1024
+      },
+      "wireGt15": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 30,
+        "max_voltage": 1024
+      },
+      "wireGt16": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 32,
+        "max_voltage": 1024
+      }
+    },
     "explosion_damage": 0.0,
     "formula": "AgAu",
     "generation_tags": [
@@ -89,6 +243,29 @@
       "PROPERTIES.VALUABLE",
       "PROPERTIES.WITHER_PROOF"
     ],
+    "pipe_properties": {
+      "fluid_by_specification": {},
+      "item_by_specification": {
+        "pipeHuge": {
+          "blocking": true,
+          "recipe": true,
+          "stacks_per_second": 8,
+          "step_size": 4096
+        },
+        "pipeLarge": {
+          "blocking": true,
+          "recipe": true,
+          "stacks_per_second": 4,
+          "step_size": 8192
+        },
+        "pipeMedium": {
+          "blocking": true,
+          "recipe": true,
+          "stacks_per_second": 2,
+          "step_size": 16384
+        }
+      }
+    },
     "processing_targets": {
       "bending": {
         "cc_units": 144,

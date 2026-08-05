@@ -64,6 +64,11 @@ class RuleExpressionTest {
         @Override public boolean hasRegistered(String prefix) {
             return Set.of("ingot", "cruciblecraft:ingot").contains(prefix);
         }
+
+        @Override public boolean hasRegisteredFor(String selector, String prefix) {
+            return selector.equals("processing_target:smelting")
+                    && prefix.equals("ingot");
+        }
     };
 
     @Test
@@ -88,6 +93,8 @@ class RuleExpressionTest {
                                 + " && has_form(cruciblecraft:plate)"
                                 + " && !has_registered(cruciblecraft:plate)"
                                 + " && has_registered(cruciblecraft:ingot)"
+                                + " && has_registered_for("
+                                + "\"processing_target:smelting\", ingot)"
                                 + " && material.thermal.melting_point >= 1500"
                                 + " && material.thermal.boiling_point < 3000"
                                 + " && material.explosion_damage == 3.5"

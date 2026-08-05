@@ -37,6 +37,22 @@ SHARED_GENERATION_FLAG_OWNERS = {
     "small_dust": "dust",
     "tiny_dust": "dust",
 }
+POST_IMPORT_T8_PREFIXES = {
+    "tiny_fluid_pipe",
+    "small_fluid_pipe",
+    "fluid_pipe",
+    "large_fluid_pipe",
+    "huge_fluid_pipe",
+    "item_pipe",
+    "large_item_pipe",
+    "huge_item_pipe",
+}
+POST_IMPORT_T10A_PREFIXES = {
+    "double_ingot",
+    "triple_ingot",
+    "ingot_hot",
+}
+POST_IMPORT_PREFIXES = POST_IMPORT_T8_PREFIXES | POST_IMPORT_T10A_PREFIXES
 
 
 @lru_cache(maxsize=1)
@@ -273,7 +289,7 @@ def build_document(
         ]
         prefix_plans[cc_prefix]["shared_generation_flag_with"] = owner
 
-    prefix_ids = _bundled_prefix_ids()
+    prefix_ids = _bundled_prefix_ids() - POST_IMPORT_PREFIXES
     if set(prefix_plans) != prefix_ids:
         raise ValueError(
             "L3 prefix coverage differs from bundled catalog; "
@@ -433,6 +449,9 @@ def prefix_definition_outputs(
         path = PREFIX_DIRECTORY / filename
         definition = json.loads(path.read_text(encoding="utf-8"))
         cc_prefix = definition["id"].split(":", 1)[-1]
+        if cc_prefix in POST_IMPORT_PREFIXES:
+            outputs[path] = path.read_text(encoding="utf-8")
+            continue
         definition["generation_flag"] = document["prefixes"][cc_prefix][
             "generation_flag"
         ]

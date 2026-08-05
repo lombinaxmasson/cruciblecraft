@@ -63,12 +63,55 @@ first (so bronze drains as bronze), while non-alloy mixtures cannot drain.
 Breaking a crucible preserves only its casing material; contents, temperature,
 stored air, and reaction progress are deliberately not portable.
 
+## Development verification
+
+Python verification uses only the standard-library `unittest` runner:
+
+```text
+python tools/run_python_tests.py --suite fast
+python tools/run_python_tests.py --suite affected --path tools/example.py
+python tools/run_python_tests.py --suite closure
+python tools/run_python_tests.py --suite source-replay
+```
+
+`fast` is the daily logic/fixture gate. `affected` maps changed paths to owned
+test modules and automatically escalates unknown paths to `closure`. `closure`
+discovers every Python test exactly once and prints the slowest tests.
+`source-replay` is the explicit raw/cache GT6 audit; unavailable source
+artifacts are reported as `SKIP`, never as an implicit pass.
+
+Phase closure and CI use the fail-fast unified entry point:
+
+```text
+python tools/run_full_verification.py --check
+python tools/run_full_verification.py --record
+```
+
+`--check` runs builder currentness, two datagen passes, Java tests, GameTests,
+Python closure, and validates the committed `READY` report without rewriting
+it. Maintainers use `--record` after the same successful workflow to refresh
+and bind `tools/full_verification_report.json`.
+
 ## Modpack integration
 
 Material JSON files in `config/cruciblecraft/materials` are loaded at startup.
 Files may add a material or override a bundled material with the same id.
 Definitions whose composition references a missing material are logged and
 skipped, together with alloys that depend on them.
+
+### Material tool durability
+
+Material tool stacks persist material identity only. Integrations must use
+`ItemStack.getMaxDamage()` (and the corresponding `ItemStack`/`Item` behavior
+methods) for the effective durability and other material-derived properties;
+they must not treat raw component values as authoritative material stats.
+
+The item prototype intentionally carries `minecraft:max_damage=1` and
+`minecraft:damage=0` sentinels because vanilla `ItemStack.isDamageableItem()`
+requires those components. Direct component readers may therefore observe the
+sentinel instead of the effective material durability. Compatibility with
+third-party displays or inventory tools that bypass `ItemStack.getMaxDamage()`
+requires an adapter in that integration.
 
 ### KubeJS materials
 
@@ -144,8 +187,18 @@ globally unique salt, and provenance live in the same document.
 forms, then creates configured features, placed features, and their aggregate
 biome modifier under `src/worldgen_generated/resources`. Runtime states compile
 consistently to the stone variant; host adaptation selects stone or deepslate
-during placement. The five authored families are copper, tin, iron, gold, and
-tungsten.
+during placement. The five T2 family declarations are copper, tin, iron, gold,
+and tungsten and jointly cover eight materials.
+
+T9 adds `src/main/resources/data/cruciblecraft/worldgen_catalog/ore_veins.json`.
+`python tools/build_worldgen_catalog.py --write` expands its T2c-ledger-backed
+129-material batch into configured and placed features under the independent
+`src/worldgen_catalog_generated/resources` root. The original eight materials plus
+the T9 batch cover all 137 registered ores without adding a third host:
+the block budget remains 137 × stone/deepslate = 274. The builder also compiles
+finite crude-oil and methane deposits. Each persistent marker records material,
+initial/remaining mB, depth-band placement, and the replaced host; extraction
+equipment remains a T11 responsibility.
 
 The placed features run once per candidate chunk, but the feature hashes the
 world seed and region coordinates to select exactly one anchor chunk in each

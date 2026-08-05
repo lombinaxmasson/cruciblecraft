@@ -133,6 +133,7 @@ public final class GeneratedMaterialPack {
         LinkedHashMap<String, String> files = new LinkedHashMap<>();
         files.put("pack.mcmeta", packMeta(SERVER_PACK_FORMAT));
         Map<ResourceLocation, List<String>> aggregateItemTags = new LinkedHashMap<>();
+        Map<ResourceLocation, List<String>> aggregateBlockTags = new LinkedHashMap<>();
         List<String> aggregateOreTags = new ArrayList<>();
         List<String> mineableOres = new ArrayList<>();
         List<String> stoneToolOres = new ArrayList<>();
@@ -189,6 +190,30 @@ public final class GeneratedMaterialPack {
                                 ignored -> new ArrayList<>())
                         .add("#" + tagNamespace + ":" + formTag + "/" + material.tagName());
                 materialItems.add(itemId);
+                String electricalSpecification =
+                        electricalSpecification(material, form);
+                String pipeModelKey = pipeModelKey(material, form);
+                if (electricalSpecification != null
+                        || pipeModelKey != null) {
+                    addTag(
+                            files,
+                            "data/" + tagNamespace + "/tags/block/" + formTag
+                                    + "/" + material.tagName() + ".json",
+                            List.of(itemId));
+                    aggregateBlockTags.computeIfAbsent(
+                                    ResourceLocation.fromNamespaceAndPath(
+                                            tagNamespace, formTag),
+                                    ignored -> new ArrayList<>())
+                            .add("#" + tagNamespace + ":" + formTag + "/"
+                                    + material.tagName());
+                    mineableOres.add(itemId);
+                    files.put(
+                            "data/" + CrucibleCraft.MODID
+                                    + "/loot_table/blocks/"
+                                    + ResourceLocation.parse(itemId).getPath()
+                                    + ".json",
+                            selfDropLootTable(itemId));
+                }
             }
             if (!materialItems.isEmpty()) {
                 addTag(
@@ -202,6 +227,13 @@ public final class GeneratedMaterialPack {
             addTag(
                     files,
                     "data/" + aggregate.getKey().getNamespace() + "/tags/item/"
+                            + aggregate.getKey().getPath() + ".json",
+                    aggregate.getValue());
+        }
+        for (var aggregate : aggregateBlockTags.entrySet()) {
+            addTag(
+                    files,
+                    "data/" + aggregate.getKey().getNamespace() + "/tags/block/"
                             + aggregate.getKey().getPath() + ".json",
                     aggregate.getValue());
         }
@@ -242,6 +274,43 @@ public final class GeneratedMaterialPack {
                     continue;
                 }
                 JsonObject model = new JsonObject();
+                String electricalSpecification =
+                        electricalSpecification(material, form);
+                if (electricalSpecification != null) {
+                    model.addProperty(
+                            "parent",
+                            CrucibleCraft.MODID + ":conductor/"
+                                    + electricalSpecification.toLowerCase(
+                                            java.util.Locale.ROOT)
+                                    + "_core");
+                    oreTranslations.addProperty(
+                            "block." + CrucibleCraft.MODID + "."
+                                    + material.registryName(form),
+                            title(material.id()) + " "
+                                    + title(form.serializedName()));
+                    files.put(
+                            "assets/" + CrucibleCraft.MODID + "/models/item/"
+                                    + material.registryName(form) + ".json",
+                            GSON.toJson(model));
+                    continue;
+                }
+                String pipeModelKey = pipeModelKey(material, form);
+                if (pipeModelKey != null) {
+                    model.addProperty(
+                            "parent",
+                            CrucibleCraft.MODID + ":pipe/"
+                                    + pipeModelKey + "_core");
+                    oreTranslations.addProperty(
+                            "block." + CrucibleCraft.MODID + "."
+                                    + material.registryName(form),
+                            title(material.id()) + " "
+                                    + title(form.serializedName()));
+                    files.put(
+                            "assets/" + CrucibleCraft.MODID + "/models/item/"
+                                    + material.registryName(form) + ".json",
+                            GSON.toJson(model));
+                    continue;
+                }
                 var prefix = MaterialPrefixCatalog.definition(form);
                 model.addProperty("parent", prefix.modelTemplate());
                 JsonObject textures = new JsonObject();
@@ -502,6 +571,85 @@ public final class GeneratedMaterialPack {
                 "random_sequence",
                 CrucibleCraft.MODID + ":blocks/" + ResourceLocation.parse(oreId).getPath());
         return GSON.toJson(root);
+    }
+
+    private static String selfDropLootTable(String blockId) {
+        JsonObject entry = new JsonObject();
+        entry.addProperty("type", "minecraft:item");
+        entry.addProperty("name", blockId);
+        JsonArray entries = new JsonArray();
+        entries.add(entry);
+        JsonObject pool = new JsonObject();
+        pool.addProperty("rolls", 1);
+        pool.addProperty("bonus_rolls", 0);
+        pool.add("entries", entries);
+        JsonArray pools = new JsonArray();
+        pools.add(pool);
+        JsonObject root = new JsonObject();
+        root.addProperty("type", "minecraft:block");
+        root.add("pools", pools);
+        root.addProperty(
+                "random_sequence",
+                CrucibleCraft.MODID + ":blocks/"
+                        + ResourceLocation.parse(blockId).getPath());
+        return GSON.toJson(root);
+    }
+
+    private static String electricalSpecification(
+            MaterialDefinition material, MaterialPrefix form) {
+        String specification = Map.of(
+                MaterialPrefixes.WIRE, "wireGt01",
+                MaterialPrefixes.CABLE, "cableGt01",
+                MaterialPrefixes.DOUBLE_CABLE, "cableGt02",
+                MaterialPrefixes.QUADRUPLE_CABLE, "cableGt04",
+                MaterialPrefixes.OCTUPLE_CABLE, "cableGt08",
+                MaterialPrefixes.DODECUPLE_CABLE, "cableGt12").get(form);
+        return specification != null
+                        && material.gt6Metadata()
+                                .map(metadata -> metadata
+                                        .electricalBySpecification()
+                                        .containsKey(specification))
+                                .orElse(false)
+                ? specification
+                : null;
+    }
+
+    private static String pipeModelKey(
+            MaterialDefinition material, MaterialPrefix form) {
+        record PipeForm(String kind, String specification, int width) {}
+        PipeForm pipeForm = Map.of(
+                MaterialPrefixes.TINY_FLUID_PIPE,
+                        new PipeForm("fluid", "pipeTiny", 4),
+                MaterialPrefixes.SMALL_FLUID_PIPE,
+                        new PipeForm("fluid", "pipeSmall", 6),
+                MaterialPrefixes.FLUID_PIPE,
+                        new PipeForm("fluid", "pipeMedium", 8),
+                MaterialPrefixes.LARGE_FLUID_PIPE,
+                        new PipeForm("fluid", "pipeLarge", 12),
+                MaterialPrefixes.HUGE_FLUID_PIPE,
+                        new PipeForm("fluid", "pipeHuge", 16),
+                MaterialPrefixes.ITEM_PIPE,
+                        new PipeForm("item", "pipeMedium", 8),
+                MaterialPrefixes.LARGE_ITEM_PIPE,
+                        new PipeForm("item", "pipeLarge", 12),
+                MaterialPrefixes.HUGE_ITEM_PIPE,
+                        new PipeForm("item", "pipeHuge", 16)).get(form);
+        if (pipeForm == null) {
+            return null;
+        }
+        return material.gt6Metadata()
+                        .map(metadata -> pipeForm.kind().equals("fluid")
+                                ? metadata.pipeProperties()
+                                        .fluidBySpecification()
+                                        .containsKey(
+                                                pipeForm.specification())
+                                : metadata.pipeProperties()
+                                        .itemBySpecification()
+                                        .containsKey(
+                                                pipeForm.specification()))
+                        .orElse(false)
+                ? pipeForm.kind() + "_" + pipeForm.width()
+                : null;
     }
 
     private static void addTag(

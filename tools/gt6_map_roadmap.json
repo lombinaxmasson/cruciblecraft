@@ -32,19 +32,20 @@
       "reference_recipe_count": 507
     },
     "gt.recipe.assembler": {
-      "status": "PORTED",
-      "reason": "Playable assembler block supports atomic two-item recipes and an optional fluid input through the shared KU runtime.",
-      "owner": "CrucibleCraft component-machine data/runtime",
-      "phase": "T3",
-      "reference_recipe_count": 1582
+      "status": "BOUNDED_SUBSET_PORTED",
+      "reason": "The playable assembler includes the existing T3 component scope and 1 source-pinned T5 recipe; replay of the full 1582-row GT6 map remains deferred.",
+      "owner": "CrucibleCraft T3/T5 data/runtime",
+      "phase": "T3/T5",
+      "reference_recipe_count": 1582,
+      "deferral_category": "FULL_MAP_REPLAY_DEFERRED"
     },
     "gt.recipe.autoclave": {
-      "status": "DEFERRED",
-      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.autoclave has 392 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
-      "owner": "Unassigned future content owner",
-      "phase": "POST_T3",
+      "status": "BOUNDED_SUBSET_PORTED",
+      "reason": "T5 publishes 17 source-pinned autoclave recipes through the playable host; replay of the full 392-row GT6 map remains deferred.",
+      "owner": "CrucibleCraft T5 chemical data/runtime",
+      "phase": "T5",
       "reference_recipe_count": 392,
-      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+      "deferral_category": "FULL_MAP_REPLAY_DEFERRED"
     },
     "gt.recipe.autocrafting": {
       "status": "DEFERRED",
@@ -55,11 +56,12 @@
       "deferral_category": "EMPTY_PINNED_MAP"
     },
     "gt.recipe.bath": {
-      "status": "PORTED",
-      "reason": "T2 ships a playable water-bath ore-washing subset backed by declarative metadata rules.",
-      "owner": "CrucibleCraft ore-chain data/runtime",
-      "phase": "T2",
-      "reference_recipe_count": 59855
+      "status": "BOUNDED_SUBSET_PORTED",
+      "reason": "The playable bath includes the T2 ore-washing scope and 6 source-pinned T5 recipes; replay of the full 59855-row GT6 map remains deferred.",
+      "owner": "CrucibleCraft T2/T5 data/runtime",
+      "phase": "T2/T5",
+      "reference_recipe_count": 59855,
+      "deferral_category": "FULL_MAP_REPLAY_DEFERRED"
     },
     "gt.recipe.bedrockorelist": {
       "status": "DEFERRED",
@@ -142,11 +144,12 @@
       "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
     },
     "gt.recipe.centrifuge": {
-      "status": "PORTED",
-      "reason": "T2 ships the playable washed-to-centrifuged ore subset with ordered byproducts.",
-      "owner": "CrucibleCraft ore-chain data/runtime",
-      "phase": "T2",
-      "reference_recipe_count": 1296
+      "status": "BOUNDED_SUBSET_PORTED",
+      "reason": "The playable centrifuge includes the T2 ore-chain scope and 14 source-pinned T5 recipes; replay of the full 1296-row GT6 map remains deferred.",
+      "owner": "CrucibleCraft T2/T5 data/runtime",
+      "phase": "T2/T5",
+      "reference_recipe_count": 1296,
+      "deferral_category": "FULL_MAP_REPLAY_DEFERRED"
     },
     "gt.recipe.chisel": {
       "status": "DEFERRED",
@@ -188,12 +191,12 @@
       "reference_recipe_count": 124
     },
     "gt.recipe.compressor": {
-      "status": "DEFERRED",
-      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.compressor has 1472 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
-      "owner": "Unassigned future content owner",
-      "phase": "POST_T3",
+      "status": "BOUNDED_SUBSET_PORTED",
+      "reason": "T5 publishes 5 source-pinned compressor recipes through the playable host; replay of the full 1472-row GT6 map remains deferred.",
+      "owner": "CrucibleCraft T5 chemical data/runtime",
+      "phase": "T5",
       "reference_recipe_count": 1472,
-      "deferral_category": "UNIMPLEMENTED_SPECIALIZED_MACHINE"
+      "deferral_category": "FULL_MAP_REPLAY_DEFERRED"
     },
     "gt.recipe.cooker": {
       "status": "DEFERRED",
@@ -265,28 +268,28 @@
       "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
     },
     "gt.recipe.distillery": {
-      "status": "DEFERRED",
-      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.distillery has 1517 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
-      "owner": "Unassigned future content owner",
-      "phase": "POST_T3",
+      "status": "BOUNDED_SUBSET_PORTED",
+      "reason": "T5.5 exhaustively classifies all 1517 pinned rows and publishes the 1 row supported by current identities, host shape, and internal closure; full-map identity expansion remains deferred.",
+      "owner": "CrucibleCraft T5 chemical data/runtime",
+      "phase": "T5.5",
       "reference_recipe_count": 1517,
-      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+      "deferral_category": "FULL_MAP_REPLAY_DEFERRED"
     },
     "gt.recipe.drying": {
-      "status": "DEFERRED",
-      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.drying has 217 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
-      "owner": "Unassigned future content owner",
-      "phase": "POST_T3",
+      "status": "BOUNDED_SUBSET_PORTED",
+      "reason": "T5 publishes 5 source-pinned drying recipes through the playable host; replay of the full 217-row GT6 map remains deferred.",
+      "owner": "CrucibleCraft T5 chemical data/runtime",
+      "phase": "T5",
       "reference_recipe_count": 217,
-      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+      "deferral_category": "FULL_MAP_REPLAY_DEFERRED"
     },
     "gt.recipe.electrolyzer": {
-      "status": "DEFERRED",
-      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.electrolyzer has 290 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
-      "owner": "Unassigned future content owner",
-      "phase": "POST_T3",
+      "status": "BOUNDED_SUBSET_PORTED",
+      "reason": "T5 publishes 62 source-pinned electrolyzer recipes through the playable host; replay of the full 290-row GT6 map remains deferred.",
+      "owner": "CrucibleCraft T5 chemical data/runtime",
+      "phase": "T5",
       "reference_recipe_count": 290,
-      "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
+      "deferral_category": "FULL_MAP_REPLAY_DEFERRED"
     },
     "gt.recipe.extruder": {
       "status": "PORTED",
@@ -495,11 +498,12 @@
       "deferral_category": "EMPTY_PINNED_MAP"
     },
     "gt.recipe.mixer": {
-      "status": "PLANNED_PHASE_3",
-      "reason": "gt.recipe.mixer has 64245 pinned recipes spanning multi-item and fluid chemistry; implementation is assigned to POST_T3 after the current bounded solid-component machine scope.",
-      "owner": "Unassigned future content owner",
-      "phase": "POST_T3",
-      "reference_recipe_count": 64245
+      "status": "BOUNDED_SUBSET_PORTED",
+      "reason": "T5 publishes 34 source-pinned mixer recipes through the playable host; replay of the full 64245-row GT6 map remains deferred.",
+      "owner": "CrucibleCraft T5 chemical data/runtime",
+      "phase": "T5",
+      "reference_recipe_count": 64245,
+      "deferral_category": "FULL_MAP_REPLAY_DEFERRED"
     },
     "gt.recipe.mortar": {
       "status": "PORTED",
@@ -655,11 +659,12 @@
       "reference_recipe_count": 4840
     },
     "gt.recipe.smelter": {
-      "status": "PORTED",
-      "reason": "T2 ships a playable adjacent-HEAT dust-to-ingot subset using GT processing targets.",
-      "owner": "CrucibleCraft ore-chain data/runtime",
-      "phase": "T2",
-      "reference_recipe_count": 21969
+      "status": "BOUNDED_SUBSET_PORTED",
+      "reason": "The playable smelter includes the T2 dust scope and 7 source-pinned T5 recipes; replay of the full 21969-row GT6 map remains deferred.",
+      "owner": "CrucibleCraft T2/T5 data/runtime",
+      "phase": "T2/T5",
+      "reference_recipe_count": 21969,
+      "deferral_category": "FULL_MAP_REPLAY_DEFERRED"
     },
     "gt.recipe.squeezer": {
       "status": "DEFERRED",

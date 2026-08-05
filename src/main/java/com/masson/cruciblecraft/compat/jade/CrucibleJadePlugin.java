@@ -13,6 +13,10 @@ import com.masson.cruciblecraft.content.block.FireboxBlock;
 import com.masson.cruciblecraft.content.block.BoilerBlock;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
 import com.masson.cruciblecraft.content.block.CrusherBlock;
+import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
+import com.masson.cruciblecraft.content.block.CableBlock;
+import com.masson.cruciblecraft.content.block.FluidPipeBlock;
+import com.masson.cruciblecraft.content.block.ItemPipeBlock;
 import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
@@ -21,19 +25,37 @@ import com.masson.cruciblecraft.content.blockentity.FireboxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.BoilerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrusherBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineDisplayData;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.IBlockComponentProvider;
+import snownee.jade.api.IServerDataProvider;
 import snownee.jade.api.ITooltip;
 import snownee.jade.api.IWailaClientRegistration;
+import snownee.jade.api.IWailaCommonRegistration;
 import snownee.jade.api.IWailaPlugin;
 import snownee.jade.api.WailaPlugin;
 import snownee.jade.api.config.IPluginConfig;
 
 @WailaPlugin
 public final class CrucibleJadePlugin implements IWailaPlugin {
+    @Override
+    public void register(IWailaCommonRegistration registration) {
+        registration.registerBlockDataProvider(
+                FluidPipeComponentProvider.INSTANCE,
+                FluidPipeBlockEntity.class);
+        registration.registerBlockDataProvider(
+                ItemPipeComponentProvider.INSTANCE,
+                ItemPipeBlockEntity.class);
+    }
+
     @Override
     public void registerClient(IWailaClientRegistration registration) {
         registration.registerBlockComponent(CrucibleComponentProvider.INSTANCE, CrucibleBlock.class);
@@ -44,6 +66,152 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         registration.registerBlockComponent(BoilerComponentProvider.INSTANCE, BoilerBlock.class);
         registration.registerBlockComponent(SteamEngineComponentProvider.INSTANCE, SteamEngineBlock.class);
         registration.registerBlockComponent(CrusherComponentProvider.INSTANCE, CrusherBlock.class);
+        registration.registerBlockComponent(
+                ProcessingMachineComponentProvider.INSTANCE,
+                ProcessingMachineBlock.class);
+        registration.registerBlockComponent(
+                CableComponentProvider.INSTANCE, CableBlock.class);
+        registration.registerBlockComponent(
+                FluidPipeComponentProvider.INSTANCE,
+                FluidPipeBlock.class);
+        registration.registerBlockComponent(
+                ItemPipeComponentProvider.INSTANCE,
+                ItemPipeBlock.class);
+    }
+
+    private enum FluidPipeComponentProvider
+            implements IBlockComponentProvider,
+            IServerDataProvider<BlockAccessor> {
+        INSTANCE;
+        private static final String TRANSFERRED = "cc_transferred";
+        private static final ResourceLocation UID =
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "fluid_pipe");
+
+        @Override
+        public void appendTooltip(
+                ITooltip tooltip,
+                BlockAccessor accessor,
+                IPluginConfig config) {
+            if (!(accessor.getBlock() instanceof FluidPipeBlock block)
+                    || !(accessor.getBlockEntity()
+                            instanceof FluidPipeBlockEntity pipe)) {
+                return;
+            }
+            var fluid = pipe.storedFluid();
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.fluid_pipe",
+                    block.pipe().materialId(),
+                    fluid.getAmount(),
+                    pipe.capacity(),
+                    accessor.getServerData().contains(TRANSFERRED)
+                            ? accessor.getServerData().getLong(TRANSFERRED)
+                            : 0L,
+                    pipe.failureSnapshot().pendingFailure()
+                            .serializedName()));
+        }
+
+        @Override
+        public void appendServerData(
+                CompoundTag data, BlockAccessor accessor) {
+            if (accessor.getBlockEntity()
+                    instanceof FluidPipeBlockEntity pipe) {
+                data.putLong(TRANSFERRED, pipe.transferredThisWindow());
+            }
+        }
+
+        @Override
+        public ResourceLocation getUid() {
+            return UID;
+        }
+    }
+
+    private enum ItemPipeComponentProvider
+            implements IBlockComponentProvider,
+            IServerDataProvider<BlockAccessor> {
+        INSTANCE;
+        private static final String DELIVERED = "cc_delivered";
+        private static final String CLOG_EVENTS = "cc_clog_events";
+        private static final String COVER_COUNT = "cc_cover_count";
+        private static final ResourceLocation UID =
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "item_pipe");
+
+        @Override
+        public void appendTooltip(
+                ITooltip tooltip,
+                BlockAccessor accessor,
+                IPluginConfig config) {
+            if (!(accessor.getBlock() instanceof ItemPipeBlock block)
+                    || !(accessor.getBlockEntity()
+                            instanceof ItemPipeBlockEntity pipe)) {
+                return;
+            }
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.item_pipe",
+                    block.pipe().materialId(),
+                    accessor.getServerData().contains(DELIVERED)
+                            ? accessor.getServerData().getInt(DELIVERED)
+                            : 0,
+                    accessor.getServerData().contains(CLOG_EVENTS)
+                            ? accessor.getServerData().getLong(CLOG_EVENTS)
+                            : 0L,
+                    accessor.getServerData().contains(COVER_COUNT)
+                            ? accessor.getServerData().getInt(COVER_COUNT)
+                            : pipe.coverSnapshot().size()));
+        }
+
+        @Override
+        public void appendServerData(
+                CompoundTag data, BlockAccessor accessor) {
+            if (accessor.getBlockEntity()
+                    instanceof ItemPipeBlockEntity pipe) {
+                data.putInt(DELIVERED, pipe.deliveredThisWindow());
+                data.putLong(CLOG_EVENTS, pipe.clogEvents());
+                data.putInt(COVER_COUNT, pipe.coverSnapshot().size());
+            }
+        }
+
+        @Override
+        public ResourceLocation getUid() {
+            return UID;
+        }
+    }
+
+    private enum CableComponentProvider
+            implements IBlockComponentProvider {
+        INSTANCE;
+        private static final ResourceLocation UID =
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "cable");
+
+        @Override
+        public void appendTooltip(
+                ITooltip tooltip,
+                BlockAccessor accessor,
+                IPluginConfig config) {
+            if (!(accessor.getBlock() instanceof CableBlock block)
+                    || !(accessor.getBlockEntity()
+                            instanceof CableBlockEntity cable)) {
+                return;
+            }
+            var conductor = block.conductor();
+            var electrical = conductor.electrical();
+            tooltip.add(Component.translatable(
+                    "jade.cruciblecraft.cable",
+                    conductor.materialId(),
+                    conductor.sourceSpecification(),
+                    electrical.maxVoltage(),
+                    electrical.maxAmperage(),
+                    electrical.lossPerMeter(),
+                    cable.transferredAmperes(),
+                    cable.burnCounter()));
+        }
+
+        @Override
+        public ResourceLocation getUid() {
+            return UID;
+        }
     }
 
     private enum BoilerComponentProvider implements IBlockComponentProvider {
@@ -82,9 +250,49 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         @Override public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
             if (accessor.getBlockEntity() instanceof CrusherBlockEntity crusher) {
                 tooltip.add(Component.translatable("jade.cruciblecraft.crusher",
-                        crusher.powerDemand(), crusher.progress(), crusher.duration(), crusher.pausedReason()));
+                        crusher.powerDemand(),
+                        crusher.progress(),
+                        crusher.duration(),
+                        ProcessingMachineDisplayData.statusComponent(
+                                crusher.pausedReason(), crusher.statusArgument())));
             }
         }
+        @Override public ResourceLocation getUid() { return UID; }
+    }
+
+    private enum ProcessingMachineComponentProvider implements IBlockComponentProvider {
+        INSTANCE;
+        private static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(
+                CrucibleCraft.MODID, "processing_machine");
+
+        @Override
+        public void appendTooltip(
+                ITooltip tooltip,
+                BlockAccessor accessor,
+                IPluginConfig config) {
+            if (accessor.getBlockEntity()
+                    instanceof ConfiguredProcessingMachineBlockEntity machine) {
+                tooltip.add(Component.translatable(
+                        "jade.cruciblecraft.processing_machine",
+                        machine.powerDemandLong(),
+                        machine.progress(),
+                        machine.duration(),
+                        ProcessingMachineDisplayData.statusComponent(
+                                machine.pausedReason(), machine.statusArgument())));
+                for (int tank = 0; tank < machine.tanks().size(); tank++) {
+                    var fluidTank = machine.tanks().get(tank);
+                    if (!fluidTank.getFluid().isEmpty()) {
+                        tooltip.add(Component.translatable(
+                                "jade.cruciblecraft.processing_tank",
+                                tank + 1,
+                                fluidTank.getFluid().getHoverName(),
+                                fluidTank.getFluidAmount(),
+                                fluidTank.getCapacity()));
+                    }
+                }
+            }
+        }
+
         @Override public ResourceLocation getUid() { return UID; }
     }
 
@@ -124,6 +332,12 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
             if (!(accessor.getBlockEntity() instanceof CrucibleBlockEntity crucible)) {
                 return;
+            }
+            if (crucible.casingMaterialQuarantined()) {
+                tooltip.add(Component.translatable(
+                        "jade.cruciblecraft.material_quarantined",
+                        Component.translatable("device.cruciblecraft.crucible"),
+                        crucible.quarantinedCasingMaterialId()));
             }
 
             boolean fahrenheit = "F".equalsIgnoreCase(ModConfig.TEMPERATURE_UNIT.get());
@@ -172,6 +386,12 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
             if (!(accessor.getBlockEntity() instanceof AnvilBlockEntity anvil)) {
                 return;
+            }
+            if (anvil.materialQuarantined()) {
+                tooltip.add(Component.translatable(
+                        "jade.cruciblecraft.material_quarantined",
+                        Component.translatable("device.cruciblecraft.anvil"),
+                        anvil.quarantinedMaterialId()));
             }
             tooltip.add(Component.translatable(
                     "jade.cruciblecraft.machine_material",

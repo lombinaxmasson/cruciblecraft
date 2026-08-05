@@ -12,7 +12,9 @@ public final class GTRecipeReloadDecision {
         return manager != managerReloadedFromTags;
     }
 
-    public static boolean onClientRecipesUpdated(Object manager) {
-        return manager != null;
+    public static boolean onClientRecipesUpdated(
+            Object manager,
+            boolean integratedServerAvailable) {
+        return manager != null && !integratedServerAvailable;
     }
 }

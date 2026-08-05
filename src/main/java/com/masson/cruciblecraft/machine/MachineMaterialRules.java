@@ -1,7 +1,9 @@
 package com.masson.cruciblecraft.machine;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
+import java.util.Locale;
 
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
@@ -46,6 +48,20 @@ public final class MachineMaterialRules {
         HAMMER
     }
 
+    public record MaterialResolution(
+            String effectiveMaterial,
+            Optional<String> quarantinedMaterial) {
+        public MaterialResolution {
+            quarantinedMaterial = quarantinedMaterial == null
+                    ? Optional.empty()
+                    : quarantinedMaterial;
+        }
+
+        public boolean quarantined() {
+            return quarantinedMaterial.isPresent();
+        }
+    }
+
     public static String defaultMaterial(Device device) {
         return switch (device) {
             case CRUCIBLE -> DEFAULT_CRUCIBLE_MATERIAL;
@@ -65,8 +81,35 @@ public final class MachineMaterialRules {
         };
     }
 
-    public static String sanitize(Device device, String materialId) {
-        return isAllowed(device, materialId) ? materialId : defaultMaterial(device);
+    /**
+     * Validates trusted, internally constructed state and fails loudly on a
+     * programming error. Never call this directly on NBT, item components, a
+     * network payload, or any other external input; use
+     * {@link #resolveExternal(Device, String)} at those boundaries.
+     */
+    public static String requireAllowed(Device device, String materialId) {
+        if (!isAllowed(device, materialId)) {
+            throw new IllegalArgumentException(
+                    "Unsupported " + device.name().toLowerCase(Locale.ROOT)
+                            + " material: " + materialId);
+        }
+        return materialId;
+    }
+
+    /**
+     * Required boundary for untrusted persisted, component, or network input.
+     * It never throws: invalid identity is retained as quarantine metadata
+     * while calculations use the device's safe default.
+     */
+    public static MaterialResolution resolveExternal(
+            Device device,
+            String materialId) {
+        if (isAllowed(device, materialId)) {
+            return new MaterialResolution(materialId, Optional.empty());
+        }
+        return new MaterialResolution(
+                defaultMaterial(device),
+                Optional.ofNullable(materialId).filter(id -> !id.isBlank()));
     }
 
     public static int materialTier(String materialId) {
@@ -77,7 +120,7 @@ public final class MachineMaterialRules {
     }
 
     public static long anvilMaxDurability(String materialId) {
-        return switch (sanitize(Device.ANVIL, materialId)) {
+        return switch (requireAllowed(Device.ANVIL, materialId)) {
             case "stone" -> STONE_ANVIL_DURABILITY;
             case "bronze" -> BRONZE_ANVIL_DURABILITY;
             case "steel" -> STEEL_ANVIL_DURABILITY;
@@ -86,7 +129,7 @@ public final class MachineMaterialRules {
     }
 
     public static int hammerMaxDurability(String materialId) {
-        return switch (sanitize(Device.HAMMER, materialId)) {
+        return switch (requireAllowed(Device.HAMMER, materialId)) {
             case "bronze" -> BRONZE_HAMMER_DURABILITY;
             case "steel" -> STEEL_HAMMER_DURABILITY;
             default -> IRON_HAMMER_DURABILITY;
@@ -108,7 +151,20 @@ public final class MachineMaterialRules {
     }
 
     public static int processingTier(Device device, String materialId) {
-        String safeMaterial = sanitize(device, materialId);
+        if (device == Device.HAMMER) {
+            Integer legacyTier = HAMMER_PROCESSING_TIERS.get(materialId);
+            if (legacyTier != null) {
+                return legacyTier;
+            }
+            if (ToolMaterialRules.isAllowed(
+                    ToolMaterialRules.ToolKind.SMITHING_HAMMER,
+                    materialId)) {
+                return Math.max(
+                        0,
+                        MaterialCatalog.require(materialId).tier());
+            }
+        }
+        String safeMaterial = requireAllowed(device, materialId);
         return switch (device) {
             case CRUCIBLE -> CRUCIBLE_PROCESSING_TIERS.get(safeMaterial);
             case ANVIL -> ANVIL_PROCESSING_TIERS.get(safeMaterial);
@@ -129,7 +185,7 @@ public final class MachineMaterialRules {
     }
 
     public static float crucibleMaxTemperature(String casingMaterialId) {
-        String safeMaterial = sanitize(Device.CRUCIBLE, casingMaterialId);
+        String safeMaterial = requireAllowed(Device.CRUCIBLE, casingMaterialId);
         return maxTemperature(MaterialCatalog.require(safeMaterial).thermal().meltingPoint());
     }
 
@@ -146,7 +202,7 @@ public final class MachineMaterialRules {
         if (!Double.isFinite(volumeCm3) || volumeCm3 < 0.0) {
             throw new IllegalArgumentException("Casing volume must be finite and non-negative");
         }
-        String safeMaterial = sanitize(Device.CRUCIBLE, casingMaterialId);
+        String safeMaterial = requireAllowed(Device.CRUCIBLE, casingMaterialId);
         return MaterialCatalog.require(safeMaterial).thermal().density() * volumeCm3;
     }
 

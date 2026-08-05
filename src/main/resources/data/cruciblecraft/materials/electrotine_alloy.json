@@ -24,13 +24,163 @@
     "cruciblecraft:generates_wire",
     "gt6:itemgenerator/denseplates",
     "gt6:itemgenerator/foils",
+    "gt6:itemgenerator/hotingots",
+    "gt6:itemgenerator/multiingots",
     "gt6:itemgenerator/multiplates",
     "gt6:itemgenerator/sticks"
   ],
   "gt6_metadata": {
     "aliases": [],
     "byproducts": [],
-    "electrical_by_specification": {},
+    "electrical_by_specification": {
+      "cableGt01": {
+        "contact_damage": false,
+        "insulated": true,
+        "loss_per_meter": 1,
+        "max_amperage": 3,
+        "max_voltage": 1024
+      },
+      "cableGt02": {
+        "contact_damage": false,
+        "insulated": true,
+        "loss_per_meter": 1,
+        "max_amperage": 6,
+        "max_voltage": 1024
+      },
+      "cableGt04": {
+        "contact_damage": false,
+        "insulated": true,
+        "loss_per_meter": 1,
+        "max_amperage": 12,
+        "max_voltage": 1024
+      },
+      "cableGt08": {
+        "contact_damage": false,
+        "insulated": true,
+        "loss_per_meter": 1,
+        "max_amperage": 24,
+        "max_voltage": 1024
+      },
+      "cableGt12": {
+        "contact_damage": false,
+        "insulated": true,
+        "loss_per_meter": 1,
+        "max_amperage": 36,
+        "max_voltage": 1024
+      },
+      "wireGt01": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 3,
+        "max_voltage": 1024
+      },
+      "wireGt02": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 6,
+        "max_voltage": 1024
+      },
+      "wireGt03": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 9,
+        "max_voltage": 1024
+      },
+      "wireGt04": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 12,
+        "max_voltage": 1024
+      },
+      "wireGt05": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 15,
+        "max_voltage": 1024
+      },
+      "wireGt06": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 18,
+        "max_voltage": 1024
+      },
+      "wireGt07": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 21,
+        "max_voltage": 1024
+      },
+      "wireGt08": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 24,
+        "max_voltage": 1024
+      },
+      "wireGt09": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 27,
+        "max_voltage": 1024
+      },
+      "wireGt10": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 30,
+        "max_voltage": 1024
+      },
+      "wireGt11": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 33,
+        "max_voltage": 1024
+      },
+      "wireGt12": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 36,
+        "max_voltage": 1024
+      },
+      "wireGt13": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 39,
+        "max_voltage": 1024
+      },
+      "wireGt14": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 42,
+        "max_voltage": 1024
+      },
+      "wireGt15": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 45,
+        "max_voltage": 1024
+      },
+      "wireGt16": {
+        "contact_damage": true,
+        "insulated": false,
+        "loss_per_meter": 2,
+        "max_amperage": 48,
+        "max_voltage": 1024
+      }
+    },
     "explosion_damage": 0.0,
     "formula": "Fe(((Al₂O₃)₃,₅(SiO₂)Na₄Cl)₅,₁₁Cu₃(SiO₂)Ar)₈,₁₀",
     "generation_tags": [
