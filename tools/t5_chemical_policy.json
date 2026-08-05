@@ -1,0 +1,341 @@
+{
+  "schema_version": 1,
+  "delivery_boundary": "T5a_authoritative_readiness_ledger",
+  "source_dead_end_policy": {
+    "classification": "gt6_dead_end",
+    "reason": "Pinned replay across all 720841 GT6 recipes found only boxinator, canner, and unboxinator form-packaging loops for these terminal dusts. Packaging is not an executable chemical or material-transformation destination.",
+    "excluded_maps": [
+      "gt.recipe.boxinator",
+      "gt.recipe.canner",
+      "gt.recipe.unboxinator"
+    ],
+    "materials": [
+      "bone",
+      "crude_oil",
+      "emery",
+      "infused_air",
+      "infused_balance",
+      "infused_dull",
+      "infused_earth",
+      "infused_entropy",
+      "infused_fire",
+      "infused_order",
+      "infused_vis",
+      "infused_water",
+      "nether_star",
+      "oil_sand",
+      "pinalite",
+      "quicklime",
+      "selenium"
+    ],
+    "source": {
+      "index": "gt6_dump/gt6_recipe_dump/index.json",
+      "recipe_count": 720841,
+      "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    }
+  },
+  "required_form_overrides": {
+    "classification": "t5_selected_source_route_required",
+    "reason": "These GT6 factual forms are required by the selected 145-route projection. They are registered only for the listed materials rather than enabling the newly mapped prefix across every pinned recipe operand.",
+    "forms": {
+      "chimerite": [
+        "plate_gem"
+      ],
+      "ilmenite": [
+        "tiny_centrifuged_crushed_ore"
+      ],
+      "pyrite": [
+        "plate_gem"
+      ],
+      "rutile": [
+        "tiny_centrifuged_crushed_ore"
+      ],
+      "sunstone": [
+        "plate_gem"
+      ],
+      "vibranium": [
+        "plate_gem"
+      ],
+      "vinteum": [
+        "plate_gem"
+      ]
+    }
+  },
+  "gt6_source": {
+    "repository": "GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "loader_path": "src/main/java/gregtech/loaders/c/Loader_Recipes_Decomp.java",
+    "loader_raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/loaders/c/Loader_Recipes_Decomp.java"
+  },
+  "loader_semantics": {
+    "conjunction": [
+      "components_present",
+      "COMPOUNDS.DECOMPOSABLE",
+      "component_common_divider_known",
+      "component_common_divider_lte_64",
+      "at_least_one_route_tag"
+    ],
+    "route_tags": {
+      "PROCESSING.CENTRIFUGABLE": {
+        "destination_map": "gt.recipe.centrifuge",
+        "source_condition": "TD.Processing.CENTRIFUGE",
+        "reason": "Loader_Recipes_Decomp adds RM.Centrifuge only when the source material contains TD.Processing.CENTRIFUGE.",
+        "source": {
+          "path": "src/main/java/gregtech/loaders/c/Loader_Recipes_Decomp.java",
+          "lines": "39"
+        }
+      },
+      "PROCESSING.ELECTROLYSABLE": {
+        "destination_map": "gt.recipe.electrolyzer",
+        "source_condition": "TD.Processing.ELECTROLYSER",
+        "reason": "Loader_Recipes_Decomp adds RM.Electrolyzer only when the source material contains TD.Processing.ELECTROLYSER.",
+        "source": {
+          "path": "src/main/java/gregtech/loaders/c/Loader_Recipes_Decomp.java",
+          "lines": "40"
+        }
+      }
+    },
+    "components_gate": {
+      "reason": "The loader requires mComponents to be non-null before considering any decomposition route.",
+      "source": {
+        "path": "src/main/java/gregtech/loaders/c/Loader_Recipes_Decomp.java",
+        "lines": "36-37"
+      }
+    },
+    "decomposable_gate": {
+      "tag": "COMPOUNDS.DECOMPOSABLE",
+      "reason": "The loader requires TD.Compounds.DECOMPOSABLE in the same conjunction as components and the divider bound.",
+      "source": {
+        "path": "src/main/java/gregtech/loaders/c/Loader_Recipes_Decomp.java",
+        "lines": "37"
+      }
+    },
+    "common_divider_gate": {
+      "maximum": 64,
+      "reason": "The loader rejects component configurations whose getCommonDivider() exceeds 64.",
+      "source": {
+        "path": "src/main/java/gregtech/loaders/c/Loader_Recipes_Decomp.java",
+        "lines": "37"
+      }
+    },
+    "output_phase_rule": {
+      "ambient_kelvin": 298.15,
+      "reason": "Each undivided component becomes a fluid output when its melting point is at or below DEF_ENV_TEMP and a fluid stack exists; otherwise the loader attempts a pulver-target dust output.",
+      "source": {
+        "path": "src/main/java/gregtech/loaders/c/Loader_Recipes_Decomp.java",
+        "lines": "47-51"
+      }
+    },
+    "input_selection_rule": {
+      "reason": "For maps with fluid inputs the loader tries liquid and gas forms first; it then tries dust or blockDust item input when the fluid route did not consume the choice (with the Glowstone re-registration exception).",
+      "source": {
+        "path": "src/main/java/gregtech/loaders/c/Loader_Recipes_Decomp.java",
+        "lines": "55-98"
+      }
+    }
+  },
+  "cruciblecraft_gate": {
+    "field": "no_decompose",
+    "route_semantics": false,
+    "reason": "no_decompose is a CrucibleCraft quarantine gate. It can block a source-backed route but can never create or select one.",
+    "source": {
+      "path": "src/main/resources/data/cruciblecraft/materials/<material>.json",
+      "field": "no_decompose"
+    }
+  },
+  "ledger_contract": {
+    "material_classifications": [
+      "route_ready",
+      "route_tagged_but_quarantined",
+      "decomposable_without_route",
+      "unresolved_deferred"
+    ],
+    "fluid_classifications": [
+      "closure_required",
+      "not_required_by_loader_projection"
+    ],
+    "expected_counts": {
+      "terminal_dust_t5_chemical": 145,
+      "crusher_t5_chemical": 110,
+      "chemical_overlap": 31,
+      "unique_chemical_union": 224,
+      "byproduct_only_debt": 110,
+      "byproduct_materials_also_in_chemical_union": 60,
+      "byproduct_materials_outside_chemical_union": 50,
+      "origin_partitions": {
+        "crusher_only": 79,
+        "overlap": 31,
+        "terminal_dust_only": 114
+      },
+      "material_classifications": {
+        "decomposable_without_route": 43,
+        "route_ready": 27,
+        "route_tagged_but_quarantined": 57,
+        "unresolved_deferred": 97
+      },
+      "source_loader_eligible": 84,
+      "no_decompose": 177,
+      "route_map_memberships": {
+        "gt.recipe.centrifuge": 18,
+        "gt.recipe.electrolyzer": 66
+      },
+      "non_molten_fluid_candidates": 119,
+      "non_molten_fluid_classifications": {
+        "closure_required": 8,
+        "not_required_by_loader_projection": 111
+      },
+      "non_molten_fluid_phases": {
+        "gas": 35,
+        "liquid": 73,
+        "solid": 11
+      }
+    },
+    "reason": "The T5a artifact is an exhaustive readiness ledger over the two exact ore-chain chemical debts, with byproduct-only debt and fluid candidates accounted separately.",
+    "source": {
+      "path": "tools/gt6_ore_chain_closure.json",
+      "fields": [
+        "sifter_dust_without_smelter",
+        "crusher_without_worldgen"
+      ]
+    }
+  },
+  "fluid_closure_routes": {
+    "classification": "t5_pinned_dump_fluid_closure",
+    "previously_input_only_fluids": [
+      "cruciblecraft:glue",
+      "cruciblecraft:hydrochloric_acid",
+      "cruciblecraft:hydrogen_fluoride",
+      "cruciblecraft:molten_aluminium",
+      "cruciblecraft:molten_aluminium_fluoride",
+      "cruciblecraft:molten_cryolite"
+    ],
+    "reason": "These six exact pinned GT6 rows add producers for every non-builtin fluid consumed but not produced by the 145 terminal-dust routes. They are additional closure recipes and do not alter the terminal-dust denominator or route selection.",
+    "recoverable_surplus": {
+      "classification": "recoverable_surplus_byproduct",
+      "consumer_route": "hydrochloric_acid",
+      "fake_voiding_allowed": false,
+      "fluid": "cruciblecraft:water_distilled"
+    },
+    "routes": [
+      {
+        "closes": [
+          "cruciblecraft:hydrochloric_acid"
+        ],
+        "expected_fluid_inputs": [
+          "cruciblecraft:water_distilled",
+          "cruciblecraft:chlorine"
+        ],
+        "expected_fluid_outputs": [
+          "cruciblecraft:hydrochloric_acid",
+          "cruciblecraft:oxygen"
+        ],
+        "id": "hydrochloric_acid",
+        "map": "gt.recipe.mixer",
+        "recipe_index": 35115
+      },
+      {
+        "closes": [
+          "cruciblecraft:hydrogen_fluoride"
+        ],
+        "expected_fluid_inputs": [
+          "cruciblecraft:hydrogen",
+          "cruciblecraft:fluorine"
+        ],
+        "expected_fluid_outputs": [
+          "cruciblecraft:hydrogen_fluoride"
+        ],
+        "id": "hydrogen_fluoride",
+        "map": "gt.recipe.mixer",
+        "recipe_index": 27026
+      },
+      {
+        "closes": [
+          "cruciblecraft:glue"
+        ],
+        "expected_fluid_inputs": [],
+        "expected_fluid_outputs": [
+          "cruciblecraft:latex",
+          "cruciblecraft:glue"
+        ],
+        "id": "glue_and_latex",
+        "map": "gt.recipe.centrifuge",
+        "recipe_index": 1283
+      },
+      {
+        "closes": [
+          "cruciblecraft:molten_aluminium"
+        ],
+        "expected_fluid_inputs": [],
+        "expected_fluid_outputs": [
+          "cruciblecraft:molten_aluminium"
+        ],
+        "id": "molten_aluminium",
+        "map": "gt.recipe.smelter",
+        "recipe_index": 19589
+      },
+      {
+        "closes": [
+          "cruciblecraft:molten_cryolite"
+        ],
+        "expected_fluid_inputs": [],
+        "expected_fluid_outputs": [
+          "cruciblecraft:molten_cryolite"
+        ],
+        "id": "molten_cryolite",
+        "map": "gt.recipe.smelter",
+        "recipe_index": 4808
+      },
+      {
+        "closes": [
+          "cruciblecraft:molten_aluminium_fluoride"
+        ],
+        "expected_fluid_inputs": [
+          "cruciblecraft:fluorine"
+        ],
+        "expected_fluid_outputs": [
+          "cruciblecraft:molten_aluminium_fluoride"
+        ],
+        "id": "molten_aluminium_fluoride",
+        "map": "gt.recipe.mixer",
+        "recipe_index": 4093
+      }
+    ],
+    "source": {
+      "index": "gt6_dump/gt6_recipe_dump/index.json",
+      "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    }
+  },
+  "fluid_inventory": {
+    "molten_id_prefixes": [
+      "molten.",
+      "molten "
+    ],
+    "conservative_requirement_rule": "A non-molten fluid ID is closure_required only when Loader_Recipes_Decomp semantics project a non-solid input or output material and the normalized fluid artifact has exactly one non-molten ID for that source material. Alias ambiguity and every unproven candidate remain source_replay_required.",
+    "reason": "The normalized fluid map is factual identity evidence. The final source selector registers only fluids referenced by the 145 selected pinned routes.",
+    "source": {
+      "path": "tools/gt6_oredict_fluids_normalized.json",
+      "field": "records"
+    }
+  },
+  "recipe_replay": {
+    "status": "pinned_dump_verified",
+    "required_maps": {
+      "gt.recipe.assembler": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.assembler.json",
+      "gt.recipe.autoclave": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.autoclave.json",
+      "gt.recipe.bath": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.bath.json",
+      "gt.recipe.centrifuge": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.centrifuge.json",
+      "gt.recipe.compressor": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.compressor.json",
+      "gt.recipe.drying": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.drying.json",
+      "gt.recipe.distillery": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json",
+      "gt.recipe.electrolyzer": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.electrolyzer.json",
+      "gt.recipe.mixer": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.mixer.json",
+      "gt.recipe.smelter": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json"
+    },
+    "reason": "The pinned GT6 dump is present and every required source map has been replayed by the final T5 source selectors, including the exhaustive T5.5 distillery classification.",
+    "source": {
+      "index": "gt6_dump/gt6_recipe_dump/index.json",
+      "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "selector": "tools/build_t5_source_projection.py"
+    }
+  }
+}

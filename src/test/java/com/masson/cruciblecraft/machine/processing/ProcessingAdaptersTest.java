@@ -13,6 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import com.masson.cruciblecraft.TestExtruderShapes;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
+import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.recipe.rule.T2ChainRules;
@@ -158,6 +159,41 @@ class ProcessingAdaptersTest {
     }
 
     @Test
+    void savedInventoryExpandsToLiveLayoutWithoutLosingStacks() {
+        ItemStackHandler legacy = new ItemStackHandler(5);
+        legacy.setStackInSlot(0, new ItemStack(Items.COAL, 3));
+        legacy.setStackInSlot(4, new ItemStack(Items.DIAMOND, 2));
+        LayoutAwareItemStackHandler live = new LayoutAwareItemStackHandler(
+                7, (slot, stack) -> true, ignored -> {});
+
+        live.deserializeForLayout(registries, legacy.serializeNBT(registries));
+
+        assertEquals(7, live.getSlots());
+        assertEquals(5, live.loadedSlots());
+        assertFalse(live.layoutQuarantined());
+        assertEquals(3, live.getStackInSlot(0).getCount());
+        assertEquals(2, live.getStackInSlot(4).getCount());
+        assertTrue(live.getStackInSlot(5).isEmpty());
+        assertTrue(live.getStackInSlot(6).isEmpty());
+    }
+
+    @Test
+    void savedInventoryLargerThanLiveLayoutIsRetainedAndQuarantined() {
+        ItemStackHandler future = new ItemStackHandler(9);
+        future.setStackInSlot(8, new ItemStack(Items.NETHER_STAR));
+        LayoutAwareItemStackHandler live = new LayoutAwareItemStackHandler(
+                7, (slot, stack) -> true, ignored -> {});
+
+        live.deserializeForLayout(registries, future.serializeNBT(registries));
+
+        assertEquals(9, live.getSlots());
+        assertEquals(9, live.loadedSlots());
+        assertTrue(live.layoutQuarantined());
+        assertEquals(1, live.getStackInSlot(8).getCount());
+        assertFalse(live.isItemValid(8, new ItemStack(Items.COAL)));
+    }
+
+    @Test
     void fluidStackDrainAggregatesWithoutSimulationMutationAndMutatesOnce() {
         FluidTank first = new FluidTank(1000);
         FluidTank second = new FluidTank(1000);
@@ -184,6 +220,205 @@ class ProcessingAdaptersTest {
         assertEquals(700, executed.getAmount());
         assertEquals(executed.getAmount(), before - after);
         assertEquals(1, mutations.get());
+    }
+
+    @Test
+    void amountDrainUsesTheSameAtomicMultiTankPlanAsTypedDrain() {
+        FluidTank first = new FluidTank(1000);
+        FluidTank second = new FluidTank(1000);
+        first.setFluid(new FluidStack(Fluids.WATER, 300));
+        second.setFluid(new FluidStack(Fluids.WATER, 500));
+        AtomicInteger mutations = new AtomicInteger();
+        SidedFluidHandler output = new SidedFluidHandler(
+                List.of(first, second),
+                List.of(0, 1),
+                ProcessingMachineSpec.CapabilityAccess.OUTPUT,
+                mutations::incrementAndGet);
+
+        FluidStack simulated = output.drain(700, IFluidHandler.FluidAction.SIMULATE);
+        assertEquals(700, simulated.getAmount());
+        assertEquals(800, first.getFluidAmount() + second.getFluidAmount());
+        assertEquals(0, mutations.get());
+
+        FluidStack executed = output.drain(700, IFluidHandler.FluidAction.EXECUTE);
+        assertEquals(700, executed.getAmount());
+        assertEquals(100, first.getFluidAmount() + second.getFluidAmount());
+        assertEquals(1, mutations.get());
+    }
+
+    @Test
+    void duplicatePhysicalTankExposureFailsAtConstruction() {
+        IllegalArgumentException error = assertThrows(
+                IllegalArgumentException.class,
+                () -> new SidedFluidHandler(
+                        List.of(new FluidTank(1000)),
+                        List.of(0, 0),
+                        ProcessingMachineSpec.CapabilityAccess.OUTPUT));
+        assertTrue(error.getMessage().contains("exposed more than once"));
+    }
+
+    @Test
+    void multiTankFillPlansMergeAndSplitWithoutPartialMutation() {
+        FluidTank first = new FluidTank(500);
+        FluidTank second = new FluidTank(1000);
+        first.setFluid(new FluidStack(Fluids.WATER, 400));
+        AtomicInteger mutations = new AtomicInteger();
+        SidedFluidHandler input = new SidedFluidHandler(
+                List.of(first, second),
+                List.of(0, 1),
+                ProcessingMachineSpec.CapabilityAccess.INPUT,
+                mutations::incrementAndGet);
+        FluidStack request = new FluidStack(Fluids.WATER, 700);
+        int before = first.getFluidAmount() + second.getFluidAmount();
+
+        assertEquals(700, input.fill(request, IFluidHandler.FluidAction.SIMULATE));
+        assertEquals(400, first.getFluidAmount());
+        assertEquals(0, second.getFluidAmount());
+        assertEquals(0, mutations.get());
+
+        assertEquals(700, input.fill(request, IFluidHandler.FluidAction.EXECUTE));
+        assertEquals(500, first.getFluidAmount());
+        assertEquals(600, second.getFluidAmount());
+        assertEquals(700,
+                first.getFluidAmount() + second.getFluidAmount() - before,
+                "executed fill must conserve the exact reported amount");
+        assertEquals(1, mutations.get());
+    }
+
+    @Test
+    void simulationMutationIsRolledBackWithoutCallback() {
+        FluidTank violating = new FluidTank(1000) {
+            @Override
+            public int fill(FluidStack resource, FluidAction action) {
+                return super.fill(
+                        resource,
+                        action.simulate() ? FluidAction.EXECUTE : action);
+            }
+        };
+        AtomicInteger mutations = new AtomicInteger();
+        SidedFluidHandler input = new SidedFluidHandler(
+                List.of(violating),
+                List.of(0),
+                ProcessingMachineSpec.CapabilityAccess.INPUT,
+                mutations::incrementAndGet);
+
+        IllegalStateException error = assertThrows(
+                IllegalStateException.class,
+                () -> input.fill(
+                        new FluidStack(Fluids.WATER, 250),
+                        IFluidHandler.FluidAction.SIMULATE));
+        assertTrue(error.getMessage().contains("mutated during fill simulation"));
+        assertTrue(violating.getFluid().isEmpty());
+        assertEquals(0, mutations.get());
+    }
+
+    @Test
+    void executeDrainViolationRollsBackEveryExposedTankExactly() {
+        FluidTank first = new FluidTank(1000);
+        FluidTank violating = new FluidTank(1000) {
+            @Override
+            public FluidStack drain(FluidStack resource, FluidAction action) {
+                if (action.execute()) {
+                    return super.drain(
+                            resource.copyWithAmount(resource.getAmount() - 1),
+                            action);
+                }
+                return super.drain(resource, action);
+            }
+        };
+        first.setFluid(new FluidStack(Fluids.WATER, 300));
+        violating.setFluid(new FluidStack(Fluids.WATER, 300));
+        AtomicInteger mutations = new AtomicInteger();
+        SidedFluidHandler output = new SidedFluidHandler(
+                List.of(first, violating),
+                List.of(0, 1),
+                ProcessingMachineSpec.CapabilityAccess.OUTPUT,
+                mutations::incrementAndGet);
+
+        IllegalStateException error = assertThrows(
+                IllegalStateException.class,
+                () -> output.drain(
+                        new FluidStack(Fluids.WATER, 500),
+                        IFluidHandler.FluidAction.EXECUTE));
+        assertTrue(error.getMessage().contains("executed drain"));
+        assertEquals(300, first.getFluidAmount());
+        assertEquals(300, violating.getFluidAmount());
+        assertEquals(600, first.getFluidAmount() + violating.getFluidAmount());
+        assertEquals(0, mutations.get());
+    }
+
+    @Test
+    void executeFillViolationRollsBackEarlierAndFailingTanksExactly() {
+        FluidTank first = new FluidTank(400);
+        FluidTank violating = new FluidTank(1000) {
+            @Override
+            public int fill(FluidStack resource, FluidAction action) {
+                if (action.execute()) {
+                    return super.fill(
+                            resource.copyWithAmount(resource.getAmount() - 1),
+                            action);
+                }
+                return super.fill(resource, action);
+            }
+        };
+        AtomicInteger mutations = new AtomicInteger();
+        SidedFluidHandler input = new SidedFluidHandler(
+                List.of(first, violating),
+                List.of(0, 1),
+                ProcessingMachineSpec.CapabilityAccess.INPUT,
+                mutations::incrementAndGet);
+
+        IllegalStateException error = assertThrows(
+                IllegalStateException.class,
+                () -> input.fill(
+                        new FluidStack(Fluids.WATER, 700),
+                        IFluidHandler.FluidAction.EXECUTE));
+        assertTrue(error.getMessage().contains("executed fill"));
+        assertTrue(first.getFluid().isEmpty());
+        assertTrue(violating.getFluid().isEmpty());
+        assertEquals(0, mutations.get());
+    }
+
+    @Test
+    void rollbackFailureIsReportedAsPotentiallyInconsistentState() {
+        AtomicBoolean rejectRollback = new AtomicBoolean();
+        FluidTank uncooperative = new FluidTank(1000) {
+            @Override
+            public int fill(FluidStack resource, FluidAction action) {
+                if (action.execute()) {
+                    int filled = super.fill(
+                            resource.copyWithAmount(resource.getAmount() - 1),
+                            action);
+                    rejectRollback.set(true);
+                    return filled;
+                }
+                return super.fill(resource, action);
+            }
+
+            @Override
+            public void setFluid(FluidStack stack) {
+                if (rejectRollback.get()) {
+                    throw new IllegalStateException("rollback disabled");
+                }
+                super.setFluid(stack);
+            }
+        };
+        AtomicInteger mutations = new AtomicInteger();
+        SidedFluidHandler input = new SidedFluidHandler(
+                List.of(uncooperative),
+                List.of(0),
+                ProcessingMachineSpec.CapabilityAccess.INPUT,
+                mutations::incrementAndGet);
+
+        IllegalStateException error = assertThrows(
+                IllegalStateException.class,
+                () -> input.fill(
+                        new FluidStack(Fluids.WATER, 250),
+                        IFluidHandler.FluidAction.EXECUTE));
+        assertTrue(error.getMessage().contains("ROLLBACK FAILED"));
+        assertTrue(error.getMessage().contains("may be inconsistent"));
+        assertEquals(1, error.getSuppressed().length);
+        assertEquals(0, mutations.get());
     }
 
     @Test
@@ -377,11 +612,11 @@ class ProcessingAdaptersTest {
         for (ProcessingMachineSpec spec : List.of(
                 ModProcessingMachines.EXTRUDER,
                 ModProcessingMachines.WIREMILL,
-                ModProcessingMachines.ASSEMBLER,
                 ModProcessingMachines.WELDER,
                 ModProcessingMachines.PRESS)) {
             assertEquals(2, spec.items().inputs().size());
         }
+        assertEquals(6, ModProcessingMachines.ASSEMBLER.items().inputs().size());
         assertEquals(1, ModProcessingMachines.ASSEMBLER.fluids().inputs().size());
         assertEquals(1, ModProcessingMachines.WELDER.fluids().inputs().size());
         assertFalse(ProcessingMachineFluidPolicy.accepts(
@@ -432,13 +667,82 @@ class ProcessingAdaptersTest {
     }
 
     @Test
+    void assemblerExposesSixRoleFilteredInputsAndValidatesAllCatalysts() {
+        installAssemblerCatalystFixtures();
+        ProcessingMachineSpec spec = ModProcessingMachines.ASSEMBLER;
+        ItemStack firstWearTool = new ItemStack(Items.IRON_PICKAXE);
+        ItemStack secondWearTool = new ItemStack(Items.IRON_AXE);
+        ItemStack pattern = new ItemStack(Items.TRIAL_KEY);
+        ItemStack material = new ItemStack(Items.IRON_INGOT);
+
+        assertEquals(List.of(0, 1, 2, 3, 4, 5), spec.items().inputs());
+        assertEquals(List.of(6), spec.items().outputs());
+        assertEquals(7, spec.ui().machineSlots().size());
+        for (int slot = 0; slot < 3; slot++) {
+            assertEquals(ProcessingMachineSpec.SlotRole.MATERIAL, spec.items().role(slot));
+            assertTrue(spec.items().accepts(slot, material));
+            assertFalse(spec.items().accepts(slot, firstWearTool));
+            assertFalse(spec.items().accepts(slot, pattern));
+        }
+        for (int slot = 3; slot < 6; slot++) {
+            assertEquals(ProcessingMachineSpec.SlotRole.TOOL, spec.items().role(slot));
+            assertFalse(spec.items().accepts(slot, material));
+            assertTrue(spec.items().accepts(slot, firstWearTool));
+            assertTrue(spec.items().accepts(slot, secondWearTool));
+            assertTrue(spec.items().accepts(slot, pattern));
+        }
+        assertEquals(ProcessingMachineSpec.SlotRole.OUTPUT, spec.items().role(6));
+
+        for (String path : List.of(
+                "material_file",
+                "smithing_hammer",
+                "flint_knife",
+                "material_screwdriver",
+                "material_wrench")) {
+            assertTrue(CraftingCatalystPolicy.isWearCatalyst(
+                    ResourceLocation.fromNamespaceAndPath("cruciblecraft", path)));
+        }
+        assertTrue(CraftingCatalystPolicy.isPreservedPattern(
+                ResourceLocation.fromNamespaceAndPath(
+                        "cruciblecraft", "tool_pattern_pickaxe")));
+
+        GTRecipe sixInputs = new GTRecipe(
+                List.of(
+                        Ingredient.of(Items.IRON_INGOT),
+                        Ingredient.of(Items.GOLD_INGOT),
+                        Ingredient.of(Items.COPPER_INGOT),
+                        Ingredient.of(Items.IRON_PICKAXE),
+                        Ingredient.of(Items.IRON_AXE),
+                        Ingredient.of(Items.TRIAL_KEY)),
+                List.of(1, 1, 1, 0, 0, 0),
+                List.of(
+                        ItemInputAction.CONSUME,
+                        ItemInputAction.CONSUME,
+                        ItemInputAction.CONSUME,
+                        ItemInputAction.wear(1),
+                        ItemInputAction.wear(2),
+                        ItemInputAction.PRESERVE),
+                List.of(new ItemStack(Items.DIAMOND)),
+                List.of(),
+                List.of(),
+                List.of(GTRecipe.GUARANTEED_CHANCE),
+                20,
+                24,
+                0,
+                true,
+                java.util.Optional.empty());
+        assertTrue(spec.validator().validate(sixInputs).isEmpty());
+    }
+
+    @Test
     void t3MachineValidatorRejectsOversizeAndInvalidChance() {
         GTRecipe oversize = new GTRecipe(
                 List.of(
                         Ingredient.of(Items.COAL),
                         Ingredient.of(Items.IRON_INGOT),
-                        Ingredient.of(Items.GOLD_INGOT)),
-                List.of(1, 1, 1),
+                        Ingredient.of(Items.GOLD_INGOT),
+                        Ingredient.of(Items.COPPER_INGOT)),
+                List.of(1, 1, 1, 1),
                 List.of(new ItemStack(Items.DIAMOND)),
                 List.of(), List.of(), List.of(10_000), 20, 24, 0, true);
         assertTrue(ModProcessingMachines.ASSEMBLER.validator().validate(oversize).isPresent());
@@ -470,11 +774,11 @@ class ProcessingAdaptersTest {
                 Direction.WEST,
                 true,
                 true), "sneaking deterministically falls through to menu opening");
-        assertEquals(ProcessingMachineInteractions.FluidTransfer.FILL,
+        assertEquals(ProcessingMachineInteractions.FluidTransfer.FILL_INPUT,
                 ProcessingMachineInteractions.fluidTransfer(
                         ModProcessingMachines.BATH, Direction.NORTH, Direction.WEST,
                         false, true, true));
-        assertEquals(ProcessingMachineInteractions.FluidTransfer.DRAIN,
+        assertEquals(ProcessingMachineInteractions.FluidTransfer.DRAIN_INPUT,
                 ProcessingMachineInteractions.fluidTransfer(
                         ModProcessingMachines.BATH, Direction.NORTH, Direction.WEST,
                         false, true, false));
@@ -511,11 +815,37 @@ class ProcessingAdaptersTest {
         assertEquals(250, maintenance.drain(
                 250, IFluidHandler.FluidAction.EXECUTE).getAmount());
         assertEquals(500, recoverable.getFluidAmount());
-        assertEquals(6, ConfiguredProcessingMachineMenu.DATA_COUNT);
+        assertEquals(2, ConfiguredProcessingMachineMenu.DATA_COUNT);
         assertEquals(1, ProcessingMachineDisplayData.statusIndex(
                 ModProcessingMachines.ASSEMBLER, ""));
-        assertEquals(500, ProcessingMachineDisplayData.tankAmount(List.of(recoverable)));
-        assertEquals(1000, ProcessingMachineDisplayData.tankCapacity(List.of(recoverable)));
+        assertEquals(5, ProcessingMachineDisplayData.statusIndex(
+                ModProcessingMachines.ASSEMBLER, "unsupported_version_3"));
+        assertEquals(6, ProcessingMachineDisplayData.statusIndex(
+                ModProcessingMachines.ASSEMBLER, "inventory_layout_quarantined"));
+        assertEquals(8, ProcessingMachineDisplayData.statusIndex(
+                ModProcessingMachines.ASSEMBLER, "future_status"));
+    }
+
+    private static void installAssemblerCatalystFixtures() {
+        bindItemTag(Items.IRON_PICKAXE, CraftingCatalystPolicy.WEAR_CATALYSTS);
+        bindItemTag(Items.IRON_AXE, CraftingCatalystPolicy.WEAR_CATALYSTS);
+        bindItemTag(Items.TRIAL_KEY, CraftingCatalystPolicy.PRESERVED_PATTERNS);
+    }
+
+    private static void bindItemTag(
+            net.minecraft.world.item.Item item,
+            net.minecraft.tags.TagKey<net.minecraft.world.item.Item> tag) {
+        var holder = BuiltInRegistries.ITEM.wrapAsHolder(item);
+        var tags = java.util.stream.Stream.concat(
+                holder.tags(), java.util.stream.Stream.of(tag)).distinct().toList();
+        try {
+            java.lang.reflect.Method bindTags =
+                    holder.getClass().getDeclaredMethod("bindTags", java.util.Collection.class);
+            bindTags.setAccessible(true);
+            bindTags.invoke(holder, tags);
+        } catch (ReflectiveOperationException exception) {
+            throw new AssertionError("Unable to install crafting catalyst test tag", exception);
+        }
     }
 
     @Test

@@ -99,7 +99,7 @@ class ProcessingMachineResourceTest {
                 .filter(key -> !english.get(key).getAsString()
                         .equals(chinese.get(key).getAsString()))
                 .count();
-        assertEquals(282L, translated, "declared Chinese translation coverage");
+        assertEquals(299L, translated, "declared Chinese translation coverage");
         assertEquals(chinese.size(), translated,
                 "zh_cn must not hide untranslated keys behind copied English values");
         assertTrue(english.size() > translated,

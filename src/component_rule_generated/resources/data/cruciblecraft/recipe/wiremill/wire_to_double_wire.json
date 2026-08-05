@@ -1,4 +1,7 @@
 {
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", double_wire)"
+  ],
   "duration": "80 * (144 * prefix_units(double_wire) / gcd(target_units(working) * 72, 144 * prefix_units(double_wire)))",
   "eut": "24",
   "item_inputs": [

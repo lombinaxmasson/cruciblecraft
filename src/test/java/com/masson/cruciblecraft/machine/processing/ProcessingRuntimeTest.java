@@ -68,9 +68,37 @@ class ProcessingRuntimeTest {
 
         CompoundTag future = original.write();
         future.putInt("processing_version", ProcessingMachineState.VERSION + 1);
+        ProcessingMachineState degraded = ProcessingMachineState.read(future);
+        assertEquals(original.activeRecipe(), degraded.activeRecipe());
+        assertEquals(original.progress(), degraded.progress());
+        assertEquals(original.energy(), degraded.energy());
+        assertEquals(9, degraded.resourceRevision());
+        assertEquals("underpowered", degraded.status());
+        assertEquals(2, degraded.unsupportedVersion().orElseThrow());
+
+        CompoundTag preserved = degraded.write();
+        assertEquals(2, preserved.getInt("processing_version"));
+        assertEquals(512, preserved.getLong("energy"));
+        ProcessingMachineState reloaded = ProcessingMachineState.read(preserved);
+        assertEquals(2, reloaded.unsupportedVersion().orElseThrow());
+        ProcessingMachineState supportedAgain =
+                ProcessingMachineState.read(preserved, 2);
+        assertTrue(supportedAgain.unsupportedVersion().isEmpty());
+        assertEquals(512, supportedAgain.energy());
+
+        CompoundTag legacyLatch = original.write();
+        legacyLatch.putString("status", "unsupported_version_2");
+        ProcessingMachineState migratedLatch =
+                ProcessingMachineState.read(legacyLatch);
+        assertEquals("idle", migratedLatch.status());
+        assertEquals(2, migratedLatch.unsupportedVersion().orElseThrow());
+        assertEquals(2, migratedLatch.write().getInt("processing_version"));
+
+        CompoundTag invalid = original.write();
+        invalid.putInt("processing_version", -1);
         assertThrows(
                 IllegalArgumentException.class,
-                () -> ProcessingMachineState.read(future));
+                () -> ProcessingMachineState.read(invalid));
     }
 
     @Test
@@ -140,5 +168,30 @@ class ProcessingRuntimeTest {
         assertTrue(AdjacentEnergyConsumer.consume(
                 source, EnergyType.HEAT, Direction.UP, 5, false));
         assertEquals(2, source.extracted);
+    }
+
+    @Test
+    void adjacentEnergyPlanReportsAnExecutionContractViolation() {
+        IEnergyHandler source = new IEnergyHandler() {
+            @Override public boolean handles(EnergyType type, Direction side) {
+                return type == EnergyType.HEAT && side == Direction.UP;
+            }
+            @Override public long outputSize(EnergyType type, Direction side) {
+                return 4;
+            }
+            @Override public long extract(
+                    EnergyType type,
+                    long size,
+                    long amount,
+                    Direction side,
+                    boolean simulate) {
+                return simulate ? amount : Math.max(0L, amount - 1L);
+            }
+        };
+
+        AdjacentEnergyConsumer.Plan plan = AdjacentEnergyConsumer.plan(
+                source, EnergyType.HEAT, Direction.UP, 5).orElseThrow();
+
+        assertFalse(plan.execute());
     }
 }

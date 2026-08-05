@@ -1,7 +1,7 @@
 # CrucibleCraft 总体规划
 
 > GregTech 6 → Minecraft 1.21.1 NeoForge 移植
-> 最后更新：2026-08-03　基线：`src-2026-7-31-2107`
+> 最后更新：2026-08-05　架构重基线：T10 完整关闭工作树
 
 ---
 
@@ -13,7 +13,7 @@
 - **卡住 / 想不起来在干嘛**：直接跳到第 4 节。
 - **发现一个 bug，不确定要不要修**：第 4.2 节有决策树。
 - **想顺手改点别的**：第 4.3 节。
-- **要开新阶段**：第 6 节的开工检查表。
+- **要开新阶段**：第 7 节的开工检查表。
 
 **唯一的硬规则：任何时刻最多一个阶段是"进行中"。** 阶段间允许明确写「无（等待下一阶段开工检查）」，但禁止为了填空提前启动下一阶段。
 
@@ -30,7 +30,7 @@
 
 ### 层级体系（唯一，禁止再造）
 
-| 阶段 | 名称 | 状态 |
+| 阶段 | 名称 | 闭包状态 |
 |---|---|---|
 | T0 | 材料/前缀基础设施 | ✅ 已关闭 |
 | T0b | 1.21.1 侧的 `c:` 标签面 | ✅ 已关闭 |
@@ -41,17 +41,58 @@
 | **T5** | **化学与流体** | ✅ **145 / 145 terminal 路由、152 条 live recipe 与流体玩法闭环已关闭** |
 | **T6** | **电力时代** | ✅ **T6a–T6d 电气运行时与硬化验收已关闭** |
 | **T7** | **材料事实进入规则语言** | ✅ **62 / 62 标签闭合、220 条标签规则与材料事实纵切已关闭** |
+| **T8** | **GTM式物流骨架** | ✅ **282 个材料管方块、三种 cover 与流体/物品端到端纵切已关闭** |
+| **T9** | **世界生成数据化** | ✅ **129 条 vein 分类、双宿主矿脉与 2 种流体矿床已关闭；GT6 几何保真见 O-29** |
+| **T10** | **容器与形态补全** | ✅ **T10a–e 已关闭：1,288 条 multi/hot 路线、双通用 cell 与五项载荷门禁全部通过** |
+
+### 完成度的三轴口径
+
+从本次架构重基线起，「阶段关闭」不再被解释为「GT6 已完整移植」。每张阶段卡和快照同时记录三条互不替代的轴：
+
+- **闭包（closure）**：分类完整、注册可达、运行时链路可执行、换内容不改 Java。
+- **保真（fidelity）**：数值、映射和行为能追溯到固定 GT6 revision，或被明确声明为 CrucibleCraft 的设计策略；可投影全集与独立期望集双向相等。
+- **载荷（load）**：datapack 条目、展开 publication、reload / index 成本分别在预算内，规则层压缩没有被静默绕过。
+
+闭包可以按原判据关闭，同时保留显式保真债；T9 就是标准例子：世界生成管线与 129 / 129 分类已经闭合，但统一几何仍为 `PLACEHOLDER`，不得写成 GT6 source-backed。载荷未过预算时则不得关闭阶段，因为它会直接阻断加载或运行。
+
+所有来源状态统一使用以下词表，且状态必须写进 authored data 或 readiness ledger，不能只写在叙述文档里：
+
+- `SOURCE_BACKED`：固定 revision 的直接事实，已通过来源与展开验收。
+- `SOURCE_DERIVED`：从固定来源经已声明、可复算的转换得到。
+- `DESIGN_POLICY`：明确的 CrucibleCraft 设计选择，不冒充 GT6 事实。
+- `PLACEHOLDER`：临时占位，必须指向悬案和替换条件；现有 worldgen 字段值 `UNIFORM_PLACEHOLDER` 归入这一类，数据 schema 迁移前保留原值。
+- `UNVERIFIED`：尚无充分证据，不得用于关闭保真轴。
+
+### 架构支柱索引（依赖门禁，不是阶段编号）
+
+T 是执行顺序，G 是 GT6 玩法系统的工作量坐标；下面五根支柱只回答「哪些跨阶段规则不能被各阶段各自发明」。支柱在文档中前置，不代表全部实现都要提前：由第一个实际消费它、且会把错误模型固化的阶段负责关闭对应门禁。
+
+| 架构支柱 | 不变量 | 首要消费阶段 | 规则入口 |
+|---|---|---|---|
+| **规则与来源**（MaterialRule / provenance） | authored 规则、来源事实与独立期望集分离；换内容不改 Java，未知或占位来源不能冒充已验证事实 | T7 建语言；T10 起每阶段增量消费 | §5.1、§5.3、§5.5 |
+| **事务与运行时 epoch** | reload 先完整构造并校验再原子发布；simulate / execute、索引、网络握手与资源提交共享同一 epoch，失败不得留下半发布状态或复制资源 | T5/T6 已建公共底座；T10–T12 持续门禁 | §5.2、§9.4 |
+| **能源语义**（RU / KU / EU…） | 公共 `IEnergyHandler` 只统一契约，不折叠能源身份、机器接受类型和传输拓扑 | T12a/e；T10 不等待完整 RU 网络 | §9.2 |
+| **机器 kind / tier** | RecipeMap 表达工艺，MachineKind 表达机器种类，TierProfile 表达实例能力；增加档位不得复制配方 publication | T12b–c | §9.1 |
+| **多方块结构**（JSON / validator） | 几何、谓词、朝向与端口由数据声明并由单一 validator 解释；第二个真实结构前不得复制专用 Structure Java | T12d | §9.3 |
+
+这五根支柱的当前状态、直接来源、阻断项、最晚决策点和实现 owner 由《[CrucibleCraft-第二阶段总体规划.md](CrucibleCraft-第二阶段总体规划.md)》的“架构跑道仪表盘”维护；本文件只保留不可违反的规则和消费关系。
 
 > **历史教训**：曾经存在过第二套编号（`t1_generated` 目录 vs 代码里的 `T2_MACHINES`），两套指向不同阶段，差点读不懂自己的 commit。已在 2026-07-31 统一。
 > **规则**：新产物一律用**语义命名**（`ore_chain_generated`），不用阶段编号命名。阶段编号只出现在这份文档、代码里的阶段常量（`T2_MACHINES` / `T3_MACHINES`）和 commit message 里。
 
 ### 现在的位置
 
-**T5、T6 与 T7 已关闭。** 固定 revision 的 720,841 条 GT6 dump 重放把原始 162 条 terminal dust 分成 145 条可执行 source route 与 17 条仅有包装循环的 `gt6_dead_end`。145 条 terminal recipe 全部直接消费对应 dust；6 条固定 source fluid producer 关闭输入流体缺口，另以 1,517 行 distillery 全分类台账生成 `water → water_distilled`，live 总数为 152。15 种非熔融 fluid、O-17 多罐原子事务、输出排空与便携罐、通用 EMI、O-19 哨兵兼容边界、最终预算以及 T5/T6 电气纵切纳入前 38 条 GameTest，T7 再增加 1 条材料事实纵切，当前为 39 / 39。
+**T5、T6、T7、T8、T9 与 T10 已关闭；当前转入 T11a。** 固定 revision 的 720,841 条 GT6 dump 重放把原始 162 条 terminal dust 分成 145 条可执行 source route 与 17 条仅有包装循环的 `gt6_dead_end`。T10 将 323 / 323 / 321 个 multi/hot 形态和 1,288 条路线投入运行时，以双通用 cell 闭合 61 fluid / 48 gas、补齐 93 个 chemical fluid identity，并把 14 个 `CONTAINERS`-only 材料列为显式例外。当前 load 账目为 5,958 datapack entries、18,871 / 21,000 publication、3.167:1。
 
 T6 的直接事实已从固定 GT6 Java revision 恢复并接入运行时：raw 2,214 与 live 1,773 种材料全部分类，30 / 29 种导体、28 种 cable-capable source conductor、0 unclassified；115 个 source-backed cable blocks 与 29 个 `wireGt01` blocks 组成 144-block / 9,216-state 运行域。实现包含 loaded-only 稳定 DFS、逐段 exact loss、持久 burn/衰减、下一安全 tick 着火、上一 tick wattage 接触伤害、`ANY.Rubber` 绝缘，以及端点违约不逃逸 tick 的耗散式提交。
 
-T7 将 23 个 `PROCESSING.*` 与 39 个 `PROPERTIES.*` 标签全部纳入固定 revision 的 policy/readiness 台账，`unclassified = 0`。两条 authored mortar 规则按 `MORTAR_GRINDABLE` 展开为 ingot→dust 126 与 gem→dust 94，共新增 220 条；live mortar 为 691、全局 publication 为 17,189 / 18,000。damage 数值事实与 952 个 formula tooltip 已进入运行时，`EnergyType` 收敛到 4 / 4，O-22 零损耗电缆域已关闭。
+T7 将 23 个 `PROCESSING.*` 与 39 个 `PROPERTIES.*` 标签全部纳入固定 revision 的 packaged policy/readiness 台账，`unclassified = 0`；完整 101-tag 运行时词表已启用未知值 fail-fast。两条 `t7/` authored mortar 规则按 `MORTAR_GRINDABLE` 展开为 ingot→dust 126 与 gem→dust 94，共新增 220 条并受独立 256 条预算约束；live mortar 为 691、全局 publication 为 17,326 / 21,000。damage 数值事实已进入运行时；952 份 formula 中 605 份已有玩家可见形态、347 份等待 T10 载体。O-25 已由 T10a 关闭：材料级 heat/explosion damage 全零继续作为反证，唯一非零的 GT6 前缀事实 `ingotHot.mHeatDamage = 3.0` 已进入 prefix fingerprint/handshake 与运行时接触伤害 consumer。T8 复核证明 extruder 的 2,782 条 sparse relation 至少需要 27 个 IO 变体，按 EU/t 标签拆分约 54 条，且 duration 是 `formula_verified=false` 的逐材料 exact lookup；输入 fallback、forging target、`plateGem` 与 shadow 顺序仍是额外 source gate。该不等价决策与 12 条无条件跨材料规则的逐项分类已进入 T7 ledger；新增 `has_registered_for(selector, prefix)` 后，22 份目标材料转换规则已具备显式注册形态守卫，全树带条件的跨材料规则为 53 / 65。`EnergyType` 收敛到 4 / 4，O-22 零损耗电缆域已关闭。
+
+T8 固定 GT6/GTM 两个参考 revision，只移植架构、不引入 GTM 运行时依赖。5 档流体管与 3 档物品管由材料事实批量投影为 282 blocks / 18,048 logical states；8 条 `t8/` 通用 MaterialRule 新增 257 条配方并受独立 320 条预算约束；补入 137 条高版本矿块 crusher 入口后，全局 publication 为 17,583 / 21,000。O-27 锁定 5 种非金属 × 5 档共 25 个 creative 可见但暂不可获取的 source-backed 流体管形态。GTM 式缓存物品路由、逐段流体缓冲、filter/valve/pump、失效状态与实际提交计量均已接入机器能力和 Jade；`gtceu_code` 保持 Git 跟踪集合为空。
+
+T9 用语义命名的 worldgen catalog 声明与离线 builder 闭合 T2c 的 129 / 129 `vein` 分类，连同原有 5 个 family 覆盖全部 137 种 ore material；stone / deepslate 双宿主仍为 274 个矿石方块，不扩张 block budget。129 组 configured / placed feature、2 组带储量和深度带的原油/甲烷矿床与 1 个聚合 biome modifier 全部由数据生成；GameTest 从运行时 registry 解码并真实放置矿脉和可持久化矿床。新增条目只改声明数据，不增加材料专用 Java。129 条 catalog 当前共用统一 CrucibleCraft balance placeholder 几何与四层单矿布局；它不是 GT6 source-backed 几何，逐矿脉 worldgen dump 导入与参数映射登记为 O-29。
+
+T10a–e 已完整关闭：`tN/` authored rule 预算白名单与未知阶段 fail-closed 保持生效；三枚前缀使 catalog 保持 56、handshake 保持 1,829，gate 精确注册 323 / 323 / 321。hot ingot 产物按形态直接加热，creative / command 等无 `HEAT` 入口由维护层按熔点补齐；冷却曲线在 authored rule 内标记为 `DESIGN_POLICY + UNVERIFIED` 并由 O-36 跟踪 GT6 等价来源。两个 1,000 mB 通用 cell 使用独立 `SimpleFluidContent` 组件，空 64 / 满 1，单个与堆叠交互复用 NeoForge 标准流体事务，机器配方仍匹配 fluid tank，不扩展 `ComponentIngredientIndex`。preflight 状态为 `T10_READY`，publication 为 18,871 / 21,000。
 
 具体见第 3 节。
 
@@ -125,10 +166,10 @@ material_registration_gate.json ────────────────
 
 - 第 43 个运行时前缀 `ore` 已进入统一材料管线；137 种 ore 材料 × 2 种宿主岩 = 274 个生成矿石方块，方块、模型、标签与 loot 都由材料声明派生
 - 5 条语义矿脉 JSON 生成 5 组 configured / placed feature 与聚合 biome modifier；新增矿脉仍是写数据，不是写 Java
-- 六阶段链路共 1,980 条 concrete recipe：crusher / sluice / centrifuge / shredder / sifter 各 357，smelter 195；其中 1,060 条采用直接 GT6 阶段证据，920 条采用 topology fallback。T5 恢复 `crushedCentrifugedTiny` 的准确前缀后，旧 centrifuge 证据不再被错误等同为普通 `centrifuged_crushed_ore`。
-- 每条 concrete recipe 都携带运行时 provenance（`source_kind`、selected source、evidence hashes），生成器强制上游闭包且输入签名无重复
+- 六阶段主链与高版本矿块入口共 2,117 条 concrete recipe：crusher 494（357 条 raw→crushed 基线 + 137 条 `c:ores/<tag_name>`→5 crushed 派生入口），sluice / centrifuge / shredder / sifter 各 357，smelter 195；其中 1,060 条采用直接 GT6 阶段证据，920 条采用 topology fallback，137 条明确标为不继承 GT6 evidence 的高版本派生。T5 恢复 `crushedCentrifugedTiny` 的准确前缀后，旧 centrifuge 证据不再被错误等同为普通 `centrifuged_crushed_ore`。
+- 每条 concrete recipe 都携带运行时 provenance（`source_kind`、selected source、evidence hashes），137 条派生入口另在 index 记录基准 semantic hash 与 5/2 输出倍率；生成器强制上游闭包且输入签名无重复
 - 两本原始待分类集合实际为 349 条 crusher-without-worldgen 与 162 条 sifter-dust-without-smelter；现已逐条归类，`unclassified=0`
-- 13 / 13 GameTest 通过，含 copper / tin / iron / gold 泛化链与「真实钨矿脉注册 → 放置 → 双宿主方块 → loot → 六机器 → 钨锭」
+- 14 / 14 矿链 GameTest 通过，含 copper / tin / iron / gold 泛化链、「真实钨矿脉注册 → 放置 → 双宿主方块 → loot → 六机器 → 钨锭」，以及 stone/deepslate 精采掉落命中同一 crusher tag 配方并精确产出 5 crushed
 
 #### T2a　`ore` 前缀进管线 ✅
 
@@ -302,7 +343,7 @@ material_registration_gate.json ────────────────
 - 通用 64,000 mB 便携流体罐、输入维护排空和输出侧排空使产流体配方可重复执行；所有 23 台 configured machine 由同一份 `ProcessingMachineSpec` 驱动 EMI category、workstation、槽位/罐位和 recipe 投影。
 - 便携罐在输入侧按“可提供流体”优先选择填充，空罐才进入维护排空；GameTest 已证明 electrolyzer 的氯气能经便携罐进入 mixer 并被 hydrochloric acid 配方消费。GUI 的 progress / duration / FluidStack amount 直接读取客户端 block entity，tank capacity 直接读取 spec，不再把大数值绕回 `ContainerData` 的 16 位网络通道。
 - `findMatch` 继续剔除被支配的较弱候选；多个互不可比的极大元按稳定声明序选择第一条。相同输入签名仍在发布期由 `validateNoShadows` 拒绝，玩家组合多个合法输入不再在 block-entity tick 中抛异常。
-- 最终发布观测为 T5 152、全 map 16,969，reload 1,297 ms、index 34 ms；显式 GameTest lookup 基准平均 52,506 ns / 10 candidates。生产 reload 只发布与记录结构/时长，不再执行 lookup 基准或伪 heap 采样；最终数量预算固定为 T5 200、全局 18,000。
+- T5 关闭时发布观测为 T5 152、全 map 16,969；高版本矿块 crusher 入口补正后该基线为 17,106。原观测 reload 1,297 ms、index 34 ms；显式 GameTest lookup 基准平均 52,506 ns / 10 candidates。生产 reload 只发布与记录结构/时长，不再执行 lookup 基准或伪 heap 采样；当前全局预算为 21,000。
 
 ---
 
@@ -330,21 +371,21 @@ material_registration_gate.json ────────────────
 |---|---|
 | 材料定义 | 1,773 |
 | 其中 metadata_only | 663 |
-| 注册形态 | 14,799 |
-| 前缀（已落地） | 45（含 `ore`） |
-| 前缀（`c:` / `cruciblecraft:`） | 11 / 34 |
-| ore_chain 配方 | 1,980（1,060 GT6 证据 / 920 topology fallback） |
-| ore_chain 分阶段 | crusher / sluice / centrifuge / shredder / sifter 各 357；smelter 195 |
+| 注册形态 | 16,048 |
+| 前缀（已落地） | 56（含 `ore`、8 种 pipe 与 3 枚已激活 T10 前缀） |
+| 前缀（`c:` / `cruciblecraft:`） | 11 / 45 |
+| ore_chain 配方 | 2,117（1,060 GT6 证据 / 920 topology fallback / 137 高版本矿块派生） |
+| ore_chain 分阶段 | crusher 494（raw 357 + ore block 137）；sluice / centrifuge / shredder / sifter 各 357；smelter 195 |
 | 熔炉捷径 | 383 对（raw 187 / crushed 196）/ 766 文件，全部 `compat_shortcut` group |
 | 矿石材料 / 方块 | 137 / 274（全部生成） |
-| 矿脉 feature | 5 |
+| 矿脉 feature | 134（原有 5 个 family + T9 catalog 129） |
 | 宿主岩 | 2（stone / deepslate） |
 | T3 component rules | 2,810 条规则 → 8,141 条配方（extruder 2,782；预算 10,000；shadow 0） |
 | T4 tool batch | 21 条规则 → 3,452 条配方（11 类工具；collision / unindexed / rejected = 0） |
-| Extruder shapes / templates | 31 / 62（playable 20 / skipped 42 / unclassified 0） |
-| GameTest | 39 / 39 通过 |
-| Java / Python 单测 | 399 / 399；206 / 206 通过（Python 可选 raw/cache replay 仍显式 skip） |
-| generated recipe advancement | 0（runData 的 832 个 recipe 全部不生成 advancement） |
+| Extruder shapes / templates | 34 / 62（T3 playable 20 / skipped 42 / unclassified 0；T8 新增 3 种 item-pipe shape） |
+| GameTest | 47 / 47 通过 |
+| Java / Python 单测 | 433 / 252（均全部通过；Python 可选 raw/cache replay 仍显式 skip） |
+| generated recipe advancement | 0（runData 的 835 个 recipe 全部不生成 advancement） |
 | 编译期动态材料 item tag 快照 | 0（运行时生成包单源） |
 | 台账：无当前矿源的 crusher 入口 | 原始集合 349；已分类 349；未分类 0 |
 | 台账：终端 dust | 原始集合 162；t5_chemical 145 / gt6_dead_end 17；未分类 0 |
@@ -353,8 +394,11 @@ material_registration_gate.json ────────────────
 | T5 non-molten fluids | 候选 119 全分类；live closed registration 15 |
 | T5.5 machine crafting | 23 台 configured machine + 7 条 steam-chain recipe 全分类；direct projectable 0，前置缺口已声明 |
 | T6 electrical readiness | raw 2,214 / live 1,773 全分类；118 cable item forms → 115 runtime cable blocks；29 wire blocks；144 blocks / 9,216 states；READY |
-| T7 material facts | 62 / 62 标签分类；ingot 126 + gem 94 = 220；formula 952；EnergyType 4 / 4；READY |
-| recipe publication | T3 8,141 / T4 3,452 / T5 152 / T7 220 / all maps 17,189 |
+| T7 material facts | 62 / 62 标签分类；101 / 101 词表 fail-fast；ingot 126 + gem 94 = 220 / 256 budget；formula 605 可见 + 347 待载体；EnergyType 4 / 4；READY |
+| T8 logistics | fluid 210 + item 72 = 282 blocks；18,048 states；3 covers；257 / 320 recipe budget；O-27 unavailable forms 25；READY |
+| T9 worldgen catalog | closure vein 129 / 129；ore material 137 / 137；ore blocks 274；fluid deposits 2；generated resources 263；READY |
+| T10 / preflight | `T10_READY`；prefix 56 / handshake 1,829 / gate +967；hot 642 + multi 646；cell 61 / 48 / 14 / 93；known-form 1,288 / 1,500 |
+| recipe load | datapack 5,958 / 6,600；publication 18,871 / 21,000；compression 3.167 ≥ 3.0；reload / index 10 s / 1 s |
 
 ---
 
@@ -410,10 +454,12 @@ material_registration_gate.json ────────────────
 - ❌ 为了性能去收紧门控（O-4 已明确：门控是体验项，不是性能项）
 - ❌ 因为"反正要重构"而在阶段中期做大改
 - ❌ 把台账数字写进文档但不接进测试断言（它一定会漂移）
+- ❌ 把 `fast` / `affected` 的通过写成阶段关闭证据；关闭证据只能来自完整 `closure`
+- ❌ 为了缩短验证而删除测试、信任旧 ledger、绕过 source gate，或把缺少 raw/cache 写成静默通过
 
 ---
 
-## 5. 方法论（不可协商的三条 + 一条）
+## 5. 方法论（不可协商）
 
 ### 5.1　用间接信号代替直接观测，是这个项目里所有系统性错误的共同根因
 
@@ -464,6 +510,28 @@ T0b 的教训是范围失控，T1 的成功是判据先定。
 
 **拆分聚合物时同时检查乘数**：不能只看每份产物的大小，还要检查「份数 × 每份求值成本」。O-4 把单栏 15k 条目拆成 10 栏后，若每个栏都重算完整计划，形状判据通过但总成本反而放大；因此计划按 runtime revision 只构建一次，所有栏共享。
 
+### 5.5　闭包判据不能证明保真（新增）
+
+T9 的 129 / 129 条 vein 已全部分类、注册并能真实放置，这些判据没有说谎；但 129 条 catalog 同时共用 `hr=5 / vr=2 / density=0.22 / y=-48..48` 与四层单矿布局。它证明的是「每条声明都有归宿并能被运行时到达」，没有证明「逐矿脉数值来自 GT6」。
+
+从 T10 起，每张阶段卡必须分别写出闭包、保真与载荷判据：
+
+1. **闭包判据**继续证明分类、注册、可达性、端到端链路和数据驱动泛化。
+2. **保真判据**按来源模式划分等价类，每类至少有固定 revision、文件路径、符号或规范化提取键以及文件摘要；行号只作人工定位，不单独充当事实身份。
+3. **全量而非抽样**：只要来源可投影，就必须对可投影全集做双向等价；少一条和多一条都失败。「至少 3 个锚点」只能作为纵切 smoke test，不能证明整批保真。
+4. **期望集必须独立构造**：不得与被测展开器共用 selector、normalizer 或映射表；收尾时仍要做错误期望值变异，确认报警器真的会红。
+5. **暂不能保真的字段必须自描述**：在 authored data 或 readiness ledger 中标记 `DESIGN_POLICY`、`PLACEHOLDER` 或 `UNVERIFIED`，同时登记替换阶段；禁止用统一模板冒充 `SOURCE_BACKED`。
+
+源数据为零或缺失时，它只构成反证，不得从邻近字段猜值。T10 的 1,773 份材料级 `heat_damage = 0` 没有被改写为正值；T10a 已让热锭伤害从 `OP.ingotHot.mHeatDamage = 3.0` 的前缀事实进入运行时。
+
+### 5.6　验证工作量只能去重，不能删减
+
+Python 验证统一使用 `tools/run_python_tests.py` 的四层入口：`fast` 是日常纯逻辑/fixture 门禁，`affected` 按路径 owner 选测，未知路径必须 fail-closed 升级 `closure`；`closure` 的判据是 unittest discovery 的每个测试恰好执行一次；`source-replay` 在 closure 之外显式重放 raw/cache，来源不存在只能报告 `SKIP`。
+
+阶段关闭与 CI 统一走 `tools/run_full_verification.py`：builder currentness → 双 `runData` → Java → GameTest UTF-8 evidence → Python closure → 单次绑定 `READY`。快速门禁不能替代这条链，独立 verifier 也不得重复重建同一份 closure 证据。
+
+性能优化只允许三类：同进程只读缓存、稳定大输入的 class fixture、同一 closure 证据的单次构造。缓存不得跨进程掩盖磁盘 currentness，必须提供清除入口且清除后能发现源漂移；调用方不得污染共享结果。性能验收记录 wall time，但 fail-closed 门禁锁定的是「无漏跑/无重复、单进程单次加载、单次 `ValidationContext`」，不使用受机器波动影响的硬秒数作为正确性判据。
+
 ---
 
 ## 6. 悬案登记表
@@ -476,7 +544,7 @@ T0b 的教训是范围失控，T1 的成功是判据先定。
 | **O-1** | **已关闭缓存层缺陷**：普通 `ensure` 先验 manifest，热命中时生成计划 Supplier 调用 0 次；指纹覆盖 gate/registered forms、tier、prefix/model、pack format、schema 与生成器 class bytes；`ensureStrict` 逐文件校验 SHA-256；写入拒绝越界路径并缓存父目录。单文件分发结构不再属于缓存正确性，归 O-10 | 性能 / 正确性 | 缓存层关闭；分发结构跟 O-10 |
 | **O-3** | **已关闭**：20k 场景在 21,815 entries 时按协议上限明确拒绝；4,000 entries 做真实 codec encode/decode round-trip；两种 20k full-server 场景 GameTest 均通过 | 正确性 | T2 验证完成 |
 | **O-4** | **已关闭创造栏问题**：约 14,922 个动态条目按 ore / ore-processing / dust / metal-gem / plate / parts / mechanical / wire / cable / misc 拆分，当前最大栏 3,248；分组计划与运行时 unification preference 共用解析与 first-owner 去重，并按 `MaterialCatalog.runtimeRevision()` 每轮只构建一次 | 体验 / 性能 | T2 审计修复完成 |
-| **O-5** | **已关闭**：1,980 条 concrete recipe 全部携带运行时 provenance；index 与 JSON 交叉断言 selected source / evidence hashes / source kind | 可维护性 | T2 完成 |
+| **O-5** | **已关闭**：2,117 条 concrete recipe 全部携带运行时 provenance；index 与 JSON 交叉断言 selected source / evidence hashes / source kind，137 条高版本入口额外绑定 raw 基准 hash 与 5/2 倍率 | 可维护性 | T2 完成 |
 | **O-6** | **已关闭**：捷径数从 gate + 生成物派生为 raw 187 对 + crushed 196 对 = 383 对 / 766 文件；Python 与 Java 都做全量计数，不再手填 `388` | 台账漂移 | T2 完成 |
 | **O-7** | **已关闭**：766 / 766 熔炉捷径 JSON 均为 `group=cruciblecraft:compat_shortcut`，policy 与 `OreResourceTest` 交叉断言 | 可维护性 | T2d 完成 |
 | **O-8** | **已关闭**：新增 copper crusher 真实 duration GameTest，持续供能并观测到 `duration - 1`，不调用 `forceLastTick`；端到端链保留加速 | 覆盖率 | T2d 完成 |
@@ -486,13 +554,15 @@ T0b 的教训是范围失控，T1 的成功是判据先定。
 | **O-12** | **已关闭**：`RuleExpression` 限制源串长度 4,096、parser / evaluator 嵌套深度 64，超限以带 rule id 的 `IllegalArgumentException` 失败，并有边界测试 | 外部输入边界 | T3 关闭 |
 | **O-13** | **已关闭降级丢库存与永久闩锁风险**：未来版本以显式 `unsupportedVersion` 控制字段锁停，状态字符串只用于显示；保存时回写原始未来版本并保留已知能量/进度字段，重新升级到支持版本会自动解除 quarantine。anvil / crucible 外部材料也改为不可用但可加载、可提取的 quarantine | 存档兼容 | T4a 关闭；真正 bump 时仍需为新增未知字段写迁移 |
 | **O-14** | `HeatMaintenanceEvents.itemEntityTick` 监听全局 `EntityTickEvent.Post`，但已先做最低成本的 `instanceof ItemEntity` 过滤；**T3 范围外，维持观察项** | 性能观察 | 只记录；性能剖析命中后再改 |
-| **O-15** | `zh_cn` 当前声明 131 个真实翻译（含 extruder shapes、11 类工具/图样、quarantine UI 与 T5 内容），相对 `en_us` 2,558 键覆盖率约 5.12%；不复制英文值伪装完整。完整中文化是材料与界面数据工作，应单独立项 | 本地化 / 数据完整性 | 未排期；现有测试锁定真实覆盖数与无英文占位 |
+| **O-15** | 当前 generated lang 中 `zh_cn` 有 293 个真实翻译，`en_us` 有 3,010 键，覆盖率约 9.73%；不复制英文值伪装完整。完整中文化是材料与界面数据工作，应单独立项 | 本地化 / 数据完整性 | 未排期；现有测试锁定真实覆盖数与无英文占位 |
 | **O-16** | **已完成当前 API 结论**：构造期材料/前缀事件只对显式排序在 CrucibleCraft 之前、监听器已注册的 addon 有交付保证；无序或更晚构造者可能完全收不到。限制已写入两事件 Javadoc 与相邻 API README；不把当前同步分发行为包装成稳定承诺 | 架构兼容 / 上游假设 | T4a 文档关闭；升级 NeoForge/FML 前仍需复核 |
 | **O-17** | **已关闭**：`SidedFluidHandler.fill` 与 `drain(FluidStack)` 均先用 `SIMULATE` 规划并保存所有暴露 tank 的 pre-image，`EXECUTE` 后核对返回值与完整 post-image；任一违约或异常会恢复全部暴露 tank，回滚本身失败则明确报告潜在不一致。聚焦测试覆盖多 tank 分配/聚合、simulate 污染、execute 少填/少排、完整回滚、回滚失败诊断、成功回调恰好一次与失败零回调，并以总量断言守恒 | 事务原子性 | T5-readiness 关闭；仅不可回滚的恶意 `FluidTank.setFluid` 实现保留显式故障边界 |
 | **O-18** | **已关闭**：仅显式白名单中的字符串组件可进入 `DataComponentIngredient` 二级索引；removed-only / 非白名单组件 / 未知 custom ingredient 按 recipe 逐条拒绝并记录 recipe id / map / ingredient 类型，核心 GameTest 锁 rejected = 0 / unindexed = 0，单条附属配方不再拖垮整个 epoch | 数据包兼容 / 诊断粒度 | T4b 关闭 |
 | **O-19** | **本地审计已关闭**：三份旧 smithing hammer 配方已移除持久化 `minecraft:max_damage`，资源测试与 GameTest 锁定 stack patch 只保存材料身份；README 明确受支持读取契约为 `ItemStack.getMaxDamage()` / 对应 stack 行为 API。prototype 仍需 `MAX_DAMAGE=1` / `DAMAGE=0` 哨兵满足 vanilla `isDamageableItem()`，直接读取原始组件的第三方 tooltip、JEI/EMI 或背包整理集成仍可能看到 1 | 第三方兼容 / 表现层 | 本地持久化审计关闭；绕过 `ItemStack` API 的第三方读取器保留为兼容边界，按集成提供适配 |
 | **O-20** | 大数值 progress / duration 改由客户端 block entity 精确读取后，刷新频率从 `ContainerData` 的每 tick 降为 `CHECKPOINT_INTERVAL=20` 的 block update；T3 的 64–240 tick 短配方会出现约 8%–31% 的可见步进。若要恢复平滑，在当前两槽后新增一个恒在 0..1000 的 progress 千分比槽供进度条每 tick 使用，精确值继续由 BE 提供 | 表现层 / 同步频率 | 不阻塞 T5；进入下一轮机器 UI 工作时处理 |
 | **O-21** | **已关闭**：configured machine 的 `ContainerData` 已从 electrolyzer 的 17 槽收敛为 `status / statusArgument` 两槽；progress / duration / fluid identity / amount 继续读客户端 BE，capacity 读 spec，旧 aggregate 与逐罐 `tankData` 全部删除 | 性能 / 可维护性 | 当前轮关闭；O-20 的可选平滑进度槽独立保留 |
+
+> O-22 及后续悬案续记在《CrucibleCraft 第二阶段总体规划》第 4 节；第二阶段表是这些编号的当前权威来源。
 
 ---
 
@@ -505,7 +575,12 @@ T0b 的教训是范围失控，T1 的成功是判据先定。
 - [ ] 范围之外的清单写下来了（至少 5 条）
 - [ ] 拆成 3–4 个子项，每个子项能独立验证
 - [ ] 如果有形态/数量爆炸的可能，**先把数字算出来写在纸上**
+- [ ] 本阶段的闭包、保真、载荷三个分母和完成信号已经分别写明
+- [ ] 固定来源的 revision、文件摘要、符号/提取键与人工行锚点已经复核；任一不一致时不开工
+- [ ] 新的 `tN/` MaterialRule 已有独立阶段预算；datapack 与 publication 投影已分别落账
 - [ ] 任何跨所有权边界搬运资源的类（`IItemHandler` / `IFluidHandler` / `IEnergyHandler` / `AbstractContainerMenu`）必须有守恒测试：搬运前后两侧总量相等；部分成功正确；模拟与执行或对端返回值违反契约时响亮失败
+- [ ] 新增/改名的工具与数据路径已加入 affected owner；不能证明依赖归属时预期行为是升级 `closure`
+- [ ] 若引入进程内缓存，已声明清除入口、不可污染返回契约与清缓存后的源漂移测试；禁止跨运行复用旧 currentness
 - [ ] 悬案登记表过了一遍，决定哪些提升为主线
 - [ ] 现状快照更新了
 - [ ] 上一个阶段标记为 ✅ 已关闭
@@ -516,9 +591,63 @@ T0b 的教训是范围失控，T1 的成功是判据先定。
 - [ ] 泛化验证：换 2–3 个材料不改代码直接跑通
 - [ ] 新增的台账数字接进了测试断言
 - [ ] 本阶段新增断言做一次变异检查：把期望值改成明显错误值时，测试必须变红
+- [ ] 可投影全集与独立期望集双向相等；测试没有与生产展开器共用 selector / normalizer / 映射表
+- [ ] `DESIGN_POLICY` / `PLACEHOLDER` / `UNVERIFIED` 已写入数据或 readiness，且每项都有悬案与替换条件
+- [ ] datapack 条目、publication、压缩比、reload / index 成本分别记账并通过各自预算
+- [ ] 闭包、保真、载荷三轴状态已更新；阶段关闭没有被写成未证明的「完整移植」
 - [ ] 本阶段的判断失误和本阶段修复引入的新成本都记进第 5 节（哪句话说错了 / 新成本从哪来 / 实际是什么 / 教训）
+- [ ] `python tools/run_full_verification.py --record` 完整通过；Python closure discovery 无漏跑、无重复，builder / 双 datagen / Java / GameTest / Python 只各记一次
+- [ ] raw/cache 来源审计已按需运行 `source-replay`；不可用时留下显式 `SKIP`，没有把它伪装成 closure 的 PASS
 - [ ] 现状快照更新
 - [ ] 悬案登记表更新
+
+---
+
+## 9. 架构不变量
+
+> 这一节记录的不是编码风格，而是当前规模下破坏后会迫使上层重写的结构约束。若直接来源推翻其中一条，先更新证据与本节，再动实现。
+
+### 9.1　档位不得成为配方维度
+
+`RecipeMap` 只标识工艺，`GTRecipe` 保存该工艺的规范需求；机器档位在运行时解释功率上限、速度、并行与超压行为。新增一个档位时：
+
+- `RecipeMap` 数量不变，id 不出现 tier / voltage 后缀。
+- concrete recipe 与 MaterialRule 不按档位复制。
+- 在没有其他内容变化时，`allPublishedRecipes` 的增量必须为 0。
+
+当前代码尚未满足运行时部分：`ProcessingMachineSpec` 把工艺与能力冻结在一起，`BY_MAP` 强制一张 map 对应一个 spec。T12 必须先拆成 `MachineKindSpec` 与 `TierProfile`，再增加档位；不得用复制 RecipeMap 绕过这个阻断。
+
+### 9.2　能源身份不得被共享接口折叠
+
+固定 GT6 revision 直接区分 RU（旋转）与 KU（推压）：它们有不同机器域和传输拓扑。CrucibleCraft 的 `IEnergyHandler` 已带 `EnergyType` 参数，可以继续作为共享协商接口；共享接口不等于共享物理身份。
+
+- RU 与 KU 必须在机器规格、来源台账和运行时诊断中可区分。
+- 电缆、传动轴、齿轮箱与相邻推压可以复用守恒、端点降级和遍历工具，但不得被实现成同一传输拓扑。
+- 新能源类型不应要求修改既有 handler 方法签名；可以增加类型或协议实现。
+- 在逐机器 GT6 `NBT_ENERGY_ACCEPTED` 台账完成前，不得继续把新的 RU / KU 机器无区别声明为 `KINETIC`。
+
+当前四值 `EnergyType` 与 T7 的「RU 映射 KINETIC」只描述现状，不是高保真终局。T12 开工前必须落定 RU / KU 的运行时身份与迁移边界；完整 shaft / gearbox 网络可以分期，但机器 spec 不能继续固化错误语义。
+
+### 9.3　多方块结构必须走数据层
+
+新增多方块的几何、朝向变换、方块/标签/空气谓词和端口坐标必须由 JSON 声明并由单一 validator 解释；新增第二个多方块不得再产生专用 `*Structure` 或 `*StructureLayout` Java 类。
+
+独特控制器行为、配方事务、UI 和特殊交互可以由 `MultiblockControllerSpec` 或小型 Java 插件承载。「结构不写 Java」不等于「任何新多方块都不能有 Java」。合并渲染、动态伸缩结构和 GT6 全量几何导入不属于通用层第一版。
+
+当前只有硬编码的 `CokeOvenStructure`。T12 原先「≤ 3 个继续硬编码」的分支由本不变量取代：先把 Coke Oven 迁移为数据定义，再用第二种不同形状和端口语义证明通用层。
+
+### 9.4　配方同步载荷与展开载荷分开记账
+
+当前实测为 5,952 个 datapack recipe entries，由服务端和独立客户端在各自运行时展开为 17,583 个 publication（集成服避免重复 reload），压缩比约 2.95 : 1。`MaterialRule` 因此同时是表达层和同步载荷压缩层。
+
+每阶段必须分别记录：
+
+- datapack recipe entries：RecipeManager 承载和加入同步的规模；
+- publication：展开后的内存、索引和匹配规模；
+- 压缩比：若下降，说明内容可能绕过规则层写成 concrete recipe，必须给出理由；
+- reload / index 时间：数量门禁的运行时校验，不得只看条目计数。
+
+当前代码对 datapack entries 设 6,600、publication 设 21,000、压缩比设 3.0 下限，并保留 reload 10 s / index 1 s 门禁。T10 关闭值为 5,958 / 18,871 / 3.167；T11 新增路线前必须由实际资源树和 runtime publication 重新复算，不能只改文档上限。
 
 ---
 

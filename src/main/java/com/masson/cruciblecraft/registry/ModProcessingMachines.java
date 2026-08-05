@@ -8,14 +8,27 @@ import java.util.function.Supplier;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
+import com.masson.cruciblecraft.machine.processing.CraftingCatalystPolicy;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
+import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 
 import net.minecraft.resources.ResourceLocation;
 
 /** Registry-safe processing specifications for currently implemented machines. */
 public final class ModProcessingMachines {
+    private static final List<String> PROCESSING_STATUSES = List.of(
+            "idle",
+            "running",
+            "invalid_recipe",
+            "output_blocked",
+            "underpowered",
+            "unsupported_version",
+            "inventory_layout_quarantined",
+            "material_quarantined",
+            "unknown");
+
     public static final ProcessingMachineSpec CRUSHER = new ProcessingMachineSpec(
             id("bronze_crusher"),
             id("crusher"),
@@ -43,13 +56,19 @@ public final class ModProcessingMachines {
                             new ProcessingMachineSpec.SlotPosition(116, 35)),
                     new ProcessingMachineSpec.ProgressBar(79, 34, 24, 6),
                     List.of(),
-                    List.of("idle", "invalid_recipe", "output_blocked", "underpowered")));
+                    PROCESSING_STATUSES));
     public static final ProcessingMachineSpec SLUICE =
             mechanical("sluice", () -> ModRecipeMaps.SLUICE, true);
     public static final ProcessingMachineSpec BATH =
-            mechanical("bath", () -> ModRecipeMaps.BATH, true);
+            reusedT5("bath", () -> ModRecipeMaps.BATH,
+                    1, 4, 1, 1, 4_000, 8_000,
+                    EnergyType.KINETIC,
+                    ProcessingMachineSpec.EnergyMode.BUFFERED);
     public static final ProcessingMachineSpec CENTRIFUGE =
-            mechanical("centrifuge", () -> ModRecipeMaps.CENTRIFUGE, false);
+            reusedT5("centrifuge", () -> ModRecipeMaps.CENTRIFUGE,
+                    1, 6, 1, 2, 4_000, 8_000,
+                    EnergyType.KINETIC,
+                    ProcessingMachineSpec.EnergyMode.BUFFERED);
     public static final ProcessingMachineSpec SHREDDER =
             mechanical("shredder", () -> ModRecipeMaps.SHREDDER, false);
     public static final ProcessingMachineSpec SIFTER =
@@ -57,7 +76,9 @@ public final class ModProcessingMachines {
     public static final ProcessingMachineSpec MORTAR =
             mechanical("mortar", () -> ModRecipeMaps.MORTAR, false);
     public static final ProcessingMachineSpec SMELTER =
-            spec("smelter", () -> ModRecipeMaps.SMELTER, false, EnergyType.HEAT,
+            reusedT5("smelter", () -> ModRecipeMaps.SMELTER,
+                    1, 4, 0, 1, 4_000, 8_000,
+                    EnergyType.HEAT,
                     ProcessingMachineSpec.EnergyMode.ADJACENT);
     public static final List<ProcessingMachineSpec> T2_MACHINES = List.of(
             SLUICE, BATH, CENTRIFUGE, SHREDDER, SIFTER, SMELTER, MORTAR);
@@ -76,7 +97,7 @@ public final class ModProcessingMachines {
     public static final ProcessingMachineSpec BENDER =
             t3("bender", () -> ModRecipeMaps.BENDER, 1, false);
     public static final ProcessingMachineSpec ASSEMBLER =
-            t3("assembler", () -> ModRecipeMaps.ASSEMBLER, 2, true);
+            t3("assembler", () -> ModRecipeMaps.ASSEMBLER, 6, true);
     public static final ProcessingMachineSpec WELDER =
             t3("welder", () -> ModRecipeMaps.WELDER, 2, true);
     public static final ProcessingMachineSpec PRESS =
@@ -84,9 +105,85 @@ public final class ModProcessingMachines {
     public static final List<ProcessingMachineSpec> T3_MACHINES = List.of(
             EXTRUDER, CUTTER, LATHE, ROLLINGMILL, ROLLBENDER,
             WIREMILL, BENDER, ASSEMBLER, WELDER, PRESS);
-    public static final int T3_EXPANSION_BUDGET = 10_000;
+    public static final ProcessingMachineSpec ELECTROLYZER =
+            t5("electrolyzer", () -> ModRecipeMaps.ELECTROLYZER,
+                    2, 6, 2, 3, 16_000, 16_000);
+    public static final ProcessingMachineSpec MIXER =
+            t5("mixer", () -> ModRecipeMaps.MIXER,
+                    4, 1, 3, 2, 32_000, 32_000);
+    public static final ProcessingMachineSpec DISTILLERY =
+            t5("distillery", () -> ModRecipeMaps.DISTILLERY, 2, 2, 2, 3);
+    public static final ProcessingMachineSpec AUTOCLAVE =
+            t5("autoclave", () -> ModRecipeMaps.AUTOCLAVE, 2, 3, 1, 1,
+                    2_500_000, 16_000);
+    public static final ProcessingMachineSpec DRYING =
+            t5("drying", () -> ModRecipeMaps.DRYING, 1, 1, 0, 1,
+                    32_000, 32_000);
+    public static final ProcessingMachineSpec COMPRESSOR =
+            t5("compressor", () -> ModRecipeMaps.COMPRESSOR, 1, 1, 0, 0,
+                    32_000, 32_000);
+    /** T5 can publish into reused maps as well as its new dedicated maps. */
+    public static final List<ProcessingMachineSpec> T5_MACHINES = List.of(
+            BATH, CENTRIFUGE, SMELTER, ASSEMBLER,
+            ELECTROLYZER, MIXER, DISTILLERY, AUTOCLAVE, DRYING, COMPRESSOR);
+    /** New T5 maps which intentionally have no pre-T5 recipe population. */
+    public static final List<ProcessingMachineSpec> T5_DEDICATED_MACHINES = List.of(
+            ELECTROLYZER, MIXER, DISTILLERY, AUTOCLAVE, DRYING, COMPRESSOR);
+    /** Original T3 component envelope: 5,352 non-extruder + 4,648 extruder. */
+    public static final int T3_COMPONENT_EXPANSION_BUDGET = 10_000;
+    /** T4 tool rules are budgeted separately from the closed T3 content set. */
+    public static final int T4_TOOL_EXPANSION_BUDGET = 4_000;
+    /**
+     * Live-map policy envelope for the complete flattened T4 projection.
+     * The exact policy projects 8,141 T3 + 3,452 T4 = 11,593 recipes. A 10%
+     * margin rounded to the next thousand gives 13,000 and remains below the
+     * measured reload and index budgets below.
+     */
+    public static final int LIVE_T3_MAP_RECIPE_BUDGET = 13_000;
+    /**
+     * The pinned projection publishes 145 T5 recipes. This final gate keeps
+     * measured growth room without weakening the frozen T3/T4 budgets.
+     */
+    public static final int T5_CHEMICAL_RECIPE_BUDGET = 200;
+    /**
+     * T7 publishes 220 tag-driven mortar expansions. This independent envelope
+     * prevents authored material facts from consuming the global margin
+     * unnoticed.
+     */
+    public static final int T7_AUTHORED_MATERIAL_RULE_BUDGET = 256;
+    /**
+     * T8 publishes 257 source-backed fluid/item pipe material-rule expansions.
+     */
+    public static final int T8_PIPE_MATERIAL_RULE_BUDGET = 320;
+    /**
+     * T10's known hot- and multi-ingot routes project 1,288 expansions. This
+     * provisional T10a envelope applies the established 10% margin and rounds
+     * up to the next hundred. Container routes remain design-required and must
+     * trigger an explicit re-projection rather than consume assumed headroom.
+     */
+    public static final int T10_AUTHORED_MATERIAL_RULE_BUDGET = 1_500;
+    public static final Map<Integer, Integer> AUTHORED_MATERIAL_RULE_BUDGETS =
+            Map.of(
+                    7, T7_AUTHORED_MATERIAL_RULE_BUDGET,
+                    8, T8_PIPE_MATERIAL_RULE_BUDGET,
+                    10, T10_AUTHORED_MATERIAL_RULE_BUDGET);
+    /**
+     * The verified post-T8 publication is 17,583 after adding the high-version
+     * ore-block crusher ingress. The pinned T10 preflight projects 642
+     * hot-ingot and 646 multi-ingot routes, for 18,871 known
+     * recipes. Applying the established 10% margin and rounding up to the next
+     * thousand yields 21,000.
+     */
+    public static final int ALL_PUBLISHED_RECIPE_BUDGET = 21_000;
+    public static final long RECIPE_RELOAD_BUDGET_MS = 10_000L;
+    public static final long RECIPE_INDEX_BUILD_BUDGET_MS = 1_000L;
+    public static final long RECIPE_LOOKUP_AVERAGE_BUDGET_NS = 1_000_000L;
+    public static final long RECIPE_LOOKUP_AVERAGE_CANDIDATE_BUDGET = 64L;
     public static final List<ProcessingMachineSpec> CONFIGURED_MACHINES =
-            java.util.stream.Stream.concat(T2_MACHINES.stream(), T3_MACHINES.stream()).toList();
+            java.util.stream.Stream.of(T2_MACHINES, T3_MACHINES, T5_MACHINES)
+                    .flatMap(List::stream)
+                    .distinct()
+                    .toList();
     private static final Map<ResourceLocation, ProcessingMachineSpec> BY_ID =
             CONFIGURED_MACHINES.stream().collect(java.util.stream.Collectors.toUnmodifiableMap(
                     ProcessingMachineSpec::id, value -> value));
@@ -177,7 +274,7 @@ public final class ModProcessingMachines {
                         waterInput
                                 ? List.of(new ProcessingMachineSpec.TankPosition(0, 20, 17, 12, 52))
                                 : List.of(),
-                        List.of("idle", "running", "invalid_recipe", "output_blocked", "underpowered")));
+                        PROCESSING_STATUSES));
     }
 
     private static Optional<String> validateConfigured(GTRecipe recipe, boolean waterInput) {
@@ -208,6 +305,7 @@ public final class ModProcessingMachines {
             boolean extruderTool) {
         List<Integer> inputs = java.util.stream.IntStream.range(0, itemInputs).boxed().toList();
         int outputSlot = itemInputs;
+        boolean assemblerCatalysts = "assembler".equals(path);
         var tanks = futureFluidInput
                 ? new ProcessingMachineSpec.TankLayout(
                         List.of(new ProcessingMachineSpec.TankSpec(0, 4_000)), List.of())
@@ -216,6 +314,15 @@ public final class ModProcessingMachines {
                 ? List.of(
                         new ProcessingMachineSpec.SlotPosition(56, 35),
                         new ProcessingMachineSpec.SlotPosition(116, 35))
+                : itemInputs == 6
+                        ? List.of(
+                                new ProcessingMachineSpec.SlotPosition(20, 17),
+                                new ProcessingMachineSpec.SlotPosition(38, 17),
+                                new ProcessingMachineSpec.SlotPosition(56, 17),
+                                new ProcessingMachineSpec.SlotPosition(20, 53),
+                                new ProcessingMachineSpec.SlotPosition(38, 53),
+                                new ProcessingMachineSpec.SlotPosition(56, 53),
+                                new ProcessingMachineSpec.SlotPosition(116, 35))
                 : List.of(
                         new ProcessingMachineSpec.SlotPosition(38, 35),
                         new ProcessingMachineSpec.SlotPosition(56, 35),
@@ -232,6 +339,22 @@ public final class ModProcessingMachines {
                         (slot, stack) -> slot == 1
                                 ? ExtruderShapeCatalog.isShape(stack)
                                 : !ExtruderShapeCatalog.isShape(stack))
+                : assemblerCatalysts
+                        ? new ProcessingMachineSpec.SlotLayout(
+                                7,
+                                List.of(0, 1, 2, 3, 4, 5),
+                                List.of(6),
+                                Map.of(
+                                        0, ProcessingMachineSpec.SlotRole.MATERIAL,
+                                        1, ProcessingMachineSpec.SlotRole.MATERIAL,
+                                        2, ProcessingMachineSpec.SlotRole.MATERIAL,
+                                        3, ProcessingMachineSpec.SlotRole.TOOL,
+                                        4, ProcessingMachineSpec.SlotRole.TOOL,
+                                        5, ProcessingMachineSpec.SlotRole.TOOL,
+                                        6, ProcessingMachineSpec.SlotRole.OUTPUT),
+                                (slot, stack) -> slot < 3
+                                        ? CraftingCatalystPolicy.acceptsMaterialSlot(stack)
+                                        : CraftingCatalystPolicy.acceptsToolSlot(stack))
                 : new ProcessingMachineSpec.SlotLayout(
                         itemInputs + 1, inputs, List.of(outputSlot));
         ProcessingMachineSpec spec = new ProcessingMachineSpec(
@@ -258,15 +381,24 @@ public final class ModProcessingMachines {
                                 ? ProcessingMachineSpec.CapabilityAccess.INPUT
                                 : ProcessingMachineSpec.CapabilityAccess.NONE),
                 recipe -> validateT3(
-                        recipe, itemInputs, futureFluidInput, extruderTool),
+                        recipe,
+                        itemInputs,
+                        futureFluidInput,
+                        extruderTool,
+                        assemblerCatalysts),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 new ProcessingMachineSpec.UiLayout(
                         positions,
                         new ProcessingMachineSpec.ProgressBar(79, 34, 24, 6),
                         futureFluidInput
-                                ? List.of(new ProcessingMachineSpec.TankPosition(0, 20, 17, 12, 52))
+                                ? List.of(new ProcessingMachineSpec.TankPosition(
+                                        0,
+                                        assemblerCatalysts ? 4 : 20,
+                                        17,
+                                        12,
+                                        52))
                                 : List.of(),
-                        List.of("idle", "running", "invalid_recipe", "output_blocked", "underpowered")));
+                        PROCESSING_STATUSES));
         return spec;
     }
 
@@ -274,7 +406,8 @@ public final class ModProcessingMachines {
             GTRecipe recipe,
             int itemInputs,
             boolean fluidInput,
-            boolean extruderTool) {
+            boolean extruderTool,
+            boolean assemblerCatalysts) {
         if (recipe.itemInputs().size() > itemInputs
                 || recipe.itemOutputs().size() > 1
                 || recipe.fluidInputs().size() > (fluidInput ? 1 : 0)
@@ -292,11 +425,47 @@ public final class ModProcessingMachines {
                         .anyMatch(stack -> !ExtruderShapeCatalog.isShape(stack)))) {
             return Optional.of("t3_extruder_tool_shape");
         }
-        if (recipe.eut() <= 0L || recipe.eut() > 256L || recipe.eut() > 4_096L) {
+        if (assemblerCatalysts) {
+            int materialInputs = 0;
+            int catalystInputs = 0;
+            int preservedPatterns = 0;
+            for (int index = 0; index < recipe.itemInputActions().size(); index++) {
+                ItemInputAction action = recipe.itemInputActions().get(index);
+                if (!CraftingCatalystPolicy.acceptsIngredient(
+                        recipe.itemInputs().get(index), action.kind())) {
+                    return Optional.of("t3_assembler_catalyst_shape");
+                }
+                if (action.kind() == ItemInputAction.Kind.CONSUME) {
+                    materialInputs++;
+                } else {
+                    catalystInputs++;
+                    if (action.kind() == ItemInputAction.Kind.PRESERVE) {
+                        preservedPatterns++;
+                    }
+                }
+            }
+            if (materialInputs > 3 || catalystInputs > 3 || preservedPatterns > 1) {
+                return Optional.of("t3_assembler_catalyst_shape");
+            }
+        } else if (recipe.itemInputActions().stream()
+                .anyMatch(action -> action.kind() == ItemInputAction.Kind.WEAR)) {
+            return Optional.of("t4_wear_tool_shape");
+        }
+        // The 4,096-unit buffer is storage; the real per-recipe maxPacket policy is 256.
+        if (recipe.eut() <= 0L || recipe.eut() > 256L) {
             return Optional.of("t3_recipe_energy");
         }
         if (recipe.itemInputCounts().stream().anyMatch(count ->
-                        count < 0 || count > 64 || !extruderTool && count == 0)
+                        count < 0 || count > 64)
+                || java.util.stream.IntStream.range(
+                                0, recipe.itemInputCounts().size())
+                        .anyMatch(index -> recipe.itemInputCounts().get(index) == 0
+                                && !(extruderTool
+                                && recipe.itemInputActions().get(index).kind()
+                                        == ItemInputAction.Kind.PRESERVE)
+                                && !(assemblerCatalysts
+                                && recipe.itemInputActions().get(index).kind()
+                                        != ItemInputAction.Kind.CONSUME))
                 || recipe.itemOutputs().stream().anyMatch(stack ->
                         stack.isEmpty() || stack.getCount() <= 0)
                 || recipe.outputChances().stream().anyMatch(
@@ -304,6 +473,216 @@ public final class ModProcessingMachines {
                 || recipe.fluidInputs().stream().anyMatch(
                         stack -> stack.isEmpty() || stack.getAmount() > 4_000)) {
             return Optional.of("t3_recipe_amount");
+        }
+        return Optional.empty();
+    }
+
+    private static ProcessingMachineSpec reusedT5(
+            String path,
+            Supplier<RecipeMap> map,
+            int itemInputs,
+            int itemOutputs,
+            int fluidInputs,
+            int fluidOutputs,
+            int fluidInputCapacity,
+            int fluidOutputCapacity,
+            EnergyType energyType,
+            ProcessingMachineSpec.EnergyMode energyMode) {
+        ProcessingMachineSpec layout = t5(
+                path,
+                map,
+                itemInputs,
+                itemOutputs,
+                fluidInputs,
+                fluidOutputs,
+                fluidInputCapacity,
+                fluidOutputCapacity);
+        return new ProcessingMachineSpec(
+                layout.id(),
+                layout.recipeMapId(),
+                map,
+                layout.items(),
+                layout.fluids(),
+                new ProcessingMachineSpec.EnergySpec(
+                        energyType,
+                        energyMode,
+                        energyMode == ProcessingMachineSpec.EnergyMode.BUFFERED
+                                ? 4_096L
+                                : 0L,
+                        1_024L),
+                new ProcessingMachineSpec.SidedIoPolicy(
+                        layout.sidedIo().items(),
+                        layout.sidedIo().fluids(),
+                        (front, side) -> energyMode
+                                        == ProcessingMachineSpec.EnergyMode.BUFFERED
+                                && side != null
+                                && side == front.getOpposite()
+                                        ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                        : ProcessingMachineSpec.CapabilityAccess.NONE),
+                recipe -> validateT5(
+                        recipe,
+                        itemInputs,
+                        itemOutputs,
+                        fluidInputs,
+                        fluidOutputs,
+                        fluidInputCapacity,
+                        fluidOutputCapacity),
+                layout.buffering(),
+                layout.ui());
+    }
+
+    private static ProcessingMachineSpec t5(
+            String path,
+            Supplier<RecipeMap> map,
+            int itemInputs,
+            int itemOutputs,
+            int fluidInputs,
+            int fluidOutputs) {
+        return t5(
+                path,
+                map,
+                itemInputs,
+                itemOutputs,
+                fluidInputs,
+                fluidOutputs,
+                8_000,
+                8_000);
+    }
+
+    private static ProcessingMachineSpec t5(
+            String path,
+            Supplier<RecipeMap> map,
+            int itemInputs,
+            int itemOutputs,
+            int fluidInputs,
+            int fluidOutputs,
+            int fluidInputCapacity,
+            int fluidOutputCapacity) {
+        List<Integer> inputSlots =
+                java.util.stream.IntStream.range(0, itemInputs).boxed().toList();
+        List<Integer> outputSlots = java.util.stream.IntStream
+                .range(itemInputs, itemInputs + itemOutputs)
+                .boxed()
+                .toList();
+        List<ProcessingMachineSpec.TankSpec> inputTanks = java.util.stream.IntStream
+                .range(0, fluidInputs)
+                .mapToObj(index ->
+                        new ProcessingMachineSpec.TankSpec(index, fluidInputCapacity))
+                .toList();
+        List<ProcessingMachineSpec.TankSpec> outputTanks = java.util.stream.IntStream
+                .range(fluidInputs, fluidInputs + fluidOutputs)
+                .mapToObj(index ->
+                        new ProcessingMachineSpec.TankSpec(index, fluidOutputCapacity))
+                .toList();
+        List<ProcessingMachineSpec.SlotPosition> inputPositions = List.of(
+                new ProcessingMachineSpec.SlotPosition(44, 17),
+                new ProcessingMachineSpec.SlotPosition(62, 17),
+                new ProcessingMachineSpec.SlotPosition(44, 53),
+                new ProcessingMachineSpec.SlotPosition(62, 53));
+        List<ProcessingMachineSpec.SlotPosition> outputPositions = List.of(
+                new ProcessingMachineSpec.SlotPosition(104, 8),
+                new ProcessingMachineSpec.SlotPosition(122, 8),
+                new ProcessingMachineSpec.SlotPosition(104, 35),
+                new ProcessingMachineSpec.SlotPosition(122, 35),
+                new ProcessingMachineSpec.SlotPosition(104, 62),
+                new ProcessingMachineSpec.SlotPosition(122, 62));
+        List<ProcessingMachineSpec.SlotPosition> slotPositions =
+                java.util.stream.Stream.concat(
+                                inputPositions.stream().limit(itemInputs),
+                                outputPositions.stream().limit(itemOutputs))
+                        .toList();
+        List<ProcessingMachineSpec.TankPosition> tankPositions =
+                java.util.stream.Stream.concat(
+                                java.util.stream.IntStream.range(0, fluidInputs)
+                                        .mapToObj(index ->
+                                                new ProcessingMachineSpec.TankPosition(
+                                                        index, 2 + index * 11, 17, 9, 52)),
+                                java.util.stream.IntStream.range(0, fluidOutputs)
+                                        .mapToObj(index ->
+                                                new ProcessingMachineSpec.TankPosition(
+                                                        fluidInputs + index,
+                                                        176 - fluidOutputs * 11 + index * 11,
+                                                        17,
+                                                        9,
+                                                        52)))
+                        .toList();
+        return new ProcessingMachineSpec(
+                id(path),
+                id(path),
+                map,
+                new ProcessingMachineSpec.SlotLayout(
+                        itemInputs + itemOutputs, inputSlots, outputSlots),
+                new ProcessingMachineSpec.TankLayout(inputTanks, outputTanks),
+                new ProcessingMachineSpec.EnergySpec(
+                        EnergyType.ELECTRIC,
+                        ProcessingMachineSpec.EnergyMode.BUFFERED,
+                        65_536L,
+                        1_024L),
+                new ProcessingMachineSpec.SidedIoPolicy(
+                        (front, side) -> side == null
+                                ? ProcessingMachineSpec.CapabilityAccess.NONE
+                                : side == front
+                                        ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                                        : ProcessingMachineSpec.CapabilityAccess.INPUT,
+                        (front, side) -> side == null
+                                ? ProcessingMachineSpec.CapabilityAccess.NONE
+                                : side == front && fluidOutputs > 0
+                                        ? ProcessingMachineSpec.CapabilityAccess.OUTPUT
+                                        : side != front && fluidInputs > 0
+                                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                                : ProcessingMachineSpec.CapabilityAccess.NONE,
+                        (front, side) -> side != null && side == front.getOpposite()
+                                ? ProcessingMachineSpec.CapabilityAccess.INPUT
+                                : ProcessingMachineSpec.CapabilityAccess.NONE),
+                recipe -> validateT5(
+                        recipe,
+                        itemInputs,
+                        itemOutputs,
+                        fluidInputs,
+                        fluidOutputs,
+                        fluidInputCapacity,
+                        fluidOutputCapacity),
+                ProcessingMachineSpec.BufferPolicy.PAUSE,
+                new ProcessingMachineSpec.UiLayout(
+                        slotPositions,
+                        new ProcessingMachineSpec.ProgressBar(80, 34, 24, 6),
+                        tankPositions,
+                        PROCESSING_STATUSES));
+    }
+
+    private static Optional<String> validateT5(
+            GTRecipe recipe,
+            int itemInputs,
+            int itemOutputs,
+            int fluidInputs,
+            int fluidOutputs,
+            int fluidInputCapacity,
+            int fluidOutputCapacity) {
+        if (recipe.itemInputs().size() > itemInputs
+                || recipe.itemOutputs().size() > itemOutputs
+                || recipe.fluidInputs().size() > fluidInputs
+                || recipe.fluidOutputs().size() > fluidOutputs) {
+            return Optional.of("t5_recipe_shape");
+        }
+        if (recipe.itemInputActions().stream()
+                .anyMatch(action -> action.kind() != ItemInputAction.Kind.CONSUME)) {
+            return Optional.of("t5_recipe_input_action");
+        }
+        if (recipe.eut() <= 0L || recipe.eut() > 1_024L) {
+            return Optional.of("t5_recipe_energy");
+        }
+        if (recipe.itemInputCounts().stream().anyMatch(count -> count <= 0 || count > 64)
+                || recipe.itemOutputs().stream().anyMatch(
+                        stack -> stack.isEmpty() || stack.getCount() <= 0)
+                || recipe.outputChances().stream().anyMatch(
+                        chance -> chance <= 0 || chance > GTRecipe.GUARANTEED_CHANCE)
+                || recipe.fluidInputs().stream().anyMatch(
+                        stack -> stack.isEmpty()
+                                || stack.getAmount() > fluidInputCapacity)
+                || recipe.fluidOutputs().stream().anyMatch(
+                        stack -> stack.isEmpty()
+                                || stack.getAmount() > fluidOutputCapacity)) {
+            return Optional.of("t5_recipe_amount");
         }
         return Optional.empty();
     }

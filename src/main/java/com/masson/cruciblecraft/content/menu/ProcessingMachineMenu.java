@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.content.menu;
 
 import java.util.function.Predicate;
 
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineDisplayData;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 
 import net.minecraft.world.Container;
@@ -12,6 +13,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.IItemHandlerModifiable;
 import net.neoforged.neoforge.items.SlotItemHandler;
@@ -71,33 +73,78 @@ public abstract class ProcessingMachineMenu extends AbstractContainerMenu {
         addDataSlots(data);
     }
 
-    public final int scaledProgress(int width) {
-        return data.get(1) <= 0 ? 0 : data.get(0) * width / data.get(1);
+    public int progress() {
+        return data.getCount() > 0 ? Math.max(0, data.get(0)) : 0;
     }
 
-    public final int powerDemand() {
-        return data.getCount() > 2 ? data.get(2) : 0;
+    public int duration() {
+        return data.getCount() > 1 ? Math.max(0, data.get(1)) : 0;
+    }
+
+    public final int scaledProgress(int width) {
+        int duration = duration();
+        if (duration <= 0 || width <= 0) {
+            return 0;
+        }
+        return (int) Math.min(
+                width,
+                (long) progress() * width / duration);
     }
 
     public final String status() {
-        if (data.getCount() <= 3 || spec.ui().statuses().isEmpty()) {
+        int dataIndex = statusDataIndex();
+        if (dataIndex < 0
+                || data.getCount() <= dataIndex
+                || spec.ui().statuses().isEmpty()) {
             return "idle";
         }
-        int index = Math.max(0, Math.min(
-                data.get(3), spec.ui().statuses().size() - 1));
+        int index = data.get(dataIndex);
+        if (index < 0 || index >= spec.ui().statuses().size()) {
+            return ProcessingMachineDisplayData.UNKNOWN;
+        }
         return spec.ui().statuses().get(index);
     }
 
-    public final int tankAmount() {
-        return data.getCount() > 4 ? Math.max(0, data.get(4)) : 0;
+    public final int statusArgument() {
+        int dataIndex = statusArgumentDataIndex();
+        return dataIndex >= 0 && data.getCount() > dataIndex
+                ? Math.max(0, data.get(dataIndex))
+                : 0;
     }
 
-    public final int tankCapacity() {
-        return data.getCount() > 5 ? Math.max(0, data.get(5)) : 0;
+    protected int statusDataIndex() {
+        return 3;
+    }
+
+    protected int statusArgumentDataIndex() {
+        return 6;
+    }
+
+    public int tankAmount(int tank) {
+        if (tank < 0 || tank >= spec.fluids().tankCount()) {
+            return 0;
+        }
+        return tankFluid(tank).getAmount();
+    }
+
+    public int tankCapacity(int tank) {
+        if (tank < 0 || tank >= spec.fluids().tankCount()) {
+            return 0;
+        }
+        return spec.fluids().all().stream()
+                .filter(configured -> configured.index() == tank)
+                .mapToInt(ProcessingMachineSpec.TankSpec::capacity)
+                .findFirst()
+                .orElse(0);
     }
 
     public final ProcessingMachineSpec machineSpec() {
         return spec;
+    }
+
+    /** Client-visible tank identity supplied by configured machine menus. */
+    public FluidStack tankFluid(int tank) {
+        return FluidStack.EMPTY;
     }
 
     @Override public boolean stillValid(Player player) {

@@ -1,0 +1,22 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "conditions": [
+    "material.has(\"gt6:itemgenerator/hotingots\")",
+    "has_registered(ingot) && has_registered(ingot_hot)"
+  ],
+  "duration": "800",
+  "eut": "8",
+  "item_inputs": [
+    {
+      "count": "1",
+      "prefix": "cruciblecraft:ingot"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "1",
+      "prefix": "cruciblecraft:ingot_hot"
+    }
+  ],
+  "target": "cruciblecraft:smelter"
+}

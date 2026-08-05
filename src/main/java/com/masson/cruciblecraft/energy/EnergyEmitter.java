@@ -26,9 +26,10 @@ public final class EnergyEmitter {
     }
 
     /**
-     * Simulates all consumers, fairly allocates the source budget, then executes
-     * the source before consumers so a contract violation can lose energy but
-     * can never create it.
+     * Probes demand, fairly allocates the source budget, then re-simulates and
+     * commits each consumer serially. Source extraction remains first for each
+     * commit, so shared downstream state and broken endpoints can only reduce
+     * delivery or dissipate energy; they cannot escape through the server tick.
      */
     public static long emit(
             Level level,
@@ -44,7 +45,25 @@ public final class EnergyEmitter {
         if (level.isClientSide || sides.isEmpty()) {
             return 0L;
         }
+        try {
+            return emitChecked(
+                    level, position, source, type, sides);
+        } catch (RuntimeException failure) {
+            EnergyTransferDiagnostics.warnOnce(
+                    "energy emission",
+                    source,
+                    "Unexpected failure at " + position,
+                    failure);
+            return 0L;
+        }
+    }
 
+    private static long emitChecked(
+            Level level,
+            BlockPos position,
+            IEnergyHandler source,
+            EnergyType type,
+            List<Direction> sides) {
         Direction extractionSide = null;
         long size = 0L;
         for (Direction side : sides) {
@@ -61,8 +80,15 @@ public final class EnergyEmitter {
             return 0L;
         }
 
-        long budget = source.extract(type, size, Long.MAX_VALUE, extractionSide, true);
-        requireBoundedResult("source simulation", Long.MAX_VALUE, budget);
+        long budget = safeExtract(
+                source,
+                type,
+                size,
+                Long.MAX_VALUE,
+                extractionSide,
+                true,
+                "source simulation",
+                position);
         if (budget <= 0L) {
             return 0L;
         }
@@ -89,11 +115,15 @@ public final class EnergyEmitter {
             if (target == null || !target.handles(type, consumerSide)) {
                 continue;
             }
-            long demand = target.insert(type, size, budget, consumerSide, true);
-            requireBoundedResult(
-                    "consumer simulation at " + targetPosition + " side " + consumerSide,
+            long demand = safeInsert(
+                    target,
+                    type,
+                    size,
                     budget,
-                    demand);
+                    consumerSide,
+                    true,
+                    "consumer simulation",
+                    targetPosition);
             if (demand > 0L) {
                 consumers.add(target);
                 consumerPositions.add(targetPosition);
@@ -144,83 +174,157 @@ public final class EnergyEmitter {
                 || consumers.size() != plan.length) {
             throw new IllegalArgumentException("Energy transfer plan shape mismatch");
         }
-        long[] expected = new long[plan.length];
         long delivered = 0L;
         for (int index = 0; index < consumers.size(); index++) {
             if (plan[index] <= 0L) {
                 continue;
             }
-            long simulated = consumers.get(index).insert(
-                    type,
-                    size,
-                    plan[index],
-                    consumerSides.get(index),
-                    true);
-            expected[index] = requireBoundedResult(
-                    endpoint(
-                            "consumer " + index + " simulation",
-                            consumers.get(index),
-                            consumerPositions.get(index),
-                            consumerSides.get(index)),
-                    plan[index],
-                    simulated);
-            delivered = Math.addExact(delivered, expected[index]);
-        }
-        if (delivered <= 0L) {
-            return 0L;
-        }
-
-        long simulatedExtraction =
-                source.extract(type, size, delivered, extractionSide, true);
-        requireExactResult(
-                endpoint(
-                        "source simulation",
-                        source,
-                        sourcePosition,
-                        extractionSide),
-                delivered,
-                simulatedExtraction);
-
-        // Capability APIs provide no rollback. Exact preflight makes every
-        // following call contract-identical; any mismatch is therefore an
-        // endpoint violation and must stop the transfer immediately. Deducting
-        // first deliberately makes the irrecoverable failure direction energy
-        // loss rather than duplication.
-        long extracted = source.extract(
-                type,
-                size,
-                delivered,
-                extractionSide,
-                false);
-        requireExactResult(
-                endpoint(
-                        "source execution",
-                        source,
-                        sourcePosition,
-                        extractionSide),
-                delivered,
-                extracted);
-
-        for (int index = 0; index < consumers.size(); index++) {
-            if (plan[index] <= 0L) {
+            IEnergyHandler consumer = consumers.get(index);
+            BlockPos consumerPosition = consumerPositions.get(index);
+            Direction consumerSide = consumerSides.get(index);
+            try {
+                consumer.invalidateSimulationCache();
+            } catch (RuntimeException failure) {
+                EnergyTransferDiagnostics.warnOnce(
+                        "consumer cache invalidation",
+                        consumer,
+                        endpoint(
+                                "consumer " + index
+                                        + " cache invalidation",
+                                consumer,
+                                consumerPosition,
+                                consumerSide),
+                        failure);
                 continue;
             }
-            long accepted = consumers.get(index).insert(
+            long simulated = safeInsert(
+                    consumer,
                     type,
                     size,
                     plan[index],
-                    consumerSides.get(index),
-                    false);
-            requireExactResult(
-                    endpoint(
-                            "consumer " + index + " execution",
-                            consumers.get(index),
-                            consumerPositions.get(index),
-                            consumerSides.get(index)),
-                    expected[index],
-                    accepted);
+                    consumerSide,
+                    true,
+                    "consumer " + index + " simulation",
+                    consumerPosition);
+            if (simulated <= 0L) {
+                continue;
+            }
+            long sourceAvailable = safeExtract(
+                    source,
+                    type,
+                    size,
+                    simulated,
+                    extractionSide,
+                    true,
+                    "source simulation",
+                    sourcePosition);
+            long transferable = Math.min(simulated, sourceAvailable);
+            if (transferable <= 0L) {
+                continue;
+            }
+            long extracted = safeExtract(
+                    source,
+                    type,
+                    size,
+                    transferable,
+                    extractionSide,
+                    false,
+                    "source execution",
+                    sourcePosition);
+            if (extracted <= 0L) {
+                continue;
+            }
+            long accepted = safeInsert(
+                    consumer,
+                    type,
+                    size,
+                    extracted,
+                    consumerSide,
+                    false,
+                    "consumer " + index + " execution",
+                    consumerPosition);
+            delivered = EnergyPackets.add(delivered, accepted);
         }
         return delivered;
+    }
+
+    private static long safeInsert(
+            IEnergyHandler handler,
+            EnergyType type,
+            long size,
+            long requested,
+            Direction side,
+            boolean simulate,
+            String operation,
+            BlockPos position) {
+        long actual;
+        try {
+            actual = handler.insert(
+                    type, size, requested, side, simulate);
+        } catch (RuntimeException failure) {
+            EnergyTransferDiagnostics.warnOnce(
+                    operation,
+                    handler,
+                    endpoint(operation, handler, position, side),
+                    failure);
+            return 0L;
+        }
+        return boundedResult(
+                operation,
+                handler,
+                position,
+                side,
+                requested,
+                actual);
+    }
+
+    private static long safeExtract(
+            IEnergyHandler handler,
+            EnergyType type,
+            long size,
+            long requested,
+            Direction side,
+            boolean simulate,
+            String operation,
+            BlockPos position) {
+        long actual;
+        try {
+            actual = handler.extract(
+                    type, size, requested, side, simulate);
+        } catch (RuntimeException failure) {
+            EnergyTransferDiagnostics.warnOnce(
+                    operation,
+                    handler,
+                    endpoint(operation, handler, position, side),
+                    failure);
+            return 0L;
+        }
+        return boundedResult(
+                operation,
+                handler,
+                position,
+                side,
+                requested,
+                actual);
+    }
+
+    private static long boundedResult(
+            String operation,
+            IEnergyHandler handler,
+            BlockPos position,
+            Direction side,
+            long requested,
+            long actual) {
+        if (actual < 0L || actual > requested) {
+            EnergyTransferDiagnostics.warnOnce(
+                    operation,
+                    handler,
+                    endpoint(operation, handler, position, side)
+                            + " returned " + actual
+                            + " packets for request " + requested);
+            return 0L;
+        }
+        return actual;
     }
 
     private static String endpoint(
@@ -231,28 +335,5 @@ public final class EnergyEmitter {
         return operation + " at " + position
                 + " using " + handler.getClass().getName()
                 + " on side " + side;
-    }
-
-    private static long requireBoundedResult(
-            String operation,
-            long requested,
-            long actual) {
-        if (actual < 0L || actual > requested) {
-            throw new IllegalStateException(
-                    operation + " returned " + actual
-                            + " packets for request " + requested);
-        }
-        return actual;
-    }
-
-    private static void requireExactResult(
-            String operation,
-            long expected,
-            long actual) {
-        if (actual != expected) {
-            throw new IllegalStateException(
-                    operation + " returned " + actual
-                            + " packets after simulating " + expected);
-        }
     }
 }

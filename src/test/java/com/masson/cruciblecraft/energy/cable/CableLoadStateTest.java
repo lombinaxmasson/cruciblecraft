@@ -141,4 +141,26 @@ class CableLoadStateTest {
                 IllegalArgumentException.class,
                 () -> new ElectricalProperties(32L, 1L, -1L, false, true));
     }
+
+    @Test
+    void cableLoadsUseActuallyCommittedTerminalAmperage() {
+        long[] actualByTerminal = {2L, 0L, 3L, 1L};
+
+        assertEquals(
+                2L,
+                CableTransferPlan.actualAmperes(
+                        actualByTerminal, 0, 2));
+        assertEquals(
+                4L,
+                CableTransferPlan.actualAmperes(
+                        actualByTerminal, 2, 4));
+        assertEquals(
+                6L,
+                CableTransferPlan.actualAmperes(
+                        actualByTerminal, 0, 4));
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> CableTransferPlan.actualAmperes(
+                        actualByTerminal, 3, 5));
+    }
 }

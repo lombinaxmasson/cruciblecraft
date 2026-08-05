@@ -111,6 +111,7 @@ public final class MaterialFingerprint {
                 .append(prefix.prefix().serializedId()).append('|')
                 .append(prefix.serializedPath()).append('|')
                 .append(prefix.units()).append('|')
+                .append(prefix.heatDamage()).append('|')
                 .append(prefix.generationFlag()).append('|')
                 .append(prefix.tagDirectory()).append('|')
                 .append(prefix.modelTemplate()).append('|')

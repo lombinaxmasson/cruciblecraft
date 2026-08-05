@@ -4,12 +4,16 @@ import java.util.List;
 
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
+import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.MissingMaterialComponent;
+import com.masson.cruciblecraft.material.MissingMaterialStackNbtAdapter;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.registry.ModComponents;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -52,17 +56,53 @@ public final class UnknownMaterialItem extends Item {
         if (missing == null) {
             return;
         }
+        if (missing.form().equals(MissingMaterialStackNbtAdapter.TOOL_COMPONENT_FORM)
+                || missing.form().equals(
+                        MissingMaterialStackNbtAdapter.MACHINE_COMPONENT_FORM)) {
+            restoreComponentMaterialStack(player, slotId, stack, missing);
+            return;
+        }
         MaterialPrefix form;
         try {
             form = MaterialPrefixCatalog.require(missing.form());
         } catch (IllegalArgumentException exception) {
             return;
         }
-        MaterialLookup.item(missing.materialId(), form).ifPresent(item -> {
-            ItemStack restored = new ItemStack(item, stack.getCount());
-            restored.applyComponents(stack.getComponents());
-            restored.remove(ModComponents.MISSING_MATERIAL.get());
-            player.getInventory().setItem(slotId, restored);
-        });
+        MaterialLookup.item(missing.materialId(), form).ifPresent(item ->
+                restore(player, slotId, stack, item));
+    }
+
+    private static void restoreComponentMaterialStack(
+            Player player,
+            int slotId,
+            ItemStack stack,
+            MissingMaterialComponent missing) {
+        if (!MaterialCatalog.contains(missing.materialId())) {
+            return;
+        }
+        String componentId = missing.form().equals(
+                MissingMaterialStackNbtAdapter.TOOL_COMPONENT_FORM)
+                ? MissingMaterialStackNbtAdapter.TOOL_MATERIAL_COMPONENT_ID
+                : MissingMaterialStackNbtAdapter.MACHINE_MATERIAL_COMPONENT_ID;
+        if (!MissingMaterialStackNbtAdapter.isComponentMaterialValid(
+                missing.originalItemId(), componentId, missing.materialId())) {
+            return;
+        }
+        ResourceLocation itemId = ResourceLocation.tryParse(missing.originalItemId());
+        if (itemId == null || !BuiltInRegistries.ITEM.containsKey(itemId)) {
+            return;
+        }
+        restore(player, slotId, stack, BuiltInRegistries.ITEM.get(itemId));
+    }
+
+    private static void restore(
+            Player player,
+            int slotId,
+            ItemStack stack,
+            Item item) {
+        ItemStack restored = new ItemStack(item, stack.getCount());
+        restored.applyComponents(stack.getComponents());
+        restored.remove(ModComponents.MISSING_MATERIAL.get());
+        player.getInventory().setItem(slotId, restored);
     }
 }

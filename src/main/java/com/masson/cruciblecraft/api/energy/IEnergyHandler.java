@@ -63,4 +63,10 @@ public interface IEnergyHandler {
     default long capacity(EnergyType type) {
         return 0L;
     }
+
+    /**
+     * Discards an optional endpoint-local simulation plan before a fresh
+     * serial preflight. Stateless handlers need not override this hook.
+     */
+    default void invalidateSimulationCache() {}
 }

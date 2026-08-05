@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import re
 import unittest
 
 from tools import gt6_l3_materials as l3
@@ -14,13 +15,13 @@ class GT6L3MaterialsTest(unittest.TestCase):
     def test_pinned_plan_covers_every_bundled_prefix(self) -> None:
         artifact = json.loads(l3.OUT.read_text(encoding="utf-8"))
         self.assertEqual(self.document, artifact)
-        self.assertEqual(43, artifact["verification"]["prefix_count"])
+        self.assertEqual(45, artifact["verification"]["prefix_count"])
         self.assertEqual(
             16,
             artifact["verification"]["direct_tag_prefix_count"],
         )
         self.assertEqual(
-            25,
+            27,
             artifact["verification"]["composite_prefix_count"],
         )
         self.assertEqual(
@@ -55,6 +56,29 @@ class GT6L3MaterialsTest(unittest.TestCase):
                 l3.GENERATION_BITS_PATH.read_text(encoding="utf-8")
             )["explicit_prefix_domains"]["wireGt01"]["status"],
         )
+
+    def test_prefix_rewrite_preserves_authored_model_textures(self) -> None:
+        index = json.loads(
+            (l3.PREFIX_DIRECTORY / "index.json").read_text(encoding="utf-8")
+        )
+        definitions = {
+            l3.PREFIX_DIRECTORY / filename: json.loads(
+                (l3.PREFIX_DIRECTORY / filename).read_text(encoding="utf-8")
+            )
+            for filename in index
+        }
+        self.assertEqual(56, len(definitions))
+        outputs = l3.prefix_definition_outputs(self.document)
+        for path, definition in definitions.items():
+            with self.subTest(prefix=definition["id"]):
+                texture = definition["model_texture"]
+                self.assertIsNotNone(
+                    re.fullmatch(r"[a-z0-9_.-]+:[a-z0-9_./-]+", texture)
+                )
+                self.assertEqual(
+                    texture,
+                    json.loads(outputs[path])["model_texture"],
+                )
 
     def test_material_patches_disambiguate_shared_flags(self) -> None:
         encoded = l3.encode_material_forms(

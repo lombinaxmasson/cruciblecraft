@@ -1,4 +1,7 @@
 {
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", quadruple_plate)"
+  ],
   "duration": "220 * (144 * prefix_units(quadruple_plate) / gcd(target_units(working) * 576, 144 * prefix_units(quadruple_plate)))",
   "eut": "64",
   "item_inputs": [

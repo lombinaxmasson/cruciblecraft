@@ -14,9 +14,18 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 TOOLS = ROOT / "tools"
-POLICY = TOOLS / "t7_material_tag_policy.json"
+POLICY = (
+    ROOT
+    / "src"
+    / "main"
+    / "resources"
+    / "data"
+    / "cruciblecraft"
+    / "material_tag_policy.json"
+)
 OUTPUT = TOOLS / "t7_material_tag_readiness.json"
 REFERENCE_METADATA = TOOLS / "gt6_reference_metadata.json"
+PREFIX_SOURCE = TOOLS / "gt6_oredict_prefixes_normalized.json"
 MATERIAL_ROOT = ROOT / "src/main/resources/data/cruciblecraft/materials"
 MATERIAL_INDEX = MATERIAL_ROOT / "index.json"
 REGISTRATION_GATE = (
@@ -48,6 +57,15 @@ CLASSIFICATIONS = {
     "not-applicable",
     "deferred",
 }
+RULE_RESOURCE_ROOTS = (
+    ROOT / "src/main/resources",
+    ROOT / "src/generated/resources",
+    ROOT / "src/component_rule_generated/resources",
+    ROOT / "src/t4_rule_generated/resources",
+)
+TAG_PREDICATE = re.compile(
+    r'material\.tag\((?:"([^"]+)"|([A-Za-z0-9_.:-]+))\)'
+)
 
 
 def load(path: Path) -> Any:
@@ -87,6 +105,62 @@ def load_materials(index: list[str]) -> list[dict[str, Any]]:
 def tags(document: dict[str, Any]) -> set[str]:
     metadata = document.get("gt6_metadata") or {}
     return set(map(str, metadata.get("material_tags") or []))
+
+
+def material_rule_audit(
+    known_tags: set[str],
+) -> dict[str, Any]:
+    rows: list[tuple[Path, dict[str, Any]]] = []
+    consumers: dict[str, set[str]] = {}
+    for root in RULE_RESOURCE_ROOTS:
+        if not root.is_dir():
+            continue
+        for path in sorted(root.rglob("*.json")):
+            try:
+                document = load(path)
+            except json.JSONDecodeError:
+                continue
+            if (
+                not isinstance(document, dict)
+                or document.get("type") != "cruciblecraft:material_rule"
+            ):
+                continue
+            rows.append((path, document))
+            for condition in document.get("conditions") or []:
+                for match in TAG_PREDICATE.finditer(str(condition)):
+                    tag = match.group(1) or match.group(2)
+                    consumers.setdefault(tag, set()).add(
+                        path.relative_to(ROOT).as_posix()
+                    )
+    unknown = sorted(set(consumers) - known_tags)
+    if unknown:
+        raise ValueError(
+            f"material-rule conditions reference unknown tags: {unknown}"
+        )
+    generic = [
+        (path, document)
+        for path, document in rows
+        if "material" not in document
+    ]
+    unconditioned = sorted(
+        path.relative_to(ROOT).as_posix()
+        for path, document in generic
+        if not document.get("conditions")
+    )
+    return {
+        "total_rule_files": len(rows),
+        "cross_material_rule_files": len(generic),
+        "conditioned_cross_material_rule_files": sum(
+            bool(document.get("conditions")) for _, document in generic
+        ),
+        "unconditioned_cross_material_rule_files": unconditioned,
+        "material_specific_rule_files": len(rows) - len(generic),
+        "referenced_tag_count": len(consumers),
+        "unknown_tag_references": [],
+        "tag_consumers": {
+            tag: sorted(paths) for tag, paths in sorted(consumers.items())
+        },
+    }
 
 
 def validate_policy(
@@ -151,9 +225,15 @@ def validate_runtime_contract(policy: dict[str, Any]) -> dict[str, Any]:
     energy = ENERGY_TYPE.read_text(encoding="utf-8")
     cable = CABLE_TRAVERSAL.read_text(encoding="utf-8")
     metadata_model = METADATA_MODEL.read_text(encoding="utf-8")
-    for token in ('case "material.tag"', 'case "has_registered"'):
+    for token in (
+        'case "material.tag"',
+        'case "has_registered"',
+        'case "has_registered_for"',
+    ):
         if token not in expression:
             raise ValueError(f"rule language is missing {token}")
+    if "Unknown material.tag value" not in expansion:
+        raise ValueError("material.tag does not reject values outside the vocabulary")
     for token in (
         'case "material.thermal.melting_point"',
         'case "material.thermal.boiling_point"',
@@ -176,7 +256,9 @@ def validate_runtime_contract(policy: dict[str, Any]) -> dict[str, Any]:
         raise ValueError("O-22 metadata still rejects zero cable loss")
     return {
         "tag_predicate": "material.tag",
+        "tag_vocabulary_validation": True,
         "registered_form_predicate": "has_registered",
+        "selected_material_registered_form_predicate": "has_registered_for",
         "thermal_numeric_comparison": True,
         "damage_numeric_comparison": True,
         "energy_types": list(decision["kept"]),
@@ -201,21 +283,55 @@ def build(policy_override: dict[str, Any] | None = None) -> dict[str, Any]:
     if not source["revision"].startswith(expected_revision):
         raise ValueError("T7 GT6 revision does not match reference metadata")
 
+    all_tag_counts: Counter[str] = Counter()
     relevant_counts: Counter[str] = Counter()
     formula_count = 0
+    visible_formula_count = 0
     explosion_nonzero = 0
     heat_nonzero = 0
     for document in materials:
         metadata = document.get("gt6_metadata") or {}
+        material_tags = tags(document)
+        all_tag_counts.update(material_tags)
         relevant_counts.update(
             tag
-            for tag in tags(document)
+            for tag in material_tags
             if tag.startswith(("PROCESSING.", "PROPERTIES."))
         )
-        formula_count += bool(metadata.get("formula"))
+        has_formula = bool(metadata.get("formula"))
+        formula_count += has_formula
+        visible_formula_count += (
+            has_formula and bool(registered[str(document["id"])])
+        )
         explosion_nonzero += float(metadata.get("explosion_damage", 0)) != 0
         heat_nonzero += float(metadata.get("heat_damage", 0)) != 0
     policy_by_tag = validate_policy(policy, relevant_counts)
+    prefix_source = load(PREFIX_SOURCE)
+    hot_prefixes = [
+        row
+        for row in prefix_source["records"]
+        if float(row.get("heat_damage") or 0) != 0.0
+    ]
+    if [
+        (row["source_name"], float(row["heat_damage"]))
+        for row in hot_prefixes
+    ] != [("ingotHot", 3.0)]:
+        raise ValueError("GT6 hot-prefix damage source drifted")
+    rule_audit = material_rule_audit(set(all_tag_counts))
+    backfill = policy["legacy_rule_condition_backfill"]
+    classified_unconditioned = [
+        row["path"]
+        for row in backfill["unconditioned_cross_material_rules"]
+    ]
+    if (
+        len(classified_unconditioned)
+        != backfill["unconditioned_cross_material_rule_count"]
+        or classified_unconditioned
+        != rule_audit["unconditioned_cross_material_rule_files"]
+    ):
+        raise ValueError(
+            "unconditioned cross-material rule classification drifted"
+        )
 
     mortar_tagged = sorted(
         str(row["id"])
@@ -238,7 +354,12 @@ def build(policy_override: dict[str, Any] | None = None) -> dict[str, Any]:
             tag.startswith("PROPERTIES.") for tag in relevant_counts
         ),
         "tag_assignment_count": sum(relevant_counts.values()),
+        "tag_vocabulary_count": len(all_tag_counts),
         "formula_count": formula_count,
+        "formula_visible_material_count": visible_formula_count,
+        "formula_without_registered_form_count": (
+            formula_count - visible_formula_count
+        ),
         "nonzero_explosion_damage_count": explosion_nonzero,
         "nonzero_heat_damage_count": heat_nonzero,
         "mortar_tagged_material_count": len(mortar_tagged),
@@ -267,12 +388,15 @@ def build(policy_override: dict[str, Any] | None = None) -> dict[str, Any]:
         != publication["post_t7_all_published_recipes"]
         or publication["post_t7_all_published_recipes"]
         > publication["all_published_recipe_budget"]
+        or publication["t7_added_mortar_recipes"]
+        > publication["t7_authored_material_rule_budget"]
         or publication["shadowed_input_signatures"] != 0
     ):
         raise ValueError("T7 runtime publication acceptance is inconsistent")
     inputs = [
         POLICY,
         REFERENCE_METADATA,
+        PREFIX_SOURCE,
         MATERIAL_INDEX,
         REGISTRATION_GATE,
         RULE_EXPRESSION,
@@ -298,9 +422,34 @@ def build(policy_override: dict[str, Any] | None = None) -> dict[str, Any]:
         "classified": len(policy_by_tag),
         "unclassified": 0,
         "tag_counts": dict(sorted(relevant_counts.items())),
+        "material_tag_vocabulary": {
+            "count": len(all_tag_counts),
+            "sha256": stable_hash(sorted(all_tag_counts)),
+            "values": sorted(all_tag_counts),
+            "validation": "material.tag rejects values outside this runtime-derived vocabulary",
+        },
+        "material_rule_audit": rule_audit,
         "rule_language": validate_runtime_contract(policy),
         "energy_type_decision": policy["energy_type_decision"],
         "runtime_publication_acceptance": publication,
+        "t10_damage_gate": {
+            **policy["t10_damage_gate"],
+            "material_nonzero_heat_damage_count": heat_nonzero,
+            "material_nonzero_explosion_damage_count": explosion_nonzero,
+            "prefix_source": "tools/gt6_oredict_prefixes_normalized.json",
+            "prefix_source_sha256": sha256(PREFIX_SOURCE),
+            "hot_prefix": {
+                "source_name": "ingotHot",
+                "heat_damage": 3.0,
+            },
+        },
+        "mortar_scope_decision": policy["mortar_scope_decision"],
+        "extruder_compaction_decision": policy[
+            "extruder_compaction_decision"
+        ],
+        "legacy_rule_condition_backfill": policy[
+            "legacy_rule_condition_backfill"
+        ],
         "mortar_rules": {
             "ingot_to_dust": {
                 "count": len(ingot_to_dust),

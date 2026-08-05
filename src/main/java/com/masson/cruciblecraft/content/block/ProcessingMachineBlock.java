@@ -28,6 +28,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 
 /** Shared facing/menu/ticker block for immutable configured processing specs. */
 public final class ProcessingMachineBlock extends Block implements EntityBlock {
@@ -54,30 +55,29 @@ public final class ProcessingMachineBlock extends Block implements EntityBlock {
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
-        var contained = FluidUtil.getFluidContained(stack);
+        var fluidContainer = FluidUtil.getFluidHandler(stack);
+        if (fluidContainer.isEmpty()) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+        IFluidHandlerItem container = fluidContainer.orElseThrow();
         var transfer = ProcessingMachineInteractions.fluidTransfer(
                 spec,
                 state.getValue(FACING),
                 hit.getDirection(),
                 player.isShiftKeyDown(),
-                FluidUtil.getFluidHandler(stack).isPresent(),
-                contained.isPresent() && !contained.get().isEmpty());
+                true,
+                containsFluid(container),
+                hasRemainingCapacity(container));
         if (transfer == ProcessingMachineInteractions.FluidTransfer.NONE) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
         if (level.getBlockEntity(pos) instanceof ConfiguredProcessingMachineBlockEntity machine) {
-            IFluidHandler handler = transfer == ProcessingMachineInteractions.FluidTransfer.FILL
+            IFluidHandler handler = transfer
+                    == ProcessingMachineInteractions.FluidTransfer.FILL_INPUT
                     ? machine.fluids(hit.getDirection())
-                    : machine.maintenanceFluids();
-            boolean possible = handler != null && (transfer
-                    == ProcessingMachineInteractions.FluidTransfer.FILL
-                            ? contained.isPresent()
-                                    && handler.fill(
-                                            contained.get(),
-                                            IFluidHandler.FluidAction.SIMULATE) > 0
-                            : !handler.drain(
-                                    Integer.MAX_VALUE,
-                                    IFluidHandler.FluidAction.SIMULATE).isEmpty());
+                    : machine.playerDrainFluids(hit.getDirection());
+            boolean possible = handler != null && canTransfer(
+                    transfer, container, handler);
             if (!possible) {
                 return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
@@ -89,11 +89,46 @@ public final class ProcessingMachineBlock extends Block implements EntityBlock {
         return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
+    private static boolean containsFluid(IFluidHandler container) {
+        for (int tank = 0; tank < container.getTanks(); tank++) {
+            if (!container.getFluidInTank(tank).isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean hasRemainingCapacity(IFluidHandler container) {
+        for (int tank = 0; tank < container.getTanks(); tank++) {
+            if (container.getFluidInTank(tank).getAmount()
+                    < container.getTankCapacity(tank)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean canTransfer(
+            ProcessingMachineInteractions.FluidTransfer transfer,
+            IFluidHandlerItem container,
+            IFluidHandler machine) {
+        if (transfer == ProcessingMachineInteractions.FluidTransfer.FILL_INPUT) {
+            var offered = container.drain(
+                    Integer.MAX_VALUE, IFluidHandler.FluidAction.SIMULATE);
+            return !offered.isEmpty()
+                    && machine.fill(offered, IFluidHandler.FluidAction.SIMULATE) > 0;
+        }
+        var available = machine.drain(
+                Integer.MAX_VALUE, IFluidHandler.FluidAction.SIMULATE);
+        return !available.isEmpty()
+                && container.fill(available, IFluidHandler.FluidAction.SIMULATE) > 0;
+    }
+
     @Override protected InteractionResult useWithoutItem(
             BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
         if (!level.isClientSide && player instanceof ServerPlayer server
                 && level.getBlockEntity(pos) instanceof ConfiguredProcessingMachineBlockEntity machine) {
-            server.openMenu(machine);
+            server.openMenu(machine, data -> data.writeBlockPos(pos));
         }
         return InteractionResult.SUCCESS;
     }

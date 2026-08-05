@@ -1,0 +1,554 @@
+{
+  "schema_version": 1,
+  "source": {
+    "repository": "GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "files": {
+      "src/main/java/gregapi/data/ANY.java": {
+        "sha256": "6a26fa2293c4a315d2594c5ac80eba689389f9b1922a33547bdd20d2df724f71",
+        "relevant_lines": [
+          84,
+          144
+        ]
+      },
+      "src/main/java/gregapi/data/CS.java": {
+        "sha256": "407edce9f541bcf34b6573d59e4ae14e477fb9c145439deddb831e2a2e2887a5",
+        "relevant_lines": [
+          146,
+          157
+        ]
+      },
+      "src/main/java/gregapi/data/OP.java": {
+        "sha256": "4d93260aeec5ce2440b9e2577aa75af04155b4426f934ef51c0b861dfada290e",
+        "relevant_lines": [
+          309,
+          330,
+          644,
+          648
+        ]
+      },
+      "src/main/java/gregapi/util/UT.java": {
+        "sha256": "fd91c2354dfb655f386f65b71c46add1caa067b85958dd3cd61a469b63bc7709",
+        "relevant_lines": [
+          1384,
+          1392,
+          3015,
+          3030
+        ]
+      },
+      "src/main/java/gregapi/tileentity/connectors/MultiTileEntityWireElectric.java": {
+        "sha256": "60dd3bf9147a220ab327a1aed3f0081382678eb0d6190e865e84e1b7dae89724",
+        "relevant_lines": [
+          64,
+          116,
+          145,
+          211,
+          227
+        ]
+      },
+      "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java": {
+        "sha256": "96f579dd5c0a26a759ddee34c312dadbc5d52123e2b85e82da6a40f68b494393",
+        "relevant_lines": [
+          1913,
+          1950
+        ]
+      },
+      "src/main/java/gregtech/loaders/b/Loader_OreProcessing.java": {
+        "sha256": "bade43317484adffdca7b6bbaf3dc910da424d8ad3bcbe89235979044546c2c3",
+        "relevant_lines": [
+          169,
+          184
+        ]
+      }
+    }
+  },
+  "semantic_model": {
+    "conductor_eligibility": "An explicit MultiTileEntityWireElectric.addElectricWires invocation is the direct GT6 electric-conductor signal. ITEMGENERATOR.WIRES and wire/cable OreDict registrations are form/compatibility evidence and are not electrical eligibility by themselves.",
+    "specification": "addElectricWires registers wireGt01..wireGt16 for every invocation and cableGt01/cableGt02/cableGt04/cableGt08/cableGt12 only when aCable is true.",
+    "voltage": "The invocation's aVoltage is copied unchanged to every generated wire/cable specification as NBT_PIPESIZE and read as mVoltage.",
+    "amperage": "The invocation's aAmperage is the one-conductor packet limit. NBT_PIPEBANDWIDTH and mAmperage equal aAmperage multiplied by the wire/cable gauge.",
+    "loss": "GT6 defines integral EU loss per traversed wire/cable block through aLossWire/aLossCable, NBT_PIPELOSS, and mLoss. It does not define physical resistance in the material dump or in addElectricWires.",
+    "insulation": "Generated cable specifications use ANY.Rubber insulation. At this revision ANY.Rubber directly re-registers MT.Rubber.",
+    "traversal": "GT6 forwards depth-first in stable side order, excludes the ingress side, and uses one visited set per injection. A cable first subtracts its own loss, then greedily offers the remaining amperage to connected neighbors.",
+    "overload": "A cable records only amperage used by downstream. It checks the post-loss voltage and this tick's accumulated amperage after forwarding. On overload it increments mBurnCounter and reports the full offered amperage upstream, dissipating any offered-but-undelivered energy.",
+    "burn_state": "mBurnCounter reaches fire at 16 and decays on the global 512-tick phase. GT6 does not serialize mBurnCounter; CrucibleCraft intentionally persists the counter and decay phase to prevent chunk-unload reset exploits.",
+    "contact_damage_runtime": "An exposed conductor with contact damage applies electricity damage from the previous tick's transferred wattage. GT6 damage is tierMax(wattage) * 4 using CS.V[].",
+    "dump_gap": "The pinned OreDict material dump exposes electricalBySpecification but every row is empty because the authoritative values are supplied by loader registrations, not OreDictMaterial scalar fields."
+  },
+  "voltage_constants": {
+    "V[0]": 8,
+    "V[1]": 32,
+    "V[2]": 128,
+    "V[3]": 512,
+    "V[4]": 2048,
+    "V[5]": 8192,
+    "V[6]": 32768,
+    "V[7]": 131072,
+    "V[8]": 524288,
+    "V[9]": 2097152,
+    "V[10]": 8388608,
+    "V[11]": 33554432,
+    "V[12]": 134217728,
+    "V[13]": 536870912,
+    "V[14]": 2147483648,
+    "V[15]": 8589934592
+  },
+  "specifications": {
+    "wire": [
+      {
+        "name": "wireGt01",
+        "gauge": 1
+      },
+      {
+        "name": "wireGt02",
+        "gauge": 2
+      },
+      {
+        "name": "wireGt03",
+        "gauge": 3
+      },
+      {
+        "name": "wireGt04",
+        "gauge": 4
+      },
+      {
+        "name": "wireGt05",
+        "gauge": 5
+      },
+      {
+        "name": "wireGt06",
+        "gauge": 6
+      },
+      {
+        "name": "wireGt07",
+        "gauge": 7
+      },
+      {
+        "name": "wireGt08",
+        "gauge": 8
+      },
+      {
+        "name": "wireGt09",
+        "gauge": 9
+      },
+      {
+        "name": "wireGt10",
+        "gauge": 10
+      },
+      {
+        "name": "wireGt11",
+        "gauge": 11
+      },
+      {
+        "name": "wireGt12",
+        "gauge": 12
+      },
+      {
+        "name": "wireGt13",
+        "gauge": 13
+      },
+      {
+        "name": "wireGt14",
+        "gauge": 14
+      },
+      {
+        "name": "wireGt15",
+        "gauge": 15
+      },
+      {
+        "name": "wireGt16",
+        "gauge": 16
+      }
+    ],
+    "cable": [
+      {
+        "name": "cableGt01",
+        "gauge": 1
+      },
+      {
+        "name": "cableGt02",
+        "gauge": 2
+      },
+      {
+        "name": "cableGt04",
+        "gauge": 4
+      },
+      {
+        "name": "cableGt08",
+        "gauge": 8
+      },
+      {
+        "name": "cableGt12",
+        "gauge": 12
+      }
+    ]
+  },
+  "insulation": {
+    "group_source_name": "AnyRubber",
+    "material_source_names": [
+      "Rubber"
+    ]
+  },
+  "conductors": [
+    {
+      "source_symbol": "Sn",
+      "source_name": "Tin",
+      "voltage_expression": "V[1]",
+      "max_voltage": 32,
+      "base_amperage": 1,
+      "wire_loss_per_meter": 2,
+      "cable_loss_per_meter": 1,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Pb",
+      "source_name": "Lead",
+      "voltage_expression": "V[1]*2",
+      "max_voltage": 64,
+      "base_amperage": 1,
+      "wire_loss_per_meter": 2,
+      "cable_loss_per_meter": 1,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Constantan",
+      "source_name": "Constantan",
+      "voltage_expression": "V[2]",
+      "max_voltage": 128,
+      "base_amperage": 4,
+      "wire_loss_per_meter": 4,
+      "cable_loss_per_meter": 3,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Cu",
+      "source_name": "Copper",
+      "voltage_expression": "V[2]*2",
+      "max_voltage": 256,
+      "base_amperage": 1,
+      "wire_loss_per_meter": 2,
+      "cable_loss_per_meter": 1,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "AnnealedCopper",
+      "source_name": "AnnealedCopper",
+      "voltage_expression": "V[2]*3",
+      "max_voltage": 384,
+      "base_amperage": 1,
+      "wire_loss_per_meter": 2,
+      "cable_loss_per_meter": 1,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Efrine",
+      "source_name": "Efrine",
+      "voltage_expression": "V[2]*2",
+      "max_voltage": 256,
+      "base_amperage": 1,
+      "wire_loss_per_meter": 2,
+      "cable_loss_per_meter": 1,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Kanthal",
+      "source_name": "Kanthal",
+      "voltage_expression": "V[3]",
+      "max_voltage": 512,
+      "base_amperage": 4,
+      "wire_loss_per_meter": 4,
+      "cable_loss_per_meter": 3,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Ag",
+      "source_name": "Silver",
+      "voltage_expression": "V[3]*3",
+      "max_voltage": 1536,
+      "base_amperage": 1,
+      "wire_loss_per_meter": 2,
+      "cable_loss_per_meter": 1,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Au",
+      "source_name": "Gold",
+      "voltage_expression": "V[3]",
+      "max_voltage": 512,
+      "base_amperage": 3,
+      "wire_loss_per_meter": 2,
+      "cable_loss_per_meter": 1,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Electrum",
+      "source_name": "Electrum",
+      "voltage_expression": "V[3]*2",
+      "max_voltage": 1024,
+      "base_amperage": 2,
+      "wire_loss_per_meter": 2,
+      "cable_loss_per_meter": 1,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "BlueAlloy",
+      "source_name": "BlueAlloy",
+      "voltage_expression": "V[3]*3",
+      "max_voltage": 1536,
+      "base_amperage": 2,
+      "wire_loss_per_meter": 2,
+      "cable_loss_per_meter": 1,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "ElectrotineAlloy",
+      "source_name": "ElectrotineAlloy",
+      "voltage_expression": "V[3]*2",
+      "max_voltage": 1024,
+      "base_amperage": 3,
+      "wire_loss_per_meter": 2,
+      "cable_loss_per_meter": 1,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Nichrome",
+      "source_name": "Nichrome",
+      "voltage_expression": "V[4]",
+      "max_voltage": 2048,
+      "base_amperage": 4,
+      "wire_loss_per_meter": 4,
+      "cable_loss_per_meter": 3,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Steel",
+      "source_name": "Steel",
+      "voltage_expression": "V[4]",
+      "max_voltage": 2048,
+      "base_amperage": 2,
+      "wire_loss_per_meter": 3,
+      "cable_loss_per_meter": 2,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "HSLA",
+      "source_name": "HSLASteel",
+      "voltage_expression": "V[4]",
+      "max_voltage": 2048,
+      "base_amperage": 3,
+      "wire_loss_per_meter": 3,
+      "cable_loss_per_meter": 2,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Al",
+      "source_name": "Aluminium",
+      "voltage_expression": "V[4]",
+      "max_voltage": 2048,
+      "base_amperage": 1,
+      "wire_loss_per_meter": 2,
+      "cable_loss_per_meter": 1,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "TungstenSteel",
+      "source_name": "Tungstensteel",
+      "voltage_expression": "V[4]*2",
+      "max_voltage": 4096,
+      "base_amperage": 4,
+      "wire_loss_per_meter": 3,
+      "cable_loss_per_meter": 2,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "W",
+      "source_name": "Tungsten",
+      "voltage_expression": "V[4]*3",
+      "max_voltage": 6144,
+      "base_amperage": 8,
+      "wire_loss_per_meter": 3,
+      "cable_loss_per_meter": 2,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Netherite",
+      "source_name": "Netherite",
+      "voltage_expression": "V[4]",
+      "max_voltage": 2048,
+      "base_amperage": 1,
+      "wire_loss_per_meter": 2,
+      "cable_loss_per_meter": 1,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Os",
+      "source_name": "OsmiumElemental",
+      "voltage_expression": "V[5]*2",
+      "max_voltage": 16384,
+      "base_amperage": 4,
+      "wire_loss_per_meter": 4,
+      "cable_loss_per_meter": 3,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Pt",
+      "source_name": "Platinum",
+      "voltage_expression": "V[5]*3",
+      "max_voltage": 24576,
+      "base_amperage": 2,
+      "wire_loss_per_meter": 2,
+      "cable_loss_per_meter": 1,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Osmiridium",
+      "source_name": "Osmiridium",
+      "voltage_expression": "V[5]*3",
+      "max_voltage": 24576,
+      "base_amperage": 4,
+      "wire_loss_per_meter": 2,
+      "cable_loss_per_meter": 1,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "SiC",
+      "source_name": "Carborundum",
+      "voltage_expression": "V[5]",
+      "max_voltage": 8192,
+      "base_amperage": 4,
+      "wire_loss_per_meter": 4,
+      "cable_loss_per_meter": 3,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Ir",
+      "source_name": "Iridium",
+      "voltage_expression": "V[5]*3",
+      "max_voltage": 24576,
+      "base_amperage": 4,
+      "wire_loss_per_meter": 4,
+      "cable_loss_per_meter": 2,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Nq",
+      "source_name": "Naquadah",
+      "voltage_expression": "V[6]*3",
+      "max_voltage": 98304,
+      "base_amperage": 4,
+      "wire_loss_per_meter": 2,
+      "cable_loss_per_meter": 1,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "NiobiumTitanium",
+      "source_name": "NiobiumTitanium",
+      "voltage_expression": "V[6]",
+      "max_voltage": 32768,
+      "base_amperage": 4,
+      "wire_loss_per_meter": 4,
+      "cable_loss_per_meter": 3,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "VanadiumGallium",
+      "source_name": "VanadiumGallium",
+      "voltage_expression": "V[6]*2",
+      "max_voltage": 65536,
+      "base_amperage": 4,
+      "wire_loss_per_meter": 4,
+      "cable_loss_per_meter": 3,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "YttriumBariumCuprate",
+      "source_name": "YttriumBariumCuprate",
+      "voltage_expression": "V[6]*3",
+      "max_voltage": 98304,
+      "base_amperage": 4,
+      "wire_loss_per_meter": 4,
+      "cable_loss_per_meter": 3,
+      "wire_contact_damage": true,
+      "cable_contact_damage": false,
+      "cable_generated": true
+    },
+    {
+      "source_symbol": "Graphene",
+      "source_name": "Graphene",
+      "voltage_expression": "V[6]*2",
+      "max_voltage": 65536,
+      "base_amperage": 1,
+      "wire_loss_per_meter": 2,
+      "cable_loss_per_meter": 2,
+      "wire_contact_damage": false,
+      "cable_contact_damage": false,
+      "cable_generated": false
+    },
+    {
+      "source_symbol": "Superconductor",
+      "source_name": "Superconductor",
+      "voltage_expression": "V[15]",
+      "max_voltage": 8589934592,
+      "base_amperage": 4,
+      "wire_loss_per_meter": 1,
+      "cable_loss_per_meter": 1,
+      "wire_contact_damage": false,
+      "cable_contact_damage": false,
+      "cable_generated": false
+    }
+  ]
+}

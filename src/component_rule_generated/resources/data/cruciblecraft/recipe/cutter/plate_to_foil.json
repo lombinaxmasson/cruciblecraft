@@ -1,4 +1,7 @@
 {
+  "conditions": [
+    "has_registered_for(\"processing_target:cutting\", foil)"
+  ],
   "duration": "80 * (144 * prefix_units(foil) / gcd(target_units(cutting) * 144, 144 * prefix_units(foil)))",
   "eut": "24",
   "item_inputs": [

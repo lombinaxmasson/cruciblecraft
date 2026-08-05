@@ -7,7 +7,6 @@ import java.util.Optional;
 import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator;
 import com.masson.cruciblecraft.heat.CrucibleThermalModel;
 import com.masson.cruciblecraft.material.MaterialCatalog;
-import com.masson.cruciblecraft.material.MaterialColors;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.recipe.AlloyIndex.AlloyMatch;
 
@@ -191,7 +190,8 @@ public final class CompositionTank {
         long green = 0L;
         long blue = 0L;
         for (var entry : contents.entrySet()) {
-            int color = MaterialColors.parse(MaterialCatalog.require(entry.getKey()).color());
+            int color = MaterialCatalog.require(
+                    entry.getKey()).colorRgb();
             int units = entry.getValue();
             total += units;
             red += (long) ((color >> 16) & 0xFF) * units;

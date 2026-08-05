@@ -4,19 +4,25 @@ import json
 import shutil
 import tempfile
 import unittest
+from collections import Counter
 from pathlib import Path
 
 from tools import build_component_rules as builder
 
 
 class ComponentRuleBuilderTest(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.bundle = builder.build_bundle()
+        cls.manifest = json.loads(cls.bundle.manifest)
+
     def test_manifest_locks_baseline_budget_maps_and_classifications(self) -> None:
-        bundle = builder.build_bundle()
-        manifest = json.loads(bundle.manifest)
+        bundle = self.bundle
+        manifest = self.manifest
 
         self.assertEqual(2810, manifest["source_rules"])
-        self.assertEqual(8136, manifest["expanded_recipes"])
-        self.assertEqual(5354, manifest["non_extruder_expanded_recipes"])
+        self.assertEqual(8141, manifest["expanded_recipes"])
+        self.assertEqual(5359, manifest["non_extruder_expanded_recipes"])
         self.assertEqual(2782, manifest["extruder_expanded_recipes"])
         self.assertEqual(10000, manifest["expansion_budget"])
         self.assertTrue(manifest["within_budget"])
@@ -31,7 +37,7 @@ class ComponentRuleBuilderTest(unittest.TestCase):
                 "rollbender": {"source_rules": 1, "expanded_recipes": 438},
                 "rollingmill": {"source_rules": 1, "expanded_recipes": 336},
                 "welder": {"source_rules": 1, "expanded_recipes": 321},
-                "wiremill": {"source_rules": 7, "expanded_recipes": 282},
+                "wiremill": {"source_rules": 7, "expanded_recipes": 287},
             },
             manifest["per_map"],
         )
@@ -44,6 +50,22 @@ class ComponentRuleBuilderTest(unittest.TestCase):
         self.assertEqual("iron", correction["entries"][0]["material"])
         self.assertEqual(["wire"], correction["entries"][0]["add_forms"])
         self.assertEqual(64, len(correction["digest"]))
+        electrical = manifest["t6_electrical_form_expansion"]
+        self.assertEqual(5, electrical["expansion_delta"])
+        self.assertEqual(
+            [
+                "blue_alloy",
+                "electrotine_alloy",
+                "hslasteel",
+                "naquadah",
+                "yttrium_barium_cuprate",
+            ],
+            [entry["material"] for entry in electrical["entries"]],
+        )
+        self.assertTrue(all(
+            entry["rule"] == "wiremill/ingot_to_wire"
+            for entry in electrical["entries"]
+        ))
         extruder = manifest["extruder_templates"]
         self.assertEqual(62, extruder["classified"])
         self.assertEqual(0, extruder["unclassified"])
@@ -51,7 +73,7 @@ class ComponentRuleBuilderTest(unittest.TestCase):
         self.assertEqual({"playable": 20, "skipped": 42},
                          extruder["classification_counts"])
         self.assertEqual(31, len(extruder["shapes"]))
-        self.assertEqual(43, extruder["prefix_count"])
+        self.assertEqual(56, extruder["prefix_count"])
         self.assertEqual(64, len(extruder["registration_gate_sha256"]))
         self.assertEqual(64, len(manifest["builder"]["source_sha256"]))
         self.assertEqual(
@@ -64,6 +86,27 @@ class ComponentRuleBuilderTest(unittest.TestCase):
             "tools/component_selector_policy.json",
             manifest["build_inputs_sha256"],
         )
+        self.assertIn(
+            "tools/gt6_electrical_source.json",
+            manifest["build_inputs_sha256"],
+        )
+        self.assertIn(
+            "tools/gt6_material_activation_policy.json",
+            manifest["build_inputs_sha256"],
+        )
+        self.assertEqual(
+            ["rubber"],
+            manifest["material_groups"]["any_rubber"][
+                "member_materials"
+            ],
+        )
+        self.assertEqual(
+            {
+                "replace": False,
+                "values": ["#c:plates/rubber"],
+            },
+            json.loads(bundle.any_rubber_tag),
+        )
         self.assertEqual(0, manifest["shadow_signatures"]["duplicates"])
         self.assertEqual(
             manifest["expanded_recipes"],
@@ -71,7 +114,7 @@ class ComponentRuleBuilderTest(unittest.TestCase):
         )
 
     def test_generated_rules_are_runtime_material_rule_json(self) -> None:
-        bundle = builder.build_bundle()
+        bundle = self.bundle
 
         self.assertEqual(2810, len(bundle.generated))
         self.assertEqual(sorted(bundle.generated), list(bundle.generated))
@@ -99,9 +142,32 @@ class ComponentRuleBuilderTest(unittest.TestCase):
                 "cruciblecraft:extruder_shape_")
             for rule in extruder
         ))
+        cable_rules = [
+            json.loads(content)
+            for relative, content in bundle.generated.items()
+            if "_rubber_to_" in relative and "cable" in relative
+        ]
+        self.assertEqual(5, len(cable_rules))
+        self.assertTrue(all(
+            rule["item_inputs"][1]["tag"]
+            == "cruciblecraft:any_rubber_plates"
+            for rule in cable_rules
+        ))
+        rotor = json.loads(
+            bundle.generated["assembler/plates_and_ring_to_rotor.json"]
+        )
+        self.assertEqual(
+            [
+                (
+                    "has_registered_for("
+                    '"processing_target:working", rotor)'
+                )
+            ],
+            rotor["conditions"],
+        )
 
     def test_acceptance_materials_have_explicit_rod_routes(self) -> None:
-        bundle = builder.build_bundle()
+        bundle = self.bundle
         routes = []
         for relative, content in bundle.generated.items():
             if not relative.startswith("extruder/"):
@@ -113,8 +179,8 @@ class ComponentRuleBuilderTest(unittest.TestCase):
         self.assertTrue({"copper", "tin", "iron", "gold"} <= set(routes))
 
     def test_iron_wire_is_an_explicit_acceptance_correction(self) -> None:
-        bundle = builder.build_bundle()
-        manifest = json.loads(bundle.manifest)
+        bundle = self.bundle
+        manifest = self.manifest
         correction = manifest["acceptance_form_corrections"]["entries"]
 
         self.assertEqual(1, len(correction))
@@ -171,8 +237,81 @@ class ComponentRuleBuilderTest(unittest.TestCase):
                     builder.SourceError, "form is absent from registration gate"):
                 builder.build_bundle(source)
 
+    def test_extruder_eut_is_locked_to_the_material_tag(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            source = Path(temporary) / "sources"
+            shutil.copytree(builder.SOURCE_DIR, source)
+            path = source / "extruder_shapes.json"
+            document = json.loads(path.read_text(encoding="utf-8-sig"))
+            document["recipes"][0]["eut"] = 17
+            path.write_text(json.dumps(document), encoding="utf-8")
+            with self.assertRaisesRegex(
+                    builder.SourceError,
+                    "PROCESSING.EXTRUDABLE_SIMPLE function"):
+                builder.build_bundle(source)
+
+    def test_plate_relation_explains_the_apparent_ten_material_mismatch(self) -> None:
+        source = json.loads(
+            (builder.SOURCE_DIR / "extruder_shapes.json").read_text(
+                encoding="utf-8-sig"
+            )
+        )
+        gate = json.loads(
+            builder.MATERIAL_REGISTRATION_GATE.read_text(encoding="utf-8")
+        )["materials"]
+        plate = [
+            recipe
+            for recipe in source["recipes"]
+            if recipe["shape"] == "plate"
+        ]
+        self.assertEqual(387, len(plate))
+        self.assertEqual(
+            {"dust": 80, "ingot": 307},
+            dict(Counter(
+                recipe["input"]["prefix"] for recipe in plate
+            )),
+        )
+        alleged_dead = {
+            "annealed_copper",
+            "cast_iron",
+            "iron_compressed",
+            "tungsten_sintered",
+            "wrought_iron",
+        }
+        by_material = {recipe["material"]: recipe for recipe in plate}
+        for material in alleged_dead:
+            self.assertEqual("ingot", by_material[material]["input"]["prefix"])
+            self.assertIn("ingot", gate[material])
+            self.assertIn("plate", gate[material])
+
+        redirected_forging = {
+            "frozen_iron": "iron",
+            "gilded_iron": "iron",
+            "obsidian_refined": "obsidian",
+            "steel_galvanized": "steel",
+        }
+        for material, target in redirected_forging.items():
+            document = json.loads(
+                (builder.MATERIAL_DIR / f"{material}.json").read_text(
+                    encoding="utf-8"
+                )
+            )
+            forging = document["gt6_metadata"]["processing_targets"]["forging"]
+            self.assertEqual(target, forging["material"])
+            self.assertNotIn(material, by_material)
+
+        glass = json.loads(
+            (builder.MATERIAL_DIR / "glass.json").read_text(encoding="utf-8")
+        )
+        self.assertNotIn("plate_gem", gate["glass"])
+        self.assertIn(
+            "cruciblecraft:generates_plate_gem",
+            glass["generation_flags"],
+        )
+        self.assertNotIn("glass", by_material)
+
     def test_check_is_bidirectional_for_missing_extra_and_changed_files(self) -> None:
-        bundle = builder.build_bundle()
+        bundle = self.bundle
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             output = root / "resources"
@@ -251,7 +390,7 @@ class ComponentRuleBuilderTest(unittest.TestCase):
                 builder.build_bundle(source)
 
     def test_repository_outputs_are_byte_exact(self) -> None:
-        self.assertEqual([], builder.check_bundle(builder.build_bundle()))
+        self.assertEqual([], builder.check_bundle(self.bundle))
 
 
 if __name__ == "__main__":

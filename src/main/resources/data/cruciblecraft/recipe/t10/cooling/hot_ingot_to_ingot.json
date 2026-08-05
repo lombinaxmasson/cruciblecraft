@@ -1,0 +1,34 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "conditions": [
+    "material.has(\"gt6:itemgenerator/hotingots\")",
+    "has_registered(ingot_hot) && has_registered(ingot)"
+  ],
+  "balance_policy": {
+    "status": "DESIGN_POLICY",
+    "source": "CrucibleCraft T10 hot-ingot balance policy",
+    "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "gt6_equivalence": "UNVERIFIED",
+    "open_item": "O-36",
+    "temperature_unit": "celsius",
+    "ambient_temperature": 20.0,
+    "cooling_rate_per_tick": 1.0,
+    "duration_formula": "ceil(max(1, material.thermal.melting_point - 20))",
+    "replacement_condition": "Replace only after a fixed-revision GT6 hot-ingot cooling source is located and normalized."
+  },
+  "duration": "ceil(max(1, material.thermal.melting_point - 20))",
+  "eut": "0",
+  "item_inputs": [
+    {
+      "count": "1",
+      "prefix": "cruciblecraft:ingot_hot"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "1",
+      "prefix": "cruciblecraft:ingot"
+    }
+  ],
+  "target": "cruciblecraft:cooling"
+}

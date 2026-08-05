@@ -63,7 +63,7 @@ class T2ChainIntegrationTest {
         T2ChainRules.Definition smelter = T2ChainRules.ALL.stream()
                 .filter(definition -> definition.path().startsWith("smelter/"))
                 .findFirst().orElseThrow();
-        var smeltingPlans = MaterialRuleExpansion.expandPlansWithForms(
+        var smeltingPlans = MaterialRuleExpansion.expandPlansWithRegisteredForms(
                 ResourceLocation.fromNamespaceAndPath("cruciblecraft", smelter.path()),
                 smelter.rule(), materials, registeredForms);
         assertTrue(smeltingPlans.stream().allMatch(plan -> {
@@ -85,7 +85,7 @@ class T2ChainIntegrationTest {
                 zirconBatch.itemOutputs().getFirst().resource().materialId());
         assertEquals(7_200, zirconBatch.duration());
 
-        var anvil = MaterialRuleExpansion.expandPlansWithForms(
+        var anvil = MaterialRuleExpansion.expandPlansWithRegisteredForms(
                 ResourceLocation.fromNamespaceAndPath(
                         "cruciblecraft", "anvil/raw_ore_to_crushed_ore"),
                 T2ChainRules.ANVIL_RAW_TO_CRUSHED,

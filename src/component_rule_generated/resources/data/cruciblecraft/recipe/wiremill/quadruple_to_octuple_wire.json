@@ -1,4 +1,7 @@
 {
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", octuple_wire)"
+  ],
   "duration": "120 * (144 * prefix_units(octuple_wire) / gcd(target_units(working) * 288, 144 * prefix_units(octuple_wire)))",
   "eut": "32",
   "item_inputs": [

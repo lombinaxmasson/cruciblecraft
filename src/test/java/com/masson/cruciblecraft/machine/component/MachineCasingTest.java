@@ -10,10 +10,20 @@ import org.junit.jupiter.api.Test;
 
 class MachineCasingTest {
     @Test
-    void sanitizesMaterialIdsAndTracksActualChanges() {
+    void rejectsInvalidMaterialIdsAndTracksActualChanges() {
         MachineCasing casing = new MachineCasing(Device.CRUCIBLE, 800.0);
         assertEquals("ceramic", casing.materialId());
-        assertFalse(casing.setMaterialId("not_a_material"));
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> casing.setMaterialId("not_a_material"));
+        assertEquals("ceramic", casing.materialId());
+        assertTrue(casing.restoreMaterialId("gold"));
+        assertTrue(casing.quarantined());
+        assertEquals("ceramic", casing.materialId());
+        assertEquals("gold", casing.persistedMaterialId());
+        assertTrue(casing.setMaterialId("ceramic"));
+        assertFalse(casing.quarantined());
+        assertFalse(casing.setMaterialId("ceramic"));
         assertTrue(casing.setMaterialId("bronze"));
         assertEquals("bronze", casing.materialId());
     }

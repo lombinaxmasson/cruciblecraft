@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.registry;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.worldgen.LargeVeinFeature;
+import com.masson.cruciblecraft.worldgen.SubsurfaceFluidDepositFeature;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -14,6 +15,12 @@ public final class ModFeatures {
 
     public static final DeferredHolder<Feature<?>, LargeVeinFeature> LARGE_VEIN =
             FEATURES.register("large_vein", LargeVeinFeature::new);
+    public static final DeferredHolder<
+            Feature<?>,
+            SubsurfaceFluidDepositFeature> SUBSURFACE_FLUID_DEPOSIT =
+                    FEATURES.register(
+                            "subsurface_fluid_deposit",
+                            SubsurfaceFluidDepositFeature::new);
 
     private ModFeatures() {}
 }

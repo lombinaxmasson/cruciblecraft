@@ -16,19 +16,33 @@ import com.masson.cruciblecraft.content.blockentity.CrusherBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DynamoBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.SubsurfaceFluidDepositBlockEntity;
 import com.masson.cruciblecraft.content.block.CableBlock;
+import com.masson.cruciblecraft.content.block.FluidPipeBlock;
+import com.masson.cruciblecraft.content.block.ItemPipeBlock;
 import com.masson.cruciblecraft.content.block.DynamoBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineInteractions;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
+import com.masson.cruciblecraft.content.item.CellItem;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.compat.emi.ProcessingEmiRegistrationPlan;
 import com.masson.cruciblecraft.content.blockentity.FireboxBlockEntity;
 import com.masson.cruciblecraft.content.multiblock.CokeOvenStructure;
 import com.masson.cruciblecraft.heat.FuelDefinition;
+import com.masson.cruciblecraft.heat.ItemHeat;
 import com.masson.cruciblecraft.machine.ToolMaterialRules;
+import com.masson.cruciblecraft.material.CellContentGate;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.MaterialComponentPolicies;
+import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
+import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
+import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
+import com.masson.cruciblecraft.logistics.pipe.fluid.FluidPipeFailureState;
+import com.masson.cruciblecraft.logistics.pipe.fluid
+        .FluidPipeFailureState.Failure;
 import com.masson.cruciblecraft.machine.processing.MachineTransaction;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
@@ -45,36 +59,50 @@ import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import com.masson.cruciblecraft.worldgen.LargeVeinConfiguration;
 import com.masson.cruciblecraft.worldgen.LargeVeinLayout;
 import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
+import com.masson.cruciblecraft.worldgen.SubsurfaceFluidDepositConfiguration;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
+import net.minecraft.gametest.framework.GameTestSequence;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Pig;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.material.Fluids;
 import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidUtil;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
 import net.neoforged.neoforge.items.IItemHandler;
@@ -715,17 +743,17 @@ public final class CrucibleCraftGameTests {
         helper.assertTrue(
                 iron != null
                         && iron.id().getPath().equals(
-                                "mortar/ingot_to_dust/iron"),
+                                "t7/mortar/ingot_to_dust/iron"),
                 "MORTAR_GRINDABLE iron did not resolve the live ingot rule");
         helper.assertTrue(
                 amber != null
                         && amber.id().getPath().equals(
-                                "mortar/gem_to_dust/amber"),
+                                "t7/mortar/gem_to_dust/amber"),
                 "MORTAR_GRINDABLE amber did not resolve the live gem rule");
         helper.assertTrue(
                 cinnabar != null
                         && cinnabar.id().getPath().equals(
-                                "mortar/gem_to_dust/cinnabar"),
+                                "t7/mortar/gem_to_dust/cinnabar"),
                 "MORTAR_GRINDABLE cinnabar did not resolve the live gem rule");
         helper.assertTrue(
                 ModRecipeMaps.MORTAR.findMatch(GTRecipeQuery.items(
@@ -1177,6 +1205,169 @@ public final class CrucibleCraftGameTests {
                 .thenSucceed();
     }
 
+    @GameTest(template = TEMPLATE, timeoutTicks = 120)
+    public static void genericCellsEnforceDomainsAndFeedMachineRecipe(
+            GameTestHelper helper) {
+        helper.assertTrue(
+                ModFluids.chemicalFluids().size() == 108
+                        && CellContentGate.entries().size() == 109,
+                "T10 chemical-fluid or cell allowlist registry is incomplete");
+        helper.assertTrue(
+                MaterialPrefixCatalog.values().size() == 56
+                        && MaterialCatalog.startupValues().size()
+                                + MaterialPrefixCatalog.values().size() == 1_829
+                        && MaterialCatalog.startupValues().stream()
+                                .mapToInt(material ->
+                                        MaterialCatalog.registeredForms(
+                                                material).size())
+                                .sum() == 16_048,
+                "T10 cell contents changed prefix, handshake, or form counts");
+        List<ResourceLocation> cellItems = BuiltInRegistries.ITEM.keySet()
+                .stream()
+                .filter(id -> id.getNamespace().equals(CrucibleCraft.MODID))
+                .filter(id -> BuiltInRegistries.ITEM.get(id) instanceof CellItem)
+                .sorted()
+                .toList();
+        helper.assertTrue(
+                cellItems.equals(List.of(
+                        ResourceLocation.fromNamespaceAndPath(
+                                CrucibleCraft.MODID,
+                                "fluid_cell"),
+                        ResourceLocation.fromNamespaceAndPath(
+                                CrucibleCraft.MODID,
+                                "gas_cell"))),
+                "T10 registered per-fluid or unexpected cell item identities");
+        GTRecipe hydrogenFluoride = requireRecipe(
+                ModRecipeMaps.MIXER,
+                "t5/mixer/fluid_closure_hydrogen_fluoride");
+        FluidStack hydrogen = hydrogenFluoride.fluidInputs().getFirst();
+        FluidStack fluorine = hydrogenFluoride.fluidInputs().get(1);
+        FluidStack chlorine = new FluidStack(
+                ModFluids.materialFluid("chlorine").orElseThrow(),
+                1_000);
+
+        Player cellPlayer = helper.makeMockPlayer(GameType.SURVIVAL);
+        FluidTank manualSource = new FluidTank(1_000);
+        manualSource.setFluid(chlorine.copy());
+        cellPlayer.setItemInHand(
+                InteractionHand.MAIN_HAND,
+                new ItemStack(ModItems.FLUID_CELL.get()));
+        helper.assertTrue(
+                FluidUtil.interactWithFluidHandler(
+                        cellPlayer,
+                        InteractionHand.MAIN_HAND,
+                        manualSource),
+                "A single empty cell could not be manually filled");
+        ItemStack singleFilled =
+                cellPlayer.getItemInHand(InteractionHand.MAIN_HAND);
+        var singleFilledHandler =
+                singleFilled.getCapability(Capabilities.FluidHandler.ITEM);
+        helper.assertTrue(
+                singleFilled.getCount() == 1
+                        && singleFilledHandler != null
+                        && sameFluidAmount(
+                                singleFilledHandler.getFluidInTank(0),
+                                chlorine),
+                "Single-cell manual filling did not replace the held stack");
+
+        cellPlayer.setItemInHand(
+                InteractionHand.MAIN_HAND,
+                new ItemStack(ModItems.FLUID_CELL.get(), 2));
+        manualSource.setFluid(chlorine.copy());
+        helper.assertTrue(
+                FluidUtil.interactWithFluidHandler(
+                        cellPlayer,
+                        InteractionHand.MAIN_HAND,
+                        manualSource),
+                "A stacked empty cell could not be manually filled");
+        ItemStack stackedRemainder =
+                cellPlayer.getItemInHand(InteractionHand.MAIN_HAND);
+        helper.assertTrue(
+                stackedRemainder.getCount() == 1
+                        && stackedRemainder.getCapability(
+                                        Capabilities.FluidHandler.ITEM)
+                                .getFluidInTank(0)
+                                .isEmpty()
+                        && inventoryContainsFluid(
+                                cellPlayer,
+                                ModItems.FLUID_CELL.get(),
+                                chlorine),
+                "Stacked manual filling did not split and stow one full cell");
+
+        ItemStack fluidCell = new ItemStack(ModItems.FLUID_CELL.get());
+        var fluidHandler =
+                fluidCell.getCapability(Capabilities.FluidHandler.ITEM);
+        ItemStack gasCell = new ItemStack(ModItems.GAS_CELL.get());
+        var gasHandler =
+                gasCell.getCapability(Capabilities.FluidHandler.ITEM);
+        helper.assertTrue(
+                fluidHandler != null && gasHandler != null,
+                "Generic cell item capabilities are missing");
+        helper.assertTrue(
+                fluidHandler.fill(
+                        chlorine,
+                        IFluidHandler.FluidAction.EXECUTE) == 1_000
+                        && fluidCell.getMaxStackSize() == 1,
+                "Fluid-domain cell did not accept source-tagged chlorine");
+        helper.assertTrue(
+                gasHandler.fill(
+                        chlorine,
+                        IFluidHandler.FluidAction.SIMULATE) == 0,
+                "Gas cell accepted a fluid-domain identity");
+        helper.assertTrue(
+                fluidHandler.drain(
+                        1_000,
+                        IFluidHandler.FluidAction.EXECUTE).getAmount() == 1_000
+                        && fluidCell.getMaxStackSize() == 64,
+                "Fully drained fluid cell did not restore empty stacking");
+        helper.assertTrue(
+                fluidHandler.fill(
+                        fluorine,
+                        IFluidHandler.FluidAction.SIMULATE) == 0,
+                "Fluid cell accepted a gas-domain identity");
+        helper.assertTrue(
+                gasHandler.fill(
+                        fluorine.copyWithAmount(1_000),
+                        IFluidHandler.FluidAction.EXECUTE) == 1_000,
+                "Gas-domain cell did not accept fluorine");
+
+        ConfiguredProcessingMachineBlockEntity mixer = placeConfigured(
+                helper,
+                new BlockPos(5, 2, 5),
+                ModBlocks.MIXER.get(),
+                ModProcessingMachines.MIXER);
+        mixer.tanks().get(
+                mixer.spec().fluids().inputs().getFirst().index())
+                .setFluid(hydrogen.copy());
+        fillMachineFromItem(
+                helper,
+                gasHandler,
+                mixer.fluids(Direction.WEST));
+        helper.assertTrue(
+                gasHandler.getFluidInTank(0).isEmpty(),
+                "Gas cell retained fluid after machine transfer");
+        helper.assertTrue(
+                mixer.insert(
+                        EnergyType.ELECTRIC,
+                        hydrogenFluoride.eut(),
+                        64L,
+                        Direction.SOUTH,
+                        false) > 0,
+                "Could not power gas-cell mixer route");
+
+        helper.startSequence()
+                .thenIdle(3)
+                .thenExecute(() -> forceLastTick(helper, mixer))
+                .thenIdle(2)
+                .thenExecute(() -> helper.assertTrue(
+                        mixer.spec().fluids().outputs().stream().anyMatch(tank ->
+                                sameFluidAmount(
+                                        mixer.tanks().get(tank.index()).getFluid(),
+                                        hydrogenFluoride.fluidOutputs().getFirst())),
+                        "Gas cell contents were not consumed by the fluid recipe"))
+                .thenSucceed();
+    }
+
     @GameTest(template = TEMPLATE, timeoutTicks = 100)
     public static void reusedT5HostsExecuteExpandedOutputShapes(
             GameTestHelper helper) {
@@ -1362,6 +1553,102 @@ public final class CrucibleCraftGameTests {
                 .thenExecute(() -> helper.assertTrue(
                         completed[0],
                         "Crusher did not complete after its declared duration"))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 120)
+    public static void silkTouchedOreHostsCrushToExactlyFiveCrushed(
+            GameTestHelper helper) {
+        ServerLevel level = helper.getLevel();
+        Block stoneOre = ModBlocks.oreBlock("copper", Host.STONE).get();
+        Block deepslateOre = ModBlocks.oreBlock("copper", Host.DEEPSLATE).get();
+        BlockPos stonePos = new BlockPos(1, 2, 1);
+        BlockPos deepslatePos = new BlockPos(1, 2, 3);
+        helper.setBlock(stonePos, stoneOre);
+        helper.setBlock(deepslatePos, deepslateOre);
+
+        ItemStack silkPick = new ItemStack(Items.DIAMOND_PICKAXE);
+        silkPick.enchant(
+                level.registryAccess()
+                        .lookupOrThrow(Registries.ENCHANTMENT)
+                        .getOrThrow(Enchantments.SILK_TOUCH),
+                1);
+        List<ItemStack> stoneDrops = Block.getDrops(
+                helper.getBlockState(stonePos),
+                level,
+                helper.absolutePos(stonePos),
+                null,
+                null,
+                silkPick);
+        List<ItemStack> deepslateDrops = Block.getDrops(
+                helper.getBlockState(deepslatePos),
+                level,
+                helper.absolutePos(deepslatePos),
+                null,
+                null,
+                silkPick);
+        helper.assertTrue(
+                stoneDrops.size() == 1
+                        && stoneDrops.getFirst().is(stoneOre.asItem())
+                        && stoneDrops.getFirst().getCount() == 1,
+                "Silk Touch did not preserve the stone-host copper ore block");
+        helper.assertTrue(
+                deepslateDrops.size() == 1
+                        && deepslateDrops.getFirst().is(deepslateOre.asItem())
+                        && deepslateDrops.getFirst().getCount() == 1,
+                "Silk Touch did not preserve the deepslate-host copper ore block");
+
+        RecipeMap.Match stoneMatch = ModRecipeMaps.CRUSHER.findMatch(
+                GTRecipeQuery.items(stoneDrops.getFirst().copy())).orElseThrow();
+        RecipeMap.Match deepslateMatch = ModRecipeMaps.CRUSHER.findMatch(
+                GTRecipeQuery.items(deepslateDrops.getFirst().copy())).orElseThrow();
+        RecipeMap.Match rawMatch = ModRecipeMaps.CRUSHER.findMatch(
+                GTRecipeQuery.items(material(
+                        "copper", MaterialPrefixes.RAW_ORE, 1))).orElseThrow();
+        helper.assertTrue(
+                stoneMatch.id().equals(deepslateMatch.id()),
+                "Stone and deepslate ore hosts did not resolve the same tag recipe");
+        helper.assertTrue(
+                stoneMatch.recipe().duration() == rawMatch.recipe().duration()
+                        && stoneMatch.recipe().eut() == rawMatch.recipe().eut()
+                        && stoneMatch.recipe().outputChances().equals(
+                                rawMatch.recipe().outputChances()),
+                "Ore-block crusher parameters diverged from the raw-ore baseline");
+        ItemStack expected = material(
+                "copper", MaterialPrefixes.CRUSHED_ORE, 5);
+        helper.assertTrue(
+                stoneMatch.recipe().itemOutputs().size() == 1
+                        && ItemStack.isSameItemSameComponents(
+                                stoneMatch.recipe().itemOutputs().getFirst(),
+                                expected)
+                        && stoneMatch.recipe().itemOutputs().getFirst().getCount() == 5,
+                "Silk-touched ore recipe did not declare exactly five crushed ore");
+
+        BlockPos crusherPos = new BlockPos(3, 2, 3);
+        helper.setBlock(crusherPos, ModBlocks.BRONZE_CRUSHER.get());
+        CrusherBlockEntity crusher = helper.getBlockEntity(crusherPos);
+        crusher.inventory().setStackInSlot(
+                CrusherBlockEntity.INPUT_SLOT, stoneDrops.getFirst().copy());
+        fillKuCapability(helper, crusherPos);
+        helper.startSequence()
+                .thenIdle(3)
+                .thenExecute(() -> {
+                    forceLastTick(helper, crusher);
+                    fillKuCapability(helper, crusherPos);
+                })
+                .thenIdle(2)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            crusher.inventory().getStackInSlot(
+                                    CrusherBlockEntity.INPUT_SLOT).isEmpty(),
+                            "Crusher retained the silk-touched ore block");
+                    ItemStack output = crusher.inventory().getStackInSlot(
+                            CrusherBlockEntity.OUTPUT_SLOT);
+                    helper.assertTrue(
+                            ItemStack.isSameItemSameComponents(output, expected)
+                                    && output.getCount() == 5,
+                            "Crusher did not produce exactly five crushed ore");
+                })
                 .thenSucceed();
     }
 
@@ -1557,6 +1844,114 @@ public final class CrucibleCraftGameTests {
                 .thenSucceed();
     }
 
+    @GameTest(template = TEMPLATE, timeoutTicks = 1_350)
+    public static void hotIngotSmeltsHurtsAndCoolsThroughDataRule(
+            GameTestHelper helper) {
+        BlockPos fireboxPos = new BlockPos(4, 1, 4);
+        BlockPos smelterPos = fireboxPos.above();
+        helper.setBlock(fireboxPos, ModBlocks.FIREBOX.get());
+        ConfiguredProcessingMachineBlockEntity smelter =
+                placeConfigured(
+                        helper,
+                        smelterPos,
+                        ModBlocks.SMELTER.get(),
+                        ModProcessingMachines.SMELTER);
+        FireboxBlockEntity firebox = helper.getBlockEntity(fireboxPos);
+        helper.assertTrue(
+                firebox.addFuel(FuelDefinition.CHARCOAL),
+                "Could not fuel T10 hot-ingot smelter");
+        smelter.inventory().setStackInSlot(
+                0,
+                material("copper", MaterialPrefixes.INGOT, 1));
+        Item hotItem = MaterialLookup.item(
+                        "copper",
+                        MaterialPrefixes.INGOT_HOT)
+                .orElseThrow();
+        Item ordinaryItem = MaterialLookup.item(
+                        "copper",
+                        MaterialPrefixes.INGOT)
+                .orElseThrow();
+        int coolingTicks = (int) Math.ceil(Math.max(
+                1.0,
+                MaterialCatalog.require("copper").thermal().meltingPoint()
+                        - ItemHeat.AMBIENT_TEMPERATURE));
+        @SuppressWarnings("removal")
+        ServerPlayer survivalPlayer = helper.makeMockServerPlayerInLevel();
+        survivalPlayer.setGameMode(GameType.SURVIVAL);
+        float[] healthBeforeContact = new float[1];
+
+        GameTestSequence sequence = helper.startSequence()
+                .thenIdle(4)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            smelter.progress() > 0,
+                            "T10 hot-ingot route did not start");
+                    forceLastTick(helper, smelter);
+                })
+                .thenIdle(2)
+                .thenExecute(() -> {
+                    ItemStack hot = smelter.inventory().extractItem(
+                            smelter.spec().items().outputs().getFirst(),
+                            1,
+                            false);
+                    helper.assertTrue(
+                            hot.is(hotItem)
+                                    && hot.has(ModComponents.HEAT.get())
+                                    && ItemHeat.temperature(
+                                            hot,
+                                            helper.getLevel().getGameTime()) > 20.0f,
+                            "Smelter output is not an independently heated hot ingot");
+
+                    ItemStack creativeHot = new ItemStack(hotItem);
+                    helper.assertTrue(
+                            !creativeHot.has(ModComponents.HEAT.get()),
+                            "Default creative hot ingot unexpectedly carried runtime heat");
+                    healthBeforeContact[0] = survivalPlayer.getHealth();
+                    helper.assertTrue(
+                            survivalPlayer.getInventory().add(hot)
+                                    && survivalPlayer.getInventory().add(creativeHot),
+                            "Could not place hot ingots into player inventories");
+                })
+                .thenIdle(85);
+        addPlayerTickWindow(sequence, survivalPlayer);
+        sequence.thenExecute(() -> {
+                    int heatedStacks = inventoryStacksWithHeat(
+                            survivalPlayer,
+                            hotItem);
+                    helper.assertTrue(
+                            heatedStacks == 2,
+                            "Creative hot ingot was not initialized by inventory maintenance; heated stacks="
+                                    + heatedStacks);
+                    helper.assertTrue(
+                            survivalPlayer.getHealth() < healthBeforeContact[0],
+                            "Inventory maintenance did not damage the hot-ingot carrier; health="
+                                    + survivalPlayer.getHealth()
+                                    + "/"
+                                    + healthBeforeContact[0]);
+                    survivalPlayer.getAbilities().invulnerable = true;
+                })
+                .thenIdle(coolingTicks + 25);
+        addPlayerTickWindow(sequence, survivalPlayer);
+        sequence.thenExecute(() -> {
+                    ItemStack ordinary = inventoryStack(
+                            survivalPlayer,
+                            ordinaryItem);
+                    helper.assertTrue(
+                            !ordinary.isEmpty()
+                                    && inventoryItemCount(
+                                                    survivalPlayer,
+                                                    ordinaryItem)
+                                            == 2
+                                    && !ordinary.has(ModComponents.HEAT.get())
+                                    && inventoryStack(
+                                                    survivalPlayer,
+                                                    hotItem)
+                                            .isEmpty(),
+                            "Inventory maintenance did not cool hot ingots into ordinary ingots");
+                })
+                .thenSucceed();
+    }
+
     @GameTest(template = TEMPLATE, timeoutTicks = 420)
     public static void oreChainCopperAcrossPlacedMachines(GameTestHelper helper) {
         runOreChain(helper, "copper");
@@ -1582,6 +1977,186 @@ public final class CrucibleCraftGameTests {
         ItemStack minedRawOre = placeTungstenVeinAndMineRawOre(helper);
         runOreChain(helper, "tungsten", minedRawOre);
     }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 400)
+    public static void worldgenCatalogRegistryPlacementAndFluidDeposit(
+            GameTestHelper helper) {
+        ServerLevel level = helper.getLevel();
+        Registry<ConfiguredFeature<?, ?>> registry =
+                level.registryAccess().registryOrThrow(
+                        Registries.CONFIGURED_FEATURE);
+        List<ResourceLocation> worldgenVeins = registry.keySet().stream()
+                .filter(id -> id.getNamespace().equals(CrucibleCraft.MODID))
+                .filter(id -> id.getPath().startsWith("large_")
+                        && id.getPath().endsWith("_vein"))
+                .sorted()
+                .toList();
+        helper.assertTrue(
+                worldgenVeins.size() == 134,
+                "Runtime configured-feature registry has "
+                        + worldgenVeins.size() + " / 134 catalog veins");
+        for (ResourceLocation id : worldgenVeins) {
+            ConfiguredFeature<?, ?> configured = registry.get(
+                    ResourceKey.create(Registries.CONFIGURED_FEATURE, id));
+            helper.assertTrue(
+                    configured != null
+                            && configured.config()
+                                    instanceof LargeVeinConfiguration,
+                    id + " did not decode as a large vein");
+            assertLargeVeinPlaces(
+                    helper,
+                    configured,
+                    (LargeVeinConfiguration) configured.config());
+        }
+
+        ResourceLocation oilId = ResourceLocation.fromNamespaceAndPath(
+                CrucibleCraft.MODID, "crude_oil_deposit");
+        ConfiguredFeature<?, ?> oil = registry.get(
+                ResourceKey.create(Registries.CONFIGURED_FEATURE, oilId));
+        helper.assertTrue(
+                oil != null
+                        && oil.config()
+                                instanceof SubsurfaceFluidDepositConfiguration,
+                "Runtime registry lacks the decoded crude-oil deposit");
+        assertFluidDepositPlacesAndIsReadable(
+                helper,
+                oil,
+                (SubsurfaceFluidDepositConfiguration) oil.config());
+        helper.succeed();
+    }
+
+    private static void assertLargeVeinPlaces(
+            GameTestHelper helper,
+            ConfiguredFeature<?, ?> configured,
+            LargeVeinConfiguration config) {
+        ServerLevel level = helper.getLevel();
+        AcceptedRegion selected = acceptedRegion(
+                helper,
+                config.regionSizeChunks(),
+                config.generationChance(),
+                config.salt());
+        long veinSeed = LargeVeinLayout.veinSeed(
+                level.getSeed(), selected.anchor(), config.salt());
+        int centerX = selected.anchor().x() * 16 + 8;
+        int centerZ = selected.anchor().z() * 16 + 8;
+        int centerY = LargeVeinLayout.centerY(
+                veinSeed, config.minY(), config.maxY());
+        for (int x = centerX - config.horizontalRadius();
+                x <= centerX + config.horizontalRadius();
+                x++) {
+            for (int z = centerZ - config.horizontalRadius();
+                    z <= centerZ + config.horizontalRadius();
+                    z++) {
+                for (int y = centerY - config.verticalRadius();
+                        y <= centerY + config.verticalRadius();
+                        y++) {
+                    level.setBlock(
+                            new BlockPos(x, y, z),
+                            Blocks.STONE.defaultBlockState(),
+                            2);
+                }
+            }
+        }
+        helper.assertTrue(
+                configured.place(
+                        level,
+                        level.getChunkSource().getGenerator(),
+                        RandomSource.create(veinSeed),
+                        new BlockPos(
+                                selected.anchor().x() * 16,
+                                centerY,
+                                selected.anchor().z() * 16)),
+                "Catalog configured feature failed real placement for salt "
+                        + config.salt());
+    }
+
+    private static void assertFluidDepositPlacesAndIsReadable(
+            GameTestHelper helper,
+            ConfiguredFeature<?, ?> configured,
+            SubsurfaceFluidDepositConfiguration config) {
+        ServerLevel level = helper.getLevel();
+        AcceptedRegion selected = acceptedRegion(
+                helper,
+                config.regionSizeChunks(),
+                config.generationChance(),
+                config.salt());
+        long depositSeed = LargeVeinLayout.veinSeed(
+                level.getSeed(), selected.anchor(), config.salt());
+        int centerY = LargeVeinLayout.centerY(
+                depositSeed, config.minY(), config.maxY());
+        BlockPos target = new BlockPos(
+                selected.anchor().x() * 16 + 8,
+                centerY,
+                selected.anchor().z() * 16 + 8);
+        level.setBlock(target, Blocks.STONE.defaultBlockState(), 2);
+        helper.assertTrue(
+                configured.place(
+                        level,
+                        level.getChunkSource().getGenerator(),
+                        RandomSource.create(depositSeed),
+                        new BlockPos(
+                                selected.anchor().x() * 16,
+                                centerY,
+                                selected.anchor().z() * 16)),
+                "Crude-oil configured feature failed real placement");
+        helper.assertTrue(
+                level.getBlockEntity(target)
+                        instanceof SubsurfaceFluidDepositBlockEntity,
+                "Placed crude-oil deposit has no readable block entity");
+        SubsurfaceFluidDepositBlockEntity deposit =
+                (SubsurfaceFluidDepositBlockEntity) level.getBlockEntity(target);
+        var snapshot = deposit.snapshot().orElse(null);
+        helper.assertTrue(
+                snapshot != null
+                        && snapshot.material().equals(config.material())
+                        && snapshot.replacedHost().equals(
+                                BuiltInRegistries.BLOCK.getKey(Blocks.STONE))
+                        && snapshot.initialAmountMb()
+                                >= config.minAmountMb()
+                        && snapshot.initialAmountMb()
+                                <= config.maxAmountMb()
+                        && snapshot.remainingAmountMb()
+                                == snapshot.initialAmountMb(),
+                "Placed crude-oil deposit data is incomplete or out of range");
+    }
+
+    private static AcceptedRegion acceptedRegion(
+            GameTestHelper helper,
+            int regionSizeChunks,
+            float generationChance,
+            int salt) {
+        ServerLevel level = helper.getLevel();
+        ChunkPos testChunk =
+                new ChunkPos(helper.absolutePos(BlockPos.ZERO));
+        int baseRegionX =
+                Math.floorDiv(testChunk.x, regionSizeChunks) + 64;
+        int baseRegionZ =
+                Math.floorDiv(testChunk.z, regionSizeChunks) + 64;
+        for (int index = 0; index < 4_096; index++) {
+            int regionX = baseRegionX + index % 64;
+            int regionZ = baseRegionZ + index / 64;
+            if (LargeVeinLayout.generationRoll(
+                    level.getSeed(), regionX, regionZ, salt)
+                    < generationChance) {
+                return new AcceptedRegion(
+                        regionX,
+                        regionZ,
+                        LargeVeinLayout.anchor(
+                                level.getSeed(),
+                                regionX,
+                                regionZ,
+                                regionSizeChunks,
+                                salt));
+            }
+        }
+        throw new IllegalStateException(
+                "No deterministic test region accepted for salt " + salt);
+    }
+
+    private record AcceptedRegion(
+            int regionX,
+            int regionZ,
+            LargeVeinLayout.Anchor anchor) {}
 
     private static void runOreChain(GameTestHelper helper, String materialId) {
         runOreChain(
@@ -2146,7 +2721,7 @@ public final class CrucibleCraftGameTests {
     public static void everyLiveT3RecipeTracesToGeneratedComponentJson(
             GameTestHelper helper) {
         Map<RecipeMap, Integer> expected = Map.of(
-                ModRecipeMaps.EXTRUDER, 2782,
+                ModRecipeMaps.EXTRUDER, 3039,
                 ModRecipeMaps.CUTTER, 651,
                 ModRecipeMaps.LATHE, 929,
                 ModRecipeMaps.ROLLINGMILL, 336,
@@ -2186,8 +2761,8 @@ public final class CrucibleCraftGameTests {
             }
         }
         helper.assertTrue(
-                total == 11594,
-                "Live T3-map recipe total is not 11594: " + total);
+                total == 11851,
+                "Live T3-map recipe total is not 11851: " + total);
         int t5Total = 0;
         for (RecipeMap map : ModProcessingMachines.T5_MACHINES.stream()
                 .map(ProcessingMachineSpec::requireRecipeMap)
@@ -2255,13 +2830,25 @@ public final class CrucibleCraftGameTests {
         var lookup = com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader
                 .benchmarkT4LookupsForVerification();
         helper.assertTrue(
-                metrics.t3ComponentRecipes() == 8141
+                metrics.t3ComponentRecipes() == 8398
                         && metrics.t4ToolRecipes() == 3452
                         && metrics.t5ChemicalRecipes() == 152
-                        && metrics.liveT3MapRecipes() == 11594
-                        && metrics.allPublishedRecipes() == 17189
+                        && metrics.t7AuthoredMaterialRules() == 220
+                        && metrics.t8PipeMaterialRules() == 257
+                        && metrics.t10KnownFormMaterialRules() == 1_288
+                        && metrics.liveT3MapRecipes() == 11851
+                        && metrics.allPublishedRecipes() == 18_871
                         && metrics.t5ChemicalRecipes()
                                 <= ModProcessingMachines.T5_CHEMICAL_RECIPE_BUDGET
+                        && metrics.t7AuthoredMaterialRules()
+                                <= ModProcessingMachines
+                                        .T7_AUTHORED_MATERIAL_RULE_BUDGET
+                        && metrics.t8PipeMaterialRules()
+                                <= ModProcessingMachines
+                                        .T8_PIPE_MATERIAL_RULE_BUDGET
+                        && metrics.t10KnownFormMaterialRules()
+                                <= ModProcessingMachines
+                                        .T10_AUTHORED_MATERIAL_RULE_BUDGET
                         && metrics.allPublishedRecipes()
                                 <= ModProcessingMachines.ALL_PUBLISHED_RECIPE_BUDGET
                         && metrics.reloadMillis()
@@ -2868,6 +3455,264 @@ public final class CrucibleCraftGameTests {
             int cycles,
             String label) {}
 
+    @GameTest(template = TEMPLATE, timeoutTicks = 160)
+    public static void distilleryFluidPipeFeedsMixer(
+            GameTestHelper helper) {
+        BlockPos distilleryPos = new BlockPos(3, 2, 5);
+        BlockPos pipePos = distilleryPos.east();
+        BlockPos mixerPos = pipePos.east();
+        helper.setBlock(
+                distilleryPos,
+                ModBlocks.DISTILLERY.get().defaultBlockState()
+                        .setValue(
+                                ProcessingMachineBlock.FACING,
+                                Direction.EAST));
+        helper.setBlock(
+                mixerPos,
+                ModBlocks.MIXER.get().defaultBlockState()
+                        .setValue(
+                                ProcessingMachineBlock.FACING,
+                                Direction.EAST));
+        FluidPipeBlock block = (FluidPipeBlock) ModBlocks.pipeBlock(
+                "copper",
+                MaterialPrefixes.TINY_FLUID_PIPE,
+                PipeCatalog.Kind.FLUID).get();
+        helper.setBlock(pipePos, block);
+        helper.getLevel().setBlock(
+                helper.absolutePos(pipePos),
+                helper.getBlockState(pipePos)
+                        .setValue(FluidPipeBlock.WEST, true)
+                        .setValue(FluidPipeBlock.EAST, true),
+                Block.UPDATE_CLIENTS);
+
+        ConfiguredProcessingMachineBlockEntity distillery =
+                helper.getBlockEntity(distilleryPos);
+        ConfiguredProcessingMachineBlockEntity mixer =
+                helper.getBlockEntity(mixerPos);
+        FluidPipeBlockEntity pipe = helper.getBlockEntity(pipePos);
+        FluidStack routedFluid = ModRecipeMaps.MIXER.recipes().stream()
+                .flatMap(recipe -> recipe.fluidInputs().stream())
+                .findFirst()
+                .orElseThrow()
+                .copyWithAmount(100);
+        distillery.tanks().get(2).setFluid(
+                routedFluid);
+        helper.assertTrue(
+                pipe.setCover(Direction.WEST, PipeCover.pump()),
+                "Could not install output pump");
+        IFluidHandler mixerInput = helper.getLevel().getCapability(
+                Capabilities.FluidHandler.BLOCK,
+                helper.absolutePos(mixerPos),
+                Direction.WEST);
+        helper.assertTrue(
+                mixerInput != null,
+                "Mixer did not expose its west fluid capability");
+        helper.assertTrue(
+                mixerInput.fill(
+                        routedFluid,
+                        IFluidHandler.FluidAction.SIMULATE) == 100,
+                "Mixer west fluid capability rejected routed fluid");
+
+        helper.startSequence()
+                .thenIdle(40)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            mixer.tanks().getFirst().getFluidAmount() == 100,
+                            "Fluid pipe did not feed the mixer input: pipe="
+                                    + pipe.storedFluid().getAmount()
+                                    + ", output="
+                                    + distillery.tanks().get(2)
+                                            .getFluidAmount()
+                                    + ", mixer="
+                                    + mixer.tanks().getFirst()
+                                            .getFluidAmount()
+                                    + ", state="
+                                    + helper.getBlockState(pipePos));
+                    helper.assertTrue(
+                            distillery.tanks().get(2).isEmpty(),
+                            "Output pump did not drain the distillery");
+                    helper.assertTrue(
+                            pipe.failureSnapshot().pendingFailure()
+                                    == Failure.NONE,
+                            "Safe water route unexpectedly failed");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 160)
+    public static void itemPipeFilterValvePumpAutomatesRoute(
+            GameTestHelper helper) {
+        BlockPos sourcePos = new BlockPos(3, 2, 9);
+        BlockPos firstPos = sourcePos.east();
+        BlockPos secondPos = firstPos.east();
+        BlockPos thirdPos = secondPos.east();
+        BlockPos destinationPos = thirdPos.east();
+        helper.setBlock(
+                sourcePos,
+                ModBlocks.MORTAR.get().defaultBlockState()
+                        .setValue(
+                                ProcessingMachineBlock.FACING,
+                                Direction.EAST));
+        helper.setBlock(
+                destinationPos, Blocks.CHEST.defaultBlockState());
+        ItemPipeBlock block = (ItemPipeBlock) ModBlocks.pipeBlock(
+                "copper",
+                MaterialPrefixes.ITEM_PIPE,
+                PipeCatalog.Kind.ITEM).get();
+        helper.setBlock(firstPos, block);
+        helper.setBlock(secondPos, block);
+        helper.setBlock(thirdPos, block);
+
+        ConfiguredProcessingMachineBlockEntity source =
+                helper.getBlockEntity(sourcePos);
+        ChestBlockEntity destination =
+                helper.getBlockEntity(destinationPos);
+        ItemPipeBlockEntity first = helper.getBlockEntity(firstPos);
+        ItemPipeBlockEntity second = helper.getBlockEntity(secondPos);
+        ItemPipeBlockEntity third = helper.getBlockEntity(thirdPos);
+        source.inventory().setStackInSlot(
+                1, new ItemStack(Items.IRON_INGOT, 3));
+        first.setCover(Direction.WEST, PipeCover.pump());
+        second.setCover(
+                Direction.WEST,
+                PipeCover.filter("minecraft:iron_ingot"));
+        third.setCover(Direction.EAST, PipeCover.valve());
+
+        helper.startSequence()
+                .thenIdle(40)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            source.inventory().getStackInSlot(1).isEmpty(),
+                            "Item pump did not drain source output");
+                    helper.assertTrue(
+                            destination.getItem(0).getCount()
+                                    == 3,
+                            "Covered item route did not deliver three ingots "
+                                    + "to a vanilla chest");
+                    helper.assertTrue(
+                            first.totalDelivered()
+                                            + second.totalDelivered()
+                                            + third.totalDelivered()
+                                    > 0,
+                            "Actual committed item throughput was not recorded");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void copperTinIronUseCommonPipeCatalog(
+            GameTestHelper helper) {
+        for (String material : List.of("copper", "tin", "iron")) {
+            helper.assertTrue(
+                    PipeCatalog.contains(
+                            material,
+                            MaterialPrefixes.TINY_FLUID_PIPE,
+                            PipeCatalog.Kind.FLUID),
+                    material + " lacks data-driven fluid pipes");
+            helper.assertTrue(
+                    PipeCatalog.contains(
+                            material,
+                            MaterialPrefixes.ITEM_PIPE,
+                            PipeCatalog.Kind.ITEM),
+                    material + " lacks data-driven item pipes");
+        }
+        helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void fluidPipeCapacityTemperatureAndCorrosionFailClosed(
+            GameTestHelper helper) {
+        FluidPipeBlock block = (FluidPipeBlock) ModBlocks.pipeBlock(
+                "copper",
+                MaterialPrefixes.TINY_FLUID_PIPE,
+                PipeCatalog.Kind.FLUID).get();
+        BlockPos capacityPos = new BlockPos(4, 2, 13);
+        BlockPos hotPos = new BlockPos(8, 2, 13);
+        BlockPos acidPos = new BlockPos(12, 2, 13);
+        for (BlockPos pipePos : List.of(
+                capacityPos, hotPos, acidPos)) {
+            helper.setBlock(
+                    pipePos.west(),
+                    ModBlocks.MIXER.get().defaultBlockState()
+                            .setValue(
+                                    ProcessingMachineBlock.FACING,
+                                    Direction.EAST));
+            helper.setBlock(pipePos, block);
+            helper.getLevel().setBlock(
+                    helper.absolutePos(pipePos),
+                    helper.getBlockState(pipePos)
+                            .setValue(FluidPipeBlock.WEST, true),
+                    Block.UPDATE_CLIENTS);
+        }
+        FluidPipeBlockEntity capacity = helper.getBlockEntity(capacityPos);
+        FluidPipeBlockEntity hot = helper.getBlockEntity(hotPos);
+        FluidPipeBlockEntity acid = helper.getBlockEntity(acidPos);
+
+        CompoundTag malformed = capacity.getUpdateTag(
+                helper.getLevel().registryAccess());
+        malformed.putString("pending_failure", "garbage");
+        malformed.putInt("corrosion", -1);
+        CompoundTag invalidCover = new CompoundTag();
+        invalidCover.putString("side", "north");
+        invalidCover.putString("type", "filter");
+        invalidCover.putString("match", "NOT A VALID ID");
+        ListTag invalidCovers = new ListTag();
+        invalidCovers.add(invalidCover);
+        malformed.put("covers", invalidCovers);
+        capacity.handleUpdateTag(
+                malformed, helper.getLevel().registryAccess());
+        helper.assertTrue(
+                capacity.failureSnapshot().equals(
+                        FluidPipeFailureState.Snapshot.EMPTY),
+                "Malformed failure NBT was not quarantined");
+        helper.assertTrue(
+                capacity.coverSnapshot().isEmpty(),
+                "Malformed cover NBT was not quarantined");
+
+        int capacityLimit = capacity.capacity();
+        int filled = capacity.fluidHandler(Direction.WEST).fill(
+                new FluidStack(Fluids.WATER, capacityLimit + 100),
+                IFluidHandler.FluidAction.EXECUTE);
+        helper.assertTrue(
+                filled == capacityLimit,
+                "Capacity route did not apply exact backpressure: filled="
+                        + filled + ", capacity=" + capacityLimit
+                        + ", state=" + helper.getBlockState(capacityPos));
+        helper.assertTrue(
+                capacity.failureSnapshot().backpressureAmount() == 100,
+                "Backpressure used planned instead of committed amount");
+
+        FluidStack moltenTungsten = new FluidStack(
+                ModFluids.materialFluid("tungsten").orElseThrow(), 1);
+        FluidStack hydrochloricAcid = new FluidStack(
+                ModFluids.materialFluid("hydrochloric_acid")
+                        .orElseThrow(),
+                1);
+        for (int event = 0; event < 4; event++) {
+            hot.fluidHandler(Direction.WEST).fill(
+                    moltenTungsten,
+                    IFluidHandler.FluidAction.EXECUTE);
+            acid.fluidHandler(Direction.WEST).fill(
+                    hydrochloricAcid,
+                    IFluidHandler.FluidAction.EXECUTE);
+        }
+
+        helper.startSequence()
+                .thenIdle(2)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            helper.getBlockState(hotPos).isAir(),
+                            "Over-temperature pipe did not fail closed");
+                    helper.assertTrue(
+                            helper.getBlockState(acidPos).isAir(),
+                            "Corroded pipe did not fail closed");
+                    helper.assertTrue(
+                            !helper.getBlockState(capacityPos).isAir(),
+                            "Backpressure destroyed a healthy pipe");
+                })
+                .thenSucceed();
+    }
+
     private static ConfiguredProcessingMachineBlockEntity placeConfigured(
             GameTestHelper helper, BlockPos pos, Block block, ProcessingMachineSpec spec) {
         helper.setBlock(pos, block);
@@ -3135,6 +3980,76 @@ public final class CrucibleCraftGameTests {
                     CableBlock.PROPERTY_BY_DIRECTION.get(direction), true);
         }
         return state;
+    }
+
+    private static void addPlayerTickWindow(
+            GameTestSequence sequence,
+            Player player) {
+        for (int tick = 0; tick < 20; tick++) {
+            sequence.thenIdle(1).thenExecute(() ->
+                    NeoForge.EVENT_BUS.post(new PlayerTickEvent.Post(player)));
+        }
+    }
+
+    private static ItemStack inventoryStack(Player player, Item item) {
+        for (int slot = 0;
+                slot < player.getInventory().getContainerSize();
+                slot++) {
+            ItemStack stack = player.getInventory().getItem(slot);
+            if (stack.is(item)) {
+                return stack;
+            }
+        }
+        return ItemStack.EMPTY;
+    }
+
+    private static int inventoryStacksWithHeat(Player player, Item item) {
+        int count = 0;
+        for (int slot = 0;
+                slot < player.getInventory().getContainerSize();
+                slot++) {
+            ItemStack stack = player.getInventory().getItem(slot);
+            if (stack.is(item) && stack.has(ModComponents.HEAT.get())) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private static int inventoryItemCount(Player player, Item item) {
+        int count = 0;
+        for (int slot = 0;
+                slot < player.getInventory().getContainerSize();
+                slot++) {
+            ItemStack stack = player.getInventory().getItem(slot);
+            if (stack.is(item)) {
+                count += stack.getCount();
+            }
+        }
+        return count;
+    }
+
+    private static boolean inventoryContainsFluid(
+            Player player,
+            Item item,
+            FluidStack expected) {
+        for (int slot = 0;
+                slot < player.getInventory().getContainerSize();
+                slot++) {
+            ItemStack stack = player.getInventory().getItem(slot);
+            if (!stack.is(item)) {
+                continue;
+            }
+            IFluidHandler handler =
+                    stack.getCapability(Capabilities.FluidHandler.ITEM);
+            if (handler != null
+                    && sameFluidAmount(
+                            handler.getFluidInTank(0),
+                            expected)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static ItemStack material(String id, com.masson.cruciblecraft.api.material.MaterialPrefix prefix, int count) {

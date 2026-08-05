@@ -65,6 +65,7 @@ class MaterialMetadataTooltipTest {
                 0,
                 0,
                 Optional.empty(),
-                Map.of());
+                Map.of(),
+                GT6MaterialMetadata.PipeProperties.EMPTY);
     }
 }

@@ -1,0 +1,42 @@
+{
+  "can_be_buffered": true,
+  "duration": 300,
+  "eut": 32,
+  "item_input_counts": [
+    1
+  ],
+  "item_inputs": [
+    {
+      "tag": "cruciblecraft:washed_crushed_ores/stannite"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": 1,
+      "id": "cruciblecraft:stannite/centrifuged_crushed_ore"
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:pyrite/dust"
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:kesterite/dust"
+    }
+  ],
+  "map": "cruciblecraft:centrifuge",
+  "output_chances": [
+    10000,
+    2500,
+    1000
+  ],
+  "provenance": {
+    "evidence_hashes": [
+      "554306af72b530441935",
+      "ca7c733056d9d8cc28d0"
+    ],
+    "selected_source_recipe": "topology_projection:155f4105ca6c613a3e31",
+    "source_kind": "topology_fallback"
+  },
+  "type": "cruciblecraft:gt_recipe"
+}

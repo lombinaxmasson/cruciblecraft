@@ -1,4 +1,7 @@
 {
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", gear)"
+  ],
   "duration": "240 * (144 * prefix_units(gear) / gcd(target_units(working) * 576, 144 * prefix_units(gear)))",
   "eut": "48",
   "item_inputs": [

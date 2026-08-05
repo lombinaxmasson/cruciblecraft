@@ -32,6 +32,10 @@ public final class DataGenerators {
         generator.addProvider(event.includeServer(), new ModLootTableProvider(output, lookupProvider));
         generator.addProvider(
                 event.includeServer(),
+                new ModBlockTagProvider(
+                        output, lookupProvider, existingFileHelper));
+        generator.addProvider(
+                event.includeServer(),
                 new ModItemTagProvider(output, lookupProvider, existingFileHelper));
         generator.addProvider(
                 event.includeServer(),

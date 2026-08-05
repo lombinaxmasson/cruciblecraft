@@ -16,9 +16,11 @@ from pathlib import Path
 from typing import Any, Iterable
 
 try:
+    from tools import gt6_electrical
     from tools import gt6_l3_materials
     from tools.gt6_mapping import GT6_PREFIX_TO_CC
 except ModuleNotFoundError:
+    import gt6_electrical
     import gt6_l3_materials
     from gt6_mapping import GT6_PREFIX_TO_CC
 
@@ -36,6 +38,7 @@ MANIFEST = TOOLS / "gt6_oredict_import_manifest.json"
 ALIASES = TOOLS / "gt6_material_alias_overrides.json"
 ACTIVATION_OVERRIDES = TOOLS / "gt6_material_activation_overrides.json"
 AUTHORED_BASELINE = TOOLS / "gt6_authored_material_baseline.json"
+ELECTRICAL_SOURCE = TOOLS / "gt6_electrical_source.json"
 ACCEPTANCE_FORM_CORRECTIONS = (
     TOOLS / "component_rule_sources" / "acceptance_form_corrections.json"
 )
@@ -51,6 +54,20 @@ REGISTRATION_GATE_MANIFEST_KEY = "material_registration_gate.json"
 RECIPE_DUMP_ROOT = ROOT / "gt6_dump" / "gt6_recipe_dump"
 
 EXPECTED_COUNTS = {"materialCount": 2214, "prefixCount": 468, "fluidMapCount": 322}
+T8_PIPE_FLAGS = {
+    "cruciblecraft:generates_tiny_fluid_pipe",
+    "cruciblecraft:generates_small_fluid_pipe",
+    "cruciblecraft:generates_fluid_pipe",
+    "cruciblecraft:generates_large_fluid_pipe",
+    "cruciblecraft:generates_huge_fluid_pipe",
+    "cruciblecraft:generates_item_pipe",
+    "cruciblecraft:generates_large_item_pipe",
+    "cruciblecraft:generates_huge_item_pipe",
+}
+T10_FORM_FLAGS = {
+    "gt6:itemgenerator/multiingots",
+    "gt6:itemgenerator/hotingots",
+}
 INDEX_FILES = {
     "materialsFile": "materials.json",
     "prefixesFile": "prefixes.json",
@@ -70,8 +87,10 @@ IMPORTED_FORMS = {
     "tiny_crushed_ore",
     "washed_crushed_ore",
     "centrifuged_crushed_ore",
+    "tiny_centrifuged_crushed_ore",
     "purified_dust",
     "gem",
+    "plate_gem",
     "tiny_dust",
     "long_rod", "screw", "ring", "spring", "small_spring",
     "gear", "small_gear", "rotor", "foil",
@@ -86,12 +105,14 @@ T3_COMPONENT_FORMS = IMPORTED_FORMS - {
     "tiny_crushed_ore",
     "washed_crushed_ore",
     "centrifuged_crushed_ore",
+    "tiny_centrifuged_crushed_ore",
     "purified_dust",
     "gem",
+    "plate_gem",
     "tiny_dust",
 }
 PREFIX_UNITS = {
-    "ingot": 144, "plate": 144, "rod": 72, "bolt": 18,
+    "ingot": 144, "plate": 144, "plate_gem": 144, "rod": 72, "bolt": 18,
     "long_rod": 144, "screw": 16, "ring": 36,
     "spring": 144, "small_spring": 36,
     "gear": 576, "small_gear": 144, "rotor": 612, "foil": 36,
@@ -147,12 +168,14 @@ GT_PREFIX_ITEMS = {
     "crushedTiny": "gregtech:gt.meta.crushedTiny",
     "crushedPurified": "gregtech:gt.meta.crushedPurified",
     "crushedCentrifuged": "gregtech:gt.meta.crushedCentrifuged",
+    "crushedCentrifugedTiny": "gregtech:gt.meta.crushedCentrifugedTiny",
     "dustPure": "gregtech:gt.meta.dustPure",
     "ingot": "gregtech:gt.meta.ingot",
     "dust": "gregtech:gt.meta.dust",
     "dustTiny": "gregtech:gt.meta.dustTiny",
     "gem": "gregtech:gt.meta.gem",
     "plate": "gregtech:gt.meta.plate",
+    "plateGem": "gregtech:gt.meta.plateGem",
     "stick": "gregtech:gt.meta.stick",
     "dustSmall": "gregtech:gt.meta.dustSmall",
     "bolt": "gregtech:gt.meta.bolt",
@@ -300,8 +323,51 @@ def stable_hash(value: Any) -> str:
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
-def structural_material(value: dict[str, Any]) -> dict[str, Any]:
+def strip_t8_pipe_projection(value: Any) -> Any:
+    """Remove post-import T8/T10 overlays before structural comparison."""
+    if not isinstance(value, dict):
+        return value
     result = dict(value)
+    metadata = result.get("gt6_metadata")
+    if isinstance(metadata, dict) and "pipe_properties" in metadata:
+        metadata = dict(metadata)
+        metadata.pop("pipe_properties", None)
+        result["gt6_metadata"] = metadata
+    if "generation_flags" in result:
+        result["generation_flags"] = sorted(
+            set(result.get("generation_flags") or [])
+            - T8_PIPE_FLAGS
+            - T10_FORM_FLAGS
+        )
+    return result
+
+
+def preserve_t8_pipe_projection(
+    imported: dict[str, Any],
+    current: dict[str, Any],
+) -> dict[str, Any]:
+    """Keep post-import T8/T10 overlays when rewriting GT6-owned fields."""
+    result = dict(imported)
+    current_metadata = current.get("gt6_metadata")
+    if (
+        isinstance(current_metadata, dict)
+        and "pipe_properties" in current_metadata
+    ):
+        metadata = dict(result.get("gt6_metadata") or {})
+        metadata["pipe_properties"] = current_metadata["pipe_properties"]
+        result["gt6_metadata"] = metadata
+    post_import_flags = set(current.get("generation_flags") or []) & (
+        T8_PIPE_FLAGS | T10_FORM_FLAGS
+    )
+    if post_import_flags:
+        result["generation_flags"] = sorted(
+            set(result.get("generation_flags") or []) | post_import_flags
+        )
+    return result
+
+
+def structural_material(value: dict[str, Any]) -> dict[str, Any]:
+    result = strip_t8_pipe_projection(value)
     result.pop("gt6_metadata", None)
     return result
 
@@ -350,6 +416,37 @@ def apply_acceptance_form_encoding(
 
 def file_hash(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def load_electrical_source() -> dict[str, Any]:
+    try:
+        return gt6_electrical.load(ELECTRICAL_SOURCE)
+    except gt6_electrical.ElectricalSourceError as error:
+        raise ImportError(str(error)) from error
+
+
+def apply_electrical_source(
+        materials: list[dict[str, Any]],
+        source_document: dict[str, Any],
+) -> None:
+    specifications = gt6_electrical.specifications_by_source(source_document)
+    available = {value["source_name"] for value in materials}
+    missing = sorted(set(specifications) - available)
+    if missing:
+        raise ImportError(
+            "GT6 electrical source references missing material(s): "
+            + ", ".join(missing)
+        )
+    for value in materials:
+        dumped = value.get("electrical_by_specification") or {}
+        if dumped:
+            raise ImportError(
+                f"{value['source_name']}: pinned dump unexpectedly contains "
+                "electricalBySpecification; review source precedence"
+            )
+        value["electrical_by_specification"] = specifications.get(
+            value["source_name"], {}
+        )
 
 
 def slug(name: str) -> str:
@@ -1597,6 +1694,12 @@ def write_authored_structural_baseline() -> None:
 def build_outputs(dump_root: Path) -> ImportResult:
     validate_authored_structural_baseline()
     provenance, raw_materials, raw_prefixes, raw_fluids = load_dump(dump_root)
+    electrical_source = load_electrical_source()
+    provenance["electrical_source"] = {
+        "path": ELECTRICAL_SOURCE.relative_to(ROOT).as_posix(),
+        "sha256": file_hash(ELECTRICAL_SOURCE),
+        "revision": electrical_source["source"]["revision"],
+    }
     l3_document = gt6_l3_materials.build_document(
         raw_materials,
         json.loads(
@@ -1606,6 +1709,7 @@ def build_outputs(dump_root: Path) -> ImportResult:
     texture_sets = load_material_texture_sets(RECIPE_DUMP_ROOT)
     materials = sorted((normalize_material(value) for value in raw_materials),
                        key=lambda value: (value["source_id"], value["source_name"]))
+    apply_electrical_source(materials, electrical_source)
     for value in materials:
         mapped = texture_sets.get(value["source_id"])
         if mapped:
@@ -1859,6 +1963,7 @@ def build_outputs(dump_root: Path) -> ImportResult:
             CROSS_REFERENCE.name: stable_hash(cross_reference),
             ALIASES.name: stable_hash(overrides),
             ACTIVATION_OVERRIDES.name: stable_hash(activation),
+            ELECTRICAL_SOURCE.name: stable_hash(electrical_source),
             "acceptance_form_corrections.json": stable_hash(json.loads(
                 ACCEPTANCE_FORM_CORRECTIONS.read_text(encoding="utf-8")
             )),
@@ -1922,6 +2027,7 @@ def validate_manifest_artifact_hashes(
         CROSS_REFERENCE.name,
         ALIASES.name,
         ACTIVATION_OVERRIDES.name,
+        ELECTRICAL_SOURCE.name,
         "acceptance_form_corrections.json",
         AUTHORED_BASELINE.name,
         gt6_l3_materials.GENERATION_BITS_PATH.name,
@@ -2019,7 +2125,9 @@ def validate_material_manifest(
         path = material_dir / filename
         if not path.is_file():
             raise ImportError(f"missing indexed material definition: {filename}")
-        actual_hash = stable_hash(json.loads(path.read_text(encoding="utf-8")))
+        actual_hash = stable_hash(strip_t8_pipe_projection(
+            json.loads(path.read_text(encoding="utf-8"))
+        ))
         if actual_hash != expected_hash:
             raise ImportError(f"material definition hash mismatch: {filename}")
     if check_authored:
@@ -2027,10 +2135,21 @@ def validate_material_manifest(
 
 
 def write_or_check(result: ImportResult, check: bool) -> None:
-    mismatches = [
-        str(path) for path, expected in result.outputs.items()
-        if not path.is_file() or path.read_text(encoding="utf-8") != expected
-    ]
+    mismatches = []
+    for path, expected in result.outputs.items():
+        if not path.is_file():
+            mismatches.append(str(path))
+            continue
+        actual = path.read_text(encoding="utf-8")
+        if (
+            path.parent == MATERIAL_DIR
+            and path.name != "index.json"
+        ):
+            actual = stable_json(strip_t8_pipe_projection(
+                json.loads(actual)
+            ))
+        if actual != expected:
+            mismatches.append(str(path))
     if check:
         if mismatches:
             raise ImportError("generated GT6 import artifacts are stale: " + ", ".join(mismatches[:12]))
@@ -2040,6 +2159,15 @@ def write_or_check(result: ImportResult, check: bool) -> None:
         previous = set(json.loads(MANIFEST.read_text(encoding="utf-8"))
                        .get("generated_material_files") or [])
     for path, content in result.outputs.items():
+        if (
+            path.is_file()
+            and path.parent == MATERIAL_DIR
+            and path.name != "index.json"
+        ):
+            content = stable_json(preserve_t8_pipe_projection(
+                json.loads(content),
+                json.loads(path.read_text(encoding="utf-8")),
+            ))
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(content, encoding="utf-8", newline="\n")
     for filename in previous - set(result.generated_material_files):

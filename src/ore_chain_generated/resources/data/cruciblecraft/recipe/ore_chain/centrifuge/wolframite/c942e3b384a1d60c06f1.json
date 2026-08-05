@@ -1,0 +1,42 @@
+{
+  "can_be_buffered": true,
+  "duration": 300,
+  "eut": 32,
+  "item_input_counts": [
+    1
+  ],
+  "item_inputs": [
+    {
+      "tag": "cruciblecraft:washed_crushed_ores/wolframite"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": 1,
+      "id": "cruciblecraft:wolframite/centrifuged_crushed_ore"
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:hematite/dust"
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:stannite/dust"
+    }
+  ],
+  "map": "cruciblecraft:centrifuge",
+  "output_chances": [
+    10000,
+    2500,
+    1000
+  ],
+  "provenance": {
+    "evidence_hashes": [
+      "3c8cd6b4f29c2f840dc3",
+      "99d9d5b9e6409cec1451"
+    ],
+    "selected_source_recipe": "topology_projection:c942e3b384a1d60c06f1",
+    "source_kind": "topology_fallback"
+  },
+  "type": "cruciblecraft:gt_recipe"
+}

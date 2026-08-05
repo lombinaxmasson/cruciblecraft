@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.content.blockentity;
 import java.util.Map;
 import java.util.Optional;
 
+import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.air.AirOutputModel;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
@@ -62,9 +63,26 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
     private final SteelmakingController steelmaking = new SteelmakingController();
     private final IFluidHandler externalFluids = new CrucibleFluidHandler();
     private final CheckpointTracker checkpoint = new CheckpointTracker();
+    private boolean quarantineWarningLogged;
 
     public CrucibleBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.CRUCIBLE.get(), pos, blockState);
+    }
+
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        if (!quarantineWarningLogged
+                && level != null
+                && !level.isClientSide
+                && casing.quarantined()) {
+            quarantineWarningLogged = true;
+            CrucibleCraft.LOGGER.warn(
+                    "Quarantined crucible at {} {}: unsupported casing material {}",
+                    level.dimension().location(),
+                    worldPosition,
+                    casing.quarantinedMaterialId());
+        }
     }
 
     public static void serverTick(
@@ -72,6 +90,9 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
             BlockPos pos,
             BlockState state,
             CrucibleBlockEntity crucible) {
+        if (crucible.casing.quarantined()) {
+            return;
+        }
         long incomingEnergy = crucible.thermal.takePendingHeat();
 
         float previousTemperature = crucible.thermal.authoritativeTemperature();
@@ -193,7 +214,10 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
             long amount,
             Direction side,
             boolean simulate) {
-        if (!handles(type, side) || size == 0L || amount <= 0L) {
+        if (casing.quarantined()
+                || !handles(type, side)
+                || size == 0L
+                || amount <= 0L) {
             return 0L;
         }
         if (type == EnergyType.HEAT) {
@@ -248,6 +272,9 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
     }
 
     public AirInjectionResult injectAir(long air) {
+        if (casing.quarantined()) {
+            return AirInjectionResult.INVALID_CHARGE;
+        }
         SteelmakingController.InjectionResult result = steelmaking.insertAir(
                 air,
                 contents.composition(),
@@ -274,6 +301,9 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
     }
 
     public InsertResult insert(MaterialUnits.Entry entry, float inputTemperature) {
+        if (casing.quarantined()) {
+            return InsertResult.INVALID_MATERIAL;
+        }
         var plan = CrucibleTransferCoordinator.planInsertion(
                 entry,
                 totalUnits(),
@@ -392,6 +422,14 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
         return casing.processingTier();
     }
 
+    public boolean casingMaterialQuarantined() {
+        return casing.quarantined();
+    }
+
+    public String quarantinedCasingMaterialId() {
+        return casing.quarantinedMaterialId();
+    }
+
     public float casingMaxTemperature() {
         return casing.maxTemperature();
     }
@@ -489,7 +527,7 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
         } else {
             migrateLegacyContents(tag);
         }
-        casing.setMaterialId(tag.contains("casing_material_id", Tag.TAG_STRING)
+        casing.restoreMaterialId(tag.contains("casing_material_id", Tag.TAG_STRING)
                 ? tag.getString("casing_material_id")
                 : MachineMaterialRules.DEFAULT_CRUCIBLE_MATERIAL);
         int savedCooldownTicks = tag.contains("cooldown_ticks")
@@ -516,7 +554,7 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
         CompoundTag savedComposition = new CompoundTag();
         contents.composition().forEach(savedComposition::putInt);
         tag.put("composition", savedComposition);
-        tag.putString("casing_material_id", casing.materialId());
+        tag.putString("casing_material_id", casing.persistedMaterialId());
         tag.putFloat("temperature", thermal.authoritativeTemperature());
         tag.putLong("cached_energy_per_tick", thermal.pendingHeat());
         tag.putLong("stored_energy", thermal.storedEnergy());
@@ -541,7 +579,7 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
         CompoundTag savedComposition = new CompoundTag();
         contents.composition().forEach(savedComposition::putInt);
         tag.put("composition", savedComposition);
-        tag.putString("casing_material_id", casing.materialId());
+        tag.putString("casing_material_id", casing.persistedMaterialId());
         tag.putFloat("temperature", thermal.authoritativeTemperature());
         tag.putInt("steel_batch_iron_units", steelmaking.batchIronUnits());
         return tag;
@@ -672,7 +710,7 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
 
         @Override
         public int fill(FluidStack resource, FluidAction action) {
-            if (resource.isEmpty()) {
+            if (casing.quarantined() || resource.isEmpty()) {
                 return 0;
             }
             Optional<MaterialDefinition> material = ModFluids.material(resource.getFluid());

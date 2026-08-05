@@ -1,0 +1,42 @@
+{
+  "can_be_buffered": true,
+  "duration": 300,
+  "eut": 32,
+  "item_input_counts": [
+    1
+  ],
+  "item_inputs": [
+    {
+      "tag": "cruciblecraft:washed_crushed_ores/salt"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": 1,
+      "id": "cruciblecraft:salt/centrifuged_crushed_ore"
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:iodine_salt/dust"
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:borax/dust"
+    }
+  ],
+  "map": "cruciblecraft:centrifuge",
+  "output_chances": [
+    10000,
+    2500,
+    1000
+  ],
+  "provenance": {
+    "evidence_hashes": [
+      "9fef5ce2dd29c0b4a3ed",
+      "d2d0f5fa70fa16b03ed7"
+    ],
+    "selected_source_recipe": "topology_projection:0415d38a4fb9c8023022",
+    "source_kind": "topology_fallback"
+  },
+  "type": "cruciblecraft:gt_recipe"
+}

@@ -21,16 +21,18 @@
     "source": "tools/component_rule_sources/acceptance_form_corrections.json"
   },
   "build_inputs_sha256": {
-    "src/main/resources/data/cruciblecraft/material_registration_gate.json": "71a5ab2d1a828ef8e7299abf10f3f6af5fec1545fd3769f505cd41f06806d110",
+    "src/main/resources/data/cruciblecraft/material_registration_gate.json": "95a19d45c16965b2facbef85eaf9c9c2b5e725d51a64adbeefef5fbdf9e1c284",
     "tools/component_selector_policy.json": "32e30e05d2db6f436c309c2037c8c7fb18323c640c6d812ee8c9b9635b948c77",
+    "tools/gt6_electrical_source.json": "3a9c7649387c016723d60e1738faf6e20ab2a2c3301b4cf006761231fa3b5238",
     "tools/gt6_extruder_templates_index_v5.json": "f802bd465b6c7e5303f18740b1d53dee0ac4f02f15326dbf0b1a7acdafd48f7e",
-    "tools/gt6_extruder_templates_report.json": "59fd8bfb96704a9cc9b0c14a626aa7cbbb20afdc66c4b1f03a0b841826b4f1ef"
+    "tools/gt6_extruder_templates_report.json": "59fd8bfb96704a9cc9b0c14a626aa7cbbb20afdc66c4b1f03a0b841826b4f1ef",
+    "tools/gt6_material_activation_policy.json": "3c863cf10bb24b7185f762b47518b106e971a1d1b0cfc5ce2e94a60069881c9b"
   },
   "builder": {
     "source": "tools/build_component_rules.py",
-    "source_sha256": "cbd9b0bb61b543679c77cd80124f55f8e5bd57e08048a8537f265d90546496f1"
+    "source_sha256": "eafb68739522f2d96d40b9c76234219fb4134b3ddc7525f4630a892bd5004c62"
   },
-  "expanded_recipes": 8136,
+  "expanded_recipes": 8141,
   "expansion_budget": 10000,
   "extruder_expanded_recipes": 2782,
   "extruder_expansion_budget": 4648,
@@ -1019,9 +1021,9 @@
       }
     ],
     "classified": 62,
-    "prefix_count": 43,
+    "prefix_count": 56,
     "registration_gate": "src/main/resources/data/cruciblecraft/material_registration_gate.json",
-    "registration_gate_sha256": "71a5ab2d1a828ef8e7299abf10f3f6af5fec1545fd3769f505cd41f06806d110",
+    "registration_gate_sha256": "95a19d45c16965b2facbef85eaf9c9c2b5e725d51a64adbeefef5fbdf9e1c284",
     "shapes": [
       {
         "base_meta": 10001,
@@ -1252,17 +1254,17 @@
     "unclassified": 0
   },
   "generated_files": {
-    "assembler/dodecuple_wire_and_rubber_to_dodecuple_cable.json": "df0183ad22072f8ea9dcf9de1ae575a94c6e60f30b047b7b62eeab7546cc1491",
-    "assembler/double_wire_and_rubber_to_double_cable.json": "300cce777bbccc1f005249cefb848ad4650f1db8237fc3d2ebfc25396a7c3f50",
-    "assembler/octuple_wire_and_rubber_to_octuple_cable.json": "8cc393ce54f468f6a981ed5022484b0193de0b5e71ed102a43facb69a99ed46a",
-    "assembler/plates_and_ring_to_rotor.json": "7cb0214cf53447d249b4a9f94232b86220b84a9809465d3227292bdd7fa2b592",
-    "assembler/plates_to_gear.json": "34a72c6fbe6f28a35d5e718259ba2e6b4bd46dc2db4ecdef6a7ba5f9bd4ff637",
-    "assembler/quadruple_wire_and_rubber_to_quadruple_cable.json": "f52282e13f2775430f4ef02c34b9e47e108569327b801b9adf4f1f8d75585442",
-    "assembler/wire_and_rubber_to_cable.json": "a2feaf08f412f224d0ad1079d29fd4f881b52d0d61772515caa1774d6d43fdf9",
-    "bender/long_rod_to_spring.json": "5af2ddb4288cc54f2346d08eedc211e38bfc5aa470ae4ac45d07a4bed44fefe3",
-    "bender/rod_to_small_springs.json": "30c9678485cf97bc87c832cbf142027a68d3b3d51018889233b4df8d330b88f1",
-    "cutter/gear_to_small_gears.json": "8aacd9ae2464adee3eb9656868adfff8cf042f6aae55d3da018726692a4161fb",
-    "cutter/plate_to_foil.json": "a1c50633741e2139326906b15ae8c756a0c304d7c97ec9c16ccb167c1ac06029",
+    "assembler/dodecuple_wire_and_rubber_to_dodecuple_cable.json": "b5b9972e1f40672639b5c2aae54b596b8a35c8f27f460cabe0b0eaab05765284",
+    "assembler/double_wire_and_rubber_to_double_cable.json": "3ff5e3b4bf4eb77c39e6f17dda2d41f0f1398325dd9cf102f269aea66f9ca40b",
+    "assembler/octuple_wire_and_rubber_to_octuple_cable.json": "d18a2de30d884b5d35bd95f15eec9eb122f000502968531f1416c99c3aa5537a",
+    "assembler/plates_and_ring_to_rotor.json": "8d9b582d0c3c5f1cd9acd43d64369efc22fbde1215bec5c32ca8042009e1fae1",
+    "assembler/plates_to_gear.json": "7e32458ea8f7b6a12e364888999377ffa492bf1a0227431c131493041751e84f",
+    "assembler/quadruple_wire_and_rubber_to_quadruple_cable.json": "3e4429a99e0096611c694c66921547957c8812edb540f7e24621de57fab2ba22",
+    "assembler/wire_and_rubber_to_cable.json": "81f46a2698f09c7bcd385edf46a95f1db6bd19c1809f894e2f85ad917de7b3d3",
+    "bender/long_rod_to_spring.json": "16e960939a744c4a45dfa88a1c65a1add8d29249784f45f8831c403680ed7c0a",
+    "bender/rod_to_small_springs.json": "f9415aa2dd438470df0bcae916ca6d048df006786e8969bfaaa92b3c209dafbc",
+    "cutter/gear_to_small_gears.json": "46c25093e7bbfb90847441469785baa18ac7995befb465af7abb5b9803774af3",
+    "cutter/plate_to_foil.json": "e01d9553879ebf31d673f53ad3f9866a908ae077553d244d124a2d8a72f5a465",
     "extruder/block/abyssalnite.json": "fe4b55da139a1808b0a6bf0935865ee87daedb90ce0b2dc2225a0aa7167a4a8d",
     "extruder/block/actinium.json": "4da9d58f85948b403ad34e9caf77653dea11607dfdd717d2e7b54aa0a0e13de9",
     "extruder/block/adamantine.json": "960ede7d1ee7b9822f84bde226c894eb10281a37881d282770941575005c6808",
@@ -4045,30 +4047,45 @@
     "extruder/small_gear/wax_soulful.json": "cba6ede350ccca76fc26e833b5d935609896b1473cc91f74e02bbeb1df7fc532",
     "extruder/small_gear/wrought_iron.json": "d9973e4263e74aa80cc30705090c9a475fbb22f09d4eb1f4d595d69ca2935f05",
     "extruder/small_gear/zirconium.json": "400bfeb8019bd6d1f5a7795c4a79df9ac0a0dd258dbb4602bc0d133d5be44829",
-    "lathe/bolts_to_screws.json": "9f8c6c85bb1b4dee96cd17b35881ac99f8b754bd1bee14955988f4c45299cff3",
-    "lathe/ingot_to_rods.json": "f41ea990b72ca3919a6f7a3be06e7b5cbb4f1aad5e2ffeb7e57e8a6eab88046f",
-    "press/double_and_plate_to_triple_plate.json": "40e644b42c7e6443dc4f3fa289a02f36947a3cfebfe074a02512573a821dffd8",
-    "press/double_plates_to_quadruple_plate.json": "0c89721e23742b21825288a3652cad72e4c3ca02c5b6820e3b1ae073ff76db37",
-    "press/quadruple_and_plate_to_quintuple_plate.json": "0633170cf00e54115d36cb9010d89f54020fb65f5238dba56b3ab115371f6be2",
+    "lathe/bolts_to_screws.json": "1ee83217acd0708fb7da84c68fd71747255ff57a2683f3ea5d3d08b66059bcef",
+    "lathe/ingot_to_rods.json": "31164a81c71407534ccf833ba67beeb874ec195ef69cb12b770198d0fe4a5693",
+    "press/double_and_plate_to_triple_plate.json": "5aa0daafef4da0bf49bb36d09fb94cedc9c346348dd52a7baabc2e4824df52c6",
+    "press/double_plates_to_quadruple_plate.json": "a922b4ace4f21a87f735a78ad7f7ea98a5319e7d7e09f669872d27ea4e361ca8",
+    "press/quadruple_and_plate_to_quintuple_plate.json": "cc5cdc489e14500b79db85855f55daf71968fbcfdd615d46518c5f37df68924c",
     "press/slime_ball_to_rubber_plate.json": "51e289f8a26a3863f709c6226911bf32f9ae18b556a6df39c63cb12e660de333",
-    "press/triple_plates_to_dense_plate.json": "7446c1fc92296bac73a6d256381c607b362af182ddc220bcbbfc250088e74a98",
-    "rollbender/rod_to_rings.json": "f49d0e19fd0f8c8d47d2c5328bfbf0075d6e9d1dc9972b85ddc2fbc69f2657ca",
-    "rollingmill/ingot_to_plate.json": "f842786f13adbd3e9d0a2449db250fe4dfd4c47a38bdc6acef026da0207abc62",
-    "welder/plates_to_double_plate.json": "3deb00f1926832354170058997ef857c1868413d182c0067ae42d5a817aeea1b",
-    "wiremill/double_to_quadruple_wire.json": "3d2caa2b5b26da10dacd316dbfd9e12d15c629487723f357bbdf2732f4bd8e01",
-    "wiremill/foil_to_fine_wire.json": "ce846d609a6c3a97770387fde61112421cb00710d3c99861b2821f093c7119eb",
-    "wiremill/ingot_to_wire.json": "d8ee52daeabcc255c18f5b34ae411548b2036b230aa37d2f5fec27b572302de2",
-    "wiremill/octuple_and_quadruple_to_dodecuple_wire.json": "6a333f97d68a863afbb4dc96994f71cc7226ca6b07d99e1ae1d947e8a15c5ffe",
-    "wiremill/octuple_to_hexadecuple_wire.json": "574d31576e49eea08b67a009bdd451aabc4e732429f3966327a4da89ac5976da",
-    "wiremill/quadruple_to_octuple_wire.json": "e1340780c82ccd7ae545a4d5ebb652da8b72beb01380e64e154d33333eea9354",
-    "wiremill/wire_to_double_wire.json": "21ff2278c2db2d43f283cd044cb8395ca22594b7bba7aba72e68c9d26db90409"
+    "press/triple_plates_to_dense_plate.json": "dff115fc0ce38f9abde1f6cdfc643fc9cd296fd65f43be9890b89267f0425cd3",
+    "rollbender/rod_to_rings.json": "8bfd42e33a2effc5b66167b0f1c6ff2c6bb1a523e202e0394397bef34c04de45",
+    "rollingmill/ingot_to_plate.json": "69885ea9e6dbb555f460d512a7d77227e3e2787b559bfeac0e76eb933475b994",
+    "welder/plates_to_double_plate.json": "bd9c95d8da6386ef6a2ad54259a1425a1c2fe38db134f41a0db841bac9e1aeb3",
+    "wiremill/double_to_quadruple_wire.json": "93a160c5b2f594b1888d3bc6d739aa44c16348eef11ce0acb69873186608430e",
+    "wiremill/foil_to_fine_wire.json": "b0899b86b0ab8facc9b8226b636fe010e37093200ddbc2861429bdadad541db9",
+    "wiremill/ingot_to_wire.json": "56396d567ab6a6bb3b400103688b5736de6480865d25b4950ded73307cfc14fc",
+    "wiremill/octuple_and_quadruple_to_dodecuple_wire.json": "dabd3a718b5162d0075cabcf2e26d88b5ea7caab024b1315eb6e2fb1f9d4f5e7",
+    "wiremill/octuple_to_hexadecuple_wire.json": "3119b095fcf2c5c823b11726b2ee4466f47d5d7ca5ca4632b4e666c1657b4acd",
+    "wiremill/quadruple_to_octuple_wire.json": "a7ee948f498ccbc060e1c3d18663cb17264aaac283e1c8ee229ae67fa5bfd837",
+    "wiremill/wire_to_double_wire.json": "839f2ca59cb543638fb40cf260081b614a86274458ef1d5ea42cecfbdc6b3953"
   },
   "generated_tree": {
     "algorithm": "sha256(relative-path NUL file-sha256)",
     "files": 2810,
-    "sha256": "984e1bf69944f1bc51cecd966183c115f1da78fd4a989ecb352961d5a988ce29"
+    "sha256": "b9ee42596af835ec872ec2298ff5fe7ff8788ca1d7d6e263133c337fe86b81c7"
   },
-  "non_extruder_expanded_recipes": 5354,
+  "material_groups": {
+    "any_rubber": {
+      "item_tag": "cruciblecraft:any_rubber_plates",
+      "member_materials": [
+        "rubber"
+      ],
+      "prefix": "plate",
+      "source_group": "ANY.Rubber",
+      "source_member_names": [
+        "Rubber"
+      ]
+    },
+    "generated_tag": "src/component_rule_generated/resources/data/cruciblecraft/tags/item/any_rubber_plates.json",
+    "generated_tag_sha256": "b3cca6a965759b95b61f801d241087b0cb724d3047b109cfa33c2747746eab59"
+  },
+  "non_extruder_expanded_recipes": 5359,
   "per_map": {
     "assembler": {
       "expanded_recipes": 568,
@@ -4107,7 +4124,7 @@
       "source_rules": 1
     },
     "wiremill": {
-      "expanded_recipes": 282,
+      "expanded_recipes": 287,
       "source_rules": 7
     }
   },
@@ -6917,7 +6934,7 @@
     "welder/plates_to_double_plate": 321,
     "wiremill/double_to_quadruple_wire": 23,
     "wiremill/foil_to_fine_wire": 138,
-    "wiremill/ingot_to_wire": 28,
+    "wiremill/ingot_to_wire": 33,
     "wiremill/octuple_and_quadruple_to_dodecuple_wire": 23,
     "wiremill/octuple_to_hexadecuple_wire": 23,
     "wiremill/quadruple_to_octuple_wire": 23,
@@ -6929,7 +6946,8 @@
       "tools/component_rule_sources/acceptance_form_corrections.json",
       "tools/component_rule_sources/component_baseline.json",
       "tools/component_rule_sources/component_rules.json",
-      "tools/component_rule_sources/extruder_shapes.json"
+      "tools/component_rule_sources/extruder_shapes.json",
+      "tools/component_rule_sources/material_groups.json"
     ],
     "baseline_capture": "ComponentBaselineDumpTest",
     "baseline_scope": "GT6-derived pre-acceptance component baseline",
@@ -6939,23 +6957,23 @@
     "runtime_loader": "com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader"
   },
   "recipe_ids": {
-    "algorithm": "sha256(non-extruder baseline plus acceptance corrections plus sorted extruder ids)",
-    "count": 8136,
-    "digest": "034610ecb3699f0a5de085d996aaa0e7d0a9940b285a6eb433f95118e4831c3e"
+    "algorithm": "sha256(non-extruder baseline plus acceptance corrections plus T6 electrical form expansion plus sorted extruder ids)",
+    "count": 8141,
+    "digest": "2bf02d2f5f05e3f0faf62e3f6790e8fc898532135124a36230cc537e6691756f"
   },
   "recipe_signatures": {
-    "algorithm": "sha256(non-extruder baseline plus acceptance corrections plus sparse extruder rows)",
-    "count": 8136,
-    "digest": "9bceb8446f72476fe1dd8d171478c28ec6254f9355470daffe7714d82c4ec781"
+    "algorithm": "sha256(non-extruder baseline plus acceptance corrections plus T6 electrical form expansion plus sparse extruder rows)",
+    "count": 8141,
+    "digest": "da27fd82671e83d86a0e429bd3679b53f0c3dea75b50c440118da8bbbd121548"
   },
   "runtime_codec": "cruciblecraft:material_rule/MaterialRule.CODEC",
   "schema_version": 1,
   "shadow_signatures": {
-    "algorithm": "sha256(non-extruder baseline plus acceptance corrections plus extruder target/input signatures)",
-    "digest": "a1af814eb707a68ae7516b32b6d606697a1945e1147bade6023cc78464a94fb1",
+    "algorithm": "sha256(non-extruder baseline plus acceptance corrections plus T6 electrical form expansion plus extruder target/input signatures)",
+    "digest": "296824baaa68c4be1ee513bcc5e28220821138aeb2721b5411ed47decc7a844b",
     "duplicates": 0,
-    "total": 8136,
-    "unique": 8136
+    "total": 8141,
+    "unique": 8141
   },
   "skip_reasons": [
     {
@@ -6983,11 +7001,48 @@
     "acceptance_form_corrections.json": "9481d1987206d370bc9b211609b9c51677882489a79f3f7926b64501df5d620a",
     "component_baseline.json": "e91f0413a5b9e592ad108553fbb94eff7d8dd1e67a5806d4a7ac2382251b05ed",
     "component_rules.json": "d66b11497fbdc83e0959ba903abeaf0196655e449e37761d36e56af07f104efc",
-    "extruder_shapes.json": "61993e313febd2a33100cd10328631d75170b8d732bedd192e3361d82d85fe63"
+    "extruder_shapes.json": "61993e313febd2a33100cd10328631d75170b8d732bedd192e3361d82d85fe63",
+    "material_groups.json": "a0710e7272614c03dd1fecc86cc3735577d5a0532ff263934f7dd4f2a3aa9015"
   },
   "source_rules": 2810,
   "source_schema_version": 1,
-  "source_sha256": "c38e388270b54e1c4cbc32826c88e7e71dfa57652ac46b0767733c6bfd1fe571",
+  "source_sha256": "e6370bd8df75bb806a4f72af0ff98b0e7f0d5334b758556e6b487131010beea3",
+  "t6_electrical_form_expansion": {
+    "classification": "t6_source_backed_runtime_required",
+    "entries": [
+      {
+        "classification": "t6_source_backed_runtime_required",
+        "form": "wire",
+        "material": "blue_alloy",
+        "rule": "wiremill/ingot_to_wire"
+      },
+      {
+        "classification": "t6_source_backed_runtime_required",
+        "form": "wire",
+        "material": "electrotine_alloy",
+        "rule": "wiremill/ingot_to_wire"
+      },
+      {
+        "classification": "t6_source_backed_runtime_required",
+        "form": "wire",
+        "material": "hslasteel",
+        "rule": "wiremill/ingot_to_wire"
+      },
+      {
+        "classification": "t6_source_backed_runtime_required",
+        "form": "wire",
+        "material": "naquadah",
+        "rule": "wiremill/ingot_to_wire"
+      },
+      {
+        "classification": "t6_source_backed_runtime_required",
+        "form": "wire",
+        "material": "yttrium_barium_cuprate",
+        "rule": "wiremill/ingot_to_wire"
+      }
+    ],
+    "expansion_delta": 5
+  },
   "unit_conservation": {
     "conserving_rules": 2809,
     "documented_compatibility_bridges": 1,

@@ -101,14 +101,18 @@ class OreResourceTest {
                         "cruciblecraft:deepslate_" + material.id() + "_ore"))
                 .collect(Collectors.toUnmodifiableSet());
 
-        for (String tag : List.of(
+        for (var tag : Map.of(
                 "data/minecraft/tags/block/mineable/pickaxe.json",
+                GENERATED_RESOURCES,
                 "data/minecraft/tags/block/needs_stone_tool.json",
-                "data/minecraft/tags/block/needs_iron_tool.json")) {
-            Set<String> leaked = tagValues(readString(RESOURCES.resolve(tag))).stream()
+                RESOURCES,
+                "data/minecraft/tags/block/needs_iron_tool.json",
+                RESOURCES).entrySet()) {
+            Set<String> leaked = tagValues(readString(
+                    tag.getValue().resolve(tag.getKey()))).stream()
                     .filter(oreBlocks::contains)
                     .collect(Collectors.toUnmodifiableSet());
-            assertEquals(Set.of(), leaked, tag);
+            assertEquals(Set.of(), leaked, tag.getKey());
         }
     }
 
@@ -205,10 +209,16 @@ class OreResourceTest {
                         })
                         .toList();
                 assertEquals(
-                        List.of(generatedData.resolve(
-                                "cruciblecraft/tags/item/extruder_shapes.json")),
+                        List.of(
+                                generatedData.resolve(
+                                        "cruciblecraft/tags/item/"
+                                                + "extruder_shapes.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/block/mineable/"
+                                                + "pickaxe.json")),
                         snapshots,
-                        "only the catalog-driven static extruder tag may ship in generated data");
+                        "only catalog-driven static item/block tags may ship "
+                                + "in generated data");
             }
         }
     }
@@ -341,7 +351,7 @@ class OreResourceTest {
         Path generatedRecipes = GENERATED_RESOURCES.resolve("data/cruciblecraft/recipe");
         Path generatedAdvancements = GENERATED_RESOURCES.resolve(
                 "data/cruciblecraft/advancement/recipes");
-        assertEquals(791, countRegularFiles(generatedRecipes));
+        assertEquals(837, countRegularFiles(generatedRecipes));
         assertEquals(2810, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
                 "data/cruciblecraft/recipe")));
         assertEquals(0, countRegularFiles(generatedAdvancements));

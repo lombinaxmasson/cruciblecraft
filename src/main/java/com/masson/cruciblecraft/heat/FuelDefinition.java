@@ -15,11 +15,11 @@ public record FuelDefinition(String id, long energyPerTick, int burnTicks) {
     public static final FuelDefinition CHARCOAL =
             new FuelDefinition("charcoal", 8L, 1_600);
     /**
-     * GT6 coal coke carries twice the fuel value of charcoal. Firebox output
-     * remains unchanged, so the extra energy is delivered as a longer burn.
+     * Coal coke carries twice the total fuel value of charcoal and burns at the
+     * 16 HU/t rate required by source-projected T5 smelter recipes.
      */
     public static final FuelDefinition COAL_COKE =
-            new FuelDefinition("coal_coke", 8L, 3_200);
+            new FuelDefinition("coal_coke", 16L, 1_600);
 
     public FuelDefinition {
         if (id == null || id.isBlank()) {

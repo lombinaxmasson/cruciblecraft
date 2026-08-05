@@ -10,6 +10,17 @@ sys.path.insert(0, str(TOOLS))
 import gt6_l3_materials  # noqa: E402
 import build_gt6_material_form_gate as gate_builder  # noqa: E402
 
+T8_PIPE_FORMS = {
+    "tiny_fluid_pipe",
+    "small_fluid_pipe",
+    "fluid_pipe",
+    "large_fluid_pipe",
+    "huge_fluid_pipe",
+    "item_pipe",
+    "large_item_pipe",
+    "huge_item_pipe",
+}
+
 
 class MaterialFormGateTest(unittest.TestCase):
     @classmethod
@@ -25,7 +36,7 @@ class MaterialFormGateTest(unittest.TestCase):
         )
         cls.l3 = json.loads(gt6_l3_materials.OUT.read_text(encoding="utf-8"))
 
-    def test_gate_covers_catalog_and_never_exceeds_factual_forms(self):
+    def test_gate_covers_catalog_and_only_adds_source_backed_t8_t10_forms(self):
         index = json.loads(
             (self.material_root / "index.json").read_text(encoding="utf-8")
         )
@@ -41,7 +52,14 @@ class MaterialFormGateTest(unittest.TestCase):
             )
             factual = gt6_l3_materials.resolve_material_forms(material, self.l3)
             registered = set(self.gate["materials"][material["id"]])
-            self.assertLessEqual(registered, factual, material["id"])
+            t10_forms = set(
+                self.gate["t10_known_forms"].get(material["id"], ())
+            )
+            self.assertLessEqual(
+                registered - factual,
+                T8_PIPE_FORMS | t10_forms,
+                material["id"],
+            )
             if material.get("metadata_only"):
                 metadata_only += 1
                 self.assertFalse(factual, material["id"])
@@ -49,6 +67,29 @@ class MaterialFormGateTest(unittest.TestCase):
             else:
                 self.assertTrue(factual, material["id"])
         self.assertEqual(663, metadata_only)
+        self.assertEqual(282, self.gate["counts"]["t8_pipe_forms"])
+        self.assertEqual(967, self.gate["counts"]["t10_known_forms"])
+        self.assertEqual(
+            323,
+            sum(
+                "double_ingot" in forms
+                for forms in self.gate["t10_known_forms"].values()
+            ),
+        )
+        self.assertEqual(
+            323,
+            sum(
+                "triple_ingot" in forms
+                for forms in self.gate["t10_known_forms"].values()
+            ),
+        )
+        self.assertEqual(
+            321,
+            sum(
+                "ingot_hot" in forms
+                for forms in self.gate["t10_known_forms"].values()
+            ),
+        )
 
     def test_gate_records_recipe_and_compatibility_sources(self):
         counts = self.gate["counts"]
@@ -71,6 +112,15 @@ class MaterialFormGateTest(unittest.TestCase):
             counts["compatibility_forms"],
             sum(map(len, self.gate["compatibility_forms"].values())),
         )
+        self.assertEqual(29, counts["t6_electrical_wire_forms"])
+        self.assertEqual(
+            29, len(self.gate["t6_electrical_wire_forms"])
+        )
+        for material, forms in self.gate[
+            "t6_electrical_wire_forms"
+        ].items():
+            self.assertEqual(["wire"], forms, material)
+            self.assertIn("wire", self.gate["materials"][material])
         baseline = self.gate["compatibility_baseline"]
         self.assertFalse(baseline["recursive"])
         self.assertEqual(
@@ -124,14 +174,23 @@ class MaterialFormGateTest(unittest.TestCase):
             for row in ore_chain["recipes"]
             if row["family"] == "crush_raw_to_crushed"
         }
+        ore_block_crusher_materials = {
+            row["material"]
+            for row in ore_chain["recipes"]
+            if row["family"] == "crush_ore_block_to_crushed"
+        }
         self.assertEqual(
-            len(crusher_materials),
+            len(crusher_materials) + len(ore_block_crusher_materials),
             ore_chain["counts"]["recipes_by_map"]["crusher"],
         )
-        self.assertNotEqual(
-            len(crusher_materials),
-            self.gate["counts"]["ore_source_materials"],
+        self.assertEqual(357, len(crusher_materials))
+        self.assertEqual(ore_materials, ore_block_crusher_materials)
+        self.assertEqual(
+            ore_materials,
+            ore_materials & crusher_materials,
         )
+        self.assertEqual(set(), ore_materials - crusher_materials)
+        self.assertEqual(220, len(crusher_materials - ore_materials))
         self.assertEqual(
             ore_materials,
             {

@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "gate": "T5.5_T6_ELECTRICAL_READINESS",
+  "authoritative_facts": {
+    "electrical_source": "tools/gt6_electrical_source.json",
+    "normalized_materials": "tools/gt6_oredict_materials_normalized.json",
+    "normalized_prefixes": "tools/gt6_oredict_prefixes_normalized.json",
+    "live_material_index": "src/main/resources/data/cruciblecraft/materials/index.json",
+    "registration_gate": "src/main/resources/data/cruciblecraft/material_registration_gate.json",
+    "component_rules": "tools/component_rule_sources/component_rules.json",
+    "component_rule_manifest": "tools/component_rule_manifest.json"
+  },
+  "classification_policy": {
+    "conductor": "Exact source_name is named by an authoritative addElectricWires invocation.",
+    "insulator": "Exact source_name is a concrete member of the authoritative ANY.Rubber insulation group.",
+    "insulator_group": "Exact source_name is the name-only ANY.Rubber technical group.",
+    "not_applicable": "The source record is named by neither direct electrical registration nor the direct insulation group. Names, generic WIRES generation tags, and OreDict wire/cable registrations are not promoted to electrical evidence.",
+    "unclassified_allowed": false
+  },
+  "import_architecture": {
+    "source_of_truth": "tools/gt6_electrical_source.json conductors[]",
+    "material_field": "gt6_metadata.electrical_by_specification",
+    "specification_fields": [
+      "max_voltage",
+      "max_amperage",
+      "loss_per_meter",
+      "insulated",
+      "contact_damage"
+    ],
+    "per_conductor_java_edits_required": false,
+    "regeneration_command": "python tools/import_gt6_oredict.py --write"
+  },
+  "acceptance": {
+    "required_live_conductors": [
+      "copper",
+      "gold",
+      "tin"
+    ],
+    "required_specifications": [
+      "wireGt01",
+      "cableGt01",
+      "cableGt02",
+      "cableGt04",
+      "cableGt08",
+      "cableGt12"
+    ]
+  },
+  "cable_domain": {
+    "gauge_forms": [
+      {
+        "gauge": 1,
+        "source_specification": "cableGt01",
+        "cc_form": "cable"
+      },
+      {
+        "gauge": 2,
+        "source_specification": "cableGt02",
+        "cc_form": "double_cable"
+      },
+      {
+        "gauge": 4,
+        "source_specification": "cableGt04",
+        "cc_form": "quadruple_cable"
+      },
+      {
+        "gauge": 8,
+        "source_specification": "cableGt08",
+        "cc_form": "octuple_cable"
+      },
+      {
+        "gauge": 12,
+        "source_specification": "cableGt12",
+        "cc_form": "dodecuple_cable"
+      }
+    ],
+    "connection_directions": 6,
+    "runtime_source_backed_block_count": 115,
+    "registered_recipe_item_form_count": 118,
+    "representation_projection": "Only gate-registered cable forms with an exact electrical_by_specification entry become conductor blocks. The three non-electric single cable forms remain MaterialItems."
+  },
+  "wire_domain": {
+    "source_specification": "wireGt01",
+    "cc_form": "wire",
+    "runtime_source_backed_block_count": 29,
+    "deferred_source_specifications": [
+      "wireGt02",
+      "wireGt03",
+      "wireGt04",
+      "wireGt05",
+      "wireGt06",
+      "wireGt07",
+      "wireGt08",
+      "wireGt09",
+      "wireGt10",
+      "wireGt11",
+      "wireGt12",
+      "wireGt13",
+      "wireGt14",
+      "wireGt15",
+      "wireGt16"
+    ]
+  },
+  "runtime_domain": {
+    "conductor_block_count": 144,
+    "logical_blockstate_count": 9216,
+    "network_graph_persisted": false,
+    "burn_counter_persisted": true,
+    "burn_decay_phase_persisted": true,
+    "persistence_difference": "GT6 does not serialize mBurnCounter. CrucibleCraft persists the counter and decay phase so chunk unloading cannot clear overload damage."
+  },
+  "future_cc_policy_decisions": {
+    "voltage_tiers": {
+      "status": "CLOSED",
+      "selected": {
+        "mode": "exact_source_max_voltage",
+        "rule": "Preserve max_voltage as the packet ceiling. A display tier may be derived from the pinned GT6 voltage table, but it does not replace or round the exact limit."
+      },
+      "question": "How do exact GT6 maximum voltages map to CrucibleCraft machine/network tiers?"
+    },
+    "loss_per_segment": {
+      "status": "CLOSED",
+      "selected": {
+        "mode": "source_loss_per_traversed_block",
+        "rule": "Each traversed cable block subtracts its exact loss_per_meter from packet voltage before forwarding. A packet whose magnitude is not greater than the loss stops at that block."
+      },
+      "question": "What constitutes a CrucibleCraft cable segment and when is the source EU-per-block loss applied?"
+    },
+    "overvoltage_behavior": {
+      "status": "CLOSED",
+      "selected": {
+        "mode": "source_burn_counter",
+        "rule": "Forward first, then record downstream-used amperage for this segment. If post-loss voltage exceeds max_voltage or same-tick aggregate amperage exceeds max_amperage, increment burn and report the full offered amperage upstream so the excess is dissipated. Counter 16 schedules fire; one point decays every 512 ticks."
+      },
+      "question": "Does overvoltage reject transfer, accumulate damage, burn cable, explode, or use another reviewed behavior?"
+    },
+    "network_topology": {
+      "status": "CLOSED",
+      "selected": {
+        "mode": "source_faithful_stateless_packet_traversal",
+        "rule": "Plan each injection over loaded connected neighbors in stable Direction order with a per-injection visited set; do not persist a global graph or load chunks. Execute under the existing energy conservation contract."
+      },
+      "question": "Which graph/component model, update schedule, split/merge behavior, and persistence boundaries will cable networks use?"
+    },
+    "gauge_mapping": {
+      "status": "CLOSED",
+      "selected": {
+        "mode": "exact_five_cable_gauges",
+        "rule": "Map cable/double/quadruple/octuple/dodecuple cable to source gauges 1/2/4/8/12 and preserve exact amperage multiplication. Other source wire gauges are outside the first T6 vertical."
+      },
+      "question": "Will the five current cable forms use GT6's exact amperage multipliers, and how are unsupported source wire gauges represented?"
+    },
+    "block_representation": {
+      "status": "CLOSED",
+      "selected": {
+        "mode": "material_specific_block_per_registered_form",
+        "rule": "Generate one block only for each source-backed registered material/gauge pair and encode six connections as blockstate booleans. T6a is 115 cable blocks and 7,360 states; three registered non-electric forms remain items."
+      },
+      "question": "How are material and gauge identity represented without creating an unbounded registry or a mutable block-entity identity?"
+    },
+    "bare_wire_extension": {
+      "status": "CLOSED",
+      "selected": {
+        "mode": "wireGt01_source_backed_blocks",
+        "rule": "T6d adds exactly the 29 gate-registered materials with an exact wireGt01 specification. wireGt02..16 remain deferred."
+      },
+      "question": "Which bare-wire forms are required to make source contact damage observable?"
+    },
+    "burn_persistence": {
+      "status": "CLOSED",
+      "selected": {
+        "mode": "persist_counter_and_decay_phase",
+        "rule": "Persist burn counter and 512-tick decay phase while keeping the traversal graph transient. This is an explicit CrucibleCraft anti-unload-exploit difference from GT6."
+      },
+      "question": "Should chunk unloading reset accumulated cable overload damage?"
+    }
+  },
+  "readiness_policy": {
+    "ready_status": "READY",
+    "blocked_status": "NOT_READY",
+    "requirements": [
+      "authoritative_source_revision_and_hashes_match",
+      "raw_and_live_classifications_close_with_zero_unclassified",
+      "every_direct_conductor_has_exact_imported_specifications",
+      "acceptance_conductors_have_required_nonempty_specifications",
+      "no_physical_resistance_or_other_unsourced_value_is_invented",
+      "all_future_cc_policy_decisions_are_closed",
+      "runtime_architecture_is_explicit_before_cable_implementation",
+      "runtime_domain_is_exactly_115_cables_plus_29_bare_wires",
+      "burn_persistence_difference_is_explicit",
+      "runtime_t6a_through_t6d_source_contracts_are_reviewed"
+    ],
+    "runtime_implementation_status": "T6_RUNTIME_IMPLEMENTED_AND_REVIEWED"
+  }
+}

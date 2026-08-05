@@ -1,4 +1,7 @@
 {
+  "conditions": [
+    "has_registered_for(\"processing_target:bending\", plate)"
+  ],
   "duration": "100 * (144 * prefix_units(plate) / gcd(target_units(bending) * 144, 144 * prefix_units(plate)))",
   "eut": "32",
   "item_inputs": [

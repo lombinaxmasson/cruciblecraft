@@ -1,0 +1,42 @@
+{
+  "can_be_buffered": true,
+  "duration": 300,
+  "eut": 32,
+  "item_input_counts": [
+    1
+  ],
+  "item_inputs": [
+    {
+      "tag": "cruciblecraft:washed_crushed_ores/trona"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": 1,
+      "id": "cruciblecraft:trona/centrifuged_crushed_ore"
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:gypsum/dust"
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:sodium_hydrogencarbonate/dust"
+    }
+  ],
+  "map": "cruciblecraft:centrifuge",
+  "output_chances": [
+    10000,
+    2500,
+    1000
+  ],
+  "provenance": {
+    "evidence_hashes": [
+      "a1db866564cd051c9e36",
+      "eddcbe233ef80fd5d975"
+    ],
+    "selected_source_recipe": "topology_projection:a4c9e13fe8505e5d4d3f",
+    "source_kind": "topology_fallback"
+  },
+  "type": "cruciblecraft:gt_recipe"
+}

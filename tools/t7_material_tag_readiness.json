@@ -15,6 +15,8 @@
   "classified": 62,
   "counts": {
     "formula_count": 952,
+    "formula_visible_material_count": 605,
+    "formula_without_registered_form_count": 347,
     "material_count": 1773,
     "mortar_gem_to_dust_count": 94,
     "mortar_ingot_to_dust_count": 126,
@@ -25,7 +27,8 @@
     "nonzero_heat_damage_count": 0,
     "processing_tag_count": 23,
     "property_tag_count": 39,
-    "tag_assignment_count": 6752
+    "tag_assignment_count": 6752,
+    "tag_vocabulary_count": 101
   },
   "energy_type_decision": {
     "kept": [
@@ -40,6 +43,45 @@
       "ROTATION": "GT6 RU is intentionally represented by the existing KINETIC packet type."
     }
   },
+  "extruder_compaction_decision": {
+    "apparent_plate_mismatch": {
+      "distinct_gt6_output_prefix": {
+        "glass": "plateGem"
+      },
+      "redirected_forging_targets": {
+        "frozen_iron": "iron",
+        "gilded_iron": "iron",
+        "obsidian_refined": "obsidian",
+        "steel_galvanized": "steel"
+      },
+      "valid_ingot_fallbacks": [
+        "annealed_copper",
+        "cast_iron",
+        "iron_compressed",
+        "tungsten_sintered",
+        "wrought_iron"
+      ]
+    },
+    "assessed_in_phase": "T8",
+    "decision": "Keep the replay-verified sparse relation until MaterialRule can express all source gates. A compact migration needs at least 27 IO variants plus sparse duration overrides; splitting EXTRUDABLE_SIMPLE EU/t yields about 54 rules. Replacing it with one PROCESSING.EXTRUDABLE rule per shape would add and remove recipes.",
+    "duration_policy": "exact_lookup; formula_verified=false",
+    "estimated_rules_after_eut_tag_split": 54,
+    "minimum_io_variant_rule_count": 27,
+    "playable_shape_count": 11,
+    "required_semantics": [
+      "normal versus simple template timing",
+      "ingot-first with dust fallback input selection",
+      "same-material forging target eligibility",
+      "distinct plate versus plateGem outputs",
+      "source template shadow precedence"
+    ],
+    "source_anchors": [
+      "gregtech/loaders/c/Loader_Recipes_Handlers.java:739-838",
+      "gregapi/recipes/handlers/RecipeMapHandlerPrefixForging.java:46-54"
+    ],
+    "sparse_relation_count": 2782,
+    "status": "NOT_EQUIVALENT_TO_11_TAG_ONLY_RULES"
+  },
   "gate": "T7_MATERIAL_FACTS_IN_RULE_LANGUAGE",
   "generated_by": "tools/build_t7_material_tag_readiness.py",
   "gt6_source": {
@@ -50,16 +92,394 @@
   },
   "input_sha256": {
     "src/main/java/com/masson/cruciblecraft/api/energy/EnergyType.java": "0d55f4975307ed488ab8e021d21fdccb4961b5622050e85270e02010ed14fed9",
-    "src/main/java/com/masson/cruciblecraft/energy/cable/CableNetworkTraversal.java": "b2a253d21372afe8ed7dedd975ba01a82b6e213685f77220727243230466daf0",
-    "src/main/java/com/masson/cruciblecraft/material/def/GT6MaterialMetadata.java": "336215bb283e2dd3be5420027bd43175643f6863c4af07ff1aa81aa2555ae313",
-    "src/main/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansion.java": "90feba8fb3bfb8edda6176f75ed0a0996c5b638dbcbfbd83c1cd887013ae22ea",
-    "src/main/java/com/masson/cruciblecraft/recipe/rule/RuleExpression.java": "36a344db0b8638ec22e569e50d1782697dee8fbf51a737d487f250da09b7bd72",
-    "src/main/resources/data/cruciblecraft/material_registration_gate.json": "aebb0232e7c07710adce01b137454ab57f54f48ddf7649d1f037f0bc07e19ab6",
+    "src/main/java/com/masson/cruciblecraft/energy/cable/CableNetworkTraversal.java": "edda210938ea6db75c3be056f455db55b2b2233a7a89ccea504f889885d86fc1",
+    "src/main/java/com/masson/cruciblecraft/material/def/GT6MaterialMetadata.java": "49a5f4ac246c1708305fecddce45b514f1299b7dd9c9765211e66c25bb1bc8d5",
+    "src/main/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansion.java": "6b2ccef3edd6491d610090afe3dbe202b16ccedf941e3933996d9a7411b1bad3",
+    "src/main/java/com/masson/cruciblecraft/recipe/rule/RuleExpression.java": "5140485fa9639c5fc88fbaaa32f07121ddfd814c3c0161c25f7d6877dba92492",
+    "src/main/resources/data/cruciblecraft/material_registration_gate.json": "95a19d45c16965b2facbef85eaf9c9c2b5e725d51a64adbeefef5fbdf9e1c284",
+    "src/main/resources/data/cruciblecraft/material_tag_policy.json": "ea357fc343797198bc504249ae2e1b075f1465df34cc8d66dcb40372dbb5dd6d",
     "src/main/resources/data/cruciblecraft/materials/index.json": "ff3ecf3970191f4feaddb84eb7795ea7714cab665df3fb6822f61c8382e66e05",
-    "tools/gt6_reference_metadata.json": "1b62ce423c6a6a62dcd3b3eaade997dbc7e7afc29931c6f9432f040a43e88164",
-    "tools/t7_material_tag_policy.json": "33142a79db1522aaa9a3229ee588db72b185427c468ecdf2a235f8ea00e88c24"
+    "tools/gt6_oredict_prefixes_normalized.json": "cdd29c3d4b4d31ea2065ff80be0e34c60d6c49608b7913d57905297d23239ddd",
+    "tools/gt6_reference_metadata.json": "1b62ce423c6a6a62dcd3b3eaade997dbc7e7afc29931c6f9432f040a43e88164"
   },
-  "material_directory_sha256": "545b99ff2ee341c366c76fe44d126176b0d7b18a313109808ffc96fd9f41f6a5",
+  "legacy_rule_condition_backfill": {
+    "completed_safety_backfill": {
+      "effect": "A missing registered form on a processing target is now an explicit non-match; an unguarded required target resource remains a load error.",
+      "predicate": "has_registered_for",
+      "scope": "all component target_transform rules",
+      "selected_target_rule_count": 22
+    },
+    "decision": "Existing broad rules remain source-compatible until their owning phase can prove the exact predicate and expansion delta. A raw tag-name match is not sufficient evidence.",
+    "owners": {
+      "T10": [
+        "PROCESSING.MELTING",
+        "PROCESSING.FURNACE",
+        "PROCESSING.BLACKLISTED_SMELTER",
+        "PROCESSING.NEVER_FURNACE"
+      ],
+      "T11": [
+        "PROCESSING.CRUCIBLE_ALLOY"
+      ],
+      "T12": [
+        "PROCESSING.SMITHABLE",
+        "PROCESSING.UNRECYCLABLE"
+      ],
+      "T5_CARRYOVER": [
+        "PROCESSING.CENTRIFUGABLE",
+        "PROCESSING.ELECTROLYSABLE"
+      ],
+      "T8": [
+        "PROCESSING.EXTRUDABLE",
+        "PROCESSING.EXTRUDABLE_SIMPLE"
+      ],
+      "T9": [
+        "PROCESSING.WASHING_FIRESTONE",
+        "PROCESSING.WASHING_MERCURY",
+        "PROCESSING.WASHING_PERSULFATE",
+        "PROCESSING.PULVERIZING_CINNABAR"
+      ]
+    },
+    "status": "OWNERS_ASSIGNED",
+    "unconditioned_cross_material_rule_count": 12,
+    "unconditioned_cross_material_rules": [
+      {
+        "cc_source_anchor": "tools/component_rule_sources/component_rules.json:assembler/dodecuple_wire_and_rubber_to_dodecuple_cable",
+        "classification": "source-backed-cross-material-tag-input",
+        "decision": "The rule is gated by registered wire/cable forms and the any_rubber_plates item tag; no material processing tag governs GT6 cable insulation.",
+        "gt6_evidence_anchor": "gregtech/loaders/b/Loader_OreProcessing.java:183-184",
+        "owner": "T6",
+        "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/dodecuple_wire_and_rubber_to_dodecuple_cable.json"
+      },
+      {
+        "cc_source_anchor": "tools/component_rule_sources/component_rules.json:assembler/double_wire_and_rubber_to_double_cable",
+        "classification": "source-backed-cross-material-tag-input",
+        "decision": "The rule is gated by registered wire/cable forms and the any_rubber_plates item tag; no material processing tag governs GT6 cable insulation.",
+        "gt6_evidence_anchor": "gregtech/loaders/b/Loader_OreProcessing.java:183-184",
+        "owner": "T6",
+        "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/double_wire_and_rubber_to_double_cable.json"
+      },
+      {
+        "cc_source_anchor": "tools/component_rule_sources/component_rules.json:assembler/octuple_wire_and_rubber_to_octuple_cable",
+        "classification": "source-backed-cross-material-tag-input",
+        "decision": "The rule is gated by registered wire/cable forms and the any_rubber_plates item tag; no material processing tag governs GT6 cable insulation.",
+        "gt6_evidence_anchor": "gregtech/loaders/b/Loader_OreProcessing.java:183-184",
+        "owner": "T6",
+        "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/octuple_wire_and_rubber_to_octuple_cable.json"
+      },
+      {
+        "cc_source_anchor": "tools/component_rule_sources/component_rules.json:assembler/quadruple_wire_and_rubber_to_quadruple_cable",
+        "classification": "source-backed-cross-material-tag-input",
+        "decision": "The rule is gated by registered wire/cable forms and the any_rubber_plates item tag; no material processing tag governs GT6 cable insulation.",
+        "gt6_evidence_anchor": "gregtech/loaders/b/Loader_OreProcessing.java:183-184",
+        "owner": "T6",
+        "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/quadruple_wire_and_rubber_to_quadruple_cable.json"
+      },
+      {
+        "cc_source_anchor": "tools/component_rule_sources/component_rules.json:assembler/wire_and_rubber_to_cable",
+        "classification": "source-backed-cross-material-tag-input",
+        "decision": "The rule is gated by registered wire/cable forms and the any_rubber_plates item tag; no material processing tag governs GT6 cable insulation.",
+        "gt6_evidence_anchor": "gregtech/loaders/b/Loader_OreProcessing.java:183-184",
+        "owner": "T6",
+        "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/wire_and_rubber_to_cable.json"
+      },
+      {
+        "cc_source_anchor": "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java:170-174",
+        "classification": "condition-backfill-deferred",
+        "decision": "PROCESSING.SMITHABLE is the candidate predicate, but T12 must prove the exact GT6 expansion set before changing this form-gated route.",
+        "gt6_evidence_anchor": "tools/gt6_recipe_compare_baseline.json:anvil_ingot_to_plate",
+        "owner": "T12",
+        "path": "src/generated/resources/data/cruciblecraft/recipe/anvil/ingot_to_plate.json"
+      },
+      {
+        "cc_source_anchor": "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java:175-179",
+        "classification": "condition-backfill-deferred",
+        "decision": "PROCESSING.SMITHABLE is the candidate predicate, but T12 must prove the exact GT6 expansion set before changing this form-gated route.",
+        "gt6_evidence_anchor": "tools/gt6_recipe_compare_baseline.json:anvil_plate_to_rods",
+        "owner": "T12",
+        "path": "src/generated/resources/data/cruciblecraft/recipe/anvil/plate_to_rods.json"
+      },
+      {
+        "cc_source_anchor": "src/main/java/com/masson/cruciblecraft/recipe/rule/T2ChainRules.java:22-29",
+        "classification": "source-backed-form-only-ore-chain",
+        "decision": "Raw-ore crushing is a T2 ore-chain edge and is not governed by PROCESSING.SMITHABLE.",
+        "gt6_evidence_anchor": "tools/gt6_recipe_compare_baseline.json:chain_anvil",
+        "owner": "T2",
+        "path": "src/generated/resources/data/cruciblecraft/recipe/anvil/raw_ore_to_crushed_ore.json"
+      },
+      {
+        "cc_source_anchor": "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java:180-184",
+        "classification": "condition-backfill-deferred",
+        "decision": "PROCESSING.SMITHABLE is the candidate predicate, but T12 must prove the exact GT6 expansion set before changing this form-gated route.",
+        "gt6_evidence_anchor": "tools/gt6_recipe_compare_baseline.json:anvil_rod_to_bolts",
+        "owner": "T12",
+        "path": "src/generated/resources/data/cruciblecraft/recipe/anvil/rod_to_bolts.json"
+      },
+      {
+        "cc_source_anchor": "src/main/java/com/masson/cruciblecraft/recipe/rule/T2ChainRules.java:47-49",
+        "classification": "source-backed-form-only-ore-chain",
+        "decision": "The washed-crushed route is an explicit T2 ore-chain edge; later washing tags govern special reagent variants, not this water baseline.",
+        "gt6_evidence_anchor": "tools/gt6_recipe_compare_baseline.json:chain_bath",
+        "owner": "T2",
+        "path": "src/generated/resources/data/cruciblecraft/recipe/bath/crushed_to_washed.json"
+      },
+      {
+        "cc_source_anchor": "src/main/java/com/masson/cruciblecraft/recipe/rule/T2ChainRules.java:42-45",
+        "classification": "source-backed-form-only-component-route",
+        "decision": "The crusher route remains form-gated; MORTAR_GRINDABLE only governs the authored mortar alternatives.",
+        "gt6_evidence_anchor": "gregtech/loaders/c/Loader_Recipes_Handlers.java:77",
+        "owner": "T2",
+        "path": "src/generated/resources/data/cruciblecraft/recipe/crusher/ingot_to_dust.json"
+      },
+      {
+        "cc_source_anchor": "src/main/java/com/masson/cruciblecraft/recipe/rule/T2ChainRules.java:71-74",
+        "classification": "source-backed-form-only-ore-chain",
+        "decision": "The crushed-ore mortar route is explicitly outside MORTAR_GRINDABLE and preserves the 471-entry T2 baseline.",
+        "gt6_evidence_anchor": "gregtech/loaders/c/Loader_Recipes_Furnace.java:75-80",
+        "owner": "T2",
+        "path": "src/generated/resources/data/cruciblecraft/recipe/mortar/crushed_to_dust.json"
+      }
+    ]
+  },
+  "material_directory_sha256": "85a1f623fad42ccb3c214764186ce387ca45d683aec3b9e78bdde270d3c704f1",
+  "material_rule_audit": {
+    "conditioned_cross_material_rule_files": 57,
+    "cross_material_rule_files": 69,
+    "material_specific_rule_files": 2783,
+    "referenced_tag_count": 8,
+    "tag_consumers": {
+      "ATOMIC.ANTIMATTER": [
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/axe/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/axe/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/chisel/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/chisel/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/file/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/hoe/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/hoe/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/pickaxe/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/pickaxe/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/pickaxe/stone_rod_exception.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/saw/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/saw/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/screwdriver/rod.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/shovel/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/shovel/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/sword/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/sword/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wrench/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wrench/metal.json"
+      ],
+      "COMPOUNDS.COATED": [
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/axe/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/axe/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/chisel/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/chisel/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/file/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/hoe/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/hoe/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/pickaxe/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/pickaxe/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/pickaxe/stone_rod_exception.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/saw/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/saw/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/screwdriver/rod.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/shovel/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/shovel/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/sword/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/sword/metal.json"
+      ],
+      "PROCESSING.EXTRUDABLE": [
+        "src/main/resources/data/cruciblecraft/recipe/t8/extruder/plate_to_small_fluid_pipe.json",
+        "src/main/resources/data/cruciblecraft/recipe/t8/extruder/plate_to_tiny_fluid_pipe.json",
+        "src/main/resources/data/cruciblecraft/recipe/t8/extruder/plates_to_fluid_pipe.json",
+        "src/main/resources/data/cruciblecraft/recipe/t8/extruder/plates_to_huge_fluid_pipe.json",
+        "src/main/resources/data/cruciblecraft/recipe/t8/extruder/plates_to_huge_item_pipe.json",
+        "src/main/resources/data/cruciblecraft/recipe/t8/extruder/plates_to_item_pipe.json",
+        "src/main/resources/data/cruciblecraft/recipe/t8/extruder/plates_to_large_fluid_pipe.json",
+        "src/main/resources/data/cruciblecraft/recipe/t8/extruder/plates_to_large_item_pipe.json"
+      ],
+      "PROCESSING.MORTAR_GRINDABLE": [
+        "src/main/resources/data/cruciblecraft/recipe/t7/mortar/gem_to_dust.json",
+        "src/main/resources/data/cruciblecraft/recipe/t7/mortar/ingot_to_dust.json"
+      ],
+      "PROPERTIES.BOUNCY": [
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/chisel/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/chisel/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/file/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/saw/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/saw/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wrench/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wrench/metal.json"
+      ],
+      "PROPERTIES.HAS_TOOL_STATS": [
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/axe/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/axe/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/chisel/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/chisel/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/file/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/hoe/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/hoe/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/pickaxe/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/pickaxe/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/pickaxe/stone_rod_exception.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/saw/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/saw/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/screwdriver/rod.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/shovel/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/shovel/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/sword/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/sword/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wrench/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wrench/metal.json"
+      ],
+      "PROPERTIES.STRETCHY": [
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/chisel/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/chisel/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/file/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/saw/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/saw/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wrench/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wrench/metal.json"
+      ],
+      "PROPERTIES.WOOD": [
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/metal.json"
+      ]
+    },
+    "total_rule_files": 2852,
+    "unconditioned_cross_material_rule_files": [
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/dodecuple_wire_and_rubber_to_dodecuple_cable.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/double_wire_and_rubber_to_double_cable.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/octuple_wire_and_rubber_to_octuple_cable.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/quadruple_wire_and_rubber_to_quadruple_cable.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/wire_and_rubber_to_cable.json",
+      "src/generated/resources/data/cruciblecraft/recipe/anvil/ingot_to_plate.json",
+      "src/generated/resources/data/cruciblecraft/recipe/anvil/plate_to_rods.json",
+      "src/generated/resources/data/cruciblecraft/recipe/anvil/raw_ore_to_crushed_ore.json",
+      "src/generated/resources/data/cruciblecraft/recipe/anvil/rod_to_bolts.json",
+      "src/generated/resources/data/cruciblecraft/recipe/bath/crushed_to_washed.json",
+      "src/generated/resources/data/cruciblecraft/recipe/crusher/ingot_to_dust.json",
+      "src/generated/resources/data/cruciblecraft/recipe/mortar/crushed_to_dust.json"
+    ],
+    "unknown_tag_references": []
+  },
+  "material_tag_vocabulary": {
+    "count": 101,
+    "sha256": "d076c7b524b51ddeee37174336dafdeb63ccbda9ba67c1f9ed6c2ecee77dfc36",
+    "validation": "material.tag rejects values outside this runtime-derived vocabulary",
+    "values": [
+      "ATOMIC.ACTINIDE",
+      "ATOMIC.ALKALINE_EARTH_METAL",
+      "ATOMIC.ALKALI_METAL",
+      "ATOMIC.ANTIMATTER",
+      "ATOMIC.CHALCOGEN",
+      "ATOMIC.CHROMIUM_GROUP",
+      "ATOMIC.COBALT_GROUP",
+      "ATOMIC.COPPER_GROUP",
+      "ATOMIC.CRYSTALLOGEN",
+      "ATOMIC.DIATOMIC_NONMETAL",
+      "ATOMIC.ELEMENT",
+      "ATOMIC.HALOGEN",
+      "ATOMIC.ICOSAGEN",
+      "ATOMIC.IRON_GROUP",
+      "ATOMIC.LANTHANIDE",
+      "ATOMIC.MANGANESE_GROUP",
+      "ATOMIC.METAL",
+      "ATOMIC.METALLOID",
+      "ATOMIC.NICKEL_GROUP",
+      "ATOMIC.NOBLE_GAS",
+      "ATOMIC.NOBLE_METAL",
+      "ATOMIC.NONMETAL",
+      "ATOMIC.PARTICLE",
+      "ATOMIC.PLATINUM_GROUP",
+      "ATOMIC.PNICTOGEN",
+      "ATOMIC.POLYATOMIC_NONMETAL",
+      "ATOMIC.POST_TRANSITION_METAL",
+      "ATOMIC.PRECIOUS_METAL",
+      "ATOMIC.REFRACTORY_METAL",
+      "ATOMIC.SCANDIUM_GROUP",
+      "ATOMIC.TITANIUM_GROUP",
+      "ATOMIC.TRANSITION_METAL",
+      "ATOMIC.VANADIUM_GROUP",
+      "ATOMIC.ZINC_GROUP",
+      "COMPOUNDS.ALLOY",
+      "COMPOUNDS.APPROXIMATE",
+      "COMPOUNDS.COATED",
+      "COMPOUNDS.DECOMPOSABLE",
+      "COMPOUNDS.LAYERED",
+      "PROCESSING.BLACKLISTED_SMELTER",
+      "PROCESSING.CENTRIFUGABLE",
+      "PROCESSING.COOL2CRYSTAL",
+      "PROCESSING.CRUCIBLE_ALLOY",
+      "PROCESSING.CRYSTALLISABLE",
+      "PROCESSING.ELECTROLYSABLE",
+      "PROCESSING.EXTRUDABLE",
+      "PROCESSING.EXTRUDABLE_SIMPLE",
+      "PROCESSING.FURNACE",
+      "PROCESSING.FUSION_SYNTHESISABLE",
+      "PROCESSING.MELTING",
+      "PROCESSING.MORTAR_GRINDABLE",
+      "PROCESSING.NEVER_FURNACE",
+      "PROCESSING.PULVERIZING_CINNABAR",
+      "PROCESSING.SMITHABLE",
+      "PROCESSING.SOLDERING_MATERIAL",
+      "PROCESSING.SOLDERING_MATERIAL_BAD",
+      "PROCESSING.SOLDERING_MATERIAL_GOOD",
+      "PROCESSING.UNRECYCLABLE",
+      "PROCESSING.UUM_SYNTHESISABLE",
+      "PROCESSING.WASHING_FIRESTONE",
+      "PROCESSING.WASHING_MERCURY",
+      "PROCESSING.WASHING_PERSULFATE",
+      "PROPERTIES.ACID",
+      "PROPERTIES.AUTO_BLACKLIST",
+      "PROPERTIES.AUTO_COLLECTING",
+      "PROPERTIES.BETWEENLANDS",
+      "PROPERTIES.BOUNCY",
+      "PROPERTIES.BRITTLE",
+      "PROPERTIES.BURNING",
+      "PROPERTIES.COAL",
+      "PROPERTIES.COMMON_ORE",
+      "PROPERTIES.CRYSTAL",
+      "PROPERTIES.DONT_SHOW_THIS_COMPONENT",
+      "PROPERTIES.ENDER_DRAGON_PROOF",
+      "PROPERTIES.EXPLODES_IN_NONVANILLA_CRAFTING_GRID",
+      "PROPERTIES.EXPLOSIVE",
+      "PROPERTIES.FLAMMABLE",
+      "PROPERTIES.FOOD",
+      "PROPERTIES.GLOWING",
+      "PROPERTIES.HAS_TOOL_STATS",
+      "PROPERTIES.LIGHTING",
+      "PROPERTIES.MAGICAL",
+      "PROPERTIES.MAGNETIC_ACTIVE",
+      "PROPERTIES.MAGNETIC_PASSIVE",
+      "PROPERTIES.MAZEBREAKER",
+      "PROPERTIES.MEAT",
+      "PROPERTIES.NO_ADVANCED_TOOLS",
+      "PROPERTIES.PEARL",
+      "PROPERTIES.QUARTZ",
+      "PROPERTIES.RANDOM_SMALL_GEM_ORE",
+      "PROPERTIES.ROTTEN",
+      "PROPERTIES.SOFT",
+      "PROPERTIES.STONE",
+      "PROPERTIES.STRETCHY",
+      "PROPERTIES.TRANSPARENT",
+      "PROPERTIES.UNBURNABLE",
+      "PROPERTIES.UNUSED_MATERIAL",
+      "PROPERTIES.VALUABLE",
+      "PROPERTIES.WARPING",
+      "PROPERTIES.WITHER_PROOF",
+      "PROPERTIES.WOOD"
+    ]
+  },
   "mortar_rules": {
     "gem_to_dust": {
       "count": 94,
@@ -301,6 +721,15 @@
       "wrought_iron"
     ]
   },
+  "mortar_scope_decision": {
+    "crushed_to_dust": {
+      "cc_source_anchor": "src/main/java/com/masson/cruciblecraft/recipe/rule/T2ChainRules.java:71-74",
+      "classification": "source-backed-t2-ore-chain-route",
+      "gt6_source_anchor": "gregtech/loaders/c/Loader_Recipes_Furnace.java:75-80",
+      "mortar_grindable_guard": false,
+      "reason": "The crushed-ore route is an explicit T2 mechanical ore-chain alternative. PROCESSING.MORTAR_GRINDABLE governs material-form grinding such as ingots and gems, not this chain edge."
+    }
+  },
   "rule_language": {
     "damage_numeric_comparison": true,
     "energy_types": [
@@ -310,22 +739,40 @@
       "ELECTRIC"
     ],
     "registered_form_predicate": "has_registered",
+    "selected_material_registered_form_predicate": "has_registered_for",
     "tag_predicate": "material.tag",
+    "tag_vocabulary_validation": true,
     "thermal_numeric_comparison": true,
     "zero_loss_cable_domain": true
   },
   "runtime_publication_acceptance": {
-    "all_published_recipe_budget": 18000,
+    "all_published_recipe_budget": 21000,
     "measurement": "production runGameTestServer recipe reload",
-    "post_t7_all_published_recipes": 17189,
+    "post_t7_all_published_recipes": 17326,
     "post_t7_mortar_recipes": 691,
-    "pre_t7_all_published_recipes": 16969,
+    "pre_t7_all_published_recipes": 17106,
     "pre_t7_mortar_recipes": 471,
     "shadowed_input_signatures": 0,
-    "t7_added_mortar_recipes": 220
+    "t7_added_mortar_recipes": 220,
+    "t7_authored_material_rule_budget": 256
   },
   "schema_version": 1,
   "status": "READY",
+  "t10_damage_gate": {
+    "decision": "Material heat_damage and explosion_damage remain valid zero-valued material facts. T10 hot-ingot contact damage must instead import the GT6 prefix fact ingotHot.mHeatDamage=3.0 and must not invent a per-material fallback.",
+    "hot_prefix": {
+      "heat_damage": 3.0,
+      "source_name": "ingotHot"
+    },
+    "material_nonzero_explosion_damage_count": 0,
+    "material_nonzero_heat_damage_count": 0,
+    "prefix_source": "tools/gt6_oredict_prefixes_normalized.json",
+    "prefix_source_sha256": "cdd29c3d4b4d31ea2065ff80be0e34c60d6c49608b7913d57905297d23239ddd",
+    "runtime_anchor": "gregapi/util/UT.java:2949-2952",
+    "source_anchor": "gregapi/data/OP.java:578",
+    "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "status": "SOURCE_FACT_LOCATED"
+  },
   "tag_counts": {
     "PROCESSING.BLACKLISTED_SMELTER": 88,
     "PROCESSING.CENTRIFUGABLE": 176,

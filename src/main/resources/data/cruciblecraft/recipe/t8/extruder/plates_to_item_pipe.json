@@ -1,0 +1,26 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "conditions": [
+    "material.tag(\"PROCESSING.EXTRUDABLE\")",
+    "has_registered(plate) && has_registered(item_pipe) && material.pipe.item_recipe == 1"
+  ],
+  "duration": "144",
+  "eut": "32",
+  "item_inputs": [
+    {
+      "count": "3",
+      "prefix": "cruciblecraft:plate"
+    },
+    {
+      "count": "0",
+      "item": "cruciblecraft:extruder_shape_normal_item_pipe"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "1",
+      "prefix": "cruciblecraft:item_pipe"
+    }
+  ],
+  "target": "cruciblecraft:extruder"
+}

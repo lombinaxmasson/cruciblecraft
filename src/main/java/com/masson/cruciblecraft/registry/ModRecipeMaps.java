@@ -26,6 +26,8 @@ public final class ModRecipeMaps {
     public static final RecipeMap SHREDDER = create("shredder");
     public static final RecipeMap SIFTER = create("sifter");
     public static final RecipeMap SMELTER = create("smelter");
+    /** Data-only passive transformations consumed outside a machine block. */
+    public static final RecipeMap COOLING = create("cooling");
     public static final RecipeMap MORTAR = create("mortar");
     public static final RecipeMap EXTRUDER = create("extruder");
     public static final RecipeMap CUTTER = create("cutter");
@@ -37,6 +39,12 @@ public final class ModRecipeMaps {
     public static final RecipeMap ASSEMBLER = create("assembler");
     public static final RecipeMap WELDER = create("welder");
     public static final RecipeMap PRESS = create("press");
+    public static final RecipeMap ELECTROLYZER = create("electrolyzer");
+    public static final RecipeMap MIXER = create("mixer");
+    public static final RecipeMap DISTILLERY = create("distillery");
+    public static final RecipeMap AUTOCLAVE = create("autoclave");
+    public static final RecipeMap DRYING = create("drying");
+    public static final RecipeMap COMPRESSOR = create("compressor");
 
     public static final List<RecipeMap> ALL = List.of(
             COKE_OVEN,
@@ -50,6 +58,7 @@ public final class ModRecipeMaps {
             SHREDDER,
             SIFTER,
             SMELTER,
+            COOLING,
             MORTAR,
             EXTRUDER,
             CUTTER,
@@ -60,7 +69,13 @@ public final class ModRecipeMaps {
             BENDER,
             ASSEMBLER,
             WELDER,
-            PRESS);
+            PRESS,
+            ELECTROLYZER,
+            MIXER,
+            DISTILLERY,
+            AUTOCLAVE,
+            DRYING,
+            COMPRESSOR);
 
     private ModRecipeMaps() {}
 

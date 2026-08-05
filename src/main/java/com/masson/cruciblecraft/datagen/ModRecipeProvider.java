@@ -9,11 +9,13 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
+import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.recipe.rule.MaterialRule;
 import com.masson.cruciblecraft.recipe.rule.MaterialRuleRecipe;
 import com.masson.cruciblecraft.recipe.rule.T2ChainRules;
+import com.masson.cruciblecraft.recipe.rule.T4ToolRules;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
 import com.masson.cruciblecraft.registry.ModFluids;
@@ -78,6 +80,100 @@ public final class ModRecipeProvider extends RecipeProvider {
         machineCrafting(output, ModItems.ASSEMBLER.get(), "assembler");
         machineCrafting(output, ModItems.WELDER.get(), "welder");
         machineCrafting(output, ModItems.PRESS.get(), "press");
+        machineCrafting(output, ModItems.ELECTROLYZER.get(), "electrolyzer");
+        machineCrafting(output, ModItems.MIXER.get(), "mixer");
+        machineCrafting(output, ModItems.DISTILLERY.get(), "distillery");
+        machineCrafting(output, ModItems.AUTOCLAVE.get(), "autoclave");
+        machineCrafting(output, ModItems.DRYING.get(), "drying");
+        machineCrafting(output, ModItems.COMPRESSOR.get(), "compressor");
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC, ModItems.PORTABLE_FLUID_TANK.get())
+                .pattern("CGC")
+                .pattern("G G")
+                .pattern("CGC")
+                .define('C', Items.COPPER_INGOT)
+                .define('G', Items.GLASS)
+                .unlockedBy("has_copper", has(Items.COPPER_INGOT))
+                .save(output, id("portable_fluid_tank"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.FLUID_CELL.get(),
+                        4)
+                .pattern(" C ")
+                .pattern("CGC")
+                .pattern(" C ")
+                .define('C', Items.COPPER_INGOT)
+                .define('G', Items.GLASS)
+                .unlockedBy("has_copper", has(Items.COPPER_INGOT))
+                .save(output, id("fluid_cell"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.GAS_CELL.get(),
+                        4)
+                .pattern(" I ")
+                .pattern("IGI")
+                .pattern(" I ")
+                .define('I', Items.IRON_INGOT)
+                .define('G', Items.GLASS)
+                .unlockedBy("has_iron", has(Items.IRON_INGOT))
+                .save(output, id("gas_cell"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.PIPE_FILTER_COVER.get())
+                .pattern(" G ")
+                .pattern("GHG")
+                .define('G', Items.GLASS_PANE)
+                .define('H', Items.HOPPER)
+                .unlockedBy("has_hopper", has(Items.HOPPER))
+                .save(output, id("pipe_filter_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.PIPE_VALVE_COVER.get())
+                .pattern(" I ")
+                .pattern("IRI")
+                .define('I', Items.IRON_INGOT)
+                .define('R', Items.REPEATER)
+                .unlockedBy("has_repeater", has(Items.REPEATER))
+                .save(output, id("pipe_valve_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.PIPE_PUMP_COVER.get())
+                .pattern("IRI")
+                .pattern("IPI")
+                .define('I', Items.IRON_INGOT)
+                .define('R', Items.REDSTONE)
+                .define('P', Items.PISTON)
+                .unlockedBy("has_piston", has(Items.PISTON))
+                .save(output, id("pipe_pump_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.TOOLS, ModItems.MATERIAL_FILE.get())
+                .pattern(" II")
+                .pattern(" SI")
+                .pattern("S  ")
+                .define('I', Items.IRON_INGOT)
+                .define('S', Items.STICK)
+                .unlockedBy("has_iron", has(Items.IRON_INGOT))
+                .save(output, id("tools/iron_file"));
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, ModItems.FLINT_KNIFE.get())
+                .pattern("SF")
+                .define('S', Items.STICK)
+                .define('F', Items.FLINT)
+                .unlockedBy("has_flint", has(Items.FLINT))
+                .save(output, id("tools/flint_knife"));
+        ToolPatternCatalog.DEFINITIONS.forEach(pattern -> {
+            ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(
+                            RecipeCategory.TOOLS,
+                            ModItems.toolPattern(pattern.id()).get())
+                    .define('P', Items.PAPER)
+                    .define('C', Items.CHARCOAL)
+                    .unlockedBy("has_paper", has(Items.PAPER));
+            pattern.recipePattern().forEach(builder::pattern);
+            builder.save(output, id("tools/pattern/" + pattern.id()));
+        });
+        T4ToolRules.ALL.forEach(definition -> output.accept(
+                id(definition.path()),
+                new MaterialRuleRecipe(definition.rule()),
+                null));
         output.accept(
                 id("coke_oven/coal"),
                 new GTRecipeEntry(

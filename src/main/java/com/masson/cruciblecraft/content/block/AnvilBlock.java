@@ -83,6 +83,14 @@ public final class AnvilBlock extends Block implements EntityBlock {
         if (!(level.getBlockEntity(pos) instanceof AnvilBlockEntity anvil)) {
             return ItemInteractionResult.FAIL;
         }
+        if (anvil.materialQuarantined()) {
+            player.displayClientMessage(
+                    Component.translatable(
+                            "message.cruciblecraft.anvil_material_quarantined",
+                            anvil.quarantinedMaterialId()),
+                    true);
+            return ItemInteractionResult.SUCCESS;
+        }
 
         if (hammer) {
             AnvilStrikeContext context = strikeContext(state, pos, hitResult);
@@ -91,11 +99,20 @@ public final class AnvilBlock extends Block implements EntityBlock {
                 return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
             SmithingHammerItem hammerItem = (SmithingHammerItem) stack.getItem();
+            var hammerMaterial = hammerItem.material(stack);
+            if (hammerMaterial.isEmpty()) {
+                player.displayClientMessage(
+                        Component.translatable(
+                                "message.cruciblecraft.invalid_hammer_material",
+                                stack.get(ModComponents.TOOL_MATERIAL)),
+                        true);
+                return ItemInteractionResult.SUCCESS;
+            }
             var strike = anvil.strike(
                     mode.get(),
                     MachineMaterialRules.processingTier(
                             MachineMaterialRules.Device.HAMMER,
-                            hammerItem.material(stack)));
+                            hammerMaterial.orElseThrow()));
             if (strike.isEmpty()) {
                 player.displayClientMessage(
                         Component.translatable("message.cruciblecraft.anvil_no_recipe"),

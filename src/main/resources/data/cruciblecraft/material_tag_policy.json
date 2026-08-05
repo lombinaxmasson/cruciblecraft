@@ -1,0 +1,702 @@
+{
+  "schema_version": 1,
+  "gate": "T7_MATERIAL_FACTS_IN_RULE_LANGUAGE",
+  "gt6_source": {
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "version": "6.17.06-22-g3703e4030",
+    "material_source": "tools/gt6_oredict_materials_normalized.json",
+    "importer": "tools/import_gt6_oredict.py"
+  },
+  "classification_policy": {
+    "rule-input": "The exact tag is suitable for a MaterialRule predicate or another runtime behavior decision.",
+    "build-time-only": "The exact tag is consumed by an importer, builder, registration gate, or generated-resource policy rather than a live rule.",
+    "not-applicable": "The source tag describes an integration or behavior that CrucibleCraft intentionally does not implement.",
+    "deferred": "The tag is valid source evidence, but its first gameplay consumer belongs to a named later phase.",
+    "unclassified_allowed": false
+  },
+  "tags": [
+    {
+      "tag": "PROCESSING.UUM_SYNTHESISABLE",
+      "classification": "deferred",
+      "expected_material_count": 664,
+      "expected_consumer": "POST_T12",
+      "reason": "UUM synthesis requires the completed voltage and late-game technology tree."
+    },
+    {
+      "tag": "PROCESSING.MELTING",
+      "classification": "rule-input",
+      "expected_material_count": 650,
+      "expected_consumer": "T10",
+      "reason": "Controls material melting and hot-ingot processing eligibility."
+    },
+    {
+      "tag": "PROCESSING.MORTAR_GRINDABLE",
+      "classification": "rule-input",
+      "expected_material_count": 603,
+      "expected_consumer": "T7",
+      "reason": "Direct predicate for the T7 mortar ingot and gem rules."
+    },
+    {
+      "tag": "PROCESSING.EXTRUDABLE",
+      "classification": "build-time-only",
+      "expected_material_count": 414,
+      "expected_consumer": "T3",
+      "reason": "Already participates in the audited T3 component-rule source selection."
+    },
+    {
+      "tag": "PROCESSING.SMITHABLE",
+      "classification": "rule-input",
+      "expected_material_count": 310,
+      "expected_consumer": "T12",
+      "reason": "Suitable for declarative machine-tier and forging route eligibility."
+    },
+    {
+      "tag": "PROCESSING.FURNACE",
+      "classification": "rule-input",
+      "expected_material_count": 189,
+      "expected_consumer": "T10",
+      "reason": "Direct evidence for furnace-route eligibility."
+    },
+    {
+      "tag": "PROCESSING.EXTRUDABLE_SIMPLE",
+      "classification": "build-time-only",
+      "expected_material_count": 177,
+      "expected_consumer": "T3",
+      "reason": "Distinguishes the simple extruder generation domain during rule construction."
+    },
+    {
+      "tag": "PROCESSING.CENTRIFUGABLE",
+      "classification": "rule-input",
+      "expected_material_count": 176,
+      "expected_consumer": "T5",
+      "reason": "Direct evidence for centrifuge decomposition routes."
+    },
+    {
+      "tag": "PROCESSING.ELECTROLYSABLE",
+      "classification": "rule-input",
+      "expected_material_count": 149,
+      "expected_consumer": "T5",
+      "reason": "Direct evidence for electrolyzer decomposition routes."
+    },
+    {
+      "tag": "PROCESSING.CRUCIBLE_ALLOY",
+      "classification": "rule-input",
+      "expected_material_count": 91,
+      "expected_consumer": "T11",
+      "reason": "Direct evidence for future crucible alloy route eligibility."
+    },
+    {
+      "tag": "PROCESSING.BLACKLISTED_SMELTER",
+      "classification": "rule-input",
+      "expected_material_count": 88,
+      "expected_consumer": "T10",
+      "reason": "Negative runtime predicate for smelter publication."
+    },
+    {
+      "tag": "PROCESSING.FUSION_SYNTHESISABLE",
+      "classification": "deferred",
+      "expected_material_count": 63,
+      "expected_consumer": "POST_T12",
+      "reason": "Fusion is explicitly outside the second-stage scope."
+    },
+    {
+      "tag": "PROCESSING.CRYSTALLISABLE",
+      "classification": "rule-input",
+      "expected_material_count": 63,
+      "expected_consumer": "T10",
+      "reason": "Direct evidence for cooling and crystallisation routes."
+    },
+    {
+      "tag": "PROCESSING.WASHING_FIRESTONE",
+      "classification": "rule-input",
+      "expected_material_count": 29,
+      "expected_consumer": "T9",
+      "reason": "Selects the source-backed Firestone ore-washing route."
+    },
+    {
+      "tag": "PROCESSING.UNRECYCLABLE",
+      "classification": "rule-input",
+      "expected_material_count": 20,
+      "expected_consumer": "T12",
+      "reason": "Negative predicate for future recycling routes."
+    },
+    {
+      "tag": "PROCESSING.WASHING_MERCURY",
+      "classification": "rule-input",
+      "expected_material_count": 20,
+      "expected_consumer": "T9",
+      "reason": "Selects the source-backed mercury ore-washing route."
+    },
+    {
+      "tag": "PROCESSING.WASHING_PERSULFATE",
+      "classification": "rule-input",
+      "expected_material_count": 12,
+      "expected_consumer": "T9",
+      "reason": "Selects the source-backed persulfate ore-washing route."
+    },
+    {
+      "tag": "PROCESSING.NEVER_FURNACE",
+      "classification": "rule-input",
+      "expected_material_count": 5,
+      "expected_consumer": "T10",
+      "reason": "Hard negative predicate for furnace-route publication."
+    },
+    {
+      "tag": "PROCESSING.PULVERIZING_CINNABAR",
+      "classification": "rule-input",
+      "expected_material_count": 3,
+      "expected_consumer": "T9",
+      "reason": "Selects the source-backed cinnabar pulverising special case."
+    },
+    {
+      "tag": "PROCESSING.SOLDERING_MATERIAL",
+      "classification": "rule-input",
+      "expected_material_count": 3,
+      "expected_consumer": "T12",
+      "reason": "Direct evidence for soldering material eligibility."
+    },
+    {
+      "tag": "PROCESSING.COOL2CRYSTAL",
+      "classification": "rule-input",
+      "expected_material_count": 2,
+      "expected_consumer": "T10",
+      "reason": "Direct evidence for hot material cooling into a crystal form."
+    },
+    {
+      "tag": "PROCESSING.SOLDERING_MATERIAL_BAD",
+      "classification": "rule-input",
+      "expected_material_count": 1,
+      "expected_consumer": "T12",
+      "reason": "Source quality category for soldering rules."
+    },
+    {
+      "tag": "PROCESSING.SOLDERING_MATERIAL_GOOD",
+      "classification": "rule-input",
+      "expected_material_count": 1,
+      "expected_consumer": "T12",
+      "reason": "Source quality category for soldering rules."
+    },
+    {
+      "tag": "PROPERTIES.HAS_TOOL_STATS",
+      "classification": "rule-input",
+      "expected_material_count": 546,
+      "expected_consumer": "T4",
+      "reason": "Already consumed by exact T4 MaterialRule predicates."
+    },
+    {
+      "tag": "PROPERTIES.NO_ADVANCED_TOOLS",
+      "classification": "rule-input",
+      "expected_material_count": 329,
+      "expected_consumer": "T4",
+      "reason": "Direct negative evidence for advanced tool eligibility."
+    },
+    {
+      "tag": "PROPERTIES.UNUSED_MATERIAL",
+      "classification": "not-applicable",
+      "expected_material_count": 307,
+      "expected_consumer": "NONE",
+      "reason": "Source bookkeeping marker, not a CrucibleCraft gameplay rule."
+    },
+    {
+      "tag": "PROPERTIES.BRITTLE",
+      "classification": "rule-input",
+      "expected_material_count": 211,
+      "expected_consumer": "T10",
+      "reason": "Suitable for declarative forming and breakage behavior."
+    },
+    {
+      "tag": "PROPERTIES.FLAMMABLE",
+      "classification": "deferred",
+      "expected_material_count": 199,
+      "expected_consumer": "T11",
+      "reason": "T11 owns fuel, leak, and combustion behavior."
+    },
+    {
+      "tag": "PROPERTIES.COMMON_ORE",
+      "classification": "build-time-only",
+      "expected_material_count": 148,
+      "expected_consumer": "T2",
+      "reason": "Already consumed as a source fact by ore-domain generation policy."
+    },
+    {
+      "tag": "PROPERTIES.WOOD",
+      "classification": "rule-input",
+      "expected_material_count": 130,
+      "expected_consumer": "T4",
+      "reason": "Already consumed by exact T4 MaterialRule predicates."
+    },
+    {
+      "tag": "PROPERTIES.CRYSTAL",
+      "classification": "rule-input",
+      "expected_material_count": 129,
+      "expected_consumer": "T10",
+      "reason": "Direct predicate for crystal and container-form behavior."
+    },
+    {
+      "tag": "PROPERTIES.TRANSPARENT",
+      "classification": "build-time-only",
+      "expected_material_count": 115,
+      "expected_consumer": "POST_T12",
+      "reason": "Rendering/model generation concern rather than recipe lookup."
+    },
+    {
+      "tag": "PROPERTIES.VALUABLE",
+      "classification": "deferred",
+      "expected_material_count": 100,
+      "expected_consumer": "POST_T12",
+      "reason": "Reserved for prospecting and progression value behavior."
+    },
+    {
+      "tag": "PROPERTIES.MAGICAL",
+      "classification": "deferred",
+      "expected_material_count": 85,
+      "expected_consumer": "POST_T12",
+      "reason": "No second-stage machine or rule consumes magical behavior."
+    },
+    {
+      "tag": "PROPERTIES.STONE",
+      "classification": "rule-input",
+      "expected_material_count": 83,
+      "expected_consumer": "T10",
+      "reason": "Suitable for forming and material-behavior predicates."
+    },
+    {
+      "tag": "PROPERTIES.UNBURNABLE",
+      "classification": "deferred",
+      "expected_material_count": 73,
+      "expected_consumer": "T11",
+      "reason": "T11 owns combustion behavior."
+    },
+    {
+      "tag": "PROPERTIES.FOOD",
+      "classification": "deferred",
+      "expected_material_count": 62,
+      "expected_consumer": "POST_T12",
+      "reason": "Food and agriculture are explicitly outside the second stage."
+    },
+    {
+      "tag": "PROPERTIES.RANDOM_SMALL_GEM_ORE",
+      "classification": "build-time-only",
+      "expected_material_count": 61,
+      "expected_consumer": "T9",
+      "reason": "World-generation placement policy rather than a runtime recipe predicate."
+    },
+    {
+      "tag": "PROPERTIES.GLOWING",
+      "classification": "deferred",
+      "expected_material_count": 56,
+      "expected_consumer": "POST_T12",
+      "reason": "Requires a separate visual-lighting implementation."
+    },
+    {
+      "tag": "PROPERTIES.ACID",
+      "classification": "deferred",
+      "expected_material_count": 37,
+      "expected_consumer": "T8",
+      "reason": "T8 fluid pipes own corrosion and containment behavior."
+    },
+    {
+      "tag": "PROPERTIES.SOFT",
+      "classification": "rule-input",
+      "expected_material_count": 37,
+      "expected_consumer": "T10",
+      "reason": "Suitable for declarative forming behavior."
+    },
+    {
+      "tag": "PROPERTIES.BETWEENLANDS",
+      "classification": "not-applicable",
+      "expected_material_count": 29,
+      "expected_consumer": "NONE",
+      "reason": "Compatibility marker for a mod absent from the pinned runtime."
+    },
+    {
+      "tag": "PROPERTIES.WITHER_PROOF",
+      "classification": "deferred",
+      "expected_material_count": 29,
+      "expected_consumer": "POST_T12",
+      "reason": "No second-stage system exposes wither-proof material behavior."
+    },
+    {
+      "tag": "PROPERTIES.MAZEBREAKER",
+      "classification": "not-applicable",
+      "expected_material_count": 20,
+      "expected_consumer": "NONE",
+      "reason": "Twilight Forest compatibility marker outside CrucibleCraft scope."
+    },
+    {
+      "tag": "PROPERTIES.QUARTZ",
+      "classification": "rule-input",
+      "expected_material_count": 20,
+      "expected_consumer": "T10",
+      "reason": "Direct material-family predicate for forming and container routes."
+    },
+    {
+      "tag": "PROPERTIES.AUTO_COLLECTING",
+      "classification": "deferred",
+      "expected_material_count": 19,
+      "expected_consumer": "POST_T12",
+      "reason": "Requires a future collection/equipment gameplay system."
+    },
+    {
+      "tag": "PROPERTIES.DONT_SHOW_THIS_COMPONENT",
+      "classification": "build-time-only",
+      "expected_material_count": 18,
+      "expected_consumer": "T4",
+      "reason": "Controls generated component visibility, not live recipe matching."
+    },
+    {
+      "tag": "PROPERTIES.EXPLOSIVE",
+      "classification": "deferred",
+      "expected_material_count": 18,
+      "expected_consumer": "T11",
+      "reason": "T11 owns gas, fuel, and explosion behavior."
+    },
+    {
+      "tag": "PROPERTIES.MAGNETIC_ACTIVE",
+      "classification": "deferred",
+      "expected_material_count": 18,
+      "expected_consumer": "T12",
+      "reason": "Material magnetism is a machine/material property, not an EnergyType."
+    },
+    {
+      "tag": "PROPERTIES.LIGHTING",
+      "classification": "deferred",
+      "expected_material_count": 16,
+      "expected_consumer": "POST_T12",
+      "reason": "Requires a separate lighting behavior implementation."
+    },
+    {
+      "tag": "PROPERTIES.ENDER_DRAGON_PROOF",
+      "classification": "deferred",
+      "expected_material_count": 15,
+      "expected_consumer": "POST_T12",
+      "reason": "No second-stage system exposes dragon-proof material behavior."
+    },
+    {
+      "tag": "PROPERTIES.BURNING",
+      "classification": "deferred",
+      "expected_material_count": 11,
+      "expected_consumer": "T11",
+      "reason": "T11 owns burning and fuel behavior."
+    },
+    {
+      "tag": "PROPERTIES.COAL",
+      "classification": "rule-input",
+      "expected_material_count": 10,
+      "expected_consumer": "T11",
+      "reason": "Direct predicate for solid-fuel behavior."
+    },
+    {
+      "tag": "PROPERTIES.BOUNCY",
+      "classification": "rule-input",
+      "expected_material_count": 6,
+      "expected_consumer": "T4",
+      "reason": "Already consumed by exact T4 MaterialRule predicates."
+    },
+    {
+      "tag": "PROPERTIES.MEAT",
+      "classification": "deferred",
+      "expected_material_count": 6,
+      "expected_consumer": "POST_T12",
+      "reason": "Food and agriculture are explicitly outside the second stage."
+    },
+    {
+      "tag": "PROPERTIES.AUTO_BLACKLIST",
+      "classification": "build-time-only",
+      "expected_material_count": 2,
+      "expected_consumer": "T4",
+      "reason": "Importer/generator exclusion marker rather than a live rule."
+    },
+    {
+      "tag": "PROPERTIES.PEARL",
+      "classification": "deferred",
+      "expected_material_count": 2,
+      "expected_consumer": "POST_T12",
+      "reason": "No second-stage consumer requires pearl behavior."
+    },
+    {
+      "tag": "PROPERTIES.ROTTEN",
+      "classification": "deferred",
+      "expected_material_count": 2,
+      "expected_consumer": "POST_T12",
+      "reason": "Food and agriculture are explicitly outside the second stage."
+    },
+    {
+      "tag": "PROPERTIES.WARPING",
+      "classification": "deferred",
+      "expected_material_count": 2,
+      "expected_consumer": "POST_T12",
+      "reason": "No second-stage consumer requires warping behavior."
+    },
+    {
+      "tag": "PROPERTIES.EXPLODES_IN_NONVANILLA_CRAFTING_GRID",
+      "classification": "not-applicable",
+      "expected_material_count": 1,
+      "expected_consumer": "NONE",
+      "reason": "Legacy crafting-grid integration behavior is not part of the 1.21.1 processing runtime."
+    },
+    {
+      "tag": "PROPERTIES.STRETCHY",
+      "classification": "rule-input",
+      "expected_material_count": 1,
+      "expected_consumer": "T4",
+      "reason": "Already consumed by exact T4 MaterialRule predicates."
+    },
+    {
+      "tag": "PROPERTIES.MAGNETIC_PASSIVE",
+      "classification": "deferred",
+      "expected_material_count": 66,
+      "expected_consumer": "T12",
+      "reason": "Material magnetism is a machine/material property, not an EnergyType."
+    }
+  ],
+  "acceptance": {
+    "material_count": 1773,
+    "processing_tag_count": 23,
+    "property_tag_count": 39,
+    "tag_assignment_count": 6752,
+    "tag_vocabulary_count": 101,
+    "formula_count": 952,
+    "formula_visible_material_count": 605,
+    "formula_without_registered_form_count": 347,
+    "nonzero_explosion_damage_count": 0,
+    "nonzero_heat_damage_count": 0,
+    "mortar_tagged_material_count": 603,
+    "mortar_registered_ingot_count": 133,
+    "mortar_ingot_to_dust_count": 126,
+    "mortar_gem_to_dust_count": 94,
+    "new_mortar_rule_expansion_count": 220
+  },
+  "t10_damage_gate": {
+    "status": "SOURCE_FACT_LOCATED",
+    "decision": "Material heat_damage and explosion_damage remain valid zero-valued material facts. T10 hot-ingot contact damage must instead import the GT6 prefix fact ingotHot.mHeatDamage=3.0 and must not invent a per-material fallback.",
+    "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "source_anchor": "gregapi/data/OP.java:578",
+    "runtime_anchor": "gregapi/util/UT.java:2949-2952"
+  },
+  "mortar_scope_decision": {
+    "crushed_to_dust": {
+      "classification": "source-backed-t2-ore-chain-route",
+      "mortar_grindable_guard": false,
+      "reason": "The crushed-ore route is an explicit T2 mechanical ore-chain alternative. PROCESSING.MORTAR_GRINDABLE governs material-form grinding such as ingots and gems, not this chain edge.",
+      "cc_source_anchor": "src/main/java/com/masson/cruciblecraft/recipe/rule/T2ChainRules.java:71-74",
+      "gt6_source_anchor": "gregtech/loaders/c/Loader_Recipes_Furnace.java:75-80"
+    }
+  },
+  "extruder_compaction_decision": {
+    "status": "NOT_EQUIVALENT_TO_11_TAG_ONLY_RULES",
+    "assessed_in_phase": "T8",
+    "playable_shape_count": 11,
+    "minimum_io_variant_rule_count": 27,
+    "estimated_rules_after_eut_tag_split": 54,
+    "sparse_relation_count": 2782,
+    "duration_policy": "exact_lookup; formula_verified=false",
+    "decision": "Keep the replay-verified sparse relation until MaterialRule can express all source gates. A compact migration needs at least 27 IO variants plus sparse duration overrides; splitting EXTRUDABLE_SIMPLE EU/t yields about 54 rules. Replacing it with one PROCESSING.EXTRUDABLE rule per shape would add and remove recipes.",
+    "required_semantics": [
+      "normal versus simple template timing",
+      "ingot-first with dust fallback input selection",
+      "same-material forging target eligibility",
+      "distinct plate versus plateGem outputs",
+      "source template shadow precedence"
+    ],
+    "apparent_plate_mismatch": {
+      "redirected_forging_targets": {
+        "frozen_iron": "iron",
+        "gilded_iron": "iron",
+        "obsidian_refined": "obsidian",
+        "steel_galvanized": "steel"
+      },
+      "distinct_gt6_output_prefix": {
+        "glass": "plateGem"
+      },
+      "valid_ingot_fallbacks": [
+        "annealed_copper",
+        "cast_iron",
+        "iron_compressed",
+        "tungsten_sintered",
+        "wrought_iron"
+      ]
+    },
+    "source_anchors": [
+      "gregtech/loaders/c/Loader_Recipes_Handlers.java:739-838",
+      "gregapi/recipes/handlers/RecipeMapHandlerPrefixForging.java:46-54"
+    ]
+  },
+  "legacy_rule_condition_backfill": {
+    "status": "OWNERS_ASSIGNED",
+    "decision": "Existing broad rules remain source-compatible until their owning phase can prove the exact predicate and expansion delta. A raw tag-name match is not sufficient evidence.",
+    "completed_safety_backfill": {
+      "predicate": "has_registered_for",
+      "selected_target_rule_count": 22,
+      "scope": "all component target_transform rules",
+      "effect": "A missing registered form on a processing target is now an explicit non-match; an unguarded required target resource remains a load error."
+    },
+    "unconditioned_cross_material_rule_count": 12,
+    "unconditioned_cross_material_rules": [
+      {
+        "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/dodecuple_wire_and_rubber_to_dodecuple_cable.json",
+        "owner": "T6",
+        "classification": "source-backed-cross-material-tag-input",
+        "decision": "The rule is gated by registered wire/cable forms and the any_rubber_plates item tag; no material processing tag governs GT6 cable insulation.",
+        "cc_source_anchor": "tools/component_rule_sources/component_rules.json:assembler/dodecuple_wire_and_rubber_to_dodecuple_cable",
+        "gt6_evidence_anchor": "gregtech/loaders/b/Loader_OreProcessing.java:183-184"
+      },
+      {
+        "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/double_wire_and_rubber_to_double_cable.json",
+        "owner": "T6",
+        "classification": "source-backed-cross-material-tag-input",
+        "decision": "The rule is gated by registered wire/cable forms and the any_rubber_plates item tag; no material processing tag governs GT6 cable insulation.",
+        "cc_source_anchor": "tools/component_rule_sources/component_rules.json:assembler/double_wire_and_rubber_to_double_cable",
+        "gt6_evidence_anchor": "gregtech/loaders/b/Loader_OreProcessing.java:183-184"
+      },
+      {
+        "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/octuple_wire_and_rubber_to_octuple_cable.json",
+        "owner": "T6",
+        "classification": "source-backed-cross-material-tag-input",
+        "decision": "The rule is gated by registered wire/cable forms and the any_rubber_plates item tag; no material processing tag governs GT6 cable insulation.",
+        "cc_source_anchor": "tools/component_rule_sources/component_rules.json:assembler/octuple_wire_and_rubber_to_octuple_cable",
+        "gt6_evidence_anchor": "gregtech/loaders/b/Loader_OreProcessing.java:183-184"
+      },
+      {
+        "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/quadruple_wire_and_rubber_to_quadruple_cable.json",
+        "owner": "T6",
+        "classification": "source-backed-cross-material-tag-input",
+        "decision": "The rule is gated by registered wire/cable forms and the any_rubber_plates item tag; no material processing tag governs GT6 cable insulation.",
+        "cc_source_anchor": "tools/component_rule_sources/component_rules.json:assembler/quadruple_wire_and_rubber_to_quadruple_cable",
+        "gt6_evidence_anchor": "gregtech/loaders/b/Loader_OreProcessing.java:183-184"
+      },
+      {
+        "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/wire_and_rubber_to_cable.json",
+        "owner": "T6",
+        "classification": "source-backed-cross-material-tag-input",
+        "decision": "The rule is gated by registered wire/cable forms and the any_rubber_plates item tag; no material processing tag governs GT6 cable insulation.",
+        "cc_source_anchor": "tools/component_rule_sources/component_rules.json:assembler/wire_and_rubber_to_cable",
+        "gt6_evidence_anchor": "gregtech/loaders/b/Loader_OreProcessing.java:183-184"
+      },
+      {
+        "path": "src/generated/resources/data/cruciblecraft/recipe/anvil/ingot_to_plate.json",
+        "owner": "T12",
+        "classification": "condition-backfill-deferred",
+        "decision": "PROCESSING.SMITHABLE is the candidate predicate, but T12 must prove the exact GT6 expansion set before changing this form-gated route.",
+        "cc_source_anchor": "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java:170-174",
+        "gt6_evidence_anchor": "tools/gt6_recipe_compare_baseline.json:anvil_ingot_to_plate"
+      },
+      {
+        "path": "src/generated/resources/data/cruciblecraft/recipe/anvil/plate_to_rods.json",
+        "owner": "T12",
+        "classification": "condition-backfill-deferred",
+        "decision": "PROCESSING.SMITHABLE is the candidate predicate, but T12 must prove the exact GT6 expansion set before changing this form-gated route.",
+        "cc_source_anchor": "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java:175-179",
+        "gt6_evidence_anchor": "tools/gt6_recipe_compare_baseline.json:anvil_plate_to_rods"
+      },
+      {
+        "path": "src/generated/resources/data/cruciblecraft/recipe/anvil/raw_ore_to_crushed_ore.json",
+        "owner": "T2",
+        "classification": "source-backed-form-only-ore-chain",
+        "decision": "Raw-ore crushing is a T2 ore-chain edge and is not governed by PROCESSING.SMITHABLE.",
+        "cc_source_anchor": "src/main/java/com/masson/cruciblecraft/recipe/rule/T2ChainRules.java:22-29",
+        "gt6_evidence_anchor": "tools/gt6_recipe_compare_baseline.json:chain_anvil"
+      },
+      {
+        "path": "src/generated/resources/data/cruciblecraft/recipe/anvil/rod_to_bolts.json",
+        "owner": "T12",
+        "classification": "condition-backfill-deferred",
+        "decision": "PROCESSING.SMITHABLE is the candidate predicate, but T12 must prove the exact GT6 expansion set before changing this form-gated route.",
+        "cc_source_anchor": "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java:180-184",
+        "gt6_evidence_anchor": "tools/gt6_recipe_compare_baseline.json:anvil_rod_to_bolts"
+      },
+      {
+        "path": "src/generated/resources/data/cruciblecraft/recipe/bath/crushed_to_washed.json",
+        "owner": "T2",
+        "classification": "source-backed-form-only-ore-chain",
+        "decision": "The washed-crushed route is an explicit T2 ore-chain edge; later washing tags govern special reagent variants, not this water baseline.",
+        "cc_source_anchor": "src/main/java/com/masson/cruciblecraft/recipe/rule/T2ChainRules.java:47-49",
+        "gt6_evidence_anchor": "tools/gt6_recipe_compare_baseline.json:chain_bath"
+      },
+      {
+        "path": "src/generated/resources/data/cruciblecraft/recipe/crusher/ingot_to_dust.json",
+        "owner": "T2",
+        "classification": "source-backed-form-only-component-route",
+        "decision": "The crusher route remains form-gated; MORTAR_GRINDABLE only governs the authored mortar alternatives.",
+        "cc_source_anchor": "src/main/java/com/masson/cruciblecraft/recipe/rule/T2ChainRules.java:42-45",
+        "gt6_evidence_anchor": "gregtech/loaders/c/Loader_Recipes_Handlers.java:77"
+      },
+      {
+        "path": "src/generated/resources/data/cruciblecraft/recipe/mortar/crushed_to_dust.json",
+        "owner": "T2",
+        "classification": "source-backed-form-only-ore-chain",
+        "decision": "The crushed-ore mortar route is explicitly outside MORTAR_GRINDABLE and preserves the 471-entry T2 baseline.",
+        "cc_source_anchor": "src/main/java/com/masson/cruciblecraft/recipe/rule/T2ChainRules.java:71-74",
+        "gt6_evidence_anchor": "gregtech/loaders/c/Loader_Recipes_Furnace.java:75-80"
+      }
+    ],
+    "owners": {
+      "T5_CARRYOVER": [
+        "PROCESSING.CENTRIFUGABLE",
+        "PROCESSING.ELECTROLYSABLE"
+      ],
+      "T8": [
+        "PROCESSING.EXTRUDABLE",
+        "PROCESSING.EXTRUDABLE_SIMPLE"
+      ],
+      "T9": [
+        "PROCESSING.WASHING_FIRESTONE",
+        "PROCESSING.WASHING_MERCURY",
+        "PROCESSING.WASHING_PERSULFATE",
+        "PROCESSING.PULVERIZING_CINNABAR"
+      ],
+      "T10": [
+        "PROCESSING.MELTING",
+        "PROCESSING.FURNACE",
+        "PROCESSING.BLACKLISTED_SMELTER",
+        "PROCESSING.NEVER_FURNACE"
+      ],
+      "T11": [
+        "PROCESSING.CRUCIBLE_ALLOY"
+      ],
+      "T12": [
+        "PROCESSING.SMITHABLE",
+        "PROCESSING.UNRECYCLABLE"
+      ]
+    }
+  },
+  "rule_language": {
+    "tag_predicate": "material.tag",
+    "registered_form_predicate": "has_registered",
+    "selected_material_registered_form_predicate": "has_registered_for",
+    "thermal_variables": [
+      "material.thermal.melting_point",
+      "material.thermal.boiling_point",
+      "material.thermal.density"
+    ],
+    "new_numeric_variables": [
+      "material.explosion_damage",
+      "material.heat_damage"
+    ],
+    "duplicate_aliases_added": false
+  },
+  "runtime_publication_acceptance": {
+    "measurement": "production runGameTestServer recipe reload",
+    "pre_t7_mortar_recipes": 471,
+    "t7_added_mortar_recipes": 220,
+    "post_t7_mortar_recipes": 691,
+    "pre_t7_all_published_recipes": 17106,
+    "post_t7_all_published_recipes": 17326,
+    "t7_authored_material_rule_budget": 256,
+    "all_published_recipe_budget": 21000,
+    "shadowed_input_signatures": 0
+  },
+  "energy_type_decision": {
+    "kept": [
+      "HEAT",
+      "KINETIC",
+      "AIR",
+      "ELECTRIC"
+    ],
+    "removed": {
+      "ROTATION": "GT6 RU is intentionally represented by the existing KINETIC packet type.",
+      "MAGNETIC": "Magnetism is represented by exact material tags and machine behavior, not an energy packet.",
+      "COOLING": "No direct source-backed packet consumer exists; a later cooling system must introduce its own proven contract."
+    }
+  }
+}

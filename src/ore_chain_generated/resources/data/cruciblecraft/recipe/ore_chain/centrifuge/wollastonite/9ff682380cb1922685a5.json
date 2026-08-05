@@ -1,0 +1,42 @@
+{
+  "can_be_buffered": true,
+  "duration": 300,
+  "eut": 32,
+  "item_input_counts": [
+    1
+  ],
+  "item_inputs": [
+    {
+      "tag": "cruciblecraft:washed_crushed_ores/wollastonite"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": 1,
+      "id": "cruciblecraft:wollastonite/centrifuged_crushed_ore"
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:magnesium_carbonate/dust"
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:pyrolusite/dust"
+    }
+  ],
+  "map": "cruciblecraft:centrifuge",
+  "output_chances": [
+    10000,
+    2500,
+    1000
+  ],
+  "provenance": {
+    "evidence_hashes": [
+      "33d5f920c6afb71f0ae6",
+      "b128bc996651dfdc8647"
+    ],
+    "selected_source_recipe": "topology_projection:9ff682380cb1922685a5",
+    "source_kind": "topology_fallback"
+  },
+  "type": "cruciblecraft:gt_recipe"
+}

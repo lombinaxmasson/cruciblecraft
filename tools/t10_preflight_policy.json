@@ -1,0 +1,116 @@
+{
+  "schema_version": 3,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_evidence": {
+    "op_java": {
+      "path": "gregapi/data/OP.java",
+      "git_blob_sha1": "f915645f3009d3dbe61abbafe77791000be32747",
+      "anchor": "line 578"
+    },
+    "ut_java": {
+      "path": "gregapi/util/UT.java",
+      "git_blob_sha1": "e1a89b2c04e1183fda13a490c5a035512acf7f14",
+      "anchor": "lines 2949-2952"
+    },
+    "normalized_prefix_dump": {
+      "path": "tools/gt6_oredict_prefixes_normalized.json",
+      "sha256": "cdd29c3d4b4d31ea2065ff80be0e34c60d6c49608b7913d57905297d23239ddd",
+      "extraction_key": "records[source_name=ingotHot].heat_damage"
+    }
+  },
+  "current_post_t8_publication": 17583,
+  "t9_projected_recipe_additions": 0,
+  "prefix_fact_policy": {
+    "source_to_cruciblecraft": {
+      "ingotDouble": "cruciblecraft:double_ingot",
+      "ingotTriple": "cruciblecraft:triple_ingot",
+      "ingotHot": "cruciblecraft:ingot_hot"
+    },
+    "expected_startup_prefix_count": 56,
+    "expected_material_count": 1773,
+    "expected_handshake_entry_count": 1829,
+    "expected_gate_registration_counts": {
+      "double_ingot": 323,
+      "triple_ingot": 323,
+      "ingot_hot": 321
+    },
+    "expected_runtime_prefixes": {
+      "cruciblecraft:double_ingot": {
+        "units": 288,
+        "source_alias": "ingotdouble",
+        "heat_damage": 0.0
+      },
+      "cruciblecraft:triple_ingot": {
+        "units": 432,
+        "source_alias": "ingottriple",
+        "heat_damage": 0.0
+      },
+      "cruciblecraft:ingot_hot": {
+        "units": 144,
+        "source_alias": "ingothot",
+        "heat_damage": 3.0
+      }
+    },
+    "expected_nonzero_source_heat_damage": {
+      "ingotHot": 3.0
+    },
+    "expected_nonzero_runtime_heat_damage": {
+      "cruciblecraft:ingot_hot": 3.0
+    }
+  },
+  "route_projections": {
+    "hot_ingot": {
+      "generation_tag": "ITEMGENERATOR.INGOTS_HOT",
+      "required_registered_form": "ingot",
+      "routes": [
+        "smelter_to_hot_ingot",
+        "hot_ingot_to_ingot"
+      ],
+      "expected_material_count": 321,
+      "expected_recipe_count": 642
+    },
+    "multi_ingot": {
+      "generation_tag": "ITEMGENERATOR.MULTIINGOTS",
+      "required_registered_form": "ingot",
+      "routes": [
+        "ingot_to_double_ingot",
+        "ingot_to_triple_ingot"
+      ],
+      "expected_material_count": 323,
+      "expected_recipe_count": 646
+    }
+  },
+  "container_domains": [
+    "ITEMGENERATOR.CONTAINERS",
+    "ITEMGENERATOR.CONTAINERS_FLUID",
+    "ITEMGENERATOR.CONTAINERS_GAS"
+  ],
+  "container_recipe_status": "CLOSED_WITH_COMPONENT_CELLS",
+  "t10a_publication": {
+    "expected_current_recipe_additions": 4,
+    "known_future_recipe_additions": 1288,
+    "known_form_material_rule_budget": 1500
+  },
+  "container_acceptance": {
+    "readiness_path": "tools/t10_container_readiness.json",
+    "expected_fluid_domain": 61,
+    "expected_gas_domain": 48,
+    "expected_containers_only_denied": 14,
+    "expected_new_chemical_fluids": 93,
+    "expected_cell_gate_entries": 109
+  },
+  "load_policy": {
+    "expected_datapack_recipe_entries": 5958,
+    "datapack_recipe_entry_budget": 6600,
+    "expected_published_recipes": 18871,
+    "minimum_compression_ratio": 3.0,
+    "reload_budget_ms": 10000,
+    "index_build_budget_ms": 1000
+  },
+  "budget_policy": {
+    "margin_numerator": 11,
+    "margin_denominator": 10,
+    "round_up_to": 1000,
+    "expected_global_budget": 21000
+  }
+}

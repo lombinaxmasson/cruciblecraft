@@ -29,7 +29,7 @@ class MaterialCreativeTabTest {
     @Test
     void allBuiltinPrefixesHaveOneSemanticTabAndUnknownPrefixesUseMisc() {
         var prefixes = MaterialPrefixCatalog.values();
-        assertEquals(43, prefixes.size());
+        assertEquals(56, prefixes.size());
 
         EnumMap<MaterialCreativeTab, Set<MaterialPrefix>> grouped =
                 new EnumMap<>(MaterialCreativeTab.class);
@@ -39,22 +39,22 @@ class MaterialCreativeTabTest {
         prefixes.forEach(prefix ->
                 grouped.get(MaterialCreativeTab.forPrefix(prefix)).add(prefix));
 
-        assertEquals(43, grouped.values().stream().mapToInt(Set::size).sum());
+        assertEquals(56, grouped.values().stream().mapToInt(Set::size).sum());
         assertEquals(
                 Set.copyOf(prefixes),
                 grouped.values().stream()
                         .flatMap(Set::stream)
                         .collect(Collectors.toUnmodifiableSet()));
         assertEquals(1, grouped.get(MaterialCreativeTab.ORES).size());
-        assertEquals(6, grouped.get(MaterialCreativeTab.ORE_PROCESSING).size());
+        assertEquals(7, grouped.get(MaterialCreativeTab.ORE_PROCESSING).size());
         assertEquals(3, grouped.get(MaterialCreativeTab.DUSTS).size());
-        assertEquals(4, grouped.get(MaterialCreativeTab.METALS_GEMS).size());
-        assertEquals(7, grouped.get(MaterialCreativeTab.PLATES).size());
+        assertEquals(7, grouped.get(MaterialCreativeTab.METALS_GEMS).size());
+        assertEquals(8, grouped.get(MaterialCreativeTab.PLATES).size());
         assertEquals(5, grouped.get(MaterialCreativeTab.PARTS).size());
         assertEquals(5, grouped.get(MaterialCreativeTab.MECHANICAL_PARTS).size());
         assertEquals(7, grouped.get(MaterialCreativeTab.WIRES).size());
-        assertEquals(5, grouped.get(MaterialCreativeTab.CABLES).size());
-        assertEquals(Set.of(), grouped.get(MaterialCreativeTab.MISC));
+        assertEquals(13, grouped.get(MaterialCreativeTab.CABLES).size());
+        assertEquals(0, grouped.get(MaterialCreativeTab.MISC).size());
         assertEquals(
                 MaterialCreativeTab.MISC,
                 MaterialCreativeTab.forPrefix(new MaterialPrefix("example:unknown")));
@@ -65,6 +65,15 @@ class MaterialCreativeTabTest {
             @TempDir Path configDirectory) {
         var materials = MaterialLoader.load(configDirectory).values();
         var registered = MaterialRegistrationGate.load(materials);
+        assertEquals(323L, registered.values().stream()
+                .filter(forms -> forms.contains(MaterialPrefixes.DOUBLE_INGOT))
+                .count());
+        assertEquals(323L, registered.values().stream()
+                .filter(forms -> forms.contains(MaterialPrefixes.TRIPLE_INGOT))
+                .count());
+        assertEquals(321L, registered.values().stream()
+                .filter(forms -> forms.contains(MaterialPrefixes.INGOT_HOT))
+                .count());
         Map<MaterialCreativeTab, List<String>> plan =
                 MaterialCreativeTab.planEntryIds(materials, registered);
 
@@ -106,14 +115,14 @@ class MaterialCreativeTabTest {
         assertEquals(
                 Map.ofEntries(
                         Map.entry(MaterialCreativeTab.ORES, 274),
-                        Map.entry(MaterialCreativeTab.ORE_PROCESSING, 2_808),
+                        Map.entry(MaterialCreativeTab.ORE_PROCESSING, 2_810),
                         Map.entry(MaterialCreativeTab.DUSTS, 2_682),
-                        Map.entry(MaterialCreativeTab.METALS_GEMS, 1_293),
-                        Map.entry(MaterialCreativeTab.PLATES, 2_328),
+                        Map.entry(MaterialCreativeTab.METALS_GEMS, 2_260),
+                        Map.entry(MaterialCreativeTab.PLATES, 2_333),
                         Map.entry(MaterialCreativeTab.PARTS, 3_248),
                         Map.entry(MaterialCreativeTab.MECHANICAL_PARTS, 1_890),
-                        Map.entry(MaterialCreativeTab.WIRES, 282),
-                        Map.entry(MaterialCreativeTab.CABLES, 118),
+                        Map.entry(MaterialCreativeTab.WIRES, 288),
+                        Map.entry(MaterialCreativeTab.CABLES, 400),
                         Map.entry(MaterialCreativeTab.MISC, 0)),
                 counts);
         counts.forEach((tab, count) ->

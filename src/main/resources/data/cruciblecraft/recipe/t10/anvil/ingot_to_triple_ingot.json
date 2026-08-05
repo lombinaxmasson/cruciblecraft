@@ -1,0 +1,26 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "conditions": [
+    "material.has(\"gt6:itemgenerator/multiingots\")",
+    "has_registered(ingot) && has_registered(double_ingot) && has_registered(triple_ingot)"
+  ],
+  "eut": "10000",
+  "item_inputs": [
+    {
+      "count": "1",
+      "prefix": "cruciblecraft:ingot"
+    },
+    {
+      "count": "1",
+      "prefix": "cruciblecraft:double_ingot"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "1",
+      "prefix": "cruciblecraft:triple_ingot"
+    }
+  ],
+  "special_value": "12",
+  "target": "cruciblecraft:anvil"
+}

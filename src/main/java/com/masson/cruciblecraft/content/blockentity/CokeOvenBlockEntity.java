@@ -176,7 +176,7 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
         cokeOven.checkpoint.markDirty();
         cokeOven.setLit(true);
         if (cokeOven.processor.complete()) {
-            cokeOven.complete(recipe);
+            cokeOven.complete();
         }
         if (cokeOven.checkpoint.shouldCheckpoint(level.getGameTime(), phaseKey, 20)) {
             cokeOven.setChanged();
@@ -245,10 +245,8 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
         return pendingTransaction != null;
     }
 
-    private void complete(GTRecipe recipe) {
-        if (pendingTransaction == null || !pendingTransaction.commit(transactionResources())) {
-            return;
-        }
+    private void complete() {
+        commitCompletion(pendingTransaction, transactionResources());
         pendingTransaction = null;
         Optional<RecipeMap.Match> next = findRecipe();
         processor.clearActive(next.map(match -> match.recipe().duration()).orElse(0));
@@ -256,6 +254,19 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
         syncToClient();
         checkpoint.checkpointed();
         checkpoint.synced();
+    }
+
+    static void commitCompletion(
+            MachineTransaction transaction,
+            MachineTransaction.ResourceAccess resources) {
+        if (transaction == null) {
+            throw new IllegalStateException(
+                    "Coke oven completed without a prepared resource transaction");
+        }
+        if (!transaction.commit(resources)) {
+            throw new IllegalStateException(
+                    "Coke oven resources changed before completion commit");
+        }
     }
 
     private void resetProgress() {

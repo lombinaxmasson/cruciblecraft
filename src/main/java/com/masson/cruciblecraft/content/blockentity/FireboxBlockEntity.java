@@ -104,7 +104,7 @@ public class FireboxBlockEntity extends BlockEntity implements IEnergyHandler {
         if (!handles(type, side) || size != 1L || maxAmount <= 0L) {
             return 0L;
         }
-        boolean effectiveSimulation = simulate || (level != null && level.isClientSide);
+        boolean effectiveSimulation = simulate || level == null || level.isClientSide;
         long available = heat.extract(maxAmount, true);
         long offered = outputBudget.claim(
                 gameTime(),
@@ -127,7 +127,11 @@ public class FireboxBlockEntity extends BlockEntity implements IEnergyHandler {
     }
 
     private long gameTime() {
-        return level == null ? Long.MIN_VALUE : level.getGameTime();
+        if (level == null) {
+            outputBudget.reset();
+            return 0L;
+        }
+        return level.getGameTime();
     }
 
     public long outputRate() {

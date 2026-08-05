@@ -12,7 +12,6 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
-import net.neoforged.neoforge.items.SlotItemHandler;
 
 public final class CokeOvenMenu extends AbstractContainerMenu {
     private static final int MACHINE_SLOTS = 2;
@@ -51,12 +50,12 @@ public final class CokeOvenMenu extends AbstractContainerMenu {
         this.data = data;
         checkContainerDataCount(data, 6);
 
-        addSlot(new SlotItemHandler(
+        addSlot(new ProcessingMachineMenu.NotifyingSlotItemHandler(
                 machineInventory,
                 CokeOvenBlockEntity.INPUT_SLOT,
                 56,
                 35));
-        addSlot(new SlotItemHandler(
+        addSlot(new ProcessingMachineMenu.NotifyingSlotItemHandler(
                 machineInventory,
                 CokeOvenBlockEntity.OUTPUT_SLOT,
                 116,
@@ -144,6 +143,7 @@ public final class CokeOvenMenu extends AbstractContainerMenu {
         } else {
             slot.setChanged();
         }
+        slot.onTake(player, source);
         return original;
     }
 }

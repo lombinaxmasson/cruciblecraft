@@ -31,4 +31,11 @@ public final class PerTickEnergyBudget {
         }
         return claimed;
     }
+
+    /** Clears detached or otherwise invalid tick state. */
+    public void reset() {
+        budgetTick = 0L;
+        claimedThisTick = 0L;
+        initialized = false;
+    }
 }

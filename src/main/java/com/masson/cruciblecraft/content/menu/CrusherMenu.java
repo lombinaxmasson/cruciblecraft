@@ -16,7 +16,7 @@ public final class CrusherMenu extends ProcessingMachineMenu {
                 id,
                 inventory,
                 new ItemStackHandler(ModProcessingMachines.CRUSHER.items().slotCount()),
-                new SimpleContainerData(3),
+                new SimpleContainerData(7),
                 ModProcessingMachines.CRUSHER,
                 player -> true);
     }

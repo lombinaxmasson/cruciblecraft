@@ -1,4 +1,7 @@
 {
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", rod)"
+  ],
   "duration": "120 * (144 * prefix_units(rod) / gcd(target_units(working) * 144, 144 * prefix_units(rod)))",
   "eut": "24",
   "item_inputs": [

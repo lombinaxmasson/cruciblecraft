@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.google.gson.JsonParser;
+import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
 import com.mojang.serialization.JsonOps;
 import io.netty.buffer.Unpooled;
 import net.minecraft.SharedConstants;
@@ -43,6 +44,45 @@ class MaterialRuleCodecTest {
     }
 
     @Test
+    void generatedCableRuleUsesSourceBackedAnyRubberTag()
+            throws Exception {
+        String path = "data/cruciblecraft/recipe/assembler/"
+                + "wire_and_rubber_to_cable.json";
+        var stream = MaterialRuleCodecTest.class.getClassLoader()
+                .getResourceAsStream(path);
+        assertNotNull(stream, path);
+        try (stream;
+                var reader = new InputStreamReader(
+                        stream, StandardCharsets.UTF_8)) {
+            var json = JsonParser.parseReader(reader).getAsJsonObject();
+            json.remove("type");
+            MaterialRule decoded = MaterialRule.CODEC.codec()
+                    .parse(JsonOps.INSTANCE, json)
+                    .getOrThrow();
+            assertEquals(
+                    Optional.of(id("any_rubber_plates")),
+                    decoded.itemInputs().get(1).tag());
+            assertTrue(decoded.itemInputs().get(1).item().isEmpty());
+            assertTrue(
+                    decoded.itemInputs().get(1)
+                            .materialSelector().isEmpty());
+        }
+        String tagPath =
+                "data/cruciblecraft/tags/item/any_rubber_plates.json";
+        var tagStream = MaterialRuleCodecTest.class.getClassLoader()
+                .getResourceAsStream(tagPath);
+        assertNotNull(tagStream, tagPath);
+        try (tagStream;
+                var reader = new InputStreamReader(
+                        tagStream, StandardCharsets.UTF_8)) {
+            var values = JsonParser.parseReader(reader)
+                    .getAsJsonObject()
+                    .getAsJsonArray("values");
+            assertEquals("#c:plates/rubber", values.get(0).getAsString());
+        }
+    }
+
+    @Test
     void codecAndNetworkRoundTripActualRule() {
         LoadingModList.of(List.of(), List.of(), List.of(), List.of(), Map.of());
         SharedConstants.tryDetectVersion();
@@ -63,6 +103,14 @@ class MaterialRuleCodecTest {
         serializer.streamCodec().encode(buffer, original);
         assertEquals(original, serializer.streamCodec().decode(buffer));
         assertEquals(0, buffer.readableBytes());
+        MaterialRule.ItemResource catalyst =
+                decoded.rule().itemInputs().get(1);
+        assertEquals(
+                Map.of(id("tool_material"), "iron"),
+                catalyst.stringComponents());
+        assertEquals(
+                Optional.of(ItemInputAction.wear(1)),
+                catalyst.inputAction());
     }
 
     @Test
@@ -95,6 +143,65 @@ class MaterialRuleCodecTest {
         assertTrue(error.getMessage().contains("gt_recipe"));
     }
 
+    @Test
+    void materialFluidSelectorIsExplicitAndCodecRoundTrips() {
+        MaterialRule.FluidResource chemical = new MaterialRule.FluidResource(
+                Optional.empty(),
+                Optional.empty(),
+                Optional.of("chemical"),
+                "material.quality * 1000");
+        var encoded = MaterialRule.FluidResource.CODEC.codec()
+                .encodeStart(JsonOps.INSTANCE, chemical)
+                .getOrThrow();
+        assertEquals(
+                chemical,
+                MaterialRule.FluidResource.CODEC.codec()
+                        .parse(JsonOps.INSTANCE, encoded)
+                        .getOrThrow());
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> new MaterialRule.FluidResource(
+                        Optional.empty(),
+                        Optional.empty(),
+                        Optional.of("ambient"),
+                        "1000"));
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> new MaterialRule.FluidResource(
+                        Optional.of("dust"),
+                        Optional.empty(),
+                        Optional.of("chemical"),
+                        "1000"));
+    }
+
+    @Test
+    void optionalOutputsRemainRestrictedToByproductSelectors() {
+        MaterialRule template = sampleRule();
+        assertTrue(template.itemOutputs().get(1).optional());
+        MaterialRule.ItemResource optionalSelf = new MaterialRule.ItemResource(
+                Optional.of("dust"),
+                Optional.empty(),
+                "1",
+                "10000",
+                Optional.empty(),
+                true);
+        assertThrows(IllegalArgumentException.class, () -> new MaterialRule(
+                template.target(),
+                template.itemInputs(),
+                List.of(optionalSelf),
+                template.fluidInputs(),
+                template.fluidOutputs(),
+                template.duration(),
+                template.eut(),
+                template.specialValue(),
+                template.canBeBuffered(),
+                template.material(),
+                template.materialOverrides(),
+                template.conditions(),
+                template.tuning(),
+                template.unification()));
+    }
+
     private static MaterialRule sampleRule() {
         return new MaterialRule(
                 Optional.of(id("crusher")),
@@ -103,8 +210,12 @@ class MaterialRuleCodecTest {
                         new MaterialRule.ItemResource(
                                 Optional.empty(),
                                 Optional.of(ResourceLocation.withDefaultNamespace("flint")),
-                                "1",
-                                "10000")),
+                                "0",
+                                "10000",
+                                Optional.empty(),
+                                false,
+                                Map.of(id("tool_material"), "iron"),
+                                Optional.of(ItemInputAction.wear(1)))),
                 List.of(
                         prefix("crushed_ore", "2", "10000"),
                         new MaterialRule.ItemResource(
@@ -129,7 +240,7 @@ class MaterialRuleCodecTest {
                         Map.of(),
                         Map.of("1", "2500"),
                         Map.of())),
-                List.of("has_prefix(ingot)"),
+                List.of("has_form(ingot)"),
                 Optional.of(new MaterialRule.Tuning(
                         "iron",
                         Optional.of(3),

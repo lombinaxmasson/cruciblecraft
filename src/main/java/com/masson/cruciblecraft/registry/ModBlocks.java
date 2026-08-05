@@ -2,23 +2,33 @@ package com.masson.cruciblecraft.registry;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.IdentityHashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.AnvilBlock;
+import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.BellowsBlock;
 import com.masson.cruciblecraft.content.block.BoilerBlock;
 import com.masson.cruciblecraft.content.block.CokeOvenBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
+import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.CrucibleBlock;
 import com.masson.cruciblecraft.content.block.CrusherBlock;
+import com.masson.cruciblecraft.content.block.DynamoBlock;
 import com.masson.cruciblecraft.content.block.FireboxBlock;
+import com.masson.cruciblecraft.content.block.FluidPipeBlock;
+import com.masson.cruciblecraft.content.block.ItemPipeBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
+import com.masson.cruciblecraft.content.block.SubsurfaceFluidDepositBlock;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
+import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
+import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
 
 import net.minecraft.world.level.block.Block;
@@ -35,6 +45,18 @@ public final class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(CrucibleCraft.MODID);
     private static final Map<OreBlockKey, DeferredBlock<DropExperienceBlock>>
             MATERIAL_ORE_BLOCKS = new LinkedHashMap<>();
+    private static final Map<
+            ElectricalConductorCatalog.Key,
+            DeferredBlock<CableBlock>> ELECTRICAL_CONDUCTOR_BLOCKS =
+                    new LinkedHashMap<>();
+    private static final Map<
+            PipeCatalog.Key,
+            DeferredBlock<? extends AbstractPipeBlock>> PIPE_BLOCKS =
+                    new LinkedHashMap<>();
+    private static final Map<
+            com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec,
+            DeferredBlock<ProcessingMachineBlock>> CONFIGURED_PROCESSING_BLOCKS =
+                    new IdentityHashMap<>();
 
     /** M0 placeholder block — later reused as firebox cladding. */
     public static final DeferredBlock<Block> FIREBRICK = BLOCKS.registerSimpleBlock(
@@ -118,12 +140,26 @@ public final class ModBlocks {
                             .noLootTable()
                             .liquid()));
 
+    public static final DeferredBlock<SubsurfaceFluidDepositBlock>
+            SUBSURFACE_FLUID_DEPOSIT = BLOCKS.register(
+                    "subsurface_fluid_deposit",
+                    () -> new SubsurfaceFluidDepositBlock(
+                            BlockBehaviour.Properties.of()
+                                    .mapColor(MapColor.STONE)
+                                    .strength(50.0F, 1_200.0F)
+                                    .requiresCorrectToolForDrops()
+                                    .noLootTable()
+                                    .sound(SoundType.STONE)));
+
     public static final DeferredBlock<BoilerBlock> BRONZE_BOILER = BLOCKS.register(
             "bronze_boiler",
             () -> new BoilerBlock(machineProperties()));
     public static final DeferredBlock<SteamEngineBlock> BRONZE_STEAM_ENGINE = BLOCKS.register(
             "bronze_steam_engine",
             () -> new SteamEngineBlock(machineProperties()));
+    public static final DeferredBlock<DynamoBlock> BRONZE_DYNAMO = BLOCKS.register(
+            "bronze_dynamo",
+            () -> new DynamoBlock(machineProperties()));
     public static final DeferredBlock<CrusherBlock> BRONZE_CRUSHER = BLOCKS.register(
             "bronze_crusher",
             () -> new CrusherBlock(machineProperties()));
@@ -161,10 +197,64 @@ public final class ModBlocks {
             processing("welder", ModProcessingMachines.WELDER);
     public static final DeferredBlock<ProcessingMachineBlock> PRESS =
             processing("press", ModProcessingMachines.PRESS);
+    public static final DeferredBlock<ProcessingMachineBlock> ELECTROLYZER =
+            processing("electrolyzer", ModProcessingMachines.ELECTROLYZER);
+    public static final DeferredBlock<ProcessingMachineBlock> MIXER =
+            processing("mixer", ModProcessingMachines.MIXER);
+    public static final DeferredBlock<ProcessingMachineBlock> DISTILLERY =
+            processing("distillery", ModProcessingMachines.DISTILLERY);
+    public static final DeferredBlock<ProcessingMachineBlock> AUTOCLAVE =
+            processing("autoclave", ModProcessingMachines.AUTOCLAVE);
+    public static final DeferredBlock<ProcessingMachineBlock> DRYING =
+            processing("drying", ModProcessingMachines.DRYING);
+    public static final DeferredBlock<ProcessingMachineBlock> COMPRESSOR =
+            processing("compressor", ModProcessingMachines.COMPRESSOR);
 
     public static void registerMaterials(Collection<MaterialDefinition> definitions) {
-        if (!MATERIAL_ORE_BLOCKS.isEmpty()) {
-            throw new IllegalStateException("Material ore blocks already registered");
+        if (!MATERIAL_ORE_BLOCKS.isEmpty()
+                || !ELECTRICAL_CONDUCTOR_BLOCKS.isEmpty()
+                || !PIPE_BLOCKS.isEmpty()) {
+            throw new IllegalStateException("Material blocks already registered");
+        }
+        ElectricalConductorCatalog.initialize(definitions);
+        PipeCatalog.initialize(definitions);
+        for (ElectricalConductorCatalog.Entry conductor
+                : ElectricalConductorCatalog.all()) {
+            ElectricalConductorCatalog.Key key =
+                    new ElectricalConductorCatalog.Key(
+                            conductor.materialId(), conductor.form());
+            DeferredBlock<CableBlock> previous =
+                    ELECTRICAL_CONDUCTOR_BLOCKS.put(
+                            key,
+                            BLOCKS.register(
+                                    conductor.registryName(),
+                                    () -> new CableBlock(
+                                            conductor,
+                                            conductorProperties())));
+            if (previous != null) {
+                throw new IllegalStateException(
+                        "Duplicate electrical conductor block " + key);
+            }
+        }
+        for (PipeCatalog.Entry pipe : PipeCatalog.all()) {
+            PipeCatalog.Key key = new PipeCatalog.Key(
+                    pipe.materialId(), pipe.form(), pipe.kind());
+            DeferredBlock<? extends AbstractPipeBlock> holder =
+                    pipe.kind() == PipeCatalog.Kind.FLUID
+                            ? BLOCKS.register(
+                                    pipe.registryName(),
+                                    () -> new FluidPipeBlock(
+                                            pipe,
+                                            conductorProperties()))
+                            : BLOCKS.register(
+                                    pipe.registryName(),
+                                    () -> new ItemPipeBlock(
+                                            pipe,
+                                            conductorProperties()));
+            if (PIPE_BLOCKS.putIfAbsent(key, holder) != null) {
+                throw new IllegalStateException(
+                        "Duplicate pipe block " + key);
+            }
         }
         for (MaterialDefinition material : definitions) {
             if (!MaterialCatalog.registeredForms(material).contains(MaterialPrefixes.ORE)) {
@@ -201,6 +291,89 @@ public final class ModBlocks {
         return Collections.unmodifiableCollection(MATERIAL_ORE_BLOCKS.values());
     }
 
+    public static DeferredBlock<CableBlock> electricalConductorBlock(
+            String materialId,
+            com.masson.cruciblecraft.api.material.MaterialPrefix form) {
+        DeferredBlock<CableBlock> block =
+                ELECTRICAL_CONDUCTOR_BLOCKS.get(
+                        new ElectricalConductorCatalog.Key(materialId, form));
+        if (block == null) {
+            throw new IllegalArgumentException(
+                    "No electrical conductor block for "
+                            + materialId + "/" + form.serializedName());
+        }
+        return block;
+    }
+
+    public static boolean hasElectricalConductorBlock(
+            String materialId,
+            com.masson.cruciblecraft.api.material.MaterialPrefix form) {
+        return ELECTRICAL_CONDUCTOR_BLOCKS.containsKey(
+                new ElectricalConductorCatalog.Key(materialId, form));
+    }
+
+    public static Collection<DeferredBlock<CableBlock>>
+            electricalConductorBlocks() {
+        return Collections.unmodifiableCollection(
+                ELECTRICAL_CONDUCTOR_BLOCKS.values());
+    }
+
+    public static CableBlock[] electricalConductorBlockArray() {
+        return ELECTRICAL_CONDUCTOR_BLOCKS.values().stream()
+                .map(DeferredBlock::get)
+                .toArray(CableBlock[]::new);
+    }
+
+    public static DeferredBlock<? extends AbstractPipeBlock> pipeBlock(
+            String materialId,
+            com.masson.cruciblecraft.api.material.MaterialPrefix form,
+            PipeCatalog.Kind kind) {
+        DeferredBlock<? extends AbstractPipeBlock> block = PIPE_BLOCKS.get(
+                new PipeCatalog.Key(materialId, form, kind));
+        if (block == null) {
+            throw new IllegalArgumentException(
+                    "No " + kind.name().toLowerCase(java.util.Locale.ROOT)
+                            + " pipe block for " + materialId + "/"
+                            + form.serializedName());
+        }
+        return block;
+    }
+
+    public static boolean hasPipeBlock(
+            String materialId,
+            com.masson.cruciblecraft.api.material.MaterialPrefix form,
+            PipeCatalog.Kind kind) {
+        return PIPE_BLOCKS.containsKey(
+                new PipeCatalog.Key(materialId, form, kind));
+    }
+
+    public static Collection<DeferredBlock<? extends AbstractPipeBlock>>
+            pipeBlocks() {
+        return Collections.unmodifiableCollection(PIPE_BLOCKS.values());
+    }
+
+    public static FluidPipeBlock[] fluidPipeBlockArray() {
+        return PIPE_BLOCKS.values().stream()
+                .map(DeferredBlock::get)
+                .filter(FluidPipeBlock.class::isInstance)
+                .map(FluidPipeBlock.class::cast)
+                .toArray(FluidPipeBlock[]::new);
+    }
+
+    public static ItemPipeBlock[] itemPipeBlockArray() {
+        return PIPE_BLOCKS.values().stream()
+                .map(DeferredBlock::get)
+                .filter(ItemPipeBlock.class::isInstance)
+                .map(ItemPipeBlock.class::cast)
+                .toArray(ItemPipeBlock[]::new);
+    }
+
+    public static Collection<DeferredBlock<ProcessingMachineBlock>>
+            configuredProcessingBlockEntries() {
+        return Collections.unmodifiableCollection(
+                CONFIGURED_PROCESSING_BLOCKS.values());
+    }
+
     /** Immutable material/host-to-path view used by worldgen host adaptation. */
     public static Map<OreBlockKey, String> oreBlockPaths() {
         LinkedHashMap<OreBlockKey, String> paths = new LinkedHashMap<>();
@@ -230,7 +403,44 @@ public final class ModBlocks {
     private static DeferredBlock<ProcessingMachineBlock> processing(
             String id,
             com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec spec) {
-        return BLOCKS.register(id, () -> new ProcessingMachineBlock(spec, machineProperties()));
+        DeferredBlock<ProcessingMachineBlock> block =
+                BLOCKS.register(id, () -> new ProcessingMachineBlock(spec, machineProperties()));
+        if (CONFIGURED_PROCESSING_BLOCKS.put(spec, block) != null) {
+            throw new IllegalStateException(
+                    "Duplicate configured processing block for " + spec.id());
+        }
+        return block;
+    }
+
+    /**
+     * Resolves the registered workstation for one configured processing spec.
+     *
+     * <p>The identity check prevents an equal-looking ad-hoc spec from being
+     * accepted as registry-owned configuration.
+     */
+    public static Block configuredProcessingBlock(
+            com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec spec) {
+        Objects.requireNonNull(spec, "spec");
+        if (CONFIGURED_PROCESSING_BLOCKS.size()
+                != ModProcessingMachines.CONFIGURED_MACHINES.size()) {
+            throw new IllegalStateException(
+                    "Configured processing block mapping is incomplete");
+        }
+        boolean configured = ModProcessingMachines.CONFIGURED_MACHINES.stream()
+                .anyMatch(candidate -> candidate == spec);
+        DeferredBlock<ProcessingMachineBlock> holder =
+                CONFIGURED_PROCESSING_BLOCKS.get(spec);
+        if (!configured || holder == null) {
+            throw new IllegalArgumentException(
+                    "No configured processing block for " + spec.id());
+        }
+        return holder.get();
+    }
+
+    public static Block[] configuredProcessingBlocks() {
+        return ModProcessingMachines.CONFIGURED_MACHINES.stream()
+                .map(ModBlocks::configuredProcessingBlock)
+                .toArray(Block[]::new);
     }
 
     private static BlockBehaviour.Properties machineProperties() {
@@ -238,6 +448,15 @@ public final class ModBlocks {
                 .mapColor(MapColor.COLOR_ORANGE)
                 .strength(3.5F, 8.0F)
                 .requiresCorrectToolForDrops()
+                .sound(SoundType.METAL);
+    }
+
+    private static BlockBehaviour.Properties conductorProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.METAL)
+                .strength(0.5F, 2.0F)
+                .requiresCorrectToolForDrops()
+                .noOcclusion()
                 .sound(SoundType.METAL);
     }
 

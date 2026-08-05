@@ -11,7 +11,10 @@ import java.util.LinkedHashMap;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.SharedConstants;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.Bootstrap;
 import net.minecraft.world.item.Item;
@@ -19,6 +22,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.fml.loading.LoadingModList;
+import net.neoforged.neoforge.common.NeoForgeMod;
+import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
+import net.neoforged.neoforge.common.crafting.IngredientType;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 
 class RecipeMapSpecificityTest {
@@ -27,6 +35,7 @@ class RecipeMapSpecificityTest {
         LoadingModList.of(List.of(), List.of(), List.of(), List.of(), Map.of());
         SharedConstants.tryDetectVersion();
         Bootstrap.bootStrap();
+        bindComponentIngredientType();
     }
 
     @Test
@@ -69,6 +78,78 @@ class RecipeMapSpecificityTest {
     }
 
     @Test
+    void incomparableMaximalMatchesUseStableDeclarationOrder() {
+        RecipeMap.Entry ironAndGold = new RecipeMap.Entry(
+                id("iron_and_gold"),
+                recipe(
+                        List.of(
+                                Ingredient.of(Items.IRON_INGOT),
+                                Ingredient.of(Items.GOLD_INGOT)),
+                        List.of(1, 1),
+                        Items.IRON_NUGGET));
+        RecipeMap.Entry ironAndDiamond = new RecipeMap.Entry(
+                id("iron_and_diamond"),
+                recipe(
+                        List.of(
+                                Ingredient.of(Items.IRON_INGOT),
+                                Ingredient.of(Items.DIAMOND)),
+                        List.of(2, 1),
+                        Items.DIAMOND));
+        GTRecipeQuery query = GTRecipeQuery.items(
+                new ItemStack(Items.IRON_INGOT, 2),
+                new ItemStack(Items.GOLD_INGOT),
+                new ItemStack(Items.DIAMOND));
+
+        for (List<RecipeMap.Entry> order : List.of(
+                List.of(ironAndGold, ironAndDiamond),
+                List.of(ironAndDiamond, ironAndGold))) {
+            RecipeMap map = new RecipeMap(id("incomparable"));
+            map.replaceRecipes(order);
+            assertEquals(
+                    order.getFirst().id(),
+                    map.findMatch(query).orElseThrow().id());
+        }
+    }
+
+    @Test
+    void disjointRecipesCanCoexistInOneMachineInputQuery() {
+        RecipeMap map = new RecipeMap(id("disjoint"));
+        map.replaceRecipes(List.of(
+                new RecipeMap.Entry(id("ingot"), recipe(
+                        List.of(Ingredient.of(Items.COPPER_INGOT)),
+                        List.of(1),
+                        Items.IRON_NUGGET)),
+                new RecipeMap.Entry(id("foil"), recipe(
+                        List.of(Ingredient.of(Items.PAPER)),
+                        List.of(1),
+                        Items.STRING))));
+
+        assertEquals(
+                id("ingot"),
+                map.findMatch(GTRecipeQuery.items(
+                        new ItemStack(Items.COPPER_INGOT),
+                        new ItemStack(Items.PAPER)))
+                        .orElseThrow()
+                        .id());
+    }
+
+    @Test
+    void reusableCatalystsDoNotFloodPrimaryCandidateIndex() {
+        RecipeMap map = new RecipeMap(id("catalyst_candidates"));
+        map.replaceRecipes(List.of(
+                new RecipeMap.Entry(id("iron"), catalystRecipe(
+                        Items.IRON_INGOT, Items.STICK, Items.IRON_NUGGET)),
+                new RecipeMap.Entry(id("gold"), catalystRecipe(
+                        Items.GOLD_INGOT, Items.STICK, Items.GOLD_NUGGET))));
+
+        GTRecipeQuery query = GTRecipeQuery.items(
+                new ItemStack(Items.IRON_INGOT),
+                new ItemStack(Items.STICK));
+        assertEquals(1, map.indexedCandidateCount(query));
+        assertEquals(id("iron"), map.findMatch(query).orElseThrow().id());
+    }
+
+    @Test
     void stagedValidationRejectsShadowsAndEmptyRequiredMapsWithoutPublishing() {
         GTRecipe first = recipe(
                 List.of(Ingredient.of(Items.IRON_INGOT)), List.of(1), Items.IRON_NUGGET);
@@ -101,6 +182,28 @@ class RecipeMapSpecificityTest {
         assertEquals(crusherRevision, ModRecipeMaps.CRUSHER.revision());
     }
 
+    @Test
+    void nonWhitelistedComponentIngredientsRemainExplicitlyUnindexed() {
+        ItemStack namedInput = new ItemStack(Items.IRON_INGOT);
+        namedInput.set(DataComponents.CUSTOM_NAME, Component.literal("indexed-by-name"));
+        RecipeMap map = new RecipeMap(id("component_index_guard"));
+        RecipeMap.Prepared prepared = map.prepareRecipes(List.of(new RecipeMap.Entry(
+                id("component_recipe"),
+                recipe(
+                        List.of(DataComponentIngredient.of(false, namedInput)),
+                        List.of(1),
+                        Items.IRON_NUGGET))));
+
+        assertEquals(1, prepared.unindexedRecipeCount());
+        IllegalArgumentException failure = assertThrows(
+                IllegalArgumentException.class,
+                () -> GTRecipeMapLoader.validateNoUnindexed(
+                        List.of(map), List.of(prepared)));
+        assertTrue(failure.getMessage().contains(map.id().toString()));
+        assertTrue(failure.getMessage().contains("1 unindexed"));
+        assertEquals(List.of(), map.entries());
+    }
+
     private static GTRecipe recipe(
             List<Ingredient> inputs, List<Integer> counts, Item output) {
         return new GTRecipe(
@@ -116,7 +219,46 @@ class RecipeMapSpecificityTest {
                 true);
     }
 
+    private static GTRecipe catalystRecipe(
+            Item material,
+            Item catalyst,
+            Item output) {
+        return new GTRecipe(
+                List.of(Ingredient.of(material), Ingredient.of(catalyst)),
+                List.of(1, 0),
+                List.of(ItemInputAction.CONSUME, ItemInputAction.wear(1)),
+                List.of(new ItemStack(output)),
+                List.of(),
+                List.of(),
+                List.of(GTRecipe.GUARANTEED_CHANCE),
+                20,
+                1,
+                0,
+                true,
+                java.util.Optional.empty());
+    }
+
     private static ResourceLocation id(String path) {
         return ResourceLocation.fromNamespaceAndPath("test", path);
+    }
+
+    private static void bindComponentIngredientType() {
+        try {
+            if (!NeoForgeRegistries.INGREDIENT_TYPES.containsKey(
+                    NeoForgeMod.DATA_COMPONENT_INGREDIENT_TYPE.getId())) {
+                Registry.register(
+                        NeoForgeRegistries.INGREDIENT_TYPES,
+                        NeoForgeMod.DATA_COMPONENT_INGREDIENT_TYPE.getId(),
+                        new IngredientType<>(DataComponentIngredient.CODEC));
+            }
+            var holder = DeferredHolder.class.getDeclaredField("holder");
+            holder.setAccessible(true);
+            holder.set(
+                    NeoForgeMod.DATA_COMPONENT_INGREDIENT_TYPE,
+                    NeoForgeRegistries.INGREDIENT_TYPES.getHolderOrThrow(
+                            NeoForgeMod.DATA_COMPONENT_INGREDIENT_TYPE.getKey()));
+        } catch (ReflectiveOperationException exception) {
+            throw new AssertionError("Unable to install test ingredient type", exception);
+        }
     }
 }

@@ -20,6 +20,7 @@ import net.neoforged.neoforge.fluids.FluidStack;
 public record GTRecipe(
         List<Ingredient> itemInputs,
         List<Integer> itemInputCounts,
+        List<ItemInputAction> itemInputActions,
         List<ItemStack> itemOutputs,
         List<FluidStack> fluidInputs,
         List<FluidStack> fluidOutputs,
@@ -39,6 +40,9 @@ public record GTRecipe(
             Codec.INT.listOf()
                     .optionalFieldOf("item_input_counts", List.of())
                     .forGetter(GTRecipe::itemInputCounts),
+            ItemInputAction.CODEC.listOf()
+                    .optionalFieldOf("item_input_actions", List.of())
+                    .forGetter(GTRecipe::itemInputActions),
             ItemStack.STRICT_CODEC.listOf()
                     .optionalFieldOf("item_outputs", List.of())
                     .forGetter(GTRecipe::itemOutputs),
@@ -63,6 +67,7 @@ public record GTRecipe(
     public GTRecipe {
         itemInputs = immutable(itemInputs, "itemInputs");
         itemInputCounts = immutable(itemInputCounts, "itemInputCounts");
+        itemInputActions = immutable(itemInputActions, "itemInputActions");
         itemOutputs = copyItems(itemOutputs);
         fluidInputs = copyFluids(fluidInputs, "fluidInputs");
         fluidOutputs = copyFluids(fluidOutputs, "fluidOutputs");
@@ -72,12 +77,27 @@ public record GTRecipe(
         if (itemInputCounts.isEmpty() && !itemInputs.isEmpty()) {
             itemInputCounts = Collections.nCopies(itemInputs.size(), 1);
         }
+        if (itemInputActions.isEmpty() && !itemInputs.isEmpty()) {
+            itemInputActions = itemInputCounts.stream()
+                    .map(count -> count == 0
+                            ? ItemInputAction.PRESERVE
+                            : ItemInputAction.CONSUME)
+                    .toList();
+        }
         if (outputChances.isEmpty() && !itemOutputs.isEmpty()) {
             outputChances = Collections.nCopies(itemOutputs.size(), GUARANTEED_CHANCE);
         }
         if (itemInputCounts.size() != itemInputs.size()) {
             throw new IllegalArgumentException(
-                    "Every item input must have exactly one input count");
+                    "Every item input must have exactly one input count (inputs="
+                            + itemInputs.size()
+                            + ", counts="
+                            + itemInputCounts.size()
+                            + ")");
+        }
+        if (itemInputActions.size() != itemInputs.size()) {
+            throw new IllegalArgumentException(
+                    "Every item input must have exactly one input action");
         }
         if (outputChances.size() != itemOutputs.size()) {
             throw new IllegalArgumentException(
@@ -85,6 +105,21 @@ public record GTRecipe(
         }
         if (itemInputCounts.stream().anyMatch(count -> count == null || count < 0)) {
             throw new IllegalArgumentException("Item input counts must not be negative");
+        }
+        for (int index = 0; index < itemInputActions.size(); index++) {
+            ItemInputAction action = itemInputActions.get(index);
+            if (action == null) {
+                throw new IllegalArgumentException("Item input actions must not be null");
+            }
+            int count = itemInputCounts.get(index);
+            if (action.kind() == ItemInputAction.Kind.CONSUME && count <= 0) {
+                throw new IllegalArgumentException(
+                        "CONSUME item inputs must have a positive count");
+            }
+            if (action.kind() != ItemInputAction.Kind.CONSUME && count != 0) {
+                throw new IllegalArgumentException(
+                        "PRESERVE and WEAR item inputs must use count zero");
+            }
         }
         if (outputChances.stream().anyMatch(
                 chance -> chance == null || chance < 0 || chance > GUARANTEED_CHANCE)) {
@@ -135,6 +170,7 @@ public record GTRecipe(
         this(
                 itemInputs,
                 itemInputCounts,
+                List.of(),
                 itemOutputs,
                 fluidInputs,
                 fluidOutputs,
@@ -160,6 +196,7 @@ public record GTRecipe(
         this(
                 itemInputs,
                 itemInputCounts,
+                List.of(),
                 itemOutputs,
                 fluidInputs,
                 fluidOutputs,
@@ -171,6 +208,33 @@ public record GTRecipe(
                 Optional.empty());
     }
 
+    public GTRecipe(
+            List<Ingredient> itemInputs,
+            List<Integer> itemInputCounts,
+            List<ItemStack> itemOutputs,
+            List<FluidStack> fluidInputs,
+            List<FluidStack> fluidOutputs,
+            List<Integer> outputChances,
+            int duration,
+            long eut,
+            long specialValue,
+            boolean canBeBuffered,
+            Optional<GTRecipeProvenance> provenance) {
+        this(
+                itemInputs,
+                itemInputCounts,
+                List.of(),
+                itemOutputs,
+                fluidInputs,
+                fluidOutputs,
+                outputChances,
+                duration,
+                eut,
+                specialValue,
+                canBeBuffered,
+                provenance);
+    }
+
     /** Returns the semantic recipe value used by cache/fingerprint matching. */
     public GTRecipe withoutProvenance() {
         if (provenance.isEmpty()) {
@@ -179,6 +243,7 @@ public record GTRecipe(
         return new GTRecipe(
                 itemInputs,
                 itemInputCounts,
+                itemInputActions,
                 itemOutputs,
                 fluidInputs,
                 fluidOutputs,
@@ -194,6 +259,7 @@ public record GTRecipe(
         return RecipeResourceMatcher.matchesItems(
                         itemInputs,
                         itemInputCounts,
+                        itemInputActions,
                         query.itemInputsView())
                 && RecipeResourceMatcher.matchesFluids(
                         fluidInputs,
@@ -202,7 +268,8 @@ public record GTRecipe(
 
     /** Allocation rows are recipe inputs and columns are offered inventory slots. */
     public Optional<long[][]> itemAllocation(List<ItemStack> offered) {
-        return RecipeResourceMatcher.solveItems(itemInputs, itemInputCounts, offered);
+        return RecipeResourceMatcher.solveItems(
+                itemInputs, itemInputCounts, itemInputActions, offered);
     }
 
     @Override

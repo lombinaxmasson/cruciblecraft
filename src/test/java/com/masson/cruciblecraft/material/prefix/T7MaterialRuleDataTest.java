@@ -33,10 +33,10 @@ class T7MaterialRuleDataTest {
             "src/main/resources/data/cruciblecraft/material_registration_gate.json");
     private static final Map<String, Path> RULE_PATHS = Map.of(
             "ingot_to_dust", Path.of(
-                    "src/main/resources/data/cruciblecraft/recipe/mortar/"
+                    "src/main/resources/data/cruciblecraft/recipe/t7/mortar/"
                             + "ingot_to_dust.json"),
             "gem_to_dust", Path.of(
-                    "src/main/resources/data/cruciblecraft/recipe/mortar/"
+                    "src/main/resources/data/cruciblecraft/recipe/t7/mortar/"
                             + "gem_to_dust.json"));
 
     @BeforeEach
@@ -72,7 +72,7 @@ class T7MaterialRuleDataTest {
                     MaterialRuleExpansion.expandPlansWithRegisteredForms(
                             ResourceLocation.fromNamespaceAndPath(
                                     "cruciblecraft",
-                                    "mortar/" + entry.getKey()),
+                                    "t7/mortar/" + entry.getKey()),
                             rule,
                             materials,
                             registered);

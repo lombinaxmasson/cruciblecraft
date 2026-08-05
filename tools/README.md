@@ -1,5 +1,42 @@
 # GT6 recipe regression
 
+## Verification workflow
+
+The standard-library runner owns Python test selection:
+
+```text
+python tools/run_python_tests.py --suite fast
+python tools/run_python_tests.py --suite affected --path <changed-path>
+python tools/run_python_tests.py --suite closure
+python tools/run_python_tests.py --suite source-replay
+```
+
+- `fast` excludes repository currentness and raw/cache replay tests.
+- `affected` uses `python_test_policy.json`; any unmatched path escalates the
+  whole run to `closure`.
+- `closure` must equal unittest discovery exactly once and reports slow tests.
+- `source-replay` is explicit and reports unavailable raw/cache inputs as
+  `SKIP`.
+
+The phase-closing entry point is:
+
+```text
+python tools/run_full_verification.py --check
+python tools/run_full_verification.py --record
+```
+
+It fails on the first unsuccessful builder, datagen, Java, GameTest, Python, or
+report stage. `--check` is CI/read-only mode; `--record` refreshes the pending
+snapshot and binds the successful run to `full_verification_report.json` as
+`READY`.
+
+These rules are non-negotiable: fast/affected results are not closure evidence;
+closure tests run once, not once per verifier; caches are process-local,
+defensively returned, and clearable; unknown dependencies select closure; test
+deletion, stale-ledger trust, and source-gate bypass are not performance
+optimizations. `--check` modes are read-only currentness proofs, while `--write`
+modes intentionally regenerate owned artifacts.
+
 ## GT6 ore-dictionary import
 
 `import_gt6_oredict.py` validates the authoritative `oredict/index.json`,
@@ -31,7 +68,7 @@ The importer preserves exact GT6 U numerators whenever an amount is not an
 integral CrucibleCraft unit; runtime decomposition is disabled rather than
 rounding the source ratio.
 All 468 prefixes are normalized; the importer activates no new runtime prefix
-definitions. The 43 already-registered runtime prefixes may create startup
+definitions. The 45 already-registered runtime prefixes may create startup
 material forms when supported by the activation policy.
 Reference-only checking verifies hashes for every indexed material definition,
 the exact index order/file set, a preserved structural hash for each of the
@@ -46,6 +83,9 @@ python tools/build_gt6_ore_chain.py --check
 python tools/build_gt6_veins.py --write
 python tools/build_gt6_veins.py --check
 python tools/build_gt6_veins.py --review
+python tools/build_worldgen_catalog.py --write
+python tools/build_worldgen_catalog.py --check
+python tools/build_worldgen_catalog.py --review
 python tools/build_gt6_material_form_gate.py --write
 python tools/build_gt6_material_form_gate.py --check
 python tools/build_gt6_material_form_gate.py --review
@@ -59,9 +99,12 @@ operand artifact drives `material_registration_gate.json`, and runtime never
 rescans GT6 recipes. The ore-chain builder writes content-addressed concrete
 recipes to the independent committed `src/ore_chain_generated/resources` root; its operand
 projection is merged into the gate after factual-form validation. The manual
+T5 source projection adds exactly seven route-required `plate_gem` /
+`tiny_centrifuged_crushed_ore` registrations; those newly mapped prefixes do
+not recursively enable unrelated pinned recipe operands. The manual
 stress task benchmarks 20,000 metadata-only and 20,000 single-dust additions.
 The 4,096 handshake cap remains a hard encode/decode budget; the current
-production-scale 1,815-entry payload round-trips below it.
+production-scale 1,818-entry payload round-trips below it.
 
 The vein builder owns the semantic author documents in
 `src/main/resources/data/cruciblecraft/veins` and the runtime output in
@@ -71,6 +114,17 @@ salt, and provenance. The builder accepts exactly one of `--write`, `--check`,
 or `--review`; it validates both factual and gate-registered `ore` forms before
 generating all configured features, placed features, and the aggregate biome
 modifier.
+
+The T9 builder owns the batch declarations in
+`src/main/resources/data/cruciblecraft/worldgen_catalog` and writes the independent
+`src/worldgen_catalog_generated/resources` root. It derives the expected 129-material
+set from the fixed T2c closure ledger, requires exact bidirectional equality,
+and verifies that the original 8 worldgen materials plus those 129 entries
+cover all 137 factual, registered ore materials. It also compiles finite
+`crude_oil` and `methane` deposits with declared reserve, depth, host, region,
+chance, and salt into the same configured/placed-feature pipeline. The compact
+`tools/worldgen_catalog_readiness.json` records counts, density arithmetic, host
+policy, and input hashes.
 
 Ore-chain artifacts use neutral names because `T2`/`T3` in Java denote the
 repository's machine/component tiers, not delivery milestones. The builder
@@ -95,9 +149,10 @@ python tools/build_component_rules.py --check
 ```
 
 The generated manifest locks 28 non-extruder semantic rules plus 2,782 playable
-extruder sparse rows. Runtime expansion is 8,136 recipes: assembler 568, bender
+extruder sparse rows. Runtime expansion is 8,141 recipes: assembler 568, bender
 638, cutter 651, extruder 2,782, lathe 929, press 1,191, roll bender 438,
-rolling mill 336, welder 321, and wire mill 282. It also locks unit
+rolling mill 336, welder 321, and wire mill 287. The five additional wire-mill
+rows are an explicit T6 source-backed wire-form overlay. It also locks unit
 conservation, recipe/shadow signature digests (zero shadows), the 10,000-recipe
 budget, 31 reusable shapes, and all 62 extruder-template classifications
 (20 playable, 42 skipped, zero unclassified). Runtime expansion remains owned
@@ -166,6 +221,174 @@ bath retains its T2 byproduct selector; shredder retains its T2
 `processing_target` selector; mixer is deferred to T5. Shape selection is not a
 generic component-map pattern.
 
+### T4 tool readiness
+
+`t4_tool_policy.json` separates imported GT6 facts from CrucibleCraft porting
+strategy. `HAS_TOOL_STATS` defines the material domain; `tool.types` is a 0–3
+ordinal eligibility level, while durability, quality, and speed are values only.
+The policy also fixes the component-driven item architecture, zero-unindexed
+recipe budget, mining-tier compression, durability saturation, and explicit
+damage-based catalyst transaction requirement.
+
+```text
+python tools/build_t4_tool_readiness.py
+python tools/build_t4_tool_readiness.py --check
+```
+
+The generated `t4_tool_readiness.json` classifies all 546 candidates separately
+for each of the 11 tools. `closure.unclassified` must remain zero. Eligibility,
+material multisets, handle counts, catalysts, and route precedence come from
+the pinned GT6 pattern for that tool; there is no shared metal/gem/rod template.
+The exact `stone` identity is a source-backed Pickaxe exception, while
+`MT.Wood.NOT` is represented by exact `wood` identity rather than the broader
+`PROPERTIES.WOOD` tag. Every identity literal carries a reason and source
+revision, and distinct `material.is` IDs are ledgered. Rule expressions spell
+out `has_form` for factual metadata and `has_registered` for obtainable forms;
+the runtime loads the registration gate once per recipe reload.
+
+Source eligibility and current route closure are separate audited domains.
+`strategy_projections.eligibility_route_gaps` records every source-eligible
+tool/material pair that lacks a currently registered manufacturing route,
+including the 208-material Pickaxe gap. The policy's
+`eligibility_predicate_sources` section pins every types/tag/quality predicate,
+including the Wrench COATED and Screwdriver BOUNCY/STRETCHY asymmetries, to a
+GT6 revision and line-level reason.
+
+The policy also records the measured 8,141 / 3,452 / 11,593 count projection
+and reload/index/lookup budgets. The lookup benchmark runs only during explicit
+GameTest verification, not every production reload. The old unconstrained heap
+delta was removed because it did not measure retained memory. Runtime lookup
+indexes consumed inputs as primary discriminators; common `WEAR` and
+`PRESERVE` catalysts are fallback keys only, preventing tool-pattern and
+File/Hammer inputs from flooding every assembler query with thousands of
+candidates.
+
+### T5.5/T6 electrical readiness
+
+`gt6_electrical_source.json` pins the direct electric-wire registrations and
+source hashes at GT6 revision
+`3703e40308c8c030763fd6297dea8b210d2a77b1`. Electrical eligibility comes from
+explicit `addElectricWires` calls, not material names, `ITEMGENERATOR.WIRES`, or
+generic OreDict wire/cable registrations. The calls define maximum voltage,
+gauge-scaled amperage, and integral EU loss per traversed block. They do not
+define physical resistance.
+
+The importer projects those exact registration values into
+`gt6_metadata.electrical_by_specification`. The readiness ledger classifies
+every raw and live material, checks the acceptance conductors, derives the live
+five-gauge cable/recipe domain, and quantifies material-specific blockstate
+growth:
+
+```text
+python tools/build_t6_electrical_readiness.py
+python tools/build_t6_electrical_readiness.py --check
+python -m unittest tools.tests.test_build_t6_electrical_readiness
+```
+
+An installed official checkout can additionally verify the extracted source
+files:
+
+```text
+python tools/build_t6_electrical_readiness.py --check --source-root <gregtech6-checkout>
+```
+
+`t6_electrical_policy.json` closes the runtime architecture decisions:
+exact source voltage ceilings, source EU loss per traversed block, GT6's
+burn-counter overload behavior, stateless per-injection traversal, exact
+1/2/4/8/12 cable gauges, and one generated material-specific block per
+source-backed form. The runtime implements 115 insulated cable blocks and 29
+bare `wireGt01` blocks (144 blocks / 9,216 logical states), loaded-only stable
+DFS, exact signed segment loss, persistent 16-hit/512-tick burn state, safe-tick
+fire replacement, last-tick source-flagged contact damage, and data-driven
+`ANY.Rubber` insulation. Cable telemetry uses position-phased client sync rather
+than per-block per-tick updates; connection shapes are precomputed for all 64
+masks. Energy commits re-simulate consumers serially, extract source packets
+first, contain external endpoint failures as bounded dissipation, and reuse only
+the fresh same-tick cable plan selected by the final preflight. The generated
+gate is `READY` and source-guards these T6a–T6d contracts; full
+unit/resource/GameTest execution remains owned by the full verification report.
+
+### T5a chemical readiness
+
+`t5_chemical_policy.json` pins `Loader_Recipes_Decomp.java` at GT6 revision
+`3703e40308c8c030763fd6297dea8b210d2a77b1`. Pinned replay classifies 17 of the
+original 162 terminal-dust rows as GT6 source dead-ends because all 720,841
+recipes expose only packaging loops for them. The generated readiness ledger
+therefore keeps the 145 executable terminal-dust debts, 110 crusher chemical
+debts, 110 byproduct-only debts, and all 119 non-molten fluid candidates
+separate:
+
+```text
+python tools/build_t5_chemical_readiness.py
+python tools/build_t5_chemical_readiness.py --check
+python -m unittest tools.tests.test_build_t5_chemical_readiness
+```
+
+The 224-material chemical union records composition, source tags, the exact
+loader conjunction, the CrucibleCraft `no_decompose` quarantine, destination
+maps, and replay status. Every required map is hashed from the fixed dump;
+loader-only fluid candidates not named by the selected routes remain classified
+but are not registered.
+
+`build_t5_distillery_projection.py` separately classifies every one of the
+1,517 pinned distillery rows before recipe projection. One row is currently
+projectable (`water -> water_distilled`); 1,516 rows are retained with explicit
+identity gaps rather than silently dropped:
+
+```text
+python tools/build_t5_distillery_projection.py
+python tools/build_t5_distillery_projection.py --check
+python -m unittest tools.tests.test_build_t5_distillery_projection
+```
+
+`build_t5_chemical_recipes.py` projects only source-backed,
+registration-closed recipes into `src/t5_chemical_generated/resources`; it also
+writes the closed non-molten fluid registry and
+`t5_chemical_recipe_manifest.json`:
+
+```text
+python tools/build_t5_chemical_recipes.py
+python tools/build_t5_chemical_recipes.py --check
+python -m unittest tools.tests.test_build_t5_chemical_recipes
+```
+
+The current bounded projection is 152 recipes across assembler, autoclave,
+bath, centrifuge, compressor, distillery, drying, electrolyzer, mixer, and
+smelter, with 15 registered chemical fluids. It gives a traceable live route to
+every 145 / 145 terminal dust in the executable denominator, six source-backed
+fluid-closure producers, and one distillery vertical. The 17 source dead-ends
+remain explicit ledger rows and never become CrucibleCraft-only chemical
+recipes.
+
+### T5.5 machine-crafting readiness
+
+`machine_crafting_policy.json` pins the official
+`GregTech6/gregtech6` Java source at revision
+`3703e40308c8c030763fd6297dea8b210d2a77b1`. The generated readiness ledger
+derives all 23 configured machine IDs from `ModProcessingMachines` and the
+placeholder calls in `ModRecipeProvider`; it separately discovers the seven
+existing `bronze_*.json` main-resource crafts. The recipe-map dump is not used
+as machine-block crafting evidence because those shaped registrations live in
+`Loader_MultiTileEntities.java`.
+
+```text
+python tools/build_machine_crafting_readiness.py
+python tools/build_machine_crafting_readiness.py --check
+python -m unittest tools.tests.test_build_machine_crafting_readiness
+```
+
+To reproduce the compact official-source evidence without vendoring the GT6
+repository:
+
+```text
+python tools/build_machine_crafting_readiness.py --fetch-source build/gt6-machine-crafting-source
+python tools/build_machine_crafting_readiness.py --check --verify-source build/gt6-machine-crafting-source
+```
+
+T5.5 authorizes no placeholder replacement. Every configured row remains
+blocked on an explicit source-identity, tier-collapse, or exact component
+mapping prerequisite; `unclassified` must remain zero.
+
 Extruder v5 uses one template per concrete shape (31 normal + 31 low-heat);
 material/external identity, input/output form, counts, EU, and duration are
 stored in a sparse support relation. Axes are stored once per template and
@@ -226,6 +449,17 @@ independent of JSON whitespace.
 
 ```text
 python tools/build_component_rules.py --check
+python tools/build_t4_tool_readiness.py --check
+python tools/build_t5_distillery_projection.py --check
+python tools/build_machine_crafting_readiness.py --check
+python tools/build_t6_electrical_readiness.py --check
+python tools/build_t7_material_tag_readiness.py --check
+python tools/build_t8_pipe_readiness.py --check
+python tools/build_worldgen_catalog.py --check
+python tools/build_t10_preflight_projection.py --check
+python tools/apply_t8_pipe_metadata.py --check
+python tools/build_t5_chemical_readiness.py --check
+python tools/build_t5_chemical_recipes.py --check
 python tools/gt6_extruder_templates.py --verify
 ./gradlew runData
 ./gradlew runData
@@ -374,7 +608,7 @@ playable maps. Expansion uses the immutable prefix-to-material index and has a
 including 2,782 shape-selected extruder recipes. Import generation closes
 component prerequisites to a fixed point:
 2,470 material/component forms are retained and the committed unproduced count
-is zero. The 112 retained cable forms consume matching conductor wire plus
+is zero. The 118 retained cable forms consume matching conductor wire plus
 1/1/2/3/4 Rubber plates for gauges 1/2/4/8/12. This insulation model follows
 `Loader_OreProcessing.java:183-184` and `OP.java:644-648`; it deliberately adds
 no electrical rating.

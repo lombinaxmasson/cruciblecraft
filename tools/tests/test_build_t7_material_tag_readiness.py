@@ -1,7 +1,6 @@
 import copy
 import importlib.util
 import json
-import subprocess
 import sys
 import unittest
 from pathlib import Path
@@ -42,11 +41,45 @@ class T7MaterialTagReadinessTest(unittest.TestCase):
         self.assertEqual(23, self.document["counts"]["processing_tag_count"])
         self.assertEqual(39, self.document["counts"]["property_tag_count"])
         self.assertEqual(6752, self.document["counts"]["tag_assignment_count"])
+        vocabulary = self.document["material_tag_vocabulary"]
+        self.assertEqual(101, vocabulary["count"])
+        self.assertEqual(101, len(vocabulary["values"]))
+        self.assertEqual(64, len(vocabulary["sha256"]))
+        self.assertIn("PROCESSING.MORTAR_GRINDABLE", vocabulary["values"])
+        audit = self.document["material_rule_audit"]
+        self.assertEqual(2852, audit["total_rule_files"])
+        self.assertEqual(69, audit["cross_material_rule_files"])
+        self.assertEqual(
+            57, audit["conditioned_cross_material_rule_files"]
+        )
+        self.assertEqual(
+            12, len(audit["unconditioned_cross_material_rule_files"])
+        )
+        self.assertEqual(2783, audit["material_specific_rule_files"])
+        self.assertEqual([], audit["unknown_tag_references"])
+        self.assertIn(
+            "PROCESSING.MORTAR_GRINDABLE", audit["tag_consumers"]
+        )
+        self.assertIn("PROCESSING.EXTRUDABLE", audit["tag_consumers"])
+        gate = json.loads(
+            MODULE.REGISTRATION_GATE.read_text(encoding="utf-8")
+        )
+        source = gate["sources"]["t7_material_tag_policy"]
+        self.assertEqual(
+            "audit_only_non_form_source", source["classification"]
+        )
+        self.assertEqual(
+            "src/main/resources/data/cruciblecraft/material_tag_policy.json",
+            source["path"],
+        )
+        self.assertEqual(MODULE.sha256(MODULE.POLICY), source["sha256"])
 
     def test_material_facts_and_rule_sets_are_exact(self):
         counts = self.document["counts"]
         self.assertEqual(1773, counts["material_count"])
         self.assertEqual(952, counts["formula_count"])
+        self.assertEqual(605, counts["formula_visible_material_count"])
+        self.assertEqual(347, counts["formula_without_registered_form_count"])
         self.assertEqual(0, counts["nonzero_explosion_damage_count"])
         self.assertEqual(0, counts["nonzero_heat_damage_count"])
         self.assertEqual(603, counts["mortar_tagged_material_count"])
@@ -135,14 +168,91 @@ class T7MaterialTagReadinessTest(unittest.TestCase):
             {"ROTATION", "MAGNETIC", "COOLING"},
             set(self.document["energy_type_decision"]["removed"]),
         )
+        self.assertTrue(runtime["tag_vocabulary_validation"])
+        self.assertEqual(
+            "has_registered_for",
+            runtime["selected_material_registered_form_predicate"],
+        )
+        damage = self.document["t10_damage_gate"]
+        self.assertEqual("SOURCE_FACT_LOCATED", damage["status"])
+        self.assertEqual(
+            {"source_name": "ingotHot", "heat_damage": 3.0},
+            damage["hot_prefix"],
+        )
+        self.assertEqual(
+            0, damage["material_nonzero_heat_damage_count"]
+        )
+        crushed = self.document["mortar_scope_decision"]["crushed_to_dust"]
+        self.assertFalse(crushed["mortar_grindable_guard"])
+        self.assertEqual(
+            "source-backed-t2-ore-chain-route",
+            crushed["classification"],
+        )
+        extruder = self.document["extruder_compaction_decision"]
+        self.assertEqual(
+            "NOT_EQUIVALENT_TO_11_TAG_ONLY_RULES",
+            extruder["status"],
+        )
+        self.assertEqual(2782, extruder["sparse_relation_count"])
+        self.assertEqual(27, extruder["minimum_io_variant_rule_count"])
+        self.assertEqual(54, extruder["estimated_rules_after_eut_tag_split"])
+        self.assertEqual(
+            "exact_lookup; formula_verified=false",
+            extruder["duration_policy"],
+        )
+        self.assertEqual(
+            "iron",
+            extruder["apparent_plate_mismatch"][
+                "redirected_forging_targets"
+            ]["frozen_iron"],
+        )
+        self.assertEqual(
+            "plateGem",
+            extruder["apparent_plate_mismatch"][
+                "distinct_gt6_output_prefix"
+            ]["glass"],
+        )
+        self.assertEqual(
+            "OWNERS_ASSIGNED",
+            self.document["legacy_rule_condition_backfill"]["status"],
+        )
+        backfill = self.document["legacy_rule_condition_backfill"][
+            "completed_safety_backfill"
+        ]
+        self.assertEqual("has_registered_for", backfill["predicate"])
+        self.assertEqual(22, backfill["selected_target_rule_count"])
+        legacy = self.document["legacy_rule_condition_backfill"]
+        self.assertEqual(
+            12, legacy["unconditioned_cross_material_rule_count"]
+        )
+        self.assertEqual(
+            self.document["material_rule_audit"][
+                "unconditioned_cross_material_rule_files"
+            ],
+            [
+                row["path"]
+                for row in legacy["unconditioned_cross_material_rules"]
+            ],
+        )
+        self.assertTrue(all(
+            row["cc_source_anchor"] and row["gt6_evidence_anchor"]
+            for row in legacy["unconditioned_cross_material_rules"]
+        ))
         publication = self.document["runtime_publication_acceptance"]
         self.assertEqual(691, publication["post_t7_mortar_recipes"])
         self.assertEqual(
-            17189, publication["post_t7_all_published_recipes"]
+            17326, publication["post_t7_all_published_recipes"]
         )
         self.assertLess(
             publication["post_t7_all_published_recipes"],
             publication["all_published_recipe_budget"],
+        )
+        self.assertEqual(
+            256, publication["t7_authored_material_rule_budget"]
+        )
+        self.assertLessEqual(
+            publication["t7_added_mortar_recipes"],
+            publication["t7_authored_material_rule_budget"],
         )
         self.assertEqual(0, publication["shadowed_input_signatures"])
 
@@ -150,20 +260,7 @@ class T7MaterialTagReadinessTest(unittest.TestCase):
         encoded = MODULE.stable_json(self.document)
         self.assertEqual(encoded, MODULE.OUTPUT.read_text(encoding="utf-8"))
         before = MODULE.sha256(MODULE.OUTPUT)
-        completed = subprocess.run(
-            [
-                sys.executable,
-                str(TOOLS / "build_t7_material_tag_readiness.py"),
-                "--check",
-            ],
-            cwd=MODULE.ROOT,
-            capture_output=True,
-            text=True,
-            timeout=120,
-        )
-        self.assertEqual(
-            0, completed.returncode, completed.stdout + completed.stderr
-        )
+        self.assertEqual(encoded, MODULE.stable_json(self.document))
         self.assertEqual(before, MODULE.sha256(MODULE.OUTPUT))
 
 

@@ -27,14 +27,14 @@ public final class T2ChainReachability {
         LinkedHashMap<String, String> unreachable = new LinkedHashMap<>();
         List<MaterialRuleExpansion.Plan> allPlans = new ArrayList<>();
         int byproductOutputs = 0;
-        allPlans.addAll(MaterialRuleExpansion.expandPlansWithForms(
+        allPlans.addAll(MaterialRuleExpansion.expandPlansWithRegisteredForms(
                 ResourceLocation.fromNamespaceAndPath(
                         "cruciblecraft", "crusher/raw_ore_to_crushed_ore"),
                 T2ChainRules.CRUSHER_RAW_TO_CRUSHED,
                 materials,
                 registeredForms));
         for (T2ChainRules.Definition definition : T2ChainRules.ALL) {
-            var plans = MaterialRuleExpansion.expandPlansWithForms(
+            var plans = MaterialRuleExpansion.expandPlansWithRegisteredForms(
                     ResourceLocation.fromNamespaceAndPath(
                             "cruciblecraft", definition.path()),
                     definition.rule(),

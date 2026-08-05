@@ -70,7 +70,8 @@ public final class CableNetworkTraversal {
                 start.immutable(),
                 ingress,
                 packetSize,
-                offeredAmperes));
+                offeredAmperes,
+                0));
         long rootResult = 0L;
 
         while (!stack.isEmpty()) {
@@ -93,7 +94,9 @@ public final class CableNetworkTraversal {
                             frame.loadSnapshot,
                             frame.postLossSize,
                             frame.usedAmperes,
-                            overloaded));
+                            overloaded,
+                            frame.terminalStartIndex,
+                            terminals.size()));
                 }
                 long result = overloaded
                         ? frame.offeredAmperes
@@ -120,7 +123,8 @@ public final class CableNetworkTraversal {
                         target.immutable(),
                         direction.getOpposite(),
                         frame.postLossSize,
-                        remaining));
+                        remaining,
+                        terminals.size()));
                 continue;
             }
 
@@ -229,6 +233,7 @@ public final class CableNetworkTraversal {
         private final Direction ingress;
         private final long packetSize;
         private final long offeredAmperes;
+        private final int terminalStartIndex;
         private int nextDirection;
         private long usedAmperes;
         private boolean initialized;
@@ -242,11 +247,13 @@ public final class CableNetworkTraversal {
                 BlockPos position,
                 Direction ingress,
                 long packetSize,
-                long offeredAmperes) {
+                long offeredAmperes,
+                int terminalStartIndex) {
             this.position = position;
             this.ingress = ingress;
             this.packetSize = packetSize;
             this.offeredAmperes = offeredAmperes;
+            this.terminalStartIndex = terminalStartIndex;
         }
 
         private boolean initialize(Level level) {

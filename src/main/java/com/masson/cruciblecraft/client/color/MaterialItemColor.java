@@ -1,9 +1,11 @@
 package com.masson.cruciblecraft.client.color;
 
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
-import com.masson.cruciblecraft.content.item.MaterialItem;
+import com.masson.cruciblecraft.content.item.MaterialFormItem;
+import com.masson.cruciblecraft.content.item.MaterialToolItem;
 import com.masson.cruciblecraft.heat.ItemHeat;
-import com.masson.cruciblecraft.material.MaterialColors;
+import com.masson.cruciblecraft.material.MaterialCatalog;
+import com.masson.cruciblecraft.material.def.MaterialDefinition;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.ItemStack;
@@ -19,18 +21,32 @@ public final class MaterialItemColor {
         if (tintIndex != 0) {
             return 0xFFFFFFFF;
         }
-        var entry = MaterialUnits.resolve(stack);
-        if (entry.isEmpty()) {
-            return 0xFFFFFFFF;
+        MaterialDefinition material;
+        boolean neutralTexture;
+        if (stack.getItem() instanceof MaterialToolItem tool) {
+            var materialId = tool.material(stack);
+            if (materialId.isEmpty()) {
+                return 0xFFFFFFFF;
+            }
+            material = MaterialCatalog.find(materialId.orElseThrow())
+                    .orElse(null);
+            neutralTexture = true;
+        } else {
+            var entry = MaterialUnits.resolve(stack);
+            if (entry.isEmpty()) {
+                return 0xFFFFFFFF;
+            }
+            material = MaterialCatalog.find(
+                    entry.orElseThrow().materialId()).orElse(null);
+            neutralTexture = stack.getItem() instanceof MaterialFormItem;
         }
-
-        var material = entry.get().material();
+        if (material == null) {
+            return 0xFF000000 | baseColor(null, neutralTexture);
+        }
         // Generated material textures are neutral and need the material's base
         // tint. Canonical vanilla items already contain their cold color, so
         // white preserves that texture while still allowing the heat glow.
-        int baseColor = stack.getItem() instanceof MaterialItem
-                ? styleColor(MaterialColors.parse(material.color()), material.tintStyle())
-                : 0xFFFFFF;
+        int baseColor = baseColor(material, neutralTexture);
         Minecraft minecraft = Minecraft.getInstance();
         if (minecraft.level == null) {
             return 0xFF000000 | baseColor;
@@ -39,6 +55,16 @@ public final class MaterialItemColor {
         float temperature = ItemHeat.temperature(stack, minecraft.level.getGameTime());
         float meltingPoint = (float) material.thermal().meltingPoint();
         return colorAtTemperature(baseColor, temperature, meltingPoint);
+    }
+
+    static int baseColor(
+            MaterialDefinition material, boolean neutralTexture) {
+        if (material == null) {
+            return 0xFFFFFF;
+        }
+        return neutralTexture
+                ? styleColor(material.colorRgb(), material.tintStyle())
+                : 0xFFFFFF;
     }
 
     public static int styleColor(int baseColor, String tintStyle) {

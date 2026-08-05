@@ -1,0 +1,42 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "conditions": [
+    "(material.tag(\"PROPERTIES.HAS_TOOL_STATS\") && material.tool.types >= 2) && (!material.tag(\"ATOMIC.ANTIMATTER\")) && (!material.is(\"wood\")) && (!material.tag(\"PROPERTIES.BOUNCY\")) && (!material.tag(\"PROPERTIES.STRETCHY\")) && (material.tool.quality >= 1)",
+    "!(has_registered(plate)) && (has_registered(gem))"
+  ],
+  "duration": "200",
+  "eut": "32",
+  "item_inputs": [
+    {
+      "count": "4",
+      "prefix": "cruciblecraft:gem"
+    },
+    {
+      "count": "0",
+      "input_action": {
+        "damage": 1,
+        "kind": "wear"
+      },
+      "item": "cruciblecraft:material_file",
+      "string_components": {
+        "cruciblecraft:tool_material": "iron"
+      }
+    },
+    {
+      "count": "0",
+      "input_action": {
+        "kind": "preserve"
+      },
+      "item": "cruciblecraft:tool_pattern_wrench"
+    }
+  ],
+  "item_outputs": [
+    {
+      "item": "cruciblecraft:material_wrench",
+      "string_components": {
+        "cruciblecraft:tool_material": "$material"
+      }
+    }
+  ],
+  "target": "cruciblecraft:assembler"
+}

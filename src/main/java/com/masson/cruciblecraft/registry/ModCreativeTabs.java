@@ -55,11 +55,16 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.ROD_MOLD.get());
                         output.accept(ModItems.BOLT_MOLD.get());
                         output.accept(ModItems.COAL_COKE.get());
+                        output.accept(ModItems.MATCH.get());
                         output.accept(ModItems.BELLOWS.get());
                         output.accept(ModItems.CREOSOTE_BUCKET.get());
                         output.accept(ModItems.STEAM_BUCKET.get());
+                        output.accept(ModItems.PORTABLE_FLUID_TANK.get());
+                        output.accept(ModItems.FLUID_CELL.get());
+                        output.accept(ModItems.GAS_CELL.get());
                         output.accept(ModItems.BRONZE_BOILER.get());
                         output.accept(ModItems.BRONZE_STEAM_ENGINE.get());
+                        output.accept(ModItems.BRONZE_DYNAMO.get());
                         output.accept(ModItems.BRONZE_CRUSHER.get());
                         output.accept(ModItems.SLUICE.get());
                         output.accept(ModItems.BATH.get());
@@ -78,11 +83,32 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.ASSEMBLER.get());
                         output.accept(ModItems.WELDER.get());
                         output.accept(ModItems.PRESS.get());
+                        output.accept(ModItems.ELECTROLYZER.get());
+                        output.accept(ModItems.MIXER.get());
+                        output.accept(ModItems.DISTILLERY.get());
+                        output.accept(ModItems.AUTOCLAVE.get());
+                        output.accept(ModItems.DRYING.get());
+                        output.accept(ModItems.COMPRESSOR.get());
                         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                                 output.accept(ModItems.extruderShape(shape.id()).get()));
+                        output.accept(ModItems.FLINT_KNIFE.get());
+                        ModItems.toolPatterns().forEach(pattern ->
+                                output.accept(pattern.get()));
                         output.accept(ModItems.SMITHING_HAMMER.get().variant("bronze"));
                         output.accept(ModItems.SMITHING_HAMMER.get().variant("iron"));
                         output.accept(ModItems.SMITHING_HAMMER.get().variant("steel"));
+                        output.accept(ModItems.MATERIAL_FILE.get().variant("iron"));
+                        output.accept(ModItems.MATERIAL_PICKAXE.get().variant("iron"));
+                        output.accept(ModItems.MATERIAL_PICKAXE.get().variant("diamond"));
+                        output.accept(ModItems.MATERIAL_PICKAXE.get().variant("stone"));
+                        output.accept(ModItems.MATERIAL_SHOVEL.get().variant("iron"));
+                        output.accept(ModItems.MATERIAL_AXE.get().variant("iron"));
+                        output.accept(ModItems.MATERIAL_HOE.get().variant("iron"));
+                        output.accept(ModItems.MATERIAL_SWORD.get().variant("iron"));
+                        output.accept(ModItems.MATERIAL_CHISEL.get().variant("iron"));
+                        output.accept(ModItems.MATERIAL_SAW.get().variant("iron"));
+                        output.accept(ModItems.MATERIAL_SCREWDRIVER.get().variant("iron"));
+                        output.accept(ModItems.MATERIAL_WRENCH.get().variant("iron"));
                     })
                     .build());
 

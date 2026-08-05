@@ -7,13 +7,20 @@
     "cruciblecraft:generates_block",
     "cruciblecraft:generates_dust",
     "cruciblecraft:generates_fine_wire",
+    "cruciblecraft:generates_fluid_pipe",
+    "cruciblecraft:generates_huge_fluid_pipe",
     "cruciblecraft:generates_ingot",
+    "cruciblecraft:generates_large_fluid_pipe",
     "cruciblecraft:generates_nugget",
     "cruciblecraft:generates_plate",
+    "cruciblecraft:generates_small_fluid_pipe",
     "cruciblecraft:generates_small_spring",
     "cruciblecraft:generates_spring",
+    "cruciblecraft:generates_tiny_fluid_pipe",
     "gt6:itemgenerator/denseplates",
     "gt6:itemgenerator/foils",
+    "gt6:itemgenerator/hotingots",
+    "gt6:itemgenerator/multiingots",
     "gt6:itemgenerator/multiplates",
     "gt6:itemgenerator/parts",
     "gt6:itemgenerator/sticks"
@@ -55,6 +62,71 @@
       "PROPERTIES.VALUABLE",
       "PROPERTIES.WITHER_PROOF"
     ],
+    "pipe_properties": {
+      "fluid_by_specification": {
+        "pipeHuge": {
+          "acid_proof": true,
+          "blocking": true,
+          "capacity_mb": 240000,
+          "contact_damage": false,
+          "flammable": false,
+          "gas_proof": true,
+          "magic_proof": true,
+          "max_temperature_kelvin": 6875,
+          "plasma_proof": true,
+          "recipe": true
+        },
+        "pipeLarge": {
+          "acid_proof": true,
+          "blocking": true,
+          "capacity_mb": 120000,
+          "contact_damage": false,
+          "flammable": false,
+          "gas_proof": true,
+          "magic_proof": true,
+          "max_temperature_kelvin": 6875,
+          "plasma_proof": true,
+          "recipe": true
+        },
+        "pipeMedium": {
+          "acid_proof": true,
+          "blocking": true,
+          "capacity_mb": 60000,
+          "contact_damage": false,
+          "flammable": false,
+          "gas_proof": true,
+          "magic_proof": true,
+          "max_temperature_kelvin": 6875,
+          "plasma_proof": true,
+          "recipe": true
+        },
+        "pipeSmall": {
+          "acid_proof": true,
+          "blocking": true,
+          "capacity_mb": 20000,
+          "contact_damage": false,
+          "flammable": false,
+          "gas_proof": true,
+          "magic_proof": true,
+          "max_temperature_kelvin": 6875,
+          "plasma_proof": true,
+          "recipe": true
+        },
+        "pipeTiny": {
+          "acid_proof": true,
+          "blocking": true,
+          "capacity_mb": 10000,
+          "contact_damage": false,
+          "flammable": false,
+          "gas_proof": true,
+          "magic_proof": true,
+          "max_temperature_kelvin": 6875,
+          "plasma_proof": true,
+          "recipe": true
+        }
+      },
+      "item_by_specification": {}
+    },
     "processing_targets": {
       "bending": {
         "cc_units": 144,

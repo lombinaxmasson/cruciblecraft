@@ -1,4 +1,7 @@
 {
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", dodecuple_wire)"
+  ],
   "duration": "160 * (144 * prefix_units(dodecuple_wire) / gcd(target_units(working) * 864, 144 * prefix_units(dodecuple_wire)))",
   "eut": "48",
   "item_inputs": [

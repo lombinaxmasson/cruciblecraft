@@ -55,21 +55,27 @@ public class CrucibleBlock extends Block implements EntityBlock {
                     : ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
-        if (level.getBlockEntity(pos) instanceof CrucibleBlockEntity fluidCrucible
-                && FluidUtil.interactWithFluidHandler(
-                        player,
-                        hand,
-                        fluidCrucible.externalFluids())) {
+        if (!(level.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible)) {
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+        }
+        if (crucible.casingMaterialQuarantined()) {
+            player.displayClientMessage(
+                    Component.translatable(
+                            "message.cruciblecraft.crucible_casing_quarantined",
+                            crucible.quarantinedCasingMaterialId()),
+                    true);
+            return ItemInteractionResult.SUCCESS;
+        }
+        if (FluidUtil.interactWithFluidHandler(
+                player,
+                hand,
+                crucible.externalFluids())) {
             return ItemInteractionResult.SUCCESS;
         }
         var materialEntry = MaterialUnits.resolve(stack);
         if (materialEntry.isEmpty()) {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
-        if (!(level.getBlockEntity(pos) instanceof CrucibleBlockEntity crucible)) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
-        }
-
         var result = crucible.insert(
                 materialEntry.orElseThrow(),
                 ItemHeat.temperature(stack, level.getGameTime()));

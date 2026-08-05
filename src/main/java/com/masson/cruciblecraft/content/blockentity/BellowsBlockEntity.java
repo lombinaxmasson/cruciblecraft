@@ -111,7 +111,11 @@ public final class BellowsBlockEntity extends BlockEntity implements IEnergyHand
     }
 
     private long gameTime() {
-        return level == null ? Long.MIN_VALUE : level.getGameTime();
+        if (level == null) {
+            outputBudget.reset();
+            return 0L;
+        }
+        return level.getGameTime();
     }
 
     private void initializeDeadline() {

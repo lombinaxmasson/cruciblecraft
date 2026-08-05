@@ -7,6 +7,7 @@ import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.machine.component.CheckpointTracker;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModFluids;
+import com.masson.cruciblecraft.steam.ExactFluidTransfer;
 import com.masson.cruciblecraft.steam.SteamConversion;
 import com.masson.cruciblecraft.steam.MachineSideRules;
 import net.minecraft.core.BlockPos;
@@ -114,15 +115,7 @@ public final class BoilerBlockEntity extends BlockEntity implements IEnergyHandl
         IFluidHandler target = level.getCapability(
                 Capabilities.FluidHandler.BLOCK, targetPosition, Direction.DOWN);
         if (target == null) return;
-        FluidStack offered = steam.drain(STEAM_TRANSFER, IFluidHandler.FluidAction.SIMULATE);
-        int accepted = target.fill(offered, IFluidHandler.FluidAction.SIMULATE);
-        if (accepted > 0) {
-            FluidStack transfer = offered.copyWithAmount(accepted);
-            int actuallyAccepted = target.fill(transfer, IFluidHandler.FluidAction.EXECUTE);
-            if (actuallyAccepted > 0) {
-                steam.drain(actuallyAccepted, IFluidHandler.FluidAction.EXECUTE);
-            }
-        }
+        ExactFluidTransfer.move(steam, target, STEAM_TRANSFER);
     }
 
     public IFluidHandler fluids(Direction side) {

@@ -1,5 +1,7 @@
 package com.masson.cruciblecraft.recipe.gt;
 
+import java.lang.reflect.Modifier;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -22,8 +24,21 @@ class GTRecipeReloadDecisionTest {
     }
 
     @Test
-    void clientRequiresARecipeManager() {
-        assertTrue(GTRecipeReloadDecision.onClientRecipesUpdated(new Object()));
-        assertFalse(GTRecipeReloadDecision.onClientRecipesUpdated(null));
+    void clientReloadsOnlyWithoutAnIntegratedServer() {
+        assertTrue(GTRecipeReloadDecision.onClientRecipesUpdated(
+                new Object(), false));
+        assertFalse(GTRecipeReloadDecision.onClientRecipesUpdated(
+                new Object(), true));
+        assertFalse(GTRecipeReloadDecision.onClientRecipesUpdated(null, false));
+    }
+
+    @Test
+    void fullReloadPreparationAndPublicationAreSerialized() throws Exception {
+        assertTrue(Modifier.isSynchronized(
+                GTRecipeMapLoader.class
+                        .getDeclaredMethod(
+                                "reload",
+                                net.minecraft.world.item.crafting.RecipeManager.class)
+                        .getModifiers()));
     }
 }

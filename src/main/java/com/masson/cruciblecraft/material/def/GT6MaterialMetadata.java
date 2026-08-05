@@ -23,7 +23,8 @@ public record GT6MaterialMetadata(
         double explosionDamage,
         double heatDamage,
         Optional<Double> blastFurnaceTemperatureCelsius,
-        Map<String, ElectricalProperties> electricalBySpecification) {
+        Map<String, ElectricalProperties> electricalBySpecification,
+        PipeProperties pipeProperties) {
     public static final Codec<GT6MaterialMetadata> CODEC =
             RecordCodecBuilder.create(instance -> instance.group(
                     Codec.INT.fieldOf("source_id").forGetter(GT6MaterialMetadata::sourceId),
@@ -54,7 +55,10 @@ public record GT6MaterialMetadata(
                             .forGetter(GT6MaterialMetadata::blastFurnaceTemperatureCelsius),
                     Codec.unboundedMap(Codec.STRING, ElectricalProperties.CODEC)
                             .optionalFieldOf("electrical_by_specification", Map.of())
-                            .forGetter(GT6MaterialMetadata::electricalBySpecification)
+                            .forGetter(GT6MaterialMetadata::electricalBySpecification),
+                    PipeProperties.CODEC.optionalFieldOf(
+                                    "pipe_properties", PipeProperties.EMPTY)
+                            .forGetter(GT6MaterialMetadata::pipeProperties)
             ).apply(instance, GT6MaterialMetadata::new));
 
     public GT6MaterialMetadata {
@@ -64,6 +68,9 @@ public record GT6MaterialMetadata(
         materialTags = List.copyOf(materialTags);
         generationTags = List.copyOf(generationTags);
         electricalBySpecification = Map.copyOf(electricalBySpecification);
+        pipeProperties = pipeProperties == null
+                ? PipeProperties.EMPTY
+                : pipeProperties;
         if (sourceName == null || sourceName.isBlank()) {
             throw new IllegalArgumentException("GT6 source name must not be blank");
         }
@@ -211,6 +218,110 @@ public record GT6MaterialMetadata(
         public ElectricalProperties {
             if (maxVoltage <= 0 || maxAmperage <= 0 || lossPerMeter < 0) {
                 throw new IllegalArgumentException("Invalid GT6 electrical metadata");
+            }
+        }
+    }
+
+    /** Exact source pipe registrations, separated by transport medium. */
+    public record PipeProperties(
+            Map<String, FluidPipeProperties> fluidBySpecification,
+            Map<String, ItemPipeProperties> itemBySpecification) {
+        public static final PipeProperties EMPTY =
+                new PipeProperties(Map.of(), Map.of());
+        public static final Codec<PipeProperties> CODEC =
+                RecordCodecBuilder.create(instance -> instance.group(
+                        Codec.unboundedMap(
+                                        Codec.STRING,
+                                        FluidPipeProperties.CODEC)
+                                .optionalFieldOf(
+                                        "fluid_by_specification", Map.of())
+                                .forGetter(
+                                        PipeProperties::fluidBySpecification),
+                        Codec.unboundedMap(
+                                        Codec.STRING,
+                                        ItemPipeProperties.CODEC)
+                                .optionalFieldOf(
+                                        "item_by_specification", Map.of())
+                                .forGetter(
+                                        PipeProperties::itemBySpecification)
+                ).apply(instance, PipeProperties::new));
+
+        public PipeProperties {
+            fluidBySpecification = Map.copyOf(fluidBySpecification);
+            itemBySpecification = Map.copyOf(itemBySpecification);
+        }
+    }
+
+    /** GT6 fluid-pipe NBT after applying one source gauge. */
+    public record FluidPipeProperties(
+            long capacityMb,
+            long maxTemperatureKelvin,
+            boolean gasProof,
+            boolean acidProof,
+            boolean plasmaProof,
+            boolean magicProof,
+            boolean contactDamage,
+            boolean flammable,
+            boolean recipe,
+            boolean blocking) {
+        public static final Codec<FluidPipeProperties> CODEC =
+                RecordCodecBuilder.create(instance -> instance.group(
+                        Codec.LONG.fieldOf("capacity_mb")
+                                .forGetter(FluidPipeProperties::capacityMb),
+                        Codec.LONG.fieldOf("max_temperature_kelvin")
+                                .forGetter(
+                                        FluidPipeProperties::
+                                                maxTemperatureKelvin),
+                        Codec.BOOL.fieldOf("gas_proof")
+                                .forGetter(FluidPipeProperties::gasProof),
+                        Codec.BOOL.fieldOf("acid_proof")
+                                .forGetter(FluidPipeProperties::acidProof),
+                        Codec.BOOL.fieldOf("plasma_proof")
+                                .forGetter(FluidPipeProperties::plasmaProof),
+                        Codec.BOOL.fieldOf("magic_proof")
+                                .forGetter(FluidPipeProperties::magicProof),
+                        Codec.BOOL.fieldOf("contact_damage")
+                                .forGetter(
+                                        FluidPipeProperties::contactDamage),
+                        Codec.BOOL.fieldOf("flammable")
+                                .forGetter(FluidPipeProperties::flammable),
+                        Codec.BOOL.fieldOf("recipe")
+                                .forGetter(FluidPipeProperties::recipe),
+                        Codec.BOOL.fieldOf("blocking")
+                                .forGetter(FluidPipeProperties::blocking)
+                ).apply(instance, FluidPipeProperties::new));
+
+        public FluidPipeProperties {
+            if (capacityMb <= 0L || maxTemperatureKelvin <= 0L) {
+                throw new IllegalArgumentException(
+                        "Invalid GT6 fluid-pipe metadata");
+            }
+        }
+    }
+
+    /** GT6 item-pipe step cost and one-second stack bandwidth. */
+    public record ItemPipeProperties(
+            long stepSize,
+            int stacksPerSecond,
+            boolean recipe,
+            boolean blocking) {
+        public static final Codec<ItemPipeProperties> CODEC =
+                RecordCodecBuilder.create(instance -> instance.group(
+                        Codec.LONG.fieldOf("step_size")
+                                .forGetter(ItemPipeProperties::stepSize),
+                        Codec.INT.fieldOf("stacks_per_second")
+                                .forGetter(
+                                        ItemPipeProperties::stacksPerSecond),
+                        Codec.BOOL.fieldOf("recipe")
+                                .forGetter(ItemPipeProperties::recipe),
+                        Codec.BOOL.fieldOf("blocking")
+                                .forGetter(ItemPipeProperties::blocking)
+                ).apply(instance, ItemPipeProperties::new));
+
+        public ItemPipeProperties {
+            if (stepSize <= 0L || stacksPerSecond <= 0) {
+                throw new IllegalArgumentException(
+                        "Invalid GT6 item-pipe metadata");
             }
         }
     }

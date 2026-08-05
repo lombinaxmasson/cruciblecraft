@@ -50,15 +50,20 @@ public enum MaterialCreativeTab {
                     "cruciblecraft:tiny_crushed_ore",
                     "cruciblecraft:washed_crushed_ore",
                     "cruciblecraft:centrifuged_crushed_ore",
+                    "cruciblecraft:tiny_centrifuged_crushed_ore",
                     "cruciblecraft:purified_dust" -> ORE_PROCESSING;
             case "cruciblecraft:dust",
                     "cruciblecraft:small_dust",
                     "cruciblecraft:tiny_dust" -> DUSTS;
             case "cruciblecraft:block",
                     "cruciblecraft:ingot",
+                    "cruciblecraft:double_ingot",
+                    "cruciblecraft:triple_ingot",
+                    "cruciblecraft:ingot_hot",
                     "cruciblecraft:nugget",
                     "cruciblecraft:gem" -> METALS_GEMS;
             case "cruciblecraft:plate",
+                    "cruciblecraft:plate_gem",
                     "cruciblecraft:foil",
                     "cruciblecraft:double_plate",
                     "cruciblecraft:triple_plate",
@@ -86,7 +91,15 @@ public enum MaterialCreativeTab {
                     "cruciblecraft:double_cable",
                     "cruciblecraft:quadruple_cable",
                     "cruciblecraft:octuple_cable",
-                    "cruciblecraft:dodecuple_cable" -> CABLES;
+                    "cruciblecraft:dodecuple_cable",
+                    "cruciblecraft:tiny_fluid_pipe",
+                    "cruciblecraft:small_fluid_pipe",
+                    "cruciblecraft:fluid_pipe",
+                    "cruciblecraft:large_fluid_pipe",
+                    "cruciblecraft:huge_fluid_pipe",
+                    "cruciblecraft:item_pipe",
+                    "cruciblecraft:large_item_pipe",
+                    "cruciblecraft:huge_item_pipe" -> CABLES;
             default -> MISC;
         };
     }

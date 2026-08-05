@@ -20,6 +20,7 @@ class MaterialColorsTest {
     @Test
     void acceptsAndParsesOnlyStrictSixDigitRgb() {
         assertEquals(0x12ABEF, MaterialColors.parse("#12ABEF"));
+        assertEquals(0x12ABEF, definition("#12ABEF").colorRgb());
         assertThrows(IllegalArgumentException.class, () -> MaterialColors.parse("#FFF"));
         assertThrows(IllegalArgumentException.class, () -> MaterialColors.parse("12ABEF"));
         assertThrows(IllegalArgumentException.class, () -> MaterialColors.parse("#12ABEG"));

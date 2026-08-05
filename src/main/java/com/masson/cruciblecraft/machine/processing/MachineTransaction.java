@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.masson.cruciblecraft.material.MaterialComponentPolicy;
 import com.masson.cruciblecraft.recipe.gt.CapacityMatcher;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
+import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
+import com.masson.cruciblecraft.registry.ModComponents;
 
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.fluids.FluidStack;
@@ -52,10 +55,24 @@ public record MachineTransaction(
         long[][] allocatedItems = itemAllocation.get();
         for (int offered = 0; offered < inputSlots.size(); offered++) {
             long consumed = 0L;
-            for (long[] requirement : allocatedItems) {
-                consumed = Math.addExact(consumed, requirement[offered]);
+            long wear = 0L;
+            for (int requirement = 0;
+                    requirement < allocatedItems.length;
+                    requirement++) {
+                long allocation = allocatedItems[requirement][offered];
+                ItemInputAction action =
+                        recipe.itemInputActions().get(requirement);
+                if (action.kind() == ItemInputAction.Kind.CONSUME) {
+                    consumed = Math.addExact(consumed, allocation);
+                } else if (action.kind() == ItemInputAction.Kind.WEAR
+                        && allocation > 0L) {
+                    wear = Math.addExact(
+                            wear,
+                            Math.multiplyExact(
+                                    allocation, (long) action.damage()));
+                }
             }
-            if (consumed > Integer.MAX_VALUE) {
+            if (consumed > Integer.MAX_VALUE || wear > Integer.MAX_VALUE) {
                 return Optional.empty();
             }
             ItemStack current = afterItems.get(inputSlots.get(offered));
@@ -64,6 +81,21 @@ public record MachineTransaction(
             }
             ItemStack remaining = current.copy();
             remaining.shrink((int) consumed);
+            if (wear > 0L) {
+                if (!canApplyWear(remaining)) {
+                    return Optional.empty();
+                }
+                int maxDamage = remaining.getMaxDamage();
+                if (maxDamage <= 0) {
+                    return Optional.empty();
+                }
+                long nextDamage = Math.addExact(
+                        (long) remaining.getDamageValue(), wear);
+                if (nextDamage >= maxDamage) {
+                    return Optional.empty();
+                }
+                remaining.setDamageValue((int) nextDamage);
+            }
             afterItems.set(inputSlots.get(offered), remaining);
         }
 
@@ -240,6 +272,20 @@ public record MachineTransaction(
         return first.getAmount() == second.getAmount()
                 && (first.isEmpty() && second.isEmpty()
                 || FluidStack.isSameFluidSameComponents(first, second));
+    }
+
+    private static boolean canApplyWear(ItemStack stack) {
+        if (stack.isEmpty()
+                || !stack.isDamageableItem()
+                || stack.getCount() != 1) {
+            return false;
+        }
+        if (stack.getItem() instanceof MaterialComponentPolicy policy) {
+            String materialId = stack.get(ModComponents.TOOL_MATERIAL);
+            return materialId != null
+                    && policy.isPersistedMaterialAllowed(materialId);
+        }
+        return true;
     }
 
     private static List<ItemStack> copyItems(List<ItemStack> values) {

@@ -32,13 +32,18 @@ public final class ItemHeat {
                 elapsed);
     }
 
+    public static boolean isCooled(ItemStack stack, long gameTime) {
+        return stack.has(ModComponents.HEAT.get())
+                && temperature(stack, gameTime)
+                        <= AMBIENT_TEMPERATURE + AMBIENT_EPSILON;
+    }
+
     /**
      * Removes a completed heat snapshot without rewriting it while it cools.
      * This is the only maintenance write required for normal inventory stacks.
      */
     public static boolean clearIfCooled(ItemStack stack, long gameTime) {
-        if (!stack.has(ModComponents.HEAT.get())
-                || temperature(stack, gameTime) > AMBIENT_TEMPERATURE + AMBIENT_EPSILON) {
+        if (!isCooled(stack, gameTime)) {
             return false;
         }
         stack.remove(ModComponents.HEAT.get());

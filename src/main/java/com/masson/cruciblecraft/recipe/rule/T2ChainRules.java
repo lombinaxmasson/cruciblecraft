@@ -67,7 +67,9 @@ public final class T2ChainRules {
                             List.of(selected(MaterialPrefixes.INGOT,
                                     SMELTING_OUTPUT_COUNT, 10_000,
                                     "processing_target:smelting", false)),
-                            List.of(), "800 * (" + SMELTING_INPUT_COUNT + ")", 8)),
+                            List.of(), "800 * (" + SMELTING_INPUT_COUNT + ")", 8,
+                            List.of(
+                                    "has_registered_for(\"processing_target:smelting\", ingot)"))),
             new Definition("mortar/crushed_to_dust",
                     rule(ModRecipeMaps.MORTAR.id(), MaterialPrefixes.CRUSHED_ORE,
                             List.of(item(MaterialPrefixes.DUST, 1)),
@@ -128,6 +130,26 @@ public final class T2ChainRules {
             List<MaterialRule.FluidResource> fluids,
             String duration,
             long eut) {
+        return rule(
+                target,
+                input,
+                inputCount,
+                outputs,
+                fluids,
+                duration,
+                eut,
+                List.of());
+    }
+
+    private static MaterialRule rule(
+            ResourceLocation target,
+            MaterialPrefix input,
+            String inputCount,
+            List<MaterialRule.ItemResource> outputs,
+            List<MaterialRule.FluidResource> fluids,
+            String duration,
+            long eut,
+            List<String> conditions) {
         return new MaterialRule(
                 Optional.of(target),
                 List.of(item(input, inputCount)),
@@ -140,7 +162,7 @@ public final class T2ChainRules {
                 true,
                 Optional.empty(),
                 Map.of(),
-                List.of(),
+                conditions,
                 Optional.empty(),
                 List.of());
     }

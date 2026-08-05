@@ -16,9 +16,9 @@ class FireboxHeatBufferTest {
         assertEquals(FuelDefinition.CHARCOAL.burnTicks(), buffer.equivalentTicks());
         assertEquals(80, buffer.equivalentSeconds());
 
-        assertTrue(buffer.deposit(FuelDefinition.COAL_COKE));
+        assertTrue(buffer.deposit(FuelDefinition.CHARCOAL));
         assertEquals(
-                FuelDefinition.CHARCOAL.totalEnergy() + FuelDefinition.COAL_COKE.totalEnergy(),
+                FuelDefinition.CHARCOAL.totalEnergy() * 2L,
                 buffer.storedHeat());
         assertEquals(FuelDefinition.CHARCOAL.id(), buffer.fuelId());
     }
@@ -26,7 +26,7 @@ class FireboxHeatBufferTest {
     @Test
     void depositsCapAtTheOldTwelveThousandTickLimit() {
         FireboxHeatBuffer buffer = new FireboxHeatBuffer();
-        for (int index = 0; index < 4; index++) {
+        for (int index = 0; index < 8; index++) {
             assertTrue(buffer.deposit(FuelDefinition.COAL_COKE));
         }
 
@@ -38,10 +38,10 @@ class FireboxHeatBufferTest {
     }
 
     @Test
-    void cokeKeepsFireboxRateAndDoublesBurnDuration() {
-        assertEquals(8L, FuelDefinition.COAL_COKE.energyPerTick());
+    void cokeDoublesFireboxRateAndTotalEnergyForT5Smelting() {
+        assertEquals(16L, FuelDefinition.COAL_COKE.energyPerTick());
         assertEquals(25_600L, FuelDefinition.COAL_COKE.totalEnergy());
-        assertEquals(3_200, FuelDefinition.COAL_COKE.burnTicks());
+        assertEquals(1_600, FuelDefinition.COAL_COKE.burnTicks());
     }
 
     @Test

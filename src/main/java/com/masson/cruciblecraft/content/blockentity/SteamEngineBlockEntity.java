@@ -48,9 +48,25 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
         int produced = SteamConversion.kineticFromSteam(
                 steamAmount(engine), (int) Math.min(OUTPUT_RATE, engine.kinetic.room()));
         if (produced > 0) {
-            engine.steam.drain(produced * SteamConversion.STEAM_PER_KU,
-                    net.neoforged.neoforge.fluids.capability.IFluidHandler.FluidAction.EXECUTE);
-            engine.kinetic.insert(produced);
+            int steamUsed = Math.multiplyExact(produced, SteamConversion.STEAM_PER_KU);
+            FluidStack simulated = engine.steam.drain(
+                    steamUsed, IFluidHandler.FluidAction.SIMULATE);
+            if (simulated.getAmount() != steamUsed
+                    || !simulated.is(ModFluids.STEAM_SOURCE.get())) {
+                throw new IllegalStateException(
+                        "Steam engine conversion simulation violated its steam plan");
+            }
+            FluidStack drained = engine.steam.drain(
+                    steamUsed, IFluidHandler.FluidAction.EXECUTE);
+            if (drained.getAmount() != steamUsed
+                    || !drained.is(ModFluids.STEAM_SOURCE.get())) {
+                throw new IllegalStateException(
+                        "Steam engine consumed a different amount than simulated");
+            }
+            if (engine.kinetic.insert(produced) != produced) {
+                throw new IllegalStateException(
+                        "Steam engine kinetic room changed during conversion");
+            }
             engine.markMutation();
         }
         Direction output = state.getValue(SteamEngineBlock.FACING);
@@ -98,14 +114,26 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
         long extracted = Math.min(maxAmount, 1L);
         boolean effectiveSimulation = simulate || level == null || level.isClientSide;
         if (!effectiveSimulation) {
-            outputBudget.claim(gameTime(), 1L, extracted, false);
-            kinetic.extract(OUTPUT_RATE, false);
+            long claimed = outputBudget.claim(gameTime(), 1L, extracted, false);
+            if (claimed != extracted) {
+                throw new IllegalStateException(
+                        "Steam engine output budget changed after simulation");
+            }
+            long removed = kinetic.extract(OUTPUT_RATE, false);
+            if (removed != OUTPUT_RATE) {
+                throw new IllegalStateException(
+                        "Steam engine kinetic storage changed after simulation");
+            }
             markMutation();
         }
         return extracted;
     }
     private long gameTime() {
-        return level == null ? Long.MIN_VALUE : level.getGameTime();
+        if (level == null) {
+            outputBudget.reset();
+            return 0L;
+        }
+        return level.getGameTime();
     }
     @Override public long stored(EnergyType type) {
         return type == EnergyType.KINETIC ? kinetic.stored() : 0L;

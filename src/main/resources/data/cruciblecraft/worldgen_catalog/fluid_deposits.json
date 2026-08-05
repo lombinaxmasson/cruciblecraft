@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "deposits": [
+    {
+      "id": "crude_oil_deposit",
+      "material": "cruciblecraft:crude_oil",
+      "min_amount_mb": 1000000,
+      "max_amount_mb": 4000000,
+      "min_y": -48,
+      "max_y": 16,
+      "search_range": 12,
+      "replaceable": "cruciblecraft:subsurface_fluid_deposit_replaceables",
+      "region_size_chunks": 16,
+      "generation_chance": 0.5,
+      "salt": 1330194521,
+      "provenance": "CrucibleCraft T9 oil-field balance policy"
+    },
+    {
+      "id": "methane_deposit",
+      "material": "cruciblecraft:methane",
+      "min_amount_mb": 500000,
+      "max_amount_mb": 2000000,
+      "min_y": -64,
+      "max_y": 0,
+      "search_range": 12,
+      "replaceable": "cruciblecraft:subsurface_fluid_deposit_replaceables",
+      "region_size_chunks": 16,
+      "generation_chance": 0.5,
+      "salt": 1296389189,
+      "provenance": "CrucibleCraft T9 gas-field balance policy"
+    }
+  ]
+}

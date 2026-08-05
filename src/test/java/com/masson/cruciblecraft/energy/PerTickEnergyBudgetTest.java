@@ -24,4 +24,15 @@ class PerTickEnergyBudgetTest {
         assertEquals(4L, budget.claim(Long.MIN_VALUE, 4L, 4L, false));
         assertEquals(0L, budget.claim(Long.MIN_VALUE, 4L, 4L, false));
     }
+
+    @Test
+    void resetDropsDetachedTickClaims() {
+        PerTickEnergyBudget budget = new PerTickEnergyBudget();
+        assertEquals(4L, budget.claim(0L, 4L, 4L, false));
+        assertEquals(0L, budget.claim(0L, 4L, 4L, true));
+
+        budget.reset();
+
+        assertEquals(4L, budget.claim(0L, 4L, 4L, true));
+    }
 }

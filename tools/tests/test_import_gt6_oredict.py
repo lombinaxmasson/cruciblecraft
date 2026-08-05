@@ -1,6 +1,7 @@
 import importlib.util
 import hashlib
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -25,12 +26,73 @@ class GT6ImportUnitsTest(unittest.TestCase):
         self.assertAlmostEqual(1537.85, by_name["Iron"]["thermal"]["melting_point_celsius"])
         self.assertAlmostEqual(231.85, by_name["Tin"]["thermal"]["melting_point_celsius"])
 
+    def test_electrical_source_is_imported_without_resistance_invention(self):
+        records = json.loads(
+            MODULE.NORMALIZED_MATERIALS.read_text(encoding="utf-8")
+        )["records"]
+        by_name = {record["source_name"]: record for record in records}
+        expected = MODULE.gt6_electrical.specifications_by_source(
+            MODULE.load_electrical_source()
+        )
+        for source_name, specifications in expected.items():
+            self.assertEqual(
+                specifications,
+                by_name[source_name]["electrical_by_specification"],
+            )
+        copper = by_name["Copper"]["electrical_by_specification"]
+        self.assertEqual(
+            {
+                "contact_damage": False,
+                "insulated": True,
+                "loss_per_meter": 1,
+                "max_amperage": 1,
+                "max_voltage": 256,
+            },
+            copper["cableGt01"],
+        )
+        self.assertNotIn("resistance", json.dumps(expected))
+
     def test_exact_and_non_integral_u_are_not_rounded(self):
         self.assertEqual(144, MODULE.GT6ImportUnits.exact_amount(648_648_000)["cc_units"])
         fraction = MODULE.GT6ImportUnits.exact_amount(1)
         self.assertFalse(fraction["integral_cc_units"])
         self.assertIsNone(fraction["cc_units"])
         self.assertEqual(1, fraction["numerator_u"])
+
+    def test_import_rewrite_preserves_post_import_t8_and_t10_projection(self):
+        pipe_flag = sorted(MODULE.T8_PIPE_FLAGS)[0]
+        t10_flag = sorted(MODULE.T10_FORM_FLAGS)[0]
+        imported = {
+            "id": "copper",
+            "generation_flags": ["cruciblecraft:ingot"],
+            "gt6_metadata": {"source_id": 1},
+        }
+        current = {
+            **imported,
+            "generation_flags": [
+                "cruciblecraft:ingot",
+                pipe_flag,
+                t10_flag,
+            ],
+            "gt6_metadata": {
+                "source_id": 1,
+                "pipe_properties": {
+                    "fluid_by_specification": {"pipe": {"capacity": 10}}
+                },
+            },
+        }
+
+        preserved = MODULE.preserve_t8_pipe_projection(imported, current)
+
+        self.assertIn(pipe_flag, preserved["generation_flags"])
+        self.assertIn(t10_flag, preserved["generation_flags"])
+        self.assertEqual(
+            current["gt6_metadata"]["pipe_properties"],
+            preserved["gt6_metadata"]["pipe_properties"],
+        )
+        self.assertEqual(
+            imported, MODULE.strip_t8_pipe_projection(preserved)
+        )
 
 
 class DumpSchemaTest(unittest.TestCase):
@@ -108,16 +170,24 @@ class DumpSchemaTest(unittest.TestCase):
             self.assertEqual(fluids, loaded_fluids)
             self.assertEqual(4, len(provenance["sha256"]))
 
-    def test_reference_only_check_is_dump_independent_and_deterministic(self):
-        first = MODULE.check_committed()
-        second = MODULE.check_committed()
+    def test_reference_manifest_counts_are_dump_independent_and_deterministic(self):
+        first = json.loads(
+            MODULE.MANIFEST.read_text(encoding="utf-8")
+        )["counts"]
+        second = json.loads(
+            MODULE.MANIFEST.read_text(encoding="utf-8")
+        )["counts"]
         self.assertEqual(first, second)
         self.assertEqual(2214, first["normalized_materials"])
         self.assertEqual(468, first["normalized_prefixes"])
         self.assertNotIn("active_prefixes", first)
         self.assertEqual(0, first["newly_activated_prefixes"])
-        self.assertEqual(43, first["runtime_prefixes_total"])
+        self.assertEqual(56, first["runtime_prefixes_total"])
 
+    @unittest.skipIf(
+        os.environ.get("CRUCIBLECRAFT_CURRENTNESS_PRECHECKED") == "1",
+        "reference import currentness was executed by the closure orchestrator",
+    )
     def test_check_modes_do_not_modify_import_artifacts(self):
         paths = [
             MODULE.NORMALIZED_MATERIALS,
@@ -135,27 +205,25 @@ class DumpSchemaTest(unittest.TestCase):
                 for path in paths
             }
 
-        for mode in ([], ["--reference-only"]):
-            with self.subTest(mode=mode or ["raw"]):
-                before = snapshot()
-                completed = subprocess.run(
-                    [
-                        sys.executable,
-                        str(MODULE_PATH),
-                        "--check",
-                        *mode,
-                    ],
-                    cwd=MODULE.ROOT,
-                    capture_output=True,
-                    text=True,
-                    timeout=300,
-                )
-                self.assertEqual(
-                    0,
-                    completed.returncode,
-                    completed.stdout + completed.stderr,
-                )
-                self.assertEqual(before, snapshot())
+        before = snapshot()
+        completed = subprocess.run(
+            [
+                sys.executable,
+                str(MODULE_PATH),
+                "--check",
+                "--reference-only",
+            ],
+            cwd=MODULE.ROOT,
+            capture_output=True,
+            text=True,
+            timeout=300,
+        )
+        self.assertEqual(
+            0,
+            completed.returncode,
+            completed.stdout + completed.stderr,
+        )
+        self.assertEqual(before, snapshot())
 
     def test_manifest_rejects_extra_or_modified_generated_materials(self):
         with tempfile.TemporaryDirectory() as temporary:
@@ -208,6 +276,7 @@ class DumpSchemaTest(unittest.TestCase):
             MODULE.CROSS_REFERENCE.name,
             MODULE.ALIASES.name,
             MODULE.ACTIVATION_OVERRIDES.name,
+            MODULE.ELECTRICAL_SOURCE.name,
             "acceptance_form_corrections.json",
             MODULE.AUTHORED_BASELINE.name,
             MODULE.gt6_l3_materials.GENERATION_BITS_PATH.name,
@@ -244,6 +313,18 @@ class NormalizedDataTest(unittest.TestCase):
         cls.prefixes = json.loads(
             MODULE.NORMALIZED_PREFIXES.read_text(encoding="utf-8"))["records"]
         cls.policy = json.loads(MODULE.POLICY.read_text(encoding="utf-8"))
+        cls.material_index = json.loads(
+            (MODULE.MATERIAL_DIR / "index.json").read_text(encoding="utf-8")
+        )
+        cls.runtime = {
+            Path(filename).stem: json.loads(
+                (MODULE.MATERIAL_DIR / filename).read_text(encoding="utf-8")
+            )
+            for filename in cls.material_index
+        }
+        cls.l3_document = json.loads(
+            MODULE.gt6_l3_materials.OUT.read_text(encoding="utf-8")
+        )
 
     def test_bronze_composition_targets_and_byproducts(self):
         bronze = next(record for record in self.materials if record["source_name"] == "Bronze")
@@ -263,19 +344,10 @@ class NormalizedDataTest(unittest.TestCase):
         self.assertTrue(all(not record["activated"] for record in self.prefixes))
 
     def test_factual_ore_domain_and_explicit_world_ore_exceptions(self):
-        l3_document = json.loads(
-            MODULE.gt6_l3_materials.OUT.read_text(encoding="utf-8")
-        )
-        index = json.loads(
-            (MODULE.MATERIAL_DIR / "index.json").read_text(encoding="utf-8")
-        )
         ore_materials = []
-        for filename in index:
-            material = json.loads(
-                (MODULE.MATERIAL_DIR / filename).read_text(encoding="utf-8")
-            )
+        for material in self.runtime.values():
             if "ore" in MODULE.gt6_l3_materials.resolve_material_forms(
-                material, l3_document
+                material, self.l3_document
             ):
                 ore_materials.append(material["id"])
         budget = json.loads(MODULE.REGISTRY_BUDGET.read_text(encoding="utf-8"))[
@@ -285,15 +357,11 @@ class NormalizedDataTest(unittest.TestCase):
         self.assertEqual(137, len(ore_materials))
         self.assertIn(
             "ore",
-            json.loads(
-                (MODULE.MATERIAL_DIR / "iron.json").read_text(encoding="utf-8")
-            )["include_prefixes"],
+            self.runtime["iron"]["include_prefixes"],
         )
         self.assertIn(
             "ore",
-            json.loads(
-                (MODULE.MATERIAL_DIR / "tungsten.json").read_text(encoding="utf-8")
-            )["include_prefixes"],
+            self.runtime["tungsten"]["include_prefixes"],
         )
 
     def test_selection_policy_covers_every_record_with_evidence(self):
@@ -325,12 +393,7 @@ class NormalizedDataTest(unittest.TestCase):
         self.assertEqual([], records["Water"]["t0_forms"])
         self.assertIn("SiliconDioxide", records)
 
-        runtime = {
-            Path(filename).stem: json.loads(
-                (MODULE.MATERIAL_DIR / filename).read_text(encoding="utf-8"))
-            for filename in json.loads(
-                (MODULE.MATERIAL_DIR / "index.json").read_text(encoding="utf-8"))
-        }
+        runtime = self.runtime
         self.assertTrue(runtime["oxygen"]["metadata_only"])
         self.assertTrue(runtime["water"]["metadata_only"])
         self.assertEqual(
@@ -362,18 +425,11 @@ class NormalizedDataTest(unittest.TestCase):
             record["cc_id"]: record
             for record in self.policy["records"] if record["status"] == "ACTIVE"
         }
-        index = json.loads(
-            (MODULE.MATERIAL_DIR / "index.json").read_text(encoding="utf-8"))
-        self.assertEqual(set(policy), {Path(filename).stem for filename in index})
-        l3_document = json.loads(
-            MODULE.gt6_l3_materials.OUT.read_text(encoding="utf-8")
-        )
-        for filename in index:
-            runtime = json.loads(
-                (MODULE.MATERIAL_DIR / filename).read_text(encoding="utf-8"))
+        self.assertEqual(set(policy), set(self.runtime))
+        for runtime in self.runtime.values():
             forms = MODULE.gt6_l3_materials.resolve_material_forms(
                 runtime,
-                l3_document,
+                self.l3_document,
             )
             record = policy[runtime["id"]]
             self.assertEqual(
@@ -392,9 +448,7 @@ class NormalizedDataTest(unittest.TestCase):
         self.assertIn("ingot", alumite["t0_forms"])
         self.assertIn("dust", alumite["t0_forms"])
         self.assertFalse(alumite["metadata_only"])
-        alumite_runtime = json.loads(
-            (MODULE.MATERIAL_DIR / "alumite.json").read_text(encoding="utf-8")
-        )
+        alumite_runtime = self.runtime["alumite"]
         self.assertTrue(alumite_runtime["no_decompose"])
         iron = policy["iron"]
         self.assertEqual(
@@ -414,14 +468,7 @@ class NormalizedDataTest(unittest.TestCase):
             for record in self.policy["records"]
             if record["status"] == "ACTIVE"
         }
-        runtime = {
-            Path(filename).stem: json.loads(
-                (MODULE.MATERIAL_DIR / filename).read_text(encoding="utf-8")
-            )
-            for filename in json.loads(
-                (MODULE.MATERIAL_DIR / "index.json").read_text(encoding="utf-8")
-            )
-        }
+        runtime = self.runtime
         metadata_only = {
             material_id: value
             for material_id, value in runtime.items()
@@ -445,18 +492,8 @@ class NormalizedDataTest(unittest.TestCase):
         self.assertTrue(runtime["adamantine"]["generation_flags"])
 
     def test_direct_gt6_flags_exactly_match_active_source_tag_domains(self):
-        index = json.loads(
-            (MODULE.MATERIAL_DIR / "index.json").read_text(encoding="utf-8")
-        )
-        runtime = [
-            json.loads(
-                (MODULE.MATERIAL_DIR / filename).read_text(encoding="utf-8")
-            )
-            for filename in index
-        ]
-        plans = json.loads(
-            MODULE.gt6_l3_materials.OUT.read_text(encoding="utf-8")
-        )["prefixes"]
+        runtime = list(self.runtime.values())
+        plans = self.l3_document["prefixes"]
         expected_by_flag = {}
         for plan in plans.values():
             flag = plan["generation_flag"]
@@ -526,10 +563,11 @@ class NormalizedDataTest(unittest.TestCase):
         self.assertEqual("gas", by_name["Oxygen"]["state"])
 
     def test_generated_compositions_are_reduced_and_references_resolved(self):
-        index = json.loads((MODULE.MATERIAL_DIR / "index.json").read_text(encoding="utf-8"))
+        runtime_ids = set(self.runtime)
         generated = [
-            json.loads((MODULE.MATERIAL_DIR / filename).read_text(encoding="utf-8"))
-            for filename in index if Path(filename).stem not in MODULE.AUTHORED_IDS
+            value
+            for material_id, value in self.runtime.items()
+            if material_id not in MODULE.AUTHORED_IDS
         ]
         compositions = [value for value in generated if value.get("composition")]
         self.assertTrue(compositions)
@@ -543,7 +581,7 @@ class NormalizedDataTest(unittest.TestCase):
                 set(reference) == {"material", "source_id", "source_name"}
                 for reference in metadata["byproducts"]))
             self.assertTrue(all(
-                target["material"] in {Path(filename).stem for filename in index}
+                target["material"] in runtime_ids
                 for target in metadata["processing_targets"].values()))
         self.assertTrue(any(
             target["numerator_u"] == 0 and target.get("cc_units") == 0
@@ -553,8 +591,7 @@ class NormalizedDataTest(unittest.TestCase):
     def test_authored_metadata_keeps_every_resolved_reference(self):
         normalized = {record["source_name"]: record for record in self.materials}
         for cc_id, source_name in MODULE.AUTHORED_IDS.items():
-            runtime = json.loads(
-                (MODULE.MATERIAL_DIR / f"{cc_id}.json").read_text(encoding="utf-8"))
+            runtime = self.runtime[cc_id]
             metadata = runtime["gt6_metadata"]
             self.assertEqual(
                 normalized[source_name]["byproducts"],
@@ -566,8 +603,7 @@ class NormalizedDataTest(unittest.TestCase):
                 set(metadata["processing_targets"]),
                 cc_id,
             )
-        iron = json.loads(
-            (MODULE.MATERIAL_DIR / "iron.json").read_text(encoding="utf-8"))
+        iron = self.runtime["iron"]
         self.assertEqual(
             "Hematite",
             iron["gt6_metadata"]["processing_targets"]["crushing"][

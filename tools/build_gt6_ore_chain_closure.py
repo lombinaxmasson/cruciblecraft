@@ -29,6 +29,7 @@ REGISTRATION_GATE = (
 )
 VEIN_ROOT = ROOT / "src/main/resources/data/cruciblecraft/veins"
 L3_PLAN = TOOLS / "gt6_l3_prefix_plan.json"
+T5_CHEMICAL_POLICY = TOOLS / "t5_chemical_policy.json"
 
 CRUSHER_CLASSIFICATIONS = {"vein", "byproduct_only", "t5_chemical"}
 SIFTER_CLASSIFICATIONS = {"add_smelter", "t5_chemical", "gt6_dead_end"}
@@ -124,6 +125,29 @@ def processing_evidence(
         "gt6_metadata.processing_targets",
         selected,
     )
+
+
+def source_dead_end(
+    material: str,
+    policy: dict[str, Any],
+) -> dict[str, Any]:
+    source = policy["source"]
+    return {
+        "material": material,
+        "classification": policy["classification"],
+        "evidence": [{
+            "path": source["index"],
+            "field": "recipe_input_replay",
+            "value": {
+                "revision": source["revision"],
+                "recipe_count": source["recipe_count"],
+                "matching_maps": policy["excluded_maps"],
+                "meaningful_material_transform": False,
+            },
+        }],
+        "rationale": policy["reason"],
+        "target_phase": "T5_source_dead_end",
+    }
 
 
 def byproduct_referrers(
@@ -308,7 +332,13 @@ def classify_sifter(
     material: str,
     document: dict[str, Any],
     registered_forms: dict[str, set[str]],
+    source_dead_end_policy: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
+    if (
+        source_dead_end_policy is not None
+        and material in source_dead_end_policy["materials"]
+    ):
+        return source_dead_end(material, source_dead_end_policy)
     metadata = document.get("gt6_metadata") or {}
     projection = smelter_projection(material, document, registered_forms)
     target = projection["target"]
@@ -478,6 +508,9 @@ def build_document() -> dict[str, Any]:
         for entry in vein[layer]
     }
     referrers = byproduct_referrers(documents)
+    source_dead_end_policy = load(T5_CHEMICAL_POLICY)[
+        "source_dead_end_policy"
+    ]
 
     crusher_debts = coverage["crusher_without_worldgen"]
     sifter_debts = coverage["sifter_dust_without_smelter"]
@@ -497,6 +530,7 @@ def build_document() -> dict[str, Any]:
             material,
             documents[material],
             registered_forms,
+            source_dead_end_policy,
         )
         for material in sifter_debts
     ]
@@ -551,6 +585,10 @@ def build_document() -> dict[str, Any]:
             "factual_form_plan": {
                 "path": "tools/gt6_l3_prefix_plan.json",
                 "sha256": sha256(L3_PLAN),
+            },
+            "t5_source_dead_end_policy": {
+                "path": "tools/t5_chemical_policy.json",
+                "sha256": sha256(T5_CHEMICAL_POLICY),
             },
             "vein_author_sources": {
                 "path": "src/main/resources/data/cruciblecraft/veins",

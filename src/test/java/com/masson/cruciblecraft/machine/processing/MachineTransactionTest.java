@@ -8,12 +8,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import com.masson.cruciblecraft.TestExtruderShapes;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeCache;
+import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 
 import net.minecraft.SharedConstants;
@@ -158,6 +160,257 @@ class MachineTransactionTest {
                 .mapToInt(ItemStack::getCount)
                 .sum(), "blocked output must leave exactly the original shape");
         assertEquals(Items.DIAMOND, blocked.items.get(2).getItem());
+    }
+
+    @Test
+    void wearActionDamagesOnceAndRejectsBreakingOrBlockedTransactions() {
+        GTRecipe wearing = new GTRecipe(
+                List.of(
+                        Ingredient.of(Items.IRON_INGOT),
+                        Ingredient.of(Items.IRON_PICKAXE)),
+                List.of(1, 0),
+                List.of(ItemInputAction.CONSUME, ItemInputAction.wear(1)),
+                List.of(new ItemStack(Items.IRON_NUGGET)),
+                List.of(),
+                List.of(),
+                List.of(GTRecipe.GUARANTEED_CHANCE),
+                20,
+                16,
+                0,
+                true,
+                Optional.empty());
+        ItemStack tool = new ItemStack(Items.IRON_PICKAXE);
+        MemoryResources ready = new MemoryResources(
+                List.of(new ItemStack(Items.IRON_INGOT), tool, ItemStack.EMPTY),
+                List.of());
+        MachineTransaction transaction = MachineTransaction.prepare(
+                wearing,
+                ready.items,
+                List.of(0, 1),
+                List.of(2),
+                ready.fluids,
+                List.of(),
+                List.of(),
+                wearing.itemOutputs()).orElseThrow();
+        assertEquals(0, ready.items.get(1).getDamageValue());
+        assertTrue(transaction.commit(ready));
+        assertEquals(1, ready.items.get(1).getCount());
+        assertEquals(1, ready.items.get(1).getDamageValue());
+
+        MemoryResources blocked = new MemoryResources(
+                List.of(
+                        new ItemStack(Items.IRON_INGOT),
+                        tool,
+                        new ItemStack(Items.DIAMOND, 64)),
+                List.of());
+        assertTrue(MachineTransaction.prepare(
+                wearing,
+                blocked.items,
+                List.of(0, 1),
+                List.of(2),
+                blocked.fluids,
+                List.of(),
+                List.of(),
+                wearing.itemOutputs()).isEmpty());
+        assertEquals(0, blocked.items.get(1).getDamageValue());
+
+        ItemStack almostBroken = new ItemStack(Items.IRON_PICKAXE);
+        almostBroken.setDamageValue(almostBroken.getMaxDamage() - 1);
+        MemoryResources breaking = new MemoryResources(
+                List.of(
+                        new ItemStack(Items.IRON_INGOT),
+                        almostBroken,
+                        ItemStack.EMPTY),
+                List.of());
+        assertTrue(MachineTransaction.prepare(
+                wearing,
+                breaking.items,
+                List.of(0, 1),
+                List.of(2),
+                breaking.fluids,
+                List.of(),
+                List.of(),
+                wearing.itemOutputs()).isEmpty());
+        assertEquals(1, breaking.items.get(0).getCount());
+        assertEquals(almostBroken.getMaxDamage() - 1,
+                breaking.items.get(1).getDamageValue());
+        assertTrue(breaking.items.get(2).isEmpty());
+    }
+
+    @Test
+    void multipleWearAndPreservedPatternCommitOrRollBackTogether() {
+        GTRecipe recipe = new GTRecipe(
+                List.of(
+                        Ingredient.of(Items.IRON_INGOT),
+                        Ingredient.of(Items.IRON_PICKAXE),
+                        Ingredient.of(Items.IRON_AXE),
+                        Ingredient.of(Items.TRIAL_KEY)),
+                List.of(1, 0, 0, 0),
+                List.of(
+                        ItemInputAction.CONSUME,
+                        ItemInputAction.wear(2),
+                        ItemInputAction.wear(3),
+                        ItemInputAction.PRESERVE),
+                List.of(new ItemStack(Items.IRON_NUGGET)),
+                List.of(),
+                List.of(),
+                List.of(GTRecipe.GUARANTEED_CHANCE),
+                20,
+                16,
+                0,
+                true,
+                Optional.empty());
+        ItemStack pattern = new ItemStack(Items.TRIAL_KEY);
+        pattern.set(
+                net.minecraft.core.component.DataComponents.CUSTOM_NAME,
+                net.minecraft.network.chat.Component.literal("preserved"));
+        MemoryResources ready = new MemoryResources(
+                List.of(
+                        new ItemStack(Items.IRON_INGOT),
+                        new ItemStack(Items.IRON_PICKAXE),
+                        new ItemStack(Items.IRON_AXE),
+                        pattern,
+                        ItemStack.EMPTY),
+                List.of());
+
+        MachineTransaction transaction = MachineTransaction.prepare(
+                recipe,
+                ready.items,
+                List.of(0, 1, 2, 3),
+                List.of(4),
+                ready.fluids,
+                List.of(),
+                List.of(),
+                recipe.itemOutputs()).orElseThrow();
+        assertTrue(transaction.commit(ready));
+        assertTrue(ready.items.get(0).isEmpty());
+        assertEquals(2, ready.items.get(1).getDamageValue());
+        assertEquals(3, ready.items.get(2).getDamageValue());
+        assertTrue(ItemStack.isSameItemSameComponents(pattern, ready.items.get(3)));
+        assertEquals(Items.IRON_NUGGET, ready.items.get(4).getItem());
+
+        ItemStack failingAxe = new ItemStack(Items.IRON_AXE);
+        failingAxe.setDamageValue(failingAxe.getMaxDamage() - 2);
+        MemoryResources failing = new MemoryResources(
+                List.of(
+                        new ItemStack(Items.IRON_INGOT),
+                        new ItemStack(Items.IRON_PICKAXE),
+                        failingAxe,
+                        pattern,
+                        ItemStack.EMPTY),
+                List.of());
+        assertTrue(MachineTransaction.prepare(
+                recipe,
+                failing.items,
+                List.of(0, 1, 2, 3),
+                List.of(4),
+                failing.fluids,
+                List.of(),
+                List.of(),
+                recipe.itemOutputs()).isEmpty());
+        assertEquals(1, failing.items.get(0).getCount());
+        assertEquals(0, failing.items.get(1).getDamageValue());
+        assertEquals(failingAxe.getMaxDamage() - 2,
+                failing.items.get(2).getDamageValue());
+        assertTrue(ItemStack.isSameItemSameComponents(pattern, failing.items.get(3)));
+        assertTrue(failing.items.get(4).isEmpty());
+    }
+
+    @Test
+    void multiTankFluidInputAndOutputMergeSplitConserveExactAmounts() {
+        GTRecipe recipe = splitFluidRecipe();
+        MemoryResources resources = splitFluidResources();
+        int waterBefore = fluidAmount(resources.fluids, Fluids.WATER);
+        int lavaBefore = fluidAmount(resources.fluids, Fluids.LAVA);
+
+        MachineTransaction transaction = MachineTransaction.prepare(
+                recipe,
+                resources.items,
+                List.of(0),
+                List.of(1),
+                resources.fluids,
+                List.of(
+                        new ProcessingMachineSpec.TankSpec(0, 1000),
+                        new ProcessingMachineSpec.TankSpec(1, 1000)),
+                List.of(
+                        new ProcessingMachineSpec.TankSpec(2, 1000),
+                        new ProcessingMachineSpec.TankSpec(3, 500)),
+                recipe.itemOutputs()).orElseThrow();
+
+        assertTrue(transaction.commit(resources));
+        assertTrue(resources.items.get(0).isEmpty());
+        assertEquals(Items.IRON_NUGGET, resources.items.get(1).getItem());
+        assertTrue(resources.fluids.get(0).isEmpty());
+        assertEquals(300, resources.fluids.get(1).getAmount());
+        assertEquals(1000, resources.fluids.get(2).getAmount());
+        assertEquals(500, resources.fluids.get(3).getAmount());
+        assertEquals(1000,
+                waterBefore - fluidAmount(resources.fluids, Fluids.WATER));
+        assertEquals(700,
+                fluidAmount(resources.fluids, Fluids.LAVA) - lavaBefore);
+    }
+
+    @Test
+    void blockedMultiTankFluidOutputsRejectWithoutConsumingAnything() {
+        GTRecipe recipe = splitFluidRecipe();
+        MemoryResources blocked = new MemoryResources(
+                List.of(new ItemStack(Items.COAL), ItemStack.EMPTY),
+                List.of(
+                        new FluidStack(Fluids.WATER, 600),
+                        new FluidStack(Fluids.WATER, 700),
+                        new FluidStack(Fluids.LAVA, 1000),
+                        new FluidStack(Fluids.WATER, 500)));
+        List<ItemStack> beforeItems = blocked.items.stream().map(ItemStack::copy).toList();
+        List<FluidStack> beforeFluids =
+                blocked.fluids.stream().map(FluidStack::copy).toList();
+
+        assertTrue(MachineTransaction.prepare(
+                recipe,
+                blocked.items,
+                List.of(0),
+                List.of(1),
+                blocked.fluids,
+                List.of(
+                        new ProcessingMachineSpec.TankSpec(0, 1000),
+                        new ProcessingMachineSpec.TankSpec(1, 1000)),
+                List.of(
+                        new ProcessingMachineSpec.TankSpec(2, 1000),
+                        new ProcessingMachineSpec.TankSpec(3, 500)),
+                recipe.itemOutputs()).isEmpty());
+
+        assertResourceState(beforeItems, beforeFluids, blocked);
+        assertEquals(1300,
+                blocked.fluids.get(0).getAmount()
+                        + blocked.fluids.get(1).getAmount());
+        assertEquals(1000, fluidAmount(blocked.fluids, Fluids.LAVA));
+    }
+
+    @Test
+    void staleLiveFluidRejectsCommitWithoutApplyingAnyPreparedDelta() {
+        GTRecipe recipe = splitFluidRecipe();
+        MemoryResources resources = splitFluidResources();
+        MachineTransaction transaction = MachineTransaction.prepare(
+                recipe,
+                resources.items,
+                List.of(0),
+                List.of(1),
+                resources.fluids,
+                List.of(
+                        new ProcessingMachineSpec.TankSpec(0, 1000),
+                        new ProcessingMachineSpec.TankSpec(1, 1000)),
+                List.of(
+                        new ProcessingMachineSpec.TankSpec(2, 1000),
+                        new ProcessingMachineSpec.TankSpec(3, 500)),
+                recipe.itemOutputs()).orElseThrow();
+        resources.fluids.set(1, new FluidStack(Fluids.WATER, 699));
+        List<ItemStack> staleItems = resources.items.stream().map(ItemStack::copy).toList();
+        List<FluidStack> staleFluids =
+                resources.fluids.stream().map(FluidStack::copy).toList();
+
+        assertFalse(transaction.commit(resources));
+        assertResourceState(staleItems, staleFluids, resources);
+        assertEquals(1299, fluidAmount(resources.fluids, Fluids.WATER));
+        assertEquals(800, fluidAmount(resources.fluids, Fluids.LAVA));
     }
 
     @Test
@@ -307,6 +560,59 @@ class MachineTransactionTest {
                         ItemStack.EMPTY,
                         ItemStack.EMPTY),
                 List.of(new FluidStack(Fluids.WATER, 1000), FluidStack.EMPTY));
+    }
+
+    private static GTRecipe splitFluidRecipe() {
+        return new GTRecipe(
+                List.of(Ingredient.of(Items.COAL)),
+                List.of(1),
+                List.of(new ItemStack(Items.IRON_NUGGET)),
+                List.of(new FluidStack(Fluids.WATER, 1000)),
+                List.of(new FluidStack(Fluids.LAVA, 700)),
+                List.of(GTRecipe.GUARANTEED_CHANCE),
+                20,
+                16,
+                0,
+                true);
+    }
+
+    private static MemoryResources splitFluidResources() {
+        return new MemoryResources(
+                List.of(new ItemStack(Items.COAL), ItemStack.EMPTY),
+                List.of(
+                        new FluidStack(Fluids.WATER, 600),
+                        new FluidStack(Fluids.WATER, 700),
+                        new FluidStack(Fluids.LAVA, 800),
+                        FluidStack.EMPTY));
+    }
+
+    private static int fluidAmount(
+            List<FluidStack> fluids,
+            net.minecraft.world.level.material.Fluid fluid) {
+        return fluids.stream()
+                .filter(stack -> stack.is(fluid))
+                .mapToInt(FluidStack::getAmount)
+                .sum();
+    }
+
+    private static void assertResourceState(
+            List<ItemStack> expectedItems,
+            List<FluidStack> expectedFluids,
+            MemoryResources actual) {
+        for (int slot = 0; slot < expectedItems.size(); slot++) {
+            ItemStack expected = expectedItems.get(slot);
+            ItemStack observed = actual.items.get(slot);
+            assertEquals(expected.getCount(), observed.getCount());
+            assertTrue(expected.isEmpty() && observed.isEmpty()
+                    || ItemStack.isSameItemSameComponents(expected, observed));
+        }
+        for (int tank = 0; tank < expectedFluids.size(); tank++) {
+            FluidStack expected = expectedFluids.get(tank);
+            FluidStack observed = actual.fluids.get(tank);
+            assertEquals(expected.getAmount(), observed.getAmount());
+            assertTrue(expected.isEmpty() && observed.isEmpty()
+                    || FluidStack.isSameFluidSameComponents(expected, observed));
+        }
     }
 
     private static final class MemoryResources implements MachineTransaction.ResourceAccess {

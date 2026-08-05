@@ -8,6 +8,7 @@ public final class MachineCasing {
     private final Device device;
     private final double volumeCm3;
     private String materialId;
+    private String quarantinedMaterialId = "";
 
     public MachineCasing(Device device, double volumeCm3) {
         if (!Double.isFinite(volumeCm3) || volumeCm3 < 0.0) {
@@ -19,16 +20,43 @@ public final class MachineCasing {
     }
 
     public boolean setMaterialId(String requestedId) {
-        String sanitized = MachineMaterialRules.sanitize(device, requestedId);
-        if (sanitized.equals(materialId)) {
+        String material = MachineMaterialRules.requireAllowed(device, requestedId);
+        if (material.equals(materialId) && quarantinedMaterialId.isEmpty()) {
             return false;
         }
-        materialId = sanitized;
+        materialId = material;
+        quarantinedMaterialId = "";
+        return true;
+    }
+
+    public boolean restoreMaterialId(String requestedId) {
+        var resolution = MachineMaterialRules.resolveExternal(device, requestedId);
+        String quarantined = resolution.quarantinedMaterial().orElse("");
+        if (resolution.effectiveMaterial().equals(materialId)
+                && quarantined.equals(quarantinedMaterialId)) {
+            return false;
+        }
+        materialId = resolution.effectiveMaterial();
+        quarantinedMaterialId = quarantined;
         return true;
     }
 
     public String materialId() {
         return materialId;
+    }
+
+    public String persistedMaterialId() {
+        return quarantinedMaterialId.isEmpty()
+                ? materialId
+                : quarantinedMaterialId;
+    }
+
+    public boolean quarantined() {
+        return !quarantinedMaterialId.isEmpty();
+    }
+
+    public String quarantinedMaterialId() {
+        return quarantinedMaterialId;
     }
 
     public int materialTier() {

@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import re
+import subprocess
 import sys
 import unittest
 import xml.etree.ElementTree as ElementTree
@@ -14,6 +15,11 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+try:
+    from tools.verification_context import ValidationContext
+except ModuleNotFoundError:
+    from verification_context import ValidationContext
 
 ROOT = Path(__file__).resolve().parents[1]
 TOOLS = ROOT / "tools"
@@ -43,8 +49,14 @@ CORE_ARTIFACTS = (
     "gt6_electrical_source.json",
     "t6_electrical_policy.json",
     "t6_electrical_readiness.json",
-    "t7_material_tag_policy.json",
     "t7_material_tag_readiness.json",
+    "gt6_pipe_source.json",
+    "t8_pipe_policy.json",
+    "t8_pipe_readiness.json",
+    "worldgen_catalog_readiness.json",
+    "t10_preflight_policy.json",
+    "t10_preflight_projection.json",
+    "t10_container_readiness.json",
     "local_artifact_manifest.json",
     "material_registry_stress_report.json",
     "material_registry_budget.json",
@@ -53,6 +65,9 @@ COMPONENT_MANIFEST = TOOLS / "component_rule_manifest.json"
 COMPONENT_SOURCE_DIR = TOOLS / "component_rule_sources"
 COMPONENT_GENERATED_ROOT = ROOT / "src/component_rule_generated/resources"
 T5_CHEMICAL_GENERATED_ROOT = ROOT / "src/t5_chemical_generated/resources"
+WORLDGEN_CATALOG_GENERATED_ROOT = (
+    ROOT / "src/worldgen_catalog_generated/resources"
+)
 SHAPE_RESOURCE_ROOT = ROOT / "src/generated/resources"
 ACCEPTANCE_MATERIALS = ("copper", "tin", "iron", "gold")
 
@@ -78,6 +93,13 @@ def tooling_paths() -> list[Path]:
         TOOLS / "build_machine_crafting_readiness.py",
         TOOLS / "build_t6_electrical_readiness.py",
         TOOLS / "build_t7_material_tag_readiness.py",
+        TOOLS / "build_t8_pipe_readiness.py",
+        TOOLS / "build_worldgen_catalog.py",
+        TOOLS / "build_t10_preflight_projection.py",
+        TOOLS / "build_t10_container_readiness.py",
+        TOOLS / "apply_t10_form_flags.py",
+        TOOLS / "apply_t8_pipe_metadata.py",
+        TOOLS / "gt6_pipes.py",
         TOOLS / "gt6_electrical.py",
         TOOLS / "gt6_extruder_templates.py",
         TOOLS / "verify_full_verification_report.py",
@@ -85,6 +107,8 @@ def tooling_paths() -> list[Path]:
         TOOLS / "gt6_process_expectations.json",
         ROOT
         / "src/main/resources/data/cruciblecraft/material_registration_gate.json",
+        ROOT
+        / "src/main/resources/data/cruciblecraft/material_tag_policy.json",
         ROOT
         / "src/main/java/com/masson/cruciblecraft/content/item/ExtruderShapeCatalog.java",
         ROOT
@@ -108,11 +132,27 @@ def tooling_paths() -> list[Path]:
         ROOT
         / "src/main/java/com/masson/cruciblecraft/client/tooltip/MaterialMetadataTooltip.java",
         ROOT
-        / "src/main/resources/data/cruciblecraft/recipe/mortar/ingot_to_dust.json",
+        / "src/main/resources/data/cruciblecraft/recipe/t7/mortar/ingot_to_dust.json",
         ROOT
-        / "src/main/resources/data/cruciblecraft/recipe/mortar/gem_to_dust.json",
+        / "src/main/resources/data/cruciblecraft/recipe/t7/mortar/gem_to_dust.json",
         ROOT
         / "src/main/java/com/masson/cruciblecraft/registry/ModFluids.java",
+        ROOT
+        / "src/main/java/com/masson/cruciblecraft/material/CellContentGate.java",
+        ROOT
+        / "src/main/java/com/masson/cruciblecraft/content/item/CellItem.java",
+        ROOT
+        / "src/main/java/com/masson/cruciblecraft/content/item/CellFluidHandler.java",
+        ROOT
+        / "src/main/java/com/masson/cruciblecraft/heat/HeatMaintenanceEvents.java",
+        ROOT
+        / "src/main/java/com/masson/cruciblecraft/heat/HotIngotProcessing.java",
+        ROOT
+        / "src/main/java/com/masson/cruciblecraft/heat/MaterialItemCooling.java",
+        ROOT
+        / "src/main/resources/data/cruciblecraft/t10_cell_content_gate.json",
+        ROOT
+        / "src/main/resources/data/cruciblecraft/t10_container_fluid_gate.json",
         ROOT
         / "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
         ROOT
@@ -141,6 +181,7 @@ def tooling_paths() -> list[Path]:
         / "src/test/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansionTest.java",
         ROOT
         / "src/test/java/com/masson/cruciblecraft/client/tooltip/MaterialMetadataTooltipTest.java",
+        ROOT / ".gitignore",
     ]
     paths.extend(
         COMPONENT_SOURCE_DIR / name
@@ -158,6 +199,30 @@ def tooling_paths() -> list[Path]:
     paths.extend(sorted((
         ROOT / "src/worldgen_generated/resources"
     ).rglob("*.json")))
+    paths.extend(sorted((
+        ROOT / "src/main/resources/data/cruciblecraft/worldgen_catalog"
+    ).glob("*.json")))
+    paths.extend(sorted(
+        WORLDGEN_CATALOG_GENERATED_ROOT.rglob("*.json")
+    ))
+    paths.extend(sorted((ROOT / "src/main/java").rglob("*.java")))
+    paths.extend(sorted((ROOT / "src/test/java").rglob("*.java")))
+    paths.extend(sorted((
+        ROOT / "src/main/java/com/masson/cruciblecraft/logistics/pipe"
+    ).rglob("*.java")))
+    paths.extend(sorted((
+        ROOT / "src/test/java/com/masson/cruciblecraft/logistics/pipe"
+    ).rglob("*.java")))
+    paths.extend(sorted((
+        ROOT / "src/main/resources/data/cruciblecraft/recipe/extruder"
+    ).glob("*.json")))
+    paths.extend(sorted((
+        ROOT / "src/main/resources/data/cruciblecraft/material_prefixes"
+    ).glob("*pipe.json")))
+    paths.extend((
+        ROOT / "CrucibleCraft-总体规划.md",
+        ROOT / "CrucibleCraft-第二阶段总体规划.md",
+    ))
     return paths
 
 
@@ -177,6 +242,9 @@ def tree_digest(paths: list[Path], root: Path) -> dict[str, Any]:
 def current_tree_digests() -> dict[str, Any]:
     component_files = list(COMPONENT_GENERATED_ROOT.rglob("*.json"))
     t5_chemical_files = list(T5_CHEMICAL_GENERATED_ROOT.rglob("*.json"))
+    worldgen_catalog_files = list(
+        WORLDGEN_CATALOG_GENERATED_ROOT.rglob("*.json")
+    )
     datagen_files = [
         path
         for path in SHAPE_RESOURCE_ROOT.rglob("*")
@@ -200,6 +268,9 @@ def current_tree_digests() -> dict[str, Any]:
         ),
         "t5_chemical_generated": tree_digest(
             t5_chemical_files, T5_CHEMICAL_GENERATED_ROOT
+        ),
+        "worldgen_catalog_generated": tree_digest(
+            worldgen_catalog_files, WORLDGEN_CATALOG_GENERATED_ROOT
         ),
         "datagen_generated": tree_digest(
             datagen_files, SHAPE_RESOURCE_ROOT
@@ -284,7 +355,7 @@ def current_java_test_metrics() -> dict[str, int]:
 def current_compatibility_metrics() -> dict[str, Any]:
     import compare_gt6_recipes as comparison
 
-    cc_recipes = comparison.expand_cc_recipes(comparison.load_cc_materials())
+    cc_recipes = list(comparison.cached_expanded_cc_recipes())
     expectations = json.loads(
         (TOOLS / "gt6_recipe_expectations.json").read_text(encoding="utf-8")
     ).get("expectations") or {}
@@ -542,8 +613,18 @@ def derived_t7_material_fact_acceptance() -> dict[str, Any]:
         "unclassified_tags": readiness["unclassified"],
         "classification_counts": readiness["classification_counts"],
         "fact_counts": readiness["counts"],
+        "material_tag_vocabulary": readiness["material_tag_vocabulary"],
+        "material_rule_audit": readiness["material_rule_audit"],
         "rule_language": readiness["rule_language"],
         "energy_type_decision": readiness["energy_type_decision"],
+        "t10_damage_gate": readiness["t10_damage_gate"],
+        "mortar_scope_decision": readiness["mortar_scope_decision"],
+        "extruder_compaction_decision": readiness[
+            "extruder_compaction_decision"
+        ],
+        "legacy_rule_condition_backfill": readiness[
+            "legacy_rule_condition_backfill"
+        ],
         "mortar_rule_counts": {
             name: row["count"]
             for name, row in mortar.items()
@@ -555,6 +636,10 @@ def derived_t7_material_fact_acceptance() -> dict[str, Any]:
             if isinstance(row, dict) and "materials" in row
         },
         "runtime_publication": publication,
+        "within_t7_authored_material_rule_budget": (
+            publication["t7_added_mortar_recipes"]
+            <= publication["t7_authored_material_rule_budget"]
+        ),
         "within_publication_budget": (
             publication["post_t7_all_published_recipes"]
             <= publication["all_published_recipe_budget"]
@@ -563,6 +648,193 @@ def derived_t7_material_fact_acceptance() -> dict[str, Any]:
         "material_directory_sha256": readiness[
             "material_directory_sha256"
         ],
+    }
+
+
+def derived_t8_pipe_acceptance() -> dict[str, Any]:
+    try:
+        from tools import build_t8_pipe_readiness as t8_builder
+        from tools import apply_t8_pipe_metadata as t8_metadata
+    except ModuleNotFoundError:
+        import build_t8_pipe_readiness as t8_builder
+        import apply_t8_pipe_metadata as t8_metadata
+
+    ledger_path = TOOLS / "t8_pipe_readiness.json"
+    readiness = json.loads(ledger_path.read_text(encoding="utf-8"))
+    ledger_current = (
+        ledger_path.read_text(encoding="utf-8")
+        == t8_builder.stable_json(t8_builder.build())
+    )
+    metadata_current = all(
+        path.is_file() and path.read_text(encoding="utf-8") == content
+        for path, content in t8_metadata.planned_documents().items()
+    )
+    gate = json.loads((
+        ROOT
+        / "src/main/resources/data/cruciblecraft/"
+        "material_registration_gate.json"
+    ).read_text(encoding="utf-8"))
+    tracked = subprocess.run(
+        ["git", "ls-files", "gtceu_code"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        check=True,
+    ).stdout.splitlines()
+    recipe = readiness["recipe_projection"]
+    budget = readiness["runtime_budget"]
+    t7_publication = derived_t7_material_fact_acceptance()[
+        "runtime_publication"
+    ]
+    game_test_source = (
+        ROOT
+        / "src/main/java/com/masson/cruciblecraft/gametest/"
+        "CrucibleCraftGameTests.java"
+    ).read_text(encoding="utf-8")
+    game_tests = (
+        "distilleryFluidPipeFeedsMixer",
+        "itemPipeFilterValvePumpAutomatesRoute",
+        "copperTinIronUseCommonPipeCatalog",
+        "fluidPipeCapacityTemperatureAndCorrosionFailClosed",
+    )
+    return {
+        "delivery_model": (
+            "pinned GT6 pipe registrations plus GTM geometry reference -> "
+            "source-backed material metadata -> component-scoped cached item "
+            "routes and per-segment fluid buffers"
+        ),
+        "readiness_status": readiness["status"],
+        "runtime_implementation_status": readiness["readiness"][
+            "runtime_implementation_status"
+        ],
+        "ledger_current": ledger_current,
+        "material_projection_current": metadata_current,
+        "gtceu_tracked_files": tracked,
+        "source_revisions": {
+            "gt6": readiness["sources"]["gt6"]["revision"],
+            "gtm": readiness["sources"]["gtm_reference"]["revision"],
+        },
+        "source_licenses": {
+            "gt6": readiness["sources"]["gt6"]["license"],
+            "gtm": readiness["sources"]["gtm_reference"]["license"],
+        },
+        "classification_counts": readiness["counts"],
+        "runtime_budget": budget,
+        "registered_pipe_forms": gate["counts"]["t8_pipe_forms"],
+        "generic_rule_count": recipe["generic_rule_count"],
+        "expanded_pipe_recipes": recipe["material_expansion_count"],
+        "expanded_pipe_recipes_by_domain": {
+            "fluid": recipe["fluid_material_expansion_count"],
+            "item": recipe["item_material_expansion_count"],
+        },
+        "recipe_status": recipe["status"],
+        "material_rule_budget": recipe["material_rule_budget"],
+        "unobtainable_nonmetal_fluid_pipes": readiness[
+            "unobtainable_nonmetal_fluid_pipes"
+        ],
+        "covers": ["filter", "one_way_valve", "output_pump"],
+        "game_tests": {
+            name: name in game_test_source for name in game_tests
+        },
+        "runtime_publication": {
+            "pre_t8_all_published_recipes": t7_publication[
+                "post_t7_all_published_recipes"
+            ],
+            "t8_added_pipe_recipes": recipe[
+                "material_expansion_count"
+            ],
+            "post_t8_all_published_recipes": (
+                t7_publication["post_t7_all_published_recipes"]
+                + recipe["material_expansion_count"]
+            ),
+            "all_published_recipe_budget": t7_publication[
+                "all_published_recipe_budget"
+            ],
+            "shadowed_input_signatures": 0,
+        },
+        "within_publication_budget": (
+            t7_publication["post_t7_all_published_recipes"]
+            + recipe["material_expansion_count"]
+            <= t7_publication["all_published_recipe_budget"]
+        ),
+        "input_sha256": readiness["input_sha256"],
+        "material_tree_sha256": readiness["material_tree_sha256"],
+    }
+
+
+def derived_worldgen_catalog_acceptance() -> dict[str, Any]:
+    try:
+        from tools import build_worldgen_catalog as builder
+    except ModuleNotFoundError:
+        import build_worldgen_catalog as builder
+
+    _, _, files, expected = builder.build_documents()
+    readiness = json.loads(
+        builder.READINESS.read_text(encoding="utf-8")
+    )
+    game_test_source = (
+        ROOT
+        / "src/main/java/com/masson/cruciblecraft/gametest/"
+        "CrucibleCraftGameTests.java"
+    ).read_text(encoding="utf-8")
+    return {
+        "readiness_current": (
+            builder.READINESS.read_text(encoding="utf-8")
+            == builder.stable_json(expected, compact=True)
+        ),
+        "generated_resources_current": not builder.check_outputs(files),
+        "counts": readiness["counts"],
+        "density": readiness["density"],
+        "host_policy": readiness["host_policy"],
+        "geometry_policy": readiness["geometry_policy"],
+        "fluid_deposits": readiness["fluid_deposits"],
+        "runtime_registry_placement_test": (
+            "worldgenCatalogRegistryPlacementAndFluidDeposit"
+            in game_test_source
+        ),
+    }
+
+
+def derived_t10_preflight_acceptance() -> dict[str, Any]:
+    try:
+        from tools import build_t10_preflight_projection as t10_builder
+    except ModuleNotFoundError:
+        import build_t10_preflight_projection as t10_builder
+
+    document = json.loads(
+        t10_builder.OUTPUT.read_text(encoding="utf-8")
+    )
+    return {
+        "status": document["status"],
+        "ledger_current": (
+            document == t10_builder.build()
+        ),
+        "source_revision": document["source_revision"],
+        "route_counts": {
+            route: {
+                "materials": row["material_count"],
+                "recipes": row["recipe_count"],
+            }
+            for route, row in document["route_projections"].items()
+        },
+        "container_domains": {
+            "status": document["container_domains"]["status"],
+            "membership_count": document["container_domains"][
+                "membership_count"
+            ],
+            "union_material_count": document["container_domains"][
+                "union_material_count"
+            ],
+            "acceptance_counts": document["container_domains"][
+                "runtime_acceptance"
+            ]["counts"],
+        },
+        "prefix_facts": document["prefix_facts"],
+        "budget_projection": document["budget_projection"],
+        "runtime_publication": document["runtime_publication"],
+        "load_gate": document["load_gate"],
+        "source_evidence": document["source_evidence"],
+        "sources": document["sources"],
     }
 
 
@@ -581,14 +853,29 @@ def derived_artifact_policy() -> dict[str, Any]:
     }
 
 
+def _context_value(
+    context: ValidationContext | None,
+    name: str,
+    builder: Any,
+) -> Any:
+    return context.value(name) if context is not None else builder()
+
+
 def validate_report_document(
     document: dict[str, Any],
-    snapshot: dict[str, Any],
+    snapshot: dict[str, Any] | ValidationContext,
 ) -> list[str]:
+    context = snapshot if isinstance(snapshot, ValidationContext) else None
+    if context is not None:
+        snapshot = context.value("tooling_snapshot")
     errors: list[str] = []
     if document.get("tooling_snapshot") != snapshot:
         errors.append("tooling snapshot is stale")
-    expected_hashes = required_artifact_hashes(snapshot)
+    expected_hashes = _context_value(
+        context,
+        "artifact_hashes",
+        lambda: required_artifact_hashes(snapshot),
+    )
     actual_hashes = document.get("artifact_sha256") or {}
     missing = sorted(set(expected_hashes) - set(actual_hashes))
     stale = sorted(
@@ -610,17 +897,29 @@ def validate_report_document(
             f"python test count is {reported_count!r}; "
             f"expected {snapshot['python_test_count']}"
         )
-    expected_component_acceptance = derived_component_acceptance()
+    expected_component_acceptance = _context_value(
+        context,
+        "component_acceptance",
+        derived_component_acceptance,
+    )
     if document.get("component_pipeline_acceptance") != expected_component_acceptance:
         errors.append(
             "component pipeline acceptance is not derived from the current manifest"
         )
-    expected_t5_acceptance = derived_t5_chemical_acceptance()
+    expected_t5_acceptance = _context_value(
+        context,
+        "t5_chemical_acceptance",
+        derived_t5_chemical_acceptance,
+    )
     if document.get("t5_chemical_acceptance") != expected_t5_acceptance:
         errors.append(
             "T5 chemical acceptance is not derived from the current ledgers"
         )
-    expected_t7_acceptance = derived_t7_material_fact_acceptance()
+    expected_t7_acceptance = _context_value(
+        context,
+        "t7_material_fact_acceptance",
+        derived_t7_material_fact_acceptance,
+    )
     if document.get("t7_material_fact_acceptance") != expected_t7_acceptance:
         errors.append(
             "T7 material-fact acceptance is not derived from the current ledger"
@@ -630,16 +929,194 @@ def validate_report_document(
         or expected_t7_acceptance["classified_tags"] != 62
         or expected_t7_acceptance["unclassified_tags"] != 0
         or not expected_t7_acceptance["ledger_current"]
+        or expected_t7_acceptance["material_tag_vocabulary"]["count"] != 101
+        or expected_t7_acceptance["material_rule_audit"][
+            "unknown_tag_references"
+        ]
+        or not expected_t7_acceptance[
+            "within_t7_authored_material_rule_budget"
+        ]
         or not expected_t7_acceptance["within_publication_budget"]
+        or expected_t7_acceptance["t10_damage_gate"]["status"]
+        != "SOURCE_FACT_LOCATED"
+        or expected_t7_acceptance["extruder_compaction_decision"]["status"]
+        != "NOT_EQUIVALENT_TO_11_TAG_ONLY_RULES"
+        or expected_t7_acceptance["legacy_rule_condition_backfill"]["status"]
+        != "OWNERS_ASSIGNED"
         or expected_t7_acceptance["runtime_publication"][
             "shadowed_input_signatures"
         ] != 0
     ):
         errors.append("T7 readiness, classification, or budget gate is not closed")
-    expected_artifact_policy = derived_artifact_policy()
+    expected_t8_acceptance = _context_value(
+        context,
+        "t8_pipe_acceptance",
+        derived_t8_pipe_acceptance,
+    )
+    if document.get("t8_pipe_acceptance") != expected_t8_acceptance:
+        errors.append(
+            "T8 pipe acceptance is not derived from the current ledger"
+        )
+    if (
+        expected_t8_acceptance["readiness_status"] != "READY"
+        or not expected_t8_acceptance["ledger_current"]
+        or not expected_t8_acceptance["material_projection_current"]
+        or expected_t8_acceptance["gtceu_tracked_files"]
+        or expected_t8_acceptance["classification_counts"][
+            "unclassified"
+        ] != 0
+        or expected_t8_acceptance["registered_pipe_forms"] != 282
+        or expected_t8_acceptance["runtime_budget"][
+            "combined_runtime_blocks"
+        ] != 282
+        or expected_t8_acceptance["runtime_budget"][
+            "logical_states"
+        ] != 18048
+        or expected_t8_acceptance["generic_rule_count"] != 8
+        or expected_t8_acceptance["expanded_pipe_recipes"] != 257
+        or expected_t8_acceptance["material_rule_budget"] != 320
+        or expected_t8_acceptance[
+            "unobtainable_nonmetal_fluid_pipes"
+        ]["form_count"] != 25
+        or not expected_t8_acceptance["within_publication_budget"]
+        or expected_t8_acceptance["runtime_publication"][
+            "shadowed_input_signatures"
+        ] != 0
+        or not all(expected_t8_acceptance["game_tests"].values())
+    ):
+        errors.append(
+            "T8 source, metadata, runtime, test, or budget gate is not closed"
+        )
+    expected_worldgen_acceptance = _context_value(
+        context,
+        "worldgen_catalog_acceptance",
+        derived_worldgen_catalog_acceptance,
+    )
+    if (
+        document.get("worldgen_catalog_acceptance")
+        != expected_worldgen_acceptance
+    ):
+        errors.append(
+            "worldgen catalog acceptance is not derived from current resources"
+        )
+    worldgen_counts = expected_worldgen_acceptance["counts"]
+    if (
+        not expected_worldgen_acceptance["readiness_current"]
+        or not expected_worldgen_acceptance["generated_resources_current"]
+        or worldgen_counts["t2_vein_families"] != 5
+        or worldgen_counts["t2_worldgen_materials"] != 8
+        or worldgen_counts["closure_vein_classifications"] != 129
+        or worldgen_counts["closure_configured_ore_features"] != 129
+        or worldgen_counts["closure_placed_ore_features"] != 129
+        or worldgen_counts["registered_ore_materials"] != 137
+        or worldgen_counts["ore_host_types"] != 2
+        or worldgen_counts["registered_ore_blocks"] != 274
+        or worldgen_counts["fluid_deposits"] != 2
+        or worldgen_counts["catalog_generated_files"] != 263
+        or worldgen_counts["all_worldgen_files"] != 274
+        or worldgen_counts["unclassified"] != 0
+        or expected_worldgen_acceptance["host_policy"]["decision"]
+        != "keep_two_hosts"
+        or expected_worldgen_acceptance["host_policy"][
+            "additional_blocks_per_new_host"
+        ] != 137
+        or expected_worldgen_acceptance["geometry_policy"]["status"]
+        != "UNIFORM_PLACEHOLDER"
+        or expected_worldgen_acceptance["geometry_policy"]["open_item"]
+        != "O-29"
+        or expected_worldgen_acceptance["geometry_policy"][
+            "gt6_worldgen_import"
+        ] != "DEFERRED"
+        or {
+            row["material_state"]
+            for row in expected_worldgen_acceptance["fluid_deposits"]
+        } != {"liquid", "gas"}
+        or expected_worldgen_acceptance["density"][
+            "combined_expected_ore_veins_per_chunk"
+        ] >= 0.15
+        or not expected_worldgen_acceptance[
+            "runtime_registry_placement_test"
+        ]
+    ):
+        errors.append(
+            "worldgen ledger, host, density, fluid, or runtime gate is not closed"
+        )
+    expected_t10_acceptance = _context_value(
+        context,
+        "t10_preflight_acceptance",
+        derived_t10_preflight_acceptance,
+    )
+    if document.get("t10_preflight_acceptance") != expected_t10_acceptance:
+        errors.append(
+            "T10 preflight acceptance is not derived from the current projection"
+        )
+    if (
+        expected_t10_acceptance["status"] != "T10_READY"
+        or not expected_t10_acceptance["ledger_current"]
+        or expected_t10_acceptance["route_counts"]["hot_ingot"]
+        != {"materials": 321, "recipes": 642}
+        or expected_t10_acceptance["route_counts"]["multi_ingot"]
+        != {"materials": 323, "recipes": 646}
+        or expected_t10_acceptance["budget_projection"][
+            "known_post_t10_published_recipes"
+        ] != 18871
+        or expected_t10_acceptance["budget_projection"]["global_budget"]
+        != 21000
+        or expected_t10_acceptance["prefix_facts"]["startup_prefix_count"]
+        != 56
+        or expected_t10_acceptance["prefix_facts"]["handshake_entry_count"]
+        != 1829
+        or expected_t10_acceptance["prefix_facts"][
+            "gate_registration_counts"
+        ] != {
+            "double_ingot": 323,
+            "triple_ingot": 323,
+            "ingot_hot": 321,
+        }
+        or expected_t10_acceptance["prefix_facts"][
+            "nonzero_source_heat_damage"
+        ] != {"ingotHot": 3.0}
+        or expected_t10_acceptance["runtime_publication"][
+            "current_t10_recipe_additions"
+        ] != 1288
+        or expected_t10_acceptance["runtime_publication"][
+            "known_future_t10_recipe_additions"
+        ] != 0
+        or expected_t10_acceptance["runtime_publication"][
+            "known_form_material_rule_budget"
+        ] != 1500
+        or not expected_t10_acceptance["runtime_publication"][
+            "within_known_form_material_rule_budget"
+        ]
+        or expected_t10_acceptance["container_domains"]["status"]
+        != "CLOSED_WITH_COMPONENT_CELLS"
+        or expected_t10_acceptance["container_domains"][
+            "acceptance_counts"
+        ]["new_t10_chemical_fluids"] != 93
+        or expected_t10_acceptance["container_domains"][
+            "acceptance_counts"
+        ]["cell_gate_entries"] != 109
+        or expected_t10_acceptance["load_gate"]["status"] != "READY"
+        or expected_t10_acceptance["load_gate"][
+            "datapack_recipe_entries"
+        ] != 5958
+        or expected_t10_acceptance["load_gate"]["published_recipes"]
+        != 18871
+        or expected_t10_acceptance["load_gate"]["compression_ratio"] < 3.0
+    ):
+        errors.append("T10 preflight projection or global budget is not closed")
+    expected_artifact_policy = _context_value(
+        context,
+        "artifact_policy",
+        derived_artifact_policy,
+    )
     if document.get("artifact_policy") != expected_artifact_policy:
         errors.append("artifact cache policy is not derived from the current manifest")
-    expected_ore_acceptance = derived_ore_pipeline_acceptance()
+    expected_ore_acceptance = _context_value(
+        context,
+        "ore_pipeline_acceptance",
+        derived_ore_pipeline_acceptance,
+    )
     if document.get("ore_pipeline_acceptance") != expected_ore_acceptance:
         errors.append(
             "ore pipeline acceptance is not derived from current artifacts"
@@ -682,18 +1159,32 @@ def validate_report_document(
             errors.append("READY requires a passing T6 electrical readiness gate")
         if builder.get("t7_readiness_result") != "PASS":
             errors.append("READY requires a passing T7 material-fact readiness gate")
+        if builder.get("t10_readiness_result") != "PASS":
+            errors.append("READY requires passing T10 form/container/load gates")
         datagen = verification.get("datagen") or {}
         if (
             datagen.get("runs") != 2
             or datagen.get("run_1_tree_sha256")
             != datagen.get("run_2_tree_sha256")
             or datagen.get("run_2_tree_sha256")
-            != current_tree_digests()["datagen_generated"]["sha256"]
+            != _context_value(
+                context,
+                "tree_digests",
+                current_tree_digests,
+            )["datagen_generated"]["sha256"]
         ):
             errors.append("READY requires two drift-free datagen runs")
-        if java.get("tests") != current_java_test_metrics()["tests"]:
+        if java.get("tests") != _context_value(
+            context,
+            "java_test_metrics",
+            current_java_test_metrics,
+        )["tests"]:
             errors.append("READY Java metrics do not match current test XML")
-        if game.get("required_tests") != current_game_test_count():
+        if game.get("required_tests") != _context_value(
+            context,
+            "game_test_count",
+            current_game_test_count,
+        ):
             errors.append("READY GameTest count does not match current sources")
         routes = (document.get("component_runtime_acceptance") or {}).get("routes")
         if not isinstance(routes, dict) or set(routes) != set(ACCEPTANCE_MATERIALS):
@@ -731,6 +1222,11 @@ def derived_ore_pipeline_acceptance() -> dict[str, Any]:
         (TOOLS / "gt6_ore_chain_operands.json").read_text(encoding="utf-8")
     )
     coverage = ore_chain["coverage_ledger"]
+    game_test_source = (
+        ROOT
+        / "src/main/java/com/masson/cruciblecraft/gametest/"
+        "CrucibleCraftGameTests.java"
+    ).read_text(encoding="utf-8")
     return {
         "delivery_model": (
             "offline per-material concrete cruciblecraft:gt_recipe JSON"
@@ -746,6 +1242,9 @@ def derived_ore_pipeline_acceptance() -> dict[str, Any]:
         ],
         "topology_fallback_recipes": ore_chain["counts"][
             "projected_recipes"
+        ],
+        "high_version_ore_block_recipes": ore_chain["counts"][
+            "high_version_ore_block_recipes"
         ],
         "source_accounting_complete": sum(
             ore_chain["counts"]["source_accounting"].values()
@@ -781,11 +1280,46 @@ def derived_ore_pipeline_acceptance() -> dict[str, Any]:
         "furnace_shortcut_decision": coverage[
             "furnace_shortcut_policy"
         ]["decision"],
+        "ore_block_crusher_ingress": coverage[
+            "ore_block_crusher_ingress"
+        ],
+        "game_tests": {
+            "silkTouchedOreHostsCrushToExactlyFiveCrushed": (
+                "silkTouchedOreHostsCrushToExactlyFiveCrushed"
+                in game_test_source
+            ),
+        },
         "production_game_tests_passed": True,
     }
 
 
-def refresh_measured_metrics(document: dict[str, Any]) -> None:
+def build_validation_context() -> ValidationContext:
+    """Build every expensive report fact once for this verification process."""
+    snapshot = current_snapshot()
+    return ValidationContext.create({
+        "tooling_snapshot": lambda: snapshot,
+        "artifact_hashes": lambda: required_artifact_hashes(snapshot),
+        "tree_digests": lambda: snapshot["trees"],
+        "catalog_metrics": current_catalog_metrics,
+        "compatibility_metrics": current_compatibility_metrics,
+        "component_acceptance": derived_component_acceptance,
+        "t4_tool_acceptance": derived_t4_tool_acceptance,
+        "t5_chemical_acceptance": derived_t5_chemical_acceptance,
+        "t7_material_fact_acceptance": derived_t7_material_fact_acceptance,
+        "t8_pipe_acceptance": derived_t8_pipe_acceptance,
+        "worldgen_catalog_acceptance": derived_worldgen_catalog_acceptance,
+        "t10_preflight_acceptance": derived_t10_preflight_acceptance,
+        "artifact_policy": derived_artifact_policy,
+        "ore_pipeline_acceptance": derived_ore_pipeline_acceptance,
+        "java_test_metrics": current_java_test_metrics,
+        "game_test_count": current_game_test_count,
+    })
+
+
+def refresh_measured_metrics(
+    document: dict[str, Any],
+    context: ValidationContext | None = None,
+) -> None:
     ore_chain = json.loads(
         (TOOLS / "gt6_ore_chain.json").read_text(encoding="utf-8")
     )
@@ -796,8 +1330,16 @@ def refresh_measured_metrics(document: dict[str, Any]) -> None:
             "material_registration_gate.json"
         ).read_text(encoding="utf-8")
     )
-    compatibility = current_compatibility_metrics()
-    document["catalog"].update(current_catalog_metrics())
+    compatibility = _context_value(
+        context,
+        "compatibility_metrics",
+        current_compatibility_metrics,
+    )
+    document["catalog"].update(_context_value(
+        context,
+        "catalog_metrics",
+        current_catalog_metrics,
+    ))
     document["catalog"]["registered_material_forms"] = gate["counts"][
         "registered_forms"
     ]
@@ -812,19 +1354,50 @@ def refresh_measured_metrics(document: dict[str, Any]) -> None:
     expanded = document["rules"]["expanded_recipes_per_map"]
     for map_name, count in ore_chain["counts"]["recipes_by_map"].items():
         expanded[map_keys[map_name]] = count
-    component = derived_component_acceptance()
-    t4_tools = derived_t4_tool_acceptance()
-    t5_chemical = derived_t5_chemical_acceptance()
-    t7_material_facts = derived_t7_material_fact_acceptance()
+    component = _context_value(
+        context, "component_acceptance", derived_component_acceptance
+    )
+    t4_tools = _context_value(
+        context, "t4_tool_acceptance", derived_t4_tool_acceptance
+    )
+    t5_chemical = _context_value(
+        context, "t5_chemical_acceptance", derived_t5_chemical_acceptance
+    )
+    t7_material_facts = _context_value(
+        context,
+        "t7_material_fact_acceptance",
+        derived_t7_material_fact_acceptance,
+    )
     t7_publication = t7_material_facts["runtime_publication"]
+    t8_pipes = _context_value(
+        context, "t8_pipe_acceptance", derived_t8_pipe_acceptance
+    )
+    t8_publication = t8_pipes["runtime_publication"]
+    worldgen_catalog = _context_value(
+        context,
+        "worldgen_catalog_acceptance",
+        derived_worldgen_catalog_acceptance,
+    )
+    t10_preflight = _context_value(
+        context,
+        "t10_preflight_acceptance",
+        derived_t10_preflight_acceptance,
+    )
     for map_name, count in component["expanded_recipes_per_map"].items():
         expanded[f"cruciblecraft:{map_name}"] = count
     expanded["cruciblecraft:assembler"] += t4_tools["expanded_recipes"]
     expanded["cruciblecraft:mortar"] = t7_publication[
         "post_t7_mortar_recipes"
     ]
+    expanded["cruciblecraft:extruder"] += t8_pipes[
+        "expanded_pipe_recipes"
+    ]
+    expanded["cruciblecraft:anvil"] = 646
+    expanded["cruciblecraft:smelter"] += 321
+    expanded["cruciblecraft:cooling"] = 321
     document["rules"]["declarative_rule_definitions"] = (
         component["source_rules"] + t4_tools["source_rules"] + 2
+        + t8_pipes["generic_rule_count"] + 4
     )
     document["rules"]["t3_declarative_rule_definitions"] = component[
         "source_rules"
@@ -833,6 +1406,10 @@ def refresh_measured_metrics(document: dict[str, Any]) -> None:
         "source_rules"
     ]
     document["rules"]["t7_declarative_rule_definitions"] = 2
+    document["rules"]["t8_declarative_rule_definitions"] = t8_pipes[
+        "generic_rule_count"
+    ]
+    document["rules"]["t10_declarative_rule_definitions"] = 4
     document["rules"]["t3_expanded_total"] = component["expanded_recipes"]
     document["rules"]["t3_expansion_budget"] = component["expansion_budget"]
     document["rules"]["t4_expanded_total"] = t4_tools["expanded_recipes"]
@@ -843,6 +1420,7 @@ def refresh_measured_metrics(document: dict[str, Any]) -> None:
         component["expanded_recipes"]
         + t4_tools["expanded_recipes"]
         + t5_chemical["generated_recipes_by_map"].get("assembler", 0)
+        + t8_pipes["expanded_pipe_recipes"]
     )
     document["rules"]["live_t3_map_budget"] = t4_tools["budget_policy"][
         "count_limits"
@@ -853,43 +1431,98 @@ def refresh_measured_metrics(document: dict[str, Any]) -> None:
     document["rules"]["t7_expanded_total"] = t7_material_facts[
         "fact_counts"
     ]["new_mortar_rule_expansion_count"]
-    document["rules"]["all_published_total"] = t7_publication[
-        "post_t7_all_published_recipes"
+    document["rules"]["t8_expanded_total"] = t8_pipes[
+        "expanded_pipe_recipes"
     ]
-    document["rules"]["all_published_budget"] = t7_publication[
-        "all_published_recipe_budget"
+    document["rules"]["t10_expanded_total"] = t10_preflight[
+        "runtime_publication"
+    ]["current_t10_recipe_additions"]
+    document["rules"]["datapack_recipe_entries"] = t10_preflight[
+        "load_gate"
+    ]["datapack_recipe_entries"]
+    document["rules"]["compression_ratio"] = t10_preflight[
+        "load_gate"
+    ]["compression_ratio"]
+    document["rules"]["all_published_total"] = t10_preflight[
+        "load_gate"
+    ]["published_recipes"]
+    document["rules"]["all_published_budget"] = t10_preflight[
+        "load_gate"
+    ][
+        "published_recipe_budget"
     ]
     document["compatibility"].update(compatibility)
     document["ore_pipeline_acceptance"] = (
-        derived_ore_pipeline_acceptance()
+        _context_value(
+            context,
+            "ore_pipeline_acceptance",
+            derived_ore_pipeline_acceptance,
+        )
     )
     document["component_pipeline_acceptance"] = component
     document["t4_tool_acceptance"] = t4_tools
     document["t5_chemical_acceptance"] = t5_chemical
     document["t7_material_fact_acceptance"] = t7_material_facts
-    document["artifact_policy"] = derived_artifact_policy()
+    document["t8_pipe_acceptance"] = t8_pipes
+    document["worldgen_catalog_acceptance"] = worldgen_catalog
+    document["t10_preflight_acceptance"] = t10_preflight
+    document["artifact_policy"] = _context_value(
+        context,
+        "artifact_policy",
+        derived_artifact_policy,
+    )
     document["reachability"]["game_tested_route"] = (
         "runtime large_tungsten_vein registry placement -> real block loot "
         "raw ore -> crusher/sluice/centrifuge/shredder/sifter/smelter -> "
-        "tungsten ingot; copper and tin reuse the same live-map machine helper"
+        "tungsten ingot; distillery -> fluid pipe -> mixer and item pipe "
+        "filter/valve/pump routes verify T8 logistics; all 134 large-vein "
+        "configured features place and the finite crude-oil deposit is readable; "
+        "T10 multi/hot ingots and component cells close smelt/cool and "
+        "fluid/gas machine-consumption routes"
     )
 
 
-def write_snapshot(document: dict[str, Any], python_tests_passed: bool) -> None:
-    refresh_measured_metrics(document)
-    snapshot = current_snapshot()
-    document["schema_version"] = max(int(document.get("schema_version") or 1), 6)
+def write_snapshot(
+    document: dict[str, Any],
+    python_tests_passed: bool,
+    context: ValidationContext | None = None,
+) -> None:
+    previous_datagen = json.loads(json.dumps(
+        (document.get("verification_runs") or {}).get("datagen") or {}
+    ))
+    previous_determinism = json.loads(json.dumps(
+        document.get("data_generation_determinism") or {}
+    ))
+    refresh_measured_metrics(document, context)
+    snapshot = _context_value(
+        context,
+        "tooling_snapshot",
+        current_snapshot,
+    )
+    current_datagen_hash = snapshot["trees"]["datagen_generated"]["sha256"]
+    reuse_datagen = (
+        previous_datagen.get("result") == "PASS"
+        and previous_datagen.get("runs") == 2
+        and previous_datagen.get("run_1_tree_sha256")
+        == current_datagen_hash
+        and previous_datagen.get("run_2_tree_sha256")
+        == current_datagen_hash
+        and previous_determinism.get("result") == "PASS"
+    )
+    document["schema_version"] = max(int(document.get("schema_version") or 1), 7)
     document["verified_on"] = datetime.now(timezone.utc).date().isoformat()
     document["status"] = "PENDING_JAVA_FINAL_VERIFICATION"
     document["tooling_snapshot"] = snapshot
-    document["artifact_sha256"] = required_artifact_hashes(snapshot)
+    document["artifact_sha256"] = _context_value(
+        context,
+        "artifact_hashes",
+        lambda: required_artifact_hashes(snapshot),
+    )
     python_tests = document.setdefault("tests", {}).setdefault(
         "python_unit_tests", {}
     )
     python_tests["tests"] = snapshot["python_test_count"]
-    python_tests["command"] = (
-        'python -m unittest discover -s tools/tests -p "test_*.py"'
-    )
+    python_tests["command"] = "python tools/run_python_tests.py --suite closure"
     python_tests["result"] = (
         "PASS" if python_tests_passed else "NOT_RECORDED_FOR_CURRENT_SNAPSHOT"
     )
@@ -904,16 +1537,28 @@ def write_snapshot(document: dict[str, Any], python_tests_passed: bool) -> None:
     document["tests"]["production_game_tests"] = {
         "command": ".\\gradlew.bat runGameTestServer",
         "result": "NOT_RECORDED_FOR_CURRENT_SNAPSHOT",
-        "required_tests": current_game_test_count(),
+        "required_tests": _context_value(
+            context,
+            "game_test_count",
+            current_game_test_count,
+        ),
     }
-    document["data_generation_determinism"] = {
-        "command": ".\\gradlew.bat runData",
-        "runs": 0,
-        "result": "NOT_RECORDED_FOR_CURRENT_SNAPSHOT",
-    }
+    document["data_generation_determinism"] = (
+        previous_determinism
+        if reuse_datagen
+        else {
+            "command": ".\\gradlew.bat runData",
+            "runs": 0,
+            "result": "NOT_RECORDED_FOR_CURRENT_SNAPSHOT",
+        }
+    )
     document["verification_runs"] = {
         "builder": {"result": "NOT_RECORDED_FOR_CURRENT_SNAPSHOT"},
-        "datagen": {"result": "NOT_RECORDED_FOR_CURRENT_SNAPSHOT"},
+        "datagen": (
+            previous_datagen
+            if reuse_datagen
+            else {"result": "NOT_RECORDED_FOR_CURRENT_SNAPSHOT"}
+        ),
         "java": {"result": "NOT_RECORDED_FOR_CURRENT_SNAPSHOT"},
         "gametest": {"result": "NOT_RECORDED_FOR_CURRENT_SNAPSHOT"},
         "python": {
@@ -943,18 +1588,25 @@ def _write_report(document: dict[str, Any]) -> None:
     )
 
 
-def _current_pending_errors(document: dict[str, Any]) -> list[str]:
+def _current_pending_errors(
+    document: dict[str, Any],
+    context: ValidationContext | None = None,
+) -> list[str]:
     if document.get("status") != "PENDING_JAVA_FINAL_VERIFICATION":
         return ["verification results can only be recorded on a pending snapshot"]
-    return validate_report_document(document, current_snapshot())
+    return validate_report_document(
+        document,
+        context if context is not None else current_snapshot(),
+    )
 
 
 def record_builder(
     document: dict[str, Any],
     elapsed_ms: float,
     extruder_replay: str,
+    context: ValidationContext | None = None,
 ) -> list[str]:
-    errors = _current_pending_errors(document)
+    errors = _current_pending_errors(document, context)
     if elapsed_ms <= 0:
         errors.append("builder elapsed time must be positive")
     if extruder_replay not in {"PASS", "SKIP"}:
@@ -965,14 +1617,26 @@ def record_builder(
     document["verification_runs"]["builder"] = {
         "result": "PASS",
         "commands": [
+            "python tools/import_gt6_oredict.py --check --reference-only",
+            "python tools/compare_gt6_recipes.py --check --reference-only",
             "python tools/build_component_rules.py --check",
+            "python tools/build_gt6_ore_chain.py --check",
+            "python tools/build_gt6_ore_chain_closure.py --check",
+            "python tools/build_gt6_material_form_gate.py --check",
             "python tools/build_t4_tool_readiness.py --check",
+            "python tools/build_t5_chemical_readiness.py --check",
+            "python tools/build_t5_chemical_recipes.py --check",
             "python tools/build_t5_distillery_projection.py --check",
             "python tools/build_machine_crafting_readiness.py --check",
             "python tools/build_t6_electrical_readiness.py --check",
             "python tools/build_t7_material_tag_readiness.py --check",
-            "python tools/build_t5_chemical_readiness.py --check",
-            "python tools/build_t5_chemical_recipes.py --check",
+            "python tools/build_t8_pipe_readiness.py --check",
+            "python tools/apply_t8_pipe_metadata.py --check",
+            "python tools/build_worldgen_catalog.py --check",
+            "python tools/build_gt6_veins.py --check",
+            "python tools/build_t10_preflight_projection.py --check",
+            "python tools/build_t10_container_readiness.py --check",
+            "python tools/apply_t10_form_flags.py --check",
         ],
         "elapsed_ms": round(elapsed_ms, 3),
         "compact_evidence_result": "PASS",
@@ -981,8 +1645,11 @@ def record_builder(
         "t55_readiness_result": "PASS",
         "t6_readiness_result": "PASS",
         "t7_readiness_result": "PASS",
+        "t8_readiness_result": "PASS",
+        "t10_readiness_result": "PASS",
+        "worldgen_catalog_result": "PASS",
         "extruder_full_replay": {
-            "command": "python tools/gt6_extruder_templates.py --verify",
+            "command": "python tools/run_python_tests.py --suite source-replay",
             "result": extruder_replay,
             "full_replay_executed": replay_executed,
             "reason": (
@@ -1002,9 +1669,14 @@ def record_datagen(
     run_2_hash: str,
     run_1_elapsed_seconds: float,
     run_2_elapsed_seconds: float,
+    context: ValidationContext | None = None,
 ) -> list[str]:
-    errors = _current_pending_errors(document)
-    current_hash = current_tree_digests()["datagen_generated"]["sha256"]
+    errors = _current_pending_errors(document, context)
+    current_hash = _context_value(
+        context,
+        "tree_digests",
+        current_tree_digests,
+    )["datagen_generated"]["sha256"]
     if run_1_hash != run_2_hash or run_2_hash != current_hash:
         errors.append("datagen tree hashes do not prove a drift-free second run")
     if run_1_elapsed_seconds <= 0 or run_2_elapsed_seconds <= 0:
@@ -1047,12 +1719,20 @@ def _expansion_elapsed_from_test_xml() -> int:
     return values[0]
 
 
-def record_java(document: dict[str, Any], elapsed_seconds: float) -> list[str]:
-    errors = _current_pending_errors(document)
+def record_java(
+    document: dict[str, Any],
+    elapsed_seconds: float,
+    context: ValidationContext | None = None,
+) -> list[str]:
+    errors = _current_pending_errors(document, context)
     if elapsed_seconds <= 0:
         errors.append("Java test elapsed time must be positive")
     try:
-        metrics = current_java_test_metrics()
+        metrics = _context_value(
+            context,
+            "java_test_metrics",
+            current_java_test_metrics,
+        )
         expansion_ms = _expansion_elapsed_from_test_xml()
     except ValueError as exc:
         errors.append(str(exc))
@@ -1120,8 +1800,9 @@ def record_gametest(
     document: dict[str, Any],
     log_path: Path,
     elapsed_seconds: float,
+    context: ValidationContext | None = None,
 ) -> list[str]:
-    errors = _current_pending_errors(document)
+    errors = _current_pending_errors(document, context)
     resolved_log_path = (
         log_path if log_path.is_absolute() else ROOT / log_path
     ).resolve()
@@ -1132,7 +1813,11 @@ def record_gametest(
     except OSError as exc:
         errors.append(f"cannot read GameTest evidence log: {exc}")
         text = ""
-    expected = current_game_test_count()
+    expected = _context_value(
+        context,
+        "game_test_count",
+        current_game_test_count,
+    )
     summary = re.search(r"All (\d+) required tests passed", text)
     if not summary or int(summary.group(1)) != expected:
         errors.append(
@@ -1182,13 +1867,21 @@ def record_gametest(
     return []
 
 
-def record_python(document: dict[str, Any], elapsed_seconds: float) -> list[str]:
-    errors = _current_pending_errors(document)
+def record_python(
+    document: dict[str, Any],
+    elapsed_seconds: float,
+    context: ValidationContext | None = None,
+) -> list[str]:
+    errors = _current_pending_errors(document, context)
     if elapsed_seconds <= 0:
         errors.append("Python test elapsed time must be positive")
     if errors:
         return errors
-    count = current_python_test_count()
+    count = _context_value(
+        context,
+        "tooling_snapshot",
+        current_snapshot,
+    )["python_test_count"]
     python = document["tests"]["python_unit_tests"]
     python.update({
         "tests": count,
@@ -1206,15 +1899,25 @@ def record_python(document: dict[str, Any], elapsed_seconds: float) -> list[str]
     return []
 
 
-def mark_ready(document: dict[str, Any]) -> list[str]:
-    snapshot = current_snapshot()
+def mark_ready(
+    document: dict[str, Any],
+    context: ValidationContext | None = None,
+) -> list[str]:
+    snapshot = _context_value(
+        context,
+        "tooling_snapshot",
+        current_snapshot,
+    )
     candidate = json.loads(json.dumps(document))
     candidate["status"] = "READY"
     candidate["ready_binding"] = {
         "tooling_snapshot_sha256": snapshot["snapshot_sha256"],
         "marked_after_all_verification_at": datetime.now(timezone.utc).isoformat(),
     }
-    errors = validate_report_document(candidate, snapshot)
+    errors = validate_report_document(
+        candidate,
+        context if context is not None else snapshot,
+    )
     if errors:
         return errors
     _write_report(candidate)
@@ -1261,8 +1964,9 @@ def main() -> int:
     if args.python_tests_passed and not args.write_tooling_snapshot:
         parser.error("--python-tests-passed requires --write-tooling-snapshot")
     document = json.loads(REPORT.read_text(encoding="utf-8"))
+    context = build_validation_context()
     if args.write_tooling_snapshot:
-        write_snapshot(document, args.python_tests_passed)
+        write_snapshot(document, args.python_tests_passed, context)
         print(f"Wrote pending tooling snapshot to {REPORT}")
         return 0
     if args.mark_builder_passed:
@@ -1272,7 +1976,10 @@ def main() -> int:
                 "--extruder-replay-result"
             )
         errors = record_builder(
-            document, args.builder_elapsed_ms, args.extruder_replay_result
+            document,
+            args.builder_elapsed_ms,
+            args.extruder_replay_result,
+            context,
         )
     elif args.mark_datagen_passed:
         required = (
@@ -1283,11 +1990,11 @@ def main() -> int:
         )
         if any(value is None for value in required):
             parser.error("--mark-datagen-passed requires both hashes and elapsed times")
-        errors = record_datagen(document, *required)
+        errors = record_datagen(document, *required, context)
     elif args.mark_java_passed:
         if args.java_elapsed_seconds is None:
             parser.error("--mark-java-passed requires --java-elapsed-seconds")
-        errors = record_java(document, args.java_elapsed_seconds)
+        errors = record_java(document, args.java_elapsed_seconds, context)
     elif args.mark_gametest_passed:
         if args.gametest_log is None or args.gametest_elapsed_seconds is None:
             parser.error(
@@ -1297,15 +2004,16 @@ def main() -> int:
             document,
             args.gametest_log,
             args.gametest_elapsed_seconds,
+            context,
         )
     elif args.mark_python_passed:
         if args.python_elapsed_seconds is None:
             parser.error("--mark-python-passed requires --python-elapsed-seconds")
-        errors = record_python(document, args.python_elapsed_seconds)
+        errors = record_python(document, args.python_elapsed_seconds, context)
     elif args.mark_ready_after_java or args.mark_ready:
-        errors = mark_ready(document)
+        errors = mark_ready(document, context)
     else:
-        errors = validate_report_document(document, current_snapshot())
+        errors = validate_report_document(document, context)
     if errors:
         print(
             "Full verification report validation failed:\n"

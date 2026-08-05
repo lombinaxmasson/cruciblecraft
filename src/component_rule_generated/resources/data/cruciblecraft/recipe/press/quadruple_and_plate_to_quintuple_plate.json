@@ -1,4 +1,7 @@
 {
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", quintuple_plate)"
+  ],
   "duration": "260 * (144 * prefix_units(quintuple_plate) / gcd(target_units(working) * 720, 144 * prefix_units(quintuple_plate)))",
   "eut": "64",
   "item_inputs": [
