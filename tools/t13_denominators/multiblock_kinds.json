@@ -1,0 +1,1626 @@
+{
+  "canonical_kinds": [
+    {
+      "canonical_id": "autoclave",
+      "canonical_rule_id": "multiblock-canonical-autoclave",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-autoclave",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntityAutoclave is a concrete processing controller.",
+      "raw_members": [
+        "MultiTileEntityAutoclave"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "No autoclave multiblock batch is selected through T19."
+    },
+    {
+      "canonical_id": "bath",
+      "canonical_rule_id": "multiblock-canonical-bath",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-bath",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntityBath is a concrete processing controller.",
+      "raw_members": [
+        "MultiTileEntityBath"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "No bath multiblock batch is selected through T19."
+    },
+    {
+      "canonical_id": "bedrock_drill",
+      "canonical_rule_id": "multiblock-canonical-bedrock-drill",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-bedrock-drill",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntityBedrockDrill is a concrete world-interacting controller.",
+      "raw_members": [
+        "MultiTileEntityBedrockDrill"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Bedrock world interaction is outside the third-stage selected families."
+    },
+    {
+      "canonical_id": "centrifuge",
+      "canonical_rule_id": "multiblock-canonical-centrifuge",
+      "cc_behavior": null,
+      "cc_multiblock": "large_centrifuge",
+      "classification_rule_id": "multiblock-map-centrifuge",
+      "deferred": null,
+      "disposition": "in_scope",
+      "implementation_status": "implemented",
+      "normalization_reason": "MultiTileEntityCentrifuge is a concrete processing controller.",
+      "raw_members": [
+        "MultiTileEntityCentrifuge"
+      ],
+      "roadmap_bucket": "existing_cc",
+      "scope_reason": "CC Large Centrifuge maps to the GT6 multiblock centrifuge controller kind."
+    },
+    {
+      "canonical_id": "coagulator",
+      "canonical_rule_id": "multiblock-canonical-coagulator",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-coagulator",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntityCoagulator is a concrete processing controller.",
+      "raw_members": [
+        "MultiTileEntityCoagulator"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "No coagulator multiblock batch is selected through T19."
+    },
+    {
+      "canonical_id": "coke_oven",
+      "canonical_rule_id": "multiblock-canonical-coke-oven",
+      "cc_behavior": null,
+      "cc_multiblock": "coke_oven",
+      "classification_rule_id": "multiblock-map-coke-oven",
+      "deferred": null,
+      "disposition": "in_scope",
+      "implementation_status": "implemented",
+      "normalization_reason": "MultiTileEntityCokeOven is a concrete processing controller.",
+      "raw_members": [
+        "MultiTileEntityCokeOven"
+      ],
+      "roadmap_bucket": "existing_cc",
+      "scope_reason": "CC has a source-mapped Coke Oven JSON structure and controller."
+    },
+    {
+      "canonical_id": "crucible",
+      "canonical_rule_id": "multiblock-canonical-crucible",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-crucible",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntityCrucible is a concrete thermal processing controller.",
+      "raw_members": [
+        "MultiTileEntityCrucible"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "No large crucible batch is selected through T19."
+    },
+    {
+      "canonical_id": "crusher",
+      "canonical_rule_id": "multiblock-canonical-crusher",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-crusher",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntityCrusher is a concrete processing controller.",
+      "raw_members": [
+        "MultiTileEntityCrusher"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "No crusher multiblock batch is selected through T19."
+    },
+    {
+      "canonical_id": "cryo_distillation_tower",
+      "canonical_rule_id": "multiblock-canonical-cryo-tower",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-cryo-tower",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "The cryogenic tower has distinct process and structure behavior.",
+      "raw_members": [
+        "MultiTileEntityCryoDistillationTower"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Cryogenic distillation is outside the selected third-stage families."
+    },
+    {
+      "canonical_id": "distillation_tower",
+      "canonical_rule_id": "multiblock-canonical-distillation-tower",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-distillation-tower",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "The standard distillation tower is a concrete processing controller.",
+      "raw_members": [
+        "MultiTileEntityDistillationTower"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "No distillation tower multiblock batch is selected through T19."
+    },
+    {
+      "canonical_id": "electrolyzer",
+      "canonical_rule_id": "multiblock-canonical-electrolyzer",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-electrolyzer",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntityElectrolyzer is a concrete processing controller.",
+      "raw_members": [
+        "MultiTileEntityElectrolyzer"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "No electrolyzer multiblock batch is selected through T19."
+    },
+    {
+      "canonical_id": "fermenter",
+      "canonical_rule_id": "multiblock-canonical-fermenter",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-fermenter",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntityFermenter is a concrete processing controller.",
+      "raw_members": [
+        "MultiTileEntityFermenter"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "No fermenter multiblock batch is selected through T19."
+    },
+    {
+      "canonical_id": "fusion_reactor",
+      "canonical_rule_id": "multiblock-canonical-fusion-reactor",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-fusion",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntityFusionReactor is a concrete high-energy controller.",
+      "raw_members": [
+        "MultiTileEntityFusionReactor"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Fusion is explicitly beyond the third-stage energy scope."
+    },
+    {
+      "canonical_id": "implosion_compressor",
+      "canonical_rule_id": "multiblock-canonical-implosion-compressor",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-implosion",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntityImplosionCompressor is a concrete processing controller.",
+      "raw_members": [
+        "MultiTileEntityImplosionCompressor"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "No implosion compressor batch is selected through T19."
+    },
+    {
+      "canonical_id": "large_boiler",
+      "canonical_rule_id": "multiblock-canonical-large-boiler",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-t18-large-boiler",
+      "deferred": {
+        "owner": "T18",
+        "reason": "The source controller is selected for the third-stage energy-chain family but T13 adds no runtime.",
+        "recheck_point": "T18 multiblock energy-chain implementation gate.",
+        "replacement_condition": "T18 supplies the exact source-backed structure, energy identities, conservation, overload and exhaust transaction."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "third_stage_deferred",
+      "normalization_reason": "MultiTileEntityLargeBoiler is a concrete heat-to-steam controller.",
+      "raw_members": [
+        "MultiTileEntityLargeBoiler"
+      ],
+      "roadmap_bucket": "T18",
+      "scope_reason": "Large Boiler belongs to the T18 steam chain."
+    },
+    {
+      "canonical_id": "large_dynamo",
+      "canonical_rule_id": "multiblock-canonical-large-dynamo",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-t18-large-dynamo",
+      "deferred": {
+        "owner": "T18",
+        "reason": "The source controller is selected for the third-stage energy-chain family but T13 adds no runtime.",
+        "recheck_point": "T18 multiblock energy-chain implementation gate.",
+        "replacement_condition": "T18 supplies the exact source-backed structure, energy identities, conservation, overload and exhaust transaction."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "third_stage_deferred",
+      "normalization_reason": "MultiTileEntityLargeDynamo is a concrete energy conversion controller.",
+      "raw_members": [
+        "MultiTileEntityLargeDynamo"
+      ],
+      "roadmap_bucket": "T18",
+      "scope_reason": "Large Dynamo belongs to the T18 RU-to-EU chain."
+    },
+    {
+      "canonical_id": "large_heat_exchanger",
+      "canonical_rule_id": "multiblock-canonical-large-heat-exchanger",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-t18-large-heat-exchanger",
+      "deferred": {
+        "owner": "T18",
+        "reason": "The source controller is selected for the third-stage energy-chain family but T13 adds no runtime.",
+        "recheck_point": "T18 multiblock energy-chain implementation gate.",
+        "replacement_condition": "T18 supplies the exact source-backed structure, energy identities, conservation, overload and exhaust transaction."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "third_stage_deferred",
+      "normalization_reason": "MultiTileEntityLargeHeatExchanger is a concrete thermal conversion controller.",
+      "raw_members": [
+        "MultiTileEntityLargeHeatExchanger"
+      ],
+      "roadmap_bucket": "T18",
+      "scope_reason": "Large Heat Exchanger belongs to later T18 thermal conversion."
+    },
+    {
+      "canonical_id": "large_turbine_gas",
+      "canonical_rule_id": "multiblock-canonical-large-turbine-gas",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-t18-turbine-gas",
+      "deferred": {
+        "owner": "T18",
+        "reason": "The source controller is selected for the third-stage energy-chain family but T13 adds no runtime.",
+        "recheck_point": "T18 multiblock energy-chain implementation gate.",
+        "replacement_condition": "T18 supplies the exact source-backed structure, energy identities, conservation, overload and exhaust transaction."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "third_stage_deferred",
+      "normalization_reason": "Gas turbine fuel semantics are behaviorally distinct from steam.",
+      "raw_members": [
+        "MultiTileEntityLargeTurbineGas"
+      ],
+      "roadmap_bucket": "T18",
+      "scope_reason": "Gas turbine conversion belongs to the T18 fuel/energy chain."
+    },
+    {
+      "canonical_id": "large_turbine_steam",
+      "canonical_rule_id": "multiblock-canonical-large-turbine-steam",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-t18-turbine-steam",
+      "deferred": {
+        "owner": "T18",
+        "reason": "The source controller is selected for the third-stage energy-chain family but T13 adds no runtime.",
+        "recheck_point": "T18 multiblock energy-chain implementation gate.",
+        "replacement_condition": "T18 supplies the exact source-backed structure, energy identities, conservation, overload and exhaust transaction."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "third_stage_deferred",
+      "normalization_reason": "Steam turbine fluid semantics are behaviorally distinct from gas.",
+      "raw_members": [
+        "MultiTileEntityLargeTurbineSteam"
+      ],
+      "roadmap_bucket": "T18",
+      "scope_reason": "Steam turbine conversion belongs to the T18 steam/energy chain."
+    },
+    {
+      "canonical_id": "lightning_rod",
+      "canonical_rule_id": "multiblock-canonical-lightning-rod",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-lightning",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntityLightningRod is a concrete world-energy controller.",
+      "raw_members": [
+        "MultiTileEntityLightningRod"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "World lightning collection is outside the selected third-stage chains."
+    },
+    {
+      "canonical_id": "logistics_core",
+      "canonical_rule_id": "multiblock-canonical-logistics-core",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-logistics-core",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntityLogisticsCore is a concrete logistics-network controller.",
+      "raw_members": [
+        "MultiTileEntityLogisticsCore"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "GT6 logistics-core runtime is outside T19 adjacent-pipe automation."
+    },
+    {
+      "canonical_id": "matter_fabricator",
+      "canonical_rule_id": "multiblock-canonical-matter-fabricator",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-matter-fabricator",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntityMatterFabricator is a concrete high-energy processing controller.",
+      "raw_members": [
+        "MultiTileEntityMatterFabricator"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Matter fabrication is outside the selected third-stage families."
+    },
+    {
+      "canonical_id": "mixer",
+      "canonical_rule_id": "multiblock-canonical-mixer",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-mixer",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntityMixer is a concrete processing controller.",
+      "raw_members": [
+        "MultiTileEntityMixer"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "No mixer multiblock batch is selected through T19."
+    },
+    {
+      "canonical_id": "oven",
+      "canonical_rule_id": "multiblock-canonical-oven",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-oven",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntityOven is a concrete thermal processing controller.",
+      "raw_members": [
+        "MultiTileEntityOven"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "No oven multiblock batch is selected through T19."
+    },
+    {
+      "canonical_id": "shredder",
+      "canonical_rule_id": "multiblock-canonical-shredder",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-shredder",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntityShredder is a concrete processing controller.",
+      "raw_members": [
+        "MultiTileEntityShredder"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "No shredder multiblock batch is selected through T19."
+    },
+    {
+      "canonical_id": "sluice",
+      "canonical_rule_id": "multiblock-canonical-sluice",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-sluice",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntitySluice is a concrete processing controller.",
+      "raw_members": [
+        "MultiTileEntitySluice"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "No sluice multiblock batch is selected through T19."
+    },
+    {
+      "canonical_id": "squeezer",
+      "canonical_rule_id": "multiblock-canonical-squeezer",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-squeezer",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntitySqueezer is a concrete processing controller.",
+      "raw_members": [
+        "MultiTileEntitySqueezer"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "No squeezer multiblock batch is selected through T19."
+    },
+    {
+      "canonical_id": "tank_3x3x3",
+      "canonical_rule_id": "multiblock-collapse-tank-3-material",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-tank-3",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "The metal and wood classes are material variants of one 3x3x3 tank controller.",
+      "raw_members": [
+        "MultiTileEntityTank3x3x3Metal",
+        "MultiTileEntityTank3x3x3Wood"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Generic multiblock tanks are outside the selected third-stage structures."
+    },
+    {
+      "canonical_id": "tank_5x5x5_metal",
+      "canonical_rule_id": "multiblock-canonical-tank-5-metal",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-tank-5",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "The fixed tree contains one concrete 5x5x5 tank controller variant.",
+      "raw_members": [
+        "MultiTileEntityTank5x5x5Metal"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "Generic multiblock tanks are outside the selected third-stage structures."
+    },
+    {
+      "canonical_id": "von_da_graagg",
+      "canonical_rule_id": "multiblock-canonical-von-da-graagg",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "multiblock-post-von-da-graagg",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "post_t19",
+      "normalization_reason": "MultiTileEntityVonDaGraagg is a concrete controller with unique behavior.",
+      "raw_members": [
+        "MultiTileEntityVonDaGraagg"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "This specialized controller has no selected batch through T19."
+    }
+  ],
+  "counts": {
+    "canonical": 30,
+    "classifications": {
+      "deferred_with_reason": 28,
+      "in_scope": 2
+    },
+    "classified": 30,
+    "excluded": 13,
+    "implementation_statuses": {
+      "implemented": 2,
+      "post_t19": 23,
+      "third_stage_deferred": 5
+    },
+    "raw_classes": 44,
+    "raw_files": 44,
+    "unclassified": 0
+  },
+  "declared_transformations": [
+    {
+      "canonical_id": "tank_3x3x3",
+      "id": "multiblock-collapse-material-tank-3x3x3",
+      "raw_members": [
+        "MultiTileEntityTank3x3x3Metal",
+        "MultiTileEntityTank3x3x3Wood"
+      ],
+      "source_evidence": "Both concrete wrappers inherit MultiTileEntityTank3x3x3 and introduce no independent controller transaction.",
+      "statement": "Metal and wood select casing/material properties on one inherited 3x3x3 tank behavior.",
+      "variant_dimensions": [
+        "material"
+      ]
+    }
+  ],
+  "exclusions": [
+    {
+      "abstract": true,
+      "declaration": "public interface IMultiBlockEnergy extends ITileEntityMultiBlockController {",
+      "declaration_kind": "interface",
+      "exclusion_kind": "interface",
+      "normalized_row_key": "IMultiBlockEnergy",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-energy-interface",
+      "rule_reason": "IMultiBlockEnergy defines a controller energy contract and is not a controller kind.",
+      "source_blob": "96d6fc5f0b4b2666da099dbb1477ca36022649c2",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/IMultiBlockEnergy.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "IMultiBlockEnergy",
+      "source_symbol_or_extraction_key": "IMultiBlockEnergy"
+    },
+    {
+      "abstract": true,
+      "declaration": "public interface IMultiBlockEnergyDataCapacitor extends ITileEntityMultiBlockController {",
+      "declaration_kind": "interface",
+      "exclusion_kind": "interface",
+      "normalized_row_key": "IMultiBlockEnergyDataCapacitor",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-energy-data-interface",
+      "rule_reason": "IMultiBlockEnergyDataCapacitor is a data-capacitor contract rather than a controller kind.",
+      "source_blob": "d5762ad1c7b64c686c1f2496d752f490c2d3b1f6",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/IMultiBlockEnergyDataCapacitor.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "IMultiBlockEnergyDataCapacitor",
+      "source_symbol_or_extraction_key": "IMultiBlockEnergyDataCapacitor"
+    },
+    {
+      "abstract": true,
+      "declaration": "public interface IMultiBlockFluidHandler extends ITileEntityMultiBlockController {",
+      "declaration_kind": "interface",
+      "exclusion_kind": "interface",
+      "normalized_row_key": "IMultiBlockFluidHandler",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-fluid-interface",
+      "rule_reason": "IMultiBlockFluidHandler is a shared fluid contract rather than a controller kind.",
+      "source_blob": "1a8950289e7c5f221a0cb6a8aa9384c527d2ba9c",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/IMultiBlockFluidHandler.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "IMultiBlockFluidHandler",
+      "source_symbol_or_extraction_key": "IMultiBlockFluidHandler"
+    },
+    {
+      "abstract": true,
+      "declaration": "public interface IMultiBlockInventory extends ITileEntityMultiBlockController {",
+      "declaration_kind": "interface",
+      "exclusion_kind": "interface",
+      "normalized_row_key": "IMultiBlockInventory",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-inventory-interface",
+      "rule_reason": "IMultiBlockInventory is a shared inventory contract rather than a controller kind.",
+      "source_blob": "440cb36b1ab40c0389edc144668208182f9fff06",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/IMultiBlockInventory.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "IMultiBlockInventory",
+      "source_symbol_or_extraction_key": "IMultiBlockInventory"
+    },
+    {
+      "abstract": true,
+      "declaration": "public interface ITileEntityMultiBlockController extends ITileEntityUnloadable, IHasWorldAndCoords {",
+      "declaration_kind": "interface",
+      "exclusion_kind": "interface",
+      "normalized_row_key": "ITileEntityMultiBlockController",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-controller-interface",
+      "rule_reason": "ITileEntityMultiBlockController defines controller/part coordination and is not concrete.",
+      "source_blob": "4e0f4f48df3d7f33018ae5060fdf2656e9521dbe",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/ITileEntityMultiBlockController.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "ITileEntityMultiBlockController",
+      "source_symbol_or_extraction_key": "ITileEntityMultiBlockController"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class MultiTileEntityLargeTurbine extends TileEntityBase11MultiBlockConverter implements IMultiBlockFluidHandler, IFluidHandler, ITileEntitySwitchableOnOff {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "MultiTileEntityLargeTurbine",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-large-turbine-base",
+      "rule_reason": "MultiTileEntityLargeTurbine is the abstract shared turbine controller base.",
+      "source_blob": "0150108ad84e084d12d8f9dfa6fd8e35f1a15220",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeTurbine.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityLargeTurbine",
+      "source_symbol_or_extraction_key": "MultiTileEntityLargeTurbine"
+    },
+    {
+      "abstract": false,
+      "declaration": "public class MultiTileEntityMultiBlockPart extends TileEntityBase05Paintable implements ITileEntityEnergy, ITileEntityCrucible, ITileEntityLogistics, IMTE_OnWalkOver, ITileEntityTemperature, ITileEntityGibbl, ITileEntityProgress, ITileEntityWeight, ITileEntityTapAccessible, ITileEntityFunnelAccessible, ITileEntityEnergyDataCapacitor, ITileEntityAdjacentInventoryUpdatable, IFluidHandler, IMTE_OnBlockAdded, IMTE_BreakBlock, IMTE_AddToolTips, ITileEntityRunningSuccessfully, ITileEntitySwitchableMode, ITileEntitySwitchableOnOff {",
+      "declaration_kind": "class",
+      "exclusion_kind": "part_or_port",
+      "normalized_row_key": "MultiTileEntityMultiBlockPart",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-part",
+      "rule_reason": "MultiTileEntityMultiBlockPart is shared structure/port infrastructure, not a controller.",
+      "source_blob": "1fd9e465db9615a87854de0f75ba818e305da5cd",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/MultiTileEntityMultiBlockPart.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityMultiBlockPart",
+      "source_symbol_or_extraction_key": "MultiTileEntityMultiBlockPart"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class MultiTileEntityTank extends TileEntityBase10MultiBlockBase implements IMultiBlockFluidHandler, IFluidHandler, ITileEntityFunnelAccessible, ITileEntityTapAccessible {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "MultiTileEntityTank",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-tank-base",
+      "rule_reason": "MultiTileEntityTank is the abstract shared fluid tank controller base.",
+      "source_blob": "cc6adb0621ebe4e7fda626afa8112692e2734b60",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityTank",
+      "source_symbol_or_extraction_key": "MultiTileEntityTank"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class MultiTileEntityTank3x3x3 extends MultiTileEntityTank {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "MultiTileEntityTank3x3x3",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-tank-3-base",
+      "rule_reason": "MultiTileEntityTank3x3x3 is the abstract shared 3x3x3 tank geometry.",
+      "source_blob": "4b920717e1f81c5508b2ed7091e1b26f4af95b24",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank3x3x3.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityTank3x3x3",
+      "source_symbol_or_extraction_key": "MultiTileEntityTank3x3x3"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class MultiTileEntityTank5x5x5 extends MultiTileEntityTank {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "MultiTileEntityTank5x5x5",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-tank-5-base",
+      "rule_reason": "MultiTileEntityTank5x5x5 is the abstract shared 5x5x5 tank geometry.",
+      "source_blob": "888a1533b7f95d34197d43ada61ff187b756180f",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank5x5x5.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityTank5x5x5",
+      "source_symbol_or_extraction_key": "MultiTileEntityTank5x5x5"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class TileEntityBase10MultiBlockBase extends TileEntityBase09FacingSingle implements ITileEntityMultiBlockController {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "TileEntityBase10MultiBlockBase",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-base",
+      "rule_reason": "TileEntityBase10MultiBlockBase supplies shared validation and part routing.",
+      "source_blob": "edc5b7c80f71892ff78900e342a1d3ed83a1cc18",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/TileEntityBase10MultiBlockBase.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "TileEntityBase10MultiBlockBase",
+      "source_symbol_or_extraction_key": "TileEntityBase10MultiBlockBase"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class TileEntityBase10MultiBlockMachine extends MultiTileEntityBasicMachine implements IMultiBlockFluidHandler, IMultiBlockInventory, IMultiBlockEnergy {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "TileEntityBase10MultiBlockMachine",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-machine-base",
+      "rule_reason": "TileEntityBase10MultiBlockMachine supplies shared recipe-machine controller plumbing.",
+      "source_blob": "0d6bd7146846e5d71ee58a6747c36b1f87d1aad7",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/TileEntityBase10MultiBlockMachine.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "TileEntityBase10MultiBlockMachine",
+      "source_symbol_or_extraction_key": "TileEntityBase10MultiBlockMachine"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class TileEntityBase11MultiBlockConverter extends TileEntityBase10MultiBlockBase implements ITileEntityRunningActively, ITileEntityEnergy, IMultiBlockEnergy {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "TileEntityBase11MultiBlockConverter",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-converter-base",
+      "rule_reason": "TileEntityBase11MultiBlockConverter supplies shared conversion controller plumbing.",
+      "source_blob": "ae808a86ed8dcab77b06905fbec22f1b1e745eca",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/TileEntityBase11MultiBlockConverter.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "TileEntityBase11MultiBlockConverter",
+      "source_symbol_or_extraction_key": "TileEntityBase11MultiBlockConverter"
+    }
+  ],
+  "expected_path_set": {
+    "construction": "literal package path plus independently authored expected public symbol list; canonical rules are not consulted",
+    "count": 44,
+    "paths": [
+      "src/main/java/gregapi/tileentity/multiblocks/IMultiBlockEnergy.java",
+      "src/main/java/gregapi/tileentity/multiblocks/IMultiBlockEnergyDataCapacitor.java",
+      "src/main/java/gregapi/tileentity/multiblocks/IMultiBlockFluidHandler.java",
+      "src/main/java/gregapi/tileentity/multiblocks/IMultiBlockInventory.java",
+      "src/main/java/gregapi/tileentity/multiblocks/ITileEntityMultiBlockController.java",
+      "src/main/java/gregapi/tileentity/multiblocks/MultiTileEntityMultiBlockPart.java",
+      "src/main/java/gregapi/tileentity/multiblocks/TileEntityBase10MultiBlockBase.java",
+      "src/main/java/gregapi/tileentity/multiblocks/TileEntityBase10MultiBlockMachine.java",
+      "src/main/java/gregapi/tileentity/multiblocks/TileEntityBase11MultiBlockConverter.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityAutoclave.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityBath.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityBedrockDrill.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCentrifuge.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCoagulator.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCokeOven.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrucible.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrusher.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCryoDistillationTower.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityDistillationTower.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityElectrolyzer.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityFermenter.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityFusionReactor.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityImplosionCompressor.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeBoiler.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeDynamo.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeHeatExchanger.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeTurbine.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeTurbineGas.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeTurbineSteam.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLightningRod.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLogisticsCore.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityMatterFabricator.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityMixer.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityOven.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityShredder.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntitySluice.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntitySqueezer.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank3x3x3.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank3x3x3Metal.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank3x3x3Wood.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank5x5x5.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank5x5x5Metal.java",
+      "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityVonDaGraagg.java"
+    ],
+    "sha256": "72e48f6afc6c0d43aeec76a07553a64aa7a47b8cf2093b5fa525f15d85482c33"
+  },
+  "field_cardinality": {
+    "canonical_output": {
+      "canonical_id": 30,
+      "disposition": 2,
+      "implementation_status": 3,
+      "roadmap_bucket": 3
+    },
+    "raw_source": {
+      "declaration_kind": 2,
+      "source_blob": 44,
+      "source_path": 44,
+      "source_symbol": 44
+    }
+  },
+  "generation_command": "python tools/build_t13_cover_multiblock_denominators.py --refresh-source-manifest --write",
+  "identity_fields": [
+    "source_revision",
+    "source_blob",
+    "source_path",
+    "source_symbol_or_extraction_key",
+    "normalized_row_key"
+  ],
+  "raw_records": [
+    {
+      "abstract": true,
+      "declaration": "public interface IMultiBlockEnergy extends ITileEntityMultiBlockController {",
+      "declaration_kind": "interface",
+      "exclusion_kind": "interface",
+      "normalized_row_key": "IMultiBlockEnergy",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-energy-interface",
+      "rule_reason": "IMultiBlockEnergy defines a controller energy contract and is not a controller kind.",
+      "source_blob": "96d6fc5f0b4b2666da099dbb1477ca36022649c2",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/IMultiBlockEnergy.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "IMultiBlockEnergy",
+      "source_symbol_or_extraction_key": "IMultiBlockEnergy"
+    },
+    {
+      "abstract": true,
+      "declaration": "public interface IMultiBlockEnergyDataCapacitor extends ITileEntityMultiBlockController {",
+      "declaration_kind": "interface",
+      "exclusion_kind": "interface",
+      "normalized_row_key": "IMultiBlockEnergyDataCapacitor",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-energy-data-interface",
+      "rule_reason": "IMultiBlockEnergyDataCapacitor is a data-capacitor contract rather than a controller kind.",
+      "source_blob": "d5762ad1c7b64c686c1f2496d752f490c2d3b1f6",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/IMultiBlockEnergyDataCapacitor.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "IMultiBlockEnergyDataCapacitor",
+      "source_symbol_or_extraction_key": "IMultiBlockEnergyDataCapacitor"
+    },
+    {
+      "abstract": true,
+      "declaration": "public interface IMultiBlockFluidHandler extends ITileEntityMultiBlockController {",
+      "declaration_kind": "interface",
+      "exclusion_kind": "interface",
+      "normalized_row_key": "IMultiBlockFluidHandler",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-fluid-interface",
+      "rule_reason": "IMultiBlockFluidHandler is a shared fluid contract rather than a controller kind.",
+      "source_blob": "1a8950289e7c5f221a0cb6a8aa9384c527d2ba9c",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/IMultiBlockFluidHandler.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "IMultiBlockFluidHandler",
+      "source_symbol_or_extraction_key": "IMultiBlockFluidHandler"
+    },
+    {
+      "abstract": true,
+      "declaration": "public interface IMultiBlockInventory extends ITileEntityMultiBlockController {",
+      "declaration_kind": "interface",
+      "exclusion_kind": "interface",
+      "normalized_row_key": "IMultiBlockInventory",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-inventory-interface",
+      "rule_reason": "IMultiBlockInventory is a shared inventory contract rather than a controller kind.",
+      "source_blob": "440cb36b1ab40c0389edc144668208182f9fff06",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/IMultiBlockInventory.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "IMultiBlockInventory",
+      "source_symbol_or_extraction_key": "IMultiBlockInventory"
+    },
+    {
+      "abstract": true,
+      "declaration": "public interface ITileEntityMultiBlockController extends ITileEntityUnloadable, IHasWorldAndCoords {",
+      "declaration_kind": "interface",
+      "exclusion_kind": "interface",
+      "normalized_row_key": "ITileEntityMultiBlockController",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-controller-interface",
+      "rule_reason": "ITileEntityMultiBlockController defines controller/part coordination and is not concrete.",
+      "source_blob": "4e0f4f48df3d7f33018ae5060fdf2656e9521dbe",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/ITileEntityMultiBlockController.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "ITileEntityMultiBlockController",
+      "source_symbol_or_extraction_key": "ITileEntityMultiBlockController"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "autoclave",
+      "declaration": "public class MultiTileEntityAutoclave extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityAutoclave",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-autoclave",
+      "rule_reason": "MultiTileEntityAutoclave is a concrete processing controller.",
+      "source_blob": "8ba7ecb137c1dc724899b4396372392841b7e458",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityAutoclave.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityAutoclave",
+      "source_symbol_or_extraction_key": "MultiTileEntityAutoclave"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "bath",
+      "declaration": "public class MultiTileEntityBath extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityBath",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-bath",
+      "rule_reason": "MultiTileEntityBath is a concrete processing controller.",
+      "source_blob": "8150e50500b2a306fe77c3d468f579f19af2406f",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityBath.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityBath",
+      "source_symbol_or_extraction_key": "MultiTileEntityBath"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "bedrock_drill",
+      "declaration": "public class MultiTileEntityBedrockDrill extends TileEntityBase10MultiBlockBase implements ITileEntityEnergy, ITileEntityEnergyDataCapacitor, IMultiBlockEnergy, IMultiBlockFluidHandler, IFluidHandler, ITileEntityRunningPossible {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityBedrockDrill",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-bedrock-drill",
+      "rule_reason": "MultiTileEntityBedrockDrill is a concrete world-interacting controller.",
+      "source_blob": "bb108bf6925edf493565ff1de680236e50fc610f",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityBedrockDrill.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityBedrockDrill",
+      "source_symbol_or_extraction_key": "MultiTileEntityBedrockDrill"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "centrifuge",
+      "declaration": "public class MultiTileEntityCentrifuge extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityCentrifuge",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-centrifuge",
+      "rule_reason": "MultiTileEntityCentrifuge is a concrete processing controller.",
+      "source_blob": "7ade6aaac13fbca55c52fc10c34283f525be50b7",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCentrifuge.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityCentrifuge",
+      "source_symbol_or_extraction_key": "MultiTileEntityCentrifuge"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "coagulator",
+      "declaration": "public class MultiTileEntityCoagulator extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityCoagulator",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-coagulator",
+      "rule_reason": "MultiTileEntityCoagulator is a concrete processing controller.",
+      "source_blob": "f5d28a1753b2fb2e028d1903f00bf218e02b3edd",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCoagulator.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityCoagulator",
+      "source_symbol_or_extraction_key": "MultiTileEntityCoagulator"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "coke_oven",
+      "declaration": "public class MultiTileEntityCokeOven extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityCokeOven",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-coke-oven",
+      "rule_reason": "MultiTileEntityCokeOven is a concrete processing controller.",
+      "source_blob": "5ef4dd974406161d280e2e1ab0fe16ca2d4ce031",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCokeOven.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityCokeOven",
+      "source_symbol_or_extraction_key": "MultiTileEntityCokeOven"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "crucible",
+      "declaration": "public class MultiTileEntityCrucible extends TileEntityBase10MultiBlockBase implements ITileEntityCrucible, ITileEntityEnergy, ITileEntityGibbl, ITileEntityWeight, ITileEntityTemperature, ITileEntityMold, ITileEntityServerTickPost, ITileEntityEnergyDataCapacitor, IMultiBlockEnergy, IMultiBlockInventory, IMultiBlockFluidHandler, IFluidHandler {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityCrucible",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-crucible",
+      "rule_reason": "MultiTileEntityCrucible is a concrete thermal processing controller.",
+      "source_blob": "2197f036574e96258e48e3f5b4c8f38f8a49d58f",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrucible.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityCrucible",
+      "source_symbol_or_extraction_key": "MultiTileEntityCrucible"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "crusher",
+      "declaration": "public class MultiTileEntityCrusher extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityCrusher",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-crusher",
+      "rule_reason": "MultiTileEntityCrusher is a concrete processing controller.",
+      "source_blob": "3a283001b5c6fce211ce143069d14fc11e12cb39",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrusher.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityCrusher",
+      "source_symbol_or_extraction_key": "MultiTileEntityCrusher"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "cryo_distillation_tower",
+      "declaration": "public class MultiTileEntityCryoDistillationTower extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityCryoDistillationTower",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-cryo-tower",
+      "rule_reason": "The cryogenic tower has distinct process and structure behavior.",
+      "source_blob": "161d37408f408f97ad2693b63fd6833655bee5ee",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCryoDistillationTower.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityCryoDistillationTower",
+      "source_symbol_or_extraction_key": "MultiTileEntityCryoDistillationTower"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "distillation_tower",
+      "declaration": "public class MultiTileEntityDistillationTower extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityDistillationTower",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-distillation-tower",
+      "rule_reason": "The standard distillation tower is a concrete processing controller.",
+      "source_blob": "ef12fba602c1fa5f9ec4d6ecd9bdfc506a229161",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityDistillationTower.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityDistillationTower",
+      "source_symbol_or_extraction_key": "MultiTileEntityDistillationTower"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "electrolyzer",
+      "declaration": "public class MultiTileEntityElectrolyzer extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityElectrolyzer",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-electrolyzer",
+      "rule_reason": "MultiTileEntityElectrolyzer is a concrete processing controller.",
+      "source_blob": "af834bac5bc3bc481219781274e3b38644afb794",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityElectrolyzer.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityElectrolyzer",
+      "source_symbol_or_extraction_key": "MultiTileEntityElectrolyzer"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "fermenter",
+      "declaration": "public class MultiTileEntityFermenter extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityFermenter",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-fermenter",
+      "rule_reason": "MultiTileEntityFermenter is a concrete processing controller.",
+      "source_blob": "ab54bb983025e102a3f513e50e972f6427479332",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityFermenter.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityFermenter",
+      "source_symbol_or_extraction_key": "MultiTileEntityFermenter"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "fusion_reactor",
+      "declaration": "public class MultiTileEntityFusionReactor extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityFusionReactor",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-fusion-reactor",
+      "rule_reason": "MultiTileEntityFusionReactor is a concrete high-energy controller.",
+      "source_blob": "b20a1dfb49c4bf310267f981a8a1a338ee95bedd",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityFusionReactor.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityFusionReactor",
+      "source_symbol_or_extraction_key": "MultiTileEntityFusionReactor"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "implosion_compressor",
+      "declaration": "public class MultiTileEntityImplosionCompressor extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityImplosionCompressor",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-implosion-compressor",
+      "rule_reason": "MultiTileEntityImplosionCompressor is a concrete processing controller.",
+      "source_blob": "f298e4dc3177b7ecdb5cb0d0a7db1ddf857383a1",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityImplosionCompressor.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityImplosionCompressor",
+      "source_symbol_or_extraction_key": "MultiTileEntityImplosionCompressor"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "large_boiler",
+      "declaration": "public class MultiTileEntityLargeBoiler extends TileEntityBase10MultiBlockBase implements ITileEntityEnergy, ITileEntityGibbl, ITileEntityEnergyDataCapacitor, IMultiBlockEnergy, IMultiBlockFluidHandler, IFluidHandler, IMTE_RemovedByPlayer {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityLargeBoiler",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-large-boiler",
+      "rule_reason": "MultiTileEntityLargeBoiler is a concrete heat-to-steam controller.",
+      "source_blob": "f44481f090629a1f002b1d594d327977871f6c58",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeBoiler.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityLargeBoiler",
+      "source_symbol_or_extraction_key": "MultiTileEntityLargeBoiler"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "large_dynamo",
+      "declaration": "public class MultiTileEntityLargeDynamo extends TileEntityBase11MultiBlockConverter implements ITileEntitySwitchableOnOff {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityLargeDynamo",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-large-dynamo",
+      "rule_reason": "MultiTileEntityLargeDynamo is a concrete energy conversion controller.",
+      "source_blob": "1aae1c409008d32cb14f422611ae99037c709245",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeDynamo.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityLargeDynamo",
+      "source_symbol_or_extraction_key": "MultiTileEntityLargeDynamo"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "large_heat_exchanger",
+      "declaration": "public class MultiTileEntityLargeHeatExchanger extends TileEntityBase10MultiBlockBase implements IFluidHandler, ITileEntityRunningActively, ITileEntityEnergy, IMultiBlockFluidHandler, IMultiBlockEnergy {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityLargeHeatExchanger",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-large-heat-exchanger",
+      "rule_reason": "MultiTileEntityLargeHeatExchanger is a concrete thermal conversion controller.",
+      "source_blob": "40b87cc700851d929b16b69d3a89e40a9f4d3b05",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeHeatExchanger.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityLargeHeatExchanger",
+      "source_symbol_or_extraction_key": "MultiTileEntityLargeHeatExchanger"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class MultiTileEntityLargeTurbine extends TileEntityBase11MultiBlockConverter implements IMultiBlockFluidHandler, IFluidHandler, ITileEntitySwitchableOnOff {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "MultiTileEntityLargeTurbine",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-large-turbine-base",
+      "rule_reason": "MultiTileEntityLargeTurbine is the abstract shared turbine controller base.",
+      "source_blob": "0150108ad84e084d12d8f9dfa6fd8e35f1a15220",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeTurbine.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityLargeTurbine",
+      "source_symbol_or_extraction_key": "MultiTileEntityLargeTurbine"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "large_turbine_gas",
+      "declaration": "public class MultiTileEntityLargeTurbineGas extends MultiTileEntityLargeTurbine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityLargeTurbineGas",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-large-turbine-gas",
+      "rule_reason": "Gas turbine fuel semantics are behaviorally distinct from steam.",
+      "source_blob": "7ae706e49cc75400f05502fb7248d178383db314",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeTurbineGas.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityLargeTurbineGas",
+      "source_symbol_or_extraction_key": "MultiTileEntityLargeTurbineGas"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "large_turbine_steam",
+      "declaration": "public class MultiTileEntityLargeTurbineSteam extends MultiTileEntityLargeTurbine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityLargeTurbineSteam",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-large-turbine-steam",
+      "rule_reason": "Steam turbine fluid semantics are behaviorally distinct from gas.",
+      "source_blob": "2be0fcde98d46160a0b4414ae38c0d80fbfe3894",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeTurbineSteam.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityLargeTurbineSteam",
+      "source_symbol_or_extraction_key": "MultiTileEntityLargeTurbineSteam"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "lightning_rod",
+      "declaration": "public class MultiTileEntityLightningRod extends TileEntityBase10MultiBlockBase implements ITileEntityEnergy, ITileEntityEnergyDataCapacitor, IMultiBlockEnergy {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityLightningRod",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-lightning-rod",
+      "rule_reason": "MultiTileEntityLightningRod is a concrete world-energy controller.",
+      "source_blob": "ad392883ca7730fd90122abcd1faaaed1f0da400",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLightningRod.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityLightningRod",
+      "source_symbol_or_extraction_key": "MultiTileEntityLightningRod"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "logistics_core",
+      "declaration": "public class MultiTileEntityLogisticsCore extends TileEntityBase10MultiBlockBase implements ITileEntityEnergy, ITileEntityLogistics, ITileEntityServerTickPre, ITileEntityEnergyDataCapacitor, IMultiBlockEnergy, IMultiBlockFluidHandler, IFluidHandler {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityLogisticsCore",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-logistics-core",
+      "rule_reason": "MultiTileEntityLogisticsCore is a concrete logistics-network controller.",
+      "source_blob": "2bae7ff6eeb0b661128cf32894eb04b5e45a8c4c",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLogisticsCore.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityLogisticsCore",
+      "source_symbol_or_extraction_key": "MultiTileEntityLogisticsCore"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "matter_fabricator",
+      "declaration": "public class MultiTileEntityMatterFabricator extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityMatterFabricator",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-matter-fabricator",
+      "rule_reason": "MultiTileEntityMatterFabricator is a concrete high-energy processing controller.",
+      "source_blob": "96a5dacbda5edc29e592bffa7c8597bb7e94d75c",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityMatterFabricator.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityMatterFabricator",
+      "source_symbol_or_extraction_key": "MultiTileEntityMatterFabricator"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "mixer",
+      "declaration": "public class MultiTileEntityMixer extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityMixer",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-mixer",
+      "rule_reason": "MultiTileEntityMixer is a concrete processing controller.",
+      "source_blob": "bdcaa9f62671fa185d5951abccac723bd832db2a",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityMixer.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityMixer",
+      "source_symbol_or_extraction_key": "MultiTileEntityMixer"
+    },
+    {
+      "abstract": false,
+      "declaration": "public class MultiTileEntityMultiBlockPart extends TileEntityBase05Paintable implements ITileEntityEnergy, ITileEntityCrucible, ITileEntityLogistics, IMTE_OnWalkOver, ITileEntityTemperature, ITileEntityGibbl, ITileEntityProgress, ITileEntityWeight, ITileEntityTapAccessible, ITileEntityFunnelAccessible, ITileEntityEnergyDataCapacitor, ITileEntityAdjacentInventoryUpdatable, IFluidHandler, IMTE_OnBlockAdded, IMTE_BreakBlock, IMTE_AddToolTips, ITileEntityRunningSuccessfully, ITileEntitySwitchableMode, ITileEntitySwitchableOnOff {",
+      "declaration_kind": "class",
+      "exclusion_kind": "part_or_port",
+      "normalized_row_key": "MultiTileEntityMultiBlockPart",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-part",
+      "rule_reason": "MultiTileEntityMultiBlockPart is shared structure/port infrastructure, not a controller.",
+      "source_blob": "1fd9e465db9615a87854de0f75ba818e305da5cd",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/MultiTileEntityMultiBlockPart.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityMultiBlockPart",
+      "source_symbol_or_extraction_key": "MultiTileEntityMultiBlockPart"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "oven",
+      "declaration": "public class MultiTileEntityOven extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityOven",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-oven",
+      "rule_reason": "MultiTileEntityOven is a concrete thermal processing controller.",
+      "source_blob": "79c6fe236e3ec740120cd3923d67e7261b031cd3",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityOven.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityOven",
+      "source_symbol_or_extraction_key": "MultiTileEntityOven"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "shredder",
+      "declaration": "public class MultiTileEntityShredder extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityShredder",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-shredder",
+      "rule_reason": "MultiTileEntityShredder is a concrete processing controller.",
+      "source_blob": "45eae7babe34d85aef10880b1c464d662a9fa2bf",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityShredder.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityShredder",
+      "source_symbol_or_extraction_key": "MultiTileEntityShredder"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "sluice",
+      "declaration": "public class MultiTileEntitySluice extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntitySluice",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-sluice",
+      "rule_reason": "MultiTileEntitySluice is a concrete processing controller.",
+      "source_blob": "0e581af537c7cf257f6d9f9152ea1014d91e2897",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntitySluice.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntitySluice",
+      "source_symbol_or_extraction_key": "MultiTileEntitySluice"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "squeezer",
+      "declaration": "public class MultiTileEntitySqueezer extends TileEntityBase10MultiBlockMachine {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntitySqueezer",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-squeezer",
+      "rule_reason": "MultiTileEntitySqueezer is a concrete processing controller.",
+      "source_blob": "4df394c0ca01f2d052c8cf877ecd0b7352803f46",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntitySqueezer.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntitySqueezer",
+      "source_symbol_or_extraction_key": "MultiTileEntitySqueezer"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class MultiTileEntityTank extends TileEntityBase10MultiBlockBase implements IMultiBlockFluidHandler, IFluidHandler, ITileEntityFunnelAccessible, ITileEntityTapAccessible {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "MultiTileEntityTank",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-tank-base",
+      "rule_reason": "MultiTileEntityTank is the abstract shared fluid tank controller base.",
+      "source_blob": "cc6adb0621ebe4e7fda626afa8112692e2734b60",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityTank",
+      "source_symbol_or_extraction_key": "MultiTileEntityTank"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class MultiTileEntityTank3x3x3 extends MultiTileEntityTank {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "MultiTileEntityTank3x3x3",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-tank-3-base",
+      "rule_reason": "MultiTileEntityTank3x3x3 is the abstract shared 3x3x3 tank geometry.",
+      "source_blob": "4b920717e1f81c5508b2ed7091e1b26f4af95b24",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank3x3x3.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityTank3x3x3",
+      "source_symbol_or_extraction_key": "MultiTileEntityTank3x3x3"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "tank_3x3x3",
+      "declaration": "public class MultiTileEntityTank3x3x3Metal extends MultiTileEntityTank3x3x3 {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityTank3x3x3Metal",
+      "partition": "canonical",
+      "rule_id": "multiblock-collapse-tank-3-material",
+      "rule_reason": "The metal and wood classes are material variants of one 3x3x3 tank controller.",
+      "source_blob": "2a11685b1f00a6a9e0e08db89a95dd617a3d5a2e",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank3x3x3Metal.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityTank3x3x3Metal",
+      "source_symbol_or_extraction_key": "MultiTileEntityTank3x3x3Metal"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "tank_3x3x3",
+      "declaration": "public class MultiTileEntityTank3x3x3Wood extends MultiTileEntityTank3x3x3 {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityTank3x3x3Wood",
+      "partition": "canonical",
+      "rule_id": "multiblock-collapse-tank-3-material",
+      "rule_reason": "The metal and wood classes are material variants of one 3x3x3 tank controller.",
+      "source_blob": "4b0bd6cd280c1d4a7c5a80efe4ea5f4525736eee",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank3x3x3Wood.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityTank3x3x3Wood",
+      "source_symbol_or_extraction_key": "MultiTileEntityTank3x3x3Wood"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class MultiTileEntityTank5x5x5 extends MultiTileEntityTank {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "MultiTileEntityTank5x5x5",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-tank-5-base",
+      "rule_reason": "MultiTileEntityTank5x5x5 is the abstract shared 5x5x5 tank geometry.",
+      "source_blob": "888a1533b7f95d34197d43ada61ff187b756180f",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank5x5x5.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityTank5x5x5",
+      "source_symbol_or_extraction_key": "MultiTileEntityTank5x5x5"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "tank_5x5x5_metal",
+      "declaration": "public class MultiTileEntityTank5x5x5Metal extends MultiTileEntityTank5x5x5 {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityTank5x5x5Metal",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-tank-5-metal",
+      "rule_reason": "The fixed tree contains one concrete 5x5x5 tank controller variant.",
+      "source_blob": "fc88429fd1dcc1dc4b1fa98b684c366720a78cad",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank5x5x5Metal.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityTank5x5x5Metal",
+      "source_symbol_or_extraction_key": "MultiTileEntityTank5x5x5Metal"
+    },
+    {
+      "abstract": false,
+      "canonical_id": "von_da_graagg",
+      "declaration": "public class MultiTileEntityVonDaGraagg extends TileEntityBase10MultiBlockBase implements ITileEntityEnergy, ITileEntityMobSpawnInhibitor, IMultiBlockEnergy, ITileEntityProgress, ITileEntityGibbl {",
+      "declaration_kind": "class",
+      "normalized_row_key": "MultiTileEntityVonDaGraagg",
+      "partition": "canonical",
+      "rule_id": "multiblock-canonical-von-da-graagg",
+      "rule_reason": "MultiTileEntityVonDaGraagg is a concrete controller with unique behavior.",
+      "source_blob": "4a71c5701a6252839b45474af87133f5ceca683a",
+      "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityVonDaGraagg.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "MultiTileEntityVonDaGraagg",
+      "source_symbol_or_extraction_key": "MultiTileEntityVonDaGraagg"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class TileEntityBase10MultiBlockBase extends TileEntityBase09FacingSingle implements ITileEntityMultiBlockController {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "TileEntityBase10MultiBlockBase",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-base",
+      "rule_reason": "TileEntityBase10MultiBlockBase supplies shared validation and part routing.",
+      "source_blob": "edc5b7c80f71892ff78900e342a1d3ed83a1cc18",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/TileEntityBase10MultiBlockBase.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "TileEntityBase10MultiBlockBase",
+      "source_symbol_or_extraction_key": "TileEntityBase10MultiBlockBase"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class TileEntityBase10MultiBlockMachine extends MultiTileEntityBasicMachine implements IMultiBlockFluidHandler, IMultiBlockInventory, IMultiBlockEnergy {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "TileEntityBase10MultiBlockMachine",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-machine-base",
+      "rule_reason": "TileEntityBase10MultiBlockMachine supplies shared recipe-machine controller plumbing.",
+      "source_blob": "0d6bd7146846e5d71ee58a6747c36b1f87d1aad7",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/TileEntityBase10MultiBlockMachine.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "TileEntityBase10MultiBlockMachine",
+      "source_symbol_or_extraction_key": "TileEntityBase10MultiBlockMachine"
+    },
+    {
+      "abstract": true,
+      "declaration": "public abstract class TileEntityBase11MultiBlockConverter extends TileEntityBase10MultiBlockBase implements ITileEntityRunningActively, ITileEntityEnergy, IMultiBlockEnergy {",
+      "declaration_kind": "class",
+      "exclusion_kind": "abstract_base",
+      "normalized_row_key": "TileEntityBase11MultiBlockConverter",
+      "partition": "excluded",
+      "rule_id": "multiblock-exclude-converter-base",
+      "rule_reason": "TileEntityBase11MultiBlockConverter supplies shared conversion controller plumbing.",
+      "source_blob": "ae808a86ed8dcab77b06905fbec22f1b1e745eca",
+      "source_path": "src/main/java/gregapi/tileentity/multiblocks/TileEntityBase11MultiBlockConverter.java",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol": "TileEntityBase11MultiBlockConverter",
+      "source_symbol_or_extraction_key": "TileEntityBase11MultiBlockConverter"
+    }
+  ],
+  "schema_version": 1,
+  "source": {
+    "category_manifest_sha256": "c4ed4fd3c7b10ceb914f0685af6aec7e97fd2cd512dce916f9a9eb7d77e29ace",
+    "repository": "https://github.com/GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "source_digest": "sha256:c4ed4fd3c7b10ceb914f0685af6aec7e97fd2cd512dce916f9a9eb7d77e29ace;git-tree-sha1:a164302f62a326208fd2076de6fb7cdb0b4602ee",
+    "source_packages": [
+      "src/main/java/gregapi/tileentity/multiblocks",
+      "src/main/java/gregtech/tileentity/multiblocks"
+    ],
+    "tree_sha1": "a164302f62a326208fd2076de6fb7cdb0b4602ee"
+  },
+  "status": "READY",
+  "table": "multiblock_kinds",
+  "uniform_audit": {
+    "block_on_undeclared_many_to_one": true,
+    "compared_fields": {
+      "canonical_output": [
+        "canonical_id",
+        "disposition",
+        "implementation_status",
+        "roadmap_bucket"
+      ],
+      "raw_source": [
+        "declaration_kind",
+        "source_blob",
+        "source_path",
+        "source_symbol"
+      ]
+    },
+    "declared_many_to_one_count": 1,
+    "open_items": [],
+    "status": "PASS",
+    "undeclared_many_to_one": [],
+    "unexplained_field_cardinality_reductions": [],
+    "uniform_statuses": []
+  }
+}

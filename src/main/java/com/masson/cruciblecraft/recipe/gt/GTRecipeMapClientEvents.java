@@ -25,7 +25,9 @@ public final class GTRecipeMapClientEvents {
         if (GTRecipeReloadDecision.onClientRecipesUpdated(
                 manager,
                 integratedServer)) {
-            GTRecipeMapLoader.reload(manager);
+            GTRecipeMapLoader.reload(
+                    manager,
+                    ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT);
         }
     }
 }

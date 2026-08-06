@@ -33,6 +33,8 @@ public final class ModFluids {
     private static volatile ChemicalRegistration chemicalRegistration =
             ChemicalRegistration.empty();
     private static volatile Map<Fluid, String> materialByFluid;
+    private static volatile Map<Fluid, ChemicalFluidRegistrationGate.State>
+            chemicalStateByFluid;
 
     public static final Supplier<FluidType> CREOSOTE_TYPE = FLUID_TYPES.register(
             "creosote",
@@ -167,6 +169,8 @@ public final class ModFluids {
             return;
         }
         IdentityHashMap<Fluid, String> reverse = new IdentityHashMap<>();
+        IdentityHashMap<Fluid, ChemicalFluidRegistrationGate.State> states =
+                new IdentityHashMap<>();
         for (MoltenFluidEntry entry : moltenRegistration.entries()) {
             if (!entry.source().isBound() || !entry.flowing().isBound()) {
                 throw new IllegalStateException(
@@ -182,7 +186,10 @@ public final class ModFluids {
             }
             reverse.put(entry.source().get(), entry.materialId());
             reverse.put(entry.flowing().get(), entry.materialId());
+            states.put(entry.source().get(), entry.state());
+            states.put(entry.flowing().get(), entry.state());
         }
+        chemicalStateByFluid = java.util.Collections.unmodifiableMap(states);
         materialByFluid = java.util.Collections.unmodifiableMap(reverse);
     }
 
@@ -214,6 +221,17 @@ public final class ModFluids {
                     "Molten fluid lookup used before common setup finalized it");
         }
         return Optional.ofNullable(lookup.get(fluid)).map(MaterialCatalog::require);
+    }
+
+    public static Optional<ChemicalFluidRegistrationGate.State> chemicalState(
+            Fluid fluid) {
+        Map<Fluid, ChemicalFluidRegistrationGate.State> lookup =
+                chemicalStateByFluid;
+        if (lookup == null) {
+            throw new IllegalStateException(
+                    "Chemical fluid lookup used before common setup finalized it");
+        }
+        return Optional.ofNullable(lookup.get(fluid));
     }
 
     public static Collection<MoltenFluidEntry> moltenFluids() {

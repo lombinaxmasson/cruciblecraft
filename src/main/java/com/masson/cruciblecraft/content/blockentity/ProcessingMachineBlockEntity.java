@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Supplier;
 import java.util.function.BooleanSupplier;
 
 import com.masson.cruciblecraft.CrucibleCraft;
@@ -14,12 +15,15 @@ import com.masson.cruciblecraft.heat.HotIngotProcessing;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.machine.component.CheckpointTracker;
 import com.masson.cruciblecraft.machine.processing.AdjacentEnergyConsumer;
-import com.masson.cruciblecraft.machine.processing.ChanceOutputs;
 import com.masson.cruciblecraft.machine.processing.ChanceOutputState;
 import com.masson.cruciblecraft.machine.processing.GTRecipeFingerprint;
 import com.masson.cruciblecraft.machine.processing.LayoutAwareItemStackHandler;
+import com.masson.cruciblecraft.machine.processing.MachineExecutionPlan;
+import com.masson.cruciblecraft.machine.processing.MachineIdentityPolicy;
+import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.machine.processing.MachineEnergyBuffer;
 import com.masson.cruciblecraft.machine.processing.MachineTransaction;
+import com.masson.cruciblecraft.machine.processing.ParallelRecipeOperations;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineDisplayData;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineState;
@@ -30,6 +34,7 @@ import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeCache;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
+import com.masson.cruciblecraft.registry.ModMachineIdentityMigrations;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -57,6 +62,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         implements IEnergyHandler, MachineTransaction.ResourceAccess {
     private static final int CHECKPOINT_INTERVAL = 20;
 
+    private final MachineVariant variant;
     private final ProcessingMachineSpec spec;
     private final CheckpointTracker checkpoint = new CheckpointTracker();
     private final ProcessingRuntime runtime = new ProcessingRuntime();
@@ -71,6 +77,13 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     private IFluidHandler maintenanceFluidView;
 
     private RecipeMap.Match selectedMatch;
+    private MachineExecutionPlan selectedPlan;
+    private Optional<String> selectedRecipeFingerprint = Optional.empty();
+    private int selectedOperations = 1;
+    private int restoredOperations = 1;
+    private long workProgress;
+    private long restoredWorkProgress;
+    private long restoredWorkRequired;
     private List<ItemStack> rolledOutputs = List.of();
     private String restoredSelectedId = "";
     private boolean restoredRollValid;
@@ -79,8 +92,12 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     private long materialRevision = -1L;
     private long resourceRevision;
     private long powerDemand;
+    private long preservedUnbufferedEnergy;
     private Optional<Integer> unsupportedProcessingVersion = Optional.empty();
     private Optional<Integer> unsupportedInventorySlots = Optional.empty();
+    private Optional<String> materialQuarantine = Optional.empty();
+    private MachineIdentityPolicy.Identity savedMachineIdentity =
+            new MachineIdentityPolicy.Identity("", "", "", "");
     private boolean quarantineWarningLogged;
 
     protected ProcessingMachineBlockEntity(
@@ -88,8 +105,17 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
             BlockPos pos,
             BlockState state,
             ProcessingMachineSpec spec) {
+        this(type, pos, state, MachineVariant.legacy(spec));
+    }
+
+    protected ProcessingMachineBlockEntity(
+            BlockEntityType<?> type,
+            BlockPos pos,
+            BlockState state,
+            MachineVariant variant) {
         super(type, pos, state);
-        this.spec = spec;
+        this.variant = variant;
+        this.spec = variant.runtimeSpec();
         this.recipeCache = new GTRecipeCache(spec.requireRecipeMap());
         this.energy = spec.energy().mode() == ProcessingMachineSpec.EnergyMode.BUFFERED
                 ? new MachineEnergyBuffer(spec.energy().capacity(), spec.energy().maxPacket())
@@ -121,7 +147,8 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 && level != null
                 && !level.isClientSide
                 && (unsupportedProcessingVersion.isPresent()
-                        || unsupportedInventorySlots.isPresent())) {
+                        || unsupportedInventorySlots.isPresent()
+                        || materialQuarantine.isPresent())) {
             quarantineWarningLogged = true;
             if (unsupportedProcessingVersion.isPresent()) {
                 CrucibleCraft.LOGGER.warn(
@@ -130,7 +157,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                         level.dimension().location(),
                         worldPosition,
                         unsupportedProcessingVersion.orElseThrow());
-            } else {
+            } else if (unsupportedInventorySlots.isPresent()) {
                 CrucibleCraft.LOGGER.warn(
                         "Quarantined processing machine {} at {} {}: saved inventory has "
                                 + "{} slots but the live spec has {}",
@@ -139,6 +166,13 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                         worldPosition,
                         unsupportedInventorySlots.orElseThrow(),
                         spec.items().slotCount());
+            } else {
+                CrucibleCraft.LOGGER.warn(
+                        "Quarantined processing machine {} at {} {}: {}",
+                        spec.id(),
+                        level.dimension().location(),
+                        worldPosition,
+                        materialQuarantine.orElseThrow());
             }
         }
     }
@@ -147,8 +181,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         if (level == null || level.isClientSide) {
             return;
         }
-        if (unsupportedProcessingVersion.isPresent()
-                || unsupportedInventorySlots.isPresent()) {
+        if (!processingAllowed()) {
             return;
         }
         invalidateRevisions();
@@ -169,29 +202,91 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         GTRecipe recipe = match.recipe();
         Optional<String> invalid = spec.validator().validate(recipe);
         beforeRuntimeSelect(match);
-        select(match);
-        powerDemand = Math.max(0L, recipe.eut());
+        Optional<MachineExecutionPlan> singlePlan =
+                MachineExecutionPlan.create(
+                        recipe,
+                        variant.kind(),
+                        variant.tier(),
+                        1);
+        if (invalid.isEmpty() && singlePlan.isEmpty()) {
+            selectPowerExceeded(match);
+            powerDemand = 0L;
+            runtime.recipePowerExceeded(
+                    match.id().toString(), recipe.duration());
+            markMutation();
+            checkpoint();
+            return;
+        }
+        Optional<PlannedExecution> planned = invalid.isEmpty()
+                ? planExecution(recipe)
+                : Optional.empty();
+        MachineExecutionPlan plan = planned
+                .map(PlannedExecution::plan)
+                .orElseGet(() -> singlePlan.orElseGet(
+                        () -> new MachineExecutionPlan(
+                                1L,
+                                1L,
+                                1L,
+                                recipe.duration(),
+                                recipe.duration(),
+                                1,
+                                0)));
+        int operations = planned
+                .map(PlannedExecution::operations)
+                .orElse(1);
+        select(match, operations, plan);
+        adoptDisplayedProgress(plan);
         Optional<MachineTransaction> transaction = invalid.isEmpty()
-                ? prepareTransaction(recipe)
+                ? prepareTransaction(
+                        ParallelRecipeOperations.scale(
+                                recipe, operations))
                 : Optional.empty();
         boolean capacity = transaction.isPresent();
-        Optional<PowerPlan> powerPlan = planPower(powerDemand);
+        long remainingWork = Math.max(
+                0L, plan.totalWork() - workProgress);
+        Optional<PowerPlan> powerPlan =
+                invalid.isEmpty() && capacity
+                        ? planPower(plan, remainingWork)
+                        : Optional.empty();
+        powerDemand = powerPlan
+                .map(PowerPlan::energyUnits)
+                .orElse(Math.min(
+                        remainingWork, plan.minimumPower()));
         boolean powered = powerPlan.isPresent();
         if (invalid.isEmpty() && capacity && powered) {
             executePowerForTransaction(
-                    transaction.orElseThrow(), this, powerPlan.orElseThrow()::execute);
+                    transaction.orElseThrow(),
+                    this,
+                    powerPlan.orElseThrow().executePower());
         }
         String previousStatus = runtime.status();
         String previousActive = runtime.processor().activeId();
         int previousProgress = runtime.processor().progress();
         int previousDuration = runtime.processor().duration();
-        ProcessingRuntime.Result result = runtime.tick(
-                match.id().toString(),
-                recipe.duration(),
-                invalid.isEmpty(),
-                capacity,
-                powered,
-                spec.buffering());
+        ProcessingRuntime.Result result;
+        if (invalid.isEmpty() && capacity && powered) {
+            workProgress = Math.min(
+                    plan.totalWork(),
+                    Math.addExact(
+                            workProgress,
+                            powerPlan.orElseThrow().workUnits()));
+            result = runtime.tickWork(
+                    match.id().toString(),
+                    plan.effectiveDuration(),
+                    true,
+                    true,
+                    workProgress,
+                    plan.totalWork(),
+                    spec.buffering());
+        } else {
+            result = runtime.tick(
+                    match.id().toString(),
+                    plan.effectiveDuration(),
+                    invalid.isEmpty(),
+                    capacity,
+                    false,
+                    spec.buffering());
+        }
 
         if (result == ProcessingRuntime.Result.ADVANCED) {
             checkpoint.markDirty();
@@ -201,7 +296,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 throw new IllegalStateException(
                         "Processing resources changed after committed energy extraction");
             }
-            runtime.completed(recipe.duration());
+            runtime.completed(plan.effectiveDuration());
             clearSelection();
             checkpoint.markDirty();
         } else if (!previousStatus.equals(runtime.status())
@@ -226,21 +321,46 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         return recipeCache.find(itemInputs, fluidInputs);
     }
 
-    private void select(RecipeMap.Match match) {
+    void select(
+            RecipeMap.Match match,
+            int operations,
+            MachineExecutionPlan plan) {
+        select(
+                match,
+                operations,
+                plan,
+                () -> currentRecipeFingerprint(match.recipe()));
+    }
+
+    void select(
+            RecipeMap.Match match,
+            int operations,
+            MachineExecutionPlan plan,
+            Supplier<Optional<String>> fingerprintSupplier) {
         long mapRevision = spec.requireRecipeMap().revision();
-        boolean same = selectedMatch != null
+        boolean structurallySame = selectedMatch != null
                 && selectedMatch.id().equals(match.id())
-                && selectedMatch.recipe() == match.recipe()
-                && selectedMapRevision == mapRevision;
-        if (same) {
+                && selectedMapRevision == mapRevision
+                && selectedOperations == operations
+                && plan.equals(selectedPlan);
+        if (structurallySame
+                && selectedMatch.recipe() == match.recipe()) {
+            return;
+        }
+        Optional<String> fingerprint = fingerprintSupplier.get();
+        if (structurallySame
+                && fingerprint.isPresent()
+                && fingerprint.equals(selectedRecipeFingerprint)) {
             return;
         }
         if (selectedMatch != null && selectedMatch.id().equals(match.id())) {
             runtime.reset();
         }
         selectedMatch = match;
+        selectedPlan = plan;
+        selectedRecipeFingerprint = fingerprint;
+        selectedOperations = operations;
         selectedMapRevision = mapRevision;
-        Optional<String> fingerprint = currentRecipeFingerprint(match.recipe());
         ProcessingHostDecisions.SelectionPersistence persistence =
                 ProcessingHostDecisions.selection(
                         restoredRollValid,
@@ -250,17 +370,30 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                         fingerprint);
         if (persistence
                 == ProcessingHostDecisions.SelectionPersistence.REUSE_RESTORED_ROLL) {
+            if (restoredOperations != operations) {
+                rolledOutputs = ParallelRecipeOperations.rollItemOutputs(
+                        match.recipe(), operations, this::randomBelow);
+                runtime.reset();
+                workProgress = 0L;
+            } else if (restoredWorkRequired == plan.totalWork()) {
+                workProgress = Math.min(
+                        restoredWorkProgress, plan.totalWork());
+            } else {
+                runtime.reset();
+                workProgress = 0L;
+            }
             restoredSelectedId = "";
             restoredRollValid = false;
             restoredRecipeFingerprint = "";
+            restoredWorkProgress = 0L;
+            restoredWorkRequired = 0L;
         } else {
             if (restoredSelectedId.equals(match.id().toString())) {
                 runtime.reset();
             }
-            rolledOutputs = ChanceOutputs.roll(
-                    match.recipe().itemOutputs(),
-                    match.recipe().outputChances(),
-                    this::randomBelow);
+            workProgress = 0L;
+            rolledOutputs = ParallelRecipeOperations.rollItemOutputs(
+                    match.recipe(), operations, this::randomBelow);
             rolledOutputs = HotIngotProcessing.prepareOutputs(
                     rolledOutputs,
                     level == null ? 0L : level.getGameTime());
@@ -282,6 +415,57 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 rolledOutputs);
     }
 
+    private Optional<PlannedExecution> planExecution(
+            GTRecipe recipe) {
+        for (int operations = variant.tier().parallelLimit();
+                operations >= 1;
+                operations--) {
+            Optional<MachineExecutionPlan> plan =
+                    MachineExecutionPlan.create(
+                            recipe,
+                            variant.kind(),
+                            variant.tier(),
+                            operations);
+            if (plan.isEmpty()) {
+                continue;
+            }
+            GTRecipe scaled = ParallelRecipeOperations.scale(
+                    recipe, operations);
+            Optional<MachineTransaction> capacity =
+                    MachineTransaction.prepare(
+                            scaled,
+                            inventorySnapshot(),
+                            spec.items().inputs(),
+                            spec.items().outputs(),
+                            fluidSnapshot(),
+                            spec.fluids().inputs(),
+                            spec.fluids().outputs(),
+                            ParallelRecipeOperations.maximumItemOutputs(
+                                    recipe, operations));
+            if (capacity.isPresent()) {
+                return Optional.of(new PlannedExecution(
+                        operations, plan.orElseThrow()));
+            }
+        }
+        return Optional.empty();
+    }
+
+    private void adoptDisplayedProgress(
+            MachineExecutionPlan plan) {
+        int displayed = runtime.processor().progress();
+        int duration = runtime.processor().duration();
+        if (displayed <= 0 || duration <= 0) {
+            return;
+        }
+        long scaled = Math.multiplyExact(
+                (long) displayed, plan.totalWork());
+        long projected = scaled / duration
+                + (scaled % duration == 0L ? 0L : 1L);
+        workProgress = Math.max(
+                workProgress,
+                Math.min(projected, plan.totalWork()));
+    }
+
     protected int randomBelow(int bound) {
         if (level == null || level.isClientSide) {
             throw new IllegalStateException("Chance outputs may only roll server-side");
@@ -289,23 +473,44 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         return level.random.nextInt(bound);
     }
 
-    private Optional<PowerPlan> planPower(long units) {
-        if (units < 0L) {
+    private Optional<PowerPlan> planPower(
+            MachineExecutionPlan plan, long remainingWork) {
+        if (remainingWork <= 0L) {
             return Optional.empty();
         }
-        if (units == 0L) {
-            return Optional.of(() -> true);
+        if (plan.nominalPower() == 0L) {
+            return Optional.of(new PowerPlan(
+                    0L, 1L, () -> true));
         }
+        boolean legacy = variant.kind().overclockPolicy()
+                == com.masson.cruciblecraft.machine.processing
+                        .MachineKindSpec.OverclockPolicy.LEGACY_TICKS;
+        long minimum = legacy
+                ? plan.minimumPower()
+                : Math.max(
+                        variant.tier().inputMinimum(),
+                        plan.minimumPower());
+        long maximum = legacy
+                ? plan.nominalPower()
+                : plan.maximumPower();
         if (spec.energy().mode() == ProcessingMachineSpec.EnergyMode.BUFFERED) {
-            return energy.canConsume(units)
-                    ? Optional.of(() -> energy.consume(units))
+            long actual = Math.min(maximum, energy.stored());
+            return actual >= minimum
+                    ? Optional.of(new PowerPlan(
+                            actual,
+                            actual,
+                            () -> energy.consume(actual)))
                     : Optional.empty();
         }
-        return AdjacentEnergyConsumer.plan(
+        return AdjacentEnergyConsumer.planWindow(
                 adjacentEnergySource(),
                 spec.energy().type(),
                 adjacentEnergySourceSide(),
-                units).map(plan -> plan::execute);
+                minimum,
+                maximum).map(window -> new PowerPlan(
+                        window.units(),
+                        window.units(),
+                        window::execute));
     }
 
     static void executePowerForTransaction(
@@ -324,6 +529,29 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
             throw new IllegalStateException(
                     "Processing resources changed during energy extraction");
         }
+    }
+
+    private void selectPowerExceeded(RecipeMap.Match match) {
+        long mapRevision = spec.requireRecipeMap().revision();
+        boolean structurallySame = selectedMatch != null
+                && selectedMatch.id().equals(match.id())
+                && selectedMapRevision == mapRevision
+                && selectedPlan == null;
+        if (structurallySame
+                && selectedMatch.recipe() == match.recipe()) {
+            return;
+        }
+        Optional<String> fingerprint =
+                currentRecipeFingerprint(match.recipe());
+        if (structurallySame
+                && fingerprint.isPresent()
+                && fingerprint.equals(selectedRecipeFingerprint)) {
+            return;
+        }
+        clearSelection();
+        selectedMatch = match;
+        selectedRecipeFingerprint = fingerprint;
+        selectedMapRevision = mapRevision;
     }
 
     protected IEnergyHandler adjacentEnergySource() {
@@ -420,6 +648,13 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         if (!handles(type, side)) {
             return 0L;
         }
+        if (variant.tier().overcharges(size)) {
+            if (!simulate && amount > 0L) {
+                runtime.overcharged();
+                markMutation();
+            }
+            return Math.max(0L, amount);
+        }
         long accepted = energy.insert(size, amount, simulate);
         if (!simulate && accepted > 0L) {
             markMutation();
@@ -436,15 +671,25 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     }
 
     public final ProcessingMachineSpec spec() { return spec; }
+    public final MachineVariant variant() { return variant; }
     public final ItemStackHandler inventory() { return inventory; }
     public final List<FluidTank> tanks() { return tanks; }
     public final ProcessingRuntime runtime() { return runtime; }
     public final int progress() { return runtime.processor().progress(); }
     public final int duration() { return runtime.processor().duration(); }
     public final long powerDemandLong() { return powerDemand; }
+    public final long workProgressLong() { return workProgress; }
+    public final long workRequiredLong() {
+        return selectedPlan == null
+                ? restoredWorkRequired
+                : selectedPlan.totalWork();
+    }
     public final String pausedReason() {
         if (unsupportedProcessingVersion.isPresent()) {
             return ProcessingMachineDisplayData.UNSUPPORTED_VERSION;
+        }
+        if (materialQuarantine.isPresent()) {
+            return "material_quarantined";
         }
         return unsupportedInventorySlots.isPresent()
                 ? ProcessingMachineDisplayData.INVENTORY_LAYOUT_QUARANTINED
@@ -454,6 +699,12 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         return unsupportedProcessingVersion.or(() -> unsupportedInventorySlots).orElse(0);
     }
     public final long resourceRevision() { return resourceRevision; }
+
+    final boolean processingAllowed() {
+        return unsupportedProcessingVersion.isEmpty()
+                && unsupportedInventorySlots.isEmpty()
+                && materialQuarantine.isEmpty();
+    }
 
     protected final void markMutation() {
         setChanged();
@@ -480,13 +731,20 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
             recipeCache.invalidate();
             if (selectedMatch != null) {
                 restoredSelectedId = selectedMatch.id().toString();
-                Optional<String> fingerprint =
-                        currentRecipeFingerprint(selectedMatch.recipe());
-                restoredRollValid = fingerprint.isPresent();
-                restoredRecipeFingerprint = fingerprint.orElse("");
+                restoredRollValid =
+                        selectedRecipeFingerprint.isPresent();
+                restoredRecipeFingerprint =
+                        selectedRecipeFingerprint.orElse("");
+                restoredOperations = selectedOperations;
+                restoredWorkProgress = workProgress;
+                restoredWorkRequired = selectedPlan == null
+                        ? 0L
+                        : selectedPlan.totalWork();
                 markMutation();
             }
             selectedMatch = null;
+            selectedPlan = null;
+            selectedRecipeFingerprint = Optional.empty();
             selectedMapRevision = -1L;
         }
     }
@@ -495,12 +753,21 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         boolean changed = selectedMatch != null
                 || restoredRollValid
                 || !restoredSelectedId.isEmpty()
+                || workProgress != 0L
+                || restoredWorkProgress != 0L
                 || !rolledOutputs.isEmpty();
         selectedMatch = null;
+        selectedPlan = null;
+        selectedRecipeFingerprint = Optional.empty();
+        selectedOperations = 1;
+        workProgress = 0L;
         selectedMapRevision = -1L;
         restoredSelectedId = "";
         restoredRollValid = false;
         restoredRecipeFingerprint = "";
+        restoredOperations = 1;
+        restoredWorkProgress = 0L;
+        restoredWorkRequired = 0L;
         rolledOutputs = List.of();
         return changed;
     }
@@ -528,14 +795,33 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
             CompoundTag tag,
             HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
+        boolean quarantinedIdentity = materialQuarantine.isPresent();
+        MachineIdentityPolicy.Identity identity = quarantinedIdentity
+                ? savedMachineIdentity
+                : ModMachineIdentityMigrations.identityOf(variant);
         tag.merge(new ProcessingMachineState(
                 runtime.processor().activeId(),
                 progress(),
                 duration(),
                 runtime.status(),
                 powerDemand,
-                energy == null ? 0L : energy.stored(),
+                energy == null
+                        ? preservedUnbufferedEnergy
+                        : energy.stored(),
                 resourceRevision,
+                identity.machineKind(),
+                identity.tierProfile(),
+                identity.materialId(),
+                identity.energyIdentity(),
+                selectedPlan == null
+                        ? restoredOperations
+                        : selectedOperations,
+                selectedPlan == null
+                        ? restoredWorkProgress
+                        : workProgress,
+                selectedPlan == null
+                        ? restoredWorkRequired
+                        : selectedPlan.totalWork(),
                 unsupportedProcessingVersion).write());
         tag.put("inventory", inventory.serializeNBT(registries));
         for (int tank = 0; tank < tanks.size(); tank++) {
@@ -543,8 +829,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         }
         Optional<String> selectedFingerprint = selectedMatch == null
                 ? Optional.empty()
-                : GTRecipeFingerprint.recipe(
-                        spec.recipeMapId(), selectedMatch.recipe(), registries);
+                : selectedRecipeFingerprint;
         new ChanceOutputState(
                 selectedMatch != null ? selectedFingerprint.isPresent() : restoredRollValid,
                 selectedMatch != null ? selectedMatch.id().toString() : restoredSelectedId,
@@ -573,6 +858,13 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         runtime.restore(
                 state.activeRecipe(), state.progress(), state.duration(), state.status());
         unsupportedProcessingVersion = state.unsupportedVersion();
+        MachineIdentityPolicy.Decision identity =
+                ModMachineIdentityMigrations.resolve(variant, state);
+        savedMachineIdentity = identity.persistedIdentity();
+        materialQuarantine = identity.quarantineReason();
+        restoredOperations = state.operations();
+        restoredWorkProgress = state.workProgress();
+        restoredWorkRequired = state.workRequired();
         ChanceOutputState chanceState = ChanceOutputState.read(tag, registries);
         restoredSelectedId = chanceState.recipeId().isEmpty()
                 ? runtime.processor().activeId()
@@ -582,9 +874,16 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         powerDemand = state.powerDemand();
         if (energy != null) {
             energy.restore(state.energy());
+            preservedUnbufferedEnergy = 0L;
+        } else {
+            preservedUnbufferedEnergy = state.energy();
         }
         resourceRevision = Math.max(resourceRevision, state.resourceRevision());
         rolledOutputs = chanceState.outputs();
+        selectedMatch = null;
+        selectedPlan = null;
+        selectedRecipeFingerprint = Optional.empty();
+        selectedMapRevision = -1L;
         recipeCache.invalidate();
     }
 
@@ -621,6 +920,8 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 tag.putInt("unsupported_processing_version", version));
         unsupportedInventorySlots.ifPresent(slots ->
                 tag.putInt("unsupported_inventory_slots", slots));
+        materialQuarantine.ifPresent(reason ->
+                tag.putString("material_quarantine", reason));
         tag.putLong("power_demand", powerDemand);
         tag.putLong("energy", energy == null ? 0L : energy.stored());
         tag.putInt("tank_count", tanks.size());
@@ -644,6 +945,9 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         unsupportedInventorySlots = inventorySlots < 0
                 || inventorySlots > spec.items().slotCount()
                 ? Optional.of(inventorySlots)
+                : Optional.empty();
+        materialQuarantine = tag.contains("material_quarantine")
+                ? Optional.of(tag.getString("material_quarantine"))
                 : Optional.empty();
         powerDemand = Math.max(0L, tag.getLong("power_demand"));
         if (energy != null) {
@@ -684,8 +988,20 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         tanks.get(tank).setFluid(stack);
     }
 
-    @FunctionalInterface
-    private interface PowerPlan {
-        boolean execute();
+    private record PowerPlan(
+            long energyUnits,
+            long workUnits,
+            BooleanSupplier executePower) {
+        private PowerPlan {
+            if (energyUnits < 0L
+                    || workUnits <= 0L
+                    || executePower == null) {
+                throw new IllegalArgumentException(
+                        "Invalid processing power plan");
+            }
+        }
     }
+
+    private record PlannedExecution(
+            int operations, MachineExecutionPlan plan) {}
 }

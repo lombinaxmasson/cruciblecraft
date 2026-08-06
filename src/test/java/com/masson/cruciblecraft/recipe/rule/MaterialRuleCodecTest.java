@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class MaterialRuleCodecTest {
     @Test
     void generatedComponentRuleUsesTheRuntimeRecipeResourcePath() throws Exception {
-        String path = "data/cruciblecraft/recipe/extruder/long_rod/iron.json";
+        String path = "data/cruciblecraft/recipe/extruder/compact/normal_long_rod.json";
         var stream = MaterialRuleCodecTest.class.getClassLoader().getResourceAsStream(path);
         assertNotNull(stream, path);
         try (stream; var reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
@@ -35,11 +35,18 @@ class MaterialRuleCodecTest {
             MaterialRule decoded = MaterialRule.CODEC.codec()
                     .parse(JsonOps.INSTANCE, json).getOrThrow();
             assertEquals(Optional.of(id("extruder")), decoded.target());
-            assertEquals(2, decoded.itemInputs().size());
-            assertEquals("0", decoded.itemInputs().get(1).count());
+            assertTrue(decoded.itemInputs().isEmpty());
+            MaterialRule.SparseTable sparse = decoded.sparse().orElseThrow();
             assertEquals(
                     Optional.of(id("extruder_shape_long_rod")),
-                    decoded.itemInputs().get(1).item());
+                    Optional.of(sparse.shapeItem()));
+            MaterialRule.SparseRelation iron = sparse.relations().stream()
+                    .filter(relation -> relation.material().equals("iron"))
+                    .findFirst()
+                    .orElseThrow();
+            assertEquals(id("extruder/long_rod/iron/iron"), iron.stableId());
+            assertEquals(iron, sparse.findMatch(
+                    "iron", iron.input().prefix(), iron.input().count()).orElseThrow());
         }
     }
 
@@ -83,7 +90,7 @@ class MaterialRuleCodecTest {
     }
 
     @Test
-    void codecAndNetworkRoundTripActualRule() {
+    void codecAndNetworkRoundTripActualRule() throws Exception {
         LoadingModList.of(List.of(), List.of(), List.of(), List.of(), Map.of());
         SharedConstants.tryDetectVersion();
         Bootstrap.bootStrap();
@@ -111,6 +118,15 @@ class MaterialRuleCodecTest {
         assertEquals(
                 Optional.of(ItemInputAction.wear(1)),
                 catalyst.inputAction());
+
+        MaterialRuleRecipe compact = new MaterialRuleRecipe(loadGeneratedRule(
+                "data/cruciblecraft/recipe/extruder/compact/normal_plate.json"));
+        RegistryFriendlyByteBuf compactBuffer =
+                new RegistryFriendlyByteBuf(Unpooled.buffer(), RegistryAccess.EMPTY);
+        serializer.streamCodec().encode(compactBuffer, compact);
+        assertEquals(compact, serializer.streamCodec().decode(compactBuffer));
+        assertEquals(0, compactBuffer.readableBytes());
+        assertEquals(226, compact.rule().sparse().orElseThrow().relations().size());
     }
 
     @Test
@@ -265,5 +281,22 @@ class MaterialRuleCodecTest {
 
     private static ResourceLocation id(String path) {
         return ResourceLocation.fromNamespaceAndPath("cruciblecraft", path);
+    }
+
+    private static MaterialRule loadGeneratedRule(String path) throws Exception {
+        var stream = MaterialRuleCodecTest.class.getClassLoader()
+                .getResourceAsStream(path);
+        assertNotNull(stream, path);
+        try (stream;
+                var reader = new InputStreamReader(
+                        stream, StandardCharsets.UTF_8)) {
+            var json = JsonParser.parseReader(reader).getAsJsonObject();
+            assertEquals(
+                    "cruciblecraft:material_rule",
+                    json.remove("type").getAsString());
+            return MaterialRule.CODEC.codec()
+                    .parse(JsonOps.INSTANCE, json)
+                    .getOrThrow();
+        }
     }
 }

@@ -1,0 +1,464 @@
+{
+  "schema_version": 1,
+  "delivery_boundary": "T12a_source_scaling_boundary_and_preprojection_only",
+  "full_t12_closure_claimed": false,
+  "gt6_source": {
+    "repository": "GregTech6/gregtech6",
+    "repository_url": "https://github.com/GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "commit_url": "https://github.com/GregTech6/gregtech6/commit/3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "tree_sha1": "a164302f62a326208fd2076de6fb7cdb0b4602ee",
+    "source_files": {
+      "energy_tags": {
+        "path": "src/main/java/gregapi/data/TD.java",
+        "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/data/TD.java",
+        "git_blob_sha1": "d1eaea41fc9b818a874e5dc83082447c27ae8053"
+      },
+      "material_tiers": {
+        "path": "src/main/java/gregapi/data/MT.java",
+        "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/data/MT.java",
+        "git_blob_sha1": "1681c2072f28ad2d31bc285aef1c6fd2a3bcef92"
+      },
+      "multitile_loader": {
+        "path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "git_blob_sha1": "cf80887c5e572ee0942f087d1c75238115ca5255"
+      },
+      "basic_machine": {
+        "path": "src/main/java/gregapi/tileentity/machines/MultiTileEntityBasicMachine.java",
+        "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/tileentity/machines/MultiTileEntityBasicMachine.java",
+        "git_blob_sha1": "69278675a647648ca208883d67e3267c7f9d5632"
+      },
+      "axle": {
+        "path": "src/main/java/gregapi/tileentity/connectors/MultiTileEntityAxle.java",
+        "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/tileentity/connectors/MultiTileEntityAxle.java",
+        "git_blob_sha1": "fdd20e99e63969ce345590188cba17bb7fad10d3"
+      },
+      "gearbox": {
+        "path": "src/main/java/gregtech/tileentity/energy/transformers/MultiTileEntityGearBox.java",
+        "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/energy/transformers/MultiTileEntityGearBox.java",
+        "git_blob_sha1": "ea267ab35f32f40cfb28c717324e29f8cc38194c"
+      },
+      "large_centrifuge": {
+        "path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCentrifuge.java",
+        "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCentrifuge.java",
+        "git_blob_sha1": "7ade6aaac13fbca55c52fc10c34283f525be50b7"
+      }
+    }
+  },
+  "source_anchors": {
+    "energy_identity_ru_ku_eu_hu": {
+      "file": "energy_tags",
+      "lines": "67-100",
+      "required_tokens": [
+        "KINETIC_ROTATION",
+        "\"RU\"",
+        "KINETIC_PUSH",
+        "\"KU\"",
+        "ELECTRICITY",
+        "\"EU\"",
+        "HEAT",
+        "\"HU\""
+      ],
+      "reason": "RU, KU, EU and HU are distinct fixed-revision TagData identities."
+    },
+    "tier_material_arrays_and_cables": {
+      "file": "material_tiers",
+      "lines": "3631-3647,3689-3691",
+      "required_tokens": [
+        "CABLES_01 = {",
+        "OP.cableGt01.dat(Sn)",
+        "OP.cableGt01.dat(ANY.Cu)",
+        "OP.cableGt01.dat(Au)",
+        "Kinetic_T = {ANY.Wood",
+        "Electric_T = {TinAlloy"
+      ],
+      "reason": "Pins the first three machine materials and Electrolyzer cable operands."
+    },
+    "processing_registration_catalog": {
+      "file": "multitile_loader",
+      "lines": "1288-1655",
+      "required_tokens": [
+        "Centrifuge (",
+        "Sifter (",
+        "Electrolyzer (",
+        "Generifier",
+        "Bath",
+        "Autoclave",
+        "TD.Energy.RU",
+        "TD.Energy.KU",
+        "TD.Energy.EU",
+        "TD.Energy.HU",
+        "TD.Energy.TU"
+      ],
+      "reason": "Pins the processing-kind tier/fixed catalog without inferring from CrucibleCraft KINETIC."
+    },
+    "selected_three_machine_tiers": {
+      "file": "multitile_loader",
+      "lines": "1311-1340",
+      "required_tokens": [
+        "Sifter (",
+        "Centrifuge (",
+        "Electrolyzer (",
+        "NBT_INPUT, 32",
+        "NBT_INPUT, 128",
+        "NBT_INPUT, 512",
+        "NBT_PARALLEL_DURATION, T"
+      ],
+      "reason": "Pins the RU/KU/EU vertical slice and its first three source-backed tiers."
+    },
+    "producer_and_bridge_boundaries": {
+      "file": "multitile_loader",
+      "lines": "582-597,720-729,944-950",
+      "required_tokens": [
+        "Steam Engine (",
+        "NBT_ENERGY_EMITTED, TD.Energy.KU",
+        "Diesel Engine (",
+        "NBT_ENERGY_EMITTED, TD.Energy.RU",
+        "Electric Dynamo (",
+        "NBT_ENERGY_ACCEPTED, TD.Energy.RU",
+        "NBT_ENERGY_EMITTED, TD.Energy.EU"
+      ],
+      "reason": "Proves Steam Engine is KU, Electric Dynamo consumes RU, and Bronze Diesel Engine is the minimal selected RU producer."
+    },
+    "large_centrifuge_registration": {
+      "file": "multitile_loader",
+      "lines": "1174,1229",
+      "required_tokens": [
+        "Centrifuge Part",
+        "Large Centrifuge",
+        "MultiTileEntityCentrifuge.class",
+        "NBT_INPUT_MIN, 512",
+        "NBT_INPUT_MAX, 4096",
+        "NBT_EFFICIENCY, 5000",
+        "NBT_PARALLEL, 16"
+      ],
+      "reason": "Pins the controller, part identity and numeric Large Centrifuge profile."
+    },
+    "axle_gearbox_registrations": {
+      "file": "multitile_loader",
+      "lines": "1661-1678",
+      "required_tokens": [
+        "MultiTileEntityAxle.class",
+        "Medium \" + aMat.mNameLocal + \" Axle",
+        "MultiTileEntityGearBox.class",
+        "Custom \" + aMat.mNameLocal + \" Gearbox",
+        "NBT_PIPESIZE, VMAX[ 1]",
+        "NBT_PIPEBANDWIDTH, 4"
+      ],
+      "reason": "Pins the minimal bronze Axle and custom GearBox registrations."
+    },
+    "basic_machine_defaults_and_window": {
+      "file": "basic_machine",
+      "lines": "91-99,122-131",
+      "required_tokens": [
+        "mCheapOverclocking = F",
+        "mEfficiency = 10000",
+        "mInputMin = 16",
+        "mInput = 32",
+        "mInputMax = 64",
+        "mInput / 2",
+        "mInput * 2"
+      ],
+      "reason": "Pins default efficiency and the nominal-to-min/max input window."
+    },
+    "basic_machine_overcharge": {
+      "file": "basic_machine",
+      "lines": "489-518",
+      "required_tokens": [
+        "aSize > getEnergySizeInputMax",
+        "overcharge(aSize, aEnergyType)",
+        "getEnergySizeInputMin",
+        "getEnergySizeInputRecommended",
+        "getEnergySizeInputMax"
+      ],
+      "reason": "Separates oversized packets from recipe-window rejection."
+    },
+    "basic_machine_scaling_and_failures": {
+      "file": "basic_machine",
+      "lines": "712-849",
+      "required_tokens": [
+        "findRecipe",
+        "mParallelDuration",
+        "mMinEnergy *= 4",
+        "mMaxProgress *= 2",
+        "mEnergy >= mInputMin",
+        "mEnergy >= mMinEnergy",
+        "mProgress += aEnergy",
+        "mProgress = mMaxProgress"
+      ],
+      "reason": "Pins matching, parallel-duration, standard/cheap overclock, underpower and output-block behavior."
+    },
+    "axle_runtime": {
+      "file": "axle",
+      "lines": "55,105-125,139-159",
+      "required_tokens": [
+        "class MultiTileEntityAxle",
+        "transferRotations",
+        "TD.Energy.RU",
+        "Math.abs(aSpeed) > mSpeed",
+        "mTransferredPower > mPower"
+      ],
+      "reason": "Pins RU-only traversal, signed speed and speed/power overload."
+    },
+    "gearbox_runtime": {
+      "file": "gearbox",
+      "lines": "58-61,194-205,347-420",
+      "required_tokens": [
+        "class MultiTileEntityGearBox",
+        "TD.Energy.RU",
+        "mMaxThroughPut",
+        "insertEnergyInto",
+        "mGearsWork"
+      ],
+      "reason": "Pins the RU-only custom GearBox routing boundary."
+    },
+    "large_centrifuge_symbol_and_structure": {
+      "file": "large_centrifuge",
+      "lines": "46-75,94-98",
+      "required_tokens": [
+        "class MultiTileEntityCentrifuge",
+        "checkStructure2",
+        "18100",
+        "ONLY_ITEM_FLUID",
+        "ONLY_ENERGY_IN",
+        "isInsideStructure"
+      ],
+      "required_absent_patterns": [
+        "class MultiTileEntityLargeCentrifuge"
+      ],
+      "reason": "The source display name is Large Centrifuge, but the fixed symbol is MultiTileEntityCentrifuge; the planned longer symbol does not exist."
+    }
+  },
+  "classification_vocabulary": {
+    "processing_kind": {
+      "source_tiered": "The fixed source registers a material/energy tier family for the exact or explicitly bridged machine kind.",
+      "fixed_utility": "The fixed source or reviewed local source exposes a fixed/manual/time utility rather than a T12 power tier family.",
+      "deferred_with_reason": "No unique fixed-source kind identity is selected; the row remains explicit and names its replacement condition."
+    },
+    "non_spec_kind": {
+      "tier_profile_participant": "The kind has source-backed numeric/material tiers that must bind to a future TierProfile.",
+      "material_capability": "Its material capability axis is not a packet-input tier and must remain separately typed.",
+      "fixed_infrastructure": "It is fixed infrastructure or a producer/consumer outside shared processing TierProfile.",
+      "deferred": "The source/runtime identity cannot yet be closed without guessing."
+    }
+  },
+  "processing_kinds": [
+    {"id": "sluice", "classification": "source_tiered", "recipe_map": "sluice", "energy_identity": "RU", "source_lines": "Loader_MultiTileEntities.java:1463-1467", "reason": "Exact four-tier Kinetic_T Sluice family accepts RU.", "revisit_point": "T12b kind schema; T12c+ implementation batch after the first three kinds."},
+    {"id": "bath", "classification": "fixed_utility", "recipe_map": "bath", "energy_identity": "TU", "source_lines": "Loader_MultiTileEntities.java:1653", "reason": "Exact stainless fixed Bath uses TU/no-constant-power rather than a material power tier.", "revisit_point": "Future fixed-utility crafting closure."},
+    {"id": "centrifuge", "classification": "source_tiered", "recipe_map": "centrifuge", "energy_identity": "RU", "source_lines": "Loader_MultiTileEntities.java:1329-1333", "reason": "Exact Kinetic_T family accepts RU and is selected for the T12 vertical slice.", "revisit_point": "T12b/T12c."},
+    {"id": "shredder", "classification": "source_tiered", "recipe_map": "shredder", "energy_identity": "RU", "source_lines": "Loader_MultiTileEntities.java:1293-1297", "reason": "Exact Kinetic_T Shredder family accepts RU.", "revisit_point": "Post-vertical-slice machine batch."},
+    {"id": "sifter", "classification": "source_tiered", "recipe_map": "sifter", "energy_identity": "KU", "source_lines": "Loader_MultiTileEntities.java:1311-1315", "reason": "Exact Kinetic_T Sifter family accepts KU and is selected for the T12 vertical slice.", "revisit_point": "T12b/T12c."},
+    {"id": "mortar", "classification": "fixed_utility", "recipe_map": "mortar", "energy_identity": "NONE", "source_lines": "Loader_MultiTileEntities.java:2179-2183", "reason": "GT6 source is a manual ceramic Mortar, not a packet-powered tier family.", "revisit_point": "Resolve current powered-block divergence before recipe replacement."},
+    {"id": "smelter", "classification": "source_tiered", "recipe_map": "smelter", "energy_identity": "HU", "source_lines": "Loader_MultiTileEntities.java:1430-1434", "reason": "Exact Heat_T family accepts HU.", "revisit_point": "Post-vertical-slice HU machine batch."},
+    {"id": "extruder", "classification": "source_tiered", "recipe_map": "extruder", "energy_identity": "HU", "source_lines": "Loader_MultiTileEntities.java:1405-1409", "reason": "Exact source Low Heat Extruder/Extruder family accepts HU; current KU is not source evidence.", "revisit_point": "Resolve runtime HU migration before activation."},
+    {"id": "cutter", "classification": "source_tiered", "recipe_map": "cutter", "energy_identity": "RU", "source_lines": "Loader_MultiTileEntities.java:1317-1321", "reason": "The exact RM.Cutter source kind is named Buzzsaw and accepts RU.", "revisit_point": "Approve the explicit Buzzsaw-to-cutter display identity bridge."},
+    {"id": "lathe", "classification": "source_tiered", "recipe_map": "lathe", "energy_identity": "RU", "source_lines": "Loader_MultiTileEntities.java:1305-1309", "reason": "Exact Kinetic_T Lathe family accepts RU.", "revisit_point": "Post-vertical-slice machine batch."},
+    {"id": "rollingmill", "classification": "source_tiered", "recipe_map": "rollingmill", "energy_identity": "RU", "source_lines": "Loader_MultiTileEntities.java:1348-1352", "reason": "Exact Kinetic_T Rolling Mill family accepts RU.", "revisit_point": "Post-vertical-slice machine batch."},
+    {"id": "rollbender", "classification": "source_tiered", "recipe_map": "rollbender", "energy_identity": "RU", "source_lines": "Loader_MultiTileEntities.java:1354-1358", "reason": "Exact Kinetic_T Roll Bender family accepts RU and is distinct from bender.", "revisit_point": "Post-vertical-slice machine batch."},
+    {"id": "wiremill", "classification": "source_tiered", "recipe_map": "wiremill", "energy_identity": "RU", "source_lines": "Loader_MultiTileEntities.java:1372-1376", "reason": "Exact Kinetic_T Wiremill family accepts RU.", "revisit_point": "Post-vertical-slice machine batch."},
+    {"id": "bender", "classification": "deferred_with_reason", "recipe_map": "bender", "energy_identity": "UNVERIFIED", "source_lines": "Loader_MultiTileEntities.java:1-2243 negative search", "reason": "No exact Bender machine registration exists; Roll Bender cannot be reused.", "revisit_point": "Select a fixed-source identity or reviewed CrucibleCraft divergence before TierProfile binding."},
+    {"id": "assembler", "classification": "deferred_with_reason", "recipe_map": "assembler", "energy_identity": "UNVERIFIED", "source_lines": "Loader_MultiTileEntities.java:1-2243 negative search", "reason": "No exact Assembler machine registration exists in the pinned loader.", "revisit_point": "Select a fixed-source identity or reviewed CrucibleCraft divergence before TierProfile binding."},
+    {"id": "welder", "classification": "source_tiered", "recipe_map": "welder", "energy_identity": "LU", "source_lines": "Loader_MultiTileEntities.java:1489-1494", "reason": "Exact source kind is a five-tier Laser Welder accepting LU; LU is outside the first RU/KU/EU/HU slice.", "revisit_point": "A future LU phase must add its own source-backed energy contract."},
+    {"id": "press", "classification": "source_tiered", "recipe_map": "press", "energy_identity": "KU", "source_lines": "Loader_MultiTileEntities.java:1424-1428", "reason": "Exact Kinetic_T Press family accepts KU.", "revisit_point": "Post-vertical-slice machine batch."},
+    {"id": "electrolyzer", "classification": "source_tiered", "recipe_map": "electrolyzer", "energy_identity": "EU", "source_lines": "Loader_MultiTileEntities.java:1335-1340", "reason": "Exact Electric_T family accepts EU and is selected for the T12 vertical slice.", "revisit_point": "T12b/T12c."},
+    {"id": "mixer", "classification": "source_tiered", "recipe_map": "mixer", "energy_identity": "RU", "source_lines": "Loader_MultiTileEntities.java:1391-1395", "reason": "The exact unqualified Mixer family is Kinetic_T/RU; the separate Electric Mixer is not inferred from current CC energy.", "revisit_point": "T12b one-map-to-many kind representation."},
+    {"id": "distillery", "classification": "source_tiered", "recipe_map": "distillery", "energy_identity": "HU", "source_lines": "Loader_MultiTileEntities.java:1397-1401", "reason": "Exact Heat_T Distillery family accepts HU; current EU is not source evidence.", "revisit_point": "Resolve runtime HU migration before activation."},
+    {"id": "autoclave", "classification": "fixed_utility", "recipe_map": "autoclave", "energy_identity": "TU", "source_lines": "Loader_MultiTileEntities.java:1655", "reason": "Exact stainless fixed Autoclave uses TU/no-constant-power.", "revisit_point": "Future fixed-utility crafting closure."},
+    {"id": "drying", "classification": "source_tiered", "recipe_map": "drying", "energy_identity": "HU", "source_lines": "Loader_MultiTileEntities.java:1476-1480", "reason": "Exact source Dryer family is Heat_T/HU; current EU is not source evidence.", "revisit_point": "Resolve Dryer display bridge and HU runtime migration."},
+    {"id": "compressor", "classification": "source_tiered", "recipe_map": "compressor", "energy_identity": "KU", "source_lines": "Loader_MultiTileEntities.java:1342-1346", "reason": "Exact Kinetic_T Compressor family accepts KU; current EU is not source evidence.", "revisit_point": "Resolve runtime KU migration before activation."},
+    {"id": "generifier", "classification": "fixed_utility", "recipe_map": "generifier", "energy_identity": "TU", "source_lines": "Loader_MultiTileEntities.java:1652", "reason": "Exact fixed stainless Generifier uses TU/no-constant-power; CC's fixed one-tick zero-EU row remains a T11 utility bridge.", "revisit_point": "T12b fixed-utility kind representation without recipe publication changes."},
+    {"id": "bronze_crusher", "classification": "source_tiered", "recipe_map": "crusher", "energy_identity": "KU", "source_lines": "Loader_MultiTileEntities.java:1300-1303", "reason": "Exact Kinetic_T Crusher family accepts KU; bronze is tier index 1.", "revisit_point": "Post-vertical-slice machine batch."}
+  ],
+  "non_spec_kinds": [
+    {"id": "anvil", "classification": "material_capability", "energy_identity": "NONE", "source_lines": "Loader_MultiTileEntities.java:2190", "reason": "Workpiece, hammer and anvil material capability is not a packet-input tier.", "revisit_point": "Keep separate capability type through T12b migration tests."},
+    {"id": "bellows", "classification": "fixed_infrastructure", "energy_identity": "AU", "source_lines": "CC BellowsBlockEntity", "reason": "Manual fixed air producer; no RU/KU/EU/HU tier is claimed.", "revisit_point": "Only revisit with fixed GT6 Bellows source evidence."},
+    {"id": "boiler", "classification": "tier_profile_participant", "energy_identity": "HU", "source_lines": "Loader_MultiTileEntities.java:555-579", "reason": "Source boiler tanks vary by material/output while accepting heat; their values belong in typed profiles, not processing RecipeMap tiers.", "revisit_point": "Future boiler profile batch after shared TierProfile proves non-processing support."},
+    {"id": "ceramic_mold", "classification": "material_capability", "energy_identity": "NONE", "source_lines": "CC CeramicMoldBlockEntity", "reason": "Mold shape/content is a material-form capability, not a power tier.", "revisit_point": "Keep separate through T12b; source parity is a later mold audit."},
+    {"id": "coke_oven", "classification": "fixed_infrastructure", "energy_identity": "HU", "source_lines": "CC CokeOvenStructure and CokeOvenBlockEntity", "reason": "Fixed multiblock consumes adjacent HU and is the no-drift JSON migration baseline.", "revisit_point": "T12d structure migration."},
+    {"id": "crucible", "classification": "material_capability", "energy_identity": "HU", "source_lines": "CC MachineMaterialRules and CrucibleBlockEntity", "reason": "Casing material controls capacity, temperature and workpiece capability; this is not machine input voltage tier.", "revisit_point": "Keep separately typed in T12b codec/migration."},
+    {"id": "dynamo", "classification": "tier_profile_participant", "energy_identity": "RU_TO_EU", "source_lines": "Loader_MultiTileEntities.java:944-950", "reason": "Fixed source Electric Dynamo tiers consume RU and emit EU; current KINETIC must not decide whether input is RU or KU.", "revisit_point": "T12c energy identity migration."},
+    {"id": "firebox", "classification": "tier_profile_participant", "energy_identity": "HU", "source_lines": "fixed-source firebox family deferred to focused extraction", "reason": "Material/output profiles apply, but this T12a source set does not pin every firebox registration value.", "revisit_point": "Pin firebox source rows before any multi-tier activation."},
+    {"id": "steam_engine", "classification": "tier_profile_participant", "energy_identity": "KU", "source_lines": "Loader_MultiTileEntities.java:582-597", "reason": "Fixed source Steam Engine emits KU, not RU; bronze output is 24 KU/t.", "revisit_point": "T12c split current KINETIC to KINETIC_PUSH."},
+    {"id": "fluid_deposit_extractor", "classification": "fixed_infrastructure", "energy_identity": "NONE", "source_lines": "T11 HydrocarbonRuntimePolicy", "reason": "Fixed T11 world producer has no machine packet tier.", "revisit_point": "Only revisit if a fixed GT6 extractor machine identity is selected."},
+    {"id": "fuel_engine", "classification": "tier_profile_participant", "energy_identity": "RU", "source_lines": "Loader_MultiTileEntities.java:720-729", "reason": "The selected exact GT6 Diesel Engine family emits RU; current CC direct-EU Fuel Engine is an explicit unverified runtime divergence.", "revisit_point": "Replace or split the runtime only after Bronze Diesel Engine components and RU output are closed."},
+    {"id": "burning_gas_generator", "classification": "deferred", "energy_identity": "UNVERIFIED", "source_lines": "T11 gas-fuel row plus unselected GT6 turbine families", "reason": "The current direct-EU generator has no selected fixed machine-block source identity in T12a.", "revisit_point": "Select an exact gas turbine/generator source family before assigning RU, KU or EU."}
+  ],
+  "vertical_slice": {
+    "machine_order": ["centrifuge", "sifter", "electrolyzer"],
+    "representative_recipes": {
+      "centrifuge": {"path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.centrifuge.json", "recipe_index": 2, "expected_map": "gt.recipe.centrifuge", "expected_recipe_count": 1296, "eut": 16, "duration": 48},
+      "sifter": {"path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.sifter.json", "recipe_index": 0, "expected_map": "gt.recipe.sifter", "expected_recipe_count": 2877, "eut": 16, "duration": 256},
+      "electrolyzer": {"path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.electrolyzer.json", "recipe_index": 0, "expected_map": "gt.recipe.electrolyzer", "expected_recipe_count": 290, "eut": 16, "duration": 5120}
+    },
+    "machines": {
+      "centrifuge": {
+        "energy_identity": "RU",
+        "cheap_overclock": false,
+        "parallel_duration": true,
+        "efficiency": 10000,
+        "source_lines": "Loader_MultiTileEntities.java:1329-1331",
+        "tiers": [
+          {"source_tier": 1, "material": "bronze", "nominal_input": 32, "parallel": 1},
+          {"source_tier": 2, "material": "steel", "nominal_input": 128, "parallel": 2},
+          {"source_tier": 3, "material": "titanium", "nominal_input": 512, "parallel": 4}
+        ],
+        "source_operands": ["OP.casingMachineDouble(material)", "OP.gearGt(material)", "OP.stickLong(material)"]
+      },
+      "sifter": {
+        "energy_identity": "KU",
+        "cheap_overclock": false,
+        "parallel_duration": true,
+        "efficiency": 10000,
+        "source_lines": "Loader_MultiTileEntities.java:1311-1314",
+        "tiers": [
+          {"source_tier": 1, "material": "bronze", "nominal_input": 32, "parallel": 4},
+          {"source_tier": 2, "material": "steel", "nominal_input": 128, "parallel": 8},
+          {"source_tier": 3, "material": "titanium", "nominal_input": 512, "parallel": 16}
+        ],
+        "source_operands": ["OP.casingMachineDouble(material)", "OP.spring(material)", "OP.wireFine(material)", "OP.stick(material)"]
+      },
+      "electrolyzer": {
+        "energy_identity": "EU",
+        "cheap_overclock": false,
+        "parallel_duration": true,
+        "efficiency": 10000,
+        "source_lines": "Loader_MultiTileEntities.java:1335-1338 and MT.java:3631-3647",
+        "tiers": [
+          {"source_tier": 1, "material": "steel_galvanized", "nominal_input": 32, "parallel": 1, "cable_material": "tin"},
+          {"source_tier": 2, "material": "aluminium", "nominal_input": 128, "parallel": 2, "cable_material": "copper"},
+          {"source_tier": 3, "material": "stainless_steel", "nominal_input": 512, "parallel": 4, "cable_material": "gold"}
+        ],
+        "source_operands": ["OP.casingMachine(material)", "OP.wireGt01(platinum)", "MT.DATA.CABLES_01[tier]"]
+      }
+    }
+  },
+  "scaling_contract": {
+    "input_window": "inputMin=nominal/2; inputMax=nominal*2",
+    "standard_overclock": "while recipePower<inputMin and recipePower*4<=inputMax: recipePower*=4; progressRequirement*=2",
+    "cheap_overclock": "skip the standard overclock loop; selected three-machine rows do not enable cheap overclock",
+    "parallel_duration": "outputs and input consumption multiply by selected parallel count; progressRequirement also multiplies by that count",
+    "efficiency": "progressRequirement uses the source efficiency divisor; selected rows use the fixed default 10000",
+    "effective_duration": "ceil(progressRequirement/actualInputPerTick)",
+    "failure_outcomes": {
+      "recipe_over_window": "NO_RECIPE_MATCH: findRecipe receives inputMax as its power ceiling.",
+      "packet_overvoltage": "OVERCHARGE: doInject calls overcharge when packet size exceeds inputMax.",
+      "underpowered": "STOPPED_OR_IDLE: progress does not advance unless stored energy reaches both inputMin and recipe minimum energy.",
+      "output_blocked": "STALLED: recipe start is refused when canOutput is zero, or completed progress is held at max while pending outputs remain."
+    }
+  },
+  "component_projection": {
+    "component_mappings": {
+      "OP.casingMachine": {"status": "MISSING_CC_COMPONENT", "replacement_condition": "Register a source-equivalent machine_casing prefix/component and prove a survival producer."},
+      "OP.casingMachineDouble": {"status": "MISSING_CC_COMPONENT", "replacement_condition": "Register a source-equivalent double_machine_casing prefix/component and prove a survival producer."},
+      "MT.DATA.CABLES_01[1..3]": {"status": "REACHABLE_EXISTING_COMPONENT_RULE", "materials": ["tin", "copper", "gold"], "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/wire_and_rubber_to_cable.json"},
+      "OP.wireGt01(platinum)": {"status": "REACHABLE_EXISTING_COMPONENT_RULE", "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/ingot_to_wire.json"},
+      "centrifuge_non_casing_forms": {"status": "REACHABLE_EXISTING_COMPONENT_RULES", "forms": ["gear", "long_rod"]},
+      "sifter_non_casing_forms": {"status": "REACHABLE_EXISTING_COMPONENT_RULES", "forms": ["spring", "fine_wire", "rod"]}
+    },
+    "variant_count": 9,
+    "craft_status": "FAIL_CLOSED_MISSING_MACHINE_CASINGS",
+    "replacement_condition": "All nine source patterns become projectable only after each casing identity exists and every selected material/form/cable operand has a registered form and a survival producer."
+  },
+  "network_projection": {
+    "selected_ru_producer": {
+      "source_identity": "Bronze Diesel Engine",
+      "source_meta": 9147,
+      "energy_identity": "RU",
+      "output_packet": 16,
+      "status": "FAIL_CLOSED_RUNTIME_AND_COMPONENT_DIVERGENCE",
+      "reason": "Existing Steam Engine is source-proven KU and existing Fuel Engine emits direct EU; neither proves a RU source.",
+      "replacement_condition": "Implement a distinct pinned Bronze Diesel Engine or migrate Fuel Engine through an explicit compatibility plan, then close casingDouble/curvedPlate/rod/gear/smallGear/lubricant operands."
+    },
+    "axle": {
+      "projected_registrations": 1,
+      "source_identity": "Medium Bronze Axle",
+      "source_meta": 24811,
+      "energy_identity": "RU",
+      "speed_expression": "VMAX[1]",
+      "power": 4,
+      "numeric_speed_status": "UNVERIFIED_SOURCE_FILE_NOT_IN_T12A_SET",
+      "status": "DEFERRED_T12E_RUNTIME",
+      "replacement_condition": "Pin VMAX from the same revision and implement RU-only signed traversal/overload before activation."
+    },
+    "gearbox": {
+      "projected_registrations": 1,
+      "source_identity": "Custom Bronze Gearbox",
+      "source_meta": 24819,
+      "energy_identity": "RU",
+      "throughput_expression": "VMAX[1]",
+      "numeric_throughput_status": "UNVERIFIED_SOURCE_FILE_NOT_IN_T12A_SET",
+      "status": "FAIL_CLOSED_MISSING_MACHINE_CASING_AND_T12E_RUNTIME",
+      "replacement_condition": "Close the casing/axle/lubricant craft and implement the pinned routing/jam semantics."
+    }
+  },
+  "structure_projection": {
+    "coke_oven": {
+      "source": "current CrucibleCraft no-drift baseline",
+      "controller_count": 1,
+      "predicate_counts": {"firebrick": 25, "air": 1, "controller": 1},
+      "scan_volume": 27,
+      "ports": {"controller_item": 1, "controller_fluid_output": 1, "heat_source_anchor": 1},
+      "heat_source_offset": "center y-2",
+      "recheck_ticks": 20,
+      "status": "READY_AS_T12D_MIGRATION_BASELINE"
+    },
+    "large_centrifuge": {
+      "source_display_name": "Large Centrifuge",
+      "source_symbol": "MultiTileEntityCentrifuge",
+      "requested_symbol": "MultiTileEntityLargeCentrifuge",
+      "requested_symbol_status": "ABSENT_IN_PINNED_TREE",
+      "part_meta": 18100,
+      "predicate_counts": {"centrifuge_part": 18},
+      "port_counts": {"item_fluid": 15, "energy_input": 2},
+      "controller_count": 1,
+      "port_count_correction_audit": {
+        "owner": "T15e",
+        "historical_expected_item_fluid_ports": 16,
+        "historical_status": "SUPERSEDED_INCORRECT_EXPECTATION",
+        "error": "The old expected 16 counted every non-energy cell as an item/fluid port and failed to subtract the controller at offset [0,0,0].",
+        "correction": "The live large_centrifuge.json structure is 18 cells = 15 item/fluid + 2 energy + 1 controller; current evidence is parser-derived rather than copied from the historical expectation.",
+        "corrected_authority": "tools/t15_matcher_boundary.json#physical_structure"
+      },
+      "scan_dimensions": [3, 2, 3],
+      "scan_volume": 18,
+      "energy_identity": "RU",
+      "input_min": 512,
+      "nominal_input": 512,
+      "input_max": 4096,
+      "parallel": 16,
+      "parallel_duration": true,
+      "cheap_overclock": true,
+      "efficiency": 5000,
+      "status": "FAIL_CLOSED_COMPONENTS_AND_RUNTIME",
+      "replacement_condition": "T12d must encode the exact 18 predicates/ports and T12e must provide RU aggregation; controller/part crafts remain blocked by machine casing, tier-6 circuit and processor identities."
+    }
+  },
+  "matcher_benchmark": {
+    "artifact": "tools/t12_capacity_matcher_benchmark.json",
+    "harness": "src/test/java/com/masson/cruciblecraft/recipe/gt/CapacityMatcherBenchmarkHarness.java",
+    "required_supply_counts": [12, 16, 32, 64],
+    "current_presence_supply_cap": 12,
+    "matcher_rewrite_authorized": false,
+    "t12a_decision": "Preserve the explicit cap. T15e later established that the 15 physical item/fluid ports bridge one shared host whose matcher sees one item input supply; physical port count is not matcher supply count."
+  },
+  "supersession": {
+    "historical_artifact": "tools/machine_crafting_readiness.json",
+    "historical_owner": "tier_collapsed_pending_t6",
+    "status": "SUPERSEDED_BY_T12_MACHINE_KIND_TIER_PROFILE_OWNER",
+    "history_preserved": true,
+    "replacement_owner": "T12b_kind_tier_schema_and_T12c_machine_variants",
+    "material_tag_policy": {
+      "path": "src/main/resources/data/cruciblecraft/material_tag_policy.json#energy_type_decision",
+      "superseded_statement": "GT6 RU is intentionally represented by the existing KINETIC packet type.",
+      "replacement": "T12 source identity is split into RU/KINETIC_ROTATION and KU/KINETIC_PUSH. Runtime enum migration remains T12c and cannot be inferred from current KINETIC."
+    }
+  },
+  "load_gate": {
+    "t12_authored_material_rule_budget": 0,
+    "machine_variants_projected": 9,
+    "machine_crafts_projected": 9,
+    "recipe_publication_additions": 0,
+    "t12a_ready_semantics": "Source/ledger/scaling/preprojection/benchmark gate only; it does not claim T12_READY runtime closure."
+  }
+}

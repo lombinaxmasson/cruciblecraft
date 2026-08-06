@@ -71,6 +71,10 @@ class SubsurfaceFluidDepositConfigurationTest {
                 replaceable,
                 16,
                 0.5F,
-                1330194521);
+                1330194521,
+                25,
+                20,
+                1_000,
+                false);
     }
 }

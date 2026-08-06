@@ -1,0 +1,106 @@
+{
+  "benchmark": {
+    "all_within_budget": true,
+    "dense_supply_counts": [
+      12,
+      16,
+      32,
+      64
+    ],
+    "harness": "src/test/java/com/masson/cruciblecraft/recipe/gt/CapacityMatcherBenchmarkHarness.java",
+    "harness_sha256": "37e9b2676be7e6c37258d9350bbcdb203e7fadd10ca12a8a80b839968e954f27",
+    "matcher": "src/main/java/com/masson/cruciblecraft/recipe/gt/CapacityMatcher.java",
+    "matcher_rewritten": false,
+    "matcher_sha256": "d75db571d60b708d070a132c730b2f26e05ae0a70e9b21e9ad4b39def2e11e35",
+    "path": "tools/t12_capacity_matcher_benchmark.json",
+    "presence_cap_rejection_supply_counts": [
+      16,
+      32,
+      64
+    ],
+    "sha256": "5d8cf9583bb39df1be5fd2baf7b2f26e9cbc33c4025661114f3bcbe62a18d98b",
+    "status": "T12A_BENCHMARK_READY"
+  },
+  "currentness": {
+    "owned_inputs": {
+      "src/main/java/com/masson/cruciblecraft/content/blockentity/MultiblockPortBlockEntity.java": "5e3fea8eed0322514266cfb7e5c884a22b27768464d2ed7ed1d4f984e8b30a43",
+      "src/main/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineBlockEntity.java": "1be3a22a53dfee3a04eda7d55fc8ad7757ac16999c686847410eca7dbe9b0fb6",
+      "src/main/java/com/masson/cruciblecraft/recipe/gt/CapacityMatcher.java": "d75db571d60b708d070a132c730b2f26e05ae0a70e9b21e9ad4b39def2e11e35",
+      "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java": "a27476dbc406dbb874590cc8689cd31ab01812a7660a4a9e91225536845694e8",
+      "src/main/resources/data/cruciblecraft/multiblock_structures/large_centrifuge.json": "b1e2799d9bf6eddea50c07b4deea1c51ffeec06fd947a2aad30ab6029232b21d",
+      "src/test/java/com/masson/cruciblecraft/recipe/gt/CapacityMatcherBenchmarkHarness.java": "37e9b2676be7e6c37258d9350bbcdb203e7fadd10ca12a8a80b839968e954f27",
+      "tools/build_t15_matcher_boundary.py": "5169054c64e3d4566e11e489682393305b16fff93bddbf9b5b4acdea95a16f6a",
+      "tools/t12_capacity_matcher_benchmark.json": "5d8cf9583bb39df1be5fd2baf7b2f26e9cbc33c4025661114f3bcbe62a18d98b",
+      "tools/t12_machine_policy.json": "a790f443d4898cf3599e306530435675e9b9d4abf89ac5b0d6214e6da661de3f"
+    }
+  },
+  "historical_correction_audit": {
+    "corrected_authority": "tools/t15_matcher_boundary.json#physical_structure",
+    "correction": "The live large_centrifuge.json structure is 18 cells = 15 item/fluid + 2 energy + 1 controller; current evidence is parser-derived rather than copied from the historical expectation.",
+    "error": "The old expected 16 counted every non-energy cell as an item/fluid port and failed to subtract the controller at offset [0,0,0].",
+    "historical_expected_item_fluid_ports": 16,
+    "historical_status": "SUPERSEDED_INCORRECT_EXPECTATION",
+    "owner": "T15e",
+    "policy": "tools/t12_machine_policy.json",
+    "policy_sha256": "a790f443d4898cf3599e306530435675e9b9d4abf89ac5b0d6214e6da661de3f"
+  },
+  "host_layout": {
+    "fluid_input_capacity": 4000,
+    "fluid_inputs": 1,
+    "fluid_output_capacity": 8000,
+    "fluid_outputs": 2,
+    "fluid_tanks": 3,
+    "item_inputs": 1,
+    "item_outputs": 6,
+    "item_slots": 7,
+    "path": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+    "sha256": "a27476dbc406dbb874590cc8689cd31ab01812a7660a4a9e91225536845694e8"
+  },
+  "matcher_boundary": {
+    "current_item_supply_count": 1,
+    "decision": "Keep the current matcher: one source-derived item input supply does not trigger the presence-only cap of 12.",
+    "matcher_rewritten": false,
+    "presence_cap_triggered": false,
+    "presence_item_supply_cap": 12
+  },
+  "physical_structure": {
+    "controllers": 1,
+    "energy_input_ports": 2,
+    "item_fluid_ports": 15,
+    "path": "src/main/resources/data/cruciblecraft/multiblock_structures/large_centrifuge.json",
+    "scan_volume": 18,
+    "sha256": "b1e2799d9bf6eddea50c07b4deea1c51ffeec06fd947a2aad30ab6029232b21d"
+  },
+  "port_host_boundary": {
+    "fluid_matcher_supplies": 1,
+    "item_matcher_supplies": 1,
+    "physical_item_fluid_ports": 15,
+    "physical_ports_expand_matcher_supplies": false,
+    "relationship": "15 physical item/fluid ports bridge one shared host inventory; matcher supplies are the host's 1 item input and 1 fluid input.",
+    "shared_processing_hosts": 1
+  },
+  "schema_version": 1,
+  "source_contracts": {
+    "port_bridge": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/MultiblockPortBlockEntity.java",
+      "required_tokens": [
+        "all resource\n * state remains transaction-owned by the shared processing host",
+        "host.inventory().getSlots()",
+        "host.inventory().getStackInSlot(slot)",
+        "host.tanks().size()",
+        "host.tanks().get(tank).getFluid().copy()"
+      ],
+      "sha256": "5e3fea8eed0322514266cfb7e5c884a22b27768464d2ed7ed1d4f984e8b30a43"
+    },
+    "processing_host": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineBlockEntity.java",
+      "required_tokens": [
+        "spec.items().inputs().stream().map(inventory::getStackInSlot)",
+        "spec.fluids().inputs().stream().map(",
+        "recipeCache.find(itemInputs, fluidInputs)"
+      ],
+      "sha256": "1be3a22a53dfee3a04eda7d55fc8ad7757ac16999c686847410eca7dbe9b0fb6"
+    }
+  },
+  "status": "T15E_MATCHER_BOUNDARY_READY"
+}

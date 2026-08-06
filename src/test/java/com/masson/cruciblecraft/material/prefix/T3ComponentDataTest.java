@@ -214,12 +214,15 @@ class T3ComponentDataTest {
                                         "cruciblecraft", definition.path()),
                                 definition.rule(),
                                 materials,
-                                registeredForms).stream()).toList());
+                                registeredForms).stream())
+                        .sorted(java.util.Comparator.comparing(
+                                plan -> plan.id().toString()))
+                        .toList());
         long expansionElapsedMs =
                 java.util.concurrent.TimeUnit.NANOSECONDS.toMillis(
                         System.nanoTime() - expansionStarted);
         System.out.println("T3_COMPONENT_EXPANSION_ELAPSED_MS=" + expansionElapsedMs);
-        assertEquals(2810, rules.size());
+        assertEquals(48, rules.size());
         assertEquals(8141, plans.size());
         assertTrue(plans.size() <= 10_000, "T3 reload expansion budget");
 
@@ -227,10 +230,19 @@ class T3ComponentDataTest {
                 .collect(Collectors.toMap(MaterialDefinition::id, value -> value));
         for (MaterialRuleExpansion.Plan plan : plans) {
             MaterialDefinition source = byId.get(plan.materialId());
-            var outputRule = rules.stream()
-                    .filter(definition -> plan.id().getPath().startsWith(definition.path() + "/"))
-                    .findFirst().orElseThrow().rule().itemOutputs().getFirst();
-            String selector = outputRule.materialSelector().orElse("self");
+            MaterialRule owner = rules.stream()
+                    .filter(definition ->
+                            plan.id().getPath().startsWith(definition.path() + "/")
+                                    || definition.rule().sparse()
+                                            .map(table -> table.relations().stream()
+                                                    .anyMatch(relation -> relation.stableId()
+                                                            .equals(plan.id())))
+                                            .orElse(false))
+                    .findFirst().orElseThrow().rule();
+            String selector = owner.sparse().isPresent()
+                    ? "self"
+                    : owner.itemOutputs().getFirst()
+                            .materialSelector().orElse("self");
             long inputUnits = plan.itemInputs().stream().mapToLong(resource ->
                     resource.resource().materialId().equals(source.id())
                                     && resource.resource().prefix()
@@ -330,10 +342,16 @@ class T3ComponentDataTest {
         Set<String> sourcePaths = rules.stream()
                 .map(ComponentRuleSource::path)
                 .collect(Collectors.toSet());
+        Set<ResourceLocation> sparseIds = rules.stream()
+                .flatMap(definition -> definition.rule().sparse().stream())
+                .flatMap(table -> table.relations().stream())
+                .map(MaterialRule.SparseRelation::stableId)
+                .collect(Collectors.toSet());
         assertTrue(plans.stream().allMatch(plan -> {
             String path = plan.id().getPath();
             int materialSuffix = path.lastIndexOf('/');
-            return materialSuffix > 0
+            return sparseIds.contains(plan.id())
+                    || materialSuffix > 0
                     && sourcePaths.contains(path.substring(0, materialSuffix));
         }), "every expanded T3 recipe must trace to component_rule_generated JSON");
         Set<String> signatures = plans.stream().map(T3ComponentDataTest::shadowSignature)
@@ -479,18 +497,20 @@ class T3ComponentDataTest {
                 source.path().equals("extruder/ingot_to_long_rod")));
         assertFalse(javaSource.indexOf("\"extruder/ingot_to_long_rod\"") >= 0,
                 "legacy no-shape extruder bypass leaked back into Java");
-        assertEquals(2782, rules.stream()
+        assertEquals(20, rules.stream()
                 .filter(source -> source.path().startsWith("extruder/"))
                 .count());
         assertTrue(rules.stream()
                 .filter(source -> source.path().startsWith("extruder/"))
                 .allMatch(source ->
-                        source.rule().itemInputs().size() == 2
-                                && source.rule().itemInputs().get(1).count().equals("0")
-                                && source.rule().itemInputs().get(1).item()
-                                        .map(ResourceLocation::getPath)
-                                        .filter(path -> path.startsWith("extruder_shape_"))
-                                        .isPresent()));
+                        source.rule().sparse()
+                                .map(table -> table.shapeItem().getPath()
+                                        .startsWith("extruder_shape_"))
+                                .orElse(false)));
+        assertEquals(2782, rules.stream()
+                .flatMap(source -> source.rule().sparse().stream())
+                .mapToLong(table -> table.relations().size())
+                .sum());
 
         var correctionSource = JsonParser.parseString(Files.readString(Path.of(
                 "tools/component_rule_sources/acceptance_form_corrections.json")))

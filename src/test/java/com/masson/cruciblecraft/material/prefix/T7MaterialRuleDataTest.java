@@ -119,9 +119,10 @@ class T7MaterialRuleDataTest {
             JsonObject material = JsonParser.parseString(Files.readString(
                     MATERIAL_ROOT.resolve(value.getAsString()))).getAsJsonObject();
             String materialId = material.get("id").getAsString();
-            Set<String> tags = strings(
-                    material.getAsJsonObject("gt6_metadata")
-                            .getAsJsonArray("material_tags"));
+            Set<String> tags = material.has("gt6_metadata")
+                    ? strings(material.getAsJsonObject("gt6_metadata")
+                            .getAsJsonArray("material_tags"))
+                    : Set.of();
             Set<String> forms = strings(gate.getAsJsonArray(materialId));
             if (!tags.contains("PROCESSING.MORTAR_GRINDABLE")
                     || !forms.contains("dust")) {

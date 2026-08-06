@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "window_rule": "minimum=nominal/2;maximum=nominal*2;capacity=maximum",
+  "overclock": "STANDARD",
+  "efficiency": 10000,
+  "preserved_pre_t16": [
+    {"id":"cruciblecraft:centrifuge","kind":"cruciblecraft:centrifuge","tier":"cruciblecraft:ru_tier_1","material":"cruciblecraft:bronze","energy":"KINETIC_ROTATION","source_id":20081,"source_tier":1,"nominal":32,"parallel":1,"parallel_duration":true},
+    {"id":"cruciblecraft:steel_centrifuge","kind":"cruciblecraft:centrifuge","tier":"cruciblecraft:ru_tier_2","material":"cruciblecraft:steel","energy":"KINETIC_ROTATION","source_id":20082,"source_tier":2,"nominal":128,"parallel":2,"parallel_duration":true},
+    {"id":"cruciblecraft:titanium_centrifuge","kind":"cruciblecraft:centrifuge","tier":"cruciblecraft:ru_tier_3","material":"cruciblecraft:titanium","energy":"KINETIC_ROTATION","source_id":20083,"source_tier":3,"nominal":512,"parallel":4,"parallel_duration":true},
+    {"id":"cruciblecraft:sifter","kind":"cruciblecraft:sifter","tier":"cruciblecraft:ku_tier_1","material":"cruciblecraft:bronze","energy":"KINETIC_PUSH","source_id":20051,"source_tier":1,"nominal":32,"parallel":4,"parallel_duration":true},
+    {"id":"cruciblecraft:steel_sifter","kind":"cruciblecraft:sifter","tier":"cruciblecraft:ku_tier_2","material":"cruciblecraft:steel","energy":"KINETIC_PUSH","source_id":20052,"source_tier":2,"nominal":128,"parallel":8,"parallel_duration":true},
+    {"id":"cruciblecraft:titanium_sifter","kind":"cruciblecraft:sifter","tier":"cruciblecraft:ku_tier_3","material":"cruciblecraft:titanium","energy":"KINETIC_PUSH","source_id":20053,"source_tier":3,"nominal":512,"parallel":16,"parallel_duration":true},
+    {"id":"cruciblecraft:electrolyzer","kind":"cruciblecraft:electrolyzer","tier":"cruciblecraft:electric_tier_1","material":"cruciblecraft:steel_galvanized","energy":"ELECTRIC","source_id":20091,"source_tier":1,"nominal":32,"parallel":1,"parallel_duration":true},
+    {"id":"cruciblecraft:aluminium_electrolyzer","kind":"cruciblecraft:electrolyzer","tier":"cruciblecraft:electric_tier_2","material":"cruciblecraft:aluminium","energy":"ELECTRIC","source_id":20092,"source_tier":2,"nominal":128,"parallel":2,"parallel_duration":true},
+    {"id":"cruciblecraft:stainless_steel_electrolyzer","kind":"cruciblecraft:electrolyzer","tier":"cruciblecraft:electric_tier_3","material":"cruciblecraft:stainless_steel","energy":"ELECTRIC","source_id":20093,"source_tier":3,"nominal":512,"parallel":4,"parallel_duration":true}
+  ],
+  "t16a_selected": [
+    {"id":"cruciblecraft:lathe","kind":"cruciblecraft:lathe","tier":"cruciblecraft:ru_tier_1","material":"cruciblecraft:bronze","energy":"KINETIC_ROTATION","source_id":20041,"source_tier":1,"nominal":32,"parallel":1,"parallel_duration":false},
+    {"id":"cruciblecraft:steel_lathe","kind":"cruciblecraft:lathe","tier":"cruciblecraft:ru_tier_2","material":"cruciblecraft:steel","energy":"KINETIC_ROTATION","source_id":20042,"source_tier":2,"nominal":128,"parallel":1,"parallel_duration":false},
+    {"id":"cruciblecraft:titanium_lathe","kind":"cruciblecraft:lathe","tier":"cruciblecraft:ru_tier_3","material":"cruciblecraft:titanium","energy":"KINETIC_ROTATION","source_id":20043,"source_tier":3,"nominal":512,"parallel":1,"parallel_duration":false},
+    {"id":"cruciblecraft:rollingmill","kind":"cruciblecraft:rollingmill","tier":"cruciblecraft:ru_tier_1","material":"cruciblecraft:bronze","energy":"KINETIC_ROTATION","source_id":20111,"source_tier":1,"nominal":32,"parallel":1,"parallel_duration":false},
+    {"id":"cruciblecraft:steel_rollingmill","kind":"cruciblecraft:rollingmill","tier":"cruciblecraft:ru_tier_2","material":"cruciblecraft:steel","energy":"KINETIC_ROTATION","source_id":20112,"source_tier":2,"nominal":128,"parallel":1,"parallel_duration":false},
+    {"id":"cruciblecraft:titanium_rollingmill","kind":"cruciblecraft:rollingmill","tier":"cruciblecraft:ru_tier_3","material":"cruciblecraft:titanium","energy":"KINETIC_ROTATION","source_id":20113,"source_tier":3,"nominal":512,"parallel":1,"parallel_duration":false},
+    {"id":"cruciblecraft:wiremill","kind":"cruciblecraft:wiremill","tier":"cruciblecraft:ru_tier_1","material":"cruciblecraft:bronze","energy":"KINETIC_ROTATION","source_id":20151,"source_tier":1,"nominal":32,"parallel":1,"parallel_duration":false},
+    {"id":"cruciblecraft:steel_wiremill","kind":"cruciblecraft:wiremill","tier":"cruciblecraft:ru_tier_2","material":"cruciblecraft:steel","energy":"KINETIC_ROTATION","source_id":20152,"source_tier":2,"nominal":128,"parallel":1,"parallel_duration":false},
+    {"id":"cruciblecraft:titanium_wiremill","kind":"cruciblecraft:wiremill","tier":"cruciblecraft:ru_tier_3","material":"cruciblecraft:titanium","energy":"KINETIC_ROTATION","source_id":20153,"source_tier":3,"nominal":512,"parallel":1,"parallel_duration":false},
+    {"id":"cruciblecraft:shredder","kind":"cruciblecraft:shredder","tier":"cruciblecraft:ru_tier_1","material":"cruciblecraft:bronze","energy":"KINETIC_ROTATION","source_id":20011,"source_tier":1,"nominal":32,"parallel":1,"parallel_duration":false},
+    {"id":"cruciblecraft:steel_shredder","kind":"cruciblecraft:shredder","tier":"cruciblecraft:ru_tier_2","material":"cruciblecraft:steel","energy":"KINETIC_ROTATION","source_id":20012,"source_tier":2,"nominal":128,"parallel":1,"parallel_duration":false},
+    {"id":"cruciblecraft:titanium_shredder","kind":"cruciblecraft:shredder","tier":"cruciblecraft:ru_tier_3","material":"cruciblecraft:titanium","energy":"KINETIC_ROTATION","source_id":20013,"source_tier":3,"nominal":512,"parallel":1,"parallel_duration":false}
+  ],
+  "t16b_selected": [
+    {"id":"cruciblecraft:press","kind":"cruciblecraft:press","tier":"cruciblecraft:ku_tier_1","material":"cruciblecraft:bronze","energy":"KINETIC_PUSH","source_id":20231,"source_tier":1,"nominal":32,"parallel":4,"parallel_duration":true},
+    {"id":"cruciblecraft:steel_press","kind":"cruciblecraft:press","tier":"cruciblecraft:ku_tier_2","material":"cruciblecraft:steel","energy":"KINETIC_PUSH","source_id":20232,"source_tier":2,"nominal":128,"parallel":8,"parallel_duration":true},
+    {"id":"cruciblecraft:titanium_press","kind":"cruciblecraft:press","tier":"cruciblecraft:ku_tier_3","material":"cruciblecraft:titanium","energy":"KINETIC_PUSH","source_id":20233,"source_tier":3,"nominal":512,"parallel":16,"parallel_duration":true}
+  ],
+  "controller_profile": {
+    "id": "cruciblecraft:large_centrifuge_profile",
+    "material": "cruciblecraft:large_centrifuge",
+    "energy": "KINETIC_ROTATION",
+    "minimum": 512,
+    "nominal": 512,
+    "maximum": 4096,
+    "capacity": 4096,
+    "parallel": 16,
+    "efficiency": 5000
+  }
+}

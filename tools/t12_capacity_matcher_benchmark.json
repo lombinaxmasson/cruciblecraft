@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "status": "T12A_BENCHMARK_READY",
+  "harness": "com.masson.cruciblecraft.recipe.gt.CapacityMatcherBenchmarkHarness",
+  "method": {
+    "warmup_iterations": 200,
+    "samples": 200,
+    "operations_per_sample": 10,
+    "clock": "System.nanoTime"
+  },
+  "decision": {
+    "current_presence_supply_cap": 12,
+    "matcher_rewritten": false,
+    "t12a_action": "preserve_explicit_cap",
+    "revisit_point": "T15e derives one Large Centrifuge item matcher supply from the shared host; rerun and reconsider the algorithm if a future presence schema exposes more than 12 item supplies."
+  },
+  "runtime": {
+    "java_version": "21.0.6",
+    "java_vm": "OpenJDK 64-Bit Server VM",
+    "os_arch": "amd64"
+  },
+  "scenarios": [
+    {
+      "id": "dense_consuming_12",
+      "requirements": 12,
+      "supplies": 12,
+      "edges": 144,
+      "presence_only": 0,
+      "expected_result": "satisfied",
+      "p50_ns": 17590,
+      "p95_ns": 50730,
+      "max_ns": 309020,
+      "p95_budget_ns": 20000000,
+      "within_budget": true
+    },
+    {
+      "id": "dense_consuming_16",
+      "requirements": 16,
+      "supplies": 16,
+      "edges": 256,
+      "presence_only": 0,
+      "expected_result": "satisfied",
+      "p50_ns": 18940,
+      "p95_ns": 27830,
+      "max_ns": 147540,
+      "p95_budget_ns": 20000000,
+      "within_budget": true
+    },
+    {
+      "id": "dense_consuming_32",
+      "requirements": 32,
+      "supplies": 32,
+      "edges": 1024,
+      "presence_only": 0,
+      "expected_result": "satisfied",
+      "p50_ns": 83310,
+      "p95_ns": 93930,
+      "max_ns": 108590,
+      "p95_budget_ns": 20000000,
+      "within_budget": true
+    },
+    {
+      "id": "dense_consuming_64",
+      "requirements": 64,
+      "supplies": 64,
+      "edges": 4096,
+      "presence_only": 0,
+      "expected_result": "satisfied",
+      "p50_ns": 372630,
+      "p95_ns": 472600,
+      "max_ns": 558970,
+      "p95_budget_ns": 20000000,
+      "within_budget": true
+    },
+    {
+      "id": "dense_presence_boundary_12",
+      "requirements": 5,
+      "supplies": 12,
+      "edges": 60,
+      "presence_only": 4,
+      "expected_result": "satisfied_with_shared_unconsumed_witness",
+      "p50_ns": 3140,
+      "p95_ns": 6370,
+      "max_ns": 23410,
+      "p95_budget_ns": 50000000,
+      "within_budget": true
+    },
+    {
+      "id": "presence_cap_rejection_16",
+      "requirements": 1,
+      "supplies": 16,
+      "edges": 16,
+      "presence_only": 1,
+      "expected_result": "rejected_by_explicit_12_supply_cap",
+      "p50_ns": 2010,
+      "p95_ns": 3170,
+      "max_ns": 5950,
+      "p95_budget_ns": 50000000,
+      "within_budget": true
+    },
+    {
+      "id": "presence_cap_rejection_32",
+      "requirements": 1,
+      "supplies": 32,
+      "edges": 32,
+      "presence_only": 1,
+      "expected_result": "rejected_by_explicit_12_supply_cap",
+      "p50_ns": 1010,
+      "p95_ns": 1090,
+      "max_ns": 3100,
+      "p95_budget_ns": 50000000,
+      "within_budget": true
+    },
+    {
+      "id": "presence_cap_rejection_64",
+      "requirements": 1,
+      "supplies": 64,
+      "edges": 64,
+      "presence_only": 1,
+      "expected_result": "rejected_by_explicit_12_supply_cap",
+      "p50_ns": 1020,
+      "p95_ns": 2380,
+      "max_ns": 8510,
+      "p95_budget_ns": 50000000,
+      "within_budget": true
+    }
+  ]
+}

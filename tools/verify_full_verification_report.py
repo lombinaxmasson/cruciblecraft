@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import subprocess
 import sys
@@ -24,6 +25,7 @@ except ModuleNotFoundError:
 ROOT = Path(__file__).resolve().parents[1]
 TOOLS = ROOT / "tools"
 REPORT = TOOLS / "full_verification_report.json"
+BUILDER_POLICY = TOOLS / "verification_builder_policy.json"
 CORE_ARTIFACTS = (
     "gt6_oredict_import_manifest.json",
     "gt6_recipe_expectations.json",
@@ -57,6 +59,67 @@ CORE_ARTIFACTS = (
     "t10_preflight_policy.json",
     "t10_preflight_projection.json",
     "t10_container_readiness.json",
+    "t11_preflight_policy.json",
+    "t11_preflight_projection.json",
+    "t11_hydrocarbon_recipe_manifest.json",
+    "t12_machine_policy.json",
+    "t12a_machine_readiness.json",
+    "t12_closure_readiness.json",
+    "t12_capacity_matcher_benchmark.json",
+    "t13_denominator_policy.json",
+    "t13_gt6_tree_manifest.json",
+    "t13_source_symbol_inventory.json",
+    "t13_recipe_map_policy.json",
+    "t13_prefix_domain_policy.json",
+    "t13_machine_energy_policy.json",
+    "t13_cover_multiblock_policy.json",
+    "t13_denominator_manifest.json",
+    "t13_denominator_readiness.json",
+    "t13_denominators/recipe_maps.json",
+    "t13_denominators/prefixes.json",
+    "t13_denominators/itemgenerator_domains.json",
+    "t13_denominators/machine_kinds.json",
+    "t13_denominators/energy_identities.json",
+    "t13_denominators/cover_kinds.json",
+    "t13_denominators/multiblock_kinds.json",
+    "t14_extruder_policy.json",
+    "t14_extruder_expected.json",
+    "t14_extruder_compact.json",
+    "t14_extruder_legacy_replay.json",
+    "t14_extruder_readiness.json",
+    "t14_materialization_candidate_policy.json",
+    "t14_recipe_load_benchmark.json",
+    "t14_materialization_policy.json",
+    "t14_materialization_decision.json",
+    "t14_load_budget_policy.json",
+    "t14_extruder_load_projection_input.json",
+    "t14_extruder_load_projection.json",
+    "t14_readiness.json",
+    "t15_machine_acquisition_policy.json",
+    "t15_machine_acquisition.json",
+    "t15_matcher_boundary.json",
+    "t15_load_projection_input.json",
+    "t15_load_projection.json",
+    "t15_readiness_policy.json",
+    "t15_readiness.json",
+    "t16_machine_denominator_policy.json",
+    "t16_machine_denominator.json",
+    "t16_machine_acquisition_policy.json",
+    "t16_machine_acquisition.json",
+    "t16_load_projection_input.json",
+    "t16_load_projection.json",
+    "t16_readiness_policy.json",
+    "t16_readiness.json",
+    "t17_machine_denominator_policy.json",
+    "t17_machine_denominator.json",
+    "t17_machine_acquisition_policy.json",
+    "t17_machine_acquisition.json",
+    "t17_load_projection_input.json",
+    "t17_load_projection.json",
+    "t17_readiness_policy.json",
+    "t17_readiness.json",
+    "recipe_load_projection.schema.json",
+    "verification_builder_policy.json",
     "local_artifact_manifest.json",
     "material_registry_stress_report.json",
     "material_registry_budget.json",
@@ -65,6 +128,9 @@ COMPONENT_MANIFEST = TOOLS / "component_rule_manifest.json"
 COMPONENT_SOURCE_DIR = TOOLS / "component_rule_sources"
 COMPONENT_GENERATED_ROOT = ROOT / "src/component_rule_generated/resources"
 T5_CHEMICAL_GENERATED_ROOT = ROOT / "src/t5_chemical_generated/resources"
+T11_HYDROCARBON_GENERATED_ROOT = (
+    ROOT / "src/t11_hydrocarbon_generated/resources"
+)
 WORLDGEN_CATALOG_GENERATED_ROOT = (
     ROOT / "src/worldgen_catalog_generated/resources"
 )
@@ -97,12 +163,41 @@ def tooling_paths() -> list[Path]:
         TOOLS / "build_worldgen_catalog.py",
         TOOLS / "build_t10_preflight_projection.py",
         TOOLS / "build_t10_container_readiness.py",
+        TOOLS / "build_t11_preflight_projection.py",
+        TOOLS / "build_t11_hydrocarbon_recipes.py",
+        TOOLS / "build_t12_machine_readiness.py",
+        TOOLS / "build_t12_closure_readiness.py",
+        TOOLS / "build_t13_recipe_map_denominator.py",
+        TOOLS / "build_t13_prefix_domain_denominators.py",
+        TOOLS / "build_t13_machine_energy_denominators.py",
+        TOOLS / "build_t13_cover_multiblock_denominators.py",
+        TOOLS / "build_t13_denominator_readiness.py",
+        TOOLS / "build_t14_extruder_equivalence.py",
+        TOOLS / "build_t14_recipe_load_benchmark.py",
+        TOOLS / "build_t14_readiness.py",
+        TOOLS / "build_t15_machine_acquisition.py",
+        TOOLS / "build_t15_matcher_boundary.py",
+        TOOLS / "build_t15_readiness.py",
+        TOOLS / "build_t16_machine_denominator.py",
+        TOOLS / "build_t16_machine_acquisition.py",
+        TOOLS / "build_t16_readiness.py",
+        TOOLS / "build_t17_machine_denominator.py",
+        TOOLS / "build_t17_machine_acquisition.py",
+        TOOLS / "build_t17_readiness.py",
+        TOOLS / "recipe_load_projection.py",
         TOOLS / "apply_t10_form_flags.py",
         TOOLS / "apply_t8_pipe_metadata.py",
         TOOLS / "gt6_pipes.py",
         TOOLS / "gt6_electrical.py",
         TOOLS / "gt6_extruder_templates.py",
+        TOOLS / "run_full_verification.py",
+        TOOLS / "run_python_tests.py",
+        TOOLS / "verification_context.py",
+        TOOLS / "verification_session.py",
+        TOOLS / "verification_session.schema.json",
+        BUILDER_POLICY,
         TOOLS / "verify_full_verification_report.py",
+        TOOLS / "python_test_policy.json",
         TOOLS / "README.md",
         TOOLS / "gt6_process_expectations.json",
         ROOT
@@ -113,6 +208,10 @@ def tooling_paths() -> list[Path]:
         / "src/main/java/com/masson/cruciblecraft/content/item/ExtruderShapeCatalog.java",
         ROOT
         / "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+        ROOT
+        / "src/main/resources/data/cruciblecraft/t16_publication_baseline.json",
+        ROOT
+        / "src/main/resources/data/cruciblecraft/t17_publication_baseline.json",
         ROOT
         / "src/main/java/com/masson/cruciblecraft/material/ChemicalFluidRegistrationGate.java",
         ROOT
@@ -154,6 +253,26 @@ def tooling_paths() -> list[Path]:
         ROOT
         / "src/main/resources/data/cruciblecraft/t10_container_fluid_gate.json",
         ROOT
+        / "src/main/resources/data/cruciblecraft/t11_hydrocarbon_fluid_gate.json",
+        ROOT
+        / "src/main/resources/data/cruciblecraft/t11_cell_content_gate.json",
+        ROOT
+        / "src/main/resources/data/cruciblecraft/t11_hydrocarbon_runtime_policy.json",
+        ROOT
+        / "src/main/resources/data/cruciblecraft/t11_materials/natural_gas.json",
+        ROOT
+        / "src/main/resources/data/cruciblecraft/t11_materials/index.json",
+        ROOT
+        / "src/main/java/com/masson/cruciblecraft/material/def/MaterialLoader.java",
+        ROOT
+        / "src/main/java/com/masson/cruciblecraft/material/HydrocarbonRuntimePolicy.java",
+        ROOT
+        / "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidDepositExtractorBlockEntity.java",
+        ROOT
+        / "src/main/java/com/masson/cruciblecraft/content/blockentity/FuelGeneratorBlockEntity.java",
+        ROOT
+        / "src/main/java/com/masson/cruciblecraft/content/blockentity/GasCloudBlockEntity.java",
+        ROOT
         / "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
         ROOT
         / "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapLoader.java",
@@ -183,6 +302,7 @@ def tooling_paths() -> list[Path]:
         / "src/test/java/com/masson/cruciblecraft/client/tooltip/MaterialMetadataTooltipTest.java",
         ROOT / ".gitignore",
     ]
+    paths.extend(TOOLS / name for name in CORE_ARTIFACTS)
     paths.extend(
         COMPONENT_SOURCE_DIR / name
         for name in (
@@ -220,8 +340,12 @@ def tooling_paths() -> list[Path]:
         ROOT / "src/main/resources/data/cruciblecraft/material_prefixes"
     ).glob("*pipe.json")))
     paths.extend((
+        ROOT / "README.md",
         ROOT / "CrucibleCraft-总体规划.md",
         ROOT / "CrucibleCraft-第二阶段总体规划.md",
+        ROOT / "CrucibleCraft-第三阶段总体规划.md",
+        ROOT / "CrucibleCraft-阶段档案-T13-T16.md",
+        ROOT / "CrucibleCraft-阶段档案-T17.md",
     ))
     return paths
 
@@ -242,6 +366,9 @@ def tree_digest(paths: list[Path], root: Path) -> dict[str, Any]:
 def current_tree_digests() -> dict[str, Any]:
     component_files = list(COMPONENT_GENERATED_ROOT.rglob("*.json"))
     t5_chemical_files = list(T5_CHEMICAL_GENERATED_ROOT.rglob("*.json"))
+    t11_hydrocarbon_files = list(
+        T11_HYDROCARBON_GENERATED_ROOT.rglob("*.json")
+    )
     worldgen_catalog_files = list(
         WORLDGEN_CATALOG_GENERATED_ROOT.rglob("*.json")
     )
@@ -268,6 +395,9 @@ def current_tree_digests() -> dict[str, Any]:
         ),
         "t5_chemical_generated": tree_digest(
             t5_chemical_files, T5_CHEMICAL_GENERATED_ROOT
+        ),
+        "t11_hydrocarbon_generated": tree_digest(
+            t11_hydrocarbon_files, T11_HYDROCARBON_GENERATED_ROOT
         ),
         "worldgen_catalog_generated": tree_digest(
             worldgen_catalog_files, WORLDGEN_CATALOG_GENERATED_ROOT
@@ -387,13 +517,24 @@ def current_compatibility_metrics() -> dict[str, Any]:
             reviewed["human_reviewed"] += 1
         else:
             reviewed["unreviewed"] += 1
+    t14 = json.loads(
+        (TOOLS / "t14_readiness.json").read_text(encoding="utf-8")
+    )
+    virtualized_recipes = (
+        t14["o_26"]["logical_relations"]
+        if t14["status"] == "T14_READY"
+        else 0
+    )
     if len(expectations) != len(cc_recipes):
         raise ValueError(
-            "compact expectation count does not cover current CC recipes: "
-            f"{len(expectations)} != {len(cc_recipes)}"
+            "compact expectation count does not cover current logical CC "
+            f"recipes: {len(expectations)} != {len(cc_recipes)}"
         )
     return {
         "normalized_cc_recipes": len(cc_recipes),
+        "concrete_cc_recipes": len(cc_recipes) - virtualized_recipes,
+        "virtualized_cc_recipes": virtualized_recipes,
+        "logical_cc_recipes": len(cc_recipes),
         "verdicts": verdicts,
         "review_evidence": reviewed,
     }
@@ -838,6 +979,179 @@ def derived_t10_preflight_acceptance() -> dict[str, Any]:
     }
 
 
+def derived_t11_preflight_acceptance() -> dict[str, Any]:
+    try:
+        from tools import build_t11_preflight_projection as t11_builder
+    except ModuleNotFoundError:
+        import build_t11_preflight_projection as t11_builder
+
+    document = json.loads(
+        t11_builder.OUTPUT.read_text(encoding="utf-8")
+    )
+    recipe_manifest = json.loads(
+        (TOOLS / "t11_hydrocarbon_recipe_manifest.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    return {
+        "status": document["status"],
+        "ledger_current": not t11_builder.reference_only_check(),
+        "source_revision": document["source_revision"],
+        "independent_expectation": document["independent_expectation"],
+        "distillery_counts": document["distillery_ledger"]["counts"],
+        "source_map_ledgers": {
+            route: ledger["counts"]
+            for route, ledger in document["source_map_ledgers"].items()
+        },
+        "selected_recipe_indices": {
+            route_id: route["recipe_index"]
+            for route_id, route in document["selected_routes"].items()
+        },
+        "fluid_identity_closure": document["fluid_identity_closure"],
+        "load_gate": document["load_gate"],
+        "recipe_manifest": recipe_manifest,
+        "runtime_policy": document["runtime_policy"],
+        "sources": document["sources"],
+    }
+
+
+def derived_t13_denominator_acceptance() -> dict[str, Any]:
+    try:
+        from tools import build_t13_denominator_readiness as builder
+    except ModuleNotFoundError:
+        import build_t13_denominator_readiness as builder
+
+    manifest = builder.build_manifest()
+    readiness = builder.build_readiness(manifest)
+    committed_manifest = json.loads(
+        builder.MANIFEST.read_text(encoding="utf-8")
+    )
+    committed_readiness = json.loads(
+        builder.READINESS.read_text(encoding="utf-8")
+    )
+    return {
+        "status": readiness["status"],
+        "manifest_current": committed_manifest == manifest,
+        "readiness_current": committed_readiness == readiness,
+        "source_revision": readiness["source_revision"],
+        "acceptance": readiness["acceptance"],
+        "denominators": readiness["denominators"],
+        "zero_content_delta": readiness["zero_content_delta"],
+        "source_replay": readiness["source_replay"],
+        "downstream_contract": readiness["downstream_contract"],
+    }
+
+
+def derived_t14_load_acceptance() -> dict[str, Any]:
+    try:
+        from tools import build_t14_readiness as builder
+    except ModuleNotFoundError:
+        import build_t14_readiness as builder
+
+    document = builder.build()
+    committed = json.loads(
+        builder.OUTPUT.read_text(encoding="utf-8")
+    )
+    return {
+        "status": document["status"],
+        "readiness_current": committed == document,
+        "source_revision": document["source_revision"],
+        "o_26": document["o_26"],
+        "materialization": document["materialization"],
+        "measurements": document["measurements"],
+        "load_gate": document["load_gate"],
+        "projection_template": document["projection_template"],
+        "source_contracts": document["source_contracts"],
+    }
+
+
+def derived_t15_readiness_acceptance() -> dict[str, Any]:
+    try:
+        from tools import build_t15_readiness as builder
+    except ModuleNotFoundError:
+        import build_t15_readiness as builder
+
+    document = builder.build()
+    committed = json.loads(
+        builder.OUTPUT.read_text(encoding="utf-8")
+    )
+    return {
+        "status": document["status"],
+        "readiness_current": committed == document,
+        "completed_stages": document["completed_stages"],
+        "pending_stages": document["pending_stages"],
+        "historical_immutable_evidence": document[
+            "historical_immutable_evidence"
+        ],
+        "supersession": document["supersession"],
+        "currentness": document["currentness"],
+        "source_contracts": document["source_contracts"],
+        "t15c_acquisition_gate": document["t15c_acquisition_gate"],
+        "t15d_identity_gate": document["t15d_identity_gate"],
+        "t15e_matcher_boundary_gate": document[
+            "t15e_matcher_boundary_gate"
+        ],
+    }
+
+
+def derived_t16_readiness_acceptance() -> dict[str, Any]:
+    try:
+        from tools import build_t16_readiness as builder
+    except ModuleNotFoundError:
+        import build_t16_readiness as builder
+
+    document = builder.build()
+    committed = json.loads(
+        builder.OUTPUT.read_text(encoding="utf-8")
+    )
+    return {
+        "status": document["status"],
+        "readiness_current": committed == document,
+        "completed_stages": document["completed_stages"],
+        "pending_stages": document["pending_stages"],
+        "closure_summary": document["closure_summary"],
+        "t16a_evidence": document["t16a_evidence"],
+        "t16b_evidence": document["t16b_evidence"],
+        "t16c_evidence": document["t16c_evidence"],
+        "t16d_evidence": document["t16d_evidence"],
+        "publication_gate": document["publication_gate"],
+        "resource_acquisition_migration_gate": document[
+            "resource_acquisition_migration_gate"
+        ],
+        "currentness": document["currentness"],
+        "source_contracts": document["source_contracts"],
+    }
+
+
+def derived_t17_readiness_acceptance() -> dict[str, Any]:
+    try:
+        from tools import build_t17_readiness as builder
+    except ModuleNotFoundError:
+        import build_t17_readiness as builder
+
+    document = builder.build()
+    committed = json.loads(
+        builder.OUTPUT.read_text(encoding="utf-8")
+    )
+    return {
+        "status": document["status"],
+        "readiness_current": committed == document,
+        "completed_stages": document["completed_stages"],
+        "pending_stages": document["pending_stages"],
+        "closure_summary": document["closure_summary"],
+        "t17a_evidence": document["t17a_evidence"],
+        "t17b_evidence": document["t17b_evidence"],
+        "t17c_evidence": document["t17c_evidence"],
+        "t17d_evidence": document["t17d_evidence"],
+        "publication_gate": document["publication_gate"],
+        "resource_acquisition_migration_gate": document[
+            "resource_acquisition_migration_gate"
+        ],
+        "currentness": document["currentness"],
+        "source_contracts": document["source_contracts"],
+    }
+
+
 def derived_artifact_policy() -> dict[str, Any]:
     manifest = json.loads(
         (TOOLS / "local_artifact_manifest.json").read_text(encoding="utf-8")
@@ -853,6 +1167,25 @@ def derived_artifact_policy() -> dict[str, Any]:
     }
 
 
+def builder_policy_document() -> dict[str, Any]:
+    document = json.loads(BUILDER_POLICY.read_text(encoding="utf-8"))
+    builders = document.get("builders") or []
+    if (
+        document.get("schema_version") != 1
+        or document.get("ordinary_ci_requires_local_artifacts") is not False
+        or len(builders) != 41
+    ):
+        raise ValueError("verification builder policy is invalid")
+    return document
+
+
+def builder_policy_commands() -> list[str]:
+    return [
+        "python " + " ".join((row["script"], *row["ordinary_args"]))
+        for row in builder_policy_document()["builders"]
+    ]
+
+
 def _context_value(
     context: ValidationContext | None,
     name: str,
@@ -864,6 +1197,8 @@ def _context_value(
 def validate_report_document(
     document: dict[str, Any],
     snapshot: dict[str, Any] | ValidationContext,
+    *,
+    verify_live_test_evidence: bool = True,
 ) -> list[str]:
     context = snapshot if isinstance(snapshot, ValidationContext) else None
     if context is not None:
@@ -1099,12 +1434,451 @@ def validate_report_document(
         or expected_t10_acceptance["load_gate"]["status"] != "READY"
         or expected_t10_acceptance["load_gate"][
             "datapack_recipe_entries"
-        ] != 5958
+        ] != 3202
         or expected_t10_acceptance["load_gate"]["published_recipes"]
         != 18871
         or expected_t10_acceptance["load_gate"]["compression_ratio"] < 3.0
     ):
         errors.append("T10 preflight projection or global budget is not closed")
+    expected_t11_acceptance = _context_value(
+        context,
+        "t11_preflight_acceptance",
+        derived_t11_preflight_acceptance,
+    )
+    if document.get("t11_preflight_acceptance") != expected_t11_acceptance:
+        errors.append(
+            "T11 acceptance is not derived from the current projection"
+        )
+    t11_closure = expected_t11_acceptance["fluid_identity_closure"]
+    t11_load = expected_t11_acceptance["load_gate"]
+    if (
+        expected_t11_acceptance["status"] != "T11_READY"
+        or not expected_t11_acceptance["ledger_current"]
+        or expected_t11_acceptance["independent_expectation"][
+            "route_ids"
+        ] != [
+            "crude_oil_distillation",
+            "fuel_oil_engine",
+            "methane_gas_fuel",
+            "natural_gas_to_methane",
+        ]
+        or expected_t11_acceptance["distillery_counts"] != {
+            "classified": 1517,
+            "deferred_outside_minimal_t11_set": 1516,
+            "selected_source_pinned_design_bridge": 1,
+            "source_rows": 1517,
+            "unclassified": 0,
+        }
+        or expected_t11_acceptance["selected_recipe_indices"] != {
+            "crude_oil_distillation": 872,
+            "fuel_oil_engine": 14,
+            "methane_gas_fuel": 2,
+            "natural_gas_to_methane": 553,
+        }
+        or set(t11_closure["primary_fluids"]) != {
+            "cruciblecraft:crude_oil",
+            "cruciblecraft:fuel",
+            "cruciblecraft:methane",
+            "cruciblecraft:natural_gas",
+        }
+        or any(
+            not row["producer"]
+            or not row["logistics"]
+            or not row["consumer"]
+            for row in t11_closure["primary_fluids"].values()
+        )
+        or t11_closure["source_fluid_bridges"]["liquid_medium_oil"][
+            "status"
+        ] != "DESIGN_POLICY"
+        or t11_closure["source_fluid_bridges"]["liquid_medium_oil"][
+            "gt6_equivalence"
+        ] != "UNVERIFIED"
+        or t11_closure["source_fluid_bridges"]["liquid_medium_oil"][
+            "open_item"
+        ] != "O-37"
+        or t11_load["status"] != "READY"
+        or expected_t11_acceptance["source_map_ledgers"] != {
+            "fuel_oil_engine": {
+                "classified": 21,
+                "deferred_outside_minimal_t11_set": 20,
+                "selected_source_backed": 1,
+                "source_rows": 21,
+                "unclassified": 0,
+            },
+            "methane_gas_fuel": {
+                "classified": 9,
+                "deferred_outside_minimal_t11_set": 8,
+                "selected_source_backed": 1,
+                "source_rows": 9,
+                "unclassified": 0,
+            },
+            "natural_gas_to_methane": {
+                "classified": 10236,
+                "deferred_outside_minimal_t11_set": 10235,
+                "selected_source_backed": 1,
+                "source_rows": 10236,
+                "unclassified": 0,
+            },
+        }
+        or expected_t11_acceptance["recipe_manifest"]["status"]
+        != "T11_FIXED_ROWS_PUBLISHED"
+        or expected_t11_acceptance["recipe_manifest"]["counts"] != {
+            "chemical_processing": 2,
+            "fuel_generation": 2,
+            "material_rules": 0,
+            "published": 4,
+        }
+        or expected_t11_acceptance["runtime_policy"]["status"]
+        != "DESIGN_POLICY"
+        or t11_load["projected"]["published_recipes"] != 18875
+        or t11_load["projected"]["datapack_recipe_entries"] != 3210
+        or t11_load["projected"]["t5_plus_t11_chemical_recipes"] != 154
+        or t11_load["budgets"]["t11_authored_material_rules"] != 0
+        or t11_load["budgets"]["published_recipes"] != 21000
+        or t11_load["projected"]["compression_ratio"] < 3.0
+    ):
+        errors.append(
+            "T11 source rows, runtime closure, or load gate is not closed"
+        )
+    expected_t13_acceptance = _context_value(
+        context,
+        "t13_denominator_acceptance",
+        derived_t13_denominator_acceptance,
+    )
+    if document.get("t13_denominator_acceptance") != expected_t13_acceptance:
+        errors.append(
+            "T13 denominator acceptance is not derived from current artifacts"
+        )
+    if (
+        expected_t13_acceptance["status"] != "T13_READY"
+        or not expected_t13_acceptance["manifest_current"]
+        or not expected_t13_acceptance["readiness_current"]
+        or expected_t13_acceptance["acceptance"]["tables"] != 7
+        or expected_t13_acceptance["acceptance"]["unclassified"] != 0
+        or expected_t13_acceptance["acceptance"][
+            "normalization_blockers"
+        ] != 0
+        or expected_t13_acceptance["acceptance"]["recipe_maps"] != 95
+        or expected_t13_acceptance["acceptance"]["recipe_rows"] != 720841
+        or expected_t13_acceptance["acceptance"]["o_33"] != "CLOSED"
+        or expected_t13_acceptance["zero_content_delta"][
+            "datapack_delta"
+        ] != 0
+        or expected_t13_acceptance["zero_content_delta"][
+            "publication_delta"
+        ] != 0
+        or set(expected_t13_acceptance["denominators"]) != {
+            "recipe_maps",
+            "prefixes",
+            "itemgenerator_domains",
+            "machine_kinds",
+            "energy_identities",
+            "cover_kinds",
+            "multiblock_kinds",
+        }
+    ):
+        errors.append(
+            "T13 canonical denominator, provenance, or zero-content gate is not closed"
+        )
+    expected_t14_acceptance = _context_value(
+        context,
+        "t14_load_acceptance",
+        derived_t14_load_acceptance,
+    )
+    if document.get("t14_load_acceptance") != expected_t14_acceptance:
+        errors.append(
+            "T14 load acceptance is not derived from current artifacts"
+        )
+    t14_o26 = expected_t14_acceptance["o_26"]
+    t14_materialization = expected_t14_acceptance["materialization"]
+    t14_load = expected_t14_acceptance["load_gate"]
+    if (
+        expected_t14_acceptance["status"] != "T14_READY"
+        or not expected_t14_acceptance["readiness_current"]
+        or t14_o26["status"] != "CLOSED"
+        or t14_o26["authored_before"] != 2782
+        or t14_o26["authored_after"] != 20
+        or t14_o26["logical_relations"] != 2782
+        or not t14_o26["full_field_bidirectional_equivalence"]
+        or t14_materialization["winner"] != "hybrid"
+        or t14_materialization["extruder"] != {
+            "logical": 2782,
+            "eager": 557,
+            "lazy": 2225,
+            "cache_ceiling": 512,
+            "authored": 20,
+        }
+        or not t14_materialization["client_server_fingerprint_equal"]
+        or t14_load["datapack_authored_entries"] != 3229
+        or t14_load["logical_recipes"] != 18875
+        or t14_load["eager_recipes"] != 16650
+        or t14_load["lazy_recipes"] != 2225
+        or t14_load["pending_measurements"]
+        or expected_t14_acceptance["projection_template"][
+            "selected_projection_status"
+        ] != "PASS"
+    ):
+        errors.append(
+            "T14 O-26, materialization, measurement, or load budget gate is not closed"
+        )
+    expected_t15_acceptance = _context_value(
+        context,
+        "t15_readiness_acceptance",
+        derived_t15_readiness_acceptance,
+    )
+    if document.get("t15_readiness_acceptance") != expected_t15_acceptance:
+        errors.append(
+            "T15 readiness is not derived from the current artifact"
+        )
+    if (
+        expected_t15_acceptance["status"] != "T15_READY"
+        or not expected_t15_acceptance["readiness_current"]
+        or expected_t15_acceptance["completed_stages"]
+        != ["T15a", "T15b", "T15c", "T15d", "T15e"]
+        or expected_t15_acceptance["pending_stages"]
+        or expected_t15_acceptance["historical_immutable_evidence"][
+            "current"
+        ]
+        or not expected_t15_acceptance["historical_immutable_evidence"][
+            "immutable"
+        ]
+        or expected_t15_acceptance["t15c_acquisition_gate"]["status"]
+        != "PASS"
+        or expected_t15_acceptance["t15c_acquisition_gate"]["acquisition"][
+            "counts"
+        ]["casing_recipes"]
+        != 6
+        or expected_t15_acceptance["t15c_acquisition_gate"]["acquisition"][
+            "counts"
+        ]["machine_variant_recipes"]
+        != 9
+        or expected_t15_acceptance["t15c_acquisition_gate"]["acquisition"][
+            "counts"
+        ]["unreachable"]
+        != 0
+        or expected_t15_acceptance["t15c_acquisition_gate"][
+            "load_projection"
+        ]["publication_delta"]
+        != 0
+        or any(
+            expected_t15_acceptance["t15c_acquisition_gate"][
+                "load_projection"
+            ]["incremental_counts"].values()
+        )
+        or expected_t15_acceptance["t15d_identity_gate"]["status"]
+        != "PASS"
+        or expected_t15_acceptance["t15e_matcher_boundary_gate"]["status"]
+        != "PASS"
+        or expected_t15_acceptance["t15e_matcher_boundary_gate"][
+            "physical_structure"
+        ]["item_fluid_ports"]
+        != 15
+        or expected_t15_acceptance["t15e_matcher_boundary_gate"][
+            "physical_structure"
+        ]["energy_input_ports"]
+        != 2
+        or expected_t15_acceptance["t15e_matcher_boundary_gate"][
+            "physical_structure"
+        ]["controllers"]
+        != 1
+        or expected_t15_acceptance["t15e_matcher_boundary_gate"][
+            "port_host_boundary"
+        ]["item_matcher_supplies"]
+        != 1
+        or expected_t15_acceptance["t15e_matcher_boundary_gate"][
+            "port_host_boundary"
+        ]["fluid_matcher_supplies"]
+        != 1
+        or expected_t15_acceptance["t15e_matcher_boundary_gate"][
+            "port_host_boundary"
+        ]["physical_ports_expand_matcher_supplies"]
+        is not False
+        or expected_t15_acceptance["t15e_matcher_boundary_gate"][
+            "matcher_boundary"
+        ]["presence_cap_triggered"]
+        is not False
+        or expected_t15_acceptance["t15e_matcher_boundary_gate"][
+            "benchmark"
+        ]["dense_supply_counts"]
+        != [12, 16, 32, 64]
+    ):
+        errors.append(
+            "T15 historical/current, acquisition, identity, or matcher gate is not closed"
+        )
+    expected_t16_acceptance = _context_value(
+        context,
+        "t16_readiness_acceptance",
+        derived_t16_readiness_acceptance,
+    )
+    if document.get("t16_readiness_acceptance") != expected_t16_acceptance:
+        errors.append(
+            "T16 readiness is not derived from the current artifact"
+        )
+    t16_summary = expected_t16_acceptance["closure_summary"]
+    t16d = expected_t16_acceptance["t16d_evidence"]
+    if (
+        expected_t16_acceptance["status"] != "T16_READY"
+        or not expected_t16_acceptance["readiness_current"]
+        or expected_t16_acceptance["completed_stages"]
+        != ["T16a", "T16b", "T16c", "T16d"]
+        or expected_t16_acceptance["pending_stages"]
+        or t16_summary
+        != {
+            "denominator_kinds": 20,
+            "unclassified": 0,
+            "selected_kinds": 5,
+            "selected_variants": 15,
+            "preimplemented_kinds": 2,
+            "deferred_kinds": 13,
+            "tier4_deferred": 20,
+            "publication_delta": 0,
+        }
+        or t16d["status"] != "PASS"
+        or t16d["energy_identity"]
+        != {"RU": "KINETIC_ROTATION", "KU": "KINETIC_PUSH"}
+        or t16d["migration_acquisition"][
+            "exact_legacy_tier1_migrations"
+        ] != 5
+        or t16d["migration_acquisition"]["vanilla_crafting_rows"] != 15
+        or t16d["migration_acquisition"]["gt_recipe_rows"] != 0
+        or t16d["migration_acquisition"]["unreachable"] != 0
+        or t16d["load_projection"]["status"] != "PASS"
+        or t16d["load_projection"]["delivery_phase"] != "T16"
+        or any(t16d["load_projection"]["incremental_counts"].values())
+        or any(
+            interval != {"min": 0, "max": 0}
+            for interval in t16d["load_projection"][
+                "measurement_intervals"
+            ].values()
+        )
+        or t16d["publication_baseline"]["publication_totals"]
+        != {
+            "logical_rows": 18_875,
+            "eager_rows": 16_650,
+            "lazy_rows": 2_225,
+        }
+        or len(t16d["publication_baseline"]["recipe_map_ids"]) != 32
+        or not t16d["publication_baseline"]["stable_id_set_equal"]
+        or t16d["publication_baseline"]["publication_delta"] != 0
+        or t16d["emi_enumeration"]["configured_maps"] != 24
+        or not t16d["emi_enumeration"]["recipe_enumeration_equal"]
+        or t16d["gametest"]["t16_test_count"] != 6
+        or t16d["gametest"]["full_suite_test_count"]
+        != _context_value(
+            context,
+            "game_test_count",
+            current_game_test_count,
+        )
+        or expected_t16_acceptance["publication_gate"]["status"] != "PASS"
+        or not expected_t16_acceptance["publication_gate"][
+            "publication_unchanged_claimed"
+        ]
+    ):
+        errors.append(
+            "T16 denominator, identity, migration, acquisition, load, "
+            "publication, EMI, or GameTest gate is not closed"
+        )
+    expected_t17_acceptance = _context_value(
+        context,
+        "t17_readiness_acceptance",
+        derived_t17_readiness_acceptance,
+    )
+    if document.get("t17_readiness_acceptance") != expected_t17_acceptance:
+        errors.append(
+            "T17 readiness is not derived from the current artifact"
+        )
+    t17_summary = expected_t17_acceptance["closure_summary"]
+    t17d = expected_t17_acceptance["t17d_evidence"]
+    if (
+        expected_t17_acceptance["status"] != "T17_READY"
+        or not expected_t17_acceptance["readiness_current"]
+        or expected_t17_acceptance["completed_stages"]
+        != ["T17a", "T17b", "T17c", "T17d"]
+        or expected_t17_acceptance["pending_stages"]
+        or t17_summary
+        != {
+            "denominator_kinds": 28,
+            "energy_kind_counts": {"EU": 16, "HU": 12},
+            "unclassified": 0,
+            "selected_kinds": 3,
+            "selected_variants": 9,
+            "preimplemented_reference_kinds": 1,
+            "deferred_kinds": 24,
+            "gt_recipe_row_mutation": 0,
+            "hu_execution_variants": 9,
+            "eu_reference_variants": 3,
+            "electric_mixer_tier_variants": 0,
+            "resources_acquisition_full_closure": "COMPLETE_T17C",
+            "machine_acquisition_variants": 9,
+            "machine_acquisition_unreachable": 0,
+            "preimplemented_electrolyzer_variants": 3,
+            "heat_tier4_deferred": 10,
+            "electric_tier4_5_deferred": 32,
+            "publication_delta": 0,
+        }
+        or t17d["status"] != "PASS"
+        or t17d["denominator"]["kinds"] != 28
+        or t17d["denominator"]["energy_kinds"] != {"EU": 16, "HU": 12}
+        or t17d["denominator"]["unclassified"] != 0
+        or t17d["denominator"]["selected_kinds"] != 3
+        or t17d["denominator"]["selected_variants"] != 9
+        or t17d["denominator"]["preimplemented_reference_kinds"] != 1
+        or t17d["denominator"]["deferred_kinds"] != 24
+        or t17d["denominator"]["heat_tier4_deferred"] != 10
+        or t17d["denominator"]["electric_tier4_5_deferred"] != 32
+        or t17d["energy_topology"]["HU"]
+        != "HEAT_ADJACENT_BOTTOM_FIREBOX"
+        or t17d["energy_topology"]["EU"]
+        != "ELECTRIC_BUFFERED_CABLE_ENDPOINT"
+        or t17d["energy_topology"]["hu_execution_variants"] != 9
+        or t17d["energy_topology"]["eu_reference_variants"] != 3
+        or t17d["energy_topology"]["electric_mixer_tier_variants"] != 0
+        or t17d["migration_acquisition"][
+            "exact_legacy_tier1_migrations"
+        ] != 3
+        or t17d["migration_acquisition"]["vanilla_crafting_rows"] != 9
+        or t17d["migration_acquisition"]["gt_recipe_rows"] != 0
+        or t17d["migration_acquisition"]["unreachable"] != 0
+        or t17d["load_projection"]["status"] != "PASS"
+        or t17d["load_projection"]["delivery_phase"] != "T17"
+        or any(t17d["load_projection"]["incremental_counts"].values())
+        or any(
+            interval != {"min": 0, "max": 0}
+            for interval in t17d["load_projection"][
+                "measurement_intervals"
+            ].values()
+        )
+        or t17d["publication_baseline"]["publication_totals"]
+        != {
+            "logical_rows": 18_875,
+            "eager_rows": 16_650,
+            "lazy_rows": 2_225,
+        }
+        or len(t17d["publication_baseline"]["recipe_map_ids"]) != 32
+        or not t17d["publication_baseline"][
+            "stable_id_set_equal_to_t16"
+        ]
+        or t17d["publication_baseline"]["publication_delta"] != 0
+        or t17d["emi_enumeration"]["configured_maps"] != 24
+        or not t17d["emi_enumeration"][
+            "recipe_enumeration_equal_to_t16"
+        ]
+        or t17d["gametest"]["t17_test_count"] != 8
+        or t17d["gametest"]["full_suite_test_count"]
+        != _context_value(
+            context,
+            "game_test_count",
+            current_game_test_count,
+        )
+        or expected_t17_acceptance["publication_gate"]["status"] != "PASS"
+        or not expected_t17_acceptance["publication_gate"][
+            "publication_unchanged_claimed"
+        ]
+    ):
+        errors.append(
+            "T17 denominator, HU/EU topology, migration, acquisition, load, "
+            "publication, EMI, or GameTest gate is not closed"
+        )
     expected_artifact_policy = _context_value(
         context,
         "artifact_policy",
@@ -1141,6 +1915,36 @@ def validate_report_document(
             if (verification.get(stage) or {}).get("result") != "PASS":
                 errors.append(f"READY requires a passing {stage} verification record")
         builder = verification.get("builder") or {}
+        if int(document.get("schema_version") or 0) >= 8:
+            policy_rows = builder_policy_document()["builders"]
+            timing_rows = builder.get("per_builder") or []
+            expected_identity = [
+                (
+                    row["script"],
+                    row["ordinary_args"],
+                    row["proof_tier"],
+                )
+                for row in policy_rows
+            ]
+            actual_identity = [
+                (
+                    row.get("script"),
+                    row.get("argv"),
+                    row.get("proof_tier"),
+                )
+                for row in timing_rows
+            ]
+            if actual_identity != expected_identity:
+                errors.append(
+                    "builder timing evidence does not match the current builder policy"
+                )
+            if any(
+                row.get("result") != "PASS"
+                or not isinstance(row.get("elapsed_ms"), (int, float))
+                or row["elapsed_ms"] <= 0
+                for row in timing_rows
+            ):
+                errors.append("builder timing evidence contains an invalid result")
         replay = builder.get("extruder_full_replay") or {}
         if replay.get("result") not in {"PASS", "SKIP"}:
             errors.append("READY requires an explicit extruder replay PASS or SKIP")
@@ -1161,6 +1965,36 @@ def validate_report_document(
             errors.append("READY requires a passing T7 material-fact readiness gate")
         if builder.get("t10_readiness_result") != "PASS":
             errors.append("READY requires passing T10 form/container/load gates")
+        if builder.get("t11_readiness_result") != "PASS":
+            errors.append("READY requires passing the T11 closure gates")
+        if builder.get("t12a_readiness_result") != "PASS":
+            errors.append(
+                "READY requires passing the T12a source/readiness gate"
+            )
+        if builder.get("t12_closure_result") != "PASS":
+            errors.append(
+                "READY requires passing the T12 closure/readiness gate"
+            )
+        if builder.get("t13_denominator_result") != "PASS":
+            errors.append(
+                "READY requires passing the T13 denominator/readiness gate"
+            )
+        if builder.get("t14_readiness_result") != "PASS":
+            errors.append(
+                "READY requires passing the T14 materialization/load gate"
+            )
+        if builder.get("t15_readiness_result") != "PASS":
+            errors.append(
+                "READY requires passing the current T15 readiness gate"
+            )
+        if builder.get("t16_readiness_result") != "PASS":
+            errors.append(
+                "READY requires passing the current T16 readiness gate"
+            )
+        if builder.get("t17_readiness_result") != "PASS":
+            errors.append(
+                "READY requires passing the current T17 readiness gate"
+            )
         datagen = verification.get("datagen") or {}
         if (
             datagen.get("runs") != 2
@@ -1174,12 +2008,24 @@ def validate_report_document(
             )["datagen_generated"]["sha256"]
         ):
             errors.append("READY requires two drift-free datagen runs")
-        if java.get("tests") != _context_value(
-            context,
-            "java_test_metrics",
-            current_java_test_metrics,
-        )["tests"]:
-            errors.append("READY Java metrics do not match current test XML")
+        expected_java_tests = (
+            _context_value(
+                context,
+                "java_test_metrics",
+                current_java_test_metrics,
+            )["tests"]
+            if verify_live_test_evidence
+            else snapshot["java_source_test_count"]
+        )
+        if java.get("tests") != expected_java_tests:
+            errors.append(
+                "READY Java metrics do not match "
+                + (
+                    "current test XML"
+                    if verify_live_test_evidence
+                    else "current Java test sources"
+                )
+            )
         if game.get("required_tests") != _context_value(
             context,
             "game_test_count",
@@ -1293,9 +2139,11 @@ def derived_ore_pipeline_acceptance() -> dict[str, Any]:
     }
 
 
-def build_validation_context() -> ValidationContext:
+def build_validation_context(
+    snapshot: dict[str, Any] | None = None,
+) -> ValidationContext:
     """Build every expensive report fact once for this verification process."""
-    snapshot = current_snapshot()
+    snapshot = current_snapshot() if snapshot is None else snapshot
     return ValidationContext.create({
         "tooling_snapshot": lambda: snapshot,
         "artifact_hashes": lambda: required_artifact_hashes(snapshot),
@@ -1309,11 +2157,36 @@ def build_validation_context() -> ValidationContext:
         "t8_pipe_acceptance": derived_t8_pipe_acceptance,
         "worldgen_catalog_acceptance": derived_worldgen_catalog_acceptance,
         "t10_preflight_acceptance": derived_t10_preflight_acceptance,
+        "t11_preflight_acceptance": derived_t11_preflight_acceptance,
+        "t13_denominator_acceptance": derived_t13_denominator_acceptance,
+        "t14_load_acceptance": derived_t14_load_acceptance,
+        "t15_readiness_acceptance": derived_t15_readiness_acceptance,
+        "t16_readiness_acceptance": derived_t16_readiness_acceptance,
+        "t17_readiness_acceptance": derived_t17_readiness_acceptance,
         "artifact_policy": derived_artifact_policy,
         "ore_pipeline_acceptance": derived_ore_pipeline_acceptance,
         "java_test_metrics": current_java_test_metrics,
         "game_test_count": current_game_test_count,
     })
+
+
+def load_or_build_validation_context() -> ValidationContext:
+    """Load the orchestrator's digest-bound context, or build one locally."""
+    path_value = os.environ.get("CRUCIBLECRAFT_VALIDATION_CONTEXT")
+    digest = os.environ.get("CRUCIBLECRAFT_VALIDATION_CONTEXT_SHA256")
+    if not path_value:
+        return build_validation_context()
+    if not digest:
+        raise ValueError("frozen validation context digest is missing")
+    context = ValidationContext.read(Path(path_value), expected_digest=digest)
+    snapshot = context.value("tooling_snapshot")
+    if snapshot.get("snapshot_sha256") != stable_hash({
+        key: value
+        for key, value in snapshot.items()
+        if key != "snapshot_sha256"
+    }):
+        raise ValueError("frozen validation context contains an invalid snapshot")
+    return context
 
 
 def refresh_measured_metrics(
@@ -1383,6 +2256,36 @@ def refresh_measured_metrics(
         "t10_preflight_acceptance",
         derived_t10_preflight_acceptance,
     )
+    t11_preflight = _context_value(
+        context,
+        "t11_preflight_acceptance",
+        derived_t11_preflight_acceptance,
+    )
+    t13_denominators = _context_value(
+        context,
+        "t13_denominator_acceptance",
+        derived_t13_denominator_acceptance,
+    )
+    t14_load = _context_value(
+        context,
+        "t14_load_acceptance",
+        derived_t14_load_acceptance,
+    )
+    t15_readiness = _context_value(
+        context,
+        "t15_readiness_acceptance",
+        derived_t15_readiness_acceptance,
+    )
+    t16_readiness = _context_value(
+        context,
+        "t16_readiness_acceptance",
+        derived_t16_readiness_acceptance,
+    )
+    t17_readiness = _context_value(
+        context,
+        "t17_readiness_acceptance",
+        derived_t17_readiness_acceptance,
+    )
     for map_name, count in component["expanded_recipes_per_map"].items():
         expanded[f"cruciblecraft:{map_name}"] = count
     expanded["cruciblecraft:assembler"] += t4_tools["expanded_recipes"]
@@ -1395,6 +2298,15 @@ def refresh_measured_metrics(
     expanded["cruciblecraft:anvil"] = 646
     expanded["cruciblecraft:smelter"] += 321
     expanded["cruciblecraft:cooling"] = 321
+    expanded["cruciblecraft:distillery"] = (
+        t5_chemical["generated_recipes_by_map"].get(
+            "distillery", 0
+        )
+        + 1
+    )
+    expanded["cruciblecraft:generifier"] = 1
+    expanded["cruciblecraft:fuels_engine"] = 1
+    expanded["cruciblecraft:fuels_gas"] = 1
     document["rules"]["declarative_rule_definitions"] = (
         component["source_rules"] + t4_tools["source_rules"] + 2
         + t8_pipes["generic_rule_count"] + 4
@@ -1437,20 +2349,26 @@ def refresh_measured_metrics(
     document["rules"]["t10_expanded_total"] = t10_preflight[
         "runtime_publication"
     ]["current_t10_recipe_additions"]
-    document["rules"]["datapack_recipe_entries"] = t10_preflight[
+    document["rules"]["datapack_recipe_entries"] = t11_preflight[
         "load_gate"
-    ]["datapack_recipe_entries"]
-    document["rules"]["compression_ratio"] = t10_preflight[
+    ]["projected"]["datapack_recipe_entries"]
+    document["rules"]["compression_ratio"] = t11_preflight[
         "load_gate"
-    ]["compression_ratio"]
-    document["rules"]["all_published_total"] = t10_preflight[
+    ]["projected"]["compression_ratio"]
+    document["rules"]["all_published_total"] = t11_preflight[
         "load_gate"
-    ]["published_recipes"]
+    ]["projected"]["published_recipes"]
     document["rules"]["all_published_budget"] = t10_preflight[
         "load_gate"
     ][
         "published_recipe_budget"
     ]
+    document["rules"]["t11_projected_source_rows"] = (
+        t11_preflight["independent_expectation"]["selected_count"]
+    )
+    document["rules"]["t11_projected_published_total"] = (
+        t11_preflight["load_gate"]["projected"]["published_recipes"]
+    )
     document["compatibility"].update(compatibility)
     document["ore_pipeline_acceptance"] = (
         _context_value(
@@ -1466,6 +2384,12 @@ def refresh_measured_metrics(
     document["t8_pipe_acceptance"] = t8_pipes
     document["worldgen_catalog_acceptance"] = worldgen_catalog
     document["t10_preflight_acceptance"] = t10_preflight
+    document["t11_preflight_acceptance"] = t11_preflight
+    document["t13_denominator_acceptance"] = t13_denominators
+    document["t14_load_acceptance"] = t14_load
+    document["t15_readiness_acceptance"] = t15_readiness
+    document["t16_readiness_acceptance"] = t16_readiness
+    document["t17_readiness_acceptance"] = t17_readiness
     document["artifact_policy"] = _context_value(
         context,
         "artifact_policy",
@@ -1476,7 +2400,10 @@ def refresh_measured_metrics(
         "raw ore -> crusher/sluice/centrifuge/shredder/sifter/smelter -> "
         "tungsten ingot; distillery -> fluid pipe -> mixer and item pipe "
         "filter/valve/pump routes verify T8 logistics; all 134 large-vein "
-        "configured features place and the finite crude-oil deposit is readable; "
+        "configured features place; T11 crude oil flows deposit -> extractor -> "
+        "pipe -> distillery, while natural gas flows deposit -> extractor -> "
+        "generifier -> methane generator -> T6 cable -> distillery; unsafe gas "
+        "pipes fail and PROPERTIES.FLAMMABLE drives bounded gas-cloud burning; "
         "T10 multi/hot ingots and component cells close smelt/cool and "
         "fluid/gas machine-consumption routes"
     )
@@ -1486,6 +2413,8 @@ def write_snapshot(
     document: dict[str, Any],
     python_tests_passed: bool,
     context: ValidationContext | None = None,
+    *,
+    persist: bool = True,
 ) -> None:
     previous_datagen = json.loads(json.dumps(
         (document.get("verification_runs") or {}).get("datagen") or {}
@@ -1509,7 +2438,7 @@ def write_snapshot(
         == current_datagen_hash
         and previous_determinism.get("result") == "PASS"
     )
-    document["schema_version"] = max(int(document.get("schema_version") or 1), 7)
+    document["schema_version"] = max(int(document.get("schema_version") or 1), 8)
     document["verified_on"] = datetime.now(timezone.utc).date().isoformat()
     document["status"] = "PENDING_JAVA_FINAL_VERIFICATION"
     document["tooling_snapshot"] = snapshot
@@ -1575,17 +2504,27 @@ def write_snapshot(
         "Record builder, two datagen runs, Java, GameTest, and Python results "
         "through this verifier, then use --mark-ready and --check."
     )
-    REPORT.write_text(
-        json.dumps(document, indent=2, ensure_ascii=False) + "\n",
-        encoding="utf-8",
-    )
+    if persist:
+        _write_report(document)
 
 
 def _write_report(document: dict[str, Any]) -> None:
-    REPORT.write_text(
-        json.dumps(document, indent=2, ensure_ascii=False) + "\n",
-        encoding="utf-8",
-    )
+    REPORT.parent.mkdir(parents=True, exist_ok=True)
+    temporary = REPORT.with_name(f".{REPORT.name}.{os.getpid()}.tmp")
+    try:
+        temporary.write_text(
+            json.dumps(document, indent=2, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+            newline="\n",
+        )
+        os.replace(temporary, REPORT)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def write_report_atomic(document: dict[str, Any]) -> None:
+    """Publish a fully validated report with one atomic replacement."""
+    _write_report(document)
 
 
 def _current_pending_errors(
@@ -1605,40 +2544,68 @@ def record_builder(
     elapsed_ms: float,
     extruder_replay: str,
     context: ValidationContext | None = None,
+    *,
+    per_builder: list[dict[str, Any]] | None = None,
+    persist: bool = True,
 ) -> list[str]:
     errors = _current_pending_errors(document, context)
+    policy = builder_policy_document()
+    expected_rows = policy["builders"]
+    timing_rows = list(per_builder or [])
     if elapsed_ms <= 0:
         errors.append("builder elapsed time must be positive")
     if extruder_replay not in {"PASS", "SKIP"}:
         errors.append("extruder replay result must be PASS or SKIP")
+    expected_identity = [
+        (row["script"], row["ordinary_args"], row["proof_tier"])
+        for row in expected_rows
+    ]
+    actual_identity = [
+        (row.get("script"), row.get("argv"), row.get("proof_tier"))
+        for row in timing_rows
+    ]
+    if actual_identity != expected_identity:
+        errors.append("per-builder timing rows do not match builder policy order")
+    if any(
+        row.get("result") != "PASS"
+        or not isinstance(row.get("elapsed_ms"), (int, float))
+        or row["elapsed_ms"] <= 0
+        for row in timing_rows
+    ):
+        errors.append("per-builder timing rows contain an invalid result")
     if errors:
         return errors
     replay_executed = extruder_replay == "PASS"
+    baseline: dict[str, Any] = {}
+    if REPORT.is_file():
+        previous = json.loads(REPORT.read_text(encoding="utf-8"))
+        baseline = (
+            (previous.get("verification_runs") or {}).get("builder") or {}
+        )
+    baseline_elapsed = baseline.get("elapsed_ms")
+    warn_ratio = float(policy["performance"]["warn_ratio"])
+    ratio = (
+        elapsed_ms / float(baseline_elapsed)
+        if isinstance(baseline_elapsed, (int, float)) and baseline_elapsed > 0
+        else None
+    )
     document["verification_runs"]["builder"] = {
         "result": "PASS",
-        "commands": [
-            "python tools/import_gt6_oredict.py --check --reference-only",
-            "python tools/compare_gt6_recipes.py --check --reference-only",
-            "python tools/build_component_rules.py --check",
-            "python tools/build_gt6_ore_chain.py --check",
-            "python tools/build_gt6_ore_chain_closure.py --check",
-            "python tools/build_gt6_material_form_gate.py --check",
-            "python tools/build_t4_tool_readiness.py --check",
-            "python tools/build_t5_chemical_readiness.py --check",
-            "python tools/build_t5_chemical_recipes.py --check",
-            "python tools/build_t5_distillery_projection.py --check",
-            "python tools/build_machine_crafting_readiness.py --check",
-            "python tools/build_t6_electrical_readiness.py --check",
-            "python tools/build_t7_material_tag_readiness.py --check",
-            "python tools/build_t8_pipe_readiness.py --check",
-            "python tools/apply_t8_pipe_metadata.py --check",
-            "python tools/build_worldgen_catalog.py --check",
-            "python tools/build_gt6_veins.py --check",
-            "python tools/build_t10_preflight_projection.py --check",
-            "python tools/build_t10_container_readiness.py --check",
-            "python tools/apply_t10_form_flags.py --check",
-        ],
+        "commands": builder_policy_commands(),
         "elapsed_ms": round(elapsed_ms, 3),
+        "per_builder": timing_rows,
+        "performance_regression": {
+            "policy": "soft_report_only",
+            "baseline_elapsed_ms": baseline_elapsed,
+            "observed_elapsed_ms": round(elapsed_ms, 3),
+            "ratio": round(ratio, 3) if ratio is not None else None,
+            "status": (
+                "WARN"
+                if ratio is not None and ratio > warn_ratio
+                else "PASS"
+            ),
+            "warn_ratio": warn_ratio,
+        },
         "compact_evidence_result": "PASS",
         "t4_readiness_result": "PASS",
         "t5_projection_result": "PASS",
@@ -1647,6 +2614,14 @@ def record_builder(
         "t7_readiness_result": "PASS",
         "t8_readiness_result": "PASS",
         "t10_readiness_result": "PASS",
+        "t11_readiness_result": "PASS",
+        "t12a_readiness_result": "PASS",
+        "t12_closure_result": "PASS",
+        "t13_denominator_result": "PASS",
+        "t14_readiness_result": "PASS",
+        "t15_readiness_result": "PASS",
+        "t16_readiness_result": "PASS",
+        "t17_readiness_result": "PASS",
         "worldgen_catalog_result": "PASS",
         "extruder_full_replay": {
             "command": "python tools/run_python_tests.py --suite source-replay",
@@ -1659,7 +2634,8 @@ def record_builder(
             ),
         },
     }
-    _write_report(document)
+    if persist:
+        _write_report(document)
     return []
 
 
@@ -1670,6 +2646,8 @@ def record_datagen(
     run_1_elapsed_seconds: float,
     run_2_elapsed_seconds: float,
     context: ValidationContext | None = None,
+    *,
+    persist: bool = True,
 ) -> list[str]:
     errors = _current_pending_errors(document, context)
     current_hash = _context_value(
@@ -1698,7 +2676,8 @@ def record_datagen(
         **record,
         "generated_resource_root": "src/generated/resources",
     }
-    _write_report(document)
+    if persist:
+        _write_report(document)
     return []
 
 
@@ -1723,6 +2702,8 @@ def record_java(
     document: dict[str, Any],
     elapsed_seconds: float,
     context: ValidationContext | None = None,
+    *,
+    persist: bool = True,
 ) -> list[str]:
     errors = _current_pending_errors(document, context)
     if elapsed_seconds <= 0:
@@ -1762,7 +2743,8 @@ def record_java(
         "t3_expansion_elapsed_ms": expansion_ms,
     }
     document["rules"]["observed_t3_expansion_ms"] = expansion_ms
-    _write_report(document)
+    if persist:
+        _write_report(document)
     return []
 
 
@@ -1801,6 +2783,8 @@ def record_gametest(
     log_path: Path,
     elapsed_seconds: float,
     context: ValidationContext | None = None,
+    *,
+    persist: bool = True,
 ) -> list[str]:
     errors = _current_pending_errors(document, context)
     resolved_log_path = (
@@ -1863,7 +2847,8 @@ def record_gametest(
         "extruder_shape_retained": True,
         "routes": routes,
     }
-    _write_report(document)
+    if persist:
+        _write_report(document)
     return []
 
 
@@ -1871,6 +2856,8 @@ def record_python(
     document: dict[str, Any],
     elapsed_seconds: float,
     context: ValidationContext | None = None,
+    *,
+    persist: bool = True,
 ) -> list[str]:
     errors = _current_pending_errors(document, context)
     if elapsed_seconds <= 0:
@@ -1895,14 +2882,15 @@ def record_python(
         "tests": count,
         "elapsed_seconds": round(elapsed_seconds, 3),
     }
-    _write_report(document)
+    if persist:
+        _write_report(document)
     return []
 
 
-def mark_ready(
+def ready_candidate(
     document: dict[str, Any],
     context: ValidationContext | None = None,
-) -> list[str]:
+) -> tuple[dict[str, Any], list[str]]:
     snapshot = _context_value(
         context,
         "tooling_snapshot",
@@ -1918,9 +2906,23 @@ def mark_ready(
         candidate,
         context if context is not None else snapshot,
     )
+    return candidate, errors
+
+
+def mark_ready(
+    document: dict[str, Any],
+    context: ValidationContext | None = None,
+    *,
+    persist: bool = True,
+) -> list[str]:
+    candidate, errors = ready_candidate(document, context)
     if errors:
         return errors
-    _write_report(candidate)
+    if persist:
+        _write_report(candidate)
+    else:
+        document.clear()
+        document.update(candidate)
     return []
 
 
@@ -1964,7 +2966,7 @@ def main() -> int:
     if args.python_tests_passed and not args.write_tooling_snapshot:
         parser.error("--python-tests-passed requires --write-tooling-snapshot")
     document = json.loads(REPORT.read_text(encoding="utf-8"))
-    context = build_validation_context()
+    context = load_or_build_validation_context()
     if args.write_tooling_snapshot:
         write_snapshot(document, args.python_tests_passed, context)
         print(f"Wrote pending tooling snapshot to {REPORT}")

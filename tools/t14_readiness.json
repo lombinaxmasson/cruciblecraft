@@ -1,0 +1,467 @@
+{
+  "currentness": {
+    "tools/build_t14_readiness.py": "ee6f71a146031d07ab4620b1b2cebdca0d7284708c13e03445db763d946fbb7c",
+    "tools/recipe_load_projection.py": "401c079f296e7097c005cf908291920bc238524ec6283fd0b87c369a3f5b874e",
+    "tools/recipe_load_projection.schema.json": "bf856095ddd89f815fe3650c614c9565c5321d2fd4378630c036a1ada5aa58cc",
+    "tools/t12_closure_readiness.json": "bed9a8d494f452489496bb1e07180285ef7b20fa11afa9e12a8b4c4626e59ea6",
+    "tools/t13_denominator_readiness.json": "04381613d662c5095dab85d1779b2dfb7e79132f3055d14c8fdc98fe97b7ecac",
+    "tools/t14_extruder_compact.json": "b577a3248752c604633ad0c48ddff31437a14514638dcd0f4b68ba78cb9e60a7",
+    "tools/t14_extruder_expected.json": "dde8e97c59e87e20f3568d9809c6ea6c69fe4f295348a961bd10b9c88d0496ed",
+    "tools/t14_extruder_load_projection.json": "f8bea1bf804f29979233c40285d540f7919f25fc68a0e4227ebbc93b6da3eb05",
+    "tools/t14_extruder_load_projection_input.json": "3c49aab98e2f5e8135624d3e0878b59c0d69cbdf97bb309d059acb142e005b45",
+    "tools/t14_extruder_readiness.json": "a51ededca0963b442457745968dc15db96b573f971b837616128144e3e3807ae",
+    "tools/t14_load_budget_policy.json": "7e87ddb3b987f52fd8fd918a426bd6a2c640682fb89b52cb7b3cc5731c339270",
+    "tools/t14_materialization_decision.json": "69abe8230dfb3c2fad18ab6dd1dd6855580f86b236682bac37c2afd0508d8e55",
+    "tools/t14_materialization_policy.json": "f466ba9ac3d127c28ae8731c06f3c74aded45e519dec345e6d632e7b4af82145"
+  },
+  "delivery_boundary": "T14_EXTRUDER_MATERIALIZATION_AND_LOAD",
+  "load_gate": {
+    "authored_to_eager_ratio": 5.156395,
+    "authored_to_logical_ratio": 5.845463,
+    "budgets": {
+      "allocation_bytes": {
+        "aggregation": "sum_interval",
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "source": "Schema-2 lookup-only JFR observed zero matching allocation-event bytes for 20x Hybrid; zero-event PASS is explicit, enumeration/publication are excluded, and this benchmark/full-report policy remains authoritative.",
+        "unit": "bytes"
+      },
+      "client_index_ms": {
+        "aggregation": "sum_interval",
+        "hard_ceiling": 3000,
+        "soft_budget": 1000,
+        "source": "Schema-2 actual compact Hybrid dedicated-client index p95 is 1.0574 ms at 1x and 32.2413 ms at 20x; the online side-aware metric is gated against the predeclared 3 s hard boundary.",
+        "unit": "ms"
+      },
+      "client_reload_ms": {
+        "aggregation": "sum_interval",
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "source": "Schema-2 actual compact Hybrid dedicated-client reload p95 is 1.872 ms at 1x and 53.864 ms at 20x; the online side-aware metric is gated against this envelope.",
+        "unit": "ms"
+      },
+      "datapack_authored_entries": {
+        "aggregation": "sum",
+        "hard_ceiling": 6600,
+        "soft_budget": 6000,
+        "source": "T14 compact Extruder reduces authored entries by 2762; 6000 remains the soft envelope and 6600 the confirmed hard ceiling.",
+        "unit": "entries"
+      },
+      "eager_publication_rows": {
+        "aggregation": "sum",
+        "hard_ceiling": 21000,
+        "soft_budget": 18000,
+        "source": "T14 Hybrid closes at 16650 eager rows; 18000 soft and the existing 21000 hard ceiling retain measured margin.",
+        "unit": "rows"
+      },
+      "lazy_cache_ceiling_rows": {
+        "aggregation": "sum",
+        "hard_ceiling": 4096,
+        "soft_budget": 1024,
+        "source": "Selected Hybrid uses a measured per-epoch 512-row cache ceiling; 1024/4096 are soft/hard aggregate family envelopes.",
+        "unit": "rows"
+      },
+      "lazy_logical_rows": {
+        "aggregation": "sum",
+        "hard_ceiling": 56000,
+        "soft_budget": 16000,
+        "source": "T14 compact Hybrid has 2225 live lazy rows; actual-distribution 20x measured 55640 total relations.",
+        "unit": "rows"
+      },
+      "lookup_candidate_count": {
+        "aggregation": "max_interval",
+        "hard_ceiling": 128,
+        "soft_budget": 64,
+        "source": "Across all three schema-2 Hybrid traces, lookup candidates are p50<=8, p95<=8, max=8; the production p95/max candidate metric is wired to the 64/128 gates.",
+        "unit": "candidates"
+      },
+      "lookup_p95_ns": {
+        "aggregation": "max_interval",
+        "hard_ceiling": 2000000,
+        "soft_budget": 1000000,
+        "source": "Schema-2 maximum-trace Hybrid lookup p95 is 1543 ns at 1x and 2950 ns at 20x; the production lookup p95 metric is wired to the existing 1 ms soft and 2 ms hard gates.",
+        "unit": "ns"
+      },
+      "retained_memory_bytes": {
+        "aggregation": "sum_interval",
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "source": "Schema-2 lookup-only controlled-GC jcmd histogram retained 21934784 bytes for 20x Hybrid; enumeration was not executed and 128/512 MiB remain the authoritative benchmark/full-report envelopes.",
+        "unit": "bytes"
+      },
+      "server_index_ms": {
+        "aggregation": "sum_interval",
+        "hard_ceiling": 1000,
+        "soft_budget": 500,
+        "source": "Production GameTest index is 112 ms after complete family validation; 500 ms soft and the existing 1 s hard ceiling are confirmed.",
+        "unit": "ms"
+      },
+      "server_reload_ms": {
+        "aggregation": "sum_interval",
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "source": "Production GameTest reload with complete transient family validation is 9486 ms; this exceeds the 5 s soft warning but remains under the existing 10 s hard ceiling.",
+        "unit": "ms"
+      },
+      "sync_bytes": {
+        "aggregation": "sum",
+        "hard_ceiling": 67108864,
+        "soft_budget": 16777216,
+        "source": "Schema-2 actual compact Hybrid sync is 331124 bytes at 1x and 9877420 bytes at 20x; the production compact-payload metric is wired to the predeclared 64 MiB hard gate.",
+        "unit": "bytes"
+      }
+    },
+    "datapack_authored_entries": 3229,
+    "eager_recipes": 16650,
+    "lazy_cache_ceiling": 512,
+    "lazy_recipes": 2225,
+    "logical_recipes": 18875,
+    "pending_measurements": []
+  },
+  "materialization": {
+    "client_server_fingerprint_equal": true,
+    "decision_status": "PRODUCTION_WINNER_READY",
+    "eager_rows": 16650,
+    "error_band_tied_candidates": [
+      "on_demand",
+      "immediate",
+      "hybrid"
+    ],
+    "extruder": {
+      "authored": 20,
+      "cache_ceiling": 512,
+      "eager": 557,
+      "lazy": 2225,
+      "logical": 2782
+    },
+    "lazy_rows": 2225,
+    "logical_rows": 18875,
+    "winner": "hybrid",
+    "winner_algorithm": {
+      "error_band_tie": "scores whose normalized worst-cost bands overlap are tied",
+      "gate_order": [
+        "correctness",
+        "epoch_invalidation",
+        "dedicated_client_enumeration",
+        "integrated_client_skip",
+        "20x_hard_limits"
+      ],
+      "normalization": "for each metric divide by the best surviving candidate estimate, then minimize the candidate's worst normalized metric",
+      "production_guard": "Emit a production winner only when the harness parses the pinned T14a compact artifact and all complete 20x evidence gates pass.",
+      "ranking_metrics": [
+        "server_reload",
+        "dedicated_client_reexpansion",
+        "retained_total_bytes",
+        "lookup_p95"
+      ],
+      "ranking_scale": "20x",
+      "tie_preference": [
+        "hybrid",
+        "immediate",
+        "on_demand"
+      ]
+    }
+  },
+  "measurements": {
+    "allocation_protocol": {
+      "enumeration_included": false,
+      "measurement": "JFR allocation events from lookup-only work after publication",
+      "publication_included": false,
+      "trace": "uniform_cycle_worst_case",
+      "zero_event_semantics": "A recording with zero matching allocation events is a measured PASS at zero bytes, not a fabricated allocation and not a SKIP."
+    },
+    "production_decision_sha256": "69abe8230dfb3c2fad18ab6dd1dd6855580f86b236682bac37c2afd0508d8e55",
+    "retained_protocol": {
+      "controlled_gc": [
+        "jcmd <pid> GC.run",
+        "jcmd <pid> GC.class_histogram"
+      ],
+      "forbidden": "naive before/after heap delta",
+      "isolation": "one child JVM per candidate, scale, and sample",
+      "jcmd_unavailable": "SKIP_AND_BLOCK_DECISION",
+      "measurement": "Total bytes from the post-GC JDK class histogram after publication and lookup-cache exercise; enumeration is never executed, so transient enumeration rows cannot be counted as retained cache."
+    },
+    "selected_1x": {
+      "candidate": "hybrid",
+      "dedicated_client_index_p95_ns": 1057400,
+      "dedicated_client_reexpansion_p95_ns": 1872000,
+      "dedicated_client_stable_fingerprint": "e60d95f54ddc8ca6be2309b675f6d87e2bcc062b3e0f512d77b55c2430c927f8",
+      "enumeration_p95_ns": 213300,
+      "integrated_client": "SKIP_SHARED_SERVER_PUBLICATION",
+      "jfr_allocation_bytes_p50": 32,
+      "jfr_allocation_status": "PASS",
+      "lookup_candidates_max": 8,
+      "lookup_candidates_p50": 8,
+      "lookup_candidates_p95": 8,
+      "lookup_hard_limit_trace": "uniform_cycle_worst_case",
+      "lookup_max_ns": 2743,
+      "lookup_p50_ns": 1037,
+      "lookup_p95_ns": 1543,
+      "lookup_traces": [
+        {
+          "cache": {
+            "ceiling": 512,
+            "evictions": 1696,
+            "hits": 0,
+            "materializations": 1952,
+            "misses": 1952,
+            "policy": "BOUNDED_ACCESS_ORDER_LRU",
+            "size_after": 512,
+            "size_before": 256
+          },
+          "candidates_max": 8,
+          "candidates_p50": 1,
+          "candidates_p95": 5,
+          "max_ns": 2743,
+          "p50_ns": 1037,
+          "p95_ns": 1543,
+          "trace": "uniform_cycle_worst_case"
+        },
+        {
+          "cache": {
+            "ceiling": 512,
+            "evictions": 97,
+            "hits": 1562,
+            "materializations": 390,
+            "misses": 390,
+            "policy": "BOUNDED_ACCESS_ORDER_LRU",
+            "size_after": 512,
+            "size_before": 219
+          },
+          "candidates_max": 8,
+          "candidates_p50": 1,
+          "candidates_p95": 4,
+          "max_ns": 1471,
+          "p50_ns": 921,
+          "p95_ns": 1068,
+          "trace": "locality_80_20"
+        },
+        {
+          "cache": {
+            "ceiling": 512,
+            "evictions": 0,
+            "hits": 1952,
+            "materializations": 0,
+            "misses": 0,
+            "policy": "BOUNDED_ACCESS_ORDER_LRU",
+            "size_after": 1,
+            "size_before": 1
+          },
+          "candidates_max": 8,
+          "candidates_p50": 8,
+          "candidates_p95": 8,
+          "max_ns": 8578,
+          "p50_ns": 728,
+          "p95_ns": 837,
+          "trace": "repeated_current_input"
+        }
+      ],
+      "retained_status": "PASS",
+      "retained_total_bytes_p50": 2241752,
+      "server_expansion_p95_ns": 304100,
+      "server_index_p95_ns": 1530700,
+      "server_reload_p95_ns": 2811900,
+      "server_stable_fingerprint": "e60d95f54ddc8ca6be2309b675f6d87e2bcc062b3e0f512d77b55c2430c927f8",
+      "sync_bytes": 331124
+    },
+    "selected_20x": {
+      "candidate": "hybrid",
+      "dedicated_client_index_p95_ns": 32241300,
+      "dedicated_client_reexpansion_p95_ns": 53864000,
+      "dedicated_client_stable_fingerprint": "a5d83092f0ea1449a863551d732058c64c610e484f95cf71729bcd69c6adfb28",
+      "enumeration_p95_ns": 7605700,
+      "integrated_client": "SKIP_SHARED_SERVER_PUBLICATION",
+      "jfr_allocation_bytes_p50": 0,
+      "jfr_allocation_status": "PASS",
+      "lookup_candidates_max": 8,
+      "lookup_candidates_p50": 8,
+      "lookup_candidates_p95": 8,
+      "lookup_hard_limit_trace": "locality_80_20",
+      "lookup_max_ns": 8462,
+      "lookup_p50_ns": 1512,
+      "lookup_p95_ns": 2950,
+      "lookup_traces": [
+        {
+          "cache": {
+            "ceiling": 512,
+            "evictions": 1696,
+            "hits": 0,
+            "materializations": 1952,
+            "misses": 1952,
+            "policy": "BOUNDED_ACCESS_ORDER_LRU",
+            "size_after": 512,
+            "size_before": 256
+          },
+          "candidates_max": 8,
+          "candidates_p50": 1,
+          "candidates_p95": 5,
+          "max_ns": 4025,
+          "p50_ns": 1262,
+          "p95_ns": 1940,
+          "trace": "uniform_cycle_worst_case"
+        },
+        {
+          "cache": {
+            "ceiling": 512,
+            "evictions": 1696,
+            "hits": 0,
+            "materializations": 1952,
+            "misses": 1952,
+            "policy": "BOUNDED_ACCESS_ORDER_LRU",
+            "size_after": 512,
+            "size_before": 256
+          },
+          "candidates_max": 6,
+          "candidates_p50": 1,
+          "candidates_p95": 5,
+          "max_ns": 8462,
+          "p50_ns": 1512,
+          "p95_ns": 2950,
+          "trace": "locality_80_20"
+        },
+        {
+          "cache": {
+            "ceiling": 512,
+            "evictions": 0,
+            "hits": 1952,
+            "materializations": 0,
+            "misses": 0,
+            "policy": "BOUNDED_ACCESS_ORDER_LRU",
+            "size_after": 1,
+            "size_before": 1
+          },
+          "candidates_max": 8,
+          "candidates_p50": 8,
+          "candidates_p95": 8,
+          "max_ns": 934,
+          "p50_ns": 412,
+          "p95_ns": 415,
+          "trace": "repeated_current_input"
+        }
+      ],
+      "retained_status": "PASS",
+      "retained_total_bytes_p50": 21934784,
+      "server_expansion_p95_ns": 6501700,
+      "server_index_p95_ns": 34456500,
+      "server_reload_p95_ns": 56006000,
+      "server_stable_fingerprint": "a5d83092f0ea1449a863551d732058c64c610e484f95cf71729bcd69c6adfb28",
+      "sync_bytes": 9877420
+    },
+    "superseded_protocol": {
+      "current": false,
+      "path": "tools/t14_recipe_load_benchmark.json",
+      "superseded_by": "t14_materialization_lookup_cache_v2"
+    }
+  },
+  "o_26": {
+    "authored_after": 20,
+    "authored_before": 2782,
+    "compact_fingerprint": "fc767e25bdd7fd8e5c147d1b6e4da74e67caab16570e91c04d8460d042d71b33",
+    "exact_remainder": 1,
+    "expected_fingerprint": "01483876205174986a73ed3a8200ab1c4e1051599b8973bcc6e6b65b86cbe0c4",
+    "full_field_bidirectional_equivalence": true,
+    "logical_relations": 2782,
+    "skipped_templates": 42,
+    "status": "CLOSED",
+    "t8_pipe_rows_separate": 257
+  },
+  "projection_template": {
+    "budget_policy": "tools/t14_load_budget_policy.json",
+    "schema": "tools/recipe_load_projection.schema.json",
+    "selected_input": "tools/t14_extruder_load_projection_input.json",
+    "selected_projection": "tools/t14_extruder_load_projection.json",
+    "selected_projection_status": "PASS",
+    "t15_t19_fixtures": "tools/tests/fixtures/t14_load_projection_t15_t19.json",
+    "tool": "tools/recipe_load_projection.py"
+  },
+  "schema_version": 1,
+  "source_contracts": {
+    "epoch": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeRuntimeEpoch.java",
+      "required_tokens": [
+        "publishPrepared",
+        "MaterialCatalog.publishPreview",
+        "epoch"
+      ],
+      "sha256": "86f8961e9f5f41d339226b02ca3acb84ad5db399dad0c4887aaf3b86047cb218"
+    },
+    "game_test": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "metrics.eagerPublishedRecipes() == 16_650",
+        "metrics.lazyLogicalRecipes() == 2_225",
+        "metrics.t14ExtruderCacheCeiling() == 512",
+        "metrics.t14ExtruderSyncBytes() == 331_124L",
+        "extruderFamily.cacheSize() <= extruderFamily.cacheCeiling()",
+        "onlineGate.allPass()"
+      ],
+      "sha256": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848"
+    },
+    "loader": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapLoader.java",
+      "required_tokens": [
+        "eagerPublishedRecipes",
+        "lazyLogicalRecipes",
+        "t14ExtruderAuthoredEntries",
+        "t14ExtruderSyncBytes",
+        "validateT14MaterializationBudgets",
+        "validateCompleteReloadRows",
+        "T14OnlineBudgetGate"
+      ],
+      "sha256": "8dea2b0d55d3e49c9e926f73662ad4a283182470b54e2226e7148f73f7df7835"
+    },
+    "material_rule": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/rule/MaterialRule.java",
+      "required_tokens": [
+        "Sparse shadow_order must be strictly increasing at",
+        "Sparse shadow_order cannot be negative for"
+      ],
+      "sha256": "b40a38660ca251a81ab31aae0e7217acfe8a3dea83965df78252375c5d9c513e"
+    },
+    "material_rule_expansion": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansion.java",
+      "required_tokens": [
+        "public static Expanded expandSparseRelation(",
+        "ResourceResolver resolver"
+      ],
+      "sha256": "01901d432914ace34ba63d8b75bb6cedc6c67b0c1be239605dbc9e964a3c5a17"
+    },
+    "provider": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/ExtruderRecipeFamilyProvider.java",
+      "required_tokens": [
+        "CACHE_CEILING = 512",
+        "HOT_MODULO = 5",
+        "stableFingerprint",
+        "RuntimeSide",
+        "sources.size() > AUTHORED_ENTRIES",
+        "definitions.size() >= LOGICAL_RELATIONS",
+        "shadow_order must be strictly increasing",
+        "syncPayloadBytes"
+      ],
+      "sha256": "a2fc33afb82bc7e6760c0782aaa6a792e0df02cb5b4ac8e4ba13931afe2e99f0"
+    },
+    "provider_test": {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/ExtruderRecipeFamilyProviderTest.java",
+      "required_tokens": [
+        "nineteenSourcesEnumerateIdenticallyOnServerAndDedicatedClient",
+        "relationGapsRemainStableAndAreNotRenumbered",
+        "fullyDisabledFamilyIsEnumerableOnBothRuntimeSides",
+        "sourceAndRelationCeilingsRemainFailClosed",
+        "duplicateNegativeAndInvalidRelationsRemainRejectedWithIdentity"
+      ],
+      "sha256": "8b0f366cb26aec0e1def76fdb7490bec87cdebd8ca33a67eb7fcc1ee1313a84d"
+    },
+    "recipe_map": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/RecipeMap.java",
+      "required_tokens": [
+        "RecipeFamily",
+        "logicalRecipeCount",
+        "lazyRecipeCount",
+        "cacheCeiling"
+      ],
+      "sha256": "323e3c0e8823072ed7bf8c7881dc8c64697be5d472b249893b91bec75f12510b"
+    }
+  },
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T14_READY"
+}

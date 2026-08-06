@@ -30,6 +30,8 @@ sourceSets.main.resources {
     srcDir('src/component_rule_generated/resources')
     // Audited T5 chemical fluids and recipes are generated from pinned GT6 data.
     srcDir('src/t5_chemical_generated/resources')
+    // T11 hydrocarbon processing and fuel rows are fixed-source projections.
+    srcDir('src/t11_hydrocarbon_generated/resources')
 
     // Exclude common development only resources from finalized outputs
     exclude("**/*.bbmodel") // BlockBench project files
@@ -211,6 +213,13 @@ dependencies {
 sourceSets.test.compileClasspath += sourceSets.main.compileClasspath
 sourceSets.test.runtimeClasspath += sourceSets.main.runtimeClasspath
 
+// T14b prototypes are deliberately isolated from production Minecraft types.
+sourceSets {
+    t14Benchmark {
+        java.srcDir('src/t14Benchmark/java')
+    }
+}
+
 tasks.named('test', Test).configure {
     useJUnitPlatform()
 }
@@ -223,6 +232,62 @@ tasks.register('materialRegistryStress', JavaExec) {
     mainClass = 'com.masson.cruciblecraft.material.MaterialRegistryStressHarness'
     args providers.gradleProperty('stressScenario').getOrElse('metadata_only')
     jvmArgs '-Xmx4G'
+}
+
+tasks.register('t12CapacityMatcherBenchmark', JavaExec) {
+    group = 'verification'
+    description = 'Refreshes the repeatable T12a CapacityMatcher benchmark artifact.'
+    dependsOn tasks.named('testClasses')
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'com.masson.cruciblecraft.recipe.gt.CapacityMatcherBenchmarkHarness'
+    args file('tools/t12_capacity_matcher_benchmark.json').absolutePath
+}
+
+tasks.register('t14RecipeLoadContractTest', JavaExec) {
+    group = 'verification'
+    description = 'Runs isolated T14 materialization candidate contract tests.'
+    dependsOn tasks.named('t14BenchmarkClasses')
+    classpath = sourceSets.t14Benchmark.runtimeClasspath
+    mainClass = 'com.masson.cruciblecraft.benchmark.recipe.RecipeFamilyProviderContractTest'
+}
+
+def t14RecipeLoadBenchmarkRaw = tasks.register(
+        't14RecipeLoadBenchmarkRaw', JavaExec) {
+    group = 'verification'
+    description = 'Collects T14c measurements from actual compact relations.'
+    dependsOn tasks.named('t14BenchmarkClasses')
+    classpath = sourceSets.t14Benchmark.runtimeClasspath
+    mainClass = 'com.masson.cruciblecraft.benchmark.recipe.RecipeLoadBenchmarkHarness'
+    args file('build/t14-benchmark/raw_measurements.json').absolutePath,
+            file('tools/t14_materialization_policy.json').absolutePath,
+            projectDir.absolutePath,
+            file('build/t14-benchmark/jfr').absolutePath
+    jvmArgs '-Xms256m', '-Xmx2G', '-XX:+UseG1GC'
+    inputs.files file('tools/t14_materialization_policy.json'),
+            file('tools/t14_extruder_compact.json')
+    outputs.file file('build/t14-benchmark/raw_measurements.json')
+}
+
+def t14RecipeLoadBenchmarkArtifact = tasks.register(
+        't14RecipeLoadBenchmarkArtifact', Exec) {
+    group = 'verification'
+    description = 'Validates T14c evidence and derives the production winner.'
+    dependsOn t14RecipeLoadBenchmarkRaw
+    commandLine providers.gradleProperty('pythonExecutable').getOrElse('python'),
+            file('tools/build_t14_recipe_load_benchmark.py').absolutePath,
+            '--raw',
+            file('build/t14-benchmark/raw_measurements.json').absolutePath
+    inputs.files file('build/t14-benchmark/raw_measurements.json'),
+            file('tools/t14_materialization_policy.json'),
+            file('tools/t14_extruder_compact.json'),
+            file('tools/build_t14_recipe_load_benchmark.py')
+    outputs.file file('tools/t14_materialization_decision.json')
+}
+
+tasks.register('t14RecipeLoadBenchmark') {
+    group = 'verification'
+    description = 'Refreshes actual compact T14c materialization measurements.'
+    dependsOn t14RecipeLoadBenchmarkArtifact
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

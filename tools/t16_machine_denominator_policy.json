@@ -1,0 +1,286 @@
+{
+  "schema_version": 1,
+  "status": "T16_MACHINE_DENOMINATOR_POLICY",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "owner": "T16",
+  "accepted_energy_identities": {
+    "KU": "KINETIC_PUSH",
+    "RU": "KINETIC_ROTATION"
+  },
+  "dispositions": [
+    "IMPLEMENTED_PRE_T16",
+    "IMPLEMENTED_T16A",
+    "IMPLEMENTED_T16B",
+    "MAPPED_DEFERRED",
+    "T13_ONLY_DEFERRED"
+  ],
+  "kinds": {
+    "RM.BurnMixer": {
+      "accepted_energy": "RU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Burn Mixer is T13-only and requires an ignition-aware processing contract not present in the selected T16 batch.",
+      "replacement_condition": "Add a bounded BurnMixer RecipeMap, ignition state, RU host, resources and acquisition evidence.",
+      "recheck_point": "Recheck after a source-backed ignition-machine batch is approved.",
+      "tier4": {
+        "reason": "Burn Mixer Kinetic_T[4] is outside the three-tier T16 runtime and has no ignition-capable host.",
+        "replacement_condition": "Open tier 4 only with its exact material, ignition behavior, RU limits and acquisition path.",
+        "recheck_point": "Recheck after Burn Mixer tiers 1-3 are selected."
+      }
+    },
+    "RM.Centrifuge": {
+      "accepted_energy": "RU",
+      "disposition": "IMPLEMENTED_PRE_T16",
+      "local_map": "cruciblecraft:centrifuge",
+      "catalog_kind": "cruciblecraft:centrifuge",
+      "reason": "T12 already implements source tiers 1-3 with RU identity and source parallel-duration behavior.",
+      "replacement_condition": "Replace only if the pinned GT6 source identity or numeric profile changes.",
+      "recheck_point": "Recheck at T16d zero-publication closure.",
+      "tier4": {
+        "reason": "Centrifuge Kinetic_T[4] is not part of the approved bronze/steel/titanium runtime envelope.",
+        "replacement_condition": "Provide exact tier-4 material, acquisition, model and migration evidence without adding a RecipeMap.",
+        "recheck_point": "Recheck after T16c acquisition closes tiers 1-3."
+      }
+    },
+    "RM.ClusterMill": {
+      "accepted_energy": "RU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Cluster Mill has no local RecipeMap or bounded recipe replay in the approved T16 selection.",
+      "replacement_condition": "Add an independently reviewed ClusterMill map, recipes, RU behavior and tier resources.",
+      "recheck_point": "Recheck when a cluster-mill recipe family is selected.",
+      "tier4": {
+        "reason": "Cluster Mill Kinetic_T[4] cannot precede a local tiers 1-3 machine family.",
+        "replacement_condition": "Close tiers 1-3 and independently source the tier-4 material and limits.",
+        "recheck_point": "Recheck after Cluster Mill tiers 1-3 exist."
+      }
+    },
+    "RM.Compressor": {
+      "accepted_energy": "KU",
+      "disposition": "MAPPED_DEFERRED",
+      "local_map": "cruciblecraft:compressor",
+      "reason": "The local map is carried by an electric T5 behavior; T16b selects Press instead of silently changing Compressor identity.",
+      "replacement_condition": "Approve a KU Compressor batch with adjacent-push supply, identity migration and acquisition evidence.",
+      "recheck_point": "Recheck after T16b Press closes and before T17 electric-machine work.",
+      "tier4": {
+        "reason": "Compressor Kinetic_T[4] is deferred with the unresolved KU-versus-current-EU behavior.",
+        "replacement_condition": "Resolve Compressor energy identity and tiers 1-3 before adding exact tier-4 evidence.",
+        "recheck_point": "Recheck when KU Compressor is selected."
+      }
+    },
+    "RM.Crusher": {
+      "accepted_energy": "KU",
+      "disposition": "MAPPED_DEFERRED",
+      "local_map": "cruciblecraft:crusher",
+      "reason": "The bronze Crusher is a custom pre-tier host; conversion to the shared tier runtime is outside T16a.",
+      "replacement_condition": "Select Crusher for a KU batch and close custom-host migration, adjacent supply and block identity.",
+      "recheck_point": "Recheck after the T16b Press vertical slice.",
+      "tier4": {
+        "reason": "Crusher Kinetic_T[4] cannot be added while the bronze machine remains a custom non-variant host.",
+        "replacement_condition": "Migrate tiers 1-3 to the shared variant runtime and then source tier 4 independently.",
+        "recheck_point": "Recheck after Crusher host migration."
+      }
+    },
+    "RM.Cutter": {
+      "accepted_energy": "RU",
+      "disposition": "MAPPED_DEFERRED",
+      "local_map": "cruciblecraft:cutter",
+      "reason": "Cutter has a live map but was not selected for the bounded four-kind T16a implementation.",
+      "replacement_condition": "Approve Cutter with exact RU tiers, migration projection, resources and acquisition.",
+      "recheck_point": "Recheck after T16d closes the current selected set.",
+      "tier4": {
+        "reason": "Cutter Kinetic_T[4] is outside the selected three-tier runtime.",
+        "replacement_condition": "Implement source tiers 1-3 first and independently close tier-4 material and acquisition.",
+        "recheck_point": "Recheck when Cutter is selected."
+      }
+    },
+    "RM.Lathe": {
+      "accepted_energy": "RU",
+      "disposition": "IMPLEMENTED_T16A",
+      "local_map": "cruciblecraft:lathe",
+      "catalog_kind": "cruciblecraft:lathe",
+      "reason": "Lathe is selected for T16a and reuses its live RecipeMap through source tiers 1-3.",
+      "replacement_condition": "Replace only if the pinned source row or selected T16a boundary changes.",
+      "recheck_point": "Recheck at T16c resource and acquisition closure.",
+      "tier4": {
+        "reason": "Lathe Kinetic_T[4] is explicitly outside the bronze/steel/titanium T16a implementation.",
+        "replacement_condition": "Provide exact tier-4 material, registration, migration, resources and acquisition evidence.",
+        "recheck_point": "Recheck after T16c closes Lathe tiers 1-3."
+      }
+    },
+    "RM.Loom": {
+      "accepted_energy": "RU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "The RU Loom canonical kind has no local map and must not be conflated with unrelated crafting behavior.",
+      "replacement_condition": "Add a bounded Loom RecipeMap and source-backed RU tier implementation.",
+      "recheck_point": "Recheck when a Loom recipe family is approved.",
+      "tier4": {
+        "reason": "Loom Kinetic_T[4] is deferred because no local Loom tiers exist.",
+        "replacement_condition": "Close the Loom map and tiers 1-3 before tier-4 material work.",
+        "recheck_point": "Recheck after Loom tiers 1-3 are implemented."
+      }
+    },
+    "RM.Mixer": {
+      "accepted_energy": "RU",
+      "disposition": "MAPPED_DEFERRED",
+      "local_map": "cruciblecraft:mixer",
+      "reason": "The local Mixer is an electric T5 carrier while this T13 canonical kind is RU; T16a does not rewrite that identity.",
+      "replacement_condition": "Separate or migrate the RU Mixer with exact recipe ownership, identity and acquisition evidence.",
+      "recheck_point": "Recheck before T17 evaluates the distinct electric Mixer kind.",
+      "tier4": {
+        "reason": "RU Mixer Kinetic_T[4] is deferred with the unresolved RU/EU map-sharing boundary.",
+        "replacement_condition": "Resolve map ownership and tiers 1-3 before independently adding tier 4.",
+        "recheck_point": "Recheck after RU and EU Mixer identities are separated."
+      }
+    },
+    "RM.Press": {
+      "accepted_energy": "KU",
+      "disposition": "IMPLEMENTED_T16B",
+      "local_map": "cruciblecraft:press",
+      "catalog_kind": "cruciblecraft:press",
+      "reason": "T16b implements Press as the selected KU adjacent-push vertical slice across source tiers 1-3.",
+      "replacement_condition": "Replace only if the pinned source row or selected T16b boundary changes.",
+      "recheck_point": "Recheck at T16c resource and acquisition closure.",
+      "tier4": {
+        "reason": "Press Kinetic_T[4] is outside the selected T16b three-tier envelope.",
+        "replacement_condition": "Close Press tiers 1-3 and independently prove tier-4 material, acquisition and migration.",
+        "recheck_point": "Recheck after T16c closes Press acquisition."
+      }
+    },
+    "RM.PressureWasher": {
+      "accepted_energy": "RU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Pressure Washer has no local map or source-backed water-handling host in the selected batch.",
+      "replacement_condition": "Add a bounded PressureWasher map, fluid contract, RU tiers and acquisition.",
+      "recheck_point": "Recheck when a pressure-washing family is approved.",
+      "tier4": {
+        "reason": "Pressure Washer Kinetic_T[4] is deferred until its map and fluid behavior exist.",
+        "replacement_condition": "Close tiers 1-3 water and RU behavior before tier-4 work.",
+        "recheck_point": "Recheck after Pressure Washer tiers 1-3."
+      }
+    },
+    "RM.RollBender": {
+      "accepted_energy": "RU",
+      "disposition": "MAPPED_DEFERRED",
+      "local_map": "cruciblecraft:rollbender",
+      "reason": "Roll Bender has a live map but is outside the four-kind T16a implementation boundary.",
+      "replacement_condition": "Approve its exact RU tiers, behavior-carrier migration and acquisition evidence.",
+      "recheck_point": "Recheck after T16d closes the current selected set.",
+      "tier4": {
+        "reason": "Roll Bender Kinetic_T[4] is outside the selected three-tier runtime.",
+        "replacement_condition": "Implement tiers 1-3 first, then independently close tier-4 source and acquisition.",
+        "recheck_point": "Recheck when Roll Bender is selected."
+      }
+    },
+    "RM.RollFormer": {
+      "accepted_energy": "RU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Roll Former is a distinct T13 canonical kind with no local map and cannot be merged into Rolling Mill.",
+      "replacement_condition": "Add a distinct bounded RollFormer map and source-backed RU tiers.",
+      "recheck_point": "Recheck when Roll Former recipes are independently selected.",
+      "tier4": {
+        "reason": "Roll Former Kinetic_T[4] is deferred with the entire absent machine family.",
+        "replacement_condition": "Implement distinct tiers 1-3 before tier-4 material and acquisition.",
+        "recheck_point": "Recheck after Roll Former tiers 1-3."
+      }
+    },
+    "RM.RollingMill": {
+      "accepted_energy": "RU",
+      "disposition": "IMPLEMENTED_T16A",
+      "local_map": "cruciblecraft:rollingmill",
+      "catalog_kind": "cruciblecraft:rollingmill",
+      "reason": "Rolling Mill is selected for T16a and reuses its live RecipeMap through source tiers 1-3.",
+      "replacement_condition": "Replace only if the pinned source row or selected T16a boundary changes.",
+      "recheck_point": "Recheck at T16c resource and acquisition closure.",
+      "tier4": {
+        "reason": "Rolling Mill Kinetic_T[4] is explicitly outside the bronze/steel/titanium T16a implementation.",
+        "replacement_condition": "Provide exact tier-4 material, registration, migration, resources and acquisition evidence.",
+        "recheck_point": "Recheck after T16c closes Rolling Mill tiers 1-3."
+      }
+    },
+    "RM.Sharpening": {
+      "accepted_energy": "RU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Sharpening has no local map and its tool semantics are not part of the selected machine batch.",
+      "replacement_condition": "Add a bounded Sharpening map with explicit tool actions and RU tiers.",
+      "recheck_point": "Recheck when sharpening tool semantics are approved.",
+      "tier4": {
+        "reason": "Sharpening Kinetic_T[4] is deferred with the absent tool-aware machine family.",
+        "replacement_condition": "Close tool semantics and tiers 1-3 before tier-4 work.",
+        "recheck_point": "Recheck after Sharpening tiers 1-3."
+      }
+    },
+    "RM.Shredder": {
+      "accepted_energy": "RU",
+      "disposition": "IMPLEMENTED_T16A",
+      "local_map": "cruciblecraft:shredder",
+      "catalog_kind": "cruciblecraft:shredder",
+      "reason": "Shredder is selected for T16a and reuses its live RecipeMap through source tiers 1-3.",
+      "replacement_condition": "Replace only if the pinned source row or selected T16a boundary changes.",
+      "recheck_point": "Recheck at T16c resource and acquisition closure.",
+      "tier4": {
+        "reason": "Shredder Kinetic_T[4] is explicitly outside the bronze/steel/titanium T16a implementation.",
+        "replacement_condition": "Provide exact tier-4 material, registration, migration, resources and acquisition evidence.",
+        "recheck_point": "Recheck after T16c closes Shredder tiers 1-3."
+      }
+    },
+    "RM.Sifting": {
+      "accepted_energy": "KU",
+      "disposition": "IMPLEMENTED_PRE_T16",
+      "local_map": "cruciblecraft:sifter",
+      "catalog_kind": "cruciblecraft:sifter",
+      "reason": "T12 already implements source tiers 1-3 with KU identity and source parallel-duration behavior.",
+      "replacement_condition": "Replace only if the pinned GT6 source identity or numeric profile changes.",
+      "recheck_point": "Recheck at T16d zero-publication closure.",
+      "tier4": {
+        "reason": "Sifter Kinetic_T[4] is not part of the approved bronze/steel/titanium runtime envelope.",
+        "replacement_condition": "Provide exact tier-4 material, acquisition, model and migration evidence without adding a RecipeMap.",
+        "recheck_point": "Recheck after T16c acquisition closes tiers 1-3."
+      }
+    },
+    "RM.Sluice": {
+      "accepted_energy": "RU",
+      "disposition": "MAPPED_DEFERRED",
+      "local_map": "cruciblecraft:sluice",
+      "reason": "Sluice has a live RU map but its water behavior and tiers were not selected for T16a.",
+      "replacement_condition": "Approve the exact source tiers with water input, migration, resources and acquisition.",
+      "recheck_point": "Recheck after T16d closes the current selected set.",
+      "tier4": {
+        "reason": "Sluice Kinetic_T[4] is outside the selected three-tier runtime.",
+        "replacement_condition": "Implement source tiers 1-3 and water acquisition before independently adding tier 4.",
+        "recheck_point": "Recheck when Sluice is selected."
+      }
+    },
+    "RM.Squeezer": {
+      "accepted_energy": "KU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Squeezer has no local map, fluid/output contract or adjacent KU host in the selected batch.",
+      "replacement_condition": "Add a bounded Squeezer map, IO contract, KU tiers and adjacent supply.",
+      "recheck_point": "Recheck after the first T16b KU vertical slice.",
+      "tier4": {
+        "reason": "Squeezer Kinetic_T[4] is deferred with the absent KU machine family.",
+        "replacement_condition": "Close the Squeezer map and tiers 1-3 before tier-4 work.",
+        "recheck_point": "Recheck after Squeezer tiers 1-3."
+      }
+    },
+    "RM.Wiremill": {
+      "accepted_energy": "RU",
+      "disposition": "IMPLEMENTED_T16A",
+      "local_map": "cruciblecraft:wiremill",
+      "catalog_kind": "cruciblecraft:wiremill",
+      "reason": "Wiremill is selected for T16a and reuses its live RecipeMap through source tiers 1-3.",
+      "replacement_condition": "Replace only if the pinned source row or selected T16a boundary changes.",
+      "recheck_point": "Recheck at T16c resource and acquisition closure.",
+      "tier4": {
+        "reason": "Wiremill Kinetic_T[4] is explicitly outside the bronze/steel/titanium T16a implementation.",
+        "replacement_condition": "Provide exact tier-4 material, registration, migration, resources and acquisition evidence.",
+        "recheck_point": "Recheck after T16c closes Wiremill tiers 1-3."
+      }
+    }
+  }
+}

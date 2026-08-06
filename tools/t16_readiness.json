@@ -1,0 +1,959 @@
+{
+  "closure_summary": {
+    "deferred_kinds": 13,
+    "denominator_kinds": 20,
+    "preimplemented_kinds": 2,
+    "publication_delta": 0,
+    "selected_kinds": 5,
+    "selected_variants": 15,
+    "tier4_deferred": 20,
+    "unclassified": 0
+  },
+  "completed_stages": [
+    "T16a",
+    "T16b",
+    "T16c",
+    "T16d"
+  ],
+  "currentness": {
+    "completed_stage_sources": {
+      "T16a": {
+        "behavior_carriers": "a27476dbc406dbb874590cc8689cd31ab01812a7660a4a9e91225536845694e8",
+        "block_registry": "23b20ffaf7457753327bc175d20b8be58d2f1bc867705714702079d2f7633c8c",
+        "catalog_loader": "374d8b1ce7c42b21efb61a65d1695e0e85960dc87b6b15baa99af05fcf7cd2c6",
+        "denominator_builder": "dd45cba8bd6dfe4c30fb87304b031ea6c9b6977c7260eb16293cd0d4593ecf51",
+        "denominator_policy": "f3762cec0daaee3e9885404d10725af8ccddd1dbce2f9288b62e0f55652f6857",
+        "denominator_python_test": "7723a90755400ae4e51200e224b8114d871bd86f92d5cafde789771979b1583d",
+        "item_registry": "97e6c045defca63f6a61e82d44d7a8c64d2423b8c40e4bfddf381ceb1b476e1d",
+        "junit_matrix": "da7a3ba8b7c2e87ddd4f4ce64f58aca928e3b546308a6a914211da3d1f31858a",
+        "machine_tier_catalog": "cc1df2b2d3693203a6ed5246d9887efbf6e89b03576682be748894e69f4e84a5",
+        "python_test_policy": "c77f9cde3289cd2cea67defa5885d584476b225d65139de176d17726f0a12b07",
+        "readiness_python_test": "8bac8997d1c4a480dd6a04e2eee269cf0a18bd7788d3800f0898283705307cf0",
+        "source_expected": "58a8d742acb36a8d290b58cbb322d34f6867b6d52b80ff8857c1ea3252194026",
+        "variant_registry": "2a966d84576cdcd71c6c1810c7ca669f26170440b54a4ac271b3e881abaa7aa6"
+      },
+      "T16b": {
+        "t16b_behavior_carrier": "a27476dbc406dbb874590cc8689cd31ab01812a7660a4a9e91225536845694e8",
+        "t16b_block_registry": "23b20ffaf7457753327bc175d20b8be58d2f1bc867705714702079d2f7633c8c",
+        "t16b_denominator_policy": "f3762cec0daaee3e9885404d10725af8ccddd1dbce2f9288b62e0f55652f6857",
+        "t16b_denominator_python_test": "7723a90755400ae4e51200e224b8114d871bd86f92d5cafde789771979b1583d",
+        "t16b_gametest_verticals": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848",
+        "t16b_item_registry": "97e6c045defca63f6a61e82d44d7a8c64d2423b8c40e4bfddf381ceb1b476e1d",
+        "t16b_junit_execution_matrix": "da7a3ba8b7c2e87ddd4f4ce64f58aca928e3b546308a6a914211da3d1f31858a",
+        "t16b_machine_tier_catalog": "cc1df2b2d3693203a6ed5246d9887efbf6e89b03576682be748894e69f4e84a5",
+        "t16b_readiness_python_test": "8bac8997d1c4a480dd6a04e2eee269cf0a18bd7788d3800f0898283705307cf0",
+        "t16b_source_expected": "58a8d742acb36a8d290b58cbb322d34f6867b6d52b80ff8857c1ea3252194026",
+        "t16b_variant_registry": "2a966d84576cdcd71c6c1810c7ca669f26170440b54a4ac271b3e881abaa7aa6"
+      },
+      "T16c": {
+        "t16c_acquisition_builder": "8d313cd42e668aab32aa73de6418f809e6a5471ad22b59213743cf3dabe89b05",
+        "t16c_acquisition_policy": "84a9b05a405cca8655ccc6f4bcdcbffa90165974f17725c539ff456b0706134d",
+        "t16c_acquisition_python_test": "b5888e3222ff821e94288c1fc83c115ea55c020d671e21f64970139a4190b111",
+        "t16c_block_models": "0c8d41fc72e8199b3532442626bd1a0fc8825bfbd22f1d228376059dda9df151",
+        "t16c_full_artifact_currentness": "0c080386406217110b667f0d56a950476837bf864875992ccdf0ae23466b575a",
+        "t16c_full_builder": "d472a6d4b75f346d7bc4f73fcabfa5b464c3e34e13081db25663aa5304ac7e2d",
+        "t16c_gametests": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848",
+        "t16c_identity_migrations": "735c57a925645193aeeabfcb8538311707c3c78ce12c2fef0a180b0656f03739",
+        "t16c_identity_persistence_junit": "a728d39848a8eb40385645061c12d9eb4ae7cc70b973dad4f66aab765cd66498",
+        "t16c_identity_policy_junit": "7593a6513032c56799432acc30b46d07efc4707de1c38ac5a86ca7e2d2df99ea",
+        "t16c_language": "a495ac62dc7f390ce5bf65bb40a9ff49313eecee59ede813ce9d5e6f03af6f53",
+        "t16c_loot": "292842107ebc4e9d7ea39e942919fe9f18500fa6b4f8746ba2135e1ba0ac3d47",
+        "t16c_machine_recipes": "665b09739e41d90af2b54010eeb0bdd0c9f938c51faef9d2b41a2014156be8ae",
+        "t16c_resource_junit": "4d420ad3940b7a2cebdf7d317427a08bf37cc3360b047b6f67107370d16be319",
+        "t16c_tags": "f9bc7ae76bf215c3b18a9cd76d9ee8d01d09dec1c9fd451b54c44465c7281c31",
+        "t16c_variant_registry": "2a966d84576cdcd71c6c1810c7ca669f26170440b54a4ac271b3e881abaa7aa6"
+      },
+      "T16d": {
+        "t16d_full_builder": "d472a6d4b75f346d7bc4f73fcabfa5b464c3e34e13081db25663aa5304ac7e2d",
+        "t16d_full_report": "0c080386406217110b667f0d56a950476837bf864875992ccdf0ae23466b575a",
+        "t16d_gametest_publication": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848",
+        "t16d_history_archive": "6622997f765632e6581f3660e51dc6517e8efe9239ade8cea424f85d722d9047",
+        "t16d_load_projection_input": "d2d06d19dbff166b269257d49cacc494f3797c789643958452b35a32ada424c7",
+        "t16d_load_projection_output": "77242e4881cf613ec497490d2eb9d5e2e025e777fc298fbc8e95aaae58f7c3f4",
+        "t16d_load_python_test": "a7cfe572b815dd7f79dca458ec7c7017b2a93bf8cb232c292d6b057d5a105ec3",
+        "t16d_overall_status": "f26eb0c5640b3d3ffef2e3202552c892c0e80ac4ee8d1f43a1ea43080cbad3f8",
+        "t16d_project_readme": "cca503fde91671fc732b22166803a1b17e90b36a2079735d77843146a6a61d4a",
+        "t16d_publication_baseline": "0560b4a3960b6a0d88a61736f334430c25adea41031a68914454c1232a8bc167",
+        "t16d_python_affected_closure": "c77f9cde3289cd2cea67defa5885d584476b225d65139de176d17726f0a12b07",
+        "t16d_readiness_builder": "6e3cc410c6c6fc790406b07ffe98140bd44bd3ee0af29a6fedf71c7ef502c8ec",
+        "t16d_readiness_python_test": "8bac8997d1c4a480dd6a04e2eee269cf0a18bd7788d3800f0898283705307cf0",
+        "t16d_third_phase_status": "53e4d62fc6929e6f9491d37c5b3b37850fb9b2fc4a13ee2fbefcba8bb16c06e3",
+        "t16d_tools_readme": "4be00359c3eed12e8d6b8927500e37b13eaf516ce7aeeeaf948ddd4dc4761c1a"
+      }
+    },
+    "dependencies": {
+      "T15": {
+        "path": "tools/t15_readiness.json",
+        "sha256": "e250cbf26ced1d01a860bb706139835431d7339e2393f68b8f90d113266800b6",
+        "status": "T15_READY"
+      },
+      "acquisition": {
+        "path": "tools/t16_machine_acquisition.json",
+        "sha256": "176bd4158fa1fde97eb26810b98b7923ab909ad1590371b67bf60dd68137acfa",
+        "status": "T16C_MACHINE_ACQUISITION_READY"
+      },
+      "denominator": {
+        "path": "tools/t16_machine_denominator.json",
+        "sha256": "df51e94c2993fbdd0f2373b58f03b60d356231056844bc8ace0861adb2b9291c",
+        "status": "T16_MACHINE_DENOMINATOR_READY"
+      }
+    },
+    "owned_inputs": {
+      "tools/build_t16_readiness.py": "6e3cc410c6c6fc790406b07ffe98140bd44bd3ee0af29a6fedf71c7ef502c8ec",
+      "tools/t16_readiness_policy.json": "520be1b15bbb8e189300180da65d4baa99cfb95491ca027383f0716def393eea"
+    }
+  },
+  "pending_stages": [],
+  "publication_gate": {
+    "emi_recipe_enumeration_equal": true,
+    "logical_eager_lazy_totals_equal": true,
+    "publication_delta": 0,
+    "publication_unchanged_claimed": true,
+    "recipe_map_stable_id_set_equal": true,
+    "status": "PASS"
+  },
+  "resource_acquisition_migration_gate": {
+    "acceptance": "Generate real-texture models, real en_us/zh_cn names, loot/tags and source-projected crafting for all 15 selected variants; prove operand closure and exact legacy tier-1 identity migrations while preserving recoverable machine state.",
+    "runtime_registrations_are_closure": true,
+    "selected_variants": 15,
+    "status": "T16C_COMPLETE",
+    "unreachable": 0
+  },
+  "schema_version": 1,
+  "source_contracts": {
+    "behavior_carriers": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+      "required_tokens": [
+        "\"lathe\"",
+        "\"rollingmill\"",
+        "\"wiremill\"",
+        "EnergyType.KINETIC_ROTATION"
+      ],
+      "sha256": "a27476dbc406dbb874590cc8689cd31ab01812a7660a4a9e91225536845694e8",
+      "stage": "T16a"
+    },
+    "block_registry": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+      "required_tokens": [
+        "STEEL_LATHE",
+        "TITANIUM_LATHE",
+        "STEEL_ROLLINGMILL",
+        "TITANIUM_ROLLINGMILL",
+        "STEEL_WIREMILL",
+        "TITANIUM_WIREMILL",
+        "STEEL_SHREDDER",
+        "TITANIUM_SHREDDER",
+        "configuredProcessingVariant"
+      ],
+      "sha256": "23b20ffaf7457753327bc175d20b8be58d2f1bc867705714702079d2f7633c8c",
+      "stage": "T16a"
+    },
+    "catalog_loader": {
+      "path": "src/main/java/com/masson/cruciblecraft/machine/processing/MachineTierCatalog.java",
+      "required_tokens": [
+        "sourceId",
+        "sourceTier",
+        "overclockPolicy",
+        "parallelDuration",
+        "Machine tier source policies differ within kinds"
+      ],
+      "sha256": "374d8b1ce7c42b21efb61a65d1695e0e85960dc87b6b15baa99af05fcf7cd2c6",
+      "stage": "T16a"
+    },
+    "denominator_builder": {
+      "path": "tools/build_t16_machine_denominator.py",
+      "required_tokens": [
+        "T16_MACHINE_DENOMINATOR_READY",
+        "T13 must expose exactly 20 T16 RU/KU kinds",
+        "DEFERRED_GT6_TIER4",
+        "unclassified"
+      ],
+      "sha256": "dd45cba8bd6dfe4c30fb87304b031ea6c9b6977c7260eb16293cd0d4593ecf51",
+      "stage": "T16a"
+    },
+    "denominator_policy": {
+      "path": "tools/t16_machine_denominator_policy.json",
+      "required_tokens": [
+        "\"RM.Lathe\"",
+        "\"RM.RollingMill\"",
+        "\"RM.Wiremill\"",
+        "\"RM.Shredder\"",
+        "\"RM.Press\"",
+        "\"tier4\""
+      ],
+      "sha256": "f3762cec0daaee3e9885404d10725af8ccddd1dbce2f9288b62e0f55652f6857",
+      "stage": "T16a"
+    },
+    "denominator_python_test": {
+      "path": "tools/tests/test_build_t16_machine_denominator.py",
+      "required_tokens": [
+        "test_t13_ru_ku_owner_set_is_bidirectionally_classified",
+        "test_every_deferred_kind_and_tier4_has_exit_conditions",
+        "test_policy_mutations_fail_closed",
+        "test_artifact_matches_current_builder"
+      ],
+      "sha256": "7723a90755400ae4e51200e224b8114d871bd86f92d5cafde789771979b1583d",
+      "stage": "T16a"
+    },
+    "item_registry": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+      "required_tokens": [
+        "STEEL_LATHE",
+        "TITANIUM_LATHE",
+        "STEEL_ROLLINGMILL",
+        "TITANIUM_ROLLINGMILL",
+        "STEEL_WIREMILL",
+        "TITANIUM_WIREMILL",
+        "STEEL_SHREDDER",
+        "TITANIUM_SHREDDER"
+      ],
+      "sha256": "97e6c045defca63f6a61e82d44d7a8c64d2423b8c40e4bfddf381ceb1b476e1d",
+      "stage": "T16a"
+    },
+    "junit_matrix": {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/T16MachineTierMatrixTest.java",
+      "required_tokens": [
+        "independentSourceExpectedMatchesCatalogAndRuntimeVariants",
+        "t16aAndT16bBlocksAndItemsCoverExactlyFifteenSelectedVariants",
+        "selectedKindsUseRuWithoutChangingControllerProfile",
+        "variantProjectionDoesNotPublishOrCreateTierSpecificRecipeMaps",
+        "assertEquals(33, ModMachineVariants.ALL.size())",
+        "assertEquals(24, allRows.size())"
+      ],
+      "sha256": "da7a3ba8b7c2e87ddd4f4ce64f58aca928e3b546308a6a914211da3d1f31858a",
+      "stage": "T16a"
+    },
+    "machine_tier_catalog": {
+      "path": "src/main/resources/data/cruciblecraft/machine_tiers.json",
+      "required_tokens": [
+        "\"cruciblecraft:steel_lathe\"",
+        "\"cruciblecraft:titanium_rollingmill\"",
+        "\"cruciblecraft:steel_wiremill\"",
+        "\"cruciblecraft:titanium_shredder\"",
+        "\"sourceTier\": 3",
+        "\"parallelDuration\": false",
+        "\"overclock\": \"STANDARD\""
+      ],
+      "sha256": "cc1df2b2d3693203a6ed5246d9887efbf6e89b03576682be748894e69f4e84a5",
+      "stage": "T16a"
+    },
+    "python_test_policy": {
+      "path": "tools/python_test_policy.json",
+      "required_tokens": [
+        "tools/build_t16_*.py",
+        "tools/t16_*.json",
+        "test_build_t16_machine_denominator",
+        "test_build_t16_readiness"
+      ],
+      "sha256": "c77f9cde3289cd2cea67defa5885d584476b225d65139de176d17726f0a12b07",
+      "stage": "T16a"
+    },
+    "readiness_python_test": {
+      "path": "tools/tests/test_build_t16_readiness.py",
+      "required_tokens": [
+        "test_t16a_through_t16d_are_complete_and_ready",
+        "test_t16d_closes_zero_load_publication_and_emi",
+        "test_currentness_covers_every_completed_stage",
+        "test_artifact_matches_current_builder"
+      ],
+      "sha256": "8bac8997d1c4a480dd6a04e2eee269cf0a18bd7788d3800f0898283705307cf0",
+      "stage": "T16a"
+    },
+    "source_expected": {
+      "path": "src/test/resources/t16_machine_tier_expected.json",
+      "required_tokens": [
+        "\"preserved_pre_t16\"",
+        "\"t16a_selected\"",
+        "\"controller_profile\"",
+        "\"source_revision\""
+      ],
+      "sha256": "58a8d742acb36a8d290b58cbb322d34f6867b6d52b80ff8857c1ea3252194026",
+      "stage": "T16a"
+    },
+    "t16b_behavior_carrier": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+      "required_tokens": [
+        "\"press\"",
+        "EnergyType.KINETIC_PUSH"
+      ],
+      "sha256": "a27476dbc406dbb874590cc8689cd31ab01812a7660a4a9e91225536845694e8",
+      "stage": "T16b"
+    },
+    "t16b_block_registry": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
+      "required_tokens": [
+        "processing(\"press\", machineVariant(\"press\"))",
+        "STEEL_PRESS",
+        "TITANIUM_PRESS"
+      ],
+      "sha256": "23b20ffaf7457753327bc175d20b8be58d2f1bc867705714702079d2f7633c8c",
+      "stage": "T16b"
+    },
+    "t16b_denominator_policy": {
+      "path": "tools/t16_machine_denominator_policy.json",
+      "required_tokens": [
+        "\"RM.Press\"",
+        "\"IMPLEMENTED_T16B\"",
+        "\"catalog_kind\": \"cruciblecraft:press\""
+      ],
+      "sha256": "f3762cec0daaee3e9885404d10725af8ccddd1dbce2f9288b62e0f55652f6857",
+      "stage": "T16b"
+    },
+    "t16b_denominator_python_test": {
+      "path": "tools/tests/test_build_t16_machine_denominator.py",
+      "required_tokens": [
+        "test_t16b_locks_selected_preimplemented_deferred_and_source_hash",
+        "IMPLEMENTED_T16B"
+      ],
+      "sha256": "7723a90755400ae4e51200e224b8114d871bd86f92d5cafde789771979b1583d",
+      "stage": "T16b"
+    },
+    "t16b_gametest_verticals": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "t16bRuMotorAxleGearboxPowersLathe",
+        "t16bSteamEnginePowersPressThroughKu",
+        "t16bHigherTierControlledInjection"
+      ],
+      "sha256": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848",
+      "stage": "T16b"
+    },
+    "t16b_item_registry": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+      "required_tokens": [
+        "STEEL_PRESS",
+        "TITANIUM_PRESS"
+      ],
+      "sha256": "97e6c045defca63f6a61e82d44d7a8c64d2423b8c40e4bfddf381ceb1b476e1d",
+      "stage": "T16b"
+    },
+    "t16b_junit_execution_matrix": {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/T16MachineTierMatrixTest.java",
+      "required_tokens": [
+        "fiveSelectedKindsCoverEveryTierWindowParallelAndEnergyIdentity",
+        "representativeRuAndKuPlansAndFailureStatesStayDistinct",
+        "\"underpowered\"",
+        "\"output_blocked\"",
+        "\"overcharged\"",
+        "\"recipe_power_exceeded\""
+      ],
+      "sha256": "da7a3ba8b7c2e87ddd4f4ce64f58aca928e3b546308a6a914211da3d1f31858a",
+      "stage": "T16b"
+    },
+    "t16b_machine_tier_catalog": {
+      "path": "src/main/resources/data/cruciblecraft/machine_tiers.json",
+      "required_tokens": [
+        "\"cruciblecraft:press\"",
+        "\"cruciblecraft:steel_press\"",
+        "\"cruciblecraft:titanium_press\"",
+        "\"sourceId\": 20233",
+        "\"parallel\": 16",
+        "\"parallelDuration\": true"
+      ],
+      "sha256": "cc1df2b2d3693203a6ed5246d9887efbf6e89b03576682be748894e69f4e84a5",
+      "stage": "T16b"
+    },
+    "t16b_readiness_python_test": {
+      "path": "tools/tests/test_build_t16_readiness.py",
+      "required_tokens": [
+        "test_t16a_through_t16d_are_complete_and_ready",
+        "test_t16b_evidence_locks_press_runtime_scope"
+      ],
+      "sha256": "8bac8997d1c4a480dd6a04e2eee269cf0a18bd7788d3800f0898283705307cf0",
+      "stage": "T16b"
+    },
+    "t16b_source_expected": {
+      "path": "src/test/resources/t16_machine_tier_expected.json",
+      "required_tokens": [
+        "\"t16b_selected\"",
+        "\"source_id\":20231",
+        "\"source_id\":20233"
+      ],
+      "sha256": "58a8d742acb36a8d290b58cbb322d34f6867b6d52b80ff8857c1ea3252194026",
+      "stage": "T16b"
+    },
+    "t16b_variant_registry": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineVariants.java",
+      "required_tokens": [
+        "MachineKindSpec PRESS",
+        "sourceKind(ModProcessingMachines.PRESS)"
+      ],
+      "sha256": "2a966d84576cdcd71c6c1810c7ca669f26170440b54a4ac271b3e881abaa7aa6",
+      "stage": "T16b"
+    },
+    "t16c_acquisition_builder": {
+      "path": "tools/build_t16_machine_acquisition.py",
+      "required_tokens": [
+        "T16C_MACHINE_ACQUISITION_READY",
+        "independent T16c recipe set differs from selected variants",
+        "unreachable"
+      ],
+      "sha256": "8d313cd42e668aab32aa73de6418f809e6a5471ad22b59213743cf3dabe89b05",
+      "stage": "T16c"
+    },
+    "t16c_acquisition_policy": {
+      "path": "tools/t16_machine_acquisition_policy.json",
+      "required_tokens": [
+        "\"cruciblecraft:machines/lathe\"",
+        "\"cruciblecraft:machines/titanium_press\"",
+        "\"cruciblecraft:diamond/gem\"",
+        "\"production_mapping_reused\": false"
+      ],
+      "sha256": "84a9b05a405cca8655ccc6f4bcdcbffa90165974f17725c539ff456b0706134d",
+      "stage": "T16c"
+    },
+    "t16c_acquisition_python_test": {
+      "path": "tools/tests/test_build_t16_machine_acquisition.py",
+      "required_tokens": [
+        "test_independent_expected_set_locks_five_by_three_variants",
+        "test_results_casings_ingredients_and_producer_graph_are_closed",
+        "test_artifact_matches_current_builder"
+      ],
+      "sha256": "b5888e3222ff821e94288c1fc83c115ea55c020d671e21f64970139a4190b111",
+      "stage": "T16c"
+    },
+    "t16c_block_models": {
+      "path": "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
+      "required_tokens": [
+        "ModMachineVariants.T16_SELECTED",
+        "\"steel_lathe\", \"titanium_lathe\"",
+        "\"steel_press\", \"titanium_press\""
+      ],
+      "sha256": "0c8d41fc72e8199b3532442626bd1a0fc8825bfbd22f1d228376059dda9df151",
+      "stage": "T16c"
+    },
+    "t16c_full_artifact_currentness": {
+      "path": "tools/verify_full_verification_report.py",
+      "required_tokens": [
+        "\"t16_machine_acquisition.json\"",
+        "\"t16_readiness.json\"",
+        "TOOLS / \"build_t16_machine_acquisition.py\""
+      ],
+      "sha256": "0c080386406217110b667f0d56a950476837bf864875992ccdf0ae23466b575a",
+      "stage": "T16c"
+    },
+    "t16c_full_builder": {
+      "path": "tools/verification_builder_policy.json",
+      "required_tokens": [
+        "tools/build_t16_machine_acquisition.py",
+        "tools/build_t16_readiness.py"
+      ],
+      "sha256": "d472a6d4b75f346d7bc4f73fcabfa5b464c3e34e13081db25663aa5304ac7e2d",
+      "stage": "T16c"
+    },
+    "t16c_gametests": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "t16SelectedMachineRecipesExecuteFromLiveRecipeManager",
+        "exactLegacyLatheIdentityMigratesAcrossNbtReload",
+        "cases.size() == 15"
+      ],
+      "sha256": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848",
+      "stage": "T16c"
+    },
+    "t16c_identity_migrations": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineIdentityMigrations.java",
+      "required_tokens": [
+        "T16_LEGACY_TIER1_MIGRATIONS",
+        "legacyIdentityOf",
+        "t16LegacyTier1Migration(\"press\")"
+      ],
+      "sha256": "735c57a925645193aeeabfcb8538311707c3c78ce12c2fef0a180b0656f03739",
+      "stage": "T16c"
+    },
+    "t16c_identity_persistence_junit": {
+      "path": "src/test/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineIdentityPersistenceTest.java",
+      "required_tokens": [
+        "representativeT16LegacyLathePreservesInventoryAndProgress",
+        "legacyIdentityOf",
+        "assertEquals(9, restored.progress())"
+      ],
+      "sha256": "a728d39848a8eb40385645061c12d9eb4ae7cc70b973dad4f66aab765cd66498",
+      "stage": "T16c"
+    },
+    "t16c_identity_policy_junit": {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineIdentityPolicyTest.java",
+      "required_tokens": [
+        "fiveLegacyTierOneTuplesAreDerivedExactlyAndNearMissesQuarantine",
+        "MachineIdentityPolicy.Resolution.MIGRATED",
+        "MachineIdentityPolicy.Resolution.QUARANTINED"
+      ],
+      "sha256": "7593a6513032c56799432acc30b46d07efc4707de1c38ac5a86ca7e2d2df99ea",
+      "stage": "T16c"
+    },
+    "t16c_language": {
+      "path": "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+      "required_tokens": [
+        "ModMachineVariants.T16_SELECTED",
+        "t16MachineName",
+        "\"青铜\"",
+        "\"钛制\"",
+        "\"titanium\""
+      ],
+      "sha256": "a495ac62dc7f390ce5bf65bb40a9ff49313eecee59ede813ce9d5e6f03af6f53",
+      "stage": "T16c"
+    },
+    "t16c_loot": {
+      "path": "src/main/java/com/masson/cruciblecraft/datagen/ModBlockLootTables.java",
+      "required_tokens": [
+        "ModMachineVariants.T16_SELECTED",
+        "ModBlocks.configuredProcessingBlock"
+      ],
+      "sha256": "292842107ebc4e9d7ea39e942919fe9f18500fa6b4f8746ba2135e1ba0ac3d47",
+      "stage": "T16c"
+    },
+    "t16c_machine_recipes": {
+      "path": "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+      "required_tokens": [
+        "t16MachineCrafting",
+        "MaterialPrefixes.SMALL_GEAR",
+        "MaterialPrefixes.DOUBLE_PLATE",
+        "MaterialPrefixes.GEM"
+      ],
+      "sha256": "665b09739e41d90af2b54010eeb0bdd0c9f938c51faef9d2b41a2014156be8ae",
+      "stage": "T16c"
+    },
+    "t16c_resource_junit": {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/T16MachineAcquisitionResourceTest.java",
+      "required_tokens": [
+        "independentFifteenRecipeSetIsBidirectionalWithSelectedVariants",
+        "selectedModelsLanguagesLootAndTagsAreCompleteWithoutFallbacks",
+        "assertEquals(15, expected.size())"
+      ],
+      "sha256": "4d420ad3940b7a2cebdf7d317427a08bf37cc3360b047b6f67107370d16be319",
+      "stage": "T16c"
+    },
+    "t16c_tags": {
+      "path": "src/main/java/com/masson/cruciblecraft/datagen/ModBlockTagProvider.java",
+      "required_tokens": [
+        "BlockTags.MINEABLE_WITH_PICKAXE",
+        "BlockTags.NEEDS_STONE_TOOL",
+        "configuredProcessingBlockEntries"
+      ],
+      "sha256": "f9bc7ae76bf215c3b18a9cd76d9ee8d01d09dec1c9fd451b54c44465c7281c31",
+      "stage": "T16c"
+    },
+    "t16c_variant_registry": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineVariants.java",
+      "required_tokens": [
+        "T16_SELECTED_KINDS",
+        "T16_SELECTED",
+        "LATHE, ROLLINGMILL, WIREMILL, SHREDDER, PRESS"
+      ],
+      "sha256": "2a966d84576cdcd71c6c1810c7ca669f26170440b54a4ac271b3e881abaa7aa6",
+      "stage": "T16c"
+    },
+    "t16d_full_builder": {
+      "path": "tools/verification_builder_policy.json",
+      "required_tokens": [
+        "tools/build_t16_machine_denominator.py",
+        "tools/build_t16_machine_acquisition.py",
+        "tools/build_t16_readiness.py"
+      ],
+      "sha256": "d472a6d4b75f346d7bc4f73fcabfa5b464c3e34e13081db25663aa5304ac7e2d",
+      "stage": "T16d"
+    },
+    "t16d_full_report": {
+      "path": "tools/verify_full_verification_report.py",
+      "required_tokens": [
+        "\"t16_load_projection_input.json\"",
+        "\"t16_load_projection.json\"",
+        "derived_t16_readiness_acceptance",
+        "\"t16_readiness_result\": \"PASS\""
+      ],
+      "sha256": "0c080386406217110b667f0d56a950476837bf864875992ccdf0ae23466b575a",
+      "stage": "T16d"
+    },
+    "t16d_gametest_publication": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "t16dRecipePublicationBaselineRemainsStable",
+        "expectedMapIds.equals(actualMapIds)",
+        "expectedEmiIds.equals(actualEmiIds)",
+        "metrics.allPublishedRecipes()",
+        "metrics.eagerPublishedRecipes()",
+        "metrics.lazyLogicalRecipes()"
+      ],
+      "sha256": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848",
+      "stage": "T16d"
+    },
+    "t16d_history_archive": {
+      "path": "CrucibleCraft-阶段档案-T13-T16.md",
+      "required_tokens": [
+        "T13–T16 均已关闭",
+        "T16_READY",
+        "selected 5",
+        "deferred 13",
+        "publication delta = 0"
+      ],
+      "sha256": "6622997f765632e6581f3660e51dc6517e8efe9239ade8cea424f85d722d9047",
+      "stage": "T16d"
+    },
+    "t16d_load_projection_input": {
+      "path": "tools/t16_load_projection_input.json",
+      "required_tokens": [
+        "\"delivery_phase\": \"T16\"",
+        "\"kind\": \"zero_workload_fixture\"",
+        "\"authored_entries\": 0",
+        "\"logical_rows\": 0",
+        "\"eager_publication_rows\": 0",
+        "\"lazy_logical_rows\": 0",
+        "\"sync_bytes\": 0"
+      ],
+      "sha256": "d2d06d19dbff166b269257d49cacc494f3797c789643958452b35a32ada424c7",
+      "stage": "T16d"
+    },
+    "t16d_load_projection_output": {
+      "path": "tools/t16_load_projection.json",
+      "required_tokens": [
+        "\"delivery_phase\": \"T16\"",
+        "\"status\": \"PASS\"",
+        "\"datapack_authored_entries\": 0",
+        "\"eager_publication_rows\": 0",
+        "\"lazy_logical_rows\": 0",
+        "\"sync_bytes\": 0"
+      ],
+      "sha256": "77242e4881cf613ec497490d2eb9d5e2e025e777fc298fbc8e95aaae58f7c3f4",
+      "stage": "T16d"
+    },
+    "t16d_load_python_test": {
+      "path": "tools/tests/test_recipe_load_projection.py",
+      "required_tokens": [
+        "test_committed_t16_projection_is_current_zero_workload",
+        "t16_load_projection_input.json",
+        "t16_load_projection.json"
+      ],
+      "sha256": "a7cfe572b815dd7f79dca458ec7c7017b2a93bf8cb232c292d6b057d5a105ec3",
+      "stage": "T16d"
+    },
+    "t16d_overall_status": {
+      "path": "CrucibleCraft-总体规划.md",
+      "required_tokens": [
+        "T16_READY",
+        "当前转入 T18",
+        "selected 5",
+        "deferred 13"
+      ],
+      "sha256": "f26eb0c5640b3d3ffef2e3202552c892c0e80ac4ee8d1f43a1ea43080cbad3f8",
+      "stage": "T16d"
+    },
+    "t16d_project_readme": {
+      "path": "README.md",
+      "required_tokens": [
+        "T16_READY",
+        "T18 steam, fuel, and energy"
+      ],
+      "sha256": "cca503fde91671fc732b22166803a1b17e90b36a2079735d77843146a6a61d4a",
+      "stage": "T16d"
+    },
+    "t16d_publication_baseline": {
+      "path": "src/main/resources/data/cruciblecraft/t16_publication_baseline.json",
+      "required_tokens": [
+        "T16D_PUBLICATION_BASELINE",
+        "\"logical_rows\": 18875",
+        "\"eager_rows\": 16650",
+        "\"lazy_rows\": 2225",
+        "\"vanilla_crafting_rows\": 15",
+        "\"gt_recipe_rows\": 0"
+      ],
+      "sha256": "0560b4a3960b6a0d88a61736f334430c25adea41031a68914454c1232a8bc167",
+      "stage": "T16d"
+    },
+    "t16d_python_affected_closure": {
+      "path": "tools/python_test_policy.json",
+      "required_tokens": [
+        "tools/build_t16_*.py",
+        "tools/t16_*.json",
+        "test_recipe_load_projection",
+        "test_full_verification_report"
+      ],
+      "sha256": "c77f9cde3289cd2cea67defa5885d584476b225d65139de176d17726f0a12b07",
+      "stage": "T16d"
+    },
+    "t16d_readiness_builder": {
+      "path": "tools/build_t16_readiness.py",
+      "required_tokens": [
+        "T16_MACHINE_DENOMINATOR_READY",
+        "T16d publication baseline",
+        "recipe_enumeration_equal",
+        "publication_delta"
+      ],
+      "sha256": "6e3cc410c6c6fc790406b07ffe98140bd44bd3ee0af29a6fedf71c7ef502c8ec",
+      "stage": "T16d"
+    },
+    "t16d_readiness_python_test": {
+      "path": "tools/tests/test_build_t16_readiness.py",
+      "required_tokens": [
+        "test_t16a_through_t16d_are_complete_and_ready",
+        "test_t16d_closes_zero_load_publication_and_emi",
+        "test_currentness_covers_every_completed_stage",
+        "test_artifact_matches_current_builder"
+      ],
+      "sha256": "8bac8997d1c4a480dd6a04e2eee269cf0a18bd7788d3800f0898283705307cf0",
+      "stage": "T16d"
+    },
+    "t16d_third_phase_status": {
+      "path": "CrucibleCraft-第三阶段总体规划.md",
+      "required_tokens": [
+        "T16_READY",
+        "selected 5",
+        "deferred 13",
+        "publication delta = 0",
+        "当前入口 **T18"
+      ],
+      "sha256": "53e4d62fc6929e6f9491d37c5b3b37850fb9b2fc4a13ee2fbefcba8bb16c06e3",
+      "stage": "T16d"
+    },
+    "t16d_tools_readme": {
+      "path": "tools/README.md",
+      "required_tokens": [
+        "T16 RU/KU readiness",
+        "t16_load_projection.json",
+        "T16_READY"
+      ],
+      "sha256": "4be00359c3eed12e8d6b8927500e37b13eaf516ce7aeeeaf948ddd4dc4761c1a",
+      "stage": "T16d"
+    },
+    "variant_registry": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineVariants.java",
+      "required_tokens": [
+        "LATHE",
+        "ROLLINGMILL",
+        "WIREMILL",
+        "SHREDDER",
+        "sourceKind"
+      ],
+      "sha256": "2a966d84576cdcd71c6c1810c7ca669f26170440b54a4ac271b3e881abaa7aa6",
+      "stage": "T16a"
+    }
+  },
+  "stage_gates": {
+    "T16a": {
+      "acceptance": "Classify all T16 RU/KU owner kinds, preserve the pre-T16 Centrifuge and Sifter rows, and bind Lathe, Rolling Mill, Wiremill and Shredder to exact RU source tiers 1-3.",
+      "name": "ru_selected_machine_tiers",
+      "status": "COMPLETE"
+    },
+    "T16b": {
+      "acceptance": "Bind Press bronze, steel and titanium to the exact KU source tiers, reuse the Press behavior/map/menu host, and verify execution plus adjacent steam and controlled higher-tier supply.",
+      "name": "ku_press_vertical_slice",
+      "status": "COMPLETE"
+    },
+    "T16c": {
+      "acceptance": "Generate real-texture models, real en_us/zh_cn names, loot/tags and source-projected crafting for all 15 selected variants; prove operand closure and exact legacy tier-1 identity migrations while preserving recoverable machine state.",
+      "name": "resources_acquisition_and_migration",
+      "status": "COMPLETE"
+    },
+    "T16d": {
+      "acceptance": "Bind the pre-T16 RecipeMap stable-id set and logical/eager/lazy totals, prove exact EMI enumeration, record a zero-workload T16 load projection, and require the unified full-verification workflow.",
+      "name": "zero_publication_and_full_verification",
+      "status": "COMPLETE"
+    }
+  },
+  "status": "T16_READY",
+  "t16a_evidence": {
+    "catalog_variants_at_completion": 21,
+    "controller_profiles": 1,
+    "implemented_kinds": [
+      "RM.Lathe",
+      "RM.RollingMill",
+      "RM.Shredder",
+      "RM.Wiremill"
+    ],
+    "implemented_variants": 12,
+    "new_block_registrations": 8,
+    "new_item_registrations": 8,
+    "preserved_non_t16_electric_variants": 3,
+    "preserved_pre_t16_variants": 6,
+    "unclassified": 0
+  },
+  "t16b_evidence": {
+    "catalog_variants": 24,
+    "deferred_kinds": 13,
+    "energy_identity": "KINETIC_PUSH",
+    "implemented_kind": "RM.Press",
+    "implemented_variants": [
+      "cruciblecraft:press",
+      "cruciblecraft:steel_press",
+      "cruciblecraft:titanium_press"
+    ],
+    "new_block_registrations": 2,
+    "new_item_registrations": 2,
+    "preimplemented_kinds": 2,
+    "selected_kinds": 5,
+    "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+  },
+  "t16c_evidence": {
+    "casing_dependencies": 3,
+    "exact_legacy_tier1_migrations": 5,
+    "machine_ingredient_rows": 51,
+    "producer_forms": 9,
+    "registered_machine_results": 15,
+    "resource_sets_bidirectional": true,
+    "selected_kinds": 5,
+    "selected_variants": 15,
+    "source_declarations": 4,
+    "unreachable": 0
+  },
+  "t16d_evidence": {
+    "denominator": {
+      "deferred_kinds": 13,
+      "kinds": 20,
+      "preimplemented_kinds": 2,
+      "selected_kinds": 5,
+      "selected_variants": 15,
+      "status": "T16_MACHINE_DENOMINATOR_READY",
+      "tier4_deferred": 20,
+      "unclassified": 0
+    },
+    "emi_enumeration": {
+      "configured_maps": 24,
+      "contract": "Every logical RecipeMap entry from each configured processing map is enumerated exactly once under its stable machine category and recipe id.",
+      "recipe_enumeration_equal": true,
+      "recipe_map_ids": [
+        "cruciblecraft:assembler",
+        "cruciblecraft:autoclave",
+        "cruciblecraft:bath",
+        "cruciblecraft:bender",
+        "cruciblecraft:centrifuge",
+        "cruciblecraft:compressor",
+        "cruciblecraft:cutter",
+        "cruciblecraft:distillery",
+        "cruciblecraft:drying",
+        "cruciblecraft:electrolyzer",
+        "cruciblecraft:extruder",
+        "cruciblecraft:generifier",
+        "cruciblecraft:lathe",
+        "cruciblecraft:mixer",
+        "cruciblecraft:mortar",
+        "cruciblecraft:press",
+        "cruciblecraft:rollbender",
+        "cruciblecraft:rollingmill",
+        "cruciblecraft:shredder",
+        "cruciblecraft:sifter",
+        "cruciblecraft:sluice",
+        "cruciblecraft:smelter",
+        "cruciblecraft:welder",
+        "cruciblecraft:wiremill"
+      ]
+    },
+    "energy_identity": {
+      "KU": "KINETIC_PUSH",
+      "RU": "KINETIC_ROTATION"
+    },
+    "gametest": {
+      "full_suite_test_count": 69,
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "t16_test_count": 6,
+      "tests": [
+        "t16bRuMotorAxleGearboxPowersLathe",
+        "t16bSteamEnginePowersPressThroughKu",
+        "t16bHigherTierControlledInjection",
+        "t16SelectedMachineRecipesExecuteFromLiveRecipeManager",
+        "exactLegacyLatheIdentityMigratesAcrossNbtReload",
+        "t16dRecipePublicationBaselineRemainsStable"
+      ]
+    },
+    "load_projection": {
+      "delivery_phase": "T16",
+      "incremental_counts": {
+        "datapack_authored_entries": 0,
+        "eager_publication_rows": 0,
+        "lazy_cache_ceiling_rows": 0,
+        "lazy_logical_rows": 0,
+        "logical_rows": 0,
+        "sync_bytes": 0
+      },
+      "input": "tools/t16_load_projection_input.json",
+      "input_sha256": "d2d06d19dbff166b269257d49cacc494f3797c789643958452b35a32ada424c7",
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 0,
+          "min": 0
+        },
+        "client_index_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "client_reload_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "lookup_candidate_count": {
+          "max": 0,
+          "min": 0
+        },
+        "lookup_p95_ns": {
+          "max": 0,
+          "min": 0
+        },
+        "retained_memory_bytes": {
+          "max": 0,
+          "min": 0
+        },
+        "server_index_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "server_reload_ms": {
+          "max": 0,
+          "min": 0
+        }
+      },
+      "output": "tools/t16_load_projection.json",
+      "output_sha256": "77242e4881cf613ec497490d2eb9d5e2e025e777fc298fbc8e95aaae58f7c3f4",
+      "status": "PASS"
+    },
+    "migration_acquisition": {
+      "exact_legacy_tier1_migrations": 5,
+      "gt_recipe_rows": 0,
+      "unreachable": 0,
+      "vanilla_crafting_rows": 15
+    },
+    "publication_baseline": {
+      "path": "src/main/resources/data/cruciblecraft/t16_publication_baseline.json",
+      "publication_delta": 0,
+      "publication_totals": {
+        "eager_rows": 16650,
+        "lazy_rows": 2225,
+        "logical_rows": 18875
+      },
+      "recipe_map_ids": [
+        "cruciblecraft:anvil",
+        "cruciblecraft:anvil_bend_big",
+        "cruciblecraft:anvil_bend_small",
+        "cruciblecraft:assembler",
+        "cruciblecraft:autoclave",
+        "cruciblecraft:bath",
+        "cruciblecraft:bender",
+        "cruciblecraft:centrifuge",
+        "cruciblecraft:coke_oven",
+        "cruciblecraft:compressor",
+        "cruciblecraft:cooling",
+        "cruciblecraft:crusher",
+        "cruciblecraft:cutter",
+        "cruciblecraft:distillery",
+        "cruciblecraft:drying",
+        "cruciblecraft:electrolyzer",
+        "cruciblecraft:extruder",
+        "cruciblecraft:fuels_engine",
+        "cruciblecraft:fuels_gas",
+        "cruciblecraft:generifier",
+        "cruciblecraft:lathe",
+        "cruciblecraft:mixer",
+        "cruciblecraft:mortar",
+        "cruciblecraft:press",
+        "cruciblecraft:rollbender",
+        "cruciblecraft:rollingmill",
+        "cruciblecraft:shredder",
+        "cruciblecraft:sifter",
+        "cruciblecraft:sluice",
+        "cruciblecraft:smelter",
+        "cruciblecraft:welder",
+        "cruciblecraft:wiremill"
+      ],
+      "sha256": "0560b4a3960b6a0d88a61736f334430c25adea41031a68914454c1232a8bc167",
+      "stable_id_set_equal": true
+    },
+    "status": "PASS"
+  }
+}

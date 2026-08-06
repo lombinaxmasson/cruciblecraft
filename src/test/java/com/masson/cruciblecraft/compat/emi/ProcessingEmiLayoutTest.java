@@ -35,7 +35,7 @@ class ProcessingEmiLayoutTest {
 
     @Test
     void everyConfiguredLayoutIsBoundedAndNonOverlapping() {
-        assertEquals(23, ModProcessingMachines.CONFIGURED_MACHINES.size());
+        assertEquals(24, ModProcessingMachines.CONFIGURED_MACHINES.size());
         for (ProcessingMachineSpec spec
                 : ModProcessingMachines.CONFIGURED_MACHINES) {
             ProcessingEmiLayout layout =

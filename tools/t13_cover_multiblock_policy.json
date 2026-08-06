@@ -1,0 +1,2940 @@
+{
+  "domains": {
+    "cover_kinds": {
+      "canonical_rules": [
+        {
+          "canonical_id": "asphalt",
+          "collapse_rule": null,
+          "id": "cover-canonical-asphalt",
+          "reason": "CoverAsphalt is a concrete movement-surface cover behavior.",
+          "source_symbols": [
+            "CoverAsphalt"
+          ]
+        },
+        {
+          "canonical_id": "controller_auto",
+          "collapse_rule": null,
+          "id": "cover-canonical-controller-auto",
+          "reason": "CoverControllerAuto is a concrete automatic machine-control behavior.",
+          "source_symbols": [
+            "CoverControllerAuto"
+          ]
+        },
+        {
+          "canonical_id": "controller_auto_redstone",
+          "collapse_rule": null,
+          "id": "cover-canonical-controller-auto-redstone",
+          "reason": "CoverControllerAutoRedstone adds a distinct redstone-conditioned control behavior.",
+          "source_symbols": [
+            "CoverControllerAutoRedstone"
+          ]
+        },
+        {
+          "canonical_id": "controller_auto_timer",
+          "collapse_rule": null,
+          "id": "cover-canonical-controller-auto-timer",
+          "reason": "CoverControllerAutoTimer adds a distinct timed control behavior.",
+          "source_symbols": [
+            "CoverControllerAutoTimer"
+          ]
+        },
+        {
+          "canonical_id": "controller_covers",
+          "collapse_rule": null,
+          "id": "cover-canonical-controller-covers",
+          "reason": "CoverControllerCovers is a concrete behavior controlling sibling covers.",
+          "source_symbols": [
+            "CoverControllerCovers"
+          ]
+        },
+        {
+          "canonical_id": "controller_display",
+          "collapse_rule": null,
+          "id": "cover-canonical-controller-display",
+          "reason": "CoverControllerDisplay has a distinct display-driven controller contract.",
+          "source_symbols": [
+            "CoverControllerDisplay"
+          ]
+        },
+        {
+          "canonical_id": "controller_redstone",
+          "collapse_rule": null,
+          "id": "cover-canonical-controller-redstone",
+          "reason": "CoverControllerRedstone is a concrete redstone controller behavior.",
+          "source_symbols": [
+            "CoverControllerRedstone"
+          ]
+        },
+        {
+          "canonical_id": "conveyor",
+          "collapse_rule": null,
+          "id": "cover-canonical-conveyor",
+          "reason": "CoverConveyor implements active adjacent item movement.",
+          "source_symbols": [
+            "CoverConveyor"
+          ]
+        },
+        {
+          "canonical_id": "crafting",
+          "collapse_rule": null,
+          "id": "cover-canonical-crafting",
+          "reason": "CoverCrafting exposes a distinct crafting interaction.",
+          "source_symbols": [
+            "CoverCrafting"
+          ]
+        },
+        {
+          "canonical_id": "detector_running_actively",
+          "collapse_rule": null,
+          "id": "cover-canonical-detector-running-actively",
+          "reason": "The actively-running predicate is behaviorally distinct and is not a numeric variant.",
+          "source_symbols": [
+            "CoverDetectorRunningActively"
+          ]
+        },
+        {
+          "canonical_id": "detector_running_passively",
+          "collapse_rule": null,
+          "id": "cover-canonical-detector-running-passively",
+          "reason": "The passively-running predicate is behaviorally distinct and is not a numeric variant.",
+          "source_symbols": [
+            "CoverDetectorRunningPassively"
+          ]
+        },
+        {
+          "canonical_id": "detector_running_possible",
+          "collapse_rule": null,
+          "id": "cover-canonical-detector-running-possible",
+          "reason": "The can-run predicate is behaviorally distinct and is not a numeric variant.",
+          "source_symbols": [
+            "CoverDetectorRunningPossible"
+          ]
+        },
+        {
+          "canonical_id": "detector_running_successfully",
+          "collapse_rule": null,
+          "id": "cover-canonical-detector-running-successfully",
+          "reason": "The successful-run predicate is behaviorally distinct and is not a numeric variant.",
+          "source_symbols": [
+            "CoverDetectorRunningSuccessfully"
+          ]
+        },
+        {
+          "canonical_id": "display_energy",
+          "collapse_rule": null,
+          "id": "cover-canonical-display-energy",
+          "reason": "CoverDisplayEnergy is a concrete energy display behavior.",
+          "source_symbols": [
+            "CoverDisplayEnergy"
+          ]
+        },
+        {
+          "canonical_id": "drain",
+          "collapse_rule": null,
+          "id": "cover-canonical-drain",
+          "reason": "CoverDrain performs distinct world-fluid interaction.",
+          "source_symbols": [
+            "CoverDrain"
+          ]
+        },
+        {
+          "canonical_id": "filter_fluid",
+          "collapse_rule": null,
+          "id": "cover-canonical-filter-fluid",
+          "reason": "Fluid matching is a concrete resource-specific filtering behavior.",
+          "source_symbols": [
+            "CoverFilterFluid"
+          ]
+        },
+        {
+          "canonical_id": "filter_item",
+          "collapse_rule": null,
+          "id": "cover-canonical-filter-item",
+          "reason": "Item matching is a concrete resource-specific filtering behavior.",
+          "source_symbols": [
+            "CoverFilterItem"
+          ]
+        },
+        {
+          "canonical_id": "logistics_display_cpu_control",
+          "collapse_rule": null,
+          "id": "cover-canonical-logistics-display-control",
+          "reason": "The control CPU display targets a distinct logistics role.",
+          "source_symbols": [
+            "CoverLogisticsDisplayCPUControl"
+          ]
+        },
+        {
+          "canonical_id": "logistics_display_cpu_conversion",
+          "collapse_rule": null,
+          "id": "cover-canonical-logistics-display-conversion",
+          "reason": "The conversion CPU display targets a distinct logistics role.",
+          "source_symbols": [
+            "CoverLogisticsDisplayCPUConversion"
+          ]
+        },
+        {
+          "canonical_id": "logistics_display_cpu_logic",
+          "collapse_rule": null,
+          "id": "cover-canonical-logistics-display-logic",
+          "reason": "The logic CPU display targets a distinct logistics role.",
+          "source_symbols": [
+            "CoverLogisticsDisplayCPULogic"
+          ]
+        },
+        {
+          "canonical_id": "logistics_display_cpu_storage",
+          "collapse_rule": null,
+          "id": "cover-canonical-logistics-display-storage",
+          "reason": "The storage CPU display targets a distinct logistics role.",
+          "source_symbols": [
+            "CoverLogisticsDisplayCPUStorage"
+          ]
+        },
+        {
+          "canonical_id": "logistics_fluid_transfer",
+          "collapse_rule": {
+            "id": "cover-collapse-direction-logistics-fluid",
+            "source_evidence": "Both concrete classes inherit AbstractCoverAttachmentLogistics and differ in their import/export direction hooks.",
+            "statement": "Import and export use the same fluid logistics transfer behavior with opposite direction.",
+            "variant_dimensions": [
+              "direction"
+            ]
+          },
+          "id": "cover-collapse-logistics-fluid-direction",
+          "reason": "Fluid import/export direction is data on one logistics transfer behavior.",
+          "source_symbols": [
+            "CoverLogisticsFluidExport",
+            "CoverLogisticsFluidImport"
+          ]
+        },
+        {
+          "canonical_id": "logistics_fluid_storage",
+          "collapse_rule": null,
+          "id": "cover-canonical-logistics-fluid-storage",
+          "reason": "Fluid storage policy is distinct from directional transfer.",
+          "source_symbols": [
+            "CoverLogisticsFluidStorage"
+          ]
+        },
+        {
+          "canonical_id": "logistics_generic_dump",
+          "collapse_rule": null,
+          "id": "cover-canonical-logistics-generic-dump",
+          "reason": "Generic dump semantics are distinct from import/export and storage.",
+          "source_symbols": [
+            "CoverLogisticsGenericDump"
+          ]
+        },
+        {
+          "canonical_id": "logistics_generic_transfer",
+          "collapse_rule": {
+            "id": "cover-collapse-direction-logistics-generic",
+            "source_evidence": "The two concrete wrappers select opposite transfer direction on the shared logistics base.",
+            "statement": "Import and export use the same generic logistics transfer behavior with opposite direction.",
+            "variant_dimensions": [
+              "direction"
+            ]
+          },
+          "id": "cover-collapse-logistics-generic-direction",
+          "reason": "Generic import/export direction is data on one logistics transfer behavior.",
+          "source_symbols": [
+            "CoverLogisticsGenericExport",
+            "CoverLogisticsGenericImport"
+          ]
+        },
+        {
+          "canonical_id": "logistics_generic_storage",
+          "collapse_rule": null,
+          "id": "cover-canonical-logistics-generic-storage",
+          "reason": "Generic storage policy is distinct from directional transfer.",
+          "source_symbols": [
+            "CoverLogisticsGenericStorage"
+          ]
+        },
+        {
+          "canonical_id": "logistics_item_transfer",
+          "collapse_rule": {
+            "id": "cover-collapse-direction-logistics-item",
+            "source_evidence": "Both concrete classes share item logistics matching and differ in import/export direction hooks.",
+            "statement": "Import and export use the same item logistics transfer behavior with opposite direction.",
+            "variant_dimensions": [
+              "direction"
+            ]
+          },
+          "id": "cover-collapse-logistics-item-direction",
+          "reason": "Item import/export direction is data on one logistics transfer behavior.",
+          "source_symbols": [
+            "CoverLogisticsItemExport",
+            "CoverLogisticsItemImport"
+          ]
+        },
+        {
+          "canonical_id": "logistics_item_storage",
+          "collapse_rule": null,
+          "id": "cover-canonical-logistics-item-storage",
+          "reason": "Item storage policy is distinct from directional transfer.",
+          "source_symbols": [
+            "CoverLogisticsItemStorage"
+          ]
+        },
+        {
+          "canonical_id": "pressure_valve",
+          "collapse_rule": null,
+          "id": "cover-canonical-pressure-valve",
+          "reason": "CoverPressureValve applies a distinct pressure-aware fluid gate.",
+          "source_symbols": [
+            "CoverPressureValve"
+          ]
+        },
+        {
+          "canonical_id": "pump",
+          "collapse_rule": null,
+          "id": "cover-canonical-pump",
+          "reason": "CoverPump implements active adjacent fluid movement.",
+          "source_symbols": [
+            "CoverPump"
+          ]
+        },
+        {
+          "canonical_id": "redstone_conductor",
+          "collapse_rule": {
+            "id": "cover-collapse-direction-redstone-conductor",
+            "source_evidence": "The two classes bridge the same redstone signal contract in opposite directions.",
+            "statement": "Input and output are opposite directions of one redstone-conductor behavior.",
+            "variant_dimensions": [
+              "direction"
+            ]
+          },
+          "id": "cover-collapse-redstone-conductor-direction",
+          "reason": "Conductor IN/OUT direction is data on one redstone bridge behavior.",
+          "source_symbols": [
+            "CoverRedstoneConductorIN",
+            "CoverRedstoneConductorOUT"
+          ]
+        },
+        {
+          "canonical_id": "redstone_emitter",
+          "collapse_rule": null,
+          "id": "cover-canonical-redstone-emitter",
+          "reason": "CoverRedstoneEmitter has an independently configurable emission behavior.",
+          "source_symbols": [
+            "CoverRedstoneEmitter"
+          ]
+        },
+        {
+          "canonical_id": "redstone_repeater",
+          "collapse_rule": null,
+          "id": "cover-canonical-redstone-repeater",
+          "reason": "CoverRedstoneRepeater supplies a distinct delayed redstone behavior.",
+          "source_symbols": [
+            "CoverRedstoneRepeater"
+          ]
+        },
+        {
+          "canonical_id": "redstone_torch",
+          "collapse_rule": null,
+          "id": "cover-canonical-redstone-torch",
+          "reason": "CoverRedstoneTorch supplies a distinct inversion/emission behavior.",
+          "source_symbols": [
+            "CoverRedstoneTorch"
+          ]
+        },
+        {
+          "canonical_id": "retriever_item",
+          "collapse_rule": null,
+          "id": "cover-canonical-retriever-item",
+          "reason": "CoverRetrieverItem actively requests matching items and is not a passive filter.",
+          "source_symbols": [
+            "CoverRetrieverItem"
+          ]
+        },
+        {
+          "canonical_id": "robot_arm",
+          "collapse_rule": null,
+          "id": "cover-canonical-robot-arm",
+          "reason": "CoverRobotArm provides configurable item transfer behavior.",
+          "source_symbols": [
+            "CoverRobotArm"
+          ]
+        },
+        {
+          "canonical_id": "scale_energy",
+          "collapse_rule": null,
+          "id": "cover-canonical-scale-energy",
+          "reason": "CoverScaleEnergy samples energy capacity for a scale output.",
+          "source_symbols": [
+            "CoverScaleEnergy"
+          ]
+        },
+        {
+          "canonical_id": "scale_progress",
+          "collapse_rule": null,
+          "id": "cover-canonical-scale-progress",
+          "reason": "CoverScaleProgress samples machine progress for a scale output.",
+          "source_symbols": [
+            "CoverScaleProgress"
+          ]
+        },
+        {
+          "canonical_id": "selector_button_panel",
+          "collapse_rule": null,
+          "id": "cover-canonical-selector-button-panel",
+          "reason": "CoverSelectorButtonPanel exposes a distinct multi-button interaction.",
+          "source_symbols": [
+            "CoverSelectorButtonPanel"
+          ]
+        },
+        {
+          "canonical_id": "selector_manual",
+          "collapse_rule": null,
+          "id": "cover-canonical-selector-manual",
+          "reason": "CoverSelectorManual exposes direct manual selection.",
+          "source_symbols": [
+            "CoverSelectorManual"
+          ]
+        },
+        {
+          "canonical_id": "selector_redstone",
+          "collapse_rule": null,
+          "id": "cover-canonical-selector-redstone",
+          "reason": "CoverSelectorRedstone derives selection from redstone input.",
+          "source_symbols": [
+            "CoverSelectorRedstone"
+          ]
+        },
+        {
+          "canonical_id": "selector_tag",
+          "collapse_rule": null,
+          "id": "cover-canonical-selector-tag",
+          "reason": "CoverSelectorTag derives selection from a tag identity.",
+          "source_symbols": [
+            "CoverSelectorTag"
+          ]
+        },
+        {
+          "canonical_id": "shutter",
+          "collapse_rule": null,
+          "id": "cover-canonical-shutter",
+          "reason": "CoverShutter gates side access and transfer direction.",
+          "source_symbols": [
+            "CoverShutter"
+          ]
+        },
+        {
+          "canonical_id": "texture_canvas",
+          "collapse_rule": null,
+          "id": "cover-canonical-texture-canvas",
+          "reason": "CoverTextureCanvas is a concrete player-configurable decorative cover.",
+          "source_symbols": [
+            "CoverTextureCanvas"
+          ]
+        },
+        {
+          "canonical_id": "texture_multi",
+          "collapse_rule": null,
+          "id": "cover-canonical-texture-multi",
+          "reason": "CoverTextureMulti is a concrete multi-texture decorative cover.",
+          "source_symbols": [
+            "CoverTextureMulti"
+          ]
+        },
+        {
+          "canonical_id": "texture_simple",
+          "collapse_rule": null,
+          "id": "cover-canonical-texture-simple",
+          "reason": "CoverTextureSimple is a concrete fixed-texture decorative cover.",
+          "source_symbols": [
+            "CoverTextureSimple"
+          ]
+        },
+        {
+          "canonical_id": "vent",
+          "collapse_rule": null,
+          "id": "cover-canonical-vent",
+          "reason": "CoverVent performs a distinct machine ventilation interaction.",
+          "source_symbols": [
+            "CoverVent"
+          ]
+        }
+      ],
+      "classification_assignments": [
+        {
+          "canonical_id": "filter_fluid",
+          "cc_behavior": "FILTER",
+          "deferred": null,
+          "disposition": "in_scope",
+          "id": "cover-map-filter-fluid",
+          "implementation_status": "implemented",
+          "reason": "CC FILTER already represents source fluid filtering on fluid pipes.",
+          "roadmap_bucket": "existing_cc"
+        },
+        {
+          "canonical_id": "filter_item",
+          "cc_behavior": "FILTER",
+          "deferred": null,
+          "disposition": "in_scope",
+          "id": "cover-map-filter-item",
+          "implementation_status": "implemented",
+          "reason": "CC FILTER already represents source item filtering on item pipes.",
+          "roadmap_bucket": "existing_cc"
+        },
+        {
+          "canonical_id": "pump",
+          "cc_behavior": "OUTPUT_PUMP",
+          "deferred": null,
+          "disposition": "in_scope",
+          "id": "cover-map-pump",
+          "implementation_status": "implemented",
+          "reason": "CC OUTPUT_PUMP represents active outward adjacent transfer.",
+          "roadmap_bucket": "existing_cc"
+        },
+        {
+          "canonical_id": "shutter",
+          "cc_behavior": "ONE_WAY_VALVE",
+          "deferred": null,
+          "disposition": "in_scope",
+          "id": "cover-map-shutter",
+          "implementation_status": "implemented",
+          "reason": "CC ONE_WAY_VALVE represents the existing one-direction side gate.",
+          "roadmap_bucket": "existing_cc"
+        },
+        {
+          "canonical_id": "conveyor",
+          "cc_behavior": null,
+          "deferred": null,
+          "disposition": "in_scope",
+          "id": "cover-select-conveyor",
+          "implementation_status": "selected_t19",
+          "reason": "Configurable item movement materially expands the T19 automation surface.",
+          "roadmap_bucket": "T19"
+        },
+        {
+          "canonical_id": "pressure_valve",
+          "cc_behavior": null,
+          "deferred": null,
+          "disposition": "in_scope",
+          "id": "cover-select-pressure-valve",
+          "implementation_status": "selected_t19",
+          "reason": "A pressure-aware fluid gate complements the existing one-way valve.",
+          "roadmap_bucket": "T19"
+        },
+        {
+          "canonical_id": "retriever_item",
+          "cc_behavior": null,
+          "deferred": null,
+          "disposition": "in_scope",
+          "id": "cover-select-retriever-item",
+          "implementation_status": "selected_t19",
+          "reason": "Demand-driven retrieval is a high-value automation behavior.",
+          "roadmap_bucket": "T19"
+        },
+        {
+          "canonical_id": "robot_arm",
+          "cc_behavior": null,
+          "deferred": null,
+          "disposition": "in_scope",
+          "id": "cover-select-robot-arm",
+          "implementation_status": "selected_t19",
+          "reason": "Count-aware item transfer is a high-value automation behavior.",
+          "roadmap_bucket": "T19"
+        },
+        {
+          "canonical_id": "selector_manual",
+          "cc_behavior": null,
+          "deferred": null,
+          "disposition": "in_scope",
+          "id": "cover-select-selector-manual",
+          "implementation_status": "selected_t19",
+          "reason": "Manual side configuration supplies a bounded selector behavior for T19.",
+          "roadmap_bucket": "T19"
+        },
+        {
+          "canonical_id": "asphalt",
+          "cc_behavior": null,
+          "deferred": null,
+          "disposition": "out_of_scope",
+          "id": "cover-out-asphalt",
+          "implementation_status": "out_of_scope",
+          "reason": "Movement-surface decoration is outside the third-stage pipe automation axis.",
+          "roadmap_bucket": "third_stage_excluded"
+        },
+        {
+          "canonical_id": "crafting",
+          "cc_behavior": null,
+          "deferred": null,
+          "disposition": "out_of_scope",
+          "id": "cover-out-crafting",
+          "implementation_status": "out_of_scope",
+          "reason": "Attached crafting UI is outside T19 pipe automation.",
+          "roadmap_bucket": "third_stage_excluded"
+        },
+        {
+          "canonical_id": "drain",
+          "cc_behavior": null,
+          "deferred": null,
+          "disposition": "out_of_scope",
+          "id": "cover-out-drain",
+          "implementation_status": "out_of_scope",
+          "reason": "World-fluid harvesting is outside the selected cover and pipe acquisition scope.",
+          "roadmap_bucket": "third_stage_excluded"
+        },
+        {
+          "canonical_id": "logistics_display_cpu_control",
+          "cc_behavior": null,
+          "deferred": null,
+          "disposition": "out_of_scope",
+          "id": "cover-out-logistics-display-control",
+          "implementation_status": "out_of_scope",
+          "reason": "GT6 logistics CPU display infrastructure is not part of the CC pipe runtime.",
+          "roadmap_bucket": "third_stage_excluded"
+        },
+        {
+          "canonical_id": "logistics_display_cpu_conversion",
+          "cc_behavior": null,
+          "deferred": null,
+          "disposition": "out_of_scope",
+          "id": "cover-out-logistics-display-conversion",
+          "implementation_status": "out_of_scope",
+          "reason": "GT6 logistics CPU display infrastructure is not part of the CC pipe runtime.",
+          "roadmap_bucket": "third_stage_excluded"
+        },
+        {
+          "canonical_id": "logistics_display_cpu_logic",
+          "cc_behavior": null,
+          "deferred": null,
+          "disposition": "out_of_scope",
+          "id": "cover-out-logistics-display-logic",
+          "implementation_status": "out_of_scope",
+          "reason": "GT6 logistics CPU display infrastructure is not part of the CC pipe runtime.",
+          "roadmap_bucket": "third_stage_excluded"
+        },
+        {
+          "canonical_id": "logistics_display_cpu_storage",
+          "cc_behavior": null,
+          "deferred": null,
+          "disposition": "out_of_scope",
+          "id": "cover-out-logistics-display-storage",
+          "implementation_status": "out_of_scope",
+          "reason": "GT6 logistics CPU display infrastructure is not part of the CC pipe runtime.",
+          "roadmap_bucket": "third_stage_excluded"
+        },
+        {
+          "canonical_id": "texture_canvas",
+          "cc_behavior": null,
+          "deferred": null,
+          "disposition": "out_of_scope",
+          "id": "cover-out-texture-canvas",
+          "implementation_status": "out_of_scope",
+          "reason": "Decorative texture covers are outside T19 behavior and acquisition closure.",
+          "roadmap_bucket": "third_stage_excluded"
+        },
+        {
+          "canonical_id": "texture_multi",
+          "cc_behavior": null,
+          "deferred": null,
+          "disposition": "out_of_scope",
+          "id": "cover-out-texture-multi",
+          "implementation_status": "out_of_scope",
+          "reason": "Decorative texture covers are outside T19 behavior and acquisition closure.",
+          "roadmap_bucket": "third_stage_excluded"
+        },
+        {
+          "canonical_id": "texture_simple",
+          "cc_behavior": null,
+          "deferred": null,
+          "disposition": "out_of_scope",
+          "id": "cover-out-texture-simple",
+          "implementation_status": "out_of_scope",
+          "reason": "Decorative texture covers are outside T19 behavior and acquisition closure.",
+          "roadmap_bucket": "third_stage_excluded"
+        },
+        {
+          "canonical_id": "controller_auto",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-controller-auto",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Automatic machine control needs a later machine-control cover batch.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "controller_auto_redstone",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-controller-auto-redstone",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Redstone-conditioned machine control needs a later machine-control batch.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "controller_auto_timer",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-controller-auto-timer",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Timed machine control needs a later tick-bearing cover batch.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "controller_covers",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-controller-covers",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Cross-cover control requires a later cover orchestration contract.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "controller_display",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-controller-display",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Display-driven control requires a later UI and synchronization contract.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "controller_redstone",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-controller-redstone",
+          "implementation_status": "deferred_with_reason",
+          "reason": "General redstone machine control is not in the selected T19 batch.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "detector_running_actively",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-detector-active",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Machine-state detector integration needs a later machine diagnostics batch.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "detector_running_passively",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-detector-passive",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Machine-state detector integration needs a later machine diagnostics batch.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "detector_running_possible",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-detector-possible",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Machine-state detector integration needs a later machine diagnostics batch.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "detector_running_successfully",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-detector-success",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Machine-state detector integration needs a later machine diagnostics batch.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "display_energy",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-display-energy",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Energy display needs a later UI and energy-identity-aware display contract.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "logistics_fluid_transfer",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-logistics-fluid-transfer",
+          "implementation_status": "deferred_with_reason",
+          "reason": "GT6 logistics-network fluid routing exceeds adjacent T19 transfer scope.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "logistics_fluid_storage",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-logistics-fluid-storage",
+          "implementation_status": "deferred_with_reason",
+          "reason": "GT6 logistics-network storage policy requires a later network runtime.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "logistics_generic_dump",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-logistics-generic-dump",
+          "implementation_status": "deferred_with_reason",
+          "reason": "GT6 generic logistics dumping requires a later network runtime.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "logistics_generic_transfer",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-logistics-generic-transfer",
+          "implementation_status": "deferred_with_reason",
+          "reason": "GT6 generic logistics routing requires a later network runtime.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "logistics_generic_storage",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-logistics-generic-storage",
+          "implementation_status": "deferred_with_reason",
+          "reason": "GT6 generic logistics storage requires a later network runtime.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "logistics_item_transfer",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-logistics-item-transfer",
+          "implementation_status": "deferred_with_reason",
+          "reason": "GT6 logistics-network item routing exceeds adjacent T19 transfer scope.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "logistics_item_storage",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-logistics-item-storage",
+          "implementation_status": "deferred_with_reason",
+          "reason": "GT6 logistics-network item storage requires a later network runtime.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "redstone_conductor",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-redstone-conductor",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Redstone network bridging is outside the selected T19 batch.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "redstone_emitter",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-redstone-emitter",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Configurable emission needs a later redstone-cover batch.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "redstone_repeater",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-redstone-repeater",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Tick-delayed redstone behavior needs a later redstone-cover batch.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "redstone_torch",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-redstone-torch",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Redstone inversion needs a later redstone-cover batch.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "scale_energy",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-scale-energy",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Energy scale display needs a later diagnostics/UI batch.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "scale_progress",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-scale-progress",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Progress scale display remains owned by later diagnostics work after T19.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "selector_button_panel",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-selector-button",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Multi-button UI is outside the bounded T19 selector selection.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "selector_redstone",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-selector-redstone",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Redstone-driven selection needs a later selector batch.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "selector_tag",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-selector-tag",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Tag-driven selection needs a later selector and tag-identity contract.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "vent",
+          "cc_behavior": null,
+          "deferred_template": "post_t19_cover",
+          "disposition": "deferred_with_reason",
+          "id": "cover-defer-vent",
+          "implementation_status": "deferred_with_reason",
+          "reason": "Machine ventilation is outside the selected pipe automation batch.",
+          "roadmap_bucket": "POST_T19"
+        }
+      ],
+      "deferred_templates": {
+        "post_t19_cover": {
+          "owner": "POST_T19",
+          "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+          "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+          "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+        }
+      },
+      "exclusion_rules": [
+        {
+          "exclusion_kind": "data_only_companion",
+          "id": "cover-exclude-cover-data",
+          "reason": "CoverData stores per-side cover state and is not a concrete cover behavior.",
+          "source_symbol": "CoverData"
+        },
+        {
+          "exclusion_kind": "registry_helper",
+          "id": "cover-exclude-cover-registry",
+          "reason": "CoverRegistry registers cover instances and is not itself a cover behavior.",
+          "source_symbol": "CoverRegistry"
+        },
+        {
+          "exclusion_kind": "interface",
+          "id": "cover-exclude-i-cover",
+          "reason": "ICover defines the behavior contract and has no concrete behavior identity.",
+          "source_symbol": "ICover"
+        },
+        {
+          "exclusion_kind": "interface",
+          "id": "cover-exclude-i-tile-coverable",
+          "reason": "ITileEntityCoverable is the host contract rather than a cover behavior.",
+          "source_symbol": "ITileEntityCoverable"
+        },
+        {
+          "exclusion_kind": "abstract_base",
+          "id": "cover-exclude-abstract-attachment",
+          "reason": "AbstractCoverAttachment supplies shared attachment hooks and is not instantiable.",
+          "source_symbol": "AbstractCoverAttachment"
+        },
+        {
+          "exclusion_kind": "abstract_base",
+          "id": "cover-exclude-abstract-controller",
+          "reason": "AbstractCoverAttachmentController supplies controller plumbing for concrete covers.",
+          "source_symbol": "AbstractCoverAttachmentController"
+        },
+        {
+          "exclusion_kind": "abstract_base",
+          "id": "cover-exclude-abstract-detector",
+          "reason": "AbstractCoverAttachmentDetector supplies detector plumbing for concrete covers.",
+          "source_symbol": "AbstractCoverAttachmentDetector"
+        },
+        {
+          "exclusion_kind": "abstract_base",
+          "id": "cover-exclude-abstract-display",
+          "reason": "AbstractCoverAttachmentDisplay supplies display plumbing for concrete covers.",
+          "source_symbol": "AbstractCoverAttachmentDisplay"
+        },
+        {
+          "exclusion_kind": "abstract_base",
+          "id": "cover-exclude-abstract-logistics",
+          "reason": "AbstractCoverAttachmentLogistics supplies logistics plumbing for concrete covers.",
+          "source_symbol": "AbstractCoverAttachmentLogistics"
+        },
+        {
+          "exclusion_kind": "abstract_base",
+          "id": "cover-exclude-abstract-logistics-display",
+          "reason": "AbstractCoverAttachmentLogisticsDisplay supplies shared logistics display plumbing.",
+          "source_symbol": "AbstractCoverAttachmentLogisticsDisplay"
+        },
+        {
+          "exclusion_kind": "abstract_base",
+          "id": "cover-exclude-abstract-scale",
+          "reason": "AbstractCoverAttachmentScale supplies shared scale rendering and sampling hooks.",
+          "source_symbol": "AbstractCoverAttachmentScale"
+        },
+        {
+          "exclusion_kind": "abstract_base",
+          "id": "cover-exclude-abstract-selector",
+          "reason": "AbstractCoverAttachmentSelector supplies shared selector state handling.",
+          "source_symbol": "AbstractCoverAttachmentSelector"
+        },
+        {
+          "exclusion_kind": "abstract_base",
+          "id": "cover-exclude-abstract-torch",
+          "reason": "AbstractCoverAttachmentTorch supplies shared torch attachment behavior.",
+          "source_symbol": "AbstractCoverAttachmentTorch"
+        },
+        {
+          "exclusion_kind": "abstract_base",
+          "id": "cover-exclude-abstract-default",
+          "reason": "AbstractCoverDefault supplies default ICover implementations and is not instantiable.",
+          "source_symbol": "AbstractCoverDefault"
+        }
+      ],
+      "source_manifest": [
+        {
+          "abstract": false,
+          "declaration": "public class CoverData {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "886d2de150ea3dce59971c1369ed98fbb002787a",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/CoverData.java",
+          "source_path": "src/main/java/gregapi/cover/CoverData.java",
+          "source_sha256": "e2069e2a2095a44e0ea1be7d38d9c4068cacb70f7850b2bc49a85e37d848da75",
+          "source_symbol": "CoverData"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverRegistry {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "9dff1fe8e9f4857b1df552b4fd2900776c709e01",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/CoverRegistry.java",
+          "source_path": "src/main/java/gregapi/cover/CoverRegistry.java",
+          "source_sha256": "079c68beeeaa9def3551313b9efe2f811293c8baa76b2c93eba22284df2c5a3e",
+          "source_symbol": "CoverRegistry"
+        },
+        {
+          "abstract": true,
+          "declaration": "public interface ICover {",
+          "declaration_kind": "interface",
+          "git_blob_sha1": "ce068f7e249ecf79316e2dcf1586ffd970a7ec3e",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/ICover.java",
+          "source_path": "src/main/java/gregapi/cover/ICover.java",
+          "source_sha256": "fb7e24cd269f453d6a944ccbb0768a41644229b0083971e66dd2006e93e22547",
+          "source_symbol": "ICover"
+        },
+        {
+          "abstract": true,
+          "declaration": "public interface ITileEntityCoverable extends ITileEntity {",
+          "declaration_kind": "interface",
+          "git_blob_sha1": "62e145a150916ceb57e17834e0783de3dcaae23c",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/ITileEntityCoverable.java",
+          "source_path": "src/main/java/gregapi/cover/ITileEntityCoverable.java",
+          "source_sha256": "8b44b522b077f8dfae610f7b46f78c1f2f6b324c5acbe8966bec22235514ea21",
+          "source_symbol": "ITileEntityCoverable"
+        },
+        {
+          "abstract": true,
+          "declaration": "public abstract class AbstractCoverAttachment extends AbstractCoverDefault {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "7810143ac85642bdb37923a16fabaa42a8af84b7",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/AbstractCoverAttachment.java",
+          "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachment.java",
+          "source_sha256": "80de1877f10359939f03f7da221bc23fe0927a1368f206062b36df2efe957bf7",
+          "source_symbol": "AbstractCoverAttachment"
+        },
+        {
+          "abstract": true,
+          "declaration": "public abstract class AbstractCoverAttachmentController extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "b8e5dcd3ed3aaee2f73837cd5be210cc65bcc7d8",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/AbstractCoverAttachmentController.java",
+          "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentController.java",
+          "source_sha256": "affba26902422135a44436651cdec84fbfa47e79d4ee974413a22baaa5e5ee97",
+          "source_symbol": "AbstractCoverAttachmentController"
+        },
+        {
+          "abstract": true,
+          "declaration": "public abstract class AbstractCoverAttachmentDetector extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "9c9c2e797e2e7f72cab8a06e5bd0dfbbe7cf0e9a",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/AbstractCoverAttachmentDetector.java",
+          "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentDetector.java",
+          "source_sha256": "a958b416ecfa953d91d5da8cd8bf8c961c79ac11b3481020ae987a5b6fe94161",
+          "source_symbol": "AbstractCoverAttachmentDetector"
+        },
+        {
+          "abstract": true,
+          "declaration": "public abstract class AbstractCoverAttachmentDisplay extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "08b8343bb4d0c9431e13f3af046ffe06264d9b81",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/AbstractCoverAttachmentDisplay.java",
+          "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentDisplay.java",
+          "source_sha256": "44a45eab46f2016387786fdbfd965e26bffaa1567a48a465138056203cfe5831",
+          "source_symbol": "AbstractCoverAttachmentDisplay"
+        },
+        {
+          "abstract": true,
+          "declaration": "public abstract class AbstractCoverAttachmentLogistics extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "b5ad382abbf44bb9789222f91acaacb835d6d05e",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/AbstractCoverAttachmentLogistics.java",
+          "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentLogistics.java",
+          "source_sha256": "f741ba5dd8f6552651f51f27da58ebbb0f700b44c490755a13635c3dd096edfc",
+          "source_symbol": "AbstractCoverAttachmentLogistics"
+        },
+        {
+          "abstract": true,
+          "declaration": "public abstract class AbstractCoverAttachmentLogisticsDisplay extends AbstractCoverAttachmentLogistics {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "7fca7909ad8ba7f49e4165a14b3b88082ca7959a",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/AbstractCoverAttachmentLogisticsDisplay.java",
+          "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentLogisticsDisplay.java",
+          "source_sha256": "e4d5de7ca0a61a3f06797520458fcf2f68e49964ab2858e55336be1935199382",
+          "source_symbol": "AbstractCoverAttachmentLogisticsDisplay"
+        },
+        {
+          "abstract": true,
+          "declaration": "public abstract class AbstractCoverAttachmentScale extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "3cfe4de5cc906546287f195214b83482233eff1e",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/AbstractCoverAttachmentScale.java",
+          "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentScale.java",
+          "source_sha256": "55975a2ce559ff0ab235971d7c79c22341c8dd99f0d51fa2aa3318ecc1f06040",
+          "source_symbol": "AbstractCoverAttachmentScale"
+        },
+        {
+          "abstract": true,
+          "declaration": "public abstract class AbstractCoverAttachmentSelector extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "9857195495c11d22a4826696317198c703162f70",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/AbstractCoverAttachmentSelector.java",
+          "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentSelector.java",
+          "source_sha256": "3abc746f02483c3311c32cefd11f1761a8e18aef8e61e992657328ea7612fbf9",
+          "source_symbol": "AbstractCoverAttachmentSelector"
+        },
+        {
+          "abstract": true,
+          "declaration": "public abstract class AbstractCoverAttachmentTorch extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "ce69aca2a38418fa4e35bf88ea7b67d300545941",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/AbstractCoverAttachmentTorch.java",
+          "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverAttachmentTorch.java",
+          "source_sha256": "f06eb2fe7ea68c62d3bbc69083219970069acdb16ec21b6add0160c2b300c9fb",
+          "source_symbol": "AbstractCoverAttachmentTorch"
+        },
+        {
+          "abstract": true,
+          "declaration": "public abstract class AbstractCoverDefault implements ICover {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "3084e223ba0505b6b7afa0679a58da7e6418a627",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/AbstractCoverDefault.java",
+          "source_path": "src/main/java/gregapi/cover/covers/AbstractCoverDefault.java",
+          "source_sha256": "9a8913fdd2cd2358790d4aef90d11d5aac0087c6eb5eb9f13615656d9151e7fd",
+          "source_symbol": "AbstractCoverDefault"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverAsphalt extends CoverTextureSimple {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "793324d9a2868d1034f4a6afb1a210660621337e",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverAsphalt.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverAsphalt.java",
+          "source_sha256": "72134a486e1092ccb57a004be3d4bfbb1990f7b2dc6af28ed4492e42912268f1",
+          "source_symbol": "CoverAsphalt"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverControllerAuto extends AbstractCoverAttachmentController {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "e3b98e41158a439a7c7052b3689b1ee693ad6f95",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverControllerAuto.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverControllerAuto.java",
+          "source_sha256": "b36f224334d454c60ad59ab3edcbb183108d675497f6db3cddca5629f3daca59",
+          "source_symbol": "CoverControllerAuto"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverControllerAutoRedstone extends AbstractCoverAttachmentController {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "e3b481370ef270f734b6972b329d8dde87cd196f",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverControllerAutoRedstone.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverControllerAutoRedstone.java",
+          "source_sha256": "3b8a984648877e68c0c0f1351f0c496c14ba22d60aa8d177c1dcc95e811f0920",
+          "source_symbol": "CoverControllerAutoRedstone"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverControllerAutoTimer extends AbstractCoverAttachmentController {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "ba4746616e0946676e9efcb9cd8f1ab78d201574",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverControllerAutoTimer.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverControllerAutoTimer.java",
+          "source_sha256": "4f10c74f205753decc13d63e017b591e90fc1c6f1a0d5b13d7278e9afb199e15",
+          "source_symbol": "CoverControllerAutoTimer"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverControllerCovers extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "25aad11a7378738d6a81c8d0e1eee3ee2419c6af",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverControllerCovers.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverControllerCovers.java",
+          "source_sha256": "f24f1f82c87f1fa5b8433d107f6b027544f693e4ad3952bf52f97b03e9532b7a",
+          "source_symbol": "CoverControllerCovers"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverControllerDisplay extends AbstractCoverAttachmentController {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "32f0eea1aa9fb547ee89c99945f6a3316ddea9cb",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverControllerDisplay.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverControllerDisplay.java",
+          "source_sha256": "3bf964aae67f2497641bb9d1a67b5849b73eaf6ca4190ce1ffec0cacba4fc180",
+          "source_symbol": "CoverControllerDisplay"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverControllerRedstone extends AbstractCoverAttachmentController {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "9d9098a8efed34fbdbff3dbb3e08a884df8fc87b",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverControllerRedstone.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverControllerRedstone.java",
+          "source_sha256": "d35efe4efb06d3a6d91dc2c6126990b087f5d80339bd4d0dc9fbcdedeedf9a9e",
+          "source_symbol": "CoverControllerRedstone"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverConveyor extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "15b2c5a70ef760dc65b9ce743185fafa108b4c83",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverConveyor.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverConveyor.java",
+          "source_sha256": "8b182ba4124f66e48b31b4f9863c00bfe6cf57f51fa7a5ef4b62dbe3a12bb8c4",
+          "source_symbol": "CoverConveyor"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverCrafting extends CoverTextureMulti {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "f425c4220c9515c858a9619cd78d529b405cf75f",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverCrafting.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverCrafting.java",
+          "source_sha256": "16a1c929f9ef9ba62338c9e3850d524b9d119d59708b48538e857be8d91b5ea0",
+          "source_symbol": "CoverCrafting"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverDetectorRunningActively extends AbstractCoverAttachmentDetector {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "54ecfebf2f2a679f8b4de425a8ca87e74f73d443",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverDetectorRunningActively.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverDetectorRunningActively.java",
+          "source_sha256": "d2a2ddf68773ab85ef8446254ff3e982ca890ad334ee2f70ff4260eb234b785f",
+          "source_symbol": "CoverDetectorRunningActively"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverDetectorRunningPassively extends AbstractCoverAttachmentDetector {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "44dc0a045362eafd73f6d925a1c966e9cd57d3c0",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverDetectorRunningPassively.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverDetectorRunningPassively.java",
+          "source_sha256": "c85626d8b4829d95ebe3cd6465d7e40ebd88fe25dcd03f35dbb9c5613cff4d7a",
+          "source_symbol": "CoverDetectorRunningPassively"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverDetectorRunningPossible extends AbstractCoverAttachmentDetector {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "ebe50b66e4df9be32dcc026eb95843add4aafb75",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverDetectorRunningPossible.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverDetectorRunningPossible.java",
+          "source_sha256": "2a6c8b7e501ed125a31e7046e66107769b72d4c377e2d8c0b013177e6d4c9409",
+          "source_symbol": "CoverDetectorRunningPossible"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverDetectorRunningSuccessfully extends AbstractCoverAttachmentDetector {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "e4469793f37271d6fa7d2f1a59f9d1e759ab33b0",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverDetectorRunningSuccessfully.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverDetectorRunningSuccessfully.java",
+          "source_sha256": "f98eaa76ae46e493792a214f418a711189f9ca71ee60d2845c08bec1743d97b2",
+          "source_symbol": "CoverDetectorRunningSuccessfully"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverDisplayEnergy extends AbstractCoverAttachmentDisplay {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "5ee0471f31e3f04815996404236ed63db7e3fef1",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverDisplayEnergy.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverDisplayEnergy.java",
+          "source_sha256": "78ef4ab41fa83d9d9eec2f3049c77453f82b75ad1aced04634fc5d99e70076da",
+          "source_symbol": "CoverDisplayEnergy"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverDrain extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "2d172f6f7cfd6c93008cf0b257c7f6bda5d87524",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverDrain.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverDrain.java",
+          "source_sha256": "6ffe36e186e9a72e5c3747a742bc4563d9af02f926a6ad5fbae98458bb9b5abb",
+          "source_symbol": "CoverDrain"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverFilterFluid extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "ee2148dda58c56f4677446d226431ac804ee62fd",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverFilterFluid.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverFilterFluid.java",
+          "source_sha256": "a822ab9f0827c02679be8b97e226811d376abb30606a9883a80f8de1cc9e00b6",
+          "source_symbol": "CoverFilterFluid"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverFilterItem extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "6323ab371a7056fa8cb2e3b6b6e966fc9dc85eb3",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverFilterItem.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverFilterItem.java",
+          "source_sha256": "aef369a78515dcee7f1acc869597f503cb89429d9bbce373d9e537cac66086ae",
+          "source_symbol": "CoverFilterItem"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverLogisticsDisplayCPUControl extends AbstractCoverAttachmentLogisticsDisplay {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "9ada0e778e4c38e42e597e62ba6089dc921aa25c",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverLogisticsDisplayCPUControl.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsDisplayCPUControl.java",
+          "source_sha256": "febe90215b248dd49c9017b3603a8c8f5d6cbaf8e277d73d1dfd54f67074177c",
+          "source_symbol": "CoverLogisticsDisplayCPUControl"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverLogisticsDisplayCPUConversion extends AbstractCoverAttachmentLogisticsDisplay {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "18e90236cafb9bcae070505f2f73ddd1f48efefe",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverLogisticsDisplayCPUConversion.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsDisplayCPUConversion.java",
+          "source_sha256": "f7f5dc1de41a260720f763e7a42cd07110e6338800c8f78ac318ea5a89e597ef",
+          "source_symbol": "CoverLogisticsDisplayCPUConversion"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverLogisticsDisplayCPULogic extends AbstractCoverAttachmentLogisticsDisplay {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "f272e2bb5f7f26e30568c39d1526672d0e847b3f",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverLogisticsDisplayCPULogic.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsDisplayCPULogic.java",
+          "source_sha256": "0f5fe0d1c9226eed8714a0315134c3fb9698a74bbc7aceb178021589bcde8c43",
+          "source_symbol": "CoverLogisticsDisplayCPULogic"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverLogisticsDisplayCPUStorage extends AbstractCoverAttachmentLogisticsDisplay {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "5f69781a8c7411b09138b2e8535b9221d11042ee",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverLogisticsDisplayCPUStorage.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsDisplayCPUStorage.java",
+          "source_sha256": "5f686c67872c05898ed799a3d3de1cb115423e9b82f3b262563376ec2c19781d",
+          "source_symbol": "CoverLogisticsDisplayCPUStorage"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverLogisticsFluidExport extends AbstractCoverAttachmentLogistics {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "f862d8d7055a0d518aeeb53f4cef9e3b0a51b7fa",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverLogisticsFluidExport.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsFluidExport.java",
+          "source_sha256": "a1ce7b09cea5fec69c778b256479a8492e2bf81927b9468ac6e80470642089fe",
+          "source_symbol": "CoverLogisticsFluidExport"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverLogisticsFluidImport extends AbstractCoverAttachmentLogistics {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "993883e1c59fe5e23ebca68110a3efdbb03bdd41",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverLogisticsFluidImport.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsFluidImport.java",
+          "source_sha256": "3f5266b2b91e1ac4f9fa8b9da52f33db2e837246dc72468f1b4977979cf2e51c",
+          "source_symbol": "CoverLogisticsFluidImport"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverLogisticsFluidStorage extends AbstractCoverAttachmentLogistics {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "47f930514ee67064400fb45f17846423a4d0e39a",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverLogisticsFluidStorage.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsFluidStorage.java",
+          "source_sha256": "c24fe6bd8b968f4a324e05910d61e9c8c9c3a705189c0633a6c517d871ef3154",
+          "source_symbol": "CoverLogisticsFluidStorage"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverLogisticsGenericDump extends AbstractCoverAttachmentLogistics {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "8555056a570f09a4fd9102902cef00f141ea7b04",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverLogisticsGenericDump.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsGenericDump.java",
+          "source_sha256": "63a611b495829be3dc95bbec98457e1b2791042562fe3f18730fb5ee6f29890a",
+          "source_symbol": "CoverLogisticsGenericDump"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverLogisticsGenericExport extends AbstractCoverAttachmentLogistics {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "ea1e3a77abb1587d80ad7659d5f8f4a9dc1edbbf",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverLogisticsGenericExport.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsGenericExport.java",
+          "source_sha256": "738fa6edaa93f4484824914be706c3aa34ec3491d22c4e12c1061a52d9614562",
+          "source_symbol": "CoverLogisticsGenericExport"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverLogisticsGenericImport extends AbstractCoverAttachmentLogistics {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "d813ee56edaccf4338a72b0f6d15900a323f5953",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverLogisticsGenericImport.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsGenericImport.java",
+          "source_sha256": "de3bfd758e9c1574e9577af349381da538ed771c3e09fd0c38fefa64bff93c32",
+          "source_symbol": "CoverLogisticsGenericImport"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverLogisticsGenericStorage extends AbstractCoverAttachmentLogistics {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "fa456df044dfe83915b7aeab5f383e26e779706e",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverLogisticsGenericStorage.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsGenericStorage.java",
+          "source_sha256": "7db59cf9325999b774b9d3c869a06287571cc7d6c82f619b35f5181486bdafbd",
+          "source_symbol": "CoverLogisticsGenericStorage"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverLogisticsItemExport extends AbstractCoverAttachmentLogistics {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "042f195d31b78084cd5949d26354ae02bc1567e2",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverLogisticsItemExport.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsItemExport.java",
+          "source_sha256": "9c6402303011e0cfd984e693021baa6bd1a9915079e7076b3ce981ed5902a859",
+          "source_symbol": "CoverLogisticsItemExport"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverLogisticsItemImport extends AbstractCoverAttachmentLogistics {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "4e4428095110c92a6403de618ba6f7fbf317a10c",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverLogisticsItemImport.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsItemImport.java",
+          "source_sha256": "4f15f7d0ed4f814e184e2fc789e182cf5cc346081207c3e65b9a423b001761b5",
+          "source_symbol": "CoverLogisticsItemImport"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverLogisticsItemStorage extends AbstractCoverAttachmentLogistics {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "039871aad038a082adadfd1f5bd1ed0cd7fb227b",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverLogisticsItemStorage.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverLogisticsItemStorage.java",
+          "source_sha256": "b44c666f89ab509bdf8318d3be08db0a9f695e195e9bac7ba69cf63d4a2f4f0c",
+          "source_symbol": "CoverLogisticsItemStorage"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverPressureValve extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "87313c8f97ac9ca431c23de42a3c275e19034016",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverPressureValve.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverPressureValve.java",
+          "source_sha256": "b686320794365c0c6f49cdd486b73ad331706aa3158f25df711f80678a9bf025",
+          "source_symbol": "CoverPressureValve"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverPump extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "d29e2faa23a229bcf0e6ce45213708ff4624c4b1",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverPump.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverPump.java",
+          "source_sha256": "d7425ae66212cbf5ffb8ab2ffb51e3b257a0e491166d7a25533017db2d1a7bf6",
+          "source_symbol": "CoverPump"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverRedstoneConductorIN extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "743c9b55080eb040adf4d457070525aaba3eaadf",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverRedstoneConductorIN.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverRedstoneConductorIN.java",
+          "source_sha256": "d4c40fd0a9ee505f8a9205a4745b9d39fa8bd59609e687753874b12515b72297",
+          "source_symbol": "CoverRedstoneConductorIN"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverRedstoneConductorOUT extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "8337a057b9e093e86557258845d67fc3ceaa1fde",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverRedstoneConductorOUT.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverRedstoneConductorOUT.java",
+          "source_sha256": "69ebb1678c41e2ad5c337282b2faaedf598cdb208c769a85e073374628cc29e4",
+          "source_symbol": "CoverRedstoneConductorOUT"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverRedstoneEmitter extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "6cf4b74ee7fd2c7732beed759f979070013d4b5b",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverRedstoneEmitter.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverRedstoneEmitter.java",
+          "source_sha256": "b07546ad5ba6072307f9e6a882a466b45b11c01b536a160c08333174418c797b",
+          "source_symbol": "CoverRedstoneEmitter"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverRedstoneRepeater extends AbstractCoverAttachmentTorch {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "e0e2e7dea5c445dd3fc9f781dc96194768a8c02d",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverRedstoneRepeater.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverRedstoneRepeater.java",
+          "source_sha256": "6d92b4dc06e0670838ee54cb4bb84664c79b6571e0cbc495784c41224b23089a",
+          "source_symbol": "CoverRedstoneRepeater"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverRedstoneTorch extends AbstractCoverAttachmentTorch {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "e48933111ccc362322fb55944fec2ef2ca38ba22",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverRedstoneTorch.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverRedstoneTorch.java",
+          "source_sha256": "ef54cfcd0bf336cf0fc17e668e520a6efa815d3aed8cc24481c54e25241427f2",
+          "source_symbol": "CoverRedstoneTorch"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverRetrieverItem extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "7717b7b3f64b5c113858cc935299199880dc4d79",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverRetrieverItem.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverRetrieverItem.java",
+          "source_sha256": "ae7fdb0f52ae54e03edfc76ddc4ddca9b6ebb6ba54fe4b0bcc82d7019d696047",
+          "source_symbol": "CoverRetrieverItem"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverRobotArm extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "c4d692529ae4e2fd4b8c2279d80a89b00a266b2c",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverRobotArm.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverRobotArm.java",
+          "source_sha256": "e275a5c8d62660085040e53d68390462e1f22e3c7964ea003a3e8626bd9616fc",
+          "source_symbol": "CoverRobotArm"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverScaleEnergy extends AbstractCoverAttachmentScale {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "ac635e1f926d817b5bc07d7b309b61cf17b6ca9b",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverScaleEnergy.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverScaleEnergy.java",
+          "source_sha256": "476a44b89bb05572fec251a9c2878712cf1279c1f3704f9d88185ba38309adb8",
+          "source_symbol": "CoverScaleEnergy"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverScaleProgress extends AbstractCoverAttachmentScale {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "f737ad591409ec4f75163d50ca5dd05093359dff",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverScaleProgress.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverScaleProgress.java",
+          "source_sha256": "0da39674abb1e9571b53491d079c7f11cd59096932023610b9de0b7ab89824cb",
+          "source_symbol": "CoverScaleProgress"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverSelectorButtonPanel extends AbstractCoverAttachmentSelector {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "968004827f6736f9be8709692d2239b9ab15930f",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverSelectorButtonPanel.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverSelectorButtonPanel.java",
+          "source_sha256": "b7f4202b201e79446726c81218c74c097107071b67daf66d6e867e69b7055157",
+          "source_symbol": "CoverSelectorButtonPanel"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverSelectorManual extends AbstractCoverAttachmentSelector {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "da346879c9a62b8a4906f876b76042aa083cdc14",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverSelectorManual.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverSelectorManual.java",
+          "source_sha256": "444d71e3cc5c42949c3d31b734c6471ba00e6ab359a0a890ad123db7783593d1",
+          "source_symbol": "CoverSelectorManual"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverSelectorRedstone extends AbstractCoverAttachmentSelector {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "5b382fc95ec5b93e2f3a70ac9b7951d2f336b04a",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverSelectorRedstone.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverSelectorRedstone.java",
+          "source_sha256": "c55f2fd21c3420df60b0624cb55eef372028de42c23304bb402dcc182dc0ce30",
+          "source_symbol": "CoverSelectorRedstone"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverSelectorTag extends AbstractCoverAttachmentSelector {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "6fa9e7a50ec08945f90bf51eb5f19ba84d7ae881",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverSelectorTag.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverSelectorTag.java",
+          "source_sha256": "c05c5d6496a08544e454c382c077f5bd3d5c68fb681af9d1be9d6f82dd46ca89",
+          "source_symbol": "CoverSelectorTag"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverShutter extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "367a0462740f4a67d885ebbee0383eae52a54efc",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverShutter.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverShutter.java",
+          "source_sha256": "12f3b46e7062dc6b99b6e1f6d834a82e86613911c01095832b327ac5b0027b68",
+          "source_symbol": "CoverShutter"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverTextureCanvas extends AbstractCoverDefault {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "f50b149583644d1eaa22e69a71e6a18efdbf671a",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverTextureCanvas.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverTextureCanvas.java",
+          "source_sha256": "04fb696d649a00b9988fb6f996098afb3b47cb0875292e7dfcd9435f2a0ac634",
+          "source_symbol": "CoverTextureCanvas"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverTextureMulti extends AbstractCoverDefault {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "4bbca803933a97eb7163df8d1fc8ec3011883387",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverTextureMulti.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverTextureMulti.java",
+          "source_sha256": "a76f68c78e593bdf56515878c22907a35fb9bbb70a88ce0bc88b7df1a8872367",
+          "source_symbol": "CoverTextureMulti"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverTextureSimple extends AbstractCoverDefault {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "689a133dff55fce50570bbfa9990b17903787b80",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverTextureSimple.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverTextureSimple.java",
+          "source_sha256": "a2426dae0e02cafb06f8b6b92a7466f883bad6f20f0689aec2d283bb4e87b3df",
+          "source_symbol": "CoverTextureSimple"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class CoverVent extends AbstractCoverAttachment {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "610fff6f5034fe6b466b40ccdb9139aa341289c7",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/cover/covers/CoverVent.java",
+          "source_path": "src/main/java/gregapi/cover/covers/CoverVent.java",
+          "source_sha256": "41baa29756f36cf6de5aaba872d5df66fd97fb299ab050e02f73bec0741fc544",
+          "source_symbol": "CoverVent"
+        }
+      ],
+      "source_packages": [
+        {
+          "expected_symbols": [
+            "CoverData",
+            "CoverRegistry",
+            "ICover",
+            "ITileEntityCoverable"
+          ],
+          "path": "src/main/java/gregapi/cover"
+        },
+        {
+          "expected_symbols": [
+            "AbstractCoverAttachment",
+            "AbstractCoverAttachmentController",
+            "AbstractCoverAttachmentDetector",
+            "AbstractCoverAttachmentDisplay",
+            "AbstractCoverAttachmentLogistics",
+            "AbstractCoverAttachmentLogisticsDisplay",
+            "AbstractCoverAttachmentScale",
+            "AbstractCoverAttachmentSelector",
+            "AbstractCoverAttachmentTorch",
+            "AbstractCoverDefault",
+            "CoverAsphalt",
+            "CoverControllerAuto",
+            "CoverControllerAutoRedstone",
+            "CoverControllerAutoTimer",
+            "CoverControllerCovers",
+            "CoverControllerDisplay",
+            "CoverControllerRedstone",
+            "CoverConveyor",
+            "CoverCrafting",
+            "CoverDetectorRunningActively",
+            "CoverDetectorRunningPassively",
+            "CoverDetectorRunningPossible",
+            "CoverDetectorRunningSuccessfully",
+            "CoverDisplayEnergy",
+            "CoverDrain",
+            "CoverFilterFluid",
+            "CoverFilterItem",
+            "CoverLogisticsDisplayCPUControl",
+            "CoverLogisticsDisplayCPUConversion",
+            "CoverLogisticsDisplayCPULogic",
+            "CoverLogisticsDisplayCPUStorage",
+            "CoverLogisticsFluidExport",
+            "CoverLogisticsFluidImport",
+            "CoverLogisticsFluidStorage",
+            "CoverLogisticsGenericDump",
+            "CoverLogisticsGenericExport",
+            "CoverLogisticsGenericImport",
+            "CoverLogisticsGenericStorage",
+            "CoverLogisticsItemExport",
+            "CoverLogisticsItemImport",
+            "CoverLogisticsItemStorage",
+            "CoverPressureValve",
+            "CoverPump",
+            "CoverRedstoneConductorIN",
+            "CoverRedstoneConductorOUT",
+            "CoverRedstoneEmitter",
+            "CoverRedstoneRepeater",
+            "CoverRedstoneTorch",
+            "CoverRetrieverItem",
+            "CoverRobotArm",
+            "CoverScaleEnergy",
+            "CoverScaleProgress",
+            "CoverSelectorButtonPanel",
+            "CoverSelectorManual",
+            "CoverSelectorRedstone",
+            "CoverSelectorTag",
+            "CoverShutter",
+            "CoverTextureCanvas",
+            "CoverTextureMulti",
+            "CoverTextureSimple",
+            "CoverVent"
+          ],
+          "path": "src/main/java/gregapi/cover/covers"
+        }
+      ]
+    },
+    "multiblock_kinds": {
+      "canonical_rules": [
+        {
+          "canonical_id": "autoclave",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-autoclave",
+          "reason": "MultiTileEntityAutoclave is a concrete processing controller.",
+          "source_symbols": [
+            "MultiTileEntityAutoclave"
+          ]
+        },
+        {
+          "canonical_id": "bath",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-bath",
+          "reason": "MultiTileEntityBath is a concrete processing controller.",
+          "source_symbols": [
+            "MultiTileEntityBath"
+          ]
+        },
+        {
+          "canonical_id": "bedrock_drill",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-bedrock-drill",
+          "reason": "MultiTileEntityBedrockDrill is a concrete world-interacting controller.",
+          "source_symbols": [
+            "MultiTileEntityBedrockDrill"
+          ]
+        },
+        {
+          "canonical_id": "centrifuge",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-centrifuge",
+          "reason": "MultiTileEntityCentrifuge is a concrete processing controller.",
+          "source_symbols": [
+            "MultiTileEntityCentrifuge"
+          ]
+        },
+        {
+          "canonical_id": "coagulator",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-coagulator",
+          "reason": "MultiTileEntityCoagulator is a concrete processing controller.",
+          "source_symbols": [
+            "MultiTileEntityCoagulator"
+          ]
+        },
+        {
+          "canonical_id": "coke_oven",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-coke-oven",
+          "reason": "MultiTileEntityCokeOven is a concrete processing controller.",
+          "source_symbols": [
+            "MultiTileEntityCokeOven"
+          ]
+        },
+        {
+          "canonical_id": "crucible",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-crucible",
+          "reason": "MultiTileEntityCrucible is a concrete thermal processing controller.",
+          "source_symbols": [
+            "MultiTileEntityCrucible"
+          ]
+        },
+        {
+          "canonical_id": "crusher",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-crusher",
+          "reason": "MultiTileEntityCrusher is a concrete processing controller.",
+          "source_symbols": [
+            "MultiTileEntityCrusher"
+          ]
+        },
+        {
+          "canonical_id": "cryo_distillation_tower",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-cryo-tower",
+          "reason": "The cryogenic tower has distinct process and structure behavior.",
+          "source_symbols": [
+            "MultiTileEntityCryoDistillationTower"
+          ]
+        },
+        {
+          "canonical_id": "distillation_tower",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-distillation-tower",
+          "reason": "The standard distillation tower is a concrete processing controller.",
+          "source_symbols": [
+            "MultiTileEntityDistillationTower"
+          ]
+        },
+        {
+          "canonical_id": "electrolyzer",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-electrolyzer",
+          "reason": "MultiTileEntityElectrolyzer is a concrete processing controller.",
+          "source_symbols": [
+            "MultiTileEntityElectrolyzer"
+          ]
+        },
+        {
+          "canonical_id": "fermenter",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-fermenter",
+          "reason": "MultiTileEntityFermenter is a concrete processing controller.",
+          "source_symbols": [
+            "MultiTileEntityFermenter"
+          ]
+        },
+        {
+          "canonical_id": "fusion_reactor",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-fusion-reactor",
+          "reason": "MultiTileEntityFusionReactor is a concrete high-energy controller.",
+          "source_symbols": [
+            "MultiTileEntityFusionReactor"
+          ]
+        },
+        {
+          "canonical_id": "implosion_compressor",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-implosion-compressor",
+          "reason": "MultiTileEntityImplosionCompressor is a concrete processing controller.",
+          "source_symbols": [
+            "MultiTileEntityImplosionCompressor"
+          ]
+        },
+        {
+          "canonical_id": "large_boiler",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-large-boiler",
+          "reason": "MultiTileEntityLargeBoiler is a concrete heat-to-steam controller.",
+          "source_symbols": [
+            "MultiTileEntityLargeBoiler"
+          ]
+        },
+        {
+          "canonical_id": "large_dynamo",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-large-dynamo",
+          "reason": "MultiTileEntityLargeDynamo is a concrete energy conversion controller.",
+          "source_symbols": [
+            "MultiTileEntityLargeDynamo"
+          ]
+        },
+        {
+          "canonical_id": "large_heat_exchanger",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-large-heat-exchanger",
+          "reason": "MultiTileEntityLargeHeatExchanger is a concrete thermal conversion controller.",
+          "source_symbols": [
+            "MultiTileEntityLargeHeatExchanger"
+          ]
+        },
+        {
+          "canonical_id": "large_turbine_gas",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-large-turbine-gas",
+          "reason": "Gas turbine fuel semantics are behaviorally distinct from steam.",
+          "source_symbols": [
+            "MultiTileEntityLargeTurbineGas"
+          ]
+        },
+        {
+          "canonical_id": "large_turbine_steam",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-large-turbine-steam",
+          "reason": "Steam turbine fluid semantics are behaviorally distinct from gas.",
+          "source_symbols": [
+            "MultiTileEntityLargeTurbineSteam"
+          ]
+        },
+        {
+          "canonical_id": "lightning_rod",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-lightning-rod",
+          "reason": "MultiTileEntityLightningRod is a concrete world-energy controller.",
+          "source_symbols": [
+            "MultiTileEntityLightningRod"
+          ]
+        },
+        {
+          "canonical_id": "logistics_core",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-logistics-core",
+          "reason": "MultiTileEntityLogisticsCore is a concrete logistics-network controller.",
+          "source_symbols": [
+            "MultiTileEntityLogisticsCore"
+          ]
+        },
+        {
+          "canonical_id": "matter_fabricator",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-matter-fabricator",
+          "reason": "MultiTileEntityMatterFabricator is a concrete high-energy processing controller.",
+          "source_symbols": [
+            "MultiTileEntityMatterFabricator"
+          ]
+        },
+        {
+          "canonical_id": "mixer",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-mixer",
+          "reason": "MultiTileEntityMixer is a concrete processing controller.",
+          "source_symbols": [
+            "MultiTileEntityMixer"
+          ]
+        },
+        {
+          "canonical_id": "oven",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-oven",
+          "reason": "MultiTileEntityOven is a concrete thermal processing controller.",
+          "source_symbols": [
+            "MultiTileEntityOven"
+          ]
+        },
+        {
+          "canonical_id": "shredder",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-shredder",
+          "reason": "MultiTileEntityShredder is a concrete processing controller.",
+          "source_symbols": [
+            "MultiTileEntityShredder"
+          ]
+        },
+        {
+          "canonical_id": "sluice",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-sluice",
+          "reason": "MultiTileEntitySluice is a concrete processing controller.",
+          "source_symbols": [
+            "MultiTileEntitySluice"
+          ]
+        },
+        {
+          "canonical_id": "squeezer",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-squeezer",
+          "reason": "MultiTileEntitySqueezer is a concrete processing controller.",
+          "source_symbols": [
+            "MultiTileEntitySqueezer"
+          ]
+        },
+        {
+          "canonical_id": "tank_3x3x3",
+          "collapse_rule": {
+            "id": "multiblock-collapse-material-tank-3x3x3",
+            "source_evidence": "Both concrete wrappers inherit MultiTileEntityTank3x3x3 and introduce no independent controller transaction.",
+            "statement": "Metal and wood select casing/material properties on one inherited 3x3x3 tank behavior.",
+            "variant_dimensions": [
+              "material"
+            ]
+          },
+          "id": "multiblock-collapse-tank-3-material",
+          "reason": "The metal and wood classes are material variants of one 3x3x3 tank controller.",
+          "source_symbols": [
+            "MultiTileEntityTank3x3x3Metal",
+            "MultiTileEntityTank3x3x3Wood"
+          ]
+        },
+        {
+          "canonical_id": "tank_5x5x5_metal",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-tank-5-metal",
+          "reason": "The fixed tree contains one concrete 5x5x5 tank controller variant.",
+          "source_symbols": [
+            "MultiTileEntityTank5x5x5Metal"
+          ]
+        },
+        {
+          "canonical_id": "von_da_graagg",
+          "collapse_rule": null,
+          "id": "multiblock-canonical-von-da-graagg",
+          "reason": "MultiTileEntityVonDaGraagg is a concrete controller with unique behavior.",
+          "source_symbols": [
+            "MultiTileEntityVonDaGraagg"
+          ]
+        }
+      ],
+      "classification_assignments": [
+        {
+          "canonical_id": "coke_oven",
+          "cc_multiblock": "coke_oven",
+          "deferred": null,
+          "disposition": "in_scope",
+          "id": "multiblock-map-coke-oven",
+          "implementation_status": "implemented",
+          "reason": "CC has a source-mapped Coke Oven JSON structure and controller.",
+          "roadmap_bucket": "existing_cc"
+        },
+        {
+          "canonical_id": "centrifuge",
+          "cc_multiblock": "large_centrifuge",
+          "deferred": null,
+          "disposition": "in_scope",
+          "id": "multiblock-map-centrifuge",
+          "implementation_status": "implemented",
+          "reason": "CC Large Centrifuge maps to the GT6 multiblock centrifuge controller kind.",
+          "roadmap_bucket": "existing_cc"
+        },
+        {
+          "canonical_id": "large_boiler",
+          "cc_multiblock": null,
+          "deferred_template": "t18_energy",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-t18-large-boiler",
+          "implementation_status": "third_stage_deferred",
+          "reason": "Large Boiler belongs to the T18 steam chain.",
+          "roadmap_bucket": "T18"
+        },
+        {
+          "canonical_id": "large_dynamo",
+          "cc_multiblock": null,
+          "deferred_template": "t18_energy",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-t18-large-dynamo",
+          "implementation_status": "third_stage_deferred",
+          "reason": "Large Dynamo belongs to the T18 RU-to-EU chain.",
+          "roadmap_bucket": "T18"
+        },
+        {
+          "canonical_id": "large_heat_exchanger",
+          "cc_multiblock": null,
+          "deferred_template": "t18_energy",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-t18-large-heat-exchanger",
+          "implementation_status": "third_stage_deferred",
+          "reason": "Large Heat Exchanger belongs to later T18 thermal conversion.",
+          "roadmap_bucket": "T18"
+        },
+        {
+          "canonical_id": "large_turbine_gas",
+          "cc_multiblock": null,
+          "deferred_template": "t18_energy",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-t18-turbine-gas",
+          "implementation_status": "third_stage_deferred",
+          "reason": "Gas turbine conversion belongs to the T18 fuel/energy chain.",
+          "roadmap_bucket": "T18"
+        },
+        {
+          "canonical_id": "large_turbine_steam",
+          "cc_multiblock": null,
+          "deferred_template": "t18_energy",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-t18-turbine-steam",
+          "implementation_status": "third_stage_deferred",
+          "reason": "Steam turbine conversion belongs to the T18 steam/energy chain.",
+          "roadmap_bucket": "T18"
+        },
+        {
+          "canonical_id": "autoclave",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-autoclave",
+          "implementation_status": "post_t19",
+          "reason": "No autoclave multiblock batch is selected through T19.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "bath",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-bath",
+          "implementation_status": "post_t19",
+          "reason": "No bath multiblock batch is selected through T19.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "bedrock_drill",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-bedrock-drill",
+          "implementation_status": "post_t19",
+          "reason": "Bedrock world interaction is outside the third-stage selected families.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "coagulator",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-coagulator",
+          "implementation_status": "post_t19",
+          "reason": "No coagulator multiblock batch is selected through T19.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "crucible",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-crucible",
+          "implementation_status": "post_t19",
+          "reason": "No large crucible batch is selected through T19.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "crusher",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-crusher",
+          "implementation_status": "post_t19",
+          "reason": "No crusher multiblock batch is selected through T19.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "cryo_distillation_tower",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-cryo-tower",
+          "implementation_status": "post_t19",
+          "reason": "Cryogenic distillation is outside the selected third-stage families.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "distillation_tower",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-distillation-tower",
+          "implementation_status": "post_t19",
+          "reason": "No distillation tower multiblock batch is selected through T19.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "electrolyzer",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-electrolyzer",
+          "implementation_status": "post_t19",
+          "reason": "No electrolyzer multiblock batch is selected through T19.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "fermenter",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-fermenter",
+          "implementation_status": "post_t19",
+          "reason": "No fermenter multiblock batch is selected through T19.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "fusion_reactor",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-fusion",
+          "implementation_status": "post_t19",
+          "reason": "Fusion is explicitly beyond the third-stage energy scope.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "implosion_compressor",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-implosion",
+          "implementation_status": "post_t19",
+          "reason": "No implosion compressor batch is selected through T19.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "lightning_rod",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-lightning",
+          "implementation_status": "post_t19",
+          "reason": "World lightning collection is outside the selected third-stage chains.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "logistics_core",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-logistics-core",
+          "implementation_status": "post_t19",
+          "reason": "GT6 logistics-core runtime is outside T19 adjacent-pipe automation.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "matter_fabricator",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-matter-fabricator",
+          "implementation_status": "post_t19",
+          "reason": "Matter fabrication is outside the selected third-stage families.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "mixer",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-mixer",
+          "implementation_status": "post_t19",
+          "reason": "No mixer multiblock batch is selected through T19.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "oven",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-oven",
+          "implementation_status": "post_t19",
+          "reason": "No oven multiblock batch is selected through T19.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "shredder",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-shredder",
+          "implementation_status": "post_t19",
+          "reason": "No shredder multiblock batch is selected through T19.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "sluice",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-sluice",
+          "implementation_status": "post_t19",
+          "reason": "No sluice multiblock batch is selected through T19.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "squeezer",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-squeezer",
+          "implementation_status": "post_t19",
+          "reason": "No squeezer multiblock batch is selected through T19.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "tank_3x3x3",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-tank-3",
+          "implementation_status": "post_t19",
+          "reason": "Generic multiblock tanks are outside the selected third-stage structures.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "tank_5x5x5_metal",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-tank-5",
+          "implementation_status": "post_t19",
+          "reason": "Generic multiblock tanks are outside the selected third-stage structures.",
+          "roadmap_bucket": "POST_T19"
+        },
+        {
+          "canonical_id": "von_da_graagg",
+          "cc_multiblock": null,
+          "deferred_template": "post_t19_multiblock",
+          "disposition": "deferred_with_reason",
+          "id": "multiblock-post-von-da-graagg",
+          "implementation_status": "post_t19",
+          "reason": "This specialized controller has no selected batch through T19.",
+          "roadmap_bucket": "POST_T19"
+        }
+      ],
+      "deferred_templates": {
+        "post_t19_multiblock": {
+          "owner": "POST_T19",
+          "reason": "The source controller is valid but has no selected implementation batch through T19.",
+          "recheck_point": "Post-T19 multiblock family prioritization.",
+          "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
+        },
+        "t18_energy": {
+          "owner": "T18",
+          "reason": "The source controller is selected for the third-stage energy-chain family but T13 adds no runtime.",
+          "recheck_point": "T18 multiblock energy-chain implementation gate.",
+          "replacement_condition": "T18 supplies the exact source-backed structure, energy identities, conservation, overload and exhaust transaction."
+        }
+      },
+      "exclusion_rules": [
+        {
+          "exclusion_kind": "interface",
+          "id": "multiblock-exclude-energy-interface",
+          "reason": "IMultiBlockEnergy defines a controller energy contract and is not a controller kind.",
+          "source_symbol": "IMultiBlockEnergy"
+        },
+        {
+          "exclusion_kind": "interface",
+          "id": "multiblock-exclude-energy-data-interface",
+          "reason": "IMultiBlockEnergyDataCapacitor is a data-capacitor contract rather than a controller kind.",
+          "source_symbol": "IMultiBlockEnergyDataCapacitor"
+        },
+        {
+          "exclusion_kind": "interface",
+          "id": "multiblock-exclude-fluid-interface",
+          "reason": "IMultiBlockFluidHandler is a shared fluid contract rather than a controller kind.",
+          "source_symbol": "IMultiBlockFluidHandler"
+        },
+        {
+          "exclusion_kind": "interface",
+          "id": "multiblock-exclude-inventory-interface",
+          "reason": "IMultiBlockInventory is a shared inventory contract rather than a controller kind.",
+          "source_symbol": "IMultiBlockInventory"
+        },
+        {
+          "exclusion_kind": "interface",
+          "id": "multiblock-exclude-controller-interface",
+          "reason": "ITileEntityMultiBlockController defines controller/part coordination and is not concrete.",
+          "source_symbol": "ITileEntityMultiBlockController"
+        },
+        {
+          "exclusion_kind": "part_or_port",
+          "id": "multiblock-exclude-part",
+          "reason": "MultiTileEntityMultiBlockPart is shared structure/port infrastructure, not a controller.",
+          "source_symbol": "MultiTileEntityMultiBlockPart"
+        },
+        {
+          "exclusion_kind": "abstract_base",
+          "id": "multiblock-exclude-base",
+          "reason": "TileEntityBase10MultiBlockBase supplies shared validation and part routing.",
+          "source_symbol": "TileEntityBase10MultiBlockBase"
+        },
+        {
+          "exclusion_kind": "abstract_base",
+          "id": "multiblock-exclude-machine-base",
+          "reason": "TileEntityBase10MultiBlockMachine supplies shared recipe-machine controller plumbing.",
+          "source_symbol": "TileEntityBase10MultiBlockMachine"
+        },
+        {
+          "exclusion_kind": "abstract_base",
+          "id": "multiblock-exclude-converter-base",
+          "reason": "TileEntityBase11MultiBlockConverter supplies shared conversion controller plumbing.",
+          "source_symbol": "TileEntityBase11MultiBlockConverter"
+        },
+        {
+          "exclusion_kind": "abstract_base",
+          "id": "multiblock-exclude-large-turbine-base",
+          "reason": "MultiTileEntityLargeTurbine is the abstract shared turbine controller base.",
+          "source_symbol": "MultiTileEntityLargeTurbine"
+        },
+        {
+          "exclusion_kind": "abstract_base",
+          "id": "multiblock-exclude-tank-base",
+          "reason": "MultiTileEntityTank is the abstract shared fluid tank controller base.",
+          "source_symbol": "MultiTileEntityTank"
+        },
+        {
+          "exclusion_kind": "abstract_base",
+          "id": "multiblock-exclude-tank-3-base",
+          "reason": "MultiTileEntityTank3x3x3 is the abstract shared 3x3x3 tank geometry.",
+          "source_symbol": "MultiTileEntityTank3x3x3"
+        },
+        {
+          "exclusion_kind": "abstract_base",
+          "id": "multiblock-exclude-tank-5-base",
+          "reason": "MultiTileEntityTank5x5x5 is the abstract shared 5x5x5 tank geometry.",
+          "source_symbol": "MultiTileEntityTank5x5x5"
+        }
+      ],
+      "source_manifest": [
+        {
+          "abstract": true,
+          "declaration": "public interface IMultiBlockEnergy extends ITileEntityMultiBlockController {",
+          "declaration_kind": "interface",
+          "git_blob_sha1": "96d6fc5f0b4b2666da099dbb1477ca36022649c2",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/tileentity/multiblocks/IMultiBlockEnergy.java",
+          "source_path": "src/main/java/gregapi/tileentity/multiblocks/IMultiBlockEnergy.java",
+          "source_sha256": "5998de96a2473247f3527e2e82d3f66fd379f1b2d5986f994b8f3b59d414f5f3",
+          "source_symbol": "IMultiBlockEnergy"
+        },
+        {
+          "abstract": true,
+          "declaration": "public interface IMultiBlockEnergyDataCapacitor extends ITileEntityMultiBlockController {",
+          "declaration_kind": "interface",
+          "git_blob_sha1": "d5762ad1c7b64c686c1f2496d752f490c2d3b1f6",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/tileentity/multiblocks/IMultiBlockEnergyDataCapacitor.java",
+          "source_path": "src/main/java/gregapi/tileentity/multiblocks/IMultiBlockEnergyDataCapacitor.java",
+          "source_sha256": "3f0d9990856e3a3bf45c5b15f51923bed2f24d98afee2780516f65bf49ec8a42",
+          "source_symbol": "IMultiBlockEnergyDataCapacitor"
+        },
+        {
+          "abstract": true,
+          "declaration": "public interface IMultiBlockFluidHandler extends ITileEntityMultiBlockController {",
+          "declaration_kind": "interface",
+          "git_blob_sha1": "1a8950289e7c5f221a0cb6a8aa9384c527d2ba9c",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/tileentity/multiblocks/IMultiBlockFluidHandler.java",
+          "source_path": "src/main/java/gregapi/tileentity/multiblocks/IMultiBlockFluidHandler.java",
+          "source_sha256": "f12c7bb7295911077fbf288f2d4a74996f9b846e81675a7d90e5566345885456",
+          "source_symbol": "IMultiBlockFluidHandler"
+        },
+        {
+          "abstract": true,
+          "declaration": "public interface IMultiBlockInventory extends ITileEntityMultiBlockController {",
+          "declaration_kind": "interface",
+          "git_blob_sha1": "440cb36b1ab40c0389edc144668208182f9fff06",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/tileentity/multiblocks/IMultiBlockInventory.java",
+          "source_path": "src/main/java/gregapi/tileentity/multiblocks/IMultiBlockInventory.java",
+          "source_sha256": "8d6e4f3fba8549bd11acaacf16bdbc20b75c4e67caebdfa3e95dd58556d60099",
+          "source_symbol": "IMultiBlockInventory"
+        },
+        {
+          "abstract": true,
+          "declaration": "public interface ITileEntityMultiBlockController extends ITileEntityUnloadable, IHasWorldAndCoords {",
+          "declaration_kind": "interface",
+          "git_blob_sha1": "4e0f4f48df3d7f33018ae5060fdf2656e9521dbe",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/tileentity/multiblocks/ITileEntityMultiBlockController.java",
+          "source_path": "src/main/java/gregapi/tileentity/multiblocks/ITileEntityMultiBlockController.java",
+          "source_sha256": "66203e93bd5b309b442e37d89f707de71c2cf967fc33c217c577dd8c2f7ed5d9",
+          "source_symbol": "ITileEntityMultiBlockController"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityMultiBlockPart extends TileEntityBase05Paintable implements ITileEntityEnergy, ITileEntityCrucible, ITileEntityLogistics, IMTE_OnWalkOver, ITileEntityTemperature, ITileEntityGibbl, ITileEntityProgress, ITileEntityWeight, ITileEntityTapAccessible, ITileEntityFunnelAccessible, ITileEntityEnergyDataCapacitor, ITileEntityAdjacentInventoryUpdatable, IFluidHandler, IMTE_OnBlockAdded, IMTE_BreakBlock, IMTE_AddToolTips, ITileEntityRunningSuccessfully, ITileEntitySwitchableMode, ITileEntitySwitchableOnOff {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "1fd9e465db9615a87854de0f75ba818e305da5cd",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/tileentity/multiblocks/MultiTileEntityMultiBlockPart.java",
+          "source_path": "src/main/java/gregapi/tileentity/multiblocks/MultiTileEntityMultiBlockPart.java",
+          "source_sha256": "b00725df4301983e6fd51aea6519ab3304e85315ec01f338cc27b6a448a6bfda",
+          "source_symbol": "MultiTileEntityMultiBlockPart"
+        },
+        {
+          "abstract": true,
+          "declaration": "public abstract class TileEntityBase10MultiBlockBase extends TileEntityBase09FacingSingle implements ITileEntityMultiBlockController {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "edc5b7c80f71892ff78900e342a1d3ed83a1cc18",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/tileentity/multiblocks/TileEntityBase10MultiBlockBase.java",
+          "source_path": "src/main/java/gregapi/tileentity/multiblocks/TileEntityBase10MultiBlockBase.java",
+          "source_sha256": "42ec92430ff6af7fb8d192aebfa424cc1af519d40ba2ff53a8e8c6afe8f9e738",
+          "source_symbol": "TileEntityBase10MultiBlockBase"
+        },
+        {
+          "abstract": true,
+          "declaration": "public abstract class TileEntityBase10MultiBlockMachine extends MultiTileEntityBasicMachine implements IMultiBlockFluidHandler, IMultiBlockInventory, IMultiBlockEnergy {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "0d6bd7146846e5d71ee58a6747c36b1f87d1aad7",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/tileentity/multiblocks/TileEntityBase10MultiBlockMachine.java",
+          "source_path": "src/main/java/gregapi/tileentity/multiblocks/TileEntityBase10MultiBlockMachine.java",
+          "source_sha256": "daaacb82489056ddf8be9c3e594541fe0ec44ef2902be190556cdea361a05e06",
+          "source_symbol": "TileEntityBase10MultiBlockMachine"
+        },
+        {
+          "abstract": true,
+          "declaration": "public abstract class TileEntityBase11MultiBlockConverter extends TileEntityBase10MultiBlockBase implements ITileEntityRunningActively, ITileEntityEnergy, IMultiBlockEnergy {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "ae808a86ed8dcab77b06905fbec22f1b1e745eca",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/tileentity/multiblocks/TileEntityBase11MultiBlockConverter.java",
+          "source_path": "src/main/java/gregapi/tileentity/multiblocks/TileEntityBase11MultiBlockConverter.java",
+          "source_sha256": "38b9df583b72f6ab97ae23f8533b54a8d82fead147c026053230e2cc59533afc",
+          "source_symbol": "TileEntityBase11MultiBlockConverter"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityAutoclave extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "8ba7ecb137c1dc724899b4396372392841b7e458",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityAutoclave.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityAutoclave.java",
+          "source_sha256": "c8fad765d8e224f9a469a5f1836d1ea9a04ce6982b29c0b58c3d07fcc3fbafa2",
+          "source_symbol": "MultiTileEntityAutoclave"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityBath extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "8150e50500b2a306fe77c3d468f579f19af2406f",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityBath.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityBath.java",
+          "source_sha256": "fecee7c08a7da1ffbe920ad9b205fa3dc4de218ead332fcbc7c468b5abe75b82",
+          "source_symbol": "MultiTileEntityBath"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityBedrockDrill extends TileEntityBase10MultiBlockBase implements ITileEntityEnergy, ITileEntityEnergyDataCapacitor, IMultiBlockEnergy, IMultiBlockFluidHandler, IFluidHandler, ITileEntityRunningPossible {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "bb108bf6925edf493565ff1de680236e50fc610f",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityBedrockDrill.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityBedrockDrill.java",
+          "source_sha256": "fd111e1e53ff208b425ad166419b1a381c8ef5b0e2d26d586bd1da8ac07abd08",
+          "source_symbol": "MultiTileEntityBedrockDrill"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityCentrifuge extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "7ade6aaac13fbca55c52fc10c34283f525be50b7",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCentrifuge.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCentrifuge.java",
+          "source_sha256": "a9eeca6dc1887c35b669384418104c92bc916f5ecd283a099a43d4dc1dc1ec19",
+          "source_symbol": "MultiTileEntityCentrifuge"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityCoagulator extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "f5d28a1753b2fb2e028d1903f00bf218e02b3edd",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCoagulator.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCoagulator.java",
+          "source_sha256": "3162bff4b83c7e6da823294656a5ed5f7995a34bf060cb65935d7ccffc3a117d",
+          "source_symbol": "MultiTileEntityCoagulator"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityCokeOven extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "5ef4dd974406161d280e2e1ab0fe16ca2d4ce031",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCokeOven.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCokeOven.java",
+          "source_sha256": "26ba343b5b4d6a2b7e2c7dd2c6dfbc1b48b5b03345adcb3420e798f091d16066",
+          "source_symbol": "MultiTileEntityCokeOven"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityCrucible extends TileEntityBase10MultiBlockBase implements ITileEntityCrucible, ITileEntityEnergy, ITileEntityGibbl, ITileEntityWeight, ITileEntityTemperature, ITileEntityMold, ITileEntityServerTickPost, ITileEntityEnergyDataCapacitor, IMultiBlockEnergy, IMultiBlockInventory, IMultiBlockFluidHandler, IFluidHandler {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "2197f036574e96258e48e3f5b4c8f38f8a49d58f",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrucible.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrucible.java",
+          "source_sha256": "2b04eaab46ae4e48dbd4a7500ed1b5fac533933649cc8a0dbf4baab1b99fa96c",
+          "source_symbol": "MultiTileEntityCrucible"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityCrusher extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "3a283001b5c6fce211ce143069d14fc11e12cb39",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrusher.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrusher.java",
+          "source_sha256": "b4a94c2f84d93d357d4cede81480bfea001ed18e845575843c4aef4d7b0185c1",
+          "source_symbol": "MultiTileEntityCrusher"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityCryoDistillationTower extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "161d37408f408f97ad2693b63fd6833655bee5ee",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCryoDistillationTower.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCryoDistillationTower.java",
+          "source_sha256": "a172629cf5660aa99869d9d3e1ed48e5499fbaf2b121c7c50d2be8721aacb4f5",
+          "source_symbol": "MultiTileEntityCryoDistillationTower"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityDistillationTower extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "ef12fba602c1fa5f9ec4d6ecd9bdfc506a229161",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityDistillationTower.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityDistillationTower.java",
+          "source_sha256": "ec6dbfc721eaf72d8986556222059f5bfe06d0c9bde8e2776f8dd35c6261a3ce",
+          "source_symbol": "MultiTileEntityDistillationTower"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityElectrolyzer extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "af834bac5bc3bc481219781274e3b38644afb794",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityElectrolyzer.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityElectrolyzer.java",
+          "source_sha256": "4b4e79f91b9f636fb933c2e80af905a2e99658d6216bb07e4d0510a6811a60ab",
+          "source_symbol": "MultiTileEntityElectrolyzer"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityFermenter extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "ab54bb983025e102a3f513e50e972f6427479332",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityFermenter.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityFermenter.java",
+          "source_sha256": "14cc122d3a4220a147cdc5dd8ad9ad6b7a301370a345db9c931ca1625578180c",
+          "source_symbol": "MultiTileEntityFermenter"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityFusionReactor extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "b20a1dfb49c4bf310267f981a8a1a338ee95bedd",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityFusionReactor.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityFusionReactor.java",
+          "source_sha256": "5e5641a2cb69fc8402e5e8e6aec7694e9f956031e04af36f87c53835ecbdb5a4",
+          "source_symbol": "MultiTileEntityFusionReactor"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityImplosionCompressor extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "f298e4dc3177b7ecdb5cb0d0a7db1ddf857383a1",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityImplosionCompressor.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityImplosionCompressor.java",
+          "source_sha256": "3284ecf1b58f79a0421c3e2cfce470b1b2b3cef60ef3ea01c51f0645c66bd3cd",
+          "source_symbol": "MultiTileEntityImplosionCompressor"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityLargeBoiler extends TileEntityBase10MultiBlockBase implements ITileEntityEnergy, ITileEntityGibbl, ITileEntityEnergyDataCapacitor, IMultiBlockEnergy, IMultiBlockFluidHandler, IFluidHandler, IMTE_RemovedByPlayer {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "f44481f090629a1f002b1d594d327977871f6c58",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeBoiler.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeBoiler.java",
+          "source_sha256": "38d82c11fc57094c9ba8db5c88325b65d847cff40726e084dce87c8b7935ffb6",
+          "source_symbol": "MultiTileEntityLargeBoiler"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityLargeDynamo extends TileEntityBase11MultiBlockConverter implements ITileEntitySwitchableOnOff {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "1aae1c409008d32cb14f422611ae99037c709245",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeDynamo.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeDynamo.java",
+          "source_sha256": "dc08705104ad7de394530a8d4cff857da35d90286d709e5ae4c34899ea476dd0",
+          "source_symbol": "MultiTileEntityLargeDynamo"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityLargeHeatExchanger extends TileEntityBase10MultiBlockBase implements IFluidHandler, ITileEntityRunningActively, ITileEntityEnergy, IMultiBlockFluidHandler, IMultiBlockEnergy {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "40b87cc700851d929b16b69d3a89e40a9f4d3b05",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeHeatExchanger.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeHeatExchanger.java",
+          "source_sha256": "17e76c7595c2a229efe93dcf728d9a32a3301789ee843fa2c9e9aecfca885bfb",
+          "source_symbol": "MultiTileEntityLargeHeatExchanger"
+        },
+        {
+          "abstract": true,
+          "declaration": "public abstract class MultiTileEntityLargeTurbine extends TileEntityBase11MultiBlockConverter implements IMultiBlockFluidHandler, IFluidHandler, ITileEntitySwitchableOnOff {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "0150108ad84e084d12d8f9dfa6fd8e35f1a15220",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeTurbine.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeTurbine.java",
+          "source_sha256": "7de79e0daf4eb4e6e3d3f272f3ac2f9230bbca9c51a8b6614935e8c54fb23019",
+          "source_symbol": "MultiTileEntityLargeTurbine"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityLargeTurbineGas extends MultiTileEntityLargeTurbine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "7ae706e49cc75400f05502fb7248d178383db314",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeTurbineGas.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeTurbineGas.java",
+          "source_sha256": "4cb779b6e63b3348cf4eec1cc6af36faac9748ebdcc953d8ef8c24c0f7edbbab",
+          "source_symbol": "MultiTileEntityLargeTurbineGas"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityLargeTurbineSteam extends MultiTileEntityLargeTurbine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "2be0fcde98d46160a0b4414ae38c0d80fbfe3894",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeTurbineSteam.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLargeTurbineSteam.java",
+          "source_sha256": "47d7aa9648009c7b72eb42121ca3a955d58d1c556075ce60483b4a7c096bf83c",
+          "source_symbol": "MultiTileEntityLargeTurbineSteam"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityLightningRod extends TileEntityBase10MultiBlockBase implements ITileEntityEnergy, ITileEntityEnergyDataCapacitor, IMultiBlockEnergy {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "ad392883ca7730fd90122abcd1faaaed1f0da400",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLightningRod.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLightningRod.java",
+          "source_sha256": "c6129225a4ed16acbb0b10661bf1e4dac0a3c5c4c7c62010c1e56308a276c83a",
+          "source_symbol": "MultiTileEntityLightningRod"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityLogisticsCore extends TileEntityBase10MultiBlockBase implements ITileEntityEnergy, ITileEntityLogistics, ITileEntityServerTickPre, ITileEntityEnergyDataCapacitor, IMultiBlockEnergy, IMultiBlockFluidHandler, IFluidHandler {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "2bae7ff6eeb0b661128cf32894eb04b5e45a8c4c",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLogisticsCore.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityLogisticsCore.java",
+          "source_sha256": "b23b182503bedd96a13bc040035037792810b01894e8350301622f464c777fd3",
+          "source_symbol": "MultiTileEntityLogisticsCore"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityMatterFabricator extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "96a5dacbda5edc29e592bffa7c8597bb7e94d75c",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityMatterFabricator.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityMatterFabricator.java",
+          "source_sha256": "5e4289450f65c76c15065784b6d04a30c825f2c3b0db5d376f46c5af7dd19a17",
+          "source_symbol": "MultiTileEntityMatterFabricator"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityMixer extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "bdcaa9f62671fa185d5951abccac723bd832db2a",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityMixer.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityMixer.java",
+          "source_sha256": "7d387c3eb158db463eca78e4397dc0d6c8c7ef10a96500fcab71f08982b125fd",
+          "source_symbol": "MultiTileEntityMixer"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityOven extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "79c6fe236e3ec740120cd3923d67e7261b031cd3",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityOven.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityOven.java",
+          "source_sha256": "9165cd20f7e7ecd9df1d4c961e00406c85a3bf708dec9845388d0a26c2b7d7cc",
+          "source_symbol": "MultiTileEntityOven"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityShredder extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "45eae7babe34d85aef10880b1c464d662a9fa2bf",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityShredder.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityShredder.java",
+          "source_sha256": "179f7ced95334bcc899fbaefe8984777c90668c84825543e35bfbdeccee17419",
+          "source_symbol": "MultiTileEntityShredder"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntitySluice extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "0e581af537c7cf257f6d9f9152ea1014d91e2897",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntitySluice.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntitySluice.java",
+          "source_sha256": "12a4affe160b5febe9f848988f455dd2effc9418a24ec4256f2941c5002f6b3b",
+          "source_symbol": "MultiTileEntitySluice"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntitySqueezer extends TileEntityBase10MultiBlockMachine {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "4df394c0ca01f2d052c8cf877ecd0b7352803f46",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntitySqueezer.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntitySqueezer.java",
+          "source_sha256": "f2891a6e2ac77266ae676a1b2a8bcdee695236ca0d698970cdc0cd9e0512bfb6",
+          "source_symbol": "MultiTileEntitySqueezer"
+        },
+        {
+          "abstract": true,
+          "declaration": "public abstract class MultiTileEntityTank extends TileEntityBase10MultiBlockBase implements IMultiBlockFluidHandler, IFluidHandler, ITileEntityFunnelAccessible, ITileEntityTapAccessible {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "cc6adb0621ebe4e7fda626afa8112692e2734b60",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank.java",
+          "source_sha256": "ecf0694699f793359d0787d2169c98774428825acf098527fc19dc6fee06a1e4",
+          "source_symbol": "MultiTileEntityTank"
+        },
+        {
+          "abstract": true,
+          "declaration": "public abstract class MultiTileEntityTank3x3x3 extends MultiTileEntityTank {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "4b920717e1f81c5508b2ed7091e1b26f4af95b24",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank3x3x3.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank3x3x3.java",
+          "source_sha256": "84114f5a8e4828b324c67a6dfb5528140e0d263bf389b13f0970e9cf4ff4eacb",
+          "source_symbol": "MultiTileEntityTank3x3x3"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityTank3x3x3Metal extends MultiTileEntityTank3x3x3 {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "2a11685b1f00a6a9e0e08db89a95dd617a3d5a2e",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank3x3x3Metal.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank3x3x3Metal.java",
+          "source_sha256": "9197e6f5b33499c51172471e10d868a76a548e4fc1f8639caaf592b2c9bba269",
+          "source_symbol": "MultiTileEntityTank3x3x3Metal"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityTank3x3x3Wood extends MultiTileEntityTank3x3x3 {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "4b0bd6cd280c1d4a7c5a80efe4ea5f4525736eee",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank3x3x3Wood.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank3x3x3Wood.java",
+          "source_sha256": "2ba5c052e8b4369a8fb9cb2fbde4b870d63f2890d24be25fce8d6129264c9a7e",
+          "source_symbol": "MultiTileEntityTank3x3x3Wood"
+        },
+        {
+          "abstract": true,
+          "declaration": "public abstract class MultiTileEntityTank5x5x5 extends MultiTileEntityTank {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "888a1533b7f95d34197d43ada61ff187b756180f",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank5x5x5.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank5x5x5.java",
+          "source_sha256": "1336944ac940ac7f0f4dee911cd4ae5f108a10d7bf8e221c87126f2ddf797d39",
+          "source_symbol": "MultiTileEntityTank5x5x5"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityTank5x5x5Metal extends MultiTileEntityTank5x5x5 {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "fc88429fd1dcc1dc4b1fa98b684c366720a78cad",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank5x5x5Metal.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityTank5x5x5Metal.java",
+          "source_sha256": "2e8c46fd5f00fb565f425514065fb2d20545542c686b173570cf02c3875ede21",
+          "source_symbol": "MultiTileEntityTank5x5x5Metal"
+        },
+        {
+          "abstract": false,
+          "declaration": "public class MultiTileEntityVonDaGraagg extends TileEntityBase10MultiBlockBase implements ITileEntityEnergy, ITileEntityMobSpawnInhibitor, IMultiBlockEnergy, ITileEntityProgress, ITileEntityGibbl {",
+          "declaration_kind": "class",
+          "git_blob_sha1": "4a71c5701a6252839b45474af87133f5ceca683a",
+          "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityVonDaGraagg.java",
+          "source_path": "src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityVonDaGraagg.java",
+          "source_sha256": "8c6e65cb6766a4c9173dc5ee476b575775b437f6fc6a4f2a0984d20daa78ce59",
+          "source_symbol": "MultiTileEntityVonDaGraagg"
+        }
+      ],
+      "source_packages": [
+        {
+          "expected_symbols": [
+            "IMultiBlockEnergy",
+            "IMultiBlockEnergyDataCapacitor",
+            "IMultiBlockFluidHandler",
+            "IMultiBlockInventory",
+            "ITileEntityMultiBlockController",
+            "MultiTileEntityMultiBlockPart",
+            "TileEntityBase10MultiBlockBase",
+            "TileEntityBase10MultiBlockMachine",
+            "TileEntityBase11MultiBlockConverter"
+          ],
+          "path": "src/main/java/gregapi/tileentity/multiblocks"
+        },
+        {
+          "expected_symbols": [
+            "MultiTileEntityAutoclave",
+            "MultiTileEntityBath",
+            "MultiTileEntityBedrockDrill",
+            "MultiTileEntityCentrifuge",
+            "MultiTileEntityCoagulator",
+            "MultiTileEntityCokeOven",
+            "MultiTileEntityCrucible",
+            "MultiTileEntityCrusher",
+            "MultiTileEntityCryoDistillationTower",
+            "MultiTileEntityDistillationTower",
+            "MultiTileEntityElectrolyzer",
+            "MultiTileEntityFermenter",
+            "MultiTileEntityFusionReactor",
+            "MultiTileEntityImplosionCompressor",
+            "MultiTileEntityLargeBoiler",
+            "MultiTileEntityLargeDynamo",
+            "MultiTileEntityLargeHeatExchanger",
+            "MultiTileEntityLargeTurbine",
+            "MultiTileEntityLargeTurbineGas",
+            "MultiTileEntityLargeTurbineSteam",
+            "MultiTileEntityLightningRod",
+            "MultiTileEntityLogisticsCore",
+            "MultiTileEntityMatterFabricator",
+            "MultiTileEntityMixer",
+            "MultiTileEntityOven",
+            "MultiTileEntityShredder",
+            "MultiTileEntitySluice",
+            "MultiTileEntitySqueezer",
+            "MultiTileEntityTank",
+            "MultiTileEntityTank3x3x3",
+            "MultiTileEntityTank3x3x3Metal",
+            "MultiTileEntityTank3x3x3Wood",
+            "MultiTileEntityTank5x5x5",
+            "MultiTileEntityTank5x5x5Metal",
+            "MultiTileEntityVonDaGraagg"
+          ],
+          "path": "src/main/java/gregtech/tileentity/multiblocks"
+        }
+      ]
+    }
+  },
+  "schema_version": 1,
+  "source": {
+    "repository": "https://github.com/GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "tree_sha1": "a164302f62a326208fd2076de6fb7cdb0b4602ee"
+  }
+}

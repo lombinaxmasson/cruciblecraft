@@ -1,15 +1,17 @@
-# CrucibleCraft 阶段档案：T7–T9
+# CrucibleCraft 阶段档案 · T7–T9
 
 > 从《CrucibleCraft-第二阶段总体规划》迁移的已关闭阶段判据与关闭快照
 > 归档：2026-08-05　关闭结论与历史数字保持不变
+> 当前执行入口：《[CrucibleCraft-第三阶段总体规划.md](CrucibleCraft-第三阶段总体规划.md)》
 
 ---
 
 ## 0. 阅读说明
 
 - 本档案保存 T7–T9 关闭时使用的完整判据、交付、范围、完成信号和关闭快照。
-- 文中的数字是对应关闭快照的历史事实，不替代《[CrucibleCraft-第二阶段总体规划.md](CrucibleCraft-第二阶段总体规划.md)》第 5 节当前架构快照。
+- 文中的数字是对应关闭快照的历史事实，不替代《[CrucibleCraft-第二阶段总体规划.md](CrucibleCraft-第二阶段总体规划.md)》的阶段最终快照或第三阶段当前账目。
 - 已关闭阶段仍可保留独立的保真或载荷债，例如 T9 几何 O-29；这不会重开已经证明的闭包轴。
+- 正文中的 RU/KU→`KINETIC` 与 `methane` 矿床是当时快照：O-30 已由 T12 首批能源分域关闭，O-38 已由 T11 的 `natural_gas` identity、旧 NBT 迁移与 generifier 553 关闭；详《[CrucibleCraft-阶段档案-T10-T12.md](CrucibleCraft-阶段档案-T10-T12.md)》。
 - 历史正文中的章节号按迁移前语境保留；当前不可违反的方法论与架构规则以《[CrucibleCraft-总体规划.md](CrucibleCraft-总体规划.md)》第 5、7、8、9 节为准。
 
 ---

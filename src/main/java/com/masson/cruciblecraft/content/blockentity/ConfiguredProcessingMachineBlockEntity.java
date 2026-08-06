@@ -3,7 +3,7 @@ package com.masson.cruciblecraft.content.blockentity;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.menu.ConfiguredProcessingMachineMenu;
-import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
+import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineEnergyPlacement;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineFluidPolicy;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineDisplayData;
@@ -23,11 +23,12 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 /** One production host configured by the block's immutable machine spec. */
-public final class ConfiguredProcessingMachineBlockEntity
+public class ConfiguredProcessingMachineBlockEntity
         extends ProcessingMachineBlockEntity implements MenuProvider {
     private final ContainerData data = new ContainerData() {
         @Override public int get(int index) {
@@ -46,14 +47,22 @@ public final class ConfiguredProcessingMachineBlockEntity
     };
 
     public ConfiguredProcessingMachineBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.PROCESSING_MACHINE.get(), pos, state, specFor(state));
+        super(ModBlockEntities.PROCESSING_MACHINE.get(), pos, state, variantFor(state));
     }
 
-    private static ProcessingMachineSpec specFor(BlockState state) {
+    protected ConfiguredProcessingMachineBlockEntity(
+            BlockEntityType<?> type,
+            BlockPos pos,
+            BlockState state,
+            MachineVariant variant) {
+        super(type, pos, state, variant);
+    }
+
+    private static MachineVariant variantFor(BlockState state) {
         if (!(state.getBlock() instanceof ProcessingMachineBlock machine)) {
             throw new IllegalArgumentException("Configured machine block entity needs its block spec");
         }
-        return machine.spec();
+        return machine.variant();
     }
 
     public static void serverTick(
@@ -88,7 +97,10 @@ public final class ConfiguredProcessingMachineBlockEntity
     @Override public AbstractContainerMenu createMenu(
             int id, Inventory inventory, Player player) {
         return new ConfiguredProcessingMachineMenu(
-                ModMenus.forMachine(spec()).get(), id, inventory, this);
+                ModMenus.forMachine(variant().kind().behavior()).get(),
+                id,
+                inventory,
+                this);
     }
 
     @Override protected Direction machineFront() {

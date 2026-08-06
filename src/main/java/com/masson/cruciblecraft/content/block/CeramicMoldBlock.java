@@ -1,5 +1,7 @@
 package com.masson.cruciblecraft.content.block;
 
+import java.util.List;
+
 import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 import com.masson.cruciblecraft.content.item.CeramicMoldBlockItem;
@@ -98,20 +100,33 @@ public final class CeramicMoldBlock extends Block implements EntityBlock {
     }
 
     @Override
-    public BlockState playerWillDestroy(
+    protected void onRemove(
+            BlockState state,
             Level level,
             BlockPos pos,
-            BlockState state,
-            Player player) {
-        if (!level.isClientSide && !player.getAbilities().instabuild
+            BlockState newState,
+            boolean movedByPiston) {
+        if (isBlockReplacement(state, newState)
+                && !level.isClientSide
                 && level.getBlockEntity(pos) instanceof CeramicMoldBlockEntity mold) {
-            popResource(level, pos, mold.moldStack());
-            ItemStack contents = mold.contentsStack();
-            if (!contents.isEmpty()) {
-                popResource(level, pos, contents);
+            for (ItemStack stack : removalDrops(
+                    mold.moldStack(), mold.contentsStack())) {
+                popResource(level, pos, stack);
             }
         }
-        return super.playerWillDestroy(level, pos, state, player);
+        super.onRemove(state, level, pos, newState, movedByPiston);
+    }
+
+    static boolean isBlockReplacement(
+            BlockState state, BlockState newState) {
+        return state.getBlock() != newState.getBlock();
+    }
+
+    static List<ItemStack> removalDrops(
+            ItemStack moldStack, ItemStack contentsStack) {
+        return contentsStack.isEmpty()
+                ? List.of(moldStack)
+                : List.of(moldStack, contentsStack);
     }
 
     @Override

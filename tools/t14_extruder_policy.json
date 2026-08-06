@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "gate": "T14A_EXTRUDER_EQUIVALENCE",
+  "scope": {
+    "family": "extruder",
+    "owner": "T14",
+    "playable_template_count": 20,
+    "skipped_template_count": 42,
+    "logical_relation_count": 2782,
+    "runtime_publication_count": 2782,
+    "t8_pipe_owner": "T8",
+    "t8_pipe_publication_count": 257,
+    "exact_remainder_count": 1
+  },
+  "authoring": {
+    "runtime_type": "cruciblecraft:material_rule",
+    "compact_field": "sparse",
+    "entry_boundary": "one entry per playable v5 concrete shape and heat mode",
+    "relation_policy": "exact per-material relation; formulas and Cartesian products are forbidden",
+    "stable_id_policy": "retain runtime id cruciblecraft:extruder/<shape>/<material>/<material> produced by the legacy explicit-material rule id",
+    "legacy_replay_delivery": "verification_only_not_a_runtime_datapack"
+  },
+  "expected": {
+    "selector_implementation": "independent_legacy_sparse_parser",
+    "production_compact_implementation": "template_grouped_exact_relation_builder",
+    "selectors_must_not_call_each_other": true,
+    "locked_fields": [
+      "stable_id",
+      "material",
+      "shape",
+      "input.prefix",
+      "input.count",
+      "output.prefix",
+      "output.count",
+      "duration",
+      "eut",
+      "fallback",
+      "forging_target",
+      "plateGem",
+      "heat_mode",
+      "shadow_order"
+    ],
+    "fallback_definition": {
+      "dust": "exact relation consumes dust as the source-backed ingot fallback",
+      "none": "exact relation does not consume the dust fallback"
+    },
+    "plateGem_definition": "whether the material source facts declare generates_plate_gem; this is distinct from a plate output"
+  },
+  "inputs": {
+    "sparse_source": "tools/component_rule_sources/extruder_shapes.json",
+    "v5_index": "tools/gt6_extruder_templates_index_v5.json",
+    "v5_report": "tools/gt6_extruder_templates_report.json",
+    "material_definitions": "src/main/resources/data/cruciblecraft/materials",
+    "registration_gate": "src/main/resources/data/cruciblecraft/material_registration_gate.json",
+    "t8_readiness": "tools/t8_pipe_readiness.json"
+  },
+  "artifacts": {
+    "expected": "tools/t14_extruder_expected.json",
+    "compact": "tools/t14_extruder_compact.json",
+    "readiness": "tools/t14_extruder_readiness.json",
+    "legacy_replay": "tools/t14_extruder_legacy_replay.json"
+  },
+  "fail_closed": [
+    "missing_or_extra_expected_relation",
+    "duration_drift",
+    "eut_drift",
+    "fallback_drift",
+    "shadow_order_drift",
+    "duplicate_stable_id",
+    "duplicate_shadow_signature",
+    "unindexed_runtime_recipe"
+  ],
+  "t14c_interface": {
+    "relation_fingerprint": "readiness.relation_fingerprint",
+    "compact_fingerprint": "readiness.compact_fingerprint",
+    "logical_rows": 2782,
+    "enumeration_order": "shadow_order_then_stable_id",
+    "immediate_candidate": "expand all compact relations before RecipeMap publication"
+  }
+}

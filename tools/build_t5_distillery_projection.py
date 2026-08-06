@@ -19,6 +19,12 @@ SOURCE_MAP = (
     / "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json"
 )
 LEDGER = TOOLS / "t5_distillery_projection.json"
+T13_RECIPE_MAPS = TOOLS / "t13_denominators/recipe_maps.json"
+T5_FLUID_GATE = (
+    ROOT
+    / "src/t5_chemical_generated/resources/data/cruciblecraft/"
+    "t5_chemical_fluid_gate.json"
+)
 RECIPE_ROOT = (
     ROOT
     / "src/t5_chemical_generated/resources/data/cruciblecraft/recipe/t5"
@@ -497,6 +503,7 @@ def plan(
             "source_map_shape_limits": list(SOURCE_SHAPE_LIMITS),
         },
         "source": {
+            "builder_sha256": digest(Path(__file__).resolve()),
             "map": SOURCE_MAP_ID,
             "path": source_path,
             "recipe_count": len(source_recipes),
@@ -589,6 +596,86 @@ def check() -> list[str]:
     return errors
 
 
+def reference_only_check() -> list[str]:
+    errors: list[str] = []
+    if not LEDGER.is_file():
+        return [f"missing generated file: {LEDGER.relative_to(ROOT)}"]
+    try:
+        ledger = load(LEDGER)
+        if LEDGER.read_bytes() != stable(ledger).encode("utf-8"):
+            errors.append("distillery ledger is not canonical JSON")
+        t13 = load(T13_RECIPE_MAPS)
+        map_row = next(
+            row
+            for row in t13["rows"]
+            if row["name_internal"] == SOURCE_MAP_ID
+        )
+        source = ledger.get("source") or {}
+        if (
+            source.get("builder_sha256") != digest(Path(__file__).resolve())
+            or source.get("sha256") != map_row["source_blob"]
+            or source.get("recipe_count") != map_row["recipe_count"]
+        ):
+            errors.append("distillery source receipt drifted")
+        for relative, expected in (ledger.get("inputs") or {}).items():
+            path = ROOT / relative
+            actual = (
+                canonical_hash(load(path))
+                if path == T5_FLUID_GATE
+                else digest(path)
+            ) if path.is_file() else None
+            if actual != expected:
+                errors.append(f"distillery tracked input drifted: {relative}")
+        rows = ledger.get("rows") or []
+        generated = ledger.get("generated") or []
+        counts = ledger.get("counts") or {}
+        classifications = Counter(
+            row.get("classification") for row in rows
+        )
+        if (
+            [row.get("recipe_index") for row in rows]
+            != list(range(len(rows)))
+            or counts.get("source_rows") != len(rows)
+            or counts.get("classified") != len(rows)
+            or counts.get("unclassified") != 0
+            or counts.get("generated_recipes") != len(generated)
+            or any(
+                counts.get(name) != classifications[name]
+                for name in CLASSIFICATIONS
+            )
+        ):
+            errors.append("distillery compact counts are inconsistent")
+        expected_files = {
+            DISTILLERY_ROOT / f"{entry['id'].rsplit('/', 1)[-1]}.json"
+            for entry in generated
+        }
+        actual_files = set(DISTILLERY_ROOT.glob("*.json"))
+        if actual_files != expected_files:
+            errors.append("distillery generated file set drifted")
+        for entry in generated:
+            path = DISTILLERY_ROOT / f"{entry['id'].rsplit('/', 1)[-1]}.json"
+            document = load(path)
+            if path.read_bytes() != stable(document).encode("utf-8"):
+                errors.append(f"non-canonical generated file: {path}")
+            selected = (
+                document.get("provenance") or {}
+            ).get("selected_source_recipe")
+            if selected != (
+                f"{entry['source_path']}#recipes[{entry['recipe_index']}]"
+            ):
+                errors.append(f"distillery provenance drifted: {path.name}")
+    except (
+        KeyError,
+        OSError,
+        StopIteration,
+        TypeError,
+        ValueError,
+        json.JSONDecodeError,
+    ) as exc:
+        errors.append(str(exc))
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -596,9 +683,14 @@ def main() -> int:
         action="store_true",
         help="fail if committed distillery artifacts are stale",
     )
+    replay_mode = parser.add_mutually_exclusive_group()
+    replay_mode.add_argument("--reference-only", action="store_true")
+    replay_mode.add_argument("--full-replay", action="store_true")
     args = parser.parse_args()
+    if (args.reference_only or args.full_replay) and not args.check:
+        parser.error("--reference-only and --full-replay require --check")
     if args.check:
-        errors = check()
+        errors = reference_only_check() if args.reference_only else check()
         if errors:
             print("T5.5 distillery projection is stale:")
             for error in errors:

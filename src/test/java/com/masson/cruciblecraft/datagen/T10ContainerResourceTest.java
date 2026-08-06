@@ -26,11 +26,11 @@ class T10ContainerResourceTest {
     void runtimeGatesCloseAllDomainsWithoutPerFluidItems() throws Exception {
         Map<ResourceLocation, CellContentGate.Kind> entries =
                 CellContentGate.entries();
-        assertEquals(109, entries.size());
+        assertEquals(110, entries.size());
         assertEquals(61, entries.values().stream()
                 .filter(kind -> kind == CellContentGate.Kind.FLUID)
                 .count());
-        assertEquals(48, entries.values().stream()
+        assertEquals(49, entries.values().stream()
                 .filter(kind -> kind == CellContentGate.Kind.GAS)
                 .count());
         assertEquals(

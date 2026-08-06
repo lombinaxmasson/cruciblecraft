@@ -60,9 +60,67 @@ public final class ProcessingRuntime {
         return processor.complete() ? Result.COMPLETE : Result.ADVANCED;
     }
 
+    public Result tickWork(
+            String recipeId,
+            int displayedDuration,
+            boolean valid,
+            boolean outputCapacity,
+            long completedWork,
+            long requiredWork,
+            ProcessingMachineSpec.BufferPolicy buffering) {
+        Objects.requireNonNull(buffering, "buffering");
+        if (recipeId == null || recipeId.isBlank()) {
+            processor.reset();
+            status = "idle";
+            return Result.IDLE;
+        }
+        processor.select(recipeId, displayedDuration);
+        if (!valid) {
+            status = "invalid_recipe";
+            return Result.INVALID_RECIPE;
+        }
+        if (!outputCapacity) {
+            if (buffering
+                    == ProcessingMachineSpec.BufferPolicy.RESET_ON_BLOCK) {
+                processor.reset();
+            }
+            status = "output_blocked";
+            return Result.OUTPUT_BLOCKED;
+        }
+        if (requiredWork <= 0L
+                || completedWork < 0L
+                || completedWork > requiredWork) {
+            throw new IllegalArgumentException(
+                    "Invalid machine work progress");
+        }
+        status = "";
+        int displayedProgress = completedWork >= requiredWork
+                ? displayedDuration
+                : (int) Math.min(
+                        displayedDuration - 1L,
+                        Math.multiplyExact(
+                                        completedWork,
+                                        displayedDuration)
+                                / requiredWork);
+        processor.setProgress(displayedProgress);
+        return completedWork >= requiredWork
+                ? Result.COMPLETE
+                : Result.ADVANCED;
+    }
+
     public void completed(int displayedDuration) {
         processor.clearActive(displayedDuration);
         status = "idle";
+    }
+
+    public void recipePowerExceeded(
+            String recipeId, int duration) {
+        processor.select(recipeId, duration);
+        status = "recipe_power_exceeded";
+    }
+
+    public void overcharged() {
+        status = "overcharged";
     }
 
     public boolean reset() {

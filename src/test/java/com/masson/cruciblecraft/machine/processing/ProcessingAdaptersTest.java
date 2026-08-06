@@ -575,7 +575,16 @@ class ProcessingAdaptersTest {
         assertEquals(10, ModProcessingMachines.T3_MACHINES.size());
         for (ProcessingMachineSpec spec : ModProcessingMachines.T3_MACHINES) {
             assertEquals(spec.recipeMapId(), spec.requireRecipeMap().id());
-            assertEquals(EnergyType.KINETIC, spec.energy().type());
+            EnergyType expectedEnergy = spec == ModProcessingMachines.PRESS
+                    ? EnergyType.KINETIC_PUSH
+                    : List.of(
+                                    ModProcessingMachines.LATHE,
+                                    ModProcessingMachines.ROLLINGMILL,
+                                    ModProcessingMachines.WIREMILL)
+                            .contains(spec)
+                                    ? EnergyType.KINETIC_ROTATION
+                                    : EnergyType.KINETIC;
+            assertEquals(expectedEnergy, spec.energy().type());
             assertEquals(ProcessingMachineSpec.EnergyMode.BUFFERED, spec.energy().mode());
             assertEquals(4_096L, spec.energy().capacity());
             assertEquals(256L, spec.energy().maxPacket());
@@ -818,11 +827,11 @@ class ProcessingAdaptersTest {
         assertEquals(2, ConfiguredProcessingMachineMenu.DATA_COUNT);
         assertEquals(1, ProcessingMachineDisplayData.statusIndex(
                 ModProcessingMachines.ASSEMBLER, ""));
-        assertEquals(5, ProcessingMachineDisplayData.statusIndex(
+        assertEquals(7, ProcessingMachineDisplayData.statusIndex(
                 ModProcessingMachines.ASSEMBLER, "unsupported_version_3"));
-        assertEquals(6, ProcessingMachineDisplayData.statusIndex(
-                ModProcessingMachines.ASSEMBLER, "inventory_layout_quarantined"));
         assertEquals(8, ProcessingMachineDisplayData.statusIndex(
+                ModProcessingMachines.ASSEMBLER, "inventory_layout_quarantined"));
+        assertEquals(10, ProcessingMachineDisplayData.statusIndex(
                 ModProcessingMachines.ASSEMBLER, "future_status"));
     }
 

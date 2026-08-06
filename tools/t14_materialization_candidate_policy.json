@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "status": "T14B_BENCHMARK_POLICY",
+  "scope": {
+    "benchmark_only": true,
+    "production_switch_allowed": false,
+    "production_types_untouched": [
+      "com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader",
+      "com.masson.cruciblecraft.recipe.gt.RecipeMap"
+    ]
+  },
+  "input": {
+    "kind": "prototype_relations",
+    "prototype_relation_count": 2782,
+    "description": "Synthetic Extruder relations shaped from the current 2782-relation observation; this is not the T14a compact source.",
+    "production_winner_requires_input_kind": "t14a_compact_relations"
+  },
+  "scales": [
+    {
+      "id": "baseline",
+      "relation_count": 2782,
+      "purpose": "current observed relation-count control"
+    },
+    {
+      "id": "1x",
+      "relation_count": 2782,
+      "purpose": "candidate comparison denominator"
+    },
+    {
+      "id": "5x",
+      "relation_count": 13910,
+      "purpose": "medium growth projection"
+    },
+    {
+      "id": "20x",
+      "relation_count": 55640,
+      "purpose": "hard-limit and ranking scale"
+    }
+  ],
+  "candidate_contract": {
+    "candidates": [
+      "immediate",
+      "on_demand",
+      "hybrid"
+    ],
+    "stable_id_template": "cruciblecraft:t14b/extruder/{relation_id}",
+    "lookup": "input-key relation index followed by stable relation-id selection",
+    "enumeration": "epoch-bound, relation-order view of every recipe",
+    "invalidation": "publishing a strictly newer epoch invalidates caches and prior enumeration views",
+    "client_gate": {
+      "dedicated_client": "re-expand from synchronized relation payload",
+      "integrated_client": "skip re-expansion and share the server publication"
+    }
+  },
+  "hybrid_boundary": {
+    "rule": "relation ordinal modulo hot_modulo equals zero",
+    "hot_modulo": 5,
+    "eager_partition": "hot relations materialize and index at publication",
+    "long_tail_partition": "all other relations retain indexed relation metadata and materialize per lookup/enumeration"
+  },
+  "workload": {
+    "relation_candidates_per_input": 4,
+    "reload_warmup_iterations": 2,
+    "reload_samples": 7,
+    "lookup_warmup_operations": 256,
+    "lookup_samples": 61,
+    "lookup_operations_per_sample": 32,
+    "enumeration_warmup_iterations": 1,
+    "enumeration_samples": 5,
+    "retained_child_samples": 2,
+    "retained_child_heap": "384m",
+    "retained_lookup_warmup_operations": 512,
+    "jfr_allocation_samples": 2,
+    "timing_error_bar": "nonparametric_95_percent_median_order_statistic",
+    "retained_error_bar": "sample_min_max",
+    "allocation_error_bar": "sample_min_max"
+  },
+  "retained_memory_protocol": {
+    "isolation": "one child JVM per candidate, scale, and sample",
+    "controlled_gc": [
+      "jcmd <pid> GC.run",
+      "jcmd <pid> GC.class_histogram"
+    ],
+    "measurement": "Total bytes from the post-GC JDK class histogram; benchmark-package class bytes are also retained as diagnostics.",
+    "jcmd_unavailable": "SKIP_AND_BLOCK_DECISION",
+    "forbidden": "naive before/after heap delta"
+  },
+  "hard_limits_20x": {
+    "server_reload_p95_ns": 3000000000,
+    "dedicated_client_reexpansion_p95_ns": 3000000000,
+    "retained_total_bytes_p50": 536870912,
+    "lookup_p95_ns": 2000000,
+    "enumeration_p95_ns": 3000000000,
+    "sync_bytes": 67108864,
+    "jfr_allocation_bytes_p50": 536870912
+  },
+  "winner_algorithm": {
+    "gate_order": [
+      "correctness",
+      "epoch_invalidation",
+      "dedicated_client_enumeration",
+      "integrated_client_skip",
+      "20x_hard_limits"
+    ],
+    "ranking_scale": "20x",
+    "ranking_metrics": [
+      "server_reload",
+      "dedicated_client_reexpansion",
+      "retained_total_bytes",
+      "lookup_p95"
+    ],
+    "normalization": "for each metric divide by the best surviving candidate estimate, then minimize the candidate's worst normalized metric",
+    "error_band_tie": "scores whose normalized worst-cost bands overlap are tied",
+    "tie_preference": [
+      "hybrid",
+      "immediate",
+      "on_demand"
+    ],
+    "production_guard": "Never emit a production winner unless measurements were produced from input kind t14a_compact_relations."
+  }
+}

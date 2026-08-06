@@ -29,6 +29,7 @@ TEMPLATE_REPORT = TOOLS / "gt6_recipe_templates_report.json"
 POLICY = TOOLS / "t5_chemical_policy.json"
 GITIGNORE = ROOT / ".gitignore"
 DUMP_INDEX = ROOT / "gt6_dump/gt6_recipe_dump/index.json"
+T13_RECIPE_MAPS = TOOLS / "t13_denominators/recipe_maps.json"
 OUTPUT = TOOLS / "t5_chemical_readiness.json"
 
 
@@ -889,6 +890,7 @@ def build() -> dict[str, Any]:
         "delivery_boundary": policy["delivery_boundary"],
         "gt6_source": policy["gt6_source"],
         "source_hashes": {
+            "builder": sha256(Path(__file__).resolve()),
             "gitignore": sha256(GITIGNORE),
             "gt6_recipe_dump_index": sha256(DUMP_INDEX),
             "gt6_map_roadmap": sha256(MAP_ROADMAP),
@@ -950,6 +952,63 @@ def build() -> dict[str, Any]:
     }
 
 
+def reference_only_check() -> list[str]:
+    errors: list[str] = []
+    if not OUTPUT.is_file():
+        return [f"missing generated file: {OUTPUT.relative_to(ROOT)}"]
+    try:
+        document = load(OUTPUT)
+        if OUTPUT.read_text(encoding="utf-8") != stable_json(document):
+            errors.append("T5 readiness artifact is not canonical JSON")
+        t13 = load(T13_RECIPE_MAPS)
+        receipt = t13["full_replay_receipt"]
+        expected_hashes = {
+            "builder": sha256(Path(__file__).resolve()),
+            "gitignore": sha256(GITIGNORE),
+            "gt6_recipe_dump_index": receipt["dump_index_sha256"],
+            "gt6_map_roadmap": sha256(MAP_ROADMAP),
+            "gt6_ore_chain_closure": sha256(ORE_CLOSURE),
+            "gt6_oredict_fluids_normalized": sha256(NORMALIZED_FLUIDS),
+            "gt6_oredict_materials_normalized": sha256(
+                NORMALIZED_MATERIALS
+            ),
+            "gt6_recipe_templates_index": sha256(TEMPLATE_INDEX),
+            "gt6_recipe_templates_report": sha256(TEMPLATE_REPORT),
+            "material_catalog": directory_sha256(MATERIAL_ROOT),
+            "material_index": sha256(MATERIAL_INDEX),
+            "material_registration_gate": sha256(REGISTRATION_GATE),
+            "policy": sha256(POLICY),
+        }
+        if document.get("source_hashes") != expected_hashes:
+            errors.append("T5 readiness source hashes drifted")
+        map_hashes = {
+            row["name_internal"]: row["source_blob"]
+            for row in t13["rows"]
+        }
+        for map_name, coverage in (
+            document.get("template_coverage") or {}
+        ).items():
+            if (
+                coverage.get("pinned_dump_sha256")
+                != map_hashes.get(map_name)
+            ):
+                errors.append(
+                    f"T5 template coverage hash drifted: {map_name}"
+                )
+        counts = document.get("counts") or {}
+        if (
+            document.get("status") != "SOURCE_REPLAY_VERIFIED"
+            or counts.get("classified")
+            != len(document.get("chemical_materials") or [])
+            or counts.get("unclassified") != 0
+            or len(document.get("blockers") or []) != 0
+        ):
+            errors.append("T5 readiness compact counts are inconsistent")
+    except (KeyError, OSError, TypeError, ValueError, json.JSONDecodeError) as exc:
+        errors.append(str(exc))
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -957,7 +1016,21 @@ def main() -> int:
         action="store_true",
         help="fail if the committed T5a readiness ledger is stale",
     )
+    replay_mode = parser.add_mutually_exclusive_group()
+    replay_mode.add_argument("--reference-only", action="store_true")
+    replay_mode.add_argument("--full-replay", action="store_true")
     args = parser.parse_args()
+    if (args.reference_only or args.full_replay) and not args.check:
+        parser.error("--reference-only and --full-replay require --check")
+    if args.check and args.reference_only:
+        errors = reference_only_check()
+        if errors:
+            raise SystemExit(
+                "T5a compact readiness is stale:\n"
+                + "\n".join(f"- {error}" for error in errors)
+            )
+        print("T5a compact chemical readiness ledger is current.")
+        return 0
     document = build()
     encoded = stable_json(document)
     if args.check:

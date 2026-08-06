@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
@@ -31,7 +32,8 @@ public record MaterialRule(
         Map<String, MaterialOverride> materialOverrides,
         List<String> conditions,
         Optional<Tuning> tuning,
-        List<UnificationPreference> unification) {
+        List<UnificationPreference> unification,
+        Optional<SparseTable> sparse) {
 
     public static final MapCodec<MaterialRule> CODEC =
             RecordCodecBuilder.mapCodec(instance -> instance.group(
@@ -61,7 +63,9 @@ public record MaterialRule(
                             .forGetter(MaterialRule::tuning),
                     UnificationPreference.CODEC.codec().listOf()
                             .optionalFieldOf("unification", List.of())
-                            .forGetter(MaterialRule::unification)
+                            .forGetter(MaterialRule::unification),
+                    SparseTable.CODEC.codec().optionalFieldOf("sparse")
+                            .forGetter(MaterialRule::sparse)
             ).apply(instance, MaterialRule::new));
     public static final StreamCodec<RegistryFriendlyByteBuf, MaterialRule> STREAM_CODEC =
             ByteBufCodecs.fromCodecWithRegistries(CODEC.codec());
@@ -77,21 +81,36 @@ public record MaterialRule(
         conditions = List.copyOf(conditions);
         tuning = tuning == null ? Optional.empty() : tuning;
         unification = List.copyOf(unification);
+        sparse = sparse == null ? Optional.empty() : sparse;
         if (target.isEmpty() && tuning.isEmpty() && unification.isEmpty()) {
             throw new IllegalArgumentException(
                     "A material_rule must declare target, tuning, or unification metadata");
         }
         if (target.isPresent()
+                && sparse.isEmpty()
                 && (itemInputs.isEmpty() && fluidInputs.isEmpty()
                         || itemOutputs.isEmpty() && fluidOutputs.isEmpty())) {
             throw new IllegalArgumentException(
                     "A processing material_rule requires at least one input and output");
         }
+        if (sparse.isPresent()
+                && (target.isEmpty()
+                        || !itemInputs.isEmpty()
+                        || !itemOutputs.isEmpty()
+                        || !fluidInputs.isEmpty()
+                        || !fluidOutputs.isEmpty()
+                        || material.isPresent()
+                        || !materialOverrides.isEmpty()
+                        || !conditions.isEmpty())) {
+            throw new IllegalArgumentException(
+                    "A sparse material_rule must declare only target and sparse relations");
+        }
         boolean hasPrefixDependency = itemInputs.stream().anyMatch(resource -> resource.prefix().isPresent())
                 || itemOutputs.stream().anyMatch(resource -> resource.prefix().isPresent())
                 || fluidInputs.stream().anyMatch(resource -> resource.prefix().isPresent())
                 || fluidOutputs.stream().anyMatch(resource -> resource.prefix().isPresent());
-        if (target.isPresent() && material.isEmpty() && !hasPrefixDependency) {
+        if (target.isPresent() && sparse.isEmpty()
+                && material.isEmpty() && !hasPrefixDependency) {
             throw new IllegalArgumentException(
                     "A fixed-only processing recipe must use cruciblecraft:gt_recipe; "
                             + "material_rule requires a prefix dependency or explicit material");
@@ -116,6 +135,39 @@ public record MaterialRule(
                         "Only byproduct outputs may be optional");
             }
         });
+    }
+
+    public MaterialRule(
+            Optional<ResourceLocation> target,
+            List<ItemResource> itemInputs,
+            List<ItemResource> itemOutputs,
+            List<FluidResource> fluidInputs,
+            List<FluidResource> fluidOutputs,
+            String duration,
+            String eut,
+            String specialValue,
+            boolean canBeBuffered,
+            Optional<String> material,
+            Map<String, MaterialOverride> materialOverrides,
+            List<String> conditions,
+            Optional<Tuning> tuning,
+            List<UnificationPreference> unification) {
+        this(
+                target,
+                itemInputs,
+                itemOutputs,
+                fluidInputs,
+                fluidOutputs,
+                duration,
+                eut,
+                specialValue,
+                canBeBuffered,
+                material,
+                materialOverrides,
+                conditions,
+                tuning,
+                unification,
+                Optional.empty());
     }
 
     static void requireMaterialId(String value, String field) {
@@ -346,6 +398,170 @@ public record MaterialRule(
             return new MaterialOverride(
                     Optional.empty(), Optional.empty(), Optional.empty(),
                     Map.of(), Map.of(), Map.of(), Map.of());
+        }
+    }
+
+    /** Exact per-material relation table used only by proven sparse families. */
+    public record SparseTable(
+            ResourceLocation shapeItem,
+            String shape,
+            int shapeMeta,
+            String templateId,
+            String heatMode,
+            List<SparseRelation> relations) {
+        public static final MapCodec<SparseTable> CODEC =
+                RecordCodecBuilder.mapCodec(instance -> instance.group(
+                        ResourceLocation.CODEC.fieldOf("shape_item")
+                                .forGetter(SparseTable::shapeItem),
+                        Codec.STRING.fieldOf("shape").forGetter(SparseTable::shape),
+                        Codec.INT.fieldOf("shape_meta").forGetter(SparseTable::shapeMeta),
+                        Codec.STRING.fieldOf("template_id").forGetter(SparseTable::templateId),
+                        Codec.STRING.fieldOf("heat_mode").forGetter(SparseTable::heatMode),
+                        SparseRelation.CODEC.codec().listOf().fieldOf("relations")
+                                .forGetter(SparseTable::relations)
+                ).apply(instance, SparseTable::new));
+
+        public SparseTable {
+            Objects.requireNonNull(shapeItem, "shapeItem");
+            requireMaterialId(shape, "sparse shape");
+            if (shapeMeta <= 0) {
+                throw new IllegalArgumentException("Sparse shape_meta must be positive");
+            }
+            if (!templateId.matches("sha256:[0-9a-f]{64}")) {
+                throw new IllegalArgumentException(
+                        "Invalid sparse template_id: " + templateId);
+            }
+            requireHeatMode(heatMode);
+            relations = List.copyOf(relations);
+            if (relations.isEmpty()) {
+                throw new IllegalArgumentException(
+                        "A sparse material rule requires exact relations");
+            }
+            java.util.HashSet<ResourceLocation> ids = new java.util.HashSet<>();
+            java.util.HashSet<String> materials = new java.util.HashSet<>();
+            int previousOrder = -1;
+            for (SparseRelation relation : relations) {
+                if (!relation.heatMode().equals(heatMode)) {
+                    throw new IllegalArgumentException(
+                            "Sparse relation heat_mode differs from its table");
+                }
+                if (!ids.add(relation.stableId())) {
+                    throw new IllegalArgumentException(
+                            "Duplicate sparse stable id " + relation.stableId());
+                }
+                if (!materials.add(relation.material())) {
+                    throw new IllegalArgumentException(
+                            "Ambiguous sparse material " + relation.material());
+                }
+                if (relation.shadowOrder() <= previousOrder) {
+                    throw new IllegalArgumentException(
+                            "Sparse shadow_order must be strictly increasing at "
+                                    + relation.stableId());
+                }
+                previousOrder = relation.shadowOrder();
+            }
+        }
+
+        public Optional<SparseRelation> findMatch(
+                String material,
+                String inputPrefix,
+                int inputCount) {
+            List<SparseRelation> matches = relations.stream()
+                    .filter(relation -> relation.material().equals(material))
+                    .filter(relation -> relation.input().prefix().equals(inputPrefix))
+                    .filter(relation -> relation.input().count() == inputCount)
+                    .toList();
+            if (matches.size() > 1) {
+                throw new IllegalStateException(
+                        "Ambiguous sparse relation match for " + material);
+            }
+            return matches.stream().findFirst();
+        }
+    }
+
+    public record SparseResource(String prefix, int count) {
+        public static final MapCodec<SparseResource> CODEC =
+                RecordCodecBuilder.mapCodec(instance -> instance.group(
+                        Codec.STRING.fieldOf("prefix").forGetter(SparseResource::prefix),
+                        Codec.INT.fieldOf("count").forGetter(SparseResource::count)
+                ).apply(instance, SparseResource::new));
+
+        public SparseResource {
+            requireMaterialId(prefix, "sparse resource prefix");
+            if (count <= 0 || count > 64) {
+                throw new IllegalArgumentException(
+                        "Sparse resource count must be in [1, 64]");
+            }
+        }
+    }
+
+    public record SparseRelation(
+            ResourceLocation stableId,
+            String material,
+            SparseResource input,
+            SparseResource output,
+            int duration,
+            long eut,
+            String fallback,
+            Optional<String> forgingTarget,
+            boolean plateGem,
+            String heatMode,
+            int shadowOrder) {
+        public static final MapCodec<SparseRelation> CODEC =
+                RecordCodecBuilder.mapCodec(instance -> instance.group(
+                        ResourceLocation.CODEC.fieldOf("stable_id")
+                                .forGetter(SparseRelation::stableId),
+                        Codec.STRING.fieldOf("material").forGetter(SparseRelation::material),
+                        SparseResource.CODEC.codec().fieldOf("input")
+                                .forGetter(SparseRelation::input),
+                        SparseResource.CODEC.codec().fieldOf("output")
+                                .forGetter(SparseRelation::output),
+                        Codec.INT.fieldOf("duration").forGetter(SparseRelation::duration),
+                        Codec.LONG.fieldOf("eut").forGetter(SparseRelation::eut),
+                        Codec.STRING.fieldOf("fallback").forGetter(SparseRelation::fallback),
+                        Codec.STRING.optionalFieldOf("forging_target")
+                                .forGetter(SparseRelation::forgingTarget),
+                        Codec.BOOL.fieldOf("plate_gem").forGetter(SparseRelation::plateGem),
+                        Codec.STRING.fieldOf("heat_mode").forGetter(SparseRelation::heatMode),
+                        Codec.INT.fieldOf("shadow_order").forGetter(SparseRelation::shadowOrder)
+                ).apply(instance, SparseRelation::new));
+
+        public SparseRelation {
+            Objects.requireNonNull(stableId, "stableId");
+            requireMaterialId(material, "sparse material");
+            Objects.requireNonNull(input, "input");
+            Objects.requireNonNull(output, "output");
+            if (duration <= 0 || eut <= 0) {
+                throw new IllegalArgumentException(
+                        "Sparse duration and EU/t must be positive");
+            }
+            if (!Set.of("none", "dust").contains(fallback)
+                    || fallback.equals("dust") != input.prefix().equals("dust")) {
+                throw new IllegalArgumentException(
+                        "Sparse fallback must exactly describe its input prefix");
+            }
+            forgingTarget = forgingTarget == null ? Optional.empty() : forgingTarget;
+            forgingTarget.ifPresent(value ->
+                    requireMaterialId(value, "sparse forging target"));
+            requireHeatMode(heatMode);
+            if (shadowOrder < 0) {
+                throw new IllegalArgumentException(
+                        "Sparse shadow_order cannot be negative for "
+                                + stableId);
+            }
+            String expectedSuffix = "/" + material;
+            if (!stableId.getPath().startsWith("extruder/")
+                    || !stableId.getPath().endsWith(expectedSuffix)) {
+                throw new IllegalArgumentException(
+                        "Sparse stable id does not end in its material: " + stableId);
+            }
+        }
+    }
+
+    private static void requireHeatMode(String heatMode) {
+        if (!Set.of("normal", "low_heat").contains(heatMode)) {
+            throw new IllegalArgumentException(
+                    "Invalid sparse heat_mode: " + heatMode);
         }
     }
 

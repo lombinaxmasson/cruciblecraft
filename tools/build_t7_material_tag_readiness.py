@@ -142,11 +142,25 @@ def material_rule_audit(
         for path, document in rows
         if "material" not in document
     ]
-    unconditioned = sorted(
+    all_unconditioned = sorted(
         path.relative_to(ROOT).as_posix()
         for path, document in generic
         if not document.get("conditions")
     )
+    post_t7_unconditioned = [
+        path
+        for path in all_unconditioned
+        if "/recipe/extruder/compact/" in path
+    ]
+    unconditioned = [
+        path
+        for path in all_unconditioned
+        if path not in post_t7_unconditioned
+    ]
+    if len(post_t7_unconditioned) != 20:
+        raise ValueError(
+            "T14 compact Extruder rule ownership drifted: expected 20"
+        )
     return {
         "total_rule_files": len(rows),
         "cross_material_rule_files": len(generic),
@@ -154,6 +168,8 @@ def material_rule_audit(
             bool(document.get("conditions")) for _, document in generic
         ),
         "unconditioned_cross_material_rule_files": unconditioned,
+        "post_t7_unconditioned_cross_material_rule_files":
+            post_t7_unconditioned,
         "material_specific_rule_files": len(rows) - len(generic),
         "referenced_tag_count": len(consumers),
         "unknown_tag_references": [],

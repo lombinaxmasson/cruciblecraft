@@ -54,6 +54,7 @@ CC_COMPONENT_TAGS = (
     / "resources"
     / "data"
 )
+T14_EXTRUDER_LEGACY_REPLAY = ROOT / "tools" / "t14_extruder_legacy_replay.json"
 ORE_CHAIN_INDEX = ROOT / "tools" / "gt6_ore_chain.json"
 OUT_JSON = ROOT / "tools" / "gt6_recipe_compare_report.json"
 BASELINE_JSON = ROOT / "tools" / "gt6_recipe_compare_baseline.json"
@@ -1207,13 +1208,32 @@ def expand_cc_recipes(materials: dict[str, dict[str, Any]]) -> list[NormRecipe]:
 
     # Every parametric process is read from the same declarative rule shape,
     # regardless of whether datagen or the component builder owns the root.
-    rule_paths = [
-        (owner, path)
+    rule_rows: list[tuple[Path, Path, dict[str, Any] | None]] = [
+        (owner, path, None)
         for owner in (CC_GEN, CC_COMPONENT_GEN)
         for path in owner.rglob("*.json")
     ]
-    for owner, path in sorted(rule_paths, key=lambda row: row[1].as_posix()):
-        rule = json.loads(path.read_text(encoding="utf-8"))
+    if T14_EXTRUDER_LEGACY_REPLAY.is_file():
+        legacy = json.loads(
+            T14_EXTRUDER_LEGACY_REPLAY.read_text(encoding="utf-8")
+        )
+        virtual_owner = ROOT / "tools" / "t14_virtualized_recipe"
+        rule_rows.extend(
+            (
+                virtual_owner,
+                virtual_owner / row["path"],
+                row["recipe"],
+            )
+            for row in legacy["files"]
+        )
+    for owner, path, captured_rule in sorted(
+        rule_rows, key=lambda row: row[1].as_posix()
+    ):
+        rule = (
+            captured_rule
+            if captured_rule is not None
+            else json.loads(path.read_text(encoding="utf-8"))
+        )
         if rule.get("type") != "cruciblecraft:material_rule":
             continue
         validate_material_overrides(

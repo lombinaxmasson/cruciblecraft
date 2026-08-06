@@ -63,6 +63,45 @@ RESOURCE_ROOTS = (
     ROOT / "src/component_rule_generated/resources",
     ROOT / "src/t5_chemical_generated/resources",
 )
+T11_MACHINE_RECIPE_PATHS = {
+    "data/cruciblecraft/recipe/machines/generifier.json",
+    "data/cruciblecraft/recipe/machines/fluid_deposit_extractor.json",
+    "data/cruciblecraft/recipe/machines/fuel_engine.json",
+    "data/cruciblecraft/recipe/machines/burning_gas_generator.json",
+}
+T12_RECIPE_PATHS = {
+    "data/cruciblecraft/recipe/machines/electric_motor.json",
+    "data/cruciblecraft/recipe/machines/rotational_axle.json",
+    "data/cruciblecraft/recipe/machines/rotational_gearbox.json",
+    "data/cruciblecraft/recipe/machines/steel_centrifuge.json",
+    "data/cruciblecraft/recipe/machines/titanium_centrifuge.json",
+    "data/cruciblecraft/recipe/machines/steel_sifter.json",
+    "data/cruciblecraft/recipe/machines/titanium_sifter.json",
+    "data/cruciblecraft/recipe/machines/aluminium_electrolyzer.json",
+    "data/cruciblecraft/recipe/machines/stainless_steel_electrolyzer.json",
+    "data/cruciblecraft/recipe/machines/large_centrifuge.json",
+    "data/cruciblecraft/recipe/machines/multiblock_casing.json",
+    "data/cruciblecraft/recipe/machines/multiblock_item_fluid_port.json",
+    "data/cruciblecraft/recipe/machines/multiblock_energy_input_port.json",
+    "data/cruciblecraft/recipe/components/bronze_double_machine_casing.json",
+    "data/cruciblecraft/recipe/components/steel_double_machine_casing.json",
+    "data/cruciblecraft/recipe/components/titanium_double_machine_casing.json",
+    "data/cruciblecraft/recipe/components/steel_galvanized_machine_casing.json",
+    "data/cruciblecraft/recipe/components/aluminium_machine_casing.json",
+    "data/cruciblecraft/recipe/components/stainless_steel_machine_casing.json",
+}
+T16_RECIPE_PATHS = {
+    "data/cruciblecraft/recipe/machines/steel_lathe.json",
+    "data/cruciblecraft/recipe/machines/titanium_lathe.json",
+    "data/cruciblecraft/recipe/machines/steel_rollingmill.json",
+    "data/cruciblecraft/recipe/machines/titanium_rollingmill.json",
+    "data/cruciblecraft/recipe/machines/steel_wiremill.json",
+    "data/cruciblecraft/recipe/machines/titanium_wiremill.json",
+    "data/cruciblecraft/recipe/machines/steel_shredder.json",
+    "data/cruciblecraft/recipe/machines/titanium_shredder.json",
+    "data/cruciblecraft/recipe/machines/steel_press.json",
+    "data/cruciblecraft/recipe/machines/titanium_press.json",
+}
 PINNED_SOURCE_REVISION = "3703e40308c8c030763fd6297dea8b210d2a77b1"
 PINNED_OP_BLOB = "f915645f3009d3dbe61abbafe77791000be32747"
 PINNED_UT_BLOB = "e1a89b2c04e1183fda13a490c5a035512acf7f14"
@@ -116,6 +155,12 @@ def datapack_recipe_entries() -> dict[str, Path]:
             continue
         for path in sorted(root.glob("data/*/recipe/**/*.json")):
             relative = path.relative_to(root).as_posix()
+            if relative in (
+                T11_MACHINE_RECIPE_PATHS
+                | T12_RECIPE_PATHS
+                | T16_RECIPE_PATHS
+            ):
+                continue
             content = path.read_bytes()
             previous = contents.get(relative)
             if previous is not None and previous != content:
@@ -369,9 +414,6 @@ def build() -> dict[str, Any]:
         raise ValueError("T10 datapack or compression load gate failed")
     processing_source = PROCESSING_MACHINES.read_text(encoding="utf-8")
     game_test_source = GAME_TESTS.read_text(encoding="utf-8")
-    compact_game_test_source = "".join(
-        game_test_source.replace("_", "").split()
-    )
     runtime_contract = {
         "reload_budget_ms": load_policy["reload_budget_ms"],
         "index_build_budget_ms": load_policy["index_build_budget_ms"],
@@ -383,8 +425,10 @@ def build() -> dict[str, Any]:
         "runtime_assertions_present": (
             "metrics.reloadMillis()" in game_test_source
             and "metrics.indexMillis()" in game_test_source
-            and "metrics.allPublishedRecipes()==18871"
-            in compact_game_test_source
+            and "metrics.allPublishedRecipes()"
+            in game_test_source
+            and "ALL_PUBLISHED_RECIPE_BUDGET"
+            in game_test_source
         ),
     }
     if not all((

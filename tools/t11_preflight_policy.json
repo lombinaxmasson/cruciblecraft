@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_rows": {
+    "crude_oil_distillation": {
+      "map": "gt.recipe.distillery",
+      "path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json",
+      "expected_source_rows": 1517,
+      "duration": 16,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 25,
+          "fluid": "liquid_medium_oil"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 25,
+          "fluid": "fuel"
+        },
+        {
+          "amount": 25,
+          "fluid": "lubricant"
+        }
+      ],
+      "runtime_identity_mapping": {
+        "fuel": "cruciblecraft:fuel",
+        "liquid_medium_oil": "cruciblecraft:crude_oil",
+        "lubricant": "cruciblecraft:lubricant"
+      },
+      "role": "distillery"
+    },
+    "fuel_oil_engine": {
+      "map": "gt.recipe.fuels.engine",
+      "path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.engine.json",
+      "expected_source_rows": 21,
+      "duration": 8,
+      "eut": -64,
+      "fluid_inputs": [
+        {
+          "amount": 1,
+          "fluid": "fuel"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 1,
+          "fluid": "carbondioxide"
+        }
+      ],
+      "runtime_identity_mapping": {
+        "carbondioxide": "cruciblecraft:carbon_dioxide",
+        "fuel": "cruciblecraft:fuel"
+      },
+      "role": "fuel_consumer"
+    },
+    "methane_gas_fuel": {
+      "map": "gt.recipe.fuels.gas",
+      "path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.gas.json",
+      "expected_source_rows": 9,
+      "duration": 30,
+      "eut": -64,
+      "fluid_inputs": [
+        {
+          "amount": 5,
+          "fluid": "methane"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 6,
+          "fluid": "water"
+        },
+        {
+          "amount": 3,
+          "fluid": "carbondioxide"
+        }
+      ],
+      "runtime_identity_mapping": {
+        "carbondioxide": "cruciblecraft:carbon_dioxide",
+        "methane": "cruciblecraft:methane",
+        "water": "minecraft:water"
+      },
+      "role": "fuel_consumer"
+    },
+    "natural_gas_to_methane": {
+      "map": "gt.recipe.generifier",
+      "path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.generifier.json",
+      "expected_source_rows": 10236,
+      "duration": 1,
+      "eut": 0,
+      "fluid_inputs": [
+        {
+          "amount": 1,
+          "fluid": "gas_natural_gas"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 1,
+          "fluid": "methane"
+        }
+      ],
+      "runtime_identity_mapping": {
+        "gas_natural_gas": "cruciblecraft:natural_gas",
+        "methane": "cruciblecraft:methane"
+      },
+      "role": "identity_conversion"
+    }
+  },
+  "identity_gate": {
+    "source_fluid_bridges": {
+      "liquid_medium_oil": {
+        "runtime_identity": "cruciblecraft:crude_oil",
+        "status": "DESIGN_POLICY",
+        "gt6_equivalence": "UNVERIFIED",
+        "open_item": "O-37",
+        "evidence": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json#recipes[872] names the source fluid Raw Oil, but the pinned normalized fluid map does not bind it to GT6 material 9852 CrudeOil.",
+        "replacement_condition": "Replace only after a fixed-revision GT6 fluid-registration source proves the material identity, or after T9 deposit identity is migrated through an explicit compatibility plan."
+      }
+    },
+    "entries": {
+      "crude_oil": {
+        "source_route": "crude_oil_distillation",
+        "source_fluid": "liquid_medium_oil",
+        "material": "crude_oil",
+        "state": "liquid",
+        "temperature_kelvin": 300,
+        "density": 1000,
+        "viscosity": 1000,
+        "world_placeable": false,
+        "producer": "cruciblecraft:crude_oil_deposit",
+        "logistics": [
+          "cruciblecraft:t8_fluid_pipe"
+        ],
+        "consumer_route": "crude_oil_distillation"
+      },
+      "natural_gas": {
+        "source_route": "natural_gas_to_methane",
+        "source_fluid": "gas_natural_gas",
+        "material": "natural_gas",
+        "material_path": "src/main/resources/data/cruciblecraft/t11_materials/natural_gas.json",
+        "state": "gas",
+        "temperature_kelvin": 300,
+        "density": -717,
+        "viscosity": 200,
+        "world_placeable": false,
+        "producer": "cruciblecraft:natural_gas_deposit",
+        "logistics": [
+          "cruciblecraft:t8_fluid_pipe",
+          "cruciblecraft:gas_cell"
+        ],
+        "consumer_route": "natural_gas_to_methane",
+        "source_reason": "The pinned generifier row names gas_natural_gas as Natural Gas and converts it 1:1 to methane; T11 preserves that identity instead of generating methane directly from the deposit."
+      }
+    },
+    "existing_runtime_identities": {
+      "cruciblecraft:carbon_dioxide": "t5_chemical_fluid_gate",
+      "cruciblecraft:fuel": "t10_container_fluid_gate",
+      "cruciblecraft:lubricant": "t10_container_fluid_gate",
+      "cruciblecraft:methane": "t10_container_fluid_gate",
+      "minecraft:water": "builtin"
+    }
+  },
+  "coproduct_policy": {
+    "cruciblecraft:lubricant": {
+      "classification": "recoverable_source_backed_coproduct",
+      "fake_voiding_allowed": false,
+      "storage": "cruciblecraft:fluid_cell",
+      "source_consumer_map": "gt.recipe.cncmachine",
+      "runtime_consumer_status": "DEFERRED_OUTSIDE_T11"
+    },
+    "cruciblecraft:carbon_dioxide": {
+      "classification": "generator_exhaust",
+      "fake_voiding_allowed": false,
+      "runtime_disposition": "explicit_exhaust_output"
+    }
+  },
+  "load_policy": {
+    "current_datapack_recipe_entries": 3202,
+    "datapack_recipe_entry_budget": 6600,
+    "current_published_recipes": 18871,
+    "projected_t11_datapack_recipe_additions": 8,
+    "projected_t11_published_recipe_additions": 4,
+    "projected_t11_machine_crafting_recipe_additions": 4,
+    "current_t5_chemical_recipes": 152,
+    "projected_chemical_recipe_additions": 2,
+    "t5_chemical_recipe_budget": 200,
+    "minimum_compression_ratio": 3.0,
+    "margin_numerator": 11,
+    "margin_denominator": 10,
+    "round_up_to": 1000,
+    "expected_global_budget": 21000,
+    "t11_authored_material_rule_budget": 0,
+    "reload_budget_ms": 10000,
+    "index_build_budget_ms": 1000,
+    "runtime_policy": "src/main/resources/data/cruciblecraft/t11_hydrocarbon_runtime_policy.json"
+  }
+}

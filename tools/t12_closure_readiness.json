@@ -1,0 +1,251 @@
+{
+  "energy": {
+    "eu_topology": "existing_cable_network",
+    "identities": [
+      "RU",
+      "KU",
+      "EU"
+    ],
+    "ku_topology": "adjacent_push",
+    "ru_topology": [
+      "electric_motor",
+      "rotational_axle",
+      "rotational_gearbox"
+    ]
+  },
+  "kind_tier": {
+    "authored_material_rule_budget": 0,
+    "kinds": {
+      "cruciblecraft:centrifuge": 3,
+      "cruciblecraft:electrolyzer": 3,
+      "cruciblecraft:sifter": 3
+    },
+    "publication_delta": 0,
+    "state_schema_version": 2,
+    "variants": 9
+  },
+  "load_gate": {
+    "compression_ratio": 3.150559,
+    "concrete_datapack_recipe_entries": 3229,
+    "datapack_recipe_entries": 5991,
+    "datapack_recipe_entry_budget": 6600,
+    "minimum_compression_ratio": 3.0,
+    "post_t12_virtualized_recipe_entries": 2762,
+    "published_recipe_budget": 21000,
+    "published_recipes": 18875
+  },
+  "matcher": {
+    "all_within_budget": true,
+    "artifact": "tools/t12_capacity_matcher_benchmark.json",
+    "historical_t12_claim": {
+      "current": false,
+      "reason_superseded": "It conflated an undocumented closure-era count with the live matcher host layout.",
+      "superseded_statement": "The former T12 closure described six runtime supplies without a source parser."
+    },
+    "presence_supply_cap": 12,
+    "sha256": "5d8cf9583bb39df1be5fd2baf7b2f26e9cbc33c4025661114f3bcbe62a18d98b",
+    "t15_corrected_authority": {
+      "artifact": "tools/t15_matcher_boundary.json",
+      "currentness_claimed_here": false,
+      "derivation": "live structure JSON + ModProcessingMachines.CENTRIFUGE parser",
+      "owner": "T15e"
+    }
+  },
+  "multiblock": {
+    "dedicated_coke_structure_classes": 0,
+    "diagnostic_limit": 16,
+    "large_centrifuge_scan_volume": 18,
+    "structures": [
+      "coke_oven",
+      "large_centrifuge"
+    ]
+  },
+  "runtime_acceptance": {
+    "expected_game_tests": 53,
+    "routes": [
+      "three_machine_three_tier_catalog",
+      "steam_engine_to_ku_sifter",
+      "electric_motor_to_axle_to_gearbox_to_ru_centrifuge",
+      "eu_cable_to_electrolyzer",
+      "json_coke_oven",
+      "json_large_centrifuge"
+    ]
+  },
+  "schema_version": 1,
+  "source_contracts": {
+    "coke_migration_source": {
+      "path": "src/main/resources/data/cruciblecraft/multiblock_structures/coke_oven.json",
+      "required_tokens": [
+        "behavior_migration:NO_BEHAVIOR_DRIFT",
+        "t12a_machine_readiness.json#structure_projection.coke_oven",
+        "CokeOvenStructure"
+      ],
+      "sha256": "452ffeb2516e455eaefad6730dfd7e27643e34858901a114c5e948150687517b"
+    },
+    "energy_types": {
+      "path": "src/main/java/com/masson/cruciblecraft/api/energy/EnergyType.java",
+      "required_tokens": [
+        "KINETIC_ROTATION",
+        "KINETIC_PUSH"
+      ],
+      "sha256": "92b2146131a6d11a7770d2012e1a72a36ba206036b1893dc5c06e3c4a381236f"
+    },
+    "execution_plan": {
+      "path": "src/main/java/com/masson/cruciblecraft/machine/processing/MachineExecutionPlan.java",
+      "required_tokens": [
+        "parallelDuration",
+        "OverclockPolicy.STANDARD",
+        "totalWork"
+      ],
+      "sha256": "b86e4f1af3e7bd50d2813e5c658210b4beba8d1ed8f39b46ce62d08f483ac199"
+    },
+    "game_tests": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "largeCentrifugeUsesJsonPortsAndProcessingHost",
+        "t12RuAxleGearboxPowersTieredCentrifuge",
+        "t12TierProfilesExposeDistinctFailureStates",
+        "steamEnginePowersSifterThroughKu"
+      ],
+      "sha256": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848"
+    },
+    "kind_tier": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineVariants.java",
+      "required_tokens": [
+        "MachineKindSpec",
+        "MachineTierCatalog",
+        "CENTRIFUGE",
+        "SIFTER",
+        "ELECTROLYZER"
+      ],
+      "sha256": "2a966d84576cdcd71c6c1810c7ca669f26170440b54a4ac271b3e881abaa7aa6"
+    },
+    "machine_tier_data": {
+      "path": "src/main/resources/data/cruciblecraft/machine_tiers.json",
+      "required_tokens": [
+        "\"source\"",
+        "\"variant_rows\"",
+        "MultiTileEntityBasicMachine.java:126-131,489-518,712-815",
+        "defaults mEfficiency to 10000"
+      ],
+      "sha256": "cc1df2b2d3693203a6ed5246d9887efbf6e89b03576682be748894e69f4e84a5"
+    },
+    "machine_tier_loader": {
+      "path": "src/main/java/com/masson/cruciblecraft/machine/processing/MachineTierCatalog.java",
+      "required_tokens": [
+        "document.source.complete()",
+        "Machine tier source rows do not cover variants",
+        "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      ],
+      "sha256": "374d8b1ce7c42b21efb61a65d1695e0e85960dc87b6b15baa99af05fcf7cd2c6"
+    },
+    "multiblock_validator": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/multiblock/MultiblockStructureValidator.java",
+      "required_tokens": [
+        "UNLOADED",
+        "MAX_DIAGNOSTICS",
+        "worldPosition"
+      ],
+      "sha256": "cf2a676e070ee9cad84888dde90c6b58caafb0e872e5c72ee2a383ffe224289e"
+    },
+    "processing_runtime_window": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineBlockEntity.java",
+      "required_tokens": [
+        "variant.tier().inputMinimum()",
+        "energy.stored()",
+        "runtime.tickWork(",
+        "workProgress"
+      ],
+      "sha256": "1be3a22a53dfee3a04eda7d55fc8ad7757ac16999c686847410eca7dbe9b0fb6"
+    },
+    "ru_axle": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/RotationalAxleBlockEntity.java",
+      "required_tokens": [
+        "KINETIC_ROTATION",
+        "MAX_POWER = 4L",
+        "MAX_PACKET = 64L"
+      ],
+      "sha256": "3cdcff61d5736e71446ec481cf91a37a98b1f0f0e9c276a66a90c0cf8545a0f6"
+    },
+    "ru_gearbox": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/RotationalGearboxBlockEntity.java",
+      "required_tokens": [
+        "KINETIC_ROTATION",
+        "MAX_PACKET = 64L",
+        "overloaded"
+      ],
+      "sha256": "a501cd2c8110401408809ce0f209c72269af7970ab83c9c955549327a984e6e2"
+    },
+    "ru_producer": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/ElectricMotorBlockEntity.java",
+      "required_tokens": [
+        "INPUT_NOMINAL = 32L",
+        "OUTPUT_SIZE = 16L",
+        "KINETIC_ROTATION"
+      ],
+      "sha256": "97922be3293bb5fce69cbee26babda617426caf61fdcfd256fcf620725b3e056"
+    },
+    "state_v2": {
+      "path": "src/main/java/com/masson/cruciblecraft/machine/processing/ProcessingMachineState.java",
+      "required_tokens": [
+        "VERSION = 2",
+        "machine_kind",
+        "tier_profile",
+        "energy_identity"
+      ],
+      "sha256": "905ef83782679c41943bd083359a5b10f7e4e4dd570a3ea175f70669241d744f"
+    }
+  },
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T12_READY",
+  "t12a_historical_evidence": {
+    "current": false,
+    "immutable": true,
+    "load_status": "T12A_PREPROJECTION_READY",
+    "non_spec_kinds": {
+      "classifications": {
+        "deferred": 1,
+        "fixed_infrastructure": 3,
+        "material_capability": 3,
+        "tier_profile_participant": 5
+      },
+      "classified": 12,
+      "energy_identities": {
+        "AU": 1,
+        "HU": 4,
+        "KU": 1,
+        "NONE": 3,
+        "RU": 1,
+        "RU_TO_EU": 1,
+        "UNVERIFIED": 1
+      },
+      "total": 12,
+      "unclassified": 0
+    },
+    "path": "tools/t12a_machine_readiness.json",
+    "processing_kinds": {
+      "bronze_crusher": 1,
+      "classifications": {
+        "deferred_with_reason": 2,
+        "fixed_utility": 4,
+        "source_tiered": 19
+      },
+      "classified": 25,
+      "configured": 24,
+      "energy_identities": {
+        "EU": 1,
+        "HU": 4,
+        "KU": 4,
+        "LU": 1,
+        "NONE": 1,
+        "RU": 9,
+        "TU": 3,
+        "UNVERIFIED": 2
+      },
+      "total": 25,
+      "unclassified": 0
+    },
+    "sha256": "7a4062b915707b469f14aa1f20e59dc43ad76ce7132c8b323cb0ce53117dc4a2",
+    "status": "T12A_READY"
+  }
+}

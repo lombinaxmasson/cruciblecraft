@@ -37,6 +37,7 @@ OUTPUT_ROOT = (
 RECIPE_ROOT = OUTPUT_ROOT / "recipe/t5"
 FLUID_GATE = OUTPUT_ROOT / "t5_chemical_fluid_gate.json"
 MANIFEST = TOOLS / "t5_chemical_recipe_manifest.json"
+WRAPPER_BUILDER = TOOLS / "build_t5_chemical_recipes.py"
 
 GT6_REPOSITORY = "GregTech6/gregtech6"
 GT6_REVISION = "3703e40308c8c030763fd6297dea8b210d2a77b1"
@@ -979,6 +980,14 @@ def build(
         distillery_generated = distillery_ledger["generated"]
         distillery_ledger_path = distillery.LEDGER
         map_counts["distillery"] += len(distillery_generated)
+    output_hashes = {
+        str(path.relative_to(ROOT)).replace("\\", "/"):
+            hashlib.sha256(content).hexdigest()
+        for path, content in sorted(planned.items())
+    }
+    output_tree_sha256 = hashlib.sha256(
+        stable(output_hashes).encode("utf-8")
+    ).hexdigest()
     manifest = {
         "acceptance": {
             "fluid_closure": {
@@ -1045,24 +1054,24 @@ def build(
         "distillery_routes": distillery_generated,
         "generated": generated,
         "inputs": {
-            str(CROSS_REFERENCE.relative_to(ROOT)): digest(CROSS_REFERENCE),
-            str(NORMALIZED_FLUIDS.relative_to(ROOT)): digest(
+            CROSS_REFERENCE.relative_to(ROOT).as_posix(): digest(CROSS_REFERENCE),
+            NORMALIZED_FLUIDS.relative_to(ROOT).as_posix(): digest(
                 NORMALIZED_FLUIDS
             ),
-            str(REGISTRATION_GATE.relative_to(ROOT)): digest(
+            REGISTRATION_GATE.relative_to(ROOT).as_posix(): digest(
                 REGISTRATION_GATE
             ),
-            str(ORE_CHAIN_CLOSURE.relative_to(ROOT)): digest(
+            ORE_CHAIN_CLOSURE.relative_to(ROOT).as_posix(): digest(
                 ORE_CHAIN_CLOSURE
             ),
-            str(READINESS.relative_to(ROOT)): digest(READINESS),
-            str(POLICY.relative_to(ROOT)): digest(POLICY),
-            str(FIXED_ITEM_PROJECTION.relative_to(ROOT)): digest(
+            READINESS.relative_to(ROOT).as_posix(): digest(READINESS),
+            POLICY.relative_to(ROOT).as_posix(): digest(POLICY),
+            FIXED_ITEM_PROJECTION.relative_to(ROOT).as_posix(): digest(
                 FIXED_ITEM_PROJECTION
             ),
             **(
                 {
-                    str(distillery_ledger_path.relative_to(ROOT)):
+                    distillery_ledger_path.relative_to(ROOT).as_posix():
                         hashlib.sha256(
                             planned[distillery_ledger_path]
                         ).hexdigest()
@@ -1071,9 +1080,8 @@ def build(
                 else {}
             ),
             **{
-                str(
-                    (MAP_ROOT / f"{map_id}.json").relative_to(ROOT)
-                ): digest(MAP_ROOT / f"{map_id}.json")
+                (MAP_ROOT / f"{map_id}.json").relative_to(ROOT).as_posix():
+                    digest(MAP_ROOT / f"{map_id}.json")
                 for map_id in TARGET_MAPS
             },
         },
@@ -1087,8 +1095,15 @@ def build(
             "repository": GT6_REPOSITORY,
             "revision": GT6_REVISION,
         },
+        "proof": {
+            "proof_tier": "full_replay",
+            "builder_sha256": digest(WRAPPER_BUILDER),
+            "source_projection_sha256": digest(Path(__file__).resolve()),
+            "output_tree_sha256": output_tree_sha256,
+        },
+        "output_hashes": output_hashes,
         "rejection_counts": dict(sorted(rejection_counts.items())),
-        "schema_version": 4,
+        "schema_version": 5,
         "status": "closure_ready",
     }
     planned[MANIFEST] = stable(manifest).encode("utf-8")

@@ -73,6 +73,20 @@ public final class ModItems {
                     new Item.Properties()));
     public static final DeferredItem<BlockItem> COKE_OVEN =
             ITEMS.registerSimpleBlockItem("coke_oven", ModBlocks.COKE_OVEN);
+    public static final DeferredItem<BlockItem> MULTIBLOCK_CASING =
+            ITEMS.registerSimpleBlockItem(
+                    "multiblock_casing", ModBlocks.MULTIBLOCK_CASING);
+    public static final DeferredItem<BlockItem>
+            MULTIBLOCK_ITEM_FLUID_PORT = ITEMS.registerSimpleBlockItem(
+                    "multiblock_item_fluid_port",
+                    ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT);
+    public static final DeferredItem<BlockItem>
+            MULTIBLOCK_ENERGY_INPUT_PORT = ITEMS.registerSimpleBlockItem(
+                    "multiblock_energy_input_port",
+                    ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT);
+    public static final DeferredItem<BlockItem> LARGE_CENTRIFUGE =
+            ITEMS.registerSimpleBlockItem(
+                    "large_centrifuge", ModBlocks.LARGE_CENTRIFUGE);
 
     public static final DeferredItem<Item> RAW_CERAMIC_CRUCIBLE =
             ITEMS.registerSimpleItem("raw_ceramic_crucible", new Item.Properties());
@@ -94,6 +108,36 @@ public final class ModItems {
             ITEMS.registerSimpleItem("coal_coke", new Item.Properties());
     public static final DeferredItem<Item> MATCH =
             ITEMS.registerSimpleItem("match", new Item.Properties());
+    public static final DeferredItem<Item>
+            BRONZE_DOUBLE_MACHINE_CASING =
+                    ITEMS.registerSimpleItem(
+                            "bronze_double_machine_casing",
+                            new Item.Properties());
+    public static final DeferredItem<Item>
+            STEEL_DOUBLE_MACHINE_CASING =
+                    ITEMS.registerSimpleItem(
+                            "steel_double_machine_casing",
+                            new Item.Properties());
+    public static final DeferredItem<Item>
+            TITANIUM_DOUBLE_MACHINE_CASING =
+                    ITEMS.registerSimpleItem(
+                            "titanium_double_machine_casing",
+                            new Item.Properties());
+    public static final DeferredItem<Item>
+            STEEL_GALVANIZED_MACHINE_CASING =
+                    ITEMS.registerSimpleItem(
+                            "steel_galvanized_machine_casing",
+                            new Item.Properties());
+    public static final DeferredItem<Item>
+            ALUMINIUM_MACHINE_CASING =
+                    ITEMS.registerSimpleItem(
+                            "aluminium_machine_casing",
+                            new Item.Properties());
+    public static final DeferredItem<Item>
+            STAINLESS_STEEL_MACHINE_CASING =
+                    ITEMS.registerSimpleItem(
+                            "stainless_steel_machine_casing",
+                            new Item.Properties());
     public static final DeferredItem<BlockItem> BELLOWS =
             ITEMS.registerSimpleBlockItem("bellows", ModBlocks.BELLOWS);
     public static final DeferredItem<BucketItem> CREOSOTE_BUCKET = ITEMS.register(
@@ -148,6 +192,16 @@ public final class ModItems {
             ITEMS.registerSimpleBlockItem("bronze_steam_engine", ModBlocks.BRONZE_STEAM_ENGINE);
     public static final DeferredItem<BlockItem> BRONZE_DYNAMO =
             ITEMS.registerSimpleBlockItem("bronze_dynamo", ModBlocks.BRONZE_DYNAMO);
+    public static final DeferredItem<BlockItem> ELECTRIC_MOTOR =
+            ITEMS.registerSimpleBlockItem(
+                    "electric_motor", ModBlocks.ELECTRIC_MOTOR);
+    public static final DeferredItem<BlockItem> ROTATIONAL_AXLE =
+            ITEMS.registerSimpleBlockItem(
+                    "rotational_axle", ModBlocks.ROTATIONAL_AXLE);
+    public static final DeferredItem<BlockItem> ROTATIONAL_GEARBOX =
+            ITEMS.registerSimpleBlockItem(
+                    "rotational_gearbox",
+                    ModBlocks.ROTATIONAL_GEARBOX);
     public static final DeferredItem<BlockItem> BRONZE_CRUSHER =
             ITEMS.registerSimpleBlockItem("bronze_crusher", ModBlocks.BRONZE_CRUSHER);
     public static final DeferredItem<BlockItem> SLUICE =
@@ -156,12 +210,37 @@ public final class ModItems {
             ITEMS.registerSimpleBlockItem("bath", ModBlocks.BATH);
     public static final DeferredItem<BlockItem> CENTRIFUGE =
             ITEMS.registerSimpleBlockItem("centrifuge", ModBlocks.CENTRIFUGE);
+    public static final DeferredItem<BlockItem> STEEL_CENTRIFUGE =
+            ITEMS.registerSimpleBlockItem(
+                    "steel_centrifuge", ModBlocks.STEEL_CENTRIFUGE);
+    public static final DeferredItem<BlockItem> TITANIUM_CENTRIFUGE =
+            ITEMS.registerSimpleBlockItem(
+                    "titanium_centrifuge",
+                    ModBlocks.TITANIUM_CENTRIFUGE);
     public static final DeferredItem<BlockItem> SHREDDER =
             ITEMS.registerSimpleBlockItem("shredder", ModBlocks.SHREDDER);
+    public static final DeferredItem<BlockItem> STEEL_SHREDDER =
+            ITEMS.registerSimpleBlockItem(
+                    "steel_shredder", ModBlocks.STEEL_SHREDDER);
+    public static final DeferredItem<BlockItem> TITANIUM_SHREDDER =
+            ITEMS.registerSimpleBlockItem(
+                    "titanium_shredder", ModBlocks.TITANIUM_SHREDDER);
     public static final DeferredItem<BlockItem> SIFTER =
             ITEMS.registerSimpleBlockItem("sifter", ModBlocks.SIFTER);
+    public static final DeferredItem<BlockItem> STEEL_SIFTER =
+            ITEMS.registerSimpleBlockItem(
+                    "steel_sifter", ModBlocks.STEEL_SIFTER);
+    public static final DeferredItem<BlockItem> TITANIUM_SIFTER =
+            ITEMS.registerSimpleBlockItem(
+                    "titanium_sifter", ModBlocks.TITANIUM_SIFTER);
     public static final DeferredItem<BlockItem> SMELTER =
             ITEMS.registerSimpleBlockItem("smelter", ModBlocks.SMELTER);
+    public static final DeferredItem<BlockItem> INVAR_SMELTER =
+            ITEMS.registerSimpleBlockItem(
+                    "invar_smelter", ModBlocks.INVAR_SMELTER);
+    public static final DeferredItem<BlockItem> TITANIUM_SMELTER =
+            ITEMS.registerSimpleBlockItem(
+                    "titanium_smelter", ModBlocks.TITANIUM_SMELTER);
     public static final DeferredItem<BlockItem> MORTAR =
             ITEMS.registerSimpleBlockItem("mortar", ModBlocks.MORTAR);
     public static final DeferredItem<BlockItem> EXTRUDER =
@@ -170,12 +249,30 @@ public final class ModItems {
             ITEMS.registerSimpleBlockItem("cutter", ModBlocks.CUTTER);
     public static final DeferredItem<BlockItem> LATHE =
             ITEMS.registerSimpleBlockItem("lathe", ModBlocks.LATHE);
+    public static final DeferredItem<BlockItem> STEEL_LATHE =
+            ITEMS.registerSimpleBlockItem(
+                    "steel_lathe", ModBlocks.STEEL_LATHE);
+    public static final DeferredItem<BlockItem> TITANIUM_LATHE =
+            ITEMS.registerSimpleBlockItem(
+                    "titanium_lathe", ModBlocks.TITANIUM_LATHE);
     public static final DeferredItem<BlockItem> ROLLINGMILL =
             ITEMS.registerSimpleBlockItem("rollingmill", ModBlocks.ROLLINGMILL);
+    public static final DeferredItem<BlockItem> STEEL_ROLLINGMILL =
+            ITEMS.registerSimpleBlockItem(
+                    "steel_rollingmill", ModBlocks.STEEL_ROLLINGMILL);
+    public static final DeferredItem<BlockItem> TITANIUM_ROLLINGMILL =
+            ITEMS.registerSimpleBlockItem(
+                    "titanium_rollingmill", ModBlocks.TITANIUM_ROLLINGMILL);
     public static final DeferredItem<BlockItem> ROLLBENDER =
             ITEMS.registerSimpleBlockItem("rollbender", ModBlocks.ROLLBENDER);
     public static final DeferredItem<BlockItem> WIREMILL =
             ITEMS.registerSimpleBlockItem("wiremill", ModBlocks.WIREMILL);
+    public static final DeferredItem<BlockItem> STEEL_WIREMILL =
+            ITEMS.registerSimpleBlockItem(
+                    "steel_wiremill", ModBlocks.STEEL_WIREMILL);
+    public static final DeferredItem<BlockItem> TITANIUM_WIREMILL =
+            ITEMS.registerSimpleBlockItem(
+                    "titanium_wiremill", ModBlocks.TITANIUM_WIREMILL);
     public static final DeferredItem<BlockItem> BENDER =
             ITEMS.registerSimpleBlockItem("bender", ModBlocks.BENDER);
     public static final DeferredItem<BlockItem> ASSEMBLER =
@@ -184,18 +281,59 @@ public final class ModItems {
             ITEMS.registerSimpleBlockItem("welder", ModBlocks.WELDER);
     public static final DeferredItem<BlockItem> PRESS =
             ITEMS.registerSimpleBlockItem("press", ModBlocks.PRESS);
+    public static final DeferredItem<BlockItem> STEEL_PRESS =
+            ITEMS.registerSimpleBlockItem(
+                    "steel_press", ModBlocks.STEEL_PRESS);
+    public static final DeferredItem<BlockItem> TITANIUM_PRESS =
+            ITEMS.registerSimpleBlockItem(
+                    "titanium_press", ModBlocks.TITANIUM_PRESS);
     public static final DeferredItem<BlockItem> ELECTROLYZER =
             ITEMS.registerSimpleBlockItem("electrolyzer", ModBlocks.ELECTROLYZER);
+    public static final DeferredItem<BlockItem> ALUMINIUM_ELECTROLYZER =
+            ITEMS.registerSimpleBlockItem(
+                    "aluminium_electrolyzer",
+                    ModBlocks.ALUMINIUM_ELECTROLYZER);
+    public static final DeferredItem<BlockItem>
+            STAINLESS_STEEL_ELECTROLYZER =
+                    ITEMS.registerSimpleBlockItem(
+                            "stainless_steel_electrolyzer",
+                            ModBlocks.STAINLESS_STEEL_ELECTROLYZER);
     public static final DeferredItem<BlockItem> MIXER =
             ITEMS.registerSimpleBlockItem("mixer", ModBlocks.MIXER);
     public static final DeferredItem<BlockItem> DISTILLERY =
             ITEMS.registerSimpleBlockItem("distillery", ModBlocks.DISTILLERY);
+    public static final DeferredItem<BlockItem> INVAR_DISTILLERY =
+            ITEMS.registerSimpleBlockItem(
+                    "invar_distillery", ModBlocks.INVAR_DISTILLERY);
+    public static final DeferredItem<BlockItem> TITANIUM_DISTILLERY =
+            ITEMS.registerSimpleBlockItem(
+                    "titanium_distillery",
+                    ModBlocks.TITANIUM_DISTILLERY);
     public static final DeferredItem<BlockItem> AUTOCLAVE =
             ITEMS.registerSimpleBlockItem("autoclave", ModBlocks.AUTOCLAVE);
     public static final DeferredItem<BlockItem> DRYING =
             ITEMS.registerSimpleBlockItem("drying", ModBlocks.DRYING);
+    public static final DeferredItem<BlockItem> INVAR_DRYING =
+            ITEMS.registerSimpleBlockItem(
+                    "invar_drying", ModBlocks.INVAR_DRYING);
+    public static final DeferredItem<BlockItem> TITANIUM_DRYING =
+            ITEMS.registerSimpleBlockItem(
+                    "titanium_drying", ModBlocks.TITANIUM_DRYING);
     public static final DeferredItem<BlockItem> COMPRESSOR =
             ITEMS.registerSimpleBlockItem("compressor", ModBlocks.COMPRESSOR);
+    public static final DeferredItem<BlockItem> GENERIFIER =
+            ITEMS.registerSimpleBlockItem("generifier", ModBlocks.GENERIFIER);
+    public static final DeferredItem<BlockItem> FLUID_DEPOSIT_EXTRACTOR =
+            ITEMS.registerSimpleBlockItem(
+                    "fluid_deposit_extractor",
+                    ModBlocks.FLUID_DEPOSIT_EXTRACTOR);
+    public static final DeferredItem<BlockItem> FUEL_ENGINE =
+            ITEMS.registerSimpleBlockItem(
+                    "fuel_engine", ModBlocks.FUEL_ENGINE);
+    public static final DeferredItem<BlockItem> BURNING_GAS_GENERATOR =
+            ITEMS.registerSimpleBlockItem(
+                    "burning_gas_generator",
+                    ModBlocks.BURNING_GAS_GENERATOR);
     public static final DeferredItem<SmithingHammerItem> SMITHING_HAMMER =
             ITEMS.register(
                     "smithing_hammer",

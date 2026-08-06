@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "status": "DESIGN_POLICY",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "depletion": {
+    "mode": "non_depleting",
+    "rate_decay": false,
+    "legacy_reserve_role": "migration_and_diagnostics_only"
+  },
+  "deposit_migrations": {
+    "cruciblecraft:methane": "cruciblecraft:natural_gas"
+  },
+  "production": {
+    "cruciblecraft:crude_oil": {
+      "state": "liquid",
+      "amount_mb": 25,
+      "interval_ticks": 20,
+      "accumulation_cap_mb": 1000,
+      "vent_overflow": false
+    },
+    "cruciblecraft:natural_gas": {
+      "state": "gas",
+      "amount_mb": 5,
+      "interval_ticks": 20,
+      "accumulation_cap_mb": 1000,
+      "vent_overflow": true
+    }
+  },
+  "gas_cloud": {
+    "parcel_mb": 125,
+    "movement_interval_ticks": 5,
+    "lifetime_ticks": 200,
+    "burn_interval_ticks": 5,
+    "burn_consumption_mb": 25,
+    "maximum_emitted_mb": 1000
+  },
+  "hazards": {
+    "cruciblecraft:methane": {
+      "classification": "live_closed_hydrocarbon",
+      "material_tags": [
+        "PROPERTIES.FLAMMABLE"
+      ]
+    },
+    "cruciblecraft:natural_gas": {
+      "classification": "live_closed_hydrocarbon",
+      "material_tags": [
+        "PROPERTIES.FLAMMABLE"
+      ]
+    }
+  },
+  "source_policy": {
+    "gt6_spring_amounts_are_rates": false,
+    "balance_reason": "The first playable T11 slice is sized from its pinned 25 mB distillery and 5 mB gas-fuel batches; GT6 spring values 6000/3000 are not interpreted as mB/t.",
+    "replacement_condition": "Replace only through a versioned policy and save migration after a fixed-revision source establishes directly comparable production units."
+  }
+}

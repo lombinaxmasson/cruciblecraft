@@ -15,6 +15,9 @@ class OreChainBuilderTest(unittest.TestCase):
         cls.index, cls.operands, cls.files = builder.load_committed_outputs()
         cls.materials = builder.compare.load_cc_materials()
 
+    def test_committed_outputs_are_current_without_reference_rebuild(self):
+        self.assertEqual([], builder.check_committed_outputs())
+
     def test_acceptance_materials_have_all_six_stages(self):
         emitted = {
             (row["material"], row["family"])

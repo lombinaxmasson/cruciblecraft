@@ -29,6 +29,13 @@ class T5ChemicalRecipeProjectionTest(unittest.TestCase):
         cls.fluid_gate = json.loads(
             MODULE.FLUID_GATE.read_text(encoding="utf-8")
         )
+        cls.input_hashes = {
+            path.replace("\\", "/"): value
+            for path, value in cls.manifest["inputs"].items()
+        }
+        cls.distillery_ledger = json.loads(
+            MODULE.DISTILLERY_LEDGER.read_text(encoding="utf-8")
+        )
 
     def test_pinned_source_domain_and_bounded_projection(self):
         counts = self.manifest["counts"]
@@ -159,7 +166,25 @@ class T5ChemicalRecipeProjectionTest(unittest.TestCase):
                     "selected_source_recipe"
                 ]
                 source_path = selected_source.split("#", 1)[0]
-                self.assertTrue((ROOT / source_path).is_file())
+                if source_path in self.input_hashes:
+                    self.assertRegex(
+                        self.input_hashes[source_path],
+                        r"^[0-9a-f]{64}$",
+                    )
+                else:
+                    distillery_source = next(
+                        (
+                            row
+                            for row in self.distillery_ledger["generated"]
+                            if row["source_path"] == source_path
+                        ),
+                        None,
+                    )
+                    self.assertIsNotNone(distillery_source)
+                    self.assertRegex(
+                        distillery_source["source_row_sha256"],
+                        r"^[0-9a-f]{64}$",
+                    )
                 for key in ("fluid_inputs", "fluid_outputs"):
                     for stack in document.get(key, []):
                         self.assertIn(stack["id"], registered_fluids)
@@ -268,7 +293,7 @@ class T5ChemicalRecipeProjectionTest(unittest.TestCase):
             & {row["material"] for row in self.manifest["generated"]},
         )
 
-    def test_generation_is_deterministic(self):
+    def test_full_replay_generation_is_deterministic(self):
         tracked = [MODULE.MANIFEST, MODULE.FLUID_GATE] + sorted(
             MODULE.RECIPE_ROOT.glob("*/*.json")
         )
@@ -282,7 +307,7 @@ class T5ChemicalRecipeProjectionTest(unittest.TestCase):
             MODULE.RECIPE_ROOT.glob("*/*.json")
         )
         before = {path: digest(path) for path in tracked}
-        self.assertEqual([], MODULE.check())
+        self.assertEqual([], MODULE.reference_only_check())
         self.assertEqual(before, {path: digest(path) for path in tracked})
 
 

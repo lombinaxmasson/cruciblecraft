@@ -1,0 +1,283 @@
+package com.masson.cruciblecraft.machine.processing;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.masson.cruciblecraft.api.energy.EnergyType;
+import com.masson.cruciblecraft.recipe.gt.GTRecipe;
+import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
+import com.masson.cruciblecraft.registry.ModMachineIdentityMigrations;
+import com.masson.cruciblecraft.registry.ModMachineVariants;
+import com.masson.cruciblecraft.registry.ModMultiblockControllers;
+import com.masson.cruciblecraft.registry.ModProcessingMachines;
+
+import net.minecraft.SharedConstants;
+import net.minecraft.server.Bootstrap;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.fml.loading.LoadingModList;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+class T15LargeCentrifugeProfileTest {
+    @BeforeAll
+    static void bootstrapMinecraft() {
+        LoadingModList.of(
+                List.of(), List.of(), List.of(), List.of(), Map.of());
+        SharedConstants.tryDetectVersion();
+        Bootstrap.bootStrap();
+    }
+
+    @Test
+    void controllerProfileIsSourceBackedAndOutsideSingleBlockVariants() {
+        // T15 originally closed with:
+        // assertEquals(9, ModMachineVariants.ALL.size())
+        // T16 and T17 extend that catalog without changing this profile.
+        assertEquals(33, MachineTierCatalog.entries().size());
+        assertEquals(33, ModMachineVariants.ALL.size());
+        Set<String> t17Kinds = Set.of(
+                "cruciblecraft:distillery",
+                "cruciblecraft:drying",
+                "cruciblecraft:smelter");
+        assertEquals(
+                24,
+                MachineTierCatalog.entries().stream()
+                        .filter(entry -> !t17Kinds.contains(
+                                entry.kindId().toString()))
+                        .count());
+        assertEquals(1, MachineTierCatalog.controllerProfiles().size());
+
+        TierProfile profile =
+                ModMultiblockControllers.LARGE_CENTRIFUGE_VARIANT.tier();
+        assertEquals(
+                "cruciblecraft:large_centrifuge_profile",
+                profile.id().toString());
+        assertEquals(
+                "cruciblecraft:large_centrifuge",
+                profile.materialId());
+        assertEquals(EnergyType.KINETIC_ROTATION, profile.energyType());
+        assertEquals(512L, profile.inputMinimum());
+        assertEquals(512L, profile.inputNominal());
+        assertEquals(4_096L, profile.inputMaximum());
+        assertEquals(4_096L, profile.energyCapacity());
+        assertEquals(16, profile.parallelLimit());
+        assertEquals(5_000, profile.efficiency());
+
+        TierProfile titanium = ModMachineVariants.require(
+                net.minecraft.resources.ResourceLocation
+                        .fromNamespaceAndPath(
+                                "cruciblecraft",
+                                "titanium_centrifuge"))
+                .tier();
+        assertNotEquals(titanium.id(), profile.id());
+        assertNotEquals(titanium.materialId(), profile.materialId());
+        assertEquals(
+                4_096L,
+                ModMultiblockControllers.LARGE_CENTRIFUGE_VARIANT
+                        .runtimeSpec()
+                        .energy()
+                        .maxPacket());
+    }
+
+    @Test
+    void cheapPolicyAcceptsFullEutAndKeepsParallelDurationBehavior() {
+        MachineKindSpec kind =
+                ModMultiblockControllers.LARGE_CENTRIFUGE_KIND;
+        TierProfile profile =
+                ModMultiblockControllers.LARGE_CENTRIFUGE_VARIANT.tier();
+        assertSame(ModProcessingMachines.CENTRIFUGE, kind.behavior());
+        assertEquals(
+                ModMachineVariants.CENTRIFUGE.recipeMapId(),
+                kind.recipeMapId());
+        assertEquals(
+                MachineKindSpec.OverclockPolicy.CHEAP,
+                kind.overclockPolicy());
+        assertTrue(kind.parallelDuration());
+
+        assertTrue(MachineExecutionPlan.create(
+                recipe(4_096L, 40), kind, profile, 1).isPresent());
+        assertFalse(MachineExecutionPlan.create(
+                recipe(4_097L, 40), kind, profile, 1).isPresent());
+
+        MachineExecutionPlan cheap = MachineExecutionPlan.create(
+                recipe(16L, 100), kind, profile, 1).orElseThrow();
+        assertEquals(16L, cheap.minimumPower());
+        assertEquals(512L, cheap.nominalPower());
+        assertEquals(3_200L, cheap.totalWork());
+        assertEquals(7, cheap.effectiveDuration());
+        assertEquals(0, cheap.overclockSteps());
+
+        MachineExecutionPlan parallel = MachineExecutionPlan.create(
+                recipe(16L, 100), kind, profile, 16).orElseThrow();
+        assertEquals(16, parallel.operations());
+        assertEquals(51_200L, parallel.totalWork());
+        assertEquals(100, parallel.effectiveDuration());
+    }
+
+    @Test
+    void bundledSourceContractPinsControllerProfileAndCheapPolicy() {
+        var stream = MachineTierCatalog.class.getResourceAsStream(
+                "/data/cruciblecraft/machine_tiers.json");
+        JsonObject document = JsonParser.parseReader(new InputStreamReader(
+                java.util.Objects.requireNonNull(stream),
+                StandardCharsets.UTF_8)).getAsJsonObject();
+        JsonObject source = document.getAsJsonObject("source");
+        assertEquals(
+                "Loader_MultiTileEntities.java:1229; "
+                        + "t12a_machine_readiness.json"
+                        + "#structure_projection.large_centrifuge",
+                source.getAsJsonObject("controller_profile_rows")
+                        .get("cruciblecraft:large_centrifuge_profile")
+                        .getAsString());
+        assertTrue(source.getAsJsonObject("normalization")
+                .get("controller_profile")
+                .getAsString()
+                .contains("CHEAP"));
+        JsonObject profile = document
+                .getAsJsonArray("controller_profiles")
+                .get(0)
+                .getAsJsonObject();
+        assertEquals(4_096, profile.get("inputMaximum").getAsInt());
+        assertEquals(16, profile.get("parallel").getAsInt());
+        assertEquals(5_000, profile.get("efficiency").getAsInt());
+    }
+
+    @Test
+    void physicalPortsBridgeOneSourceDerivedHostLayout() {
+        var stream = T15LargeCentrifugeProfileTest.class.getResourceAsStream(
+                "/data/cruciblecraft/multiblock_structures/"
+                        + "large_centrifuge.json");
+        JsonObject document = JsonParser.parseReader(new InputStreamReader(
+                java.util.Objects.requireNonNull(stream),
+                StandardCharsets.UTF_8)).getAsJsonObject();
+        JsonObject palette = document.getAsJsonObject("palette");
+        int itemFluidPorts = 0;
+        int energyPorts = 0;
+        int controllers = 0;
+        for (var row : document.getAsJsonArray("structure")) {
+            JsonObject predicate = palette.getAsJsonObject(
+                    row.getAsJsonObject().get("predicate").getAsString());
+            if ("controller".equals(predicate.get("type").getAsString())) {
+                controllers++;
+            } else if ("item_fluid".equals(
+                    predicate.get("port").getAsString())) {
+                itemFluidPorts++;
+            } else if ("energy_input".equals(
+                    predicate.get("port").getAsString())) {
+                energyPorts++;
+            }
+        }
+
+        ProcessingMachineSpec host = ModProcessingMachines.CENTRIFUGE;
+        assertEquals(15, itemFluidPorts);
+        assertEquals(2, energyPorts);
+        assertEquals(1, controllers);
+        assertEquals(1, host.items().inputs().size());
+        assertEquals(6, host.items().outputs().size());
+        assertEquals(7, host.items().slotCount());
+        assertEquals(1, host.fluids().inputs().size());
+        assertEquals(2, host.fluids().outputs().size());
+        assertEquals(3, host.fluids().all().size());
+        assertNotEquals(itemFluidPorts, host.items().inputs().size());
+    }
+
+    @Test
+    void exactLegacyIdentityMigratesAndNearMissesStayQuarantined() {
+        MachineIdentityPolicy.Identity current =
+                ModMachineIdentityMigrations.identityOf(
+                        ModMultiblockControllers.LARGE_CENTRIFUGE_VARIANT);
+        assertEquals(
+                ModMachineIdentityMigrations.LARGE_CENTRIFUGE_IDENTITY,
+                current);
+
+        MachineIdentityPolicy.Identity legacy =
+                ModMachineIdentityMigrations
+                        .LEGACY_LARGE_CENTRIFUGE_IDENTITY;
+        TierProfile titanium = ModMachineVariants.require(
+                net.minecraft.resources.ResourceLocation
+                        .fromNamespaceAndPath(
+                                "cruciblecraft",
+                                "titanium_centrifuge"))
+                .tier();
+        assertEquals(titanium.id().toString(), legacy.tierProfile());
+        assertEquals(titanium.materialId(), legacy.materialId());
+        assertEquals(
+                titanium.energyType().name(), legacy.energyIdentity());
+        MachineIdentityPolicy.Decision migrated =
+                ModMachineIdentityMigrations.resolve(
+                        ModMachineIdentityMigrations
+                                .LARGE_CENTRIFUGE_VARIANT_ID,
+                        legacy,
+                        current);
+        assertEquals(
+                MachineIdentityPolicy.Resolution.MIGRATED,
+                migrated.resolution());
+        assertEquals(current, migrated.persistedIdentity());
+        assertTrue(migrated.quarantineReason().isEmpty());
+
+        List<MachineIdentityPolicy.Identity> nearMisses = List.of(
+                new MachineIdentityPolicy.Identity(
+                        "cruciblecraft:large_centrifuge_other",
+                        legacy.tierProfile(),
+                        legacy.materialId(),
+                        legacy.energyIdentity()),
+                new MachineIdentityPolicy.Identity(
+                        legacy.machineKind(),
+                        "cruciblecraft:ru_tier_2",
+                        legacy.materialId(),
+                        legacy.energyIdentity()),
+                new MachineIdentityPolicy.Identity(
+                        legacy.machineKind(),
+                        legacy.tierProfile(),
+                        "cruciblecraft:steel",
+                        legacy.energyIdentity()),
+                new MachineIdentityPolicy.Identity(
+                        legacy.machineKind(),
+                        legacy.tierProfile(),
+                        legacy.materialId(),
+                        "KINETIC_PUSH"));
+        for (MachineIdentityPolicy.Identity nearMiss : nearMisses) {
+            MachineIdentityPolicy.Decision decision =
+                    ModMachineIdentityMigrations.resolve(
+                            ModMachineIdentityMigrations
+                                    .LARGE_CENTRIFUGE_VARIANT_ID,
+                            nearMiss,
+                            current);
+            assertEquals(
+                    MachineIdentityPolicy.Resolution.QUARANTINED,
+                    decision.resolution());
+            assertEquals(nearMiss, decision.persistedIdentity());
+            assertTrue(decision.quarantineReason().isPresent());
+        }
+    }
+
+    private static GTRecipe recipe(long eut, int duration) {
+        return new GTRecipe(
+                List.of(Ingredient.of(Items.COBBLESTONE)),
+                List.of(1),
+                List.of(ItemInputAction.CONSUME),
+                List.of(new ItemStack(Items.GRAVEL)),
+                List.of(),
+                List.of(),
+                List.of(GTRecipe.GUARANTEED_CHANCE),
+                duration,
+                eut,
+                0L,
+                true,
+                Optional.empty());
+    }
+}

@@ -10,6 +10,10 @@ from tools import gt6_l3_materials as l3
 class GT6L3MaterialsTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
+        if not l3.MATERIALS_PATH.is_file():
+            raise unittest.SkipTest(
+                "raw OreDict replay is reserved for source-replay"
+            )
         cls.document = l3.extract()
 
     def test_pinned_plan_covers_every_bundled_prefix(self) -> None:

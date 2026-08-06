@@ -269,9 +269,9 @@
     },
     "gt.recipe.distillery": {
       "status": "BOUNDED_SUBSET_PORTED",
-      "reason": "T5.5 exhaustively classifies all 1517 pinned rows and publishes the 1 row supported by current identities, host shape, and internal closure; full-map identity expansion remains deferred.",
-      "owner": "CrucibleCraft T5 chemical data/runtime",
-      "phase": "T5.5",
+      "reason": "T5.5 publishes distilled water and T11 publishes fixed hydrocarbon row 872; all 1517 rows retain explicit T11 dispositions and the remaining subset stays deferred.",
+      "owner": "CrucibleCraft T5/T11 chemical data/runtime",
+      "phase": "T11",
       "reference_recipe_count": 1517,
       "deferral_category": "FULL_MAP_REPLAY_DEFERRED"
     },
@@ -323,10 +323,10 @@
       "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
     },
     "gt.recipe.fuels.engine": {
-      "status": "DEFERRED",
-      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.engine has 21 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
-      "owner": "Unassigned future content owner",
-      "phase": "POST_T3",
+      "status": "BOUNDED_SUBSET_PORTED",
+      "reason": "T11 publishes fixed row 14 through the direct-electric Fuel Engine; the other 20 rows remain explicitly deferred in the T11 source ledger.",
+      "owner": "CrucibleCraft T11 fuel generation runtime",
+      "phase": "T11",
       "reference_recipe_count": 21,
       "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
     },
@@ -339,10 +339,10 @@
       "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
     },
     "gt.recipe.fuels.gas": {
-      "status": "DEFERRED",
-      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.gas has 9 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
-      "owner": "Unassigned future content owner",
-      "phase": "POST_T3",
+      "status": "BOUNDED_SUBSET_PORTED",
+      "reason": "T11 publishes fixed methane row 2 through the Burning Gas Generator; the other 8 rows remain explicitly deferred in the T11 source ledger.",
+      "owner": "CrucibleCraft T11 fuel generation runtime",
+      "phase": "T11",
       "reference_recipe_count": 9,
       "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
     },
@@ -387,10 +387,10 @@
       "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
     },
     "gt.recipe.generifier": {
-      "status": "DEFERRED",
-      "reason": "DEFERRAL[PACKAGING_OR_AUTOMATION]: gt.recipe.generifier has 10236 pinned recipe(s); the current audited scope does not implement packaging, container, printing, generic conversion, or autocrafting machines.",
-      "owner": "Unassigned future content owner",
-      "phase": "POST_T3",
+      "status": "BOUNDED_SUBSET_PORTED",
+      "reason": "T11 publishes fixed natural-gas row 553 through a dedicated zero-energy Generifier; the other 10235 rows remain explicitly deferred in the T11 source ledger.",
+      "owner": "CrucibleCraft T11 hydrocarbon processing runtime",
+      "phase": "T11",
       "reference_recipe_count": 10236,
       "deferral_category": "PACKAGING_OR_AUTOMATION"
     },

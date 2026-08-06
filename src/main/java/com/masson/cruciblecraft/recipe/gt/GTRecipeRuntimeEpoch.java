@@ -5,9 +5,10 @@ import java.util.List;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 
 /**
- * Single commit point for recipe maps and their effective material metadata.
- * Odd epochs are never exposed as accepted snapshots; validation and index
- * construction happen before entering this synchronized publication path.
+ * Single synchronized commit point for recipe maps, effective material
+ * metadata, and publication-adjacent state. Validation and index construction
+ * happen before entering this critical section; the accepted epoch advances
+ * only after every publication action succeeds.
  */
 public final class GTRecipeRuntimeEpoch {
     private static long epoch;
@@ -17,8 +18,22 @@ public final class GTRecipeRuntimeEpoch {
     public static synchronized long publish(
             MaterialCatalog.RuntimePreview materials,
             List<RecipeMap.Prepared> maps) {
+        return publish(materials, maps, () -> {});
+    }
+
+    static synchronized long publish(
+            MaterialCatalog.RuntimePreview materials,
+            List<RecipeMap.Prepared> maps,
+            Runnable afterPublication) {
+        long nextEpoch = Math.incrementExact(epoch);
         if (MaterialCatalog.runtimeRevision() != materials.baseRevision()) {
             throw new IllegalStateException("Stale material snapshot before recipe publication");
+        }
+        if (maps.stream().anyMatch(
+                prepared -> prepared.runtimeEpoch() != 0L
+                        && prepared.runtimeEpoch() != nextEpoch)) {
+            throw new IllegalStateException(
+                    "Prepared recipe maps do not belong to epoch " + nextEpoch);
         }
         if (maps.stream().anyMatch(prepared -> !preparedOwnerCanPublish(prepared))) {
             throw new IllegalStateException("Stale recipe map snapshot before publication");
@@ -29,12 +44,17 @@ public final class GTRecipeRuntimeEpoch {
                 publishOwner(prepared);
             }
         });
-        epoch = Math.incrementExact(epoch);
+        afterPublication.run();
+        epoch = nextEpoch;
         return epoch;
     }
 
     public static synchronized long epoch() {
         return epoch;
+    }
+
+    public static synchronized long nextEpoch() {
+        return Math.incrementExact(epoch);
     }
 
     static synchronized void replaceSingle(

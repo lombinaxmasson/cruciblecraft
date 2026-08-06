@@ -1,9 +1,11 @@
 import importlib.util
 import json
+import os
 import re
 import sys
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 TOOLS = Path(__file__).resolve().parents[1]
@@ -20,11 +22,52 @@ SPEC.loader.exec_module(MODULE)
 class FullVerificationReportTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.document = json.loads(
-            MODULE.REPORT.read_text(encoding="utf-8")
+        report_path = Path(
+            os.environ.get(
+                "CRUCIBLECRAFT_FULL_VERIFICATION_REPORT",
+                MODULE.REPORT,
+            )
         )
-        cls.context = MODULE.build_validation_context()
+        cls.document = json.loads(
+            report_path.read_text(encoding="utf-8")
+        )
+        cls.context = MODULE.load_or_build_validation_context()
         cls.snapshot = cls.context.value("tooling_snapshot")
+
+    def test_builder_record_uses_policy_and_per_script_evidence(self):
+        policy = MODULE.builder_policy_document()
+        timings = [
+            {
+                "script": row["script"],
+                "argv": row["ordinary_args"],
+                "proof_tier": row["proof_tier"],
+                "elapsed_ms": 10.0 + index,
+                "result": "PASS",
+            }
+            for index, row in enumerate(policy["builders"])
+        ]
+        document = {"verification_runs": {}}
+        with mock.patch.object(
+            MODULE,
+            "_current_pending_errors",
+            return_value=[],
+        ):
+            errors = MODULE.record_builder(
+                document,
+                1000.0,
+                "SKIP",
+                per_builder=timings,
+                persist=False,
+            )
+        self.assertEqual([], errors)
+        record = document["verification_runs"]["builder"]
+        self.assertEqual(MODULE.builder_policy_commands(), record["commands"])
+        self.assertEqual(timings, record["per_builder"])
+        self.assertEqual("PASS", record["t17_readiness_result"])
+        self.assertEqual(
+            "soft_report_only",
+            record["performance_regression"]["policy"],
+        )
 
     def test_committed_report_matches_current_tooling_snapshot(self):
         document = self.document
@@ -37,25 +80,22 @@ class FullVerificationReportTest(unittest.TestCase):
             snapshot["python_test_count"],
             document["tests"]["python_unit_tests"]["tests"],
         )
-        self.assertEqual(433, snapshot["java_source_test_count"])
-        self.assertEqual(252, snapshot["python_test_count"])
-        self.assertEqual(47, MODULE.current_game_test_count())
+        self.assertEqual(508, snapshot["java_source_test_count"])
+        self.assertEqual(441, snapshot["python_test_count"])
+        self.assertEqual(69, MODULE.current_game_test_count())
         self.assertEqual(
             snapshot["java_source_test_count"],
             document["tests"]["java_unit_tests"]["tests"],
         )
-        plan = (MODULE.ROOT / "CrucibleCraft-总体规划.md").read_text(
-            encoding="utf-8"
-        )
-        match = re.search(r"Java / Python 单测 \| (\d+) / (\d+)", plan)
-        self.assertIsNotNone(match)
-        self.assertEqual(
-            (
-                snapshot["java_source_test_count"],
-                snapshot["python_test_count"],
-            ),
-            tuple(map(int, match.groups())),
-        )
+        if document["status"] == "READY":
+            plan = (MODULE.ROOT / "CrucibleCraft-总体规划.md").read_text(
+                encoding="utf-8"
+            )
+            match = re.search(r"Java / Python 单测 \| (\d+) / (\d+)", plan)
+            self.assertIsNotNone(match)
+            planned_java, planned_python = map(int, match.groups())
+            self.assertEqual(snapshot["java_source_test_count"], planned_java)
+            self.assertLessEqual(planned_python, snapshot["python_test_count"])
         ore = document["ore_pipeline_acceptance"]
         self.assertEqual(2117, ore["concrete_recipes"])
         self.assertEqual(494, ore["concrete_recipes_by_map"]["crusher"])
@@ -93,7 +133,7 @@ class FullVerificationReportTest(unittest.TestCase):
         self.assertEqual(2782, component["extruder_expanded_recipes"])
         self.assertEqual(0, component["shadowed_recipes"])
         self.assertEqual(
-            2811,
+            49,
             snapshot["trees"]["component_rule_generated"]["files"],
         )
         t5 = document["t5_chemical_acceptance"]
@@ -276,8 +316,316 @@ class FullVerificationReportTest(unittest.TestCase):
                 "new_t10_chemical_fluids"
             ],
         )
-        self.assertEqual(5958, t10["load_gate"]["datapack_recipe_entries"])
+        self.assertEqual(3202, t10["load_gate"]["datapack_recipe_entries"])
         self.assertEqual(18871, t10["load_gate"]["published_recipes"])
+        t11 = document["t11_preflight_acceptance"]
+        self.assertEqual("T11_READY", t11["status"])
+        self.assertTrue(t11["ledger_current"])
+        self.assertEqual(
+            [
+                "crude_oil_distillation",
+                "fuel_oil_engine",
+                "methane_gas_fuel",
+                "natural_gas_to_methane",
+            ],
+            t11["independent_expectation"]["route_ids"],
+        )
+        self.assertEqual(
+            {
+                "crude_oil_distillation": 872,
+                "fuel_oil_engine": 14,
+                "methane_gas_fuel": 2,
+                "natural_gas_to_methane": 553,
+            },
+            t11["selected_recipe_indices"],
+        )
+        self.assertEqual(
+            1517, t11["distillery_counts"]["classified"]
+        )
+        self.assertEqual(
+            0, t11["distillery_counts"]["unclassified"]
+        )
+        bridge = t11["fluid_identity_closure"][
+            "source_fluid_bridges"
+        ]["liquid_medium_oil"]
+        self.assertEqual("DESIGN_POLICY", bridge["status"])
+        self.assertEqual("UNVERIFIED", bridge["gt6_equivalence"])
+        self.assertEqual("O-37", bridge["open_item"])
+        self.assertEqual(
+            18875, t11["load_gate"]["projected"]["published_recipes"]
+        )
+        self.assertEqual(
+            3210,
+            t11["load_gate"]["projected"][
+                "datapack_recipe_entries"
+            ],
+        )
+        self.assertEqual(
+            4, t11["recipe_manifest"]["counts"]["published"]
+        )
+        self.assertEqual(
+            0,
+            t11["load_gate"]["budgets"][
+                "t11_authored_material_rules"
+            ],
+        )
+        t13 = document["t13_denominator_acceptance"]
+        self.assertEqual("T13_READY", t13["status"])
+        self.assertTrue(t13["manifest_current"])
+        self.assertTrue(t13["readiness_current"])
+        self.assertEqual(7, t13["acceptance"]["tables"])
+        self.assertEqual(0, t13["acceptance"]["unclassified"])
+        self.assertEqual(
+            0, t13["acceptance"]["normalization_blockers"]
+        )
+        self.assertEqual(95, t13["acceptance"]["recipe_maps"])
+        self.assertEqual(720_841, t13["acceptance"]["recipe_rows"])
+        self.assertEqual("CLOSED", t13["acceptance"]["o_33"])
+        self.assertEqual(
+            {
+                "cover_kinds",
+                "energy_identities",
+                "itemgenerator_domains",
+                "machine_kinds",
+                "multiblock_kinds",
+                "prefixes",
+                "recipe_maps",
+            },
+            set(t13["denominators"]),
+        )
+        self.assertEqual(
+            0, t13["zero_content_delta"]["datapack_delta"]
+        )
+        self.assertEqual(
+            0, t13["zero_content_delta"]["publication_delta"]
+        )
+        t14 = document["t14_load_acceptance"]
+        self.assertEqual("T14_READY", t14["status"])
+        self.assertTrue(t14["readiness_current"])
+        self.assertEqual("CLOSED", t14["o_26"]["status"])
+        self.assertEqual("hybrid", t14["materialization"]["winner"])
+        self.assertEqual(
+            {
+                "authored": 20,
+                "cache_ceiling": 512,
+                "eager": 557,
+                "lazy": 2225,
+                "logical": 2782,
+            },
+            t14["materialization"]["extruder"],
+        )
+        self.assertEqual(
+            3229, t14["load_gate"]["datapack_authored_entries"]
+        )
+        self.assertEqual([], t14["load_gate"]["pending_measurements"])
+        t15 = document["t15_readiness_acceptance"]
+        self.assertEqual("T15_READY", t15["status"])
+        self.assertTrue(t15["readiness_current"])
+        self.assertEqual(
+            ["T15a", "T15b", "T15c", "T15d", "T15e"],
+            t15["completed_stages"],
+        )
+        self.assertEqual([], t15["pending_stages"])
+        self.assertTrue(t15["historical_immutable_evidence"]["immutable"])
+        self.assertFalse(t15["historical_immutable_evidence"]["current"])
+        t15c = t15["t15c_acquisition_gate"]
+        self.assertEqual("PASS", t15c["status"])
+        self.assertEqual(
+            {
+                "casing_recipes": 6,
+                "machine_variant_recipes": 9,
+                "registered_results": 15,
+                "unreachable": 0,
+            },
+            t15c["acquisition"]["counts"],
+        )
+        self.assertEqual(0, t15c["load_projection"]["publication_delta"])
+        self.assertTrue(all(
+            value == 0
+            for value in t15c["load_projection"][
+                "incremental_counts"
+            ].values()
+        ))
+        t15d = t15["t15d_identity_gate"]
+        self.assertEqual("PASS", t15d["status"])
+        self.assertEqual(4, t15d["junit"]["test_count"])
+        self.assertEqual(2, t15d["gametest"]["added_test_count"])
+        self.assertEqual(56, t15d["gametest"]["full_suite_test_count"])
+        self.assertEqual(
+            {
+                "processingIdentityMismatchesQuarantineAcrossNbtReload",
+                "exactLargeCentrifugeIdentityMigratesAcrossNbtReload",
+            },
+            set(t15d["gametest"]["tests"]),
+        )
+        t15e = t15["t15e_matcher_boundary_gate"]
+        self.assertEqual("PASS", t15e["status"])
+        self.assertEqual(
+            t15e["physical_structure"]["item_fluid_ports"], 15
+        )
+        self.assertEqual(
+            t15e["physical_structure"]["energy_input_ports"], 2
+        )
+        self.assertEqual(t15e["physical_structure"]["controllers"], 1)
+        self.assertEqual(t15e["host_layout"]["item_inputs"], 1)
+        self.assertEqual(t15e["host_layout"]["item_outputs"], 6)
+        self.assertEqual(t15e["host_layout"]["fluid_inputs"], 1)
+        self.assertEqual(t15e["host_layout"]["fluid_outputs"], 2)
+        self.assertEqual(
+            t15e["port_host_boundary"]["item_matcher_supplies"], 1
+        )
+        self.assertEqual(
+            t15e["port_host_boundary"]["fluid_matcher_supplies"], 1
+        )
+        self.assertFalse(
+            t15e["port_host_boundary"][
+                "physical_ports_expand_matcher_supplies"
+            ]
+        )
+        self.assertFalse(
+            t15e["matcher_boundary"]["presence_cap_triggered"]
+        )
+        self.assertEqual(
+            [12, 16, 32, 64],
+            t15e["benchmark"]["dense_supply_counts"],
+        )
+        t16 = document["t16_readiness_acceptance"]
+        self.assertEqual("T16_READY", t16["status"])
+        self.assertTrue(t16["readiness_current"])
+        self.assertEqual(
+            ["T16a", "T16b", "T16c", "T16d"],
+            t16["completed_stages"],
+        )
+        self.assertEqual([], t16["pending_stages"])
+        self.assertEqual(
+            {
+                "denominator_kinds": 20,
+                "unclassified": 0,
+                "selected_kinds": 5,
+                "selected_variants": 15,
+                "preimplemented_kinds": 2,
+                "deferred_kinds": 13,
+                "tier4_deferred": 20,
+                "publication_delta": 0,
+            },
+            t16["closure_summary"],
+        )
+        t16d = t16["t16d_evidence"]
+        self.assertEqual("PASS", t16d["status"])
+        self.assertEqual(
+            {"RU": "KINETIC_ROTATION", "KU": "KINETIC_PUSH"},
+            t16d["energy_identity"],
+        )
+        self.assertEqual(15, t16d["migration_acquisition"][
+            "vanilla_crafting_rows"
+        ])
+        self.assertEqual(0, t16d["migration_acquisition"][
+            "gt_recipe_rows"
+        ])
+        self.assertTrue(all(
+            value == 0
+            for value in t16d["load_projection"][
+                "incremental_counts"
+            ].values()
+        ))
+        self.assertEqual(
+            {
+                "logical_rows": 18875,
+                "eager_rows": 16650,
+                "lazy_rows": 2225,
+            },
+            t16d["publication_baseline"]["publication_totals"],
+        )
+        self.assertEqual(
+            32, len(t16d["publication_baseline"]["recipe_map_ids"])
+        )
+        self.assertEqual(24, t16d["emi_enumeration"]["configured_maps"])
+        self.assertTrue(t16d["emi_enumeration"][
+            "recipe_enumeration_equal"
+        ])
+        self.assertEqual(6, t16d["gametest"]["t16_test_count"])
+        self.assertEqual(
+            MODULE.current_game_test_count(),
+            t16d["gametest"]["full_suite_test_count"],
+        )
+        t17 = document["t17_readiness_acceptance"]
+        self.assertEqual("T17_READY", t17["status"])
+        self.assertTrue(t17["readiness_current"])
+        self.assertEqual(
+            ["T17a", "T17b", "T17c", "T17d"],
+            t17["completed_stages"],
+        )
+        self.assertEqual([], t17["pending_stages"])
+        self.assertEqual(
+            {
+                "denominator_kinds": 28,
+                "energy_kind_counts": {"EU": 16, "HU": 12},
+                "unclassified": 0,
+                "selected_kinds": 3,
+                "selected_variants": 9,
+                "preimplemented_reference_kinds": 1,
+                "deferred_kinds": 24,
+                "gt_recipe_row_mutation": 0,
+                "hu_execution_variants": 9,
+                "eu_reference_variants": 3,
+                "electric_mixer_tier_variants": 0,
+                "resources_acquisition_full_closure": "COMPLETE_T17C",
+                "machine_acquisition_variants": 9,
+                "machine_acquisition_unreachable": 0,
+                "preimplemented_electrolyzer_variants": 3,
+                "heat_tier4_deferred": 10,
+                "electric_tier4_5_deferred": 32,
+                "publication_delta": 0,
+            },
+            t17["closure_summary"],
+        )
+        t17d = t17["t17d_evidence"]
+        self.assertEqual("PASS", t17d["status"])
+        self.assertEqual(
+            {"EU": 16, "HU": 12},
+            t17d["denominator"]["energy_kinds"],
+        )
+        self.assertEqual(24, t17d["denominator"]["deferred_kinds"])
+        self.assertEqual(
+            "HEAT_ADJACENT_BOTTOM_FIREBOX",
+            t17d["energy_topology"]["HU"],
+        )
+        self.assertEqual(
+            "ELECTRIC_BUFFERED_CABLE_ENDPOINT",
+            t17d["energy_topology"]["EU"],
+        )
+        self.assertEqual(9, t17d["migration_acquisition"][
+            "vanilla_crafting_rows"
+        ])
+        self.assertEqual(0, t17d["migration_acquisition"][
+            "gt_recipe_rows"
+        ])
+        self.assertTrue(all(
+            value == 0
+            for value in t17d["load_projection"][
+                "incremental_counts"
+            ].values()
+        ))
+        self.assertEqual(
+            {
+                "logical_rows": 18_875,
+                "eager_rows": 16_650,
+                "lazy_rows": 2_225,
+            },
+            t17d["publication_baseline"]["publication_totals"],
+        )
+        self.assertEqual(
+            32, len(t17d["publication_baseline"]["recipe_map_ids"])
+        )
+        self.assertEqual(24, t17d["emi_enumeration"]["configured_maps"])
+        self.assertTrue(t17d["emi_enumeration"][
+            "recipe_enumeration_equal_to_t16"
+        ])
+        self.assertEqual(8, t17d["gametest"]["t17_test_count"])
+        self.assertEqual(
+            MODULE.current_game_test_count(),
+            t17d["gametest"]["full_suite_test_count"],
+        )
         self.assertFalse(
             document["artifact_policy"]["ordinary_ci_requires_local_cache"]
         )

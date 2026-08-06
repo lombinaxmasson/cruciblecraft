@@ -19,6 +19,7 @@ import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.AnvilMode;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModItems;
+import com.masson.cruciblecraft.registry.ModMachineVariants;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import com.masson.cruciblecraft.registry.ModComponents;
@@ -204,6 +205,20 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
             categories.put(machine.spec(), category);
             registry.addCategory(category);
             registry.addWorkstation(category, workstation);
+            if (machine.spec() == ModProcessingMachines.CENTRIFUGE) {
+                registry.addWorkstation(
+                        category,
+                        EmiStack.of(ModBlocks.LARGE_CENTRIFUGE.get()));
+            }
+            for (var variant : ModMachineVariants.forKind(
+                    machine.spec().id())) {
+                if (!variant.id().equals(machine.spec().id())) {
+                    registry.addWorkstation(
+                            category,
+                            EmiStack.of(ModBlocks
+                                    .configuredProcessingBlock(variant)));
+                }
+            }
         }
         for (ProcessingEmiRegistrationPlan.RecipeRegistration recipe
                 : plan.recipes()) {

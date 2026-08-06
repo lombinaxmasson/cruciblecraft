@@ -1,0 +1,66 @@
+{
+  "counts": {
+    "chemical_processing": 2,
+    "fuel_generation": 2,
+    "material_rules": 0,
+    "published": 4
+  },
+  "output_hashes": {
+    "data/cruciblecraft/recipe/t11/distillery/crude_oil_to_fuel_and_lubricant.json": "f9c2e06545537edbb8aa289162328427866496512e049ad19527526e6f9b8034",
+    "data/cruciblecraft/recipe/t11/fuels_engine/fuel_oil.json": "c1e988c8bb123a894b482fe53df6f555bca874cfe3e4f1ea7ee2ea85b02bae47",
+    "data/cruciblecraft/recipe/t11/fuels_gas/methane.json": "4827d80de86c9769d03bbc15684b5c78f00868225a8417501ccb8d150d205226",
+    "data/cruciblecraft/recipe/t11/generifier/natural_gas_to_methane.json": "ce99ad08c7d15447db48c48b765d3610806b05a8fb1e1a8065233c8ea64408b8"
+  },
+  "proof": {
+    "builder_sha256": "a922b37f269b4de4fa4d38eb246ed3417ddb89d8a23ad084594f3b0adbf86cff",
+    "output_tree_sha256": "51dfb2494c0b06ee6e446bfdd31f523a986eb90fb9a44453852fb988103c30cb",
+    "preflight_artifact_sha256": "b1e31d27dc3af04d4f89d3e7674e2e8443d00e29bc68726832da08c83926b61c",
+    "preflight_builder_sha256": "309b420dcdfcb10b0bfd41298b2fb77b1e94e6b91e25b65cddd7775911b29259",
+    "proof_tier": "full_replay"
+  },
+  "recipes": [
+    {
+      "id": "cruciblecraft:t11/distillery/crude_oil_to_fuel_and_lubricant",
+      "map": "cruciblecraft:distillery",
+      "route": "crude_oil_distillation",
+      "sha256": "f9c2e06545537edbb8aa289162328427866496512e049ad19527526e6f9b8034",
+      "source": {
+        "path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json#recipes[872]",
+        "row_sha256": "239b7501c6e465ba64e949217423ae46553146cd8e34e69a1c4a56046599a83a"
+      }
+    },
+    {
+      "id": "cruciblecraft:t11/fuels_engine/fuel_oil",
+      "map": "cruciblecraft:fuels_engine",
+      "route": "fuel_oil_engine",
+      "sha256": "c1e988c8bb123a894b482fe53df6f555bca874cfe3e4f1ea7ee2ea85b02bae47",
+      "source": {
+        "path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.engine.json#recipes[14]",
+        "row_sha256": "b8f47e33a4894a963221ac3fe43a46596676bf5af9d86c3daa4da73a1b8914ab"
+      }
+    },
+    {
+      "id": "cruciblecraft:t11/fuels_gas/methane",
+      "map": "cruciblecraft:fuels_gas",
+      "route": "methane_gas_fuel",
+      "sha256": "4827d80de86c9769d03bbc15684b5c78f00868225a8417501ccb8d150d205226",
+      "source": {
+        "path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.gas.json#recipes[2]",
+        "row_sha256": "927813432bfc91a48de932305d28bbcbe73dd3f61a046375c0fbb9ab6315143e"
+      }
+    },
+    {
+      "id": "cruciblecraft:t11/generifier/natural_gas_to_methane",
+      "map": "cruciblecraft:generifier",
+      "route": "natural_gas_to_methane",
+      "sha256": "ce99ad08c7d15447db48c48b765d3610806b05a8fb1e1a8065233c8ea64408b8",
+      "source": {
+        "path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.generifier.json#recipes[553]",
+        "row_sha256": "dd41ffd439b7962106eb2df0b6e6ebd8f1d487f7cb25208208def058e1df5a6f"
+      }
+    }
+  ],
+  "route_set_sha256": "e0dfb99dd6921b2181f689ce96b811b2c9679e12286620d83e04a900d396a0d8",
+  "schema_version": 2,
+  "status": "T11_FIXED_ROWS_PUBLISHED"
+}

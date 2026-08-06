@@ -22,6 +22,8 @@ public final class ModProcessingMachines {
             "idle",
             "running",
             "invalid_recipe",
+            "recipe_power_exceeded",
+            "overcharged",
             "output_blocked",
             "underpowered",
             "unsupported_version",
@@ -36,7 +38,7 @@ public final class ModProcessingMachines {
             new ProcessingMachineSpec.SlotLayout(2, List.of(0), List.of(1)),
             new ProcessingMachineSpec.TankLayout(List.of(), List.of()),
             new ProcessingMachineSpec.EnergySpec(
-                    EnergyType.KINETIC,
+                    EnergyType.KINETIC_PUSH,
                     ProcessingMachineSpec.EnergyMode.BUFFERED,
                     1_024L,
                     1_024L),
@@ -58,7 +60,11 @@ public final class ModProcessingMachines {
                     List.of(),
                     PROCESSING_STATUSES));
     public static final ProcessingMachineSpec SLUICE =
-            mechanical("sluice", () -> ModRecipeMaps.SLUICE, true);
+            mechanical(
+                    "sluice",
+                    () -> ModRecipeMaps.SLUICE,
+                    true,
+                    EnergyType.KINETIC_ROTATION);
     public static final ProcessingMachineSpec BATH =
             reusedT5("bath", () -> ModRecipeMaps.BATH,
                     1, 4, 1, 1, 4_000, 8_000,
@@ -67,12 +73,20 @@ public final class ModProcessingMachines {
     public static final ProcessingMachineSpec CENTRIFUGE =
             reusedT5("centrifuge", () -> ModRecipeMaps.CENTRIFUGE,
                     1, 6, 1, 2, 4_000, 8_000,
-                    EnergyType.KINETIC,
+                    EnergyType.KINETIC_ROTATION,
                     ProcessingMachineSpec.EnergyMode.BUFFERED);
     public static final ProcessingMachineSpec SHREDDER =
-            mechanical("shredder", () -> ModRecipeMaps.SHREDDER, false);
+            mechanical(
+                    "shredder",
+                    () -> ModRecipeMaps.SHREDDER,
+                    false,
+                    EnergyType.KINETIC_ROTATION);
     public static final ProcessingMachineSpec SIFTER =
-            mechanical("sifter", () -> ModRecipeMaps.SIFTER, false);
+            mechanical(
+                    "sifter",
+                    () -> ModRecipeMaps.SIFTER,
+                    false,
+                    EnergyType.KINETIC_PUSH);
     public static final ProcessingMachineSpec MORTAR =
             mechanical("mortar", () -> ModRecipeMaps.MORTAR, false);
     public static final ProcessingMachineSpec SMELTER =
@@ -87,13 +101,28 @@ public final class ModProcessingMachines {
     public static final ProcessingMachineSpec CUTTER =
             t3("cutter", () -> ModRecipeMaps.CUTTER, 1, false);
     public static final ProcessingMachineSpec LATHE =
-            t3("lathe", () -> ModRecipeMaps.LATHE, 1, false);
+            t3(
+                    "lathe",
+                    () -> ModRecipeMaps.LATHE,
+                    1,
+                    false,
+                    EnergyType.KINETIC_ROTATION);
     public static final ProcessingMachineSpec ROLLINGMILL =
-            t3("rollingmill", () -> ModRecipeMaps.ROLLINGMILL, 1, false);
+            t3(
+                    "rollingmill",
+                    () -> ModRecipeMaps.ROLLINGMILL,
+                    1,
+                    false,
+                    EnergyType.KINETIC_ROTATION);
     public static final ProcessingMachineSpec ROLLBENDER =
             t3("rollbender", () -> ModRecipeMaps.ROLLBENDER, 1, false);
     public static final ProcessingMachineSpec WIREMILL =
-            t3("wiremill", () -> ModRecipeMaps.WIREMILL, 2, false);
+            t3(
+                    "wiremill",
+                    () -> ModRecipeMaps.WIREMILL,
+                    2,
+                    false,
+                    EnergyType.KINETIC_ROTATION);
     public static final ProcessingMachineSpec BENDER =
             t3("bender", () -> ModRecipeMaps.BENDER, 1, false);
     public static final ProcessingMachineSpec ASSEMBLER =
@@ -101,7 +130,12 @@ public final class ModProcessingMachines {
     public static final ProcessingMachineSpec WELDER =
             t3("welder", () -> ModRecipeMaps.WELDER, 2, true);
     public static final ProcessingMachineSpec PRESS =
-            t3("press", () -> ModRecipeMaps.PRESS, 2, false);
+            t3(
+                    "press",
+                    () -> ModRecipeMaps.PRESS,
+                    2,
+                    false,
+                    EnergyType.KINETIC_PUSH);
     public static final List<ProcessingMachineSpec> T3_MACHINES = List.of(
             EXTRUDER, CUTTER, LATHE, ROLLINGMILL, ROLLBENDER,
             WIREMILL, BENDER, ASSEMBLER, WELDER, PRESS);
@@ -112,16 +146,71 @@ public final class ModProcessingMachines {
             t5("mixer", () -> ModRecipeMaps.MIXER,
                     4, 1, 3, 2, 32_000, 32_000);
     public static final ProcessingMachineSpec DISTILLERY =
-            t5("distillery", () -> ModRecipeMaps.DISTILLERY, 2, 2, 2, 3);
+            reusedT5("distillery", () -> ModRecipeMaps.DISTILLERY,
+                    2, 2, 2, 3, 8_000, 8_000,
+                    EnergyType.HEAT,
+                    ProcessingMachineSpec.EnergyMode.ADJACENT);
     public static final ProcessingMachineSpec AUTOCLAVE =
             t5("autoclave", () -> ModRecipeMaps.AUTOCLAVE, 2, 3, 1, 1,
                     2_500_000, 16_000);
     public static final ProcessingMachineSpec DRYING =
-            t5("drying", () -> ModRecipeMaps.DRYING, 1, 1, 0, 1,
-                    32_000, 32_000);
+            reusedT5("drying", () -> ModRecipeMaps.DRYING,
+                    1, 1, 0, 1, 32_000, 32_000,
+                    EnergyType.HEAT,
+                    ProcessingMachineSpec.EnergyMode.ADJACENT);
     public static final ProcessingMachineSpec COMPRESSOR =
             t5("compressor", () -> ModRecipeMaps.COMPRESSOR, 1, 1, 0, 0,
                     32_000, 32_000);
+    public static final ProcessingMachineSpec GENERIFIER =
+            new ProcessingMachineSpec(
+                    id("generifier"),
+                    id("generifier"),
+                    () -> ModRecipeMaps.GENERIFIER,
+                    new ProcessingMachineSpec.SlotLayout(
+                            0, List.of(), List.of()),
+                    new ProcessingMachineSpec.TankLayout(
+                            List.of(new ProcessingMachineSpec.TankSpec(
+                                    0, 8_000)),
+                            List.of(new ProcessingMachineSpec.TankSpec(
+                                    1, 8_000))),
+                    new ProcessingMachineSpec.EnergySpec(
+                            EnergyType.ELECTRIC,
+                            ProcessingMachineSpec.EnergyMode.ADJACENT,
+                            0L,
+                            1L),
+                    new ProcessingMachineSpec.SidedIoPolicy(
+                            (front, side) ->
+                                    ProcessingMachineSpec.CapabilityAccess.NONE,
+                            (front, side) -> side == null
+                                    ? ProcessingMachineSpec.CapabilityAccess.NONE
+                                    : side == front
+                                            ? ProcessingMachineSpec
+                                                    .CapabilityAccess.OUTPUT
+                                            : ProcessingMachineSpec
+                                                    .CapabilityAccess.INPUT,
+                            (front, side) ->
+                                    ProcessingMachineSpec.CapabilityAccess.NONE),
+                    recipe -> recipe.itemInputs().isEmpty()
+                                    && recipe.itemOutputs().isEmpty()
+                                    && recipe.fluidInputs().size() == 1
+                                    && recipe.fluidOutputs().size() == 1
+                                    && recipe.eut() == 0L
+                                    && recipe.duration() == 1
+                            ? Optional.empty()
+                            : Optional.of("generifier_recipe_shape"),
+                    ProcessingMachineSpec.BufferPolicy.PAUSE,
+                    new ProcessingMachineSpec.UiLayout(
+                            List.of(),
+                            new ProcessingMachineSpec.ProgressBar(
+                                    80, 34, 24, 6),
+                            List.of(
+                                    new ProcessingMachineSpec.TankPosition(
+                                            0, 20, 17, 12, 52),
+                                    new ProcessingMachineSpec.TankPosition(
+                                            1, 144, 17, 12, 52)),
+                            PROCESSING_STATUSES));
+    public static final List<ProcessingMachineSpec> T11_PROCESSING_MACHINES =
+            List.of(GENERIFIER);
     /** T5 can publish into reused maps as well as its new dedicated maps. */
     public static final List<ProcessingMachineSpec> T5_MACHINES = List.of(
             BATH, CENTRIFUGE, SMELTER, ASSEMBLER,
@@ -162,11 +251,24 @@ public final class ModProcessingMachines {
      * trigger an explicit re-projection rather than consume assumed headroom.
      */
     public static final int T10_AUTHORED_MATERIAL_RULE_BUDGET = 1_500;
+    /**
+     * T11 is a fixed-row fluid projection. Material-wide authored expansion is
+     * forbidden so a source-row route cannot silently turn into a guessed
+     * composition rule.
+     */
+    public static final int T11_AUTHORED_MATERIAL_RULE_BUDGET = 0;
+    /**
+     * T12 tiers bind machine kinds to source-backed numeric profiles. They do
+     * not publish recipes or authorize material-wide recipe expansion.
+     */
+    public static final int T12_AUTHORED_MATERIAL_RULE_BUDGET = 0;
     public static final Map<Integer, Integer> AUTHORED_MATERIAL_RULE_BUDGETS =
             Map.of(
                     7, T7_AUTHORED_MATERIAL_RULE_BUDGET,
                     8, T8_PIPE_MATERIAL_RULE_BUDGET,
-                    10, T10_AUTHORED_MATERIAL_RULE_BUDGET);
+                    10, T10_AUTHORED_MATERIAL_RULE_BUDGET,
+                    11, T11_AUTHORED_MATERIAL_RULE_BUDGET,
+                    12, T12_AUTHORED_MATERIAL_RULE_BUDGET);
     /**
      * The verified post-T8 publication is 17,583 after adding the high-version
      * ore-block crusher ingress. The pinned T10 preflight projects 642
@@ -175,24 +277,42 @@ public final class ModProcessingMachines {
      * thousand yields 21,000.
      */
     public static final int ALL_PUBLISHED_RECIPE_BUDGET = 21_000;
+    /** T14 Hybrid soft envelope for recipes retained eagerly in map indexes. */
+    public static final int ALL_EAGER_PUBLICATION_SOFT_BUDGET = 18_000;
+    /** T14 measured 20x hard envelope for logical rows kept by lazy families. */
+    public static final int ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING = 56_000;
+    /** Aggregate per-epoch cache ceiling for currently selected lazy families. */
+    public static final int ALL_LAZY_RECIPE_CACHE_HARD_CEILING = 4_096;
     public static final long RECIPE_RELOAD_BUDGET_MS = 10_000L;
     public static final long RECIPE_INDEX_BUILD_BUDGET_MS = 1_000L;
-    public static final long RECIPE_LOOKUP_AVERAGE_BUDGET_NS = 1_000_000L;
-    public static final long RECIPE_LOOKUP_AVERAGE_CANDIDATE_BUDGET = 64L;
+    public static final long CLIENT_RECIPE_RELOAD_BUDGET_MS = 10_000L;
+    public static final long CLIENT_RECIPE_INDEX_BUILD_BUDGET_MS = 3_000L;
+    public static final long RECIPE_SYNC_BUDGET_BYTES =
+            64L * 1_024L * 1_024L;
+    public static final long RECIPE_LOOKUP_P95_BUDGET_NS = 2_000_000L;
+    public static final long RECIPE_LOOKUP_P95_CANDIDATE_BUDGET = 64L;
+    public static final long RECIPE_LOOKUP_MAX_CANDIDATE_HARD_CEILING = 128L;
     public static final List<ProcessingMachineSpec> CONFIGURED_MACHINES =
-            java.util.stream.Stream.of(T2_MACHINES, T3_MACHINES, T5_MACHINES)
+            java.util.stream.Stream.of(
+                            T2_MACHINES,
+                            T3_MACHINES,
+                            T5_MACHINES,
+                            T11_PROCESSING_MACHINES)
                     .flatMap(List::stream)
                     .distinct()
                     .toList();
     private static final Map<ResourceLocation, ProcessingMachineSpec> BY_ID =
             CONFIGURED_MACHINES.stream().collect(java.util.stream.Collectors.toUnmodifiableMap(
                     ProcessingMachineSpec::id, value -> value));
-    private static final Map<ResourceLocation, ProcessingMachineSpec> BY_MAP =
+    private static final Map<ResourceLocation, List<ProcessingMachineSpec>>
+            BY_MAP =
             java.util.stream.Stream.concat(
                     java.util.stream.Stream.of(CRUSHER),
                     CONFIGURED_MACHINES.stream())
-                    .collect(java.util.stream.Collectors.toUnmodifiableMap(
-                            ProcessingMachineSpec::recipeMapId, value -> value));
+                    .collect(java.util.stream.Collectors.groupingBy(
+                            ProcessingMachineSpec::recipeMapId,
+                            java.util.stream.Collectors
+                                    .toUnmodifiableList()));
 
     private ModProcessingMachines() {}
 
@@ -216,7 +336,12 @@ public final class ModProcessingMachines {
     }
 
     public static Optional<ProcessingMachineSpec> forRecipeMap(ResourceLocation id) {
-        return Optional.ofNullable(BY_MAP.get(id));
+        return allForRecipeMap(id).stream().findFirst();
+    }
+
+    public static List<ProcessingMachineSpec> allForRecipeMap(
+            ResourceLocation id) {
+        return BY_MAP.getOrDefault(id, List.of());
     }
 
     private static ProcessingMachineSpec mechanical(
@@ -224,6 +349,19 @@ public final class ModProcessingMachines {
             Supplier<RecipeMap> map,
             boolean waterInput) {
         return spec(id, map, waterInput, EnergyType.KINETIC,
+                ProcessingMachineSpec.EnergyMode.BUFFERED);
+    }
+
+    private static ProcessingMachineSpec mechanical(
+            String id,
+            Supplier<RecipeMap> map,
+            boolean waterInput,
+            EnergyType energyType) {
+        return spec(
+                id,
+                map,
+                waterInput,
+                energyType,
                 ProcessingMachineSpec.EnergyMode.BUFFERED);
     }
 
@@ -294,7 +432,28 @@ public final class ModProcessingMachines {
             Supplier<RecipeMap> map,
             int itemInputs,
             boolean futureFluidInput) {
-        return t3(path, map, itemInputs, futureFluidInput, false);
+        return t3(
+                path,
+                map,
+                itemInputs,
+                futureFluidInput,
+                false,
+                EnergyType.KINETIC);
+    }
+
+    private static ProcessingMachineSpec t3(
+            String path,
+            Supplier<RecipeMap> map,
+            int itemInputs,
+            boolean futureFluidInput,
+            EnergyType energyType) {
+        return t3(
+                path,
+                map,
+                itemInputs,
+                futureFluidInput,
+                false,
+                energyType);
     }
 
     private static ProcessingMachineSpec t3(
@@ -303,6 +462,22 @@ public final class ModProcessingMachines {
             int itemInputs,
             boolean futureFluidInput,
             boolean extruderTool) {
+        return t3(
+                path,
+                map,
+                itemInputs,
+                futureFluidInput,
+                extruderTool,
+                EnergyType.KINETIC);
+    }
+
+    private static ProcessingMachineSpec t3(
+            String path,
+            Supplier<RecipeMap> map,
+            int itemInputs,
+            boolean futureFluidInput,
+            boolean extruderTool,
+            EnergyType energyType) {
         List<Integer> inputs = java.util.stream.IntStream.range(0, itemInputs).boxed().toList();
         int outputSlot = itemInputs;
         boolean assemblerCatalysts = "assembler".equals(path);
@@ -364,7 +539,7 @@ public final class ModProcessingMachines {
                 itemLayout,
                 tanks,
                 new ProcessingMachineSpec.EnergySpec(
-                        EnergyType.KINETIC,
+                        energyType,
                         ProcessingMachineSpec.EnergyMode.BUFFERED,
                         4_096L,
                         256L),

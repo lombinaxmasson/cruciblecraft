@@ -1,7 +1,6 @@
 package com.masson.cruciblecraft.content.blockentity;
 
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +22,6 @@ import com.masson.cruciblecraft.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -42,7 +40,8 @@ public final class ItemPipeBlockEntity extends BlockEntity {
     private final PipeCoverSet covers = new PipeCoverSet();
     private final EnumMap<Direction, IItemHandler> sidedHandlers =
             new EnumMap<>(Direction.class);
-    private final Map<RouteKey, List<Route>> routeCache = new HashMap<>();
+    private final ItemPipeRouteCache routeCache =
+            new ItemPipeRouteCache();
     private long cachedTopologyVersion = Long.MIN_VALUE;
     private long windowStart = Long.MIN_VALUE;
     private int consumedThisWindow;
@@ -312,12 +311,10 @@ public final class ItemPipeBlockEntity extends BlockEntity {
             routeCache.clear();
             cachedTopologyVersion = version;
         }
-        String itemId = BuiltInRegistries.ITEM.getKey(
-                stack.getItem()).toString();
-        RouteKey key = new RouteKey(ingress, itemId);
-        List<Route> cached = routeCache.computeIfAbsent(
-                key,
-                ignored -> ItemPipeNetworkTraversal.discover(
+        List<Route> cached = routeCache.getOrDiscover(
+                ingress,
+                stack.getItem(),
+                () -> ItemPipeNetworkTraversal.discover(
                         level, worldPosition, ingress, stack));
         if (cached.size() < 2) {
             return cached;
@@ -448,8 +445,6 @@ public final class ItemPipeBlockEntity extends BlockEntity {
                 ? getBlockState()
                 : level.getBlockState(worldPosition);
     }
-
-    private record RouteKey(Direction ingress, String itemId) {}
 
     private final class SidedHandler implements IItemHandler {
         private final Direction side;

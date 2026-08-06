@@ -1,15 +1,19 @@
 {
   "config": {
+    "accumulation_cap_mb": 1000,
     "generation_chance": 0.5,
     "material": "cruciblecraft:crude_oil",
     "max_amount_mb": 4000000,
     "max_y": 16,
     "min_amount_mb": 1000000,
     "min_y": -48,
+    "production_amount_mb": 25,
+    "production_interval_ticks": 20,
     "region_size_chunks": 16,
     "replaceable": "cruciblecraft:subsurface_fluid_deposit_replaceables",
     "salt": 1330194521,
-    "search_range": 12
+    "search_range": 12,
+    "vent_overflow": false
   },
   "type": "cruciblecraft:subsurface_fluid_deposit"
 }

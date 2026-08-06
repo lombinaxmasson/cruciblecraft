@@ -19,8 +19,7 @@ class WorldgenCatalogResourceTest {
             Path.of("tools/worldgen_catalog_readiness.json");
 
     @Test
-    void readinessAndGeneratedResourcesCloseAllT2cVeinRows()
-            throws Exception {
+    void readinessAndGeneratedResourcesCloseAllT2cVeinRows() throws Exception {
         var readiness = JsonParser.parseString(Files.readString(READINESS))
                 .getAsJsonObject();
         var counts = readiness.getAsJsonObject("counts");

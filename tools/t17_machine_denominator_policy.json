@@ -1,0 +1,406 @@
+{
+  "schema_version": 1,
+  "status": "T17_MACHINE_DENOMINATOR_POLICY",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "owner": "T17",
+  "accepted_energy_identities": {
+    "EU": "ELECTRIC",
+    "HU": "HEAT"
+  },
+  "dispositions": [
+    "IMPLEMENTED_T17A",
+    "PREIMPLEMENTED_REFERENCE",
+    "MAPPED_DEFERRED",
+    "T13_ONLY_DEFERRED"
+  ],
+  "heat_material_mappings": {
+    "ANY.Steel": {
+      "local_material": "cruciblecraft:steel",
+      "registered": true,
+      "registration_path": "src/main/resources/data/cruciblecraft/materials/steel.json",
+      "acquisition_blocker": null
+    },
+    "Invar": {
+      "local_material": "cruciblecraft:invar",
+      "registered": true,
+      "registration_path": "src/main/resources/data/cruciblecraft/materials/invar.json",
+      "acquisition_blocker": null
+    },
+    "Ti": {
+      "local_material": "cruciblecraft:titanium",
+      "registered": true,
+      "registration_path": "src/main/resources/data/cruciblecraft/materials/titanium.json",
+      "acquisition_blocker": null
+    }
+  },
+  "kinds": {
+    "RM.Autocrafter": {
+      "accepted_energy": "EU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Autocrafter has no distinct local RecipeMap or reviewed automatic-crafting input contract.",
+      "replacement_condition": "Add a bounded Autocrafter map, catalyst semantics, Electric_T tiers and acquisition evidence.",
+      "recheck_point": "Recheck in the selected T17 electric-machine batch.",
+      "deferred_tiers": {
+        "reason": "Electric tiers 4-5 are outside T17a and cannot precede a local Autocrafter family.",
+        "replacement_condition": "Close tiers 1-3, exact Electric_T materials, power topology and acquisition before higher tiers.",
+        "recheck_point": "Recheck after Autocrafter tiers 1-3 are selected."
+      }
+    },
+    "RM.Boxinator": {
+      "accepted_energy": "EU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Boxinator has no local packaging map and must not be conflated with generic crafting.",
+      "replacement_condition": "Add source-backed packaging recipes, container semantics, Electric_T tiers and acquisition.",
+      "recheck_point": "Recheck when packaging machines receive a bounded batch.",
+      "deferred_tiers": {
+        "reason": "Electric tiers 4-5 are deferred with the absent Boxinator family.",
+        "replacement_condition": "Implement exact tiers 1-3 and packaging behavior before higher-tier work.",
+        "recheck_point": "Recheck after Boxinator tiers 1-3 exist."
+      }
+    },
+    "RM.Bumblelyzer": {
+      "accepted_energy": "EU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Bumblelyzer has no local bee-analysis map or integration contract.",
+      "replacement_condition": "Provide the optional bee dependency, bounded map, Electric_T tiers and acquisition path.",
+      "recheck_point": "Recheck only after a compatible bee-analysis scope is approved.",
+      "deferred_tiers": {
+        "reason": "Electric tiers 4-5 cannot precede the optional Bumblelyzer integration.",
+        "replacement_condition": "Close compatibility, tiers 1-3 and exact higher-tier materials first.",
+        "recheck_point": "Recheck after Bumblelyzer tiers 1-3 are viable."
+      }
+    },
+    "RM.Canner": {
+      "accepted_energy": "EU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Canner has no local fill/empty container map or transactional fluid contract.",
+      "replacement_condition": "Add a bounded Canner map, container transaction rules, Electric_T tiers and acquisition.",
+      "recheck_point": "Recheck in a container-machine batch.",
+      "deferred_tiers": {
+        "reason": "Electric tiers 4-5 are deferred until Canner tiers 1-3 and container safety exist.",
+        "replacement_condition": "Close transactional tiers 1-3 before sourcing higher tiers.",
+        "recheck_point": "Recheck after Canner tiers 1-3 close."
+      }
+    },
+    "RM.Electrolyzer": {
+      "accepted_energy": "EU",
+      "disposition": "PREIMPLEMENTED_REFERENCE",
+      "local_map": "cruciblecraft:electrolyzer",
+      "catalog_kind": "cruciblecraft:electrolyzer",
+      "reason": "T12 already implements exact Electric_T tiers 1-3 and remains the non-selected T17 reference.",
+      "replacement_condition": "Replace only if the pinned GT6 Electrolyzer identity or catalog projection changes.",
+      "recheck_point": "Recheck when the T17 electric batch is selected.",
+      "deferred_tiers": {
+        "reason": "Electrolyzer Electric_T tiers 4-5 are outside T17a and have no approved acquisition closure.",
+        "replacement_condition": "Provide exact tier-4/5 materials, electrical limits, resources, migration and acquisition.",
+        "recheck_point": "Recheck in T17b electric-machine selection."
+      }
+    },
+    "RM.Injector": {
+      "accepted_energy": "EU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Injector has no local RecipeMap or pressure-aware input contract.",
+      "replacement_condition": "Add a bounded Injector map, pressure semantics, Electric_T tiers and acquisition.",
+      "recheck_point": "Recheck when injection processing is selected.",
+      "deferred_tiers": {
+        "reason": "Electric tiers 4-5 are deferred with the absent Injector family.",
+        "replacement_condition": "Implement source tiers 1-3 and pressure behavior before higher tiers.",
+        "recheck_point": "Recheck after Injector tiers 1-3 exist."
+      }
+    },
+    "RM.Lightning": {
+      "accepted_energy": "EU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Lightning Processor has no local map or high-voltage safety contract.",
+      "replacement_condition": "Add a bounded Lightning map, electrical hazard behavior, tiers and acquisition.",
+      "recheck_point": "Recheck in a high-voltage machine phase.",
+      "deferred_tiers": {
+        "reason": "Electric tiers 4-5 require the unresolved Lightning safety and topology contract.",
+        "replacement_condition": "Close tiers 1-3 and high-voltage failure semantics before higher tiers.",
+        "recheck_point": "Recheck after Lightning tiers 1-3 close."
+      }
+    },
+    "RM.Loom": {
+      "accepted_energy": "EU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Electric Loom is a distinct T17 kind with no local textile map.",
+      "replacement_condition": "Add textile recipes, a distinct Loom map, Electric_T tiers and acquisition.",
+      "recheck_point": "Recheck when textile automation is selected.",
+      "deferred_tiers": {
+        "reason": "Electric tiers 4-5 are deferred with the absent Electric Loom tiers 1-3.",
+        "replacement_condition": "Implement the distinct lower-tier Loom family before higher tiers.",
+        "recheck_point": "Recheck after Electric Loom tiers 1-3."
+      }
+    },
+    "RM.Mixer": {
+      "accepted_energy": "EU",
+      "disposition": "MAPPED_DEFERRED",
+      "local_map": "cruciblecraft:mixer",
+      "reason": "The local electric Mixer map exists, but T17a is the bounded HU selection and does not add Mixer tiers.",
+      "replacement_condition": "Select Mixer with exact Electric_T materials, variant migration, resources and acquisition.",
+      "recheck_point": "Recheck in T17b electric-machine selection.",
+      "deferred_tiers": {
+        "reason": "Mixer Electric_T tiers 4-5 are outside T17a and cannot skip lower-tier acquisition.",
+        "replacement_condition": "Close Mixer tiers 1-3 before independently sourcing tiers 4-5.",
+        "recheck_point": "Recheck after Mixer tiers 1-3 are implemented."
+      }
+    },
+    "RM.Plantalyzer": {
+      "accepted_energy": "EU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Plantalyzer has no local analysis map or agricultural integration contract.",
+      "replacement_condition": "Add bounded analysis semantics, a local map, Electric_T tiers and acquisition.",
+      "recheck_point": "Recheck if agricultural analysis enters scope.",
+      "deferred_tiers": {
+        "reason": "Electric tiers 4-5 are deferred with the absent Plantalyzer family.",
+        "replacement_condition": "Close integration and tiers 1-3 before higher-tier work.",
+        "recheck_point": "Recheck after Plantalyzer tiers 1-3."
+      }
+    },
+    "RM.Printer": {
+      "accepted_energy": "EU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Printer has no local print-data, media or recipe contract.",
+      "replacement_condition": "Add bounded media semantics, a Printer map, Electric_T tiers and acquisition.",
+      "recheck_point": "Recheck when data-bearing crafting is selected.",
+      "deferred_tiers": {
+        "reason": "Electric tiers 4-5 cannot precede Printer data semantics and tiers 1-3.",
+        "replacement_condition": "Close lower tiers and data migration before higher tiers.",
+        "recheck_point": "Recheck after Printer tiers 1-3."
+      }
+    },
+    "RM.ScannerVisuals": {
+      "accepted_energy": "EU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Visual Scanner has no local analysis output contract or RecipeMap.",
+      "replacement_condition": "Define scan outputs, bounded recipes, Electric_T tiers and acquisition.",
+      "recheck_point": "Recheck in a scanner/information machine batch.",
+      "deferred_tiers": {
+        "reason": "Electric tiers 4-5 are deferred with the absent Scanner tiers 1-3.",
+        "replacement_condition": "Implement scan semantics and lower tiers before higher tiers.",
+        "recheck_point": "Recheck after Scanner tiers 1-3."
+      }
+    },
+    "RM.Sifting": {
+      "accepted_energy": "EU",
+      "disposition": "MAPPED_DEFERRED",
+      "local_map": "cruciblecraft:sifter",
+      "reason": "The local Sifter is a KU source kind; T17 Electric Sifting must not silently reuse its energy identity.",
+      "replacement_condition": "Approve a distinct electric behavior or explicit identity migration with exact Electric_T tiers.",
+      "recheck_point": "Recheck during T17 electric-machine selection.",
+      "deferred_tiers": {
+        "reason": "Electric Sifting tiers 4-5 are deferred with the unresolved KU/EU identity boundary.",
+        "replacement_condition": "Resolve map ownership and tiers 1-3 before higher-tier work.",
+        "recheck_point": "Recheck after KU and EU Sifting identities are separated."
+      }
+    },
+    "RM.Slicer": {
+      "accepted_energy": "EU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Slicer has no distinct local slicing map or blade-tool contract.",
+      "replacement_condition": "Add blade semantics, a bounded Slicer map, Electric_T tiers and acquisition.",
+      "recheck_point": "Recheck when slicing recipes are selected.",
+      "deferred_tiers": {
+        "reason": "Electric tiers 4-5 are deferred with the absent Slicer family.",
+        "replacement_condition": "Close blade behavior and tiers 1-3 before higher tiers.",
+        "recheck_point": "Recheck after Slicer tiers 1-3."
+      }
+    },
+    "RM.Unboxinator": {
+      "accepted_energy": "EU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Unboxinator has no local unpacking map or container-return contract.",
+      "replacement_condition": "Add bounded unpacking recipes, return semantics, Electric_T tiers and acquisition.",
+      "recheck_point": "Recheck with a packaging-machine batch.",
+      "deferred_tiers": {
+        "reason": "Electric tiers 4-5 are deferred with the absent Unboxinator family.",
+        "replacement_condition": "Implement tiers 1-3 and container returns before higher tiers.",
+        "recheck_point": "Recheck after Unboxinator tiers 1-3."
+      }
+    },
+    "RM.CatalyticCracking": {
+      "accepted_energy": "HU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Catalytic Cracking has no distinct local map, catalyst lifecycle or gas IO contract.",
+      "replacement_condition": "Add source-backed cracking recipes, catalyst semantics, Heat_T tiers and acquisition.",
+      "recheck_point": "Recheck in a later petrochemical HU batch.",
+      "deferred_tiers": {
+        "reason": "Heat_T tier 4 is deferred with the absent Catalytic Cracking tiers 1-3.",
+        "replacement_condition": "Close lower-tier catalyst and gas behavior before tier 4.",
+        "recheck_point": "Recheck after Catalytic Cracking tiers 1-3."
+      }
+    },
+    "RM.CrystallisationCrucible": {
+      "accepted_energy": "HU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Crystallisation Crucible has no local map or controlled cooling/crystal-growth contract.",
+      "replacement_condition": "Add bounded crystallisation recipes, thermal behavior, Heat_T tiers and acquisition.",
+      "recheck_point": "Recheck when crystallisation processing is selected.",
+      "deferred_tiers": {
+        "reason": "Heat_T tier 4 cannot precede crystallisation tiers 1-3 and thermal semantics.",
+        "replacement_condition": "Close lower tiers and cooling behavior before tier 4.",
+        "recheck_point": "Recheck after Crystallisation Crucible tiers 1-3."
+      }
+    },
+    "RM.Distillery": {
+      "accepted_energy": "HU",
+      "disposition": "IMPLEMENTED_T17A",
+      "local_map": "cruciblecraft:distillery",
+      "catalog_kind": "cruciblecraft:distillery",
+      "reason": "T17a selects Distillery and reuses its live map through exact Heat_T tiers 1-3.",
+      "replacement_condition": "Replace only if the pinned source row or T17a selection changes.",
+      "recheck_point": "Recheck at T17c resources and acquisition.",
+      "deferred_tiers": {
+        "reason": "Distillery Heat_T tier 4 is outside the three-tier T17a runtime.",
+        "replacement_condition": "Provide exact Tungsten Carbide mapping, migration, resources and acquisition.",
+        "recheck_point": "Recheck after Distillery tiers 1-3 acquisition closes."
+      }
+    },
+    "RM.Drying": {
+      "accepted_energy": "HU",
+      "disposition": "IMPLEMENTED_T17A",
+      "local_map": "cruciblecraft:drying",
+      "catalog_kind": "cruciblecraft:drying",
+      "reason": "T17a selects Dryer and reuses the local drying map through exact Heat_T tiers 1-3.",
+      "replacement_condition": "Replace only if the pinned source row or T17a selection changes.",
+      "recheck_point": "Recheck at T17c resources and acquisition.",
+      "deferred_tiers": {
+        "reason": "Dryer Heat_T tier 4 is outside the three-tier T17a runtime.",
+        "replacement_condition": "Provide exact Tungsten Carbide mapping, migration, resources and acquisition.",
+        "recheck_point": "Recheck after Dryer tiers 1-3 acquisition closes."
+      }
+    },
+    "RM.Extruder": {
+      "accepted_energy": "HU",
+      "disposition": "MAPPED_DEFERRED",
+      "local_map": "cruciblecraft:extruder",
+      "reason": "The local Extruder is a legacy kinetic tool host; T17a does not silently rewrite it to HU.",
+      "replacement_condition": "Approve HU Extruder identity migration while preserving shape tools, recipes and acquisition.",
+      "recheck_point": "Recheck after T17a selected HU machines stabilize.",
+      "deferred_tiers": {
+        "reason": "Extruder Heat_T tier 4 is deferred with the unresolved kinetic/HU behavior boundary.",
+        "replacement_condition": "Resolve tiers 1-3 identity and tools before independently adding tier 4.",
+        "recheck_point": "Recheck after HU Extruder tiers 1-3."
+      }
+    },
+    "RM.Fermenter": {
+      "accepted_energy": "HU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Fermenter is a fixed stainless source row, not a Heat_T family, and has no local fermentation map.",
+      "replacement_condition": "Add a fixed-row HU host, bounded fermentation recipes and explicit acquisition evidence.",
+      "recheck_point": "Recheck in a fixed HU machine batch.",
+      "deferred_tiers": {
+        "reason": "Fermenter has no source tier 4; any tier expansion would be a new source mapping.",
+        "replacement_condition": "Select the exact fixed source row before proposing independently sourced variants.",
+        "recheck_point": "Recheck after fixed Fermenter implementation."
+      }
+    },
+    "RM.Furnace": {
+      "accepted_energy": "HU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "HU Furnace has no distinct local map and must not be replaced by vanilla smelting.",
+      "replacement_condition": "Add bounded Furnace processing, Heat_T tiers, HU behavior and acquisition.",
+      "recheck_point": "Recheck when an industrial furnace family is selected.",
+      "deferred_tiers": {
+        "reason": "Furnace Heat_T tier 4 is deferred with the absent tiers 1-3 family.",
+        "replacement_condition": "Implement lower tiers and distinct recipes before tier 4.",
+        "recheck_point": "Recheck after HU Furnace tiers 1-3."
+      }
+    },
+    "RM.Laminator": {
+      "accepted_energy": "HU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Laminator has no local lamination map or layer-preservation contract.",
+      "replacement_condition": "Add bounded lamination recipes, Heat_T tiers, HU behavior and acquisition.",
+      "recheck_point": "Recheck when lamination processing is selected.",
+      "deferred_tiers": {
+        "reason": "Laminator Heat_T tier 4 cannot precede lower tiers and layer semantics.",
+        "replacement_condition": "Close tiers 1-3 before independently sourcing tier 4.",
+        "recheck_point": "Recheck after Laminator tiers 1-3."
+      }
+    },
+    "RM.Melter": {
+      "accepted_energy": "HU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Melter is a fixed ANY.Iron source row, not a Heat_T family, and has no distinct local map.",
+      "replacement_condition": "Add the exact fixed HU host, molten output contract and explicit acquisition evidence.",
+      "recheck_point": "Recheck in a fixed HU machine batch.",
+      "deferred_tiers": {
+        "reason": "Melter has no source tier 4; any tier family would require independent source evidence.",
+        "replacement_condition": "Implement the exact fixed row before proposing new tier mappings.",
+        "recheck_point": "Recheck after fixed Melter implementation."
+      }
+    },
+    "RM.Nanofab": {
+      "accepted_energy": "EU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Nanofab has no local map and requires a separately bounded endgame material contract.",
+      "replacement_condition": "Add exact recipes, Electric_T tiers, electrical behavior and acquisition without tier guessing.",
+      "recheck_point": "Recheck in a later high-technology machine phase.",
+      "deferred_tiers": {
+        "reason": "Nanofab Electric_T tiers 4-5 are deferred with the entire absent family.",
+        "replacement_condition": "Close exact lower tiers and endgame materials before higher tiers.",
+        "recheck_point": "Recheck after Nanofab tiers 1-3."
+      }
+    },
+    "RM.Roasting": {
+      "accepted_energy": "HU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Roasting has no local gas-release map or atmospheric output contract.",
+      "replacement_condition": "Add bounded roasting recipes, emissions handling, Heat_T tiers and acquisition.",
+      "recheck_point": "Recheck in a later thermal ore-processing batch.",
+      "deferred_tiers": {
+        "reason": "Roasting Heat_T tier 4 is deferred until lower tiers and emissions handling exist.",
+        "replacement_condition": "Close tiers 1-3 before independently sourcing tier 4.",
+        "recheck_point": "Recheck after Roasting tiers 1-3."
+      }
+    },
+    "RM.Smelter": {
+      "accepted_energy": "HU",
+      "disposition": "IMPLEMENTED_T17A",
+      "local_map": "cruciblecraft:smelter",
+      "catalog_kind": "cruciblecraft:smelter",
+      "reason": "T17a selects Smelter and binds its existing HU-adjacent host to exact Heat_T tiers 1-3.",
+      "replacement_condition": "Replace only if the pinned source row or T17a selection changes.",
+      "recheck_point": "Recheck at T17c resources and acquisition.",
+      "deferred_tiers": {
+        "reason": "Smelter Heat_T tier 4 is outside the three-tier T17a runtime.",
+        "replacement_condition": "Provide exact Tungsten Carbide mapping, migration, resources and acquisition.",
+        "recheck_point": "Recheck after Smelter tiers 1-3 acquisition closes."
+      }
+    },
+    "RM.SteamCracking": {
+      "accepted_energy": "HU",
+      "disposition": "T13_ONLY_DEFERRED",
+      "local_map": null,
+      "reason": "Steam Cracking has no distinct local steam/catalyst map or thermal host.",
+      "replacement_condition": "Add exact cracking recipes, steam IO, Heat_T tiers and acquisition.",
+      "recheck_point": "Recheck in a later petrochemical HU batch.",
+      "deferred_tiers": {
+        "reason": "Steam Cracking Heat_T tier 4 is deferred with the absent lower-tier family.",
+        "replacement_condition": "Close steam behavior and tiers 1-3 before tier 4.",
+        "recheck_point": "Recheck after Steam Cracking tiers 1-3."
+      }
+    }
+  }
+}

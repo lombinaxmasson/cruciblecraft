@@ -1,10 +1,17 @@
 package com.masson.cruciblecraft.gametest;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
@@ -12,29 +19,42 @@ import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrusherBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DynamoBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeCentrifugeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FluidDepositExtractorBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.GasCloudBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.MultiblockPortBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SubsurfaceFluidDepositBlockEntity;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.FluidPipeBlock;
 import com.masson.cruciblecraft.content.block.ItemPipeBlock;
 import com.masson.cruciblecraft.content.block.DynamoBlock;
+import com.masson.cruciblecraft.content.block.ElectricMotorBlock;
+import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineInteractions;
+import com.masson.cruciblecraft.content.block.RotationalAxleBlock;
+import com.masson.cruciblecraft.content.block.RotationalGearboxBlock;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
 import com.masson.cruciblecraft.content.item.CellItem;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.compat.emi.ProcessingEmiRegistrationPlan;
 import com.masson.cruciblecraft.content.blockentity.FireboxBlockEntity;
-import com.masson.cruciblecraft.content.multiblock.CokeOvenStructure;
+import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
+import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PredicateKind;
 import com.masson.cruciblecraft.heat.FuelDefinition;
 import com.masson.cruciblecraft.heat.ItemHeat;
 import com.masson.cruciblecraft.machine.ToolMaterialRules;
 import com.masson.cruciblecraft.material.CellContentGate;
+import com.masson.cruciblecraft.material.HydrocarbonRuntimePolicy;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.MaterialComponentPolicies;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
@@ -43,17 +63,22 @@ import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
 import com.masson.cruciblecraft.logistics.pipe.fluid.FluidPipeFailureState;
 import com.masson.cruciblecraft.logistics.pipe.fluid
         .FluidPipeFailureState.Failure;
+import com.masson.cruciblecraft.machine.processing.MachineExecutionPlan;
+import com.masson.cruciblecraft.machine.processing.MachineIdentityPolicy;
 import com.masson.cruciblecraft.machine.processing.MachineTransaction;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeQuery;
 import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
+import com.masson.cruciblecraft.recipe.gt.ExtruderRecipeFamilyProvider;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModCapabilities;
 import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.registry.ModItems;
+import com.masson.cruciblecraft.registry.ModMachineIdentityMigrations;
+import com.masson.cruciblecraft.registry.ModMultiblockControllers;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import com.masson.cruciblecraft.worldgen.LargeVeinConfiguration;
@@ -81,12 +106,15 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.Pig;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.GameType;
@@ -96,6 +124,7 @@ import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
@@ -116,7 +145,8 @@ import net.neoforged.neoforge.items.IItemHandler;
 public final class CrucibleCraftGameTests {
     private static final String TEMPLATE = "empty";
 
-    private CrucibleCraftGameTests() {}
+    private CrucibleCraftGameTests() {
+    }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
     public static void cableChainAppliesExactPerBlockLoss(
@@ -127,7 +157,8 @@ public final class CrucibleCraftGameTests {
         BlockPos machinePos = first.east(3);
         helper.setBlock(
                 machinePos,
-                ModBlocks.ELECTROLYZER.get().defaultBlockState()
+                ModBlocks.STAINLESS_STEEL_ELECTROLYZER.get()
+                        .defaultBlockState()
                         .setValue(
                                 ProcessingMachineBlock.FACING,
                                 Direction.EAST));
@@ -197,7 +228,8 @@ public final class CrucibleCraftGameTests {
 
         helper.setBlock(
                 second,
-                ModBlocks.ELECTROLYZER.get().defaultBlockState()
+                ModBlocks.STAINLESS_STEEL_ELECTROLYZER.get()
+                        .defaultBlockState()
                         .setValue(
                                 ProcessingMachineBlock.FACING,
                                 Direction.EAST));
@@ -250,9 +282,12 @@ public final class CrucibleCraftGameTests {
         DynamoBlockEntity dynamo = helper.getBlockEntity(dynamoPos);
         ConfiguredProcessingMachineBlockEntity machine =
                 helper.getBlockEntity(machinePos);
+        GTRecipe recipe = requireRecipe(
+                ModRecipeMaps.ELECTROLYZER, "t5/electrolyzer/salt");
+        loadRecipeInputs(machine, recipe);
         helper.assertTrue(
                 dynamo.insert(
-                        EnergyType.KINETIC,
+                        EnergyType.KINETIC_ROTATION,
                         24L,
                         1L,
                         Direction.WEST,
@@ -261,12 +296,69 @@ public final class CrucibleCraftGameTests {
         helper.startSequence()
                 .thenIdle(2)
                 .thenExecute(() -> helper.assertTrue(
-                        dynamo.stored(EnergyType.KINETIC) == 0L
+                        dynamo.stored(
+                                        EnergyType.KINETIC_ROTATION)
+                                == 0L
                                 && dynamo.stored(EnergyType.ELECTRIC) == 0L
-                                && machine.stored(EnergyType.ELECTRIC) == 21L,
-                        "Dynamo-to-cable transfer violated source-first "
-                                + "conservation or exact three-segment loss"))
+                                && machine.workProgressLong() > 0L,
+                        "Dynamo -> cable -> Electrolyzer did not reach "
+                                + "real recipe execution: stored="
+                                + machine.stored(EnergyType.ELECTRIC)
+                                + ", status="
+                                + machine.pausedReason()))
                 .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void t17bElectrolyzerCableEndpointsRespectEveryTierWindow(
+            GameTestHelper helper) {
+        CableBlock cable = ModBlocks.electricalConductorBlock(
+                "copper", MaterialPrefixes.CABLE).get();
+        List<Block> blocks = List.of(
+                ModBlocks.ELECTROLYZER.get(),
+                ModBlocks.ALUMINIUM_ELECTROLYZER.get(),
+                ModBlocks.STAINLESS_STEEL_ELECTROLYZER.get());
+        for (int index = 0; index < blocks.size(); index++) {
+            BlockPos cablePos = new BlockPos(3 + index * 5, 2, 5);
+            BlockPos machinePos = cablePos.east();
+            helper.setBlock(
+                    machinePos,
+                    blocks.get(index).defaultBlockState().setValue(
+                            ProcessingMachineBlock.FACING,
+                            Direction.EAST));
+            helper.setBlock(
+                    cablePos,
+                    conductorState(
+                            cable, Direction.WEST, Direction.EAST));
+            ConfiguredProcessingMachineBlockEntity machine =
+                    helper.getBlockEntity(machinePos);
+            CableBlockEntity endpoint = helper.getBlockEntity(cablePos);
+            long expectedUnits = switch (index) {
+                case 0 -> machine.variant().tier().inputMinimum();
+                case 1 -> machine.variant().tier().inputNominal();
+                case 2 -> machine.variant().tier().inputMaximum();
+                default -> throw new IllegalStateException();
+            };
+            long offeredSize = Math.addExact(
+                    expectedUnits,
+                    cable.conductor().electrical().lossPerMeter());
+            helper.assertTrue(
+                    endpoint.insert(
+                            EnergyType.ELECTRIC,
+                            offeredSize,
+                            1L,
+                            Direction.WEST,
+                            false) == 1L,
+                    "Tier " + (index + 1)
+                            + " Electrolyzer cable endpoint rejected "
+                            + expectedUnits + " EU");
+            helper.assertTrue(
+                    machine.stored(EnergyType.ELECTRIC) == expectedUnits
+                            && !machine.pausedReason().equals("overcharged"),
+                    "Tier " + (index + 1)
+                            + " Electrolyzer endpoint violated its input window");
+        }
+        helper.succeed();
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
@@ -415,7 +507,8 @@ public final class CrucibleCraftGameTests {
         helper.setBlock(wirePos.below(), Blocks.STONE);
         helper.setBlock(
                 machinePos,
-                ModBlocks.ELECTROLYZER.get().defaultBlockState()
+                ModBlocks.STAINLESS_STEEL_ELECTROLYZER.get()
+                        .defaultBlockState()
                         .setValue(
                                 ProcessingMachineBlock.FACING,
                                 Direction.EAST));
@@ -461,7 +554,8 @@ public final class CrucibleCraftGameTests {
         BlockPos machinePos = second.east();
         helper.setBlock(
                 machinePos,
-                ModBlocks.ELECTROLYZER.get().defaultBlockState()
+                ModBlocks.STAINLESS_STEEL_ELECTROLYZER.get()
+                        .defaultBlockState()
                         .setValue(
                                 ProcessingMachineBlock.FACING,
                                 Direction.EAST));
@@ -617,88 +711,51 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 160)
-    public static void steamDynamoPowersElectrolyzerMixedOutput(GameTestHelper helper) {
+    public static void steamEnginePowersSifterThroughKu(
+            GameTestHelper helper) {
         BlockPos enginePos = new BlockPos(3, 2, 5);
-        BlockPos dynamoPos = enginePos.east();
-        BlockPos machinePos = dynamoPos.east();
+        BlockPos machinePos = enginePos.east();
         helper.setBlock(
                 enginePos,
                 ModBlocks.BRONZE_STEAM_ENGINE.get().defaultBlockState()
                         .setValue(SteamEngineBlock.FACING, Direction.EAST));
         helper.setBlock(
-                dynamoPos,
-                ModBlocks.BRONZE_DYNAMO.get().defaultBlockState()
-                        .setValue(DynamoBlock.FACING, Direction.EAST));
-        helper.setBlock(
                 machinePos,
-                ModBlocks.ELECTROLYZER.get().defaultBlockState()
+                ModBlocks.SIFTER.get().defaultBlockState()
                         .setValue(ProcessingMachineBlock.FACING, Direction.EAST));
         SteamEngineBlockEntity engine = helper.getBlockEntity(enginePos);
-        DynamoBlockEntity dynamo = helper.getBlockEntity(dynamoPos);
-        ConfiguredProcessingMachineBlockEntity electrolyzer =
+        ConfiguredProcessingMachineBlockEntity sifter =
                 helper.getBlockEntity(machinePos);
-        RecipeMap.Entry graphiteSource = ModRecipeMaps.ELECTROLYZER.entries()
-                .stream()
-                .filter(entry -> entry.id().getPath().equals(
-                        "t5/electrolyzer/graphite"))
-                .findFirst()
-                .orElseThrow();
-        GTRecipeQuery graphiteQuery = queryFor(graphiteSource.recipe());
-        RecipeMap.Match graphite = ModRecipeMaps.ELECTROLYZER.findMatch(
-                graphiteQuery).orElseThrow();
+        RecipeMap.Entry source = ModRecipeMaps.SIFTER.entries()
+                .getFirst();
+        RecipeMap.Match match = ModRecipeMaps.SIFTER.findMatch(
+                queryFor(source.recipe())).orElseThrow();
         helper.assertTrue(
-                graphite.id().getPath().equals("t5/electrolyzer/graphite"),
-                "Graphite query resolved the wrong T5 recipe");
-        loadRecipeInputs(electrolyzer, graphite.recipe());
+                match.id().equals(source.id()),
+                "Sifter query resolved the wrong source recipe");
+        loadRecipeInputs(sifter, match.recipe());
         IFluidHandler steamInput = engine.fluids(Direction.NORTH);
         helper.assertTrue(steamInput != null, "Steam engine input capability missing");
         helper.assertTrue(
                 steamInput.fill(
                         new FluidStack(ModFluids.STEAM_SOURCE.get(), 16_000),
                         IFluidHandler.FluidAction.EXECUTE) == 16_000,
-                "Could not prime the T5 steam-electric vertical");
+                "Could not prime the T12 KU vertical");
 
         helper.startSequence()
                 .thenIdle(40)
                 .thenExecute(() -> {
                     helper.assertTrue(
-                            electrolyzer.progress() > 0,
-                            "Dynamo did not advance the electrolyzer");
-                    forceLastTick(helper, electrolyzer);
-                })
-                .thenIdle(5)
-                .thenExecute(() -> {
+                            sifter.progress() > 0,
+                            "Steam-engine KU did not advance the sifter");
                     helper.assertTrue(
-                            dynamo.stored(EnergyType.ELECTRIC) >= 0,
-                            "Dynamo electric state became invalid");
-                    for (int index = 0;
-                            index < graphite.recipe().itemOutputs().size();
-                            index++) {
-                        int slot = electrolyzer.spec().items().outputs().get(index);
-                        ItemStack actual =
-                                electrolyzer.inventory().getStackInSlot(slot);
-                        ItemStack expected =
-                                graphite.recipe().itemOutputs().get(index);
-                        helper.assertTrue(
-                                ItemStack.isSameItemSameComponents(
-                                        actual,
-                                        expected)
-                                        && actual.getCount() == expected.getCount(),
-                                "Electrolyzer did not produce source-projected item output "
-                                        + index);
-                    }
-                    for (int index = 0;
-                            index < graphite.recipe().fluidOutputs().size();
-                            index++) {
-                        int tank = electrolyzer.spec().fluids().outputs()
-                                .get(index).index();
-                        helper.assertTrue(
-                                sameFluidAmount(
-                                        electrolyzer.tanks().get(tank).getFluid(),
-                                        graphite.recipe().fluidOutputs().get(index)),
-                                "Electrolyzer did not produce source-projected fluid "
-                                        + index);
-                    }
+                            sifter.handles(
+                                    EnergyType.KINETIC_PUSH,
+                                    Direction.WEST)
+                                    && !sifter.handles(
+                                            EnergyType.KINETIC_ROTATION,
+                                            Direction.WEST),
+                            "Sifter did not preserve its KU-only identity");
                 })
                 .thenSucceed();
     }
@@ -859,7 +916,7 @@ public final class CrucibleCraftGameTests {
         BlockPos pos = new BlockPos(5, 2, 5);
         helper.setBlock(
                 pos,
-                ModBlocks.ELECTROLYZER.get().defaultBlockState()
+                ModBlocks.ALUMINIUM_ELECTROLYZER.get().defaultBlockState()
                         .setValue(ProcessingMachineBlock.FACING, Direction.NORTH));
         ConfiguredProcessingMachineBlockEntity electrolyzer =
                 helper.getBlockEntity(pos);
@@ -899,7 +956,8 @@ public final class CrucibleCraftGameTests {
 
         helper.startSequence()
                 .thenIdle(3)
-                .thenExecute(() -> forceLastTick(helper, electrolyzer))
+                .thenExecute(() -> forceLastTick(
+                        helper, electrolyzer))
                 .thenIdle(2)
                 .thenExecute(() -> {
                     helper.assertTrue(
@@ -917,6 +975,12 @@ public final class CrucibleCraftGameTests {
                     helper.assertTrue(
                             !hasAnyOutput(electrolyzer),
                             "Blocked fluid output still committed item outputs");
+                    helper.assertTrue(
+                            electrolyzer.pausedReason().equals(
+                                    "output_blocked"),
+                            "Blocked Electrolyzer output did not expose "
+                                    + "output_blocked: "
+                                    + electrolyzer.pausedReason());
                 })
                 .thenSucceed();
     }
@@ -925,8 +989,13 @@ public final class CrucibleCraftGameTests {
     public static void portableTankMakesFluidOutputRecipeRepeatable(
             GameTestHelper helper) {
         BlockPos pos = new BlockPos(5, 2, 5);
+        helper.setBlock(pos.below(), ModBlocks.FIREBOX.get());
         ConfiguredProcessingMachineBlockEntity drying = placeConfigured(
                 helper, pos, ModBlocks.DRYING.get(), ModProcessingMachines.DRYING);
+        FireboxBlockEntity firebox = helper.getBlockEntity(pos.below());
+        helper.assertTrue(
+                firebox.addFuel(FuelDefinition.COAL_COKE),
+                "Could not fuel HU drying route");
         RecipeMap.Entry source = ModRecipeMaps.DRYING.entries().stream()
                 .filter(entry -> entry.id().getPath().equals("t5/drying/mirabilite"))
                 .findFirst()
@@ -941,9 +1010,10 @@ public final class CrucibleCraftGameTests {
         helper.assertTrue(tankHandler != null, "Portable tank item capability missing");
         loadRecipeInputs(drying, recipe);
         helper.assertTrue(
-                drying.insert(
-                        EnergyType.ELECTRIC, recipe.eut(), 64L, Direction.SOUTH, false) > 0,
-                "Could not power first drying craft");
+                drying.spec().energy().type() == EnergyType.HEAT
+                        && drying.spec().energy().mode()
+                                == ProcessingMachineSpec.EnergyMode.ADJACENT,
+                "Drying route did not use adjacent HU");
 
         helper.startSequence()
                 .thenIdle(3)
@@ -955,14 +1025,6 @@ public final class CrucibleCraftGameTests {
                             drying.playerDrainFluids(Direction.NORTH),
                             tankHandler);
                     loadRecipeInputs(drying, recipe);
-                    helper.assertTrue(
-                            drying.insert(
-                                    EnergyType.ELECTRIC,
-                                    recipe.eut(),
-                                    64L,
-                                    Direction.SOUTH,
-                                    false) > 0,
-                            "Could not power second drying craft");
                 })
                 .thenIdle(3)
                 .thenExecute(() -> forceLastTick(helper, drying))
@@ -991,11 +1053,18 @@ public final class CrucibleCraftGameTests {
     @GameTest(template = TEMPLATE, timeoutTicks = 100)
     public static void distillerySourceRouteIsRepeatable(
             GameTestHelper helper) {
+        BlockPos distilleryPos = new BlockPos(5, 2, 5);
+        helper.setBlock(distilleryPos.below(), ModBlocks.FIREBOX.get());
         ConfiguredProcessingMachineBlockEntity distillery = placeConfigured(
                 helper,
-                new BlockPos(5, 2, 5),
+                distilleryPos,
                 ModBlocks.DISTILLERY.get(),
                 ModProcessingMachines.DISTILLERY);
+        FireboxBlockEntity firebox =
+                helper.getBlockEntity(distilleryPos.below());
+        helper.assertTrue(
+                firebox.addFuel(FuelDefinition.COAL_COKE),
+                "Could not fuel HU distillery route");
         GTRecipe recipe = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
                 "t5/distillery/water_to_water_distilled");
@@ -1007,13 +1076,10 @@ public final class CrucibleCraftGameTests {
                 "Portable tank item capability missing for distillery route");
         loadRecipeInputs(distillery, recipe);
         helper.assertTrue(
-                distillery.insert(
-                        EnergyType.ELECTRIC,
-                        recipe.eut(),
-                        64L,
-                        Direction.SOUTH,
-                        false) > 0,
-                "Could not power first source-driven distillery craft");
+                distillery.spec().energy().type() == EnergyType.HEAT
+                        && distillery.spec().energy().mode()
+                                == ProcessingMachineSpec.EnergyMode.ADJACENT,
+                "Distillery source route did not use adjacent HU");
 
         helper.startSequence()
                 .thenIdle(3)
@@ -1025,14 +1091,6 @@ public final class CrucibleCraftGameTests {
                             distillery.playerDrainFluids(Direction.NORTH),
                             tankHandler);
                     loadRecipeInputs(distillery, recipe);
-                    helper.assertTrue(
-                            distillery.insert(
-                                    EnergyType.ELECTRIC,
-                                    recipe.eut(),
-                                    64L,
-                                    Direction.SOUTH,
-                                    false) > 0,
-                            "Could not power second source-driven distillery craft");
                 })
                 .thenIdle(3)
                 .thenExecute(() -> forceLastTick(helper, distillery))
@@ -1112,7 +1170,7 @@ public final class CrucibleCraftGameTests {
         ConfiguredProcessingMachineBlockEntity electrolyzer = placeConfigured(
                 helper,
                 new BlockPos(3, 2, 5),
-                ModBlocks.ELECTROLYZER.get(),
+                ModBlocks.STAINLESS_STEEL_ELECTROLYZER.get(),
                 ModProcessingMachines.ELECTROLYZER);
         ConfiguredProcessingMachineBlockEntity mixer = placeConfigured(
                 helper,
@@ -1142,9 +1200,36 @@ public final class CrucibleCraftGameTests {
 
         helper.startSequence()
                 .thenIdle(3)
-                .thenExecute(() -> forceLastTick(helper, electrolyzer))
+                .thenExecute(() -> {
+                    forceLastTick(helper, electrolyzer);
+                    helper.assertTrue(
+                            electrolyzer.insert(
+                                            EnergyType.ELECTRIC,
+                                            512L,
+                                            2L,
+                                            Direction.SOUTH,
+                                            false)
+                                    > 0L,
+                            "Could not refill the T3 electrolyzer");
+                })
                 .thenIdle(2)
                 .thenExecute(() -> {
+                    helper.assertTrue(
+                            electrolyzer.spec().fluids().outputs().stream()
+                                    .anyMatch(tank -> !electrolyzer
+                                            .tanks()
+                                            .get(tank.index())
+                                            .getFluid()
+                                            .isEmpty()),
+                            "T3 electrolyzer produced no fluid: progress="
+                                    + electrolyzer.progress()
+                                    + "/"
+                                    + electrolyzer.duration()
+                                    + ", status="
+                                    + electrolyzer.pausedReason()
+                                    + ", energy="
+                                    + electrolyzer.stored(
+                                            EnergyType.ELECTRIC));
                     drainMachineIntoItem(
                             helper,
                             electrolyzer.playerDrainFluids(Direction.NORTH),
@@ -1209,13 +1294,13 @@ public final class CrucibleCraftGameTests {
     public static void genericCellsEnforceDomainsAndFeedMachineRecipe(
             GameTestHelper helper) {
         helper.assertTrue(
-                ModFluids.chemicalFluids().size() == 108
-                        && CellContentGate.entries().size() == 109,
-                "T10 chemical-fluid or cell allowlist registry is incomplete");
+                ModFluids.chemicalFluids().size() == 110
+                        && CellContentGate.entries().size() == 110,
+                "T11 chemical-fluid or T10 cell allowlist registry is incomplete");
         helper.assertTrue(
                 MaterialPrefixCatalog.values().size() == 56
                         && MaterialCatalog.startupValues().size()
-                                + MaterialPrefixCatalog.values().size() == 1_829
+                                + MaterialPrefixCatalog.values().size() == 1_830
                         && MaterialCatalog.startupValues().stream()
                                 .mapToInt(material ->
                                         MaterialCatalog.registeredForms(
@@ -1380,7 +1465,7 @@ public final class CrucibleCraftGameTests {
         ConfiguredProcessingMachineBlockEntity centrifuge = placeConfigured(
                 helper,
                 centrifugePos,
-                ModBlocks.CENTRIFUGE.get(),
+                ModBlocks.TITANIUM_CENTRIFUGE.get(),
                 ModProcessingMachines.CENTRIFUGE);
         helper.setBlock(fireboxPos, ModBlocks.FIREBOX.get());
         ConfiguredProcessingMachineBlockEntity smelter = placeConfigured(
@@ -1405,7 +1490,10 @@ public final class CrucibleCraftGameTests {
         fillKu(helper, centrifuge);
 
         helper.startSequence()
-                .thenIdle(4)
+                .thenExecuteFor(4, () -> {
+                    fillKu(helper, bath);
+                    fillKu(helper, centrifuge);
+                })
                 .thenExecute(() -> {
                     helper.assertTrue(
                             bath.progress() > 0
@@ -1736,10 +1824,17 @@ public final class CrucibleCraftGameTests {
         BlockPos controllerPos = new BlockPos(6, 3, 6);
         Direction facing = Direction.NORTH;
         helper.setBlock(controllerPos, ModBlocks.COKE_OVEN.get());
-        for (BlockPos offset : CokeOvenStructure.firebrickOffsets(facing)) {
-            helper.setBlock(controllerPos.offset(offset), ModBlocks.FIREBRICK.get());
-        }
-        BlockPos fireboxPos = CokeOvenStructure.heatSource(controllerPos, facing);
+        var structure = MultiblockStructureCatalog.require(
+                CokeOvenBlockEntity.STRUCTURE_ID);
+        structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == PredicateKind.BLOCK)
+                .forEach(element -> helper.setBlock(
+                        structure.worldPosition(
+                                controllerPos, facing, element.offset()),
+                        ModBlocks.FIREBRICK.get()));
+        BlockPos fireboxPos = structure.anchor(
+                "heat_source", controllerPos, facing);
         helper.setBlock(fireboxPos, ModBlocks.FIREBOX.get());
         FireboxBlockEntity firebox = helper.getBlockEntity(fireboxPos);
         helper.assertTrue(
@@ -1816,6 +1911,784 @@ public final class CrucibleCraftGameTests {
                 .thenSucceed();
     }
 
+    @GameTest(template = TEMPLATE, timeoutTicks = 120)
+    public static void largeCentrifugeUsesJsonPortsAndProcessingHost(
+            GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        Direction facing = Direction.NORTH;
+        var structure = MultiblockStructureCatalog.require(
+                ModMultiblockControllers.LARGE_CENTRIFUGE.structureId());
+        List<BlockPos> itemFluidPorts = structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == PredicateKind.PORT)
+                .filter(element -> structure.predicate(element)
+                        .port().orElseThrow()
+                        == com.masson.cruciblecraft.content.multiblock
+                                .MultiblockStructureDefinition.PortType.ITEM_FLUID)
+                .map(element -> structure.worldPosition(
+                        controllerPos, facing, element.offset()))
+                .toList();
+        List<BlockPos> energyPorts = structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == PredicateKind.PORT)
+                .filter(element -> structure.predicate(element)
+                        .port().orElseThrow()
+                        == com.masson.cruciblecraft.content.multiblock
+                                .MultiblockStructureDefinition.PortType.ENERGY_INPUT)
+                .map(element -> structure.worldPosition(
+                        controllerPos, facing, element.offset()))
+                .toList();
+        helper.setBlock(
+                controllerPos,
+                ModBlocks.LARGE_CENTRIFUGE.get()
+                        .defaultBlockState()
+                        .setValue(ProcessingMachineBlock.FACING, facing));
+        structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == PredicateKind.PORT)
+                .forEach(element -> {
+                    var predicate = structure.predicate(element);
+                    helper.setBlock(
+                            structure.worldPosition(
+                                    controllerPos, facing, element.offset()),
+                            predicate.port().orElseThrow()
+                                            == com.masson.cruciblecraft.content
+                                                    .multiblock
+                                                    .MultiblockStructureDefinition
+                                                    .PortType.ENERGY_INPUT
+                                    ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
+                                    : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                });
+        LargeCentrifugeBlockEntity centrifuge =
+                helper.getBlockEntity(controllerPos);
+        GTRecipe recipe = requireRecipe(
+                ModRecipeMaps.CENTRIFUGE,
+                "t5/centrifuge/gloomstone");
+        loadRecipeInputs(centrifuge, recipe);
+        BlockPos energyPort = structure.anchor(
+                "bottom_energy_input", controllerPos, facing);
+
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            centrifuge.structureValid(),
+                            "Large centrifuge JSON structure was not recognized");
+                    helper.assertTrue(
+                            structure.structure().size() == 18
+                                    && itemFluidPorts.size() == 15
+                                    && energyPorts.size() == 2,
+                            "Large centrifuge physical port/controller counts drifted");
+                    helper.assertTrue(
+                            centrifuge.spec().items().inputs().size() == 1
+                                    && centrifuge.spec().items().outputs().size() == 6
+                                    && centrifuge.spec().items().slotCount() == 7
+                                    && centrifuge.spec().fluids().inputs().size() == 1
+                                    && centrifuge.spec().fluids().outputs().size() == 2
+                                    && centrifuge.spec().fluids().all().size() == 3,
+                            "Large centrifuge shared host layout drifted");
+                    int inputSlot =
+                            centrifuge.spec().items().inputs().getFirst();
+                    ItemStack hostInput =
+                            centrifuge.inventory().getStackInSlot(inputSlot);
+                    for (BlockPos portPos : itemFluidPorts) {
+                        MultiblockPortBlockEntity port =
+                                helper.getBlockEntity(portPos);
+                        helper.assertTrue(
+                                port.itemHandler().getSlots()
+                                        == centrifuge.inventory().getSlots()
+                                        && port.itemHandler()
+                                                .getStackInSlot(inputSlot)
+                                                .getCount()
+                                        == hostInput.getCount()
+                                        && ItemStack.isSameItemSameComponents(
+                                                port.itemHandler()
+                                                        .getStackInSlot(inputSlot),
+                                                hostInput)
+                                        && port.fluidHandler().getTanks()
+                                        == centrifuge.tanks().size(),
+                                "Physical item/fluid port did not bridge the shared host");
+                    }
+                    int inputTank = centrifuge.spec()
+                            .fluids().inputs().getFirst().index();
+                    centrifuge.tanks().get(inputTank).setFluid(
+                            new FluidStack(Fluids.WATER, 250));
+                    helper.assertTrue(
+                            itemFluidPorts.stream().allMatch(portPos -> {
+                                MultiblockPortBlockEntity port =
+                                        helper.getBlockEntity(portPos);
+                                return port.fluidHandler()
+                                        .getFluidInTank(inputTank)
+                                        .getAmount() == 250;
+                            }),
+                            "Fifteen physical ports did not expose one host tank");
+                    BlockPos worldEnergyPort = helper
+                            .getBlockEntity(energyPort)
+                            .getBlockPos();
+                    fillKuCapability(
+                            helper,
+                            worldEnergyPort,
+                            "large centrifuge energy port");
+                })
+                .thenIdle(3)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            centrifuge.progress() > 0,
+                            "Large centrifuge did not run through the shared host");
+                    forceLastTick(helper, centrifuge);
+                    fillKuCapability(
+                            helper,
+                            helper.getBlockEntity(energyPort).getBlockPos(),
+                            "large centrifuge energy port");
+                })
+                .thenIdle(2)
+                .thenExecute(() -> helper.assertTrue(
+                        hasAnyOutput(centrifuge),
+                        "Large centrifuge did not commit recipe outputs"))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 140)
+    public static void t12RuAxleGearboxPowersTieredCentrifuge(
+            GameTestHelper helper) {
+        BlockPos motorPos = new BlockPos(3, 2, 13);
+        BlockPos axlePos = motorPos.east();
+        BlockPos gearboxPos = axlePos.east();
+        BlockPos centrifugePos = gearboxPos.east();
+        helper.setBlock(
+                motorPos,
+                ModBlocks.ELECTRIC_MOTOR.get().defaultBlockState()
+                        .setValue(
+                                ElectricMotorBlock.FACING,
+                                Direction.EAST));
+        helper.setBlock(
+                axlePos,
+                ModBlocks.ROTATIONAL_AXLE.get().defaultBlockState()
+                        .setValue(
+                                RotationalAxleBlock.AXIS,
+                                Direction.Axis.X));
+        helper.setBlock(
+                gearboxPos,
+                ModBlocks.ROTATIONAL_GEARBOX.get().defaultBlockState()
+                        .setValue(
+                                RotationalGearboxBlock.FACING,
+                                Direction.EAST));
+        helper.setBlock(
+                centrifugePos,
+                ModBlocks.STEEL_CENTRIFUGE.get().defaultBlockState()
+                        .setValue(
+                                ProcessingMachineBlock.FACING,
+                                Direction.EAST));
+        ConfiguredProcessingMachineBlockEntity centrifuge =
+                helper.getBlockEntity(centrifugePos);
+        GTRecipe recipe = requireRecipe(
+                ModRecipeMaps.CENTRIFUGE,
+                "t5/centrifuge/gloomstone");
+        loadRecipeInputs(centrifuge, recipe);
+        IEnergyHandler motor = helper.getLevel().getCapability(
+                ModCapabilities.ENERGY,
+                helper.absolutePos(motorPos),
+                Direction.WEST);
+        IEnergyHandler axle = helper.getLevel().getCapability(
+                ModCapabilities.ENERGY,
+                helper.absolutePos(axlePos),
+                Direction.WEST);
+        IEnergyHandler gearbox = helper.getLevel().getCapability(
+                ModCapabilities.ENERGY,
+                helper.absolutePos(gearboxPos),
+                Direction.WEST);
+        helper.assertTrue(
+                motor != null
+                        && motor.handles(
+                                EnergyType.ELECTRIC,
+                                Direction.WEST),
+                "T1 electric motor exposed no EU input");
+        helper.assertTrue(
+                axle != null
+                        && gearbox != null
+                        && axle.handles(
+                                EnergyType.KINETIC_ROTATION,
+                                Direction.WEST)
+                        && gearbox.handles(
+                                EnergyType.KINETIC_ROTATION,
+                                Direction.WEST),
+                "RU axle/gearbox capability chain is incomplete");
+        helper.assertTrue(
+                centrifuge.handles(
+                                EnergyType.KINETIC_ROTATION,
+                                Direction.WEST)
+                        && !centrifuge.handles(
+                                EnergyType.KINETIC_PUSH,
+                                Direction.WEST),
+                "Tiered centrifuge did not preserve RU-only identity");
+
+        helper.startSequence()
+                .thenExecuteFor(48, () -> {
+                    long accepted = motor.insert(
+                            EnergyType.ELECTRIC,
+                            32L,
+                            1L,
+                            Direction.WEST,
+                            false);
+                    helper.assertTrue(
+                            accepted == 1L
+                                    || motor.stored(
+                                                    EnergyType.ELECTRIC)
+                                            >= 32L,
+                            "Electric motor rejected its nominal EU packet");
+                })
+                .thenExecute(() -> helper.assertTrue(
+                        centrifuge.progress() > 0,
+                        "Motor -> axle -> gearbox RU path did not advance "
+                                + "the tiered centrifuge: motorRU="
+                                + motor.stored(
+                                        EnergyType.KINETIC_ROTATION)
+                                + ", axleRU="
+                                + axle.stored(
+                                        EnergyType.KINETIC_ROTATION)
+                                + ", gearboxRU="
+                                + gearbox.stored(
+                                        EnergyType.KINETIC_ROTATION)
+                                + ", machineRU="
+                                + centrifuge.stored(
+                                        EnergyType.KINETIC_ROTATION)
+                                + ", status="
+                                + centrifuge.pausedReason()))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 60)
+    public static void t12TierProfilesExposeDistinctFailureStates(
+            GameTestHelper helper) {
+        BlockPos machinePos = new BlockPos(12, 2, 13);
+        helper.setBlock(
+                machinePos,
+                ModBlocks.STEEL_CENTRIFUGE.get().defaultBlockState()
+                        .setValue(
+                                ProcessingMachineBlock.FACING,
+                                Direction.EAST));
+        ConfiguredProcessingMachineBlockEntity machine =
+                helper.getBlockEntity(machinePos);
+        helper.assertTrue(
+                machine.variant().tier().inputNominal() == 128L
+                        && machine.variant().tier().parallelLimit() == 2,
+                "Steel centrifuge did not bind its source T2 profile");
+        helper.assertTrue(
+                machine.insert(
+                                EnergyType.KINETIC_PUSH,
+                                128L,
+                                1L,
+                                Direction.WEST,
+                                false)
+                        == 0L,
+                "RU machine accepted KU");
+        helper.assertTrue(
+                machine.insert(
+                                EnergyType.KINETIC_ROTATION,
+                                512L,
+                                1L,
+                                Direction.WEST,
+                                false)
+                        == 1L
+                        && machine.runtime().status().equals(
+                                "overcharged"),
+                "Oversized RU packet was not observed as overcharge");
+
+        BlockPos windowPos = machinePos.west(3);
+        helper.setBlock(
+                windowPos,
+                ModBlocks.STEEL_CENTRIFUGE.get().defaultBlockState()
+                        .setValue(
+                                ProcessingMachineBlock.FACING,
+                                Direction.EAST));
+        ConfiguredProcessingMachineBlockEntity windowMachine =
+                helper.getBlockEntity(windowPos);
+        GTRecipe lowPower = ModRecipeMaps.CENTRIFUGE.entries().stream()
+                .map(RecipeMap.Entry::recipe)
+                .filter(recipe -> recipe.eut() > 0L
+                        && recipe.eut() <= 16L)
+                .findFirst()
+                .orElseThrow();
+        loadRecipeInputs(windowMachine, lowPower);
+        helper.startSequence()
+                .thenExecuteFor(2, () -> helper.assertTrue(
+                        windowMachine.insert(
+                                        EnergyType.KINETIC_ROTATION,
+                                        64L,
+                                        1L,
+                                        Direction.WEST,
+                                        false)
+                                == 1L,
+                        "T2 centrifuge rejected minimum-window RU"))
+                .thenExecute(() -> helper.assertTrue(
+                        windowMachine.workProgressLong() == 128L
+                                && windowMachine.progress() == 1,
+                        "Input window did not scale progress by actual RU: "
+                                + windowMachine.workProgressLong()
+                                + "/"
+                                + windowMachine.workRequiredLong()
+                                + ", display="
+                                + windowMachine.progress()))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 140)
+    public static void t16bRuMotorAxleGearboxPowersLathe(
+            GameTestHelper helper) {
+        BlockPos motorPos = new BlockPos(3, 2, 13);
+        BlockPos axlePos = motorPos.east();
+        BlockPos gearboxPos = axlePos.east();
+        BlockPos lathePos = gearboxPos.east();
+        helper.setBlock(
+                motorPos,
+                ModBlocks.ELECTRIC_MOTOR.get().defaultBlockState()
+                        .setValue(
+                                ElectricMotorBlock.FACING,
+                                Direction.EAST));
+        helper.setBlock(
+                axlePos,
+                ModBlocks.ROTATIONAL_AXLE.get().defaultBlockState()
+                        .setValue(
+                                RotationalAxleBlock.AXIS,
+                                Direction.Axis.X));
+        helper.setBlock(
+                gearboxPos,
+                ModBlocks.ROTATIONAL_GEARBOX.get().defaultBlockState()
+                        .setValue(
+                                RotationalGearboxBlock.FACING,
+                                Direction.EAST));
+        helper.setBlock(
+                lathePos,
+                ModBlocks.LATHE.get().defaultBlockState()
+                        .setValue(
+                                ProcessingMachineBlock.FACING,
+                                Direction.EAST));
+        ConfiguredProcessingMachineBlockEntity lathe =
+                helper.getBlockEntity(lathePos);
+        GTRecipe recipe = ModRecipeMaps.LATHE.entries().stream()
+                .map(RecipeMap.Entry::recipe)
+                .filter(candidate ->
+                        candidate.eut() > 0L && candidate.eut() <= 32L)
+                .findFirst()
+                .orElseThrow();
+        loadRecipeInputs(lathe, recipe);
+        IEnergyHandler motor = helper.getLevel().getCapability(
+                ModCapabilities.ENERGY,
+                helper.absolutePos(motorPos),
+                Direction.WEST);
+        helper.assertTrue(
+                motor != null
+                        && lathe.variant().kind().behavior()
+                                == ModProcessingMachines.LATHE
+                        && lathe.variant().tier().inputNominal() == 32L
+                        && lathe.handles(
+                                EnergyType.KINETIC_ROTATION,
+                                Direction.WEST)
+                        && !lathe.handles(
+                                EnergyType.KINETIC_PUSH,
+                                Direction.WEST),
+                "T16b RU lathe vertical did not bind the bronze source tier");
+
+        helper.startSequence()
+                .thenExecuteFor(48, () -> {
+                    long accepted = motor.insert(
+                            EnergyType.ELECTRIC,
+                            32L,
+                            1L,
+                            Direction.WEST,
+                            false);
+                    helper.assertTrue(
+                            accepted == 1L
+                                    || motor.stored(EnergyType.ELECTRIC)
+                                            >= 32L,
+                            "T16b RU motor rejected nominal EU");
+                })
+                .thenExecute(() -> helper.assertTrue(
+                        lathe.progress() > 0,
+                        "Motor -> axle -> gearbox RU did not advance "
+                                + "the T16b selected lathe: "
+                                + lathe.pausedReason()))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 160)
+    public static void t16bSteamEnginePowersPressThroughKu(
+            GameTestHelper helper) {
+        BlockPos enginePos = new BlockPos(3, 2, 5);
+        BlockPos pressPos = enginePos.east();
+        helper.setBlock(
+                enginePos,
+                ModBlocks.BRONZE_STEAM_ENGINE.get().defaultBlockState()
+                        .setValue(SteamEngineBlock.FACING, Direction.EAST));
+        helper.setBlock(
+                pressPos,
+                ModBlocks.PRESS.get().defaultBlockState()
+                        .setValue(
+                                ProcessingMachineBlock.FACING,
+                                Direction.EAST));
+        SteamEngineBlockEntity engine = helper.getBlockEntity(enginePos);
+        ConfiguredProcessingMachineBlockEntity press =
+                helper.getBlockEntity(pressPos);
+        GTRecipe recipe = ModRecipeMaps.PRESS.entries().stream()
+                .map(RecipeMap.Entry::recipe)
+                .filter(candidate ->
+                        candidate.eut() > 0L && candidate.eut() <= 32L)
+                .findFirst()
+                .orElseThrow();
+        loadRecipeInputs(press, recipe);
+        IFluidHandler steamInput = engine.fluids(Direction.NORTH);
+        helper.assertTrue(
+                steamInput != null
+                        && steamInput.fill(
+                                new FluidStack(
+                                        ModFluids.STEAM_SOURCE.get(),
+                                        16_000),
+                                IFluidHandler.FluidAction.EXECUTE)
+                                == 16_000,
+                "Could not prime the T16b Press KU vertical");
+        helper.assertTrue(
+                press.variant().kind().behavior()
+                                == ModProcessingMachines.PRESS
+                        && press.variant().tier().inputNominal() == 32L
+                        && press.variant().tier().parallelLimit() == 4
+                        && press.handles(
+                                EnergyType.KINETIC_PUSH,
+                                Direction.WEST)
+                        && !press.handles(
+                                EnergyType.KINETIC_ROTATION,
+                                Direction.WEST),
+                "Press did not bind the bronze KU source tier");
+
+        helper.startSequence()
+                .thenIdle(40)
+                .thenExecute(() -> helper.assertTrue(
+                        press.progress() > 0,
+                        "Adjacent steam KU did not advance Press: "
+                                + press.pausedReason()))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void t16bHigherTierControlledInjection(
+            GameTestHelper helper) {
+        BlockPos lathePos = new BlockPos(4, 2, 5);
+        BlockPos pressPos = new BlockPos(10, 2, 5);
+        helper.setBlock(
+                lathePos,
+                ModBlocks.TITANIUM_LATHE.get().defaultBlockState()
+                        .setValue(
+                                ProcessingMachineBlock.FACING,
+                                Direction.EAST));
+        helper.setBlock(
+                pressPos,
+                ModBlocks.TITANIUM_PRESS.get().defaultBlockState()
+                        .setValue(
+                                ProcessingMachineBlock.FACING,
+                                Direction.EAST));
+        ConfiguredProcessingMachineBlockEntity lathe =
+                helper.getBlockEntity(lathePos);
+        ConfiguredProcessingMachineBlockEntity press =
+                helper.getBlockEntity(pressPos);
+        GTRecipe latheRecipe = ModRecipeMaps.LATHE.entries().stream()
+                .map(RecipeMap.Entry::recipe)
+                .filter(candidate ->
+                        candidate.eut() > 0L && candidate.eut() <= 64L)
+                .findFirst()
+                .orElseThrow();
+        GTRecipe pressRecipe = ModRecipeMaps.PRESS.entries().stream()
+                .map(RecipeMap.Entry::recipe)
+                .filter(candidate ->
+                        candidate.eut() > 0L && candidate.eut() <= 64L)
+                .findFirst()
+                .orElseThrow();
+        loadRecipeInputs(lathe, latheRecipe);
+        loadRecipeInputs(press, pressRecipe);
+        helper.assertTrue(
+                lathe.variant().tier().inputNominal() == 512L
+                        && press.variant().tier().inputNominal() == 512L
+                        && press.variant().tier().parallelLimit() == 16,
+                "Controlled injection hosts did not bind titanium tiers");
+        helper.assertTrue(
+                press.insert(
+                                EnergyType.KINETIC_PUSH,
+                                2_048L,
+                                1L,
+                                Direction.WEST,
+                                false)
+                                == 1L
+                        && press.runtime().status().equals("overcharged"),
+                "Titanium Press did not expose KU overcharge state");
+        helper.assertTrue(
+                lathe.insert(
+                                EnergyType.KINETIC_ROTATION,
+                                512L,
+                                2L,
+                                Direction.WEST,
+                                false)
+                                == 2L
+                        && press.insert(
+                                EnergyType.KINETIC_PUSH,
+                                512L,
+                                2L,
+                                Direction.WEST,
+                                false)
+                                == 2L,
+                "Controlled RU/KU injection did not fill titanium hosts");
+
+        helper.startSequence()
+                .thenIdle(2)
+                .thenExecute(() -> helper.assertTrue(
+                        lathe.workProgressLong() > 0L
+                                && press.workProgressLong() > 0L,
+                        "Controlled higher-tier injection did not advance "
+                                + "both selected energy identities: RU="
+                                + lathe.pausedReason()
+                                + ", KU="
+                                + press.pausedReason()))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 100)
+    public static void t17bFireboxesRunAllThreeHuMachineKinds(
+            GameTestHelper helper) {
+        List<BlockPos> machinePositions = List.of(
+                new BlockPos(3, 2, 5),
+                new BlockPos(8, 2, 5),
+                new BlockPos(13, 2, 5));
+        List<Block> blocks = List.of(
+                ModBlocks.DISTILLERY.get(),
+                ModBlocks.DRYING.get(),
+                ModBlocks.SMELTER.get());
+        List<ProcessingMachineSpec> specs = List.of(
+                ModProcessingMachines.DISTILLERY,
+                ModProcessingMachines.DRYING,
+                ModProcessingMachines.SMELTER);
+        List<GTRecipe> recipes = List.of(
+                requireRecipe(
+                        ModRecipeMaps.DISTILLERY,
+                        "t5/distillery/water_to_water_distilled"),
+                requireRecipe(
+                        ModRecipeMaps.DRYING,
+                        "t5/drying/perlite"),
+                requireRecipe(
+                        ModRecipeMaps.SMELTER,
+                        "t5/smelter/ilmenite"));
+        List<ConfiguredProcessingMachineBlockEntity> machines =
+                new ArrayList<>();
+        for (int index = 0; index < machinePositions.size(); index++) {
+            BlockPos machinePos = machinePositions.get(index);
+            helper.setBlock(machinePos.below(), ModBlocks.FIREBOX.get());
+            FireboxBlockEntity firebox =
+                    helper.getBlockEntity(machinePos.below());
+            helper.assertTrue(
+                    firebox.addFuel(FuelDefinition.COAL_COKE),
+                    "Could not fuel T17b HU machine " + index);
+            ConfiguredProcessingMachineBlockEntity machine =
+                    placeConfigured(
+                            helper,
+                            machinePos,
+                            blocks.get(index),
+                            specs.get(index));
+            loadRecipeInputs(machine, recipes.get(index));
+            machines.add(machine);
+        }
+
+        helper.startSequence()
+                .thenIdle(4)
+                .thenExecute(() -> {
+                    for (ConfiguredProcessingMachineBlockEntity machine :
+                            machines) {
+                        helper.assertTrue(
+                                machine.progress() > 0
+                                        && machine.spec().energy().type()
+                                                == EnergyType.HEAT
+                                        && machine.spec().energy().mode()
+                                                == ProcessingMachineSpec
+                                                        .EnergyMode.ADJACENT,
+                                machine.spec().id()
+                                        + " did not advance from bottom Firebox HU: "
+                                        + machine.pausedReason());
+                        forceLastTick(helper, machine);
+                    }
+                })
+                .thenIdle(3)
+                .thenExecute(() -> {
+                    for (ConfiguredProcessingMachineBlockEntity machine :
+                            machines) {
+                        boolean fluidOutput = machine.spec().fluids().outputs()
+                                .stream()
+                                .anyMatch(tank -> !machine.tanks()
+                                        .get(tank.index())
+                                        .getFluid()
+                                        .isEmpty());
+                        helper.assertTrue(
+                                hasAnyOutput(machine) || fluidOutput,
+                                machine.spec().id()
+                                        + " did not commit its Firebox-powered output");
+                    }
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void t17bHigherTierHuUsesControlledAdjacentHandlers(
+            GameTestHelper helper) {
+        List<BlockPos> machinePositions = List.of(
+                new BlockPos(3, 2, 5),
+                new BlockPos(8, 2, 5),
+                new BlockPos(13, 2, 5));
+        List<Block> blocks = List.of(
+                ModBlocks.TITANIUM_DISTILLERY.get(),
+                ModBlocks.TITANIUM_DRYING.get(),
+                ModBlocks.TITANIUM_SMELTER.get());
+        List<ProcessingMachineSpec> specs = List.of(
+                ModProcessingMachines.DISTILLERY,
+                ModProcessingMachines.DRYING,
+                ModProcessingMachines.SMELTER);
+        List<GTRecipe> recipes = List.of(
+                requireRecipe(
+                        ModRecipeMaps.DISTILLERY,
+                        "t5/distillery/water_to_water_distilled"),
+                requireRecipe(
+                        ModRecipeMaps.DRYING,
+                        "t5/drying/perlite"),
+                requireRecipe(
+                        ModRecipeMaps.SMELTER,
+                        "t5/smelter/ilmenite"));
+        FuelDefinition controlledTierThreeHeat =
+                new FuelDefinition("t17b_controlled_512_hu", 512L, 200);
+        List<ConfiguredProcessingMachineBlockEntity> machines =
+                new ArrayList<>();
+        for (int index = 0; index < machinePositions.size(); index++) {
+            BlockPos machinePos = machinePositions.get(index);
+            helper.setBlock(machinePos.below(), ModBlocks.FIREBOX.get());
+            FireboxBlockEntity source =
+                    helper.getBlockEntity(machinePos.below());
+            helper.assertTrue(
+                    source.addFuel(controlledTierThreeHeat),
+                    "Could not prime controlled tier-3 HU handler " + index);
+            ConfiguredProcessingMachineBlockEntity machine =
+                    placeConfigured(
+                            helper,
+                            machinePos,
+                            blocks.get(index),
+                            specs.get(index));
+            loadRecipeInputs(machine, recipes.get(index));
+            machines.add(machine);
+        }
+
+        helper.startSequence()
+                .thenIdle(3)
+                .thenExecute(() -> {
+                    for (ConfiguredProcessingMachineBlockEntity machine :
+                            machines) {
+                        helper.assertTrue(
+                                machine.variant().tier().inputNominal() == 512L,
+                                machine.spec().id()
+                                        + " did not bind the titanium HU tier");
+                    }
+                    ConfiguredProcessingMachineBlockEntity drying =
+                            machines.get(1);
+                    helper.assertTrue(
+                            drying.progress() > 0,
+                            "Controlled adjacent HU did not advance "
+                                    + "titanium Drying: "
+                                    + drying.pausedReason());
+                    forceLastTick(helper, drying);
+                })
+                .thenIdle(3)
+                .thenExecute(() -> {
+                    for (ConfiguredProcessingMachineBlockEntity machine :
+                            machines) {
+                        boolean fluidOutput = machine.spec().fluids().outputs()
+                                .stream()
+                                .anyMatch(tank -> !machine.tanks()
+                                        .get(tank.index())
+                                        .getFluid()
+                                        .isEmpty());
+                        helper.assertTrue(
+                                hasAnyOutput(machine) || fluidOutput,
+                                machine.spec().id()
+                                        + " did not complete from controlled "
+                                        + "tier-3 adjacent HU");
+                    }
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 60)
+    public static void t17bFailureStatesExposeWrongEnergyUnderpoweredAndLimits(
+            GameTestHelper helper) {
+        BlockPos huPos = new BlockPos(3, 2, 5);
+        BlockPos overchargePos = new BlockPos(8, 2, 5);
+        BlockPos exceededPos = new BlockPos(13, 2, 5);
+        ConfiguredProcessingMachineBlockEntity hu = placeConfigured(
+                helper,
+                huPos,
+                ModBlocks.DISTILLERY.get(),
+                ModProcessingMachines.DISTILLERY);
+        loadRecipeInputs(
+                hu,
+                requireRecipe(
+                        ModRecipeMaps.DISTILLERY,
+                        "t5/distillery/water_to_water_distilled"));
+        helper.assertTrue(
+                hu.insert(
+                        EnergyType.ELECTRIC,
+                        32L,
+                        1L,
+                        Direction.SOUTH,
+                        false) == 0L,
+                "Adjacent HU Distillery accepted the wrong EU identity");
+
+        helper.setBlock(
+                overchargePos,
+                ModBlocks.ELECTROLYZER.get().defaultBlockState().setValue(
+                        ProcessingMachineBlock.FACING,
+                        Direction.EAST));
+        ConfiguredProcessingMachineBlockEntity overcharge =
+                helper.getBlockEntity(overchargePos);
+        helper.assertTrue(
+                overcharge.insert(
+                        EnergyType.ELECTRIC,
+                        overcharge.variant().tier().inputMaximum() + 1L,
+                        1L,
+                        Direction.WEST,
+                        false) == 1L
+                        && overcharge.pausedReason().equals("overcharged"),
+                "Tier-1 Electrolyzer overcharge was not observable");
+
+        helper.setBlock(
+                exceededPos,
+                ModBlocks.ELECTROLYZER.get().defaultBlockState().setValue(
+                        ProcessingMachineBlock.FACING,
+                        Direction.EAST));
+        ConfiguredProcessingMachineBlockEntity exceeded =
+                helper.getBlockEntity(exceededPos);
+        loadRecipeInputs(
+                exceeded,
+                requireRecipe(
+                        ModRecipeMaps.ELECTROLYZER,
+                        "t5/electrolyzer/uvarovite"));
+
+        helper.startSequence()
+                .thenIdle(3)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            hu.pausedReason().equals("underpowered"),
+                            "HU machine without bottom adjacency did not expose "
+                                    + "underpowered: "
+                                    + hu.pausedReason());
+                    helper.assertTrue(
+                            exceeded.pausedReason().equals(
+                                    "recipe_power_exceeded"),
+                            "Tier-1 Electrolyzer did not expose "
+                                    + "recipe_power_exceeded: "
+                                    + exceeded.pausedReason());
+                })
+                .thenSucceed();
+    }
+
     @GameTest(template = TEMPLATE, timeoutTicks = 260)
     public static void smelterAboveFireboxUsesRealHeat(GameTestHelper helper) {
         BlockPos fireboxPos = new BlockPos(4, 1, 4);
@@ -1824,7 +2697,9 @@ public final class CrucibleCraftGameTests {
         ConfiguredProcessingMachineBlockEntity smelter =
                 placeConfigured(helper, smelterPos, ModBlocks.SMELTER.get(), ModProcessingMachines.SMELTER);
         FireboxBlockEntity firebox = helper.getBlockEntity(fireboxPos);
-        helper.assertTrue(firebox.addFuel(FuelDefinition.CHARCOAL), "Could not fuel real firebox");
+        helper.assertTrue(
+                firebox.addFuel(FuelDefinition.COAL_COKE),
+                "Could not fuel real smelter firebox");
         smelter.inventory().setStackInSlot(0, material("copper", MaterialPrefixes.DUST, 1));
         IEnergyHandler heat = helper.getLevel().getCapability(
                 ModCapabilities.ENERGY, helper.absolutePos(fireboxPos), Direction.UP);
@@ -1844,6 +2719,72 @@ public final class CrucibleCraftGameTests {
                 .thenSucceed();
     }
 
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void ceramicMoldRemovalDropsExactlyOnceAcrossPaths(
+            GameTestHelper helper) {
+        BlockPos nonPlayerDestroy = new BlockPos(2, 2, 2);
+        BlockPos emptyReplacement = new BlockPos(5, 2, 2);
+        BlockPos filledReplacement = new BlockPos(8, 2, 2);
+        BlockPos survivalDestroy = new BlockPos(2, 2, 6);
+        BlockPos creativeDestroy = new BlockPos(6, 2, 6);
+        placeCeramicMold(helper, nonPlayerDestroy, true);
+        placeCeramicMold(helper, emptyReplacement, false);
+        placeCeramicMold(helper, filledReplacement, true);
+        placeCeramicMold(helper, survivalDestroy, true);
+        placeCeramicMold(helper, creativeDestroy, true);
+
+        for (BlockPos pos : List.of(
+                nonPlayerDestroy,
+                emptyReplacement,
+                filledReplacement,
+                survivalDestroy,
+                creativeDestroy)) {
+            helper.assertTrue(
+                    droppedItemCount(helper, pos, null) == 0,
+                    "Ceramic mold state update dropped items before removal at "
+                            + pos);
+        }
+
+        helper.getLevel().destroyBlock(
+                helper.absolutePos(nonPlayerDestroy), false);
+        helper.setBlock(emptyReplacement, Blocks.STONE);
+        helper.setBlock(filledReplacement, Blocks.STONE);
+
+        @SuppressWarnings("removal")
+        ServerPlayer survivalPlayer = helper.makeMockServerPlayerInLevel();
+        survivalPlayer.setGameMode(GameType.SURVIVAL);
+        helper.assertTrue(
+                survivalPlayer.gameMode.destroyBlock(
+                        helper.absolutePos(survivalDestroy)),
+                "Survival player could not destroy the ceramic mold");
+        survivalPlayer.discard();
+
+        @SuppressWarnings("removal")
+        ServerPlayer creativePlayer = helper.makeMockServerPlayerInLevel();
+        creativePlayer.setGameMode(GameType.CREATIVE);
+        helper.assertTrue(
+                creativePlayer.gameMode.destroyBlock(
+                        helper.absolutePos(creativeDestroy)),
+                "Creative player could not destroy the ceramic mold");
+        creativePlayer.discard();
+
+        helper.startSequence()
+                .thenIdle(3)
+                .thenExecute(() -> {
+                    assertCeramicMoldDrops(
+                            helper, nonPlayerDestroy, true);
+                    assertCeramicMoldDrops(
+                            helper, emptyReplacement, false);
+                    assertCeramicMoldDrops(
+                            helper, filledReplacement, true);
+                    assertCeramicMoldDrops(
+                            helper, survivalDestroy, true);
+                    assertCeramicMoldDrops(
+                            helper, creativeDestroy, true);
+                })
+                .thenSucceed();
+    }
+
     @GameTest(template = TEMPLATE, timeoutTicks = 1_350)
     public static void hotIngotSmeltsHurtsAndCoolsThroughDataRule(
             GameTestHelper helper) {
@@ -1858,7 +2799,7 @@ public final class CrucibleCraftGameTests {
                         ModProcessingMachines.SMELTER);
         FireboxBlockEntity firebox = helper.getBlockEntity(fireboxPos);
         helper.assertTrue(
-                firebox.addFuel(FuelDefinition.CHARCOAL),
+                firebox.addFuel(FuelDefinition.COAL_COKE),
                 "Could not fuel T10 hot-ingot smelter");
         smelter.inventory().setStackInSlot(
                 0,
@@ -1978,6 +2919,352 @@ public final class CrucibleCraftGameTests {
         runOreChain(helper, "tungsten", minedRawOre);
     }
 
+    @GameTest(template = TEMPLATE, timeoutTicks = 140)
+    public static void t11CrudeOilDepositExtractsThroughPipeAndDistills(
+            GameTestHelper helper) {
+        BlockPos depositPos = new BlockPos(3, 1, 4);
+        BlockPos extractorPos = depositPos.above();
+        BlockPos pipePos = extractorPos.east();
+        BlockPos distilleryPos = pipePos.east();
+        helper.setBlock(
+                depositPos,
+                ModBlocks.SUBSURFACE_FLUID_DEPOSIT.get());
+        SubsurfaceFluidDepositBlockEntity deposit =
+                helper.getBlockEntity(depositPos);
+        var material = ResourceLocation.fromNamespaceAndPath(
+                CrucibleCraft.MODID, "crude_oil");
+        var production = HydrocarbonRuntimePolicy.production(material);
+        deposit.initialize(
+                material,
+                1_000_000L,
+                BuiltInRegistries.BLOCK.getKey(Blocks.STONE),
+                production.amountMb(),
+                production.intervalTicks(),
+                production.accumulationCapMb(),
+                production.ventOverflow());
+        long projectionStart = helper.getLevel().getGameTime();
+        helper.assertTrue(
+                deposit.extract(1, projectionStart, false) == 1,
+                "Could not initialize the production projection");
+        long saturationTime = projectionStart
+                + 40L * production.intervalTicks();
+        helper.assertTrue(
+                deposit.availableProduction(saturationTime)
+                        == production.accumulationCapMb(),
+                "Deposit projection did not saturate at its accumulation cap");
+        helper.assertTrue(
+                deposit.extract(10, saturationTime, false) == 10
+                        && deposit.availableProduction(
+                                        saturationTime
+                                                + production.intervalTicks())
+                                == production.accumulationCapMb(),
+                "Partial headroom allowed deposit projection to exceed its cap");
+        helper.setBlock(
+                extractorPos,
+                ModBlocks.FLUID_DEPOSIT_EXTRACTOR.get());
+        FluidPipeBlock pipeBlock = (FluidPipeBlock) ModBlocks.pipeBlock(
+                "copper",
+                MaterialPrefixes.TINY_FLUID_PIPE,
+                PipeCatalog.Kind.FLUID).get();
+        helper.setBlock(pipePos, pipeBlock);
+        helper.getLevel().setBlock(
+                helper.absolutePos(pipePos),
+                helper.getBlockState(pipePos)
+                        .setValue(FluidPipeBlock.WEST, true)
+                        .setValue(FluidPipeBlock.EAST, true),
+                Block.UPDATE_CLIENTS);
+        helper.setBlock(
+                distilleryPos.below(),
+                ModBlocks.FIREBOX.get());
+        helper.setBlock(
+                distilleryPos,
+                ModBlocks.DISTILLERY.get().defaultBlockState()
+                        .setValue(
+                                ProcessingMachineBlock.FACING,
+                                Direction.EAST));
+        FluidPipeBlockEntity pipe = helper.getBlockEntity(pipePos);
+        helper.assertTrue(
+                pipe.setCover(Direction.WEST, PipeCover.pump()),
+                "Could not install the T11 wellhead pump");
+        ConfiguredProcessingMachineBlockEntity distillery =
+                helper.getBlockEntity(distilleryPos);
+        FireboxBlockEntity firebox =
+                helper.getBlockEntity(distilleryPos.below());
+        helper.assertTrue(
+                firebox.addFuel(FuelDefinition.COAL_COKE),
+                "Could not fuel the T11 HU distillery");
+        GTRecipe recipe = requireRecipe(
+                ModRecipeMaps.DISTILLERY,
+                "t11/distillery/crude_oil_to_fuel_and_lubricant");
+        helper.assertTrue(
+                distillery.spec().energy().type() == EnergyType.HEAT
+                        && distillery.spec().energy().mode()
+                                == ProcessingMachineSpec.EnergyMode.ADJACENT,
+                "T11 distillery did not bind the adjacent HU contract");
+
+        helper.startSequence()
+                .thenIdle(55)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            distillery.progress() > 0,
+                            "Deposit/pipe/HU distillery chain did not start: "
+                                    + distillery.pausedReason());
+                    forceLastTick(helper, distillery);
+                })
+                .thenIdle(3)
+                .thenExecute(() -> {
+                    FluidStack fuel = recipe.fluidOutputs().getFirst();
+                    FluidStack lubricant = recipe.fluidOutputs().get(1);
+                    helper.assertTrue(
+                            distillery.tanks().stream().anyMatch(tank ->
+                                    tank.getFluid().is(fuel.getFluid())
+                                            && tank.getFluidAmount()
+                                                    >= fuel.getAmount()),
+                            "Deposit/pipe/distillery chain produced no fuel");
+                    helper.assertTrue(
+                            distillery.tanks().stream().anyMatch(tank ->
+                                    tank.getFluid().is(
+                                                    lubricant.getFluid())
+                                            && tank.getFluidAmount()
+                                                    >= lubricant.getAmount()),
+                            "Distillery silently lost lubricant coproduct");
+                    helper.assertTrue(
+                            deposit.snapshot().orElseThrow()
+                                            .remainingAmountMb()
+                                    == 1_000_000L,
+                            "T11 extraction consumed the legacy reserve");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 180)
+    public static void t11NaturalGasConvertsAndPowersElectricGrid(
+            GameTestHelper helper) {
+        BlockPos depositPos = new BlockPos(3, 1, 9);
+        BlockPos extractorPos = depositPos.above();
+        BlockPos generifierPos = new BlockPos(5, 2, 9);
+        BlockPos generatorPos = new BlockPos(9, 2, 9);
+        BlockPos waterExhaustPos = generatorPos.above();
+        BlockPos carbonDioxideExhaustPos = generatorPos.below();
+        BlockPos cablePos = generatorPos.east();
+        BlockPos electrolyzerPos = cablePos.east();
+        helper.setBlock(
+                depositPos,
+                ModBlocks.SUBSURFACE_FLUID_DEPOSIT.get());
+        SubsurfaceFluidDepositBlockEntity deposit =
+                helper.getBlockEntity(depositPos);
+        var naturalGasId = ResourceLocation.fromNamespaceAndPath(
+                CrucibleCraft.MODID, "natural_gas");
+        var production =
+                HydrocarbonRuntimePolicy.production(naturalGasId);
+        deposit.initialize(
+                naturalGasId,
+                500_000L,
+                BuiltInRegistries.BLOCK.getKey(Blocks.STONE),
+                production.amountMb(),
+                production.intervalTicks(),
+                production.accumulationCapMb(),
+                production.ventOverflow());
+        helper.setBlock(
+                extractorPos,
+                ModBlocks.FLUID_DEPOSIT_EXTRACTOR.get());
+        helper.setBlock(
+                generifierPos,
+                ModBlocks.GENERIFIER.get().defaultBlockState()
+                        .setValue(
+                                ProcessingMachineBlock.FACING,
+                                Direction.EAST));
+        helper.setBlock(
+                generatorPos,
+                ModBlocks.BURNING_GAS_GENERATOR.get()
+                        .defaultBlockState()
+                        .setValue(
+                                FuelGeneratorBlock.FACING,
+                                Direction.EAST));
+        FluidPipeBlock exhaustPipeBlock =
+                (FluidPipeBlock) ModBlocks.pipeBlock(
+                        "copper",
+                        MaterialPrefixes.TINY_FLUID_PIPE,
+                        PipeCatalog.Kind.FLUID).get();
+        helper.setBlock(waterExhaustPos, exhaustPipeBlock);
+        helper.getLevel().setBlock(
+                helper.absolutePos(waterExhaustPos),
+                helper.getBlockState(waterExhaustPos)
+                        .setValue(FluidPipeBlock.DOWN, true),
+                Block.UPDATE_CLIENTS);
+        helper.setBlock(carbonDioxideExhaustPos, exhaustPipeBlock);
+        helper.getLevel().setBlock(
+                helper.absolutePos(carbonDioxideExhaustPos),
+                helper.getBlockState(carbonDioxideExhaustPos)
+                        .setValue(FluidPipeBlock.UP, true),
+                Block.UPDATE_CLIENTS);
+        CableBlock cable = ModBlocks.electricalConductorBlock(
+                "copper", MaterialPrefixes.CABLE).get();
+        helper.setBlock(
+                cablePos,
+                conductorState(
+                        cable, Direction.WEST, Direction.EAST));
+        helper.setBlock(
+                electrolyzerPos,
+                ModBlocks.ELECTROLYZER.get().defaultBlockState()
+                        .setValue(
+                                ProcessingMachineBlock.FACING,
+                                Direction.EAST));
+
+        FluidDepositExtractorBlockEntity extractor =
+                helper.getBlockEntity(extractorPos);
+        ConfiguredProcessingMachineBlockEntity generifier =
+                helper.getBlockEntity(generifierPos);
+        FuelGeneratorBlockEntity generator =
+                helper.getBlockEntity(generatorPos);
+        FluidPipeBlockEntity waterExhaust =
+                helper.getBlockEntity(waterExhaustPos);
+        FluidPipeBlockEntity carbonDioxideExhaust =
+                helper.getBlockEntity(carbonDioxideExhaustPos);
+        helper.assertTrue(
+                waterExhaust.setCover(Direction.DOWN, PipeCover.pump())
+                        && carbonDioxideExhaust.setCover(
+                                Direction.UP, PipeCover.pump()),
+                "Could not install independent generator exhaust pumps");
+        helper.assertTrue(
+                generator.fluids(Direction.EAST) == null
+                        && generator.fluids(Direction.UP) != null
+                        && generator.fluids(Direction.DOWN) != null,
+                "Generator electrical and exhaust faces overlap");
+        ConfiguredProcessingMachineBlockEntity electrolyzer =
+                helper.getBlockEntity(electrolyzerPos);
+        GTRecipe electrolysis = requireRecipe(
+                ModRecipeMaps.ELECTROLYZER,
+                "t5/electrolyzer/salt");
+        GTRecipe gasFuel = requireRecipe(
+                ModRecipeMaps.FUELS_GAS,
+                "t11/fuels_gas/methane");
+        loadRecipeInputs(electrolyzer, electrolysis);
+
+        helper.startSequence()
+                .thenIdle(5)
+                .thenExecute(() -> helper.assertTrue(
+                        extractor.fluidAmount() >= 5,
+                        "Natural-gas extractor did not capture its first "
+                                + "production cycle: status="
+                                + extractor.status()
+                                + ", linked="
+                                + extractor.linkedDeposit()
+                                + ", depositAvailable="
+                                + deposit.availableProduction(
+                                        helper.getLevel().getGameTime())))
+                .thenExecute(() -> transferFluid(
+                        helper,
+                        extractor.externalFluid(),
+                        generifier.fluids(Direction.WEST),
+                        5))
+                .thenIdle(7)
+                .thenExecute(() -> transferFluid(
+                        helper,
+                        generifier.fluids(Direction.EAST),
+                        generator.fluids(Direction.WEST),
+                        5))
+                .thenIdle(45)
+                .thenExecute(() -> {
+                    FluidStack expectedWater =
+                            gasFuel.fluidOutputs().getFirst();
+                    FluidStack expectedCarbonDioxide =
+                            gasFuel.fluidOutputs().get(1);
+                    helper.assertTrue(
+                            waterExhaust.storedFluid().is(
+                                            expectedWater.getFluid())
+                                    && waterExhaust.storedFluid().getAmount()
+                                            >= expectedWater.getAmount(),
+                            "Top exhaust did not drain methane-generator water");
+                    helper.assertTrue(
+                            carbonDioxideExhaust.storedFluid().is(
+                                            expectedCarbonDioxide.getFluid())
+                                    && carbonDioxideExhaust.storedFluid()
+                                                    .getAmount()
+                                            >= expectedCarbonDioxide.getAmount(),
+                            "Bottom exhaust did not drain methane-generator CO2");
+                    helper.assertTrue(
+                            electrolyzer.workProgressLong() > 0L,
+                            "Gas generator did not power the Electrolyzer "
+                                    + "through the T6 cable: "
+                                    + electrolyzer.pausedReason());
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 60)
+    public static void t11NaturalGasLeaksAndFlammableCloudIgnites(
+            GameTestHelper helper) {
+        BlockPos pipePos = new BlockPos(14, 2, 5);
+        FluidPipeBlock pipeBlock = (FluidPipeBlock) ModBlocks.pipeBlock(
+                "tin",
+                MaterialPrefixes.TINY_FLUID_PIPE,
+                PipeCatalog.Kind.FLUID).get();
+        helper.setBlock(
+                pipePos.west(),
+                ModBlocks.FLUID_DEPOSIT_EXTRACTOR.get());
+        helper.setBlock(pipePos, pipeBlock);
+        helper.getLevel().setBlock(
+                helper.absolutePos(pipePos),
+                helper.getBlockState(pipePos)
+                        .setValue(FluidPipeBlock.WEST, true),
+                Block.UPDATE_CLIENTS);
+        helper.assertTrue(
+                helper.getBlockState(pipePos)
+                        .getValue(FluidPipeBlock.WEST),
+                "Unsafe pipe test did not establish an input connection");
+        FluidPipeBlockEntity pipe = helper.getBlockEntity(pipePos);
+        IFluidHandler pipeInput = pipe.fluidHandler(Direction.WEST);
+        FluidStack naturalGas = new FluidStack(
+                ModFluids.materialFluid("natural_gas").orElseThrow(),
+                5);
+        for (int event = 0;
+                event < FluidPipeFailureState.FAILURE_LIMIT;
+                event++) {
+            helper.assertTrue(
+                    pipeInput.fill(
+                                    naturalGas,
+                                    IFluidHandler.FluidAction.EXECUTE)
+                            == 0,
+                    "Unsafe tin pipe accepted natural gas");
+        }
+        helper.assertTrue(
+                pipe.failureSnapshot().pendingFailure()
+                        == Failure.GAS_LEAK,
+                "Unsafe pipe did not record a natural-gas leak: "
+                        + pipe.failureSnapshot());
+
+        BlockPos cloudPos = new BlockPos(17, 2, 5);
+        var naturalGasId = ResourceLocation.fromNamespaceAndPath(
+                CrucibleCraft.MODID, "natural_gas");
+        helper.assertTrue(
+                GasCloudBlockEntity.placeOrMerge(
+                                helper.getLevel(),
+                                helper.absolutePos(cloudPos),
+                                naturalGasId,
+                                125)
+                        == 125,
+                "Could not create a bounded natural-gas cloud");
+        helper.setBlock(cloudPos.east().below(), Blocks.NETHERRACK);
+        helper.setBlock(cloudPos.east(), Blocks.FIRE);
+
+        helper.startSequence()
+                .thenIdle(6)
+                .thenExecute(() -> {
+                    GasCloudBlockEntity cloud =
+                            helper.getBlockEntity(cloudPos);
+                    helper.assertTrue(
+                            cloud.burning()
+                                    && cloud.amountMb() < 125,
+                            "PROPERTIES.FLAMMABLE did not drive sustained "
+                                    + "gas-cloud burning");
+                    helper.assertTrue(
+                            !helper.getBlockState(pipePos).is(pipeBlock),
+                            "Pending gas leak did not fail the unsafe pipe");
+                })
+                .thenSucceed();
+    }
+
     @GameTest(template = TEMPLATE, timeoutTicks = 400)
     public static void worldgenCatalogRegistryPlacementAndFluidDeposit(
             GameTestHelper helper) {
@@ -2022,6 +3309,24 @@ public final class CrucibleCraftGameTests {
                 helper,
                 oil,
                 (SubsurfaceFluidDepositConfiguration) oil.config());
+        ResourceLocation naturalGasId =
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID,
+                        "natural_gas_deposit");
+        ConfiguredFeature<?, ?> naturalGas = registry.get(
+                ResourceKey.create(
+                        Registries.CONFIGURED_FEATURE,
+                        naturalGasId));
+        helper.assertTrue(
+                naturalGas != null
+                        && naturalGas.config()
+                                instanceof SubsurfaceFluidDepositConfiguration,
+                "Runtime registry lacks the decoded natural-gas deposit");
+        assertFluidDepositPlacesAndIsReadable(
+                helper,
+                naturalGas,
+                (SubsurfaceFluidDepositConfiguration)
+                        naturalGas.config());
         helper.succeed();
     }
 
@@ -2116,8 +3421,16 @@ public final class CrucibleCraftGameTests {
                         && snapshot.initialAmountMb()
                                 <= config.maxAmountMb()
                         && snapshot.remainingAmountMb()
-                                == snapshot.initialAmountMb(),
-                "Placed crude-oil deposit data is incomplete or out of range");
+                                == snapshot.initialAmountMb()
+                        && snapshot.productionAmountMb()
+                                == config.productionAmountMb()
+                        && snapshot.productionIntervalTicks()
+                                == config.productionIntervalTicks()
+                        && snapshot.accumulationCapMb()
+                                == config.accumulationCapMb()
+                        && snapshot.ventOverflow()
+                                == config.ventOverflow(),
+                "Placed fluid deposit data is incomplete or out of range");
     }
 
     private static AcceptedRegion acceptedRegion(
@@ -2193,7 +3506,7 @@ public final class CrucibleCraftGameTests {
         BlockPos chainFireboxPos = new BlockPos(19, 1, 8);
         helper.setBlock(chainFireboxPos, ModBlocks.FIREBOX.get());
         FireboxBlockEntity chainFirebox = helper.getBlockEntity(chainFireboxPos);
-        helper.assertTrue(chainFirebox.addFuel(FuelDefinition.CHARCOAL),
+        helper.assertTrue(chainFirebox.addFuel(FuelDefinition.COAL_COKE),
                 "Could not fuel chain smelter firebox");
         CrusherBlockEntity crusher;
         BlockPos crusherPos = new BlockPos(3, 2, 13);
@@ -2751,11 +4064,23 @@ public final class CrucibleCraftGameTests {
                         + expandedPath + ".json";
                 String sourcePath = "data/" + entry.id().getNamespace() + "/recipe/"
                         + expandedPath.substring(0, materialSeparator) + ".json";
+                String[] pathParts = expandedPath.split("/");
+                boolean compactExtruderSource = pathParts.length >= 3
+                        && pathParts[0].equals("extruder")
+                        && (CrucibleCraftGameTests.class.getClassLoader().getResource(
+                                "data/" + entry.id().getNamespace()
+                                        + "/recipe/extruder/compact/normal_"
+                                        + pathParts[1] + ".json") != null
+                                || CrucibleCraftGameTests.class.getClassLoader().getResource(
+                                        "data/" + entry.id().getNamespace()
+                                                + "/recipe/extruder/compact/low_heat_"
+                                                + pathParts[1] + ".json") != null);
                 helper.assertTrue(
                         CrucibleCraftGameTests.class.getClassLoader()
                                 .getResource(directPath) != null
                                 || CrucibleCraftGameTests.class.getClassLoader()
-                                        .getResource(sourcePath) != null,
+                                        .getResource(sourcePath) != null
+                                || compactExtruderSource,
                         "Live T3 recipe has no component-rule JSON source: "
                                 + entry.id() + " -> " + sourcePath);
             }
@@ -2812,7 +4137,7 @@ public final class CrucibleCraftGameTests {
                 .mapToInt(spec -> spec.requireRecipeMap().entries().size())
                 .sum();
         helper.assertTrue(
-                emiPlan.machines().size() == 23
+                emiPlan.machines().size() == 24
                         && emiPlan.recipes().size() == expectedEmiRecipes,
                 "Generic processing EMI does not cover every configured machine recipe: "
                         + emiPlan.machines().size()
@@ -2828,16 +4153,39 @@ public final class CrucibleCraftGameTests {
         var metrics = com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader
                 .lastPublicationMetrics();
         var lookup = com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader
-                .benchmarkT4LookupsForVerification();
+                .benchmarkT14LookupsForVerification();
+        var onlineGate = com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader
+                .evaluateT14OnlineBudgetGate(metrics, lookup);
         helper.assertTrue(
                 metrics.t3ComponentRecipes() == 8398
                         && metrics.t4ToolRecipes() == 3452
-                        && metrics.t5ChemicalRecipes() == 152
+                        && metrics.t5ChemicalRecipes() == 154
                         && metrics.t7AuthoredMaterialRules() == 220
                         && metrics.t8PipeMaterialRules() == 257
                         && metrics.t10KnownFormMaterialRules() == 1_288
                         && metrics.liveT3MapRecipes() == 11851
-                        && metrics.allPublishedRecipes() == 18_871
+                        && metrics.allPublishedRecipes() == 18_875
+                        && metrics.eagerPublishedRecipes() == 16_650
+                        && metrics.eagerPublishedRecipes()
+                                <= ModProcessingMachines
+                                        .ALL_EAGER_PUBLICATION_SOFT_BUDGET
+                        && metrics.lazyLogicalRecipes() == 2_225
+                        && metrics.lazyLogicalRecipes()
+                                <= ModProcessingMachines
+                                        .ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING
+                        && metrics.t14ExtruderLogicalRecipes() == 2_782
+                        && metrics.t14ExtruderEagerRecipes() == 557
+                        && metrics.t14ExtruderLazyRecipes() == 2_225
+                        && metrics.t14ExtruderCacheCeiling() == 512
+                        && metrics.t14ExtruderSyncBytes() == 331_124L
+                        && metrics.t14ExtruderCacheCeiling()
+                                <= ModProcessingMachines
+                                        .ALL_LAZY_RECIPE_CACHE_HARD_CEILING
+                        && metrics.t14ExtruderAuthoredEntries() == 20
+                        && metrics.t14ExtruderStableFingerprint()
+                                .matches("[0-9a-f]{64}")
+                        && metrics.runtimeSide()
+                                == ExtruderRecipeFamilyProvider.RuntimeSide.SERVER
                         && metrics.t5ChemicalRecipes()
                                 <= ModProcessingMachines.T5_CHEMICAL_RECIPE_BUDGET
                         && metrics.t7AuthoredMaterialRules()
@@ -2855,15 +4203,21 @@ public final class CrucibleCraftGameTests {
                                 <= ModProcessingMachines.RECIPE_RELOAD_BUDGET_MS
                         && metrics.indexMillis()
                                 <= ModProcessingMachines.RECIPE_INDEX_BUILD_BUDGET_MS
-                        && lookup.samples() == 1024
-                        && lookup.averageNanos()
-                                <= ModProcessingMachines
-                                        .RECIPE_LOOKUP_AVERAGE_BUDGET_NS
-                        && lookup.averageCandidates()
-                                <= ModProcessingMachines
-                                        .RECIPE_LOOKUP_AVERAGE_CANDIDATE_BUDGET,
+                        && lookup.timingSamples() == 61
+                        && lookup.operations() == 1_952
+                        && onlineGate.allPass(),
                 "Recipe publication performance budget drifted: "
-                        + metrics + ", " + lookup);
+                        + metrics + ", " + lookup + ", " + onlineGate);
+        RecipeMap.RecipeFamily extruderFamily = ModRecipeMaps.EXTRUDER
+                .family(ExtruderRecipeFamilyProvider.FAMILY_ID)
+                .orElseThrow();
+        helper.assertTrue(
+                extruderFamily.epoch() == ModRecipeMaps.EXTRUDER.runtimeEpoch()
+                        && extruderFamily.logicalRecipeCount() == 2_782
+                        && extruderFamily.eagerRecipeCount() == 557
+                        && extruderFamily.lazyRecipeCount() == 2_225
+                        && extruderFamily.cacheCeiling() == 512,
+                "T14c Extruder family snapshot shape drifted");
         for (RecipeMap.Entry entry : ModRecipeMaps.EXTRUDER.entries()) {
             GTRecipe recipe = entry.recipe();
             helper.assertTrue(
@@ -2877,7 +4231,18 @@ public final class CrucibleCraftGameTests {
                     java.util.Arrays.stream(recipe.itemInputs().get(1).getItems())
                             .allMatch(ExtruderShapeCatalog::isShape),
                     "Extruder recipe retains a no-shape bypass: " + entry.id());
+            GTRecipeQuery query = queryFor(recipe);
+            RecipeMap.Match resolved =
+                    ModRecipeMaps.EXTRUDER.findMatch(query).orElse(null);
+            helper.assertTrue(
+                    resolved != null && resolved.id().equals(entry.id()),
+                    "Extruder expected input did not find its stable publication: "
+                            + entry.id() + " resolved="
+                            + (resolved == null ? null : resolved.id()));
         }
+        helper.assertTrue(
+                extruderFamily.cacheSize() <= extruderFamily.cacheCeiling(),
+                "T14c Extruder long-tail cache exceeded its epoch ceiling");
         Map<String, Integer> toolCounts = Map.ofEntries(
                 Map.entry("pickaxe", 330),
                 Map.entry("shovel", 412),
@@ -3013,6 +4378,976 @@ public final class CrucibleCraftGameTests {
         }
         helper.succeed();
     }
+
+    @GameTest(
+            template = TEMPLATE,
+            batch = "t15c_machine_variant_crafting",
+            timeoutTicks = 80)
+    public static void machineVariantRecipesExecuteFromLiveRecipeManager(
+            GameTestHelper helper) {
+        List<MachineCraftingCase> cases = machineCraftingCases();
+        helper.assertTrue(cases.size() == 9, "T15c must execute all nine variants");
+        executeMachineCraftingCases(helper, cases);
+    }
+
+    @GameTest(
+            template = TEMPLATE,
+            batch = "t16c_machine_variant_crafting",
+            timeoutTicks = 80)
+    public static void t16SelectedMachineRecipesExecuteFromLiveRecipeManager(
+            GameTestHelper helper) {
+        List<MachineCraftingCase> cases = t16MachineCraftingCases();
+        helper.assertTrue(
+                cases.size() == 15,
+                "T16c must execute the selected five-by-three variants");
+        executeMachineCraftingCases(helper, cases);
+    }
+
+    @GameTest(
+            template = TEMPLATE,
+            batch = "t17c_hu_machine_variant_crafting",
+            timeoutTicks = 80)
+    public static void t17SelectedHuRecipesExecuteFromLiveRecipeManager(
+            GameTestHelper helper) {
+        List<MachineCraftingCase> cases = t17MachineCraftingCases();
+        helper.assertTrue(
+                cases.size() == 9,
+                "T17c must execute all selected three-by-three HU variants");
+        executeMachineCraftingCases(helper, cases);
+    }
+
+    @GameTest(
+            template = TEMPLATE,
+            batch = "t16d_zero_publication",
+            timeoutTicks = 40)
+    public static void t16dRecipePublicationBaselineRemainsStable(
+            GameTestHelper helper) {
+        JsonObject baseline = t16PublicationBaseline();
+        Set<String> expectedMapIds = jsonStringSet(
+                baseline, "recipe_map_ids");
+        Set<String> actualMapIds = ModRecipeMaps.ALL.stream()
+                .map(map -> map.id().toString())
+                .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
+        helper.assertTrue(
+                expectedMapIds.equals(actualMapIds),
+                "T16d RecipeMap stable id set drifted: expected="
+                        + expectedMapIds + " actual=" + actualMapIds);
+
+        JsonObject totals = baseline.getAsJsonObject("publication_totals");
+        var metrics = com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader
+                .lastPublicationMetrics();
+        helper.assertTrue(
+                metrics.allPublishedRecipes()
+                                == totals.get("logical_rows").getAsInt()
+                        && metrics.eagerPublishedRecipes()
+                                == totals.get("eager_rows").getAsInt()
+                        && metrics.lazyLogicalRecipes()
+                                == totals.get("lazy_rows").getAsInt(),
+                "T16d logical/eager/lazy baseline drifted: " + metrics);
+
+        Set<String> expectedEmiIds = jsonStringSet(
+                baseline, "emi_recipe_map_ids");
+        Set<String> actualEmiIds = ModProcessingMachines.CONFIGURED_MACHINES
+                .stream()
+                .map(spec -> spec.requireRecipeMap().id().toString())
+                .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
+        helper.assertTrue(
+                expectedEmiIds.equals(actualEmiIds),
+                "T16d EMI RecipeMap set drifted: expected=" + expectedEmiIds
+                        + " actual=" + actualEmiIds);
+
+        ProcessingEmiRegistrationPlan emi =
+                ProcessingEmiRegistrationPlan.create(
+                        ModProcessingMachines.CONFIGURED_MACHINES);
+        List<String> expectedEnumeration =
+                ModProcessingMachines.CONFIGURED_MACHINES.stream()
+                        .flatMap(spec -> spec.requireRecipeMap().entries()
+                                .stream()
+                                .map(entry -> spec.id() + "|" + entry.id()))
+                        .sorted()
+                        .toList();
+        List<String> actualEnumeration = emi.recipes().stream()
+                .map(recipe -> recipe.machine().categoryId()
+                        + "|" + recipe.id())
+                .sorted()
+                .toList();
+        helper.assertTrue(
+                expectedEnumeration.equals(actualEnumeration)
+                        && actualEnumeration.size()
+                                == new java.util.HashSet<>(
+                                        actualEnumeration).size(),
+                "T16d EMI recipe enumeration is not exact");
+
+        JsonObject acquisition = baseline.getAsJsonObject("t16_acquisition");
+        Set<String> expectedCraftingIds = jsonStringSet(
+                acquisition, "vanilla_recipe_ids");
+        Set<Item> selectedResults = t16MachineCraftingCases().stream()
+                .map(MachineCraftingCase::result)
+                .collect(java.util.stream.Collectors.toSet());
+        Set<String> actualCraftingIds = helper.getLevel().getRecipeManager()
+                .getAllRecipesFor(RecipeType.CRAFTING)
+                .stream()
+                .filter(holder -> selectedResults.contains(
+                        holder.value().getResultItem(
+                                helper.getLevel().registryAccess()).getItem()))
+                .map(holder -> holder.id().toString())
+                .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
+        long t16GtRows = ModRecipeMaps.ALL.stream()
+                .flatMap(map -> map.entries().stream())
+                .filter(entry -> entry.id().getNamespace().equals(
+                        CrucibleCraft.MODID))
+                .filter(entry -> entry.id().getPath().startsWith("t16/"))
+                .count();
+        helper.assertTrue(
+                acquisition.get("recipe_type").getAsString()
+                                .equals("minecraft:crafting_shaped")
+                        && expectedCraftingIds.equals(actualCraftingIds)
+                        && actualCraftingIds.size()
+                                == acquisition.get(
+                                        "vanilla_crafting_rows").getAsInt()
+                        && t16GtRows
+                                == acquisition.get("gt_recipe_rows").getAsLong(),
+                "T16d acquisition is not exactly 15 vanilla crafting rows "
+                        + "and zero GT rows: crafting=" + actualCraftingIds
+                        + " gt=" + t16GtRows);
+        helper.succeed();
+    }
+
+    private static JsonObject t16PublicationBaseline() {
+        var stream = CrucibleCraftGameTests.class.getClassLoader()
+                .getResourceAsStream(
+                        "data/cruciblecraft/t16_publication_baseline.json");
+        if (stream == null) {
+            throw new IllegalStateException(
+                    "Missing T16d publication baseline resource");
+        }
+        try (var reader = new InputStreamReader(
+                stream, StandardCharsets.UTF_8)) {
+            return JsonParser.parseReader(reader).getAsJsonObject();
+        } catch (IOException exception) {
+            throw new IllegalStateException(
+                    "Cannot read T16d publication baseline", exception);
+        }
+    }
+
+    @GameTest(
+            template = TEMPLATE,
+            batch = "t17d_zero_publication",
+            timeoutTicks = 40)
+    public static void t17dRecipePublicationMatchesT16Baseline(
+            GameTestHelper helper) {
+        JsonObject baseline = t17PublicationBaseline();
+        JsonObject t16 = t16PublicationBaseline();
+        Set<String> expectedMapIds = jsonStringSet(
+                baseline, "recipe_map_ids");
+        Set<String> t16MapIds = jsonStringSet(t16, "recipe_map_ids");
+        Set<String> actualMapIds = ModRecipeMaps.ALL.stream()
+                .map(map -> map.id().toString())
+                .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
+        helper.assertTrue(
+                expectedMapIds.equals(t16MapIds)
+                        && expectedMapIds.equals(actualMapIds),
+                "T17d RecipeMap stable id set differs from T16: expected="
+                        + expectedMapIds + " actual=" + actualMapIds);
+
+        JsonObject totals = baseline.getAsJsonObject("publication_totals");
+        helper.assertTrue(
+                totals.equals(t16.getAsJsonObject("publication_totals")),
+                "T17d publication totals differ from the T16 baseline");
+        var metrics = com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader
+                .lastPublicationMetrics();
+        helper.assertTrue(
+                metrics.allPublishedRecipes()
+                                == totals.get("logical_rows").getAsInt()
+                        && metrics.eagerPublishedRecipes()
+                                == totals.get("eager_rows").getAsInt()
+                        && metrics.lazyLogicalRecipes()
+                                == totals.get("lazy_rows").getAsInt(),
+                "T17d logical/eager/lazy baseline drifted: " + metrics);
+
+        Set<String> expectedEmiIds = jsonStringSet(
+                baseline, "emi_recipe_map_ids");
+        Set<String> t16EmiIds = jsonStringSet(t16, "emi_recipe_map_ids");
+        Set<String> actualEmiIds = ModProcessingMachines.CONFIGURED_MACHINES
+                .stream()
+                .map(spec -> spec.requireRecipeMap().id().toString())
+                .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
+        helper.assertTrue(
+                expectedEmiIds.equals(t16EmiIds)
+                        && expectedEmiIds.equals(actualEmiIds),
+                "T17d EMI RecipeMap set differs from T16: expected="
+                        + expectedEmiIds + " actual=" + actualEmiIds);
+
+        ProcessingEmiRegistrationPlan emi =
+                ProcessingEmiRegistrationPlan.create(
+                        ModProcessingMachines.CONFIGURED_MACHINES);
+        List<String> expectedEnumeration =
+                ModProcessingMachines.CONFIGURED_MACHINES.stream()
+                        .flatMap(spec -> spec.requireRecipeMap().entries()
+                                .stream()
+                                .map(entry -> spec.id() + "|" + entry.id()))
+                        .sorted()
+                        .toList();
+        List<String> actualEnumeration = emi.recipes().stream()
+                .map(recipe -> recipe.machine().categoryId()
+                        + "|" + recipe.id())
+                .sorted()
+                .toList();
+        helper.assertTrue(
+                expectedEnumeration.equals(actualEnumeration)
+                        && actualEnumeration.size()
+                                == new java.util.HashSet<>(
+                                        actualEnumeration).size(),
+                "T17d EMI recipe enumeration is not exact");
+
+        JsonObject acquisition = baseline.getAsJsonObject("t17_acquisition");
+        Set<String> expectedCraftingIds = jsonStringSet(
+                acquisition, "vanilla_recipe_ids");
+        Set<Item> selectedResults = t17MachineCraftingCases().stream()
+                .map(MachineCraftingCase::result)
+                .collect(java.util.stream.Collectors.toSet());
+        Set<String> actualCraftingIds = helper.getLevel().getRecipeManager()
+                .getAllRecipesFor(RecipeType.CRAFTING)
+                .stream()
+                .filter(holder -> selectedResults.contains(
+                        holder.value().getResultItem(
+                                helper.getLevel().registryAccess()).getItem()))
+                .map(holder -> holder.id().toString())
+                .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
+        long t17GtRows = ModRecipeMaps.ALL.stream()
+                .flatMap(map -> map.entries().stream())
+                .filter(entry -> entry.id().getNamespace().equals(
+                        CrucibleCraft.MODID))
+                .filter(entry -> entry.id().getPath().startsWith("t17/"))
+                .count();
+        helper.assertTrue(
+                acquisition.get("recipe_type").getAsString()
+                                .equals("minecraft:crafting_shaped")
+                        && expectedCraftingIds.equals(actualCraftingIds)
+                        && actualCraftingIds.size()
+                                == acquisition.get(
+                                        "vanilla_crafting_rows").getAsInt()
+                        && t17GtRows
+                                == acquisition.get("gt_recipe_rows").getAsLong(),
+                "T17d acquisition is not exactly 9 vanilla crafting rows "
+                        + "and zero GT rows: crafting=" + actualCraftingIds
+                        + " gt=" + t17GtRows);
+        helper.succeed();
+    }
+
+    private static JsonObject t17PublicationBaseline() {
+        var stream = CrucibleCraftGameTests.class.getClassLoader()
+                .getResourceAsStream(
+                        "data/cruciblecraft/t17_publication_baseline.json");
+        if (stream == null) {
+            throw new IllegalStateException(
+                    "Missing T17d publication baseline resource");
+        }
+        try (var reader = new InputStreamReader(
+                stream, StandardCharsets.UTF_8)) {
+            return JsonParser.parseReader(reader).getAsJsonObject();
+        } catch (IOException exception) {
+            throw new IllegalStateException(
+                    "Cannot read T17d publication baseline", exception);
+        }
+    }
+
+    private static Set<String> jsonStringSet(
+            JsonObject owner, String member) {
+        Set<String> values = new TreeSet<>();
+        owner.getAsJsonArray(member).forEach(
+                element -> values.add(element.getAsString()));
+        if (values.size() != owner.getAsJsonArray(member).size()) {
+            throw new IllegalStateException(
+                    "Publication baseline contains duplicate " + member);
+        }
+        return values;
+    }
+
+    private static void executeMachineCraftingCases(
+            GameTestHelper helper,
+            List<MachineCraftingCase> cases) {
+        ServerLevel level = helper.getLevel();
+        for (MachineCraftingCase expected : cases) {
+            List<ItemStack> slots = new ArrayList<>();
+            for (String row : expected.pattern()) {
+                for (int column = 0; column < row.length(); column++) {
+                    char symbol = row.charAt(column);
+                    Item ingredient = expected.key().get(symbol);
+                    slots.add(
+                            symbol == ' '
+                                    ? ItemStack.EMPTY
+                                    : new ItemStack(ingredient));
+                }
+            }
+            CraftingInput input = CraftingInput.of(
+                    expected.pattern().getFirst().length(),
+                    expected.pattern().size(),
+                    slots);
+            var match = level.getRecipeManager()
+                    .getRecipeFor(RecipeType.CRAFTING, input, level)
+                    .orElse(null);
+            helper.assertTrue(
+                    match != null,
+                    "Live RecipeManager did not match " + expected.id());
+            helper.assertTrue(
+                    match.id().equals(expected.id()),
+                    "Live RecipeManager matched " + match.id()
+                            + " instead of " + expected.id());
+            ItemStack assembled = match.value().assemble(
+                    input, level.registryAccess());
+            helper.assertTrue(
+                    assembled.is(expected.result())
+                            && assembled.getCount() == 1,
+                    expected.id() + " assembled " + assembled
+                            + " instead of " + expected.result());
+        }
+        helper.succeed();
+    }
+
+    @GameTest(
+            template = TEMPLATE,
+            batch = "t15d_identity_quarantine",
+            timeoutTicks = 80)
+    public static void processingIdentityMismatchesQuarantineAcrossNbtReload(
+            GameTestHelper helper) {
+        GTRecipe recipe = requireRecipe(
+                ModRecipeMaps.ELECTROLYZER, "t5/electrolyzer/salt");
+        List<IdentityReloadCase> cases = new ArrayList<>();
+        for (int index = 0; index < 4; index++) {
+            BlockPos pos = new BlockPos(2 + index * 3, 2, 5);
+            ConfiguredProcessingMachineBlockEntity machine =
+                    placeConfigured(
+                            helper,
+                            pos,
+                            ModBlocks.STAINLESS_STEEL_ELECTROLYZER.get(),
+                            ModProcessingMachines.ELECTROLYZER);
+            MachineIdentityPolicy.Identity current =
+                    ModMachineIdentityMigrations.identityOf(
+                            machine.variant());
+            List<MachineIdentityPolicy.Identity> mismatches = List.of(
+                    new MachineIdentityPolicy.Identity(
+                            current.machineKind() + "_wrong",
+                            current.tierProfile(),
+                            current.materialId(),
+                            current.energyIdentity()),
+                    new MachineIdentityPolicy.Identity(
+                            current.machineKind(),
+                            current.tierProfile() + "_wrong",
+                            current.materialId(),
+                            current.energyIdentity()),
+                    new MachineIdentityPolicy.Identity(
+                            current.machineKind(),
+                            current.tierProfile(),
+                            current.materialId() + "_wrong",
+                            current.energyIdentity()),
+                    new MachineIdentityPolicy.Identity(
+                            current.machineKind(),
+                            current.tierProfile(),
+                            current.materialId(),
+                            "KINETIC_ROTATION"));
+            MachineIdentityPolicy.Identity mismatch = mismatches.get(index);
+
+            loadRecipeInputs(machine, recipe);
+            int inputSlot = machine.spec().items().inputs().getFirst();
+            ItemStack savedInput =
+                    machine.inventory().getStackInSlot(inputSlot).copy();
+            int tank = machine.spec().fluids().outputs().getFirst().index();
+            FluidStack savedFluid = recipe.fluidOutputs().getFirst().copy();
+            savedFluid.setAmount(1);
+            machine.tanks().get(tank).setFluid(savedFluid.copy());
+            CompoundTag persisted = machine.saveWithoutMetadata(
+                    helper.getLevel().registryAccess());
+            persisted.putString(
+                    "active_recipe",
+                    "cruciblecraft:t15d_identity_reload");
+            persisted.putInt("progress", 9);
+            persisted.putInt("duration", recipe.duration());
+            persisted.putString("status", "processing");
+            persisted.putLong(
+                    "energy", machine.spec().energy().capacity());
+            putMachineIdentity(persisted, mismatch);
+            machine.loadWithComponents(
+                    persisted, helper.getLevel().registryAccess());
+
+            helper.assertTrue(
+                    machine.pausedReason().equals(
+                            "material_quarantined"),
+                    "Identity mismatch did not expose paused quarantine");
+            helper.assertTrue(
+                    machine.getUpdateTag(
+                                    helper.getLevel().registryAccess())
+                            .getString("material_quarantine")
+                            .contains("does not match"),
+                    "Identity mismatch did not expose its diagnostic");
+            cases.add(new IdentityReloadCase(
+                    List.of("kind", "tier", "material", "energy")
+                            .get(index),
+                    machine,
+                    mismatch,
+                    inputSlot,
+                    savedInput,
+                    tank,
+                    savedFluid));
+        }
+
+        helper.startSequence()
+                .thenIdle(3)
+                .thenExecute(() -> {
+                    for (IdentityReloadCase expected : cases) {
+                        ConfiguredProcessingMachineBlockEntity machine =
+                                expected.machine();
+                        String label = expected.label();
+                        helper.assertTrue(
+                                machine.progress() == 9,
+                                label + " identity quarantine advanced progress");
+                        helper.assertTrue(
+                                machine.stored(EnergyType.ELECTRIC)
+                                        == machine.spec().energy().capacity(),
+                                label + " identity reload lost buffered energy");
+                        helper.assertTrue(
+                                ItemStack.isSameItemSameComponents(
+                                        machine.inventory().getStackInSlot(
+                                                expected.inputSlot()),
+                                        expected.savedInput())
+                                        && machine.inventory().getStackInSlot(
+                                                expected.inputSlot()).getCount()
+                                        == expected.savedInput().getCount(),
+                                label + " identity reload lost inventory");
+                        helper.assertTrue(
+                                sameFluidAmount(
+                                        machine.tanks().get(
+                                                expected.tank()).getFluid(),
+                                        expected.savedFluid()),
+                                label + " identity reload lost tank contents");
+                        CompoundTag resaved = machine.saveWithoutMetadata(
+                                helper.getLevel().registryAccess());
+                        helper.assertTrue(
+                                hasMachineIdentity(
+                                        resaved,
+                                        expected.persistedIdentity()),
+                                label + " quarantine rewrote the bad identity");
+                        ItemStack extracted =
+                                machine.inventory().extractItem(
+                                        expected.inputSlot(), 1, false);
+                        helper.assertTrue(
+                                !extracted.isEmpty()
+                                        && ItemStack.isSameItemSameComponents(
+                                                extracted,
+                                                expected.savedInput()),
+                                label + " quarantine blocked inventory recovery");
+                    }
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(
+            template = TEMPLATE,
+            batch = "t15d_exact_identity_migration",
+            timeoutTicks = 40)
+    public static void exactLargeCentrifugeIdentityMigratesAcrossNbtReload(
+            GameTestHelper helper) {
+        BlockPos pos = new BlockPos(5, 2, 5);
+        helper.setBlock(pos, ModBlocks.LARGE_CENTRIFUGE.get());
+        LargeCentrifugeBlockEntity centrifuge =
+                helper.getBlockEntity(pos);
+        int inputSlot =
+                centrifuge.spec().items().inputs().getFirst();
+        centrifuge.inventory().setStackInSlot(
+                inputSlot, new ItemStack(Items.IRON_INGOT, 3));
+        CompoundTag persisted = centrifuge.saveWithoutMetadata(
+                helper.getLevel().registryAccess());
+        putMachineIdentity(
+                persisted,
+                ModMachineIdentityMigrations
+                        .LEGACY_LARGE_CENTRIFUGE_IDENTITY);
+
+        centrifuge.loadWithComponents(
+                persisted, helper.getLevel().registryAccess());
+
+        helper.assertTrue(
+                !centrifuge.pausedReason().equals(
+                        "material_quarantined"),
+                "Exact legacy Large Centrifuge tuple was quarantined");
+        helper.assertTrue(
+                !centrifuge.getUpdateTag(
+                                helper.getLevel().registryAccess())
+                        .contains("material_quarantine"),
+                "Exact migration retained an identity diagnostic");
+        helper.assertTrue(
+                centrifuge.inventory().getStackInSlot(inputSlot).getCount()
+                        == 3,
+                "Exact identity migration lost inventory");
+        helper.assertTrue(
+                hasMachineIdentity(
+                        centrifuge.saveWithoutMetadata(
+                                helper.getLevel().registryAccess()),
+                        ModMachineIdentityMigrations
+                                .LARGE_CENTRIFUGE_IDENTITY),
+                "Next save did not write the current Large Centrifuge identity");
+        helper.succeed();
+    }
+
+    @GameTest(
+            template = TEMPLATE,
+            batch = "t16c_exact_identity_migration",
+            timeoutTicks = 40)
+    public static void exactLegacyLatheIdentityMigratesAcrossNbtReload(
+            GameTestHelper helper) {
+        BlockPos pos = new BlockPos(5, 2, 5);
+        ConfiguredProcessingMachineBlockEntity lathe = placeConfigured(
+                helper,
+                pos,
+                ModBlocks.LATHE.get(),
+                ModProcessingMachines.LATHE);
+        int inputSlot = lathe.spec().items().inputs().getFirst();
+        lathe.inventory().setStackInSlot(
+                inputSlot,
+                material("iron", MaterialPrefixes.INGOT, 3));
+        CompoundTag persisted = lathe.saveWithoutMetadata(
+                helper.getLevel().registryAccess());
+        persisted.putString(
+                "active_recipe",
+                "cruciblecraft:t16c_identity_reload");
+        persisted.putInt("progress", 9);
+        persisted.putInt("duration", 40);
+        persisted.putString("status", "processing");
+        putMachineIdentity(
+                persisted,
+                ModMachineIdentityMigrations.legacyIdentityOf(
+                        lathe.variant()));
+
+        lathe.loadWithComponents(
+                persisted, helper.getLevel().registryAccess());
+
+        helper.assertTrue(
+                !lathe.pausedReason().equals("material_quarantined"),
+                "Exact legacy Lathe tuple was quarantined");
+        helper.assertTrue(
+                lathe.progress() == 9,
+                "Exact Lathe identity migration lost progress");
+        helper.assertTrue(
+                lathe.inventory().getStackInSlot(inputSlot).getCount() == 3,
+                "Exact Lathe identity migration lost inventory");
+        helper.assertTrue(
+                hasMachineIdentity(
+                        lathe.saveWithoutMetadata(
+                                helper.getLevel().registryAccess()),
+                        ModMachineIdentityMigrations.identityOf(
+                                lathe.variant())),
+                "Next save did not write the bronze Lathe identity");
+        helper.succeed();
+    }
+
+    private static void putMachineIdentity(
+            CompoundTag tag,
+            MachineIdentityPolicy.Identity identity) {
+        tag.putString("machine_kind", identity.machineKind());
+        tag.putString("tier_profile", identity.tierProfile());
+        tag.putString("tier_material", identity.materialId());
+        tag.putString("energy_identity", identity.energyIdentity());
+    }
+
+    private static boolean hasMachineIdentity(
+            CompoundTag tag,
+            MachineIdentityPolicy.Identity identity) {
+        return tag.getString("machine_kind").equals(
+                        identity.machineKind())
+                && tag.getString("tier_profile").equals(
+                        identity.tierProfile())
+                && tag.getString("tier_material").equals(
+                        identity.materialId())
+                && tag.getString("energy_identity").equals(
+                        identity.energyIdentity());
+    }
+
+    private record IdentityReloadCase(
+            String label,
+            ConfiguredProcessingMachineBlockEntity machine,
+            MachineIdentityPolicy.Identity persistedIdentity,
+            int inputSlot,
+            ItemStack savedInput,
+            int tank,
+            FluidStack savedFluid) {}
+
+    private static List<MachineCraftingCase> machineCraftingCases() {
+        return List.of(
+                centrifugeCraftingCase(
+                        "centrifuge",
+                        "bronze",
+                        ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.CENTRIFUGE.get()),
+                centrifugeCraftingCase(
+                        "steel_centrifuge",
+                        "steel",
+                        ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.STEEL_CENTRIFUGE.get()),
+                centrifugeCraftingCase(
+                        "titanium_centrifuge",
+                        "titanium",
+                        ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.TITANIUM_CENTRIFUGE.get()),
+                sifterCraftingCase(
+                        "sifter",
+                        "bronze",
+                        ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.SIFTER.get()),
+                sifterCraftingCase(
+                        "steel_sifter",
+                        "steel",
+                        ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.STEEL_SIFTER.get()),
+                sifterCraftingCase(
+                        "titanium_sifter",
+                        "titanium",
+                        ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.TITANIUM_SIFTER.get()),
+                electrolyzerCraftingCase(
+                        "electrolyzer",
+                        ModItems.STEEL_GALVANIZED_MACHINE_CASING.get(),
+                        "tin",
+                        ModItems.ELECTROLYZER.get()),
+                electrolyzerCraftingCase(
+                        "aluminium_electrolyzer",
+                        ModItems.ALUMINIUM_MACHINE_CASING.get(),
+                        "copper",
+                        ModItems.ALUMINIUM_ELECTROLYZER.get()),
+                electrolyzerCraftingCase(
+                        "stainless_steel_electrolyzer",
+                        ModItems.STAINLESS_STEEL_MACHINE_CASING.get(),
+                        "gold",
+                        ModItems.STAINLESS_STEEL_ELECTROLYZER.get()));
+    }
+
+    private static MachineCraftingCase centrifugeCraftingCase(
+            String id,
+            String material,
+            Item casing,
+            Item result) {
+        return new MachineCraftingCase(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "machines/" + id),
+                result,
+                List.of("G ", "SC", "G "),
+                Map.of(
+                        'C', casing,
+                        'G', material(material, MaterialPrefixes.GEAR, 1).getItem(),
+                        'S', material(
+                                material,
+                                MaterialPrefixes.LONG_ROD,
+                                1).getItem()));
+    }
+
+    private static MachineCraftingCase sifterCraftingCase(
+            String id,
+            String material,
+            Item casing,
+            Item result) {
+        return new MachineCraftingCase(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "machines/" + id),
+                result,
+                List.of("W W", "RCR", "S S"),
+                Map.of(
+                        'C', casing,
+                        'R', material(material, MaterialPrefixes.ROD, 1).getItem(),
+                        'S', material(
+                                material,
+                                MaterialPrefixes.SPRING,
+                                1).getItem(),
+                        'W', material(
+                                material,
+                                MaterialPrefixes.FINE_WIRE,
+                                1).getItem()));
+    }
+
+    private static MachineCraftingCase electrolyzerCraftingCase(
+            String id,
+            Item casing,
+            String cableMaterial,
+            Item result) {
+        return new MachineCraftingCase(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "machines/" + id),
+                result,
+                List.of("SMS", "W W"),
+                Map.of(
+                        'M', casing,
+                        'S', material(
+                                "platinum",
+                                MaterialPrefixes.WIRE,
+                                1).getItem(),
+                        'W', material(
+                                cableMaterial,
+                                MaterialPrefixes.CABLE,
+                                1).getItem()));
+    }
+
+    private static List<MachineCraftingCase> t16MachineCraftingCases() {
+        return List.of(
+                t16MachineCraftingCase(
+                        "lathe", "bronze",
+                        ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.LATHE.get()),
+                t16MachineCraftingCase(
+                        "steel_lathe", "steel",
+                        ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.STEEL_LATHE.get()),
+                t16MachineCraftingCase(
+                        "titanium_lathe", "titanium",
+                        ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.TITANIUM_LATHE.get()),
+                t16MachineCraftingCase(
+                        "rollingmill", "bronze",
+                        ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.ROLLINGMILL.get()),
+                t16MachineCraftingCase(
+                        "steel_rollingmill", "steel",
+                        ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.STEEL_ROLLINGMILL.get()),
+                t16MachineCraftingCase(
+                        "titanium_rollingmill", "titanium",
+                        ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.TITANIUM_ROLLINGMILL.get()),
+                t16MachineCraftingCase(
+                        "wiremill", "bronze",
+                        ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.WIREMILL.get()),
+                t16MachineCraftingCase(
+                        "steel_wiremill", "steel",
+                        ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.STEEL_WIREMILL.get()),
+                t16MachineCraftingCase(
+                        "titanium_wiremill", "titanium",
+                        ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.TITANIUM_WIREMILL.get()),
+                t16MachineCraftingCase(
+                        "shredder", "bronze",
+                        ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.SHREDDER.get()),
+                t16MachineCraftingCase(
+                        "steel_shredder", "steel",
+                        ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.STEEL_SHREDDER.get()),
+                t16MachineCraftingCase(
+                        "titanium_shredder", "titanium",
+                        ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.TITANIUM_SHREDDER.get()),
+                t16MachineCraftingCase(
+                        "press", "bronze",
+                        ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.PRESS.get()),
+                t16MachineCraftingCase(
+                        "steel_press", "steel",
+                        ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.STEEL_PRESS.get()),
+                t16MachineCraftingCase(
+                        "titanium_press", "titanium",
+                        ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.TITANIUM_PRESS.get()));
+    }
+
+    private static MachineCraftingCase t16MachineCraftingCase(
+            String id,
+            String material,
+            Item casing,
+            Item result) {
+        String kind = id.replaceFirst("^(steel|titanium)_", "");
+        Item gear = material(
+                material, MaterialPrefixes.GEAR, 1).getItem();
+        List<String> pattern;
+        Map<Character, Item> key;
+        switch (kind) {
+            case "lathe" -> {
+                pattern = List.of("TDS", " CG");
+                key = Map.of(
+                        'C', casing,
+                        'D', material(
+                                "diamond",
+                                MaterialPrefixes.GEM,
+                                1).getItem(),
+                        'G', gear,
+                        'S', material(
+                                material,
+                                MaterialPrefixes.SMALL_GEAR,
+                                1).getItem(),
+                        'T', material(
+                                material,
+                                MaterialPrefixes.SCREW,
+                                1).getItem());
+            }
+            case "rollingmill" -> {
+                pattern = List.of("G ", "C ", "G ");
+                key = Map.of('C', casing, 'G', gear);
+            }
+            case "wiremill" -> {
+                pattern = List.of("SGS", " C ");
+                key = Map.of(
+                        'C', casing,
+                        'G', gear,
+                        'S', material(
+                                material,
+                                MaterialPrefixes.SMALL_GEAR,
+                                1).getItem());
+            }
+            case "shredder" -> {
+                pattern = List.of("GDG", " C ");
+                key = Map.of(
+                        'C', casing,
+                        'D', material(
+                                "diamond",
+                                MaterialPrefixes.GEM,
+                                1).getItem(),
+                        'G', gear);
+            }
+            case "press" -> {
+                pattern = List.of("RS", "PC", "P ");
+                key = Map.of(
+                        'C', casing,
+                        'P', material(
+                                material,
+                                MaterialPrefixes.DOUBLE_PLATE,
+                                1).getItem(),
+                        'R', material(
+                                material,
+                                MaterialPrefixes.ROD,
+                                1).getItem(),
+                        'S', material(
+                                material,
+                                MaterialPrefixes.SPRING,
+                                1).getItem());
+            }
+            default -> throw new IllegalArgumentException(
+                    "Unsupported T16 machine " + id);
+        }
+        return new MachineCraftingCase(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "machines/" + id),
+                result,
+                pattern,
+                key);
+    }
+
+    private static List<MachineCraftingCase> t17MachineCraftingCases() {
+        return List.of(
+                t17DistilleryCraftingCase(
+                        "distillery",
+                        "steel",
+                        "constantan",
+                        MaterialPrefixes.DOUBLE_WIRE,
+                        ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.DISTILLERY.get()),
+                t17DistilleryCraftingCase(
+                        "invar_distillery",
+                        "invar",
+                        "kanthal",
+                        MaterialPrefixes.QUADRUPLE_WIRE,
+                        ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.INVAR_DISTILLERY.get()),
+                t17DistilleryCraftingCase(
+                        "titanium_distillery",
+                        "titanium",
+                        "nichrome",
+                        MaterialPrefixes.OCTUPLE_WIRE,
+                        ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.TITANIUM_DISTILLERY.get()),
+                t17HeatBodyCraftingCase(
+                        "drying",
+                        "steel",
+                        ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.DRYING.get()),
+                t17HeatBodyCraftingCase(
+                        "invar_drying",
+                        "invar",
+                        ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.INVAR_DRYING.get()),
+                t17HeatBodyCraftingCase(
+                        "titanium_drying",
+                        "titanium",
+                        ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.TITANIUM_DRYING.get()),
+                t17HeatBodyCraftingCase(
+                        "smelter",
+                        "steel",
+                        ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.SMELTER.get()),
+                t17HeatBodyCraftingCase(
+                        "invar_smelter",
+                        "invar",
+                        ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.INVAR_SMELTER.get()),
+                t17HeatBodyCraftingCase(
+                        "titanium_smelter",
+                        "titanium",
+                        ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                        ModItems.TITANIUM_SMELTER.get()));
+    }
+
+    private static MachineCraftingCase t17DistilleryCraftingCase(
+            String id,
+            String material,
+            String wireMaterial,
+            com.masson.cruciblecraft.api.material.MaterialPrefix wirePrefix,
+            Item casing,
+            Item result) {
+        return new MachineCraftingCase(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "machines/" + id),
+                result,
+                List.of("GPG", "WMW", " C "),
+                Map.of(
+                        'C', material(
+                                "copper",
+                                MaterialPrefixes.DOUBLE_PLATE,
+                                1).getItem(),
+                        'G', Items.GLASS,
+                        'M', casing,
+                        'P', material(
+                                material,
+                                MaterialPrefixes.PLATE,
+                                1).getItem(),
+                        'W', material(
+                                wireMaterial,
+                                wirePrefix,
+                                1).getItem()));
+    }
+
+    private static MachineCraftingCase t17HeatBodyCraftingCase(
+            String id,
+            String material,
+            Item casing,
+            Item result) {
+        boolean smelter = id.endsWith("smelter");
+        Map<Character, Item> key = new java.util.LinkedHashMap<>();
+        key.put('B', Items.BRICKS);
+        key.put(
+                'C',
+                material(
+                        "copper",
+                        MaterialPrefixes.DOUBLE_PLATE,
+                        1).getItem());
+        key.put('M', casing);
+        key.put(
+                'P',
+                material(material, MaterialPrefixes.PLATE, 1).getItem());
+        if (smelter) {
+            key.put('U', ModItems.CRUCIBLE.get());
+        }
+        return new MachineCraftingCase(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, "machines/" + id),
+                result,
+                smelter
+                        ? List.of(" U ", "PMP", "BCB")
+                        : List.of(" P ", "BMB", "BCB"),
+                Map.copyOf(key));
+    }
+
+    private record MachineCraftingCase(
+            ResourceLocation id,
+            Item result,
+            List<String> pattern,
+            Map<Character, Item> key) {}
 
     @GameTest(
             template = TEMPLATE,
@@ -3384,10 +5719,18 @@ public final class CrucibleCraftGameTests {
             ConfiguredProcessingMachineBlockEntity machine,
             RecipeMap.Match match,
             String label) {
+        int expectedDuration = MachineExecutionPlan.create(
+                        match.recipe(),
+                        machine.variant().kind(),
+                        machine.variant().tier(),
+                        1)
+                .orElseThrow()
+                .effectiveDuration();
         helper.assertTrue(
-                machine.duration() == match.recipe().duration(),
+                machine.duration() == expectedDuration,
                 label + " selected duration " + machine.duration()
-                        + " instead of live recipe duration " + match.recipe().duration());
+                        + " instead of variant execution duration "
+                        + expectedDuration);
     }
 
     private static void powerUntilOutput(
@@ -3596,6 +5939,40 @@ public final class CrucibleCraftGameTests {
                                     > 0,
                             "Actual committed item throughput was not recorded");
                 })
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            second.setCover(
+                                    Direction.WEST,
+                                    PipeCover.filter(
+                                            "minecraft:gold_ingot")),
+                            "Route invalidation cover did not change");
+                    source.inventory().setStackInSlot(
+                            1, new ItemStack(Items.IRON_INGOT, 2));
+                })
+                .thenIdle(20)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            source.inventory().getStackInSlot(1)
+                                            .getCount()
+                                    == 2
+                                    && destination.getItem(0).getCount()
+                                            == 3,
+                            "Invalidated item route reused a stale discovery");
+                    helper.assertTrue(
+                            second.setCover(
+                                    Direction.WEST,
+                                    PipeCover.filter(
+                                            "minecraft:iron_ingot")),
+                            "Route recovery cover did not change");
+                })
+                .thenIdle(20)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            source.inventory().getStackInSlot(1).isEmpty()
+                                    && destination.getItem(0).getCount()
+                                            == 5,
+                            "Rediscovered item route did not resume delivery");
+                })
                 .thenSucceed();
     }
 
@@ -3717,7 +6094,10 @@ public final class CrucibleCraftGameTests {
             GameTestHelper helper, BlockPos pos, Block block, ProcessingMachineSpec spec) {
         helper.setBlock(pos, block);
         ConfiguredProcessingMachineBlockEntity machine = helper.getBlockEntity(pos);
-        helper.assertTrue(machine.spec() == spec, "Placed block resolved wrong machine spec");
+        helper.assertTrue(
+                machine.spec() == spec
+                        || machine.variant().kind().behavior() == spec,
+                "Placed block resolved wrong machine kind");
         return machine;
     }
 
@@ -3841,18 +6221,42 @@ public final class CrucibleCraftGameTests {
             GameTestHelper helper, BlockPos worldPos, String label) {
         IEnergyHandler energy = helper.getLevel().getCapability(
                 ModCapabilities.ENERGY, worldPos, Direction.SOUTH);
-        helper.assertTrue(energy != null, "Back KU capability missing at " + label);
-        long accepted = energy.insert(EnergyType.KINETIC, 256L, 16L, Direction.SOUTH, false);
-        helper.assertTrue(accepted > 0L || energy.stored(EnergyType.KINETIC) > 0L,
-                "KU capability accepted no energy at " + label);
+        helper.assertTrue(
+                energy != null,
+                "Back energy capability missing at " + label);
+        EnergyType type = List.of(
+                        EnergyType.KINETIC_PUSH,
+                        EnergyType.KINETIC_ROTATION,
+                        EnergyType.KINETIC,
+                        EnergyType.ELECTRIC,
+                        EnergyType.HEAT)
+                .stream()
+                .filter(candidate ->
+                        energy.handles(candidate, Direction.SOUTH))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException(
+                        "No accepted energy identity at " + label));
+        long accepted = energy.insert(
+                type, 32L, 16L, Direction.SOUTH, false);
+        helper.assertTrue(
+                accepted > 0L || energy.stored(type) > 0L,
+                "Energy capability accepted no "
+                        + type
+                        + " at "
+                        + label);
     }
 
     private static void fillKu(
             GameTestHelper helper, ConfiguredProcessingMachineBlockEntity machine) {
+        EnergyType type = machine.spec().energy().type();
         long accepted = machine.insert(
-                EnergyType.KINETIC, 256L, 16L, Direction.SOUTH, false);
-        helper.assertTrue(accepted > 0L || machine.stored(EnergyType.KINETIC) > 0L,
-                "Placed machine accepted no KU: " + machine.spec().id());
+                type, 32L, 16L, Direction.SOUTH, false);
+        helper.assertTrue(
+                accepted > 0L || machine.stored(type) > 0L,
+                "Placed machine accepted no "
+                        + type
+                        + ": "
+                        + machine.spec().id());
     }
 
     private static void forceLastTick(
@@ -3939,6 +6343,36 @@ public final class CrucibleCraftGameTests {
         helper.assertTrue(
                 filled == drained.getAmount(),
                 "Machine execute fill violated simulation");
+    }
+
+    private static void transferFluid(
+            GameTestHelper helper,
+            IFluidHandler source,
+            IFluidHandler target,
+            int amount) {
+        helper.assertTrue(
+                source != null && target != null && amount > 0,
+                "T11 fluid transfer endpoints are unavailable");
+        FluidStack offered = source.drain(
+                amount, IFluidHandler.FluidAction.SIMULATE);
+        helper.assertTrue(
+                offered.getAmount() == amount,
+                "T11 source did not expose the expected fluid amount");
+        helper.assertTrue(
+                target.fill(
+                                offered,
+                                IFluidHandler.FluidAction.SIMULATE)
+                        == amount,
+                "T11 target rejected the simulated fluid transfer");
+        FluidStack drained = source.drain(
+                offered, IFluidHandler.FluidAction.EXECUTE);
+        helper.assertTrue(
+                drained.getAmount() == amount
+                        && target.fill(
+                                        drained,
+                                        IFluidHandler.FluidAction.EXECUTE)
+                                == amount,
+                "T11 fluid transfer changed after simulation");
     }
 
     private static GTRecipeQuery queryFor(GTRecipe recipe) {
@@ -4050,6 +6484,53 @@ public final class CrucibleCraftGameTests {
             }
         }
         return false;
+    }
+
+    private static void placeCeramicMold(
+            GameTestHelper helper, BlockPos pos, boolean filled) {
+        helper.setBlock(pos, ModBlocks.CERAMIC_MOLD.get());
+        if (!filled) {
+            return;
+        }
+        CeramicMoldBlockEntity mold = helper.getBlockEntity(pos);
+        mold.fill(new CrucibleBlockEntity.CastTransfer(
+                MaterialCatalog.require("copper"),
+                MaterialPrefixes.INGOT,
+                1,
+                ItemHeat.AMBIENT_TEMPERATURE));
+    }
+
+    private static void assertCeramicMoldDrops(
+            GameTestHelper helper, BlockPos pos, boolean expectedContents) {
+        Item moldItem = ModItems.INGOT_MOLD.get();
+        Item contentsItem = MaterialLookup.item(
+                        "copper", MaterialPrefixes.INGOT)
+                .orElseThrow();
+        int molds = droppedItemCount(helper, pos, moldItem);
+        int contents = droppedItemCount(helper, pos, contentsItem);
+        int total = droppedItemCount(helper, pos, null);
+        int expectedTotal = expectedContents ? 2 : 1;
+        helper.assertTrue(
+                molds == 1
+                        && contents == (expectedContents ? 1 : 0)
+                        && total == expectedTotal,
+                "Ceramic mold removal drops were not exact at " + pos
+                        + ": molds=" + molds
+                        + ", contents=" + contents
+                        + ", total=" + total);
+    }
+
+    private static int droppedItemCount(
+            GameTestHelper helper, BlockPos pos, Item expectedItem) {
+        BlockPos absolute = helper.absolutePos(pos);
+        AABB bounds = new AABB(absolute).inflate(1.25);
+        return helper.getLevel()
+                .getEntitiesOfClass(ItemEntity.class, bounds)
+                .stream()
+                .filter(entity -> expectedItem == null
+                        || entity.getItem().is(expectedItem))
+                .mapToInt(entity -> entity.getItem().getCount())
+                .sum();
     }
 
     private static ItemStack material(String id, com.masson.cruciblecraft.api.material.MaterialPrefix prefix, int count) {

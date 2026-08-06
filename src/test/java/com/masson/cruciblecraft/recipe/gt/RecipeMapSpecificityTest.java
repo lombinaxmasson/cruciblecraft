@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.LinkedHashMap;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -171,6 +171,16 @@ class RecipeMapSpecificityTest {
         assertEquals(revision, isolated.revision());
         assertEquals(List.of(), isolated.entries());
 
+        var duplicateId = assertThrows(IllegalArgumentException.class, () ->
+                GTRecipeMapLoader.validateUniqueRecipeIds(isolated, List.of(
+                        new RecipeMap.Entry(id("same"), first),
+                        new RecipeMap.Entry(id("same"), second))));
+        assertTrue(duplicateId.getMessage().contains("Duplicate stable recipe id"));
+        assertTrue(duplicateId.getMessage().contains("data/test/recipe/same.json"));
+        assertTrue(duplicateId.getMessage().contains("before epoch publication"));
+        assertEquals(revision, isolated.revision());
+        assertEquals(List.of(), isolated.entries());
+
         LinkedHashMap<RecipeMap, List<RecipeMap.Entry>> candidates = new LinkedHashMap<>();
         for (RecipeMap map : ModRecipeMaps.ALL) {
             candidates.put(map, List.of(new RecipeMap.Entry(id(map.id().getPath()), first)));
@@ -198,9 +208,16 @@ class RecipeMapSpecificityTest {
         IllegalArgumentException failure = assertThrows(
                 IllegalArgumentException.class,
                 () -> GTRecipeMapLoader.validateNoUnindexed(
-                        List.of(map), List.of(prepared)));
+                        Map.of(map, prepared)));
         assertTrue(failure.getMessage().contains(map.id().toString()));
         assertTrue(failure.getMessage().contains("1 unindexed"));
+        RecipeMap wrongOwner = new RecipeMap(id("wrong_owner"));
+        IllegalArgumentException ownerFailure = assertThrows(
+                IllegalArgumentException.class,
+                () -> GTRecipeMapLoader.validateNoUnindexed(
+                        Map.of(wrongOwner, prepared)));
+        assertTrue(ownerFailure.getMessage().contains("owner"));
+        assertTrue(ownerFailure.getMessage().contains(wrongOwner.id().toString()));
         assertEquals(List.of(), map.entries());
     }
 

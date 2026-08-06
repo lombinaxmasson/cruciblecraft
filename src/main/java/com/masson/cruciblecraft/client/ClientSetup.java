@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.Set;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.client.color.MachineBlockColor;
 import com.masson.cruciblecraft.client.color.MaterialItemColor;
 import com.masson.cruciblecraft.client.render.AnvilRenderer;
 import com.masson.cruciblecraft.client.render.CrucibleRenderer;
+import com.masson.cruciblecraft.client.screen.ConfiguredProcessingMachineScreen;
 import com.masson.cruciblecraft.client.screen.CokeOvenScreen;
 import com.masson.cruciblecraft.client.screen.CrusherScreen;
-import com.masson.cruciblecraft.client.screen.ConfiguredProcessingMachineScreen;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.content.blockentity.AnvilBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CrucibleBlockEntity;
@@ -26,6 +27,7 @@ import com.masson.cruciblecraft.registry.ModMenus;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -86,6 +88,12 @@ public class ClientSetup {
                         : 0xFFFFFFFF,
                 ModItems.CRUCIBLE.get(),
                 ModItems.ANVIL.get());
+        Block[] tintedMachines = MachineBlockColor.tintedBlocks();
+        event.register(
+                MachineBlockColor::itemColor,
+                java.util.Arrays.stream(tintedMachines)
+                        .map(net.minecraft.world.level.block.Block::asItem)
+                        .toArray(Item[]::new));
     }
 
     @SubscribeEvent
@@ -146,6 +154,7 @@ public class ClientSetup {
                     return machineColor(MachineMaterialRules.DEFAULT_ANVIL_MATERIAL);
                 },
                 ModBlocks.ANVIL.get());
+        event.register(MachineBlockColor::blockColor, MachineBlockColor.tintedBlocks());
     }
 
     @SubscribeEvent
@@ -181,6 +190,7 @@ public class ClientSetup {
         event.register(ModMenus.AUTOCLAVE.get(), ConfiguredProcessingMachineScreen::new);
         event.register(ModMenus.DRYING.get(), ConfiguredProcessingMachineScreen::new);
         event.register(ModMenus.COMPRESSOR.get(), ConfiguredProcessingMachineScreen::new);
+        event.register(ModMenus.GENERIFIER.get(), ConfiguredProcessingMachineScreen::new);
     }
 
     @SubscribeEvent

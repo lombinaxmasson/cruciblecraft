@@ -171,6 +171,35 @@ class CapacityMatcherTest {
     }
 
     @Test
+    void denseConsumingPathCoversTwelveThroughSixtyFourSupplies() {
+        for (int size : new int[] {12, 16, 32, 64}) {
+            long[] demands = new long[size];
+            long[] supplies = new long[size];
+            java.util.Arrays.fill(demands, 1L);
+            java.util.Arrays.fill(supplies, 1L);
+            boolean[][] compatible = new boolean[size][size];
+            for (boolean[] row : compatible) {
+                java.util.Arrays.fill(row, true);
+            }
+
+            long[][] allocation = CapacityMatcher.solve(
+                    demands, supplies, compatible).orElseThrow();
+            for (int requirement = 0; requirement < size; requirement++) {
+                assertEquals(
+                        1L,
+                        java.util.Arrays.stream(allocation[requirement]).sum());
+            }
+            for (int supply = 0; supply < size; supply++) {
+                long allocated = 0L;
+                for (long[] row : allocation) {
+                    allocated += row[supply];
+                }
+                assertEquals(1L, allocated);
+            }
+        }
+    }
+
+    @Test
     void validatesMatrixShapeAndNegativeValues() {
         assertThrows(
                 IllegalArgumentException.class,

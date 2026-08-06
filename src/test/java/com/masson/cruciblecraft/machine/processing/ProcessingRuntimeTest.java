@@ -74,25 +74,40 @@ class ProcessingRuntimeTest {
         assertEquals(original.energy(), degraded.energy());
         assertEquals(9, degraded.resourceRevision());
         assertEquals("underpowered", degraded.status());
-        assertEquals(2, degraded.unsupportedVersion().orElseThrow());
+        assertEquals(
+                ProcessingMachineState.VERSION + 1,
+                degraded.unsupportedVersion().orElseThrow());
 
         CompoundTag preserved = degraded.write();
-        assertEquals(2, preserved.getInt("processing_version"));
+        assertEquals(
+                ProcessingMachineState.VERSION + 1,
+                preserved.getInt("processing_version"));
         assertEquals(512, preserved.getLong("energy"));
         ProcessingMachineState reloaded = ProcessingMachineState.read(preserved);
-        assertEquals(2, reloaded.unsupportedVersion().orElseThrow());
+        assertEquals(
+                ProcessingMachineState.VERSION + 1,
+                reloaded.unsupportedVersion().orElseThrow());
         ProcessingMachineState supportedAgain =
-                ProcessingMachineState.read(preserved, 2);
+                ProcessingMachineState.read(
+                        preserved,
+                        ProcessingMachineState.VERSION + 1);
         assertTrue(supportedAgain.unsupportedVersion().isEmpty());
         assertEquals(512, supportedAgain.energy());
 
         CompoundTag legacyLatch = original.write();
-        legacyLatch.putString("status", "unsupported_version_2");
+        int legacyFutureVersion = ProcessingMachineState.VERSION + 1;
+        legacyLatch.putString(
+                "status",
+                "unsupported_version_" + legacyFutureVersion);
         ProcessingMachineState migratedLatch =
                 ProcessingMachineState.read(legacyLatch);
         assertEquals("idle", migratedLatch.status());
-        assertEquals(2, migratedLatch.unsupportedVersion().orElseThrow());
-        assertEquals(2, migratedLatch.write().getInt("processing_version"));
+        assertEquals(
+                legacyFutureVersion,
+                migratedLatch.unsupportedVersion().orElseThrow());
+        assertEquals(
+                legacyFutureVersion,
+                migratedLatch.write().getInt("processing_version"));
 
         CompoundTag invalid = original.write();
         invalid.putInt("processing_version", -1);
@@ -168,6 +183,17 @@ class ProcessingRuntimeTest {
         assertTrue(AdjacentEnergyConsumer.consume(
                 source, EnergyType.HEAT, Direction.UP, 5, false));
         assertEquals(2, source.extracted);
+        AdjacentEnergyConsumer.WindowPlan window =
+                AdjacentEnergyConsumer.planWindow(
+                                source,
+                                EnergyType.HEAT,
+                                Direction.UP,
+                                6,
+                                10)
+                        .orElseThrow();
+        assertEquals(8, window.units());
+        assertTrue(window.execute());
+        assertEquals(4, source.extracted);
     }
 
     @Test

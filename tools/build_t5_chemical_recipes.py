@@ -31,6 +31,7 @@ RECIPE_ROOT = OUTPUT_ROOT / "recipe/t5"
 FLUID_GATE = OUTPUT_ROOT / "t5_chemical_fluid_gate.json"
 MANIFEST = TOOLS / "t5_chemical_recipe_manifest.json"
 DISTILLERY_LEDGER = TOOLS / "t5_distillery_projection.json"
+SOURCE_PROJECTION = TOOLS / "build_t5_source_projection.py"
 
 GT6_REPOSITORY = "GregTech6/gregtech6"
 GT6_REVISION = "3703e40308c8c030763fd6297dea8b210d2a77b1"
@@ -502,18 +503,97 @@ def check() -> list[str]:
     return errors
 
 
+def reference_only_check() -> list[str]:
+    if not MANIFEST.is_file():
+        return [f"missing compact manifest: {MANIFEST.relative_to(ROOT)}"]
+    try:
+        manifest = load(MANIFEST)
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        return [f"invalid compact manifest: {exc}"]
+    errors: list[str] = []
+    if manifest.get("schema_version") != 5:
+        errors.append("compact manifest schema_version must be 5")
+    if manifest.get("status") != "closure_ready":
+        errors.append("compact manifest status is not closure_ready")
+
+    proof = manifest.get("proof") or {}
+    expected_proof = {
+        "proof_tier": "full_replay",
+        "builder_sha256": digest(Path(__file__).resolve()),
+        "source_projection_sha256": digest(SOURCE_PROJECTION),
+    }
+    for key, expected in expected_proof.items():
+        if proof.get(key) != expected:
+            errors.append(f"compact proof {key} drifted")
+
+    inputs = manifest.get("inputs") or {}
+    for relative, expected_hash in sorted(inputs.items()):
+        if (
+            not isinstance(expected_hash, str)
+            or len(expected_hash) != 64
+        ):
+            errors.append(f"invalid compact input hash: {relative}")
+            continue
+        if relative.replace("\\", "/").startswith("gt6_dump/"):
+            continue
+        path = ROOT / relative
+        if not path.is_file():
+            errors.append(f"missing compact input: {relative}")
+        elif digest(path) != expected_hash:
+            errors.append(f"compact input hash drifted: {relative}")
+
+    output_hashes = manifest.get("output_hashes") or {}
+    expected_tree_hash = hashlib.sha256(
+        stable(output_hashes).encode("utf-8")
+    ).hexdigest()
+    if proof.get("output_tree_sha256") != expected_tree_hash:
+        errors.append("compact output tree receipt drifted")
+    expected_paths = {ROOT / relative for relative in output_hashes}
+    actual_paths = (
+        set(RECIPE_ROOT.rglob("*.json"))
+        if RECIPE_ROOT.is_dir()
+        else set()
+    )
+    actual_paths.update(
+        path for path in (FLUID_GATE, DISTILLERY_LEDGER) if path.is_file()
+    )
+    for path in sorted(expected_paths - actual_paths):
+        errors.append(f"missing generated file: {path.relative_to(ROOT)}")
+    for path in sorted(actual_paths - expected_paths):
+        errors.append(f"extra generated file: {path.relative_to(ROOT)}")
+    for path in sorted(expected_paths & actual_paths):
+        relative = str(path.relative_to(ROOT)).replace("\\", "/")
+        if digest(path) != output_hashes.get(relative):
+            errors.append(f"generated file hash drifted: {relative}")
+    if (
+        manifest.get("counts", {}).get("generated_recipes")
+        != len(set(RECIPE_ROOT.rglob("*.json")))
+    ):
+        errors.append("generated recipe count drifted")
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--reference-only", action="store_true")
+    mode.add_argument("--full-replay", action="store_true")
     args = parser.parse_args()
+    if (args.reference_only or args.full_replay) and not args.check:
+        parser.error("--reference-only and --full-replay require --check")
     if args.check:
-        errors = check()
+        errors = reference_only_check() if args.reference_only else check()
         if errors:
             print("T5 decomposition projection is stale:")
             for error in errors:
                 print(f"- {error}")
             return 1
-        print("T5 decomposition projection matches committed resources.")
+        tier = "compact" if args.reference_only else "full replay"
+        print(
+            "T5 decomposition projection matches committed "
+            f"{tier} resources."
+        )
         return 0
     document = build()
     counts = document["counts"]

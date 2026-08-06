@@ -2,7 +2,6 @@ package com.masson.cruciblecraft.registry;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.IdentityHashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -19,18 +18,29 @@ import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.CrucibleBlock;
 import com.masson.cruciblecraft.content.block.CrusherBlock;
 import com.masson.cruciblecraft.content.block.DynamoBlock;
+import com.masson.cruciblecraft.content.block.ElectricMotorBlock;
 import com.masson.cruciblecraft.content.block.FireboxBlock;
 import com.masson.cruciblecraft.content.block.FluidPipeBlock;
+import com.masson.cruciblecraft.content.block.FluidDepositExtractorBlock;
+import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
+import com.masson.cruciblecraft.content.block.GasCloudBlock;
 import com.masson.cruciblecraft.content.block.ItemPipeBlock;
+import com.masson.cruciblecraft.content.block.LargeCentrifugeBlock;
+import com.masson.cruciblecraft.content.block.MultiblockPortBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
+import com.masson.cruciblecraft.content.block.RotationalAxleBlock;
+import com.masson.cruciblecraft.content.block.RotationalGearboxBlock;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
 import com.masson.cruciblecraft.content.block.SubsurfaceFluidDepositBlock;
+import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
+import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.LiquidBlock;
@@ -54,9 +64,11 @@ public final class ModBlocks {
             DeferredBlock<? extends AbstractPipeBlock>> PIPE_BLOCKS =
                     new LinkedHashMap<>();
     private static final Map<
-            com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec,
+            ResourceLocation,
             DeferredBlock<ProcessingMachineBlock>> CONFIGURED_PROCESSING_BLOCKS =
-                    new IdentityHashMap<>();
+                    new LinkedHashMap<>();
+    private static final Map<ResourceLocation, MachineVariant>
+            CONFIGURED_PROCESSING_VARIANTS = new LinkedHashMap<>();
 
     /** M0 placeholder block — later reused as firebox cladding. */
     public static final DeferredBlock<Block> FIREBRICK = BLOCKS.registerSimpleBlock(
@@ -97,6 +109,26 @@ public final class ModBlocks {
                     .strength(3.0F, 8.0F)
                     .lightLevel(state -> state.getValue(CokeOvenBlock.LIT) ? 8 : 0)
                     .sound(SoundType.STONE)));
+    public static final DeferredBlock<Block> MULTIBLOCK_CASING =
+            BLOCKS.registerSimpleBlock(
+                    "multiblock_casing",
+                    machineProperties());
+    public static final DeferredBlock<MultiblockPortBlock>
+            MULTIBLOCK_ITEM_FLUID_PORT = BLOCKS.register(
+                    "multiblock_item_fluid_port",
+                    () -> new MultiblockPortBlock(
+                            PortType.ITEM_FLUID,
+                            machineProperties()));
+    public static final DeferredBlock<MultiblockPortBlock>
+            MULTIBLOCK_ENERGY_INPUT_PORT = BLOCKS.register(
+                    "multiblock_energy_input_port",
+                    () -> new MultiblockPortBlock(
+                            PortType.ENERGY_INPUT,
+                            machineProperties()));
+    public static final DeferredBlock<LargeCentrifugeBlock>
+            LARGE_CENTRIFUGE = BLOCKS.register(
+                    "large_centrifuge",
+                    () -> new LargeCentrifugeBlock(machineProperties()));
 
     public static final DeferredBlock<BellowsBlock> BELLOWS = BLOCKS.register(
             "bellows",
@@ -150,6 +182,22 @@ public final class ModBlocks {
                                     .requiresCorrectToolForDrops()
                                     .noLootTable()
                                     .sound(SoundType.STONE)));
+    public static final DeferredBlock<FluidDepositExtractorBlock>
+            FLUID_DEPOSIT_EXTRACTOR = BLOCKS.register(
+                    "fluid_deposit_extractor",
+                    () -> new FluidDepositExtractorBlock(
+                            machineProperties()));
+    public static final DeferredBlock<GasCloudBlock> GAS_CLOUD =
+            BLOCKS.register(
+                    "gas_cloud",
+                    () -> new GasCloudBlock(
+                            BlockBehaviour.Properties.of()
+                                    .mapColor(MapColor.NONE)
+                                    .replaceable()
+                                    .noCollission()
+                                    .noLootTable()
+                                    .strength(0.0F)
+                                    .pushReaction(PushReaction.DESTROY)));
 
     public static final DeferredBlock<BoilerBlock> BRONZE_BOILER = BLOCKS.register(
             "bronze_boiler",
@@ -160,6 +208,19 @@ public final class ModBlocks {
     public static final DeferredBlock<DynamoBlock> BRONZE_DYNAMO = BLOCKS.register(
             "bronze_dynamo",
             () -> new DynamoBlock(machineProperties()));
+    public static final DeferredBlock<ElectricMotorBlock> ELECTRIC_MOTOR =
+            BLOCKS.register(
+                    "electric_motor",
+                    () -> new ElectricMotorBlock(machineProperties()));
+    public static final DeferredBlock<RotationalAxleBlock>
+            ROTATIONAL_AXLE = BLOCKS.register(
+                    "rotational_axle",
+                    () -> new RotationalAxleBlock(machineProperties()));
+    public static final DeferredBlock<RotationalGearboxBlock>
+            ROTATIONAL_GEARBOX = BLOCKS.register(
+                    "rotational_gearbox",
+                    () -> new RotationalGearboxBlock(
+                            machineProperties()));
     public static final DeferredBlock<CrusherBlock> BRONZE_CRUSHER = BLOCKS.register(
             "bronze_crusher",
             () -> new CrusherBlock(machineProperties()));
@@ -168,13 +229,60 @@ public final class ModBlocks {
     public static final DeferredBlock<ProcessingMachineBlock> BATH =
             processing("bath", ModProcessingMachines.BATH);
     public static final DeferredBlock<ProcessingMachineBlock> CENTRIFUGE =
-            processing("centrifuge", ModProcessingMachines.CENTRIFUGE);
+            processing(
+                    "centrifuge",
+                    ModMachineVariants.require(
+                            ResourceLocation.fromNamespaceAndPath(
+                                    CrucibleCraft.MODID, "centrifuge")));
+    public static final DeferredBlock<ProcessingMachineBlock>
+            STEEL_CENTRIFUGE = processing(
+                    "steel_centrifuge",
+                    ModMachineVariants.require(
+                            ResourceLocation.fromNamespaceAndPath(
+                                    CrucibleCraft.MODID,
+                                    "steel_centrifuge")));
+    public static final DeferredBlock<ProcessingMachineBlock>
+            TITANIUM_CENTRIFUGE = processing(
+                    "titanium_centrifuge",
+                    ModMachineVariants.require(
+                            ResourceLocation.fromNamespaceAndPath(
+                                    CrucibleCraft.MODID,
+                                    "titanium_centrifuge")));
     public static final DeferredBlock<ProcessingMachineBlock> SHREDDER =
-            processing("shredder", ModProcessingMachines.SHREDDER);
+            processing("shredder", machineVariant("shredder"));
+    public static final DeferredBlock<ProcessingMachineBlock> STEEL_SHREDDER =
+            processing("steel_shredder", machineVariant("steel_shredder"));
+    public static final DeferredBlock<ProcessingMachineBlock>
+            TITANIUM_SHREDDER = processing(
+                    "titanium_shredder",
+                    machineVariant("titanium_shredder"));
     public static final DeferredBlock<ProcessingMachineBlock> SIFTER =
-            processing("sifter", ModProcessingMachines.SIFTER);
+            processing(
+                    "sifter",
+                    ModMachineVariants.require(
+                            ResourceLocation.fromNamespaceAndPath(
+                                    CrucibleCraft.MODID, "sifter")));
+    public static final DeferredBlock<ProcessingMachineBlock>
+            STEEL_SIFTER = processing(
+                    "steel_sifter",
+                    ModMachineVariants.require(
+                            ResourceLocation.fromNamespaceAndPath(
+                                    CrucibleCraft.MODID, "steel_sifter")));
+    public static final DeferredBlock<ProcessingMachineBlock>
+            TITANIUM_SIFTER = processing(
+                    "titanium_sifter",
+                    ModMachineVariants.require(
+                            ResourceLocation.fromNamespaceAndPath(
+                                    CrucibleCraft.MODID,
+                                    "titanium_sifter")));
     public static final DeferredBlock<ProcessingMachineBlock> SMELTER =
-            processing("smelter", ModProcessingMachines.SMELTER);
+            processing("smelter", machineVariant("smelter"));
+    public static final DeferredBlock<ProcessingMachineBlock> INVAR_SMELTER =
+            processing("invar_smelter", machineVariant("invar_smelter"));
+    public static final DeferredBlock<ProcessingMachineBlock>
+            TITANIUM_SMELTER = processing(
+                    "titanium_smelter",
+                    machineVariant("titanium_smelter"));
     public static final DeferredBlock<ProcessingMachineBlock> MORTAR =
             processing("mortar", ModProcessingMachines.MORTAR);
     public static final DeferredBlock<ProcessingMachineBlock> EXTRUDER =
@@ -182,13 +290,31 @@ public final class ModBlocks {
     public static final DeferredBlock<ProcessingMachineBlock> CUTTER =
             processing("cutter", ModProcessingMachines.CUTTER);
     public static final DeferredBlock<ProcessingMachineBlock> LATHE =
-            processing("lathe", ModProcessingMachines.LATHE);
+            processing("lathe", machineVariant("lathe"));
+    public static final DeferredBlock<ProcessingMachineBlock> STEEL_LATHE =
+            processing("steel_lathe", machineVariant("steel_lathe"));
+    public static final DeferredBlock<ProcessingMachineBlock> TITANIUM_LATHE =
+            processing("titanium_lathe", machineVariant("titanium_lathe"));
     public static final DeferredBlock<ProcessingMachineBlock> ROLLINGMILL =
-            processing("rollingmill", ModProcessingMachines.ROLLINGMILL);
+            processing("rollingmill", machineVariant("rollingmill"));
+    public static final DeferredBlock<ProcessingMachineBlock>
+            STEEL_ROLLINGMILL = processing(
+                    "steel_rollingmill",
+                    machineVariant("steel_rollingmill"));
+    public static final DeferredBlock<ProcessingMachineBlock>
+            TITANIUM_ROLLINGMILL = processing(
+                    "titanium_rollingmill",
+                    machineVariant("titanium_rollingmill"));
     public static final DeferredBlock<ProcessingMachineBlock> ROLLBENDER =
             processing("rollbender", ModProcessingMachines.ROLLBENDER);
     public static final DeferredBlock<ProcessingMachineBlock> WIREMILL =
-            processing("wiremill", ModProcessingMachines.WIREMILL);
+            processing("wiremill", machineVariant("wiremill"));
+    public static final DeferredBlock<ProcessingMachineBlock> STEEL_WIREMILL =
+            processing("steel_wiremill", machineVariant("steel_wiremill"));
+    public static final DeferredBlock<ProcessingMachineBlock>
+            TITANIUM_WIREMILL = processing(
+                    "titanium_wiremill",
+                    machineVariant("titanium_wiremill"));
     public static final DeferredBlock<ProcessingMachineBlock> BENDER =
             processing("bender", ModProcessingMachines.BENDER);
     public static final DeferredBlock<ProcessingMachineBlock> ASSEMBLER =
@@ -196,19 +322,69 @@ public final class ModBlocks {
     public static final DeferredBlock<ProcessingMachineBlock> WELDER =
             processing("welder", ModProcessingMachines.WELDER);
     public static final DeferredBlock<ProcessingMachineBlock> PRESS =
-            processing("press", ModProcessingMachines.PRESS);
+            processing("press", machineVariant("press"));
+    public static final DeferredBlock<ProcessingMachineBlock> STEEL_PRESS =
+            processing("steel_press", machineVariant("steel_press"));
+    public static final DeferredBlock<ProcessingMachineBlock> TITANIUM_PRESS =
+            processing("titanium_press", machineVariant("titanium_press"));
     public static final DeferredBlock<ProcessingMachineBlock> ELECTROLYZER =
-            processing("electrolyzer", ModProcessingMachines.ELECTROLYZER);
+            processing(
+                    "electrolyzer",
+                    ModMachineVariants.require(
+                            ResourceLocation.fromNamespaceAndPath(
+                                    CrucibleCraft.MODID, "electrolyzer")));
+    public static final DeferredBlock<ProcessingMachineBlock>
+            ALUMINIUM_ELECTROLYZER = processing(
+                    "aluminium_electrolyzer",
+                    ModMachineVariants.require(
+                            ResourceLocation.fromNamespaceAndPath(
+                                    CrucibleCraft.MODID,
+                                    "aluminium_electrolyzer")));
+    public static final DeferredBlock<ProcessingMachineBlock>
+            STAINLESS_STEEL_ELECTROLYZER = processing(
+                    "stainless_steel_electrolyzer",
+                    ModMachineVariants.require(
+                            ResourceLocation.fromNamespaceAndPath(
+                                    CrucibleCraft.MODID,
+                                    "stainless_steel_electrolyzer")));
     public static final DeferredBlock<ProcessingMachineBlock> MIXER =
             processing("mixer", ModProcessingMachines.MIXER);
     public static final DeferredBlock<ProcessingMachineBlock> DISTILLERY =
-            processing("distillery", ModProcessingMachines.DISTILLERY);
+            processing("distillery", machineVariant("distillery"));
+    public static final DeferredBlock<ProcessingMachineBlock>
+            INVAR_DISTILLERY = processing(
+                    "invar_distillery",
+                    machineVariant("invar_distillery"));
+    public static final DeferredBlock<ProcessingMachineBlock>
+            TITANIUM_DISTILLERY = processing(
+                    "titanium_distillery",
+                    machineVariant("titanium_distillery"));
     public static final DeferredBlock<ProcessingMachineBlock> AUTOCLAVE =
             processing("autoclave", ModProcessingMachines.AUTOCLAVE);
     public static final DeferredBlock<ProcessingMachineBlock> DRYING =
-            processing("drying", ModProcessingMachines.DRYING);
+            processing("drying", machineVariant("drying"));
+    public static final DeferredBlock<ProcessingMachineBlock> INVAR_DRYING =
+            processing("invar_drying", machineVariant("invar_drying"));
+    public static final DeferredBlock<ProcessingMachineBlock>
+            TITANIUM_DRYING = processing(
+                    "titanium_drying",
+                    machineVariant("titanium_drying"));
     public static final DeferredBlock<ProcessingMachineBlock> COMPRESSOR =
             processing("compressor", ModProcessingMachines.COMPRESSOR);
+    public static final DeferredBlock<ProcessingMachineBlock> GENERIFIER =
+            processing("generifier", ModProcessingMachines.GENERIFIER);
+    public static final DeferredBlock<FuelGeneratorBlock> FUEL_ENGINE =
+            BLOCKS.register(
+                    "fuel_engine",
+                    () -> new FuelGeneratorBlock(
+                            ModFuelGenerators.FUEL_ENGINE,
+                            machineProperties()));
+    public static final DeferredBlock<FuelGeneratorBlock>
+            BURNING_GAS_GENERATOR = BLOCKS.register(
+                    "burning_gas_generator",
+                    () -> new FuelGeneratorBlock(
+                            ModFuelGenerators.BURNING_GAS_GENERATOR,
+                            machineProperties()));
 
     public static void registerMaterials(Collection<MaterialDefinition> definitions) {
         if (!MATERIAL_ORE_BLOCKS.isEmpty()
@@ -374,6 +550,16 @@ public final class ModBlocks {
                 CONFIGURED_PROCESSING_BLOCKS.values());
     }
 
+    public static MachineVariant configuredProcessingVariant(
+            ResourceLocation id) {
+        MachineVariant variant = CONFIGURED_PROCESSING_VARIANTS.get(id);
+        if (variant == null) {
+            throw new IllegalArgumentException(
+                    "No source-backed processing variant for " + id);
+        }
+        return variant;
+    }
+
     /** Immutable material/host-to-path view used by worldgen host adaptation. */
     public static Map<OreBlockKey, String> oreBlockPaths() {
         LinkedHashMap<OreBlockKey, String> paths = new LinkedHashMap<>();
@@ -405,11 +591,41 @@ public final class ModBlocks {
             com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec spec) {
         DeferredBlock<ProcessingMachineBlock> block =
                 BLOCKS.register(id, () -> new ProcessingMachineBlock(spec, machineProperties()));
-        if (CONFIGURED_PROCESSING_BLOCKS.put(spec, block) != null) {
+        if (CONFIGURED_PROCESSING_BLOCKS.put(spec.id(), block) != null) {
             throw new IllegalStateException(
                     "Duplicate configured processing block for " + spec.id());
         }
         return block;
+    }
+
+    private static DeferredBlock<ProcessingMachineBlock> processing(
+            String id, MachineVariant variant) {
+        DeferredBlock<ProcessingMachineBlock> block =
+                BLOCKS.register(
+                        id,
+                        () -> new ProcessingMachineBlock(
+                                variant, machineProperties()));
+        if (CONFIGURED_PROCESSING_BLOCKS.put(
+                        variant.id(), block)
+                != null) {
+            throw new IllegalStateException(
+                    "Duplicate configured processing block for "
+                            + variant.id());
+        }
+        if (CONFIGURED_PROCESSING_VARIANTS.putIfAbsent(
+                        variant.id(), variant)
+                != null) {
+            throw new IllegalStateException(
+                    "Duplicate source-backed processing variant for "
+                            + variant.id());
+        }
+        return block;
+    }
+
+    private static MachineVariant machineVariant(String path) {
+        return ModMachineVariants.require(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, path));
     }
 
     /**
@@ -421,15 +637,18 @@ public final class ModBlocks {
     public static Block configuredProcessingBlock(
             com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec spec) {
         Objects.requireNonNull(spec, "spec");
-        if (CONFIGURED_PROCESSING_BLOCKS.size()
-                != ModProcessingMachines.CONFIGURED_MACHINES.size()) {
+        if (!CONFIGURED_PROCESSING_BLOCKS.keySet().containsAll(
+                ModProcessingMachines.CONFIGURED_MACHINES.stream()
+                        .map(com.masson.cruciblecraft.machine.processing
+                                .ProcessingMachineSpec::id)
+                        .collect(java.util.stream.Collectors.toSet()))) {
             throw new IllegalStateException(
                     "Configured processing block mapping is incomplete");
         }
         boolean configured = ModProcessingMachines.CONFIGURED_MACHINES.stream()
                 .anyMatch(candidate -> candidate == spec);
         DeferredBlock<ProcessingMachineBlock> holder =
-                CONFIGURED_PROCESSING_BLOCKS.get(spec);
+                CONFIGURED_PROCESSING_BLOCKS.get(spec.id());
         if (!configured || holder == null) {
             throw new IllegalArgumentException(
                     "No configured processing block for " + spec.id());
@@ -437,9 +656,22 @@ public final class ModBlocks {
         return holder.get();
     }
 
+    public static Block configuredProcessingBlock(
+            MachineVariant variant) {
+        Objects.requireNonNull(variant, "variant");
+        DeferredBlock<ProcessingMachineBlock> holder =
+                CONFIGURED_PROCESSING_BLOCKS.get(variant.id());
+        if (holder == null) {
+            throw new IllegalArgumentException(
+                    "No configured processing block for "
+                            + variant.id());
+        }
+        return holder.get();
+    }
+
     public static Block[] configuredProcessingBlocks() {
-        return ModProcessingMachines.CONFIGURED_MACHINES.stream()
-                .map(ModBlocks::configuredProcessingBlock)
+        return CONFIGURED_PROCESSING_BLOCKS.values().stream()
+                .map(DeferredBlock::get)
                 .toArray(Block[]::new);
     }
 

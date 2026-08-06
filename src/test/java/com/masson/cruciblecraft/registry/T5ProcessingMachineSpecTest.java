@@ -101,7 +101,7 @@ class T5ProcessingMachineSpecTest {
     }
 
     @Test
-    void dedicatedSpecsExposeExactLayoutsAndSidedElectricIo() {
+    void dedicatedSpecsExposeExactLayoutsAndSourceEnergyIo() {
         assertLayout(ModProcessingMachines.ELECTROLYZER, 2, 6, 2, 3, 16_000, 16_000);
         assertLayout(ModProcessingMachines.MIXER, 4, 1, 3, 2, 32_000, 32_000);
         assertLayout(ModProcessingMachines.DISTILLERY, 2, 2, 2, 3, 8_000, 8_000);
@@ -110,14 +110,20 @@ class T5ProcessingMachineSpecTest {
         assertLayout(ModProcessingMachines.COMPRESSOR, 1, 1, 0, 0, 0, 0);
 
         for (ProcessingMachineSpec spec : ModProcessingMachines.T5_DEDICATED_MACHINES) {
+            boolean t17Heat = spec == ModProcessingMachines.DISTILLERY
+                    || spec == ModProcessingMachines.DRYING;
             assertEquals(spec.fluids().tankCount(), spec.ui().tanks().size());
             int tanks = spec.fluids().tankCount();
             assertEquals(
                     ConfiguredProcessingMachineMenu.DATA_COUNT,
                     ConfiguredProcessingMachineMenu.dataCount());
-            assertEquals(EnergyType.ELECTRIC, spec.energy().type());
             assertEquals(
-                    ProcessingMachineSpec.EnergyMode.BUFFERED,
+                    t17Heat ? EnergyType.HEAT : EnergyType.ELECTRIC,
+                    spec.energy().type());
+            assertEquals(
+                    t17Heat
+                            ? ProcessingMachineSpec.EnergyMode.ADJACENT
+                            : ProcessingMachineSpec.EnergyMode.BUFFERED,
                     spec.energy().mode());
             assertEquals(1_024L, spec.energy().maxPacket());
             assertEquals(
@@ -134,7 +140,9 @@ class T5ProcessingMachineSpecTest {
                             : ProcessingMachineSpec.CapabilityAccess.OUTPUT,
                     spec.sidedIo().fluids().resolve(Direction.NORTH, Direction.NORTH));
             assertEquals(
-                    ProcessingMachineSpec.CapabilityAccess.INPUT,
+                    t17Heat
+                            ? ProcessingMachineSpec.CapabilityAccess.NONE
+                            : ProcessingMachineSpec.CapabilityAccess.INPUT,
                     spec.sidedIo().energy().resolve(Direction.NORTH, Direction.SOUTH));
             assertTrue(spec.validator().validate(validRecipe(spec)).isEmpty());
         }
@@ -163,7 +171,9 @@ class T5ProcessingMachineSpecTest {
         assertLayout(ModProcessingMachines.CENTRIFUGE, 1, 6, 1, 2, 4_000, 8_000);
         assertLayout(ModProcessingMachines.SMELTER, 1, 4, 0, 1, 0, 8_000);
         assertEquals(EnergyType.KINETIC, ModProcessingMachines.BATH.energy().type());
-        assertEquals(EnergyType.KINETIC, ModProcessingMachines.CENTRIFUGE.energy().type());
+        assertEquals(
+                EnergyType.KINETIC_ROTATION,
+                ModProcessingMachines.CENTRIFUGE.energy().type());
         assertEquals(EnergyType.HEAT, ModProcessingMachines.SMELTER.energy().type());
         for (ProcessingMachineSpec spec : List.of(
                 ModProcessingMachines.BATH,

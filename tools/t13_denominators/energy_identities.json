@@ -1,0 +1,1044 @@
+{
+  "category": "energy_identities",
+  "counts": {
+    "classifications": {
+      "deferred_with_reason": 5,
+      "in_scope": 7,
+      "out_of_scope": 8
+    },
+    "classified": 20,
+    "identities": 20,
+    "owners": {
+      "OUT_OF_SCOPE": 8,
+      "POST_T19": 5,
+      "T15": 1,
+      "T16": 2,
+      "T17": 2,
+      "T18": 2
+    },
+    "referenced_by_machine_kinds": 10,
+    "unclassified": 0,
+    "with_local_energy_type": 5
+  },
+  "field_cardinality_audit": {
+    "declared_collapse_fields": [],
+    "normalized_identity_cardinality": 20,
+    "normalized_relation_cardinality": {
+      "ALL": 20,
+      "ALL_ALTERNATING": 1,
+      "ALL_COMSUMPTION_LIMITED": 8,
+      "ALL_ELECTRIC": 1,
+      "ALL_EU": 10,
+      "ALL_EXPLODING": 11,
+      "ALL_GT": 11,
+      "ALL_HOT_COLD": 3,
+      "ALL_KINETIC": 2,
+      "ALL_NEGATIVE_ALLOWED": 6,
+      "ALL_RF": 3,
+      "ALL_SIZE_IRRELEVANT": 14,
+      "ALL_WEAK_TO_FIRE": 2,
+      "ALL_WEAK_TO_THUNDER": 1,
+      "ALL_WEAK_TO_WATER": 3,
+      "VIS": 6
+    },
+    "source_identity_cardinality": 20,
+    "source_relation_cardinality": {
+      "ALL": 20,
+      "ALL_ALTERNATING": 1,
+      "ALL_COMSUMPTION_LIMITED": 8,
+      "ALL_ELECTRIC": 1,
+      "ALL_EU": 10,
+      "ALL_EXPLODING": 11,
+      "ALL_GT": 11,
+      "ALL_HOT_COLD": 3,
+      "ALL_KINETIC": 2,
+      "ALL_NEGATIVE_ALLOWED": 6,
+      "ALL_RF": 3,
+      "ALL_SIZE_IRRELEVANT": 14,
+      "ALL_WEAK_TO_FIRE": 2,
+      "ALL_WEAK_TO_THUNDER": 1,
+      "ALL_WEAK_TO_WATER": 3,
+      "VIS": 6
+    },
+    "status": "PASS",
+    "status_prefix": "UNIFORM_",
+    "uniform_findings": []
+  },
+  "generated_by": "python tools/build_t13_machine_energy_denominators.py",
+  "identity_contract": "Every TD.Energy TagData.createTagData declaration is one canonical identity; aliases and local mappings never merge tags.",
+  "legacy_kinetic_boundary": {
+    "local_energy_type": "KINETIC",
+    "rule": "Legacy KINETIC is not a TD.Energy identity and cannot be used as source evidence for RU or KU. New source-classified mappings use KINETIC_ROTATION or KINETIC_PUSH.",
+    "source_identity": null,
+    "status": "T12_FIXED_OR_DEFERRED_COMPATIBILITY_ONLY",
+    "t12_ledger_role": "target-only compatibility boundary"
+  },
+  "local_mapping_source": {
+    "declared_symbols": [
+      "AIR",
+      "ELECTRIC",
+      "HEAT",
+      "KINETIC",
+      "KINETIC_PUSH",
+      "KINETIC_ROTATION"
+    ],
+    "path": "src/main/java/com/masson/cruciblecraft/api/energy/EnergyType.java",
+    "sha256": "92b2146131a6d11a7770d2012e1a72a36ba206036b1893dc5c06e3c4a381236f",
+    "source_symbol_or_extraction_key": "EnergyType"
+  },
+  "relations": {
+    "ALL": [
+      "VIS_ORDO",
+      "VIS_AER",
+      "VIS_AQUA",
+      "VIS_TERRA",
+      "VIS_IGNIS",
+      "VIS_PERDITIO",
+      "STEAM",
+      "MINECRAFT_JOULES",
+      "REDSTONE_FLUX",
+      "AIR",
+      "QUANTUM",
+      "MAGNETIC",
+      "LIGHT",
+      "HEAT",
+      "CRYO",
+      "KINETIC_PUSH",
+      "KINETIC_ROTATION",
+      "ELECTRICITY",
+      "NEUTRON",
+      "TIME"
+    ],
+    "ALL_ALTERNATING": [
+      "KINETIC_PUSH"
+    ],
+    "ALL_COMSUMPTION_LIMITED": [
+      "ELECTRICITY",
+      "REDSTONE_FLUX",
+      "VIS_ORDO",
+      "VIS_AER",
+      "VIS_AQUA",
+      "VIS_TERRA",
+      "VIS_IGNIS",
+      "VIS_PERDITIO"
+    ],
+    "ALL_ELECTRIC": [
+      "ELECTRICITY"
+    ],
+    "ALL_EU": [
+      "AIR",
+      "QUANTUM",
+      "MAGNETIC",
+      "LIGHT",
+      "KINETIC_PUSH",
+      "KINETIC_ROTATION",
+      "ELECTRICITY",
+      "HEAT",
+      "NEUTRON",
+      "CRYO"
+    ],
+    "ALL_EXPLODING": [
+      "AIR",
+      "QUANTUM",
+      "MAGNETIC",
+      "LIGHT",
+      "KINETIC_PUSH",
+      "KINETIC_ROTATION",
+      "ELECTRICITY",
+      "HEAT",
+      "NEUTRON",
+      "MINECRAFT_JOULES",
+      "STEAM"
+    ],
+    "ALL_GT": [
+      "AIR",
+      "QUANTUM",
+      "MAGNETIC",
+      "LIGHT",
+      "KINETIC_PUSH",
+      "KINETIC_ROTATION",
+      "ELECTRICITY",
+      "HEAT",
+      "NEUTRON",
+      "CRYO",
+      "TIME"
+    ],
+    "ALL_HOT_COLD": [
+      "HEAT",
+      "CRYO",
+      "VIS_IGNIS"
+    ],
+    "ALL_KINETIC": [
+      "KINETIC_PUSH",
+      "KINETIC_ROTATION"
+    ],
+    "ALL_NEGATIVE_ALLOWED": [
+      "AIR",
+      "QUANTUM",
+      "MAGNETIC",
+      "KINETIC_PUSH",
+      "KINETIC_ROTATION",
+      "ELECTRICITY"
+    ],
+    "ALL_RF": [
+      "MINECRAFT_JOULES",
+      "REDSTONE_FLUX",
+      "KINETIC_PUSH"
+    ],
+    "ALL_SIZE_IRRELEVANT": [
+      "VIS_ORDO",
+      "VIS_AER",
+      "VIS_AQUA",
+      "VIS_TERRA",
+      "VIS_IGNIS",
+      "VIS_PERDITIO",
+      "STEAM",
+      "MINECRAFT_JOULES",
+      "REDSTONE_FLUX",
+      "HEAT",
+      "CRYO",
+      "NEUTRON",
+      "QUANTUM",
+      "TIME"
+    ],
+    "ALL_WEAK_TO_FIRE": [
+      "ELECTRICITY",
+      "CRYO"
+    ],
+    "ALL_WEAK_TO_THUNDER": [
+      "ELECTRICITY"
+    ],
+    "ALL_WEAK_TO_WATER": [
+      "ELECTRICITY",
+      "HEAT",
+      "CRYO"
+    ],
+    "VIS": [
+      "VIS_ORDO",
+      "VIS_AER",
+      "VIS_AQUA",
+      "VIS_TERRA",
+      "VIS_IGNIS",
+      "VIS_PERDITIO"
+    ]
+  },
+  "rows": [
+    {
+      "aliases": [
+        "EU"
+      ],
+      "classification": "in_scope",
+      "local_energy_type": "ELECTRIC",
+      "long_name": "Electric Energy",
+      "machine_references": {
+        "accepted_by": [
+          "MultiTileEntityBasicMachineElectric|recipe:RM.Autocrafter|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachineElectric|recipe:RM.Boxinator|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachineElectric|recipe:RM.Bumblelyzer|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachineElectric|recipe:RM.Canner|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachineElectric|recipe:RM.Electrolyzer|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachineElectric|recipe:RM.Injector|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachineElectric|recipe:RM.Lightning|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachineElectric|recipe:RM.Loom|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachineElectric|recipe:RM.Mixer|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachineElectric|recipe:RM.Plantalyzer|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachineElectric|recipe:RM.Printer|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachineElectric|recipe:RM.ScannerVisuals|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachineElectric|recipe:RM.Sifting|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachineElectric|recipe:RM.Slicer|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachineElectric|recipe:RM.Unboxinator|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Nanofab|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityCoolerElectric|NONE|accepts:EU|emits:CU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityEngineElectric|NONE|accepts:EU|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityHeaterElectric|NONE|accepts:EU|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityLaserElectric|NONE|accepts:EU|emits:LU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityLongDistanceTransformer|NONE|accepts:EU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityMagnetElectric|NONE|accepts:EU|emits:MU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityMotorElectric|NONE|accepts:EU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityTransformerElectric|NONE|accepts:EU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ],
+        "emitted_by": [
+          "MultiTileEntityBatteryBoxLarge|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBatteryBox|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityDynamoElectric|NONE|accepts:RU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityLaserAbsorberElectric|NONE|accepts:LU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityLongDistanceTransformer|NONE|accepts:EU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntitySolarPanelElectric|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityTransformerElectric|NONE|accepts:EU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityZPMDechargerEU|NONE|accepts:QU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ]
+      },
+      "owner": "T17",
+      "reason": "HU/EU machine batches consume this identity.",
+      "relations": [
+        "ALL",
+        "ALL_COMSUMPTION_LIMITED",
+        "ALL_ELECTRIC",
+        "ALL_EU",
+        "ALL_EXPLODING",
+        "ALL_GT",
+        "ALL_NEGATIVE_ALLOWED",
+        "ALL_WEAK_TO_FIRE",
+        "ALL_WEAK_TO_THUNDER",
+        "ALL_WEAK_TO_WATER"
+      ],
+      "short_name": "EU",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.ELECTRICITY",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.ELECTRICITY"
+      },
+      "source_line": 71,
+      "symbol": "ELECTRICITY",
+      "tag_name": "ENERGY.ELECTRICITY",
+      "topology": "EU_CABLE_NETWORK"
+    },
+    {
+      "aliases": [
+        "RU"
+      ],
+      "classification": "in_scope",
+      "local_energy_type": "KINETIC_ROTATION",
+      "long_name": "Rotation Energy",
+      "machine_references": {
+        "accepted_by": [
+          "MultiTileEntityAxle|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.BurnMixer|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=true,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Centrifuge|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.ClusterMill|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Cutter|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Lathe|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Loom|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Mixer|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.PressureWasher|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.RollBender|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.RollFormer|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.RollingMill|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Sharpening|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Shredder|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Sluice|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Wiremill|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityDynamoElectric|NONE|accepts:RU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityEngineRotation|NONE|accepts:RU|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityGearBox|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityTransformerRotation|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ],
+        "emitted_by": [
+          "MultiTileEntityAxle|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityGearBox|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityMotorElectric|NONE|accepts:EU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityMotorLiquid|fuel:FM.Engine|accepts:NONE|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityTransformerRotation|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityTurbineSteam|NONE|accepts:STEAM|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ]
+      },
+      "owner": "T16",
+      "reason": "RU/KU machine and topology batches consume this identity.",
+      "relations": [
+        "ALL",
+        "ALL_EU",
+        "ALL_EXPLODING",
+        "ALL_GT",
+        "ALL_KINETIC",
+        "ALL_NEGATIVE_ALLOWED"
+      ],
+      "short_name": "RU",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.KINETIC_ROTATION",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.KINETIC_ROTATION"
+      },
+      "source_line": 84,
+      "symbol": "KINETIC_ROTATION",
+      "tag_name": "ENERGY.KINETIC_ROTATION",
+      "topology": "RU_AXLE_GEARBOX"
+    },
+    {
+      "aliases": [
+        "KU"
+      ],
+      "classification": "in_scope",
+      "local_energy_type": "KINETIC_PUSH",
+      "long_name": "Kinetic Energy",
+      "machine_references": {
+        "accepted_by": [
+          "MultiTileEntityBasicMachine|recipe:RM.Compressor|accepts:KU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Crusher|accepts:KU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Press|accepts:KU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Sifting|accepts:KU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Squeezer|accepts:KU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ],
+        "emitted_by": [
+          "MultiTileEntityEngineElectric|NONE|accepts:EU|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityEngineRotation|NONE|accepts:RU|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityEngineSteam|NONE|accepts:STEAM|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityMagicFieldAbsorber|NONE|accepts:NONE|emits:CU+HU+KU+LU+QU+TU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ]
+      },
+      "owner": "T16",
+      "reason": "RU/KU machine and topology batches consume this identity.",
+      "relations": [
+        "ALL",
+        "ALL_ALTERNATING",
+        "ALL_EU",
+        "ALL_EXPLODING",
+        "ALL_GT",
+        "ALL_KINETIC",
+        "ALL_NEGATIVE_ALLOWED",
+        "ALL_RF"
+      ],
+      "short_name": "KU",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.KINETIC_PUSH",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.KINETIC_PUSH"
+      },
+      "source_line": 92,
+      "symbol": "KINETIC_PUSH",
+      "tag_name": "ENERGY.KINETIC_PUSH",
+      "topology": "KU_ADJACENT_PUSH"
+    },
+    {
+      "aliases": [
+        "HU"
+      ],
+      "classification": "in_scope",
+      "local_energy_type": "HEAT",
+      "long_name": "Heat Energy",
+      "machine_references": {
+        "accepted_by": [
+          "MultiTileEntityBasicMachine|recipe:RM.CatalyticCracking|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.CrystallisationCrucible|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Distillery|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Drying|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Extruder|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Fermenter|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Furnace|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Laminator|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Melter|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Roasting|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Smelter|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.SteamCracking|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBoilerTank|NONE|accepts:HU|emits:STEAM|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ],
+        "emitted_by": [
+          "MultiTileEntityGeneratorBrick|fuel:FM.Furnace|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityGeneratorFluidBed|fuel:FM.FluidBed|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityGeneratorGas|fuel:FM.Burn|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityGeneratorHotFluid|fuel:FM.Hot|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityGeneratorLiquid|fuel:FM.Burn|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityGeneratorMetal|fuel:FM.Furnace|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityHeaterElectric|NONE|accepts:EU|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityMagicFieldAbsorber|NONE|accepts:NONE|emits:CU+HU+KU+LU+QU+TU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ]
+      },
+      "owner": "T17",
+      "reason": "HU/EU machine batches consume this identity.",
+      "relations": [
+        "ALL",
+        "ALL_EU",
+        "ALL_EXPLODING",
+        "ALL_GT",
+        "ALL_HOT_COLD",
+        "ALL_SIZE_IRRELEVANT",
+        "ALL_WEAK_TO_WATER"
+      ],
+      "short_name": "HU",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.HEAT",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.HEAT"
+      },
+      "source_line": 100,
+      "symbol": "HEAT",
+      "tag_name": "ENERGY.HEAT",
+      "topology": "HU_ADJACENT_HEAT"
+    },
+    {
+      "aliases": [
+        "CU"
+      ],
+      "classification": "deferred_with_reason",
+      "local_energy_type": null,
+      "long_name": "Cryo Energy",
+      "machine_references": {
+        "accepted_by": [
+          "MultiTileEntityBasicMachine|recipe:RM.CryoMixer|accepts:CU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Freezer|accepts:CU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ],
+        "emitted_by": [
+          "MultiTileEntityCoolerElectric|NONE|accepts:EU|emits:CU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityMagicFieldAbsorber|NONE|accepts:NONE|emits:CU+HU+KU+LU+QU+TU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ]
+      },
+      "owner": "POST_T19",
+      "reason": "No T15-T18 batch owns this GT6 energy identity.",
+      "recheck_point": "After T19 scope review.",
+      "relations": [
+        "ALL",
+        "ALL_EU",
+        "ALL_GT",
+        "ALL_HOT_COLD",
+        "ALL_SIZE_IRRELEVANT",
+        "ALL_WEAK_TO_FIRE",
+        "ALL_WEAK_TO_WATER"
+      ],
+      "replacement_condition": "Open a source-backed producer/transport/consumer phase.",
+      "short_name": "CU",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.CRYO",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.CRYO"
+      },
+      "source_line": 108,
+      "symbol": "CRYO",
+      "tag_name": "ENERGY.CRYO",
+      "topology": "UNIMPLEMENTED_CRYO"
+    },
+    {
+      "aliases": [
+        "LU"
+      ],
+      "classification": "deferred_with_reason",
+      "local_energy_type": null,
+      "long_name": "Light Energy",
+      "machine_references": {
+        "accepted_by": [
+          "MultiTileEntityBasicMachine|recipe:RM.LaserEngraver|accepts:LU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Welder|accepts:LU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityLaserAbsorberElectric|NONE|accepts:LU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityQuantumEnergizerLaser|NONE|accepts:LU|emits:QU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ],
+        "emitted_by": [
+          "MultiTileEntityCrystalChargerLarge|NONE|accepts:NONE|emits:LU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityCrystalCharger|NONE|accepts:NONE|emits:LU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityLaserElectric|NONE|accepts:EU|emits:LU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityMagicFieldAbsorber|NONE|accepts:NONE|emits:CU+HU+KU+LU+QU+TU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ]
+      },
+      "owner": "POST_T19",
+      "reason": "No T15-T18 batch owns this GT6 energy identity.",
+      "recheck_point": "After T19 scope review.",
+      "relations": [
+        "ALL",
+        "ALL_EU",
+        "ALL_EXPLODING",
+        "ALL_GT"
+      ],
+      "replacement_condition": "Open a source-backed producer/transport/consumer phase.",
+      "short_name": "LU",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.LIGHT",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.LIGHT"
+      },
+      "source_line": 116,
+      "symbol": "LIGHT",
+      "tag_name": "ENERGY.LIGHT",
+      "topology": "UNIMPLEMENTED_LASER"
+    },
+    {
+      "aliases": [
+        "MU"
+      ],
+      "classification": "deferred_with_reason",
+      "local_energy_type": null,
+      "long_name": "Magnetic Energy",
+      "machine_references": {
+        "accepted_by": [
+          "MultiTileEntityBasicMachine|recipe:RM.MagneticSeparator|accepts:MU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Polarizer|accepts:MU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ],
+        "emitted_by": [
+          "MultiTileEntityMagnetElectric|NONE|accepts:EU|emits:MU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ]
+      },
+      "owner": "POST_T19",
+      "reason": "No T15-T18 batch owns this GT6 energy identity.",
+      "recheck_point": "After T19 scope review.",
+      "relations": [
+        "ALL",
+        "ALL_EU",
+        "ALL_EXPLODING",
+        "ALL_GT",
+        "ALL_NEGATIVE_ALLOWED"
+      ],
+      "replacement_condition": "Open a source-backed producer/transport/consumer phase.",
+      "short_name": "MU",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.MAGNETIC",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.MAGNETIC"
+      },
+      "source_line": 124,
+      "symbol": "MAGNETIC",
+      "tag_name": "ENERGY.MAGNETIC",
+      "topology": "UNIMPLEMENTED_MAGNETIC_FIELD"
+    },
+    {
+      "aliases": [
+        "NU"
+      ],
+      "classification": "deferred_with_reason",
+      "local_energy_type": null,
+      "long_name": "Neutron Energy",
+      "machine_references": {
+        "accepted_by": [],
+        "emitted_by": []
+      },
+      "owner": "POST_T19",
+      "reason": "No T15-T18 batch owns this GT6 energy identity.",
+      "recheck_point": "After T19 scope review.",
+      "relations": [
+        "ALL",
+        "ALL_EU",
+        "ALL_EXPLODING",
+        "ALL_GT",
+        "ALL_SIZE_IRRELEVANT"
+      ],
+      "replacement_condition": "Open a source-backed producer/transport/consumer phase.",
+      "short_name": "NU",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.NEUTRON",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.NEUTRON"
+      },
+      "source_line": 132,
+      "symbol": "NEUTRON",
+      "tag_name": "ENERGY.NEUTRON",
+      "topology": "DEFERRED_REACTOR_INTERNAL"
+    },
+    {
+      "aliases": [
+        "QU"
+      ],
+      "classification": "deferred_with_reason",
+      "local_energy_type": null,
+      "long_name": "Quantum Energy",
+      "machine_references": {
+        "accepted_by": [
+          "MultiTileEntityBasicMachine|recipe:RM.Massfab|accepts:QU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Replicator|accepts:QU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.ScannerMolecular|accepts:QU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityZPMDechargerEU|NONE|accepts:QU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityZPMDechargerQU|NONE|accepts:QU|emits:QU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ],
+        "emitted_by": [
+          "MultiTileEntityMagicFieldAbsorber|NONE|accepts:NONE|emits:CU+HU+KU+LU+QU+TU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityQuantumEnergizerLaser|NONE|accepts:LU|emits:QU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityZPMDechargerQU|NONE|accepts:QU|emits:QU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ]
+      },
+      "owner": "POST_T19",
+      "reason": "No T15-T18 batch owns this GT6 energy identity.",
+      "recheck_point": "After T19 scope review.",
+      "relations": [
+        "ALL",
+        "ALL_EU",
+        "ALL_EXPLODING",
+        "ALL_GT",
+        "ALL_NEGATIVE_ALLOWED",
+        "ALL_SIZE_IRRELEVANT"
+      ],
+      "replacement_condition": "Open a source-backed producer/transport/consumer phase.",
+      "short_name": "QU",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.QUANTUM",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.QUANTUM"
+      },
+      "source_line": 140,
+      "symbol": "QUANTUM",
+      "tag_name": "ENERGY.QUANTUM",
+      "topology": "UNIMPLEMENTED_QUANTUM"
+    },
+    {
+      "aliases": [
+        "TU",
+        "TICK"
+      ],
+      "classification": "in_scope",
+      "local_energy_type": null,
+      "long_name": "Time",
+      "machine_references": {
+        "accepted_by": [
+          "MultiTileEntityBasicMachine|recipe:RM.Autoclave|accepts:TU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Bath|accepts:TU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Coagulator|accepts:TU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityBasicMachine|recipe:RM.Generifier|accepts:TU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ],
+        "emitted_by": [
+          "MultiTileEntityMagicFieldAbsorber|NONE|accepts:NONE|emits:CU+HU+KU+LU+QU+TU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ]
+      },
+      "owner": "T15",
+      "reason": "T12 fixed-utility residuals use TU explicitly.",
+      "relations": [
+        "ALL",
+        "ALL_GT",
+        "ALL_SIZE_IRRELEVANT"
+      ],
+      "short_name": "TU",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.TIME",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.TIME"
+      },
+      "source_line": 147,
+      "symbol": "TIME",
+      "tag_name": "ENERGY.TIME",
+      "topology": "MACHINE_LOCAL_TICKS"
+    },
+    {
+      "aliases": [
+        "RF"
+      ],
+      "classification": "out_of_scope",
+      "local_energy_type": null,
+      "long_name": "Redstone Flux",
+      "machine_references": {
+        "accepted_by": [],
+        "emitted_by": []
+      },
+      "owner": "OUT_OF_SCOPE",
+      "reason": "External RF/MJ compatibility is absent from the pinned runtime.",
+      "relations": [
+        "ALL",
+        "ALL_COMSUMPTION_LIMITED",
+        "ALL_RF",
+        "ALL_SIZE_IRRELEVANT"
+      ],
+      "short_name": "RF",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.REDSTONE_FLUX",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.REDSTONE_FLUX"
+      },
+      "source_line": 154,
+      "symbol": "REDSTONE_FLUX",
+      "tag_name": "ENERGY.REDSTONE_FLUX",
+      "topology": "OUT_OF_SCOPE_EXTERNAL_COMPAT"
+    },
+    {
+      "aliases": [
+        "MJ"
+      ],
+      "classification": "out_of_scope",
+      "local_energy_type": null,
+      "long_name": "Minecraft Joules",
+      "machine_references": {
+        "accepted_by": [],
+        "emitted_by": []
+      },
+      "owner": "OUT_OF_SCOPE",
+      "reason": "External RF/MJ compatibility is absent from the pinned runtime.",
+      "relations": [
+        "ALL",
+        "ALL_EXPLODING",
+        "ALL_RF",
+        "ALL_SIZE_IRRELEVANT"
+      ],
+      "short_name": "MJ",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.MINECRAFT_JOULES",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.MINECRAFT_JOULES"
+      },
+      "source_line": 161,
+      "symbol": "MINECRAFT_JOULES",
+      "tag_name": "ENERGY.MINECRAFT_JOULES",
+      "topology": "OUT_OF_SCOPE_EXTERNAL_COMPAT"
+    },
+    {
+      "aliases": [],
+      "classification": "in_scope",
+      "local_energy_type": null,
+      "long_name": "Steam",
+      "machine_references": {
+        "accepted_by": [
+          "MultiTileEntityEngineSteam|NONE|accepts:STEAM|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "MultiTileEntityTurbineSteam|NONE|accepts:STEAM|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ],
+        "emitted_by": [
+          "MultiTileEntityBoilerTank|NONE|accepts:HU|emits:STEAM|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+        ]
+      },
+      "owner": "T18",
+      "reason": "Steam/air production and conversion remain distinct.",
+      "relations": [
+        "ALL",
+        "ALL_EXPLODING",
+        "ALL_SIZE_IRRELEVANT"
+      ],
+      "short_name": "Steam",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.STEAM",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.STEAM"
+      },
+      "source_line": 168,
+      "symbol": "STEAM",
+      "tag_name": "ENERGY.STEAM",
+      "topology": "FLUID_STEAM_TRANSPORT"
+    },
+    {
+      "aliases": [
+        "AU"
+      ],
+      "classification": "in_scope",
+      "local_energy_type": "AIR",
+      "long_name": "Air Pressure",
+      "machine_references": {
+        "accepted_by": [],
+        "emitted_by": []
+      },
+      "owner": "T18",
+      "reason": "Steam/air production and conversion remain distinct.",
+      "relations": [
+        "ALL",
+        "ALL_EU",
+        "ALL_EXPLODING",
+        "ALL_GT",
+        "ALL_NEGATIVE_ALLOWED"
+      ],
+      "short_name": "AU",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.AIR",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.AIR"
+      },
+      "source_line": 175,
+      "symbol": "AIR",
+      "tag_name": "ENERGY.AIR",
+      "topology": "AIR_PRESSURE"
+    },
+    {
+      "aliases": [],
+      "classification": "out_of_scope",
+      "local_energy_type": null,
+      "long_name": "Ordo Vis",
+      "machine_references": {
+        "accepted_by": [],
+        "emitted_by": []
+      },
+      "owner": "OUT_OF_SCOPE",
+      "reason": "Thaumcraft Vis compatibility is outside third-stage scope.",
+      "relations": [
+        "ALL",
+        "ALL_COMSUMPTION_LIMITED",
+        "ALL_SIZE_IRRELEVANT",
+        "VIS"
+      ],
+      "short_name": "Ordo",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.VIS_ORDO",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.VIS_ORDO"
+      },
+      "source_line": 178,
+      "symbol": "VIS_ORDO",
+      "tag_name": "ENERGY.VIS_ORDO",
+      "topology": "OUT_OF_SCOPE_THAUMCRAFT_COMPAT"
+    },
+    {
+      "aliases": [],
+      "classification": "out_of_scope",
+      "local_energy_type": null,
+      "long_name": "Aer Vis",
+      "machine_references": {
+        "accepted_by": [],
+        "emitted_by": []
+      },
+      "owner": "OUT_OF_SCOPE",
+      "reason": "Thaumcraft Vis compatibility is outside third-stage scope.",
+      "relations": [
+        "ALL",
+        "ALL_COMSUMPTION_LIMITED",
+        "ALL_SIZE_IRRELEVANT",
+        "VIS"
+      ],
+      "short_name": "Aer",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.VIS_AER",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.VIS_AER"
+      },
+      "source_line": 180,
+      "symbol": "VIS_AER",
+      "tag_name": "ENERGY.VIS_AER",
+      "topology": "OUT_OF_SCOPE_THAUMCRAFT_COMPAT"
+    },
+    {
+      "aliases": [],
+      "classification": "out_of_scope",
+      "local_energy_type": null,
+      "long_name": "Aqua Vis",
+      "machine_references": {
+        "accepted_by": [],
+        "emitted_by": []
+      },
+      "owner": "OUT_OF_SCOPE",
+      "reason": "Thaumcraft Vis compatibility is outside third-stage scope.",
+      "relations": [
+        "ALL",
+        "ALL_COMSUMPTION_LIMITED",
+        "ALL_SIZE_IRRELEVANT",
+        "VIS"
+      ],
+      "short_name": "Aqua",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.VIS_AQUA",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.VIS_AQUA"
+      },
+      "source_line": 182,
+      "symbol": "VIS_AQUA",
+      "tag_name": "ENERGY.VIS_AQUA",
+      "topology": "OUT_OF_SCOPE_THAUMCRAFT_COMPAT"
+    },
+    {
+      "aliases": [],
+      "classification": "out_of_scope",
+      "local_energy_type": null,
+      "long_name": "Terra Vis",
+      "machine_references": {
+        "accepted_by": [],
+        "emitted_by": []
+      },
+      "owner": "OUT_OF_SCOPE",
+      "reason": "Thaumcraft Vis compatibility is outside third-stage scope.",
+      "relations": [
+        "ALL",
+        "ALL_COMSUMPTION_LIMITED",
+        "ALL_SIZE_IRRELEVANT",
+        "VIS"
+      ],
+      "short_name": "Terra",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.VIS_TERRA",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.VIS_TERRA"
+      },
+      "source_line": 184,
+      "symbol": "VIS_TERRA",
+      "tag_name": "ENERGY.VIS_TERRA",
+      "topology": "OUT_OF_SCOPE_THAUMCRAFT_COMPAT"
+    },
+    {
+      "aliases": [],
+      "classification": "out_of_scope",
+      "local_energy_type": null,
+      "long_name": "Ignis Vis",
+      "machine_references": {
+        "accepted_by": [],
+        "emitted_by": []
+      },
+      "owner": "OUT_OF_SCOPE",
+      "reason": "Thaumcraft Vis compatibility is outside third-stage scope.",
+      "relations": [
+        "ALL",
+        "ALL_COMSUMPTION_LIMITED",
+        "ALL_HOT_COLD",
+        "ALL_SIZE_IRRELEVANT",
+        "VIS"
+      ],
+      "short_name": "Ignis",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.VIS_IGNIS",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.VIS_IGNIS"
+      },
+      "source_line": 186,
+      "symbol": "VIS_IGNIS",
+      "tag_name": "ENERGY.VIS_IGNIS",
+      "topology": "OUT_OF_SCOPE_THAUMCRAFT_COMPAT"
+    },
+    {
+      "aliases": [],
+      "classification": "out_of_scope",
+      "local_energy_type": null,
+      "long_name": "Perditio Vis",
+      "machine_references": {
+        "accepted_by": [],
+        "emitted_by": []
+      },
+      "owner": "OUT_OF_SCOPE",
+      "reason": "Thaumcraft Vis compatibility is outside third-stage scope.",
+      "relations": [
+        "ALL",
+        "ALL_COMSUMPTION_LIMITED",
+        "ALL_SIZE_IRRELEVANT",
+        "VIS"
+      ],
+      "short_name": "Perditio",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.VIS_PERDITIO",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.VIS_PERDITIO"
+      },
+      "source_line": 188,
+      "symbol": "VIS_PERDITIO",
+      "tag_name": "ENERGY.VIS_PERDITIO",
+      "topology": "OUT_OF_SCOPE_THAUMCRAFT_COMPAT"
+    }
+  ],
+  "schema_version": 1,
+  "source": {
+    "license": "LGPL-3.0-or-later",
+    "repository": "https://github.com/GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "tree_sha1": "a164302f62a326208fd2076de6fb7cdb0b4602ee"
+  },
+  "source_file": {
+    "git_blob_sha1": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+    "path": "src/main/java/gregapi/data/TD.java",
+    "sha256": "25ce8181632bbf7699ccfe2862aac630fda5913dbcd6c326f006158f8cfe4b74"
+  },
+  "source_hashes": {
+    "builder": "ed3ce45ae42140c094bfae0d5d528236266a58601b1595659c1c17024d83d4ee",
+    "machine_denominator_sha256": "79d07cc6c57077f34a3a2189ae45ae9d67d4d82480841161d04d2b8b6a78e03c",
+    "policy": "09f8abc89f8197f7971ea19a55155c1655dbf26b1ef910ccf3b57edd6e27bedf",
+    "source_snapshot_sha256": "4f22c053493bebbe2ef6e8633e476c159fa77813b31313d29cff57be90caee2c"
+  },
+  "status": "T13C_ENERGY_DENOMINATOR_READY"
+}

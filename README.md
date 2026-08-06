@@ -36,9 +36,11 @@ a full 16 KU/t for 128 sustained powered ticks and turns any supported
 144-unit raw-ore form—including vanilla raw copper, iron, and gold—into one
 canonical crushed ore. Blocked outputs and underpowered ticks pause progress.
 
-This slice intentionally keeps power adjacency-only. Boiler pressure
-explosions and calcification, shaft networks, rotational RU machinery, and
-electrical EU/wires/transformers are deferred.
+The original bronze steam slice remains adjacency-based KU, but the project no
+longer defers every other power topology. T12 now separates KU push, RU
+rotation, and EU: electric motors feed rotational axles and gearboxes into
+tiered centrifuges, while EU cables feed tiered electrolyzers. These are
+verified vertical slices rather than claims of complete GT6 energy coverage.
 
 Crucibles retain a material identity under the existing `crucible` item and
 block id. Firing the clay vessel creates a ceramic crucible; surround it with
@@ -63,6 +65,34 @@ first (so bronze drains as bronze), while non-alloy mixtures cannot drain.
 Breaking a crucible preserves only its casing material; contents, temperature,
 stored air, and reaction progress are deliberately not portable.
 
+## Development roadmap
+
+- [Overall rules and architecture](CrucibleCraft-%E6%80%BB%E4%BD%93%E8%A7%84%E5%88%92.md)
+- [Current phase: T13–T19](CrucibleCraft-%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%E6%80%BB%E4%BD%93%E8%A7%84%E5%88%92.md)
+- [Phase 2 closure summary](CrucibleCraft-%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%E6%80%BB%E4%BD%93%E8%A7%84%E5%88%92.md)
+- [T7–T9 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T7-T9.md)
+- [T10–T12 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T10-T12.md)
+- [T13–T16 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T13-T16.md)
+- [T17 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T17.md)
+
+The second phase closed the Kind/Tier, RU/KU/EU, and JSON multiblock
+architecture with selected vertical slices. The third phase has closed T13
+canonical denominators, T14 measured Hybrid recipe materialization, T15
+residual/acquisition evidence, and the T16 RU/KU selected tier batch.
+`T16_READY` means 5 selected kinds across 3 tiers, 2 preimplemented kinds, and
+13 explicitly deferred kinds—not all 20 denominator kinds implemented. Its 15
+machine acquisition recipes are vanilla crafting recipes; GT publication stays
+at zero delta.
+
+T17 is now `T17_READY`: the HU/EU denominator contains 28 kinds with zero
+unclassified, but T17 implements only 3 selected HU kinds across 3 tiers. One
+Electrolyzer kind is a preimplemented EU reference and 24 kinds remain
+explicitly deferred; this is not a claim that all 28 kinds are implemented.
+The nine acquisition recipes are vanilla crafting, while RecipeMap stable ids,
+18,875 logical / 16,650 eager / 2,225 lazy rows, and EMI enumeration remain
+equal to T16 with zero GT publication delta. T18 steam, fuel, and energy
+conversion is the current entry.
+
 ## Development verification
 
 Python verification uses only the standard-library `unittest` runner:
@@ -83,14 +113,23 @@ artifacts are reported as `SKIP`, never as an implicit pass.
 Phase closure and CI use the fail-fast unified entry point:
 
 ```text
-python tools/run_full_verification.py --check
+python tools/run_full_verification.py --check-ready
 python tools/run_full_verification.py --record
+python tools/run_full_verification.py --record --resume
 ```
 
-`--check` runs builder currentness, two datagen passes, Java tests, GameTests,
-Python closure, and validates the committed `READY` report without rewriting
-it. Maintainers use `--record` after the same successful workflow to refresh
-and bind `tools/full_verification_report.json`.
+Use `fast` / `affected` while developing and run one final `--record` closure.
+Do not run a full closure in a child task and then repeat it in the parent task.
+`--resume` reuses only digest-checked evidence from the same tooling snapshot,
+policy, and toolchain; snapshot drift opens a new session. `--check-ready`
+builds the current snapshot and validates the committed `READY` report without
+starting Gradle, GameTest, or Python. The compatible `--check` mode still runs
+the full read-only closure.
+
+The report is replaced atomically only after every step passes. If a late step
+fails, keep the same snapshot, fix the cause, and use `--record --resume`; the
+runner prints each digest-validated heavy step it skips. A final
+`--check-ready` is metadata-only and must not start Gradle.
 
 ## Modpack integration
 
@@ -146,8 +185,13 @@ CrucibleCraftMaterials.add(event => {
 
 Scripts belong in `kubejs/startup_scripts` and require a full restart. Recipe
 JSON can be added with KubeJS's normal `ServerEvents.recipes` and
-`event.custom(...)` API. Anvil recipes support an optional `material` field;
-unknown materials simply produce no matching recipe.
+`event.custom(...)` API. The legacy `cruciblecraft:anvil` and
+`cruciblecraft:crusher` RecipeTypes remain loadable for addon/datapack
+compatibility, but are deprecated for new authored data; new bulk material
+recipes should migrate to `cruciblecraft:material_rule`. They may be removed
+only after an addon/datapack consumer audit, a documented compatibility window,
+and usable migration diagnostics. Legacy anvil recipes support an optional
+`material` field; unknown materials simply produce no matching recipe.
 
 ```js
 ServerEvents.recipes(event => {
@@ -196,9 +240,13 @@ T9 adds `src/main/resources/data/cruciblecraft/worldgen_catalog/ore_veins.json`.
 `src/worldgen_catalog_generated/resources` root. The original eight materials plus
 the T9 batch cover all 137 registered ores without adding a third host:
 the block budget remains 137 × stone/deepslate = 274. The builder also compiles
-finite crude-oil and methane deposits. Each persistent marker records material,
-initial/remaining mB, depth-band placement, and the replaced host; extraction
-equipment remains a T11 responsibility.
+crude-oil and natural-gas deposits. Each persistent marker records material,
+legacy initial/remaining mB, depth-band placement, the replaced host, and an
+independent non-depleting T11 production state. Old methane markers migrate to
+natural gas. A surface extractor links vertically to the marker and exposes an
+extract-only fluid capability; uncaptured gas vents into bounded transient
+clouds. Fixed GT6 rows then drive distillation, natural-gas generification, and
+the two direct-electric fuel generators.
 
 The placed features run once per candidate chunk, but the feature hashes the
 world seed and region coordinates to select exactly one anchor chunk in each

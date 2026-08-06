@@ -70,7 +70,12 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
             engine.markMutation();
         }
         Direction output = state.getValue(SteamEngineBlock.FACING);
-        EnergyEmitter.emit(level, pos, engine, EnergyType.KINETIC, output);
+        EnergyEmitter.emit(
+                level,
+                pos,
+                engine,
+                EnergyType.KINETIC_PUSH,
+                output);
         long phaseKey = CheckpointDecisions.phaseKey(pos.getX(), pos.getY(), pos.getZ());
         if (engine.checkpoint.shouldSync(false, level.getGameTime(), phaseKey, 20)) {
             engine.syncToClient();
@@ -87,7 +92,7 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
     public int steamAmount() { return steam.getFluidAmount(); }
     @Override public boolean handles(EnergyType type, Direction side) {
         Direction front = front();
-        return type == EnergyType.KINETIC
+        return type == EnergyType.KINETIC_PUSH
                 && front != null
                 && MachineSideRules.engineExposesKinetic(front, side);
     }
@@ -136,10 +141,12 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
         return level.getGameTime();
     }
     @Override public long stored(EnergyType type) {
-        return type == EnergyType.KINETIC ? kinetic.stored() : 0L;
+        return type == EnergyType.KINETIC_PUSH
+                ? kinetic.stored()
+                : 0L;
     }
     @Override public long capacity(EnergyType type) {
-        return type == EnergyType.KINETIC ? KU_CAPACITY : 0L;
+        return type == EnergyType.KINETIC_PUSH ? KU_CAPACITY : 0L;
     }
     public long stored() { return kinetic.stored(); }
     public int strokeSign() { return kinetic.strokeSign(); }

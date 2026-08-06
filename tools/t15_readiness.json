@@ -1,0 +1,857 @@
+{
+  "completed_stages": [
+    "T15a",
+    "T15b",
+    "T15c",
+    "T15d",
+    "T15e"
+  ],
+  "currentness": {
+    "completed_stage_sources": {
+      "T15a": {
+        "coke_oven_resource": "452ffeb2516e455eaefad6730dfd7e27643e34858901a114c5e948150687517b",
+        "documentation": "4be00359c3eed12e8d6b8927500e37b13eaf516ce7aeeeaf948ddd4dc4761c1a",
+        "full_verification_reporter": "0c080386406217110b667f0d56a950476837bf864875992ccdf0ae23466b575a",
+        "full_verification_runner": "d472a6d4b75f346d7bc4f73fcabfa5b464c3e34e13081db25663aa5304ac7e2d",
+        "python_test_policy": "c77f9cde3289cd2cea67defa5885d584476b225d65139de176d17726f0a12b07",
+        "t12_closure_builder": "813e777792997f01ffbd298b9dc7c7af27ffccbe91d8aa5ba4c0281316d4f99f",
+        "t14_currentness": "ee6f71a146031d07ab4620b1b2cebdca0d7284708c13e03445db763d946fbb7c"
+      },
+      "T15b": {
+        "large_centrifuge_controller": "5d97bda32340bf3556a617705cb38622ee70629285a73b41e2ce293881524b18",
+        "machine_identity_migration": "735c57a925645193aeeabfcb8538311707c3c78ce12c2fef0a180b0656f03739",
+        "machine_tier_catalog_loader": "374d8b1ce7c42b21efb61a65d1695e0e85960dc87b6b15baa99af05fcf7cd2c6",
+        "machine_tier_catalog_resource": "cc1df2b2d3693203a6ed5246d9887efbf6e89b03576682be748894e69f4e84a5",
+        "processing_identity_integration": "1be3a22a53dfee3a04eda7d55fc8ad7757ac16999c686847410eca7dbe9b0fb6",
+        "t15b_java_test": "262bc2e1c2dae004eb3bfe3fa3ca92bf154723a158332b1358f617d86916ca6e"
+      },
+      "T15c": {
+        "t15c_acquisition_builder": "570236b0d1f31ab9eeb5f20596d53e39b945b8216c61e2e80ed5d19992334e32",
+        "t15c_acquisition_policy": "0cba1d86ce34660a05993370e183dc7438aa2432d83a93206523dfd5be79c1e4",
+        "t15c_java_resource_test": "d7755c038ec74777aa87cbd596ff727299ba3e6c1bfa330ddb52deeb86bcda3b",
+        "t15c_live_recipe_gametest": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848",
+        "t15c_load_currentness_test": "a7cfe572b815dd7f79dca458ec7c7017b2a93bf8cb232c292d6b057d5a105ec3",
+        "t15c_load_projection_input": "70e884582a6f153fe738d15698aa06c16386738bb42de66dd1486de95ae961a8",
+        "t15c_python_test": "461b97c3c7a5a21fdba46a95942f89150be432b3000c0f26047e87b416ef8366"
+      },
+      "T15d": {
+        "t15d_full_verification_reporter": "0c080386406217110b667f0d56a950476837bf864875992ccdf0ae23466b575a",
+        "t15d_full_verification_test": "d385ea362b3446fa651bbd60b68158df75c90590fe9458d971a1245812f8fe03",
+        "t15d_identity_gametest": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848",
+        "t15d_persistence_junit": "a728d39848a8eb40385645061c12d9eb4ae7cc70b973dad4f66aab765cd66498",
+        "t15d_policy_junit": "7593a6513032c56799432acc30b46d07efc4707de1c38ac5a86ca7e2d2df99ea",
+        "t15d_processing_host": "1be3a22a53dfee3a04eda7d55fc8ad7757ac16999c686847410eca7dbe9b0fb6",
+        "t15d_readiness_test": "ecc6a3badc867e762443370b41607894104d018ad0a793a886a8c70065be149d"
+      },
+      "T15e": {
+        "t15e_boundary_builder": "5169054c64e3d4566e11e489682393305b16fff93bddbf9b5b4acdea95a16f6a",
+        "t15e_documentation": "4be00359c3eed12e8d6b8927500e37b13eaf516ce7aeeeaf948ddd4dc4761c1a",
+        "t15e_full_verification_reporter": "0c080386406217110b667f0d56a950476837bf864875992ccdf0ae23466b575a",
+        "t15e_full_verification_runner": "d472a6d4b75f346d7bc4f73fcabfa5b464c3e34e13081db25663aa5304ac7e2d",
+        "t15e_full_verification_test": "d385ea362b3446fa651bbd60b68158df75c90590fe9458d971a1245812f8fe03",
+        "t15e_profile_junit": "262bc2e1c2dae004eb3bfe3fa3ca92bf154723a158332b1358f617d86916ca6e",
+        "t15e_python_test": "f679d3d58b8a6541afdae1e15518ac370917910d3b5429ac2661c007847a683d",
+        "t15e_shared_host_gametest": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848",
+        "t15e_structure_junit": "613ab0ad4a40c33688376d6b7705b11a6d4e7ac8e7e7d7ed51ebb7e104f48603",
+        "t15e_t12_closure_audit": "813e777792997f01ffbd298b9dc7c7af27ffccbe91d8aa5ba4c0281316d4f99f",
+        "t15e_t12_policy_audit": "a790f443d4898cf3599e306530435675e9b9d4abf89ac5b0d6214e6da661de3f"
+      }
+    },
+    "current_dependencies": {
+      "tools/t12_closure_readiness.json": {
+        "owner": "T12",
+        "sha256": "bed9a8d494f452489496bb1e07180285ef7b20fa11afa9e12a8b4c4626e59ea6",
+        "status": "T12_READY"
+      },
+      "tools/t13_denominator_readiness.json": {
+        "owner": "T13",
+        "sha256": "04381613d662c5095dab85d1779b2dfb7e79132f3055d14c8fdc98fe97b7ecac",
+        "status": "T13_READY"
+      },
+      "tools/t14_readiness.json": {
+        "owner": "T14",
+        "sha256": "068c9234a4eafb240d732d7ec12f155c3808227d283aada2c0ce192f00e2fd96",
+        "status": "T14_READY"
+      }
+    },
+    "owned_inputs": {
+      "tools/build_t15_readiness.py": "3f5b9f95a6c1bb0ab051064f4bede875fb9a24d7847a527dc309f56b769e1528",
+      "tools/t15_readiness_policy.json": "d611bc709521463e3239e971f0b4b3610a59aaff329bf283af19516892aa2da4"
+    }
+  },
+  "delivery_boundary": "T15_RESIDUAL_AND_ACQUISITION_EVIDENCE",
+  "historical_immutable_evidence": {
+    "builder": "tools/build_t12_machine_readiness.py",
+    "check": "frozen status/load-status verification only",
+    "current": false,
+    "immutable": true,
+    "load_status": "T12A_PREPROJECTION_READY",
+    "path": "tools/t12a_machine_readiness.json",
+    "sha256": "7a4062b915707b469f14aa1f20e59dc43ad76ce7132c8b323cb0ce53117dc4a2",
+    "status": "T12A_READY"
+  },
+  "pending_stages": [],
+  "schema_version": 1,
+  "source_contracts": {
+    "coke_oven_resource": {
+      "forbidden_tokens": [
+        "t12_machine_readiness.json"
+      ],
+      "path": "src/main/resources/data/cruciblecraft/multiblock_structures/coke_oven.json",
+      "required_tokens": [
+        "t12a_machine_readiness.json#structure_projection.coke_oven",
+        "behavior_migration:NO_BEHAVIOR_DRIFT"
+      ],
+      "sha256": "452ffeb2516e455eaefad6730dfd7e27643e34858901a114c5e948150687517b",
+      "stage": "T15a"
+    },
+    "documentation": {
+      "forbidden_tokens": [],
+      "path": "tools/README.md",
+      "required_tokens": [
+        "t12a_machine_readiness.json",
+        "T15_READY",
+        "T15a-e",
+        "15 physical item/fluid ports",
+        "python tools/build_t15_readiness.py --check"
+      ],
+      "sha256": "4be00359c3eed12e8d6b8927500e37b13eaf516ce7aeeeaf948ddd4dc4761c1a",
+      "stage": "T15a"
+    },
+    "full_verification_reporter": {
+      "forbidden_tokens": [
+        "\"t12_machine_readiness.json\""
+      ],
+      "path": "tools/verify_full_verification_report.py",
+      "required_tokens": [
+        "t12a_machine_readiness.json",
+        "t15_readiness_policy.json",
+        "t15_readiness.json",
+        "build_t15_readiness.py",
+        "t15_machine_acquisition.json",
+        "t15_load_projection.json",
+        "t15_matcher_boundary.json"
+      ],
+      "sha256": "0c080386406217110b667f0d56a950476837bf864875992ccdf0ae23466b575a",
+      "stage": "T15a"
+    },
+    "full_verification_runner": {
+      "forbidden_tokens": [],
+      "path": "tools/verification_builder_policy.json",
+      "required_tokens": [
+        "tools/build_t12_machine_readiness.py",
+        "tools/build_t15_machine_acquisition.py",
+        "tools/build_t15_matcher_boundary.py",
+        "tools/build_t15_readiness.py"
+      ],
+      "sha256": "d472a6d4b75f346d7bc4f73fcabfa5b464c3e34e13081db25663aa5304ac7e2d",
+      "stage": "T15a"
+    },
+    "large_centrifuge_controller": {
+      "forbidden_tokens": [
+        "titanium_centrifuge"
+      ],
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+      "required_tokens": [
+        "MachineTierCatalog.requireControllerProfile",
+        "id(\"large_centrifuge_profile\")",
+        "MachineKindSpec.OverclockPolicy.CHEAP",
+        "ModProcessingMachines.CENTRIFUGE"
+      ],
+      "sha256": "5d97bda32340bf3556a617705cb38622ee70629285a73b41e2ce293881524b18",
+      "stage": "T15b"
+    },
+    "machine_identity_migration": {
+      "forbidden_tokens": [],
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineIdentityMigrations.java",
+      "required_tokens": [
+        "LEGACY_LARGE_CENTRIFUGE_IDENTITY",
+        "ModMachineVariants.require",
+        "\"titanium_centrifuge\"",
+        "titanium.tier().materialId()",
+        "titanium.tier().energyType().name()",
+        "LARGE_CENTRIFUGE_PROFILE_ID",
+        "MachineIdentityPolicy.Migration"
+      ],
+      "sha256": "735c57a925645193aeeabfcb8538311707c3c78ce12c2fef0a180b0656f03739",
+      "stage": "T15b"
+    },
+    "machine_tier_catalog_loader": {
+      "forbidden_tokens": [],
+      "path": "src/main/java/com/masson/cruciblecraft/machine/processing/MachineTierCatalog.java",
+      "required_tokens": [
+        "controllerProfiles()",
+        "requireControllerProfile",
+        "controller_profile_rows",
+        "Machine tier source rows do not cover controller profiles"
+      ],
+      "sha256": "374d8b1ce7c42b21efb61a65d1695e0e85960dc87b6b15baa99af05fcf7cd2c6",
+      "stage": "T15b"
+    },
+    "machine_tier_catalog_resource": {
+      "forbidden_tokens": [],
+      "path": "src/main/resources/data/cruciblecraft/machine_tiers.json",
+      "required_tokens": [
+        "\"controller_profiles\"",
+        "\"cruciblecraft:large_centrifuge_profile\"",
+        "\"inputMinimum\": 512",
+        "\"inputNominal\": 512",
+        "\"inputMaximum\": 4096",
+        "\"energyCapacity\": 4096",
+        "\"parallel\": 16",
+        "\"efficiency\": 5000",
+        "t12a_machine_readiness.json#structure_projection.large_centrifuge"
+      ],
+      "sha256": "cc1df2b2d3693203a6ed5246d9887efbf6e89b03576682be748894e69f4e84a5",
+      "stage": "T15b"
+    },
+    "processing_identity_integration": {
+      "forbidden_tokens": [],
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineBlockEntity.java",
+      "required_tokens": [
+        "ModMachineIdentityMigrations.resolve(variant, state)",
+        "identity.persistedIdentity()",
+        "identity.quarantineReason()",
+        "ModMachineIdentityMigrations.identityOf(variant)"
+      ],
+      "sha256": "1be3a22a53dfee3a04eda7d55fc8ad7757ac16999c686847410eca7dbe9b0fb6",
+      "stage": "T15b"
+    },
+    "python_test_policy": {
+      "forbidden_tokens": [],
+      "path": "tools/python_test_policy.json",
+      "required_tokens": [
+        "tools/t12a_*.json",
+        "tools/build_t15_*.py",
+        "test_build_t15_readiness",
+        "test_build_t15_machine_acquisition"
+      ],
+      "sha256": "c77f9cde3289cd2cea67defa5885d584476b225d65139de176d17726f0a12b07",
+      "stage": "T15a"
+    },
+    "t12_closure_builder": {
+      "forbidden_tokens": [
+        "t12_machine_readiness.json"
+      ],
+      "path": "tools/build_t12_closure_readiness.py",
+      "required_tokens": [
+        "t12a_machine_readiness.json",
+        "immutable historical T12A_READY evidence",
+        "t12a_historical_evidence"
+      ],
+      "sha256": "813e777792997f01ffbd298b9dc7c7af27ffccbe91d8aa5ba4c0281316d4f99f",
+      "stage": "T15a"
+    },
+    "t14_currentness": {
+      "forbidden_tokens": [
+        "t12_machine_readiness.json",
+        "t12a_machine_readiness.json"
+      ],
+      "path": "tools/build_t14_readiness.py",
+      "required_tokens": [
+        "T12 = TOOLS / \"t12_closure_readiness.json\"",
+        "\"currentness\""
+      ],
+      "sha256": "ee6f71a146031d07ab4620b1b2cebdca0d7284708c13e03445db763d946fbb7c",
+      "stage": "T15a"
+    },
+    "t15b_java_test": {
+      "forbidden_tokens": [],
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/T15LargeCentrifugeProfileTest.java",
+      "required_tokens": [
+        "assertEquals(9, ModMachineVariants.ALL.size())",
+        "recipe(4_096L, 40)",
+        "assertEquals(16, parallel.operations())",
+        "assertEquals(5_000, profile.efficiency())",
+        "MachineIdentityPolicy.Resolution.MIGRATED",
+        "MachineIdentityPolicy.Resolution.QUARANTINED"
+      ],
+      "sha256": "262bc2e1c2dae004eb3bfe3fa3ca92bf154723a158332b1358f617d86916ca6e",
+      "stage": "T15b"
+    },
+    "t15c_acquisition_builder": {
+      "forbidden_tokens": [],
+      "path": "tools/build_t15_machine_acquisition.py",
+      "required_tokens": [
+        "T15C_MACHINE_ACQUISITION_READY",
+        "independent_t15c_acceptance_policy",
+        "production_mapping_reused",
+        "validate_recipe_document",
+        "concrete_shaped_recipe",
+        "compact_material_rule",
+        "\"unreachable\": len(unreachable)"
+      ],
+      "sha256": "570236b0d1f31ab9eeb5f20596d53e39b945b8216c61e2e80ed5d19992334e32",
+      "stage": "T15c"
+    },
+    "t15c_acquisition_policy": {
+      "forbidden_tokens": [
+        "ModRecipeProvider"
+      ],
+      "path": "tools/t15_machine_acquisition_policy.json",
+      "required_tokens": [
+        "\"production_mapping_reused\": false",
+        "\"casing_recipes\"",
+        "\"machine_variant_recipes\"",
+        "\"selected_casing\"",
+        "\"registered_survival_source\""
+      ],
+      "sha256": "0cba1d86ce34660a05993370e183dc7438aa2432d83a93206523dfd5be79c1e4",
+      "stage": "T15c"
+    },
+    "t15c_java_resource_test": {
+      "forbidden_tokens": [],
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/T15MachineAcquisitionResourceTest.java",
+      "required_tokens": [
+        "sixCasingRecipesHaveExactStructuresResultsAndRegistrations",
+        "nineVariantRecipesHaveExactStructuresResultsAndRegistrations",
+        "ModMachineVariants.ALL"
+      ],
+      "sha256": "d7755c038ec74777aa87cbd596ff727299ba3e6c1bfa330ddb52deeb86bcda3b",
+      "stage": "T15c"
+    },
+    "t15c_live_recipe_gametest": {
+      "forbidden_tokens": [
+        "Files.isRegularFile"
+      ],
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "machineVariantRecipesExecuteFromLiveRecipeManager",
+        "CraftingInput.of(",
+        "RecipeType.CRAFTING",
+        ".assemble(",
+        "cases.size() == 9"
+      ],
+      "sha256": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848",
+      "stage": "T15c"
+    },
+    "t15c_load_currentness_test": {
+      "forbidden_tokens": [],
+      "path": "tools/tests/test_recipe_load_projection.py",
+      "required_tokens": [
+        "test_committed_t15_projection_is_current_zero_workload",
+        "t15_load_projection_input.json",
+        "t15_load_projection.json"
+      ],
+      "sha256": "a7cfe572b815dd7f79dca458ec7c7017b2a93bf8cb232c292d6b057d5a105ec3",
+      "stage": "T15c"
+    },
+    "t15c_load_projection_input": {
+      "forbidden_tokens": [],
+      "path": "tools/t15_load_projection_input.json",
+      "required_tokens": [
+        "\"delivery_phase\": \"T15\"",
+        "\"kind\": \"zero_workload_fixture\"",
+        "\"authored_entries\": 0",
+        "\"logical_rows\": 0",
+        "\"eager_publication_rows\": 0",
+        "\"lazy_logical_rows\": 0"
+      ],
+      "sha256": "70e884582a6f153fe738d15698aa06c16386738bb42de66dd1486de95ae961a8",
+      "stage": "T15c"
+    },
+    "t15c_python_test": {
+      "forbidden_tokens": [],
+      "path": "tools/tests/test_build_t15_machine_acquisition.py",
+      "required_tokens": [
+        "test_independent_expected_set_locks_six_casings_and_nine_variants",
+        "test_recipe_results_casing_choices_and_operand_closure_are_locked",
+        "test_mutations_fail_closed_on_result_casing_and_source_reachability"
+      ],
+      "sha256": "461b97c3c7a5a21fdba46a95942f89150be432b3000c0f26047e87b416ef8366",
+      "stage": "T15c"
+    },
+    "t15d_full_verification_reporter": {
+      "forbidden_tokens": [],
+      "path": "tools/verify_full_verification_report.py",
+      "required_tokens": [
+        "\"t15d_identity_gate\": document[\"t15d_identity_gate\"]",
+        "current_game_test_count",
+        "GameTest count does not match current sources"
+      ],
+      "sha256": "0c080386406217110b667f0d56a950476837bf864875992ccdf0ae23466b575a",
+      "stage": "T15d"
+    },
+    "t15d_full_verification_test": {
+      "forbidden_tokens": [],
+      "path": "tools/tests/test_full_verification_report.py",
+      "required_tokens": [
+        "self.assertEqual(508, snapshot[\"java_source_test_count\"])",
+        "self.assertEqual(441, snapshot[\"python_test_count\"])",
+        "self.assertEqual(69, MODULE.current_game_test_count())",
+        "t15d_identity_gate"
+      ],
+      "sha256": "d385ea362b3446fa651bbd60b68158df75c90590fe9458d971a1245812f8fe03",
+      "stage": "T15d"
+    },
+    "t15d_identity_gametest": {
+      "forbidden_tokens": [],
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "processingIdentityMismatchesQuarantineAcrossNbtReload",
+        "exactLargeCentrifugeIdentityMigratesAcrossNbtReload",
+        "saveWithoutMetadata(",
+        "loadWithComponents(",
+        "hasMachineIdentity(",
+        "material_quarantined"
+      ],
+      "sha256": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848",
+      "stage": "T15d"
+    },
+    "t15d_persistence_junit": {
+      "forbidden_tokens": [],
+      "path": "src/test/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineIdentityPersistenceTest.java",
+      "required_tokens": [
+        "quarantineReloadStopsProcessingAndPreservesRecoverableState",
+        "exactMigrationReloadResumesAndWritesCurrentIdentityOnNextSave",
+        "restored.processingAllowed()",
+        "clientTagForTest()",
+        "extractItem(",
+        "LEGACY_LARGE_CENTRIFUGE_IDENTITY",
+        "LARGE_CENTRIFUGE_IDENTITY"
+      ],
+      "sha256": "a728d39848a8eb40385645061c12d9eb4ae7cc70b973dad4f66aab765cd66498",
+      "stage": "T15d"
+    },
+    "t15d_policy_junit": {
+      "forbidden_tokens": [],
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineIdentityPolicyTest.java",
+      "required_tokens": [
+        "kindTierMaterialAndEnergyMismatchesAllQuarantine",
+        "onlyExactLegacyLargeCentrifugeTupleMigrates",
+        "MachineIdentityPolicy.Resolution.QUARANTINED",
+        "MachineIdentityPolicy.Resolution.MIGRATED",
+        "assertEquals(nearMiss, decision.persistedIdentity())"
+      ],
+      "sha256": "7593a6513032c56799432acc30b46d07efc4707de1c38ac5a86ca7e2d2df99ea",
+      "stage": "T15d"
+    },
+    "t15d_processing_host": {
+      "forbidden_tokens": [],
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineBlockEntity.java",
+      "required_tokens": [
+        "if (!processingAllowed())",
+        "final boolean processingAllowed()",
+        "materialQuarantine.isEmpty()",
+        "return \"material_quarantined\"",
+        "savedMachineIdentity",
+        "identity.persistedIdentity()"
+      ],
+      "sha256": "1be3a22a53dfee3a04eda7d55fc8ad7757ac16999c686847410eca7dbe9b0fb6",
+      "stage": "T15d"
+    },
+    "t15d_readiness_test": {
+      "forbidden_tokens": [],
+      "path": "tools/tests/test_build_t15_readiness.py",
+      "required_tokens": [
+        "test_t15d_gate_records_identity_regression_matrix",
+        "\"test_count\"], 4",
+        "\"added_test_count\"], 2",
+        "\"full_suite_test_count\"], 56"
+      ],
+      "sha256": "ecc6a3badc867e762443370b41607894104d018ad0a793a886a8c70065be149d",
+      "stage": "T15d"
+    },
+    "t15e_boundary_builder": {
+      "forbidden_tokens": [],
+      "path": "tools/build_t15_matcher_boundary.py",
+      "required_tokens": [
+        "T15E_MATCHER_BOUNDARY_READY",
+        "parse_structure",
+        "parse_centrifuge_spec",
+        "physical_ports_expand_matcher_supplies",
+        "presence_cap_triggered",
+        "benchmark_evidence"
+      ],
+      "sha256": "5169054c64e3d4566e11e489682393305b16fff93bddbf9b5b4acdea95a16f6a",
+      "stage": "T15e"
+    },
+    "t15e_documentation": {
+      "forbidden_tokens": [
+        "16 ports",
+        "6 runtime supplies"
+      ],
+      "path": "tools/README.md",
+      "required_tokens": [
+        "T15_READY",
+        "15 physical item/fluid ports",
+        "one item matcher supply",
+        "python tools/build_t15_matcher_boundary.py --check"
+      ],
+      "sha256": "4be00359c3eed12e8d6b8927500e37b13eaf516ce7aeeeaf948ddd4dc4761c1a",
+      "stage": "T15e"
+    },
+    "t15e_full_verification_reporter": {
+      "forbidden_tokens": [],
+      "path": "tools/verify_full_verification_report.py",
+      "required_tokens": [
+        "t15_matcher_boundary.json",
+        "\"t15e_matcher_boundary_gate\"",
+        "presence_cap_triggered",
+        "physical_ports_expand_matcher_supplies"
+      ],
+      "sha256": "0c080386406217110b667f0d56a950476837bf864875992ccdf0ae23466b575a",
+      "stage": "T15e"
+    },
+    "t15e_full_verification_runner": {
+      "forbidden_tokens": [],
+      "path": "tools/verification_builder_policy.json",
+      "required_tokens": [
+        "tools/build_t15_matcher_boundary.py",
+        "tools/build_t15_readiness.py"
+      ],
+      "sha256": "d472a6d4b75f346d7bc4f73fcabfa5b464c3e34e13081db25663aa5304ac7e2d",
+      "stage": "T15e"
+    },
+    "t15e_full_verification_test": {
+      "forbidden_tokens": [],
+      "path": "tools/tests/test_full_verification_report.py",
+      "required_tokens": [
+        "T15_READY",
+        "t15e_matcher_boundary_gate",
+        "\"item_fluid_ports\"], 15",
+        "\"item_matcher_supplies\"], 1"
+      ],
+      "sha256": "d385ea362b3446fa651bbd60b68158df75c90590fe9458d971a1245812f8fe03",
+      "stage": "T15e"
+    },
+    "t15e_profile_junit": {
+      "forbidden_tokens": [],
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/T15LargeCentrifugeProfileTest.java",
+      "required_tokens": [
+        "physicalPortsBridgeOneSourceDerivedHostLayout",
+        "assertEquals(15, itemFluidPorts)",
+        "assertEquals(1, host.items().inputs().size())",
+        "assertEquals(6, host.items().outputs().size())",
+        "assertEquals(1, host.fluids().inputs().size())",
+        "assertEquals(2, host.fluids().outputs().size())"
+      ],
+      "sha256": "262bc2e1c2dae004eb3bfe3fa3ca92bf154723a158332b1358f617d86916ca6e",
+      "stage": "T15e"
+    },
+    "t15e_python_test": {
+      "forbidden_tokens": [],
+      "path": "tools/tests/test_build_t15_matcher_boundary.py",
+      "required_tokens": [
+        "test_live_structure_derives_fifteen_ports_and_controller",
+        "test_live_centrifuge_spec_derives_host_layout",
+        "test_fifteen_physical_ports_share_one_matcher_host",
+        "test_expected_sixteen_error_is_audited_not_repeated_as_current"
+      ],
+      "sha256": "f679d3d58b8a6541afdae1e15518ac370917910d3b5429ac2661c007847a683d",
+      "stage": "T15e"
+    },
+    "t15e_shared_host_gametest": {
+      "forbidden_tokens": [],
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "largeCentrifugeUsesJsonPortsAndProcessingHost",
+        "itemFluidPorts.size() == 15",
+        "centrifuge.spec().items().inputs().size() == 1",
+        "port.itemHandler().getSlots()",
+        "Fifteen physical ports did not expose one host tank"
+      ],
+      "sha256": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848",
+      "stage": "T15e"
+    },
+    "t15e_structure_junit": {
+      "forbidden_tokens": [],
+      "path": "src/test/java/com/masson/cruciblecraft/content/multiblock/MultiblockStructureDefinitionTest.java",
+      "required_tokens": [
+        "largeCentrifugeMatchesThePinnedGt6SourceShape",
+        "assertEquals(15, definition.portCount(PortType.ITEM_FLUID))",
+        "assertEquals(2, definition.portCount(PortType.ENERGY_INPUT))",
+        "PredicateKind.CONTROLLER"
+      ],
+      "sha256": "613ab0ad4a40c33688376d6b7705b11a6d4e7ac8e7e7d7ed51ebb7e104f48603",
+      "stage": "T15e"
+    },
+    "t15e_t12_closure_audit": {
+      "forbidden_tokens": [
+        "\"large_centrifuge_runtime_supply_count\": 6"
+      ],
+      "path": "tools/build_t12_closure_readiness.py",
+      "required_tokens": [
+        "\"historical_t12_claim\"",
+        "\"current\": False",
+        "\"t15_corrected_authority\"",
+        "\"currentness_claimed_here\": False"
+      ],
+      "sha256": "813e777792997f01ffbd298b9dc7c7af27ffccbe91d8aa5ba4c0281316d4f99f",
+      "stage": "T15e"
+    },
+    "t15e_t12_policy_audit": {
+      "forbidden_tokens": [],
+      "path": "tools/t12_machine_policy.json",
+      "required_tokens": [
+        "\"item_fluid\": 15",
+        "\"controller_count\": 1",
+        "\"historical_expected_item_fluid_ports\": 16",
+        "\"historical_status\": \"SUPERSEDED_INCORRECT_EXPECTATION\"",
+        "failed to subtract the controller",
+        "tools/t15_matcher_boundary.json#physical_structure"
+      ],
+      "sha256": "a790f443d4898cf3599e306530435675e9b9d4abf89ac5b0d6214e6da661de3f",
+      "stage": "T15e"
+    }
+  },
+  "stage_gates": {
+    "T15a": {
+      "acceptance": "Freeze T12a preprojection evidence as history and make tools/t15_readiness.json the only current T15 readiness artifact.",
+      "name": "readiness_single_source_of_truth",
+      "status": "COMPLETE"
+    },
+    "T15b": {
+      "acceptance": "Bind Large Centrifuge to an independent fixed-source RU profile, preserve the nine single-block variants, and migrate only the exact legacy titanium identity tuple.",
+      "name": "large_centrifuge_profile",
+      "status": "COMPLETE"
+    },
+    "T15c": {
+      "acceptance": "Lock six casing and nine machine crafting recipes to registered results, prove every operand through declared sources and the existing concrete/material-rule producer graph, and execute all nine variants through the live RecipeManager.",
+      "name": "existing_variant_acquisition",
+      "status": "COMPLETE"
+    },
+    "T15d": {
+      "acceptance": "Fail closed on isolated kind, tier, material and energy mismatches; retain recoverable machine state and the original bad tuple across reload/save; migrate only the exact legacy Large Centrifuge tuple.",
+      "name": "identity_quarantine",
+      "status": "COMPLETE"
+    },
+    "T15e": {
+      "acceptance": "Derive 15 item/fluid ports, two energy ports and one controller from live structure JSON; derive the shared host's 1 item input, 1 fluid input, 6 item outputs and 2 fluid outputs from ModProcessingMachines.CENTRIFUGE; prove ports do not multiply matcher supplies and the item presence cap 12 is not triggered.",
+      "name": "port_matcher_boundary",
+      "status": "COMPLETE"
+    }
+  },
+  "status": "T15_READY",
+  "supersession": {
+    "current_artifact": "tools/t15_readiness.json",
+    "current_builder": "tools/build_t15_readiness.py",
+    "current_owner": "T15",
+    "historical_artifact": "tools/t12a_machine_readiness.json",
+    "historical_artifact_sha256": "7a4062b915707b469f14aa1f20e59dc43ad76ce7132c8b323cb0ce53117dc4a2",
+    "historical_builder": "tools/build_t12_machine_readiness.py",
+    "historical_check": "python tools/build_t12_machine_readiness.py --check",
+    "historical_currentness_claimed": false,
+    "historical_load_status": "T12A_PREPROJECTION_READY",
+    "historical_status": "T12A_READY",
+    "history_preserved": true,
+    "replacement_condition": "All T15 stages are complete; this artifact is T15_READY."
+  },
+  "t15c_acquisition_gate": {
+    "acquisition": {
+      "counts": {
+        "casing_recipes": 6,
+        "machine_variant_recipes": 9,
+        "registered_results": 15,
+        "unreachable": 0
+      },
+      "path": "tools/t15_machine_acquisition.json",
+      "sha256": "13c90e08964713631dd62e4c67368b98a0840a331146ccc1fbbf6d37dea2828a"
+    },
+    "load_projection": {
+      "delivery_phase": "T15",
+      "incremental_counts": {
+        "datapack_authored_entries": 0,
+        "eager_publication_rows": 0,
+        "lazy_cache_ceiling_rows": 0,
+        "lazy_logical_rows": 0,
+        "logical_rows": 0,
+        "sync_bytes": 0
+      },
+      "input": "tools/t15_load_projection_input.json",
+      "input_sha256": "70e884582a6f153fe738d15698aa06c16386738bb42de66dd1486de95ae961a8",
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 0,
+          "min": 0
+        },
+        "client_index_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "client_reload_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "lookup_candidate_count": {
+          "max": 0,
+          "min": 0
+        },
+        "lookup_p95_ns": {
+          "max": 0,
+          "min": 0
+        },
+        "retained_memory_bytes": {
+          "max": 0,
+          "min": 0
+        },
+        "server_index_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "server_reload_ms": {
+          "max": 0,
+          "min": 0
+        }
+      },
+      "output": "tools/t15_load_projection.json",
+      "output_sha256": "57dc189e94e3ec599111b98da7495ab2f304cefeca4f2fd7bc5f34c5bbd08291",
+      "publication_delta": 0,
+      "status": "PASS"
+    },
+    "status": "PASS"
+  },
+  "t15d_identity_gate": {
+    "gametest": {
+      "added_test_count": 2,
+      "full_suite_test_count": 56,
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "tests": [
+        "processingIdentityMismatchesQuarantineAcrossNbtReload",
+        "exactLargeCentrifugeIdentityMigratesAcrossNbtReload"
+      ]
+    },
+    "junit": {
+      "classes": [
+        {
+          "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineIdentityPolicyTest.java",
+          "tests": [
+            "kindTierMaterialAndEnergyMismatchesAllQuarantine",
+            "onlyExactLegacyLargeCentrifugeTupleMigrates"
+          ]
+        },
+        {
+          "path": "src/test/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineIdentityPersistenceTest.java",
+          "tests": [
+            "quarantineReloadStopsProcessingAndPreservesRecoverableState",
+            "exactMigrationReloadResumesAndWritesCurrentIdentityOnNextSave"
+          ]
+        }
+      ],
+      "test_count": 4
+    },
+    "source_contract_sha256": {
+      "t15d_full_verification_reporter": "0c080386406217110b667f0d56a950476837bf864875992ccdf0ae23466b575a",
+      "t15d_full_verification_test": "d385ea362b3446fa651bbd60b68158df75c90590fe9458d971a1245812f8fe03",
+      "t15d_identity_gametest": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848",
+      "t15d_persistence_junit": "a728d39848a8eb40385645061c12d9eb4ae7cc70b973dad4f66aab765cd66498",
+      "t15d_policy_junit": "7593a6513032c56799432acc30b46d07efc4707de1c38ac5a86ca7e2d2df99ea",
+      "t15d_processing_host": "1be3a22a53dfee3a04eda7d55fc8ad7757ac16999c686847410eca7dbe9b0fb6",
+      "t15d_readiness_test": "ecc6a3badc867e762443370b41607894104d018ad0a793a886a8c70065be149d"
+    },
+    "status": "PASS"
+  },
+  "t15e_matcher_boundary_gate": {
+    "artifact": {
+      "path": "tools/t15_matcher_boundary.json",
+      "sha256": "9f9d0c22c6c2556ee983c787de5aa49a011f2d11e9faa084c0d0c7df7ff5b308",
+      "status": "T15E_MATCHER_BOUNDARY_READY"
+    },
+    "benchmark": {
+      "all_within_budget": true,
+      "dense_supply_counts": [
+        12,
+        16,
+        32,
+        64
+      ],
+      "harness": "src/test/java/com/masson/cruciblecraft/recipe/gt/CapacityMatcherBenchmarkHarness.java",
+      "harness_sha256": "37e9b2676be7e6c37258d9350bbcdb203e7fadd10ca12a8a80b839968e954f27",
+      "matcher": "src/main/java/com/masson/cruciblecraft/recipe/gt/CapacityMatcher.java",
+      "matcher_rewritten": false,
+      "matcher_sha256": "d75db571d60b708d070a132c730b2f26e05ae0a70e9b21e9ad4b39def2e11e35",
+      "path": "tools/t12_capacity_matcher_benchmark.json",
+      "presence_cap_rejection_supply_counts": [
+        16,
+        32,
+        64
+      ],
+      "sha256": "5d8cf9583bb39df1be5fd2baf7b2f26e9cbc33c4025661114f3bcbe62a18d98b",
+      "status": "T12A_BENCHMARK_READY"
+    },
+    "gametest": {
+      "full_suite_test_count": 56,
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "strengthened_test_count": 1,
+      "tests": [
+        "largeCentrifugeUsesJsonPortsAndProcessingHost"
+      ]
+    },
+    "historical_correction_audit": {
+      "corrected_authority": "tools/t15_matcher_boundary.json#physical_structure",
+      "correction": "The live large_centrifuge.json structure is 18 cells = 15 item/fluid + 2 energy + 1 controller; current evidence is parser-derived rather than copied from the historical expectation.",
+      "error": "The old expected 16 counted every non-energy cell as an item/fluid port and failed to subtract the controller at offset [0,0,0].",
+      "historical_expected_item_fluid_ports": 16,
+      "historical_status": "SUPERSEDED_INCORRECT_EXPECTATION",
+      "owner": "T15e",
+      "policy": "tools/t12_machine_policy.json",
+      "policy_sha256": "a790f443d4898cf3599e306530435675e9b9d4abf89ac5b0d6214e6da661de3f"
+    },
+    "host_layout": {
+      "fluid_input_capacity": 4000,
+      "fluid_inputs": 1,
+      "fluid_output_capacity": 8000,
+      "fluid_outputs": 2,
+      "fluid_tanks": 3,
+      "item_inputs": 1,
+      "item_outputs": 6,
+      "item_slots": 7,
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+      "sha256": "a27476dbc406dbb874590cc8689cd31ab01812a7660a4a9e91225536845694e8"
+    },
+    "junit": {
+      "classes": [
+        {
+          "path": "src/test/java/com/masson/cruciblecraft/content/multiblock/MultiblockStructureDefinitionTest.java",
+          "tests": [
+            "largeCentrifugeMatchesThePinnedGt6SourceShape"
+          ]
+        },
+        {
+          "path": "src/test/java/com/masson/cruciblecraft/machine/processing/T15LargeCentrifugeProfileTest.java",
+          "tests": [
+            "physicalPortsBridgeOneSourceDerivedHostLayout"
+          ]
+        }
+      ],
+      "test_count": 2
+    },
+    "matcher_boundary": {
+      "current_item_supply_count": 1,
+      "decision": "Keep the current matcher: one source-derived item input supply does not trigger the presence-only cap of 12.",
+      "matcher_rewritten": false,
+      "presence_cap_triggered": false,
+      "presence_item_supply_cap": 12
+    },
+    "physical_structure": {
+      "controllers": 1,
+      "energy_input_ports": 2,
+      "item_fluid_ports": 15,
+      "path": "src/main/resources/data/cruciblecraft/multiblock_structures/large_centrifuge.json",
+      "scan_volume": 18,
+      "sha256": "b1e2799d9bf6eddea50c07b4deea1c51ffeec06fd947a2aad30ab6029232b21d"
+    },
+    "port_host_boundary": {
+      "fluid_matcher_supplies": 1,
+      "item_matcher_supplies": 1,
+      "physical_item_fluid_ports": 15,
+      "physical_ports_expand_matcher_supplies": false,
+      "relationship": "15 physical item/fluid ports bridge one shared host inventory; matcher supplies are the host's 1 item input and 1 fluid input.",
+      "shared_processing_hosts": 1
+    },
+    "source_contract_sha256": {
+      "t15e_boundary_builder": "5169054c64e3d4566e11e489682393305b16fff93bddbf9b5b4acdea95a16f6a",
+      "t15e_documentation": "4be00359c3eed12e8d6b8927500e37b13eaf516ce7aeeeaf948ddd4dc4761c1a",
+      "t15e_full_verification_reporter": "0c080386406217110b667f0d56a950476837bf864875992ccdf0ae23466b575a",
+      "t15e_full_verification_runner": "d472a6d4b75f346d7bc4f73fcabfa5b464c3e34e13081db25663aa5304ac7e2d",
+      "t15e_full_verification_test": "d385ea362b3446fa651bbd60b68158df75c90590fe9458d971a1245812f8fe03",
+      "t15e_profile_junit": "262bc2e1c2dae004eb3bfe3fa3ca92bf154723a158332b1358f617d86916ca6e",
+      "t15e_python_test": "f679d3d58b8a6541afdae1e15518ac370917910d3b5429ac2661c007847a683d",
+      "t15e_shared_host_gametest": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848",
+      "t15e_structure_junit": "613ab0ad4a40c33688376d6b7705b11a6d4e7ac8e7e7d7ed51ebb7e104f48603",
+      "t15e_t12_closure_audit": "813e777792997f01ffbd298b9dc7c7af27ffccbe91d8aa5ba4c0281316d4f99f",
+      "t15e_t12_policy_audit": "a790f443d4898cf3599e306530435675e9b9d4abf89ac5b0d6214e6da661de3f"
+    },
+    "status": "PASS"
+  }
+}

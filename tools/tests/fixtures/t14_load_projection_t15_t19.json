@@ -1,0 +1,317 @@
+{
+  "schema_version": 1,
+  "status": "T14D_ZERO_WORKLOAD_EXAMPLE_FIXTURES",
+  "description": "Executable T15-T19 template examples. Every count and cost is zero so these fixtures demonstrate the contract without projecting a new recipe.",
+  "fixtures": [
+    {
+      "schema_version": 1,
+      "status": "FAMILY_LOAD_PROJECTION_INPUT",
+      "projection_id": "t15/example-no-new-recipes",
+      "delivery_phase": "T15",
+      "families": [
+        {
+          "family": "t15/example-extruder",
+          "canonical_ids": [
+            "gt.recipe.extruder"
+          ],
+          "strategy": "immediate",
+          "authored_entries": 0,
+          "logical_rows": 0,
+          "eager_publication_rows": 0,
+          "lazy_logical_rows": 0,
+          "lazy_cache_ceiling_rows": 0,
+          "sync_bytes": 0,
+          "measurement_basis": {
+            "kind": "zero_workload_fixture",
+            "source": "T15 template only; no recipe or runtime cost is projected.",
+            "measured_logical_rows": [
+              0
+            ]
+          },
+          "measurement_intervals": {
+            "server_reload_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "server_index_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "client_reload_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "client_index_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "retained_memory_bytes": {
+              "min": 0,
+              "max": 0
+            },
+            "allocation_bytes": {
+              "min": 0,
+              "max": 0
+            },
+            "lookup_p95_ns": {
+              "min": 0,
+              "max": 0
+            },
+            "lookup_candidate_count": {
+              "min": 0,
+              "max": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "status": "FAMILY_LOAD_PROJECTION_INPUT",
+      "projection_id": "t16/example-no-new-recipes",
+      "delivery_phase": "T16",
+      "families": [
+        {
+          "family": "t16/example-lathe",
+          "canonical_ids": [
+            "gt.recipe.lathe"
+          ],
+          "strategy": "on_demand",
+          "authored_entries": 0,
+          "logical_rows": 0,
+          "eager_publication_rows": 0,
+          "lazy_logical_rows": 0,
+          "lazy_cache_ceiling_rows": 0,
+          "sync_bytes": 0,
+          "measurement_basis": {
+            "kind": "zero_workload_fixture",
+            "source": "T16 template only; no recipe or runtime cost is projected.",
+            "measured_logical_rows": [
+              0
+            ]
+          },
+          "measurement_intervals": {
+            "server_reload_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "server_index_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "client_reload_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "client_index_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "retained_memory_bytes": {
+              "min": 0,
+              "max": 0
+            },
+            "allocation_bytes": {
+              "min": 0,
+              "max": 0
+            },
+            "lookup_p95_ns": {
+              "min": 0,
+              "max": 0
+            },
+            "lookup_candidate_count": {
+              "min": 0,
+              "max": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "status": "FAMILY_LOAD_PROJECTION_INPUT",
+      "projection_id": "t17/example-no-new-recipes",
+      "delivery_phase": "T17",
+      "families": [
+        {
+          "family": "t17/example-mixer",
+          "canonical_ids": [
+            "gt.recipe.mixer"
+          ],
+          "strategy": "hybrid",
+          "authored_entries": 0,
+          "logical_rows": 0,
+          "eager_publication_rows": 0,
+          "lazy_logical_rows": 0,
+          "lazy_cache_ceiling_rows": 0,
+          "sync_bytes": 0,
+          "measurement_basis": {
+            "kind": "zero_workload_fixture",
+            "source": "T17 template only; no recipe or runtime cost is projected.",
+            "measured_logical_rows": [
+              0
+            ]
+          },
+          "measurement_intervals": {
+            "server_reload_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "server_index_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "client_reload_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "client_index_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "retained_memory_bytes": {
+              "min": 0,
+              "max": 0
+            },
+            "allocation_bytes": {
+              "min": 0,
+              "max": 0
+            },
+            "lookup_p95_ns": {
+              "min": 0,
+              "max": 0
+            },
+            "lookup_candidate_count": {
+              "min": 0,
+              "max": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "status": "FAMILY_LOAD_PROJECTION_INPUT",
+      "projection_id": "t18/example-no-new-recipes",
+      "delivery_phase": "T18",
+      "families": [
+        {
+          "family": "t18/example-distillery",
+          "canonical_ids": [
+            "gt.recipe.distillery"
+          ],
+          "strategy": "immediate",
+          "authored_entries": 0,
+          "logical_rows": 0,
+          "eager_publication_rows": 0,
+          "lazy_logical_rows": 0,
+          "lazy_cache_ceiling_rows": 0,
+          "sync_bytes": 0,
+          "measurement_basis": {
+            "kind": "zero_workload_fixture",
+            "source": "T18 template only; no recipe or runtime cost is projected.",
+            "measured_logical_rows": [
+              0
+            ]
+          },
+          "measurement_intervals": {
+            "server_reload_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "server_index_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "client_reload_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "client_index_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "retained_memory_bytes": {
+              "min": 0,
+              "max": 0
+            },
+            "allocation_bytes": {
+              "min": 0,
+              "max": 0
+            },
+            "lookup_p95_ns": {
+              "min": 0,
+              "max": 0
+            },
+            "lookup_candidate_count": {
+              "min": 0,
+              "max": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "status": "FAMILY_LOAD_PROJECTION_INPUT",
+      "projection_id": "t19/example-no-new-recipes",
+      "delivery_phase": "T19",
+      "families": [
+        {
+          "family": "t19/example-fuel",
+          "canonical_ids": [
+            "gt.recipe.fuels.gas"
+          ],
+          "strategy": "on_demand",
+          "authored_entries": 0,
+          "logical_rows": 0,
+          "eager_publication_rows": 0,
+          "lazy_logical_rows": 0,
+          "lazy_cache_ceiling_rows": 0,
+          "sync_bytes": 0,
+          "measurement_basis": {
+            "kind": "zero_workload_fixture",
+            "source": "T19 template only; no recipe or runtime cost is projected.",
+            "measured_logical_rows": [
+              0
+            ]
+          },
+          "measurement_intervals": {
+            "server_reload_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "server_index_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "client_reload_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "client_index_ms": {
+              "min": 0,
+              "max": 0
+            },
+            "retained_memory_bytes": {
+              "min": 0,
+              "max": 0
+            },
+            "allocation_bytes": {
+              "min": 0,
+              "max": 0
+            },
+            "lookup_p95_ns": {
+              "min": 0,
+              "max": 0
+            },
+            "lookup_candidate_count": {
+              "min": 0,
+              "max": 0
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

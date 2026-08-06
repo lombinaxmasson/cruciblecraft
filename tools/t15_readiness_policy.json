@@ -1,0 +1,578 @@
+{
+  "schema_version": 1,
+  "delivery_boundary": "T15_RESIDUAL_AND_ACQUISITION_EVIDENCE",
+  "status_policy": {
+    "in_progress": "T15_IN_PROGRESS",
+    "ready": "T15_READY",
+    "complete_stage_status": "COMPLETE",
+    "pending_stage_status": "PENDING"
+  },
+  "dependencies": {
+    "T12": {
+      "path": "tools/t12_closure_readiness.json",
+      "required_status": "T12_READY"
+    },
+    "T13": {
+      "path": "tools/t13_denominator_readiness.json",
+      "required_status": "T13_READY"
+    },
+    "T14": {
+      "path": "tools/t14_readiness.json",
+      "required_status": "T14_READY"
+    }
+  },
+  "stages": {
+    "T15a": {
+      "name": "readiness_single_source_of_truth",
+      "status": "COMPLETE",
+      "acceptance": "Freeze T12a preprojection evidence as history and make tools/t15_readiness.json the only current T15 readiness artifact."
+    },
+    "T15b": {
+      "name": "large_centrifuge_profile",
+      "status": "COMPLETE",
+      "acceptance": "Bind Large Centrifuge to an independent fixed-source RU profile, preserve the nine single-block variants, and migrate only the exact legacy titanium identity tuple."
+    },
+    "T15c": {
+      "name": "existing_variant_acquisition",
+      "status": "COMPLETE",
+      "acceptance": "Lock six casing and nine machine crafting recipes to registered results, prove every operand through declared sources and the existing concrete/material-rule producer graph, and execute all nine variants through the live RecipeManager."
+    },
+    "T15d": {
+      "name": "identity_quarantine",
+      "status": "COMPLETE",
+      "acceptance": "Fail closed on isolated kind, tier, material and energy mismatches; retain recoverable machine state and the original bad tuple across reload/save; migrate only the exact legacy Large Centrifuge tuple."
+    },
+    "T15e": {
+      "name": "port_matcher_boundary",
+      "status": "COMPLETE",
+      "acceptance": "Derive 15 item/fluid ports, two energy ports and one controller from live structure JSON; derive the shared host's 1 item input, 1 fluid input, 6 item outputs and 2 fluid outputs from ModProcessingMachines.CENTRIFUGE; prove ports do not multiply matcher supplies and the item presence cap 12 is not triggered."
+    }
+  },
+  "t15d_evidence": {
+    "junit": {
+      "test_count": 4,
+      "classes": [
+        {
+          "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineIdentityPolicyTest.java",
+          "tests": [
+            "kindTierMaterialAndEnergyMismatchesAllQuarantine",
+            "onlyExactLegacyLargeCentrifugeTupleMigrates"
+          ]
+        },
+        {
+          "path": "src/test/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineIdentityPersistenceTest.java",
+          "tests": [
+            "quarantineReloadStopsProcessingAndPreservesRecoverableState",
+            "exactMigrationReloadResumesAndWritesCurrentIdentityOnNextSave"
+          ]
+        }
+      ]
+    },
+    "gametest": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "added_test_count": 2,
+      "full_suite_test_count": 56,
+      "tests": [
+        "processingIdentityMismatchesQuarantineAcrossNbtReload",
+        "exactLargeCentrifugeIdentityMigratesAcrossNbtReload"
+      ]
+    },
+    "source_contracts": [
+      "t15d_processing_host",
+      "t15d_policy_junit",
+      "t15d_persistence_junit",
+      "t15d_identity_gametest",
+      "t15d_readiness_test",
+      "t15d_full_verification_reporter",
+      "t15d_full_verification_test"
+    ]
+  },
+  "t15e_evidence": {
+    "junit": {
+      "test_count": 2,
+      "classes": [
+        {
+          "path": "src/test/java/com/masson/cruciblecraft/content/multiblock/MultiblockStructureDefinitionTest.java",
+          "tests": [
+            "largeCentrifugeMatchesThePinnedGt6SourceShape"
+          ]
+        },
+        {
+          "path": "src/test/java/com/masson/cruciblecraft/machine/processing/T15LargeCentrifugeProfileTest.java",
+          "tests": [
+            "physicalPortsBridgeOneSourceDerivedHostLayout"
+          ]
+        }
+      ]
+    },
+    "gametest": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "strengthened_test_count": 1,
+      "full_suite_test_count": 56,
+      "tests": [
+        "largeCentrifugeUsesJsonPortsAndProcessingHost"
+      ]
+    },
+    "source_contracts": [
+      "t15e_boundary_builder",
+      "t15e_python_test",
+      "t15e_structure_junit",
+      "t15e_profile_junit",
+      "t15e_shared_host_gametest",
+      "t15e_t12_policy_audit",
+      "t15e_t12_closure_audit",
+      "t15e_full_verification_runner",
+      "t15e_full_verification_reporter",
+      "t15e_full_verification_test",
+      "t15e_documentation"
+    ]
+  },
+  "supersession": {
+    "historical_artifact": "tools/t12a_machine_readiness.json",
+    "historical_status": "T12A_READY",
+    "historical_load_status": "T12A_PREPROJECTION_READY",
+    "historical_builder": "tools/build_t12_machine_readiness.py",
+    "historical_check": "python tools/build_t12_machine_readiness.py --check",
+    "current_artifact": "tools/t15_readiness.json",
+    "current_builder": "tools/build_t15_readiness.py",
+    "current_owner": "T15",
+    "history_preserved": true,
+    "historical_currentness_claimed": false
+  },
+  "source_contracts": {
+    "t12_closure_builder": {
+      "stage": "T15a",
+      "path": "tools/build_t12_closure_readiness.py",
+      "required_tokens": [
+        "t12a_machine_readiness.json",
+        "immutable historical T12A_READY evidence",
+        "t12a_historical_evidence"
+      ],
+      "forbidden_tokens": [
+        "t12_machine_readiness.json"
+      ]
+    },
+    "coke_oven_resource": {
+      "stage": "T15a",
+      "path": "src/main/resources/data/cruciblecraft/multiblock_structures/coke_oven.json",
+      "required_tokens": [
+        "t12a_machine_readiness.json#structure_projection.coke_oven",
+        "behavior_migration:NO_BEHAVIOR_DRIFT"
+      ],
+      "forbidden_tokens": [
+        "t12_machine_readiness.json"
+      ]
+    },
+    "t14_currentness": {
+      "stage": "T15a",
+      "path": "tools/build_t14_readiness.py",
+      "required_tokens": [
+        "T12 = TOOLS / \"t12_closure_readiness.json\"",
+        "\"currentness\""
+      ],
+      "forbidden_tokens": [
+        "t12_machine_readiness.json",
+        "t12a_machine_readiness.json"
+      ]
+    },
+    "python_test_policy": {
+      "stage": "T15a",
+      "path": "tools/python_test_policy.json",
+      "required_tokens": [
+        "tools/t12a_*.json",
+        "tools/build_t15_*.py",
+        "test_build_t15_readiness",
+        "test_build_t15_machine_acquisition"
+      ]
+    },
+    "full_verification_runner": {
+      "stage": "T15a",
+      "path": "tools/verification_builder_policy.json",
+      "required_tokens": [
+        "tools/build_t12_machine_readiness.py",
+        "tools/build_t15_machine_acquisition.py",
+        "tools/build_t15_matcher_boundary.py",
+        "tools/build_t15_readiness.py"
+      ]
+    },
+    "full_verification_reporter": {
+      "stage": "T15a",
+      "path": "tools/verify_full_verification_report.py",
+      "required_tokens": [
+        "t12a_machine_readiness.json",
+        "t15_readiness_policy.json",
+        "t15_readiness.json",
+        "build_t15_readiness.py",
+        "t15_machine_acquisition.json",
+        "t15_load_projection.json",
+        "t15_matcher_boundary.json"
+      ],
+      "forbidden_tokens": [
+        "\"t12_machine_readiness.json\""
+      ]
+    },
+    "documentation": {
+      "stage": "T15a",
+      "path": "tools/README.md",
+      "required_tokens": [
+        "t12a_machine_readiness.json",
+        "T15_READY",
+        "T15a-e",
+        "15 physical item/fluid ports",
+        "python tools/build_t15_readiness.py --check"
+      ]
+    },
+    "machine_tier_catalog_resource": {
+      "stage": "T15b",
+      "path": "src/main/resources/data/cruciblecraft/machine_tiers.json",
+      "required_tokens": [
+        "\"controller_profiles\"",
+        "\"cruciblecraft:large_centrifuge_profile\"",
+        "\"inputMinimum\": 512",
+        "\"inputNominal\": 512",
+        "\"inputMaximum\": 4096",
+        "\"energyCapacity\": 4096",
+        "\"parallel\": 16",
+        "\"efficiency\": 5000",
+        "t12a_machine_readiness.json#structure_projection.large_centrifuge"
+      ]
+    },
+    "machine_tier_catalog_loader": {
+      "stage": "T15b",
+      "path": "src/main/java/com/masson/cruciblecraft/machine/processing/MachineTierCatalog.java",
+      "required_tokens": [
+        "controllerProfiles()",
+        "requireControllerProfile",
+        "controller_profile_rows",
+        "Machine tier source rows do not cover controller profiles"
+      ]
+    },
+    "large_centrifuge_controller": {
+      "stage": "T15b",
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
+      "required_tokens": [
+        "MachineTierCatalog.requireControllerProfile",
+        "id(\"large_centrifuge_profile\")",
+        "MachineKindSpec.OverclockPolicy.CHEAP",
+        "ModProcessingMachines.CENTRIFUGE"
+      ],
+      "forbidden_tokens": [
+        "titanium_centrifuge"
+      ]
+    },
+    "machine_identity_migration": {
+      "stage": "T15b",
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineIdentityMigrations.java",
+      "required_tokens": [
+        "LEGACY_LARGE_CENTRIFUGE_IDENTITY",
+        "ModMachineVariants.require",
+        "\"titanium_centrifuge\"",
+        "titanium.tier().materialId()",
+        "titanium.tier().energyType().name()",
+        "LARGE_CENTRIFUGE_PROFILE_ID",
+        "MachineIdentityPolicy.Migration"
+      ]
+    },
+    "processing_identity_integration": {
+      "stage": "T15b",
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineBlockEntity.java",
+      "required_tokens": [
+        "ModMachineIdentityMigrations.resolve(variant, state)",
+        "identity.persistedIdentity()",
+        "identity.quarantineReason()",
+        "ModMachineIdentityMigrations.identityOf(variant)"
+      ]
+    },
+    "t15b_java_test": {
+      "stage": "T15b",
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/T15LargeCentrifugeProfileTest.java",
+      "required_tokens": [
+        "assertEquals(9, ModMachineVariants.ALL.size())",
+        "recipe(4_096L, 40)",
+        "assertEquals(16, parallel.operations())",
+        "assertEquals(5_000, profile.efficiency())",
+        "MachineIdentityPolicy.Resolution.MIGRATED",
+        "MachineIdentityPolicy.Resolution.QUARANTINED"
+      ]
+    },
+    "t15c_acquisition_builder": {
+      "stage": "T15c",
+      "path": "tools/build_t15_machine_acquisition.py",
+      "required_tokens": [
+        "T15C_MACHINE_ACQUISITION_READY",
+        "independent_t15c_acceptance_policy",
+        "production_mapping_reused",
+        "validate_recipe_document",
+        "concrete_shaped_recipe",
+        "compact_material_rule",
+        "\"unreachable\": len(unreachable)"
+      ]
+    },
+    "t15c_acquisition_policy": {
+      "stage": "T15c",
+      "path": "tools/t15_machine_acquisition_policy.json",
+      "required_tokens": [
+        "\"production_mapping_reused\": false",
+        "\"casing_recipes\"",
+        "\"machine_variant_recipes\"",
+        "\"selected_casing\"",
+        "\"registered_survival_source\""
+      ],
+      "forbidden_tokens": [
+        "ModRecipeProvider"
+      ]
+    },
+    "t15c_python_test": {
+      "stage": "T15c",
+      "path": "tools/tests/test_build_t15_machine_acquisition.py",
+      "required_tokens": [
+        "test_independent_expected_set_locks_six_casings_and_nine_variants",
+        "test_recipe_results_casing_choices_and_operand_closure_are_locked",
+        "test_mutations_fail_closed_on_result_casing_and_source_reachability"
+      ]
+    },
+    "t15c_java_resource_test": {
+      "stage": "T15c",
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/T15MachineAcquisitionResourceTest.java",
+      "required_tokens": [
+        "sixCasingRecipesHaveExactStructuresResultsAndRegistrations",
+        "nineVariantRecipesHaveExactStructuresResultsAndRegistrations",
+        "ModMachineVariants.ALL"
+      ]
+    },
+    "t15c_live_recipe_gametest": {
+      "stage": "T15c",
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "machineVariantRecipesExecuteFromLiveRecipeManager",
+        "CraftingInput.of(",
+        "RecipeType.CRAFTING",
+        ".assemble(",
+        "cases.size() == 9"
+      ],
+      "forbidden_tokens": [
+        "Files.isRegularFile"
+      ]
+    },
+    "t15c_load_projection_input": {
+      "stage": "T15c",
+      "path": "tools/t15_load_projection_input.json",
+      "required_tokens": [
+        "\"delivery_phase\": \"T15\"",
+        "\"kind\": \"zero_workload_fixture\"",
+        "\"authored_entries\": 0",
+        "\"logical_rows\": 0",
+        "\"eager_publication_rows\": 0",
+        "\"lazy_logical_rows\": 0"
+      ]
+    },
+    "t15c_load_currentness_test": {
+      "stage": "T15c",
+      "path": "tools/tests/test_recipe_load_projection.py",
+      "required_tokens": [
+        "test_committed_t15_projection_is_current_zero_workload",
+        "t15_load_projection_input.json",
+        "t15_load_projection.json"
+      ]
+    },
+    "t15d_processing_host": {
+      "stage": "T15d",
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineBlockEntity.java",
+      "required_tokens": [
+        "if (!processingAllowed())",
+        "final boolean processingAllowed()",
+        "materialQuarantine.isEmpty()",
+        "return \"material_quarantined\"",
+        "savedMachineIdentity",
+        "identity.persistedIdentity()"
+      ]
+    },
+    "t15d_policy_junit": {
+      "stage": "T15d",
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineIdentityPolicyTest.java",
+      "required_tokens": [
+        "kindTierMaterialAndEnergyMismatchesAllQuarantine",
+        "onlyExactLegacyLargeCentrifugeTupleMigrates",
+        "MachineIdentityPolicy.Resolution.QUARANTINED",
+        "MachineIdentityPolicy.Resolution.MIGRATED",
+        "assertEquals(nearMiss, decision.persistedIdentity())"
+      ]
+    },
+    "t15d_persistence_junit": {
+      "stage": "T15d",
+      "path": "src/test/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineIdentityPersistenceTest.java",
+      "required_tokens": [
+        "quarantineReloadStopsProcessingAndPreservesRecoverableState",
+        "exactMigrationReloadResumesAndWritesCurrentIdentityOnNextSave",
+        "restored.processingAllowed()",
+        "clientTagForTest()",
+        "extractItem(",
+        "LEGACY_LARGE_CENTRIFUGE_IDENTITY",
+        "LARGE_CENTRIFUGE_IDENTITY"
+      ]
+    },
+    "t15d_identity_gametest": {
+      "stage": "T15d",
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "processingIdentityMismatchesQuarantineAcrossNbtReload",
+        "exactLargeCentrifugeIdentityMigratesAcrossNbtReload",
+        "saveWithoutMetadata(",
+        "loadWithComponents(",
+        "hasMachineIdentity(",
+        "material_quarantined"
+      ]
+    },
+    "t15d_readiness_test": {
+      "stage": "T15d",
+      "path": "tools/tests/test_build_t15_readiness.py",
+      "required_tokens": [
+        "test_t15d_gate_records_identity_regression_matrix",
+        "\"test_count\"], 4",
+        "\"added_test_count\"], 2",
+        "\"full_suite_test_count\"], 56"
+      ]
+    },
+    "t15d_full_verification_reporter": {
+      "stage": "T15d",
+      "path": "tools/verify_full_verification_report.py",
+      "required_tokens": [
+        "\"t15d_identity_gate\": document[\"t15d_identity_gate\"]",
+        "current_game_test_count",
+        "GameTest count does not match current sources"
+      ]
+    },
+    "t15d_full_verification_test": {
+      "stage": "T15d",
+      "path": "tools/tests/test_full_verification_report.py",
+      "required_tokens": [
+        "self.assertEqual(508, snapshot[\"java_source_test_count\"])",
+        "self.assertEqual(441, snapshot[\"python_test_count\"])",
+        "self.assertEqual(69, MODULE.current_game_test_count())",
+        "t15d_identity_gate"
+      ]
+    },
+    "t15e_boundary_builder": {
+      "stage": "T15e",
+      "path": "tools/build_t15_matcher_boundary.py",
+      "required_tokens": [
+        "T15E_MATCHER_BOUNDARY_READY",
+        "parse_structure",
+        "parse_centrifuge_spec",
+        "physical_ports_expand_matcher_supplies",
+        "presence_cap_triggered",
+        "benchmark_evidence"
+      ]
+    },
+    "t15e_python_test": {
+      "stage": "T15e",
+      "path": "tools/tests/test_build_t15_matcher_boundary.py",
+      "required_tokens": [
+        "test_live_structure_derives_fifteen_ports_and_controller",
+        "test_live_centrifuge_spec_derives_host_layout",
+        "test_fifteen_physical_ports_share_one_matcher_host",
+        "test_expected_sixteen_error_is_audited_not_repeated_as_current"
+      ]
+    },
+    "t15e_structure_junit": {
+      "stage": "T15e",
+      "path": "src/test/java/com/masson/cruciblecraft/content/multiblock/MultiblockStructureDefinitionTest.java",
+      "required_tokens": [
+        "largeCentrifugeMatchesThePinnedGt6SourceShape",
+        "assertEquals(15, definition.portCount(PortType.ITEM_FLUID))",
+        "assertEquals(2, definition.portCount(PortType.ENERGY_INPUT))",
+        "PredicateKind.CONTROLLER"
+      ]
+    },
+    "t15e_profile_junit": {
+      "stage": "T15e",
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/T15LargeCentrifugeProfileTest.java",
+      "required_tokens": [
+        "physicalPortsBridgeOneSourceDerivedHostLayout",
+        "assertEquals(15, itemFluidPorts)",
+        "assertEquals(1, host.items().inputs().size())",
+        "assertEquals(6, host.items().outputs().size())",
+        "assertEquals(1, host.fluids().inputs().size())",
+        "assertEquals(2, host.fluids().outputs().size())"
+      ]
+    },
+    "t15e_shared_host_gametest": {
+      "stage": "T15e",
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "largeCentrifugeUsesJsonPortsAndProcessingHost",
+        "itemFluidPorts.size() == 15",
+        "centrifuge.spec().items().inputs().size() == 1",
+        "port.itemHandler().getSlots()",
+        "Fifteen physical ports did not expose one host tank"
+      ]
+    },
+    "t15e_t12_policy_audit": {
+      "stage": "T15e",
+      "path": "tools/t12_machine_policy.json",
+      "required_tokens": [
+        "\"item_fluid\": 15",
+        "\"controller_count\": 1",
+        "\"historical_expected_item_fluid_ports\": 16",
+        "\"historical_status\": \"SUPERSEDED_INCORRECT_EXPECTATION\"",
+        "failed to subtract the controller",
+        "tools/t15_matcher_boundary.json#physical_structure"
+      ]
+    },
+    "t15e_t12_closure_audit": {
+      "stage": "T15e",
+      "path": "tools/build_t12_closure_readiness.py",
+      "required_tokens": [
+        "\"historical_t12_claim\"",
+        "\"current\": False",
+        "\"t15_corrected_authority\"",
+        "\"currentness_claimed_here\": False"
+      ],
+      "forbidden_tokens": [
+        "\"large_centrifuge_runtime_supply_count\": 6"
+      ]
+    },
+    "t15e_full_verification_runner": {
+      "stage": "T15e",
+      "path": "tools/verification_builder_policy.json",
+      "required_tokens": [
+        "tools/build_t15_matcher_boundary.py",
+        "tools/build_t15_readiness.py"
+      ]
+    },
+    "t15e_full_verification_reporter": {
+      "stage": "T15e",
+      "path": "tools/verify_full_verification_report.py",
+      "required_tokens": [
+        "t15_matcher_boundary.json",
+        "\"t15e_matcher_boundary_gate\"",
+        "presence_cap_triggered",
+        "physical_ports_expand_matcher_supplies"
+      ]
+    },
+    "t15e_full_verification_test": {
+      "stage": "T15e",
+      "path": "tools/tests/test_full_verification_report.py",
+      "required_tokens": [
+        "T15_READY",
+        "t15e_matcher_boundary_gate",
+        "\"item_fluid_ports\"], 15",
+        "\"item_matcher_supplies\"], 1"
+      ]
+    },
+    "t15e_documentation": {
+      "stage": "T15e",
+      "path": "tools/README.md",
+      "required_tokens": [
+        "T15_READY",
+        "15 physical item/fluid ports",
+        "one item matcher supply",
+        "python tools/build_t15_matcher_boundary.py --check"
+      ],
+      "forbidden_tokens": [
+        "16 ports",
+        "6 runtime supplies"
+      ]
+    }
+  }
+}

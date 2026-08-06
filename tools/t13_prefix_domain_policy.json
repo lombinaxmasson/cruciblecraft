@@ -1,0 +1,319 @@
+{
+  "schema_version": 1,
+  "artifact_scope": "T13b_prefix_and_itemgenerator_domains",
+  "classification_vocab": [
+    "in_scope",
+    "deferred_with_reason",
+    "out_of_scope",
+    "unclassified"
+  ],
+  "owner_vocab": [
+    "T14",
+    "T15",
+    "T16-19",
+    "post-T19",
+    "out"
+  ],
+  "generation_command": "python tools/build_t13_prefix_domain_denominators.py",
+  "fixed_source": {
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "op_java": {
+      "path": "src/main/java/gregapi/data/OP.java",
+      "git_blob_sha1": "f915645f3009d3dbe61abbafe77791000be32747",
+      "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/data/OP.java"
+    },
+    "td_java": {
+      "path": "src/main/java/gregapi/data/TD.java",
+      "git_blob_sha1": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+      "raw_url": "https://raw.githubusercontent.com/GregTech6/gregtech6/3703e40308c8c030763fd6297dea8b210d2a77b1/src/main/java/gregapi/data/TD.java"
+    }
+  },
+  "expected_counts": {
+    "normalized_prefix_dump": 468,
+    "runtime_prefixes": 56,
+    "td_itemgenerator_declarations": 33,
+    "observed_itemgenerator_domains": 25,
+    "current_cc_itemgenerator_domains": 16
+  },
+  "prefix": {
+    "canonical_identity": "OP.java OreDictPrefix field declaration plus the serialized identity passed to create/unused",
+    "raw_identity": "source_name in tools/gt6_oredict_prefixes_normalized.json",
+    "declared_transformations": [
+      {
+        "id": "PFX_IDENTITY",
+        "kind": "identity",
+        "description": "A dump source_name equal to an OP serialized identity remains that canonical prefix."
+      },
+      {
+        "id": "PFX_IDENTICAL_NAME_ALIAS",
+        "kind": "many_to_one",
+        "description": "A name declared by addIdenticalNames belongs to that OP canonical prefix."
+      },
+      {
+        "id": "PFX_FIELD_VARIANT",
+        "kind": "many_to_one",
+        "description": "An OP field assigned directly to another OP field is a source variant of the target serialized identity."
+      },
+      {
+        "id": "PFX_CANONICAL_PRECEDENCE",
+        "kind": "collision_resolution",
+        "description": "If an addIdenticalNames member is also its own OP canonical serialized identity, the direct canonical declaration owns the dump row."
+      },
+      {
+        "id": "PFX_DUMP_ONLY_EXCLUSION",
+        "kind": "exclusion",
+        "description": "A normalized dump member not declared as an OP identity, identical-name alias, or field variant is retained in the exclusion ledger."
+      },
+      {
+        "id": "CC_PREFIX_RULE_MAPPING",
+        "kind": "mapping",
+        "description": "Mappings declared by tools/gt6_prefix_mapping.json connect OP identities to current CrucibleCraft prefixes."
+      },
+      {
+        "id": "CC_BLOCK_COLLAPSE",
+        "kind": "many_to_one",
+        "description": "blockGem and blockIngot intentionally map to the one CrucibleCraft block form."
+      },
+      {
+        "id": "CC_PIPE_DOMAIN_SPLIT",
+        "kind": "one_to_many",
+        "description": "pipeMedium/pipeLarge/pipeHuge each project to distinct fluid and item runtime forms."
+      },
+      {
+        "id": "CC_T8_PIPE_MAPPING",
+        "kind": "mapping",
+        "description": "The eight selected T8 fluid/item pipe forms map to pipeTiny/Small/Medium/Large/Huge."
+      },
+      {
+        "id": "CC_T10_INGOT_MAPPING",
+        "kind": "mapping",
+        "description": "T10 adds double, triple, and hot ingot runtime forms."
+      }
+    ],
+    "normalized_dump_field_policy": {
+      "activated": "profile",
+      "amount": "profile",
+      "byproducts": "profile",
+      "category": "profile",
+      "display_name": "profile",
+      "familiar_prefixes": "profile",
+      "heat_damage": "profile",
+      "material_post": "profile",
+      "material_pre": "profile",
+      "registered_item_count": "profile",
+      "registered_materials": "profile",
+      "registered_prefix_item_count": "profile",
+      "source_name": "identity",
+      "state": "profile",
+      "t0_mapping": "mapping_evidence",
+      "tags": "profile",
+      "texture_set": "profile"
+    },
+    "additional_runtime_mappings": [
+      {
+        "source_prefix": "pipeTiny",
+        "cc_prefixes": [
+          "tiny_fluid_pipe"
+        ],
+        "rule": "CC_T8_PIPE_MAPPING"
+      },
+      {
+        "source_prefix": "pipeSmall",
+        "cc_prefixes": [
+          "small_fluid_pipe"
+        ],
+        "rule": "CC_T8_PIPE_MAPPING"
+      },
+      {
+        "source_prefix": "pipeMedium",
+        "cc_prefixes": [
+          "fluid_pipe",
+          "item_pipe"
+        ],
+        "rule": "CC_PIPE_DOMAIN_SPLIT"
+      },
+      {
+        "source_prefix": "pipeLarge",
+        "cc_prefixes": [
+          "large_fluid_pipe",
+          "large_item_pipe"
+        ],
+        "rule": "CC_PIPE_DOMAIN_SPLIT"
+      },
+      {
+        "source_prefix": "pipeHuge",
+        "cc_prefixes": [
+          "huge_fluid_pipe",
+          "huge_item_pipe"
+        ],
+        "rule": "CC_PIPE_DOMAIN_SPLIT"
+      },
+      {
+        "source_prefix": "ingotDouble",
+        "cc_prefixes": [
+          "double_ingot"
+        ],
+        "rule": "CC_T10_INGOT_MAPPING"
+      },
+      {
+        "source_prefix": "ingotTriple",
+        "cc_prefixes": [
+          "triple_ingot"
+        ],
+        "rule": "CC_T10_INGOT_MAPPING"
+      },
+      {
+        "source_prefix": "ingotHot",
+        "cc_prefixes": [
+          "ingot_hot"
+        ],
+        "rule": "CC_T10_INGOT_MAPPING"
+      }
+    ],
+    "mapped_owner": "T14",
+    "created_unmapped": {
+      "classification": "deferred_with_reason",
+      "owner": "post-T19",
+      "reason": "The pinned OP prefix has no current CrucibleCraft runtime mapping; T13 records the denominator without designing a new form.",
+      "replacement_condition": "A later milestone selects the canonical prefix and supplies source-backed generation, serialization, and acquisition semantics.",
+      "recheck_point": "Recheck after T19 scope closure."
+    },
+    "unused_unmapped": {
+      "classification": "out_of_scope",
+      "owner": "out",
+      "reason": "The pinned OP declaration is explicitly PREFIX_UNUSED compatibility vocabulary."
+    },
+    "dump_only": {
+      "classification": "out_of_scope",
+      "owner": "out",
+      "reason": "Runtime dump identity is not a canonical declaration or declared alias/variant in pinned OP.java."
+    }
+  },
+  "itemgenerator_domains": {
+    "canonical_identity": "ITEMGENERATOR.* TagData identity declared in TD.ItemGenerator and present in the fixed GT6 tag-domain report",
+    "declared_transformations": [
+      {
+        "id": "DOMAIN_TD_IDENTITY",
+        "kind": "identity",
+        "description": "TagData.createTagData serialized identities are canonical source identities."
+      },
+      {
+        "id": "DOMAIN_SOURCE_ALIAS",
+        "kind": "many_to_one",
+        "description": "GASSES is a source field alias of GASES and never creates a second domain."
+      },
+      {
+        "id": "DOMAIN_OBSERVED_FILTER",
+        "kind": "selection",
+        "description": "The denominator contains the 25 TD identities observed by the fixed GT6 material dump; eight source-declared but unobserved identities remain in an exclusion ledger."
+      },
+      {
+        "id": "DOMAIN_CC_CURRENT_MAPPING",
+        "kind": "mapping",
+        "description": "The frozen second-stage boundary identifies exactly 16 current CrucibleCraft domains."
+      }
+    ],
+    "report_field_policy": {
+      "tag": "identity",
+      "material_count": "preserved"
+    },
+    "current_cc_domains": [
+      "ITEMGENERATOR.CONTAINERS_FLUID",
+      "ITEMGENERATOR.CONTAINERS_GAS",
+      "ITEMGENERATOR.DENSEPLATES",
+      "ITEMGENERATOR.DUSTS",
+      "ITEMGENERATOR.FOILS",
+      "ITEMGENERATOR.GEMS",
+      "ITEMGENERATOR.INGOTS",
+      "ITEMGENERATOR.INGOTS_HOT",
+      "ITEMGENERATOR.MOLTEN",
+      "ITEMGENERATOR.MULTIINGOTS",
+      "ITEMGENERATOR.MULTIPLATES",
+      "ITEMGENERATOR.ORES",
+      "ITEMGENERATOR.PARTS",
+      "ITEMGENERATOR.PLATES",
+      "ITEMGENERATOR.STICKS",
+      "ITEMGENERATOR.WIRES"
+    ],
+    "classification": {
+      "ITEMGENERATOR.ARMORS": {
+        "classification": "out_of_scope",
+        "owner": "out",
+        "scope_group": "G10_peripheral",
+        "reason": "Material-derived armor generation is a G10 peripheral domain outside T14-T19."
+      },
+      "ITEMGENERATOR.CONTAINERS": {
+        "classification": "deferred_with_reason",
+        "owner": "post-T19",
+        "scope_group": "G10_peripheral",
+        "reason": "Generic containers are broader than the current fluid/gas cell routes.",
+        "replacement_condition": "A source-backed generic container identity and acquisition model is selected.",
+        "recheck_point": "Recheck after T19."
+      },
+      "ITEMGENERATOR.EMPTY": {
+        "classification": "out_of_scope",
+        "owner": "out",
+        "scope_group": "G10_peripheral",
+        "reason": "EMPTY is a source sentinel/material shortcut, not a standalone CrucibleCraft generated form."
+      },
+      "ITEMGENERATOR.GASES": {
+        "classification": "out_of_scope",
+        "owner": "out",
+        "scope_group": "G10_peripheral",
+        "reason": "Gas is represented by fluid state and container eligibility rather than a generated material item domain."
+      },
+      "ITEMGENERATOR.LENSES": {
+        "classification": "deferred_with_reason",
+        "owner": "T16-19",
+        "scope_group": "industrial_deferred",
+        "reason": "Lens forms are not in the current 56-prefix runtime set.",
+        "replacement_condition": "A selected T16-T19 machine batch requires source-backed lens generation and acquisition.",
+        "recheck_point": "Recheck at each T16-T19 batch selection."
+      },
+      "ITEMGENERATOR.LIQUID": {
+        "classification": "out_of_scope",
+        "owner": "out",
+        "scope_group": "G10_peripheral",
+        "reason": "LIQUID is a material state tag and is not a standalone item-prefix publication domain."
+      },
+      "ITEMGENERATOR.PLANTS": {
+        "classification": "out_of_scope",
+        "owner": "out",
+        "scope_group": "G10_peripheral",
+        "reason": "Plant drops are a G10 peripheral domain outside T14-T19."
+      },
+      "ITEMGENERATOR.PROJECTILES": {
+        "classification": "out_of_scope",
+        "owner": "out",
+        "scope_group": "G10_peripheral",
+        "reason": "Projectile and ammunition forms are a G10 peripheral domain outside T14-T19."
+      },
+      "ITEMGENERATOR.RAILS": {
+        "classification": "deferred_with_reason",
+        "owner": "post-T19",
+        "scope_group": "G10_peripheral",
+        "reason": "Rail forms have no current runtime prefix or selected third-stage consumer.",
+        "replacement_condition": "A post-T19 transport scope selects rail generation and acquisition.",
+        "recheck_point": "Recheck after T19."
+      }
+    },
+    "current_owner": {
+      "ITEMGENERATOR.CONTAINERS_FLUID": "T15",
+      "ITEMGENERATOR.CONTAINERS_GAS": "T15",
+      "ITEMGENERATOR.DENSEPLATES": "T14",
+      "ITEMGENERATOR.DUSTS": "T14",
+      "ITEMGENERATOR.FOILS": "T14",
+      "ITEMGENERATOR.GEMS": "T14",
+      "ITEMGENERATOR.INGOTS": "T14",
+      "ITEMGENERATOR.INGOTS_HOT": "T15",
+      "ITEMGENERATOR.MOLTEN": "T14",
+      "ITEMGENERATOR.MULTIINGOTS": "T15",
+      "ITEMGENERATOR.MULTIPLATES": "T15",
+      "ITEMGENERATOR.ORES": "T14",
+      "ITEMGENERATOR.PARTS": "T14",
+      "ITEMGENERATOR.PLATES": "T14",
+      "ITEMGENERATOR.STICKS": "T14",
+      "ITEMGENERATOR.WIRES": "T16-19"
+    }
+  }
+}

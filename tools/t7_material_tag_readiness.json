@@ -91,12 +91,12 @@
     "version": "6.17.06-22-g3703e4030"
   },
   "input_sha256": {
-    "src/main/java/com/masson/cruciblecraft/api/energy/EnergyType.java": "0d55f4975307ed488ab8e021d21fdccb4961b5622050e85270e02010ed14fed9",
+    "src/main/java/com/masson/cruciblecraft/api/energy/EnergyType.java": "92b2146131a6d11a7770d2012e1a72a36ba206036b1893dc5c06e3c4a381236f",
     "src/main/java/com/masson/cruciblecraft/energy/cable/CableNetworkTraversal.java": "edda210938ea6db75c3be056f455db55b2b2233a7a89ccea504f889885d86fc1",
     "src/main/java/com/masson/cruciblecraft/material/def/GT6MaterialMetadata.java": "49a5f4ac246c1708305fecddce45b514f1299b7dd9c9765211e66c25bb1bc8d5",
-    "src/main/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansion.java": "6b2ccef3edd6491d610090afe3dbe202b16ccedf941e3933996d9a7411b1bad3",
+    "src/main/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansion.java": "01901d432914ace34ba63d8b75bb6cedc6c67b0c1be239605dbc9e964a3c5a17",
     "src/main/java/com/masson/cruciblecraft/recipe/rule/RuleExpression.java": "5140485fa9639c5fc88fbaaa32f07121ddfd814c3c0161c25f7d6877dba92492",
-    "src/main/resources/data/cruciblecraft/material_registration_gate.json": "95a19d45c16965b2facbef85eaf9c9c2b5e725d51a64adbeefef5fbdf9e1c284",
+    "src/main/resources/data/cruciblecraft/material_registration_gate.json": "766a6772a8181638e715a7818dd67bd524ebab4595e5c3e2fd8f435815f8e3cf",
     "src/main/resources/data/cruciblecraft/material_tag_policy.json": "ea357fc343797198bc504249ae2e1b075f1465df34cc8d66dcb40372dbb5dd6d",
     "src/main/resources/data/cruciblecraft/materials/index.json": "ff3ecf3970191f4feaddb84eb7795ea7714cab665df3fb6822f61c8382e66e05",
     "tools/gt6_oredict_prefixes_normalized.json": "cdd29c3d4b4d31ea2065ff80be0e34c60d6c49608b7913d57905297d23239ddd",
@@ -243,8 +243,30 @@
   "material_directory_sha256": "85a1f623fad42ccb3c214764186ce387ca45d683aec3b9e78bdde270d3c704f1",
   "material_rule_audit": {
     "conditioned_cross_material_rule_files": 57,
-    "cross_material_rule_files": 69,
-    "material_specific_rule_files": 2783,
+    "cross_material_rule_files": 89,
+    "material_specific_rule_files": 1,
+    "post_t7_unconditioned_cross_material_rule_files": [
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_block.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_bolt.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_fine_wire.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_foil.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_gear.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_ingot.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_long_rod.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_plate.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_ring.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_rod.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_small_gear.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/normal_block.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/normal_bolt.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/normal_gear.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/normal_ingot.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/normal_long_rod.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/normal_plate.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/normal_ring.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/normal_rod.json",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/normal_small_gear.json"
+    ],
     "referenced_tag_count": 8,
     "tag_consumers": {
       "ATOMIC.ANTIMATTER": [
@@ -355,7 +377,7 @@
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/metal.json"
       ]
     },
-    "total_rule_files": 2852,
+    "total_rule_files": 90,
     "unconditioned_cross_material_rule_files": [
       "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/dodecuple_wire_and_rubber_to_dodecuple_cable.json",
       "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/double_wire_and_rubber_to_double_cable.json",

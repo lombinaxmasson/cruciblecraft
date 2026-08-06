@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.LinkedHashMap;
 import java.util.Locale;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -18,8 +19,9 @@ import net.minecraft.world.level.material.Fluid;
 
 /** Closed T10 projection of fluid identities accepted by each generic cell. */
 public final class CellContentGate {
-    private static final String RESOURCE =
-            "/data/cruciblecraft/t10_cell_content_gate.json";
+    private static final List<String> RESOURCES = List.of(
+            "/data/cruciblecraft/t10_cell_content_gate.json",
+            "/data/cruciblecraft/t11_cell_content_gate.json");
     private static final Map<ResourceLocation, Kind> ENTRIES = load();
 
     private CellContentGate() {}
@@ -38,18 +40,37 @@ public final class CellContentGate {
     }
 
     private static Map<ResourceLocation, Kind> load() {
+        LinkedHashMap<ResourceLocation, Kind> entries = new LinkedHashMap<>();
+        for (String resource : RESOURCES) {
+            JsonObject root = loadRoot(resource);
+            for (JsonElement value : root.getAsJsonArray("fluids")) {
+                decodeRow(entries, value.getAsJsonObject(), resource);
+            }
+        }
+        Set<ResourceLocation> flowing = entries.keySet().stream()
+                .filter(id -> id.getPath().startsWith("flowing_"))
+                .collect(java.util.stream.Collectors.toSet());
+        if (!flowing.isEmpty()) {
+            throw new IllegalStateException(
+                    "Cell gate must use source fluid ids only: " + flowing);
+        }
+        return Map.copyOf(entries);
+    }
+
+    private static JsonObject loadRoot(String resource) {
         JsonObject root;
         try (var stream =
-                CellContentGate.class.getResourceAsStream(RESOURCE)) {
+                CellContentGate.class.getResourceAsStream(resource)) {
             if (stream == null) {
                 throw new IllegalStateException(
-                        "Missing committed T10 cell content gate: " + RESOURCE);
+                        "Missing committed cell content gate: " + resource);
             }
             root = JsonParser.parseReader(new InputStreamReader(
                     stream, StandardCharsets.UTF_8)).getAsJsonObject();
         } catch (IOException | RuntimeException exception) {
             throw new IllegalStateException(
-                    "Failed to load committed T10 cell content gate",
+                    "Failed to load committed cell content gate "
+                            + resource,
                     exception);
         }
         if (!root.has("schema_version")
@@ -57,20 +78,24 @@ public final class CellContentGate {
                 || !root.has("fluids")
                 || !root.get("fluids").isJsonArray()) {
             throw new IllegalStateException(
-                    "Unsupported T10 cell content gate schema");
+                    "Unsupported cell content gate schema: " + resource);
         }
-        LinkedHashMap<ResourceLocation, Kind> entries = new LinkedHashMap<>();
-        for (JsonElement value : root.getAsJsonArray("fluids")) {
-            JsonObject row = value.getAsJsonObject();
+        return root;
+    }
+
+    private static void decodeRow(
+            Map<ResourceLocation, Kind> entries,
+            JsonObject row,
+            String resource) {
             if (!row.has("id") || !row.has("kind") || !row.has("material")) {
                 throw new IllegalStateException(
-                        "T10 cell content gate row is incomplete");
+                        "Cell content gate row is incomplete: " + resource);
             }
             ResourceLocation id = ResourceLocation.tryParse(
                     row.get("id").getAsString());
             if (id == null) {
                 throw new IllegalStateException(
-                        "Invalid T10 cell fluid id: "
+                        "Invalid cell fluid id: "
                                 + row.get("id").getAsString());
             }
             Kind kind;
@@ -80,28 +105,19 @@ public final class CellContentGate {
                                 .toUpperCase(Locale.ROOT));
             } catch (IllegalArgumentException exception) {
                 throw new IllegalStateException(
-                        "Invalid T10 cell kind for " + id,
+                        "Invalid cell kind for " + id,
                         exception);
             }
             String material = row.get("material").getAsString();
             if (!material.matches("[a-z0-9_]+")) {
                 throw new IllegalStateException(
-                        "Invalid T10 cell material id: " + material);
+                        "Invalid cell material id: " + material);
             }
             Kind previous = entries.putIfAbsent(id, kind);
             if (previous != null) {
                 throw new IllegalStateException(
-                        "Duplicate T10 cell fluid id: " + id);
+                        "Duplicate cell fluid id: " + id);
             }
-        }
-        Set<ResourceLocation> flowing = entries.keySet().stream()
-                .filter(id -> id.getPath().startsWith("flowing_"))
-                .collect(java.util.stream.Collectors.toSet());
-        if (!flowing.isEmpty()) {
-            throw new IllegalStateException(
-                    "T10 cell gate must use source fluid ids only: " + flowing);
-        }
-        return Map.copyOf(entries);
     }
 
     public enum Kind {

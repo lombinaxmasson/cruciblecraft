@@ -46,8 +46,10 @@ class T10MultiIngotRuleDataTest {
         var registered = MaterialRegistrationGate.load(materials);
         Set<String> expected = new LinkedHashSet<>();
         materials.stream()
-                .filter(material -> material.gt6Metadata().orElseThrow()
-                        .generationTags().contains("ITEMGENERATOR.MULTIINGOTS"))
+                .filter(material -> material.gt6Metadata()
+                        .map(metadata -> metadata.generationTags().contains(
+                                "ITEMGENERATOR.MULTIINGOTS"))
+                        .orElse(false))
                 .filter(material -> registered.get(material.id())
                         .contains(MaterialPrefixes.INGOT))
                 .map(material -> material.id())

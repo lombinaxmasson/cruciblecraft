@@ -53,7 +53,8 @@ public final class DynamoBlockEntity extends BlockEntity implements IEnergyHandl
         if (front == null || side == null) {
             return false;
         }
-        return (type == EnergyType.KINETIC && side == front.getOpposite())
+        return (type == EnergyType.KINETIC_ROTATION
+                        && side == front.getOpposite())
                 || (type == EnergyType.ELECTRIC && side == front);
     }
 
@@ -63,7 +64,8 @@ public final class DynamoBlockEntity extends BlockEntity implements IEnergyHandl
             long amount,
             Direction side,
             boolean simulate) {
-        if (type != EnergyType.KINETIC || !handles(type, side)) {
+        if (type != EnergyType.KINETIC_ROTATION
+                || !handles(type, side)) {
             return 0L;
         }
         long accepted = energy.insertKinetic(size, amount, simulate);
@@ -114,14 +116,15 @@ public final class DynamoBlockEntity extends BlockEntity implements IEnergyHandl
 
     @Override public long stored(EnergyType type) {
         return switch (type) {
-            case KINETIC -> energy.kineticStored();
+            case KINETIC_ROTATION -> energy.kineticStored();
             case ELECTRIC -> energy.electricStored();
             default -> 0L;
         };
     }
 
     @Override public long capacity(EnergyType type) {
-        return type == EnergyType.KINETIC || type == EnergyType.ELECTRIC
+        return type == EnergyType.KINETIC_ROTATION
+                        || type == EnergyType.ELECTRIC
                 ? BronzeDynamoEnergy.BUFFER_CAPACITY
                 : 0L;
     }

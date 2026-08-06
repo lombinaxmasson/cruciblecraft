@@ -47,15 +47,19 @@ class T7MaterialTagReadinessTest(unittest.TestCase):
         self.assertEqual(64, len(vocabulary["sha256"]))
         self.assertIn("PROCESSING.MORTAR_GRINDABLE", vocabulary["values"])
         audit = self.document["material_rule_audit"]
-        self.assertEqual(2852, audit["total_rule_files"])
-        self.assertEqual(69, audit["cross_material_rule_files"])
+        self.assertEqual(90, audit["total_rule_files"])
+        self.assertEqual(89, audit["cross_material_rule_files"])
         self.assertEqual(
             57, audit["conditioned_cross_material_rule_files"]
         )
         self.assertEqual(
             12, len(audit["unconditioned_cross_material_rule_files"])
         )
-        self.assertEqual(2783, audit["material_specific_rule_files"])
+        self.assertEqual(
+            20,
+            len(audit["post_t7_unconditioned_cross_material_rule_files"]),
+        )
+        self.assertEqual(1, audit["material_specific_rule_files"])
         self.assertEqual([], audit["unknown_tag_references"])
         self.assertIn(
             "PROCESSING.MORTAR_GRINDABLE", audit["tag_consumers"]

@@ -23,6 +23,15 @@ public final class ModRecipes {
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS =
             DeferredRegister.create(Registries.RECIPE_SERIALIZER, CrucibleCraft.MODID);
 
+    /**
+     * Legacy addon compatibility type. New data should use
+     * {@code cruciblecraft:material_rule}; this type and its serializer remain
+     * loadable until an addon/datapack dependency audit finds no consumers and
+     * a documented compatibility window has elapsed.
+     *
+     * @deprecated Migrate authored recipes to {@code material_rule}.
+     */
+    @Deprecated(forRemoval = false)
     public static final DeferredHolder<RecipeType<?>, RecipeType<AnvilRecipe>> ANVIL_TYPE =
             RECIPE_TYPES.register(
                     "anvil",
@@ -33,6 +42,15 @@ public final class ModRecipes {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<AnvilRecipe>> ANVIL_SERIALIZER =
             RECIPE_SERIALIZERS.register("anvil", AnvilRecipeSerializer::new);
 
+    /**
+     * Legacy addon compatibility type. New data should use
+     * {@code cruciblecraft:material_rule}; this type and its serializer remain
+     * loadable until an addon/datapack dependency audit finds no consumers and
+     * a documented compatibility window has elapsed.
+     *
+     * @deprecated Migrate authored recipes to {@code material_rule}.
+     */
+    @Deprecated(forRemoval = false)
     public static final DeferredHolder<RecipeType<?>, RecipeType<CrusherRecipe>> CRUSHER_TYPE =
             RECIPE_TYPES.register(
                     "crusher",

@@ -1,0 +1,3009 @@
+{
+  "counts": {
+    "actual_map_files": 95,
+    "classifications": {
+      "deferred_with_reason": 64,
+      "in_scope": 29,
+      "out_of_scope": 2,
+      "unclassified": 0
+    },
+    "classified": 95,
+    "index_maps": 95,
+    "recipes": 720841,
+    "rows": 95,
+    "unclassified": 0
+  },
+  "full_replay_receipt": {
+    "builder_sha256": "9a3dca558629a03c7a1b2dd5d89fea73df83522cbb5a5e459c06c47c93c33101",
+    "dump_index_sha256": "04a1ddf9f0bee4432206d2e89890839c10e4a9ad0b66aa3cd67f7385c31abc7f",
+    "legacy_roadmap_sha256": "9a6dbb0dc639712be18c2e68450eefeb23148520707820fd66aa231130b38d29",
+    "map_count": 95,
+    "map_row_sha256": "e8a635d62d4c11b7995d64ec3c6cfe2a7038b24338bfb00920a614f442f9af99",
+    "map_tree_sha256": "ad3f229f0f43bbf3f72fa1115201f127ac910978c0d92f0313493344234c08df",
+    "policy_sha256": "45294c2656447c9dee4af687bac64a2f5b274905984a83b30c502031b6ae35ce",
+    "proof_tier": "full_replay",
+    "recipe_count": 720841,
+    "scanner_semantics": "python-byte-state-machine-v1",
+    "schema_version": 1,
+    "source_symbol_inventory_sha256": "d5aa1faa86ac336d83a0c120d6b4aaa29a07d9f95390a4c7ffc50757eac81f91",
+    "tree_manifest_sha256": "cfb7aeb7951a3c4ef761cb4f79ff04099f504cf90c9eeb40acfc87a4926b8f9f"
+  },
+  "full_t13_closure_claimed": false,
+  "independent_expected_set": {
+    "carrier": "tools/t13_recipe_map_policy.json#dispositions",
+    "count": 95,
+    "derived_by_normalizer": false,
+    "sha256": "2353710714e4431e9a9f28ff9522a3914c451b2c149b7a11720f433efa6107fb"
+  },
+  "map_row_sha256": "e8a635d62d4c11b7995d64ec3c6cfe2a7038b24338bfb00920a614f442f9af99",
+  "normalization": {
+    "declared_transformations": [
+      {
+        "cardinality": "one-to-one",
+        "field": "nameInternal",
+        "normalized": "unnamed",
+        "reason": "The fixed dump contains one empty nameInternal map; it must remain an explicit denominator row.",
+        "source": ""
+      }
+    ],
+    "expected_set_carrier": "dispositions keys",
+    "expected_set_is_independent": true,
+    "normalizer": "normalize_map_id"
+  },
+  "normalization_audit": {
+    "declared_transformations": [
+      {
+        "cardinality": "one-to-one",
+        "field": "nameInternal",
+        "normalized": "unnamed",
+        "reason": "The fixed dump contains one empty nameInternal map; it must remain an explicit denominator row.",
+        "source": ""
+      }
+    ],
+    "field_cardinality": {
+      "nameInternal": {
+        "after": 95,
+        "before": 95,
+        "reduction": 0
+      }
+    },
+    "frequency_threshold_is_diagnostic_only": true,
+    "input_rows": 95,
+    "output_rows": 95,
+    "schema_version": 1,
+    "status": "UNIFORM_PASS",
+    "status_prefix": "UNIFORM_",
+    "undeclared_many_to_one": {},
+    "unexplained_field_cardinality_reductions": []
+  },
+  "recipe_count_distribution": {
+    "max": 325595,
+    "method": "nearest-rank over all 95 maps, including zero/unnamed",
+    "p50": 307,
+    "p95": 27454
+  },
+  "rows": [
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 0,
+        "output_fluids": 0,
+        "output_items": 0
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 660,
+      "index_position": 0,
+      "name_internal": "",
+      "name_local": "",
+      "normalized_row_key": "unnamed",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: <unnamed> has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 0,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "81a1129b7e449083ee4cf86158bb3a8932cd92eb91cbb5273e66de085643ee89",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/unnamed.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 4904,
+      "index_position": 1,
+      "name_internal": "mc.recipe.furnacefuel",
+      "name_local": "Furnace Fuels (1 Smelt = 5000 GU)",
+      "normalized_row_key": "mc.recipe.furnacefuel",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: mc.recipe.furnacefuel has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 0,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "ca10a5c767cf1d0f53071282e59f2f333f4be8350769bdd1bfef1cc6c31bd599",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/mc.recipe.furnacefuel.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "mc.recipe.furnacefuel",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "mc.recipe.furnacefuel",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 2,
+        "output_items": 2
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 51372,
+      "index_position": 2,
+      "name_internal": "gt.recipe.fuels.fluidbed",
+      "name_local": "Fluidized Bed Fuels",
+      "normalized_row_key": "gt.recipe.fuels.fluidbed",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.fluidbed has 55 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 55,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "ae99901da4b1965c27f69818ac360a149f38d2a87aa320d8e7ecf31e045175f1",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.fluidbed.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.fuels.fluidbed",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.fuels.fluidbed",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 2,
+        "output_items": 2
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 38685,
+      "index_position": 3,
+      "name_internal": "gt.recipe.fuels.burn",
+      "name_local": "Burnable Fuels",
+      "normalized_row_key": "gt.recipe.fuels.burn",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.burn has 49 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 49,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "d577d3ad1c4622128aceee6574326b54f84bf86dcd3e5516f6d4277e7c3bf3a3",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.burn.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.fuels.burn",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.fuels.burn",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 2,
+        "output_items": 2
+      },
+      "classification": "in_scope",
+      "dump_size": 7569,
+      "index_position": 4,
+      "name_internal": "gt.recipe.fuels.gas",
+      "name_local": "Gas Fuels",
+      "normalized_row_key": "gt.recipe.fuels.gas",
+      "owner": "T15",
+      "reason": "T11 publishes fixed methane row 2 through the Burning Gas Generator; the other 8 rows remain explicitly deferred in the T11 source ledger.",
+      "recipe_count": 9,
+      "source_blob": "0cc436b3e1a7903732ec710860f1b93718591622b74d4c69dcd4969bcccf0607",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.gas.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.fuels.gas",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft T11 fuel generation runtime",
+        "phase": "T11",
+        "source_key": "gt.recipe.fuels.gas",
+        "status": "BOUNDED_SUBSET_PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 2,
+        "output_items": 2
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 9567,
+      "index_position": 5,
+      "name_internal": "gt.recipe.fuels.hot",
+      "name_local": "Hot Fuels",
+      "normalized_row_key": "gt.recipe.fuels.hot",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.hot has 12 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 12,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "99f688fb77a1d8e5dbc95d143849ca2742b042711406ba03fb103fc4f13dd2ef",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.hot.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.fuels.hot",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.fuels.hot",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 2,
+        "output_items": 2
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 753,
+      "index_position": 6,
+      "name_internal": "gt.recipe.fuels.plasma",
+      "name_local": "Plasma Fuels",
+      "normalized_row_key": "gt.recipe.fuels.plasma",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.fuels.plasma has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 0,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "caa5521ef13837c9f3c5acad41a7d964e9910e840c8735cd54fd70604dce0ea6",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.plasma.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.fuels.plasma",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.fuels.plasma",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 2,
+        "output_items": 2
+      },
+      "classification": "in_scope",
+      "dump_size": 15046,
+      "index_position": 7,
+      "name_internal": "gt.recipe.fuels.engine",
+      "name_local": "Engine Fuels",
+      "normalized_row_key": "gt.recipe.fuels.engine",
+      "owner": "T15",
+      "reason": "T11 publishes fixed row 14 through the direct-electric Fuel Engine; the other 20 rows remain explicitly deferred in the T11 source ledger.",
+      "recipe_count": 21,
+      "source_blob": "fab9cc2282529afd6e6f1559fd6d6dc7173ec402f0978a4b6a16e29590bd90aa",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.engine.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.fuels.engine",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft T11 fuel generation runtime",
+        "phase": "T11",
+        "source_key": "gt.recipe.fuels.engine",
+        "status": "BOUNDED_SUBSET_PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 2,
+        "output_items": 2
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 1379,
+      "index_position": 8,
+      "name_internal": "gt.recipe.fuels.turbine",
+      "name_local": "Turbine Fuels",
+      "normalized_row_key": "gt.recipe.fuels.turbine",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.turbine has 1 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 1,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "6a9714d271b136fc8125622c4f73ffc2bbce0c528f09d026f9cdebda9b4b5038",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.turbine.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.fuels.turbine",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.fuels.turbine",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 2,
+        "output_items": 2
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 750,
+      "index_position": 9,
+      "name_internal": "gt.recipe.fuels.magic",
+      "name_local": "Magic Fuels",
+      "normalized_row_key": "gt.recipe.fuels.magic",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.fuels.magic has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 0,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "e01c676587ee88d5d5d5d5d82e9e358e78a09050df8ee70cdcce757667ff283b",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.magic.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.fuels.magic",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.fuels.magic",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 3,
+        "input_items": 6,
+        "output_fluids": 3,
+        "output_items": 6
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 121242,
+      "index_position": 10,
+      "name_internal": "gt.recipe.other",
+      "name_local": "Did you know...?",
+      "normalized_row_key": "gt.recipe.other",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[REFERENCE_OR_ANALYSIS_MAP]: gt.recipe.other has 71 pinned recipe(s); the current audited scope does not expose GT6 list, scanner, or analysis-map semantics as executable CrucibleCraft recipes.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 71,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "8b703e57dee3a9e42dbfa7e2e4407e45ddd7dc6494d605b3c194767512548ee6",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.other.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.other",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.other",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 9,
+        "output_fluids": 0,
+        "output_items": 12
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 1437,
+      "index_position": 11,
+      "name_internal": "gt.recipe.autocrafting",
+      "name_local": "Crafting",
+      "normalized_row_key": "gt.recipe.autocrafting",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.autocrafting has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 0,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "1ed478a8a59a47ad3ad1174a50940d31eb9369b025027c182f5796af183c38ef",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.autocrafting.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.autocrafting",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.autocrafting",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 9,
+        "output_items": 3
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 14325,
+      "index_position": 12,
+      "name_internal": "gt.recipe.distillationtower",
+      "name_local": "Distillation Tower",
+      "normalized_row_key": "gt.recipe.distillationtower",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.distillationtower has 8 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 8,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "ec6cce66a69492a886297ac9f45bef6d04fa90c8050f1755f46e0fa8c1399651",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillationtower.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.distillationtower",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.distillationtower",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 9,
+        "output_items": 3
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 5052,
+      "index_position": 13,
+      "name_internal": "gt.recipe.cryodistillationtower",
+      "name_local": "Cryo Distillation Tower",
+      "normalized_row_key": "gt.recipe.cryodistillationtower",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.cryodistillationtower has 3 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 3,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "dd18234d83c2136074863cf5105377ddfc379f4212c055bca3c24ab3d3044cb2",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.cryodistillationtower.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.cryodistillationtower",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.cryodistillationtower",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 2,
+        "input_items": 1,
+        "output_fluids": 9,
+        "output_items": 3
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 11824164,
+      "index_position": 14,
+      "name_internal": "gt.recipe.steamcracking",
+      "name_local": "Steam Cracking",
+      "normalized_row_key": "gt.recipe.steamcracking",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.steamcracking has 7746 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 7746,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "f4ab7797ff4a8bc6a586a4754d69824ed2e9b229b7886680173a5fc5ef1ca912",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.steamcracking.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.steamcracking",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.steamcracking",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 2,
+        "input_items": 1,
+        "output_fluids": 9,
+        "output_items": 3
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 4356,
+      "index_position": 15,
+      "name_internal": "gt.recipe.catalyticcracking",
+      "name_local": "Catalytic Cracking",
+      "normalized_row_key": "gt.recipe.catalyticcracking",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.catalyticcracking has 3 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 3,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "65f16d6d94134b8a0f7202612aabb6dab7d972a1319a7f1541d8d7b0ba38072a",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.catalyticcracking.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.catalyticcracking",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.catalyticcracking",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 1,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 5081401,
+      "index_position": 16,
+      "name_internal": "gt.recipe.fermenter",
+      "name_local": "Fermenter",
+      "normalized_row_key": "gt.recipe.fermenter",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.fermenter has 6435 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 6435,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "1c873079c2002f3326c098871ecb09d1b32b20e519b2c9a4b59309fe68a2225c",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fermenter.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.fermenter",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.fermenter",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 2,
+        "output_items": 2
+      },
+      "classification": "in_scope",
+      "dump_size": 1285401,
+      "index_position": 17,
+      "name_internal": "gt.recipe.distillery",
+      "name_local": "Distillery",
+      "normalized_row_key": "gt.recipe.distillery",
+      "owner": "T15",
+      "reason": "T5.5 publishes distilled water and T11 publishes fixed hydrocarbon row 872; all 1517 rows retain explicit T11 dispositions and the remaining subset stays deferred.",
+      "recipe_count": 1517,
+      "source_blob": "72aa8d4afee742cf67a935310809e78588102a961c8af68c137dc65f03668646",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.distillery",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft T5/T11 chemical data/runtime",
+        "phase": "T11",
+        "source_key": "gt.recipe.distillery",
+        "status": "BOUNDED_SUBSET_PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 3,
+        "output_items": 1
+      },
+      "classification": "in_scope",
+      "dump_size": 184934,
+      "index_position": 18,
+      "name_internal": "gt.recipe.drying",
+      "name_local": "Dryer",
+      "normalized_row_key": "gt.recipe.drying",
+      "owner": "T15",
+      "reason": "T5 publishes 5 source-pinned drying recipes through the playable host; replay of the full 217-row GT6 map remains deferred.",
+      "recipe_count": 217,
+      "source_blob": "ce36dbba8b568d33d6ae93945187cbde9e6805b0ff85fccc8e50ee16fe9cd94a",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.drying.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.drying",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft T5 chemical data/runtime",
+        "phase": "T5",
+        "source_key": "gt.recipe.drying",
+        "status": "BOUNDED_SUBSET_PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 0,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 4460,
+      "index_position": 19,
+      "name_internal": "gt.recipe.coagulator",
+      "name_local": "Coagulator",
+      "normalized_row_key": "gt.recipe.coagulator",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.coagulator has 5 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 5,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "1eeea5d0e2da985f8794623b11946e5847b88985ea4fae3bc2fd2943b8506d32",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.coagulator.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.coagulator",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.coagulator",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 3,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 132364,
+      "index_position": 20,
+      "name_internal": "gt.recipe.crystallisationcrucible",
+      "name_local": "Crystallisation Crucible",
+      "normalized_row_key": "gt.recipe.crystallisationcrucible",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.crystallisationcrucible has 132 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 132,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "7a21244be17cd45d7dea74f86c94cd665b2a26f61c335b2a30ce3f3084ff294a",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.crystallisationcrucible.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.crystallisationcrucible",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.crystallisationcrucible",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 6,
+        "input_items": 6,
+        "output_fluids": 2,
+        "output_items": 1
+      },
+      "classification": "in_scope",
+      "dump_size": 70471794,
+      "index_position": 21,
+      "name_internal": "gt.recipe.mixer",
+      "name_local": "Mixer",
+      "normalized_row_key": "gt.recipe.mixer",
+      "owner": "T15",
+      "reason": "T5 publishes 34 source-pinned mixer recipes through the playable host; replay of the full 64245-row GT6 map remains deferred.",
+      "recipe_count": 64245,
+      "source_blob": "7f8982689e0b7dc001264479e38a7f24398e09e478312feb00b82806f5706e3d",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.mixer.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.mixer",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft T5 chemical data/runtime",
+        "phase": "T5",
+        "source_key": "gt.recipe.mixer",
+        "status": "BOUNDED_SUBSET_PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 6,
+        "input_items": 6,
+        "output_fluids": 2,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 33873,
+      "index_position": 22,
+      "name_internal": "gt.recipe.burnmixer",
+      "name_local": "Burner Mixer",
+      "normalized_row_key": "gt.recipe.burnmixer",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.burnmixer has 29 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 29,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "c3dbff95a484035f90f25eadc6ae54eb7d3e6e9d05ff1f0c9876752582b0757f",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.burnmixer.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.burnmixer",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.burnmixer",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 6,
+        "input_items": 6,
+        "output_fluids": 2,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 50631,
+      "index_position": 23,
+      "name_internal": "gt.recipe.cryomixer",
+      "name_local": "Cryo Mixer",
+      "normalized_row_key": "gt.recipe.cryomixer",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.cryomixer has 57 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 57,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "597ae09b73416f973f9b6ac8212b1704c58e7f029ce4652237b2328950e975d1",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.cryomixer.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.cryomixer",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.cryomixer",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 1,
+        "output_items": 9
+      },
+      "classification": "in_scope",
+      "dump_size": 114266,
+      "index_position": 24,
+      "name_internal": "gt.recipe.cokeoven",
+      "name_local": "Coke Oven",
+      "normalized_row_key": "gt.recipe.cokeoven",
+      "owner": "T15",
+      "reason": "The playable coke oven implements the committed coal-to-coke and creosote route; this is a bounded subset of the pinned GT6 map.",
+      "recipe_count": 124,
+      "source_blob": "afd3323482f979fcf51e5f4c9f69e2f485d99528e5c364fe21e18723687be0de",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.cokeoven.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.cokeoven",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft coke-oven data/runtime",
+        "phase": "T0",
+        "source_key": "gt.recipe.cokeoven",
+        "status": "PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 1,
+        "output_items": 3
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 115350,
+      "index_position": 25,
+      "name_internal": "gt.recipe.roaster",
+      "name_local": "Roaster",
+      "normalized_row_key": "gt.recipe.roaster",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.roaster has 115 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 115,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "6bff7ea298d00f7f09c7e872f956cda6e8d8943981720530039a8dfbd5561658",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.roaster.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.roaster",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.roaster",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 6,
+        "output_fluids": 3,
+        "output_items": 6
+      },
+      "classification": "in_scope",
+      "dump_size": 57847518,
+      "index_position": 26,
+      "name_internal": "gt.recipe.bath",
+      "name_local": "Bath",
+      "normalized_row_key": "gt.recipe.bath",
+      "owner": "T15",
+      "reason": "The playable bath includes the T2 ore-washing scope and 6 source-pinned T5 recipes; replay of the full 59855-row GT6 map remains deferred.",
+      "recipe_count": 59855,
+      "source_blob": "9eb212ac765fcda2d6e8b9789762d5b3efcce4d72cd385e0e9d10f1bfda33f1a",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.bath.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.bath",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft T2/T5 data/runtime",
+        "phase": "T2/T5",
+        "source_key": "gt.recipe.bath",
+        "status": "BOUNDED_SUBSET_PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 1,
+        "output_items": 9
+      },
+      "classification": "in_scope",
+      "dump_size": 11726552,
+      "index_position": 27,
+      "name_internal": "gt.recipe.sluice",
+      "name_local": "Sluice",
+      "normalized_row_key": "gt.recipe.sluice",
+      "owner": "T15",
+      "reason": "T2 ships a playable water-fed ore-washing route with ordered byproducts.",
+      "recipe_count": 4840,
+      "source_blob": "59ffdf024a2cb08161af661399b1727604383aaf7b13b4e9e6b227cc00aa96c5",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.sluice.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.sluice",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft ore-chain data/runtime",
+        "phase": "T2",
+        "source_key": "gt.recipe.sluice",
+        "status": "PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 6,
+        "output_items": 6
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 328921,
+      "index_position": 28,
+      "name_internal": "gt.recipe.magneticseparator",
+      "name_local": "Magnetic Separator",
+      "normalized_row_key": "gt.recipe.magneticseparator",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.magneticseparator has 179 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 179,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "6db3d93885a26645b57d81f92ebcc8bf37cd10fa5e31fddfbfa8ade81780eae7",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.magneticseparator.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.magneticseparator",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.magneticseparator",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 12
+      },
+      "classification": "in_scope",
+      "dump_size": 4637634,
+      "index_position": 29,
+      "name_internal": "gt.recipe.sifter",
+      "name_local": "Sifter",
+      "normalized_row_key": "gt.recipe.sifter",
+      "owner": "T15",
+      "reason": "T2 ships the playable purified-dust finishing subset.",
+      "recipe_count": 2877,
+      "source_blob": "a5a106884401afab6fbd0c45475b72eaf1789a77d5b45aaf60770d4083421b73",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.sifter.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.sifter",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft ore-chain data/runtime",
+        "phase": "T2",
+        "source_key": "gt.recipe.sifter",
+        "status": "PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 3,
+        "input_items": 3,
+        "output_fluids": 3,
+        "output_items": 3
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 740,
+      "index_position": 30,
+      "name_internal": "gt.recipe.calciner",
+      "name_local": "Calciner",
+      "normalized_row_key": "gt.recipe.calciner",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.calciner has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 0,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "d0dbd7b36893c4f66bfa7f5bc5cd2e03219d966a4cea8423f025709c77fd3395",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.calciner.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.calciner",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.calciner",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 3,
+        "output_fluids": 0,
+        "output_items": 3
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 1134050,
+      "index_position": 31,
+      "name_internal": "gt.recipe.implosioncompressor",
+      "name_local": "Implosion Compressor",
+      "normalized_row_key": "gt.recipe.implosioncompressor",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.implosioncompressor has 1072 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 1072,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "3861d97646e3c4912ccfd1b1a169bd9ce55d37376a429ea84ea367b977bb2747",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.implosioncompressor.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.implosioncompressor",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.implosioncompressor",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "in_scope",
+      "dump_size": 1121752,
+      "index_position": 32,
+      "name_internal": "gt.recipe.compressor",
+      "name_local": "Compressor",
+      "normalized_row_key": "gt.recipe.compressor",
+      "owner": "T15",
+      "reason": "T5 publishes 5 source-pinned compressor recipes through the playable host; replay of the full 1472-row GT6 map remains deferred.",
+      "recipe_count": 1472,
+      "source_blob": "e89db5c37f62ca6475a4d231f08f66c215eb10f2e2a369fc62cfb22b7392883d",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.compressor.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.compressor",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft T5 chemical data/runtime",
+        "phase": "T5",
+        "source_key": "gt.recipe.compressor",
+        "status": "BOUNDED_SUBSET_PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 2,
+        "input_items": 2,
+        "output_fluids": 1,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 574758,
+      "index_position": 33,
+      "name_internal": "gt.recipe.injector",
+      "name_local": "Injector",
+      "normalized_row_key": "gt.recipe.injector",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.injector has 638 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 638,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "144f8e9812e4c42752367b2447b9d36fe43b5cfa5fb5632f3b9721276d88e830",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.injector.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.injector",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.injector",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 6,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 1213584,
+      "index_position": 34,
+      "name_internal": "gt.recipe.loom",
+      "name_local": "Loom",
+      "normalized_row_key": "gt.recipe.loom",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.loom has 1334 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 1334,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "9e49cc8744635c2f7673e10eec3dc0f9f404465425534d4ab2d69aecd95f81f9",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.loom.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.loom",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.loom",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 2,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 456132,
+      "index_position": 35,
+      "name_internal": "gt.recipe.laminator",
+      "name_local": "Laminator",
+      "normalized_row_key": "gt.recipe.laminator",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.laminator has 498 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 498,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "12114f741455be4a450eeecf368ab01cb57f3df967b08d25a4bc3628cb9a7067",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.laminator.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.laminator",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.laminator",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 2,
+        "output_fluids": 1,
+        "output_items": 3
+      },
+      "classification": "in_scope",
+      "dump_size": 461320,
+      "index_position": 36,
+      "name_internal": "gt.recipe.autoclave",
+      "name_local": "Autoclave",
+      "normalized_row_key": "gt.recipe.autoclave",
+      "owner": "T15",
+      "reason": "T5 publishes 17 source-pinned autoclave recipes through the playable host; replay of the full 392-row GT6 map remains deferred.",
+      "recipe_count": 392,
+      "source_blob": "13dc6039e20c2a903a71195dc503918e3a0b9ef803bba8b00df501f4efdc5b38",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.autoclave.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.autoclave",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft T5 chemical data/runtime",
+        "phase": "T5",
+        "source_key": "gt.recipe.autoclave",
+        "status": "BOUNDED_SUBSET_PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 1,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 770968,
+      "index_position": 37,
+      "name_internal": "gt.recipe.freezer",
+      "name_local": "Freezer",
+      "normalized_row_key": "gt.recipe.freezer",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.freezer has 957 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 957,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "bdc623a7e35712d6790b2bb2a455344970a3c6acac73e976d880898a2140c4bf",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.freezer.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.freezer",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.freezer",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 731011,
+      "index_position": 38,
+      "name_internal": "gt.recipe.polarizer",
+      "name_local": "Polarizer",
+      "normalized_row_key": "gt.recipe.polarizer",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.polarizer has 943 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 943,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "251b2afd3aa35dfb7bc276189b05857a95ddf099ab9e4c6b1517fcd8a7b98eed",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.polarizer.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.polarizer",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.polarizer",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 6,
+        "input_items": 6,
+        "output_fluids": 6,
+        "output_items": 6
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 12835,
+      "index_position": 39,
+      "name_internal": "gt.recipe.lightning",
+      "name_local": "Lightning Processor",
+      "normalized_row_key": "gt.recipe.lightning",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.lightning has 12 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 12,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "2b82af5a7a550729ad2365c03899ff77c3066008b62bdd1cd1a67e955b3ab042",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.lightning.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.lightning",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.lightning",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 2,
+        "output_fluids": 0,
+        "output_items": 2
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 31632,
+      "index_position": 40,
+      "name_internal": "gt.recipe.slicer",
+      "name_local": "Slicer",
+      "normalized_row_key": "gt.recipe.slicer",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.slicer has 33 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 33,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "fe4e2613fda483c818aaf7897abca94643b1b6bc3e0da8700d0d34b85647c31e",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.slicer.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.slicer",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.slicer",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 2
+      },
+      "classification": "in_scope",
+      "dump_size": 2310617,
+      "index_position": 41,
+      "name_internal": "gt.recipe.lathe",
+      "name_local": "Lathe",
+      "normalized_row_key": "gt.recipe.lathe",
+      "owner": "T15",
+      "reason": "Playable lathe block executes the bounded T3 declarative recipe map through the shared KU runtime.",
+      "recipe_count": 2528,
+      "source_blob": "ce1bbf4dba1e265e63724fd2d7e1ede7f6414fd6e4fc912887e713ca012ab031",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.lathe.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.lathe",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft component-machine data/runtime",
+        "phase": "T3",
+        "source_key": "gt.recipe.lathe",
+        "status": "PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 2
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 304783,
+      "index_position": 42,
+      "name_internal": "gt.recipe.pressurewasher",
+      "name_local": "Pressure Washer",
+      "normalized_row_key": "gt.recipe.pressurewasher",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.pressurewasher has 312 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 312,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "6ceb2cc0ccf963fa26c1d3bf7680521c4b24029d8d947e6d381889ef5bfdb7b0",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.pressurewasher.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.pressurewasher",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.pressurewasher",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 3,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "in_scope",
+      "dump_size": 7719548,
+      "index_position": 43,
+      "name_internal": "gt.recipe.press",
+      "name_local": "Press",
+      "normalized_row_key": "gt.recipe.press",
+      "owner": "T15",
+      "reason": "Playable press block supports atomic two-item plate aggregation through the shared KU runtime.",
+      "recipe_count": 8160,
+      "source_blob": "ee146f428b14abbcc5713bf64057cda5cfca099f7e1b1bd0d32609d512f11185",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.press.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.press",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft component-machine data/runtime",
+        "phase": "T3",
+        "source_key": "gt.recipe.press",
+        "status": "PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 1,
+        "output_items": 2
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 4043248,
+      "index_position": 44,
+      "name_internal": "gt.recipe.squeezer",
+      "name_local": "Squeezer",
+      "normalized_row_key": "gt.recipe.squeezer",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.squeezer has 5322 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 5322,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "f88ccdce5654ef7410bb8bbbb5dfe647f9d7399196c7d5a4bda3bb35e2d62aec",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.squeezer.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.squeezer",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.squeezer",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 1,
+        "output_items": 3
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 80644,
+      "index_position": 45,
+      "name_internal": "gt.recipe.juicer",
+      "name_local": "Juicer",
+      "normalized_row_key": "gt.recipe.juicer",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.juicer has 96 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 96,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "d9df2f89eeafb1b4e1491ec63223f35e4ca986f0ac736e87b3d6be762879e8d6",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.juicer.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.juicer",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.juicer",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 1,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 1698,
+      "index_position": 46,
+      "name_internal": "mc.recipe.furnace",
+      "name_local": "Furnace",
+      "normalized_row_key": "mc.recipe.furnace",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: mc.recipe.furnace has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 0,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "ed57f949bdeccf95e01b4997289235da1ff05e1833a87ea43cf38e61856a6835",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/mc.recipe.furnace.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "mc.recipe.furnace",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "mc.recipe.furnace",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 1,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 730,
+      "index_position": 47,
+      "name_internal": "gt.recipe.microwave",
+      "name_local": "Microwave",
+      "normalized_row_key": "gt.recipe.microwave",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.microwave has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 0,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "c79a092d21d550c6617de3581a19ec2e00942727ca1be851de323bf4fd7529ec",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.microwave.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.microwave",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.microwave",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 3,
+        "input_items": 9,
+        "output_fluids": 1,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 732,
+      "index_position": 48,
+      "name_internal": "gt.recipe.cooker",
+      "name_local": "Cooker",
+      "normalized_row_key": "gt.recipe.cooker",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.cooker has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 0,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "b4f8882f9bb7aa75a2bd8c4b1fc42e59b36593d1e481817f8a78cf93445ebb22",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.cooker.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.cooker",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.cooker",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 2,
+        "output_fluids": 0,
+        "output_items": 6
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 75411,
+      "index_position": 49,
+      "name_internal": "gt.recipe.bumblequeen",
+      "name_local": "Bumblebee Queen",
+      "normalized_row_key": "gt.recipe.bumblequeen",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.bumblequeen has 80 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 80,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "c11c78f023f9d7b7425d955d42cd2e5cbe796ab72f82ec490dbd876d0d59110a",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.bumblequeen.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.bumblequeen",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.bumblequeen",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 2,
+        "output_fluids": 0,
+        "output_items": 2
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 1478936,
+      "index_position": 50,
+      "name_internal": "gt.recipe.bumblelyzer",
+      "name_local": "Bumblelyzer",
+      "normalized_row_key": "gt.recipe.bumblelyzer",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.bumblelyzer has 1440 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 1440,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "6da4738b4ffd408c70d452b99c31830eb4aa02f878609b5a706df31896d98865",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.bumblelyzer.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.bumblelyzer",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.bumblelyzer",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 3,
+        "output_fluids": 0,
+        "output_items": 12
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 47523,
+      "index_position": 51,
+      "name_internal": "gt.recipe.trees",
+      "name_local": "Family Tree",
+      "normalized_row_key": "gt.recipe.trees",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.trees has 15 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 15,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "b49201bbe9d949f4494e58036e969410167976131322c00acbcce17666eb4d94",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.trees.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.trees",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.trees",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 2,
+        "output_fluids": 0,
+        "output_items": 2
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 1439,
+      "index_position": 52,
+      "name_internal": "gt.recipe.plantalyzer",
+      "name_local": "Plantalyzer",
+      "normalized_row_key": "gt.recipe.plantalyzer",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.plantalyzer has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 0,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "86c9ebd7bf8cf19101a3da8c299c30d56efc924a19ab80fd2a8fdee10e0246b0",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.plantalyzer.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.plantalyzer",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.plantalyzer",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "in_scope",
+      "dump_size": 342528,
+      "index_position": 53,
+      "name_internal": "gt.recipe.wiremill",
+      "name_local": "Wiremill",
+      "normalized_row_key": "gt.recipe.wiremill",
+      "owner": "T15",
+      "reason": "Playable wire mill block supports the current one- and two-item gauge transformations through shared KU runtime.",
+      "recipe_count": 455,
+      "source_blob": "d6780cd9ca3819770a9f1d5fcc2e09fea93b90e9b59625c5e5fa84b6e11db8e7",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.wiremill.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.wiremill",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft component-machine data/runtime",
+        "phase": "T3",
+        "source_key": "gt.recipe.wiremill",
+        "status": "PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 227927,
+      "index_position": 54,
+      "name_internal": "gt.recipe.clustermill",
+      "name_local": "Cluster Mill",
+      "normalized_row_key": "gt.recipe.clustermill",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.clustermill has 307 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 307,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "f200c118f8a1cdab18bf2555184af77c58a2dd8250a1725e57e8b8ced3913b0f",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.clustermill.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.clustermill",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.clustermill",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "in_scope",
+      "dump_size": 1860345,
+      "index_position": 55,
+      "name_internal": "gt.recipe.rollingmill",
+      "name_local": "Rolling Mill",
+      "normalized_row_key": "gt.recipe.rollingmill",
+      "owner": "T15",
+      "reason": "Playable rolling mill block executes the bounded T3 declarative recipe map through the shared KU runtime.",
+      "recipe_count": 2438,
+      "source_blob": "83c59ea79c43cd117ea8a985a89b93d77c9318eeae1bacaeb1f00039c25e534c",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.rollingmill.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.rollingmill",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft component-machine data/runtime",
+        "phase": "T3",
+        "source_key": "gt.recipe.rollingmill",
+        "status": "PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "in_scope",
+      "dump_size": 706713,
+      "index_position": 56,
+      "name_internal": "gt.recipe.rollbender",
+      "name_local": "Roll Bender",
+      "normalized_row_key": "gt.recipe.rollbender",
+      "owner": "T15",
+      "reason": "Playable roll bender block executes the bounded T3 declarative recipe map through the shared KU runtime.",
+      "recipe_count": 940,
+      "source_blob": "8fa57943d80c224c9f546e0efd8c2fec1ac598c582bd3c6840acac20987f8822",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.rollbender.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.rollbender",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft component-machine data/runtime",
+        "phase": "T3",
+        "source_key": "gt.recipe.rollbender",
+        "status": "PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 21980,
+      "index_position": 57,
+      "name_internal": "gt.recipe.rollformer",
+      "name_local": "Roll Former",
+      "normalized_row_key": "gt.recipe.rollformer",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.rollformer has 28 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 28,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "bd9dbabec4b43dab20edfc90753342cd2c18f575bd10e6e0435302df683a8ca9",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.rollformer.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.rollformer",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.rollformer",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 2,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 1626169,
+      "index_position": 58,
+      "name_internal": "gt.recipe.laserengraver",
+      "name_local": "Precision Laser Engraver",
+      "normalized_row_key": "gt.recipe.laserengraver",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.laserengraver has 1787 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 1787,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "25e4fbbd818c047688f053fade5caac98f14807eca7c587e72dfad9ec2a1cb01",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.laserengraver.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.laserengraver",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.laserengraver",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 9,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "in_scope",
+      "dump_size": 4366245,
+      "index_position": 59,
+      "name_internal": "gt.recipe.welder",
+      "name_local": "Welding Machine",
+      "normalized_row_key": "gt.recipe.welder",
+      "owner": "T15",
+      "reason": "Playable welder block supports atomic two-item recipes and an optional fluid input through the shared KU runtime.",
+      "recipe_count": 4762,
+      "source_blob": "ab56219f48643a4236ff32d0c9ebe017d693c31ad61bbea797147cb9635d5723",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.welder.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.welder",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft component-machine data/runtime",
+        "phase": "T3",
+        "source_key": "gt.recipe.welder",
+        "status": "PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 2,
+        "output_fluids": 0,
+        "output_items": 2
+      },
+      "classification": "out_of_scope",
+      "dump_size": 8934811,
+      "index_position": 60,
+      "name_internal": "gt.recipe.anvil",
+      "name_local": "Anvil",
+      "normalized_row_key": "gt.recipe.anvil",
+      "owner": "OUT_OF_SCOPE",
+      "reason": "gt.recipe.anvil has 9228 pinned recipes dominated by GT6 hand-tool, zero-count-tool, and broad crafting semantics; CC ports the bounded bend maps separately and does not claim this base map as a machine implementation.",
+      "recipe_count": 9228,
+      "source_blob": "52da797249470504ac8c0d18cb7602036766d33af55a60bad67bc3c2b17d8d7e",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.anvil.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.anvil",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft compatibility policy",
+        "phase": "N/A",
+        "source_key": "gt.recipe.anvil",
+        "status": "OUT_OF_SCOPE"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 2,
+        "output_fluids": 0,
+        "output_items": 2
+      },
+      "classification": "in_scope",
+      "dump_size": 548646,
+      "index_position": 61,
+      "name_internal": "gt.recipe.anvil.bend.small",
+      "name_local": "Anvil Bending (Small)",
+      "normalized_row_key": "gt.recipe.anvil.bend.small",
+      "owner": "T15",
+      "reason": "The playable CC bender executes declarative small plate-bending transformations through the shared KU runtime.",
+      "recipe_count": 507,
+      "source_blob": "c4d687af073c426baa6d6c2230ceff7735a412f05dbaca667308e055b05e98da",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.anvil.bend.small.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.anvil.bend.small",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft component-machine data/runtime",
+        "phase": "T3",
+        "source_key": "gt.recipe.anvil.bend.small",
+        "status": "PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 2,
+        "output_fluids": 0,
+        "output_items": 2
+      },
+      "classification": "in_scope",
+      "dump_size": 694100,
+      "index_position": 62,
+      "name_internal": "gt.recipe.anvil.bend.big",
+      "name_local": "Anvil Bending (Big)",
+      "normalized_row_key": "gt.recipe.anvil.bend.big",
+      "owner": "T15",
+      "reason": "The playable CC bender executes declarative large plate-bending transformations through the shared KU runtime.",
+      "recipe_count": 723,
+      "source_blob": "31e806f7eaaa5933e2a256f1b62bb3fc10f7dc3383fd828f7ea848ce526c49b9",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.anvil.bend.big.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.anvil.bend.big",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft component-machine data/runtime",
+        "phase": "T3",
+        "source_key": "gt.recipe.anvil.bend.big",
+        "status": "PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 6,
+        "output_items": 6
+      },
+      "classification": "in_scope",
+      "dump_size": 1754585,
+      "index_position": 63,
+      "name_internal": "gt.recipe.centrifuge",
+      "name_local": "Centrifuge",
+      "normalized_row_key": "gt.recipe.centrifuge",
+      "owner": "T15",
+      "reason": "The playable centrifuge includes the T2 ore-chain scope and 14 source-pinned T5 recipes; replay of the full 1296-row GT6 map remains deferred.",
+      "recipe_count": 1296,
+      "source_blob": "b7a828695847a6fbffc50e4e73e9b88990c8bc2610348a34ebd3f1642aa80322",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.centrifuge.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.centrifuge",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft T2/T5 data/runtime",
+        "phase": "T2/T5",
+        "source_key": "gt.recipe.centrifuge",
+        "status": "BOUNDED_SUBSET_PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 2,
+        "input_items": 2,
+        "output_fluids": 6,
+        "output_items": 6
+      },
+      "classification": "in_scope",
+      "dump_size": 366651,
+      "index_position": 64,
+      "name_internal": "gt.recipe.electrolyzer",
+      "name_local": "Electrolyzer",
+      "normalized_row_key": "gt.recipe.electrolyzer",
+      "owner": "T15",
+      "reason": "T5 publishes 62 source-pinned electrolyzer recipes through the playable host; replay of the full 290-row GT6 map remains deferred.",
+      "recipe_count": 290,
+      "source_blob": "d7922743f3817d7cc43da3ca990e26fbfcc6bdb1309edc1f2b1513d9696e4cf8",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.electrolyzer.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.electrolyzer",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft T5 chemical data/runtime",
+        "phase": "T5",
+        "source_key": "gt.recipe.electrolyzer",
+        "status": "BOUNDED_SUBSET_PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 4,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 10781031,
+      "index_position": 65,
+      "name_internal": "gt.recipe.toolhead",
+      "name_local": "Craft Head on Handle",
+      "normalized_row_key": "gt.recipe.toolhead",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.toolhead has 10960 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 10960,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "605bc61e87709b7ab49f93fd7308b1f4d9d3a5bffce8cc94f156dca4de0200e1",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.toolhead.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.toolhead",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.toolhead",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 2
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 7335554,
+      "index_position": 66,
+      "name_internal": "gt.recipe.sharpener",
+      "name_local": "Sharpener",
+      "normalized_row_key": "gt.recipe.sharpener",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.sharpener has 7637 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 7637,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "6b4b7242ccd0ca2d27f6c0d176c0b313033ab38687361385d974f95e75ce4f63",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.sharpener.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.sharpener",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.sharpener",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 12,
+        "output_fluids": 0,
+        "output_items": 12
+      },
+      "classification": "out_of_scope",
+      "dump_size": 401886,
+      "index_position": 67,
+      "name_internal": "gt.recipe.cruciblealloying",
+      "name_local": "Combination Smelting",
+      "normalized_row_key": "gt.recipe.cruciblealloying",
+      "owner": "OUT_OF_SCOPE",
+      "reason": "gt.recipe.cruciblealloying has 414 pinned fake/reference recipes; CC alloying is composition- and thermal-model-driven, so the comparator audits semantic parity without exposing a direct GT6-map runtime.",
+      "recipe_count": 414,
+      "source_blob": "f61d5af28f2c60426967d7206df44d79a9284de2b1ebe05712fa10b263d52e7c",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.cruciblealloying.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.cruciblealloying",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft compatibility policy",
+        "phase": "N/A",
+        "source_key": "gt.recipe.cruciblealloying",
+        "status": "OUT_OF_SCOPE"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 6,
+        "output_fluids": 0,
+        "output_items": 6
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 6618,
+      "index_position": 68,
+      "name_internal": "gt.recipe.cruciblesmelting",
+      "name_local": "Crucible Smelting",
+      "normalized_row_key": "gt.recipe.cruciblesmelting",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.cruciblesmelting has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 0,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "d5bfe1f4d7b924b721c0519ee5c6f96b154503f8d00c26a68d04e3d9fab2a555",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.cruciblesmelting.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.cruciblesmelting",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.cruciblesmelting",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 3
+      },
+      "classification": "in_scope",
+      "dump_size": 25347806,
+      "index_position": 69,
+      "name_internal": "gt.recipe.cutter",
+      "name_local": "Cutter",
+      "normalized_row_key": "gt.recipe.cutter",
+      "owner": "T15",
+      "reason": "Playable cutter block executes the bounded T3 declarative recipe map through the shared KU runtime.",
+      "recipe_count": 27454,
+      "source_blob": "6b3537f50c8c1299afbb8a53ca264e2335eab0b8df7d5e9175f720f9dedae348",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.cutter.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.cutter",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft component-machine data/runtime",
+        "phase": "T3",
+        "source_key": "gt.recipe.cutter",
+        "status": "PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 1,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 4584954,
+      "index_position": 70,
+      "name_internal": "gt.recipe.melter",
+      "name_local": "Melter",
+      "normalized_row_key": "gt.recipe.melter",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.melter has 6756 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 6756,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "5650d480cbf6c9292dde631b161f50f30bf6fea1705e3d0f1db43a989eaaac8b",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.melter.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.melter",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.melter",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 1,
+        "output_items": 1
+      },
+      "classification": "in_scope",
+      "dump_size": 15005335,
+      "index_position": 71,
+      "name_internal": "gt.recipe.smelter",
+      "name_local": "Smelter",
+      "normalized_row_key": "gt.recipe.smelter",
+      "owner": "T15",
+      "reason": "The playable smelter includes the T2 dust scope and 7 source-pinned T5 recipes; replay of the full 21969-row GT6 map remains deferred.",
+      "recipe_count": 21969,
+      "source_blob": "18485809a26988c4eb3dcb37f28cccfd09e8e24655c23d82b33dd642e2ea70ca",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.smelter",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft T2/T5 data/runtime",
+        "phase": "T2/T5",
+        "source_key": "gt.recipe.smelter",
+        "status": "BOUNDED_SUBSET_PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 2
+      },
+      "classification": "in_scope",
+      "dump_size": 4799921,
+      "index_position": 72,
+      "name_internal": "gt.recipe.mortar",
+      "name_local": "Mortar",
+      "normalized_row_key": "gt.recipe.mortar",
+      "owner": "T15",
+      "reason": "T2 ships a playable crushed-ore to dust mechanical alternative.",
+      "recipe_count": 6318,
+      "source_blob": "128e65d3e3f117ca796de631011ba0fcdde5b5c85161a5ddbca67ebbd64aa803",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.mortar.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.mortar",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft ore-chain data/runtime",
+        "phase": "T2",
+        "source_key": "gt.recipe.mortar",
+        "status": "PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 12
+      },
+      "classification": "in_scope",
+      "dump_size": 32517858,
+      "index_position": 73,
+      "name_internal": "gt.recipe.shredder",
+      "name_local": "Shredder",
+      "normalized_row_key": "gt.recipe.shredder",
+      "owner": "T15",
+      "reason": "T2 ships the playable centrifuged-ore to purified-dust subset.",
+      "recipe_count": 41246,
+      "source_blob": "4226cd277e7e5f9a7d65ef0df01b1577b81b99b2026c3795e1495911aec8669f",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.shredder.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.shredder",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft ore-chain data/runtime",
+        "phase": "T2",
+        "source_key": "gt.recipe.shredder",
+        "status": "PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 12
+      },
+      "classification": "in_scope",
+      "dump_size": 17667906,
+      "index_position": 74,
+      "name_internal": "gt.recipe.crusher",
+      "name_local": "Crusher",
+      "normalized_row_key": "gt.recipe.crusher",
+      "owner": "T15",
+      "reason": "The playable crusher route implements the committed ore-chain subset through declarative material rules; unmodeled GT6 recipes remain comparison TODOs.",
+      "recipe_count": 12932,
+      "source_blob": "0f15b11bb7ca8476fa82dc6450d83e64793efed01a10fc3380be461c1e2e23ae",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.crusher.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.crusher",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft ore-chain data/runtime",
+        "phase": "T2",
+        "source_key": "gt.recipe.crusher",
+        "status": "PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 2,
+        "output_fluids": 0,
+        "output_items": 2
+      },
+      "classification": "in_scope",
+      "dump_size": 306948566,
+      "index_position": 75,
+      "name_internal": "gt.recipe.extruder",
+      "name_local": "Extruder",
+      "normalized_row_key": "gt.recipe.extruder",
+      "owner": "T15",
+      "reason": "Playable extruder block executes the bounded T3 declarative recipe map through the shared KU runtime.",
+      "recipe_count": 325595,
+      "source_blob": "7f4485ff9c05634f2c874baa6ee91c3bb8191a2a5034a9642bef6de4b5c24aa6",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.extruder.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.extruder",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft component-machine data/runtime",
+        "phase": "T3",
+        "source_key": "gt.recipe.extruder",
+        "status": "PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 233005,
+      "index_position": 76,
+      "name_internal": "gt.recipe.hammer",
+      "name_local": "Hammer",
+      "normalized_row_key": "gt.recipe.hammer",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.hammer has 309 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 309,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "2713907348a90aea083983c971540074f8869dfd923f06d7e0cb414194227c55",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.hammer.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.hammer",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.hammer",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 2475,
+      "index_position": 77,
+      "name_internal": "gt.recipe.chisel",
+      "name_local": "Chisel",
+      "normalized_row_key": "gt.recipe.chisel",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.chisel has 2 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 2,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "6e47c3ca044712f07f2b5a0fe3ef1b88bc94e8a37742949a17221736d0cdf61c",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.chisel.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.chisel",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.chisel",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 2,
+        "output_fluids": 1,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 59427,
+      "index_position": 78,
+      "name_internal": "gt.recipe.nanofab",
+      "name_local": "Nanoscale Fabricator",
+      "normalized_row_key": "gt.recipe.nanofab",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.nanofab has 64 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 64,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "93dcdaf32898663d5b46f3f70e672c3f9f9f5fb2f507b31e57f54603dd4e16e7",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.nanofab.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.nanofab",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.nanofab",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 6,
+        "input_items": 2,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 33059,
+      "index_position": 79,
+      "name_internal": "gt.recipe.printer",
+      "name_local": "Printer",
+      "normalized_row_key": "gt.recipe.printer",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[PACKAGING_OR_AUTOMATION]: gt.recipe.printer has 22 pinned recipe(s); the current audited scope does not implement packaging, container, printing, generic conversion, or autocrafting machines.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 22,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "d04b20c6e1ddaec479a25254b42e53997381dbc1ac8d5d98876f262353b8aa8d",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.printer.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.printer",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.printer",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 2,
+        "output_fluids": 0,
+        "output_items": 2
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 60527,
+      "index_position": 80,
+      "name_internal": "gt.recipe.scannervisuals",
+      "name_local": "Scanner (Visuals)",
+      "normalized_row_key": "gt.recipe.scannervisuals",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[REFERENCE_OR_ANALYSIS_MAP]: gt.recipe.scannervisuals has 50 pinned recipe(s); the current audited scope does not expose GT6 list, scanner, or analysis-map semantics as executable CrucibleCraft recipes.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 50,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "1326b02f12415a4bdb51b978c5e497964d88b2fcc7948d083d73098e80a8c63e",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.scannervisuals.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.scannervisuals",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.scannervisuals",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 2,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 920,
+      "index_position": 81,
+      "name_internal": "gt.recipe.scannermolecular",
+      "name_local": "Molecular Scanner",
+      "normalized_row_key": "gt.recipe.scannermolecular",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.scannermolecular has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 0,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "74cb97726fadc7d64a619f3997b8c9e97101ac275b35e3e0fd915f76395028a8",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.scannermolecular.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.scannermolecular",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.scannermolecular",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 2,
+        "output_fluids": 2,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 735184,
+      "index_position": 82,
+      "name_internal": "gt.recipe.massfab",
+      "name_local": "Matter Fabricator",
+      "normalized_row_key": "gt.recipe.massfab",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.massfab has 920 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 920,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "b5ce6935f151103a99f71f7d330b1548ab05af45e07e396bbe769335965f828e",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.massfab.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.massfab",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.massfab",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 3,
+        "input_items": 3,
+        "output_fluids": 3,
+        "output_items": 3
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 989796,
+      "index_position": 83,
+      "name_internal": "gt.recipe.replicator",
+      "name_local": "Matter Replicator",
+      "normalized_row_key": "gt.recipe.replicator",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.replicator has 895 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 895,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "b39cef9f55565ee2ce4bd6165fb33dbfd04d53102a2580a2e0c6ad22bb584137",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.replicator.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.replicator",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.replicator",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 2,
+        "input_items": 2,
+        "output_fluids": 6,
+        "output_items": 6
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 18284,
+      "index_position": 84,
+      "name_internal": "gt.recipe.fusionreactor",
+      "name_local": "Fusion Reactor",
+      "normalized_row_key": "gt.recipe.fusionreactor",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fusionreactor has 18 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 18,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "19296d0142102b288b68b7fefbb6749bbaa0ca3c29942688ded4a19032598af9",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fusionreactor.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.fusionreactor",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.fusionreactor",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 2,
+        "output_fluids": 1,
+        "output_items": 2
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 3310811,
+      "index_position": 85,
+      "name_internal": "gt.recipe.canner",
+      "name_local": "Canning Machine",
+      "normalized_row_key": "gt.recipe.canner",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[PACKAGING_OR_AUTOMATION]: gt.recipe.canner has 3609 pinned recipe(s); the current audited scope does not implement packaging, container, printing, generic conversion, or autocrafting machines.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 3609,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "0004750febab6787a147073f4bcd67a331a18385e5c4c7ea20828fcff0d9f2be",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.canner.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.canner",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.canner",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 2,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 25077905,
+      "index_position": 86,
+      "name_internal": "gt.recipe.boxinator",
+      "name_local": "Boxinator",
+      "normalized_row_key": "gt.recipe.boxinator",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[PACKAGING_OR_AUTOMATION]: gt.recipe.boxinator has 27291 pinned recipe(s); the current audited scope does not implement packaging, container, printing, generic conversion, or autocrafting machines.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 27291,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "ca0749887b576deddcc8240af8e154b0309518c7b22d233932cb384c6a29e7b0",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.boxinator.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.boxinator",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.boxinator",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 12
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 14993752,
+      "index_position": 87,
+      "name_internal": "gt.recipe.unboxinator",
+      "name_local": "Unboxinator",
+      "normalized_row_key": "gt.recipe.unboxinator",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[PACKAGING_OR_AUTOMATION]: gt.recipe.unboxinator has 17513 pinned recipe(s); the current audited scope does not implement packaging, container, printing, generic conversion, or autocrafting machines.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 17513,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "154531f8f3770bf67d73f12ffdb08a856423e3e320ca721f21b306004cc6f2f3",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.unboxinator.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.unboxinator",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.unboxinator",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 1,
+        "output_items": 1
+      },
+      "classification": "in_scope",
+      "dump_size": 7665385,
+      "index_position": 88,
+      "name_internal": "gt.recipe.generifier",
+      "name_local": "Generifier",
+      "normalized_row_key": "gt.recipe.generifier",
+      "owner": "T15",
+      "reason": "T11 publishes fixed natural-gas row 553 through a dedicated zero-energy Generifier; the other 10235 rows remain explicitly deferred in the T11 source ledger.",
+      "recipe_count": 10236,
+      "source_blob": "acd07dbdda3531543a24664e9be0922d10ac519cc85fa79bdf7f2f64910c24b7",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.generifier.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.generifier",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft T11 hydrocarbon processing runtime",
+        "phase": "T11",
+        "source_key": "gt.recipe.generifier",
+        "status": "BOUNDED_SUBSET_PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 12
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 107613,
+      "index_position": 89,
+      "name_internal": "gt.recipe.bedrockorelist",
+      "name_local": "Bedrock Drill",
+      "normalized_row_key": "gt.recipe.bedrockorelist",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[REFERENCE_OR_ANALYSIS_MAP]: gt.recipe.bedrockorelist has 52 pinned recipe(s); the current audited scope does not expose GT6 list, scanner, or analysis-map semantics as executable CrucibleCraft recipes.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 52,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "e6be5fa16243abb8fb02aa6028c52b5bfe6db281b1e0fdb67f4405414ee895d5",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.bedrockorelist.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.bedrockorelist",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.bedrockorelist",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 6,
+        "output_fluids": 0,
+        "output_items": 12
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 587637,
+      "index_position": 90,
+      "name_internal": "gt.recipe.byproductlist",
+      "name_local": "Ore Byproduct List",
+      "normalized_row_key": "gt.recipe.byproductlist",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[REFERENCE_OR_ANALYSIS_MAP]: gt.recipe.byproductlist has 289 pinned recipe(s); the current audited scope does not expose GT6 list, scanner, or analysis-map semantics as executable CrucibleCraft recipes.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 289,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "4726848dd557d59f6f616c704f87f1f4da2ee255869cb916a54a577ebdfbe9dc",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.byproductlist.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.byproductlist",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.byproductlist",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 2,
+        "output_fluids": 0,
+        "output_items": 2
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 771,
+      "index_position": 91,
+      "name_internal": "gt.recipe.blastfurnace",
+      "name_local": "Blast Furnace",
+      "normalized_row_key": "gt.recipe.blastfurnace",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.blastfurnace has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 0,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "f9fb555bb16b93ac2ccab8c708f07dfdbe1b491dbca6d97e64b5b4d10315286a",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.blastfurnace.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.blastfurnace",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.blastfurnace",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 0,
+        "input_items": 1,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 756,
+      "index_position": 92,
+      "name_internal": "gt.recipe.vacuumfreezer",
+      "name_local": "Vacuum Freezer",
+      "normalized_row_key": "gt.recipe.vacuumfreezer",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.vacuumfreezer has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 0,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "a74a4630c2d0d86c8ee7405e88ce38bfec54f7c3ec5538ccf5d4054835cb7951",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.vacuumfreezer.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.vacuumfreezer",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.vacuumfreezer",
+        "status": "DEFERRED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 2,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "in_scope",
+      "dump_size": 1427608,
+      "index_position": 93,
+      "name_internal": "gt.recipe.assembler",
+      "name_local": "Assembler",
+      "normalized_row_key": "gt.recipe.assembler",
+      "owner": "T15",
+      "reason": "The playable assembler includes the existing T3 component scope and 1 source-pinned T5 recipe; replay of the full 1582-row GT6 map remains deferred.",
+      "recipe_count": 1582,
+      "source_blob": "061e6a66439ea75907465bbccf90ed4af316075c93f2b248c0fc861668e7fbe2",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.assembler.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.assembler",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "CrucibleCraft T3/T5 data/runtime",
+        "phase": "T3/T5",
+        "source_key": "gt.recipe.assembler",
+        "status": "BOUNDED_SUBSET_PORTED"
+      }
+    },
+    {
+      "capacity": {
+        "input_fluids": 1,
+        "input_items": 2,
+        "output_fluids": 0,
+        "output_items": 1
+      },
+      "classification": "deferred_with_reason",
+      "dump_size": 39376,
+      "index_position": 94,
+      "name_internal": "gt.recipe.cncmachine",
+      "name_local": "CNC Machine",
+      "normalized_row_key": "gt.recipe.cncmachine",
+      "owner": "POST_T19",
+      "reason": "DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.cncmachine has 38 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "recipe_count": 38,
+      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "source_blob": "3b5e44a900f3648d820ed8d3f90d503b230a933ee65bd77443f553985a411d82",
+      "source_blob_algorithm": "sha256",
+      "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.cncmachine.json",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_symbol_or_extraction_key": "gt.recipe.cncmachine",
+      "supersedes": {
+        "artifact": "tools/gt6_map_roadmap.json",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
+        "source_key": "gt.recipe.cncmachine",
+        "status": "DEFERRED"
+      }
+    }
+  ],
+  "schema_version": 1,
+  "source": {
+    "recipe_dump_index": "gt6_dump/gt6_recipe_dump/index.json",
+    "repository": "GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "source_declarations": 1546,
+    "source_symbol_inventory": "tools/t13_source_symbol_inventory.json",
+    "tree_manifest": "tools/t13_gt6_tree_manifest.json",
+    "tree_manifest_entries": 1229,
+    "tree_sha1": "a164302f62a326208fd2076de6fb7cdb0b4602ee"
+  },
+  "source_hashes": {
+    "builder": "9a3dca558629a03c7a1b2dd5d89fea73df83522cbb5a5e459c06c47c93c33101",
+    "dump_index": "04a1ddf9f0bee4432206d2e89890839c10e4a9ad0b66aa3cd67f7385c31abc7f",
+    "legacy_roadmap": "9a6dbb0dc639712be18c2e68450eefeb23148520707820fd66aa231130b38d29",
+    "map_tree": "ad3f229f0f43bbf3f72fa1115201f127ac910978c0d92f0313493344234c08df",
+    "policy": "45294c2656447c9dee4af687bac64a2f5b274905984a83b30c502031b6ae35ce",
+    "source_symbol_inventory": "d5aa1faa86ac336d83a0c120d6b4aaa29a07d9f95390a4c7ffc50757eac81f91",
+    "tree_manifest": "cfb7aeb7951a3c4ef761cb4f79ff04099f504cf90c9eeb40acfc87a4926b8f9f"
+  },
+  "status": "T13A_RECIPE_MAP_DENOMINATOR_READY",
+  "supersession": {
+    "historical_artifact": "tools/gt6_map_roadmap.json",
+    "historical_artifact_sha256": "9a6dbb0dc639712be18c2e68450eefeb23148520707820fd66aa231130b38d29",
+    "historical_phase_owner": "POST_T3",
+    "historical_unassigned_owner": "Unassigned future content owner",
+    "history_preserved": true,
+    "replacement_owners": [
+      "T14",
+      "T15",
+      "T16",
+      "T17",
+      "T18",
+      "T19",
+      "POST_T19",
+      "OUT_OF_SCOPE"
+    ],
+    "status": "SUPERSEDED_BY_T13A_CANONICAL_RECIPE_MAP_DISPOSITIONS"
+  }
+}

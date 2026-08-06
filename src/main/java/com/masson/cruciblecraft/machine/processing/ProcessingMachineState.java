@@ -13,8 +13,15 @@ public record ProcessingMachineState(
         long powerDemand,
         long energy,
         long resourceRevision,
+        String machineKind,
+        String tierProfile,
+        String materialId,
+        String energyIdentity,
+        int operations,
+        long workProgress,
+        long workRequired,
         Optional<Integer> unsupportedVersion) {
-    public static final int VERSION = 1;
+    public static final int VERSION = 2;
 
     public ProcessingMachineState {
         activeRecipe = activeRecipe == null ? "" : activeRecipe;
@@ -24,9 +31,17 @@ public record ProcessingMachineState(
         powerDemand = Math.max(0L, powerDemand);
         energy = Math.max(0L, energy);
         resourceRevision = Math.max(0L, resourceRevision);
+        machineKind = machineKind == null ? "" : machineKind;
+        tierProfile = tierProfile == null ? "" : tierProfile;
+        materialId = materialId == null ? "" : materialId;
+        energyIdentity = energyIdentity == null ? "" : energyIdentity;
+        operations = Math.max(1, operations);
+        workRequired = Math.max(0L, workRequired);
+        workProgress = Math.max(
+                0L, Math.min(workProgress, workRequired));
         unsupportedVersion = unsupportedVersion == null
                 ? Optional.empty()
-                : unsupportedVersion.filter(version -> version > VERSION);
+                : unsupportedVersion.filter(version -> version > 0);
     }
 
     public ProcessingMachineState(
@@ -45,7 +60,41 @@ public record ProcessingMachineState(
                 powerDemand,
                 energy,
                 resourceRevision,
+                "",
+                "",
+                "",
+                "",
+                1,
+                0L,
+                0L,
                 Optional.empty());
+    }
+
+    public ProcessingMachineState(
+            String activeRecipe,
+            int progress,
+            int duration,
+            String status,
+            long powerDemand,
+            long energy,
+            long resourceRevision,
+            Optional<Integer> unsupportedVersion) {
+        this(
+                activeRecipe,
+                progress,
+                duration,
+                status,
+                powerDemand,
+                energy,
+                resourceRevision,
+                "",
+                "",
+                "",
+                "",
+                1,
+                0L,
+                0L,
+                unsupportedVersion);
     }
 
     public boolean unsupported() {
@@ -62,6 +111,13 @@ public record ProcessingMachineState(
         tag.putLong("power_demand", powerDemand);
         tag.putLong("energy", energy);
         tag.putLong("resource_revision", resourceRevision);
+        tag.putString("machine_kind", machineKind);
+        tag.putString("tier_profile", tierProfile);
+        tag.putString("tier_material", materialId);
+        tag.putString("energy_identity", energyIdentity);
+        tag.putInt("parallel_operations", operations);
+        tag.putLong("work_progress", workProgress);
+        tag.putLong("work_required", workRequired);
         return tag;
     }
 
@@ -92,6 +148,15 @@ public record ProcessingMachineState(
                 tag.getLong("power_demand"),
                 tag.getLong("energy"),
                 tag.getLong("resource_revision"),
+                version >= 2 ? tag.getString("machine_kind") : "",
+                version >= 2 ? tag.getString("tier_profile") : "",
+                version >= 2 ? tag.getString("tier_material") : "",
+                version >= 2 ? tag.getString("energy_identity") : "",
+                version >= 2
+                        ? Math.max(1, tag.getInt("parallel_operations"))
+                        : 1,
+                version >= 2 ? tag.getLong("work_progress") : 0L,
+                version >= 2 ? tag.getLong("work_required") : 0L,
                 version > supportedVersion
                         ? Optional.of(version)
                         : Optional.empty());

@@ -24,7 +24,8 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
 public final class ChemicalFluidRegistrationGate {
     private static final List<String> RESOURCES = List.of(
             "/data/cruciblecraft/t5_chemical_fluid_gate.json",
-            "/data/cruciblecraft/t10_container_fluid_gate.json");
+            "/data/cruciblecraft/t10_container_fluid_gate.json",
+            "/data/cruciblecraft/t11_hydrocarbon_fluid_gate.json");
 
     private ChemicalFluidRegistrationGate() {}
 
@@ -150,7 +151,7 @@ public final class ChemicalFluidRegistrationGate {
         for (String field : fields) {
             if (!value.has(field) || value.get(field).isJsonNull()) {
                 throw new IllegalStateException(
-                        "T5 chemical fluid gate entry is missing " + field);
+                        "Chemical fluid gate entry is missing " + field);
             }
         }
     }
