@@ -44,6 +44,10 @@ public final class ModCreativeTabs {
                         output.accept(machineVariant(ModItems.ANVIL.get(), "bronze"));
                         output.accept(machineVariant(ModItems.ANVIL.get(), "steel"));
                         output.accept(ModItems.COKE_OVEN.get());
+                        output.accept(ModItems.MULTIBLOCK_CASING.get());
+                        output.accept(ModItems.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                        output.accept(ModItems.MULTIBLOCK_ENERGY_INPUT_PORT.get());
+                        output.accept(ModItems.LARGE_CENTRIFUGE.get());
                         output.accept(ModItems.RAW_CERAMIC_CRUCIBLE.get());
                         output.accept(ModItems.RAW_CERAMIC_MOLD.get());
                         output.accept(ModItems.RAW_INGOT_MOLD.get());
@@ -62,15 +66,34 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.PORTABLE_FLUID_TANK.get());
                         output.accept(ModItems.FLUID_CELL.get());
                         output.accept(ModItems.GAS_CELL.get());
+                        output.accept(
+                                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get());
+                        output.accept(
+                                ModItems.STEEL_DOUBLE_MACHINE_CASING.get());
+                        output.accept(
+                                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get());
+                        output.accept(
+                                ModItems.STEEL_GALVANIZED_MACHINE_CASING.get());
+                        output.accept(
+                                ModItems.ALUMINIUM_MACHINE_CASING.get());
+                        output.accept(
+                                ModItems.STAINLESS_STEEL_MACHINE_CASING.get());
                         output.accept(ModItems.BRONZE_BOILER.get());
                         output.accept(ModItems.BRONZE_STEAM_ENGINE.get());
                         output.accept(ModItems.BRONZE_DYNAMO.get());
+                        output.accept(ModItems.ELECTRIC_MOTOR.get());
+                        output.accept(ModItems.ROTATIONAL_AXLE.get());
+                        output.accept(ModItems.ROTATIONAL_GEARBOX.get());
                         output.accept(ModItems.BRONZE_CRUSHER.get());
                         output.accept(ModItems.SLUICE.get());
                         output.accept(ModItems.BATH.get());
                         output.accept(ModItems.CENTRIFUGE.get());
+                        output.accept(ModItems.STEEL_CENTRIFUGE.get());
+                        output.accept(ModItems.TITANIUM_CENTRIFUGE.get());
                         output.accept(ModItems.SHREDDER.get());
                         output.accept(ModItems.SIFTER.get());
+                        output.accept(ModItems.STEEL_SIFTER.get());
+                        output.accept(ModItems.TITANIUM_SIFTER.get());
                         output.accept(ModItems.SMELTER.get());
                         output.accept(ModItems.MORTAR.get());
                         output.accept(ModItems.EXTRUDER.get());
@@ -84,11 +107,18 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.WELDER.get());
                         output.accept(ModItems.PRESS.get());
                         output.accept(ModItems.ELECTROLYZER.get());
+                        output.accept(ModItems.ALUMINIUM_ELECTROLYZER.get());
+                        output.accept(
+                                ModItems.STAINLESS_STEEL_ELECTROLYZER.get());
                         output.accept(ModItems.MIXER.get());
                         output.accept(ModItems.DISTILLERY.get());
                         output.accept(ModItems.AUTOCLAVE.get());
                         output.accept(ModItems.DRYING.get());
                         output.accept(ModItems.COMPRESSOR.get());
+                        output.accept(ModItems.GENERIFIER.get());
+                        output.accept(ModItems.FLUID_DEPOSIT_EXTRACTOR.get());
+                        output.accept(ModItems.FUEL_ENGINE.get());
+                        output.accept(ModItems.BURNING_GAS_GENERATOR.get());
                         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                                 output.accept(ModItems.extruderShape(shape.id()).get()));
                         output.accept(ModItems.FLINT_KNIFE.get());

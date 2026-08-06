@@ -1,0 +1,349 @@
+{
+  "schema_version": 1,
+  "status": "T15C_MACHINE_ACQUISITION_POLICY",
+  "expected_set_source": "independent_t15c_acceptance_policy",
+  "production_mapping_reused": false,
+  "source_declarations": {
+    "cruciblecraft:aluminium/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/aluminium.json"
+    },
+    "cruciblecraft:bronze/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/bronze.json"
+    },
+    "cruciblecraft:copper/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/copper.json"
+    },
+    "cruciblecraft:gold/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/gold.json"
+    },
+    "cruciblecraft:platinum/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/platinum.json"
+    },
+    "cruciblecraft:rubber/plate": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/rubber.json"
+    },
+    "cruciblecraft:stainless_steel/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/stainless_steel.json"
+    },
+    "cruciblecraft:steel/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/steel.json"
+    },
+    "cruciblecraft:steel_galvanized/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/steel_galvanized.json"
+    },
+    "cruciblecraft:tin/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/tin.json"
+    },
+    "cruciblecraft:titanium/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/titanium.json"
+    }
+  },
+  "tag_sources": {
+    "cruciblecraft:any_rubber_plates": {
+      "item": "cruciblecraft:rubber/plate",
+      "tag_resource": "src/component_rule_generated/resources/data/cruciblecraft/tags/item/any_rubber_plates.json",
+      "required_value": "#c:plates/rubber"
+    }
+  },
+  "producer_rules": {
+    "cable": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/wire_and_rubber_to_cable.json",
+      "input_prefixes": [
+        "wire"
+      ],
+      "input_tags": [
+        "cruciblecraft:any_rubber_plates"
+      ]
+    },
+    "double_plate": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/welder/plates_to_double_plate.json",
+      "input_prefixes": [
+        "plate",
+        "plate"
+      ],
+      "input_tags": []
+    },
+    "fine_wire": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/foil_to_fine_wire.json",
+      "input_prefixes": [
+        "foil"
+      ],
+      "input_tags": []
+    },
+    "foil": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/cutter/plate_to_foil.json",
+      "input_prefixes": [
+        "plate"
+      ],
+      "input_tags": []
+    },
+    "gear": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/plates_to_gear.json",
+      "input_prefixes": [
+        "plate"
+      ],
+      "input_tags": []
+    },
+    "long_rod": {
+      "paths": [
+        "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_long_rod.json",
+        "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/normal_long_rod.json"
+      ],
+      "input_prefixes": [
+        "ingot"
+      ],
+      "input_tags": [],
+      "compact_relation": true
+    },
+    "plate": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+      "input_prefixes": [
+        "ingot"
+      ],
+      "input_tags": []
+    },
+    "rod": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/lathe/ingot_to_rods.json",
+      "input_prefixes": [
+        "ingot"
+      ],
+      "input_tags": []
+    },
+    "spring": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/bender/long_rod_to_spring.json",
+      "input_prefixes": [
+        "long_rod"
+      ],
+      "input_tags": []
+    },
+    "wire": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/ingot_to_wire.json",
+      "input_prefixes": [
+        "ingot"
+      ],
+      "input_tags": []
+    }
+  },
+  "casing_recipes": {
+    "cruciblecraft:components/aluminium_machine_casing": {
+      "item_field": "ALUMINIUM_MACHINE_CASING",
+      "result": "cruciblecraft:aluminium_machine_casing",
+      "pattern": [
+        "PPP",
+        "P P",
+        "PPP"
+      ],
+      "key": {
+        "P": "cruciblecraft:aluminium/plate"
+      }
+    },
+    "cruciblecraft:components/bronze_double_machine_casing": {
+      "item_field": "BRONZE_DOUBLE_MACHINE_CASING",
+      "result": "cruciblecraft:bronze_double_machine_casing",
+      "pattern": [
+        "PPP",
+        "P P",
+        "PPP"
+      ],
+      "key": {
+        "P": "cruciblecraft:bronze/double_plate"
+      }
+    },
+    "cruciblecraft:components/stainless_steel_machine_casing": {
+      "item_field": "STAINLESS_STEEL_MACHINE_CASING",
+      "result": "cruciblecraft:stainless_steel_machine_casing",
+      "pattern": [
+        "PPP",
+        "P P",
+        "PPP"
+      ],
+      "key": {
+        "P": "cruciblecraft:stainless_steel/plate"
+      }
+    },
+    "cruciblecraft:components/steel_double_machine_casing": {
+      "item_field": "STEEL_DOUBLE_MACHINE_CASING",
+      "result": "cruciblecraft:steel_double_machine_casing",
+      "pattern": [
+        "PPP",
+        "P P",
+        "PPP"
+      ],
+      "key": {
+        "P": "cruciblecraft:steel/double_plate"
+      }
+    },
+    "cruciblecraft:components/steel_galvanized_machine_casing": {
+      "item_field": "STEEL_GALVANIZED_MACHINE_CASING",
+      "result": "cruciblecraft:steel_galvanized_machine_casing",
+      "pattern": [
+        "PPP",
+        "P P",
+        "PPP"
+      ],
+      "key": {
+        "P": "cruciblecraft:steel_galvanized/plate"
+      }
+    },
+    "cruciblecraft:components/titanium_double_machine_casing": {
+      "item_field": "TITANIUM_DOUBLE_MACHINE_CASING",
+      "result": "cruciblecraft:titanium_double_machine_casing",
+      "pattern": [
+        "PPP",
+        "P P",
+        "PPP"
+      ],
+      "key": {
+        "P": "cruciblecraft:titanium/double_plate"
+      }
+    }
+  },
+  "machine_variant_recipes": {
+    "cruciblecraft:machines/aluminium_electrolyzer": {
+      "item_field": "ALUMINIUM_ELECTROLYZER",
+      "result": "cruciblecraft:aluminium_electrolyzer",
+      "selected_casing": "cruciblecraft:aluminium_machine_casing",
+      "pattern": [
+        "SMS",
+        "W W"
+      ],
+      "key": {
+        "M": "cruciblecraft:aluminium_machine_casing",
+        "S": "cruciblecraft:platinum/wire",
+        "W": "cruciblecraft:copper/cable"
+      }
+    },
+    "cruciblecraft:machines/centrifuge": {
+      "item_field": "CENTRIFUGE",
+      "result": "cruciblecraft:centrifuge",
+      "selected_casing": "cruciblecraft:bronze_double_machine_casing",
+      "pattern": [
+        "G ",
+        "SC",
+        "G "
+      ],
+      "key": {
+        "C": "cruciblecraft:bronze_double_machine_casing",
+        "G": "cruciblecraft:bronze/gear",
+        "S": "cruciblecraft:bronze/long_rod"
+      }
+    },
+    "cruciblecraft:machines/electrolyzer": {
+      "item_field": "ELECTROLYZER",
+      "result": "cruciblecraft:electrolyzer",
+      "selected_casing": "cruciblecraft:steel_galvanized_machine_casing",
+      "pattern": [
+        "SMS",
+        "W W"
+      ],
+      "key": {
+        "M": "cruciblecraft:steel_galvanized_machine_casing",
+        "S": "cruciblecraft:platinum/wire",
+        "W": "cruciblecraft:tin/cable"
+      }
+    },
+    "cruciblecraft:machines/sifter": {
+      "item_field": "SIFTER",
+      "result": "cruciblecraft:sifter",
+      "selected_casing": "cruciblecraft:bronze_double_machine_casing",
+      "pattern": [
+        "W W",
+        "RCR",
+        "S S"
+      ],
+      "key": {
+        "C": "cruciblecraft:bronze_double_machine_casing",
+        "R": "cruciblecraft:bronze/rod",
+        "S": "cruciblecraft:bronze/spring",
+        "W": "cruciblecraft:bronze/fine_wire"
+      }
+    },
+    "cruciblecraft:machines/stainless_steel_electrolyzer": {
+      "item_field": "STAINLESS_STEEL_ELECTROLYZER",
+      "result": "cruciblecraft:stainless_steel_electrolyzer",
+      "selected_casing": "cruciblecraft:stainless_steel_machine_casing",
+      "pattern": [
+        "SMS",
+        "W W"
+      ],
+      "key": {
+        "M": "cruciblecraft:stainless_steel_machine_casing",
+        "S": "cruciblecraft:platinum/wire",
+        "W": "cruciblecraft:gold/cable"
+      }
+    },
+    "cruciblecraft:machines/steel_centrifuge": {
+      "item_field": "STEEL_CENTRIFUGE",
+      "result": "cruciblecraft:steel_centrifuge",
+      "selected_casing": "cruciblecraft:steel_double_machine_casing",
+      "pattern": [
+        "G ",
+        "SC",
+        "G "
+      ],
+      "key": {
+        "C": "cruciblecraft:steel_double_machine_casing",
+        "G": "cruciblecraft:steel/gear",
+        "S": "cruciblecraft:steel/long_rod"
+      }
+    },
+    "cruciblecraft:machines/steel_sifter": {
+      "item_field": "STEEL_SIFTER",
+      "result": "cruciblecraft:steel_sifter",
+      "selected_casing": "cruciblecraft:steel_double_machine_casing",
+      "pattern": [
+        "W W",
+        "RCR",
+        "S S"
+      ],
+      "key": {
+        "C": "cruciblecraft:steel_double_machine_casing",
+        "R": "cruciblecraft:steel/rod",
+        "S": "cruciblecraft:steel/spring",
+        "W": "cruciblecraft:steel/fine_wire"
+      }
+    },
+    "cruciblecraft:machines/titanium_centrifuge": {
+      "item_field": "TITANIUM_CENTRIFUGE",
+      "result": "cruciblecraft:titanium_centrifuge",
+      "selected_casing": "cruciblecraft:titanium_double_machine_casing",
+      "pattern": [
+        "G ",
+        "SC",
+        "G "
+      ],
+      "key": {
+        "C": "cruciblecraft:titanium_double_machine_casing",
+        "G": "cruciblecraft:titanium/gear",
+        "S": "cruciblecraft:titanium/long_rod"
+      }
+    },
+    "cruciblecraft:machines/titanium_sifter": {
+      "item_field": "TITANIUM_SIFTER",
+      "result": "cruciblecraft:titanium_sifter",
+      "selected_casing": "cruciblecraft:titanium_double_machine_casing",
+      "pattern": [
+        "W W",
+        "RCR",
+        "S S"
+      ],
+      "key": {
+        "C": "cruciblecraft:titanium_double_machine_casing",
+        "R": "cruciblecraft:titanium/rod",
+        "S": "cruciblecraft:titanium/spring",
+        "W": "cruciblecraft:titanium/fine_wire"
+      }
+    }
+  }
+}

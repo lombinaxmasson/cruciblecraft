@@ -22,7 +22,11 @@ public record SubsurfaceFluidDepositConfiguration(
         TagKey<Block> replaceable,
         int regionSizeChunks,
         float generationChance,
-        int salt) implements FeatureConfiguration {
+        int salt,
+        int productionAmountMb,
+        int productionIntervalTicks,
+        int accumulationCapMb,
+        boolean ventOverflow) implements FeatureConfiguration {
 
     private static final Codec<TagKey<Block>> BLOCK_TAG_CODEC =
             ResourceLocation.CODEC.xmap(
@@ -57,7 +61,18 @@ public record SubsurfaceFluidDepositConfiguration(
                             Codec.floatRange(0.0F, 1.0F).fieldOf("generation_chance")
                                     .forGetter(SubsurfaceFluidDepositConfiguration::generationChance),
                             Codec.INT.fieldOf("salt")
-                                    .forGetter(SubsurfaceFluidDepositConfiguration::salt))
+                                    .forGetter(SubsurfaceFluidDepositConfiguration::salt),
+                            Codec.intRange(1, 1_000_000)
+                                    .fieldOf("production_amount_mb")
+                                    .forGetter(SubsurfaceFluidDepositConfiguration::productionAmountMb),
+                            Codec.intRange(1, 72_000)
+                                    .fieldOf("production_interval_ticks")
+                                    .forGetter(SubsurfaceFluidDepositConfiguration::productionIntervalTicks),
+                            Codec.intRange(1, 1_000_000_000)
+                                    .fieldOf("accumulation_cap_mb")
+                                    .forGetter(SubsurfaceFluidDepositConfiguration::accumulationCapMb),
+                            Codec.BOOL.fieldOf("vent_overflow")
+                                    .forGetter(SubsurfaceFluidDepositConfiguration::ventOverflow))
                             .apply(instance, SubsurfaceFluidDepositConfiguration::new));
 
     public static final Codec<SubsurfaceFluidDepositConfiguration> CODEC =
@@ -71,6 +86,11 @@ public record SubsurfaceFluidDepositConfiguration(
         if (configuration.minAmountMb > configuration.maxAmountMb) {
             return DataResult.error(
                     () -> "min_amount_mb must not exceed max_amount_mb");
+        }
+        if (configuration.accumulationCapMb
+                < configuration.productionAmountMb) {
+            return DataResult.error(
+                    () -> "accumulation_cap_mb must cover one production cycle");
         }
         return DataResult.success(configuration);
     }

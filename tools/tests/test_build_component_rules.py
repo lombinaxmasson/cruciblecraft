@@ -20,10 +20,14 @@ class ComponentRuleBuilderTest(unittest.TestCase):
         bundle = self.bundle
         manifest = self.manifest
 
-        self.assertEqual(2810, manifest["source_rules"])
+        self.assertEqual(48, manifest["source_rules"])
+        self.assertEqual(48, manifest["authored_datapack_entries"])
         self.assertEqual(8141, manifest["expanded_recipes"])
         self.assertEqual(5359, manifest["non_extruder_expanded_recipes"])
         self.assertEqual(2782, manifest["extruder_expanded_recipes"])
+        self.assertEqual(20, manifest["extruder_authored_entries"])
+        self.assertEqual(2782, manifest["extruder_logical_relations"])
+        self.assertEqual(2782, manifest["extruder_runtime_publication"])
         self.assertEqual(10000, manifest["expansion_budget"])
         self.assertTrue(manifest["within_budget"])
         self.assertEqual(
@@ -31,7 +35,7 @@ class ComponentRuleBuilderTest(unittest.TestCase):
                 "assembler": {"source_rules": 7, "expanded_recipes": 568},
                 "bender": {"source_rules": 2, "expanded_recipes": 638},
                 "cutter": {"source_rules": 2, "expanded_recipes": 651},
-                "extruder": {"source_rules": 2782, "expanded_recipes": 2782},
+                "extruder": {"source_rules": 20, "expanded_recipes": 2782},
                 "lathe": {"source_rules": 2, "expanded_recipes": 929},
                 "press": {"source_rules": 5, "expanded_recipes": 1191},
                 "rollbender": {"source_rules": 1, "expanded_recipes": 438},
@@ -80,7 +84,7 @@ class ComponentRuleBuilderTest(unittest.TestCase):
             set(builder.SOURCE_FILES),
             set(manifest["source_files_sha256"]),
         )
-        self.assertEqual(2810, manifest["generated_tree"]["files"])
+        self.assertEqual(48, manifest["generated_tree"]["files"])
         self.assertEqual(64, len(manifest["generated_tree"]["sha256"]))
         self.assertIn(
             "tools/component_selector_policy.json",
@@ -116,7 +120,7 @@ class ComponentRuleBuilderTest(unittest.TestCase):
     def test_generated_rules_are_runtime_material_rule_json(self) -> None:
         bundle = self.bundle
 
-        self.assertEqual(2810, len(bundle.generated))
+        self.assertEqual(48, len(bundle.generated))
         self.assertEqual(sorted(bundle.generated), list(bundle.generated))
         for relative, content in bundle.generated.items():
             document = json.loads(content)
@@ -126,22 +130,29 @@ class ComponentRuleBuilderTest(unittest.TestCase):
                 document["target"],
                 relative,
             )
-            self.assertTrue(document["item_inputs"], relative)
-            self.assertTrue(document["item_outputs"], relative)
-            self.assertGreater(int(document["eut"]), 0, relative)
+            if relative.startswith("extruder/compact/"):
+                self.assertNotIn("item_inputs", document)
+                self.assertNotIn("item_outputs", document)
+                self.assertTrue(document["sparse"]["relations"], relative)
+            else:
+                self.assertTrue(document["item_inputs"], relative)
+                self.assertTrue(document["item_outputs"], relative)
+                self.assertGreater(int(document["eut"]), 0, relative)
         extruder = [
             json.loads(content)
             for relative, content in bundle.generated.items()
             if relative.startswith("extruder/")
         ]
-        self.assertEqual(2782, len(extruder))
+        self.assertEqual(20, len(extruder))
         self.assertTrue(all(
-            len(rule["item_inputs"]) == 2
-            and rule["item_inputs"][1]["count"] == "0"
-            and rule["item_inputs"][1]["item"].startswith(
+            rule["sparse"]["shape_item"].startswith(
                 "cruciblecraft:extruder_shape_")
             for rule in extruder
         ))
+        self.assertEqual(
+            2782,
+            sum(len(rule["sparse"]["relations"]) for rule in extruder),
+        )
         cable_rules = [
             json.loads(content)
             for relative, content in bundle.generated.items()
@@ -173,9 +184,10 @@ class ComponentRuleBuilderTest(unittest.TestCase):
             if not relative.startswith("extruder/"):
                 continue
             document = json.loads(content)
-            output = document["item_outputs"][0]["prefix"]
-            if output in {"cruciblecraft:rod", "cruciblecraft:long_rod"}:
-                routes.append(document["material"])
+            for relation in document["sparse"]["relations"]:
+                output = relation["output"]["prefix"]
+                if output in {"rod", "long_rod"}:
+                    routes.append(relation["material"])
         self.assertTrue({"copper", "tin", "iron", "gold"} <= set(routes))
 
     def test_iron_wire_is_an_explicit_acceptance_correction(self) -> None:

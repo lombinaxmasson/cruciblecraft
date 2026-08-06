@@ -21,14 +21,40 @@ python tools/run_python_tests.py --suite source-replay
 The phase-closing entry point is:
 
 ```text
+python tools/run_full_verification.py --check-ready
 python tools/run_full_verification.py --check
 python tools/run_full_verification.py --record
+python tools/run_full_verification.py --record --resume
 ```
 
 It fails on the first unsuccessful builder, datagen, Java, GameTest, Python, or
-report stage. `--check` is CI/read-only mode; `--record` refreshes the pending
-snapshot and binds the successful run to `full_verification_report.json` as
-`READY`.
+report stage. `--check` remains the full read-only closure; `--record` builds
+the candidate in memory and atomically replaces `full_verification_report.json`
+only after every stage passes. `--check-ready` performs snapshot/committed
+`READY` validation only and never launches Gradle, GameTest, or Python.
+`--resume` starts at the first pending/failed stage after revalidating every
+earlier evidence digest and output/XML/tree hash. Sessions under
+`build/verification/sessions` are locked to the exact tooling snapshot, Python
+test policy, builder proof policy, and toolchain; drift refuses reuse and opens
+a new session.
+
+`verification_builder_policy.json` is the single ordered owner for all 41
+builder checks. `rederived` rebuilds from ordinary repository inputs;
+`compact` validates canonical evidence and tracked hashes without a raw/cache
+corpus; `full_replay` runs only through
+`python tools/run_python_tests.py --suite source-replay`. Missing replay inputs
+are explicit `SKIP`, never a compact pass mislabeled as replay.
+Compact receipts now cover the T5 chemical recipe tree, four T11 hydrocarbon
+rows, historical T12a evidence, and T13 OP/ITEMGENERATOR denominators in
+addition to the raw-replay families listed below. Their ordinary checks verify
+builder/input/output hashes and semantic closure; the explicit replay suite
+re-derives them from the pinned corpus/source tree.
+
+The builder stage records argv, proof tier, result, and wall time for every
+row. Performance regression is a report-only `WARN`; correctness drift remains
+a hard failure. The migrated warm builder stage is about 23 seconds versus the
+previous committed 161-second baseline, while PR CI still runs both datagen
+passes, Java, production GameTest, and Python closure.
 
 These rules are non-negotiable: fast/affected results are not closure evidence;
 closure tests run once, not once per verifier; caches are process-local,
@@ -36,6 +62,10 @@ defensively returned, and clearable; unknown dependencies select closure; test
 deletion, stale-ledger trust, and source-gate bypass are not performance
 optimizations. `--check` modes are read-only currentness proofs, while `--write`
 modes intentionally regenerate owned artifacts.
+
+During development run only `fast` or `affected`, then run one final
+`--record`. A child task must not run a full closure that its parent task will
+repeat; hand the same resumable session upward instead.
 
 ## GT6 ore-dictionary import
 
@@ -120,9 +150,11 @@ The T9 builder owns the batch declarations in
 `src/worldgen_catalog_generated/resources` root. It derives the expected 129-material
 set from the fixed T2c closure ledger, requires exact bidirectional equality,
 and verifies that the original 8 worldgen materials plus those 129 entries
-cover all 137 factual, registered ore materials. It also compiles finite
-`crude_oil` and `methane` deposits with declared reserve, depth, host, region,
-chance, and salt into the same configured/placed-feature pipeline. The compact
+cover all 137 factual, registered ore materials. It also compiles
+`crude_oil` and `natural_gas` deposits with legacy reserve metadata plus depth,
+host, region, chance, and salt into the same configured/placed-feature pipeline.
+T11 gives those markers an independent non-depleting production state and
+migrates old `methane` markers to `natural_gas`. The compact
 `tools/worldgen_catalog_readiness.json` records counts, density arithmetic, host
 policy, and input hashes.
 
@@ -158,6 +190,12 @@ budget, 31 reusable shapes, and all 62 extruder-template classifications
 (20 playable, 42 skipped, zero unclassified). Runtime expansion remains owned
 solely by `MaterialRuleExpansion` and `GTRecipeMapLoader`; CI needs no
 gitignored GT6 replay artifact.
+
+The legacy `cruciblecraft:anvil` and `cruciblecraft:crusher` RecipeTypes and
+serializers remain registered for addon/datapack compatibility and are adapted
+into the same runtime rule path. They are deprecated for new authored data;
+use `cruciblecraft:material_rule`. Removal is blocked until consumer auditing,
+a documented compatibility window, and migration diagnostics are complete.
 
 Topology fallbacks retain reviewed gameplay defaults when GT6 has no directly
 expressible row. When a normalized GT6 row can be represented within the target
@@ -389,6 +427,190 @@ T5.5 authorizes no placeholder replacement. Every configured row remains
 blocked on an explicit source-identity, tier-collapse, or exact component
 mapping prerequisite; `unclassified` must remain zero.
 
+### T12a machine source and scaling readiness
+
+`t12_machine_policy.json` supersedes the historical T5.5
+`tier_collapsed_pending_t6` owner without rewriting that artifact. The generated
+`t12a_machine_readiness.json` ledger covers 25 / 25 processing kinds and 12 / 12
+non-spec kinds, pins RU/KU/EU/HU identities and the first three
+Centrifuge/Sifter/Electrolyzer tiers, and records source-backed scaling
+expectations independently from production code. Its
+`T12A_PREPROJECTION_READY` load state is immutable historical evidence, not the
+current phase readiness. Missing machine casings, runtime kind/tier migration,
+RU topology, and the shared multiblock validator were the original fail-closed
+T12b-e boundary.
+
+```text
+.\gradlew.bat t12CapacityMatcherBenchmark --no-daemon
+python tools/build_t12_machine_readiness.py
+python tools/build_t12_machine_readiness.py --check
+python -m unittest tools.tests.test_build_t12_machine_readiness
+```
+
+To replay all seven official source blobs and their symbol/line anchors:
+
+```text
+python tools/build_t12_machine_readiness.py --fetch-source build/t12-gt6-source
+python tools/build_t12_machine_readiness.py --check --verify-source build/t12-gt6-source
+```
+
+### T12 closure readiness
+
+`build_t12_closure_readiness.py` consumes the immutable historical
+`t12a_machine_readiness.json` source/preprojection ledger and verifies the live
+Kind/Tier catalog, v2 state migration, RU/KU/EU runtime identities,
+Axle/Gearbox route, two JSON multiblocks, matcher budget and the
+zero-publication load account. It emits `T12_READY`; the full verification
+runner checks the historical T12a artifact for drift without calling it current.
+
+```text
+python tools/build_t12_closure_readiness.py
+python tools/build_t12_closure_readiness.py --check
+python -m unittest tools.tests.test_build_t12_closure_readiness
+```
+
+### T13 canonical denominators
+
+T13 pins the official revision tree as a 1,229-Java-blob manifest and derives
+seven independently tested denominator tables. Ordinary checks are offline;
+the optional source replay downloads/validates the full selected Java source
+set under `build/t13-gt6-source`.
+
+```text
+python tools/build_t13_recipe_map_denominator.py --check --reference-only
+python tools/build_t13_recipe_map_denominator.py --check --hash-fast
+python tools/build_t13_prefix_domain_denominators.py --check --no-fetch
+python tools/build_t13_machine_energy_denominators.py --check
+python tools/build_t13_cover_multiblock_denominators.py --check
+python tools/build_t13_denominator_readiness.py --check
+python -m unittest tools.tests.test_build_t13_recipe_map_denominator tools.tests.test_build_t13_prefix_domain_denominators tools.tests.test_build_t13_machine_energy_denominators tools.tests.test_build_t13_cover_multiblock_denominators tools.tests.test_build_t13_denominator_readiness
+```
+
+Full fixed-source replay:
+
+```text
+python tools/build_t13_recipe_map_denominator.py --fetch-source build/t13-gt6-source --write-source-inventory
+python tools/build_t13_recipe_map_denominator.py --check --full-replay
+python tools/build_t13_recipe_map_denominator.py --check --reference-only --verify-source build/t13-gt6-source
+```
+
+Compact validates the canonical 95-row table, policy/disposition closure,
+builder/policy/tree/inventory hashes, and the externally anchored replay receipt
+in `t13_denominator_manifest.json`. Hash-fast additionally streams each map once
+for SHA-256 and byte-size equality. Only full-replay parses every recipe array
+and re-derives all 720,841 rows.
+
+### T14 Extruder materialization and load projection
+
+T14 replaces 2,782 flattened Extruder recipe resources with 20 compact authored
+rules while preserving the complete logical set. The equivalence builder checks
+full-field expected/legacy/compact equality. The benchmark builder verifies the
+predeclared immediate/on-demand/Hybrid decision from committed 1x/5x/20x
+measurements; production uses Hybrid with 557 eager rows, 2,225 lazy rows, and a
+512-row per-epoch cache ceiling.
+
+Every T15-T19 recipe family must provide a
+`recipe_load_projection.schema.json` input. The evaluator records authored,
+logical, eager, lazy, cache, sync, server/client reload/index, retained memory,
+allocation, lookup p95, and candidate count separately. Soft excess is reported;
+hard excess fails. Zero-workload examples for every downstream phase are
+committed under `tools/tests/fixtures`.
+
+```text
+python tools/build_t14_extruder_equivalence.py --check
+python tools/build_t14_recipe_load_benchmark.py --check
+python tools/recipe_load_projection.py tools/t14_extruder_load_projection_input.json
+python tools/build_t14_readiness.py --check
+python -m unittest tools.tests.test_build_t14_extruder_equivalence tools.tests.test_build_t14_recipe_load_benchmark tools.tests.test_recipe_load_projection tools.tests.test_build_t14_readiness
+```
+
+### T15 residual readiness
+
+`t15_readiness.json` is the only current T15 readiness artifact and now reports
+`T15_READY` with T15a-e complete and no pending gate. It keeps the frozen T12a
+preprojection artifact in a separate immutable-history section, while its
+currentness chain starts from `T12_READY`, `T13_READY`, and `T14_READY` and
+binds every completed-stage source contract.
+
+`t15_matcher_boundary.json` is the T15e authority. Its builder derives 15 physical item/fluid ports,
+two energy ports, and one controller from the live
+Large Centrifuge structure JSON. It independently parses
+`ModProcessingMachines.CENTRIFUGE` as one item input, one fluid input, six item
+outputs, and two fluid outputs. All physical ports bridge the same host
+inventory, so the item matcher receives one item matcher supply rather than a
+per-port expansion; the presence-only cap of 12 is not triggered. The artifact
+also preserves the historical expected-16 error audit: the old projection
+counted every non-energy cell as a port and failed to subtract the controller.
+The 12/16/32/64 consuming benchmark and 16/32/64 presence-cap rejection
+scenarios remain current, within budget, and do not justify a matcher rewrite.
+
+```text
+python tools/build_t12_machine_readiness.py --check
+python tools/build_t15_matcher_boundary.py --check
+python tools/build_t15_readiness.py
+python tools/build_t15_readiness.py --check
+python -m unittest tools.tests.test_build_t15_matcher_boundary tools.tests.test_build_t15_readiness
+```
+
+### T16 RU/KU readiness
+
+`t16_machine_denominator.json` closes the 20-kind RU/KU owner denominator at
+`unclassified = 0`: selected 5, preimplemented 2, deferred 13, plus 20 explicit
+tier-4 deferrals. The selected set is five kinds across bronze, steel, and
+titanium, for 15 runtime variants; `T16_READY` does not claim that all 20 kinds
+are implemented.
+
+`t16_machine_acquisition.json` proves all 15 selected variants have registered
+survival crafting results and reachable operands. The five tier-1 legacy
+identity migrations remain exact, while near misses quarantine. T16 adds only
+vanilla shaped crafting acquisition recipes.
+
+`t16_load_projection_input.json` and `t16_load_projection.json` are the formal
+delivery-T16 zero-workload account. Authored, logical, eager, lazy, cache, sync,
+and every runtime interval are zero and `PASS`. The independent publication
+baseline locks 32 RecipeMap ids, 18,875 logical / 16,650 eager / 2,225 lazy
+rows, and exact EMI enumeration over 24 configured maps; GT publication delta
+is 0.
+
+```text
+python tools/build_t16_machine_denominator.py --check
+python tools/build_t16_machine_acquisition.py --check
+python tools/build_t16_readiness.py
+python tools/build_t16_readiness.py --check
+python -m unittest tools.tests.test_build_t16_machine_denominator tools.tests.test_build_t16_machine_acquisition tools.tests.test_recipe_load_projection tools.tests.test_build_t16_readiness
+```
+
+### T17 HU/EU readiness
+
+`t17_machine_denominator.json` closes the 28-kind HU/EU owner denominator at
+`unclassified = 0`: selected 3, one preimplemented Electrolyzer reference, and
+deferred 24. The selected Distillery, Drying, and Smelter kinds each implement
+Heat_T tiers 1–3 for nine runtime variants. Ten Heat tier-4 and 32 Electric
+tier-4/5 variant slots remain explicitly deferred; `T17_READY` does not claim
+that all 28 kinds are implemented.
+
+`t17_machine_acquisition.json` proves all nine selected HU variants have
+registered survival crafting results and reachable operands. Three tier-1
+legacy identity migrations are exact, the existing three Electrolyzer variants
+remain reference evidence, and T17 adds only vanilla shaped crafting
+acquisition recipes.
+
+`t17_load_projection_input.json` and `t17_load_projection.json` are the formal
+delivery-T17 zero-workload account. Authored, logical, eager, lazy, cache, sync,
+and every runtime interval are zero and `PASS`. The T17 publication baseline is
+bidirectionally locked to T16: 32 RecipeMap stable ids, 18,875 logical / 16,650
+eager / 2,225 lazy rows, and exact EMI enumeration over 24 configured maps.
+The only recipe delta is nine vanilla crafting rows; GT publication delta is
+zero.
+
+```text
+python tools/build_t17_machine_denominator.py --check
+python tools/build_t17_machine_acquisition.py --check
+python tools/build_t17_readiness.py
+python tools/build_t17_readiness.py --check
+python -m unittest tools.tests.test_build_t17_machine_denominator tools.tests.test_build_t17_machine_acquisition tools.tests.test_recipe_load_projection tools.tests.test_build_t17_readiness
+```
+
 Extruder v5 uses one template per concrete shape (31 normal + 31 low-heat);
 material/external identity, input/output form, counts, EU, and duration are
 stored in a sparse support relation. Axes are stored once per template and
@@ -447,27 +669,30 @@ independent of JSON whitespace.
 
 ## CI-equivalent check
 
+The committed-evidence gate is
+`python tools/run_full_verification.py --check-ready`; it runs no external test
+commands. The compatible full read-only closure remains
+`python tools/run_full_verification.py --check`. The expansion below documents
+the stages owned by the full orchestrator; do not run it and a separate Python
+closure as two independent closure proofs.
+
 ```text
-python tools/build_component_rules.py --check
-python tools/build_t4_tool_readiness.py --check
-python tools/build_t5_distillery_projection.py --check
-python tools/build_machine_crafting_readiness.py --check
-python tools/build_t6_electrical_readiness.py --check
-python tools/build_t7_material_tag_readiness.py --check
-python tools/build_t8_pipe_readiness.py --check
-python tools/build_worldgen_catalog.py --check
-python tools/build_t10_preflight_projection.py --check
-python tools/apply_t8_pipe_metadata.py --check
-python tools/build_t5_chemical_readiness.py --check
-python tools/build_t5_chemical_recipes.py --check
-python tools/gt6_extruder_templates.py --verify
+# The 41 ordered builder commands come from verification_builder_policy.json.
+python tools/build_gt6_material_form_gate.py --check --reference-only
+python tools/build_gt6_ore_chain.py --check --reference-only
+python tools/build_t5_chemical_readiness.py --check --reference-only
+python tools/build_t5_chemical_recipes.py --check --reference-only
+python tools/build_t5_distillery_projection.py --check --reference-only
+python tools/build_t11_preflight_projection.py --check --reference-only
+python tools/build_t11_hydrocarbon_recipes.py --check --reference-only
+python tools/build_t12_machine_readiness.py --check --reference-only
+python tools/build_t13_recipe_map_denominator.py --check --reference-only
+python tools/build_t13_prefix_domain_denominators.py --check --reference-only
 ./gradlew runData
 ./gradlew runData
 ./gradlew test
 ./gradlew runGameTestServer
-python -m unittest discover -s tools/tests -p "test_*.py"
-python tools/import_gt6_oredict.py --check --reference-only
-python tools/compare_gt6_recipes.py --check
+python tools/run_python_tests.py --suite closure
 python tools/verify_full_verification_report.py --check
 ```
 
@@ -642,19 +867,19 @@ HEAT/KU progress, rollback, completion, and persistence. Automated client-side
 visual inspection remains unavailable; models and menu resources are validated
 structurally by datagen tests rather than claimed as browser-verified.
 
-The final report is not hand-edited to `READY`. Refresh it after all source and
-documentation edits, then record each actual run:
+The final report is not hand-edited to `READY`. The phase orchestrator owns the
+snapshot refresh, stage recording, and single `READY` binding:
 
 ```text
-python tools/verify_full_verification_report.py --write-tooling-snapshot
-python tools/verify_full_verification_report.py --mark-builder-passed --builder-elapsed-ms <ms> --extruder-replay-result <PASS|SKIP>
-python tools/verify_full_verification_report.py --mark-datagen-passed --datagen-run-1-hash <sha256> --datagen-run-2-hash <sha256> --datagen-run-1-seconds <s> --datagen-run-2-seconds <s>
-python tools/verify_full_verification_report.py --mark-java-passed --java-elapsed-seconds <s>
-python tools/verify_full_verification_report.py --mark-gametest-passed --gametest-log run/logs/latest.log --gametest-elapsed-seconds <s>
-python tools/verify_full_verification_report.py --mark-python-passed --python-elapsed-seconds <s>
-python tools/verify_full_verification_report.py --mark-ready
-python tools/verify_full_verification_report.py --check
+python tools/run_full_verification.py --record
+python tools/run_full_verification.py --record --resume
+python tools/run_full_verification.py --check-ready
+python tools/run_full_verification.py --check
 ```
+
+Individual `verify_full_verification_report.py --mark-*` flags are implementation
+and diagnostic interfaces. They must not be used to repeat closure stages that
+the orchestrator has already executed.
 
 The report binds builder/source/manifest hashes, the complete generated
 component tree, shape catalog/resources, selector policy, compact artifact

@@ -1379,10 +1379,26 @@ def main() -> int:
     parser.add_argument("--write", action="store_true")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--review", action="store_true")
+    replay_mode = parser.add_mutually_exclusive_group()
+    replay_mode.add_argument(
+        "--reference-only",
+        action="store_true",
+        help="validate committed compact outputs without rebuilding from cache",
+    )
+    replay_mode.add_argument(
+        "--full-replay",
+        action="store_true",
+        help="force regeneration from the normalized GT6 reference",
+    )
     args = parser.parse_args()
     if sum((args.write, args.check, args.review)) != 1:
         parser.error("choose exactly one of --write, --check, or --review")
-    if args.check and not REFERENCE.is_file():
+    if (args.reference_only or args.full_replay) and not args.check:
+        parser.error("--reference-only and --full-replay require --check")
+    if args.check and (
+        args.reference_only
+        or (not args.full_replay and not REFERENCE.is_file())
+    ):
         errors = check_committed_outputs()
         if errors:
             print(

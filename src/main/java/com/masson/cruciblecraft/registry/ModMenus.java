@@ -80,6 +80,8 @@ public final class ModMenus {
             DRYING = processing("drying", ModProcessingMachines.DRYING);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
             COMPRESSOR = processing("compressor", ModProcessingMachines.COMPRESSOR);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            GENERIFIER = processing("generifier", ModProcessingMachines.GENERIFIER);
 
     static {
         validateProcessingMenuMapping(

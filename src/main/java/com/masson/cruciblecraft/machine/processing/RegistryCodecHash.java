@@ -17,6 +17,9 @@ import net.minecraft.resources.RegistryOps;
 
 /** Deterministic SHA-256 over a complete registry-aware codec representation. */
 public final class RegistryCodecHash {
+    private static final ThreadLocal<MessageDigest> SHA_256 =
+            ThreadLocal.withInitial(RegistryCodecHash::newSha256);
+
     private RegistryCodecHash() {}
 
     public static <T> Optional<String> hash(
@@ -29,11 +32,20 @@ public final class RegistryCodecHash {
             if (encoded.isEmpty()) {
                 return Optional.empty();
             }
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            MessageDigest digest = SHA_256.get();
+            digest.reset();
             return Optional.of(java.util.HexFormat.of().formatHex(
                     digest.digest(canonical(encoded.get()).getBytes(StandardCharsets.UTF_8))));
-        } catch (RuntimeException | NoSuchAlgorithmException exception) {
+        } catch (RuntimeException exception) {
             return Optional.empty();
+        }
+    }
+
+    private static MessageDigest newSha256() {
+        try {
+            return MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException exception) {
+            throw new IllegalStateException("SHA-256 unavailable", exception);
         }
     }
 

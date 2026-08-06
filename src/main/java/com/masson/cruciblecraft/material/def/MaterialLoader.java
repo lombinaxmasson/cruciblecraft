@@ -31,6 +31,8 @@ import org.slf4j.LoggerFactory;
  */
 public final class MaterialLoader {
     private static final String RESOURCE_ROOT = "/data/cruciblecraft/materials/";
+    private static final String T11_RESOURCE_ROOT =
+            "/data/cruciblecraft/t11_materials/";
     private static final Logger LOGGER = LoggerFactory.getLogger(MaterialLoader.class);
 
     private MaterialLoader() {}
@@ -67,16 +69,26 @@ public final class MaterialLoader {
     }
 
     private static void loadBundled(Map<String, MaterialDefinition> output) {
-        try (Reader reader = resourceReader("index.json")) {
-            JsonArray index = JsonParser.parseReader(reader).getAsJsonArray();
-            for (JsonElement entry : index) {
-                String fileName = entry.getAsString();
-                try (Reader materialReader = resourceReader(fileName)) {
-                    put(output, decode(JsonParser.parseReader(materialReader)), "bundled/" + fileName);
+        for (String root : List.of(
+                RESOURCE_ROOT, T11_RESOURCE_ROOT)) {
+            try (Reader reader = resourceReader(root, "index.json")) {
+                JsonArray index = JsonParser.parseReader(
+                        reader).getAsJsonArray();
+                for (JsonElement entry : index) {
+                    String fileName = entry.getAsString();
+                    try (Reader materialReader = resourceReader(
+                            root, fileName)) {
+                        put(output, decode(JsonParser.parseReader(
+                                materialReader)), "bundled/" + root
+                                        + fileName);
+                    }
                 }
+            } catch (IOException exception) {
+                throw new IllegalStateException(
+                        "Failed to load bundled material definitions from "
+                                + root,
+                        exception);
             }
-        } catch (IOException exception) {
-            throw new IllegalStateException("Failed to load bundled material definitions", exception);
         }
     }
 
@@ -160,10 +172,13 @@ public final class MaterialLoader {
                         || json.has("include_prefixes"));
     }
 
-    private static Reader resourceReader(String fileName) throws IOException {
-        var stream = MaterialLoader.class.getResourceAsStream(RESOURCE_ROOT + fileName);
+    private static Reader resourceReader(
+            String root, String fileName) throws IOException {
+        var stream = MaterialLoader.class.getResourceAsStream(
+                root + fileName);
         if (stream == null) {
-            throw new IOException("Missing material resource " + RESOURCE_ROOT + fileName);
+            throw new IOException(
+                    "Missing material resource " + root + fileName);
         }
         return new java.io.InputStreamReader(stream, java.nio.charset.StandardCharsets.UTF_8);
     }

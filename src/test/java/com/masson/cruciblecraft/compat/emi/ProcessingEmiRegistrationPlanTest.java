@@ -35,12 +35,12 @@ class ProcessingEmiRegistrationPlanTest {
         ProcessingEmiRegistrationPlan plan = ProcessingEmiRegistrationPlan.create(
                 ModProcessingMachines.CONFIGURED_MACHINES);
 
-        assertEquals(23, plan.machines().size());
-        assertEquals(23, plan.machines().stream()
+        assertEquals(24, plan.machines().size());
+        assertEquals(24, plan.machines().stream()
                 .map(ProcessingEmiRegistrationPlan.MachineRegistration::categoryId)
                 .distinct()
                 .count());
-        assertEquals(23, plan.machines().stream()
+        assertEquals(24, plan.machines().stream()
                 .map(machine -> machine.recipeMap().id())
                 .distinct()
                 .count());

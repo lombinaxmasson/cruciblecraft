@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.content.block;
 import org.jetbrains.annotations.Nullable;
 
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
+import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 
@@ -33,15 +34,20 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandlerItem;
 /** Shared facing/menu/ticker block for immutable configured processing specs. */
 public final class ProcessingMachineBlock extends Block implements EntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    private final ProcessingMachineSpec spec;
+    private final MachineVariant variant;
 
     public ProcessingMachineBlock(ProcessingMachineSpec spec, Properties properties) {
+        this(MachineVariant.legacy(spec), properties);
+    }
+
+    public ProcessingMachineBlock(MachineVariant variant, Properties properties) {
         super(properties);
-        this.spec = spec;
+        this.variant = variant;
         registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
-    public ProcessingMachineSpec spec() { return spec; }
+    public ProcessingMachineSpec spec() { return variant.runtimeSpec(); }
+    public MachineVariant variant() { return variant; }
 
     @Override public BlockState getStateForPlacement(BlockPlaceContext context) {
         return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
@@ -61,7 +67,7 @@ public final class ProcessingMachineBlock extends Block implements EntityBlock {
         }
         IFluidHandlerItem container = fluidContainer.orElseThrow();
         var transfer = ProcessingMachineInteractions.fluidTransfer(
-                spec,
+                spec(),
                 state.getValue(FACING),
                 hit.getDirection(),
                 player.isShiftKeyDown(),

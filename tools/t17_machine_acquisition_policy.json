@@ -1,0 +1,329 @@
+{
+  "schema_version": 1,
+  "status": "T17C_MACHINE_ACQUISITION_POLICY",
+  "expected_set_source": "independent_t17c_acceptance_policy",
+  "production_mapping_reused": false,
+  "selected_kinds": [
+    "cruciblecraft:distillery",
+    "cruciblecraft:drying",
+    "cruciblecraft:smelter"
+  ],
+  "source_declarations": {
+    "cruciblecraft:constantan/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/constantan.json"
+    },
+    "cruciblecraft:copper/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/copper.json"
+    },
+    "cruciblecraft:invar/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/invar.json"
+    },
+    "cruciblecraft:kanthal/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/kanthal.json"
+    },
+    "cruciblecraft:nichrome/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/nichrome.json"
+    },
+    "cruciblecraft:steel/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/steel.json"
+    },
+    "cruciblecraft:titanium/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/titanium.json"
+    }
+  },
+  "concrete_sources": {
+    "cruciblecraft:crucible": {
+      "classification": "existing_survival_recipe_chain",
+      "evidence": [
+        "src/main/resources/data/cruciblecraft/recipe/raw_ceramic_crucible.json",
+        "src/main/resources/data/cruciblecraft/recipe/crucible_firing.json"
+      ]
+    },
+    "minecraft:bricks": {
+      "classification": "minecraft_survival_source",
+      "evidence": [
+        "minecraft:brick_block"
+      ]
+    },
+    "minecraft:glass": {
+      "classification": "minecraft_survival_source",
+      "evidence": [
+        "minecraft:glass"
+      ]
+    }
+  },
+  "producer_rules": {
+    "double_plate": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/welder/plates_to_double_plate.json",
+      "input_prefixes": [
+        "plate",
+        "plate"
+      ],
+      "input_tags": []
+    },
+    "double_wire": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/wire_to_double_wire.json",
+      "input_prefixes": [
+        "wire"
+      ],
+      "input_tags": []
+    },
+    "octuple_wire": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/quadruple_to_octuple_wire.json",
+      "input_prefixes": [
+        "quadruple_wire"
+      ],
+      "input_tags": []
+    },
+    "plate": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+      "input_prefixes": [
+        "ingot"
+      ],
+      "input_tags": []
+    },
+    "quadruple_wire": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/double_to_quadruple_wire.json",
+      "input_prefixes": [
+        "double_wire"
+      ],
+      "input_tags": []
+    },
+    "wire": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/wiremill/ingot_to_wire.json",
+      "input_prefixes": [
+        "ingot"
+      ],
+      "input_tags": []
+    }
+  },
+  "casing_dependencies": {
+    "cruciblecraft:components/steel_double_machine_casing": {
+      "item_field": "STEEL_DOUBLE_MACHINE_CASING",
+      "result": "cruciblecraft:steel_double_machine_casing",
+      "pattern": [
+        "PPP",
+        "P P",
+        "PPP"
+      ],
+      "key": {
+        "P": "cruciblecraft:steel/double_plate"
+      }
+    },
+    "cruciblecraft:components/titanium_double_machine_casing": {
+      "item_field": "TITANIUM_DOUBLE_MACHINE_CASING",
+      "result": "cruciblecraft:titanium_double_machine_casing",
+      "pattern": [
+        "PPP",
+        "P P",
+        "PPP"
+      ],
+      "key": {
+        "P": "cruciblecraft:titanium/double_plate"
+      }
+    }
+  },
+  "machine_variant_recipes": {
+    "cruciblecraft:machines/distillery": {
+      "item_field": "DISTILLERY",
+      "result": "cruciblecraft:distillery",
+      "selected_casing": "cruciblecraft:steel_double_machine_casing",
+      "pattern": [
+        "GPG",
+        "WMW",
+        " C "
+      ],
+      "key": {
+        "C": "cruciblecraft:copper/double_plate",
+        "G": "minecraft:glass",
+        "M": "cruciblecraft:steel_double_machine_casing",
+        "P": "cruciblecraft:steel/plate",
+        "W": "cruciblecraft:constantan/double_wire"
+      }
+    },
+    "cruciblecraft:machines/drying": {
+      "item_field": "DRYING",
+      "result": "cruciblecraft:drying",
+      "selected_casing": "cruciblecraft:steel_double_machine_casing",
+      "pattern": [
+        " P ",
+        "BMB",
+        "BCB"
+      ],
+      "key": {
+        "B": "minecraft:bricks",
+        "C": "cruciblecraft:copper/double_plate",
+        "M": "cruciblecraft:steel_double_machine_casing",
+        "P": "cruciblecraft:steel/plate"
+      }
+    },
+    "cruciblecraft:machines/invar_distillery": {
+      "item_field": "INVAR_DISTILLERY",
+      "result": "cruciblecraft:invar_distillery",
+      "selected_casing": "cruciblecraft:steel_double_machine_casing",
+      "pattern": [
+        "GPG",
+        "WMW",
+        " C "
+      ],
+      "key": {
+        "C": "cruciblecraft:copper/double_plate",
+        "G": "minecraft:glass",
+        "M": "cruciblecraft:steel_double_machine_casing",
+        "P": "cruciblecraft:invar/plate",
+        "W": "cruciblecraft:kanthal/quadruple_wire"
+      }
+    },
+    "cruciblecraft:machines/invar_drying": {
+      "item_field": "INVAR_DRYING",
+      "result": "cruciblecraft:invar_drying",
+      "selected_casing": "cruciblecraft:steel_double_machine_casing",
+      "pattern": [
+        " P ",
+        "BMB",
+        "BCB"
+      ],
+      "key": {
+        "B": "minecraft:bricks",
+        "C": "cruciblecraft:copper/double_plate",
+        "M": "cruciblecraft:steel_double_machine_casing",
+        "P": "cruciblecraft:invar/plate"
+      }
+    },
+    "cruciblecraft:machines/invar_smelter": {
+      "item_field": "INVAR_SMELTER",
+      "result": "cruciblecraft:invar_smelter",
+      "selected_casing": "cruciblecraft:steel_double_machine_casing",
+      "pattern": [
+        " U ",
+        "PMP",
+        "BCB"
+      ],
+      "key": {
+        "B": "minecraft:bricks",
+        "C": "cruciblecraft:copper/double_plate",
+        "M": "cruciblecraft:steel_double_machine_casing",
+        "P": "cruciblecraft:invar/plate",
+        "U": "cruciblecraft:crucible"
+      }
+    },
+    "cruciblecraft:machines/smelter": {
+      "item_field": "SMELTER",
+      "result": "cruciblecraft:smelter",
+      "selected_casing": "cruciblecraft:steel_double_machine_casing",
+      "pattern": [
+        " U ",
+        "PMP",
+        "BCB"
+      ],
+      "key": {
+        "B": "minecraft:bricks",
+        "C": "cruciblecraft:copper/double_plate",
+        "M": "cruciblecraft:steel_double_machine_casing",
+        "P": "cruciblecraft:steel/plate",
+        "U": "cruciblecraft:crucible"
+      }
+    },
+    "cruciblecraft:machines/titanium_distillery": {
+      "item_field": "TITANIUM_DISTILLERY",
+      "result": "cruciblecraft:titanium_distillery",
+      "selected_casing": "cruciblecraft:titanium_double_machine_casing",
+      "pattern": [
+        "GPG",
+        "WMW",
+        " C "
+      ],
+      "key": {
+        "C": "cruciblecraft:copper/double_plate",
+        "G": "minecraft:glass",
+        "M": "cruciblecraft:titanium_double_machine_casing",
+        "P": "cruciblecraft:titanium/plate",
+        "W": "cruciblecraft:nichrome/octuple_wire"
+      }
+    },
+    "cruciblecraft:machines/titanium_drying": {
+      "item_field": "TITANIUM_DRYING",
+      "result": "cruciblecraft:titanium_drying",
+      "selected_casing": "cruciblecraft:titanium_double_machine_casing",
+      "pattern": [
+        " P ",
+        "BMB",
+        "BCB"
+      ],
+      "key": {
+        "B": "minecraft:bricks",
+        "C": "cruciblecraft:copper/double_plate",
+        "M": "cruciblecraft:titanium_double_machine_casing",
+        "P": "cruciblecraft:titanium/plate"
+      }
+    },
+    "cruciblecraft:machines/titanium_smelter": {
+      "item_field": "TITANIUM_SMELTER",
+      "result": "cruciblecraft:titanium_smelter",
+      "selected_casing": "cruciblecraft:titanium_double_machine_casing",
+      "pattern": [
+        " U ",
+        "PMP",
+        "BCB"
+      ],
+      "key": {
+        "B": "minecraft:bricks",
+        "C": "cruciblecraft:copper/double_plate",
+        "M": "cruciblecraft:titanium_double_machine_casing",
+        "P": "cruciblecraft:titanium/plate",
+        "U": "cruciblecraft:crucible"
+      }
+    }
+  },
+  "preimplemented_reference_recipes": {
+    "cruciblecraft:machines/aluminium_electrolyzer": {
+      "item_field": "ALUMINIUM_ELECTROLYZER",
+      "result": "cruciblecraft:aluminium_electrolyzer",
+      "selected_casing": "cruciblecraft:aluminium_machine_casing",
+      "pattern": [
+        "SMS",
+        "W W"
+      ],
+      "key": {
+        "M": "cruciblecraft:aluminium_machine_casing",
+        "S": "cruciblecraft:platinum/wire",
+        "W": "cruciblecraft:copper/cable"
+      }
+    },
+    "cruciblecraft:machines/electrolyzer": {
+      "item_field": "ELECTROLYZER",
+      "result": "cruciblecraft:electrolyzer",
+      "selected_casing": "cruciblecraft:steel_galvanized_machine_casing",
+      "pattern": [
+        "SMS",
+        "W W"
+      ],
+      "key": {
+        "M": "cruciblecraft:steel_galvanized_machine_casing",
+        "S": "cruciblecraft:platinum/wire",
+        "W": "cruciblecraft:tin/cable"
+      }
+    },
+    "cruciblecraft:machines/stainless_steel_electrolyzer": {
+      "item_field": "STAINLESS_STEEL_ELECTROLYZER",
+      "result": "cruciblecraft:stainless_steel_electrolyzer",
+      "selected_casing": "cruciblecraft:stainless_steel_machine_casing",
+      "pattern": [
+        "SMS",
+        "W W"
+      ],
+      "key": {
+        "M": "cruciblecraft:stainless_steel_machine_casing",
+        "S": "cruciblecraft:platinum/wire",
+        "W": "cruciblecraft:gold/cable"
+      }
+    }
+  }
+}

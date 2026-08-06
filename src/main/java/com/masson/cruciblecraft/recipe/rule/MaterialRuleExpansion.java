@@ -89,6 +89,53 @@ public final class MaterialRuleExpansion {
                 formIndexes);
     }
 
+    /**
+     * Materializes one exact sparse relation. Production family providers use
+     * this path so long-tail lookup does not expand the other 2,781 relations.
+     */
+    public static Expanded expandSparseRelation(
+            MaterialRule owner,
+            MaterialRule.SparseRelation relation,
+            Collection<MaterialDefinition> availableMaterials,
+            Map<String, String> candidatePreferences,
+            FormIndexes formIndexes) {
+        return expandSparseRelation(
+                owner,
+                relation,
+                availableMaterials,
+                candidateResolver(candidatePreferences),
+                formIndexes);
+    }
+
+    public static Expanded expandSparseRelation(
+            MaterialRule owner,
+            MaterialRule.SparseRelation relation,
+            Collection<MaterialDefinition> availableMaterials,
+            ResourceResolver resolver,
+            FormIndexes formIndexes) {
+        if (owner.sparse().isEmpty()
+                || owner.sparse().orElseThrow().relations().stream()
+                        .noneMatch(candidate -> candidate == relation
+                                || candidate.equals(relation))) {
+            throw new IllegalArgumentException(
+                    "Sparse relation is not owned by the supplied material rule");
+        }
+        List<Expanded> selected = expandInternal(
+                sparseParentId(relation),
+                sparseRelationRule(
+                        owner, owner.sparse().orElseThrow(), relation),
+                availableMaterials,
+                resolver,
+                formIndexes);
+        if (selected.size() != 1
+                || !selected.getFirst().id().equals(relation.stableId())) {
+            throw new IllegalArgumentException(
+                    "Sparse relation did not materialize exactly its stable id "
+                            + relation.stableId());
+        }
+        return selected.getFirst();
+    }
+
     private static List<Expanded> expandInternal(
             ResourceLocation ruleId,
             MaterialRule rule,
@@ -97,6 +144,13 @@ public final class MaterialRuleExpansion {
             FormIndexes formIndexes) {
         if (rule.target().isEmpty()) {
             return List.of();
+        }
+        if (rule.sparse().isPresent()) {
+            return expandSparse(
+                    rule,
+                    availableMaterials,
+                    resolver,
+                    formIndexes);
         }
         Compiled compiled = compile(ruleId, rule);
         Map<String, MaterialDefinition> materialsById = index(availableMaterials);
@@ -143,6 +197,31 @@ public final class MaterialRuleExpansion {
         return List.copyOf(result);
     }
 
+    private static List<Expanded> expandSparse(
+            MaterialRule rule,
+            Collection<MaterialDefinition> availableMaterials,
+            ResourceResolver resolver,
+            FormIndexes formIndexes) {
+        MaterialRule.SparseTable table = rule.sparse().orElseThrow();
+        List<Expanded> result = new ArrayList<>();
+        for (MaterialRule.SparseRelation relation : table.relations()) {
+            List<Expanded> selected = expandInternal(
+                    sparseParentId(relation),
+                    sparseRelationRule(rule, table, relation),
+                    availableMaterials,
+                    resolver,
+                    formIndexes);
+            if (selected.size() != 1
+                    || !selected.getFirst().id().equals(relation.stableId())) {
+                throw new IllegalArgumentException(
+                        "Sparse relation did not materialize exactly its stable id "
+                                + relation.stableId());
+            }
+            result.add(selected.getFirst());
+        }
+        return List.copyOf(result);
+    }
+
     /** Test-only plan expansion that deliberately treats every factual form as registered. */
     public static List<Plan> expandFactualPlans(
             ResourceLocation ruleId,
@@ -176,6 +255,12 @@ public final class MaterialRuleExpansion {
             FormIndexes formIndexes) {
         if (rule.target().isEmpty()) {
             return List.of();
+        }
+        if (rule.sparse().isPresent()) {
+            return expandSparsePlans(
+                    rule,
+                    availableMaterials,
+                    formIndexes);
         }
         Compiled compiled = compile(ruleId, rule);
         Map<String, MaterialDefinition> materialsById = index(availableMaterials);
@@ -304,6 +389,80 @@ public final class MaterialRuleExpansion {
                     rule.material().isPresent()));
         }
         return List.copyOf(plans);
+    }
+
+    private static List<Plan> expandSparsePlans(
+            MaterialRule rule,
+            Collection<MaterialDefinition> availableMaterials,
+            FormIndexes formIndexes) {
+        MaterialRule.SparseTable table = rule.sparse().orElseThrow();
+        List<Plan> result = new ArrayList<>();
+        for (MaterialRule.SparseRelation relation : table.relations()) {
+            List<Plan> selected = expandPlans(
+                    sparseParentId(relation),
+                    sparseRelationRule(rule, table, relation),
+                    availableMaterials,
+                    formIndexes);
+            if (selected.size() != 1
+                    || !selected.getFirst().id().equals(relation.stableId())) {
+                throw new IllegalArgumentException(
+                        "Sparse relation did not plan exactly its stable id "
+                                + relation.stableId());
+            }
+            result.add(selected.getFirst());
+        }
+        return List.copyOf(result);
+    }
+
+    private static ResourceLocation sparseParentId(
+            MaterialRule.SparseRelation relation) {
+        String path = relation.stableId().getPath();
+        int separator = path.lastIndexOf('/');
+        if (separator <= 0) {
+            throw new IllegalArgumentException(
+                    "Sparse stable id has no material suffix: "
+                            + relation.stableId());
+        }
+        return ResourceLocation.fromNamespaceAndPath(
+                relation.stableId().getNamespace(),
+                path.substring(0, separator));
+    }
+
+    private static MaterialRule sparseRelationRule(
+            MaterialRule owner,
+            MaterialRule.SparseTable table,
+            MaterialRule.SparseRelation relation) {
+        return new MaterialRule(
+                owner.target(),
+                List.of(
+                        new MaterialRule.ItemResource(
+                                Optional.of("cruciblecraft:"
+                                        + relation.input().prefix()),
+                                Optional.empty(),
+                                Integer.toString(relation.input().count()),
+                                Integer.toString(GTRecipe.GUARANTEED_CHANCE)),
+                        new MaterialRule.ItemResource(
+                                Optional.empty(),
+                                Optional.of(table.shapeItem()),
+                                "0",
+                                Integer.toString(GTRecipe.GUARANTEED_CHANCE))),
+                List.of(new MaterialRule.ItemResource(
+                        Optional.of("cruciblecraft:"
+                                + relation.output().prefix()),
+                        Optional.empty(),
+                        Integer.toString(relation.output().count()),
+                        Integer.toString(GTRecipe.GUARANTEED_CHANCE))),
+                List.of(),
+                List.of(),
+                Integer.toString(relation.duration()),
+                Long.toString(relation.eut()),
+                "0",
+                owner.canBeBuffered(),
+                Optional.of(relation.material()),
+                Map.of(),
+                List.of(),
+                Optional.empty(),
+                List.of());
     }
 
     private static List<PlannedResource> plannedFluids(

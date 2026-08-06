@@ -28,7 +28,9 @@ class ProcessingMachineResourceTest {
         var pickaxe = values(
                 GENERATED,
                 "data/minecraft/tags/block/mineable/pickaxe.json");
-        var stone = values(MAIN, "data/minecraft/tags/block/needs_stone_tool.json");
+        var stone = values(
+                GENERATED,
+                "data/minecraft/tags/block/needs_stone_tool.json");
         for (String machine : MACHINES) {
             String id = "cruciblecraft:" + machine;
             assertTrue(pickaxe.contains(id), id + " must be pickaxe-mineable");
@@ -50,10 +52,24 @@ class ProcessingMachineResourceTest {
                     blockstate.getAsJsonObject("variants").keySet());
             var model = JsonParser.parseString(Files.readString(GENERATED.resolve(
                     "assets/cruciblecraft/models/block/" + machine + ".json"))).getAsJsonObject();
-            assertEquals("minecraft:block/orientable", model.get("parent").getAsString());
             var textures = model.getAsJsonObject("textures");
-            assertTrue(textures.has("front"), machine + " needs a visible front texture");
-            assertNotEquals(textures.get("front").getAsString(), textures.get("side").getAsString());
+            String parent = model.get("parent").getAsString();
+            if ("cruciblecraft:block/machine_cube_2_layer".equals(parent)) {
+                assertTrue(
+                        textures.has("bot_north") && textures.has("top_north"),
+                        machine + " needs colored and overlay front textures");
+                assertNotEquals(
+                        textures.get("bot_north").getAsString(),
+                        textures.get("bot_east").getAsString());
+            } else {
+                assertEquals("minecraft:block/orientable", parent);
+                assertTrue(
+                        textures.has("front"),
+                        machine + " needs a visible front texture");
+                assertNotEquals(
+                        textures.get("front").getAsString(),
+                        textures.get("side").getAsString());
+            }
             var lang = JsonParser.parseString(Files.readString(GENERATED.resolve(
                     "assets/cruciblecraft/lang/en_us.json"))).getAsJsonObject();
             assertTrue(lang.has("block.cruciblecraft." + machine));
@@ -99,7 +115,16 @@ class ProcessingMachineResourceTest {
                 .filter(key -> !english.get(key).getAsString()
                         .equals(chinese.get(key).getAsString()))
                 .count();
-        assertEquals(299L, translated, "declared Chinese translation coverage");
+        Set<String> missing = new HashSet<>(english.keySet());
+        missing.removeAll(chinese.keySet());
+        long missingMaterialNames = missing.stream()
+                .filter(key -> key.startsWith("material.cruciblecraft."))
+                .count();
+        assertEquals(3_159, english.size(), "current generated en_us key count");
+        assertEquals(351L, translated, "declared Chinese translation coverage");
+        assertEquals(2_808, missing.size(), "visible zh_cn localization debt");
+        assertEquals(1_774L, missingMaterialNames,
+                "missing generated material-name translations");
         assertEquals(chinese.size(), translated,
                 "zh_cn must not hide untranslated keys behind copied English values");
         assertTrue(english.size() > translated,

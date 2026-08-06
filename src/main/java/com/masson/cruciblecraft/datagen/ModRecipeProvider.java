@@ -63,29 +63,355 @@ public final class ModRecipeProvider extends RecipeProvider {
     }
 
     private static void addMachineRecipes(RecipeOutput output) {
+        machineCrafting(
+                output, ModItems.ELECTRIC_MOTOR.get(), "electric_motor");
+        machineCrafting(
+                output, ModItems.ROTATIONAL_AXLE.get(), "rotational_axle");
+        machineCrafting(
+                output,
+                ModItems.ROTATIONAL_GEARBOX.get(),
+                "rotational_gearbox");
         machineCrafting(output, ModItems.SLUICE.get(), "sluice");
         machineCrafting(output, ModItems.BATH.get(), "bath");
-        machineCrafting(output, ModItems.CENTRIFUGE.get(), "centrifuge");
-        machineCrafting(output, ModItems.SHREDDER.get(), "shredder");
-        machineCrafting(output, ModItems.SIFTER.get(), "sifter");
-        machineCrafting(output, ModItems.SMELTER.get(), "smelter");
+        centrifugeCrafting(
+                output,
+                ModItems.CENTRIFUGE.get(),
+                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
+                "bronze",
+                "centrifuge");
+        centrifugeCrafting(
+                output,
+                ModItems.STEEL_CENTRIFUGE.get(),
+                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                "steel",
+                "steel_centrifuge");
+        centrifugeCrafting(
+                output,
+                ModItems.TITANIUM_CENTRIFUGE.get(),
+                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                "titanium",
+                "titanium_centrifuge");
+        t16MachineCrafting(
+                output,
+                ModItems.SHREDDER.get(),
+                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
+                "bronze",
+                "shredder",
+                "shredder");
+        t16MachineCrafting(
+                output,
+                ModItems.STEEL_SHREDDER.get(),
+                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                "steel",
+                "shredder",
+                "steel_shredder");
+        t16MachineCrafting(
+                output,
+                ModItems.TITANIUM_SHREDDER.get(),
+                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                "titanium",
+                "shredder",
+                "titanium_shredder");
+        sifterCrafting(
+                output,
+                ModItems.SIFTER.get(),
+                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
+                "bronze",
+                "sifter");
+        sifterCrafting(
+                output,
+                ModItems.STEEL_SIFTER.get(),
+                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                "steel",
+                "steel_sifter");
+        sifterCrafting(
+                output,
+                ModItems.TITANIUM_SIFTER.get(),
+                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                "titanium",
+                "titanium_sifter");
+        t17HeatMachineCrafting(
+                output,
+                ModItems.SMELTER.get(),
+                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                "steel",
+                null,
+                null,
+                "smelter",
+                "smelter");
+        t17HeatMachineCrafting(
+                output,
+                ModItems.INVAR_SMELTER.get(),
+                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                "invar",
+                null,
+                null,
+                "smelter",
+                "invar_smelter");
+        t17HeatMachineCrafting(
+                output,
+                ModItems.TITANIUM_SMELTER.get(),
+                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                "titanium",
+                null,
+                null,
+                "smelter",
+                "titanium_smelter");
         machineCrafting(output, ModItems.MORTAR.get(), "mortar");
         machineCrafting(output, ModItems.EXTRUDER.get(), "extruder");
         machineCrafting(output, ModItems.CUTTER.get(), "cutter");
-        machineCrafting(output, ModItems.LATHE.get(), "lathe");
-        machineCrafting(output, ModItems.ROLLINGMILL.get(), "rollingmill");
+        t16MachineCrafting(
+                output,
+                ModItems.LATHE.get(),
+                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
+                "bronze",
+                "lathe",
+                "lathe");
+        t16MachineCrafting(
+                output,
+                ModItems.STEEL_LATHE.get(),
+                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                "steel",
+                "lathe",
+                "steel_lathe");
+        t16MachineCrafting(
+                output,
+                ModItems.TITANIUM_LATHE.get(),
+                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                "titanium",
+                "lathe",
+                "titanium_lathe");
+        t16MachineCrafting(
+                output,
+                ModItems.ROLLINGMILL.get(),
+                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
+                "bronze",
+                "rollingmill",
+                "rollingmill");
+        t16MachineCrafting(
+                output,
+                ModItems.STEEL_ROLLINGMILL.get(),
+                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                "steel",
+                "rollingmill",
+                "steel_rollingmill");
+        t16MachineCrafting(
+                output,
+                ModItems.TITANIUM_ROLLINGMILL.get(),
+                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                "titanium",
+                "rollingmill",
+                "titanium_rollingmill");
         machineCrafting(output, ModItems.ROLLBENDER.get(), "rollbender");
-        machineCrafting(output, ModItems.WIREMILL.get(), "wiremill");
+        t16MachineCrafting(
+                output,
+                ModItems.WIREMILL.get(),
+                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
+                "bronze",
+                "wiremill",
+                "wiremill");
+        t16MachineCrafting(
+                output,
+                ModItems.STEEL_WIREMILL.get(),
+                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                "steel",
+                "wiremill",
+                "steel_wiremill");
+        t16MachineCrafting(
+                output,
+                ModItems.TITANIUM_WIREMILL.get(),
+                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                "titanium",
+                "wiremill",
+                "titanium_wiremill");
         machineCrafting(output, ModItems.BENDER.get(), "bender");
         machineCrafting(output, ModItems.ASSEMBLER.get(), "assembler");
         machineCrafting(output, ModItems.WELDER.get(), "welder");
-        machineCrafting(output, ModItems.PRESS.get(), "press");
-        machineCrafting(output, ModItems.ELECTROLYZER.get(), "electrolyzer");
+        t16MachineCrafting(
+                output,
+                ModItems.PRESS.get(),
+                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
+                "bronze",
+                "press",
+                "press");
+        t16MachineCrafting(
+                output,
+                ModItems.STEEL_PRESS.get(),
+                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                "steel",
+                "press",
+                "steel_press");
+        t16MachineCrafting(
+                output,
+                ModItems.TITANIUM_PRESS.get(),
+                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                "titanium",
+                "press",
+                "titanium_press");
+        electrolyzerCrafting(
+                output,
+                ModItems.ELECTROLYZER.get(),
+                ModItems.STEEL_GALVANIZED_MACHINE_CASING.get(),
+                "tin",
+                "electrolyzer");
+        electrolyzerCrafting(
+                output,
+                ModItems.ALUMINIUM_ELECTROLYZER.get(),
+                ModItems.ALUMINIUM_MACHINE_CASING.get(),
+                "copper",
+                "aluminium_electrolyzer");
+        electrolyzerCrafting(
+                output,
+                ModItems.STAINLESS_STEEL_ELECTROLYZER.get(),
+                ModItems.STAINLESS_STEEL_MACHINE_CASING.get(),
+                "gold",
+                "stainless_steel_electrolyzer");
         machineCrafting(output, ModItems.MIXER.get(), "mixer");
-        machineCrafting(output, ModItems.DISTILLERY.get(), "distillery");
+        t17HeatMachineCrafting(
+                output,
+                ModItems.DISTILLERY.get(),
+                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                "steel",
+                "constantan",
+                MaterialPrefixes.DOUBLE_WIRE,
+                "distillery",
+                "distillery");
+        t17HeatMachineCrafting(
+                output,
+                ModItems.INVAR_DISTILLERY.get(),
+                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                "invar",
+                "kanthal",
+                MaterialPrefixes.QUADRUPLE_WIRE,
+                "distillery",
+                "invar_distillery");
+        t17HeatMachineCrafting(
+                output,
+                ModItems.TITANIUM_DISTILLERY.get(),
+                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                "titanium",
+                "nichrome",
+                MaterialPrefixes.OCTUPLE_WIRE,
+                "distillery",
+                "titanium_distillery");
         machineCrafting(output, ModItems.AUTOCLAVE.get(), "autoclave");
-        machineCrafting(output, ModItems.DRYING.get(), "drying");
+        t17HeatMachineCrafting(
+                output,
+                ModItems.DRYING.get(),
+                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                "steel",
+                null,
+                null,
+                "drying",
+                "drying");
+        t17HeatMachineCrafting(
+                output,
+                ModItems.INVAR_DRYING.get(),
+                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                "invar",
+                null,
+                null,
+                "drying",
+                "invar_drying");
+        t17HeatMachineCrafting(
+                output,
+                ModItems.TITANIUM_DRYING.get(),
+                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                "titanium",
+                null,
+                null,
+                "drying",
+                "titanium_drying");
         machineCrafting(output, ModItems.COMPRESSOR.get(), "compressor");
+        machineCrafting(output, ModItems.GENERIFIER.get(), "generifier");
+        machineCrafting(
+                output,
+                ModItems.FLUID_DEPOSIT_EXTRACTOR.get(),
+                "fluid_deposit_extractor");
+        machineCrafting(
+                output, ModItems.FUEL_ENGINE.get(), "fuel_engine");
+        machineCrafting(
+                output,
+                ModItems.BURNING_GAS_GENERATOR.get(),
+                "burning_gas_generator");
+        casingCrafting(
+                output,
+                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
+                "bronze",
+                true);
+        casingCrafting(
+                output,
+                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
+                "steel",
+                true);
+        casingCrafting(
+                output,
+                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
+                "titanium",
+                true);
+        casingCrafting(
+                output,
+                ModItems.STEEL_GALVANIZED_MACHINE_CASING.get(),
+                "steel_galvanized",
+                false);
+        casingCrafting(
+                output,
+                ModItems.ALUMINIUM_MACHINE_CASING.get(),
+                "aluminium",
+                false);
+        casingCrafting(
+                output,
+                ModItems.STAINLESS_STEEL_MACHINE_CASING.get(),
+                "stainless_steel",
+                false);
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.MULTIBLOCK_CASING.get(),
+                        4)
+                .pattern("III")
+                .pattern("ICI")
+                .pattern("III")
+                .define('I', Items.IRON_INGOT)
+                .define('C', Items.COPPER_INGOT)
+                .unlockedBy("has_iron", has(Items.IRON_INGOT))
+                .save(output, id("machines/multiblock_casing"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.MULTIBLOCK_ITEM_FLUID_PORT.get())
+                .pattern(" C ")
+                .pattern("HBH")
+                .pattern(" C ")
+                .define('C', ModItems.MULTIBLOCK_CASING.get())
+                .define('H', Items.HOPPER)
+                .define('B', Items.BUCKET)
+                .unlockedBy(
+                        "has_multiblock_casing",
+                        has(ModItems.MULTIBLOCK_CASING.get()))
+                .save(output, id("machines/multiblock_item_fluid_port"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.MULTIBLOCK_ENERGY_INPUT_PORT.get())
+                .pattern(" R ")
+                .pattern("RCR")
+                .pattern(" R ")
+                .define('C', ModItems.MULTIBLOCK_CASING.get())
+                .define('R', Items.REDSTONE)
+                .unlockedBy(
+                        "has_multiblock_casing",
+                        has(ModItems.MULTIBLOCK_CASING.get()))
+                .save(output, id("machines/multiblock_energy_input_port"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.LARGE_CENTRIFUGE.get())
+                .pattern("CCC")
+                .pattern("CMC")
+                .pattern("CCC")
+                .define('C', ModItems.MULTIBLOCK_CASING.get())
+                .define('M', ModItems.CENTRIFUGE.get())
+                .unlockedBy(
+                        "has_centrifuge",
+                        has(ModItems.CENTRIFUGE.get()))
+                .save(output, id("machines/large_centrifuge"));
         ShapedRecipeBuilder.shaped(
                         RecipeCategory.MISC, ModItems.PORTABLE_FLUID_TANK.get())
                 .pattern("CGC")
@@ -213,6 +539,230 @@ public final class ModRecipeProvider extends RecipeProvider {
                         !T2ChainRules.CONCRETE_ORE_CHAIN_PATHS.contains(definition.path()))
                 .forEach(definition -> output.accept(
                         id(definition.path()), new MaterialRuleRecipe(definition.rule()), null));
+    }
+
+    private static void centrifugeCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        Item gear = materialItem(material, MaterialPrefixes.GEAR);
+        Item longRod = materialItem(
+                material, MaterialPrefixes.LONG_ROD);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                .pattern("G ")
+                .pattern("SC")
+                .pattern("G ")
+                .define('G', gear)
+                .define('S', longRod)
+                .define('C', casing)
+                .unlockedBy("has_casing", has(casing))
+                .save(output, id("machines/" + id));
+    }
+
+    private static void sifterCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        Item wire = materialItem(
+                material, MaterialPrefixes.FINE_WIRE);
+        Item rod = materialItem(material, MaterialPrefixes.ROD);
+        Item spring = materialItem(
+                material, MaterialPrefixes.SPRING);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                .pattern("W W")
+                .pattern("RCR")
+                .pattern("S S")
+                .define('W', wire)
+                .define('R', rod)
+                .define('S', spring)
+                .define('C', casing)
+                .unlockedBy("has_casing", has(casing))
+                .save(output, id("machines/" + id));
+    }
+
+    private static void electrolyzerCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String cableMaterial,
+            String id) {
+        Item platinumWire = materialItem(
+                "platinum", MaterialPrefixes.WIRE);
+        Item cable = materialItem(
+                cableMaterial, MaterialPrefixes.CABLE);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                .pattern("SMS")
+                .pattern("W W")
+                .define('S', platinumWire)
+                .define('M', casing)
+                .define('W', cable)
+                .unlockedBy("has_casing", has(casing))
+                .save(output, id("machines/" + id));
+    }
+
+    private static void t16MachineCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String kind,
+            String id) {
+        Item gear = materialItem(material, MaterialPrefixes.GEAR);
+        ShapedRecipeBuilder builder =
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                        .define('C', casing)
+                        .unlockedBy("has_casing", has(casing));
+        if (!kind.equals("press")) {
+            builder.define('G', gear);
+        }
+        switch (kind) {
+            case "lathe" -> builder
+                    .pattern("TDS")
+                    .pattern(" CG")
+                    .define(
+                            'T',
+                            materialItem(
+                                    material,
+                                    MaterialPrefixes.SCREW))
+                    .define(
+                            'D',
+                            materialItem(
+                                    "diamond",
+                                    MaterialPrefixes.GEM))
+                    .define(
+                            'S',
+                            materialItem(
+                                    material,
+                                    MaterialPrefixes.SMALL_GEAR));
+            case "rollingmill" -> builder
+                    .pattern("G ")
+                    .pattern("C ")
+                    .pattern("G ");
+            case "wiremill" -> builder
+                    .pattern("SGS")
+                    .pattern(" C ")
+                    .define(
+                            'S',
+                            materialItem(
+                                    material,
+                                    MaterialPrefixes.SMALL_GEAR));
+            case "shredder" -> builder
+                    .pattern("GDG")
+                    .pattern(" C ")
+                    .define(
+                            'D',
+                            materialItem(
+                                    "diamond",
+                                    MaterialPrefixes.GEM));
+            case "press" -> builder
+                    .pattern("RS")
+                    .pattern("PC")
+                    .pattern("P ")
+                    .define(
+                            'P',
+                            materialItem(
+                                    material,
+                                    MaterialPrefixes.DOUBLE_PLATE))
+                    .define(
+                            'R',
+                            materialItem(
+                                    material,
+                                    MaterialPrefixes.ROD))
+                    .define(
+                            'S',
+                            materialItem(
+                                    material,
+                                    MaterialPrefixes.SPRING));
+            default -> throw new IllegalArgumentException(
+                    "Unsupported T16 machine kind " + kind);
+        }
+        builder.save(output, id("machines/" + id));
+    }
+
+    private static void t17HeatMachineCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String machineMaterial,
+            String wireMaterial,
+            MaterialPrefix wirePrefix,
+            String kind,
+            String id) {
+        Item tierPlate = materialItem(
+                machineMaterial, MaterialPrefixes.PLATE);
+        Item copperDoublePlate = materialItem(
+                "copper", MaterialPrefixes.DOUBLE_PLATE);
+        ShapedRecipeBuilder builder =
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                        .define('M', casing)
+                        .define('P', tierPlate)
+                        .define('C', copperDoublePlate)
+                        .unlockedBy("has_casing", has(casing));
+        switch (kind) {
+            case "distillery" -> builder
+                    .pattern("GPG")
+                    .pattern("WMW")
+                    .pattern(" C ")
+                    .define('G', Items.GLASS)
+                    .define(
+                            'W',
+                            materialItem(
+                                    java.util.Objects.requireNonNull(
+                                            wireMaterial,
+                                            "distillery wire material"),
+                                    java.util.Objects.requireNonNull(
+                                            wirePrefix,
+                                            "distillery wire prefix")));
+            case "drying" -> builder
+                    .pattern(" P ")
+                    .pattern("BMB")
+                    .pattern("BCB")
+                    .define('B', Items.BRICKS);
+            case "smelter" -> builder
+                    .pattern(" U ")
+                    .pattern("PMP")
+                    .pattern("BCB")
+                    .define('U', ModItems.CRUCIBLE.get())
+                    .define('B', Items.BRICKS);
+            default -> throw new IllegalArgumentException(
+                    "Unsupported T17 heat machine kind " + kind);
+        }
+        builder.save(output, id("machines/" + id));
+    }
+
+    private static void casingCrafting(
+            RecipeOutput output,
+            Item result,
+            String material,
+            boolean doubled) {
+        Item plate = materialItem(
+                material,
+                doubled
+                        ? MaterialPrefixes.DOUBLE_PLATE
+                        : MaterialPrefixes.PLATE);
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                .pattern("PPP")
+                .pattern("P P")
+                .pattern("PPP")
+                .define('P', plate)
+                .unlockedBy("has_plate", has(plate))
+                .save(output, id("components/"
+                        + net.minecraft.core.registries.BuiltInRegistries
+                                .ITEM.getKey(result).getPath()));
+    }
+
+    private static Item materialItem(
+            String material, MaterialPrefix prefix) {
+        return MaterialLookup.item(material, prefix)
+                .orElseThrow(() -> new IllegalStateException(
+                        "Missing source machine component "
+                                + material
+                                + "/"
+                                + prefix.serializedName()));
     }
 
     private static void machineCrafting(RecipeOutput output, Item result, String id) {

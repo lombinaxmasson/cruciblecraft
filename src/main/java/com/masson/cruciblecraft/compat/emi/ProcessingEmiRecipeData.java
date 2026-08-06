@@ -102,7 +102,8 @@ public record ProcessingEmiRecipeData(
 
     public String energyUnit() {
         return switch (energyType) {
-            case KINETIC -> "KU/t";
+            case KINETIC, KINETIC_PUSH -> "KU/t";
+            case KINETIC_ROTATION -> "RU/t";
             case ELECTRIC -> "EU/t";
             case HEAT -> "HEAT/t";
             default -> energyType.name() + "/t";

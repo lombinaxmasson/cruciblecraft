@@ -28,6 +28,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         withExistingParent("bolt_mold", modLoc("block/ceramic_mold"));
         generated("coal_coke", "coal");
         generated("match", "stick");
+        generated("bronze_double_machine_casing", "copper_ingot");
+        generated("steel_double_machine_casing", "iron_ingot");
+        generated("titanium_double_machine_casing", "iron_ingot");
+        generated("steel_galvanized_machine_casing", "iron_ingot");
+        generated("aluminium_machine_casing", "iron_ingot");
+        generated("stainless_steel_machine_casing", "iron_ingot");
         generated("creosote_bucket", "water_bucket");
         generated("portable_fluid_tank", "bucket");
         generated("fluid_cell", "glass_bottle");

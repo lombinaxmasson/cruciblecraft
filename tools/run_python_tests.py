@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import fnmatch
 import json
+import os
 import subprocess
 import sys
 import time
@@ -17,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TOOLS = ROOT / "tools"
 TEST_ROOT = TOOLS / "tests"
 POLICY = TOOLS / "python_test_policy.json"
+BUILDER_POLICY = TOOLS / "verification_builder_policy.json"
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
@@ -41,6 +43,7 @@ def load_policy(path: Path = POLICY) -> dict[str, Any]:
     required = {
         "closure_only_test_patterns",
         "source_replay_test_patterns",
+        "prechecked_stage_test_patterns",
         "affected_rules",
         "source_replay_commands",
     }
@@ -48,6 +51,29 @@ def load_policy(path: Path = POLICY) -> dict[str, Any]:
     if missing:
         raise PolicyError(f"Python test policy omits {missing}")
     return document
+
+
+def source_replay_records(policy: dict[str, Any]) -> list[dict[str, Any]]:
+    builder_policy = json.loads(BUILDER_POLICY.read_text(encoding="utf-8"))
+    if builder_policy.get("schema_version") != 1:
+        raise PolicyError("unsupported verification builder policy schema")
+    records: list[dict[str, Any]] = []
+    for builder in builder_policy.get("builders") or []:
+        replay = builder.get("full_replay")
+        if not replay:
+            continue
+        records.append({
+            "name": f"{builder['name']} full replay",
+            "required_paths": replay.get("required_paths", []),
+            "required_any_paths": replay.get("required_any_paths", []),
+            "command": [
+                "$PYTHON",
+                builder["script"],
+                *replay["args"],
+            ],
+        })
+    records.extend(policy["source_replay_commands"])
+    return records
 
 
 def flatten_suite(
@@ -117,6 +143,21 @@ def validate_policy(
             "tests cannot be both closure-only and source-replay: "
             + ", ".join(overlap)
         )
+    for patterns in policy["prechecked_stage_test_patterns"].values():
+        unsafe = sorted(
+            normalized_test_id(case)
+            for case in cases
+            if matches_any(case.id(), patterns)
+            and any(
+                token in normalized_test_id(case).lower()
+                for token in ("mutation", "tamper", "reject", "fail_closed")
+            )
+        )
+        if unsafe:
+            raise PolicyError(
+                "prechecked stages cannot skip mutation/tamper tests: "
+                + ", ".join(unsafe)
+            )
     for rule in policy["affected_rules"]:
         if not rule.get("paths") or not rule.get("test_modules"):
             raise PolicyError("every affected rule needs paths and test_modules")
@@ -132,9 +173,9 @@ def normalize_paths(paths: Iterable[str]) -> tuple[str, ...]:
 
 def git_changed_paths() -> tuple[str, ...]:
     commands = (
-        ["git", "diff", "--name-only", "HEAD"],
-        ["git", "diff", "--name-only", "--cached"],
-        ["git", "ls-files", "--others", "--exclude-standard"],
+        ["git", "diff", "--name-only", "-z", "HEAD"],
+        ["git", "diff", "--name-only", "-z", "--cached"],
+        ["git", "ls-files", "--others", "--exclude-standard", "-z"],
     )
     paths: list[str] = []
     for command in commands:
@@ -142,15 +183,18 @@ def git_changed_paths() -> tuple[str, ...]:
             command,
             cwd=ROOT,
             capture_output=True,
-            text=True,
             check=False,
         )
         if completed.returncode != 0:
             raise PolicyError(
                 f"cannot derive affected paths from {' '.join(command)}: "
-                f"{completed.stderr.strip()}"
+                f"{completed.stderr.decode('utf-8', errors='replace').strip()}"
             )
-        paths.extend(completed.stdout.splitlines())
+        paths.extend(
+            item.decode("utf-8")
+            for item in completed.stdout.split(b"\0")
+            if item
+        )
     return normalize_paths(paths)
 
 
@@ -246,10 +290,49 @@ def ordered_cases(
     )
 
 
+def apply_prechecked_stage_skips(
+    cases: Iterable[unittest.TestCase],
+    policy: dict[str, Any],
+) -> None:
+    """Mark only policy-listed duplicate positive currentness tests skipped."""
+    for environment_name, patterns in policy[
+        "prechecked_stage_test_patterns"
+    ].items():
+        if os.environ.get(environment_name) != "1":
+            continue
+        for case in cases:
+            if not matches_any(case.id(), patterns):
+                continue
+            method = getattr(type(case), case._testMethodName)
+            method.__unittest_skip__ = True
+            method.__unittest_skip_why__ = (
+                f"{environment_name} evidence was recorded by the orchestrator"
+            )
+
+
+def apply_source_replay_skips(
+    cases: Iterable[unittest.TestCase],
+    policy: dict[str, Any],
+    suite: str,
+) -> None:
+    """Keep raw/cache replays visible but skipped outside source-replay."""
+    if suite == "source-replay":
+        return
+    patterns = policy["source_replay_test_patterns"]
+    for case in cases:
+        if not matches_any(case.id(), patterns):
+            continue
+        method = getattr(type(case), case._testMethodName)
+        method.__unittest_skip__ = True
+        method.__unittest_skip_why__ = (
+            "raw/cache replay is reserved for the source-replay suite"
+        )
+
+
 def run_source_replay_commands(policy: dict[str, Any]) -> tuple[int, int]:
     passed = 0
     skipped = 0
-    for record in policy["source_replay_commands"]:
+    for record in source_replay_records(policy):
         required = [ROOT / path for path in record.get("required_paths", ())]
         required_any = [
             ROOT / path for path in record.get("required_any_paths", ())
@@ -332,6 +415,8 @@ def main(argv: list[str] | None = None) -> int:
             changed_paths=changed_paths,
         )
         selected = ordered_cases(selection, policy)
+        apply_prechecked_stage_skips(selected, policy)
+        apply_source_replay_skips(selected, policy, suite)
     except (OSError, json.JSONDecodeError, PolicyError) as exc:
         print(f"Python test workflow policy failed: {exc}", file=sys.stderr)
         return 2

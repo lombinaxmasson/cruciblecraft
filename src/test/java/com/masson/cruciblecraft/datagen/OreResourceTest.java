@@ -105,7 +105,7 @@ class OreResourceTest {
                 "data/minecraft/tags/block/mineable/pickaxe.json",
                 GENERATED_RESOURCES,
                 "data/minecraft/tags/block/needs_stone_tool.json",
-                RESOURCES,
+                GENERATED_RESOURCES,
                 "data/minecraft/tags/block/needs_iron_tool.json",
                 RESOURCES).entrySet()) {
             Set<String> leaked = tagValues(readString(
@@ -215,7 +215,10 @@ class OreResourceTest {
                                                 + "extruder_shapes.json"),
                                 generatedData.resolve(
                                         "minecraft/tags/block/mineable/"
-                                                + "pickaxe.json")),
+                                                + "pickaxe.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/block/"
+                                                + "needs_stone_tool.json")),
                         snapshots,
                         "only catalog-driven static item/block tags may ship "
                                 + "in generated data");
@@ -351,8 +354,10 @@ class OreResourceTest {
         Path generatedRecipes = GENERATED_RESOURCES.resolve("data/cruciblecraft/recipe");
         Path generatedAdvancements = GENERATED_RESOURCES.resolve(
                 "data/cruciblecraft/advancement/recipes");
-        assertEquals(837, countRegularFiles(generatedRecipes));
-        assertEquals(2810, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
+        // T17 adds six net-new high-tier machine crafting files; its three
+        // tier-one recipes reuse existing generated ids.
+        assertEquals(876, countRegularFiles(generatedRecipes));
+        assertEquals(48, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
                 "data/cruciblecraft/recipe")));
         assertEquals(0, countRegularFiles(generatedAdvancements));
         try (var paths = Files.walk(generatedRecipes)) {

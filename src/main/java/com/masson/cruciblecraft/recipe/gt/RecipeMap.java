@@ -1,5 +1,6 @@
 package com.masson.cruciblecraft.recipe.gt;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -41,15 +42,55 @@ public final class RecipeMap {
     }
 
     public List<GTRecipe> recipes() {
-        return index.recipes();
+        Index snapshot = index;
+        if (snapshot.families().isEmpty()) {
+            return snapshot.recipes();
+        }
+        List<Entry> entries = logicalEntries(snapshot);
+        return new AbstractList<>() {
+            @Override
+            public GTRecipe get(int position) {
+                return entries.get(position).recipe();
+            }
+
+            @Override
+            public int size() {
+                return entries.size();
+            }
+        };
     }
 
     public List<Entry> entries() {
-        return index.entries();
+        Index snapshot = index;
+        return snapshot.families().isEmpty()
+                ? snapshot.baseEntries()
+                : logicalEntries(snapshot);
+    }
+
+    public Optional<Entry> entry(ResourceLocation id) {
+        Objects.requireNonNull(id, "id");
+        Index snapshot = index;
+        Entry concrete = snapshot.byId().get(id);
+        if (concrete != null) {
+            return Optional.of(concrete);
+        }
+        for (RecipeFamily family : snapshot.families()) {
+            Optional<Entry> entry = family.entry(id);
+            if (entry.isPresent()) {
+                requireCurrent(snapshot);
+                return entry;
+            }
+        }
+        return Optional.empty();
+    }
+
+    public boolean hasFluidCandidate(Fluid fluid) {
+        Objects.requireNonNull(fluid, "fluid");
+        return index.byFluid().containsKey(fluid);
     }
 
     public ResourceLocation recipeId(int index) {
-        return this.index.entries().get(index).id();
+        return entries().get(index).id();
     }
 
     public int unindexedRecipeCount() {
@@ -60,21 +101,53 @@ public final class RecipeMap {
         return index.revision();
     }
 
+    public long runtimeEpoch() {
+        return index.runtimeEpoch();
+    }
+
+    public Optional<RecipeFamily> family(String familyId) {
+        Objects.requireNonNull(familyId, "familyId");
+        return index.families().stream()
+                .filter(family -> family.familyId().equals(familyId))
+                .findFirst();
+    }
+
     /**
      * Atomically replaces datapack recipes and rebuilds all input indexes.
      * Callers must supply a stable priority order, normally sorted by recipe id.
      */
     public void replaceRecipes(List<Entry> orderedRecipes) {
+        if (!index.families().isEmpty()) {
+            throw new UnsupportedOperationException(
+                    "RecipeMap " + id
+                            + " contains logical recipe families and must be "
+                            + "replaced through an epoch publication");
+        }
         GTRecipeRuntimeEpoch.replaceSingle(this, orderedRecipes);
     }
 
     /** Builds all indexes without changing the live map. */
     public synchronized Prepared prepareRecipes(List<Entry> orderedRecipes) {
+        return prepareRecipes(orderedRecipes, List.of(), 0L);
+    }
+
+    /**
+     * Builds concrete indexes and exact logical family snapshots without
+     * changing the live map.
+     */
+    public synchronized Prepared prepareRecipes(
+            List<Entry> orderedRecipes,
+            List<RecipeFamily> families,
+            long runtimeEpoch) {
         long baseRevision = index.revision();
         return new Prepared(
                 this,
                 baseRevision,
-                Index.build(List.copyOf(orderedRecipes), Math.incrementExact(baseRevision)));
+                Index.build(
+                        List.copyOf(orderedRecipes),
+                        List.copyOf(families),
+                        Math.incrementExact(baseRevision),
+                        runtimeEpoch));
     }
 
     synchronized boolean canPublish(Prepared prepared) {
@@ -122,6 +195,15 @@ public final class RecipeMap {
             // does instead of throwing from the per-tick player input path.
             return Optional.of(maximal.getFirst());
         }
+        for (RecipeFamily family : snapshot.families()) {
+            Optional<Entry> entry = family.findLazy(query);
+            requireCurrent(snapshot);
+            if (entry.isPresent()) {
+                return Optional.of(new Match(
+                        entry.orElseThrow().id(),
+                        entry.orElseThrow().recipe()));
+            }
+        }
         for (RecipeHandler handler : handlers) {
             Optional<Entry> entry = Objects.requireNonNull(
                     handler.find(query),
@@ -135,7 +217,13 @@ public final class RecipeMap {
 
     public int indexedCandidateCount(GTRecipeQuery query) {
         Objects.requireNonNull(query, "query");
-        return candidates(index, query).size();
+        Index snapshot = index;
+        int count = candidates(snapshot, query).size();
+        for (RecipeFamily family : snapshot.families()) {
+            count = Math.addExact(count, family.indexedLazyCandidateCount(query));
+        }
+        requireCurrent(snapshot);
+        return count;
     }
 
     private static TreeSet<Integer> candidates(
@@ -216,15 +304,60 @@ public final class RecipeMap {
             Object customIdentity,
             ItemInputAction action) {}
 
+    private List<Entry> logicalEntries(Index snapshot) {
+        return new AbstractList<>() {
+            @Override
+            public Entry get(int position) {
+                requireCurrent(snapshot);
+                if (position < 0 || position >= size()) {
+                    throw new IndexOutOfBoundsException(position);
+                }
+                if (position < snapshot.baseEntries().size()) {
+                    return snapshot.baseEntries().get(position);
+                }
+                int familyIndex = position - snapshot.baseEntries().size();
+                for (RecipeFamily family : snapshot.families()) {
+                    if (familyIndex < family.logicalRecipeCount()) {
+                        Entry entry = family.enumerationEntry(familyIndex);
+                        requireCurrent(snapshot);
+                        return entry;
+                    }
+                    familyIndex -= family.logicalRecipeCount();
+                }
+                throw new IndexOutOfBoundsException(position);
+            }
+
+            @Override
+            public int size() {
+                requireCurrent(snapshot);
+                return snapshot.logicalRecipeCount();
+            }
+        };
+    }
+
+    private void requireCurrent(Index snapshot) {
+        if (index != snapshot && !snapshot.families().isEmpty()) {
+            throw new IllegalStateException(
+                    "RecipeMap " + id + " view belongs to an old epoch");
+        }
+    }
+
     public boolean hasCandidate(ItemStack stack) {
         if (stack.isEmpty()) {
             return false;
         }
         Index snapshot = index;
-        return snapshot.byItem().containsKey(stack.getItem())
+        boolean concrete = snapshot.byItem().containsKey(stack.getItem())
                 || ComponentIngredientIndex.keys(stack).stream()
                         .anyMatch(snapshot.byComponent()::containsKey)
                 || !snapshot.unindexed().isEmpty();
+        if (concrete) {
+            return true;
+        }
+        boolean family = snapshot.families().stream()
+                .anyMatch(candidate -> candidate.hasLazyCandidate(stack));
+        requireCurrent(snapshot);
+        return family;
     }
 
     public record Entry(ResourceLocation id, GTRecipe recipe) {
@@ -241,6 +374,28 @@ public final class RecipeMap {
         }
     }
 
+    /**
+     * Immutable per-epoch logical family contract. Implementations may retain
+     * bounded lookup caches, but enumeration must expose every stable id.
+     */
+    public interface RecipeFamily {
+        String familyId();
+        long epoch();
+        int logicalRecipeCount();
+        int eagerRecipeCount();
+        int lazyRecipeCount();
+        int cacheSize();
+        int cacheCeiling();
+        String stableFingerprint();
+        List<ResourceLocation> recipeIds();
+        List<Entry> eagerEntries();
+        Entry enumerationEntry(int index);
+        Optional<Entry> entry(ResourceLocation id);
+        Optional<Entry> findLazy(GTRecipeQuery query);
+        int indexedLazyCandidateCount(GTRecipeQuery query);
+        boolean hasLazyCandidate(ItemStack stack);
+    }
+
     public static final class Prepared {
         private final RecipeMap owner;
         private final long baseRevision;
@@ -255,8 +410,12 @@ public final class RecipeMap {
         private RecipeMap owner() { return owner; }
         public long baseRevision() { return baseRevision; }
         private Index index() { return index; }
-        public List<Entry> entries() { return index.entries(); }
+        public List<Entry> entries() { return index.baseEntries(); }
+        public int logicalRecipeCount() { return index.logicalRecipeCount(); }
+        public List<RecipeFamily> families() { return index.families(); }
+        public long runtimeEpoch() { return index.runtimeEpoch(); }
         public int unindexedRecipeCount() { return index.unindexed().size(); }
+        boolean belongsTo(RecipeMap map) { return owner == map; }
         boolean canPublish() { return owner.canPublish(this); }
         void publish() { owner.publishPrepared(this); }
     }
@@ -265,18 +424,77 @@ public final class RecipeMap {
             long revision,
             List<Entry> entries,
             List<GTRecipe> recipes,
+            Map<ResourceLocation, Entry> byId,
             Map<Item, List<Integer>> byItem,
             Map<ComponentIngredientIndex.Key, List<Integer>> byComponent,
             Map<Fluid, List<Integer>> byFluid,
-            List<Integer> unindexed) {
+            List<Integer> unindexed,
+            List<Entry> baseEntries,
+            List<RecipeFamily> families,
+            int logicalRecipeCount,
+            long runtimeEpoch) {
 
         private static Index empty() {
             return new Index(
-                    0L, List.of(), List.of(), Map.of(), Map.of(), Map.of(), List.of());
+                    0L,
+                    List.of(),
+                    List.of(),
+                    Map.of(),
+                    Map.of(),
+                    Map.of(),
+                    Map.of(),
+                    List.of(),
+                    List.of(),
+                    List.of(),
+                    0,
+                    0L);
         }
 
-        private static Index build(List<Entry> entries, long revision) {
+        private static Index build(
+                List<Entry> baseEntries,
+                List<RecipeFamily> families,
+                long revision,
+                long runtimeEpoch) {
+            List<Entry> entries = new ArrayList<>(baseEntries);
+            Set<ResourceLocation> logicalIds = new HashSet<>();
+            for (Entry entry : baseEntries) {
+                if (!logicalIds.add(entry.id())) {
+                    throw new IllegalArgumentException(
+                            "Duplicate recipe id " + entry.id());
+                }
+            }
+            int logicalRecipeCount = baseEntries.size();
+            Set<String> familyIds = new HashSet<>();
+            for (RecipeFamily family : families) {
+                if (!familyIds.add(family.familyId())) {
+                    throw new IllegalArgumentException(
+                            "Duplicate recipe family " + family.familyId());
+                }
+                if (runtimeEpoch <= 0L || family.epoch() != runtimeEpoch) {
+                    throw new IllegalArgumentException(
+                            "Recipe family epoch does not match prepared map epoch");
+                }
+                if (family.recipeIds().size() != family.logicalRecipeCount()) {
+                    throw new IllegalArgumentException(
+                            "Recipe family stable-id view is incomplete");
+                }
+                for (ResourceLocation id : family.recipeIds()) {
+                    if (!logicalIds.add(id)) {
+                        throw new IllegalArgumentException(
+                                "Duplicate recipe id " + id);
+                    }
+                }
+                if (family.eagerEntries().size() != family.eagerRecipeCount()) {
+                    throw new IllegalArgumentException(
+                            "Recipe family eager view is incomplete");
+                }
+                entries.addAll(family.eagerEntries());
+                logicalRecipeCount = Math.addExact(
+                        logicalRecipeCount, family.logicalRecipeCount());
+            }
+            entries = List.copyOf(entries);
             List<GTRecipe> recipes = entries.stream().map(Entry::recipe).toList();
+            Map<ResourceLocation, Entry> byId = new HashMap<>();
             Map<Item, List<Integer>> byItem = new HashMap<>();
             Map<ComponentIngredientIndex.Key, List<Integer>> byComponent =
                     new HashMap<>();
@@ -284,6 +502,14 @@ public final class RecipeMap {
             List<Integer> unindexed = new ArrayList<>();
 
             for (int recipeIndex = 0; recipeIndex < recipes.size(); recipeIndex++) {
+                Entry duplicate = byId.putIfAbsent(
+                        entries.get(recipeIndex).id(),
+                        entries.get(recipeIndex));
+                if (duplicate != null) {
+                    throw new IllegalArgumentException(
+                            "Duplicate recipe id "
+                                    + entries.get(recipeIndex).id());
+                }
                 GTRecipe recipe = recipes.get(recipeIndex);
                 boolean indexed = false;
                 boolean requiresFallbackScan = false;
@@ -360,10 +586,15 @@ public final class RecipeMap {
                     revision,
                     entries,
                     recipes,
+                    Map.copyOf(byId),
                     immutableIndex(byItem),
                     immutableIndex(byComponent),
                     immutableIndex(byFluid),
-                    List.copyOf(unindexed));
+                    List.copyOf(unindexed),
+                    baseEntries,
+                    families,
+                    logicalRecipeCount,
+                    runtimeEpoch);
         }
 
         private static <K> Map<K, List<Integer>> immutableIndex(

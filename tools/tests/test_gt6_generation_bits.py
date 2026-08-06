@@ -9,6 +9,17 @@ from tools import build_gt6_generation_bits as generation
 class GT6GenerationBitsTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
+        if not all(
+            path.is_file()
+            for path in (
+                generation.MATERIALS_PATH,
+                generation.PREFIXES_PATH,
+                generation.FLUID_MAP_PATH,
+            )
+        ):
+            raise unittest.SkipTest(
+                "raw OreDict replay is reserved for source-replay"
+            )
         cls.materials = json.loads(
             generation.MATERIALS_PATH.read_text(encoding="utf-8")
         )

@@ -7,6 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.OptionalInt;
+import java.util.Set;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
@@ -20,6 +21,7 @@ import com.masson.cruciblecraft.recipe.rule.MaterialRuleExpansion;
 import com.masson.cruciblecraft.recipe.rule.MaterialRuleRuntimeMetadata;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import com.masson.cruciblecraft.registry.ModRecipes;
+import com.masson.cruciblecraft.registry.ModFuelGenerators;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 
 import net.minecraft.resources.ResourceLocation;
@@ -31,7 +33,8 @@ import net.minecraft.world.item.crafting.RecipeManager;
 /** Builds immutable concrete RecipeMap and material metadata snapshots. */
 public final class GTRecipeMapLoader {
     private static final int LOOKUP_BENCHMARK_SAMPLES = 256;
-    private static final int LOOKUP_BENCHMARK_ROUNDS = 4;
+    private static final int LOOKUP_BENCHMARK_TIMING_SAMPLES = 61;
+    private static final int LOOKUP_BENCHMARK_OPERATIONS_PER_SAMPLE = 32;
     private static volatile int rejectedUnindexedRecipeCount;
     private static volatile PublicationMetrics lastPublicationMetrics =
             PublicationMetrics.empty();
@@ -47,6 +50,14 @@ public final class GTRecipeMapLoader {
     }
 
     public static synchronized void reload(RecipeManager manager) {
+        reload(
+                manager,
+                ExtruderRecipeFamilyProvider.RuntimeSide.SERVER);
+    }
+
+    public static synchronized void reload(
+            RecipeManager manager,
+            ExtruderRecipeFamilyProvider.RuntimeSide runtimeSide) {
         long started = System.nanoTime();
         Map<ResourceLocation, RecipeMap> knownMaps = new HashMap<>();
         Map<RecipeMap, List<ResolvedRecipe>> resolved = new HashMap<>();
@@ -111,17 +122,41 @@ public final class GTRecipeMapLoader {
                 .distinct()
                 .forEach(stage -> validateAuthoredMaterialRuleBudget(stage, 0));
 
+        List<ExtruderRecipeFamilyProvider.Source> extruderFamilySources =
+                new ArrayList<>();
         rules.stream()
                 .sorted(Comparator.comparing(source -> source.id().toString()))
-                .forEach(source -> expand(
-                        source,
-                        knownMaps,
-                        resolved,
+                .forEach(source -> {
+                    if (isT14CompactExtruder(source)) {
+                        extruderFamilySources.add(
+                                new ExtruderRecipeFamilyProvider.Source(
+                                        source.id(), source.rule()));
+                    } else {
+                        expand(
+                                source,
+                                knownMaps,
+                                resolved,
+                                effectiveMaterials,
+                                materialPreview.unificationPreferences(),
+                                formIndexes);
+                    }
+                });
+        long preparedEpoch = GTRecipeRuntimeEpoch.nextEpoch();
+        ExtruderRecipeFamilyProvider.Snapshot extruderFamily =
+                ExtruderRecipeFamilyProvider.prepare(
+                        extruderFamilySources,
                         effectiveMaterials,
                         materialPreview.unificationPreferences(),
-                        formIndexes));
-
+                        formIndexes,
+                        preparedEpoch,
+                        runtimeSide);
         LinkedHashMap<RecipeMap, List<RecipeMap.Entry>> candidates = new LinkedHashMap<>();
+        Map<RecipeMap, List<RecipeMap.RecipeFamily>> families = new HashMap<>();
+        for (RecipeMap map : ModRecipeMaps.ALL) {
+            families.put(map, map == ModRecipeMaps.EXTRUDER
+                    ? List.of(extruderFamily)
+                    : List.of());
+        }
         int rejectedUnindexed = 0;
         for (RecipeMap map : ModRecipeMaps.ALL) {
             List<RecipeMap.Entry> ordered = resolved.get(map).stream()
@@ -132,25 +167,9 @@ public final class GTRecipeMapLoader {
                             right.id().toString()))
                     .map(recipe -> new RecipeMap.Entry(recipe.id(), recipe.recipe()))
                     .toList();
-            List<RecipeMap.Entry> accepted = new ArrayList<>();
-            for (RecipeMap.Entry entry : ordered) {
-                List<String> unsupported =
-                        ComponentIngredientIndex.unsupportedIngredientTypes(
-                                entry.recipe());
-                if (unsupported.isEmpty()) {
-                    accepted.add(entry);
-                    continue;
-                }
-                rejectedUnindexed++;
-                CrucibleCraft.LOGGER.error(
-                        "Rejected unindexable recipe {} from map {}: ingredient types {}",
-                        entry.id(),
-                        map.id(),
-                        unsupported);
-            }
-            validateT5RecipeProvenance(map, accepted);
-            validateNoShadows(map, accepted);
-            candidates.put(map, List.copyOf(accepted));
+            validateCompleteReloadRows(
+                    map, ordered, families.get(map), preparedEpoch);
+            candidates.put(map, ordered);
         }
         validateRequiredMaps(candidates);
         int t3Recipes = 0;
@@ -158,31 +177,52 @@ public final class GTRecipeMapLoader {
         int t5RecipesOnT3Maps = 0;
         for (var spec : ModProcessingMachines.T3_MACHINES) {
             List<RecipeMap.Entry> entries = candidates.get(spec.requireRecipeMap());
-            t3Recipes += entries.size();
+            int familyRows = families.get(spec.requireRecipeMap()).stream()
+                    .mapToInt(RecipeMap.RecipeFamily::logicalRecipeCount)
+                    .sum();
+            t3Recipes += entries.size() + familyRows;
             t4ToolRecipes += (int) entries.stream()
                     .filter(entry -> isT4ToolRecipe(entry.id()))
                     .count();
             t5RecipesOnT3Maps += (int) entries.stream()
-                    .filter(entry -> isT5ChemicalRecipe(entry.id()))
+                    .filter(entry -> isChemicalRecipe(entry.id()))
                     .count();
         }
         int t3ComponentRecipes =
                 t3Recipes - t4ToolRecipes - t5RecipesOnT3Maps;
         int t5ChemicalRecipes = candidates.values().stream()
                 .flatMap(List::stream)
-                .mapToInt(entry -> isT5ChemicalRecipe(entry.id()) ? 1 : 0)
+                .mapToInt(entry -> isChemicalRecipe(entry.id()) ? 1 : 0)
                 .sum();
         Map<Integer, Integer> authoredMaterialRules = new HashMap<>();
         candidates.values().stream()
                 .flatMap(List::stream)
-                .forEach(entry -> authoredMaterialRuleStage(entry.id()).ifPresent(
-                        stage -> authoredMaterialRules.merge(stage, 1, Integer::sum)));
+                .filter(entry -> !isT11FixedRecipe(entry.id()))
+                .forEach(entry -> authoredMaterialRuleStage(entry.id())
+                        .ifPresent(stage -> authoredMaterialRules.merge(
+                                stage, 1, Integer::sum)));
         int t7AuthoredMaterialRules = authoredMaterialRules.getOrDefault(7, 0);
         int t8PipeMaterialRules = authoredMaterialRules.getOrDefault(8, 0);
         int t10KnownFormMaterialRules = authoredMaterialRules.getOrDefault(10, 0);
-        int allPublishedRecipes = candidates.values().stream()
+        int concretePublishedRecipes = candidates.values().stream()
                 .mapToInt(List::size)
                 .sum();
+        int lazyLogicalRecipes = families.values().stream()
+                .flatMap(List::stream)
+                .mapToInt(RecipeMap.RecipeFamily::lazyRecipeCount)
+                .sum();
+        int eagerFamilyRecipes = families.values().stream()
+                .flatMap(List::stream)
+                .mapToInt(RecipeMap.RecipeFamily::eagerRecipeCount)
+                .sum();
+        int familyLogicalRecipes = families.values().stream()
+                .flatMap(List::stream)
+                .mapToInt(RecipeMap.RecipeFamily::logicalRecipeCount)
+                .sum();
+        int eagerPublishedRecipes =
+                concretePublishedRecipes + eagerFamilyRecipes;
+        int allPublishedRecipes =
+                concretePublishedRecipes + familyLogicalRecipes;
         validateAuthoredMaterialRuleBudgets(authoredMaterialRules);
         validatePublicationBudgets(
                 t3ComponentRecipes,
@@ -191,16 +231,27 @@ public final class GTRecipeMapLoader {
                 t5ChemicalRecipes,
                 t5RecipesOnT3Maps,
                 allPublishedRecipes);
+        validateT14MaterializationBudgets(
+                eagerPublishedRecipes,
+                lazyLogicalRecipes,
+                extruderFamily.cacheCeiling());
 
         long indexStarted = System.nanoTime();
-        List<RecipeMap.Prepared> prepared = candidates.entrySet().stream()
-                .map(entry -> entry.getKey().prepareRecipes(entry.getValue()))
-                .toList();
-        validateNoUnindexed(ModRecipeMaps.ALL, prepared);
+        LinkedHashMap<RecipeMap, RecipeMap.Prepared> preparedByMap =
+                new LinkedHashMap<>();
+        for (var entry : candidates.entrySet()) {
+            RecipeMap map = entry.getKey();
+            RecipeMap.Prepared prepared = map.prepareRecipes(
+                    entry.getValue(),
+                    families.get(map),
+                    preparedEpoch);
+            assertPreparedOwner(map, prepared);
+            preparedByMap.put(map, prepared);
+        }
+        validateNoUnindexed(preparedByMap);
         long indexNanos = System.nanoTime() - indexStarted;
-        long epoch = GTRecipeRuntimeEpoch.publish(materialPreview, prepared);
         long reloadNanos = System.nanoTime() - started;
-        lastPublicationMetrics = new PublicationMetrics(
+        PublicationMetrics candidateMetrics = new PublicationMetrics(
                 t3ComponentRecipes,
                 t4ToolRecipes,
                 t3Recipes,
@@ -209,21 +260,57 @@ public final class GTRecipeMapLoader {
                 t8PipeMaterialRules,
                 t10KnownFormMaterialRules,
                 allPublishedRecipes,
+                eagerPublishedRecipes,
+                lazyLogicalRecipes,
+                extruderFamily.logicalRecipeCount(),
+                extruderFamily.eagerRecipeCount(),
+                extruderFamily.lazyRecipeCount(),
+                extruderFamily.cacheCeiling(),
+                extruderFamily.syncPayloadBytes(),
+                extruderFamilySources.size(),
+                extruderFamily.stableFingerprint(),
+                runtimeSide,
                 reloadNanos / 1_000_000L,
                 indexNanos / 1_000_000L);
-        rejectedUnindexedRecipeCount = rejectedUnindexed;
-        for (int index = 0; index < ModRecipeMaps.ALL.size(); index++) {
-            RecipeMap map = ModRecipeMaps.ALL.get(index);
-            RecipeMap.Prepared snapshot = prepared.get(index);
+        long epoch = GTRecipeRuntimeEpoch.publish(
+                materialPreview,
+                List.copyOf(preparedByMap.values()),
+                () -> {
+                    lastPublicationMetrics = candidateMetrics;
+                    rejectedUnindexedRecipeCount = rejectedUnindexed;
+                });
+        long sideReloadBudget = runtimeSide
+                == ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT
+                ? ModProcessingMachines.CLIENT_RECIPE_RELOAD_BUDGET_MS
+                : ModProcessingMachines.RECIPE_RELOAD_BUDGET_MS;
+        long sideIndexBudget = runtimeSide
+                == ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT
+                ? ModProcessingMachines.CLIENT_RECIPE_INDEX_BUILD_BUDGET_MS
+                : ModProcessingMachines.RECIPE_INDEX_BUILD_BUDGET_MS;
+        if (candidateMetrics.reloadMillis() > sideReloadBudget
+                || candidateMetrics.indexMillis() > sideIndexBudget
+                || candidateMetrics.t14ExtruderSyncBytes()
+                        > ModProcessingMachines.RECIPE_SYNC_BUDGET_BYTES) {
+            CrucibleCraft.LOGGER.warn(
+                    "Recipe publication exceeded an online T14 budget: {}",
+                    candidateMetrics);
+        }
+        for (var entry : preparedByMap.entrySet()) {
+            RecipeMap map = entry.getKey();
+            RecipeMap.Prepared snapshot = entry.getValue();
             CrucibleCraft.LOGGER.info(
                     "RecipeMap {} - {} recipes, {} unindexed",
-                    map.id(), snapshot.entries().size(), snapshot.unindexedRecipeCount());
+                    map.id(),
+                    snapshot.logicalRecipeCount(),
+                    snapshot.unindexedRecipeCount());
         }
         CrucibleCraft.LOGGER.info(
                 "Published recipe epoch {} with {} T3 component, {} T4 tool, {} "
                         + "T5 chemical, {} T7 authored, {} T8 pipe, and {} T10 known-form "
-                        + "material-rule recipes "
-                        + "({} live T3-map, {} total) across {} maps in {} ms; "
+                        + "material-rule recipes; T14c Extruder {} logical = "
+                        + "{} eager + {} lazy (cache ceiling {}, {} authored) "
+                        + "({} live T3-map, {} logical total, {} eager total) "
+                        + "across {} maps in {} ms; "
                         + "indexes {} ms "
                         + "(count budgets {}/{}/{}/{}/{}/{}/{}/{})",
                 epoch,
@@ -233,11 +320,17 @@ public final class GTRecipeMapLoader {
                 t7AuthoredMaterialRules,
                 t8PipeMaterialRules,
                 t10KnownFormMaterialRules,
+                extruderFamily.logicalRecipeCount(),
+                extruderFamily.eagerRecipeCount(),
+                extruderFamily.lazyRecipeCount(),
+                extruderFamily.cacheCeiling(),
+                extruderFamilySources.size(),
                 t3Recipes,
                 allPublishedRecipes,
+                eagerPublishedRecipes,
                 ModRecipeMaps.ALL.size(),
-                lastPublicationMetrics.reloadMillis(),
-                lastPublicationMetrics.indexMillis(),
+                candidateMetrics.reloadMillis(),
+                candidateMetrics.indexMillis(),
                 ModProcessingMachines.T3_COMPONENT_EXPANSION_BUDGET,
                 ModProcessingMachines.T4_TOOL_EXPANSION_BUDGET,
                 ModProcessingMachines.LIVE_T3_MAP_RECIPE_BUDGET,
@@ -248,45 +341,61 @@ public final class GTRecipeMapLoader {
                 ModProcessingMachines.ALL_PUBLISHED_RECIPE_BUDGET);
     }
 
-    /**
-     * Runs the deliberately expensive T4 lookup benchmark for verification.
-     * Production reloads must not pay this cost.
-     */
-    public static T4LookupMetrics benchmarkT4LookupsForVerification() {
-        List<RecipeMap.Entry> entries = ModRecipeMaps.ASSEMBLER.entries().stream()
-                .filter(entry -> isT4ToolRecipe(entry.id()))
-                .toList();
-        int sampleCount = Math.min(LOOKUP_BENCHMARK_SAMPLES, entries.size());
+    /** Runs production Extruder lookup p95/candidate gates for verification. */
+    public static T14LookupMetrics benchmarkT14LookupsForVerification() {
+        RecipeMap.RecipeFamily family = ModRecipeMaps.EXTRUDER
+                .family(ExtruderRecipeFamilyProvider.FAMILY_ID)
+                .orElseThrow();
+        int sampleCount = Math.min(
+                LOOKUP_BENCHMARK_SAMPLES, family.logicalRecipeCount());
         List<GTRecipeQuery> queries = new ArrayList<>(sampleCount);
         for (int index = 0; index < sampleCount; index++) {
-            int entryIndex = index * entries.size() / sampleCount;
-            queries.add(queryFor(entries.get(entryIndex).recipe()));
+            int entryIndex = index * family.logicalRecipeCount() / sampleCount;
+            queries.add(queryFor(family.enumerationEntry(entryIndex).recipe()));
         }
         for (GTRecipeQuery query : queries) {
-            if (ModRecipeMaps.ASSEMBLER.findMatch(query).isEmpty()) {
+            if (ModRecipeMaps.EXTRUDER.findMatch(query).isEmpty()) {
                 throw new IllegalStateException(
-                        "Published T4 recipe failed lookup benchmark warm-up");
+                        "Published T14 recipe failed lookup benchmark warm-up");
             }
         }
-        long started = System.nanoTime();
-        int samples = 0;
-        long candidates = 0L;
-        for (int round = 0; round < LOOKUP_BENCHMARK_ROUNDS; round++) {
-            for (GTRecipeQuery query : queries) {
-                candidates += ModRecipeMaps.ASSEMBLER
+        long[] nanos = new long[LOOKUP_BENCHMARK_TIMING_SAMPLES];
+        int[] candidates = new int[
+                LOOKUP_BENCHMARK_TIMING_SAMPLES
+                        * LOOKUP_BENCHMARK_OPERATIONS_PER_SAMPLE];
+        int candidateSample = 0;
+        for (int sample = 0;
+                sample < LOOKUP_BENCHMARK_TIMING_SAMPLES;
+                sample++) {
+            long started = System.nanoTime();
+            for (int operation = 0;
+                    operation < LOOKUP_BENCHMARK_OPERATIONS_PER_SAMPLE;
+                    operation++) {
+                GTRecipeQuery query = queries.get(Math.floorMod(
+                        sample * 8191 + operation * 104729,
+                        queries.size()));
+                candidates[candidateSample++] = ModRecipeMaps.EXTRUDER
                         .indexedCandidateCount(query);
-                if (ModRecipeMaps.ASSEMBLER.findMatch(query).isEmpty()) {
+                if (ModRecipeMaps.EXTRUDER.findMatch(query).isEmpty()) {
                     throw new IllegalStateException(
-                            "Published T4 recipe failed lookup benchmark");
+                            "Published T14 recipe failed lookup benchmark");
                 }
-                samples++;
             }
+            nanos[sample] = (System.nanoTime() - started)
+                    / LOOKUP_BENCHMARK_OPERATIONS_PER_SAMPLE;
         }
-        long elapsed = System.nanoTime() - started;
-        return new T4LookupMetrics(
-                samples,
-                samples == 0 ? 0L : elapsed / samples,
-                samples == 0 ? 0L : candidates / samples);
+        java.util.Arrays.sort(nanos);
+        java.util.Arrays.sort(candidates);
+        int p95Index = Math.max(
+                0, (int) Math.ceil(nanos.length * 0.95D) - 1);
+        int candidateP95Index = Math.max(
+                0, (int) Math.ceil(candidates.length * 0.95D) - 1);
+        return new T14LookupMetrics(
+                nanos.length,
+                candidates.length,
+                nanos[p95Index],
+                candidates[candidateP95Index],
+                candidates[candidates.length - 1]);
     }
 
     private static GTRecipeQuery queryFor(GTRecipe recipe) {
@@ -313,18 +422,74 @@ public final class GTRecipeMapLoader {
             int t8PipeMaterialRules,
             int t10KnownFormMaterialRules,
             int allPublishedRecipes,
+            int eagerPublishedRecipes,
+            int lazyLogicalRecipes,
+            int t14ExtruderLogicalRecipes,
+            int t14ExtruderEagerRecipes,
+            int t14ExtruderLazyRecipes,
+            int t14ExtruderCacheCeiling,
+            long t14ExtruderSyncBytes,
+            int t14ExtruderAuthoredEntries,
+            String t14ExtruderStableFingerprint,
+            ExtruderRecipeFamilyProvider.RuntimeSide runtimeSide,
             long reloadMillis,
             long indexMillis) {
         private static PublicationMetrics empty() {
             return new PublicationMetrics(
-                    0, 0, 0, 0, 0, 0, 0, 0, 0L, 0L);
+                    0, 0, 0, 0, 0, 0, 0, 0,
+                    0, 0, 0, 0, 0, 0, 0, 0,
+                    "", ExtruderRecipeFamilyProvider.RuntimeSide.SERVER,
+                    0L, 0L);
         }
     }
 
-    public record T4LookupMetrics(
-            int samples,
-            long averageNanos,
-            long averageCandidates) {}
+    public record T14LookupMetrics(
+            int timingSamples,
+            int operations,
+            long p95Nanos,
+            long p95Candidates,
+            long maxCandidates) {}
+
+    public static T14OnlineBudgetGate evaluateT14OnlineBudgetGate(
+            PublicationMetrics metrics,
+            T14LookupMetrics lookup) {
+        long reloadBudget = metrics.runtimeSide()
+                == ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT
+                ? ModProcessingMachines.CLIENT_RECIPE_RELOAD_BUDGET_MS
+                : ModProcessingMachines.RECIPE_RELOAD_BUDGET_MS;
+        long indexBudget = metrics.runtimeSide()
+                == ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT
+                ? ModProcessingMachines.CLIENT_RECIPE_INDEX_BUILD_BUDGET_MS
+                : ModProcessingMachines.RECIPE_INDEX_BUILD_BUDGET_MS;
+        return new T14OnlineBudgetGate(
+                metrics.reloadMillis() <= reloadBudget,
+                metrics.indexMillis() <= indexBudget,
+                metrics.t14ExtruderSyncBytes()
+                        <= ModProcessingMachines.RECIPE_SYNC_BUDGET_BYTES,
+                lookup.p95Nanos()
+                        <= ModProcessingMachines.RECIPE_LOOKUP_P95_BUDGET_NS,
+                lookup.p95Candidates()
+                                <= ModProcessingMachines
+                                        .RECIPE_LOOKUP_P95_CANDIDATE_BUDGET
+                        && lookup.maxCandidates()
+                                <= ModProcessingMachines
+                                        .RECIPE_LOOKUP_MAX_CANDIDATE_HARD_CEILING);
+    }
+
+    public record T14OnlineBudgetGate(
+            boolean sideReload,
+            boolean sideIndex,
+            boolean sync,
+            boolean lookupP95,
+            boolean lookupCandidates) {
+        public boolean allPass() {
+            return sideReload
+                    && sideIndex
+                    && sync
+                    && lookupP95
+                    && lookupCandidates;
+        }
+    }
 
     static void validateExpansionBudgets(
             int t3ComponentRecipes,
@@ -409,6 +574,57 @@ public final class GTRecipeMapLoader {
         }
     }
 
+    static void validateT14MaterializationBudgets(
+            int eagerPublishedRecipes,
+            int lazyLogicalRecipes,
+            int lazyCacheCeiling) {
+        if (eagerPublishedRecipes < 0
+                || lazyLogicalRecipes < 0
+                || lazyCacheCeiling < 0) {
+            throw new IllegalArgumentException(
+                    "T14 materialization counts must not be negative");
+        }
+        if (eagerPublishedRecipes
+                > ModProcessingMachines.ALL_PUBLISHED_RECIPE_BUDGET) {
+            throw new IllegalStateException(
+                    "Eager recipe publication "
+                            + eagerPublishedRecipes
+                            + " exceeds hard ceiling "
+                            + ModProcessingMachines
+                                    .ALL_PUBLISHED_RECIPE_BUDGET);
+        }
+        if (eagerPublishedRecipes
+                > ModProcessingMachines
+                        .ALL_EAGER_PUBLICATION_SOFT_BUDGET) {
+            CrucibleCraft.LOGGER.warn(
+                    "Eager recipe publication {} exceeds soft budget {} "
+                            + "but remains below hard ceiling {}",
+                    eagerPublishedRecipes,
+                    ModProcessingMachines.ALL_EAGER_PUBLICATION_SOFT_BUDGET,
+                    ModProcessingMachines.ALL_PUBLISHED_RECIPE_BUDGET);
+        }
+        if (lazyLogicalRecipes
+                > ModProcessingMachines
+                        .ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING) {
+            throw new IllegalStateException(
+                    "Lazy logical recipe count "
+                            + lazyLogicalRecipes
+                            + " exceeds hard ceiling "
+                            + ModProcessingMachines
+                                    .ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING);
+        }
+        if (lazyCacheCeiling
+                > ModProcessingMachines
+                        .ALL_LAZY_RECIPE_CACHE_HARD_CEILING) {
+            throw new IllegalStateException(
+                    "Lazy recipe cache ceiling "
+                            + lazyCacheCeiling
+                            + " exceeds hard ceiling "
+                            + ModProcessingMachines
+                                    .ALL_LAZY_RECIPE_CACHE_HARD_CEILING);
+        }
+    }
+
     static boolean isT4ToolRecipe(ResourceLocation id) {
         return CrucibleCraft.MODID.equals(id.getNamespace())
                 && id.getPath().startsWith("t4/assembler/");
@@ -417,6 +633,33 @@ public final class GTRecipeMapLoader {
     static boolean isT5ChemicalRecipe(ResourceLocation id) {
         return CrucibleCraft.MODID.equals(id.getNamespace())
                 && id.getPath().startsWith("t5/");
+    }
+
+    static boolean isT11ChemicalRecipe(ResourceLocation id) {
+        return CrucibleCraft.MODID.equals(id.getNamespace())
+                && (id.getPath().startsWith("t11/distillery/")
+                        || id.getPath().startsWith("t11/generifier/"));
+    }
+
+    private static boolean isT14CompactExtruder(RuleSource source) {
+        return CrucibleCraft.MODID.equals(source.id().getNamespace())
+                && source.id().getPath().startsWith("extruder/compact/")
+                && source.rule().target().filter(
+                        target -> target.equals(ModRecipeMaps.EXTRUDER.id()))
+                        .isPresent()
+                && source.rule().sparse().isPresent();
+    }
+
+    private static boolean isChemicalRecipe(ResourceLocation id) {
+        return isT5ChemicalRecipe(id) || isT11ChemicalRecipe(id);
+    }
+
+    private static boolean isT11FixedRecipe(ResourceLocation id) {
+        return CrucibleCraft.MODID.equals(id.getNamespace())
+                && (id.getPath().startsWith("t11/distillery/")
+                        || id.getPath().startsWith("t11/generifier/")
+                        || id.getPath().startsWith("t11/fuels_engine/")
+                        || id.getPath().startsWith("t11/fuels_gas/"));
     }
 
     static OptionalInt authoredMaterialRuleStage(ResourceLocation id) {
@@ -504,13 +747,24 @@ public final class GTRecipeMapLoader {
                     recipeId,
                     "Unsupported anvil output shape for map " + map.id());
         }
-        var machine = ModProcessingMachines.forRecipeMap(map.id());
-        if (machine.isPresent()) {
-            var invalid = machine.get().validator().validate(recipe);
+        for (var machine : ModProcessingMachines.allForRecipeMap(
+                map.id())) {
+            var invalid = machine.validator().validate(recipe);
             if (invalid.isPresent()) {
                 throw recipeValidationError(
                         recipeId,
-                        "Machine " + machine.get().id() + " rejected recipe for map "
+                        "Machine " + machine.id() + " rejected recipe for map "
+                                + map.id() + " (" + invalid.get() + ")");
+            }
+        }
+        var generator = ModFuelGenerators.forRecipeMap(map.id());
+        if (generator.isPresent()) {
+            var invalid = generator.get().validate(recipe);
+            if (invalid.isPresent()) {
+                throw recipeValidationError(
+                        recipeId,
+                        "Fuel generator " + generator.get().id()
+                                + " rejected recipe for map "
                                 + map.id() + " (" + invalid.get() + ")");
             }
         }
@@ -524,6 +778,10 @@ public final class GTRecipeMapLoader {
         required.add(ModRecipeMaps.ANVIL);
         ModProcessingMachines.CONFIGURED_MACHINES.stream()
                 .map(ProcessingMachineSpec::requireRecipeMap)
+                .forEach(required::add);
+        ModFuelGenerators.ALL.stream()
+                .map(com.masson.cruciblecraft.machine.generation
+                        .FuelGeneratorSpec::requireRecipeMap)
                 .forEach(required::add);
         for (RecipeMap map : required) {
             List<RecipeMap.Entry> entries = candidates.get(map);
@@ -554,33 +812,100 @@ public final class GTRecipeMapLoader {
                 .anyMatch(candidate -> candidate == map);
         for (RecipeMap.Entry entry : entries) {
             boolean t5Recipe = isT5ChemicalRecipe(entry.id());
+            boolean t11Chemical = isT11ChemicalRecipe(entry.id());
             if (t5Recipe && !t5Map) {
                 throw new IllegalArgumentException(
                         "T5 recipe " + entry.id() + " targets non-T5 map " + map.id());
             }
-            if (dedicatedT5Map && !t5Recipe) {
+            if (dedicatedT5Map && !t5Recipe && !t11Chemical) {
                 throw new IllegalArgumentException(
                         "Dedicated T5 map " + map.id() + " requires recipe-id prefix t5/: "
                                 + entry.id());
+            }
+            if (t11Chemical
+                    && map != ModRecipeMaps.DISTILLERY
+                    && map != ModRecipeMaps.GENERIFIER) {
+                throw new IllegalArgumentException(
+                        "T11 chemical recipe " + entry.id()
+                                + " targets unsupported map " + map.id());
             }
         }
     }
 
     static void validateNoUnindexed(
-            List<RecipeMap> maps,
-            List<RecipeMap.Prepared> prepared) {
-        if (maps.size() != prepared.size()) {
-            throw new IllegalArgumentException(
-                    "Recipe map and prepared snapshot counts differ");
-        }
-        for (int index = 0; index < maps.size(); index++) {
-            int unindexed = prepared.get(index).unindexedRecipeCount();
+            Map<RecipeMap, RecipeMap.Prepared> preparedByMap) {
+        for (var entry : preparedByMap.entrySet()) {
+            RecipeMap map = entry.getKey();
+            RecipeMap.Prepared prepared = entry.getValue();
+            assertPreparedOwner(map, prepared);
+            int unindexed = prepared.unindexedRecipeCount();
             if (unindexed != 0) {
                 throw new IllegalArgumentException(
-                        "RecipeMap " + maps.get(index).id() + " contains "
+                        "RecipeMap " + map.id() + " contains "
                                 + unindexed + " unindexed recipes; add an explicit index "
                                 + "before publishing non-simple ingredients");
             }
+        }
+    }
+
+    private static void assertPreparedOwner(
+            RecipeMap map, RecipeMap.Prepared prepared) {
+        if (!prepared.belongsTo(map)) {
+            throw new IllegalArgumentException(
+                    "Prepared snapshot owner does not match RecipeMap " + map.id());
+        }
+    }
+
+    /**
+     * Materializes every family row transiently and applies the same complete
+     * pre-publication validation used for concrete rows. Enumeration must not
+     * populate a family's long-term lookup cache.
+     */
+    static void validateCompleteReloadRows(
+            RecipeMap map,
+            List<RecipeMap.Entry> concrete,
+            List<RecipeMap.RecipeFamily> families,
+            long preparedEpoch) {
+        List<RecipeMap.Entry> complete = new ArrayList<>(concrete);
+        for (RecipeMap.RecipeFamily family : families) {
+            if (family.epoch() != preparedEpoch) {
+                throw new IllegalArgumentException(
+                        "Recipe family epoch does not match reload epoch");
+            }
+            int cacheBefore = family.cacheSize();
+            for (int index = 0; index < family.logicalRecipeCount(); index++) {
+                RecipeMap.Entry entry = family.enumerationEntry(index);
+                if (!entry.id().equals(family.recipeIds().get(index))) {
+                    throw recipeValidationError(
+                            entry.id(),
+                            "Recipe family enumeration identity drifted");
+                }
+                complete.add(entry);
+            }
+            if (family.cacheSize() != cacheBefore) {
+                throw new IllegalStateException(
+                        "Recipe family enumeration populated lookup cache "
+                                + family.familyId());
+            }
+        }
+        for (RecipeMap.Entry entry : complete) {
+            validateTarget(entry.id(), map, entry.recipe());
+            List<String> unsupported =
+                    ComponentIngredientIndex.unsupportedIngredientTypes(
+                            entry.recipe());
+            if (!unsupported.isEmpty()) {
+                throw recipeValidationError(
+                        entry.id(),
+                        "Unsupported indexed ingredient types for map "
+                                + map.id() + ": " + unsupported);
+            }
+        }
+        validateUniqueRecipeIds(map, complete);
+        validateT5RecipeProvenance(map, complete);
+        validateNoShadows(map, complete);
+        if (!families.isEmpty()) {
+            RecipeMap.Prepared transientIndex = map.prepareRecipes(complete);
+            validateNoUnindexed(Map.of(map, transientIndex));
         }
     }
 
@@ -597,6 +922,21 @@ public final class GTRecipeMapLoader {
                                 + "; signature=" + signature
                                 + ". Change the recipe input or specificity to remove "
                                 + "the conflict.");
+            }
+        }
+    }
+
+    static void validateUniqueRecipeIds(
+            RecipeMap map,
+            List<RecipeMap.Entry> entries) {
+        Set<ResourceLocation> ids = new java.util.HashSet<>();
+        for (RecipeMap.Entry entry : entries) {
+            if (!ids.add(entry.id())) {
+                throw new IllegalArgumentException(
+                        "Duplicate stable recipe id in map " + map.id() + ": "
+                                + describeLogicalResource(entry.id())
+                                + ". Compact family expansion must fail before epoch "
+                                + "publication.");
             }
         }
     }

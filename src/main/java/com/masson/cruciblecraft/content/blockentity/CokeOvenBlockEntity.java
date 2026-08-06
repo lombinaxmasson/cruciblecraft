@@ -7,7 +7,8 @@ import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.CokeOvenBlock;
 import com.masson.cruciblecraft.content.menu.CokeOvenMenu;
-import com.masson.cruciblecraft.content.multiblock.CokeOvenStructure;
+import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
+import com.masson.cruciblecraft.content.multiblock.MultiblockStructureValidator;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.machine.component.CheckpointTracker;
 import com.masson.cruciblecraft.machine.component.RecipeProcessor;
@@ -46,6 +47,9 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvider {
+    public static final ResourceLocation STRUCTURE_ID =
+            ResourceLocation.fromNamespaceAndPath(
+                    "cruciblecraft", "coke_oven");
     public static final int INPUT_SLOT = 0;
     public static final int OUTPUT_SLOT = 1;
     public static final int TANK_CAPACITY = 32_000;
@@ -125,10 +129,14 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
         long phaseKey = CheckpointDecisions.phaseKey(pos.getX(), pos.getY(), pos.getZ());
         if (CheckpointDecisions.onPositionPhase(level.getGameTime(), phaseKey, 20)) {
             boolean previousStructure = cokeOven.structureValid;
-            cokeOven.structureValid = CokeOvenStructure.isValid(
-                    level,
-                    pos,
-                    state.getValue(CokeOvenBlock.FACING));
+            cokeOven.structureValid = MultiblockStructureCatalog
+                    .find(STRUCTURE_ID)
+                    .map(definition -> MultiblockStructureValidator.validate(
+                            definition,
+                            level,
+                            pos,
+                            state.getValue(CokeOvenBlock.FACING)).valid())
+                    .orElse(false);
             if (previousStructure != cokeOven.structureValid) {
                 cokeOven.setChanged();
                 cokeOven.syncToClient();
@@ -321,7 +329,13 @@ public final class CokeOvenBlockEntity extends BlockEntity implements MenuProvid
             return null;
         }
         Direction facing = getBlockState().getValue(CokeOvenBlock.FACING);
-        BlockPos heatSource = CokeOvenStructure.heatSource(worldPosition, facing);
+        BlockPos heatSource = MultiblockStructureCatalog.find(STRUCTURE_ID)
+                .map(definition -> definition.anchor(
+                        "heat_source", worldPosition, facing))
+                .orElse(null);
+        if (heatSource == null) {
+            return null;
+        }
         if (!level.hasChunkAt(heatSource)) {
             return null;
         }

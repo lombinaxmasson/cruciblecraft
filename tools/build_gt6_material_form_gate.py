@@ -30,6 +30,10 @@ T7_MATERIAL_TAG_POLICY = (
 )
 T8_PIPE_READINESS = TOOLS / "t8_pipe_readiness.json"
 T10_PREFLIGHT = TOOLS / "t10_preflight_projection.json"
+T13_RECIPE_MAPS = TOOLS / "t13_denominators" / "recipe_maps.json"
+OREDICT_MANIFEST = TOOLS / "gt6_oredict_import_manifest.json"
+L3_MATERIALS = TOOLS / "gt6_l3_materials.py"
+L3_MATERIALS_OUT = TOOLS / "gt6_l3_prefix_plan.json"
 ACCEPTANCE_FORM_CORRECTIONS = (
     TOOLS / "component_rule_sources" / "acceptance_form_corrections.json"
 )
@@ -60,6 +64,44 @@ def compact_json(value: Any) -> str:
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def directory_sha256(root: Path) -> str:
+    rows = [
+        (path.relative_to(root).as_posix(), sha256(path))
+        for path in sorted(root.rglob("*.json"))
+        if path.is_file()
+    ]
+    return hashlib.sha256(
+        json.dumps(rows, separators=(",", ":"), sort_keys=True).encode("utf-8")
+    ).hexdigest()
+
+
+def tracked_input_hashes() -> dict[str, str]:
+    paths = (
+        Path(__file__).resolve(),
+        TOOLS / "gt6_l1b_selected.json",
+        TOOLS / "gt6_oredict_cross_reference.json",
+        TOOLS / "gt6_prefix_mapping.json",
+        TOOLS / "gt6_material_activation_policy.json",
+        ORE_CHAIN,
+        ORE_CHAIN_OPERANDS,
+        T5_CHEMICAL_POLICY,
+        T6_ELECTRICAL_SOURCE,
+        T7_MATERIAL_TAG_POLICY,
+        T8_PIPE_READINESS,
+        ACCEPTANCE_FORM_CORRECTIONS,
+        L3_MATERIALS,
+        L3_MATERIALS_OUT,
+    )
+    result = {
+        path.relative_to(ROOT).as_posix(): sha256(path)
+        for path in paths
+    }
+    result["src/main/resources/data/cruciblecraft/materials"] = (
+        directory_sha256(MATERIALS)
+    )
+    return dict(sorted(result.items()))
 
 
 def semantic_summary(recipe: dict[str, Any], operands: list[dict[str, Any]]) -> str:
@@ -491,6 +533,11 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             "sha256": sha256(map_index_path),
         },
         "recipe_maps": map_hashes,
+        "fluid_map": {
+            "path": "gt6_dump/gt6_recipe_dump/oredict/fluid_map.json",
+            "sha256": sha256(DUMP / "oredict" / "fluid_map.json"),
+        },
+        "tracked": tracked_input_hashes(),
     }
     operand_document = {
         "schema_version": 1,
@@ -657,14 +704,132 @@ def check_or_write(path: Path, content: str, write: bool) -> bool:
     return path.is_file() and path.read_text(encoding="utf-8") == content
 
 
+def check_committed_outputs() -> list[str]:
+    errors: list[str] = []
+    if not OPERANDS_OUT.is_file() or not GATE_OUT.is_file():
+        return ["material form gate compact artifacts are missing"]
+    try:
+        operands = load(OPERANDS_OUT)
+        gate = load(GATE_OUT)
+        if OPERANDS_OUT.read_text(encoding="utf-8") != compact_json(operands):
+            errors.append("operand artifact is not canonical compact JSON")
+        if GATE_OUT.read_text(encoding="utf-8") != stable_json(gate):
+            errors.append("material gate is not canonical stable JSON")
+        inputs = operands.get("inputs") or {}
+        if inputs.get("tracked") != tracked_input_hashes():
+            errors.append("tracked material gate inputs drifted")
+
+        recipe_maps = load(T13_RECIPE_MAPS)
+        receipt = recipe_maps.get("full_replay_receipt") or {}
+        expected_maps = {
+            row["name_internal"]: row["source_blob"]
+            for row in recipe_maps.get("rows") or []
+            if row.get("name_internal")
+        }
+        if inputs.get("recipe_maps") != dict(sorted(expected_maps.items())):
+            errors.append("recipe-map hash projection differs from T13 evidence")
+        if (
+            (inputs.get("recipe_map_index") or {}).get("sha256")
+            != receipt.get("dump_index_sha256")
+        ):
+            errors.append("recipe-map index hash differs from T13 receipt")
+        oredict = load(OREDICT_MANIFEST)
+        expected_fluid_map = oredict["provenance"]["sha256"]["fluid_map.json"]
+        if (
+            (inputs.get("fluid_map") or {}).get("sha256")
+            != expected_fluid_map
+        ):
+            errors.append("fluid-map hash differs from OreDict evidence")
+
+        sources = gate.get("sources") or {}
+        if (
+            (sources.get("l1b_recipe_operands") or {}).get("sha256")
+            != sha256(OPERANDS_OUT)
+        ):
+            errors.append("material gate does not bind the operand artifact")
+        expected_source_hashes = {
+            "ore_chain_operands": sha256(ORE_CHAIN_OPERANDS),
+            "t3_acceptance_form_corrections": sha256(
+                ACCEPTANCE_FORM_CORRECTIONS
+            ),
+            "t5_selected_source_route_forms": sha256(T5_CHEMICAL_POLICY),
+            "t6_source_backed_wire_forms": sha256(T6_ELECTRICAL_SOURCE),
+            "t7_material_tag_policy": sha256(T7_MATERIAL_TAG_POLICY),
+            "t8_source_backed_pipe_forms": sha256(T8_PIPE_READINESS),
+        }
+        for name, expected in expected_source_hashes.items():
+            if (sources.get(name) or {}).get("sha256") != expected:
+                errors.append(f"material gate source hash drifted: {name}")
+        t10 = load(T10_PREFLIGHT)["route_projections"]
+        t10_source = sources.get("t10_known_forms") or {}
+        if (
+            t10_source.get("multi_material_set_sha256")
+            != t10["multi_ingot"]["material_set_sha256"]
+            or t10_source.get("hot_material_set_sha256")
+            != t10["hot_ingot"]["material_set_sha256"]
+        ):
+            errors.append("material gate T10 known-form sets drifted")
+
+        operand_counts = operands.get("counts") or {}
+        if (
+            operand_counts.get("selected_recipes")
+            != len(operands.get("recipes") or [])
+            or sum(
+                (operands.get("selected_recipes_by_map") or {}).values()
+            )
+            != operand_counts.get("selected_recipes")
+        ):
+            errors.append("material operand counts are inconsistent")
+        materials = gate.get("materials") or {}
+        gate_counts = gate.get("counts") or {}
+        if (
+            gate_counts.get("materials") != len(materials)
+            or gate_counts.get("registered_forms")
+            != sum(len(forms) for forms in materials.values())
+            or gate_counts.get("compatibility_forms")
+            != sum(
+                len(forms)
+                for forms in (gate.get("compatibility_forms") or {}).values()
+            )
+        ):
+            errors.append("material gate counts are inconsistent")
+    except (KeyError, OSError, TypeError, ValueError, json.JSONDecodeError) as exc:
+        errors.append(str(exc))
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--write", action="store_true")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--review", action="store_true")
+    replay_mode = parser.add_mutually_exclusive_group()
+    replay_mode.add_argument(
+        "--reference-only",
+        action="store_true",
+        help="validate committed compact evidence without reading gt6_dump",
+    )
+    replay_mode.add_argument(
+        "--full-replay",
+        action="store_true",
+        help="force the raw GT6 recipe operand replay",
+    )
     args = parser.parse_args()
     if args.write and args.check:
         parser.error("--write and --check are mutually exclusive")
+    if (args.reference_only or args.full_replay) and not args.check:
+        parser.error("--reference-only and --full-replay require --check")
+    if args.check and args.reference_only:
+        errors = check_committed_outputs()
+        if errors:
+            print(
+                "Compact material form gate validation failed:\n"
+                + "\n".join(f"- {error}" for error in errors),
+                file=sys.stderr,
+            )
+            return 1
+        print("Compact GT6 material form gate artifacts are internally current")
+        return 0
     operands, gate = build_documents()
     if args.review:
         print(stable_json({

@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import copy
 import unittest
+from pathlib import Path
+from unittest import mock
 
 from tools import run_python_tests as workflow
 
@@ -67,6 +69,40 @@ class PythonTestWorkflowTest(unittest.TestCase):
             {workflow.test_module(case) for case in selection.cases},
         )
 
+    def test_java_sources_contain_no_crlf_line_endings(self) -> None:
+        root = Path(__file__).resolve().parents[2]
+        java_files = sorted((root / "src").rglob("*.java"))
+        self.assertTrue(java_files)
+        offenders = [
+            path.relative_to(root).as_posix()
+            for path in java_files
+            if b"\r\n" in path.read_bytes()
+        ]
+        self.assertEqual([], offenders)
+
+    def test_t16_artifacts_select_full_t16_closure_modules(self) -> None:
+        selection = workflow.select_cases(
+            "affected",
+            self.policy,
+            self.cases,
+            changed_paths=[
+                "tools/t16_load_projection_input.json",
+                "src/main/resources/data/cruciblecraft/"
+                "t16_publication_baseline.json",
+            ],
+        )
+        self.assertFalse(selection.escalated_to_closure)
+        self.assertEqual(
+            {
+                "test_build_t16_machine_acquisition",
+                "test_build_t16_machine_denominator",
+                "test_build_t16_readiness",
+                "test_full_verification_report",
+                "test_recipe_load_projection",
+            },
+            {workflow.test_module(case) for case in selection.cases},
+        )
+
     def test_unknown_affected_path_escalates_to_closure(self) -> None:
         selection = workflow.select_cases(
             "affected",
@@ -94,6 +130,93 @@ class PythonTestWorkflowTest(unittest.TestCase):
             "both closure-only and source-replay",
         ):
             workflow.validate_policy(changed, self.cases)
+
+    def test_prechecked_stage_skips_only_declared_positive_currentness(self) -> None:
+        class SampleTest(unittest.TestCase):
+            def test_currentness_duplicate(self) -> None:
+                pass
+
+            def test_mutation_still_runs(self) -> None:
+                pass
+
+        currentness = SampleTest("test_currentness_duplicate")
+        mutation = SampleTest("test_mutation_still_runs")
+        policy = {
+            "prechecked_stage_test_patterns": {
+                "CRUCIBLECRAFT_BUILDER_STAGE_PASSED": [
+                    "*.test_currentness_duplicate"
+                ]
+            }
+        }
+        method = getattr(SampleTest, "test_currentness_duplicate")
+        try:
+            with mock.patch.dict(
+                workflow.os.environ,
+                {"CRUCIBLECRAFT_BUILDER_STAGE_PASSED": "1"},
+                clear=False,
+            ):
+                workflow.apply_prechecked_stage_skips(
+                    [currentness, mutation],
+                    policy,
+                )
+            self.assertTrue(method.__unittest_skip__)
+            self.assertFalse(
+                getattr(
+                    SampleTest.test_mutation_still_runs,
+                    "__unittest_skip__",
+                    False,
+                )
+            )
+        finally:
+            for attribute in ("__unittest_skip__", "__unittest_skip_why__"):
+                if hasattr(method, attribute):
+                    delattr(method, attribute)
+
+    def test_source_replay_tests_are_skipped_outside_replay_suite(self) -> None:
+        class SampleTest(unittest.TestCase):
+            def test_raw_replay(self) -> None:
+                pass
+
+        case = SampleTest("test_raw_replay")
+        method = SampleTest.test_raw_replay
+        policy = {"source_replay_test_patterns": ["*.test_raw_replay"]}
+        try:
+            workflow.apply_source_replay_skips([case], policy, "closure")
+            self.assertTrue(method.__unittest_skip__)
+            delattr(method, "__unittest_skip__")
+            delattr(method, "__unittest_skip_why__")
+            workflow.apply_source_replay_skips(
+                [case],
+                policy,
+                "source-replay",
+            )
+            self.assertFalse(
+                getattr(method, "__unittest_skip__", False)
+            )
+        finally:
+            for attribute in ("__unittest_skip__", "__unittest_skip_why__"):
+                if hasattr(method, attribute):
+                    delattr(method, attribute)
+
+    def test_source_replay_commands_are_derived_from_builder_policy(self) -> None:
+        records = workflow.source_replay_records(self.policy)
+        commands = [record["command"] for record in records]
+        self.assertIn(
+            [
+                "$PYTHON",
+                "tools/build_t13_recipe_map_denominator.py",
+                "--check",
+                "--full-replay",
+            ],
+            commands,
+        )
+        self.assertEqual(
+            1,
+            sum(
+                command[1] == "tools/compare_gt6_recipes.py"
+                for command in commands
+            ),
+        )
 
 
 if __name__ == "__main__":

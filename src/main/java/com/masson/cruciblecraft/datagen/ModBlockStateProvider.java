@@ -6,6 +6,7 @@ import com.masson.cruciblecraft.content.block.BellowsBlock;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
 import com.masson.cruciblecraft.registry.ModBlocks;
+import com.masson.cruciblecraft.registry.ModMachineVariants;
 
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
@@ -14,7 +15,8 @@ import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class ModBlockStateProvider extends BlockStateProvider {
-    public ModBlockStateProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+    public ModBlockStateProvider(
+            PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, CrucibleCraft.MODID, existingFileHelper);
     }
 
@@ -36,29 +38,86 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(
                 ModBlocks.COKE_OVEN.get(),
                 models().cubeAll("coke_oven", firebrickTexture));
+        simpleBlockWithItem(
+                ModBlocks.MULTIBLOCK_CASING.get(),
+                models().cubeAll(
+                        "multiblock_casing",
+                        mcLoc("block/iron_block")));
+        simpleBlockWithItem(
+                ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get(),
+                models().cubeAll(
+                        "multiblock_item_fluid_port",
+                        mcLoc("block/copper_block")));
+        simpleBlockWithItem(
+                ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get(),
+                models().cubeAll(
+                        "multiblock_energy_input_port",
+                        mcLoc("block/redstone_block")));
+        configuredMachine(
+                "large_centrifuge", ModBlocks.LARGE_CENTRIFUGE.get());
         configuredMachine("sluice", ModBlocks.SLUICE.get());
         configuredMachine("bath", ModBlocks.BATH.get());
         configuredMachine("centrifuge", ModBlocks.CENTRIFUGE.get());
-        configuredMachine("shredder", ModBlocks.SHREDDER.get());
+        configuredMachine(
+                "steel_centrifuge",
+                ModBlocks.STEEL_CENTRIFUGE.get());
+        configuredMachine(
+                "titanium_centrifuge",
+                ModBlocks.TITANIUM_CENTRIFUGE.get());
         configuredMachine("sifter", ModBlocks.SIFTER.get());
-        configuredMachine("smelter", ModBlocks.SMELTER.get());
+        configuredMachine("steel_sifter", ModBlocks.STEEL_SIFTER.get());
+        configuredMachine(
+                "titanium_sifter",
+                ModBlocks.TITANIUM_SIFTER.get());
+        ModMachineVariants.T16_SELECTED.forEach(variant ->
+                configuredMachine(
+                        variant.id().getPath(),
+                        ModBlocks.configuredProcessingBlock(variant)));
+        ModMachineVariants.T17_SELECTED.forEach(variant ->
+                configuredMachine(
+                        variant.id().getPath(),
+                        ModBlocks.configuredProcessingBlock(variant)));
         configuredMachine("mortar", ModBlocks.MORTAR.get());
         configuredMachine("extruder", ModBlocks.EXTRUDER.get());
         configuredMachine("cutter", ModBlocks.CUTTER.get());
-        configuredMachine("lathe", ModBlocks.LATHE.get());
-        configuredMachine("rollingmill", ModBlocks.ROLLINGMILL.get());
         configuredMachine("rollbender", ModBlocks.ROLLBENDER.get());
-        configuredMachine("wiremill", ModBlocks.WIREMILL.get());
         configuredMachine("bender", ModBlocks.BENDER.get());
         configuredMachine("assembler", ModBlocks.ASSEMBLER.get());
         configuredMachine("welder", ModBlocks.WELDER.get());
-        configuredMachine("press", ModBlocks.PRESS.get());
         configuredMachine("electrolyzer", ModBlocks.ELECTROLYZER.get());
+        configuredMachine(
+                "aluminium_electrolyzer",
+                ModBlocks.ALUMINIUM_ELECTROLYZER.get());
+        configuredMachine(
+                "stainless_steel_electrolyzer",
+                ModBlocks.STAINLESS_STEEL_ELECTROLYZER.get());
         configuredMachine("mixer", ModBlocks.MIXER.get());
-        configuredMachine("distillery", ModBlocks.DISTILLERY.get());
         configuredMachine("autoclave", ModBlocks.AUTOCLAVE.get());
-        configuredMachine("drying", ModBlocks.DRYING.get());
         configuredMachine("compressor", ModBlocks.COMPRESSOR.get());
+        configuredMachine("generifier", ModBlocks.GENERIFIER.get());
+        configuredMachine("electric_motor", ModBlocks.ELECTRIC_MOTOR.get());
+        configuredMachine(
+                "rotational_gearbox",
+                ModBlocks.ROTATIONAL_GEARBOX.get());
+        simpleBlockWithItem(
+                ModBlocks.ROTATIONAL_AXLE.get(),
+                models().cubeAll(
+                        "rotational_axle",
+                        mcLoc("block/iron_block")));
+        simpleBlockWithItem(
+                ModBlocks.FLUID_DEPOSIT_EXTRACTOR.get(),
+                models().cubeAll(
+                        "fluid_deposit_extractor",
+                        mcLoc("block/cut_copper")));
+        configuredMachine("fuel_engine", ModBlocks.FUEL_ENGINE.get());
+        configuredMachine(
+                "burning_gas_generator",
+                ModBlocks.BURNING_GAS_GENERATOR.get());
+        simpleBlock(
+                ModBlocks.GAS_CLOUD.get(),
+                models().cubeAll(
+                        "gas_cloud",
+                        mcLoc("block/white_stained_glass")));
         var bellows = models().orientable(
                 "bellows",
                 mcLoc("block/oak_planks"),
@@ -242,12 +301,86 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private void configuredMachine(String id, net.minecraft.world.level.block.Block block) {
-        var model = models().orientable(
-                id,
-                mcLoc("block/copper_block"),
-                mcLoc("block/furnace_front"),
-                mcLoc("block/cut_copper"));
+        String textureId = machineTextureId(id);
+        ModelFile model;
+        if (hasMachineTextures(textureId)) {
+            String base = "block/machine/" + textureId;
+            model = models()
+                    .withExistingParent(id, modLoc("block/machine_cube_2_layer"))
+                    .texture("particle", modLoc(base + "/overlay/front"))
+                    .texture("bot_down", modLoc(base + "/colored/bottom"))
+                    .texture("bot_up", modLoc(base + "/colored/top"))
+                    .texture("bot_north", modLoc(base + "/colored/front"))
+                    .texture("bot_south", modLoc(base + "/colored/back"))
+                    .texture("bot_west", modLoc(base + "/colored/left"))
+                    .texture("bot_east", modLoc(base + "/colored/right"))
+                    .texture("top_down", modLoc(base + "/overlay/bottom"))
+                    .texture("top_up", modLoc(base + "/overlay/top"))
+                    .texture("top_north", modLoc(base + "/overlay/front"))
+                    .texture("top_south", modLoc(base + "/overlay/back"))
+                    .texture("top_west", modLoc(base + "/overlay/left"))
+                    .texture("top_east", modLoc(base + "/overlay/right"));
+        } else {
+            model = models().orientable(
+                    id,
+                    mcLoc("block/copper_block"),
+                    mcLoc("block/furnace_front"),
+                    mcLoc("block/cut_copper"));
+        }
         horizontalBlock(block, model);
         simpleBlockItem(block, model);
+    }
+
+    /** Shared GT6 texture folders for tiered / aliased machine ids. */
+    private static String machineTextureId(String id) {
+        return switch (id) {
+            case "steel_centrifuge", "titanium_centrifuge" -> "centrifuge";
+            case "steel_sifter", "titanium_sifter" -> "sifter";
+            case "steel_lathe", "titanium_lathe" -> "lathe";
+            case "steel_rollingmill", "titanium_rollingmill" -> "rollingmill";
+            case "steel_wiremill", "titanium_wiremill" -> "wiremill";
+            case "steel_shredder", "titanium_shredder" -> "shredder";
+            case "steel_press", "titanium_press" -> "press";
+            case "aluminium_electrolyzer", "stainless_steel_electrolyzer" ->
+                    "electrolyzer";
+            case "invar_distillery", "titanium_distillery" -> "distillery";
+            case "drying", "invar_drying", "titanium_drying" -> "dryer";
+            case "invar_smelter", "titanium_smelter" -> "smelter";
+            default -> id;
+        };
+    }
+
+    private static boolean hasMachineTextures(String textureId) {
+        return switch (textureId) {
+            case "large_centrifuge",
+                    "sluice",
+                    "bath",
+                    "centrifuge",
+                    "shredder",
+                    "sifter",
+                    "smelter",
+                    "extruder",
+                    "cutter",
+                    "lathe",
+                    "rollingmill",
+                    "rollbender",
+                    "bender",
+                    "wiremill",
+                    "assembler",
+                    "welder",
+                    "press",
+                    "electrolyzer",
+                    "mixer",
+                    "distillery",
+                    "autoclave",
+                    "dryer",
+                    "compressor",
+                    "generifier",
+                    "electric_motor",
+                    "rotational_gearbox",
+                    "fuel_engine",
+                    "burning_gas_generator" -> true;
+            default -> false;
+        };
     }
 }

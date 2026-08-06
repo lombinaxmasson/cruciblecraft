@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "palette": {
+    "F": {
+      "type": "block",
+      "block": "cruciblecraft:firebrick"
+    },
+    "A": {
+      "type": "air"
+    },
+    "C": {
+      "type": "controller",
+      "block": "cruciblecraft:coke_oven"
+    }
+  },
+  "structure": [
+    { "offset": [-1, -1, 0], "predicate": "F" },
+    { "offset": [0, -1, 0], "predicate": "F" },
+    { "offset": [1, -1, 0], "predicate": "F" },
+    { "offset": [-1, -1, 1], "predicate": "F" },
+    { "offset": [0, -1, 1], "predicate": "F" },
+    { "offset": [1, -1, 1], "predicate": "F" },
+    { "offset": [-1, -1, 2], "predicate": "F" },
+    { "offset": [0, -1, 2], "predicate": "F" },
+    { "offset": [1, -1, 2], "predicate": "F" },
+
+    { "offset": [-1, 0, 0], "predicate": "F" },
+    { "offset": [0, 0, 0], "predicate": "C" },
+    { "offset": [1, 0, 0], "predicate": "F" },
+    { "offset": [-1, 0, 1], "predicate": "F" },
+    { "offset": [0, 0, 1], "predicate": "A" },
+    { "offset": [1, 0, 1], "predicate": "F" },
+    { "offset": [-1, 0, 2], "predicate": "F" },
+    { "offset": [0, 0, 2], "predicate": "F" },
+    { "offset": [1, 0, 2], "predicate": "F" },
+
+    { "offset": [-1, 1, 0], "predicate": "F" },
+    { "offset": [0, 1, 0], "predicate": "F" },
+    { "offset": [1, 1, 0], "predicate": "F" },
+    { "offset": [-1, 1, 1], "predicate": "F" },
+    { "offset": [0, 1, 1], "predicate": "F" },
+    { "offset": [1, 1, 1], "predicate": "F" },
+    { "offset": [-1, 1, 2], "predicate": "F" },
+    { "offset": [0, 1, 2], "predicate": "F" },
+    { "offset": [1, 1, 2], "predicate": "F" }
+  ],
+  "anchors": {
+    "center": [0, 0, 1],
+    "heat_source": [0, -2, 1]
+  },
+  "source": {
+    "repository": "CrucibleCraft local behavior baseline",
+    "revision": "tools/t12a_machine_readiness.json#structure_projection.coke_oven",
+    "class": "com.masson.cruciblecraft.content.multiblock.CokeOvenStructure + CokeOvenStructureLayout",
+    "method": "behavior_migration:NO_BEHAVIOR_DRIFT"
+  }
+}

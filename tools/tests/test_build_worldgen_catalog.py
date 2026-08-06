@@ -71,7 +71,10 @@ class WorldgenCatalogBuilderTest(unittest.TestCase):
 
     def test_fluid_deposits_are_source_state_qualified_and_finite(self):
         self.assertEqual(
-            {"cruciblecraft:crude_oil", "cruciblecraft:methane"},
+            {
+                "cruciblecraft:crude_oil",
+                "cruciblecraft:natural_gas",
+            },
             {deposit["material"] for deposit in self.deposits},
         )
         self.assertEqual(
@@ -83,6 +86,17 @@ class WorldgenCatalogBuilderTest(unittest.TestCase):
             self.assertGreaterEqual(
                 deposit["max_amount_mb"],
                 deposit["min_amount_mb"],
+            )
+            self.assertGreater(deposit["production_amount_mb"], 0)
+            self.assertEqual(
+                20, deposit["production_interval_ticks"]
+            )
+            self.assertEqual(
+                1_000, deposit["accumulation_cap_mb"]
+            )
+            self.assertEqual(
+                deposit["material_state"] == "gas",
+                deposit["vent_overflow"],
             )
             configured = json.loads(self.files[
                 "data/cruciblecraft/worldgen/configured_feature/"

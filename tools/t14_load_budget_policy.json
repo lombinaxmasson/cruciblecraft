@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "status": "T14D_LOAD_BUDGET_POLICY_MEASURED",
+  "pending_token": "PENDING_MEASUREMENT",
+  "ratio_input_allowed": false,
+  "scope": {
+    "contract": "Per-family explicit authored, logical, eager, lazy, cache, sync and measured interval ledger.",
+    "legacy_limits_retained_until": "T14c production strategy measurements replace or explicitly confirm them.",
+    "soft_and_hard_are_temporarily_equal": false,
+    "hard_ceiling_behavior": "Projection fails closed when an interval upper bound or scalar total exceeds a hard ceiling.",
+    "soft_budget_behavior": "Projection remains inspectable with SOFT_BUDGET_EXCEEDED when below the hard ceiling.",
+    "pending_behavior": "Unmeasured dimensions remain BLOCKED_PENDING_MEASUREMENT and are never assigned guessed values."
+  },
+  "budgets": {
+    "datapack_authored_entries": {
+      "unit": "entries",
+      "aggregation": "sum",
+      "soft_budget": 6000,
+      "hard_ceiling": 6600,
+      "source": "T14 compact Extruder reduces authored entries by 2762; 6000 remains the soft envelope and 6600 the confirmed hard ceiling."
+    },
+    "eager_publication_rows": {
+      "unit": "rows",
+      "aggregation": "sum",
+      "soft_budget": 18000,
+      "hard_ceiling": 21000,
+      "source": "T14 Hybrid closes at 16650 eager rows; 18000 soft and the existing 21000 hard ceiling retain measured margin."
+    },
+    "lazy_logical_rows": {
+      "unit": "rows",
+      "aggregation": "sum",
+      "soft_budget": 16000,
+      "hard_ceiling": 56000,
+      "source": "T14 compact Hybrid has 2225 live lazy rows; actual-distribution 20x measured 55640 total relations."
+    },
+    "lazy_cache_ceiling_rows": {
+      "unit": "rows",
+      "aggregation": "sum",
+      "soft_budget": 1024,
+      "hard_ceiling": 4096,
+      "source": "Selected Hybrid uses a measured per-epoch 512-row cache ceiling; 1024/4096 are soft/hard aggregate family envelopes."
+    },
+    "sync_bytes": {
+      "unit": "bytes",
+      "aggregation": "sum",
+      "soft_budget": 16777216,
+      "hard_ceiling": 67108864,
+      "source": "Schema-2 actual compact Hybrid sync is 331124 bytes at 1x and 9877420 bytes at 20x; the production compact-payload metric is wired to the predeclared 64 MiB hard gate."
+    },
+    "server_reload_ms": {
+      "unit": "ms",
+      "aggregation": "sum_interval",
+      "soft_budget": 5000,
+      "hard_ceiling": 10000,
+      "source": "Production GameTest reload with complete transient family validation is 9486 ms; this exceeds the 5 s soft warning but remains under the existing 10 s hard ceiling."
+    },
+    "server_index_ms": {
+      "unit": "ms",
+      "aggregation": "sum_interval",
+      "soft_budget": 500,
+      "hard_ceiling": 1000,
+      "source": "Production GameTest index is 112 ms after complete family validation; 500 ms soft and the existing 1 s hard ceiling are confirmed."
+    },
+    "client_reload_ms": {
+      "unit": "ms",
+      "aggregation": "sum_interval",
+      "soft_budget": 5000,
+      "hard_ceiling": 10000,
+      "source": "Schema-2 actual compact Hybrid dedicated-client reload p95 is 1.872 ms at 1x and 53.864 ms at 20x; the online side-aware metric is gated against this envelope."
+    },
+    "client_index_ms": {
+      "unit": "ms",
+      "aggregation": "sum_interval",
+      "soft_budget": 1000,
+      "hard_ceiling": 3000,
+      "source": "Schema-2 actual compact Hybrid dedicated-client index p95 is 1.0574 ms at 1x and 32.2413 ms at 20x; the online side-aware metric is gated against the predeclared 3 s hard boundary."
+    },
+    "retained_memory_bytes": {
+      "unit": "bytes",
+      "aggregation": "sum_interval",
+      "soft_budget": 134217728,
+      "hard_ceiling": 536870912,
+      "source": "Schema-2 lookup-only controlled-GC jcmd histogram retained 21934784 bytes for 20x Hybrid; enumeration was not executed and 128/512 MiB remain the authoritative benchmark/full-report envelopes."
+    },
+    "allocation_bytes": {
+      "unit": "bytes",
+      "aggregation": "sum_interval",
+      "soft_budget": 134217728,
+      "hard_ceiling": 536870912,
+      "source": "Schema-2 lookup-only JFR observed zero matching allocation-event bytes for 20x Hybrid; zero-event PASS is explicit, enumeration/publication are excluded, and this benchmark/full-report policy remains authoritative."
+    },
+    "lookup_p95_ns": {
+      "unit": "ns",
+      "aggregation": "max_interval",
+      "soft_budget": 1000000,
+      "hard_ceiling": 2000000,
+      "source": "Schema-2 maximum-trace Hybrid lookup p95 is 1543 ns at 1x and 2950 ns at 20x; the production lookup p95 metric is wired to the existing 1 ms soft and 2 ms hard gates."
+    },
+    "lookup_candidate_count": {
+      "unit": "candidates",
+      "aggregation": "max_interval",
+      "soft_budget": 64,
+      "hard_ceiling": 128,
+      "source": "Across all three schema-2 Hybrid traces, lookup candidates are p50<=8, p95<=8, max=8; the production p95/max candidate metric is wired to the 64/128 gates."
+    }
+  },
+  "pending_measurements": []
+}

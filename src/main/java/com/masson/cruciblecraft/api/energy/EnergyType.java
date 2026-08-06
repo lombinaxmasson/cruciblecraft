@@ -9,7 +9,15 @@ package com.masson.cruciblecraft.api.energy;
  */
 public enum EnergyType {
     HEAT,
+    /**
+     * Folded compatibility identity still used by machine kinds explicitly
+     * classified as fixed/deferred in the T12 25+12 boundary ledger. New
+     * source-classified machines must use KINETIC_ROTATION or KINETIC_PUSH.
+     */
+    @Deprecated
     KINETIC,
+    KINETIC_ROTATION,
+    KINETIC_PUSH,
     AIR,
     ELECTRIC
 }

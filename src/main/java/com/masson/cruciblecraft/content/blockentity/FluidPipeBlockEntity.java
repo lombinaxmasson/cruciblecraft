@@ -343,6 +343,15 @@ public final class FluidPipeBlockEntity extends BlockEntity {
             return Failure.OVER_TEMPERATURE;
         }
         try {
+            boolean registeredGas = ModFluids
+                    .chemicalState(resource.getFluid())
+                    .filter(state -> state
+                            == com.masson.cruciblecraft.material
+                                    .ChemicalFluidRegistrationGate.State.GAS)
+                    .isPresent();
+            if (registeredGas && !pipe().pipe().fluid().gasProof()) {
+                return Failure.GAS_LEAK;
+            }
             var material = ModFluids.material(resource.getFluid());
             if (material.isPresent()) {
                 var metadata = material.orElseThrow().gt6Metadata();
@@ -352,10 +361,12 @@ public final class FluidPipeBlockEntity extends BlockEntity {
                             && !pipe().pipe().fluid().acidProof()) {
                         return Failure.CORROSION;
                     }
-                    if ("gas".equals(facts.state())
-                            && !pipe().pipe().fluid().gasProof()) {
-                        return Failure.GAS_LEAK;
-                    }
+                }
+                boolean gas = metadata
+                        .map(facts -> "gas".equals(facts.state()))
+                        .orElse(false);
+                if (gas && !pipe().pipe().fluid().gasProof()) {
+                    return Failure.GAS_LEAK;
                 }
             }
         } catch (IllegalStateException ignored) {

@@ -5,6 +5,15 @@
   "ordinary_ci_requires_local_cache": false,
   "artifacts": [
     {
+      "id": "gt6_recipe_dump",
+      "kind": "raw_directory",
+      "path": "gt6_dump/gt6_recipe_dump",
+      "source": "Authoritative local export of the fixed GT6 recipe corpus; ordinary CI consumes committed compact evidence instead.",
+      "verify_command": "python tools/run_python_tests.py --suite source-replay"
+    },
+    {
+      "id": "gt6_recipe_compare_report",
+      "kind": "expanded_cache",
       "path": "tools/gt6_recipe_compare_report.json",
       "bytes": 310595900,
       "sha256": "de41dd708c128d9e44c16728f822889792ba8fa0e97d886b77f5f1a61c3318b3",
@@ -12,18 +21,43 @@
       "rebuild_command": "python tools/compare_gt6_recipes.py --write-report --full-replay"
     },
     {
+      "id": "gt6_recipe_normalized_reference",
+      "kind": "normalized_cache",
       "path": "tools/gt6_recipe_normalized_reference.json",
-      "bytes": 128905048,
-      "sha256": "b78ede945b19217ba206fac27977e09c29a3c90b3253ee3b365a11100de8aa95",
+      "bytes": 129927378,
+      "sha256": "84f90e5a5b6c70246e758f4063879ec23ce8e2ed7d8bb08ec59e2b26d60a4985",
       "source": "Authoritative local gt6_dump/gt6_recipe_dump normalized with tools/compare_gt6_recipes.py",
       "rebuild_command": "python tools/compare_gt6_recipes.py --write-reference"
     },
     {
+      "id": "gt6_extruder_templates",
+      "kind": "expanded_cache",
       "path": "tools/gt6_extruder_templates_v5.json",
       "bytes": 14057897,
       "sha256": "560f998cd59cf8f129a6c2fa847598d950b03c71086e48bb683a8c0a451c1dc4",
       "source": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.extruder.json plus the matching ore-dictionary materials and prefixes",
       "rebuild_command": "python tools/gt6_extruder_templates.py"
+    },
+    {
+      "id": "t13_fixed_java_source",
+      "kind": "fetched_source_tree",
+      "path": "build/t13-gt6-source",
+      "source": "Fixed GregTech6 revision 3703e40308c8c030763fd6297dea8b210d2a77b1 selected Java blobs",
+      "rebuild_command": "python tools/build_t13_recipe_map_denominator.py --fetch-source"
+    },
+    {
+      "id": "t12_fixed_java_source",
+      "kind": "fetched_source_tree",
+      "path": "build/t12-gt6-source",
+      "source": "Fixed GT6 machine-tier source replay cache",
+      "rebuild_command": "python tools/build_t12_machine_readiness.py --fetch-source"
+    },
+    {
+      "id": "machine_crafting_fixed_java_source",
+      "kind": "fetched_source_tree",
+      "path": "build/gt6-machine-crafting-source",
+      "source": "Fixed GT6 crafting-machine source replay cache",
+      "rebuild_command": "python tools/build_machine_crafting_readiness.py --fetch-source"
     }
   ],
   "committed_compact_evidence": [
@@ -37,6 +71,12 @@
     "tools/gt6_extruder_templates_report.json",
     "tools/component_selector_policy.json",
     "tools/component_rule_manifest.json",
+    "tools/t5_chemical_recipe_manifest.json",
+    "tools/t11_hydrocarbon_recipe_manifest.json",
+    "tools/t12a_machine_readiness.json",
+    "tools/t13_denominators/prefixes.json",
+    "tools/t13_denominators/itemgenerator_domains.json",
+    "tools/verification_builder_policy.json",
     "tools/full_verification_report.json"
   ]
 }

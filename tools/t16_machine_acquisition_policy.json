@@ -1,0 +1,364 @@
+{
+  "schema_version": 1,
+  "status": "T16C_MACHINE_ACQUISITION_POLICY",
+  "expected_set_source": "independent_t16c_acceptance_policy",
+  "production_mapping_reused": false,
+  "selected_kinds": [
+    "cruciblecraft:lathe",
+    "cruciblecraft:rollingmill",
+    "cruciblecraft:wiremill",
+    "cruciblecraft:shredder",
+    "cruciblecraft:press"
+  ],
+  "source_declarations": {
+    "cruciblecraft:bronze/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/bronze.json"
+    },
+    "cruciblecraft:diamond/gem": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/diamond.json"
+    },
+    "cruciblecraft:steel/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/steel.json"
+    },
+    "cruciblecraft:titanium/ingot": {
+      "classification": "registered_survival_source",
+      "evidence": "src/main/resources/data/cruciblecraft/materials/titanium.json"
+    }
+  },
+  "tag_sources": {},
+  "producer_rules": {
+    "bolt": {
+      "path": "src/generated/resources/data/cruciblecraft/recipe/anvil/rod_to_bolts.json",
+      "input_prefixes": [
+        "rod"
+      ],
+      "input_tags": []
+    },
+    "double_plate": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/welder/plates_to_double_plate.json",
+      "input_prefixes": [
+        "plate",
+        "plate"
+      ],
+      "input_tags": []
+    },
+    "gear": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/plates_to_gear.json",
+      "input_prefixes": [
+        "plate"
+      ],
+      "input_tags": []
+    },
+    "long_rod": {
+      "paths": [
+        "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_long_rod.json",
+        "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/normal_long_rod.json"
+      ],
+      "input_prefixes": [
+        "ingot"
+      ],
+      "input_tags": [],
+      "compact_relation": true
+    },
+    "plate": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+      "input_prefixes": [
+        "ingot"
+      ],
+      "input_tags": []
+    },
+    "rod": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/lathe/ingot_to_rods.json",
+      "input_prefixes": [
+        "ingot"
+      ],
+      "input_tags": []
+    },
+    "screw": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/lathe/bolts_to_screws.json",
+      "input_prefixes": [
+        "bolt"
+      ],
+      "input_tags": []
+    },
+    "small_gear": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/cutter/gear_to_small_gears.json",
+      "input_prefixes": [
+        "gear"
+      ],
+      "input_tags": []
+    },
+    "spring": {
+      "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/bender/long_rod_to_spring.json",
+      "input_prefixes": [
+        "long_rod"
+      ],
+      "input_tags": []
+    }
+  },
+  "casing_dependencies": {
+    "cruciblecraft:components/bronze_double_machine_casing": {
+      "item_field": "BRONZE_DOUBLE_MACHINE_CASING",
+      "result": "cruciblecraft:bronze_double_machine_casing",
+      "pattern": [
+        "PPP",
+        "P P",
+        "PPP"
+      ],
+      "key": {
+        "P": "cruciblecraft:bronze/double_plate"
+      }
+    },
+    "cruciblecraft:components/steel_double_machine_casing": {
+      "item_field": "STEEL_DOUBLE_MACHINE_CASING",
+      "result": "cruciblecraft:steel_double_machine_casing",
+      "pattern": [
+        "PPP",
+        "P P",
+        "PPP"
+      ],
+      "key": {
+        "P": "cruciblecraft:steel/double_plate"
+      }
+    },
+    "cruciblecraft:components/titanium_double_machine_casing": {
+      "item_field": "TITANIUM_DOUBLE_MACHINE_CASING",
+      "result": "cruciblecraft:titanium_double_machine_casing",
+      "pattern": [
+        "PPP",
+        "P P",
+        "PPP"
+      ],
+      "key": {
+        "P": "cruciblecraft:titanium/double_plate"
+      }
+    }
+  },
+  "machine_variant_recipes": {
+    "cruciblecraft:machines/lathe": {
+      "item_field": "LATHE",
+      "result": "cruciblecraft:lathe",
+      "selected_casing": "cruciblecraft:bronze_double_machine_casing",
+      "pattern": [
+        "TDS",
+        " CG"
+      ],
+      "key": {
+        "C": "cruciblecraft:bronze_double_machine_casing",
+        "D": "cruciblecraft:diamond/gem",
+        "G": "cruciblecraft:bronze/gear",
+        "S": "cruciblecraft:bronze/small_gear",
+        "T": "cruciblecraft:bronze/screw"
+      }
+    },
+    "cruciblecraft:machines/press": {
+      "item_field": "PRESS",
+      "result": "cruciblecraft:press",
+      "selected_casing": "cruciblecraft:bronze_double_machine_casing",
+      "pattern": [
+        "RS",
+        "PC",
+        "P "
+      ],
+      "key": {
+        "C": "cruciblecraft:bronze_double_machine_casing",
+        "P": "cruciblecraft:bronze/double_plate",
+        "R": "cruciblecraft:bronze/rod",
+        "S": "cruciblecraft:bronze/spring"
+      }
+    },
+    "cruciblecraft:machines/rollingmill": {
+      "item_field": "ROLLINGMILL",
+      "result": "cruciblecraft:rollingmill",
+      "selected_casing": "cruciblecraft:bronze_double_machine_casing",
+      "pattern": [
+        "G ",
+        "C ",
+        "G "
+      ],
+      "key": {
+        "C": "cruciblecraft:bronze_double_machine_casing",
+        "G": "cruciblecraft:bronze/gear"
+      }
+    },
+    "cruciblecraft:machines/shredder": {
+      "item_field": "SHREDDER",
+      "result": "cruciblecraft:shredder",
+      "selected_casing": "cruciblecraft:bronze_double_machine_casing",
+      "pattern": [
+        "GDG",
+        " C "
+      ],
+      "key": {
+        "C": "cruciblecraft:bronze_double_machine_casing",
+        "D": "cruciblecraft:diamond/gem",
+        "G": "cruciblecraft:bronze/gear"
+      }
+    },
+    "cruciblecraft:machines/steel_lathe": {
+      "item_field": "STEEL_LATHE",
+      "result": "cruciblecraft:steel_lathe",
+      "selected_casing": "cruciblecraft:steel_double_machine_casing",
+      "pattern": [
+        "TDS",
+        " CG"
+      ],
+      "key": {
+        "C": "cruciblecraft:steel_double_machine_casing",
+        "D": "cruciblecraft:diamond/gem",
+        "G": "cruciblecraft:steel/gear",
+        "S": "cruciblecraft:steel/small_gear",
+        "T": "cruciblecraft:steel/screw"
+      }
+    },
+    "cruciblecraft:machines/steel_press": {
+      "item_field": "STEEL_PRESS",
+      "result": "cruciblecraft:steel_press",
+      "selected_casing": "cruciblecraft:steel_double_machine_casing",
+      "pattern": [
+        "RS",
+        "PC",
+        "P "
+      ],
+      "key": {
+        "C": "cruciblecraft:steel_double_machine_casing",
+        "P": "cruciblecraft:steel/double_plate",
+        "R": "cruciblecraft:steel/rod",
+        "S": "cruciblecraft:steel/spring"
+      }
+    },
+    "cruciblecraft:machines/steel_rollingmill": {
+      "item_field": "STEEL_ROLLINGMILL",
+      "result": "cruciblecraft:steel_rollingmill",
+      "selected_casing": "cruciblecraft:steel_double_machine_casing",
+      "pattern": [
+        "G ",
+        "C ",
+        "G "
+      ],
+      "key": {
+        "C": "cruciblecraft:steel_double_machine_casing",
+        "G": "cruciblecraft:steel/gear"
+      }
+    },
+    "cruciblecraft:machines/steel_shredder": {
+      "item_field": "STEEL_SHREDDER",
+      "result": "cruciblecraft:steel_shredder",
+      "selected_casing": "cruciblecraft:steel_double_machine_casing",
+      "pattern": [
+        "GDG",
+        " C "
+      ],
+      "key": {
+        "C": "cruciblecraft:steel_double_machine_casing",
+        "D": "cruciblecraft:diamond/gem",
+        "G": "cruciblecraft:steel/gear"
+      }
+    },
+    "cruciblecraft:machines/steel_wiremill": {
+      "item_field": "STEEL_WIREMILL",
+      "result": "cruciblecraft:steel_wiremill",
+      "selected_casing": "cruciblecraft:steel_double_machine_casing",
+      "pattern": [
+        "SGS",
+        " C "
+      ],
+      "key": {
+        "C": "cruciblecraft:steel_double_machine_casing",
+        "G": "cruciblecraft:steel/gear",
+        "S": "cruciblecraft:steel/small_gear"
+      }
+    },
+    "cruciblecraft:machines/titanium_lathe": {
+      "item_field": "TITANIUM_LATHE",
+      "result": "cruciblecraft:titanium_lathe",
+      "selected_casing": "cruciblecraft:titanium_double_machine_casing",
+      "pattern": [
+        "TDS",
+        " CG"
+      ],
+      "key": {
+        "C": "cruciblecraft:titanium_double_machine_casing",
+        "D": "cruciblecraft:diamond/gem",
+        "G": "cruciblecraft:titanium/gear",
+        "S": "cruciblecraft:titanium/small_gear",
+        "T": "cruciblecraft:titanium/screw"
+      }
+    },
+    "cruciblecraft:machines/titanium_press": {
+      "item_field": "TITANIUM_PRESS",
+      "result": "cruciblecraft:titanium_press",
+      "selected_casing": "cruciblecraft:titanium_double_machine_casing",
+      "pattern": [
+        "RS",
+        "PC",
+        "P "
+      ],
+      "key": {
+        "C": "cruciblecraft:titanium_double_machine_casing",
+        "P": "cruciblecraft:titanium/double_plate",
+        "R": "cruciblecraft:titanium/rod",
+        "S": "cruciblecraft:titanium/spring"
+      }
+    },
+    "cruciblecraft:machines/titanium_rollingmill": {
+      "item_field": "TITANIUM_ROLLINGMILL",
+      "result": "cruciblecraft:titanium_rollingmill",
+      "selected_casing": "cruciblecraft:titanium_double_machine_casing",
+      "pattern": [
+        "G ",
+        "C ",
+        "G "
+      ],
+      "key": {
+        "C": "cruciblecraft:titanium_double_machine_casing",
+        "G": "cruciblecraft:titanium/gear"
+      }
+    },
+    "cruciblecraft:machines/titanium_shredder": {
+      "item_field": "TITANIUM_SHREDDER",
+      "result": "cruciblecraft:titanium_shredder",
+      "selected_casing": "cruciblecraft:titanium_double_machine_casing",
+      "pattern": [
+        "GDG",
+        " C "
+      ],
+      "key": {
+        "C": "cruciblecraft:titanium_double_machine_casing",
+        "D": "cruciblecraft:diamond/gem",
+        "G": "cruciblecraft:titanium/gear"
+      }
+    },
+    "cruciblecraft:machines/titanium_wiremill": {
+      "item_field": "TITANIUM_WIREMILL",
+      "result": "cruciblecraft:titanium_wiremill",
+      "selected_casing": "cruciblecraft:titanium_double_machine_casing",
+      "pattern": [
+        "SGS",
+        " C "
+      ],
+      "key": {
+        "C": "cruciblecraft:titanium_double_machine_casing",
+        "G": "cruciblecraft:titanium/gear",
+        "S": "cruciblecraft:titanium/small_gear"
+      }
+    },
+    "cruciblecraft:machines/wiremill": {
+      "item_field": "WIREMILL",
+      "result": "cruciblecraft:wiremill",
+      "selected_casing": "cruciblecraft:bronze_double_machine_casing",
+      "pattern": [
+        "SGS",
+        " C "
+      ],
+      "key": {
+        "C": "cruciblecraft:bronze_double_machine_casing",
+        "G": "cruciblecraft:bronze/gear",
+        "S": "cruciblecraft:bronze/small_gear"
+      }
+    }
+  }
+}

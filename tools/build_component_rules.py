@@ -26,6 +26,11 @@ SOURCE_FILES = (
 )
 EXTRUDER_INDEX = ROOT / "tools" / "gt6_extruder_templates_index_v5.json"
 EXTRUDER_REPORT = ROOT / "tools" / "gt6_extruder_templates_report.json"
+T14_EXTRUDER_POLICY = ROOT / "tools" / "t14_extruder_policy.json"
+T14_EXTRUDER_COMPACT = ROOT / "tools" / "t14_extruder_compact.json"
+T14_EXTRUDER_EXPECTED = ROOT / "tools" / "t14_extruder_expected.json"
+T14_EXTRUDER_READINESS = ROOT / "tools" / "t14_extruder_readiness.json"
+T14_EXTRUDER_LEGACY_REPLAY = ROOT / "tools" / "t14_extruder_legacy_replay.json"
 SELECTOR_POLICY = ROOT / "tools" / "component_selector_policy.json"
 MATERIAL_REGISTRATION_GATE = (
     ROOT
@@ -916,20 +921,210 @@ def _validate_extruder_source(
     return shapes, classifications, recipes, _sha256(_stable_bytes(index))
 
 
-def _compile_extruder(recipe: dict[str, Any], shape_item: str) -> dict[str, Any]:
+def _validate_t14_extruder_compact(
+    compact_path: Path,
+    recipes: list[dict[str, Any]],
+    classifications: list[dict[str, Any]],
+    material_dir: Path,
+) -> list[dict[str, Any]]:
+    compact = _read_json(compact_path)
+    _require_exact_keys(
+        compact,
+        {
+            "schema_version",
+            "family",
+            "runtime_type",
+            "selector",
+            "authored_entry_count",
+            "logical_relation_count",
+            "templates",
+            "compact_fingerprint",
+        },
+        set(),
+        compact_path.name,
+    )
+    templates = compact["templates"]
+    if (
+        compact["schema_version"] != 1
+        or compact["family"] != "extruder"
+        or compact["runtime_type"] != "cruciblecraft:material_rule"
+        or compact["selector"] != "template_grouped_exact_relation_builder"
+        or compact["authored_entry_count"] != 20
+        or compact["logical_relation_count"] != 2782
+        or not isinstance(templates, list)
+        or len(templates) != 20
+    ):
+        raise SourceError(f"{compact_path}: expected the T14a 20 -> 2782 compact table")
+    playable = {
+        (row["template_id"], row["shape_meta"], row["heat_mode"]): row["shape"]
+        for row in classifications
+        if row["classification"] == "playable"
+    }
+    source_by_id = {
+        f"cruciblecraft:extruder/{row['shape']}/"
+        f"{row['material']}/{row['material']}": row
+        for row in recipes
+    }
+    if len(source_by_id) != 2782:
+        raise SourceError("T14a source stable ids are not unique")
+    facts: dict[str, tuple[str | None, bool]] = {}
+    for material in {row["material"] for row in recipes}:
+        document = _read_json(material_dir / f"{material}.json")
+        metadata = document.get("gt6_metadata") or {}
+        forging = (metadata.get("processing_targets") or {}).get("forging")
+        facts[material] = (
+            forging.get("material") if isinstance(forging, dict) else None,
+            "cruciblecraft:generates_plate_gem"
+            in document.get("generation_flags", []),
+        )
+    seen_ids: set[str] = set()
+    seen_authored: set[str] = set()
+    rows: list[dict[str, Any]] = []
+    for template in templates:
+        _require_exact_keys(
+            template,
+            {
+                "authored_id",
+                "template_id",
+                "shape_meta",
+                "shape",
+                "shape_item",
+                "heat_mode",
+                "relation_count",
+                "relations",
+            },
+            set(),
+            "T14a compact template",
+        )
+        authored_id = template["authored_id"]
+        if (
+            not isinstance(authored_id, str)
+            or not authored_id.startswith("cruciblecraft:extruder/compact/")
+            or authored_id in seen_authored
+        ):
+            raise SourceError(f"{compact_path}: invalid or duplicate authored id")
+        seen_authored.add(authored_id)
+        key = (
+            template["template_id"],
+            template["shape_meta"],
+            template["heat_mode"],
+        )
+        if playable.get(key) != template["shape"]:
+            raise SourceError(f"{authored_id}: not an exact playable v5 template")
+        relations = template["relations"]
+        if (
+            not isinstance(relations, list)
+            or len(relations) != template["relation_count"]
+            or not relations
+        ):
+            raise SourceError(f"{authored_id}: relation count drift")
+        previous_order = -1
+        materials: set[str] = set()
+        for relation in relations:
+            _require_exact_keys(
+                relation,
+                {
+                    "stable_id",
+                    "material",
+                    "shape",
+                    "shape_meta",
+                    "template_id",
+                    "input",
+                    "output",
+                    "duration",
+                    "eut",
+                    "fallback",
+                    "forging_target",
+                    "plateGem",
+                    "heat_mode",
+                    "shadow_order",
+                    "provenance",
+                },
+                set(),
+                f"{authored_id} relation",
+            )
+            stable_id = relation["stable_id"]
+            source = source_by_id.get(stable_id)
+            if source is None or stable_id in seen_ids:
+                raise SourceError(
+                    f"{authored_id}: missing source or duplicate stable id {stable_id}"
+                )
+            seen_ids.add(stable_id)
+            expected_forging, expected_plate_gem = facts[relation["material"]]
+            expected = {
+                "material": source["material"],
+                "shape": source["shape"],
+                "shape_meta": source["shape_meta"],
+                "template_id": source["template_id"],
+                "input": source["input"],
+                "output": source["output"],
+                "duration": source["duration"],
+                "eut": source["eut"],
+                "fallback": (
+                    "dust" if source["input"]["prefix"] == "dust" else "none"
+                ),
+                "forging_target": expected_forging,
+                "plateGem": expected_plate_gem,
+                "heat_mode": source["heat_mode"],
+                "provenance": source["provenance"],
+            }
+            actual = {field: relation[field] for field in expected}
+            if actual != expected:
+                raise SourceError(
+                    f"{stable_id}: compact exact relation drift: {actual!r}"
+                )
+            if (
+                relation["shape"] != template["shape"]
+                or relation["shape_meta"] != template["shape_meta"]
+                or relation["template_id"] != template["template_id"]
+                or relation["heat_mode"] != template["heat_mode"]
+            ):
+                raise SourceError(f"{stable_id}: compact template boundary drift")
+            if relation["material"] in materials:
+                raise SourceError(f"{authored_id}: ambiguous material relation")
+            materials.add(relation["material"])
+            order = relation["shadow_order"]
+            if not isinstance(order, int) or order <= previous_order:
+                raise SourceError(f"{authored_id}: shadow order is not increasing")
+            previous_order = order
+            rows.append(relation)
+    if seen_ids != set(source_by_id):
+        raise SourceError(f"{compact_path}: compact/source relation sets differ")
+    ordered = sorted(rows, key=lambda row: (row["shadow_order"], row["stable_id"]))
+    if [row["shadow_order"] for row in ordered] != list(range(2782)):
+        raise SourceError(f"{compact_path}: shadow order is not a total order")
+    return templates
+
+
+def _compile_sparse_extruder(template: dict[str, Any]) -> dict[str, Any]:
+    relations = []
+    for source in template["relations"]:
+        relation = {
+            "stable_id": source["stable_id"],
+            "material": source["material"],
+            "input": source["input"],
+            "output": source["output"],
+            "duration": source["duration"],
+            "eut": source["eut"],
+            "fallback": source["fallback"],
+            "plate_gem": source["plateGem"],
+            "heat_mode": source["heat_mode"],
+            "shadow_order": source["shadow_order"],
+        }
+        if source["forging_target"] is not None:
+            relation["forging_target"] = source["forging_target"]
+        relations.append(relation)
     return {
         "type": "cruciblecraft:material_rule",
-        "duration": str(recipe["duration"]),
-        "eut": str(recipe["eut"]),
-        "item_inputs": [
-            _prefixed(recipe["input"]["prefix"], count=str(recipe["input"]["count"])),
-            {"item": shape_item, "count": "0"},
-        ],
-        "item_outputs": [
-            _prefixed(recipe["output"]["prefix"], count=str(recipe["output"]["count"]))
-        ],
-        "material": recipe["material"],
         "target": "cruciblecraft:extruder",
+        "sparse": {
+            "shape_item": template["shape_item"],
+            "shape": template["shape"],
+            "shape_meta": template["shape_meta"],
+            "template_id": template["template_id"],
+            "heat_mode": template["heat_mode"],
+            "relations": relations,
+        },
     }
 
 
@@ -982,6 +1177,12 @@ def build_bundle(
             material_dir,
         )
     )
+    compact_templates = _validate_t14_extruder_compact(
+        T14_EXTRUDER_COMPACT,
+        extruder_recipes,
+        classifications,
+        material_dir,
+    )
     correction_delta = sum(
         correction["expected_expansion_delta"] for correction in corrections
     )
@@ -1003,19 +1204,17 @@ def build_bundle(
         )
         for rule in rules
     }
-    shape_items = {shape["id"]: shape["item"] for shape in shapes}
-    for recipe in extruder_recipes:
-        relative = (
-            f"extruder/{recipe['shape']}/{recipe['material']}.json"
-        )
+    for template in compact_templates:
+        authored_path = template["authored_id"].removeprefix("cruciblecraft:")
+        relative = f"{authored_path}.json"
         if relative in generated:
             raise SourceError(f"duplicate generated recipe path: {relative}")
         generated[relative] = _stable_bytes(
-            _compile_extruder(recipe, shape_items[recipe["shape"]])
+            _compile_sparse_extruder(template)
         )
     generated = dict(sorted(generated.items()))
     map_source_counts = Counter(_map_for(rule) for rule in rules)
-    map_source_counts["extruder"] = len(extruder_recipes)
+    map_source_counts["extruder"] = len(compact_templates)
     per_map_expanded = dict(baseline["per_map_expanded"])
     rules_by_id = {rule["id"]: rule for rule in rules}
     for correction in corrections:
@@ -1039,8 +1238,9 @@ def build_bundle(
             per_rule_expanded[rule_id] += per_rule_delta
     per_rule_expanded["wiremill/ingot_to_wire"] += t6_overlay_delta
     per_rule_expanded.update({
-        f"extruder/{recipe['shape']}/{recipe['material']}": 1
-        for recipe in extruder_recipes
+        template["authored_id"].removeprefix("cruciblecraft:"):
+                template["relation_count"]
+        for template in compact_templates
     })
     extruder_signatures = [
         (
@@ -1124,6 +1324,21 @@ def build_bundle(
             MATERIAL_ACTIVATION_POLICY.relative_to(ROOT).as_posix(): _sha256(
                 MATERIAL_ACTIVATION_POLICY.read_bytes()
             ),
+            T14_EXTRUDER_POLICY.relative_to(ROOT).as_posix(): _sha256(
+                T14_EXTRUDER_POLICY.read_bytes()
+            ),
+            T14_EXTRUDER_COMPACT.relative_to(ROOT).as_posix(): _sha256(
+                T14_EXTRUDER_COMPACT.read_bytes()
+            ),
+            T14_EXTRUDER_EXPECTED.relative_to(ROOT).as_posix(): _sha256(
+                T14_EXTRUDER_EXPECTED.read_bytes()
+            ),
+            T14_EXTRUDER_READINESS.relative_to(ROOT).as_posix(): _sha256(
+                T14_EXTRUDER_READINESS.read_bytes()
+            ),
+            T14_EXTRUDER_LEGACY_REPLAY.relative_to(ROOT).as_posix(): _sha256(
+                T14_EXTRUDER_LEGACY_REPLAY.read_bytes()
+            ),
         },
         "material_groups": {
             "any_rubber": any_rubber_group,
@@ -1134,10 +1349,14 @@ def build_bundle(
             "generated_tag_sha256": _sha256(any_rubber_tag),
         },
         "runtime_codec": "cruciblecraft:material_rule/MaterialRule.CODEC",
-        "source_rules": len(rules) + len(extruder_recipes),
+        "source_rules": len(rules) + len(compact_templates),
+        "authored_datapack_entries": len(rules) + len(compact_templates),
         "expanded_recipes": total_expanded,
         "non_extruder_expanded_recipes": non_extruder_expanded,
         "extruder_expanded_recipes": len(extruder_recipes),
+        "extruder_authored_entries": len(compact_templates),
+        "extruder_logical_relations": len(extruder_recipes),
+        "extruder_runtime_publication": len(extruder_recipes),
         "extruder_expansion_budget": 4_648,
         "expansion_budget": baseline["expansion_budget"],
         "within_budget": total_expanded <= baseline["expansion_budget"],
@@ -1207,9 +1426,19 @@ def build_bundle(
             "duplicates": 0,
         },
         "extruder_templates": {
-            "status": "playable_sparse_projection",
+            "status": "playable_compact_exact_sparse_projection",
             "source": "tools/gt6_extruder_templates_index_v5.json",
             "source_sha256": extruder_hash,
+            "compact_source": "tools/t14_extruder_compact.json",
+            "expected_source": "tools/t14_extruder_expected.json",
+            "legacy_replay": "tools/t14_extruder_legacy_replay.json",
+            "authored_entries": len(compact_templates),
+            "logical_relations": len(extruder_recipes),
+            "runtime_publication": len(extruder_recipes),
+            "datapack_entry_delta": len(compact_templates) - len(extruder_recipes),
+            "family_compression_ratio": (
+                len(extruder_recipes) / len(compact_templates)
+            ),
             "registration_gate": (
                 "src/main/resources/data/cruciblecraft/material_registration_gate.json"
             ),

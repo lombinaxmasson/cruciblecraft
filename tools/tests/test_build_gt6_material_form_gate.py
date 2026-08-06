@@ -36,6 +36,9 @@ class MaterialFormGateTest(unittest.TestCase):
         )
         cls.l3 = json.loads(gt6_l3_materials.OUT.read_text(encoding="utf-8"))
 
+    def test_committed_outputs_are_current_without_raw_replay(self):
+        self.assertEqual([], gate_builder.check_committed_outputs())
+
     def test_gate_covers_catalog_and_only_adds_source_backed_t8_t10_forms(self):
         index = json.loads(
             (self.material_root / "index.json").read_text(encoding="utf-8")

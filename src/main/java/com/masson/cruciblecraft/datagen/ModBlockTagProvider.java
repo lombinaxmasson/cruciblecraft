@@ -30,15 +30,29 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         var pickaxe = tag(BlockTags.MINEABLE_WITH_PICKAXE);
+        var stone = tag(BlockTags.NEEDS_STONE_TOOL);
         pickaxe.add(
                 ModBlocks.BRONZE_BOILER.getKey(),
                 ModBlocks.BRONZE_STEAM_ENGINE.getKey(),
                 ModBlocks.BRONZE_DYNAMO.getKey(),
-                ModBlocks.BRONZE_CRUSHER.getKey());
+                ModBlocks.ELECTRIC_MOTOR.getKey(),
+                ModBlocks.ROTATIONAL_AXLE.getKey(),
+                ModBlocks.ROTATIONAL_GEARBOX.getKey(),
+                ModBlocks.BRONZE_CRUSHER.getKey(),
+                ModBlocks.MULTIBLOCK_CASING.getKey(),
+                ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.getKey(),
+                ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.getKey(),
+                ModBlocks.LARGE_CENTRIFUGE.getKey(),
+                ModBlocks.FLUID_DEPOSIT_EXTRACTOR.getKey(),
+                ModBlocks.FUEL_ENGINE.getKey(),
+                ModBlocks.BURNING_GAS_GENERATOR.getKey());
         ModBlocks.configuredProcessingBlockEntries().stream()
                 .sorted(Comparator.comparing(
                         block -> block.getId().toString()))
-                .forEach(block -> pickaxe.add(block.getKey()));
+                .forEach(block -> {
+                    pickaxe.add(block.getKey());
+                    stone.add(block.getKey());
+                });
         ModBlocks.electricalConductorBlocks().forEach(
                 block -> pickaxe.add(block.getKey()));
         ModBlocks.pipeBlocks().forEach(

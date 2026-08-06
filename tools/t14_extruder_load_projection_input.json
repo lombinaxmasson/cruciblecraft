@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "status": "FAMILY_LOAD_PROJECTION_INPUT",
+  "projection_id": "t14/extruder-hybrid-production",
+  "delivery_phase": "T14",
+  "families": [
+    {
+      "family": "t14/extruder",
+      "canonical_ids": [
+        "gt.recipe.extruder"
+      ],
+      "strategy": "hybrid",
+      "authored_entries": 20,
+      "logical_rows": 2782,
+      "eager_publication_rows": 557,
+      "lazy_logical_rows": 2225,
+      "lazy_cache_ceiling_rows": 512,
+      "sync_bytes": 331124,
+      "measurement_basis": {
+        "kind": "family_specific_measurement",
+        "source": "tools/t14_materialization_decision.json#key_measurements[scale=1x,candidate=hybrid]",
+        "measured_logical_rows": [
+          2782,
+          13910,
+          55640
+        ]
+      },
+      "measurement_intervals": {
+        "server_reload_ms": {
+          "min": 2,
+          "max": 3
+        },
+        "server_index_ms": {
+          "min": 1,
+          "max": 2
+        },
+        "client_reload_ms": {
+          "min": 1,
+          "max": 2
+        },
+        "client_index_ms": {
+          "min": 1,
+          "max": 2
+        },
+        "retained_memory_bytes": {
+          "min": 2241752,
+          "max": 2241752
+        },
+        "allocation_bytes": {
+          "min": 0,
+          "max": 0
+        },
+        "lookup_p95_ns": {
+          "min": 1543,
+          "max": 1543
+        },
+        "lookup_candidate_count": {
+          "min": 8,
+          "max": 8
+        }
+      }
+    }
+  ]
+}

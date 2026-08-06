@@ -44,7 +44,15 @@ class MachineCraftingReadinessTest(unittest.TestCase):
             for row in self.document["configured_machines"]
         ]
         self.assertEqual(23, len(configured))
-        self.assertEqual(configured, placeholders)
+        self.assertEqual(
+            [
+                machine_id
+                for machine_id in configured
+                if machine_id
+                not in MODULE.SOURCE_PROJECTED_CONFIGURED_IDS
+            ],
+            placeholders,
+        )
         self.assertEqual(configured, ledger_ids)
         self.assertEqual(set(configured), set(self.policy["configured_machines"]))
         self.assertEqual(len(configured), len(set(configured)))
@@ -53,6 +61,19 @@ class MachineCraftingReadinessTest(unittest.TestCase):
             (recipe_id, item_field)
             for item_field, recipe_id in MODULE.placeholder_machines()
         )
+        fields.update({
+            "centrifuge": "CENTRIFUGE",
+            "sifter": "SIFTER",
+            "electrolyzer": "ELECTROLYZER",
+            "lathe": "LATHE",
+            "rollingmill": "ROLLINGMILL",
+            "wiremill": "WIREMILL",
+            "shredder": "SHREDDER",
+            "press": "PRESS",
+            "distillery": "DISTILLERY",
+            "drying": "DRYING",
+            "smelter": "SMELTER",
+        })
         for row in self.document["configured_machines"]:
             with self.subTest(identity=row["machine_id"]):
                 item_field = fields[row["machine_id"]]
@@ -223,7 +244,12 @@ class MachineCraftingReadinessTest(unittest.TestCase):
         for row in self.document["configured_machines"]:
             with self.subTest(machine=row["machine_id"]):
                 self.assertEqual(
-                    "generated_copper_furnace_placeholder",
+                    (
+                        "t12_source_projected_machine_recipe"
+                        if row["machine_id"]
+                        in MODULE.SOURCE_PROJECTED_CONFIGURED_IDS
+                        else "generated_copper_furnace_placeholder"
+                    ),
                     row["current_recipe"]["kind"],
                 )
                 self.assertNotEqual(

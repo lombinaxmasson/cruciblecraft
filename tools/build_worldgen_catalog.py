@@ -26,6 +26,16 @@ FLUID_DECLARATIONS = (
     ROOT
     / "src/main/resources/data/cruciblecraft/worldgen_catalog/fluid_deposits.json"
 )
+T11_RUNTIME_POLICY = (
+    ROOT
+    / "src/main/resources/data/cruciblecraft"
+    / "t11_hydrocarbon_runtime_policy.json"
+)
+T11_NATURAL_GAS_MATERIAL = (
+    ROOT
+    / "src/main/resources/data/cruciblecraft/t11_materials"
+    / "natural_gas.json"
+)
 CLOSURE_LEDGER = TOOLS / "gt6_ore_chain_closure.json"
 OUTPUT_RESOURCE_ROOT = ROOT / "src/worldgen_catalog_generated/resources"
 READINESS = TOOLS / "worldgen_catalog_readiness.json"
@@ -263,6 +273,7 @@ def validate_fluid_deposit(
     entry: Any,
     index: int,
     material_documents: dict[str, dict[str, Any]],
+    production_policy: dict[str, Any],
 ) -> dict[str, Any]:
     label = f"fluid_deposits[{index}]"
     document = require_mapping(entry, label)
@@ -286,7 +297,10 @@ def validate_fluid_deposit(
     material_document = material_documents.get(material_id)
     if material_document is None:
         raise ValueError(f"{label} references unknown material {material}")
+    production = production_policy.get(material)
     state = (material_document.get("gt6_metadata") or {}).get("state")
+    if state is None and isinstance(production, dict):
+        state = production.get("state")
     if state not in {"liquid", "gas"}:
         raise ValueError(
             f"{label} material {material} is not source-state liquid or gas"
@@ -316,6 +330,26 @@ def validate_fluid_deposit(
     provenance = document.get("provenance")
     if not isinstance(provenance, str) or not provenance.strip():
         raise ValueError(f"{label}.provenance must be non-empty")
+    if not isinstance(production, dict):
+        raise ValueError(f"{label} is missing T11 production policy for {material}")
+    amount = require_int(production, "amount_mb", 1, 1_000_000, f"{label}.production")
+    interval = require_int(
+        production, "interval_ticks", 1, 72_000, f"{label}.production"
+    )
+    accumulation_cap = require_int(
+        production,
+        "accumulation_cap_mb",
+        amount,
+        1_000_000_000,
+        f"{label}.production",
+    )
+    vent_overflow = production.get("vent_overflow")
+    if not isinstance(vent_overflow, bool):
+        raise ValueError(f"{label}.production.vent_overflow must be a boolean")
+    if vent_overflow != (state == "gas"):
+        raise ValueError(
+            f"{label}.production.vent_overflow must match gas state"
+        )
     return {
         "id": deposit_id,
         "material": material,
@@ -338,6 +372,10 @@ def validate_fluid_deposit(
             document, "salt", -(2**31), 2**31 - 1, label
         ),
         "provenance": provenance,
+        "production_amount_mb": amount,
+        "production_interval_ticks": interval,
+        "accumulation_cap_mb": accumulation_cap,
+        "vent_overflow": vent_overflow,
     }
 
 
@@ -351,8 +389,31 @@ def load_fluid_deposits() -> list[dict[str, Any]]:
     if not isinstance(entries, list) or not entries:
         raise ValueError("fluid deposits must be a non-empty array")
     material_documents, _ = vein_builder.gate_builder.material_documents()
+    natural_gas = require_mapping(
+        load(T11_NATURAL_GAS_MATERIAL),
+        str(T11_NATURAL_GAS_MATERIAL),
+    )
+    if natural_gas.get("id") != "natural_gas":
+        raise ValueError("T11 supplemental natural-gas material drifted")
+    material_documents = {
+        **material_documents,
+        "natural_gas": natural_gas,
+    }
+    runtime_policy = require_mapping(
+        load(T11_RUNTIME_POLICY), str(T11_RUNTIME_POLICY)
+    )
+    if (
+        runtime_policy.get("schema_version") != 1
+        or runtime_policy.get("status") != "DESIGN_POLICY"
+    ):
+        raise ValueError("T11 hydrocarbon runtime policy schema/status drifted")
+    production_policy = require_mapping(
+        runtime_policy.get("production"), "T11 runtime production"
+    )
     deposits = [
-        validate_fluid_deposit(entry, index, material_documents)
+        validate_fluid_deposit(
+            entry, index, material_documents, production_policy
+        )
         for index, entry in enumerate(entries)
     ]
     ids = [deposit["id"] for deposit in deposits]
@@ -378,6 +439,10 @@ def configured_fluid_deposit(deposit: dict[str, Any]) -> dict[str, Any]:
             "region_size_chunks",
             "generation_chance",
             "salt",
+            "production_amount_mb",
+            "production_interval_ticks",
+            "accumulation_cap_mb",
+            "vent_overflow",
         )
     }
     return {
@@ -506,6 +571,20 @@ def build_documents() -> tuple[
                 ),
                 "sha256": sha256(FLUID_DECLARATIONS),
             },
+            "t11_runtime_policy": {
+                "path": (
+                    "src/main/resources/data/cruciblecraft/"
+                    "t11_hydrocarbon_runtime_policy.json"
+                ),
+                "sha256": sha256(T11_RUNTIME_POLICY),
+            },
+            "t11_natural_gas_material": {
+                "path": (
+                    "src/main/resources/data/cruciblecraft/"
+                    "t11_materials/natural_gas.json"
+                ),
+                "sha256": sha256(T11_NATURAL_GAS_MATERIAL),
+            },
         },
         "counts": {
             "t2_vein_families": len(t2_veins),
@@ -553,6 +632,10 @@ def build_documents() -> tuple[
                     "max_y",
                     "replaceable",
                     "provenance",
+                    "production_amount_mb",
+                    "production_interval_ticks",
+                    "accumulation_cap_mb",
+                    "vent_overflow",
                 )
             }
             for deposit in deposits

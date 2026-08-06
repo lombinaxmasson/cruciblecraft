@@ -47,6 +47,49 @@ public final class AdjacentEnergyConsumer {
         return plan.isPresent() && (simulate || plan.get().execute());
     }
 
+    public static Optional<WindowPlan> planWindow(
+            IEnergyHandler source,
+            EnergyType type,
+            Direction sourceSide,
+            long minimumUnits,
+            long maximumUnits) {
+        if (source == null
+                || minimumUnits <= 0L
+                || maximumUnits < minimumUnits
+                || !source.handles(type, sourceSide)) {
+            return Optional.empty();
+        }
+        long size = source.outputSize(type, sourceSide);
+        long magnitude = EnergyPackets.magnitude(size);
+        if (magnitude == 0L || magnitude > maximumUnits) {
+            return Optional.empty();
+        }
+        long maximumPackets = maximumUnits / magnitude;
+        long availablePackets = source.extract(
+                type,
+                size,
+                maximumPackets,
+                sourceSide,
+                true);
+        if (availablePackets <= 0L
+                || availablePackets > maximumPackets) {
+            return Optional.empty();
+        }
+        long units = EnergyPackets.units(
+                magnitude, availablePackets);
+        if (units < minimumUnits) {
+            return Optional.empty();
+        }
+        return Optional.of(new WindowPlan(
+                new Plan(
+                        source,
+                        type,
+                        sourceSide,
+                        size,
+                        availablePackets),
+                units));
+    }
+
     public record Plan(
             IEnergyHandler source,
             EnergyType type,
@@ -63,6 +106,19 @@ public final class AdjacentEnergyConsumer {
         public boolean execute() {
             return source.extract(
                     type, packetSize, packetCount, sourceSide, false) == packetCount;
+        }
+    }
+
+    public record WindowPlan(Plan plan, long units) {
+        public WindowPlan {
+            if (plan == null || units <= 0L) {
+                throw new IllegalArgumentException(
+                        "Invalid adjacent energy window plan");
+            }
+        }
+
+        public boolean execute() {
+            return plan.execute();
         }
     }
 }

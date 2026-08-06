@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.registry;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.item.PortableFluidTankItem;
+import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -40,10 +41,33 @@ public final class ModCapabilities {
         event.registerBlockEntity(ENERGY, ModBlockEntities.BOILER.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.STEAM_ENGINE.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.DYNAMO.get(), (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.ELECTRIC_MOTOR.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.ROTATIONAL_AXLE.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.ROTATIONAL_GEARBOX.get(),
+                (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.FUEL_GENERATOR.get(),
+                (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.CRUSHER.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(
                 ENERGY, ModBlockEntities.PROCESSING_MACHINE.get(),
                 (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.MULTIBLOCK_PORT.get(),
+                (blockEntity, side) -> blockEntity.portType()
+                                == PortType.ENERGY_INPUT
+                        ? blockEntity
+                        : null);
         event.registerBlockEntity(
                 ENERGY,
                 ModBlockEntities.CABLE.get(),
@@ -87,6 +111,22 @@ public final class ModCapabilities {
         event.registerBlockEntity(
                 Capabilities.FluidHandler.BLOCK,
                 ModBlockEntities.PROCESSING_MACHINE.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.MULTIBLOCK_PORT.get(),
+                (blockEntity, side) -> blockEntity.itemHandler());
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.MULTIBLOCK_PORT.get(),
+                (blockEntity, side) -> blockEntity.fluidHandler());
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.FLUID_DEPOSIT_EXTRACTOR.get(),
+                (blockEntity, side) -> blockEntity.externalFluid());
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.FUEL_GENERATOR.get(),
                 (blockEntity, side) -> blockEntity.fluids(side));
     }
 }

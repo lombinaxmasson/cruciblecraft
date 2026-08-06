@@ -76,7 +76,11 @@ public final class SubsurfaceFluidDepositFeature
         deposit.initialize(
                 config.material(),
                 reserveAmount(config, depositSeed),
-                replacedHost);
+                replacedHost,
+                config.productionAmountMb(),
+                config.productionIntervalTicks(),
+                config.accumulationCapMb(),
+                config.ventOverflow());
         return true;
     }
 

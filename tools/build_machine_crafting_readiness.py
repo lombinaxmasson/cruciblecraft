@@ -49,6 +49,39 @@ ALLOWED_CLASSIFICATIONS = {
     "existing_cc_recipe_retained",
 }
 CONFIGURED_LIST_NAMES = ("T2_MACHINES", "T3_MACHINES", "T5_MACHINES")
+T11_MACHINE_IDS = {
+    "generifier",
+    "fluid_deposit_extractor",
+    "fuel_engine",
+    "burning_gas_generator",
+}
+T12_MACHINE_IDS = {
+    "electric_motor",
+    "rotational_axle",
+    "rotational_gearbox",
+}
+T12_SOURCE_PROJECTED_CONFIGURED_IDS = {
+    "centrifuge",
+    "sifter",
+    "electrolyzer",
+}
+T16_SOURCE_PROJECTED_CONFIGURED_IDS = {
+    "lathe",
+    "rollingmill",
+    "wiremill",
+    "shredder",
+    "press",
+}
+T17_SOURCE_PROJECTED_CONFIGURED_IDS = {
+    "distillery",
+    "drying",
+    "smelter",
+}
+SOURCE_PROJECTED_CONFIGURED_IDS = (
+    T12_SOURCE_PROJECTED_CONFIGURED_IDS
+    | T16_SOURCE_PROJECTED_CONFIGURED_IDS
+    | T17_SOURCE_PROJECTED_CONFIGURED_IDS
+)
 
 
 def load(path: Path) -> Any:
@@ -114,7 +147,11 @@ def configured_machine_ids() -> list[str]:
 
 
 def placeholder_machine_ids() -> list[str]:
-    return [recipe_id for _, recipe_id in placeholder_machines()]
+    return [
+        recipe_id
+        for _, recipe_id in placeholder_machines()
+        if recipe_id not in T11_MACHINE_IDS | T12_MACHINE_IDS
+    ]
 
 
 def placeholder_machines() -> list[tuple[str, str]]:
@@ -352,6 +389,18 @@ def configured_rows(
         recipe_id: item_field
         for item_field, recipe_id in placeholders
     }
+    item_fields.update({
+        "centrifuge": "CENTRIFUGE",
+        "sifter": "SIFTER",
+        "electrolyzer": "ELECTROLYZER",
+        **{
+            machine_id: machine_id.upper()
+            for machine_id in (
+                T16_SOURCE_PROJECTED_CONFIGURED_IDS
+                | T17_SOURCE_PROJECTED_CONFIGURED_IDS
+            )
+        },
+    })
     result = []
     for machine_id in machine_ids:
         policy_row = policy["configured_machines"][machine_id]
@@ -362,6 +411,7 @@ def configured_rows(
             raise ValueError(
                 f"{machine_id}: could not resolve ModItems.{item_field}"
             )
+        source_projected = machine_id in SOURCE_PROJECTED_CONFIGURED_IDS
         result.append({
             "scope": "configured_machine_placeholder",
             "machine_id": machine_id,
@@ -375,8 +425,29 @@ def configured_rows(
                     GENERATED_MACHINE_RECIPE_ROOT
                     / f"{machine_id}.json"
                 ).relative_to(ROOT).as_posix(),
-                "kind": template["kind"],
-                "source": template["source"],
+                "kind": (
+                    "t12_source_projected_machine_recipe"
+                    if source_projected
+                    else template["kind"]
+                ),
+                "source": (
+                    {
+                        "path": RECIPE_PROVIDER.relative_to(ROOT).as_posix(),
+                        "method": (
+                            "t17HeatMachineCrafting"
+                            if machine_id
+                            in T17_SOURCE_PROJECTED_CONFIGURED_IDS
+                            else "t16MachineCrafting"
+                            if machine_id
+                            in T16_SOURCE_PROJECTED_CONFIGURED_IDS
+                            else f"{machine_id}Crafting"
+                            if machine_id != "electrolyzer"
+                            else "electrolyzerCrafting"
+                        ),
+                    }
+                    if source_projected
+                    else template["source"]
+                ),
             },
             "classification": policy_row["classification"],
             "reason": policy_row["reason"],
@@ -461,11 +532,45 @@ def build(source_root: Path | None = None) -> dict[str, Any]:
 
     machine_ids = configured_machine_ids()
     placeholders = placeholder_machines()
-    placeholder_ids = [recipe_id for _, recipe_id in placeholders]
-    if machine_ids != placeholder_ids:
+    placeholder_ids = [
+        recipe_id
+        for _, recipe_id in placeholders
+        if recipe_id not in T11_MACHINE_IDS | T12_MACHINE_IDS
+    ]
+    t11_placeholder_ids = {
+        recipe_id
+        for _, recipe_id in placeholders
+        if recipe_id in T11_MACHINE_IDS
+    }
+    if t11_placeholder_ids != T11_MACHINE_IDS:
+        raise ValueError(
+            "T11-owned machine placeholder set drifted: "
+            f"{sorted(t11_placeholder_ids)}"
+        )
+    t12_placeholder_ids = {
+        recipe_id
+        for _, recipe_id in placeholders
+        if recipe_id in T12_MACHINE_IDS
+    }
+    if t12_placeholder_ids != T12_MACHINE_IDS:
+        raise ValueError(
+            "T12-owned machine placeholder set drifted: "
+            f"{sorted(t12_placeholder_ids)}"
+        )
+    placeholders = [
+        row
+        for row in placeholders
+        if row[1] not in T11_MACHINE_IDS | T12_MACHINE_IDS
+    ]
+    placeholder_expected = [
+        machine_id
+        for machine_id in machine_ids
+        if machine_id not in SOURCE_PROJECTED_CONFIGURED_IDS
+    ]
+    if placeholder_expected != placeholder_ids:
         raise ValueError(
             "configured machines and machineCrafting placeholders differ: "
-            f"{machine_ids!r} != {placeholder_ids!r}"
+            f"{placeholder_expected!r} != {placeholder_ids!r}"
         )
     configured_policy_ids = list(policy["configured_machines"])
     if set(configured_policy_ids) != set(machine_ids):

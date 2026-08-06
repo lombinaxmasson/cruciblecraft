@@ -45,6 +45,9 @@ public final class ModRecipeMaps {
     public static final RecipeMap AUTOCLAVE = create("autoclave");
     public static final RecipeMap DRYING = create("drying");
     public static final RecipeMap COMPRESSOR = create("compressor");
+    public static final RecipeMap GENERIFIER = create("generifier");
+    public static final RecipeMap FUELS_ENGINE = create("fuels_engine");
+    public static final RecipeMap FUELS_GAS = create("fuels_gas");
 
     public static final List<RecipeMap> ALL = List.of(
             COKE_OVEN,
@@ -75,7 +78,10 @@ public final class ModRecipeMaps {
             DISTILLERY,
             AUTOCLAVE,
             DRYING,
-            COMPRESSOR);
+            COMPRESSOR,
+            GENERIFIER,
+            FUELS_ENGINE,
+            FUELS_GAS);
 
     private ModRecipeMaps() {}
 

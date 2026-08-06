@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 
 import net.minecraft.resources.ResourceLocation;
@@ -28,6 +29,16 @@ class GTRecipeMapBudgetTest {
                         "t8PipeMaterialRules",
                         "t10KnownFormMaterialRules",
                         "allPublishedRecipes",
+                        "eagerPublishedRecipes",
+                        "lazyLogicalRecipes",
+                        "t14ExtruderLogicalRecipes",
+                        "t14ExtruderEagerRecipes",
+                        "t14ExtruderLazyRecipes",
+                        "t14ExtruderCacheCeiling",
+                        "t14ExtruderSyncBytes",
+                        "t14ExtruderAuthoredEntries",
+                        "t14ExtruderStableFingerprint",
+                        "runtimeSide",
                         "reloadMillis",
                         "indexMillis"),
                 Arrays.stream(
@@ -35,6 +46,22 @@ class GTRecipeMapBudgetTest {
                                         .getRecordComponents())
                         .map(component -> component.getName())
                         .toList());
+
+        RecipeMap staleOwner = new RecipeMap(id("metrics_failure"));
+        staleOwner.replaceRecipes(List.of());
+        RecipeMap.Prepared stale = staleOwner.prepareRecipes(List.of());
+        staleOwner.replaceRecipes(List.of());
+        boolean[] candidateCommitted = {false};
+        var preview = MaterialCatalog.previewRuntime(List.of(), java.util.Map.of());
+        assertThrows(
+                IllegalStateException.class,
+                () -> GTRecipeRuntimeEpoch.publish(
+                        preview,
+                        List.of(stale),
+                        () -> candidateCommitted[0] = true));
+        assertFalse(
+                candidateCommitted[0],
+                "failed publication must not replace publication-adjacent metrics");
     }
 
     @Test
@@ -59,7 +86,44 @@ class GTRecipeMapBudgetTest {
         assertEquals(
                 1_500,
                 ModProcessingMachines.T10_AUTHORED_MATERIAL_RULE_BUDGET);
+        assertEquals(
+                0,
+                ModProcessingMachines.T11_AUTHORED_MATERIAL_RULE_BUDGET);
+        assertEquals(
+                0,
+                ModProcessingMachines.T12_AUTHORED_MATERIAL_RULE_BUDGET);
         assertEquals(21_000, ModProcessingMachines.ALL_PUBLISHED_RECIPE_BUDGET);
+        assertEquals(
+                18_000,
+                ModProcessingMachines.ALL_EAGER_PUBLICATION_SOFT_BUDGET);
+        assertEquals(
+                56_000,
+                ModProcessingMachines
+                        .ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING);
+        assertEquals(
+                4_096,
+                ModProcessingMachines
+                        .ALL_LAZY_RECIPE_CACHE_HARD_CEILING);
+        assertDoesNotThrow(() ->
+                GTRecipeMapLoader.validateT14MaterializationBudgets(
+                        16_650, 2_225, 512));
+        assertDoesNotThrow(() ->
+                GTRecipeMapLoader.validateT14MaterializationBudgets(
+                        ModProcessingMachines
+                                .ALL_EAGER_PUBLICATION_SOFT_BUDGET + 1,
+                        2_225,
+                        512));
+        assertThrows(IllegalStateException.class, () ->
+                GTRecipeMapLoader.validateT14MaterializationBudgets(
+                        ModProcessingMachines.ALL_PUBLISHED_RECIPE_BUDGET + 1,
+                        2_225,
+                        512));
+        assertThrows(IllegalStateException.class, () ->
+                GTRecipeMapLoader.validateT14MaterializationBudgets(
+                        16_650, 56_001, 512));
+        assertThrows(IllegalStateException.class, () ->
+                GTRecipeMapLoader.validateT14MaterializationBudgets(
+                        16_650, 2_225, 4_097));
         assertEquals(
                 7,
                 GTRecipeMapLoader.authoredMaterialRuleStage(id(
@@ -80,6 +144,11 @@ class GTRecipeMapBudgetTest {
                 GTRecipeMapLoader.authoredMaterialRuleStage(id(
                                 "t11/future_rule/copper"))
                         .orElseThrow());
+        assertEquals(
+                12,
+                GTRecipeMapLoader.authoredMaterialRuleStage(id(
+                                "t12/future_rule/copper"))
+                        .orElseThrow());
         assertTrue(GTRecipeMapLoader.authoredMaterialRuleStage(id(
                         "mortar/crushed_to_dust/copper"))
                 .isEmpty());
@@ -93,6 +162,10 @@ class GTRecipeMapBudgetTest {
                 GTRecipeMapLoader.validateAuthoredMaterialRuleBudget(8, 257));
         assertDoesNotThrow(() ->
                 GTRecipeMapLoader.validateAuthoredMaterialRuleBudget(10, 1_288));
+        assertDoesNotThrow(() ->
+                GTRecipeMapLoader.validateAuthoredMaterialRuleBudget(11, 0));
+        assertDoesNotThrow(() ->
+                GTRecipeMapLoader.validateAuthoredMaterialRuleBudget(12, 0));
         assertThrows(IllegalStateException.class, () ->
                 GTRecipeMapLoader.validateAuthoredMaterialRuleBudget(
                         7,
@@ -104,8 +177,10 @@ class GTRecipeMapBudgetTest {
                         ModProcessingMachines.T8_PIPE_MATERIAL_RULE_BUDGET + 1));
         assertThrows(IllegalStateException.class, () ->
                 GTRecipeMapLoader.validateAuthoredMaterialRuleBudget(10, 1_501));
-        assertThrows(IllegalArgumentException.class, () ->
-                GTRecipeMapLoader.validateAuthoredMaterialRuleBudget(11, 0));
+        assertThrows(IllegalStateException.class, () ->
+                GTRecipeMapLoader.validateAuthoredMaterialRuleBudget(11, 1));
+        assertThrows(IllegalStateException.class, () ->
+                GTRecipeMapLoader.validateAuthoredMaterialRuleBudget(12, 1));
     }
 
     @Test
@@ -133,6 +208,36 @@ class GTRecipeMapBudgetTest {
                         ModProcessingMachines.LIVE_T3_MAP_RECIPE_BUDGET + 1));
         assertThrows(IllegalArgumentException.class, () ->
                 GTRecipeMapLoader.validateExpansionBudgets(1, 1, 1));
+    }
+
+    @Test
+    void dedicatedClientAndLookupMetricsUseOnlineBudgetGate() {
+        var metrics = new GTRecipeMapLoader.PublicationMetrics(
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 512, 331_124L, 20,
+                "a".repeat(64),
+                ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT,
+                ModProcessingMachines.CLIENT_RECIPE_RELOAD_BUDGET_MS,
+                ModProcessingMachines.CLIENT_RECIPE_INDEX_BUILD_BUDGET_MS);
+        var lookup = new GTRecipeMapLoader.T14LookupMetrics(
+                61,
+                1_952,
+                ModProcessingMachines.RECIPE_LOOKUP_P95_BUDGET_NS,
+                ModProcessingMachines.RECIPE_LOOKUP_P95_CANDIDATE_BUDGET,
+                ModProcessingMachines
+                        .RECIPE_LOOKUP_MAX_CANDIDATE_HARD_CEILING);
+        assertTrue(GTRecipeMapLoader.evaluateT14OnlineBudgetGate(
+                metrics, lookup).allPass());
+
+        var overClientReload = new GTRecipeMapLoader.PublicationMetrics(
+                0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 512, 331_124L, 20,
+                "a".repeat(64),
+                ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT,
+                ModProcessingMachines.CLIENT_RECIPE_RELOAD_BUDGET_MS + 1,
+                ModProcessingMachines.CLIENT_RECIPE_INDEX_BUILD_BUDGET_MS);
+        assertFalse(GTRecipeMapLoader.evaluateT14OnlineBudgetGate(
+                overClientReload, lookup).sideReload());
     }
 
     private static ResourceLocation id(String path) {
