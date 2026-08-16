@@ -366,6 +366,15 @@ def write_result(
     success: bool,
     source_replay_skipped: int,
 ) -> None:
+    skipped_tests = getattr(result, "skipped", ())
+    class_level_skips = sum(
+        1 for case, _reason in skipped_tests
+        if not hasattr(case, "_testMethodName")
+    )
+    skip_reasons: list[str] = []
+    for _case, reason in skipped_tests:
+        if reason and str(reason).strip():
+            skip_reasons.append(str(reason).strip())
     document = {
         "schema_version": 1,
         "suite": selection.suite,
@@ -373,7 +382,9 @@ def write_result(
         "tests_run": result.testsRun,
         "failures": len(result.failures),
         "errors": len(result.errors),
-        "skipped": len(getattr(result, "skipped", ())),
+        "skipped": len(skipped_tests),
+        "class_level_skips": class_level_skips,
+        "skip_reasons": skip_reasons,
         "elapsed_seconds": round(elapsed_seconds, 3),
         "success": success,
         "escalated_to_closure": selection.escalated_to_closure,

@@ -4,32 +4,36 @@ import java.util.Objects;
 
 import net.minecraft.resources.ResourceLocation;
 
-/** Immutable binding of one behavior kind to one numeric tier profile. */
+/** Immutable complete identity binding one kind to one numeric tier band. */
 public final class MachineVariant {
     private final ResourceLocation id;
     private final MachineKindSpec kind;
-    private final TierProfile tier;
+    private final TierProfile tierBand;
     private final ProcessingMachineSpec runtimeSpec;
 
     public MachineVariant(
             ResourceLocation id,
             MachineKindSpec kind,
-            TierProfile tier) {
-        this(id, kind, tier, createRuntimeSpec(id, kind, tier));
+            TierProfile tierBand) {
+        this(
+                id,
+                kind,
+                tierBand,
+                createRuntimeSpec(id, kind, tierBand));
     }
 
     private MachineVariant(
             ResourceLocation id,
             MachineKindSpec kind,
-            TierProfile tier,
+            TierProfile tierBand,
             ProcessingMachineSpec runtimeSpec) {
         this.id = Objects.requireNonNull(id, "id");
         this.kind = Objects.requireNonNull(kind, "kind");
-        this.tier = Objects.requireNonNull(tier, "tier");
-        if (kind.behavior().energy().type() != tier.energyType()) {
+        this.tierBand = Objects.requireNonNull(tierBand, "tierBand");
+        if (kind.behavior().energy().type() != tierBand.energyType()) {
             throw new IllegalArgumentException(
-                    "Tier energy identity "
-                            + tier.energyType()
+                    "Tier-band energy identity "
+                            + tierBand.energyType()
                             + " does not match kind "
                             + kind.id()
                             + " ("
@@ -48,8 +52,17 @@ public final class MachineVariant {
         return kind;
     }
 
+    public TierProfile tierBand() {
+        return tierBand;
+    }
+
+    /**
+     * @deprecated Use {@link #tierBand()} to distinguish the shared band from
+     *     the complete variant identity returned by {@link #id()}.
+     */
+    @Deprecated(forRemoval = false)
     public TierProfile tier() {
-        return tier;
+        return tierBand;
     }
 
     public ProcessingMachineSpec runtimeSpec() {
@@ -64,7 +77,7 @@ public final class MachineVariant {
                 spec.energy().mode() == ProcessingMachineSpec.EnergyMode.BUFFERED
                         ? spec.energy().capacity()
                         : nominal);
-        TierProfile tier = new TierProfile(
+        TierProfile tierBand = new TierProfile(
                 ResourceLocation.fromNamespaceAndPath(
                         spec.id().getNamespace(),
                         "legacy/" + spec.id().getPath()),
@@ -83,17 +96,17 @@ public final class MachineVariant {
                         spec,
                         MachineKindSpec.OverclockPolicy.LEGACY_TICKS,
                         false),
-                tier,
+                tierBand,
                 spec);
     }
 
     private static ProcessingMachineSpec createRuntimeSpec(
             ResourceLocation id,
             MachineKindSpec kind,
-            TierProfile tier) {
+            TierProfile tierBand) {
         Objects.requireNonNull(id, "id");
         Objects.requireNonNull(kind, "kind");
-        Objects.requireNonNull(tier, "tier");
+        Objects.requireNonNull(tierBand, "tierBand");
         ProcessingMachineSpec base = kind.behavior();
         return new ProcessingMachineSpec(
                 id,
@@ -102,13 +115,13 @@ public final class MachineVariant {
                 base.items(),
                 base.fluids(),
                 new ProcessingMachineSpec.EnergySpec(
-                        tier.energyType(),
+                        tierBand.energyType(),
                         base.energy().mode(),
                         base.energy().mode()
                                         == ProcessingMachineSpec.EnergyMode.BUFFERED
-                                ? tier.energyCapacity()
+                                ? tierBand.energyCapacity()
                                 : 0L,
-                        tier.inputMaximum()),
+                        tierBand.inputMaximum()),
                 base.sidedIo(),
                 base.validator(),
                 base.buffering(),

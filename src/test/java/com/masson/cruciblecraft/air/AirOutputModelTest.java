@@ -22,7 +22,7 @@ class AirOutputModelTest {
     }
 
     @Test
-    void airBufferCapsMigratedAndIncomingValues() {
+    void airBufferCapsStoredAndIncomingValues() {
         assertEquals(640L, AirOutputModel.addToBuffer(0L, 640L));
         assertEquals(1_200L, AirOutputModel.addToBuffer(1_190L, 16L));
         assertEquals(0L, AirOutputModel.clampStoredAir(-1L));

@@ -11,6 +11,8 @@ import com.masson.cruciblecraft.material.MissingMaterialStackCodec;
 import com.masson.cruciblecraft.material.gen.GeneratedMaterialPack;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.network.MaterialConfigurationHandshake;
+import com.masson.cruciblecraft.network.CoverConfigurationPayload;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverBehaviorRegistry;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModComponents;
@@ -20,6 +22,7 @@ import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.registry.ModFeatures;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModMenus;
+import com.masson.cruciblecraft.registry.ModMultiblockPlugins;
 import com.masson.cruciblecraft.registry.ModRecipes;
 import com.mojang.logging.LogUtils;
 
@@ -39,12 +42,14 @@ public class CrucibleCraft {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public CrucibleCraft(IEventBus modEventBus, ModContainer modContainer) {
+        ModMultiblockPlugins.register();
         modEventBus.addListener(this::construct);
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(GeneratedMaterialPack::addPackFinders);
         modEventBus.addListener(ModCapabilities::register);
         modEventBus.addListener(MaterialConfigurationHandshake::registerPayloads);
         modEventBus.addListener(MaterialConfigurationHandshake::registerTask);
+        modEventBus.addListener(CoverConfigurationPayload::register);
 
         ModFluids.FLUID_TYPES.register(modEventBus);
         ModFluids.FLUIDS.register(modEventBus);
@@ -89,6 +94,7 @@ public class CrucibleCraft {
             MaterialCatalog.validateFormItemMappings();
             ModFluids.finalizeMaterialLookup();
             MissingMaterialStackCodec.verifyInstalled();
+            CoverBehaviorRegistry.validateDefinitions();
         });
         LOGGER.info("CrucibleCraft common setup");
     }

@@ -1,10 +1,11 @@
 # CrucibleCraft 第三阶段总体规划
 
 > GregTech 6 → Minecraft 1.21.1 NeoForge 移植 · 第三阶段 T13–T19
-> 状态：T13–T17 已关闭；当前入口 **T18 · 蒸汽、燃油与能量转换**
+> 状态：✅ 已归档；T13–T19 已关闭，当前入口为第四阶段 T20–T26
 > 基线：2026-08-06，第二阶段 `T12_READY`
 > 固定 GT6 revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`
 > 固定 dump：95 RecipeMap / 720,841 source rows
+> 预发布清理：已完成；不改变 T19 或第三阶段状态
 
 ---
 
@@ -31,8 +32,8 @@
 
 - 规则与不变量：《[CrucibleCraft-总体规划.md](CrucibleCraft-总体规划.md)》
 - 第二阶段关闭摘要：《[CrucibleCraft-第二阶段总体规划.md](CrucibleCraft-第二阶段总体规划.md)》
-- 历史完整卡：《[CrucibleCraft-阶段档案-T7-T9.md](CrucibleCraft-阶段档案-T7-T9.md)》、《[CrucibleCraft-阶段档案-T10-T12.md](CrucibleCraft-阶段档案-T10-T12.md)》、《[CrucibleCraft-阶段档案-T13-T16.md](CrucibleCraft-阶段档案-T13-T16.md)》与《[CrucibleCraft-阶段档案-T17.md](CrucibleCraft-阶段档案-T17.md)》
-- 当前执行卡：本文
+- 历史完整卡：《[CrucibleCraft-阶段档案-T7-T9.md](CrucibleCraft-阶段档案-T7-T9.md)》、《[CrucibleCraft-阶段档案-T10-T12.md](CrucibleCraft-阶段档案-T10-T12.md)》、《[CrucibleCraft-阶段档案-T13-T16.md](CrucibleCraft-阶段档案-T13-T16.md)》、《[CrucibleCraft-阶段档案-T17.md](CrucibleCraft-阶段档案-T17.md)》、《[CrucibleCraft-阶段档案-T18.md](CrucibleCraft-阶段档案-T18.md)》与《[CrucibleCraft-阶段档案-T19.md](CrucibleCraft-阶段档案-T19.md)》
+- 当前规划与执行入口：《[CrucibleCraft-第四阶段总体规划.md](CrucibleCraft-第四阶段总体规划.md)》；T20–T25 已关闭，T26 OPEN（等试玩）
 
 **唯一硬规则不变：任何时刻最多一个 T 阶段进行中。**
 
@@ -64,7 +65,8 @@ T18 蒸汽、燃油与能量转换
 T19 Cover 与管道获取闭包
 ```
 
-T13/T14 两道串行门禁均已关闭。T15–T19 即使代码依赖可以解耦，也不并行标记为进行中。
+T13–T19 全部关闭，本文件只保存第三阶段关闭语义。T20 后续已独立关闭；
+其实现与证据不回写为第三阶段交付。
 
 ### 开工基线
 
@@ -267,8 +269,8 @@ T13/T14 两道串行门禁均已关闭。T15–T19 即使代码依赖可以解�
 
 1. 只选择 T13/T12 ledger 中 `source_tiered` 且 source identity 为 RU/KU 的 kind；fixed utility 和 deferred 项不强迁。
 2. 每个 kind 的 tier array、source machine id、RecipeMap、input、parallel、parallelDuration、efficiency、overclock policy 与材料形态均已分类。
-3. 当前 live `KINETIC` 引用逐项分为兼容迁移、fixed/deferred 保留或必须删除；“未分档”不能写成“能源折叠”。
-4. 新 tier 的 block/item/model/menu/EMI 与存档迁移投影先算；recipe publication 预测必须为 0。
+3. 当前 live `KINETIC` 引用逐项分为 current-only 改造、fixed/deferred 保留或必须删除；“未分档”不能写成“能源折叠”。
+4. 新 tier 的 block/item/model/menu/EMI 与 current identity 投影先算；recipe publication 预测必须为 0。
 
 **先算的数字**
 
@@ -281,17 +283,17 @@ T13/T14 两道串行门禁均已关闭。T15–T19 即使代码依赖可以解�
 
 - ✅ **T16a · RU batch**：selected kinds 全档位、全来源与 axle/gearbox 纵切。
 - ✅ **T16b · KU batch**：selected kinds 全档位与 adjacent-push 纵切。
-- ✅ **T16c · 存档与获取**：identity migration、recipe registry 与 survival operand 关闭。
+- ✅ **T16c · 存档与获取**：current identity/quarantine、recipe registry 与 survival operand 关闭。
 - ✅ **T16d · 零 publication**：只增加 tier 时 published recipe id 集合不变。
 
 **关闭快照**
 
 - `tools/t16_readiness.json` 为 `T16_READY`，T16a–d complete、pending 为空。T13 owner 分母保持 20 kind、`unclassified = 0`；本轮 selected 5 × 3 = 15 variants，preimplemented 2，deferred 13，且 20 个 tier 4 全部显式 deferred。
 - selected 5 是 Lathe / Rolling Mill / Wiremill / Shredder / Press；这不表示 20 kind 全实现。其余 13 kind 继续保留 reason、replacement condition 与 recheck point。
-- RU / KU 分别保持 `KINETIC_ROTATION` axle/gearbox 与 `KINETIC_PUSH` adjacent-push identity；15 个 selected variant 的资源、生存获取、五个 tier-1 精确迁移和 near-miss quarantine 均闭合。
+- RU / KU 分别保持 `KINETIC_ROTATION` axle/gearbox 与 `KINETIC_PUSH` adjacent-push identity；15 个 selected variant 的资源、生存获取、blank/current 接受和 mismatch quarantine 均闭合。
 - `t16_load_projection_input.json` / `t16_load_projection.json` 为 T16 zero-workload `PASS`：authored / logical / eager / lazy / cache / sync 与全部 runtime interval 增量为 0。
 - 32 个 RecipeMap stable id、18,875 logical / 16,650 eager / 2,225 lazy 以及 24 个 configured map 的 EMI enumeration 均与 pre-T16 baseline 相等。新增内容只有 15 条 vanilla crafting machine-acquisition recipe，GT row 新增 0，`publication delta = 0`。
-- T16 初次关闭验证规模为 475 Java tests、392 Python tests、62 GameTests；分层修订后为 495 / 417 / 63。T17 最终 currentness 为 508 / 441 / 69，并继续由同一 full-verification session 绑定。
+- T16/T17 的历史关闭规模只作归档；预发布 final closure 的当前预期为 538 JUnit / 501 Python / 83 GameTest，并由同一 snapshot session 绑定。
 
 **范围之外**
 
@@ -300,7 +302,7 @@ T13/T14 两道串行门禁均已关闭。T15–T19 即使代码依赖可以解�
 - 不新增 tier-specific RecipeMap。
 - 不做机器升级芯片。
 
-**完成信号**
+**验收门禁**
 
 1. selected RU/KU denominator 全部 implemented 或显式 deferred。
 2. 新机器不使用 deprecated `KINETIC`。
@@ -323,10 +325,11 @@ T13/T14 两道串行门禁均已关闭。T15–T19 即使代码依赖可以解�
 
 - `tools/t17_readiness.json` 为 `T17_READY`，T17a–d complete、pending 为空。HU 12 + EU 16 = 28 kind denominator 保持 `unclassified = 0`；本轮 selected 3 × 3 = 9 variants，preimplemented Electrolyzer 1 kind / 3 variants，deferred 24。
 - selected 3 是 Distillery / Drying / Smelter；这不表示 28 kind 全实现。Heat tier 4 deferred 10，Electric tier 4–5 deferred 32，高档位保持显式 reason、replacement condition 与 recheck point。
-- 九个 HU variant 使用 bottom-adjacent firebox，三个 Electrolyzer variant 保持 buffered-EU cable reference；Electric Mixer 新档位为 0。资源、生存获取、三个 tier-1 精确迁移与 HU/EU 失败状态均闭合。
+- 九个 HU variant 使用 bottom-adjacent firebox，三个 Electrolyzer variant 保持 buffered-EU cable reference；Electric Mixer 新档位为 0。资源、生存获取、current-only identity/quarantine 与 HU/EU 失败状态均闭合。
 - `t17_load_projection_input.json` / `t17_load_projection.json` 为 delivery T17 zero-workload `PASS`：authored / logical / eager / lazy / cache / sync 与全部 runtime interval 增量为 0。
 - RecipeMap stable id 32 个、18,875 logical / 16,650 eager / 2,225 lazy、24 个 configured map 的 EMI recipe enumeration 均与 T16 baseline 完全相等。新增内容只有 9 条 vanilla crafting machine-acquisition recipe，GT row 新增 0，`publication delta = 0`。
-- denominator、HU/EU topology、tier matrix、acquisition、migration、load 与 currentness 均无 pending；统一 builder、双 `runData`、全 JUnit、全 GameTest 和 Python closure 绑定最终 READY。
+- T17 同时关闭 builder proof policy 门禁：同一 raw corpus 只有一个 canonical full-replay owner；ordinary builder 与下游 readiness 只消费带输入/输出哈希的 compact evidence，完整来源重放由显式 `source-replay` 统一执行。
+- denominator、HU/EU topology、tier matrix、acquisition、current identity、load 与 currentness 均无 pending；统一 builder、双 `runData`、全 JUnit、全 GameTest 和 Python closure 绑定最终 READY。
 
 **范围之外**
 
@@ -335,18 +338,19 @@ T13/T14 两道串行门禁均已关闭。T15–T19 即使代码依赖可以解�
 - 不把 source-less balance template 写成 `SOURCE_BACKED`。
 - 不将 HU 与环境温度 / item HEAT 混成同一物理量。
 
-**完成信号**
+**验收门禁**
 
 1. selected HU/EU machine denominator 关闭。
-2. 当前错误能源身份被迁移或明确 deferred。
+2. 当前错误能源身份具有明确 disposition；deferred 只代表有退出条件，不计作已实现。
 3. HU/EU 端到端供能、输出堵塞、欠功率和 overcharge 分别可观测。
 4. 新增内容在 T14 预算内。
+5. 新增 builder 必须先登记统一 proof policy；禁止下游 readiness 再次重放同一 raw corpus。
 
 ---
 
 
 
-## T18 · 蒸汽、燃油与能量转换 ⚪ 当前
+## T18 · 蒸汽、燃油与能量转换 ✅
 
 **判据**
 
@@ -354,20 +358,21 @@ T13/T14 两道串行门禁均已关闭。T15–T19 即使代码依赖可以解�
 
 **依赖**：T17；T11 油气纵切。
 
-**开工门禁**
+**关闭快照**
 
-1. Steam Engine 的 KU 输出与 Diesel/Fuel Engine 的 RU 输出分开；不得因都叫 engine 共用错误 identity。
-2. 当前 direct-EU Fuel Engine 是已知 runtime divergence；要么迁移到 source-backed RU family，要么作为明确 CC policy 分裂新 kind。
-3. Burning Gas Generator 先选择 exact fixed-source machine family；在此之前保持 `UNVERIFIED`，不猜 RU/KU/EU。
-4. O-37 必须找到 fluid registration/material binding，或永久定为兼容 `DESIGN_POLICY` 并锁迁移。
-5. 每条转换有 input/output 总量、效率、余热/排气、simulate/execute 和外部端点降级测试。
+- `tools/t18_readiness.json` 为 `T18_READY`，T18a–d complete、pending 为空。29 machine kinds + STEAM/AU 两个 energy identities 均已分类，`unclassified = 0`；本批 selected 6、preimplemented reference 3、deferred 20，不宣称 29 kind 全实现。
+- selected 6 为 Bronze Firebox / Boiler / Steam Engine / Dynamo / Fuel Engine / Burning Gas Generator；四条链 Firebox→Boiler→Steam Engine、Fuel→RU、RU→EU、Gas→HU 的来源身份、守恒、堵塞、过载与 exhaust 事务均关闭。
+- `t18_converter_acquisition.json` 独立证明 6 个 converter profile 的 recipe/result/operand producer 可达，`unreachable = 0`；profile/block/item/blockstate/block model/item model/en_us/zh_cn/loot/pickaxe tag 双向闭合。
+- `t18_load_projection_input.json` / `t18_load_projection.json` 为 delivery T18 zero-workload `PASS`：converter tier/profile/identity 调整及 6 条 vanilla crafting 获取路线不增加 GT row，全部 runtime interval 为 0。
+- RecipeMap stable id 32 个、18,875 logical / 16,650 eager / 2,225 lazy、24 个 configured map 的 EMI recipe enumeration 均与 T17 baseline 完全相等，GT publication delta 为 0。
+- O-37 由固定 revision 完整 Java tree replay 永久关闭为 `O37_CLOSED_PERMANENT_DESIGN_POLICY`；无 `liquid_medium_oil` / material 9852 direct binding，不改 T9 identity、不新增 runtime registration，独立 publication delta 为 0。
 
 **子判据**
 
-- **T18a · 蒸汽链**：现有 firebox/boiler/steam engine 形成可获取、可诊断基线。
-- **T18b · RU→EU**：dynamo source tier 与守恒网络闭合。
-- **T18c · Fuel→RU**：fuel engine source identity、tier 与 exhaust 闭合。
-- **T18d · Gas generator / O-37**：来源选择与 Raw Oil identity 关闭或永久策略化。
+- ✅ **T18a · 蒸汽链**：firebox/boiler/steam engine 可获取、可诊断。
+- ✅ **T18b · Fuel/RU/EU**：Fuel Engine 与 Dynamo exact source、identity、守恒和 migration 闭合。
+- ✅ **T18c · Gas/HU**：Burning Gas Generator exact source、methane 守恒、exhaust 与 migration 闭合。
+- ✅ **T18d · 获取/载荷/O-37**：六机获取与资源双向闭包、T17 零载荷基线、O-37 永久策略和最终 currentness 闭合。
 
 **范围之外**
 
@@ -378,22 +383,24 @@ T13/T14 两道串行门禁均已关闭。T15–T19 即使代码依赖可以解�
 
 **完成信号**
 
-1. 三条能源链可从生存原料运行到机器做功。
-2. RU/KU/EU/HU 的转换边界不折叠。
-3. O-37 关闭或转为有永久兼容契约的 `DESIGN_POLICY`。
-4. Fuel Engine 与 Burning Gas Generator 不再处于未选 source family 的模糊状态。
+1. ✅ 四条能源链可从生存原料运行到机器做功。
+2. ✅ RU/KU/EU/HU/STEAM 的转换边界不折叠。
+3. ✅ O-37 永久关闭为有兼容契约的 `DESIGN_POLICY`，publication delta 为 0。
+4. ✅ Fuel Engine 与 Burning Gas Generator 不再处于未选 source family 的模糊状态。
 
 ---
 
 
 
-## T19 · Cover 与管道获取闭包 ⚪
+## T19 · Cover 与管道获取闭包 ✅
 
 **判据**
 
 > 按 T13 canonical cover kind 选择一批能显著提升自动化表达力的行为，复用 T8 pipe/cover runtime；同时关闭非金属管生存路线 O-27、逐 gauge predicate O-28，并在本轮机器 UI 中处理 O-20。已有 behavior kind 的新实例只改数据，新行为允许小型、登记过的 Java plugin。
 
 **依赖**：T18。
+
+**关闭证据**：`tools/t19_readiness.json` 为 `T19_READY`。47 个 canonical cover 按 4 implemented + 5 selected + 28 deferred + 10 out-of-scope 完整分类，`unclassified = 0`；selected cover 获取 5、非金属管获取 25、`unreachable = 0`。新增 30 条资源只记为 vanilla datapack entries，GT RecipeMap delta 为 0；32 maps、18,875 / 16,650 / 2,225 与 EMI 24 保持 T18 基线。5-tick 调度、32,768 route discovery、256-entry cache、13-byte config payload 与 blocked conservation 均进入 readiness。O-20 / O-27 / O-28 已关闭。
 
 **开工门禁**
 
@@ -426,10 +433,10 @@ T13/T14 两道串行门禁均已关闭。T15–T19 即使代码依赖可以解�
 
 **完成信号**
 
-1. selected cover 批次全部可生存获取、可配置并能端到端搬运。
-2. O-27、O-28、O-20 关闭。
-3. 新增同类 cover 实例只需数据；新增行为的 Java 成本被明确计数而非隐藏。
-4. 第三阶段工业阶梯从资源获取、能源转换、加工档位到自动化形成闭环。
+1. ✅ selected cover 批次全部可生存获取、可配置并能端到端搬运。
+2. ✅ O-27、O-28、O-20 关闭。
+3. ✅ 新增同类 cover 实例只需数据；新增行为的 Java 成本被明确计数而非隐藏。
+4. ✅ 第三阶段工业阶梯从资源获取、能源转换、加工档位到自动化形成闭环。
 
 ---
 
@@ -460,9 +467,9 @@ T9 的 129 条 catalog vein 已证明：闭包可以 129 / 129 全绿，同时�
 - `zh_cn` 真实覆盖率不低于本卡开工值；
 - 历史 O-15 / O-24 仍单独记账，不因“不倒退”被写成关闭。
 
-P3 以当前实际生成资源重算 O-15：`en_us` 3,153 键、真实
-`zh_cn` 344 键、缺失 2,809 键，其中材料名 1,774 个，覆盖率约
-10.91%。这些值由资源测试直接锁定；禁止用英文复制补齐键集。
+第三阶段早期曾以 3,159 / 355 / 2,804 记录 O-15。T19 权威关闭快照已更新为
+`en_us` 3,167、真实 `zh_cn` 366、visible debt 2,801，其中材料名 1,774。
+历史值不再作为当前 owner 的输入；禁止用英文复制补齐键集。
 
 总体规则见《总体规划》5.8。
 
@@ -482,15 +489,15 @@ P3 以当前实际生成资源重算 O-15：`en_us` 3,153 键、真实
 
 | 编号       | 内容                                                  | Owner                                                                    |
 | -------- | --------------------------------------------------- | ------------------------------------------------------------------------ |
-| **O-15** | 当前本地化债：缺失 2,809 / 材料名 1,774；不得伪译                    | 独立本地化数据批次                                                                |
-| **O-20** | 短配方进度步进                                             | T19                                                                      |
+| **O-15** | T26 已分账：3,173 `en_us` / 874 真实 `zh_cn` / 材料 208 + 1,566 `post_1_0`；不得伪译 | T26 收尾关闭 |
+| **O-20** | ✅ bounded per-tick progress permille；精确 BE 状态与长工时不回退       | T19 关闭                                                                  |
 | **O-26** | extruder sparse relation 压缩                         | ✅ T14 关闭：20 authored ↔ 2,782 logical 全字段等价，Hybrid 557 eager + 2,225 lazy |
-| **O-27** | 25 个非金属管获取                                          | T19                                                                      |
-| **O-28** | 逐 gauge pipe predicate                              | T19                                                                      |
-| **O-29** | GT6 worldgen 几何导入                                   | T19 后的独立 T 候选                                                            |
+| **O-27** | ✅ 25 个非金属管获取；5 source-backed Wood + 20 `DESIGN_POLICY_NON_GT6` | T19 关闭                                                                  |
+| **O-28** | ✅ 逐 gauge pipe predicate 共用 `PipeCatalog` specification key | T19 关闭                                                                  |
+| **O-29** | ✅ 已由 T20 关闭：40/75/1 source；129 = 73 SOURCE_DERIVED + 56 DESIGN_POLICY | T20 关闭                                                                  |
 | **O-33** | GT6 全量 canonical 分母                                 | ✅ T13 关闭：七表、tree/blob manifest、双向集合与 currentness 已进入 CI                  |
-| **O-36** | hot ingot 冷却来源                                      | 独立 fidelity 债                                                            |
-| **O-37** | Raw Oil identity                                    | T18                                                                      |
+| **O-36** | hot ingot 冷却来源                                      | T27 分类后生成的 v1-required fidelity 卡                                                            |
+| **O-37** | ✅ Raw Oil identity：固定 revision 无 direct binding；永久 `DESIGN_POLICY`，material 9852 仅 source layer，T9 migration / publication delta 均为 0 | T18 关闭 |
 | **O-39** | legacy anvil/crusher RecipeType addon/datapack 迁移窗口 | addon consumer 审计 + 兼容窗口后再评估删除                                           |
 
 
@@ -505,12 +512,12 @@ P3 以当前实际生成资源重算 O-15：`en_us` 3,153 键、真实
 
 | 内容                                                             | 推迟理由                                        |
 | -------------------------------------------------------------- | ------------------------------------------- |
-| 全 95 RecipeMap 批量投影                                            | T14 只定架构；后续按 map family 分批，不能一卡 720k        |
-| GT6 全多方块实现                                                     | T13 只清 canonical 分母；后续按 structure family 分批 |
-| O-29 worldgen 导入                                               | 独立保真项目，不能与活跃 T 并行                           |
-| `ITEMGENERATOR.PLANTS / ARMORS / PROJECTILES / LENSES / RAILS` | G10 外围玩法轴，第四阶段候选                            |
-| UUM / fusion / plasma / nuclear                                | 依赖完整末期能源和冷却体系                               |
-| GT6U 全量                                                        | 先由 T13/T14 的 denominator/load 架构证明可承接，再单独清点 |
+| 全 95 RecipeMap 批量投影                                            | 不属于第四阶段或 v1 契约；T21/T22 只覆盖 ordinary/petroleum 化学全集，不借机实现无关 map |
+| GT6 全多方块实现                                                     | T23 只选 2–3 个服务工业主链的代表结构 |
+| O-29 worldgen 导入                                               | ✅ 已由 T20 关闭 |
+| `ITEMGENERATOR.PLANTS / ARMORS / PROJECTILES / LENSES / RAILS` | G10 外围玩法轴，明确 `post_1_0` |
+| UUM / fusion / plasma / nuclear                                | 明确 `post_1_0`；需要独立末期物理与冷却体系 |
+| GT6U 全量                                                        | 明确 `post_1_0`，不阻断 v1 |
 | 动态合并渲染 / 全结构预览 GUI                                             | 表现层，不阻塞工业运行闭包                               |
 | GTM 式矿床衰减                                                      | 默认关闭的未来配置策略，不改 GT6 非衰减默认                    |
 
@@ -523,15 +530,15 @@ P3 以当前实际生成资源重算 O-15：`en_us` 3,153 键、真实
 
 每张卡除《总体规划》第 8 节外，还必须回答：
 
-- [ ] 分母来自 T13 artifact，不是 Wiki、类文件数或 CC 当前数量。
-- [ ] closure / fidelity / load 三轴分别写状态。
-- [ ] source 可投影全集与独立期望集双向相等，没有用抽样代替。
-- [ ] source → normalized output 没有未声明的字段压平。
-- [ ] datapack、publication、server/client reload/index 与内存分别落账。
-- [ ] 新增注册对象满足 5.8 的本地化 / 模型不倒退门禁。
-- [ ] 新增 tier 的 publication delta 为 0。
-- [ ] deferred 项有原因、replacement condition 和 recheck point。
-- [ ] 完整 verification 通过，`READY` 证据只绑定一次。
+- [x] 分母来自 T13 artifact，不是 Wiki、类文件数或 CC 当前数量。
+- [x] closure / fidelity / load 三轴分别写状态。
+- [x] source 可投影全集与独立期望集双向相等，没有用抽样代替。
+- [x] source → normalized output 没有未声明的字段压平。
+- [x] datapack、publication、server/client reload/index 与内存分别落账。
+- [x] 新增注册对象满足 5.8 的本地化 / 模型不倒退门禁。
+- [x] 新增 tier 的 publication delta 为 0。
+- [x] deferred 项有原因、replacement condition 和 recheck point。
+- [x] 完整 verification 通过，`READY` 证据只绑定一次。
 
 ---
 
@@ -539,12 +546,21 @@ P3 以当前实际生成资源重算 O-15：`en_us` 3,153 键、真实
 
 ## 6. T19 之后
 
-第四阶段从 T20 起，候选顺序由 T13/T14 的真实分母和载荷结果决定：
+第三阶段已经关闭并归档；下面的交接已经由
+《[CrucibleCraft-第四阶段总体规划.md](CrucibleCraft-第四阶段总体规划.md)》
+接管：
 
-1. **O-29 worldgen fidelity**：规范化器、材料映射与逐字段全量等价。
-2. **RecipeMap family 批次**：按运行机器和产品消费端逐族投影。
-3. **Multiblock family 批次**：复用 JSON structure 层，按需扩 schema。
-4. **G10 外围轴**：植物、护甲、弹药、镜片、轨道。
-5. **末期内容与 GT6U**：UUM、fusion、polymer 和更多大型机器。
+1. T20：O-29 worldgen fidelity；
+2. T21：224-material ledger、Mixer 64,245-row 零差异 template replay 与 Beta 必要性分母；input-touch raw row 只作诊断；
+3. T22：石油化工 source-row 全量与至少三种工业下游用途；
+4. T23：30 kind 先分类，再实现 2–3 个代表多方块；
+5. T24–T25：可复现规模证据与仅限实测 Beta blocker 的修复；
+6. T26：公开 Beta 门禁；
+7. T27：七类 denominator 的 v1.0 portfolio freeze，之后动态生成 T28+。
 
-真正顺序不在第三阶段提前猜；T13/T14 关闭时用可比较分母、依赖闭包和实测载荷重新排序。
+T20–T25 已关闭，当前入口为 T26（前置完成，等试玩）。固定 source replay 把 129 条
+catalog 重分为 73 `SOURCE_DERIVED` + 56 显式 `DESIGN_POLICY`，后者不计入
+GT6 parity。G10、
+nuclear/fusion/plasma 与 GT6U 已明确转为 `post_1_0`。当前 concrete datapack
+recipe file 为 3,243；3,230、3,240、3,260 和骨架中的 3,270 只保留历史或非权威语义，
+不得再作为当前快照。

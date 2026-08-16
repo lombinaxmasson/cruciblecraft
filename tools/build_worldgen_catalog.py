@@ -17,6 +17,7 @@ TOOLS = ROOT / "tools"
 sys.path.insert(0, str(ROOT))
 
 from tools import build_gt6_veins as vein_builder  # noqa: E402
+from tools import t20_worldgen_rows  # noqa: E402
 
 ORE_DECLARATIONS = (
     ROOT
@@ -37,6 +38,7 @@ T11_NATURAL_GAS_MATERIAL = (
     / "natural_gas.json"
 )
 CLOSURE_LEDGER = TOOLS / "gt6_ore_chain_closure.json"
+T20_SOURCE_POLICY = TOOLS / "t20_worldgen_source_policy.json"
 OUTPUT_RESOURCE_ROOT = ROOT / "src/worldgen_catalog_generated/resources"
 READINESS = TOOLS / "worldgen_catalog_readiness.json"
 RESOURCE_PATH = re.compile(r"[a-z0-9_.-]+")
@@ -142,12 +144,14 @@ def load_closure_veins(
     capabilities: dict[str, dict[str, set[str]]],
 ) -> list[dict[str, Any]]:
     document = require_mapping(load(ORE_DECLARATIONS), str(ORE_DECLARATIONS))
-    if document.get("schema_version") != 1:
-        raise ValueError("Closure ore declarations schema_version must be 1")
+    if document.get("schema_version") != 2:
+        raise ValueError("Closure ore declarations schema_version must be 2")
     if document.get("id") != "ore_vein_closure":
         raise ValueError(
             "Closure ore declarations id must be ore_vein_closure"
         )
+    if document.get("profile_version") != 2:
+        raise ValueError("Closure ore declarations profile_version must be 2")
     source_ledger = require_mapping(
         document.get("source_ledger"), "source_ledger"
     )
@@ -157,11 +161,27 @@ def load_closure_veins(
         or source_ledger.get("classification") != "vein"
     ):
         raise ValueError("Closure ore declarations must name the fixed T2c ledger")
-    defaults = require_mapping(document.get("defaults"), "defaults")
-    materials = document.get("materials")
-    if not isinstance(materials, list) or not materials:
-        raise ValueError("Closure ore declarations materials must be non-empty")
-    if any(
+    source_contract = require_mapping(
+        document.get("source_contract"), "source_contract"
+    )
+    if (
+        source_contract.get("policy")
+        != "tools/t20_worldgen_source_policy.json"
+        or source_contract.get("expected")
+        != "tools/t20_worldgen_expected.json"
+        or source_contract.get("revision")
+        != "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    ):
+        raise ValueError("Closure ore declarations T20 source contract drifted")
+    rows = document.get("veins")
+    if not isinstance(rows, list) or not rows:
+        raise ValueError("Closure ore declarations veins must be non-empty")
+    materials = [
+        row.get("catalog_material")
+        for row in rows
+        if isinstance(row, dict)
+    ]
+    if len(materials) != len(rows) or any(
         not isinstance(material, str)
         or RESOURCE_PATH.fullmatch(material) is None
         for material in materials
@@ -178,94 +198,47 @@ def load_closure_veins(
             f"missing={sorted(expected - actual)}, "
             f"stale={sorted(actual - expected)}"
         )
-
-    settings = {
-        "min_y": require_int(defaults, "min_y", -64, 320, "defaults"),
-        "max_y": require_int(defaults, "max_y", -64, 320, "defaults"),
-        "horizontal_radius": require_int(
-            defaults,
-            "horizontal_radius",
-            4,
-            vein_builder.MAX_SAFE_HORIZONTAL_RADIUS,
-            "defaults",
-        ),
-        "vertical_radius": require_int(
-            defaults, "vertical_radius", 2, 24, "defaults"
-        ),
-        "density": require_number(
-            defaults, "density", 0.01, 1.0, "defaults"
-        ),
-        "region_size_chunks": require_int(
-            defaults, "region_size_chunks", 2, 32, "defaults"
-        ),
-        "generation_chance": require_number(
-            defaults, "generation_chance", 0.0, 1.0, "defaults"
-        ),
-    }
-    if settings["min_y"] > settings["max_y"]:
-        raise ValueError("defaults.min_y must not exceed defaults.max_y")
-    weights = {
-        layer: require_int(
-            defaults,
-            f"{layer}_weight",
-            1,
-            10_000,
-            "defaults",
+    # Equality between the authored rows here and the independent T20 expected
+    # rows is proven by build_t20_worldgen_projection (index 51) via
+    # compare_authored, a forward edge 15 -> 51.  This builder must not pin
+    # #51's artifact or the graph regains a back edge.
+    veins = [
+        vein_builder.validate_vein(
+            Path(f"{row['id']}.json"), row, capabilities
         )
-        for layer in vein_builder.LAYERS
-    }
-    provenance = document.get("provenance")
-    if not isinstance(provenance, str) or not provenance.strip():
-        raise ValueError("Closure ore declarations provenance must be non-empty")
-
-    veins: list[dict[str, Any]] = []
-    for material in sorted(materials):
-        vein_id = f"large_{material}_vein"
-        source = {
-            "schema_version": 1,
-            "id": vein_id,
-            **{
-                layer: [{"material": material, "weight": weights[layer]}]
-                for layer in vein_builder.LAYERS
-            },
-            **settings,
-            "salt": stable_salt(vein_id),
-            "provenance": provenance,
-        }
-        veins.append(
-            vein_builder.validate_vein(
-                Path(f"{vein_id}.json"), source, capabilities
-            )
-        )
+        for row in rows
+    ]
     return veins
 
 
-def load_geometry_policy() -> dict[str, Any]:
-    document = require_mapping(
-        load(ORE_DECLARATIONS), str(ORE_DECLARATIONS)
-    )
-    policy = require_mapping(
-        document.get("geometry_policy"), "geometry_policy"
-    )
-    expected = {
-        "status": "UNIFORM_PLACEHOLDER",
-        "source": "CrucibleCraft T9 balance policy",
-        "gt6_worldgen_import": "DEFERRED",
-        "open_item": "O-29",
-    }
-    for key, value in expected.items():
-        if policy.get(key) != value:
-            raise ValueError(
-                f"geometry_policy.{key} must be {value!r}"
-            )
-    reason = policy.get("reason")
-    if not isinstance(reason, str) or not reason.strip():
-        raise ValueError("geometry_policy.reason must be non-empty")
-    defaults = require_mapping(document.get("defaults"), "defaults")
+def load_geometry_policy(rows: list[dict[str, Any]]) -> dict[str, Any]:
+    counts = t20_worldgen_rows.row_count_summary(rows)
+    if (
+        counts.get("catalog_entries") != 129
+        or counts.get("placeholder") != 0
+        or counts.get("unverified") != 0
+        or counts.get("unclassified") != 0
+    ):
+        raise ValueError("T20 authored geometry is not fully classified")
     return {
-        **policy,
-        "defaults": dict(defaults),
-        "role_material_policy": "single_material_all_layers",
+        "status": "T20_CLASSIFIED",
+        "profile_version": 2,
+        "source_revision": (
+            "3703e40308c8c030763fd6297dea8b210d2a77b1"
+        ),
+        "open_item": None,
+        "gt6_worldgen_import": "CLASSIFIED_WITH_EXPLICIT_POLICY",
+        "classifications": counts["classifications"],
+        "fidelity_statuses": counts["statuses"],
+        "placeholder": 0,
+        "unverified": 0,
+        "distinct_geometry_signatures": counts[
+            "distinct_geometry_signatures"
+        ],
+        "non_claim": (
+            "DESIGN_POLICY rows and source-derived NeoForge geometry are not "
+            "claimed as behaviorally identical GT6 large veins."
+        ),
     }
 
 
@@ -459,7 +432,7 @@ def build_documents() -> tuple[
 ]:
     capabilities = vein_builder.material_capabilities()
     closure_veins = load_closure_veins(capabilities)
-    geometry_policy = load_geometry_policy()
+    geometry_policy = load_geometry_policy(closure_veins)
     deposits = load_fluid_deposits()
     t2_veins = vein_builder.load_veins()
 
@@ -564,6 +537,10 @@ def build_documents() -> tuple[
                 ),
                 "sha256": sha256(ORE_DECLARATIONS),
             },
+            "t20_source_policy": {
+                "path": "tools/t20_worldgen_source_policy.json",
+                "sha256": sha256(T20_SOURCE_POLICY),
+            },
             "fluid_declarations": {
                 "path": (
                     "src/main/resources/data/cruciblecraft/"
@@ -590,6 +567,9 @@ def build_documents() -> tuple[
             "t2_vein_families": len(t2_veins),
             "t2_worldgen_materials": len(t2_materials),
             "closure_vein_classifications": len(closure_veins),
+            "t20_profile_v2_veins": sum(
+                vein["profile_version"] == 2 for vein in closure_veins
+            ),
             "closure_configured_ore_features": len(closure_veins),
             "closure_placed_ore_features": len(closure_veins),
             "registered_ore_materials": len(registered_ore_materials),
@@ -614,6 +594,7 @@ def build_documents() -> tuple[
             "decision": "keep_two_hosts",
         },
         "geometry_policy": geometry_policy,
+        "t20_fidelity": t20_worldgen_rows.row_count_summary(closure_veins),
         "closure_vein_materials": sorted(closure_materials),
         "closure_vein_feature_ids": sorted(vein["id"] for vein in closure_veins),
         "all_worldgen_ore_materials": sorted(

@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "status": "MEASURED",
+  "worst_case": true,
+  "measured_by": "src/test/java/com/masson/cruciblecraft/scale/ScaleWorkloadBoundTest.java (JUnit, deterministic exact counts; pipe schedule tests are pure JVM, multiblock counters use a fake StructureAccess)",
+  "scenarios": {
+    "small": {
+      "pipes_due_per_tick_max": 4,
+      "route_discovery_visited_max": 20,
+      "route_cache_entries_per_pipe_max": 256,
+      "port_scan_ops_max": 50,
+      "structure_validation_ops_max": 54,
+      "cover_configuration_payload_bytes_max": 13,
+      "menu_container_data_ints": 3
+    },
+    "target": {
+      "pipes_due_per_tick_max": 100,
+      "route_discovery_visited_max": 500,
+      "route_cache_entries_per_pipe_max": 256,
+      "port_scan_ops_max": 160,
+      "structure_validation_ops_max": 162,
+      "cover_configuration_payload_bytes_max": 13,
+      "menu_container_data_ints": 3
+    },
+    "stress": {
+      "pipes_due_per_tick_max": 400,
+      "route_discovery_visited_max": 2000,
+      "route_cache_entries_per_pipe_max": 256,
+      "port_scan_ops_max": 160,
+      "structure_validation_ops_max": 162,
+      "cover_configuration_payload_bytes_max": 13,
+      "menu_container_data_ints": 3
+    }
+  },
+  "scenario_value_derivation": {
+    "pipes_due_per_tick_max": "STATIC_INFERENCE from the 5-tick position-phased schedule (PipeTransferPhase): pipes_total / 5 exactly; asserted per tick by ScaleWorkloadBoundTest.",
+    "route_discovery_visited_max": "STATIC_INFERENCE worst case: every pipe in the scenario visited once (pipes_total); far below the 32768 traversal cap.",
+    "route_cache_entries_per_pipe_max": "The per-pipe route cache cap (256) is identical in every scenario; the scenario never raises it.",
+    "port_scan_ops_max": "2 ops per port (hasChunkAt + getBlockEntity) x the largest port count among the scenario's declared structures: tank_3x3x3 has 25 ports (50) for small; distillation_tower has 80 ports (160) for target/stress.",
+    "structure_validation_ops_max": "2 ops per position (isLoaded + blockState) x the largest structure: tank_3x3x3 27 positions (54) for small; distillation_tower 81 positions (162) for target/stress.",
+    "cover_configuration_payload_bytes_max": "Worst-case cover configuration packet bound (CoverConfigurationPayload.MAX_ENCODED_BYTES), identical across scenarios.",
+    "menu_container_data_ints": "ConfiguredProcessingMachineMenu.DATA_COUNT, identical across scenarios."
+  },
+  "declared_caps": {
+    "route_discovery_visited": 32768,
+    "route_cache_entries_per_item_pipe": 256,
+    "cover_slots_per_pipe": 6,
+    "cover_configuration_payload_bytes": 13,
+    "multiblock_scan_volume": 4096,
+    "menu_container_data_ints": 3
+  },
+  "measured_at_scale": {
+    "small": {
+      "status": "MEASURED_AT_SCALE",
+      "evidence": "GameTest suite t24Small* (5 tests incl. the mutation gate) in CrucibleCraftGameTests.java; the scenario is built from the declared manifest counts and runs warmup 200 + sampling 1200 ticks to a deterministic integer summary with conservation assertions. No wall-clock gate.",
+      "runtime": {
+        "os_name": "Windows 10 Pro",
+        "os_version": "10.0.19045",
+        "os_arch": "amd64",
+        "processors": 8,
+        "java_vendor": "Eclipse Adoptium",
+        "java_version": "21.0.12",
+        "java_vm": "OpenJDK 64-Bit Server VM",
+        "java_vm_version": "21.0.12+8-LTS",
+        "jvm_arguments": ["-Xmx2G", "-Dfile.encoding=UTF-8"],
+        "heap_max_bytes": 2147483648,
+        "gc_names": ["G1"],
+        "loaded_classes": null
+      },
+      "method": {
+        "clock": "game ticks (deterministic server tick loop)",
+        "warmup_ticks": 200,
+        "sampling_ticks": 1200,
+        "samples": 5,
+        "timing_error_bar": "not applicable - conservation and bounded-count assertions, no wall-clock gate"
+      }
+    },
+    "target": {
+      "status": "SKIP",
+      "reason": "No declared measurement environment available during handover; the operator's machine cannot host the declared target topology.",
+      "blocked_conclusions": [
+        "target-scale wall-clock reload/index",
+        "target-scale retained memory",
+        "target-scale network sync bytes"
+      ],
+      "replacement_condition": "Re-run on a declared environment with >= 16 GB RAM and record tools/t24_scale_evidence.json measured_at_scale.target",
+      "recheck_point": "T26 Beta candidate"
+    },
+    "stress": {
+      "status": "SKIP",
+      "reason": "No declared measurement environment available during handover; the operator's machine cannot host the declared stress topology.",
+      "blocked_conclusions": [
+        "stress-scale wall-clock reload/index",
+        "stress-scale retained memory",
+        "stress-scale network sync bytes"
+      ],
+      "replacement_condition": "Re-run on a declared environment with >= 16 GB RAM and record tools/t24_scale_evidence.json measured_at_scale.stress",
+      "recheck_point": "T26 Beta candidate"
+    }
+  }
+}

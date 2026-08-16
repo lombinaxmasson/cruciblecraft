@@ -1,0 +1,60 @@
+{
+  "audited_on": "2026-08-11",
+  "centrifuge_projection": {
+    "analysis": "29 rows use GT6 meta items (ore.broken.*, multiitem.food, meta.storage.raw) without CC identity mapping. 3 rows produce soulsandoil (not a registered CC fluid). 1 minecraft:soul_sand row would be projectable if soulsandoil were registered. Full projection requires: (a) GT6 meta item -> CC item identity mapping for 22 stone types + 4 food types + 3 misc, (b) soulsandoil CC fluid registration.",
+    "blocked_by_fluid_identity": 3,
+    "blocked_by_item_identity": 29,
+    "projectable": 0,
+    "total_petroleum_rows": 32
+  },
+  "classification_update": {
+    "actual_analysis": "54 translatable rows (7% of 756 sampled). 702 blocked, 74% by fluid_mapping.",
+    "ordinary_optional_mixer": 1057,
+    "previous_projection": "200 eager / 857 lazy (PROJECTED from A3)",
+    "rationale": [
+      "The v1 petroleum chain is fully covered by B2 distillery (oil->fuel+lubricant) + T11/T18 energy consumers.",
+      "The 49 mixer templates are accessory/specialty processing — fuel blends, plastic precursors, exotic chemicals.",
+      "93% of sampled rows have blocked operands (fluid/item mapping gaps).",
+      "Even the 54 translatable rows are accessory, not core chain.",
+      "Full mixer template projection is post-1.0 work — requires batch fluid identity import (T11 route) to unblock the 521 fluid_mapping rows."
+    ],
+    "revised_classification": "ALL 49 templates (1,057 rows) are ordinary_optional for Beta.",
+    "v1_required_mixer": 0
+  },
+  "delta_ledger_impact": {
+    "headroom_remaining": "21000 - 18880 = 2120",
+    "post_t22_logical": "18879 + 1 = 18880",
+    "t22_publication_total": "1 (B2 distillery) + 0 (mixer) = 1 eager row total"
+  },
+  "load_projection_update": {
+    "note": "Mixer 1,057 rows are excluded from T22 publication totals. They remain in the petroleum denominator as ordinary_optional with owner=B4 and recheck_point=post-1.0 fluid identity batch import.",
+    "previous": {
+      "eager": 200,
+      "evidence": "PROJECTED",
+      "lazy": 857
+    },
+    "revised": {
+      "eager": 0,
+      "evidence": "STATIC_INFERENCE",
+      "lazy": 0,
+      "logical_excluded": 1057
+    }
+  },
+  "mixer_petroleum_templates": {
+    "note": "756 of 1057 rows could be cross-referenced with source denominator. The remaining 301 rows are in different indexing (mixer template membership uses absolute indexes across all 10 maps, source denominator uses per-map relative indexes).",
+    "source_denominator_coverage": {
+      "blocked": 702,
+      "blocked_by_chemical_fluid_state": 40,
+      "blocked_by_fluid_mapping": 521,
+      "blocked_by_item_mapping": 62,
+      "blocked_by_item_registration": 38,
+      "blocked_by_machine_shape": 25,
+      "total_cross_referenced": 756,
+      "translatable": 54
+    },
+    "total_rows": 1057,
+    "total_templates": 49
+  },
+  "schema_version": 1,
+  "status": "T22_B4_OPERAND_PROOF"
+}

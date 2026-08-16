@@ -24,6 +24,7 @@ class WorldgenCatalogResourceTest {
                 .getAsJsonObject();
         var counts = readiness.getAsJsonObject("counts");
         assertEquals(129, counts.get("closure_vein_classifications").getAsInt());
+        assertEquals(129, counts.get("t20_profile_v2_veins").getAsInt());
         assertEquals(129, counts.get("closure_configured_ore_features").getAsInt());
         assertEquals(129, counts.get("closure_placed_ore_features").getAsInt());
         assertEquals(137, counts.get("registered_ore_materials").getAsInt());
@@ -47,6 +48,14 @@ class WorldgenCatalogResourceTest {
                             .get("type")
                             .getAsString(),
                     id);
+            var config = JsonParser.parseString(Files.readString(configured))
+                    .getAsJsonObject()
+                    .getAsJsonObject("config");
+            assertEquals(2, config.get("profile_version").getAsInt(), id);
+            assertEquals(
+                    "cruciblecraft:" + id,
+                    config.get("profile_id").getAsString(),
+                    id);
             assertEquals(
                     "cruciblecraft:" + id,
                     JsonParser.parseString(Files.readString(placed))
@@ -56,6 +65,10 @@ class WorldgenCatalogResourceTest {
                     id);
         }
         assertEquals(129, ids.size());
+        var geometry = readiness.getAsJsonObject("geometry_policy");
+        assertEquals("T20_CLASSIFIED", geometry.get("status").getAsString());
+        assertEquals(0, geometry.get("placeholder").getAsInt());
+        assertEquals(0, geometry.get("unverified").getAsInt());
     }
 
     @Test

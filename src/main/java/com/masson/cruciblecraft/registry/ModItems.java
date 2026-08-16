@@ -8,6 +8,7 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.item.MaterialItem;
+import com.masson.cruciblecraft.content.item.MaterialStorageBlockItem;
 import com.masson.cruciblecraft.content.item.CableBlockItem;
 import com.masson.cruciblecraft.content.item.CellItem;
 import com.masson.cruciblecraft.content.item.CeramicMoldBlockItem;
@@ -87,6 +88,15 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> LARGE_CENTRIFUGE =
             ITEMS.registerSimpleBlockItem(
                     "large_centrifuge", ModBlocks.LARGE_CENTRIFUGE);
+    public static final DeferredItem<BlockItem> DISTILLATION_TOWER =
+            ITEMS.registerSimpleBlockItem(
+                    "distillation_tower", ModBlocks.DISTILLATION_TOWER);
+    public static final DeferredItem<BlockItem> LARGE_BOILER =
+            ITEMS.registerSimpleBlockItem(
+                    "large_boiler", ModBlocks.LARGE_BOILER);
+    public static final DeferredItem<BlockItem> TANK_3X3X3 =
+            ITEMS.registerSimpleBlockItem(
+                    "tank_3x3x3", ModBlocks.TANK_3X3X3);
 
     public static final DeferredItem<Item> RAW_CERAMIC_CRUCIBLE =
             ITEMS.registerSimpleItem("raw_ceramic_crucible", new Item.Properties());
@@ -185,6 +195,36 @@ public final class ModItems {
                     "pipe_pump_cover",
                     () -> new PipeCoverItem(
                             PipeCoverType.OUTPUT_PUMP,
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> CONVEYOR_COVER =
+            ITEMS.register(
+                    "conveyor_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:conveyor",
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> RETRIEVER_ITEM_COVER =
+            ITEMS.register(
+                    "retriever_item_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:retriever_item",
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> ROBOT_ARM_COVER =
+            ITEMS.register(
+                    "robot_arm_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:robot_arm",
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> PRESSURE_VALVE_COVER =
+            ITEMS.register(
+                    "pressure_valve_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:pressure_valve",
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> SELECTOR_MANUAL_COVER =
+            ITEMS.register(
+                    "selector_manual_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:selector_manual",
                             new Item.Properties()));
     public static final DeferredItem<BlockItem> BRONZE_BOILER =
             ITEMS.registerSimpleBlockItem("bronze_boiler", ModBlocks.BRONZE_BOILER);
@@ -433,6 +473,13 @@ public final class ModItems {
                             material.id(),
                             form,
                             PipeCatalog.Kind.ITEM);
+                } else if (ModBlocks.hasStorageBlock(material.id())
+                        && form.equals(MaterialPrefixes.BLOCK)) {
+                    item = ITEMS.register(
+                            registryName,
+                            () -> new MaterialStorageBlockItem(
+                                    ModBlocks.storageBlock(material.id()).get(),
+                                    new Item.Properties()));
                 } else {
                     item = ITEMS.register(
                             registryName,

@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "document": "R4: Builder proof_tier and source_evidence coverage survey",
+  "survey_date": "2026-08-10",
+  "summary": {
+    "total_builders": 60,
+    "compact_with_full_replay": 18,
+    "compact_without_full_replay": 2,
+    "rederived_without_full_replay": 40,
+    "rederived_with_full_replay": 0
+  },
+  "analysis": {
+    "compare_gt6_recipes": {
+      "proof_tier": "compact",
+      "has_full_replay": true,
+      "has_source_evidence_in_policy": true,
+      "failure_root_cause": "Internal process evidence validation in compare_gt6_recipes.py requires source_evidence entries for 7 subsystems (air, firebox, fuels, steam, steam_engine, steelmaking, thermal) that have no evidence configured. These entries are missing from gt6_process_expectations.json. The builder policy schema is correct; the gap is in the content of the process expectations file."
+    },
+    "rederived_without_full_replay": "40 rederived builders operate entirely from committed artifacts and do not need raw-dump full_replay. This is by design. These are readiness/computation builders, not source-replay builders.",
+    "compact_without_full_replay_builders": [
+      {
+        "name": "build_t18_o37_identity_projection",
+        "reason": "Reads only committed resource JSON; no raw dump needed"
+      },
+      {
+        "name": "build_t21_operand_reachability",
+        "reason": "Reads only committed recipe resources and material definitions; designed for clean-checkout"
+      }
+    ]
+  },
+  "recommendations": [
+    {
+      "action": "Add source_evidence entries for the 7 subsystems to gt6_process_expectations.json",
+      "owner": "T5/T7 (original process evidence authors)",
+      "priority": "blocks compare_gt6_recipes builder"
+    },
+    {
+      "action": "Add mandatory full_replay check in load_builder_policy() for compact builders that reference raw dumps",
+      "code_location": "tools/run_full_verification.py:load_builder_policy()",
+      "rule": "If proof_tier == 'compact' and script source contains 'gt6_dump', full_replay must be present",
+      "priority": "defense-in-depth"
+    },
+    {
+      "action": "Treat missing source_evidence as explicit SKIP (not hard-fail) when running with --reference-only",
+      "code_location": "tools/compare_gt6_recipes.py:~3352",
+      "priority": "prevents vacuous PASS"
+    }
+  ]
+}

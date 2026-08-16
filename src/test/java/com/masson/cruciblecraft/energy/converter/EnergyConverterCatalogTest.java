@@ -1,0 +1,226 @@
+package com.masson.cruciblecraft.energy.converter;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import org.junit.jupiter.api.Test;
+
+class EnergyConverterCatalogTest {
+    @Test
+    void selectedSourceRowsAreFixedAndStagesRemainExplicit() {
+        Map<String, EnergyConverterProfile> profiles =
+                EnergyConverterCatalog.profiles().stream()
+                        .collect(Collectors.toMap(
+                                profile -> profile.id().toString(),
+                                profile -> profile));
+        assertEquals(6, profiles.size());
+        assertEquals(
+                Map.of(
+                        "cruciblecraft:bronze_firebox", 1102,
+                        "cruciblecraft:bronze_boiler", 1202,
+                        "cruciblecraft:bronze_steam_engine", 1302,
+                        "cruciblecraft:bronze_dynamo", 10111,
+                        "cruciblecraft:bronze_fuel_engine", 9147,
+                        "cruciblecraft:bronze_gas_generator", 1602),
+                profiles.entrySet().stream().collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        entry -> entry.getValue().source().sourceId())));
+        assertEquals(
+                6,
+                profiles.values().stream()
+                        .filter(profile ->
+                                profile.status()
+                                        == EnergyConverterProfile.Status.COMPLETE)
+                        .count());
+        assertTrue(profiles.values().stream()
+                .filter(profile -> profile.stage().equals("T18a"))
+                .allMatch(profile ->
+                        profile.status()
+                                == EnergyConverterProfile.Status.COMPLETE));
+        assertTrue(profiles.values().stream()
+                .filter(profile -> profile.stage().equals("T18b"))
+                .allMatch(profile ->
+                        profile.status()
+                                == EnergyConverterProfile.Status.COMPLETE));
+        assertTrue(profiles.values().stream()
+                .filter(profile -> profile.stage().equals("T18c"))
+                .allMatch(profile ->
+                        profile.status()
+                                == EnergyConverterProfile.Status.COMPLETE));
+    }
+
+    @Test
+    void bronzeSteamEngineChooses1302AndResolvesThe24UnitExpression() {
+        EnergyConverterProfile engine = EnergyConverterCatalog.require(
+                "cruciblecraft:bronze_steam_engine");
+        EnergyConverterProfile.OutputSemantics semantics =
+                engine.outputSemantics();
+        assertEquals(1302, engine.source().sourceId());
+        assertEquals(586, engine.source().sourceLine());
+        assertEquals("MT.Bronze", engine.source().materialExpression());
+        assertEquals(
+                "24/STEAM_PER_EU", engine.source().outputExpression());
+        assertEquals(12L, engine.outputPacket().size());
+        assertEquals(5_000, engine.efficiencyBps());
+        assertNotNull(semantics);
+        assertEquals(
+                "SOURCE_BACKED",
+                semantics.conservation().classification());
+        assertEquals(200, semantics.conservation().steamInputMb());
+        assertEquals(50, semantics.conservation().kuOutput());
+        assertEquals(4, semantics.conservation().steamMbPerKu());
+        assertEquals(
+                semantics.conservation().steamInputMb(),
+                semantics.conservation().kuOutput()
+                        * semantics.conservation().steamMbPerKu());
+        assertEquals(
+                "SOURCE_DERIVED_NOMINAL",
+                semantics.sourceNominal().classification());
+        assertEquals(24, semantics.sourceNominal().registeredNumerator());
+        assertEquals(2, semantics.sourceNominal().steamPerEu());
+        assertEquals(
+                semantics.sourceNominal().mOutputKu(),
+                semantics.sourceNominal().registeredNumerator()
+                        / semantics.sourceNominal().steamPerEu());
+        assertEquals(
+                "DESIGN_POLICY_FIXED_OUTPUT",
+                semantics.fixedOutput().classification());
+        assertEquals(12, semantics.fixedOutput().kuPerTick());
+        assertEquals(
+                "DEFERRED_REPLACEMENT",
+                semantics.gt6Runtime().classification());
+        assertEquals(6, semantics.gt6Runtime().minimumKuPerTick());
+        assertEquals(24, semantics.gt6Runtime().maximumKuPerTick());
+        assertTrue(!semantics.gt6Runtime().replacementCondition().isBlank());
+        assertTrue(!semantics.gt6Runtime().recheckPoint().isBlank());
+        assertEquals(
+                java.util.List.of(
+                        "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/"
+                                + "Loader_MultiTileEntities.java:586",
+                        "gt6_code/gregtech6/src/main/java/gregapi/data/"
+                                + "CS.java:240",
+                        "gt6_code/gregtech6/src/main/java/gregtech/tileentity/"
+                                + "energy/converters/"
+                                + "MultiTileEntityEngineSteam.java:"
+                                + "58,62-63,77-80,98-103,121-146"),
+                semantics.sourceEvidencePaths());
+        assertTrue(engine.policy().sourceResolution().contains(
+                "DESIGN_POLICY_FIXED_OUTPUT_12_KU_PER_TICK"));
+    }
+
+    @Test
+    void completeSteamChainProfilesLockConservationAndFaces() {
+        EnergyConverterProfile firebox = EnergyConverterCatalog.require(
+                "cruciblecraft:bronze_firebox");
+        EnergyConverterProfile boiler = EnergyConverterCatalog.require(
+                "cruciblecraft:bronze_boiler");
+        EnergyConverterProfile engine = EnergyConverterCatalog.require(
+                "cruciblecraft:bronze_steam_engine");
+        assertEquals(24L, firebox.outputPacket().maxAmountPerTick());
+        assertEquals(7_500, firebox.efficiencyBps());
+        assertEquals("FM.Furnace", firebox.fuelMap());
+        assertEquals(80, boiler.conservation().primaryInputUnits());
+        assertEquals(1, boiler.conservation().secondaryInputUnits());
+        assertEquals(160, boiler.conservation().outputUnits());
+        assertEquals(200, engine.conservation().primaryInputUnits());
+        assertEquals(50, engine.conservation().outputUnits());
+        assertEquals(1, engine.conservation().exhaustUnits());
+        assertEquals(
+                java.util.List.of("UP"),
+                firebox.faces().energyOutputs());
+        assertEquals(
+                java.util.List.of("DOWN"),
+                boiler.faces().energyInputs());
+        assertEquals(
+                java.util.List.of("FRONT"),
+                engine.faces().energyOutputs());
+    }
+
+    @Test
+    void t18bDynamoCorrectsLegacy24To24WithAuditableSourceLoss() {
+        EnergyConverterProfile dynamo = EnergyConverterCatalog.require(
+                "cruciblecraft:bronze_dynamo");
+
+        assertEquals(10111, dynamo.source().sourceId());
+        assertEquals("MT.DATA.Electric_T[1]",
+                dynamo.source().materialExpression());
+        assertEquals(16L, dynamo.inputWindow().minimum());
+        assertEquals(32L, dynamo.inputWindow().nominal());
+        assertEquals(64L, dynamo.inputWindow().maximum());
+        assertEquals(22L, dynamo.outputPacket().size());
+        assertEquals(6_875, dynamo.efficiencyBps());
+        assertEquals(32, dynamo.conservation().primaryInputUnits());
+        assertEquals(22, dynamo.conservation().outputUnits());
+        assertEquals(10, dynamo.conservation().exhaustUnits());
+        assertEquals(
+                32,
+                dynamo.conservation().outputUnits()
+                        + dynamo.conservation().exhaustUnits());
+        assertTrue(dynamo.policy().blockage().contains(
+                "NBT_WASTE_ENERGY"));
+        assertTrue(dynamo.policy().sourceResolution().contains(
+                "LEGACY_LOCAL_24_RU_TO_24_EU_REPLACED"));
+    }
+
+    @Test
+    void t18bFuelEngineLocksMotorLiquidSourceAndRuPacket() {
+        EnergyConverterProfile engine = EnergyConverterCatalog.require(
+                "cruciblecraft:bronze_fuel_engine");
+
+        assertEquals(9147, engine.source().sourceId());
+        assertEquals("MultiTileEntityMotorLiquid",
+                engine.source().machineKind());
+        assertEquals("FM.Engine", engine.fuelMap());
+        assertEquals(10_000, engine.efficiencyBps());
+        assertEquals("RU", engine.outputPacket().identity());
+        assertEquals(16L, engine.outputPacket().size());
+        assertEquals(512, engine.conservation().outputUnits());
+        assertEquals(1, engine.conservation().exhaustUnits());
+        assertTrue(engine.policy().sourceResolution().contains(
+                "CURRENT_KINETIC_ROTATION_IDENTITY_REQUIRED"));
+        assertTrue(engine.policy().sourceResolution().contains(
+                "MISSING_PARTIAL_OR_WRONG_IDENTITY_QUARANTINED"));
+    }
+
+    @Test
+    void t18cGasGeneratorLocksBurnFuelHuRateAndEfficiency() {
+        EnergyConverterProfile generator = EnergyConverterCatalog.require(
+                "cruciblecraft:bronze_gas_generator");
+
+        assertEquals(1602, generator.source().sourceId());
+        assertEquals("MultiTileEntityGeneratorGas",
+                generator.source().machineKind());
+        assertEquals("FM.Burn", generator.fuelMap());
+        assertEquals("HU", generator.outputPacket().identity());
+        assertEquals(1L, generator.outputPacket().size());
+        assertEquals(24L,
+                generator.outputPacket().maxAmountPerTick());
+        assertEquals(7_500, generator.efficiencyBps());
+        assertEquals(1_536,
+                generator.conservation().primaryInputUnits());
+        assertEquals(1_152, generator.conservation().outputUnits());
+        assertEquals(9, generator.conservation().exhaustUnits());
+        assertEquals(java.util.List.of("UP"),
+                generator.faces().energyOutputs());
+        assertTrue(generator.policy().sourceResolution().contains(
+                "CURRENT_HEAT_IDENTITY_REQUIRED"));
+        assertTrue(generator.policy().sourceResolution().contains(
+                "MISSING_PARTIAL_OR_WRONG_IDENTITY_QUARANTINED"));
+    }
+
+    @Test
+    void catalogAndSchemaAreBundledRuntimeResources() {
+        assertNotNull(EnergyConverterCatalogTest.class.getResource(
+                "/data/cruciblecraft/energy_converters.json"));
+        Path schema = Path.of(
+                "src/main/resources/data/cruciblecraft/schema/"
+                        + "energy_converters.schema.json");
+        assertTrue(Files.isRegularFile(schema));
+    }
+}

@@ -1,6 +1,8 @@
 package com.masson.cruciblecraft.client.screen;
 
 import com.masson.cruciblecraft.content.menu.CokeOvenMenu;
+import com.masson.cruciblecraft.machine.processing.Gt6BasicMachineGui;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -10,11 +12,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public final class CokeOvenScreen extends AbstractContainerScreen<CokeOvenMenu> {
     private static final ResourceLocation TEXTURE =
-            ResourceLocation.withDefaultNamespace("textures/gui/container/furnace.png");
-    private static final int TANK_X = 34;
-    private static final int TANK_Y = 17;
-    private static final int TANK_WIDTH = 10;
-    private static final int TANK_HEIGHT = 52;
+            MachineGuiTextures.forPath("coke_oven");
 
     public CokeOvenScreen(
             CokeOvenMenu menu,
@@ -38,29 +36,29 @@ public final class CokeOvenScreen extends AbstractContainerScreen<CokeOvenMenu> 
                 imageWidth,
                 imageHeight);
 
-        int progress = menu.scaledProgress(24);
-        if (progress > 0) {
-            graphics.fill(
-                    leftPos + 79,
-                    topPos + 34,
-                    leftPos + 79 + progress,
-                    topPos + 40,
-                    0xFFD36B19);
+        ProcessingMachineSpec.ProgressBar progress = CokeOvenMenu.LAYOUT.progress();
+        int scaled = menu.scaledProgress(progress.width());
+        if (scaled > 0) {
+            graphics.blit(
+                    TEXTURE,
+                    leftPos + progress.x(),
+                    topPos + progress.y(),
+                    Gt6BasicMachineGui.PROGRESS_U,
+                    Gt6BasicMachineGui.PROGRESS_V,
+                    scaled,
+                    progress.height());
         }
 
-        graphics.fill(
-                leftPos + TANK_X - 1,
-                topPos + TANK_Y - 1,
-                leftPos + TANK_X + TANK_WIDTH + 1,
-                topPos + TANK_Y + TANK_HEIGHT + 1,
-                0xFF373737);
-        int fluidHeight = menu.scaledTank(TANK_HEIGHT);
-        graphics.fill(
-                leftPos + TANK_X,
-                topPos + TANK_Y + TANK_HEIGHT - fluidHeight,
-                leftPos + TANK_X + TANK_WIDTH,
-                topPos + TANK_Y + TANK_HEIGHT,
-                0xFF5A3219);
+        ProcessingMachineSpec.TankPosition tank = CokeOvenMenu.LAYOUT.tanks().getFirst();
+        int fluidHeight = menu.scaledTank(Math.max(0, tank.height() - 2));
+        if (fluidHeight > 0) {
+            graphics.fill(
+                    leftPos + tank.x() + 1,
+                    topPos + tank.y() + tank.height() - 1 - fluidHeight,
+                    leftPos + tank.x() + tank.width() - 1,
+                    topPos + tank.y() + tank.height() - 1,
+                    0xFF5A3219);
+        }
     }
 
     @Override
@@ -84,10 +82,9 @@ public final class CokeOvenScreen extends AbstractContainerScreen<CokeOvenMenu> 
             float partialTick) {
         super.render(graphics, mouseX, mouseY, partialTick);
         renderTooltip(graphics, mouseX, mouseY);
-        if (mouseX >= leftPos + TANK_X
-                && mouseX < leftPos + TANK_X + TANK_WIDTH
-                && mouseY >= topPos + TANK_Y
-                && mouseY < topPos + TANK_Y + TANK_HEIGHT) {
+        ProcessingMachineSpec.TankPosition tank = CokeOvenMenu.LAYOUT.tanks().getFirst();
+        if (isHovering(
+                tank.x(), tank.y(), tank.width(), tank.height(), mouseX, mouseY)) {
             graphics.renderTooltip(
                     font,
                     Component.translatable(

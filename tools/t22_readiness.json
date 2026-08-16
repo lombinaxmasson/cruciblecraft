@@ -1,0 +1,86 @@
+{
+  "closure": {
+    "consumer_products_closed": 3,
+    "evidence": {
+      "consumer_audit": "tools/t22_c1_consumer_audit.json",
+      "family_capability": "tools/t22_family_capability.json",
+      "family_manifest": "tools/t22_family_manifest.json",
+      "petroleum_denominator": "tools/t22_petroleum_denominator.json"
+    },
+    "families_with_full_closure": 2,
+    "families_with_unreachable_operands": 0,
+    "family_count": 3,
+    "in_scope_runtime_blockers": 0,
+    "petroleum_source_rows": 1084,
+    "petroleum_source_units": 63,
+    "petroleum_unclassified": 0,
+    "row_diagnostic_is_closure_numerator": false,
+    "v1_required_remaining": 0,
+    "v1_required_units": 1
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T22 petroleum denominator fully classified (1084 rows, unclassified=0). v1_required total = 2 rows, both published (crude_oil distillation + kerosine normalization). 1057 construction foam rows = cross_mod_compat; 9 ore processing byproduct; 3 post_1_0_g10; 2 generic processing. 3 T22 GameTests verified on dedicated server. Repository-wide verification bound separately by full snapshot report."
+  },
+  "completed_stages": [
+    "T22a",
+    "T22b",
+    "T22c",
+    "T22d"
+  ],
+  "currentness": {
+    "full_verification": {
+      "evidence": "tools/full_verification_report.json",
+      "pending": [],
+      "status": "BOUND_TO_FULL_VERIFICATION_REPORT"
+    },
+    "owned_inputs": {
+      "tools/build_t22_readiness.py": "3df57381acaebde1ccc3c3db08a96ddaac588bd8ec962b491dcdcf03de5cca7f"
+    }
+  },
+  "fidelity": {
+    "consumer_operand_proof": true,
+    "evidence": {
+      "b2_crude_oil": "tools/t22_b2_crude_oil_manifest.json",
+      "consumer_audit": "tools/t22_c1_consumer_audit.json",
+      "family_manifest": "tools/t22_family_manifest.json"
+    },
+    "family_actual_multiset_sha256": "3fc6e04e1c100d0f2f7fe4c85b90a7f27800d032c530f9f7844860d8d6a885ee",
+    "family_actual_rows": 11,
+    "family_expected_multiset_sha256": "3fc6e04e1c100d0f2f7fe4c85b90a7f27800d032c530f9f7844860d8d6a885ee",
+    "family_expected_rows": 11,
+    "family_extra": 0,
+    "family_membership_duplicate": 0,
+    "family_membership_unassigned": 0,
+    "family_missing": 0,
+    "identity_boundary_intact": true
+  },
+  "load": {
+    "eager_rows": 16657,
+    "evidence": {
+      "load_projection": "tools/t22_load_projection.json",
+      "publication_baseline": "src/main/resources/data/cruciblecraft/t22_publication_baseline.json"
+    },
+    "hard_ceiling": 21000,
+    "headroom_remaining": 2118,
+    "lazy_rows": 2225,
+    "logical_rows": 18882,
+    "projection_status": "PASS",
+    "publication_delta": {
+      "eager": 3,
+      "lazy": 0,
+      "logical": 3
+    }
+  },
+  "pending_stages": [],
+  "policy": "The status field is derived from evidence by build(). Any mismatch between the committed value and a fresh build is detected by check().",
+  "runtime": {
+    "gametest_passing": true,
+    "gametest_t22_added": 3,
+    "gametest_total": 88
+  },
+  "schema_version": 1,
+  "status": "T22_READY",
+  "status_owner": "run_full_verification"
+}

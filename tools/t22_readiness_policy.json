@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "status": "T22_READINESS_POLICY",
+  "status_policy": {
+    "ready": "T22_READY",
+    "in_progress": "T22_IN_PROGRESS",
+    "complete_stage_status": "COMPLETE",
+    "in_progress_stage_status": "IN_PROGRESS"
+  },
+  "dependencies": {
+    "T21": {
+      "path": "tools/t21_readiness.json",
+      "required_status": "T21_READY"
+    },
+    "petroleum_denominator": {
+      "path": "tools/t22_petroleum_denominator.json",
+      "required_status": "T22_PETROLEUM_DENOMINATOR_READY"
+    },
+    "family_capability": {
+      "path": "tools/t22_family_capability.json",
+      "required_status": "T22_FAMILY_CAPABILITY_READY"
+    },
+    "load_projection": {
+      "path": "tools/t22_load_projection.json",
+      "required_status": "PASS"
+    },
+    "family_manifest": {
+      "path": "tools/t22_family_manifest.json",
+      "required_status": "T22_FAMILY_MANIFEST_READY"
+    }
+  },
+  "stages": {
+    "T22a": {
+      "name": "petroleum_denominator_and_strategy",
+      "status": "IN_PROGRESS",
+      "acceptance": "Classify all petroleum source rows (T21 10-map + distillery + other uncovered maps) with unclassified=0; complete family capability assessment with consumer + operand proof; finalize load projection against 2,121 headroom."
+    },
+    "T22b": {
+      "name": "prerequisites_and_first_family",
+      "status": "IN_PROGRESS",
+      "acceptance": "Fill all family prerequisites (machines, energy, containers, fluids) without creating a second machine architecture; complete the first family full projection with dual multiset verification and delta accumulator validation."
+    },
+    "T22c": {
+      "name": "batch_family_projection",
+      "status": "IN_PROGRESS",
+      "acceptance": "Project every remaining v1 family with the six-point closeout checklist; register per-family load strategy and publication deltas; keep global totals within hard gates."
+    },
+    "T22d": {
+      "name": "consumers_gametest_closure",
+      "status": "IN_PROGRESS",
+      "acceptance": "Wire three downstream products to real consumers; implement player-cycle and edge-case GameTests on dedicated server; close three-axis ledger and run a single clean full verification record."
+    }
+  },
+  "refresh_policy": {
+    "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+    "this_refresh_final_closure_attempted": false,
+    "evidence": "tools/full_verification_report.json"
+  },
+  "closure_policy": {
+    "final_closure_attempted": false,
+    "pending": [
+      "Build petroleum exact denominator with unclassified=0 covering T21 10-map + distillery + other uncovered maps (A1)",
+      "Complete family capability assessment: every v1 family has source rows, material/fluid mapping, executing machine, energy identity, and real consumer with bidirectional proof (A2)",
+      "Finalize load projection: per-family logical delta prediction vs 2,121 headroom, strategy decision for each family (A3)",
+      "Fill family prerequisites: missing machines, energy identities, containers, fluid identities without creating second architecture (B1)",
+      "Complete first family full projection: dual multiset hash equality, missing/extra/membership_unassigned/membership_duplicate all zero, delta accumulator validated (B2)",
+      "Batch project all remaining v1 families with six-point closeout: bidirectional equality, operand+consumer proof, delta registration, load projection PASS, localization/model no regression, rebuild+diff (B3)",
+      "Register per-family load strategy and publication deltas; confirm global logical/eager/lazy within hard gates with MEASURED figures (B4)",
+      "Wire three downstream petroleum products to real consumers; identity boundaries (T18 O37, T11, material 9852) must not be rewritten (C1)",
+      "Implement player-cycle GameTests on dedicated server with real acquisition paths (not loadRecipeInputs shortcut) (C2)",
+      "Add conservation/clog/power-loss/reload/save GameTests covering five anomaly paths (C3)",
+      "Close three-axis ledger (closure/fidelity/load) and derive readiness status from gates (D1)",
+      "Run rebuild_artifacts.py --keep-going and verify zero historical baseline drift in git diff (D2)",
+      "Single clean run_full_verification.py --record --new-session with all five steps PASS (D3)"
+    ],
+    "reason": "T22a-d implementation and currentness gates are complete; repository-wide verification is bound separately by the full snapshot report."
+  }
+}

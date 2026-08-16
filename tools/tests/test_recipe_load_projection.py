@@ -207,6 +207,14 @@ class RecipeLoadProjectionTest(unittest.TestCase):
             ledger["counts"],
         )
         self.assertEqual(
+            {
+                "vanilla_datapack_entries": 0,
+                "gt_authored_entries": 10,
+                "gt_logical_rows": 25,
+            },
+            ledger["publication_domains"],
+        )
+        self.assertEqual(
             {"min": 6, "max": 9},
             ledger["measurement_intervals"]["server_reload_ms"],
         )
@@ -275,6 +283,59 @@ class RecipeLoadProjectionTest(unittest.TestCase):
             schema=self.schema,
         )
         self.assertEqual(7, result["ledger"]["counts"]["logical_rows"])
+
+    def test_schema_two_keeps_vanilla_entries_out_of_gt_publication(self):
+        vanilla = family(
+            "t19/vanilla-acquisition",
+            "gt.recipe.bath",
+            "immediate",
+            authored=30,
+            logical=0,
+            eager=0,
+            lazy=0,
+            cache=0,
+            sync=0,
+            scale=0,
+        )
+        vanilla["canonical_ids"] = []
+        vanilla["publication_domain"] = "vanilla_crafting"
+        vanilla["vanilla_datapack_entries"] = 30
+        vanilla["measurement_basis"] = {
+            "kind": "family_specific_measurement",
+            "source": (
+                "Exact generated T19 vanilla recipe set; GT loader work "
+                "remains zero."
+            ),
+            "measured_logical_rows": [0],
+        }
+        selected = document(vanilla)
+        selected["schema_version"] = 2
+        selected["delivery_phase"] = "T19"
+        result = projection.project(
+            selected,
+            t13=self.t13,
+            policy=self.policy,
+            schema=self.schema,
+        )
+        self.assertEqual(
+            {
+                "vanilla_datapack_entries": 30,
+                "gt_authored_entries": 0,
+                "gt_logical_rows": 0,
+            },
+            result["ledger"]["publication_domains"],
+        )
+        self.assertEqual(
+            30,
+            result["ledger"]["counts"]["datapack_authored_entries"],
+        )
+        self.assertEqual(0, result["ledger"]["counts"]["logical_rows"])
+
+        mislabeled = copy.deepcopy(selected)
+        mislabeled["families"][0]["logical_rows"] = 30
+        mislabeled["families"][0]["eager_publication_rows"] = 30
+        with self.assertRaises(projection.ProjectionError):
+            projection.validate_input(mislabeled, self.t13)
 
     def test_hard_budget_excess_fails_and_soft_budget_is_distinct(self):
         over = document(copy.deepcopy(self.immediate))
@@ -377,7 +438,7 @@ class RecipeLoadProjectionTest(unittest.TestCase):
     def test_t15_through_t19_examples_project_no_new_recipes(self):
         fixture_set = projection.load(FIXTURES)
         self.assertEqual(
-            list(projection.DELIVERY_PHASES),
+            ["T15", "T16", "T17", "T18", "T19"],
             [
                 fixture["delivery_phase"]
                 for fixture in fixture_set["fixtures"]
@@ -397,6 +458,34 @@ class RecipeLoadProjectionTest(unittest.TestCase):
                 "PASS",
                 result["status"],
             )
+
+    def test_committed_t21_projection_is_current_small_immediate_family(self):
+        selected_input = projection.load(
+            projection.ROOT / "tools" / "t21_load_projection_input.json"
+        )
+        selected = projection.project(
+            selected_input,
+            t13=self.t13,
+            policy=self.policy,
+            schema=self.schema,
+        )
+        committed = projection.load(
+            projection.ROOT / "tools" / "t21_load_projection.json"
+        )
+        self.assertEqual(selected, committed)
+        self.assertEqual("T21", selected["delivery_phase"])
+        self.assertEqual("PASS", selected["status"])
+        self.assertEqual(
+            {
+                "datapack_authored_entries": 4,
+                "logical_rows": 4,
+                "eager_publication_rows": 4,
+                "lazy_logical_rows": 0,
+                "lazy_cache_ceiling_rows": 0,
+                "sync_bytes": 2865,
+            },
+            selected["ledger"]["counts"],
+        )
 
     def test_committed_t15_projection_is_current_zero_workload(self):
         selected_input = projection.load(
@@ -473,6 +562,40 @@ class RecipeLoadProjectionTest(unittest.TestCase):
         )
         self.assertEqual(selected, committed)
         self.assertEqual("T17", selected["delivery_phase"])
+        self.assertEqual("PASS", selected["status"])
+        self.assertEqual(
+            {
+                "datapack_authored_entries": 0,
+                "logical_rows": 0,
+                "eager_publication_rows": 0,
+                "lazy_logical_rows": 0,
+                "lazy_cache_ceiling_rows": 0,
+                "sync_bytes": 0,
+            },
+            selected["ledger"]["counts"],
+        )
+        self.assertTrue(all(
+            interval == {"min": 0, "max": 0}
+            for interval in selected["ledger"][
+                "measurement_intervals"
+            ].values()
+        ))
+
+    def test_committed_t18_projection_is_current_zero_workload(self):
+        selected_input = projection.load(
+            projection.ROOT / "tools" / "t18_load_projection_input.json"
+        )
+        selected = projection.project(
+            selected_input,
+            t13=self.t13,
+            policy=self.policy,
+            schema=self.schema,
+        )
+        committed = projection.load(
+            projection.ROOT / "tools" / "t18_load_projection.json"
+        )
+        self.assertEqual(selected, committed)
+        self.assertEqual("T18", selected["delivery_phase"])
         self.assertEqual("PASS", selected["status"])
         self.assertEqual(
             {

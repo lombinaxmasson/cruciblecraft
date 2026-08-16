@@ -93,7 +93,10 @@ public final class RuleExpression {
     }
 
     public boolean usesLookup() {
-        return source.contains("target_units(") || source.contains("prefix_units(");
+        return source.contains("target_units(")
+                || source.contains("prefix_units(")
+                || source.contains("fluid_pipe_recipe(")
+                || source.contains("item_pipe_recipe(");
     }
 
     private static RuleExpression compile(String source, String ruleId, Type expected) {
@@ -487,7 +490,10 @@ public final class RuleExpression {
                 expect(")");
                 return new Predicate(name, List.of(selector, prefix));
             }
-            if (name.equals("target_units") || name.equals("prefix_units")) {
+            if (name.equals("target_units")
+                    || name.equals("prefix_units")
+                    || name.equals("fluid_pipe_recipe")
+                    || name.equals("item_pipe_recipe")) {
                 if (token.kind != TokenKind.IDENTIFIER && token.kind != TokenKind.STRING) {
                     throw error(name + " requires one target/prefix argument");
                 }

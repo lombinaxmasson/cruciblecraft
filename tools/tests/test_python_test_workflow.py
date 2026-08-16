@@ -94,6 +94,7 @@ class PythonTestWorkflowTest(unittest.TestCase):
         self.assertFalse(selection.escalated_to_closure)
         self.assertEqual(
             {
+                "test_build_processing_machine_energy_audit",
                 "test_build_t16_machine_acquisition",
                 "test_build_t16_machine_denominator",
                 "test_build_t16_readiness",

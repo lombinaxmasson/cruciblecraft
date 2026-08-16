@@ -235,7 +235,7 @@ public record ItemPipeTransferPlan(
                         route,
                         "Item endpoint lookup failed during execution",
                         failure);
-                return new Execution(amount, 0);
+                return new Execution(0, 0);
             }
             if (current == null) {
                 PipeTransferDiagnostics.warnOnce(
@@ -254,6 +254,7 @@ public record ItemPipeTransferPlan(
                 return new Execution(0, 0);
             }
             ItemStack remaining = template.copyWithCount(confirmed);
+            int committed = 0;
             try {
                 for (int slot = 0;
                         slot < current.getSlots() && !remaining.isEmpty();
@@ -264,22 +265,23 @@ public record ItemPipeTransferPlan(
                         PipeTransferDiagnostics.warnOnce(
                                 "item endpoint execution",
                                 current,
-                                "Item endpoint returned invalid executed "
-                                        + "remainder; source amount dissipated");
-                        return new Execution(amount, 0);
+                            "Item endpoint returned invalid executed "
+                                    + "remainder; retaining unconfirmed source");
+                        return new Execution(committed, committed);
                     }
+                    committed += remaining.getCount() - next.getCount();
                     remaining = next;
                 }
             } catch (RuntimeException failure) {
                 PipeTransferDiagnostics.warnOnce(
                         "item endpoint execution",
                         current,
-                        "Item endpoint execution failed; source amount "
-                                + "dissipated",
+                        "Item endpoint execution failed; retaining "
+                                + "unconfirmed source",
                         failure);
-                return new Execution(amount, 0);
+                return new Execution(committed, committed);
             }
-            int actual = confirmed - remaining.getCount();
+            int actual = committed;
             if (actual < confirmed) {
                 PipeTransferDiagnostics.warnOnce(
                         "item endpoint execution",

@@ -1,0 +1,55 @@
+{
+  "consumer": "minecraft:tnt and vanilla gunpowder consumers",
+  "counts": {
+    "authored_rules": 1,
+    "datapack_files": 4,
+    "eager_rows": 4,
+    "lazy_rows": 0,
+    "logical_rows": 4,
+    "source_facts": 4
+  },
+  "family": "mixer/gunpowder",
+  "inputs": {
+    "tools/gt6_mixer_templates_index.json": "8ad622573c8a9bc4c940038300dc6e3cab6222f8bf5e261a737a93a57e02dffd",
+    "tools/gt6_mixer_templates_membership.json": "5ebc7b2689e562d4db2ba8825eec566b09f896caa7113d3678e83c3687d7296a",
+    "tools/t21_template_denominator_policy.json": "b54c710e63a3913d8d644a1ad59f18c1d510949164526395139950a66400d2e4"
+  },
+  "publication_delta": {
+    "eager": 4,
+    "lazy": 0,
+    "logical": 4
+  },
+  "rows": [
+    {
+      "id": "cruciblecraft:t21/mixer/gunpowder/carbon",
+      "material": "carbon",
+      "path": "src/t21_chemical_generated/resources/data/cruciblecraft/recipe/t21/mixer/gunpowder/carbon.json",
+      "recipe_index": 49274,
+      "sha256": "032dbfc3c5ec24e3592048d3452a7bf4ba4bc1cd0a8fe1ef1f8dd7ee97f4bfd2"
+    },
+    {
+      "id": "cruciblecraft:t21/mixer/gunpowder/charcoal",
+      "material": "charcoal",
+      "path": "src/t21_chemical_generated/resources/data/cruciblecraft/recipe/t21/mixer/gunpowder/charcoal.json",
+      "recipe_index": 5319,
+      "sha256": "96bb0fffe3dddb2f7b2d8482124017cbb5727a9df0d2a6f291a4491a561c1799"
+    },
+    {
+      "id": "cruciblecraft:t21/mixer/gunpowder/coal",
+      "material": "coal",
+      "path": "src/t21_chemical_generated/resources/data/cruciblecraft/recipe/t21/mixer/gunpowder/coal.json",
+      "recipe_index": 31445,
+      "sha256": "154bd563dcc53c9de36c6cdd50f2745133e9b237008c24c8dc758bee5ada61d9"
+    },
+    {
+      "id": "cruciblecraft:t21/mixer/gunpowder/coal_coke",
+      "material": "coal_coke",
+      "path": "src/t21_chemical_generated/resources/data/cruciblecraft/recipe/t21/mixer/gunpowder/coal_coke.json",
+      "recipe_index": 5788,
+      "sha256": "37a1edd5c835dd5c88ca3870c6c88efda01478eb4d6d24d7a347a70073554a90"
+    }
+  ],
+  "schema_version": 1,
+  "status": "T21_MIXER_GUNPOWDER_READY",
+  "template_id": "sha256:1b36aeb956cea348f8eaf5006a3e16c52c59c607b820d92941de6249d2efea66"
+}

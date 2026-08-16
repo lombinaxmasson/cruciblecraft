@@ -42,18 +42,29 @@ class ProcessingMachineResourceTest {
             assertTrue(Files.isRegularFile(GENERATED.resolve(
                     "assets/cruciblecraft/blockstates/" + machine + ".json")));
             assertTrue(Files.isRegularFile(GENERATED.resolve(
-                    "assets/cruciblecraft/models/block/" + machine + ".json")));
-            assertTrue(Files.isRegularFile(GENERATED.resolve(
                     "assets/cruciblecraft/models/item/" + machine + ".json")));
             var blockstate = JsonParser.parseString(Files.readString(GENERATED.resolve(
                     "assets/cruciblecraft/blockstates/" + machine + ".json"))).getAsJsonObject();
             assertEquals(
                     Set.of("facing=north", "facing=east", "facing=south", "facing=west"),
                     blockstate.getAsJsonObject("variants").keySet());
-            var model = JsonParser.parseString(Files.readString(GENERATED.resolve(
-                    "assets/cruciblecraft/models/block/" + machine + ".json"))).getAsJsonObject();
+            var north = blockstate.getAsJsonObject("variants").get("facing=north");
+            var northVariant = north.isJsonArray()
+                    ? north.getAsJsonArray().get(0).getAsJsonObject()
+                    : north.getAsJsonObject();
+            String modelId = northVariant.get("model").getAsString();
+            assertTrue(modelId.startsWith("cruciblecraft:"), machine);
+            String modelPath = "assets/cruciblecraft/models/"
+                    + modelId.substring("cruciblecraft:".length())
+                    + ".json";
+            Path blockModel = MAIN.resolve(modelPath);
+            if (!Files.isRegularFile(blockModel)) {
+                blockModel = GENERATED.resolve(modelPath);
+            }
+            assertTrue(Files.isRegularFile(blockModel), machine + " " + modelPath);
+            var model = JsonParser.parseString(Files.readString(blockModel)).getAsJsonObject();
             var textures = model.getAsJsonObject("textures");
-            String parent = model.get("parent").getAsString();
+            String parent = model.has("parent") ? model.get("parent").getAsString() : "";
             if ("cruciblecraft:block/machine_cube_2_layer".equals(parent)) {
                 assertTrue(
                         textures.has("bot_north") && textures.has("top_north"),
@@ -61,14 +72,18 @@ class ProcessingMachineResourceTest {
                 assertNotEquals(
                         textures.get("bot_north").getAsString(),
                         textures.get("bot_east").getAsString());
-            } else {
-                assertEquals("minecraft:block/orientable", parent);
+            } else if ("minecraft:block/orientable".equals(parent)) {
                 assertTrue(
                         textures.has("front"),
                         machine + " needs a visible front texture");
                 assertNotEquals(
                         textures.get("front").getAsString(),
                         textures.get("side").getAsString());
+            } else {
+                assertTrue(model.has("elements"), machine + " shaped GT6 model");
+                assertTrue(
+                        textures.has("texture") || textures.has("particle"),
+                        machine + " shaped GT6 model needs a texture");
             }
             var lang = JsonParser.parseString(Files.readString(GENERATED.resolve(
                     "assets/cruciblecraft/lang/en_us.json"))).getAsJsonObject();
@@ -107,6 +122,9 @@ class ProcessingMachineResourceTest {
                 "item.cruciblecraft.material_screwdriver",
                 "item.cruciblecraft.material_wrench",
                 "item.cruciblecraft.portable_fluid_tank",
+                "block.cruciblecraft.centrifuge",
+                "block.cruciblecraft.sifter",
+                "block.cruciblecraft.extruder",
                 "block.cruciblecraft.electrolyzer",
                 "fluid_type.cruciblecraft.oxygen",
                 "emi.category.cruciblecraft.electrolyzer",
@@ -120,10 +138,10 @@ class ProcessingMachineResourceTest {
         long missingMaterialNames = missing.stream()
                 .filter(key -> key.startsWith("material.cruciblecraft."))
                 .count();
-        assertEquals(3_159, english.size(), "current generated en_us key count");
-        assertEquals(351L, translated, "declared Chinese translation coverage");
-        assertEquals(2_808, missing.size(), "visible zh_cn localization debt");
-        assertEquals(1_774L, missingMaterialNames,
+        assertEquals(3_174, english.size(), "current generated en_us key count");
+        assertEquals(876L, translated, "declared Chinese translation coverage");
+        assertEquals(2_298, missing.size(), "visible zh_cn localization debt");
+        assertEquals(1_566L, missingMaterialNames,
                 "missing generated material-name translations");
         assertEquals(chinese.size(), translated,
                 "zh_cn must not hide untranslated keys behind copied English values");
@@ -185,7 +203,7 @@ class ProcessingMachineResourceTest {
     }
 
     @Test
-    void legacyHammerRecipesPersistMaterialIdentityOnly() throws Exception {
+    void hammerRecipesPersistMaterialIdentityOnly() throws Exception {
         Map<String, String> recipes = Map.of(
                 "smithing_hammer.json", "iron",
                 "bronze_smithing_hammer.json", "bronze",

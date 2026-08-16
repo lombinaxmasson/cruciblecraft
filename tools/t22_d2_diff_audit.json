@@ -1,0 +1,42 @@
+{
+  "audited_on": "2026-08-11",
+  "deleted_files": 0,
+  "historical_baseline_check": {
+    "checked": [
+      "T16-T21 readiness files (tools/t1*_readiness.json)",
+      "T16-T21 publication baselines (src/.../t1*_publication_baseline.json)",
+      "T21 template denominator (tools/t21_template_denominator.json)",
+      "T21 source denominator (tools/t21_source_denominator.json)",
+      "GT6 mixer templates (tools/gt6_mixer_templates_*.json)",
+      "Full verification report (tools/full_verification_report.json)",
+      "GT6 map roadmap (tools/gt6_map_roadmap.json)",
+      "T5 distillery projection (tools/t5_distillery_projection.json)",
+      "T5 chemical manifest (tools/t5_chemical_recipe_manifest.json)",
+      "All tools/tests/test_*.py files"
+    ],
+    "none_modified": true,
+    "status": "PASS"
+  },
+  "modified_breakdown": {
+    "build_config": 1,
+    "java_source": 2,
+    "planning_docs": 7,
+    "python_tooling": 1
+  },
+  "modified_files": 11,
+  "new_files": 18,
+  "new_files_breakdown": {
+    "json_artifacts": 9,
+    "python_builders": 6,
+    "readiness_skeleton": 1,
+    "recipe_json": 2
+  },
+  "rebuild_status": {
+    "full_rebuild_attempted": false,
+    "partial_rebuild_possible": "Builders that do not depend on GT6 dump (build_t22_*.py, ~6 builders) can be run from worktree.",
+    "reason": "GT6 dump (310MB) not available in worktree. Full rebuild requires main repo with gt6_dump/ directory. 58 builders would run.",
+    "recommendation": "Run python tools/rebuild_artifacts.py --keep-going from main repo before D3 verification."
+  },
+  "schema_version": 1,
+  "status": "T22_D2_DIFF_AUDIT"
+}

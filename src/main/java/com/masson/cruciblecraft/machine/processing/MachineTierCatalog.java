@@ -30,17 +30,30 @@ public final class MachineTierCatalog {
         return CATALOG.entries();
     }
 
-    public static List<TierProfile> controllerProfiles() {
-        return List.copyOf(CATALOG.controllerProfiles().values());
+    public static List<TierProfile> controllerTierBands() {
+        return List.copyOf(CATALOG.controllerTierBands().values());
     }
 
-    public static TierProfile requireControllerProfile(ResourceLocation id) {
-        TierProfile profile = CATALOG.controllerProfiles().get(id);
+    public static TierProfile requireControllerTierBand(
+            ResourceLocation tierBandId) {
+        TierProfile profile = CATALOG.controllerTierBands().get(tierBandId);
         if (profile == null) {
             throw new IllegalArgumentException(
-                    "Unknown machine controller profile " + id);
+                    "Unknown machine controller tier band " + tierBandId);
         }
         return profile;
+    }
+
+    /** @deprecated Use {@link #controllerTierBands()}. */
+    @Deprecated(forRemoval = false)
+    public static List<TierProfile> controllerProfiles() {
+        return controllerTierBands();
+    }
+
+    /** @deprecated Use {@link #requireControllerTierBand(ResourceLocation)}. */
+    @Deprecated(forRemoval = false)
+    public static TierProfile requireControllerProfile(ResourceLocation id) {
+        return requireControllerTierBand(id);
     }
 
     private static Catalog loadBundled() {
@@ -55,7 +68,7 @@ public final class MachineTierCatalog {
                             stream, StandardCharsets.UTF_8),
                     Document.class);
             if (document == null
-                    || document.schemaVersion != 1
+                    || document.schemaVersion != 2
                     || document.variants == null
                     || document.controllerProfiles == null
                     || document.source == null
@@ -74,6 +87,24 @@ public final class MachineTierCatalog {
                     throw new IllegalStateException(
                             "Duplicate machine variant " + entry.variantId());
                 }
+            }
+            Map<ResourceLocation, Set<TierBandCapabilities>>
+                    capabilitiesByTierBand =
+                            entries.stream().collect(Collectors.groupingBy(
+                                    entry -> entry.tierBand().tierBandId(),
+                                    Collectors.mapping(
+                                            entry -> TierBandCapabilities.of(
+                                                    entry.tierBand()),
+                                            Collectors.toSet())));
+            List<ResourceLocation> inconsistentTierBands =
+                    capabilitiesByTierBand.entrySet().stream()
+                            .filter(entry -> entry.getValue().size() != 1)
+                            .map(Map.Entry::getKey)
+                            .toList();
+            if (!inconsistentTierBands.isEmpty()) {
+                throw new IllegalStateException(
+                        "Machine tier-band capabilities differ within bands: "
+                                + inconsistentTierBands);
             }
             Map<ResourceLocation, Set<KindPolicy>> policiesByKind =
                     entries.stream().collect(Collectors.groupingBy(
@@ -105,20 +136,21 @@ public final class MachineTierCatalog {
                                 + " != "
                                 + runtimeVariants);
             }
-            LinkedHashMap<ResourceLocation, TierProfile> controllerProfiles =
+            LinkedHashMap<ResourceLocation, TierProfile> controllerTierBands =
                     new LinkedHashMap<>();
             for (ControllerProfileRow row : document.controllerProfiles) {
                 TierProfile profile = row.toProfile();
-                if (controllerProfiles.putIfAbsent(
-                        profile.id(), profile) != null) {
+                if (controllerTierBands.putIfAbsent(
+                        profile.tierBandId(), profile) != null) {
                     throw new IllegalStateException(
-                            "Duplicate machine controller profile "
-                                    + profile.id());
+                            "Duplicate machine controller tier band "
+                                    + profile.tierBandId());
                 }
             }
             Set<String> sourcedProfiles =
                     document.source.controllerProfileRows.keySet();
-            Set<String> runtimeProfiles = controllerProfiles.keySet().stream()
+            Set<String> runtimeProfiles =
+                    controllerTierBands.keySet().stream()
                     .map(ResourceLocation::toString)
                     .collect(java.util.stream.Collectors.toSet());
             if (!sourcedProfiles.equals(runtimeProfiles)) {
@@ -129,7 +161,7 @@ public final class MachineTierCatalog {
                                 + runtimeProfiles);
             }
             return new Catalog(
-                    List.copyOf(entries), Map.copyOf(controllerProfiles));
+                    List.copyOf(entries), Map.copyOf(controllerTierBands));
         } catch (IOException
                 | JsonIOException
                 | JsonSyntaxException exception) {
@@ -140,7 +172,7 @@ public final class MachineTierCatalog {
 
     private record Catalog(
             List<Entry> entries,
-            Map<ResourceLocation, TierProfile> controllerProfiles) {}
+            Map<ResourceLocation, TierProfile> controllerTierBands) {}
 
     public record Entry(
             ResourceLocation variantId,
@@ -152,7 +184,7 @@ public final class MachineTierCatalog {
             String acquisitionBlocker,
             MachineKindSpec.OverclockPolicy overclockPolicy,
             boolean parallelDuration,
-            TierProfile tier) {
+            TierProfile tierBand) {
         public Entry {
             Objects.requireNonNull(variantId, "variantId");
             Objects.requireNonNull(kindId, "kindId");
@@ -161,8 +193,8 @@ public final class MachineTierCatalog {
                         "Machine source id and tier must be positive");
             }
             Objects.requireNonNull(overclockPolicy, "overclockPolicy");
-            Objects.requireNonNull(tier, "tier");
-            if (tier.energyType() == EnergyType.HEAT
+            Objects.requireNonNull(tierBand, "tierBand");
+            if (tierBand.energyType() == EnergyType.HEAT
                     && (!nonBlank(sourceMaterial)
                             || materialRegistered
                                     == nonBlank(acquisitionBlocker))) {
@@ -176,6 +208,26 @@ public final class MachineTierCatalog {
     private record KindPolicy(
             MachineKindSpec.OverclockPolicy overclockPolicy,
             boolean parallelDuration) {}
+
+    private record TierBandCapabilities(
+            String materialId,
+            EnergyType energyType,
+            long inputMinimum,
+            long inputNominal,
+            long inputMaximum,
+            long energyCapacity,
+            int efficiency) {
+        private static TierBandCapabilities of(TierProfile profile) {
+            return new TierBandCapabilities(
+                    profile.materialId(),
+                    profile.energyType(),
+                    profile.inputMinimum(),
+                    profile.inputNominal(),
+                    profile.inputMaximum(),
+                    profile.energyCapacity(),
+                    profile.efficiency());
+        }
+    }
 
     private static final class Document {
         private int schemaVersion;
@@ -237,7 +289,7 @@ public final class MachineTierCatalog {
     private static final class Row {
         private String id;
         private String kind;
-        private String tier;
+        private String tierBand;
         private String material;
         private String energy;
         private int sourceId;
@@ -277,7 +329,7 @@ public final class MachineTierCatalog {
                     overclockPolicy,
                     parallelDuration,
                     toProfile(
-                            tier,
+                            tierBand,
                             material,
                             energy,
                             inputMinimum,
@@ -290,7 +342,7 @@ public final class MachineTierCatalog {
     }
 
     private static final class ControllerProfileRow {
-        private String id;
+        private String tierBand;
         private String material;
         private String energy;
         private long inputMinimum;
@@ -302,7 +354,7 @@ public final class MachineTierCatalog {
 
         private TierProfile toProfile() {
             return MachineTierCatalog.toProfile(
-                    id,
+                    tierBand,
                     material,
                     energy,
                     inputMinimum,
@@ -315,7 +367,7 @@ public final class MachineTierCatalog {
     }
 
     private static TierProfile toProfile(
-            String id,
+            String tierBand,
             String material,
             String energy,
             long inputMinimum,
@@ -332,7 +384,7 @@ public final class MachineTierCatalog {
                     "Unknown machine tier energy " + energy, exception);
         }
         return new TierProfile(
-                parse(id, "tier id"),
+                parse(tierBand, "tier band id"),
                 Objects.requireNonNull(material, "tier material"),
                 energyType,
                 inputMinimum,

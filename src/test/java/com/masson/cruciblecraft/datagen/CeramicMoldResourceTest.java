@@ -18,8 +18,8 @@ class CeramicMoldResourceTest {
         List<Path> paths = new ArrayList<>(List.of(
                 Path.of("src/main/resources/data/cruciblecraft/materials/ceramic.json"),
                 Path.of("src/generated/resources/assets/cruciblecraft/blockstates/ceramic_mold.json"),
-                Path.of("src/generated/resources/assets/cruciblecraft/models/block/ceramic_mold.json"),
-                Path.of("src/generated/resources/assets/cruciblecraft/models/block/ceramic_mold_filled.json")));
+                Path.of("src/main/resources/assets/cruciblecraft/models/block/ceramic_mold.json"),
+                Path.of("src/main/resources/assets/cruciblecraft/models/block/ceramic_mold_filled.json")));
         for (String recipe : List.of(
                 "raw_ceramic_crucible",
                 "crucible_firing",

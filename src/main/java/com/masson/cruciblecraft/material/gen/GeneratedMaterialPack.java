@@ -14,6 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -24,6 +25,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.MaterialFingerprint;
+import com.masson.cruciblecraft.material.MaterialZhNames;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixDefinition;
@@ -45,6 +47,12 @@ public final class GeneratedMaterialPack {
     private static final String OUTPUT_SCHEMA = "generated-material-pack-v1";
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final String OUTPUT_GENERATOR_IDENTITY = outputGeneratorIdentity();
+    private static final Set<String> ITEM_OVERLAY_TEXTURES = Set.of(
+            "crushed_ore",
+            "fine_wire",
+            "tiny_crushed_ore",
+            "plate_gem",
+            "ring");
     private static volatile Roots roots = new Roots(null, null);
 
     private GeneratedMaterialPack() {}
@@ -107,7 +115,7 @@ public final class GeneratedMaterialPack {
         event.addRepositorySource(consumer -> {
             PackLocationInfo location = new PackLocationInfo(
                     CrucibleCraft.MODID + "/generated_materials",
-                    Component.literal("CrucibleCraft Generated Materials"),
+                    Component.translatable("pack.cruciblecraft.generated_materials"),
                     PackSource.BUILT_IN,
                     Optional.empty());
             Pack pack = Pack.readMetaAndCreate(
@@ -193,8 +201,10 @@ public final class GeneratedMaterialPack {
                 String electricalSpecification =
                         electricalSpecification(material, form);
                 String pipeModelKey = pipeModelKey(material, form);
+                boolean placeableStorage = isPlaceableStorage(material, form);
                 if (electricalSpecification != null
-                        || pipeModelKey != null) {
+                        || pipeModelKey != null
+                        || placeableStorage) {
                     addTag(
                             files,
                             "data/" + tagNamespace + "/tags/block/" + formTag
@@ -207,6 +217,10 @@ public final class GeneratedMaterialPack {
                             .add("#" + tagNamespace + ":" + formTag + "/"
                                     + material.tagName());
                     mineableOres.add(itemId);
+                    if (placeableStorage) {
+                        (material.tier() >= 2 ? ironToolOres : stoneToolOres)
+                                .add(itemId);
+                    }
                     files.put(
                             "data/" + CrucibleCraft.MODID
                                     + "/loot_table/blocks/"
@@ -273,16 +287,28 @@ public final class GeneratedMaterialPack {
                 if (material.formItems().containsKey(form)) {
                     continue;
                 }
+                if (isPlaceableStorage(material, form)) {
+                    addStorageClientFiles(files, material);
+                    oreTranslations.addProperty(
+                            "block." + CrucibleCraft.MODID + "."
+                                    + material.registryName(form),
+                            title(material.id()) + " Block");
+                    continue;
+                }
                 JsonObject model = new JsonObject();
                 String electricalSpecification =
                         electricalSpecification(material, form);
                 if (electricalSpecification != null) {
+                    String itemParent = wireBundleItemParent(form);
                     model.addProperty(
                             "parent",
-                            CrucibleCraft.MODID + ":conductor/"
-                                    + electricalSpecification.toLowerCase(
-                                            java.util.Locale.ROOT)
-                                    + "_core");
+                            itemParent != null
+                                    && !form.equals(MaterialPrefixes.WIRE)
+                                    ? CrucibleCraft.MODID + ":" + itemParent
+                                    : CrucibleCraft.MODID + ":conductor/"
+                                            + electricalSpecification.toLowerCase(
+                                                    java.util.Locale.ROOT)
+                                            + "_item");
                     oreTranslations.addProperty(
                             "block." + CrucibleCraft.MODID + "."
                                     + material.registryName(form),
@@ -299,7 +325,7 @@ public final class GeneratedMaterialPack {
                     model.addProperty(
                             "parent",
                             CrucibleCraft.MODID + ":pipe/"
-                                    + pipeModelKey + "_core");
+                                    + pipeModelKey + "_item");
                     oreTranslations.addProperty(
                             "block." + CrucibleCraft.MODID + "."
                                     + material.registryName(form),
@@ -311,10 +337,25 @@ public final class GeneratedMaterialPack {
                             GSON.toJson(model));
                     continue;
                 }
+                String wireBundle = wireBundleItemParent(form);
+                if (wireBundle != null) {
+                    model.addProperty(
+                            "parent",
+                            CrucibleCraft.MODID + ":" + wireBundle);
+                    files.put(
+                            "assets/" + CrucibleCraft.MODID + "/models/item/"
+                                    + material.registryName(form) + ".json",
+                            GSON.toJson(model));
+                    continue;
+                }
                 var prefix = MaterialPrefixCatalog.definition(form);
                 model.addProperty("parent", prefix.modelTemplate());
                 JsonObject textures = new JsonObject();
                 textures.addProperty("layer0", prefix.modelTexture());
+                String overlay = overlayLayer(prefix.modelTexture());
+                if (overlay != null) {
+                    textures.addProperty("layer1", overlay);
+                }
                 model.add("textures", textures);
                 files.put(
                         "assets/" + CrucibleCraft.MODID + "/models/item/"
@@ -326,6 +367,47 @@ public final class GeneratedMaterialPack {
             files.put(
                     "assets/" + CrucibleCraft.MODID + "/lang/en_us.json",
                     GSON.toJson(oreTranslations));
+        }
+        JsonObject zhTranslations = new JsonObject();
+        for (MaterialDefinition material : materials) {
+            MaterialZhNames.material(material.id()).ifPresent(mat -> {
+                for (MaterialPrefix form : requireRegisteredForms(
+                        material, registeredForms)) {
+                    MaterialZhNames.pipe(form.serializedName())
+                            .ifPresent(name -> zhTranslations.addProperty(
+                                    "block." + CrucibleCraft.MODID + "."
+                                            + material.registryName(form),
+                                    mat + name));
+                    MaterialZhNames.conductor(form.serializedName())
+                            .ifPresent(name -> zhTranslations.addProperty(
+                                    "block." + CrucibleCraft.MODID + "."
+                                            + material.registryName(form),
+                                    mat + name));
+                    if (isPlaceableStorage(material, form)) {
+                        MaterialZhNames.prefix(form.serializedName())
+                                .ifPresent(name -> zhTranslations.addProperty(
+                                        "block." + CrucibleCraft.MODID + "."
+                                                + material.registryName(form),
+                                        mat + name));
+                    }
+                    if (form.equals(MaterialPrefixes.ORE)) {
+                        zhTranslations.addProperty(
+                                "block." + CrucibleCraft.MODID + "."
+                                        + material.id() + "_ore",
+                                mat + "矿石");
+                        zhTranslations.addProperty(
+                                "block." + CrucibleCraft.MODID
+                                        + ".deepslate_" + material.id()
+                                        + "_ore",
+                                "深板岩" + mat + "矿石");
+                    }
+                }
+            });
+        }
+        if (!zhTranslations.entrySet().isEmpty()) {
+            files.put(
+                    "assets/" + CrucibleCraft.MODID + "/lang/zh_cn.json",
+                    GSON.toJson(zhTranslations));
         }
         return Map.copyOf(files);
     }
@@ -476,6 +558,26 @@ public final class GeneratedMaterialPack {
         return Character.toUpperCase(spaced.charAt(0)) + spaced.substring(1);
     }
 
+    private static void addStorageClientFiles(
+            Map<String, String> files, MaterialDefinition material) {
+        String path = material.registryName(MaterialPrefixes.BLOCK);
+        String modelId = CrucibleCraft.MODID + ":block/material_storage";
+        JsonObject blockState = new JsonObject();
+        JsonObject variants = new JsonObject();
+        JsonObject defaultVariant = new JsonObject();
+        defaultVariant.addProperty("model", modelId);
+        variants.add("", defaultVariant);
+        blockState.add("variants", variants);
+        files.put(
+                "assets/" + CrucibleCraft.MODID + "/blockstates/" + path + ".json",
+                GSON.toJson(blockState));
+        JsonObject itemModel = new JsonObject();
+        itemModel.addProperty("parent", modelId);
+        files.put(
+                "assets/" + CrucibleCraft.MODID + "/models/item/" + path + ".json",
+                GSON.toJson(itemModel));
+    }
+
     private static void addOreClientFiles(Map<String, String> files, String materialId) {
         for (String path : List.of(
                 materialId + "_ore",
@@ -494,9 +596,12 @@ public final class GeneratedMaterialPack {
             JsonObject blockModel = new JsonObject();
             blockModel.addProperty(
                     "parent",
-                    path.startsWith("deepslate_")
-                            ? "minecraft:block/deepslate_iron_ore"
-                            : "minecraft:block/iron_ore");
+                    CrucibleCraft.MODID + ":block/material_ore");
+            if (path.startsWith("deepslate_")) {
+                JsonObject textures = new JsonObject();
+                textures.addProperty("base", "minecraft:block/deepslate");
+                blockModel.add("textures", textures);
+            }
             files.put(
                     "assets/" + CrucibleCraft.MODID + "/models/block/" + path + ".json",
                     GSON.toJson(blockModel));
@@ -593,6 +698,45 @@ public final class GeneratedMaterialPack {
                 CrucibleCraft.MODID + ":blocks/"
                         + ResourceLocation.parse(blockId).getPath());
         return GSON.toJson(root);
+    }
+
+    private static boolean isPlaceableStorage(
+            MaterialDefinition material, MaterialPrefix form) {
+        return form.equals(MaterialPrefixes.BLOCK)
+                && !material.formItems().containsKey(form);
+    }
+
+    private static String overlayLayer(String modelTexture) {
+        int slash = modelTexture.lastIndexOf('/');
+        if (slash < 0) {
+            return null;
+        }
+        String basename = modelTexture.substring(slash + 1);
+        return ITEM_OVERLAY_TEXTURES.contains(basename)
+                ? modelTexture + "_overlay"
+                : null;
+    }
+
+    private static String wireBundleItemParent(MaterialPrefix form) {
+        if (form.equals(MaterialPrefixes.WIRE)) {
+            return "item/material/wire_bundle_1";
+        }
+        if (form.equals(MaterialPrefixes.DOUBLE_WIRE)) {
+            return "item/material/wire_bundle_2";
+        }
+        if (form.equals(MaterialPrefixes.QUADRUPLE_WIRE)) {
+            return "item/material/wire_bundle_4";
+        }
+        if (form.equals(MaterialPrefixes.OCTUPLE_WIRE)) {
+            return "item/material/wire_bundle_8";
+        }
+        if (form.equals(MaterialPrefixes.DODECUPLE_WIRE)) {
+            return "item/material/wire_bundle_12";
+        }
+        if (form.equals(MaterialPrefixes.HEXADECUPLE_WIRE)) {
+            return "item/material/wire_bundle_16";
+        }
+        return null;
     }
 
     private static String electricalSpecification(

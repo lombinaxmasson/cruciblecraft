@@ -11,7 +11,7 @@ import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.machine.processing.MachineIdentityPolicy;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineState;
-import com.masson.cruciblecraft.registry.ModMachineIdentityMigrations;
+import com.masson.cruciblecraft.registry.ModMachineIdentities;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
 import com.masson.cruciblecraft.registry.ModMultiblockControllers;
 
@@ -52,26 +52,26 @@ class ProcessingMachineIdentityPersistenceTest {
         MachineVariant variant =
                 ModMultiblockControllers.LARGE_CENTRIFUGE_VARIANT;
         MachineIdentityPolicy.Identity current =
-                ModMachineIdentityMigrations.identityOf(variant);
+                ModMachineIdentities.identityOf(variant);
         List<MachineIdentityPolicy.Identity> mismatches = List.of(
                 new MachineIdentityPolicy.Identity(
                         current.machineKind() + "_wrong",
-                        current.tierProfile(),
+                        current.tierBand(),
                         current.materialId(),
                         current.energyIdentity()),
                 new MachineIdentityPolicy.Identity(
                         current.machineKind(),
-                        current.tierProfile() + "_wrong",
+                        current.tierBand() + "_wrong",
                         current.materialId(),
                         current.energyIdentity()),
                 new MachineIdentityPolicy.Identity(
                         current.machineKind(),
-                        current.tierProfile(),
+                        current.tierBand(),
                         current.materialId() + "_wrong",
                         current.energyIdentity()),
                 new MachineIdentityPolicy.Identity(
                         current.machineKind(),
-                        current.tierProfile(),
+                        current.tierBand(),
                         current.materialId(),
                         "KINETIC_PUSH"));
 
@@ -102,7 +102,7 @@ class ProcessingMachineIdentityPersistenceTest {
                     ProcessingMachineState.read(restored.saveForTest());
             assertEquals(
                     mismatch,
-                    ModMachineIdentityMigrations.identityOf(resaved));
+                    ModMachineIdentities.identityOf(resaved));
 
             ItemStack extracted = restored.inventory().extractItem(
                     inputSlot(restored), 2, false);
@@ -116,15 +116,11 @@ class ProcessingMachineIdentityPersistenceTest {
     }
 
     @Test
-    void exactMigrationReloadResumesAndWritesCurrentIdentityOnNextSave() {
+    void currentIdentityReloadResumesAndPreservesState() {
         MachineVariant variant =
                 ModMultiblockControllers.LARGE_CENTRIFUGE_VARIANT;
         TestMachine source = seededMachine(variant);
         CompoundTag persisted = source.saveForTest();
-        putIdentity(
-                persisted,
-                ModMachineIdentityMigrations
-                        .LEGACY_LARGE_CENTRIFUGE_IDENTITY);
 
         TestMachine restored = new TestMachine(variant);
         restored.loadForTest(persisted);
@@ -138,21 +134,21 @@ class ProcessingMachineIdentityPersistenceTest {
                 777L,
                 restored.stored(EnergyType.KINETIC_ROTATION));
         assertEquals(
-                ModMachineIdentityMigrations.LARGE_CENTRIFUGE_IDENTITY,
-                ModMachineIdentityMigrations.identityOf(
+                ModMachineIdentities.identityOf(variant),
+                ModMachineIdentities.identityOf(
                         ProcessingMachineState.read(
                                 restored.saveForTest())));
     }
 
     @Test
-    void representativeT16LegacyLathePreservesInventoryAndProgress() {
+    void blankIdentityAdoptsCurrentWithoutQuarantine() {
         MachineVariant variant = ModMachineVariants.require(
                 ResourceLocation.parse("cruciblecraft:lathe"));
         TestMachine source = seededMachine(variant);
         CompoundTag persisted = source.saveForTest();
         putIdentity(
                 persisted,
-                ModMachineIdentityMigrations.legacyIdentityOf(variant));
+                new MachineIdentityPolicy.Identity("", "", "", ""));
 
         TestMachine restored = new TestMachine(variant);
         restored.loadForTest(persisted);
@@ -165,50 +161,59 @@ class ProcessingMachineIdentityPersistenceTest {
                 restored.inventory().getStackInSlot(inputSlot(restored))
                         .getCount());
         assertEquals(
-                ModMachineIdentityMigrations.identityOf(variant),
-                ModMachineIdentityMigrations.identityOf(
+                ModMachineIdentities.identityOf(variant),
+                ModMachineIdentities.identityOf(
                         ProcessingMachineState.read(
                                 restored.saveForTest())));
     }
 
     @Test
-    void t17LegacyTierOneMigrationPreservesResourcesProgressAndEnergy() {
-        for (MachineIdentityPolicy.Migration migration
-                : ModMachineIdentityMigrations
-                        .T17_LEGACY_TIER1_MIGRATIONS) {
-            MachineVariant variant = ModMachineVariants.require(
-                    ResourceLocation.parse(migration.variantId()));
-            TestMachine source = seededMachine(variant);
-            CompoundTag persisted = source.saveForTest();
-            putIdentity(persisted, migration.from());
-            persisted.putLong("energy", 777L);
+    void tierProfileIsRejectedAndQuarantinePersistsCanonically() {
+        MachineVariant variant = ModMachineVariants.require(
+                ResourceLocation.parse("cruciblecraft:centrifuge"));
+        MachineIdentityPolicy.Identity current =
+                ModMachineIdentities.identityOf(variant);
+        CompoundTag canonical = seededMachine(variant).saveForTest();
+        assertAcceptedAndCanonical(variant, canonical, current);
 
-            TestMachine restored = new TestMachine(variant);
-            restored.loadForTest(persisted);
+        for (String persistedProfile : List.of(
+                current.tierBand(),
+                current.tierBand() + "_wrong")) {
+            CompoundTag persisted = canonical.copy();
+            persisted.putString("tier_profile", persistedProfile);
+            TestMachine quarantined = new TestMachine(variant);
+            quarantined.loadForTest(persisted);
+            assertFalse(quarantined.processingAllowed());
+            assertEquals("material_quarantined", quarantined.pausedReason());
+            assertTrue(quarantined.clientTagForTest()
+                    .getString("material_quarantine")
+                    .contains("tier_profile is unsupported"));
 
-            assertTrue(restored.processingAllowed(), migration.variantId());
-            assertFalse(
-                    restored.pausedReason().equals("material_quarantined"),
-                    migration.variantId());
-            assertEquals(9, restored.progress(), migration.variantId());
-            assertEquals(
-                    3,
-                    restored.inventory().getStackInSlot(inputSlot(restored))
-                            .getCount(),
-                    migration.variantId());
-            assertEquals(
-                    400,
-                    restored.tanks().getFirst().getFluidAmount(),
-                    migration.variantId());
+            CompoundTag resaved = quarantined.saveForTest();
+            assertEquals(current.tierBand(), resaved.getString("tier_band"));
+            assertFalse(resaved.contains("tier_profile"));
+            assertTrue(resaved.contains("identity_quarantine"));
 
-            ProcessingMachineState resaved =
-                    ProcessingMachineState.read(restored.saveForTest());
-            assertEquals(777L, resaved.energy(), migration.variantId());
-            assertEquals(
-                    ModMachineIdentityMigrations.identityOf(variant),
-                    ModMachineIdentityMigrations.identityOf(resaved),
-                    migration.variantId());
+            TestMachine reloaded = new TestMachine(variant);
+            reloaded.loadForTest(resaved);
+            assertFalse(reloaded.processingAllowed());
+            assertTrue(reloaded.clientTagForTest()
+                    .getString("material_quarantine")
+                    .contains("tier_profile is unsupported"));
         }
+    }
+
+    private static void assertAcceptedAndCanonical(
+            MachineVariant variant,
+            CompoundTag persisted,
+            MachineIdentityPolicy.Identity current) {
+        TestMachine restored = new TestMachine(variant);
+        restored.loadForTest(persisted);
+        assertTrue(restored.processingAllowed());
+        CompoundTag resaved = restored.saveForTest();
+        assertEquals(current.tierBand(), resaved.getString("tier_band"));
+        assertFalse(resaved.contains("tier_profile"));
+        assertFalse(resaved.contains("identity_quarantine"));
     }
 
     private static TestMachine seededMachine(MachineVariant variant) {
@@ -236,7 +241,7 @@ class ProcessingMachineIdentityPersistenceTest {
             CompoundTag tag,
             MachineIdentityPolicy.Identity identity) {
         tag.putString("machine_kind", identity.machineKind());
-        tag.putString("tier_profile", identity.tierProfile());
+        tag.putString("tier_band", identity.tierBand());
         tag.putString("tier_material", identity.materialId());
         tag.putString("energy_identity", identity.energyIdentity());
     }

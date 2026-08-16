@@ -16,36 +16,42 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        generated("raw_ceramic_crucible", "clay_ball");
-        generated("raw_ceramic_mold", "clay_ball");
-        generated("raw_ingot_mold", "clay_ball");
-        generated("raw_plate_mold", "clay_ball");
-        generated("raw_rod_mold", "clay_ball");
-        generated("raw_bolt_mold", "clay_ball");
+        generatedCc("raw_ceramic_crucible");
+        generatedCc("raw_ceramic_mold");
+        generatedCc("raw_ingot_mold");
+        generatedCc("raw_plate_mold");
+        generatedCc("raw_rod_mold");
+        generatedCc("raw_bolt_mold");
         withExistingParent("ingot_mold", modLoc("block/ceramic_mold"));
         withExistingParent("plate_mold", modLoc("block/ceramic_mold"));
         withExistingParent("rod_mold", modLoc("block/ceramic_mold"));
         withExistingParent("bolt_mold", modLoc("block/ceramic_mold"));
-        generated("coal_coke", "coal");
-        generated("match", "stick");
-        generated("bronze_double_machine_casing", "copper_ingot");
-        generated("steel_double_machine_casing", "iron_ingot");
-        generated("titanium_double_machine_casing", "iron_ingot");
-        generated("steel_galvanized_machine_casing", "iron_ingot");
-        generated("aluminium_machine_casing", "iron_ingot");
-        generated("stainless_steel_machine_casing", "iron_ingot");
-        generated("creosote_bucket", "water_bucket");
-        generated("portable_fluid_tank", "bucket");
-        generated("fluid_cell", "glass_bottle");
-        generated("gas_cell", "experience_bottle");
-        generated("pipe_filter_cover", "hopper");
-        generated("pipe_valve_cover", "repeater");
-        generated("pipe_pump_cover", "redstone");
-        generated("unknown_material", "barrier");
+        generatedCc("coal_coke");
+        generatedCc("match");
+        generatedCc("bronze_double_machine_casing");
+        generatedCc("steel_double_machine_casing");
+        generatedCc("titanium_double_machine_casing");
+        generatedCc("steel_galvanized_machine_casing");
+        generatedCc("aluminium_machine_casing");
+        generatedCc("stainless_steel_machine_casing");
+        generatedCc("creosote_bucket");
+        generatedCc("steam_bucket");
+        generatedCc("portable_fluid_tank");
+        generatedCc("fluid_cell");
+        generatedCc("gas_cell");
+        generatedCc("pipe_filter_cover");
+        generatedCc("pipe_valve_cover");
+        generatedCc("pipe_pump_cover");
+        generatedCc("conveyor_cover");
+        generatedCc("retriever_item_cover");
+        generatedCc("robot_arm_cover");
+        generatedCc("pressure_valve_cover");
+        generatedCc("selector_manual_cover");
+        generatedCc("unknown_material");
         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
-                generated(shape.registryPath(), "iron_nugget"));
+                generatedCc(shape.registryPath()));
         ToolPatternCatalog.DEFINITIONS.forEach(pattern ->
-                generated(pattern.registryPath(), "paper"));
+                generatedCc(pattern.registryPath()));
         // layer0 = tinted metal head; later layers stay untinted (handles/overlays).
         tool("flint_knife", "knife", "knife_overlay");
         tool("smithing_hammer", "smithing_hammer", "smithing_hammer_overlay");
@@ -66,13 +72,14 @@ public class ModItemModelProvider extends ItemModelProvider {
         tool("material_wrench", "wrench", "wrench_overlay");
         ModBlocks.electricalConductorBlocks().forEach(holder -> {
             var conductor = holder.get().conductor();
+            String specification = conductor.sourceSpecification();
             withExistingParent(
                     conductor.registryName(),
                     modLoc(
                             "conductor/"
-                                    + conductor.sourceSpecification()
-                                            .toLowerCase(java.util.Locale.ROOT)
-                                    + "_core"));
+                                    + specification.toLowerCase(
+                                            java.util.Locale.ROOT)
+                                    + "_item"));
         });
         ModBlocks.pipeBlocks().forEach(holder -> {
             var pipe = holder.get().pipe();
@@ -80,13 +87,13 @@ public class ModItemModelProvider extends ItemModelProvider {
                     java.util.Locale.ROOT) + "_" + pipe.width();
             withExistingParent(
                     pipe.registryName(),
-                    modLoc("pipe/" + modelKey + "_core"));
+                    modLoc("pipe/" + modelKey + "_item"));
         });
     }
 
-    private void generated(String name, String vanillaTexture) {
+    private void generatedCc(String name) {
         withExistingParent(name, mcLoc("item/generated"))
-                .texture("layer0", mcLoc("item/" + vanillaTexture));
+                .texture("layer0", modLoc("item/" + name));
     }
 
     private void tool(String name, String... textureLayers) {

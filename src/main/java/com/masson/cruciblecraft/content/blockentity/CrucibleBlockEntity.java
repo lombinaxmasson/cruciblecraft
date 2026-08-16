@@ -524,8 +524,6 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
                     contents.setUnits(material, units);
                 }
             }
-        } else {
-            migrateLegacyContents(tag);
         }
         casing.restoreMaterialId(tag.contains("casing_material_id", Tag.TAG_STRING)
                 ? tag.getString("casing_material_id")
@@ -539,11 +537,8 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
                 tag.getLong("stored_energy"),
                 savedCooldownTicks,
                 clientUpdate);
-        long savedAir = tag.contains("stored_air", Tag.TAG_ANY_NUMERIC)
-                ? tag.getLong("stored_air")
-                : tag.getInt("air_ticks");
         steelmaking.restore(
-                savedAir,
+                tag.getLong("stored_air"),
                 tag.getInt("steel_batch_iron_units"),
                 tag.getInt("steel_reaction_ticks"));
     }
@@ -638,17 +633,6 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
             markMutation();
         }
         return result;
-    }
-
-    private void migrateLegacyContents(CompoundTag tag) {
-        int copper = tag.getInt("copper_units");
-        int tin = tag.getInt("tin_units");
-        if (copper > 0) {
-            contents.setUnits("copper", copper);
-        }
-        if (tin > 0) {
-            contents.setUnits("tin", tin);
-        }
     }
 
     private record CastCandidate(

@@ -181,6 +181,63 @@ public final class PipeCatalog {
                 new Key(materialId, form, kind));
     }
 
+    /**
+     * Resolves either a registered output-form key or its pinned GT6
+     * specification key. This is the single gauge mapping used by runtime pipe
+     * registration and MaterialRule predicates.
+     */
+    public static String requireSpecification(
+            Kind kind, String outputOrSpecification) {
+        Objects.requireNonNull(kind, "kind");
+        if (outputOrSpecification == null
+                || outputOrSpecification.isBlank()) {
+            throw new IllegalArgumentException(
+                    "Pipe output/specification key must not be blank");
+        }
+        Map<MaterialPrefix, String> specifications =
+                kind == Kind.FLUID
+                        ? FLUID_SPEC_BY_FORM
+                        : ITEM_SPEC_BY_FORM;
+        return specifications.entrySet().stream()
+                .filter(entry ->
+                        entry.getKey().serializedName().equals(
+                                outputOrSpecification)
+                                || entry.getValue().equals(
+                                        outputOrSpecification))
+                .map(Map.Entry::getValue)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(
+                        "Unknown "
+                                + kind.name().toLowerCase(
+                                        java.util.Locale.ROOT)
+                                + " pipe output/specification key "
+                                + outputOrSpecification));
+    }
+
+    public static boolean recipeEnabled(
+            MaterialDefinition material,
+            Kind kind,
+            String outputOrSpecification) {
+        Objects.requireNonNull(material, "material");
+        String specification =
+                requireSpecification(kind, outputOrSpecification);
+        return material.gt6Metadata()
+                .map(metadata -> kind == Kind.FLUID
+                        ? java.util.Optional.ofNullable(
+                                        metadata.pipeProperties()
+                                                .fluidBySpecification()
+                                                .get(specification))
+                                .map(FluidPipeProperties::recipe)
+                                .orElse(false)
+                        : java.util.Optional.ofNullable(
+                                        metadata.pipeProperties()
+                                                .itemBySpecification()
+                                                .get(specification))
+                                .map(ItemPipeProperties::recipe)
+                                .orElse(false))
+                .orElse(false);
+    }
+
     public static boolean isInitialized() {
         return state.initialized();
     }

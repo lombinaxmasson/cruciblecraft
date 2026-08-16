@@ -2,306 +2,1243 @@
   "schema_version": 1,
   "policy": "Ordinary full verification runs every builder through committed compact evidence. Raw or fetched GT6 corpora are explicit source-replay inputs and are never ordinary-CI prerequisites.",
   "ordinary_ci_requires_local_artifacts": false,
+  "pre_chain_builders": [
+    {
+      "name": "build_gt6_generation_bits",
+      "script": "tools/build_gt6_generation_bits.py",
+      "outputs": [
+        "gt6_generation_bits.json"
+      ]
+    },
+    {
+      "name": "gt6_l1b_layer_select",
+      "script": "tools/gt6_l1b_layer_select.py",
+      "outputs": [
+        "gt6_l1b_selected.json",
+        "gt6_l1b_dropped.json",
+        "gt6_l1b_needs_review.json",
+        "gt6_l1b_pending_t0b.json",
+        "gt6_l1b_degraded_paths.json",
+        "gt6_l1b_byproduct_stripping.json",
+        "gt6_l1b_layer_report.json"
+      ]
+    },
+    {
+      "name": "run_material_registry_stress",
+      "script": "tools/run_material_registry_stress.py",
+      "outputs": [
+        "material_registry_budget.json",
+        "material_registry_stress_report.json"
+      ]
+    }
+  ],
   "builders": [
     {
       "name": "import_gt6_oredict",
       "script": "tools/import_gt6_oredict.py",
-      "ordinary_args": ["--check", "--reference-only"],
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
       "proof_tier": "compact",
       "full_replay": {
-        "args": ["--check"],
-        "required_paths": ["gt6_dump/gt6_recipe_dump/index.json"]
-      }
+        "args": [
+          "--check"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/index.json"
+        ]
+      },
+      "outputs": [
+        "gt6_authored_material_baseline.json",
+        "gt6_l3_prefix_plan.json",
+        "gt6_material_activation_policy.json",
+        "gt6_oredict_cross_reference.json",
+        "gt6_oredict_fluids_normalized.json",
+        "gt6_oredict_import_manifest.json",
+        "gt6_oredict_materials_normalized.json",
+        "gt6_oredict_prefixes_normalized.json"
+      ]
     },
     {
       "name": "compare_gt6_recipes",
       "script": "tools/compare_gt6_recipes.py",
-      "ordinary_args": ["--check", "--reference-only"],
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
       "proof_tier": "compact",
       "full_replay": {
-        "args": ["--check", "--full-replay"],
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
         "required_any_paths": [
           "gt6_dump/gt6_recipe_dump/index.json",
           "tools/gt6_recipe_normalized_reference.json"
         ]
-      }
+      },
+      "outputs": [
+        "gt6_map_roadmap.json",
+        "gt6_process_expectations.json",
+        "gt6_recipe_compare_baseline.json",
+        "gt6_recipe_compare_report.json",
+        "gt6_recipe_expectations.json",
+        "gt6_recipe_expectations_suggested.json",
+        "gt6_recipe_normalized_reference.json"
+      ]
     },
     {
       "name": "build_component_rules",
       "script": "tools/build_component_rules.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "component_rule_manifest.json"
+      ]
     },
     {
       "name": "build_gt6_ore_chain",
       "script": "tools/build_gt6_ore_chain.py",
-      "ordinary_args": ["--check", "--reference-only"],
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
       "proof_tier": "compact",
       "full_replay": {
-        "args": ["--check", "--full-replay"],
-        "required_paths": ["tools/gt6_recipe_normalized_reference.json"]
-      }
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "tools/gt6_recipe_normalized_reference.json"
+        ]
+      },
+      "outputs": [
+        "gt6_ore_chain.json",
+        "gt6_ore_chain_operands.json"
+      ]
     },
     {
       "name": "build_gt6_ore_chain_closure",
       "script": "tools/build_gt6_ore_chain_closure.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "gt6_ore_chain_closure.json"
+      ]
     },
     {
       "name": "build_gt6_material_form_gate",
       "script": "tools/build_gt6_material_form_gate.py",
-      "ordinary_args": ["--check", "--reference-only"],
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
       "proof_tier": "compact",
       "full_replay": {
-        "args": ["--check", "--full-replay"],
-        "required_paths": ["gt6_dump/gt6_recipe_dump/index.json"]
-      }
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/index.json"
+        ]
+      },
+      "outputs": [
+        "gt6_l1b_selected_recipe_operands.json",
+        "material_registration_gate.json"
+      ]
     },
     {
       "name": "build_t4_tool_readiness",
       "script": "tools/build_t4_tool_readiness.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t4_tool_readiness.json"
+      ]
     },
     {
       "name": "build_t5_chemical_readiness",
       "script": "tools/build_t5_chemical_readiness.py",
-      "ordinary_args": ["--check", "--reference-only"],
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
       "proof_tier": "compact",
       "full_replay": {
-        "args": ["--check", "--full-replay"],
-        "required_paths": ["gt6_dump/gt6_recipe_dump/index.json"]
-      }
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/index.json"
+        ]
+      },
+      "outputs": [
+        "t5_chemical_readiness.json"
+      ]
     },
     {
       "name": "build_t5_chemical_recipes",
       "script": "tools/build_t5_chemical_recipes.py",
-      "ordinary_args": ["--check", "--reference-only"],
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
       "proof_tier": "compact",
       "full_replay": {
-        "args": ["--check", "--full-replay"],
-        "required_paths": ["gt6_dump/gt6_recipe_dump/index.json"]
-      }
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/index.json"
+        ]
+      },
+      "outputs": []
     },
     {
       "name": "build_t5_distillery_projection",
       "script": "tools/build_t5_distillery_projection.py",
-      "ordinary_args": ["--check", "--reference-only"],
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
       "proof_tier": "compact",
       "full_replay": {
-        "args": ["--check", "--full-replay"],
-        "required_paths": ["gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json"]
-      }
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json"
+        ]
+      },
+      "outputs": []
     },
     {
       "name": "build_machine_crafting_readiness",
       "script": "tools/build_machine_crafting_readiness.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "machine_crafting_readiness.json"
+      ]
     },
     {
       "name": "build_t6_electrical_readiness",
       "script": "tools/build_t6_electrical_readiness.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t6_electrical_readiness.json"
+      ]
     },
     {
       "name": "build_t7_material_tag_readiness",
       "script": "tools/build_t7_material_tag_readiness.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t7_material_tag_readiness.json"
+      ]
     },
     {
       "name": "build_t8_pipe_readiness",
       "script": "tools/build_t8_pipe_readiness.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t8_pipe_readiness.json"
+      ]
     },
     {
       "name": "apply_t8_pipe_metadata",
       "script": "tools/apply_t8_pipe_metadata.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": []
     },
     {
       "name": "build_worldgen_catalog",
       "script": "tools/build_worldgen_catalog.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "worldgen_catalog_readiness.json"
+      ]
     },
     {
       "name": "build_gt6_veins",
       "script": "tools/build_gt6_veins.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": []
     },
     {
       "name": "build_t10_preflight_projection",
       "script": "tools/build_t10_preflight_projection.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t10_preflight_projection.json"
+      ]
     },
     {
       "name": "build_t10_container_readiness",
       "script": "tools/build_t10_container_readiness.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": []
     },
     {
       "name": "apply_t10_form_flags",
       "script": "tools/apply_t10_form_flags.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": []
     },
     {
       "name": "build_t11_preflight_projection",
       "script": "tools/build_t11_preflight_projection.py",
-      "ordinary_args": ["--check", "--reference-only"],
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
       "proof_tier": "compact",
       "full_replay": {
-        "args": ["--check", "--full-replay"],
-        "required_paths": ["gt6_dump/gt6_recipe_dump/index.json"]
-      }
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/index.json"
+        ]
+      },
+      "outputs": []
     },
     {
       "name": "build_t11_hydrocarbon_recipes",
       "script": "tools/build_t11_hydrocarbon_recipes.py",
-      "ordinary_args": ["--check", "--reference-only"],
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
       "proof_tier": "compact",
       "full_replay": {
-        "args": ["--check", "--full-replay"],
-        "required_paths": ["gt6_dump/gt6_recipe_dump/index.json"]
-      }
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/index.json"
+        ]
+      },
+      "outputs": [
+        "tools/t11_hydrocarbon_recipe_manifest.json"
+      ]
     },
     {
       "name": "build_t12_machine_readiness",
       "script": "tools/build_t12_machine_readiness.py",
-      "ordinary_args": ["--check", "--reference-only"],
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
       "proof_tier": "compact",
       "full_replay": {
-        "args": ["--check", "--full-replay"],
-        "required_paths": ["gt6_dump/gt6_recipe_dump/index.json"]
-      }
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/index.json"
+        ]
+      },
+      "outputs": [
+        "t12a_machine_readiness.json"
+      ]
     },
     {
       "name": "build_t12_closure_readiness",
       "script": "tools/build_t12_closure_readiness.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t12_closure_readiness.json"
+      ]
+    },
+    {
+      "name": "build_processing_machine_energy_audit",
+      "script": "tools/build_processing_machine_energy_audit.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "processing_machine_energy_audit.json"
+      ]
     },
     {
       "name": "build_t13_recipe_map_denominator",
       "script": "tools/build_t13_recipe_map_denominator.py",
-      "ordinary_args": ["--check", "--reference-only"],
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
       "proof_tier": "compact",
       "full_replay": {
-        "args": ["--check", "--full-replay"],
-        "required_paths": ["gt6_dump/gt6_recipe_dump/index.json"]
-      }
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/index.json"
+        ]
+      },
+      "outputs": [
+        "recipe_maps.json",
+        "t13_gt6_tree_manifest.json",
+        "t13_source_symbol_inventory.json"
+      ]
     },
     {
       "name": "build_t13_prefix_domain_denominators",
       "script": "tools/build_t13_prefix_domain_denominators.py",
-      "ordinary_args": ["--check", "--reference-only"],
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
       "proof_tier": "compact",
       "full_replay": {
-        "args": ["--check", "--full-replay", "--no-fetch"],
+        "args": [
+          "--check",
+          "--full-replay",
+          "--no-fetch"
+        ],
         "required_paths": [
           "build/t13-gt6-source/src/main/java/gregapi/data/OP.java",
           "build/t13-gt6-source/src/main/java/gregapi/data/TD.java"
         ]
-      }
+      },
+      "outputs": []
     },
     {
       "name": "build_t13_machine_energy_denominators",
       "script": "tools/build_t13_machine_energy_denominators.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "energy_identities.json",
+        "machine_kinds.json",
+        "t13_machine_energy_policy.json"
+      ]
     },
     {
       "name": "build_t13_cover_multiblock_denominators",
       "script": "tools/build_t13_cover_multiblock_denominators.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t13_cover_multiblock_policy.json"
+      ]
     },
     {
       "name": "build_t13_denominator_readiness",
       "script": "tools/build_t13_denominator_readiness.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": []
     },
     {
       "name": "build_t14_extruder_equivalence",
       "script": "tools/build_t14_extruder_equivalence.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": []
     },
     {
       "name": "build_t14_recipe_load_benchmark",
       "script": "tools/build_t14_recipe_load_benchmark.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t14_materialization_decision.json"
+      ]
     },
     {
       "name": "build_t14_readiness",
       "script": "tools/build_t14_readiness.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t14_readiness.json"
+      ]
     },
     {
       "name": "build_t15_machine_acquisition",
       "script": "tools/build_t15_machine_acquisition.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t15_machine_acquisition.json"
+      ]
     },
     {
       "name": "build_t15_matcher_boundary",
       "script": "tools/build_t15_matcher_boundary.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t15_matcher_boundary.json"
+      ]
     },
     {
       "name": "build_t15_readiness",
       "script": "tools/build_t15_readiness.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t15_readiness.json"
+      ]
     },
     {
       "name": "build_t16_machine_denominator",
       "script": "tools/build_t16_machine_denominator.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t16_machine_denominator.json"
+      ]
     },
     {
       "name": "build_t16_machine_acquisition",
       "script": "tools/build_t16_machine_acquisition.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t16_machine_acquisition.json"
+      ]
     },
     {
       "name": "build_t16_readiness",
       "script": "tools/build_t16_readiness.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t16_readiness.json"
+      ]
     },
     {
       "name": "build_t17_machine_denominator",
       "script": "tools/build_t17_machine_denominator.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t17_machine_denominator.json"
+      ]
     },
     {
       "name": "build_t17_machine_acquisition",
       "script": "tools/build_t17_machine_acquisition.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t17_machine_acquisition.json"
+      ]
     },
     {
       "name": "build_t17_readiness",
       "script": "tools/build_t17_readiness.py",
-      "ordinary_args": ["--check"],
-      "proof_tier": "rederived"
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t17_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t18_machine_energy_denominator",
+      "script": "tools/build_t18_machine_energy_denominator.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t18_machine_energy_denominator.json"
+      ]
+    },
+    {
+      "name": "build_t18_converter_acquisition",
+      "script": "tools/build_t18_converter_acquisition.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t18_converter_acquisition.json"
+      ]
+    },
+    {
+      "name": "build_t18_o37_identity_projection",
+      "script": "tools/build_t18_o37_identity_projection.py",
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
+      "proof_tier": "compact",
+      "outputs": [
+        "t18_o37_identity_projection.json"
+      ]
+    },
+    {
+      "name": "build_t18_readiness",
+      "script": "tools/build_t18_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t18_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t19_cover_denominator",
+      "script": "tools/build_t19_cover_denominator.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t19_cover_denominator.json"
+      ]
+    },
+    {
+      "name": "build_t19_cover_acquisition",
+      "script": "tools/build_t19_cover_acquisition.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t19_cover_acquisition.json"
+      ]
+    },
+    {
+      "name": "build_t19_pipe_acquisition",
+      "script": "tools/build_t19_pipe_acquisition.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t19_pipe_acquisition.json"
+      ]
+    },
+    {
+      "name": "build_t19_readiness",
+      "script": "tools/build_t19_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t19_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t20_worldgen_source",
+      "script": "tools/build_t20_worldgen_source.py",
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
+      "proof_tier": "compact",
+      "full_replay": {
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": []
+      },
+      "outputs": [
+        "t20_gt6_worldgen_source.json"
+      ]
+    },
+    {
+      "name": "build_t20_worldgen_projection",
+      "script": "tools/build_t20_worldgen_projection.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "src/main/resources/data/cruciblecraft/worldgen_catalog/ore_veins.json",
+        "t20_worldgen_expected.json"
+      ]
+    },
+    {
+      "name": "build_t20_readiness",
+      "script": "tools/build_t20_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t20_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t21_chemical_axis",
+      "script": "tools/build_t21_chemical_axis.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "compact",
+      "full_replay": {
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.electrolyzer.json"
+        ]
+      },
+      "outputs": [
+        "t21_chemical_axis.json",
+        "t21_composition_expansion.json",
+        "t21_composition_expected.json"
+      ]
+    },
+    {
+      "name": "build_t21_source_denominator",
+      "script": "tools/build_t21_source_denominator.py",
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
+      "proof_tier": "compact",
+      "full_replay": {
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.electrolyzer.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.centrifuge.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.mixer.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.autoclave.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.bath.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.drying.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.compressor.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.roaster.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.assembler.json"
+        ]
+      },
+      "outputs": [
+        "t21_source_denominator.json"
+      ]
+    },
+    {
+      "name": "build_gt6_mixer_templates",
+      "script": "tools/gt6_mixer_templates.py",
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
+      "proof_tier": "compact",
+      "full_replay": {
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.mixer.json",
+          "gt6_dump/gt6_recipe_dump/oredict/materials.json"
+        ]
+      },
+      "outputs": [
+        "gt6_mixer_templates_index.json",
+        "gt6_mixer_templates_membership.json",
+        "gt6_mixer_templates_report.json"
+      ]
+    },
+    {
+      "name": "build_t21_template_denominator",
+      "script": "tools/build_t21_template_denominator.py",
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
+      "proof_tier": "compact",
+      "full_replay": {
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.electrolyzer.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.centrifuge.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.mixer.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.autoclave.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.bath.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.drying.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.compressor.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.roaster.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.assembler.json"
+        ]
+      },
+      "outputs": [
+        "t21_template_denominator.json"
+      ]
+    },
+    {
+      "name": "build_t21_mixer_gunpowder",
+      "script": "tools/build_t21_mixer_gunpowder.py",
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
+      "proof_tier": "compact",
+      "full_replay": {
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.mixer.json"
+        ]
+      },
+      "outputs": [
+        "t21_mixer_gunpowder_expected.json",
+        "t21_mixer_gunpowder_manifest.json"
+      ]
+    },
+    {
+      "name": "build_t21_readiness",
+      "script": "tools/build_t21_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t21_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t21_operand_reachability",
+      "script": "tools/t21_operand_reachability.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "compact",
+      "outputs": [
+        "t21_operand_reachability.json"
+      ]
+    },
+    {
+      "name": "build_t22_petroleum_denominator",
+      "script": "tools/build_t22_petroleum_denominator.py",
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
+      "proof_tier": "compact",
+      "full_replay": {
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json"
+        ]
+      },
+      "outputs": [
+        "t22_petroleum_denominator.json"
+      ]
+    },
+    {
+      "name": "build_t22_family_capability",
+      "script": "tools/build_t22_family_capability.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "compact",
+      "outputs": [
+        "t22_family_capability.json"
+      ]
+    },
+    {
+      "name": "build_t22_load_projection",
+      "script": "tools/build_t22_load_projection.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t22_load_projection.json"
+      ]
+    },
+    {
+      "name": "build_t22_b2_crude_oil",
+      "script": "tools/build_t22_b2_crude_oil.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "compact",
+      "full_replay": {
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.centrifuge.json"
+        ]
+      },
+      "outputs": [
+        "src/main/resources/data/cruciblecraft/t22_publication_baseline.json",
+        "t22_b2_crude_oil_manifest.json"
+      ]
+    },
+    {
+      "name": "build_t22_b3_batch_projection",
+      "script": "tools/build_t22_b3_batch_projection.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "compact",
+      "full_replay": {
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.centrifuge.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.mixer.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.compressor.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.electrolyzer.json"
+        ]
+      },
+      "outputs": [
+        "t22_family_manifest.json"
+      ]
+    },
+    {
+      "name": "build_t22_readiness",
+      "script": "tools/build_t22_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t22_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t22_5_fluid_mapping",
+      "script": "tools/build_t22_5_fluid_mapping.py",
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
+      "proof_tier": "compact",
+      "outputs": [
+        "t22_5_fluid_mapping.json"
+      ]
+    },
+    {
+      "name": "build_t22_5_item_classification",
+      "script": "tools/build_t22_5_item_classification.py",
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
+      "proof_tier": "compact",
+      "outputs": [
+        "t22_5_item_classification.json"
+      ]
+    },
+    {
+      "name": "build_t22_5_shape_analysis",
+      "script": "tools/build_t22_5_shape_analysis.py",
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
+      "proof_tier": "compact",
+      "full_replay": {
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.bath.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.assembler.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.compressor.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.centrifuge.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.autoclave.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.electrolyzer.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.drying.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.roaster.json"
+        ]
+      },
+      "outputs": [
+        "t22_5_shape_analysis.json"
+      ]
+    },
+    {
+      "name": "build_t22_5_row_classification",
+      "script": "tools/build_t22_5_row_classification.py",
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
+      "proof_tier": "compact",
+      "outputs": [
+        "t22_5_row_classification.json"
+      ]
+    },
+    {
+      "name": "build_t22_5_fluid_gap_disposition",
+      "script": "tools/build_t22_5_fluid_gap_disposition.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "compact",
+      "outputs": [
+        "t22_5_fluid_gap_disposition.json"
+      ]
+    },
+    {
+      "name": "build_t22_5_machine_playability",
+      "script": "tools/build_t22_5_machine_playability.py",
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
+      "proof_tier": "compact",
+      "outputs": [
+        "t22_5_machine_playability.json"
+      ]
+    },
+    {
+      "name": "build_t22_5_denominator_recompute",
+      "script": "tools/build_t22_5_denominator_recompute.py",
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t22_5_denominator_recompute.json"
+      ]
+    },
+    {
+      "name": "build_t22_5_readiness",
+      "script": "tools/build_t22_5_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t22_5_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t23_multiblock_classification",
+      "script": "tools/build_t23_multiblock_classification.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t23_multiblock_behavior_classification.json"
+      ]
+    },
+    {
+      "name": "build_t23_readiness",
+      "script": "tools/build_t23_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t23_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t23_load_bounds",
+      "script": "tools/build_t23_load_bounds.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t23_load_bounds.json"
+      ]
+    },
+    {
+      "name": "build_t24_workload_manifest",
+      "script": "tools/build_t24_workload_manifest.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t24_workload_manifest.json"
+      ]
+    },
+    {
+      "name": "build_t24_scale_bounds",
+      "script": "tools/build_t24_scale_bounds.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t24_scale_bounds.json"
+      ]
+    },
+    {
+      "name": "build_t24_findings",
+      "script": "tools/build_t24_findings.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t24_findings.json"
+      ]
+    },
+    {
+      "name": "build_t24_readiness",
+      "script": "tools/build_t24_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t24_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t25_findings_disposition",
+      "script": "tools/build_t25_findings_disposition.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t25_findings_disposition.json"
+      ]
+    },
+    {
+      "name": "build_t25_readiness",
+      "script": "tools/build_t25_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t25_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t26_localization",
+      "script": "tools/build_t26_localization.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t26_localization_ledger.json"
+      ]
+    },
+    {
+      "name": "build_t26_known_issues",
+      "script": "tools/build_t26_known_issues.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t26_known_issues.json"
+      ]
+    },
+    {
+      "name": "build_t26_readiness",
+      "script": "tools/build_t26_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t26_readiness.json"
+      ]
     }
   ],
   "performance": {

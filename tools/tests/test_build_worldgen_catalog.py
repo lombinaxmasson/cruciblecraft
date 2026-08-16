@@ -109,8 +109,12 @@ class WorldgenCatalogBuilderTest(unittest.TestCase):
 
     def test_density_budget_matches_declared_region_math(self):
         density = self.readiness["density"]
+        expected = sum(
+            vein["generation_chance"] / vein["region_size_chunks"] ** 2
+            for vein in self.veins
+        )
         self.assertAlmostEqual(
-            129 * 0.75 / (32**2),
+            expected,
             density["closure_expected_ore_veins_per_chunk"],
         )
         self.assertLess(
@@ -122,17 +126,22 @@ class WorldgenCatalogBuilderTest(unittest.TestCase):
             density["expected_chunks_per_fluid_deposit"],
         )
 
-    def test_uniform_geometry_is_explicitly_tracked_as_o29_debt(self):
+    def test_t20_geometry_is_fully_classified_without_placeholder_debt(self):
         policy = self.readiness["geometry_policy"]
-        self.assertEqual("UNIFORM_PLACEHOLDER", policy["status"])
-        self.assertEqual("O-29", policy["open_item"])
-        self.assertEqual("DEFERRED", policy["gt6_worldgen_import"])
+        self.assertEqual("T20_CLASSIFIED", policy["status"])
+        self.assertIsNone(policy["open_item"])
         self.assertEqual(
-            "single_material_all_layers",
-            policy["role_material_policy"],
+            "CLASSIFIED_WITH_EXPLICIT_POLICY",
+            policy["gt6_worldgen_import"],
         )
-        self.assertEqual(5, policy["defaults"]["horizontal_radius"])
-        self.assertEqual(2, policy["defaults"]["vertical_radius"])
+        self.assertEqual(0, policy["placeholder"])
+        self.assertEqual(0, policy["unverified"])
+        self.assertEqual(2, policy["profile_version"])
+        self.assertEqual(
+            {"DESIGN_POLICY": 56, "SOURCE_DERIVED": 73},
+            policy["fidelity_statuses"],
+        )
+        self.assertGreater(policy["distinct_geometry_signatures"], 1)
 
     def test_wrong_expected_ledger_material_fails_loudly(self):
         capabilities = builder.vein_builder.material_capabilities()

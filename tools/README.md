@@ -38,8 +38,8 @@ earlier evidence digest and output/XML/tree hash. Sessions under
 test policy, builder proof policy, and toolchain; drift refuses reuse and opens
 a new session.
 
-`verification_builder_policy.json` is the single ordered owner for all 41
-builder checks. `rederived` rebuilds from ordinary repository inputs;
+`verification_builder_policy.json` is the single ordered owner for all 50
+current builder checks. `rederived` rebuilds from ordinary repository inputs;
 `compact` validates canonical evidence and tracked hashes without a raw/cache
 corpus; `full_replay` runs only through
 `python tools/run_python_tests.py --suite source-replay`. Missing replay inputs
@@ -52,9 +52,16 @@ re-derives them from the pinned corpus/source tree.
 
 The builder stage records argv, proof tier, result, and wall time for every
 row. Performance regression is a report-only `WARN`; correctness drift remains
-a hard failure. The migrated warm builder stage is about 23 seconds versus the
-previous committed 161-second baseline, while PR CI still runs both datagen
-passes, Java, production GameTest, and Python closure.
+a hard failure. The 2026-08-07 acceptance run measured 23.248 seconds for the
+first 50-builder pass and warm passes of 22.996, 22.645, and 23.814 seconds
+(22.996-second median). That is an 85.7% reduction from the previous
+161-second baseline. With every local raw/cache/source path denied, all 50
+ordinary builders still passed in 27.290 seconds. T13 measured 0.143 seconds
+for compact, 0.823 seconds for hash-fast, and 51.066 seconds for explicit full
+replay. These are machine-local observations, not correctness thresholds.
+PR CI still runs both datagen passes, Java, production GameTest, and Python
+closure; the current committed report binds 538 Java tests, 83 GameTests, and
+501 Python tests in one `READY` session.
 
 These rules are non-negotiable: fast/affected results are not closure evidence;
 closure tests run once, not once per verifier; caches are process-local,
@@ -116,6 +123,10 @@ python tools/build_gt6_veins.py --review
 python tools/build_worldgen_catalog.py --write
 python tools/build_worldgen_catalog.py --check
 python tools/build_worldgen_catalog.py --review
+python tools/build_t20_worldgen_source.py --check --reference-only
+python tools/build_t20_worldgen_source.py --check --full-replay
+python tools/build_t20_worldgen_projection.py --check
+python tools/build_t20_readiness.py --check
 python tools/build_gt6_material_form_gate.py --write
 python tools/build_gt6_material_form_gate.py --check
 python tools/build_gt6_material_form_gate.py --review
@@ -145,18 +156,27 @@ or `--review`; it validates both factual and gate-registered `ore` forms before
 generating all configured features, placed features, and the aggregate biome
 modifier.
 
-The T9 builder owns the batch declarations in
+The T9/T20 builder owns the batch declarations in
 `src/main/resources/data/cruciblecraft/worldgen_catalog` and writes the independent
-`src/worldgen_catalog_generated/resources` root. It derives the expected 129-material
-set from the fixed T2c closure ledger, requires exact bidirectional equality,
-and verifies that the original 8 worldgen materials plus those 129 entries
-cover all 137 factual, registered ore materials. It also compiles
+`src/worldgen_catalog_generated/resources` root. T20 independently normalizes
+the fixed GT6 source as 40 large facts, 75 explicit-small facts, and one dynamic
+random-small rule. The 129-entry T2c target is then classified as 73
+`SOURCE_DERIVED` plus 56 explicit `DESIGN_POLICY` profiles; the latter are not
+claimed as GT6 parity. Schema/profile v2 stores per-row source kind, field
+status, transformations, geometry, distribution, stable id, and stable salt.
+The expected builder derives from the fixed source and T2c ledger, while the
+production builder consumes only explicit authored rows and requires exact
+bidirectional equality. `PLACEHOLDER`, `UNVERIFIED`, and unclassified are all
+hard-zero gates. The original 8 worldgen materials plus those 129 entries still
+cover all 137 factual, registered ore materials. The same pipeline also compiles
 `crude_oil` and `natural_gas` deposits with legacy reserve metadata plus depth,
 host, region, chance, and salt into the same configured/placed-feature pipeline.
 T11 gives those markers an independent non-depleting production state and
 migrates old `methane` markers to `natural_gas`. The compact
 `tools/worldgen_catalog_readiness.json` records counts, density arithmetic, host
-policy, and input hashes.
+policy, profile classification, and input hashes; `tools/t20_readiness.json`
+separately records closure, fidelity, codec/save boundaries, resource bytes, and
+zero RecipeMap publication delta.
 
 Ore-chain artifacts use neutral names because `T2`/`T3` in Java denote the
 repository's machine/component tiers, not delivery milestones. The builder
@@ -479,7 +499,7 @@ set under `build/t13-gt6-source`.
 ```text
 python tools/build_t13_recipe_map_denominator.py --check --reference-only
 python tools/build_t13_recipe_map_denominator.py --check --hash-fast
-python tools/build_t13_prefix_domain_denominators.py --check --no-fetch
+python tools/build_t13_prefix_domain_denominators.py --check --reference-only
 python tools/build_t13_machine_energy_denominators.py --check
 python tools/build_t13_cover_multiblock_denominators.py --check
 python tools/build_t13_denominator_readiness.py --check
@@ -561,8 +581,8 @@ titanium, for 15 runtime variants; `T16_READY` does not claim that all 20 kinds
 are implemented.
 
 `t16_machine_acquisition.json` proves all 15 selected variants have registered
-survival crafting results and reachable operands. The five tier-1 legacy
-identity migrations remain exact, while near misses quarantine. T16 adds only
+survival crafting results and reachable operands. Blank/current identities are
+accepted while kind/tier/material/energy mismatches quarantine. T16 adds only
 vanilla shaped crafting acquisition recipes.
 
 `t16_load_projection_input.json` and `t16_load_projection.json` are the formal
@@ -590,10 +610,11 @@ tier-4/5 variant slots remain explicitly deferred; `T17_READY` does not claim
 that all 28 kinds are implemented.
 
 `t17_machine_acquisition.json` proves all nine selected HU variants have
-registered survival crafting results and reachable operands. Three tier-1
-legacy identity migrations are exact, the existing three Electrolyzer variants
+registered survival crafting results and reachable operands. Current-only
+identity and quarantine rules apply, the existing three Electrolyzer variants
 remain reference evidence, and T17 adds only vanilla shaped crafting
-acquisition recipes.
+acquisition recipes. Extruder and Compressor remain explicit deferred
+dispositions; deferral is not reported as implementation.
 
 `t17_load_projection_input.json` and `t17_load_projection.json` are the formal
 delivery-T17 zero-workload account. Authored, logical, eager, lazy, cache, sync,
@@ -609,6 +630,108 @@ python tools/build_t17_machine_acquisition.py --check
 python tools/build_t17_readiness.py
 python tools/build_t17_readiness.py --check
 python -m unittest tools.tests.test_build_t17_machine_denominator tools.tests.test_build_t17_machine_acquisition tools.tests.test_recipe_load_projection tools.tests.test_build_t17_readiness
+```
+
+### T18 energy-converter readiness
+
+`t18_machine_energy_denominator.json` closes 29 machine kinds plus STEAM/AU at
+`unclassified = 0`: selected 6, three preimplemented references, and deferred
+20. `T18_READY` does not claim that all 29 kinds are implemented.
+
+`t18_converter_acquisition.json` independently binds the six complete converter
+profiles to six vanilla shaped recipes, registered blocks/items, reachable
+operand producers, blockstates, block/item models, bilingual language rows,
+loot, and the pickaxe tag. Every component set is bidirectional and
+`unreachable = 0`.
+
+`t18_load_projection_input.json` and `t18_load_projection.json` are the formal
+delivery-T18 zero-workload account. Converter profile/tier/identity changes add
+zero GT RecipeMap rows. The T18 publication baseline is bidirectionally locked
+to T17: 32 RecipeMap stable ids, 18,875 logical / 16,650 eager / 2,225 lazy
+rows, and exact EMI enumeration over 24 configured maps.
+
+O-37 is recorded separately from converter publication. Full fixed-revision
+Java-tree replay found zero direct binding candidates between
+`liquid_medium_oil` and material 9852, so the permanent resolution is
+`O37_CLOSED_PERMANENT_DESIGN_POLICY`; material 9852 remains source-layer-only,
+T9 identity migration is `NONE`, and publication delta is zero.
+
+```text
+python tools/build_t18_machine_energy_denominator.py --check
+python tools/build_t18_converter_acquisition.py --check
+python tools/build_t18_o37_identity_projection.py --check --reference-only
+python tools/recipe_load_projection.py tools/t18_load_projection_input.json --output tools/t18_load_projection.json
+python tools/build_t18_readiness.py
+python tools/build_t18_readiness.py --check
+python -m unittest tools.tests.test_build_t18_machine_energy_denominator tools.tests.test_build_t18_converter_acquisition tools.tests.test_build_t18_o37_identity_projection tools.tests.test_recipe_load_projection tools.tests.test_build_t18_readiness
+```
+
+### T19 cover and pipe closure
+
+`t19_readiness.json` closes T19a–d and final readiness at `T19_READY`. The
+canonical cover denominator remains 47 = 4 implemented + 5 selected + 28
+deferred + 10 out of scope, with zero unclassified. Cover acquisition contributes
+5 vanilla crafting rows and O-27 contributes 25; all 30 are derived from the
+actual generated set and remain separate from GT RecipeMap publication.
+
+`t19_load_projection_input.json` uses recipe-load schema 2. It records 30
+`vanilla_datapack_entries`, zero GT authored/logical/publication/sync rows, and
+therefore cannot mislabel crafting as GT. The publication baseline locks 32
+RecipeMap ids, 18,875 logical / 16,650 eager / 2,225 lazy rows, and EMI
+enumeration over 24 maps.
+
+The same readiness artifact records bounded runtime costs: position-phased
+five-tick scheduling, at most 32,768 visited pipes per route discovery, 256
+cached route keys per item pipe, six cover slots, a 768-character summary, and
+a 13-byte cover-configuration payload. Production GameTests bind retriever,
+robot-arm, and pressure-valve blocked retention/conservation. O-20, O-27, and
+O-28 have no pending work.
+
+The pre-release closure also locks 3,167 English keys, 366 real Chinese
+translations, visible debt 2,801 (including 1,774 material names), exactly two
+active RecipeTypes and two serializers (`gt_recipe`, `material_rule`), and the
+538 JUnit / 83 GameTest / 501 Python suite expectations. All readiness reports
+bind to the snapshot full-verification report with no remaining pending gate.
+
+```text
+python tools/build_t19_cover_denominator.py --check
+python tools/build_t19_cover_acquisition.py --check
+python tools/build_t19_pipe_acquisition.py --check
+python tools/recipe_load_projection.py tools/t19_load_projection_input.json --output tools/t19_load_projection.json
+python tools/build_t19_readiness.py --check
+python -m unittest tools.tests.test_build_t19_cover_denominator tools.tests.test_build_t19_cover_acquisition tools.tests.test_build_t19_pipe_acquisition tools.tests.test_recipe_load_projection tools.tests.test_build_t19_readiness
+```
+
+### T21 Mixer template denominator
+
+T21 is in progress: the evidence below exists, but Beta necessity
+re-validation, isolated load measurement, the dedicated GameTest server run,
+and the final full verification are still open; the drafted `T21_READY` is
+not closure evidence.
+
+T21 keeps the 224-material classification and Carbon electrolysis calibration,
+but `t21_source_denominator.json` is diagnostic-only. `analyze_map_shape.py`
+first probes the raw Mixer schema, resolves GT meta ids to material axes, and
+uses non-overlapping leave-one-out groups. The resulting 64,245 rows are
+partitioned into 3,414 authored units: 2,628 material matrices, 103 enumerated
+families, and 683 opaque units.
+
+`gt6_mixer_templates.py` assigns content-addressed ids, explicit sparse support,
+and total source-index membership. Compact and full replay both require zero
+missing/extra rows and zero unassigned/duplicate membership.
+`t21_template_denominator.json` combines those templates with exact singleton
+units for the other nine T5 maps and classifies necessity from explicit Beta
+seeds. The sole v1-required template is the four-row gunpowder family; it is
+published eagerly with a passing family load projection.
+
+```text
+python tools/gt6_mixer_templates.py --check --reference-only
+python tools/gt6_mixer_templates.py --check --full-replay
+python tools/build_t21_template_denominator.py --check --reference-only
+python tools/build_t21_template_denominator.py --check --full-replay
+python tools/build_t21_mixer_gunpowder.py --check --full-replay
+python tools/recipe_load_projection.py tools/t21_load_projection_input.json --output tools/t21_load_projection.json
+python tools/build_t21_readiness.py --check
 ```
 
 Extruder v5 uses one template per concrete shape (31 normal + 31 low-heat);
@@ -677,7 +800,7 @@ the stages owned by the full orchestrator; do not run it and a separate Python
 closure as two independent closure proofs.
 
 ```text
-# The 41 ordered builder commands come from verification_builder_policy.json.
+# The 50 ordered builder commands come from verification_builder_policy.json.
 python tools/build_gt6_material_form_gate.py --check --reference-only
 python tools/build_gt6_ore_chain.py --check --reference-only
 python tools/build_t5_chemical_readiness.py --check --reference-only
@@ -843,7 +966,7 @@ assembler, welder, and press are registered configured processing blocks backed
 by the shared block entity/menu/screen. Place a Bronze Steam Engine immediately
 behind a machine, facing toward the machine: the engine's exposed front face
 then feeds the machine's KU back input. Every T3 machine buffers 4,096 KU and
-accepts packets up to 256 KU; the engine's 24 KU packets accumulate without
+accepts packets up to 256 KU; the engine's fixed 12 KU/t CC packets accumulate without
 creating energy. Wire mill, assembler, welder, and press provide two item inputs;
 the other machines provide one. All provide one item output, while assembler
 and welder additionally reserve one 4,000 mB fluid input tank.

@@ -10,6 +10,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
+import com.masson.cruciblecraft.logistics.pipe.PipeAcquisitionRecipeCatalog;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.recipe.rule.MaterialRule;
@@ -32,6 +33,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -63,6 +65,16 @@ public final class ModRecipeProvider extends RecipeProvider {
     }
 
     private static void addMachineRecipes(RecipeOutput output) {
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC, ModItems.FIREBOX.get())
+                .pattern("BBB")
+                .pattern("BFB")
+                .pattern("BBB")
+                .define('B', ModItems.FIREBRICK.get())
+                .define('F', Items.FURNACE)
+                .unlockedBy(
+                        "has_firebrick", has(ModItems.FIREBRICK.get()))
+                .save(output, id("machines/firebox"));
         machineCrafting(
                 output, ModItems.ELECTRIC_MOTOR.get(), "electric_motor");
         machineCrafting(
@@ -472,6 +484,58 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_piston", has(Items.PISTON))
                 .save(output, id("pipe_pump_cover"));
         ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.CONVEYOR_COVER.get())
+                .pattern("IRI")
+                .pattern("IHI")
+                .define('I', Items.IRON_INGOT)
+                .define('R', Items.POWERED_RAIL)
+                .define('H', Items.HOPPER)
+                .unlockedBy("has_hopper", has(Items.HOPPER))
+                .save(output, id("conveyor_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.RETRIEVER_ITEM_COVER.get())
+                .pattern(" R ")
+                .pattern("CHC")
+                .define('R', Items.REDSTONE)
+                .define('C', Items.COMPASS)
+                .define('H', Items.HOPPER)
+                .unlockedBy("has_compass", has(Items.COMPASS))
+                .save(output, id("retriever_item_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.ROBOT_ARM_COVER.get())
+                .pattern("IRI")
+                .pattern("IPI")
+                .define('I', Items.IRON_INGOT)
+                .define('R', Items.REDSTONE)
+                .define('P', Items.PISTON)
+                .unlockedBy("has_piston", has(Items.PISTON))
+                .save(output, id("robot_arm_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.PRESSURE_VALVE_COVER.get())
+                .pattern(" C ")
+                .pattern("CTC")
+                .define('C', Items.COPPER_INGOT)
+                .define('T', Items.TRIPWIRE_HOOK)
+                .unlockedBy(
+                        "has_tripwire_hook",
+                        has(Items.TRIPWIRE_HOOK))
+                .save(output, id("pressure_valve_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.SELECTOR_MANUAL_COVER.get())
+                .pattern(" R ")
+                .pattern("LCL")
+                .define('R', Items.REDSTONE)
+                .define('L', Items.LEVER)
+                .define('C', Items.COMPARATOR)
+                .unlockedBy("has_comparator", has(Items.COMPARATOR))
+                .save(output, id("selector_manual_cover"));
+        addNonmetalPipeAcquisitionRecipes(output);
+        ShapedRecipeBuilder.shaped(
                         RecipeCategory.TOOLS, ModItems.MATERIAL_FILE.get())
                 .pattern(" II")
                 .pattern(" SI")
@@ -559,6 +623,69 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .define('C', casing)
                 .unlockedBy("has_casing", has(casing))
                 .save(output, id("machines/" + id));
+    }
+
+    private static void addNonmetalPipeAcquisitionRecipes(
+            RecipeOutput output) {
+        for (PipeAcquisitionRecipeCatalog.RecipeSpec spec
+                : PipeAcquisitionRecipeCatalog.ALL) {
+            Item result = materialItem(spec.materialId(), spec.output());
+            ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(
+                    RecipeCategory.MISC, result, spec.outputCount());
+            spec.pattern().forEach(builder::pattern);
+            Item unlock = null;
+            for (var entry : spec.operands().entrySet()) {
+                Item candidate = definePipeOperand(
+                        builder, entry.getKey(), entry.getValue());
+                if (unlock == null) {
+                    unlock = candidate;
+                }
+            }
+            builder.unlockedBy(
+                            "has_pipe_operand",
+                            has(java.util.Objects.requireNonNull(unlock)))
+                    .save(output, spec.id());
+        }
+    }
+
+    private static Item definePipeOperand(
+            ShapedRecipeBuilder builder,
+            char symbol,
+            PipeAcquisitionRecipeCatalog.Operand operand) {
+        return switch (operand) {
+            case WOODEN_SLABS -> {
+                builder.define(symbol, ItemTags.WOODEN_SLABS);
+                yield Items.OAK_SLAB;
+            }
+            case PLANKS -> {
+                builder.define(symbol, ItemTags.PLANKS);
+                yield Items.OAK_PLANKS;
+            }
+            case LOGS -> {
+                builder.define(symbol, ItemTags.LOGS);
+                yield Items.OAK_LOG;
+            }
+            case CARBON_DUST -> {
+                Item item = materialItem("carbon", MaterialPrefixes.DUST);
+                builder.define(symbol, item);
+                yield item;
+            }
+            case PLASTIC_PLATE -> {
+                Item item = materialItem("plastic", MaterialPrefixes.PLATE);
+                builder.define(symbol, item);
+                yield item;
+            }
+            case RUBBER_PLATE -> {
+                Item item = materialItem("rubber", MaterialPrefixes.PLATE);
+                builder.define(symbol, item);
+                yield item;
+            }
+            case COAL_COKE -> {
+                Item item = ModItems.COAL_COKE.get();
+                builder.define(symbol, item);
+                yield item;
+            }
+        };
     }
 
     private static void sifterCrafting(

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "status": "MEASURED",
+  "worst_case": true,
+  "measured_by": "src/test/java/com/masson/cruciblecraft/content/multiblock/MultiblockLoadBoundTest.java (JUnit, fake StructureAccess with call counters, 16 rounds, worst-of-N)",
+  "validation": {
+    "worst_case_positions": 4096,
+    "accessor_calls": 8192,
+    "derivation": "one isLoaded + one blockState per structure element at MAX_SCAN_VOLUME (2 x 4096), zero blockEntity reads without ports; port elements add one blockEntity read each",
+    "tick_amortization": "structure revalidation runs on the 20-tick position phase, so the amortized validation cost is accessor_calls / 20 per tick"
+  },
+  "port_scan": {
+    "ops_per_port": 2,
+    "derivation": "MultiblockPortAggregator.refresh performs one isLoaded + one getBlockEntity per matched port (code-derived); exercised at real scale by the supply GameTests (72/26/25 physical ports)"
+  },
+  "network_sync": {
+    "menu_slots": 3,
+    "derivation": "ConfiguredProcessingMachineMenu.DATA_COUNT = 3 ContainerData ints (status, status argument, progress permille)"
+  },
+  "structures": {
+    "distillation_tower": {
+      "positions": 81,
+      "validation_ops_max": 162,
+      "port_count": 80,
+      "port_scan_ops_max": 160,
+      "tick_amortized_ops_max": 9
+    },
+    "large_boiler": {
+      "positions": 36,
+      "validation_ops_max": 72,
+      "port_count": 34,
+      "port_scan_ops_max": 68,
+      "tick_amortized_ops_max": 4
+    },
+    "tank_3x3x3": {
+      "positions": 27,
+      "validation_ops_max": 54,
+      "port_count": 25,
+      "port_scan_ops_max": 50,
+      "tick_amortized_ops_max": 3
+    }
+  }
+}

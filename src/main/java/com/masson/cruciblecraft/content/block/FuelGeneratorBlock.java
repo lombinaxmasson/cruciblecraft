@@ -26,7 +26,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.fluids.FluidUtil;
 
-/** Direct-electric T11 generator configured by one fixed source-map family. */
+/** Typed-energy fuel generator configured by one fixed source-map family. */
 public final class FuelGeneratorBlock extends Block implements EntityBlock {
     public static final DirectionProperty FACING =
             BlockStateProperties.HORIZONTAL_FACING;

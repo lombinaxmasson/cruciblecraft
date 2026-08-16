@@ -1,0 +1,464 @@
+{
+  "schema_version": 1,
+  "status": "PHASE4_V1_PLANNING_CONTRACT",
+  "as_of": "2026-08-14",
+  "product_contract": {
+    "beta": "T20-T26 close the source-backed worldgen, all ordinary non-post-1.0 chemistry, all non-post-1.0 petrochemical source rows plus industrial downstream use, selected industrial multiblocks, reproducible scale evidence and the public-release path required for an industrial-mainline Beta.",
+    "v1": "CrucibleCraft v1.0 provides a complete and stably publishable GT6-style industrial mainline; it does not claim a complete GT6 or GT6U port.",
+    "completion_signal": {
+      "closure": "Every industrial-mainline item classified v1_required has an executable fresh-world and upgrade path, and v1_required is zero at RC.",
+      "fidelity": "Every shipped fact is SOURCE_BACKED, SOURCE_DERIVED or an explicit DESIGN_POLICY; no undeclared PLACEHOLDER or UNVERIFIED fact remains on the v1 path.",
+      "load": "Declared publication, reload, index, memory, network and operation-count budgets pass with evidence of the declared kind."
+    },
+    "non_claims": [
+      "GT6 720841 source rows are fully ported",
+      "all 95 GT6 RecipeMaps are implemented",
+      "all GT6 machine, prefix, cover or multiblock denominator identities are implemented",
+      "GT6U or third-party content is included"
+    ]
+  },
+  "execution_policy": {
+    "maximum_active_t_cards": 1,
+    "current_active_t": "T27",
+    "next_t": "T27",
+    "phase4_sequence": [
+      "T20",
+      "T21",
+      "T22",
+      "T22.5",
+      "T23",
+      "T24",
+      "T25",
+      "T26"
+    ],
+    "final_stage_entry": "T27",
+    "t28_plus_policy": "Generate consecutive single-family, single-physics or single-player-loop cards only after T27 classifies the complete portfolio.",
+    "planning_change_does_not_start_t20": false,
+    "t20_start_evidence": {
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "source_artifact": "tools/t20_gt6_worldgen_source.json",
+      "expected_artifact": "tools/t20_worldgen_expected.json",
+      "observed_source_counts": {
+        "large": 40,
+        "explicit_small": 75,
+        "dynamic_random_small": 1
+      },
+      "catalog_classification": {
+        "SOURCE_DERIVED": 73,
+        "DESIGN_POLICY": 56,
+        "PLACEHOLDER": 0,
+        "UNVERIFIED": 0,
+        "unclassified": 0
+      },
+      "non_claim": "The 129 CrucibleCraft catalog identities are not 129 canonical GT6 large veins; DESIGN_POLICY rows are excluded from GT6 parity."
+    },
+    "t20_closure": {
+      "status": "T20_READY",
+      "artifact": "tools/t20_readiness.json",
+      "source_facts": {
+        "large": 40,
+        "explicit_small": 75,
+        "dynamic_random_small": 1
+      },
+      "catalog": {
+        "entries": 129,
+        "SOURCE_DERIVED": 73,
+        "DESIGN_POLICY": 56,
+        "PLACEHOLDER": 0,
+        "UNVERIFIED": 0,
+        "unclassified": 0
+      },
+      "publication_delta": {
+        "recipe_maps": 0,
+        "logical": 0,
+        "eager": 0,
+        "lazy": 0
+      }
+    },
+    "t21_closure": {
+      "status": "T21_READY",
+      "artifact": "tools/t21_readiness.json",
+      "authoritative_material_candidates": 224,
+      "stale_prose_value": 234,
+      "material_shape_calibration": {
+        "composition_generated": 84,
+        "prefix_matrix": 0,
+        "named_reaction": 70,
+        "blocked_by_new_subsystem": 70,
+        "unclassified": 0
+      },
+      "calibration_family": "carbon_electrolysis",
+      "calibration_artifact": "tools/t21_chemical_axis.json",
+      "row_diagnostic": {
+        "artifact": "tools/t21_source_denominator.json",
+        "closure_numerator": false,
+        "rows": 45353,
+        "status": "DIAGNOSTIC_ONLY"
+      },
+      "mixer_templates": {
+        "source_rows": 64245,
+        "templates": 3414,
+        "material_matrix": 2628,
+        "enumerated": 103,
+        "opaque": 683,
+        "missing": 0,
+        "extra": 0
+      },
+      "template_denominator": {
+        "artifact": "tools/t21_template_denominator.json",
+        "units": 93133,
+        "unclassified": 0,
+        "v1_required": 1,
+        "v1_published": 1,
+        "v1_remaining": 0
+      },
+      "publication_delta": {
+        "logical": 4,
+        "eager": 4,
+        "lazy": 0
+      }
+    },
+    "t22_closure": {
+      "status": "T22_READY",
+      "artifact": "tools/t22_readiness.json",
+      "petroleum_source_rows": 1084,
+      "petroleum_unclassified": 0,
+      "v1_required_units": 2,
+      "v1_required_remaining": 0,
+      "consumer_products_closed": 3,
+      "publication_delta": {
+        "logical": 3,
+        "eager": 3,
+        "lazy": 0
+      }
+    },
+    "t22_5_closure": {
+      "status": "T22_5_READY",
+      "artifact": "tools/t22_5_readiness.json",
+      "publication_delta": {
+        "logical": 0,
+        "eager": 0,
+        "lazy": 0
+      },
+      "row_classification": {
+        "total": 146841,
+        "v1_required": 0,
+        "unclassified": 0
+      },
+      "registered_map_blockers": [
+        "cruciblecraft:anvil_bend_big",
+        "cruciblecraft:anvil_bend_small"
+      ]
+    },
+    "t23_closure": {
+      "status": "T23_READY",
+      "artifact": "tools/t23_readiness.json",
+      "canonical_total": 30,
+      "behavior_unclassified": 0,
+      "selected": [
+        "distillation_tower",
+        "large_boiler",
+        "tank_3x3x3"
+      ],
+      "publication_delta": {
+        "logical": 0,
+        "eager": 0,
+        "lazy": 0
+      }
+    },
+    "t24_closure": {
+      "status": "T24_READY",
+      "artifact": "tools/t24_readiness.json",
+      "workload_identity": "b5e0192c21e381fcb6e97be9c6243eec06d14a17b3197ec25b702c9f5b8e2197",
+      "scenarios": {
+        "small": "MEASURED_AT_SCALE",
+        "target": "SKIP",
+        "stress": "SKIP"
+      },
+      "findings": {
+        "total": 5,
+        "blocking": 0,
+        "skipped_measurement": 2
+      },
+      "publication_delta": {
+        "logical": 0,
+        "eager": 0,
+        "lazy": 0
+      }
+    },
+    "t25_closure": {
+      "status": "T25_READY",
+      "artifact": "tools/t25_readiness.json",
+      "selected": 0,
+      "findings": {
+        "total": 5,
+        "selected_fixed": 0,
+        "non_blocking": 5,
+        "invalid_measurement": 0,
+        "post_1_0": 0
+      },
+      "zero_content_close": true,
+      "publication_delta": {
+        "logical": 0,
+        "eager": 0,
+        "lazy": 0
+      }
+    },
+    "t26_closure": {
+      "status": "T26_READY",
+      "artifact": "tools/t26_readiness.json",
+      "known_issues": "tools/t26_known_issues.json",
+      "localization_ledger": "tools/t26_localization_ledger.json",
+      "packaging": "0.1.0-beta.1",
+      "known_issues_total": 15,
+      "blocks_beta": 0,
+      "o15": "closed",
+      "anvil_bend": "post_1_0",
+      "crucible_owner": "T27",
+      "publication_delta": {
+        "logical": 0,
+        "eager": 0,
+        "lazy": 0
+      }
+    }
+  },
+  "authoritative_baseline": {
+    "opening_runtime_snapshot": {
+      "artifact": "tools/full_verification_report.json",
+      "status": "READY",
+      "verified_on": "2026-08-07",
+      "scope": "Runtime/data baseline captured before this documentation-only planning change; recipe counts remain current because the planning change adds no recipe or runtime content.",
+      "concrete_datapack_recipe_entries": 3240,
+      "tests": {
+        "java_unit": 538,
+        "production_gametest": 83,
+        "python_unit": 501
+      }
+    },
+    "t19_closure": {
+      "artifact": "tools/t19_readiness.json",
+      "status": "T19_READY",
+      "recipe_map_count": 32,
+      "publication": {
+        "logical_rows": 18875,
+        "eager_rows": 16650,
+        "lazy_rows": 2225
+      },
+      "emi_configured_maps": 24,
+      "localization": {
+        "english_keys": 3167,
+        "real_chinese_translations": 366,
+        "visible_chinese_debt": 2801,
+        "missing_material_names": 1774
+      },
+      "t19_increment": {
+        "vanilla_datapack_entries": 30,
+        "gt_logical_rows": 0
+      }
+    },
+    "t13_denominators": {
+      "artifact": "tools/t13_denominator_manifest.json",
+      "status": "T13_DENOMINATOR_MANIFEST_READY",
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+      "tables": 7,
+      "recipe_source_rows": 720841,
+      "unclassified": 0,
+      "canonical_counts": {
+        "recipe_maps": 95,
+        "prefixes": 452,
+        "itemgenerator_domains": 25,
+        "machine_kinds": 96,
+        "energy_identities": 20,
+        "cover_kinds": 47,
+        "multiblock_kinds": 30
+      },
+      "interpretation": "These are source classification universes, not implementation-completion denominators or v1 requirements."
+    },
+    "counter_resolution": {
+      "current_counter": {
+        "name": "concrete_datapack_recipe_entries",
+        "value": 3243,
+        "authority": "tools/full_verification_report.json",
+        "snapshot": "2026-08-14 T25 close / T26 open"
+      },
+      "historical_or_non_current_counters": [
+        {
+          "value": 3230,
+          "meaning": "Historical pre-T19 authored snapshot recorded in the overall-plan narrative.",
+          "current_baseline": false
+        },
+        {
+          "value": 3240,
+          "meaning": "T20 opening snapshot from 2026-08-07; superseded by the T22/T23 datapack increments that yield 3243.",
+          "current_baseline": false
+        },
+        {
+          "value": 3260,
+          "meaning": "T12/T14 authored load snapshot retained by historical readiness artifacts; it is not the current repository file count.",
+          "current_baseline": false
+        },
+        {
+          "value": 3270,
+          "meaning": "Unverified skeleton-plan extrapolation with no authoritative current artifact.",
+          "current_baseline": false
+        }
+      ],
+      "rule": "A number must carry its counter name, artifact and snapshot date. Bare authored or datapack counts are forbidden."
+    }
+  },
+  "measurement_vocabulary": {
+    "source_fact": "One normalized fixed-revision GT6 fact before CrucibleCraft rule authoring.",
+    "authored_rule": "One reviewed CrucibleCraft rule declaration.",
+    "datapack_file": "One concrete recipe resource counted by the current full-verification snapshot.",
+    "logical_row": "One complete runtime recipe relation after rule expansion.",
+    "eager_row": "One logical row materialized during publication.",
+    "lazy_row": "One logical row retained as an on-demand relation.",
+    "prohibition": "These counters are never added, divided or presented as a completion percentage unless numerator and denominator share the same identity and semantics."
+  },
+  "portfolio_classification": {
+    "vocabulary": {
+      "v1_required": "Must close before the v1.0 RC can be numbered.",
+      "post_1_0": "Explicitly deferred beyond v1.0 with an owner, reason, replacement condition and recheck point.",
+      "out_of_scope": "Excluded from the CrucibleCraft v1 product contract.",
+      "unclassified": "No reviewed v1 disposition exists; allowed during planning but must be zero after T27."
+    },
+    "known_dispositions": [
+      {
+        "identity": "O-29",
+        "description": "Fixed-source classification and explicit worldgen profiles for all 129 catalog identities without claiming that they are 129 canonical GT6 large veins",
+        "classification": "v1_required",
+        "owner": "T20"
+      },
+      {
+        "identity": "chemical_fact_and_rule_axis",
+        "description": "Replay-verified Mixer template denominator plus 224-material rule calibration, with Beta necessity classified per template rather than by raw input-touch row count.",
+        "classification": "v1_required",
+        "owner": "T21",
+        "closure_rule": "Require complete Mixer membership and zero-difference replay, unclassified template units zero, every Beta-v1-required template published, and in-scope runtime blockers zero; expanded row totals remain fidelity/load diagnostics."
+      },
+      {
+        "identity": "bounded_petrochemical_depth",
+        "description": "Complete publication of every fixed-source petrochemical row outside explicitly post-1.0 subsystems, with crude oil and natural gas reaching at least three industrially consumed downstream products.",
+        "classification": "v1_required",
+        "owner": "T22",
+        "closure_rule": "Build an exact petroleum source-row denominator, publish every non-post-1.0 row family by family, close required identity/machine/energy/storage capabilities, and finish with petroleum v1_required = 0."
+      },
+      {
+        "identity": "selected_industrial_multiblocks",
+        "description": "Two or three representative structures selected from behavior requirements",
+        "classification": "v1_required",
+        "owner": "T23"
+      },
+      {
+        "identity": "reproducible_scale_evidence",
+        "description": "Three declared workload scales with reproducible structure and operation counts",
+        "classification": "v1_required",
+        "owner": "T24"
+      },
+      {
+        "identity": "measured_beta_blockers",
+        "description": "Only performance findings that T24 proves block Beta",
+        "classification": "v1_required",
+        "owner": "T25"
+      },
+      {
+        "identity": "public_beta_gate",
+        "description": "Fresh-world, multiplayer, upgrade, packaging, attribution and critical localization gate",
+        "classification": "v1_required",
+        "owner": "T26"
+      },
+      {
+        "identity": "O-15",
+        "description": "Player-visible localization debt",
+        "classification": "v1_required",
+        "owner": "T26",
+        "closure_rule": "Complete en_us and the v1 critical-path visible domains; classify any non-v1 residual explicitly instead of using an arbitrary global percentage.",
+        "status": "closed"
+      },
+      {
+        "identity": "O-36",
+        "description": "GT6-equivalent hot-ingot cooling source and behavior",
+        "classification": "v1_required",
+        "owner": "T27-generated fidelity card before RC"
+      },
+      {
+        "identity": "O-41",
+        "description": "T22.5 1,002-row unlockable translation-layer wiring (fluid mapping + item equivalence); not a v1 publication obligation",
+        "classification": "post_1_0",
+        "owner": "T27 freeze recheck"
+      },
+      {
+        "identity": "G10",
+        "description": "Plants, armor, projectiles, lenses, rails and other peripheral gameplay axes",
+        "classification": "post_1_0",
+        "owner": "post-1.0 portfolio"
+      },
+      {
+        "identity": "nuclear_fusion_plasma",
+        "description": "Nuclear fission, fusion, plasma and their dedicated physics and cooling systems",
+        "classification": "post_1_0",
+        "owner": "post-1.0 portfolio"
+      },
+      {
+        "identity": "GT6U",
+        "description": "GregTech 6 Unofficial extension content and behavior",
+        "classification": "post_1_0",
+        "owner": "post-1.0 portfolio"
+      },
+      {
+        "identity": "full_gt6_tree_parity_claim",
+        "description": "A claim that the complete GT6 source tree or all 720841 source rows were ported",
+        "classification": "out_of_scope",
+        "owner": "product contract"
+      }
+    ],
+    "t27_exit": {
+      "consume_all_seven_t13_denominators": true,
+      "consume_all_phase4_measurements_and_deferred_items": true,
+      "unclassified": 0,
+      "v1_required_before_rc": 0
+    }
+  },
+  "evidence_policy": {
+    "kinds": [
+      "STATIC_INFERENCE",
+      "SYNTHETIC_BENCHMARK",
+      "MEASURED_AT_SCALE"
+    ],
+    "cross_machine_wall_clock_is_correctness_gate": false,
+    "ci_hard_gates": [
+      "scenario_structure",
+      "functional_conservation",
+      "operation_counts",
+      "declared invariant bounds"
+    ],
+    "measurement_comparison_requires": [
+      "hardware identity",
+      "operating system",
+      "JVM vendor and version",
+      "mod and dependency versions",
+      "scenario manifest",
+      "warmup and sample protocol"
+    ]
+  },
+  "scope_boundaries": {
+    "phase4_beta_includes": [
+      "O-29 worldgen fidelity",
+      "all ordinary non-post-1.0 chemical source rows",
+      "all non-post-1.0 petrochemical source rows and downstream depth",
+      "two or three selected industrial multiblocks",
+      "reproducible scale baseline",
+      "measured blocker repair",
+      "public Beta gate"
+    ],
+    "phase4_beta_excludes": [
+      "G10",
+      "nuclear fission",
+      "fusion",
+      "plasma",
+      "GT6U",
+      "all-RecipeMap bulk projection",
+      "all-multiblock implementation"
+    ]
+  }
+}

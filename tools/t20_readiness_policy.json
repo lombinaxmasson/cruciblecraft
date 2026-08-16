@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "status": "T20_READINESS_POLICY",
+  "status_policy": {
+    "ready": "T20_READY",
+    "complete_stage_status": "COMPLETE"
+  },
+  "dependencies": {
+    "T19": {
+      "path": "tools/t19_readiness.json",
+      "required_status": "T19_READY"
+    },
+    "source": {
+      "path": "tools/t20_gt6_worldgen_source.json",
+      "required_status": "T20_GT6_WORLDGEN_SOURCE_READY"
+    },
+    "expected": {
+      "path": "tools/t20_worldgen_expected.json",
+      "required_status": "T20_WORLDGEN_EXPECTED_READY"
+    },
+    "runtime_catalog": {
+      "path": "tools/worldgen_catalog_readiness.json",
+      "required_geometry_status": "T20_CLASSIFIED"
+    }
+  },
+  "stages": {
+    "T20a": {
+      "name": "fixed_source_and_normalizer",
+      "status": "COMPLETE",
+      "acceptance": "Pin and replay the fixed GT6 tree/blobs/anchors, independently observing 40 large, 75 explicit-small and one dynamic random-small source rule."
+    },
+    "T20b": {
+      "name": "material_and_field_classification",
+      "status": "COMPLETE",
+      "acceptance": "Classify all 129 catalog identities exactly once with source-id mappings, field statuses and reproducible transformation ids; DESIGN_POLICY rows are excluded from GT6 parity."
+    },
+    "T20c": {
+      "name": "authored_schema_and_generated_tree",
+      "status": "COMPLETE",
+      "acceptance": "Use explicit schema/profile v2 rows, independent expected-to-authored equality and deterministic configured/placed/modifier output currentness with PLACEHOLDER, UNVERIFIED and unclassified all zero."
+    },
+    "T20d": {
+      "name": "runtime_and_save_boundary",
+      "status": "COMPLETE",
+      "acceptance": "Decode and place all 129 profile-v2 catalog features, preserve ids/salts and existing chunks, reject unsupported profile versions, retain ore-chain loot and leave T11 fluid-deposit identity unchanged."
+    },
+    "T20e": {
+      "name": "closure_fidelity_load",
+      "status": "COMPLETE",
+      "acceptance": "Close separate source/catalog/runtime sets, mutation-sensitive expected equality, resource/codec/save accounting and zero RecipeMap logical/eager/lazy publication delta."
+    }
+  },
+  "refresh_policy": {
+    "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+    "this_refresh_final_closure_attempted": true,
+    "evidence": "tools/full_verification_report.json"
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T20a-e implementation and currentness gates are complete; repository-wide verification is bound separately by the full snapshot report."
+  }
+}

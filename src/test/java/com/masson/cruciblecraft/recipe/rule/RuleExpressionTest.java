@@ -34,6 +34,8 @@ class RuleExpressionTest {
             return switch (function + ":" + key) {
                 case "target_units:smelting" -> 16;
                 case "prefix_units:ingot" -> 144;
+                case "fluid_pipe_recipe:tiny_fluid_pipe" -> 1;
+                case "item_pipe_recipe:pipeHuge" -> 0;
                 default -> throw new IllegalArgumentException("unknown lookup");
             };
         }
@@ -121,6 +123,26 @@ class RuleExpressionTest {
         assertThrows(IllegalArgumentException.class, () ->
                 RuleExpression.numeric("gcd(1.5, 144)", "test:gcd-fraction")
                         .evaluateInt(CONTEXT));
+    }
+
+    @Test
+    void pipeRecipeLookupsAreTypedAndFailClosed() {
+        assertTrue(RuleExpression.bool(
+                        "fluid_pipe_recipe(tiny_fluid_pipe) == 1"
+                                + " && item_pipe_recipe(pipeHuge) == 0",
+                        "test:pipe-gauge")
+                .evaluateBoolean(CONTEXT));
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> RuleExpression.bool(
+                                "fluid_pipe_recipe(pipeTypo) == 1",
+                                "test:unknown-pipe-gauge")
+                        .evaluateBoolean(CONTEXT));
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> RuleExpression.bool(
+                        "fluid_pipe_recipe(tiny_fluid_pipe, pipeSmall) == 1",
+                        "test:unsafe-pipe-arity"));
     }
 
     @Test

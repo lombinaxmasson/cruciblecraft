@@ -14,14 +14,15 @@ public record ProcessingMachineState(
         long energy,
         long resourceRevision,
         String machineKind,
-        String tierProfile,
+        String tierBand,
         String materialId,
         String energyIdentity,
         int operations,
         long workProgress,
         long workRequired,
+        Optional<String> identityQuarantine,
         Optional<Integer> unsupportedVersion) {
-    public static final int VERSION = 2;
+    public static final int VERSION = 3;
 
     public ProcessingMachineState {
         activeRecipe = activeRecipe == null ? "" : activeRecipe;
@@ -32,13 +33,16 @@ public record ProcessingMachineState(
         energy = Math.max(0L, energy);
         resourceRevision = Math.max(0L, resourceRevision);
         machineKind = machineKind == null ? "" : machineKind;
-        tierProfile = tierProfile == null ? "" : tierProfile;
+        tierBand = tierBand == null ? "" : tierBand;
         materialId = materialId == null ? "" : materialId;
         energyIdentity = energyIdentity == null ? "" : energyIdentity;
         operations = Math.max(1, operations);
         workRequired = Math.max(0L, workRequired);
         workProgress = Math.max(
                 0L, Math.min(workProgress, workRequired));
+        identityQuarantine = identityQuarantine == null
+                ? Optional.empty()
+                : identityQuarantine.filter(reason -> !reason.isBlank());
         unsupportedVersion = unsupportedVersion == null
                 ? Optional.empty()
                 : unsupportedVersion.filter(version -> version > 0);
@@ -67,6 +71,7 @@ public record ProcessingMachineState(
                 1,
                 0L,
                 0L,
+                Optional.empty(),
                 Optional.empty());
     }
 
@@ -94,6 +99,7 @@ public record ProcessingMachineState(
                 1,
                 0L,
                 0L,
+                Optional.empty(),
                 unsupportedVersion);
     }
 
@@ -112,12 +118,14 @@ public record ProcessingMachineState(
         tag.putLong("energy", energy);
         tag.putLong("resource_revision", resourceRevision);
         tag.putString("machine_kind", machineKind);
-        tag.putString("tier_profile", tierProfile);
+        tag.putString("tier_band", tierBand);
         tag.putString("tier_material", materialId);
         tag.putString("energy_identity", energyIdentity);
         tag.putInt("parallel_operations", operations);
         tag.putLong("work_progress", workProgress);
         tag.putLong("work_required", workRequired);
+        identityQuarantine.ifPresent(reason ->
+                tag.putString("identity_quarantine", reason));
         return tag;
     }
 
@@ -133,13 +141,8 @@ public record ProcessingMachineState(
                             + " (supported through " + VERSION + ")");
         }
         String status = tag.contains("status") ? tag.getString("status") : "idle";
-        Optional<Integer> legacyUnsupported = legacyUnsupportedVersion(status);
-        if (legacyUnsupported.isPresent()) {
-            status = "idle";
-            if (legacyUnsupported.get() > supportedVersion) {
-                version = legacyUnsupported.get();
-            }
-        }
+        Optional<String> identityQuarantine =
+                readIdentityQuarantine(tag, version);
         return new ProcessingMachineState(
                 tag.getString("active_recipe"),
                 tag.getInt("progress"),
@@ -148,29 +151,35 @@ public record ProcessingMachineState(
                 tag.getLong("power_demand"),
                 tag.getLong("energy"),
                 tag.getLong("resource_revision"),
-                version >= 2 ? tag.getString("machine_kind") : "",
-                version >= 2 ? tag.getString("tier_profile") : "",
-                version >= 2 ? tag.getString("tier_material") : "",
-                version >= 2 ? tag.getString("energy_identity") : "",
-                version >= 2
-                        ? Math.max(1, tag.getInt("parallel_operations"))
-                        : 1,
-                version >= 2 ? tag.getLong("work_progress") : 0L,
-                version >= 2 ? tag.getLong("work_required") : 0L,
+                tag.getString("machine_kind"),
+                tag.getString("tier_band"),
+                tag.getString("tier_material"),
+                tag.getString("energy_identity"),
+                Math.max(1, tag.getInt("parallel_operations")),
+                tag.getLong("work_progress"),
+                tag.getLong("work_required"),
+                identityQuarantine,
                 version > supportedVersion
                         ? Optional.of(version)
                         : Optional.empty());
     }
 
-    private static Optional<Integer> legacyUnsupportedVersion(String status) {
-        String prefix = "unsupported_version_";
-        if (!status.startsWith(prefix)) {
-            return Optional.empty();
+    private static Optional<String> readIdentityQuarantine(
+            CompoundTag tag, int version) {
+        if (tag.contains("identity_quarantine")) {
+            return Optional.of(tag.getString("identity_quarantine"));
         }
-        try {
-            return Optional.of(Integer.parseInt(status.substring(prefix.length())));
-        } catch (NumberFormatException exception) {
-            return Optional.empty();
+        if (tag.contains("tier_profile")) {
+            return Optional.of(
+                    "persisted tier_profile is unsupported; tier_band is required");
         }
+        if (version < VERSION) {
+            return Optional.of(
+                    "processing_version "
+                            + version
+                            + " is older than current version "
+                            + VERSION);
+        }
+        return Optional.empty();
     }
 }

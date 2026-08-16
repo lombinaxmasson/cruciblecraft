@@ -51,6 +51,36 @@ class MaterialRuleCodecTest {
     }
 
     @Test
+    void generatedAnvilAndCrusherRulesLoadThroughMaterialRuleCodec()
+            throws Exception {
+        MaterialRuleSerializer serializer = new MaterialRuleSerializer();
+        for (var recipe : Map.of(
+                "data/cruciblecraft/recipe/anvil/ingot_to_plate.json",
+                id("anvil"),
+                "data/cruciblecraft/recipe/crusher/ingot_to_dust.json",
+                id("crusher")).entrySet()) {
+            var stream = MaterialRuleCodecTest.class.getClassLoader()
+                    .getResourceAsStream(recipe.getKey());
+            assertNotNull(stream, recipe.getKey());
+            try (stream;
+                    var reader = new InputStreamReader(
+                            stream, StandardCharsets.UTF_8)) {
+                var json = JsonParser.parseReader(reader).getAsJsonObject();
+                assertEquals(
+                        "cruciblecraft:material_rule",
+                        json.remove("type").getAsString());
+                MaterialRuleRecipe decoded = serializer.codec().codec()
+                        .parse(JsonOps.INSTANCE, json)
+                        .getOrThrow();
+                assertEquals(Optional.of(recipe.getValue()),
+                        decoded.rule().target());
+                assertEquals(1, decoded.rule().itemInputs().size());
+                assertEquals(1, decoded.rule().itemOutputs().size());
+            }
+        }
+    }
+
+    @Test
     void generatedCableRuleUsesSourceBackedAnyRubberTag()
             throws Exception {
         String path = "data/cruciblecraft/recipe/assembler/"

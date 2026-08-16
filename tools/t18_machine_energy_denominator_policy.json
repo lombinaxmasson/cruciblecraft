@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "status": "T18_MACHINE_ENERGY_DENOMINATOR_POLICY",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "owner": "T18",
+  "energy_identities": {
+    "AU": "AIR",
+    "STEAM": "STEAM"
+  },
+  "dispositions": [
+    "SELECTED_T18",
+    "PREIMPLEMENTED_REFERENCE",
+    "DEFERRED_WITH_REASON"
+  ],
+  "kinds": {
+    "MultiTileEntityAxle": {
+      "disposition": "PREIMPLEMENTED_REFERENCE",
+      "local_reference": "cruciblecraft:rotational_axle",
+      "implemented_by": "src/main/java/com/masson/cruciblecraft/content/blockentity/RotationalAxleBlockEntity.java"
+    },
+    "MultiTileEntityBatteryBox": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "The small battery-box family has no selected storage chemistry, inventory contract or T18 acquisition route.",
+      "replacement_condition": "Select exact battery materials, charge/discharge packet windows, inventory safety and current-state persistence.",
+      "recheck_point": "Recheck in a bounded electrical-storage phase after T18."
+    },
+    "MultiTileEntityBatteryBoxLarge": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "Large battery boxes require multiblock-scale storage and inventory semantics outside the converter batch.",
+      "replacement_condition": "Provide exact large-box source rows, battery inventory transactions, packet limits and acquisition.",
+      "recheck_point": "Recheck after the small battery-box contract is closed."
+    },
+    "MultiTileEntityBoilerTank": {
+      "disposition": "SELECTED_T18",
+      "selected_source_id": 1202,
+      "converter_profile": "cruciblecraft:bronze_boiler",
+      "stage": "T18a"
+    },
+    "MultiTileEntityCoolerElectric": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "EU to CU conversion cannot be implemented before the deferred cryogenic identity has a producer and transport contract.",
+      "replacement_condition": "Open CU as a source-backed identity with coolant, exhaust, failure and acquisition semantics.",
+      "recheck_point": "Recheck after T19 scope review or a dedicated cryogenic phase."
+    },
+    "MultiTileEntityDynamoElectric": {
+      "disposition": "SELECTED_T18",
+      "selected_source_id": 10111,
+      "converter_profile": "cruciblecraft:bronze_dynamo",
+      "stage": "T18b"
+    },
+    "MultiTileEntityEngineElectric": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "EU to KU is distinct from the selected steam-to-KU chain and has no T18 acquisition or efficiency closure.",
+      "replacement_condition": "Select an exact electric-engine tier and close KU packet, loss, faces and current identity.",
+      "recheck_point": "Recheck after T18b RU-to-EU closes."
+    },
+    "MultiTileEntityEngineRotation": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "RU to KU conversion is not required by the three selected T18 energy verticals.",
+      "replacement_condition": "Provide an exact rotation-engine row, loss model, overload behavior and a consumer-driven use case.",
+      "recheck_point": "Recheck when a later machine batch requires an RU-to-KU bridge."
+    },
+    "MultiTileEntityEngineSteam": {
+      "disposition": "SELECTED_T18",
+      "selected_source_id": 1302,
+      "converter_profile": "cruciblecraft:bronze_steam_engine",
+      "stage": "T18a"
+    },
+    "MultiTileEntityGearBox": {
+      "disposition": "PREIMPLEMENTED_REFERENCE",
+      "local_reference": "cruciblecraft:rotational_gearbox",
+      "implemented_by": "src/main/java/com/masson/cruciblecraft/content/blockentity/RotationalGearboxBlockEntity.java"
+    },
+    "MultiTileEntityGeneratorBrick": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "The primitive brick generator is not the selected bronze Firebox source row.",
+      "replacement_condition": "Select it only as a distinct primitive machine with source id 1199, 25% efficiency and separate acquisition.",
+      "recheck_point": "Recheck if a pre-bronze heat tier is deliberately added."
+    },
+    "MultiTileEntityGeneratorFluidBed": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "Fluid-bed heat generation needs its own fuel map, bed medium and exhaust transaction.",
+      "replacement_condition": "Select an exact material row and implement FM.FluidBed inputs, residue, faces and acquisition.",
+      "recheck_point": "Recheck in a post-T18 advanced-combustion batch."
+    },
+    "MultiTileEntityGeneratorGas": {
+      "disposition": "SELECTED_T18",
+      "selected_source_id": 1602,
+      "converter_profile": "cruciblecraft:bronze_gas_generator",
+      "stage": "T18c"
+    },
+    "MultiTileEntityGeneratorHotFluid": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "Hot-fluid heat recovery has no selected source fluid set or cooled-fluid exhaust mapping.",
+      "replacement_condition": "Bind FM.Hot rows to exact fluids, return products, heat packets and acquisition.",
+      "recheck_point": "Recheck when a source-backed hot-fluid loop is selected."
+    },
+    "MultiTileEntityGeneratorLiquid": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "The liquid HU generator overlaps fuel families but is not the selected liquid-to-RU motor vertical.",
+      "replacement_condition": "Select an exact FM.Burn row and preserve HU output, fuel efficiency, exhaust and faces.",
+      "recheck_point": "Recheck after T18c and T18d source-family decisions are complete."
+    },
+    "MultiTileEntityGeneratorMetal": {
+      "disposition": "SELECTED_T18",
+      "selected_source_id": 1102,
+      "converter_profile": "cruciblecraft:bronze_firebox",
+      "stage": "T18a"
+    },
+    "MultiTileEntityHeaterElectric": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "EU to HU electric heating is outside the solid-fuel steam-chain baseline.",
+      "replacement_condition": "Select an exact heater tier and close electrical loss, HU faces, overload and acquisition.",
+      "recheck_point": "Recheck after the T18 steam and RU-to-EU stages."
+    },
+    "MultiTileEntityLaserAbsorberElectric": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "LU to EU cannot precede the deferred laser identity and transport topology.",
+      "replacement_condition": "Open LU with exact emitter/absorber rows, optical topology, loss and acquisition.",
+      "recheck_point": "Recheck only in a dedicated laser-energy phase."
+    },
+    "MultiTileEntityLaserElectric": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "EU to LU cannot be selected while LU consumers and optical transport remain deferred.",
+      "replacement_condition": "Provide exact laser rows, beam topology, safety, efficiency and acquisition.",
+      "recheck_point": "Recheck only in a dedicated laser-energy phase."
+    },
+    "MultiTileEntityLongDistanceTransformer": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "Long-distance EU transport requires endpoint pairing and chunk-safe topology beyond T18 conversion.",
+      "replacement_condition": "Define paired endpoints, loss, unloaded chunks, overload, persistence and acquisition.",
+      "recheck_point": "Recheck in a selected long-distance power phase."
+    },
+    "MultiTileEntityMagicFieldAbsorber": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "The multi-identity magic absorber emits deferred CU/LU/QU/TU kinds and cannot be partially folded into T18.",
+      "replacement_condition": "Select every emitted identity with source-backed production, storage, faces and integration.",
+      "recheck_point": "Recheck after T19 scope review and only with the required compatibility dependencies."
+    },
+    "MultiTileEntityMagnetElectric": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "EU to MU cannot precede the deferred magnetic-energy identity and consumers.",
+      "replacement_condition": "Open MU with exact source rows, field topology, loss, failure and acquisition.",
+      "recheck_point": "Recheck in a dedicated magnetic-energy phase."
+    },
+    "MultiTileEntityMotorElectric": {
+      "disposition": "PREIMPLEMENTED_REFERENCE",
+      "local_reference": "cruciblecraft:electric_motor",
+      "implemented_by": "src/main/java/com/masson/cruciblecraft/content/blockentity/ElectricMotorBlockEntity.java"
+    },
+    "MultiTileEntityMotorLiquid": {
+      "disposition": "SELECTED_T18",
+      "selected_source_id": 9147,
+      "converter_profile": "cruciblecraft:bronze_fuel_engine",
+      "stage": "T18b"
+    },
+    "MultiTileEntitySolarPanelElectric": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "Solar EU production is generation rather than one of the selected conversion verticals and needs weather semantics.",
+      "replacement_condition": "Select exact panel rows and close light, weather, dimension, packet and acquisition policy.",
+      "recheck_point": "Recheck in a bounded renewable-generation phase."
+    },
+    "MultiTileEntityTransformerElectric": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "EU transformer ratios and overload behavior are not required for the bounded bronze T18 chains.",
+      "replacement_condition": "Select exact transformer tiers and close bidirectional packet ratios, loss, overload and acquisition.",
+      "recheck_point": "Recheck when multiple electrical voltage tiers require a bridge."
+    },
+    "MultiTileEntityTransformerRotation": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "RU transformer behavior is distinct from the already implemented axle and gearbox references.",
+      "replacement_condition": "Select an exact row and define RU packet transformation, loss, direction and overload.",
+      "recheck_point": "Recheck when the RU network gains a source-backed ratio boundary."
+    },
+    "MultiTileEntityTurbineSteam": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "The steam turbine emits RU and must not be conflated with the selected steam engine that emits KU.",
+      "replacement_condition": "Select an exact turbine material row and close STEAM-to-RU efficiency, exhaust, faces and acquisition.",
+      "recheck_point": "Recheck after the T18a KU engine and T18c RU fuel engine are closed."
+    },
+    "MultiTileEntityZPMDechargerEU": {
+      "disposition": "DEFERRED_WITH_REASON",
+      "reason": "QU to EU conversion depends on the deferred quantum identity and ZPM storage semantics.",
+      "replacement_condition": "Open QU, exact ZPM storage, packet limits, depletion, current identity and acquisition.",
+      "recheck_point": "Recheck only in a dedicated quantum-energy phase."
+    }
+  }
+}

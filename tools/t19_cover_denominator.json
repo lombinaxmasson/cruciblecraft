@@ -1,0 +1,681 @@
+{
+  "counts": {
+    "canonical": 47,
+    "deferred_with_reason": 28,
+    "implemented": 4,
+    "out_of_scope": 10,
+    "selected_t19": 5,
+    "unclassified": 0
+  },
+  "currentness": {
+    "definition_catalog": {
+      "path": "src/main/resources/data/cruciblecraft/cover_definitions.json",
+      "sha256": "207b4d03a66bf088574c1e6fef01971de307255eedf68c8a661741d839e857ec"
+    },
+    "definition_schema": {
+      "path": "src/main/resources/data/cruciblecraft/schema/cover_definitions.schema.json",
+      "sha256": "11c25306249808d75d3456b3461bdd3fc8c7a6f0ad6a626349219beb49936947"
+    },
+    "owned_inputs": [
+      "tools/t19_cover_denominator_policy.json",
+      "tools/build_t19_cover_denominator.py"
+    ],
+    "source_artifact": {
+      "path": "tools/t13_denominators/cover_kinds.json",
+      "sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644"
+    }
+  },
+  "pure_json_reuse": {
+    "base": "cruciblecraft:conveyor",
+    "base_rate": 16,
+    "java_plugin_delta": 0,
+    "required_behavior": "cruciblecraft:conveyor",
+    "second": "cruciblecraft:conveyor_fast",
+    "second_rate": 32
+  },
+  "rows": [
+    {
+      "canonical_id": "asphalt",
+      "classification": "out_of_scope",
+      "deferred": null,
+      "definition": null,
+      "source_blob_members": [
+        "793324d9a2868d1034f4a6afb1a210660621337e"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "controller_auto",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "e3b98e41158a439a7c7052b3689b1ee693ad6f95"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "controller_auto_redstone",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "e3b481370ef270f734b6972b329d8dde87cd196f"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "controller_auto_timer",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "ba4746616e0946676e9efcb9cd8f1ab78d201574"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "controller_covers",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "25aad11a7378738d6a81c8d0e1eee3ee2419c6af"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "controller_display",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "32f0eea1aa9fb547ee89c99945f6a3316ddea9cb"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "controller_redstone",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "9d9098a8efed34fbdbff3dbb3e08a884df8fc87b"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "conveyor",
+      "classification": "selected_t19",
+      "deferred": null,
+      "definition": "cruciblecraft:conveyor",
+      "source_blob_members": [
+        "15b2c5a70ef760dc65b9ce743185fafa108b4c83"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "crafting",
+      "classification": "out_of_scope",
+      "deferred": null,
+      "definition": null,
+      "source_blob_members": [
+        "f425c4220c9515c858a9619cd78d529b405cf75f"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "detector_running_actively",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "54ecfebf2f2a679f8b4de425a8ca87e74f73d443"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "detector_running_passively",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "44dc0a045362eafd73f6d925a1c966e9cd57d3c0"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "detector_running_possible",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "ebe50b66e4df9be32dcc026eb95843add4aafb75"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "detector_running_successfully",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "e4469793f37271d6fa7d2f1a59f9d1e759ab33b0"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "display_energy",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "5ee0471f31e3f04815996404236ed63db7e3fef1"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "drain",
+      "classification": "out_of_scope",
+      "deferred": null,
+      "definition": null,
+      "source_blob_members": [
+        "2d172f6f7cfd6c93008cf0b257c7f6bda5d87524"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "filter_fluid",
+      "classification": "implemented",
+      "deferred": null,
+      "definition": "cruciblecraft:filter",
+      "source_blob_members": [
+        "ee2148dda58c56f4677446d226431ac804ee62fd"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "filter_item",
+      "classification": "implemented",
+      "deferred": null,
+      "definition": "cruciblecraft:filter",
+      "source_blob_members": [
+        "6323ab371a7056fa8cb2e3b6b6e966fc9dc85eb3"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "logistics_display_cpu_control",
+      "classification": "out_of_scope",
+      "deferred": null,
+      "definition": null,
+      "source_blob_members": [
+        "9ada0e778e4c38e42e597e62ba6089dc921aa25c"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "logistics_display_cpu_conversion",
+      "classification": "out_of_scope",
+      "deferred": null,
+      "definition": null,
+      "source_blob_members": [
+        "18e90236cafb9bcae070505f2f73ddd1f48efefe"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "logistics_display_cpu_logic",
+      "classification": "out_of_scope",
+      "deferred": null,
+      "definition": null,
+      "source_blob_members": [
+        "f272e2bb5f7f26e30568c39d1526672d0e847b3f"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "logistics_display_cpu_storage",
+      "classification": "out_of_scope",
+      "deferred": null,
+      "definition": null,
+      "source_blob_members": [
+        "5f69781a8c7411b09138b2e8535b9221d11042ee"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "logistics_fluid_storage",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "47f930514ee67064400fb45f17846423a4d0e39a"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "logistics_fluid_transfer",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "f862d8d7055a0d518aeeb53f4cef9e3b0a51b7fa",
+        "993883e1c59fe5e23ebca68110a3efdbb03bdd41"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "logistics_generic_dump",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "8555056a570f09a4fd9102902cef00f141ea7b04"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "logistics_generic_storage",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "fa456df044dfe83915b7aeab5f383e26e779706e"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "logistics_generic_transfer",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "ea1e3a77abb1587d80ad7659d5f8f4a9dc1edbbf",
+        "d813ee56edaccf4338a72b0f6d15900a323f5953"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "logistics_item_storage",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "039871aad038a082adadfd1f5bd1ed0cd7fb227b"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "logistics_item_transfer",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "042f195d31b78084cd5949d26354ae02bc1567e2",
+        "4e4428095110c92a6403de618ba6f7fbf317a10c"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "pressure_valve",
+      "classification": "selected_t19",
+      "deferred": null,
+      "definition": "cruciblecraft:pressure_valve",
+      "source_blob_members": [
+        "87313c8f97ac9ca431c23de42a3c275e19034016"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "pump",
+      "classification": "implemented",
+      "deferred": null,
+      "definition": "cruciblecraft:pump",
+      "source_blob_members": [
+        "d29e2faa23a229bcf0e6ce45213708ff4624c4b1"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "redstone_conductor",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "743c9b55080eb040adf4d457070525aaba3eaadf",
+        "8337a057b9e093e86557258845d67fc3ceaa1fde"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "redstone_emitter",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "6cf4b74ee7fd2c7732beed759f979070013d4b5b"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "redstone_repeater",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "e0e2e7dea5c445dd3fc9f781dc96194768a8c02d"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "redstone_torch",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "e48933111ccc362322fb55944fec2ef2ca38ba22"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "retriever_item",
+      "classification": "selected_t19",
+      "deferred": null,
+      "definition": "cruciblecraft:retriever_item",
+      "source_blob_members": [
+        "7717b7b3f64b5c113858cc935299199880dc4d79"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "robot_arm",
+      "classification": "selected_t19",
+      "deferred": null,
+      "definition": "cruciblecraft:robot_arm",
+      "source_blob_members": [
+        "c4d692529ae4e2fd4b8c2279d80a89b00a266b2c"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "scale_energy",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "ac635e1f926d817b5bc07d7b309b61cf17b6ca9b"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "scale_progress",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "f737ad591409ec4f75163d50ca5dd05093359dff"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "selector_button_panel",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "968004827f6736f9be8709692d2239b9ab15930f"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "selector_manual",
+      "classification": "selected_t19",
+      "deferred": null,
+      "definition": "cruciblecraft:selector_manual",
+      "source_blob_members": [
+        "da346879c9a62b8a4906f876b76042aa083cdc14"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "selector_redstone",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "5b382fc95ec5b93e2f3a70ac9b7951d2f336b04a"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "selector_tag",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "6fa9e7a50ec08945f90bf51eb5f19ba84d7ae881"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "shutter",
+      "classification": "implemented",
+      "deferred": null,
+      "definition": "cruciblecraft:shutter",
+      "source_blob_members": [
+        "367a0462740f4a67d885ebbee0383eae52a54efc"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "texture_canvas",
+      "classification": "out_of_scope",
+      "deferred": null,
+      "definition": null,
+      "source_blob_members": [
+        "f50b149583644d1eaa22e69a71e6a18efdbf671a"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "texture_multi",
+      "classification": "out_of_scope",
+      "deferred": null,
+      "definition": null,
+      "source_blob_members": [
+        "4bbca803933a97eb7163df8d1fc8ec3011883387"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "texture_simple",
+      "classification": "out_of_scope",
+      "deferred": null,
+      "definition": null,
+      "source_blob_members": [
+        "689a133dff55fce50570bbfa9990b17903787b80"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    {
+      "canonical_id": "vent",
+      "classification": "deferred_with_reason",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "definition": null,
+      "source_blob_members": [
+        "610fff6f5034fe6b466b40ccdb9139aa341289c7"
+      ],
+      "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    }
+  ],
+  "schema_version": 1,
+  "selected": {
+    "conveyor": {
+      "definition": "cruciblecraft:conveyor",
+      "item": "cruciblecraft:conveyor_cover",
+      "recipe": "cruciblecraft:conveyor_cover"
+    },
+    "pressure_valve": {
+      "definition": "cruciblecraft:pressure_valve",
+      "item": "cruciblecraft:pressure_valve_cover",
+      "recipe": "cruciblecraft:pressure_valve_cover"
+    },
+    "retriever_item": {
+      "definition": "cruciblecraft:retriever_item",
+      "item": "cruciblecraft:retriever_item_cover",
+      "recipe": "cruciblecraft:retriever_item_cover"
+    },
+    "robot_arm": {
+      "definition": "cruciblecraft:robot_arm",
+      "item": "cruciblecraft:robot_arm_cover",
+      "recipe": "cruciblecraft:robot_arm_cover"
+    },
+    "selector_manual": {
+      "definition": "cruciblecraft:selector_manual",
+      "item": "cruciblecraft:selector_manual_cover",
+      "recipe": "cruciblecraft:selector_manual_cover"
+    }
+  },
+  "status": "T19_COVER_DENOMINATOR_READY"
+}

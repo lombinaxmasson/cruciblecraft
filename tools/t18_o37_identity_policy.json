@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "status": "T18_O37_IDENTITY_POLICY",
+  "source": {
+    "repository": "GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "tree_manifest": "tools/t13_gt6_tree_manifest.json",
+    "search_scope": "every fixed-revision Java blob in the complete T13 tree manifest"
+  },
+  "required_symbol_evidence": [
+    {
+      "path": "src/main/java/gregtech/loaders/a/Loader_Fluids.java",
+      "blob": "23d79e9be0b2a3587d83c21f8dd0301b62cfb176",
+      "symbol": "Loader_Fluids#run",
+      "pattern": "FL\\.create\\(\"liquid_medium_oil\"\\s*,\\s*\"Raw Oil\"\\s*,\\s*null"
+    },
+    {
+      "path": "src/main/java/gregapi/data/FL.java",
+      "blob": "bbc60df02553aaedf7d1c29dd09428ed2d20fb52",
+      "symbol": "FL.Oil_Medium",
+      "pattern": "Oil_Medium\\s*\\(\"liquid_medium_oil\""
+    },
+    {
+      "path": "src/main/java/gregapi/data/MT.java",
+      "blob": "1681c2072f28ad2d31bc285aef1c6fd2a3bcef92",
+      "symbol": "MT.CrudeOil",
+      "pattern": "CrudeOil\\s*=\\s*oredust\\s*\\(\\s*9852"
+    },
+    {
+      "path": "src/main/java/gregtech/loaders/b/Loader_Fuels.java",
+      "blob": "183e00b5b0dd24d11634d9375f35589ae0611216",
+      "symbol": "Loader_Fuels#run",
+      "pattern": "FL\\.Oil_Medium\\.make\\(1\\)"
+    }
+  ],
+  "direct_binding_search": {
+    "fluid_tokens": [
+      "liquid_medium_oil",
+      "Oil_Medium"
+    ],
+    "material_tokens": [
+      "MT.CrudeOil",
+      "CrudeOil",
+      "9852"
+    ],
+    "material_fluid_patterns": [
+      "MT\\.CrudeOil\\.m(?:Liquid|Gas)",
+      "FL\\.amount\\(\\s*MT\\.CrudeOil"
+    ],
+    "candidate_rule": "A direct candidate must join a fluid token and material token in one Java statement, or use a material-fluid pattern. Names and display text alone are not a binding."
+  },
+  "decision": {
+    "status": "DESIGN_POLICY",
+    "closure": "O37_CLOSED_PERMANENT_DESIGN_POLICY",
+    "gt6_equivalence": "NO_DIRECT_BINDING_AT_FIXED_REVISION",
+    "permanent": true,
+    "source_backed_if_direct_binding_found": true
+  },
+  "runtime_identity_lock": {
+    "worldgen_deposit": "cruciblecraft:crude_oil_deposit",
+    "worldgen_material": "cruciblecraft:crude_oil",
+    "distillery_source_fluid": "liquid_medium_oil",
+    "distillery_runtime_input": "cruciblecraft:crude_oil",
+    "registered_runtime_fluid": "cruciblecraft:crude_oil",
+    "registration_owner": "t11_hydrocarbon_fluid_gate",
+    "duplicate_registration_allowed": false,
+    "material_9852": "MT.CrudeOil",
+    "material_9852_role": "SOURCE_MATERIAL_LAYER_ONLY",
+    "t9_identity_migration": "NONE",
+    "fluid_id_changed": false,
+    "publication_delta": 0
+  }
+}

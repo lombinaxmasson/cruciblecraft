@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "status_policy": "The status field is derived by build() from the gates below; check() recomputes and compares. Missing status is fail-closed (not ready).",
+  "stages": {
+    "T24a": "Three declared-scale workloads defined as data with a deterministic manifest and workload identity; rebuildable from an empty directory.",
+    "T24b": "Correctness and performance evidence separated into STATIC_INFERENCE / SYNTHETIC_BENCHMARK / MEASURED_AT_SCALE; CI hard gates lock only scenario identity, conservation and bounded counts.",
+    "T24c": "Three-axis closeout with a finding ledger, explicit SKIP for uncollectable metrics, and zero publication delta."
+  },
+  "dependencies": {
+    "workload_policy": "tools/t24_workload_policy.json",
+    "workload_manifest": "tools/t24_workload_manifest.json",
+    "scale_evidence": "tools/t24_scale_evidence.json",
+    "scale_bounds": "tools/t24_scale_bounds.json",
+    "findings": "tools/t24_findings.json",
+    "publication_baseline": "src/main/resources/data/cruciblecraft/t23_publication_baseline.json",
+    "full_verification_report": "tools/full_verification_report.json",
+    "gametest_sources": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java"
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T24 scenario definition, bounded-count gates, evidence classification and finding ledger are complete; repository-wide verification is bound separately by the full snapshot report."
+  },
+  "refresh_policy": {
+    "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+    "evidence": "tools/full_verification_report.json"
+  }
+}

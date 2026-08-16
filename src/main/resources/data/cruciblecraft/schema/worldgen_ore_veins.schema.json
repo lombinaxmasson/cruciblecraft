@@ -1,0 +1,281 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.example/schema/worldgen_ore_veins.schema.json",
+  "title": "CrucibleCraft T20 ore vein catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "id",
+    "profile_version",
+    "source_ledger",
+    "source_contract",
+    "veins"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "id": {
+      "const": "ore_vein_closure"
+    },
+    "profile_version": {
+      "const": 2
+    },
+    "source_ledger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "classification"],
+      "properties": {
+        "path": {
+          "const": "tools/gt6_ore_chain_closure.json"
+        },
+        "classification": {
+          "const": "vein"
+        }
+      }
+    },
+    "source_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy", "expected", "revision", "fidelity_contract"],
+      "properties": {
+        "policy": {
+          "const": "tools/t20_worldgen_source_policy.json"
+        },
+        "expected": {
+          "const": "tools/t20_worldgen_expected.json"
+        },
+        "revision": {
+          "const": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+        },
+        "fidelity_contract": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "veins": {
+      "type": "array",
+      "minItems": 129,
+      "maxItems": 129,
+      "items": {
+        "$ref": "#/$defs/vein"
+      }
+    }
+  },
+  "$defs": {
+    "material": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["material", "weight"],
+      "properties": {
+        "material": {
+          "type": "string",
+          "pattern": "^[a-z0-9_.-]+$"
+        },
+        "weight": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000
+        }
+      }
+    },
+    "role": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 16,
+      "items": {
+        "$ref": "#/$defs/material"
+      }
+    },
+    "field_status": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "enum": [
+          "SOURCE_BACKED",
+          "SOURCE_BACKED_CC_IDENTITY",
+          "SOURCE_DERIVED",
+          "DESIGN_POLICY"
+        ]
+      }
+    },
+    "role_substitution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "source_material", "runtime_material", "reason"],
+      "properties": {
+        "role": {
+          "enum": ["top", "bottom", "between", "spread"]
+        },
+        "source_material": {
+          "type": ["string", "null"]
+        },
+        "runtime_material": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "source_kind",
+        "source_fact_id",
+        "transformations",
+        "field_status"
+      ],
+      "properties": {
+        "status": {
+          "enum": ["SOURCE_BACKED", "SOURCE_DERIVED", "DESIGN_POLICY"]
+        },
+        "source_kind": {
+          "enum": [
+            "EXPLICIT_SMALL_SOURCE",
+            "RANDOM_SMALL_GEM_SOURCE",
+            "UNIQUE_LARGE_ROLE_SOURCE",
+            "DESIGN_POLICY_NO_GT6_WORLDGEN_FACT"
+          ]
+        },
+        "source_fact_id": {
+          "type": ["string", "null"]
+        },
+        "source_line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "source_material_id": {
+          "type": ["integer", "null"]
+        },
+        "source_material_name": {
+          "type": ["string", "null"]
+        },
+        "transformations": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "field_status": {
+          "$ref": "#/$defs/field_status"
+        },
+        "role_substitutions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/role_substitution"
+          }
+        },
+        "candidate_source_facts": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "vein": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "catalog_material",
+        "profile_version",
+        "top",
+        "bottom",
+        "between",
+        "spread",
+        "min_y",
+        "max_y",
+        "horizontal_radius",
+        "vertical_radius",
+        "density",
+        "region_size_chunks",
+        "generation_chance",
+        "salt",
+        "provenance"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^large_[a-z0-9_.-]+_vein$"
+        },
+        "catalog_material": {
+          "type": "string",
+          "pattern": "^[a-z0-9_.-]+$"
+        },
+        "profile_version": {
+          "const": 2
+        },
+        "top": {
+          "$ref": "#/$defs/role"
+        },
+        "bottom": {
+          "$ref": "#/$defs/role"
+        },
+        "between": {
+          "$ref": "#/$defs/role"
+        },
+        "spread": {
+          "$ref": "#/$defs/role"
+        },
+        "min_y": {
+          "type": "integer",
+          "minimum": -64,
+          "maximum": 320
+        },
+        "max_y": {
+          "type": "integer",
+          "minimum": -64,
+          "maximum": 320
+        },
+        "horizontal_radius": {
+          "type": "integer",
+          "minimum": 4,
+          "maximum": 23
+        },
+        "vertical_radius": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 24
+        },
+        "density": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 1.0
+        },
+        "region_size_chunks": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 32
+        },
+        "generation_chance": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "salt": {
+          "type": "integer",
+          "minimum": -2147483648,
+          "maximum": 2147483647
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        }
+      }
+    }
+  }
+}

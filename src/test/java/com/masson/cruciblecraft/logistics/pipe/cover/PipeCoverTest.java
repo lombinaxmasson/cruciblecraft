@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Map;
 import java.util.Optional;
 
 import net.minecraft.core.Direction;
@@ -52,6 +51,11 @@ class PipeCoverTest {
 
         CompoundTag tag = new CompoundTag();
         original.save(tag, null);
+        ListTag persisted = tag.getList("covers", 10);
+        for (int index = 0; index < persisted.size(); index++) {
+            assertTrue(persisted.getCompound(index).contains("definition"));
+            assertFalse(persisted.getCompound(index).contains("type"));
+        }
         PipeCoverSet restored = new PipeCoverSet();
         restored.load(tag, null);
 
@@ -74,10 +78,56 @@ class PipeCoverTest {
         PipeCoverSet restored = new PipeCoverSet();
         assertEquals(2, restored.load(tag, null));
         assertEquals(
-                Map.of(
-                        Direction.NORTH,
-                        PipeCover.filter("minecraft:iron_ingot")),
-                restored.snapshot());
+                PipeCover.filter("minecraft:iron_ingot"),
+                restored.get(Direction.NORTH).orElseThrow());
+        assertEquals(3, restored.snapshot().size());
+        assertFalse(restored.allowsIncoming(Direction.SOUTH));
+        assertFalse(restored.allowsIncoming(Direction.EAST));
+    }
+
+    @Test
+    void unknownDefinitionsAndIdentityConflictsFailClosed() {
+        ListTag rows = new ListTag();
+        CompoundTag unknown = new CompoundTag();
+        unknown.putString("side", "north");
+        unknown.putString("definition", "example:missing");
+        rows.add(unknown);
+        CompoundTag conflict = new CompoundTag();
+        conflict.putString("side", "south");
+        conflict.putString("definition", "cruciblecraft:filter");
+        conflict.putString("type", "filter");
+        rows.add(conflict);
+        CompoundTag tag = new CompoundTag();
+        tag.put("covers", rows);
+
+        PipeCoverSet restored = new PipeCoverSet();
+        assertEquals(2, restored.load(tag, null));
+        assertFalse(restored.allowsIncoming(Direction.NORTH));
+        assertFalse(restored.allowsOutgoing(
+                Direction.SOUTH,
+                CoverDefinition.Medium.ITEM,
+                0,
+                0));
+    }
+
+    @Test
+    void legacyTypeLoadsButNextSaveWritesOnlyDefinitionId() {
+        ListTag legacyRows = new ListTag();
+        legacyRows.add(coverRow(
+                "north", "filter", "minecraft:iron_ingot"));
+        CompoundTag legacy = new CompoundTag();
+        legacy.put("covers", legacyRows);
+        PipeCoverSet restored = new PipeCoverSet();
+        assertEquals(0, restored.load(legacy, null));
+
+        CompoundTag migrated = new CompoundTag();
+        restored.save(migrated, null);
+        CompoundTag row = migrated.getList(
+                "covers", 10).getCompound(0);
+        assertEquals(
+                "cruciblecraft:filter",
+                row.getString("definition"));
+        assertFalse(row.contains("type"));
     }
 
     private static CompoundTag coverRow(

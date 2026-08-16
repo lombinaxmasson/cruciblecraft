@@ -32,6 +32,7 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
         var pickaxe = tag(BlockTags.MINEABLE_WITH_PICKAXE);
         var stone = tag(BlockTags.NEEDS_STONE_TOOL);
         pickaxe.add(
+                ModBlocks.FIREBOX.getKey(),
                 ModBlocks.BRONZE_BOILER.getKey(),
                 ModBlocks.BRONZE_STEAM_ENGINE.getKey(),
                 ModBlocks.BRONZE_DYNAMO.getKey(),
@@ -43,6 +44,9 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.getKey(),
                 ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.getKey(),
                 ModBlocks.LARGE_CENTRIFUGE.getKey(),
+                ModBlocks.DISTILLATION_TOWER.getKey(),
+                ModBlocks.LARGE_BOILER.getKey(),
+                ModBlocks.TANK_3X3X3.getKey(),
                 ModBlocks.FLUID_DEPOSIT_EXTRACTOR.getKey(),
                 ModBlocks.FUEL_ENGINE.getKey(),
                 ModBlocks.BURNING_GAS_GENERATOR.getKey());

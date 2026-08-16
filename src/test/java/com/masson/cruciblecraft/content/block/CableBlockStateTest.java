@@ -24,4 +24,24 @@ class CableBlockStateTest {
         assertTrue(MaterialFormItem.class.isAssignableFrom(
                 CableBlockItem.class));
     }
+
+    @Test
+    void cablesAndPipesUseGt6StylePlacementInsteadOfAutoConnect()
+            throws Exception {
+        String cables = java.nio.file.Files.readString(
+                java.nio.file.Path.of(
+                        "src/main/java/com/masson/cruciblecraft/content/block/CableBlock.java"));
+        String pipes = java.nio.file.Files.readString(
+                java.nio.file.Path.of(
+                        "src/main/java/com/masson/cruciblecraft/content/block/AbstractPipeBlock.java"));
+        String items = java.nio.file.Files.readString(
+                java.nio.file.Path.of(
+                        "src/main/java/com/masson/cruciblecraft/content/item/CableBlockItem.java"));
+        assertTrue(cables.contains("return defaultBlockState();"));
+        assertTrue(pipes.contains("return defaultBlockState();"));
+        assertTrue(cables.contains("Gt6StyleConnections.wrench"));
+        assertTrue(pipes.contains("Gt6StyleConnections.wrench"));
+        assertTrue(items.contains("Gt6StyleConnections.placeBlock"));
+        assertTrue(cables.contains("return state;"));
+    }
 }

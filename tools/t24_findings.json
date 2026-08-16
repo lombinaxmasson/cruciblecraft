@@ -1,0 +1,76 @@
+{
+  "counts": {
+    "blocking": 0,
+    "non_blocking": 5,
+    "skipped_measurement": 2,
+    "total": 5
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t24_findings.py": "df653679853162a4cd6dcbb3f492d0280fb46230e47f1606dac423938a697222"
+    }
+  },
+  "findings": [
+    {
+      "blocks_beta": false,
+      "disposition": "non_blocking",
+      "evidence_artifact": "tools/t24_scale_evidence.json#/scenarios/target/pipes_due_per_tick_max",
+      "evidence_class": "STATIC_INFERENCE",
+      "failure_boundary": "PipeTransferPhase.INTERVAL change or a regression in the 5-tick residue partition math; the boundary is the exact 100-due-pipes-per-tick invariant at 500 consecutive positions",
+      "id": "T24-F001",
+      "owner": "T25",
+      "reproduce_command": ".\\gradlew.bat test --tests \"*ScaleWorkloadBoundTest.targetScenarioSchedulesExactlyOneHundredDuePipesPerTick\"",
+      "title": "500-pipe position-phase schedule yields exactly 100 due pipes per tick - verified, no action"
+    },
+    {
+      "blocks_beta": false,
+      "disposition": "non_blocking",
+      "evidence_artifact": "tools/t24_scale_evidence.json#/scenarios/small/structure_validation_ops_max",
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "failure_boundary": "MultiblockStructureValidator change breaking isLoaded == blockState == positions or blockEntity == port count",
+      "id": "T24-F002",
+      "owner": "T25",
+      "reproduce_command": ".\\gradlew.bat test --tests \"*ScaleWorkloadBoundTest.scenarioMultiblockValidationOpsAreBounded\"",
+      "title": "Multiblock validation is element-linear and bounded at 2 ops per position (tank 54, tower 162)"
+    },
+    {
+      "blocks_beta": false,
+      "disposition": "non_blocking",
+      "evidence_artifact": "tools/t24_scale_evidence.json#/measured_at_scale/target",
+      "evidence_class": "STATIC_INFERENCE",
+      "failure_boundary": "The declared cap is enforced by ItemPipeNetworkTraversal.MAX_VISITED_PIPES; no scenario has been exercised at scale against it - recheck at T26 Beta candidate with a declared environment",
+      "id": "T24-F003",
+      "owner": "T25",
+      "reproduce_command": "python tools/build_t24_scale_bounds.py --check",
+      "skipped_measurement": true,
+      "title": "Route discovery cap (32,768 visited pipes) is declared but not measured at scale"
+    },
+    {
+      "blocks_beta": false,
+      "disposition": "non_blocking",
+      "evidence_artifact": "tools/t24_scale_evidence.json#/declared_caps/cover_configuration_payload_bytes",
+      "evidence_class": "STATIC_INFERENCE",
+      "failure_boundary": "CoverConfigurationPayload codec change; the boundary is MAX_ENCODED_BYTES = 13",
+      "id": "T24-F004",
+      "owner": "T25",
+      "reproduce_command": ".\\gradlew.bat test --tests \"*ScaleWorkloadBoundTest.scenarioCoverPayloadFitsThirteenByteBound\"",
+      "title": "Cover configuration payload bounded at 13 bytes (source constant + serialization smoke)"
+    },
+    {
+      "blocks_beta": false,
+      "disposition": "non_blocking",
+      "evidence_artifact": "tools/t24_scale_evidence.json#/measured_at_scale/stress",
+      "evidence_class": "MEASURED_AT_SCALE",
+      "failure_boundary": "None - blocked_conclusions are enumerated and no value is zero-filled; the measurement gap is a declared SKIP",
+      "id": "T24-F005",
+      "owner": "T25",
+      "reproduce_command": "re-run per the replacement_condition recorded in tools/t24_scale_evidence.json measured_at_scale",
+      "skipped_measurement": true,
+      "title": "target/stress wall-clock, retained-memory and network-sync are not measured (explicit SKIP)"
+    }
+  ],
+  "policy": "Only findings with reproducible evidence may be handed to T25 as blocking. Measurement noise and cross-machine comparisons are never blocking.",
+  "schema_version": 1,
+  "status": "FINDINGS_LEDGER_READY",
+  "status_owner": "build_t24_findings"
+}

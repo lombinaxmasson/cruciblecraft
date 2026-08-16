@@ -5,6 +5,8 @@ import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
 import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.energy.PerTickEnergyBudget;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.machine.component.CheckpointTracker;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
@@ -27,48 +29,40 @@ import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 public final class SteamEngineBlockEntity extends BlockEntity implements IEnergyHandler {
-    public static final int STEAM_CAPACITY = 16_000;
-    public static final long KU_CAPACITY = 1_024;
-    /** Bronze nominal packet, matching the documented ~24 KU/t GT6 tier. */
-    public static final long OUTPUT_RATE = 24;
+    private static final EnergyConverterProfile PROFILE =
+            EnergyConverterCatalog.require(
+                    "cruciblecraft:bronze_steam_engine");
+    public static final int STEAM_CAPACITY = PROFILE.inputCapacity();
+    public static final long KU_CAPACITY = PROFILE.outputCapacity();
+    /**
+     * CC design policy: fixed 12 KU/t. Source 1302 derives only nominal
+     * mOutput=24/STEAM_PER_EU(2)=12; GT6 emits state-dependent 6..24 KU/t.
+     */
+    public static final long OUTPUT_RATE = PROFILE.outputPacket().size();
+    public static final int EXHAUST_CAPACITY =
+            PROFILE.exhaust().capacity();
     private final FluidTank steam = new FluidTank(
             STEAM_CAPACITY, stack -> stack.is(ModFluids.STEAM_SOURCE.get())) {
         @Override protected void onContentsChanged() { markMutation(); }
     };
-    private final IFluidHandler steamInput = new SteamInputHandler();
+    private final FluidTank exhaust = new FluidTank(
+            EXHAUST_CAPACITY,
+            stack -> stack.is(
+                    net.minecraft.world.level.material.Fluids.WATER)) {
+        @Override protected void onContentsChanged() { markMutation(); }
+    };
+    private final IFluidHandler steamIo = new SteamIoHandler();
     private KineticBuffer kinetic = new KineticBuffer(KU_CAPACITY, OUTPUT_RATE);
     private final PerTickEnergyBudget outputBudget = new PerTickEnergyBudget();
     private final CheckpointTracker checkpoint = new CheckpointTracker();
+    private String status = "no_steam";
 
     public SteamEngineBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.STEAM_ENGINE.get(), pos, state);
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, SteamEngineBlockEntity engine) {
-        int produced = SteamConversion.kineticFromSteam(
-                steamAmount(engine), (int) Math.min(OUTPUT_RATE, engine.kinetic.room()));
-        if (produced > 0) {
-            int steamUsed = Math.multiplyExact(produced, SteamConversion.STEAM_PER_KU);
-            FluidStack simulated = engine.steam.drain(
-                    steamUsed, IFluidHandler.FluidAction.SIMULATE);
-            if (simulated.getAmount() != steamUsed
-                    || !simulated.is(ModFluids.STEAM_SOURCE.get())) {
-                throw new IllegalStateException(
-                        "Steam engine conversion simulation violated its steam plan");
-            }
-            FluidStack drained = engine.steam.drain(
-                    steamUsed, IFluidHandler.FluidAction.EXECUTE);
-            if (drained.getAmount() != steamUsed
-                    || !drained.is(ModFluids.STEAM_SOURCE.get())) {
-                throw new IllegalStateException(
-                        "Steam engine consumed a different amount than simulated");
-            }
-            if (engine.kinetic.insert(produced) != produced) {
-                throw new IllegalStateException(
-                        "Steam engine kinetic room changed during conversion");
-            }
-            engine.markMutation();
-        }
+        engine.convertOneBatch();
         Direction output = state.getValue(SteamEngineBlock.FACING);
         EnergyEmitter.emit(
                 level,
@@ -82,14 +76,72 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
             engine.checkpoint.synced();
         }
     }
-    private static int steamAmount(SteamEngineBlockEntity engine) { return engine.steam.getFluidAmount(); }
+
+    private void convertOneBatch() {
+        if (steam.getFluidAmount()
+                < SteamConversion.ENGINE_STEAM_PER_BATCH) {
+            setStatus("no_steam");
+            return;
+        }
+        if (kinetic.room() < SteamConversion.KU_PER_ENGINE_BATCH) {
+            setStatus("kinetic_full");
+            return;
+        }
+        if (exhaust.getSpace()
+                < SteamConversion.EXHAUST_WATER_PER_BATCH) {
+            setStatus("exhaust_full");
+            return;
+        }
+        int batches = Math.min(
+                1,
+                SteamConversion.engineBatches(
+                        steam.getFluidAmount(),
+                        kinetic.room(),
+                        exhaust.getSpace()));
+        if (batches != 1) {
+            throw new IllegalStateException(
+                    "Steam engine source batch plan was not executable");
+        }
+        int steamUsed = SteamConversion.ENGINE_STEAM_PER_BATCH;
+        int waterReturned = SteamConversion.EXHAUST_WATER_PER_BATCH;
+        FluidStack simulated = steam.drain(
+                steamUsed, IFluidHandler.FluidAction.SIMULATE);
+        FluidStack water = new FluidStack(
+                net.minecraft.world.level.material.Fluids.WATER,
+                waterReturned);
+        int simulatedExhaust = exhaust.fill(
+                water, IFluidHandler.FluidAction.SIMULATE);
+        if (simulated.getAmount() != steamUsed
+                || !simulated.is(ModFluids.STEAM_SOURCE.get())
+                || simulatedExhaust != waterReturned) {
+            throw new IllegalStateException(
+                    "Steam engine conversion simulation violated its plan");
+        }
+        FluidStack drained = steam.drain(
+                steamUsed, IFluidHandler.FluidAction.EXECUTE);
+        int filled = exhaust.fill(
+                water, IFluidHandler.FluidAction.EXECUTE);
+        int produced = SteamConversion.KU_PER_ENGINE_BATCH;
+        if (drained.getAmount() != steamUsed
+                || !drained.is(ModFluids.STEAM_SOURCE.get())
+                || filled != waterReturned
+                || kinetic.insert(produced) != produced) {
+            throw new IllegalStateException(
+                    "Steam engine execute differed from simulation");
+        }
+        setStatus("running");
+        markMutation();
+    }
+
     public IFluidHandler fluids(Direction side) {
         Direction front = front();
         return front != null && MachineSideRules.engineAcceptsSteam(front, side)
-                ? steamInput
+                ? steamIo
                 : null;
     }
     public int steamAmount() { return steam.getFluidAmount(); }
+    public int exhaustAmount() { return exhaust.getFluidAmount(); }
+    public String status() { return status; }
     @Override public boolean handles(EnergyType type, Direction side) {
         Direction front = front();
         return type == EnergyType.KINETIC_PUSH
@@ -154,14 +206,23 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
     @Override protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         tag.put("steam", steam.writeToNBT(registries, new CompoundTag()));
+        tag.put("exhaust", exhaust.writeToNBT(registries, new CompoundTag()));
         tag.putLong("kinetic", kinetic.stored());
         tag.putInt("stroke_sign", kinetic.strokeSign());
+        tag.putString("status", status);
     }
     @Override protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         if (tag.contains("steam")) steam.readFromNBT(registries, tag.getCompound("steam"));
+        if (tag.contains("exhaust")) {
+            exhaust.readFromNBT(registries, tag.getCompound("exhaust"));
+        }
         kinetic = new KineticBuffer(
                 KU_CAPACITY, OUTPUT_RATE, tag.getLong("kinetic"), tag.getInt("stroke_sign"));
+        status = tag.getString("status");
+        if (status.isBlank()) {
+            status = steam.isEmpty() ? "no_steam" : "running";
+        }
     }
 
     @Override public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
@@ -171,8 +232,10 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
     private CompoundTag writeClientTag() {
         CompoundTag tag = new CompoundTag();
         tag.putInt("steam_amount", steam.getFluidAmount());
+        tag.putInt("exhaust_amount", exhaust.getFluidAmount());
         tag.putLong("kinetic", kinetic.stored());
         tag.putInt("stroke_sign", kinetic.strokeSign());
+        tag.putString("status", status);
         return tag;
     }
 
@@ -197,11 +260,23 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
         steam.setFluid(amount == 0
                 ? FluidStack.EMPTY
                 : new FluidStack(ModFluids.STEAM_SOURCE.get(), amount));
+        int exhaustAmount = Math.max(
+                0,
+                Math.min(EXHAUST_CAPACITY, tag.getInt("exhaust_amount")));
+        exhaust.setFluid(exhaustAmount == 0
+                ? FluidStack.EMPTY
+                : new FluidStack(
+                        net.minecraft.world.level.material.Fluids.WATER,
+                        exhaustAmount));
         kinetic = new KineticBuffer(
                 KU_CAPACITY,
                 OUTPUT_RATE,
                 tag.getLong("kinetic"),
                 tag.getInt("stroke_sign"));
+        status = tag.getString("status");
+        if (status.isBlank()) {
+            status = steam.isEmpty() ? "no_steam" : "running";
+        }
     }
     @Override public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
@@ -222,6 +297,13 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
         }
     }
 
+    private void setStatus(String next) {
+        if (!status.equals(next)) {
+            status = next;
+            markMutation();
+        }
+    }
+
     private Direction front() {
         BlockState state = getBlockState();
         return state.hasProperty(SteamEngineBlock.FACING)
@@ -229,17 +311,25 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
                 : null;
     }
 
-    private final class SteamInputHandler implements IFluidHandler {
+    private final class SteamIoHandler implements IFluidHandler {
         @Override public int getTanks() {
-            return 1;
+            return 2;
         }
 
         @Override public FluidStack getFluidInTank(int tank) {
-            return tank == 0 ? steam.getFluid() : FluidStack.EMPTY;
+            return switch (tank) {
+                case 0 -> steam.getFluid();
+                case 1 -> exhaust.getFluid();
+                default -> FluidStack.EMPTY;
+            };
         }
 
         @Override public int getTankCapacity(int tank) {
-            return tank == 0 ? STEAM_CAPACITY : 0;
+            return switch (tank) {
+                case 0 -> STEAM_CAPACITY;
+                case 1 -> EXHAUST_CAPACITY;
+                default -> 0;
+            };
         }
 
         @Override public boolean isFluidValid(int tank, FluidStack stack) {
@@ -251,11 +341,11 @@ public final class SteamEngineBlockEntity extends BlockEntity implements IEnergy
         }
 
         @Override public FluidStack drain(FluidStack resource, FluidAction action) {
-            return FluidStack.EMPTY;
+            return exhaust.drain(resource, action);
         }
 
         @Override public FluidStack drain(int maxDrain, FluidAction action) {
-            return FluidStack.EMPTY;
+            return exhaust.drain(maxDrain, action);
         }
     }
 }

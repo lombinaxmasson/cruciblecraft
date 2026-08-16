@@ -1,0 +1,61 @@
+{
+  "closure": {
+    "gametest_scenarios_executed": 5,
+    "gametest_scenarios_expected": 5,
+    "mutation_gate_present": true,
+    "scenarios_defined": 3,
+    "scenarios_rebuildable_from_empty": true,
+    "workload_identity": "b5e0192c21e381fcb6e97be9c6243eec06d14a17b3197ec25b702c9f5b8e2197"
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T24 scenario definition, bounded-count gates, evidence classification and finding ledger are complete; repository-wide verification is bound separately by the full snapshot report."
+  },
+  "completed_stages": [
+    "T24a",
+    "T24b",
+    "T24c"
+  ],
+  "currentness": {
+    "full_verification": {
+      "evidence": "tools/full_verification_report.json",
+      "pending": [],
+      "status": "BOUND_TO_FULL_VERIFICATION_REPORT"
+    },
+    "owned_inputs": {
+      "tools/build_t24_readiness.py": "d59f32fb1d2e0b156ea4e45e629f80114df961b2b6cc42a4f6202345b721cef3",
+      "tools/t24_readiness_policy.json": "e3145ef684edd53207531a67df27404e68bc7402b4b0490d86eda9439d551d12"
+    }
+  },
+  "fidelity": {
+    "design_policy_declared": true,
+    "distribution_source": "T20-T23 runtime sets",
+    "skipped_metrics": [
+      "target",
+      "stress"
+    ],
+    "synthetic_marked_as_measured": false
+  },
+  "load": {
+    "bounded_counts_status": "MEASURED",
+    "findings_blocking": 0,
+    "findings_status": "FINDINGS_LEDGER_READY",
+    "headroom_remaining": 2118,
+    "publication_baseline_consistent": true,
+    "publication_delta": {
+      "eager": 0,
+      "lazy": 0,
+      "logical": 0
+    }
+  },
+  "pending_stages": [],
+  "policy": "The status field is derived from evidence by build(). Any mismatch between the committed value and a fresh build is detected by check().",
+  "runtime": {
+    "gametest_passing": true,
+    "gametest_total": 119
+  },
+  "schema_version": 1,
+  "status": "T24_READY",
+  "status_owner": "run_full_verification"
+}

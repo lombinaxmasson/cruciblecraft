@@ -1,0 +1,101 @@
+{
+  "actual": {
+    "multiset_sha256": "3fc6e04e1c100d0f2f7fe4c85b90a7f27800d032c530f9f7844860d8d6a885ee",
+    "recipe": {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 25,
+          "id": "cruciblecraft:oil"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 25,
+          "id": "cruciblecraft:fuel"
+        },
+        {
+          "amount": 25,
+          "id": "cruciblecraft:lubricant"
+        }
+      ],
+      "map": "cruciblecraft:distillery",
+      "type": "cruciblecraft:gt_recipe"
+    }
+  },
+  "expected": {
+    "multiset_sha256": "3fc6e04e1c100d0f2f7fe4c85b90a7f27800d032c530f9f7844860d8d6a885ee",
+    "recipe": {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 25,
+          "id": "cruciblecraft:oil"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 25,
+          "id": "cruciblecraft:fuel"
+        },
+        {
+          "amount": 25,
+          "id": "cruciblecraft:lubricant"
+        }
+      ],
+      "map": "cruciblecraft:distillery",
+      "type": "cruciblecraft:gt_recipe"
+    }
+  },
+  "family": "crude_oil_distillation",
+  "inputs": {
+    "src/t22_petroleum_generated/resources/data/cruciblecraft/recipe/t22/distillery/oil_to_fuel_and_lubricant.json": "4df3bc232be6e9ede53dbb5a04c6cecb3bea7edceda8b25c9a475a20d3c8b89d",
+    "tools/build_t22_b2_crude_oil.py": "7611efb21032b778d325e8842b83ea12b126b738203311dd6046691dbd48af7f"
+  },
+  "publication_delta": {
+    "authored_files": 1,
+    "eager_rows_added": 1,
+    "family_id": "crude_oil_distillation",
+    "family_name": "Crude Oil Distillation (oil -> fuel + lubricant)",
+    "lazy_rows_added": 0,
+    "logical_rows_added": 1,
+    "recipe_ids": [
+      "cruciblecraft:t22/distillery/oil_to_fuel_and_lubricant"
+    ]
+  },
+  "schema_version": 1,
+  "source": {
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "row_index": 705,
+    "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json#recipes[705]",
+    "source_row_sha256": "8b59c67b0baa2fa78a2cdd0b3725c6e90723464aabf7d69c07f3254ee8cb4536"
+  },
+  "status": "T22_B2_CRUDE_OIL_READY",
+  "verification": {
+    "actual_count": 1,
+    "actual_multiset_sha256": "3fc6e04e1c100d0f2f7fe4c85b90a7f27800d032c530f9f7844860d8d6a885ee",
+    "all_equal": true,
+    "expected_count": 1,
+    "expected_multiset_sha256": "3fc6e04e1c100d0f2f7fe4c85b90a7f27800d032c530f9f7844860d8d6a885ee",
+    "extra_count": 0,
+    "extra_fields": {},
+    "fields_equal": {
+      "can_be_buffered": true,
+      "duration": true,
+      "eut": true,
+      "fluid_inputs": true,
+      "fluid_outputs": true,
+      "map": true,
+      "type": true
+    },
+    "membership_duplicate": 0,
+    "membership_unassigned": 0,
+    "missing_count": 0,
+    "missing_fields": {},
+    "multisets_equal": true
+  }
+}

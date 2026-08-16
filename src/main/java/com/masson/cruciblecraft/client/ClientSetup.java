@@ -8,6 +8,8 @@ import java.util.Set;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.client.color.MachineBlockColor;
 import com.masson.cruciblecraft.client.color.MaterialItemColor;
+import com.masson.cruciblecraft.client.color.MaterialOreColor;
+import com.masson.cruciblecraft.client.color.MaterialStorageColor;
 import com.masson.cruciblecraft.client.render.AnvilRenderer;
 import com.masson.cruciblecraft.client.render.CrucibleRenderer;
 import com.masson.cruciblecraft.client.screen.ConfiguredProcessingMachineScreen;
@@ -94,6 +96,7 @@ public class ClientSetup {
                 java.util.Arrays.stream(tintedMachines)
                         .map(net.minecraft.world.level.block.Block::asItem)
                         .toArray(Item[]::new));
+        event.register(MaterialOreColor::itemColor, MaterialOreColor.oreBlockItems());
     }
 
     @SubscribeEvent
@@ -155,6 +158,10 @@ public class ClientSetup {
                 },
                 ModBlocks.ANVIL.get());
         event.register(MachineBlockColor::blockColor, MachineBlockColor.tintedBlocks());
+        event.register(MaterialOreColor::blockColor, MaterialOreColor.oreBlocks());
+        event.register(
+                MaterialStorageColor::blockColor,
+                MaterialStorageColor.storageBlocks());
     }
 
     @SubscribeEvent

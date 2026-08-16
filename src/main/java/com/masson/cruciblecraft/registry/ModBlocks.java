@@ -25,7 +25,11 @@ import com.masson.cruciblecraft.content.block.FluidDepositExtractorBlock;
 import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
 import com.masson.cruciblecraft.content.block.GasCloudBlock;
 import com.masson.cruciblecraft.content.block.ItemPipeBlock;
+import com.masson.cruciblecraft.content.block.MaterialStorageBlock;
 import com.masson.cruciblecraft.content.block.LargeCentrifugeBlock;
+import com.masson.cruciblecraft.content.block.DistillationTowerBlock;
+import com.masson.cruciblecraft.content.block.LargeBoilerBlock;
+import com.masson.cruciblecraft.content.block.TankBlock;
 import com.masson.cruciblecraft.content.block.MultiblockPortBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.block.RotationalAxleBlock;
@@ -55,6 +59,8 @@ public final class ModBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(CrucibleCraft.MODID);
     private static final Map<OreBlockKey, DeferredBlock<DropExperienceBlock>>
             MATERIAL_ORE_BLOCKS = new LinkedHashMap<>();
+    private static final Map<String, DeferredBlock<MaterialStorageBlock>>
+            MATERIAL_STORAGE_BLOCKS = new LinkedHashMap<>();
     private static final Map<
             ElectricalConductorCatalog.Key,
             DeferredBlock<CableBlock>> ELECTRICAL_CONDUCTOR_BLOCKS =
@@ -129,6 +135,18 @@ public final class ModBlocks {
             LARGE_CENTRIFUGE = BLOCKS.register(
                     "large_centrifuge",
                     () -> new LargeCentrifugeBlock(machineProperties()));
+    public static final DeferredBlock<DistillationTowerBlock>
+            DISTILLATION_TOWER = BLOCKS.register(
+                    "distillation_tower",
+                    () -> new DistillationTowerBlock(machineProperties()));
+    public static final DeferredBlock<LargeBoilerBlock>
+            LARGE_BOILER = BLOCKS.register(
+                    "large_boiler",
+                    () -> new LargeBoilerBlock(machineProperties()));
+    public static final DeferredBlock<TankBlock>
+            TANK_3X3X3 = BLOCKS.register(
+                    "tank_3x3x3",
+                    () -> new TankBlock(machineProperties()));
 
     public static final DeferredBlock<BellowsBlock> BELLOWS = BLOCKS.register(
             "bellows",
@@ -204,7 +222,7 @@ public final class ModBlocks {
             () -> new BoilerBlock(machineProperties()));
     public static final DeferredBlock<SteamEngineBlock> BRONZE_STEAM_ENGINE = BLOCKS.register(
             "bronze_steam_engine",
-            () -> new SteamEngineBlock(machineProperties()));
+            () -> new SteamEngineBlock(machineProperties().noOcclusion()));
     public static final DeferredBlock<DynamoBlock> BRONZE_DYNAMO = BLOCKS.register(
             "bronze_dynamo",
             () -> new DynamoBlock(machineProperties()));
@@ -388,6 +406,7 @@ public final class ModBlocks {
 
     public static void registerMaterials(Collection<MaterialDefinition> definitions) {
         if (!MATERIAL_ORE_BLOCKS.isEmpty()
+                || !MATERIAL_STORAGE_BLOCKS.isEmpty()
                 || !ELECTRICAL_CONDUCTOR_BLOCKS.isEmpty()
                 || !PIPE_BLOCKS.isEmpty()) {
             throw new IllegalStateException("Material blocks already registered");
@@ -445,6 +464,25 @@ public final class ModBlocks {
                                 host == Host.DEEPSLATE ? MapColor.DEEPSLATE : MapColor.STONE));
             }
         }
+        for (MaterialDefinition material : definitions) {
+            if (!MaterialCatalog.registeredForms(material).contains(
+                    MaterialPrefixes.BLOCK)
+                    || material.formItems().containsKey(MaterialPrefixes.BLOCK)) {
+                continue;
+            }
+            DeferredBlock<MaterialStorageBlock> previous =
+                    MATERIAL_STORAGE_BLOCKS.put(
+                            material.id(),
+                            BLOCKS.register(
+                                    material.registryName(MaterialPrefixes.BLOCK),
+                                    () -> new MaterialStorageBlock(
+                                            material.id(),
+                                            storageProperties())));
+            if (previous != null) {
+                throw new IllegalStateException(
+                        "Duplicate storage block for " + material.id());
+            }
+        }
     }
 
     public static DeferredBlock<DropExperienceBlock> oreBlock(
@@ -465,6 +503,24 @@ public final class ModBlocks {
 
     public static Collection<DeferredBlock<DropExperienceBlock>> oreBlocks() {
         return Collections.unmodifiableCollection(MATERIAL_ORE_BLOCKS.values());
+    }
+
+    public static DeferredBlock<MaterialStorageBlock> storageBlock(String materialId) {
+        DeferredBlock<MaterialStorageBlock> block =
+                MATERIAL_STORAGE_BLOCKS.get(materialId);
+        if (block == null) {
+            throw new IllegalArgumentException(
+                    "No storage block for material " + materialId);
+        }
+        return block;
+    }
+
+    public static boolean hasStorageBlock(String materialId) {
+        return MATERIAL_STORAGE_BLOCKS.containsKey(materialId);
+    }
+
+    public static Collection<DeferredBlock<MaterialStorageBlock>> storageBlocks() {
+        return Collections.unmodifiableCollection(MATERIAL_STORAGE_BLOCKS.values());
     }
 
     public static DeferredBlock<CableBlock> electricalConductorBlock(
@@ -590,7 +646,8 @@ public final class ModBlocks {
             String id,
             com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec spec) {
         DeferredBlock<ProcessingMachineBlock> block =
-                BLOCKS.register(id, () -> new ProcessingMachineBlock(spec, machineProperties()));
+                BLOCKS.register(id, () -> new ProcessingMachineBlock(
+                        spec, processingProperties(id)));
         if (CONFIGURED_PROCESSING_BLOCKS.put(spec.id(), block) != null) {
             throw new IllegalStateException(
                     "Duplicate configured processing block for " + spec.id());
@@ -604,7 +661,7 @@ public final class ModBlocks {
                 BLOCKS.register(
                         id,
                         () -> new ProcessingMachineBlock(
-                                variant, machineProperties()));
+                                variant, processingProperties(id)));
         if (CONFIGURED_PROCESSING_BLOCKS.put(
                         variant.id(), block)
                 != null) {
@@ -683,12 +740,42 @@ public final class ModBlocks {
                 .sound(SoundType.METAL);
     }
 
+    private static BlockBehaviour.Properties processingProperties(String id) {
+        BlockBehaviour.Properties properties = machineProperties();
+        if (usesShapedVoxelModel(id)) {
+            properties.noOcclusion();
+        }
+        return properties;
+    }
+
+    private static boolean usesShapedVoxelModel(String id) {
+        return switch (id) {
+            case "mortar",
+                    "bath",
+                    "sifter",
+                    "steel_sifter",
+                    "titanium_sifter",
+                    "smelter",
+                    "invar_smelter",
+                    "titanium_smelter" -> true;
+            default -> false;
+        };
+    }
+
     private static BlockBehaviour.Properties conductorProperties() {
         return BlockBehaviour.Properties.of()
                 .mapColor(MapColor.METAL)
                 .strength(0.5F, 2.0F)
                 .requiresCorrectToolForDrops()
                 .noOcclusion()
+                .sound(SoundType.METAL);
+    }
+
+    private static BlockBehaviour.Properties storageProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.METAL)
+                .strength(5.0F, 6.0F)
+                .requiresCorrectToolForDrops()
                 .sound(SoundType.METAL);
     }
 

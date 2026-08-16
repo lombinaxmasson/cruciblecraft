@@ -1,5 +1,7 @@
 package com.masson.cruciblecraft.content.blockentity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
@@ -8,12 +10,20 @@ import com.masson.cruciblecraft.content.multiblock.MultiblockControllerSpec;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPortAggregator;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureValidator;
+import com.masson.cruciblecraft.content.multiblock.PluginQuarantinePolicy;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModMultiblockControllers;
+import com.masson.cruciblecraft.registry.ModMultiblockPlugins;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.StringTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -21,9 +31,13 @@ import net.minecraft.world.level.block.state.BlockState;
 public final class LargeCentrifugeBlockEntity
         extends ConfiguredProcessingMachineBlockEntity
         implements MultiblockControllerBinding {
+    private static final String PLUGIN_TAG = "multiblock_plugins";
+
     private boolean structureValid;
     private Set<BlockPos> boundPorts = Set.of();
     private MultiblockStructureValidator.ValidationResult lastValidation;
+    private boolean pluginQuarantined;
+    private String pluginQuarantineReason = "";
 
     public LargeCentrifugeBlockEntity(BlockPos pos, BlockState state) {
         super(
@@ -44,8 +58,62 @@ public final class LargeCentrifugeBlockEntity
                 level.getGameTime(), phaseKey, 20)) {
             centrifuge.recheckStructure(level, pos, state);
         }
-        if (centrifuge.structureValid) {
+        if (centrifuge.structureValid && !centrifuge.pluginQuarantined) {
             centrifuge.tickProcessingServer();
+        }
+    }
+
+    /** Whether a persisted plugin id mismatch quarantined this controller.
+     * Progress and contents are preserved while quarantined (loss, never
+     * duplication); fixing the saved ids recovers the machine. */
+    public boolean pluginQuarantined() {
+        return pluginQuarantined;
+    }
+
+    public String pluginQuarantineReason() {
+        return pluginQuarantineReason;
+    }
+
+    @Override
+    protected void saveAdditional(
+            CompoundTag tag, HolderLookup.Provider registries) {
+        super.saveAdditional(tag, registries);
+        ListTag ids = new ListTag();
+        for (ResourceLocation id
+                : ModMultiblockPlugins.LARGE_CENTRIFUGE_PLUGINS) {
+            ids.add(StringTag.valueOf(id.toString()));
+        }
+        tag.put(PLUGIN_TAG, ids);
+    }
+
+    @Override
+    protected void loadAdditional(
+            CompoundTag tag, HolderLookup.Provider registries) {
+        super.loadAdditional(tag, registries);
+        ListTag ids = tag.getList(PLUGIN_TAG, Tag.TAG_STRING);
+        List<String> saved = new ArrayList<>();
+        for (Tag entry : ids) {
+            saved.add(entry.getAsString());
+        }
+        pluginQuarantined = false;
+        pluginQuarantineReason = "";
+        int index = 0;
+        for (ResourceLocation current
+                : ModMultiblockPlugins.LARGE_CENTRIFUGE_PLUGINS) {
+            String savedId = index < saved.size() ? saved.get(index) : "";
+            PluginQuarantinePolicy.Decision decision =
+                    PluginQuarantinePolicy.resolve(
+                            savedId, current.toString());
+            if (decision.resolution()
+                    == PluginQuarantinePolicy.Resolution.QUARANTINED) {
+                pluginQuarantined = true;
+                pluginQuarantineReason =
+                        decision.quarantineReason().orElse("");
+            }
+            index++;
+        }
+        if (pluginQuarantined) {
+            setChanged();
         }
     }
 
@@ -98,6 +166,10 @@ public final class LargeCentrifugeBlockEntity
     }
 
     @Override
+    public net.minecraft.resources.ResourceLocation structureId() {
+        return controllerSpec().structureId();
+    }
+
     public MultiblockControllerSpec controllerSpec() {
         return ModMultiblockControllers.LARGE_CENTRIFUGE;
     }

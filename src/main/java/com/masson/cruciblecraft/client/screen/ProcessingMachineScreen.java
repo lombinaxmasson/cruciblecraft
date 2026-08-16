@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.client.screen;
 
 import com.masson.cruciblecraft.content.menu.ProcessingMachineMenu;
+import com.masson.cruciblecraft.machine.processing.Gt6BasicMachineGui;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineDisplayData;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 
@@ -31,12 +32,14 @@ public abstract class ProcessingMachineScreen<M extends ProcessingMachineMenu>
         ProcessingMachineSpec.ProgressBar progress = menu.machineSpec().ui().progress();
         int scaled = menu.scaledProgress(progress.width());
         if (scaled > 0) {
-            graphics.fill(
+            graphics.blit(
+                    texture(),
                     leftPos + progress.x(),
                     topPos + progress.y(),
-                    leftPos + progress.x() + scaled,
-                    topPos + progress.y() + progress.height(),
-                    0xFFC88634);
+                    Gt6BasicMachineGui.PROGRESS_U,
+                    Gt6BasicMachineGui.PROGRESS_V,
+                    scaled,
+                    progress.height());
         }
         for (ProcessingMachineSpec.TankPosition tank : menu.machineSpec().ui().tanks()) {
             FluidStack fluid = menu.tankFluid(tank.tank());
@@ -50,13 +53,6 @@ public abstract class ProcessingMachineScreen<M extends ProcessingMachineMenu>
                             (long) amount * innerHeight / capacity);
             int x = leftPos + tank.x();
             int y = topPos + tank.y();
-            graphics.fill(x, y, x + tank.width(), y + tank.height(), 0xFF303030);
-            graphics.fill(
-                    x + 1,
-                    y + 1,
-                    x + tank.width() - 1,
-                    y + tank.height() - 1,
-                    0xFFB8B8B8);
             if (filled > 0) {
                 int tint = fluid.isEmpty()
                         ? 0xFF3F76E4

@@ -3,12 +3,16 @@ package com.masson.cruciblecraft.content.blockentity;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.ItemPipeBlock;
 import com.masson.cruciblecraft.logistics.pipe.PipeTopology;
 import com.masson.cruciblecraft.logistics.pipe.PipeTransferDiagnostics;
+import com.masson.cruciblecraft.logistics.pipe.PipeTransferPhase;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverBehavior;
+import com.masson.cruciblecraft.logistics.pipe.cover.CoverDefinition;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCover;
 import com.masson.cruciblecraft.logistics.pipe.cover.PipeCoverSet;
 import com.masson.cruciblecraft.logistics.pipe.item
@@ -35,7 +39,8 @@ import net.neoforged.neoforge.items.IItemHandler;
 
 /** Cached-route item pipe with source-first active pump covers. */
 public final class ItemPipeBlockEntity extends BlockEntity {
-    private static final int TRANSFER_INTERVAL = 5;
+    public static final int TRANSFER_INTERVAL =
+            PipeTransferPhase.INTERVAL;
 
     private final PipeCoverSet covers = new PipeCoverSet();
     private final EnumMap<Direction, IItemHandler> sidedHandlers =
@@ -51,6 +56,8 @@ public final class ItemPipeBlockEntity extends BlockEntity {
     private int nextRoute;
     private int recoveredInvalidCoverRows;
     private boolean recoveryWarningLogged;
+    private ItemStack recoveryBuffer = ItemStack.EMPTY;
+    private Direction recoveryIngress;
 
     public ItemPipeBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.ITEM_PIPE.get(), pos, state);
@@ -69,7 +76,7 @@ public final class ItemPipeBlockEntity extends BlockEntity {
             recoveryWarningLogged = true;
             CrucibleCraft.LOGGER.warn(
                     "Recovered {} invalid item-pipe cover row(s) at {} {}; "
-                            + "invalid rows were omitted",
+                            + "invalid faces were quarantined fail-closed",
                     recoveredInvalidCoverRows,
                     level.dimension().location(),
                     worldPosition);
@@ -82,14 +89,8 @@ public final class ItemPipeBlockEntity extends BlockEntity {
             BlockState state,
             ItemPipeBlockEntity pipe) {
         pipe.rollWindow(level.getGameTime());
-        if (Math.floorMod(
-                        level.getGameTime()
-                                + pos.getX() * 31L
-                                + pos.getY() * 17L
-                                + pos.getZ(),
-                        TRANSFER_INTERVAL)
-                == 0L) {
-            pipe.pullFromPumps(level);
+        if (PipeTransferPhase.isDue(level.getGameTime(), pos)) {
+            pipe.tickCovers(level);
         }
     }
 
@@ -99,13 +100,22 @@ public final class ItemPipeBlockEntity extends BlockEntity {
 
     public boolean acceptsIncoming(
             Direction side, ItemStack stack) {
-        return covers.allowsIncoming(side)
+        return covers.allowsIncoming(
+                        side,
+                        CoverDefinition.Medium.ITEM,
+                        0,
+                        0)
                 && covers.matches(side, stack);
     }
 
     public boolean allowsOutgoing(
             Direction side, ItemStack stack) {
-        return covers.matches(side, stack);
+        return covers.allowsOutgoing(
+                        side,
+                        CoverDefinition.Medium.ITEM,
+                        0,
+                        0)
+                && covers.matches(side, stack);
     }
 
     public int availableItems() {
@@ -130,8 +140,32 @@ public final class ItemPipeBlockEntity extends BlockEntity {
         return covers.snapshot();
     }
 
+    public String coverSummary() {
+        return covers.boundedSummary();
+    }
+
     public boolean setCover(Direction side, PipeCover cover) {
+        if (cover != null
+                && !cover.supports(CoverDefinition.Medium.ITEM)) {
+            return false;
+        }
         if (!covers.set(side, cover)) {
+            return false;
+        }
+        invalidateRoutes();
+        setChanged();
+        if (level != null && !level.isClientSide) {
+            PipeTopology.invalidate(level, worldPosition);
+            syncToClient();
+        }
+        return true;
+    }
+
+    public boolean configureCover(
+            Direction side,
+            CoverDefinition.ConfigField field,
+            int value) {
+        if (!covers.configure(side, field, value)) {
             return false;
         }
         invalidateRoutes();
@@ -159,58 +193,50 @@ public final class ItemPipeBlockEntity extends BlockEntity {
         }
     }
 
-    private void pullFromPumps(Level level) {
+    private void tickCovers(Level level) {
+        flushRecoveryBuffer();
+        if (!recoveryBuffer.isEmpty()) {
+            return;
+        }
         if (availableItems() <= 0) {
             return;
         }
         for (Direction side : Direction.values()) {
-            if (!covers.hasPump(side)
-                    || !AbstractPipeBlock.isConnected(
-                            liveState(), side)
+            if (!AbstractPipeBlock.isConnected(liveState(), side)
                     || availableItems() <= 0) {
                 continue;
             }
-            BlockPos sourcePos = worldPosition.relative(side);
-            if (!level.hasChunkAt(sourcePos)) {
-                continue;
-            }
-            IItemHandler source;
-            try {
-                source = level.getCapability(
-                        Capabilities.ItemHandler.BLOCK,
-                        sourcePos,
-                        side.getOpposite());
-            } catch (RuntimeException failure) {
-                PipeTransferDiagnostics.warnOnce(
-                        "item pump discovery",
-                        null,
-                        "Item pump discovery failed at " + sourcePos,
-                        failure);
-                continue;
-            }
-            if (source == null) {
-                continue;
-            }
-            pumpOne(source, side);
+            covers.tick(side, new ItemCoverContext(level, side));
         }
     }
 
-    private void pumpOne(IItemHandler source, Direction side) {
+    private int pumpOne(
+            IItemHandler source,
+            Direction side,
+            int limit,
+            Optional<String> matchId,
+            CoverDefinition.TransferMode mode) {
         try {
+            int requested = Math.min(availableItems(), limit);
             for (int slot = 0;
-                    slot < source.getSlots() && availableItems() > 0;
+                    slot < source.getSlots() && requested > 0;
                     slot++) {
                 ItemStack simulated = source.extractItem(
-                        slot, availableItems(), true);
+                        slot, requested, true);
                 if (simulated.isEmpty()
-                        || !covers.matches(side, simulated)) {
+                        || !matches(matchId, simulated)
+                        || !covers.matches(side, simulated)
+                        || (mode == CoverDefinition.TransferMode.EXACT
+                                && simulated.getCount() != requested)) {
                     continue;
                 }
                 ItemStack simulatedRemainder = insert(
                         side, simulated, true);
                 int accepted = simulated.getCount()
                         - simulatedRemainder.getCount();
-                if (accepted <= 0) {
+                if (accepted <= 0
+                        || (mode == CoverDefinition.TransferMode.EXACT
+                                && accepted != requested)) {
                     continue;
                 }
                 ItemStack extracted = source.extractItem(
@@ -223,25 +249,55 @@ public final class ItemPipeBlockEntity extends BlockEntity {
                             "item pump execution",
                             source,
                             "Item pump source violated simulated extraction");
-                    return;
+                    return 0;
                 }
                 ItemStack remainder = insert(side, extracted, false);
                 if (!remainder.isEmpty()) {
                     ItemStack unrecovered = returnToSource(
                             source, slot, remainder);
                     if (!unrecovered.isEmpty()) {
-                        clogEvents = Math.addExact(
-                                clogEvents, unrecovered.getCount());
-                        recordTransferred(
-                                unrecovered.getCount(), 0);
+                        holdForRetry(side, unrecovered);
                     }
+                    return extracted.getCount() - unrecovered.getCount();
                 }
-                return;
+                return extracted.getCount();
             }
         } catch (RuntimeException failure) {
             PipeTransferDiagnostics.warnOnce(
                     "item pump", source, "Item pump transfer failed", failure);
         }
+        return 0;
+    }
+
+    private void flushRecoveryBuffer() {
+        if (recoveryBuffer.isEmpty() || recoveryIngress == null) {
+            return;
+        }
+        recoveryBuffer = insert(
+                recoveryIngress, recoveryBuffer, false).copy();
+        if (recoveryBuffer.isEmpty()) {
+            recoveryIngress = null;
+        }
+        setChanged();
+    }
+
+    private void holdForRetry(Direction side, ItemStack stack) {
+        if (!recoveryBuffer.isEmpty()) {
+            throw new IllegalStateException(
+                    "Item pipe recovery buffer was not drained");
+        }
+        recoveryBuffer = stack.copy();
+        recoveryIngress = side;
+        clogEvents = Math.addExact(clogEvents, stack.getCount());
+        setChanged();
+    }
+
+    private static boolean matches(
+            Optional<String> expected, ItemStack stack) {
+        return expected.isEmpty()
+                || expected.orElseThrow().equals(
+                        net.minecraft.core.registries.BuiltInRegistries.ITEM
+                                .getKey(stack.getItem()).toString());
     }
 
     private ItemStack returnToSource(
@@ -375,6 +431,11 @@ public final class ItemPipeBlockEntity extends BlockEntity {
         tag.putLong("total_delivered", totalDelivered);
         tag.putLong("clog_events", clogEvents);
         tag.putInt("next_route", nextRoute);
+        if (!recoveryBuffer.isEmpty() && recoveryIngress != null) {
+            tag.put("cover_recovery_item", recoveryBuffer.save(registries));
+            tag.putString(
+                    "cover_recovery_ingress", recoveryIngress.getName());
+        }
     }
 
     @Override
@@ -388,6 +449,17 @@ public final class ItemPipeBlockEntity extends BlockEntity {
         totalDelivered = tag.getLong("total_delivered");
         clogEvents = tag.getLong("clog_events");
         nextRoute = Math.max(0, tag.getInt("next_route"));
+        recoveryBuffer = tag.contains("cover_recovery_item")
+                ? ItemStack.parseOptional(
+                        registries,
+                        tag.getCompound("cover_recovery_item"))
+                : ItemStack.EMPTY;
+        recoveryIngress = Direction.byName(
+                tag.getString("cover_recovery_ingress"));
+        if (recoveryBuffer.isEmpty() || recoveryIngress == null) {
+            recoveryBuffer = ItemStack.EMPTY;
+            recoveryIngress = null;
+        }
         invalidateRoutes();
     }
 
@@ -444,6 +516,76 @@ public final class ItemPipeBlockEntity extends BlockEntity {
         return level == null
                 ? getBlockState()
                 : level.getBlockState(worldPosition);
+    }
+
+    private final class ItemCoverContext
+            implements CoverBehavior.TransferContext {
+        private final Level world;
+        private final Direction side;
+
+        private ItemCoverContext(Level world, Direction side) {
+            this.world = world;
+            this.side = side;
+        }
+
+        @Override
+        public CoverDefinition.Medium medium() {
+            return CoverDefinition.Medium.ITEM;
+        }
+
+        @Override
+        public Direction side() {
+            return side;
+        }
+
+        @Override
+        public int storedAmount() {
+            return recoveryBuffer.getCount();
+        }
+
+        @Override
+        public int capacity() {
+            return itemLimit();
+        }
+
+        @Override
+        public int transferItems(
+                int amount,
+                Optional<String> matchId,
+                CoverDefinition.TransferMode mode) {
+            if (amount <= 0 || !recoveryBuffer.isEmpty()) {
+                return 0;
+            }
+            BlockPos sourcePos = worldPosition.relative(side);
+            if (!world.hasChunkAt(sourcePos)) {
+                return 0;
+            }
+            IItemHandler source;
+            try {
+                source = world.getCapability(
+                        Capabilities.ItemHandler.BLOCK,
+                        sourcePos,
+                        side.getOpposite());
+            } catch (RuntimeException failure) {
+                PipeTransferDiagnostics.warnOnce(
+                        "item cover discovery",
+                        null,
+                        "Item cover discovery failed at " + sourcePos,
+                        failure);
+                return 0;
+            }
+            return source == null
+                    ? 0
+                    : pumpOne(source, side, amount, matchId, mode);
+        }
+
+        @Override
+        public int transferFluids(
+                int amount,
+                Optional<String> matchId,
+                CoverDefinition.TransferMode mode) {
+            return 0;
+        }
     }
 
     private final class SidedHandler implements IItemHandler {

@@ -1,0 +1,161 @@
+{
+  "aggregate": {
+    "eager_remaining_to_soft": 1131,
+    "lazy_remaining_to_soft": 12913,
+    "logical_remaining": 1044,
+    "post_t22_eager": 16869,
+    "post_t22_lazy": 3087,
+    "post_t22_logical": 19956,
+    "total_eager_added": 215,
+    "total_lazy_added": 862,
+    "total_logical_added": 1077
+  },
+  "baseline": {
+    "datapack": 3260,
+    "eager": 16654,
+    "lazy": 2225,
+    "logical": 18879
+  },
+  "decision": {
+    "ceiling_adjustment_needed": false,
+    "high_frequency_guard": "Mixer core 200 rows are forced eager despite ample lazy budget. High-frequency main-chain reactions MUST NOT be defaulted to lazy just because the total budget allows it.",
+    "per_family_strategy_summary": {
+      "hybrid": [
+        "mixer_petroleum_chemistry (core eager, specialty lazy)"
+      ],
+      "immediate": [
+        "crude_oil_distillation (core only)",
+        "natural_gas_processing",
+        "fuel_combustion",
+        "oil_sand_processing",
+        "compressor_petroleum",
+        "electrolyzer_petroleum"
+      ],
+      "on_demand": []
+    },
+    "reason": "Total projection 1077 rows fits within 2121 headroom (19956/21000). No ceiling adjustment required."
+  },
+  "families": [
+    {
+      "evidence": "STATIC_INFERENCE",
+      "family_id": "crude_oil_distillation",
+      "frequency": "high (core petroleum chain)",
+      "headroom_impact": "negligible (6 rows)",
+      "projection": {
+        "eager": 1,
+        "lazy": 5,
+        "logical": 6
+      },
+      "rationale": "6 distillery petroleum rows (A1): 1 v1_required eager (oil->fuel+lubricant, all fluids registered), 5 ordinary_optional lazy (soulsandoil/liquid_*_oil — fluids not yet registered, B1 work). Core chain: oil->fuel+lubricant is high-frequency.",
+      "strategy": "immediate"
+    },
+    {
+      "evidence": "STATIC_INFERENCE",
+      "family_id": "natural_gas_processing",
+      "frequency": "high (energy chain)",
+      "headroom_impact": "negligible (9 rows)",
+      "projection": {
+        "eager": 9,
+        "lazy": 0,
+        "logical": 9
+      },
+      "rationale": "9 centrifuge petroleum rows (T21). Natural_gas processing is core energy chain (natural_gas->methane->fuels_gas->HU). All eager — small count, no lazy benefit.",
+      "strategy": "immediate"
+    },
+    {
+      "b2_action": "Scan fuels_engine GT6 dump for petroleum rows.",
+      "evidence": "NOT_RECORDED",
+      "family_id": "fuel_combustion",
+      "frequency": "high (KU power generation)",
+      "headroom_impact": "negligible (TBD, est. <10 rows)",
+      "projection": {
+        "eager": 0,
+        "lazy": 0,
+        "logical": 0
+      },
+      "rationale": "Fuels_engine map is NOT covered by T21 template denominator (10 maps). Rows are TBD — need separate scan of gt.recipe.fuels.engine.json. Expected small (<10 rows). T18 already uses fuel_engine for KU power; any new rows are immediate eager.",
+      "strategy": "immediate"
+    },
+    {
+      "evidence": "STATIC_INFERENCE",
+      "family_id": "oil_sand_processing",
+      "frequency": "medium (ore processing, gated by worldgen)",
+      "headroom_impact": "negligible (3 rows)",
+      "projection": {
+        "eager": 3,
+        "lazy": 0,
+        "logical": 3
+      },
+      "rationale": "3 smelter rows for oil_sand processing. Feeds into crude_oil_distillation chain. Small count — all eager.",
+      "strategy": "immediate"
+    },
+    {
+      "b2_action": "First family full projection must measure actual template-by-template frequency and replace PROJECTED figures with MEASURED.",
+      "evidence": "PROJECTED",
+      "family_id": "mixer_petroleum_chemistry",
+      "frequency": "mixed (core: high; specialty: low)",
+      "headroom_impact": "eager +200 (16654→16854, 1146 below soft cap); lazy +857 (2225→3082, 12918 below soft cap)",
+      "projection": {
+        "eager": 200,
+        "lazy": 857,
+        "logical": 1057
+      },
+      "rationale": "49 mixer templates → 1,057 rows. Largest petroleum family. Core fuel blending and common precursors (~200 rows) are high-frequency and must be eager. Exotic plastic precursors, specialty chemicals (~857 rows) are low-frequency — lazy via on-demand expansion. B2 full projection will measure exact eager/lazy split per template. Current split is a policy placeholder; do NOT use lazy as default just because budget allows it.",
+      "strategy": "hybrid"
+    },
+    {
+      "evidence": "STATIC_INFERENCE",
+      "family_id": "compressor_petroleum",
+      "frequency": "low (single recipe)",
+      "headroom_impact": "negligible (1 row)",
+      "projection": {
+        "eager": 1,
+        "lazy": 0,
+        "logical": 1
+      },
+      "rationale": "Single row. Immediate.",
+      "strategy": "immediate"
+    },
+    {
+      "evidence": "STATIC_INFERENCE",
+      "family_id": "electrolyzer_petroleum",
+      "frequency": "low (single recipe)",
+      "headroom_impact": "negligible (1 row)",
+      "projection": {
+        "eager": 1,
+        "lazy": 0,
+        "logical": 1
+      },
+      "rationale": "Single row. Immediate.",
+      "strategy": "immediate"
+    }
+  ],
+  "gates": {
+    "all_gates_pass": true,
+    "eager_within_hard": true,
+    "eager_within_soft": true,
+    "lazy_within_hard": true,
+    "lazy_within_soft": true,
+    "logical_within_hard": true
+  },
+  "hard_gates": {
+    "datapack_hard": 6600,
+    "datapack_soft": 6000,
+    "eager_hard": 21000,
+    "eager_soft": 18000,
+    "lazy_hard": 56000,
+    "lazy_soft": 16000,
+    "logical_ceiling": 21000
+  },
+  "inputs": {
+    "tools/build_t22_load_projection.py": "ad5f42099064b9af9b70e067413166759e19104cba1a6a8eb25b4737b0277d9b"
+  },
+  "measurement_plan": {
+    "MEASURED": "No families currently at MEASURED. B2-B4 will populate.",
+    "PROJECTED": "Mixer family uses PROJECTED eager/lazy split. B2 first-family full projection MUST replace with MEASURED per-template frequency data.",
+    "STATIC_INFERENCE": "6 of 7 families use STATIC_INFERENCE based on small row counts where measurement adds no value."
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "PASS"
+}

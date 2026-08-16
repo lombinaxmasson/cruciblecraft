@@ -166,6 +166,45 @@ class MultiblockStructureDefinitionTest {
     }
 
     @Test
+    void unknownSchemaVersionFailsClosed() {
+        String v2 = """
+                {
+                  "schema_version": 2,
+                  "palette": {
+                    "C": {"type":"controller","block":"minecraft:stone"}
+                  },
+                  "structure": [
+                    {"offset":[0,0,0],"predicate":"C"}
+                  ]
+                }
+                """;
+        assertThrows(
+                RuntimeException.class,
+                () -> MultiblockStructureDefinition.CODEC.parse(
+                        JsonOps.INSTANCE,
+                        JsonParser.parseString(v2)));
+    }
+
+    @Test
+    void oldStructuresLoadUntouchedAtSchemaV1() {
+        MultiblockStructureDefinition cokeOven =
+                resourceDefinition("coke_oven");
+        assertEquals(1, cokeOven.schemaVersion());
+        assertEquals(27, cokeOven.structure().size());
+        assertEquals(
+                1,
+                cokeOven.structure().stream()
+                        .filter(element -> cokeOven.predicate(element).kind()
+                                == PredicateKind.CONTROLLER)
+                        .count());
+
+        MultiblockStructureDefinition centrifuge =
+                resourceDefinition("large_centrifuge");
+        assertEquals(1, centrifuge.schemaVersion());
+        assertEquals(18, centrifuge.structure().size());
+    }
+
+    @Test
     void malformedTypedPortIsRejectedByTheCodec() {
         String malformed = """
                 {

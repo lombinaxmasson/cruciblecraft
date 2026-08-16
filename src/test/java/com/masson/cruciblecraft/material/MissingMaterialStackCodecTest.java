@@ -52,7 +52,7 @@ class MissingMaterialStackCodecTest {
                         .parse(jsonOps, legacy)
                         .error()
                         .isPresent(),
-                "legacy recipe JSON must fail delegate decoding instead of becoming unknown");
+                "removed recipe JSON must fail delegate decoding instead of becoming unknown");
     }
 
     @Test

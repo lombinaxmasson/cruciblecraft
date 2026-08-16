@@ -11,6 +11,10 @@ import com.masson.cruciblecraft.logistics.pipe.PipeTopology;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -20,6 +24,7 @@ import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -82,10 +87,7 @@ public abstract class AbstractPipeBlock extends Block
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return connections(
-                defaultBlockState(),
-                context.getLevel(),
-                context.getClickedPos());
+        return defaultBlockState();
     }
 
     @Override
@@ -96,15 +98,20 @@ public abstract class AbstractPipeBlock extends Block
             LevelAccessor level,
             BlockPos pos,
             BlockPos neighborPos) {
-        boolean connected = connectsTo(level, pos, direction);
-        if (state.getValue(PROPERTY_BY_DIRECTION.get(direction))
-                != connected
-                && level instanceof Level world
-                && !world.isClientSide) {
-            PipeTopology.invalidate(world, pos);
-        }
-        return state.setValue(
-                PROPERTY_BY_DIRECTION.get(direction), connected);
+        return state;
+    }
+
+    @Override
+    protected ItemInteractionResult useItemOn(
+            ItemStack stack,
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Player player,
+            InteractionHand hand,
+            BlockHitResult hit) {
+        return Gt6StyleConnections.wrench(
+                stack, state, level, pos, player, hand, hit);
     }
 
     @Override
@@ -115,10 +122,6 @@ public abstract class AbstractPipeBlock extends Block
             BlockState oldState,
             boolean movedByPiston) {
         super.onPlace(state, level, pos, oldState, movedByPiston);
-        BlockState connected = connections(state, level, pos);
-        if (connected != state) {
-            level.setBlock(pos, connected, Block.UPDATE_CLIENTS);
-        }
         if (!level.isClientSide) {
             PipeTopology.invalidate(level, pos);
         }
@@ -138,21 +141,10 @@ public abstract class AbstractPipeBlock extends Block
         }
     }
 
-    private BlockState connections(
-            BlockState state, LevelAccessor level, BlockPos pos) {
-        BlockState result = state;
-        for (Direction direction : Direction.values()) {
-            result = result.setValue(
-                    PROPERTY_BY_DIRECTION.get(direction),
-                    connectsTo(level, pos, direction));
-        }
-        return result;
-    }
-
     protected abstract boolean connectsToEndpoint(
             Level level, BlockPos neighborPos, Direction neighborSide);
 
-    private boolean connectsTo(
+    boolean connectsTo(
             LevelAccessor level, BlockPos pos, Direction direction) {
         BlockPos neighborPos = pos.relative(direction);
         if (!level.hasChunkAt(neighborPos)) {

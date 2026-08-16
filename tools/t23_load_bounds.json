@@ -1,0 +1,51 @@
+{
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t23_load_bounds.py": "214c98b659c2dda1db7c6cdc831f78f9c43609a5e23402b76899b519da27a077",
+      "tools/t23_load_evidence.json": "f6ebc5a97808294a4a39866714d09e0f2205cdb41857250504e830687604ebdb"
+    }
+  },
+  "measured_by": "src/test/java/com/masson/cruciblecraft/content/multiblock/MultiblockLoadBoundTest.java (JUnit, fake StructureAccess with call counters, 16 rounds, worst-of-N)",
+  "network_sync": {
+    "derivation": "ConfiguredProcessingMachineMenu.DATA_COUNT = 3 ContainerData ints (status, status argument, progress permille)",
+    "menu_slots": 3
+  },
+  "policy": "Deterministic operation counts are hard gates; wall-clock elapsed is recorded for reference only and is never gated. Bounds are worst-case, never averaged.",
+  "port_scan": {
+    "derivation": "MultiblockPortAggregator.refresh performs one isLoaded + one getBlockEntity per matched port (code-derived); exercised at real scale by the supply GameTests (72/26/25 physical ports)",
+    "ops_per_port": 2
+  },
+  "schema_version": 1,
+  "status": "MEASURED",
+  "status_owner": "build_t23_load_bounds",
+  "structures": {
+    "distillation_tower": {
+      "port_count": 80,
+      "port_scan_ops_max": 160,
+      "positions": 81,
+      "tick_amortized_ops_max": 9,
+      "validation_ops_max": 162
+    },
+    "large_boiler": {
+      "port_count": 34,
+      "port_scan_ops_max": 68,
+      "positions": 36,
+      "tick_amortized_ops_max": 4,
+      "validation_ops_max": 72
+    },
+    "tank_3x3x3": {
+      "port_count": 25,
+      "port_scan_ops_max": 50,
+      "positions": 27,
+      "tick_amortized_ops_max": 3,
+      "validation_ops_max": 54
+    }
+  },
+  "validation": {
+    "accessor_calls": 8192,
+    "derivation": "one isLoaded + one blockState per structure element at MAX_SCAN_VOLUME (2 x 4096), zero blockEntity reads without ports; port elements add one blockEntity read each",
+    "tick_amortization": "structure revalidation runs on the 20-tick position phase, so the amortized validation cost is accessor_calls / 20 per tick",
+    "worst_case_positions": 4096
+  },
+  "worst_case": true
+}

@@ -3,6 +3,8 @@ package com.masson.cruciblecraft.content.blockentity;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.energy.EnergyPackets;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.machine.component.CheckpointTracker;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
@@ -23,9 +25,13 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 
 public final class BoilerBlockEntity extends BlockEntity implements IEnergyHandler {
-    public static final int WATER_CAPACITY = 16_000;
-    public static final int STEAM_CAPACITY = 64_000;
-    public static final int STEAM_TRANSFER = 1_280;
+    private static final EnergyConverterProfile PROFILE =
+            EnergyConverterCatalog.require(
+                    "cruciblecraft:bronze_boiler");
+    public static final int WATER_CAPACITY = PROFILE.inputCapacity();
+    public static final int STEAM_CAPACITY = PROFILE.outputCapacity();
+    public static final int STEAM_TRANSFER = Math.toIntExact(
+            PROFILE.outputPacket().maxAmountPerTick());
     private final FluidTank water = tank(WATER_CAPACITY,
             stack -> stack.is(net.minecraft.world.level.material.Fluids.WATER));
     private final FluidTank steam = tank(STEAM_CAPACITY,
@@ -35,6 +41,7 @@ public final class BoilerBlockEntity extends BlockEntity implements IEnergyHandl
     private final IFluidHandler unsided = new BoilerHandler(true, true);
     private final CheckpointTracker checkpoint = new CheckpointTracker();
     private int accumulatedHu;
+    private String status = "no_water";
 
     public BoilerBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.BOILER.get(), pos, state);
@@ -57,16 +64,53 @@ public final class BoilerBlockEntity extends BlockEntity implements IEnergyHandl
     }
 
     private void produce() {
-        if (level == null || water.getFluidAmount() < SteamConversion.WATER_PER_BATCH
-                || steam.getSpace() < SteamConversion.STEAM_PER_BATCH) return;
+        if (level == null) {
+            return;
+        }
+        if (water.getFluidAmount() < SteamConversion.WATER_PER_BATCH) {
+            setStatus("no_water");
+            return;
+        }
+        if (steam.getSpace() < SteamConversion.STEAM_PER_BATCH) {
+            setStatus("steam_full");
+            return;
+        }
+        if (accumulatedHu < SteamConversion.HU_PER_BATCH) {
+            setStatus("no_heat");
+            return;
+        }
         int batches = SteamConversion.boilerBatches(water.getFluidAmount(), steam.getSpace(), accumulatedHu);
         if (batches <= 0) {
             return;
         }
-        water.drain(batches, IFluidHandler.FluidAction.EXECUTE);
-        steam.fill(new FluidStack(ModFluids.STEAM_SOURCE.get(), batches * SteamConversion.STEAM_PER_BATCH),
-                IFluidHandler.FluidAction.EXECUTE);
+        int waterRequired = Math.multiplyExact(
+                batches, SteamConversion.WATER_PER_BATCH);
+        int steamProduced = Math.multiplyExact(
+                batches, SteamConversion.STEAM_PER_BATCH);
+        FluidStack simulatedWater = water.drain(
+                waterRequired, IFluidHandler.FluidAction.SIMULATE);
+        FluidStack steamBatch =
+                new FluidStack(ModFluids.STEAM_SOURCE.get(), steamProduced);
+        int simulatedSteam = steam.fill(
+                steamBatch, IFluidHandler.FluidAction.SIMULATE);
+        if (simulatedWater.getAmount() != waterRequired
+                || !simulatedWater.is(
+                        net.minecraft.world.level.material.Fluids.WATER)
+                || simulatedSteam != steamProduced) {
+            throw new IllegalStateException(
+                    "Boiler conversion changed after its integer batch plan");
+        }
+        FluidStack drained = water.drain(
+                waterRequired, IFluidHandler.FluidAction.EXECUTE);
+        int filled = steam.fill(
+                steamBatch, IFluidHandler.FluidAction.EXECUTE);
+        if (drained.getAmount() != waterRequired
+                || filled != steamProduced) {
+            throw new IllegalStateException(
+                    "Boiler execute differed from simulation");
+        }
         accumulatedHu -= batches * SteamConversion.HU_PER_BATCH;
+        setStatus("running");
         markMutation();
     }
 
@@ -126,12 +170,14 @@ public final class BoilerBlockEntity extends BlockEntity implements IEnergyHandl
     public int waterAmount() { return water.getFluidAmount(); }
     public int steamAmount() { return steam.getFluidAmount(); }
     public int accumulatedHu() { return accumulatedHu; }
+    public String status() { return status; }
 
     @Override protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         tag.put("water", water.writeToNBT(registries, new CompoundTag()));
         tag.put("steam", steam.writeToNBT(registries, new CompoundTag()));
         tag.putInt("accumulated_hu", accumulatedHu);
+        tag.putString("status", status);
     }
     @Override protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
@@ -140,6 +186,10 @@ public final class BoilerBlockEntity extends BlockEntity implements IEnergyHandl
         accumulatedHu = Math.max(
                 0,
                 Math.min(SteamConversion.HU_PER_BATCH, tag.getInt("accumulated_hu")));
+        status = tag.getString("status");
+        if (status.isBlank()) {
+            status = water.isEmpty() ? "no_water" : "no_heat";
+        }
     }
 
     private final class BoilerHandler implements IFluidHandler {
@@ -171,6 +221,7 @@ public final class BoilerBlockEntity extends BlockEntity implements IEnergyHandl
         tag.put("water", water.writeToNBT(registries, new CompoundTag()));
         tag.put("steam", steam.writeToNBT(registries, new CompoundTag()));
         tag.putInt("accumulated_hu", accumulatedHu);
+        tag.putString("status", status);
         return tag;
     }
     @Override public net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket getUpdatePacket() {
@@ -186,6 +237,13 @@ public final class BoilerBlockEntity extends BlockEntity implements IEnergyHandl
         if (level != null && !level.isClientSide) {
             level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(),
                     net.minecraft.world.level.block.Block.UPDATE_CLIENTS);
+        }
+    }
+
+    private void setStatus(String next) {
+        if (!status.equals(next)) {
+            status = next;
+            markMutation();
         }
     }
 }

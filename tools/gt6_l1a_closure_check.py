@@ -530,7 +530,7 @@ def main() -> int:
             else "FAIL_or_REVIEW"
         ),
     }
-    OUT.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    OUT.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     print(f"Wrote {OUT}")
     print("universe", report["universe"])
     print("structural_class", report["structural_class"]["counts"])

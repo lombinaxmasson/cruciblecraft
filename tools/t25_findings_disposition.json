@@ -1,0 +1,85 @@
+{
+  "counts": {
+    "invalid_measurement": 0,
+    "non_blocking": 5,
+    "post_1_0": 0,
+    "selected_fixed": 0,
+    "total": 5
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t25_findings_disposition.py": "36e59b66c4a8c4f7f8a255c160fde60e116fcc05fa5a461b3bbe1c006f316032",
+      "tools/t24_findings.json": "83b1185f2babb469d43898c5f42817a675450fbeee9f7465717eb2fc6324dde7",
+      "tools/t24_scale_evidence.json": "b28340ad03cd356d9a7065f534eb430964dbb971ce55386d732cf2fb2453b9fe"
+    }
+  },
+  "dispositions": [
+    {
+      "blocks_beta": false,
+      "disposition": "non_blocking",
+      "evidence_artifact": "tools/t24_scale_evidence.json#/scenarios/target/pipes_due_per_tick_max",
+      "evidence_class": "STATIC_INFERENCE",
+      "id": "T24-F001",
+      "owner": "T26",
+      "reason": "Verified STATIC_INFERENCE invariant, no action: the 5-tick position-phased schedule yields exactly 100 due pipes per tick at 500 consecutive positions.",
+      "reproduce_command": ".\\gradlew.bat test --tests \"*ScaleWorkloadBoundTest.targetScenarioSchedulesExactlyOneHundredDuePipesPerTick\"",
+      "title": "500-pipe position-phase schedule yields exactly 100 due pipes per tick - verified, no action"
+    },
+    {
+      "blocks_beta": false,
+      "disposition": "non_blocking",
+      "evidence_artifact": "tools/t24_scale_evidence.json#/scenarios/small/structure_validation_ops_max",
+      "evidence_class": "SYNTHETIC_BENCHMARK",
+      "id": "T24-F002",
+      "owner": "T26",
+      "reason": "Verified SYNTHETIC_BENCHMARK bound, no action: multiblock validation is element-linear at 2 ops per position, asserted by exact counters against the real tank definition.",
+      "reproduce_command": ".\\gradlew.bat test --tests \"*ScaleWorkloadBoundTest.scenarioMultiblockValidationOpsAreBounded\"",
+      "title": "Multiblock validation is element-linear and bounded at 2 ops per position (tank 54, tower 162)"
+    },
+    {
+      "blocks_beta": false,
+      "disposition": "non_blocking",
+      "evidence_artifact": "tools/t24_scale_evidence.json#/measured_at_scale/target",
+      "evidence_class": "STATIC_INFERENCE",
+      "id": "T24-F003",
+      "owner": "T26",
+      "reason": "The route-discovery cap is a declared constant enforced by code and far above every scenario size; it was not exercised at scale. slow_but_non_blocking: never promoted to selected. Recheck contract carried from T24 evidence.",
+      "recheck_contract": {
+        "recheck_point": "T26 Beta candidate",
+        "replacement_condition": "Re-run on a declared environment with >= 16 GB RAM and record tools/t24_scale_evidence.json measured_at_scale.target"
+      },
+      "reproduce_command": "python tools/build_t24_scale_bounds.py --check",
+      "title": "Route discovery cap (32,768 visited pipes) is declared but not measured at scale"
+    },
+    {
+      "blocks_beta": false,
+      "disposition": "non_blocking",
+      "evidence_artifact": "tools/t24_scale_evidence.json#/declared_caps/cover_configuration_payload_bytes",
+      "evidence_class": "STATIC_INFERENCE",
+      "id": "T24-F004",
+      "owner": "T26",
+      "reason": "Verified bound, no action: the cover configuration payload is bounded at 13 bytes by MAX_ENCODED_BYTES plus the serialization smoke test.",
+      "reproduce_command": ".\\gradlew.bat test --tests \"*ScaleWorkloadBoundTest.scenarioCoverPayloadFitsThirteenByteBound\"",
+      "title": "Cover configuration payload bounded at 13 bytes (source constant + serialization smoke)"
+    },
+    {
+      "blocks_beta": false,
+      "disposition": "non_blocking",
+      "evidence_artifact": "tools/t24_scale_evidence.json#/measured_at_scale/stress",
+      "evidence_class": "MEASURED_AT_SCALE",
+      "id": "T24-F005",
+      "owner": "T26",
+      "reason": "Explicit T24 SKIP: target/stress wall-clock, retained-memory and network-sync were not measured. Measurement gaps are never blockers and are never zero-filled. Recheck contract carried from T24 evidence.",
+      "recheck_contract": {
+        "recheck_point": "T26 Beta candidate",
+        "replacement_condition": "Re-run on a declared environment with >= 16 GB RAM and record tools/t24_scale_evidence.json measured_at_scale.target"
+      },
+      "reproduce_command": "re-run per the replacement_condition recorded in tools/t24_scale_evidence.json measured_at_scale",
+      "title": "target/stress wall-clock, retained-memory and network-sync are not measured (explicit SKIP)"
+    }
+  ],
+  "policy": "The input set is exclusively the T24 finding ledger. slow_but_non_blocking, measurement noise and cross-machine incomparable data are never promoted to selected. With zero blocking findings the card closes with selected = 0 and complete dispositions - no preventive rewrites.",
+  "schema_version": 1,
+  "status": "T25_DISPOSITIONS_COMPLETE",
+  "status_owner": "build_t25_findings_disposition"
+}

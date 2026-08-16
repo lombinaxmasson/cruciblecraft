@@ -86,11 +86,17 @@ final class AnvilEmiRecipe implements EmiRecipe {
         widgets.addSlot(catalysts.get(1), 18, 22).catalyst(true);
         widgets.addTexture(EmiTexture.EMPTY_ARROW, 28, 5);
         String modeName = mode.serializedName().replace('_', ' ');
-        String chance = outputs.size() > 1
-                ? " · " + recipe.outputChances().get(1) / 100.0 + "%"
-                : "";
         widgets.addText(
-                Component.literal(modeName + " · " + recipe.specialValue() + " hits" + chance),
+                outputs.size() > 1
+                        ? Component.translatable(
+                                "emi.cruciblecraft.anvil.hits_with_chance",
+                                modeName,
+                                recipe.specialValue(),
+                                recipe.outputChances().get(1) / 100.0)
+                        : Component.translatable(
+                                "emi.cruciblecraft.anvil.hits",
+                                modeName,
+                                recipe.specialValue()),
                 28,
                 29,
                 0xFF404040,

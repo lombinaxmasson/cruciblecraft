@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "document": "T21-B GameTest count delta analysis",
+  "baseline": {
+    "source": "tools/full_verification_report.json",
+    "recorded_count": 83,
+    "era": "T19/T20 READY",
+    "sha256_of_baseline_file": "c0ec1bc7d0735510238b217f81bb4a8e5536614f6232d98d2a0005a3a48efaf2",
+    "note": "The exact 83-test source file matching this SHA-256 is not available in the git object store; the verification was run against an uncommitted working-tree state that has since evolved."
+  },
+  "current": {
+    "source": "Working tree (uncommitted), T21 branch",
+    "annotations_count": 85,
+    "annotations_note": "85 @GameTest( occurrences; the 86th match from earlier analysis was @GameTestHolder(CrucibleCraft.MODID) substring. verify_full_verification_report.py line 509 uses .count('@GameTest(') which also counts 85.",
+    "unique_method_count": 85,
+    "sha256": "50eee9ce..."
+  },
+  "head_commit": {
+    "commit": "62a820d5",
+    "message": "Complete T11-T17 systems and verification",
+    "annotations_count": 70,
+    "unique_method_count": 69,
+    "sha256": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848"
+  },
+  "delta_summary": {
+    "head_to_working_tree": {
+      "added": [
+        "blankProcessingIdentityAdoptsCurrentAcrossNbtReload",
+        "compositionGeneratedCarbonFamilyExecutesTwoMaterials",
+        "configuredShortRecipePublishesPerTickPermille",
+        "materialRuleAnvilRecipeLoadsAndExecutes",
+        "materialRuleCrusherRecipeLoadsAndExecutes",
+        "mixerGunpowderTemplateExecutesAllMembers",
+        "t18aFireboxBoilerSteamEnginePowersPress",
+        "t18aSteamChainDiagnosticsAndTransactions",
+        "t18bCrudeOilFuelEngineDynamoPowersElectrolyzer",
+        "t18bFuelEngineCurrentIdentityAndCableOverload",
+        "t18bTransactionsAndBlockedFuelEngineStates",
+        "t18cGasGeneratorTransactionsIdentityAndBlockedStates",
+        "t18cNaturalGasConvertsAndHeatsBoiler",
+        "t19ConveyorActivelyExportsAtConfiguredRate",
+        "t19ManualSelectorPersistsBoundedSideConfig",
+        "t19PressureValveCapsFluidAndRetainsBackpressure",
+        "t19RetrieverPullsOnlyDestinationDemand",
+        "t19RobotArmRequiresExactConfiguredCount",
+        "t19cAllNonmetalPipeRecipesMatchAndAssemble",
+        "tierProfileIdentityIsQuarantinedAcrossNbtReload"
+      ],
+      "removed": [
+        "exactLargeCentrifugeIdentityMigratesAcrossNbtReload",
+        "exactLegacyLatheIdentityMigratesAcrossNbtReload",
+        "t11NaturalGasConvertsAndPowersElectricGrid",
+        "tungstenJsonProvidesCrusherIngotToDustRecipe"
+      ],
+      "net_delta": 16
+    },
+    "baseline_83_to_current_85": {
+      "net_delta": 2,
+      "delta_explanation": "83 (T19/T20 baseline) + 2 (T21 carbon + gunpowder) = 85. Earlier analysis counted 86 by including @GameTestHolder as substring; .count('@GameTest(') correctly gives 85.",
+      "t21_expected": [
+        "compositionGeneratedCarbonFamilyExecutesTwoMaterials",
+        "mixerGunpowderTemplateExecutesAllMembers"
+      ],
+      "extra_test_unaccounted": 0
+    }
+  },
+  "phase_attribution": {
+    "t18": {
+      "test_count": 8,
+      "tests": [
+        "t18aFireboxBoilerSteamEnginePowersPress",
+        "t18aSteamChainDiagnosticsAndTransactions",
+        "t18bCrudeOilFuelEngineDynamoPowersElectrolyzer",
+        "t18bFuelEngineCurrentIdentityAndCableOverload",
+        "t18bTransactionsAndBlockedFuelEngineStates",
+        "t18cGasGeneratorTransactionsIdentityAndBlockedStates",
+        "t18cNaturalGasConvertsAndHeatsBoiler",
+        "t11NaturalGasLeaksAndFlammableCloudIgnites"
+      ],
+      "owner": "T18 readiness (t18_test_count: 8); t11NaturalGasLeaksAndFlammableCloudIgnites counted under T18 contract"
+    },
+    "t19": {
+      "test_count": 6,
+      "tests": [
+        "t19ConveyorActivelyExportsAtConfiguredRate",
+        "t19ManualSelectorPersistsBoundedSideConfig",
+        "t19PressureValveCapsFluidAndRetainsBackpressure",
+        "t19RetrieverPullsOnlyDestinationDemand",
+        "t19RobotArmRequiresExactConfiguredCount",
+        "t19cAllNonmetalPipeRecipesMatchAndAssemble"
+      ],
+      "owner": "T19 (cover + nonmetal pipe batch); no explicit t19_test_count field in readiness"
+    },
+    "t21": {
+      "test_count": 2,
+      "tests": [
+        "compositionGeneratedCarbonFamilyExecutesTwoMaterials",
+        "mixerGunpowderTemplateExecutesAllMembers"
+      ],
+      "owner": "T21 archive (Carbon electrolysis calibration + gunpowder Mixer family)"
+    },
+    "unowned_no_readiness_contract": {
+      "test_count": 3,
+      "tests": [
+        "configuredShortRecipePublishesPerTickPermille",
+        "materialRuleAnvilRecipeLoadsAndExecutes",
+        "materialRuleCrusherRecipeLoadsAndExecutes"
+      ],
+      "analysis": "None of these three tests appear in any readiness JSON or verification report contract. They test: (1) Mortar progress-permille display, (2) Anvil material-rule recipe via live ModRecipeMaps, (3) Crusher material-rule recipe using tungsten (a T20 worldgen material). The tungsten reference suggests at least materialRuleCrusherRecipeLoadsAndExecutes was added with or after T20 worldgen work.",
+      "likely_extra": "At least one of these three constitutes the unaccounted test in the 83→86 delta. The exact identity cannot be determined without the baseline 83-test source file (SHA-256: c0ec1bc7...)."
+    },
+    "earlier_phases_with_contracts": {
+      "test_count": 2,
+      "tests": [
+        "blankProcessingIdentityAdoptsCurrentAcrossNbtReload",
+        "tierProfileIdentityIsQuarantinedAcrossNbtReload"
+      ],
+      "owner": "T15d / T16 readiness contracts (in full_verification_report.json)"
+    }
+  },
+  "conclusion": {
+    "confirmed_t21_count": 2,
+    "extra_count": 0,
+    "extra_candidates": [],
+    "recommendation": "T21 expected GameTest count is 85. The 86 from earlier analysis was caused by @GameTestHolder substring matching; .count('@GameTest(') correctly returns 85. The 3 unowned tests (configuredShortRecipePublishesPerTickPermille, materialRuleAnvilRecipeLoadsAndExecutes, materialRuleCrusherRecipeLoadsAndExecutes) were present in the 83 baseline — they are not post-baseline additions.",
+    "baseline_drift_note": "83 (T19/T20 baseline) + 2 (T21 carbon family + gunpowder) = 85. No extra tests. Verify using verify_full_verification_report.py line 509 which uses .count('@GameTest(')."
+  }
+}

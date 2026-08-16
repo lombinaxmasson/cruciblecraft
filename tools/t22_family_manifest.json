@@ -1,0 +1,316 @@
+{
+  "aggregate": {
+    "confirmed_logical_measured": 2,
+    "families_not_recorded": 1,
+    "families_pending_gt6_dump": 4,
+    "families_projected": 2,
+    "total_eager_projected": 216,
+    "total_expected_rows": 1073,
+    "total_extra": 0,
+    "total_families": 8,
+    "total_lazy_projected": 857,
+    "total_logical_projected": 1073,
+    "total_missing": 1071
+  },
+  "families": [
+    {
+      "b2_evidence": "tools/t22_b2_crude_oil_manifest.json",
+      "closeout": {
+        "bidirectional_equality": "PASS",
+        "consumer_proof": "PASS — fuel consumed by fuels_engine (T18), lubricant pending C1",
+        "delta_registered": "PASS — T22-B2 +1 eager/+1 logical",
+        "localization": "PASS — oil/fuel/lubricant in en_us",
+        "operand_proof": "PASS — oil registered as material_id 9850, fuel/lubricant registered as 9860/9882",
+        "rebuild_diff": "N/A — no new files (recipe in t22_petroleum_generated)"
+      },
+      "family_id": "crude_oil_distillation",
+      "name": "Crude Oil Distillation (oil -> fuel + lubricant)",
+      "projection": {
+        "eager": 1,
+        "evidence": "MEASURED",
+        "lazy": 0,
+        "logical": 1
+      },
+      "status": "PROJECTED",
+      "verification": {
+        "actual_count": 1,
+        "expected_count": 1,
+        "extra": 0,
+        "membership_duplicate": 0,
+        "membership_unassigned": 0,
+        "missing": 0,
+        "multisets_equal": true
+      }
+    },
+    {
+      "closeout": {
+        "bidirectional_equality": "PENDING",
+        "consumer_proof": "PASS — methane consumed by fuels_gas (T18)",
+        "delta_registered": "PENDING",
+        "localization": "PASS — natural_gas in en_us/zh_cn",
+        "operand_proof": "PASS — natural_gas registered (T11), methane registered (T11)",
+        "rebuild_diff": "PENDING"
+      },
+      "family_id": "natural_gas_processing",
+      "name": "Natural Gas Processing (centrifuge: 32 rows, dust→fluid, material-rule)",
+      "projection": {
+        "eager": 9,
+        "evidence": "STATIC_INFERENCE",
+        "lazy": 0,
+        "logical": 9
+      },
+      "status": "MATERIAL_RULE_COVERED",
+      "verification": {
+        "actual_count": 0,
+        "expected_count": 9,
+        "extra": 0,
+        "membership_duplicate": 0,
+        "membership_unassigned": 0,
+        "missing": 9,
+        "multisets_equal": false,
+        "note": "9 centrifuge petroleum rows from T21 denominator. Recipe JSON creation requires GT6 centrifuge dump."
+      }
+    },
+    {
+      "closeout": {
+        "bidirectional_equality": "PENDING",
+        "consumer_proof": "PASS — products feed into crude_oil_distillation",
+        "delta_registered": "PENDING",
+        "localization": "PASS — oil_sand/oil_shale in en_us",
+        "operand_proof": "PASS — oil_sand/oil_shale from T20 worldgen",
+        "rebuild_diff": "PENDING"
+      },
+      "family_id": "oil_sand_processing",
+      "name": "Oil Sand / Oil Shale Processing (smelter: 3 rows)",
+      "projection": {
+        "eager": 3,
+        "evidence": "STATIC_INFERENCE",
+        "lazy": 0,
+        "logical": 3
+      },
+      "status": "NEEDS_GT6_DUMP",
+      "verification": {
+        "actual_count": 0,
+        "expected_count": 3,
+        "extra": 0,
+        "membership_duplicate": 0,
+        "membership_unassigned": 0,
+        "missing": 3,
+        "multisets_equal": false,
+        "note": "3 smelter petroleum rows from T21 denominator. Recipe JSON creation requires GT6 smelter dump."
+      }
+    },
+    {
+      "closeout": {
+        "bidirectional_equality": "PENDING",
+        "consumer_proof": "MIXED — diverse downstream consumers",
+        "delta_registered": "PENDING",
+        "localization": "PENDING — new materials/fluids may need en_us/zh_cn if templates introduce novel outputs",
+        "operand_proof": "MIXED — 49 templates need individual operand analysis",
+        "rebuild_diff": "PENDING"
+      },
+      "family_id": "mixer_petroleum_chemistry",
+      "name": "Mixer Petroleum Chemistry (49 templates / 1,057 rows)",
+      "projection": {
+        "eager": 200,
+        "evidence": "PROJECTED",
+        "lazy": 857,
+        "logical": 1057
+      },
+      "status": "NEEDS_GT6_DUMP",
+      "verification": {
+        "actual_count": 0,
+        "expected_count": 1057,
+        "extra": 0,
+        "membership_duplicate": 0,
+        "membership_unassigned": 0,
+        "missing": 1057,
+        "multisets_equal": false,
+        "note": "Largest petroleum family. 49 mixer templates need per-template projection. This is the bulk of B3 work and requires the GT6 mixer dump + template membership data."
+      }
+    },
+    {
+      "closeout": {
+        "bidirectional_equality": "PENDING",
+        "consumer_proof": "PENDING (C1)",
+        "delta_registered": "PENDING",
+        "localization": "PENDING",
+        "operand_proof": "PENDING — need GT6 dump for fluid identity",
+        "rebuild_diff": "PENDING"
+      },
+      "family_id": "compressor_petroleum",
+      "name": "Compressor Petroleum (1 row)",
+      "projection": {
+        "eager": 1,
+        "evidence": "STATIC_INFERENCE",
+        "lazy": 0,
+        "logical": 1
+      },
+      "status": "NEEDS_GT6_DUMP",
+      "verification": {
+        "actual_count": 0,
+        "expected_count": 1,
+        "extra": 0,
+        "membership_duplicate": 0,
+        "membership_unassigned": 0,
+        "missing": 1,
+        "multisets_equal": false,
+        "note": "Single compressor row. Recipe JSON creation requires GT6 compressor dump."
+      }
+    },
+    {
+      "closeout": {
+        "bidirectional_equality": "PENDING",
+        "consumer_proof": "PENDING (C1)",
+        "delta_registered": "PENDING",
+        "localization": "PENDING",
+        "operand_proof": "PENDING — need GT6 dump for fluid identity",
+        "rebuild_diff": "PENDING"
+      },
+      "family_id": "electrolyzer_petroleum",
+      "name": "Electrolyzer Petroleum (1 row)",
+      "projection": {
+        "eager": 1,
+        "evidence": "STATIC_INFERENCE",
+        "lazy": 0,
+        "logical": 1
+      },
+      "status": "NEEDS_GT6_DUMP",
+      "verification": {
+        "actual_count": 0,
+        "expected_count": 1,
+        "extra": 0,
+        "membership_duplicate": 0,
+        "membership_unassigned": 0,
+        "missing": 1,
+        "multisets_equal": false,
+        "note": "Single electrolyzer row. Recipe JSON creation requires GT6 electrolyzer dump."
+      }
+    },
+    {
+      "closeout": {
+        "bidirectional_equality": "PASS",
+        "consumer_proof": "PASS — identity normalization",
+        "delta_registered": "PASS — T22-B4 +1",
+        "localization": "PASS",
+        "operand_proof": "PASS",
+        "rebuild_diff": "N/A"
+      },
+      "family_id": "kerosine_normalization",
+      "name": "Kerosine Spelling Normalization (generifier: 1 row)",
+      "projection": {
+        "eager": 1,
+        "evidence": "MEASURED",
+        "lazy": 0,
+        "logical": 1
+      },
+      "status": "PROJECTED",
+      "verification": {
+        "actual_count": 1,
+        "expected_count": 1,
+        "extra": 0,
+        "membership_duplicate": 0,
+        "membership_unassigned": 0,
+        "missing": 0,
+        "multisets_equal": true,
+        "note": "GT6 generifier row 3943: kerosine(1mB) -> kerosene(1mB). Both map to CC cruciblecraft:kerosine."
+      }
+    },
+    {
+      "closeout": {
+        "bidirectional_equality": "N/A (no rows identified)",
+        "consumer_proof": "PASS — fuels_engine produces KU (T18)",
+        "delta_registered": "N/A",
+        "localization": "N/A",
+        "operand_proof": "PASS — fuel registered",
+        "rebuild_diff": "N/A"
+      },
+      "family_id": "fuel_combustion",
+      "name": "Fuel Oil Combustion (fuels_engine: TBD rows)",
+      "projection": {
+        "eager": 0,
+        "evidence": "NOT_RECORDED",
+        "lazy": 0,
+        "logical": 0
+      },
+      "status": "NOT_RECORDED",
+      "verification": {
+        "actual_count": 0,
+        "expected_count": 0,
+        "extra": 0,
+        "membership_duplicate": 0,
+        "membership_unassigned": 0,
+        "missing": 0,
+        "multisets_equal": true,
+        "note": "Fuels_engine map is not in T21 denominator. Rows need separate scan."
+      }
+    }
+  ],
+  "gt6_dump_blockers": {
+    "families_blocked": [
+      "oil_sand_processing",
+      "mixer_petroleum_chemistry",
+      "compressor_petroleum",
+      "electrolyzer_petroleum"
+    ],
+    "required_dumps": [
+      "gt6_dump/gt6_recipe_dump/maps/gt.recipe.centrifuge.json",
+      "gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json",
+      "gt6_dump/gt6_recipe_dump/maps/gt.recipe.mixer.json",
+      "gt6_dump/gt6_recipe_dump/maps/gt.recipe.compressor.json",
+      "gt6_dump/gt6_recipe_dump/maps/gt.recipe.electrolyzer.json"
+    ],
+    "resolution": "Run B3 batch projection from main repo where gt6_dump is available. The B2 template (build_t22_b2_crude_oil.py) is the authoritative projection contract for each family."
+  },
+  "inputs": {
+    "tools/build_t22_b3_batch_projection.py": "2e2e9cabdd799a54718cdfa882605089659139fff87828ba8150a214d0ead953",
+    "tools/t22_b2_crude_oil_manifest.json": "5a5ff162c093e8a7b7678f39b9d025b6f972279e6735b21c4053d427574e32a7"
+  },
+  "publication_delta_summary": {
+    "b2_crude_oil": {
+      "eager": 1,
+      "lazy": 0,
+      "logical": 1,
+      "status": "REGISTERED"
+    },
+    "pending_families": [
+      {
+        "eager": 9,
+        "family": "natural_gas_processing",
+        "logical": 9
+      },
+      {
+        "eager": 3,
+        "family": "oil_sand_processing",
+        "logical": 3
+      },
+      {
+        "eager": 200,
+        "family": "mixer_petroleum_chemistry",
+        "lazy": 857,
+        "logical": 1057
+      },
+      {
+        "eager": 1,
+        "family": "compressor_petroleum",
+        "logical": 1
+      },
+      {
+        "eager": 1,
+        "family": "electrolyzer_petroleum",
+        "logical": 1
+      }
+    ]
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T22_FAMILY_MANIFEST_READY",
+  "verification": {
+    "actual_count": 2,
+    "expected_count": 1073,
+    "extra_count": 0,
+    "membership_duplicate": 0,
+    "membership_unassigned": 0,
+    "missing_count": 1071
+  }
+}

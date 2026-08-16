@@ -1503,11 +1503,13 @@ def main() -> int:
         json.dumps({"schema_version": 1, "records": dict(sorted(selected.items()))},
                    indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
     OUT_DROPPED.write_text(
         json.dumps({"schema_version": 1, "records": dict(sorted(dropped.items()))},
                    indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
     OUT_NEEDS_REVIEW.write_text(
         json.dumps(
@@ -1516,11 +1518,13 @@ def main() -> int:
             ensure_ascii=False,
         ) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
     OUT_PENDING_T0B.write_text(
         json.dumps({"schema_version": 1, "records": dict(sorted(pending_t0b.items()))},
                    indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
     OUT_DEGRADED_PATHS.write_text(
         json.dumps(
@@ -1529,6 +1533,7 @@ def main() -> int:
             ensure_ascii=False,
         ) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
     OUT_BYPRODUCT_STRIPPING.write_text(
         json.dumps(
@@ -1537,8 +1542,9 @@ def main() -> int:
             ensure_ascii=False,
         ) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
-    OUT_REPORT.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    OUT_REPORT.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     print(f"Wrote {OUT_SELECTED}")
     print(f"Wrote {OUT_DROPPED}")
     print(f"Wrote {OUT_NEEDS_REVIEW}")

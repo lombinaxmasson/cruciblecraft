@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "status_policy": "Scenario values are CrucibleCraft DESIGN_POLICY, not GT6 source facts.",
+  "fidelity_class": "DESIGN_POLICY",
+  "derivation_notes": {
+    "seeds": "Fixed seeds 24001/24002/24003 make worldgen and random sources reproducible; consecutive values chosen for readability, no GT6 source.",
+    "dimension": "Overworld only: the industrial mainline, T20 worldgen and all three T23 selected structures live in the overworld.",
+    "loaded_chunks": "small 3x3 fits a GameTest template region; target/stress 8x8 is the declared Beta-scale chunk footprint. Stress does not expand the map, only density.",
+    "processing_machines": "3/24/96 = 1/8/32 per energy domain (RU/KU/EU), one machine per domain in small and a balanced 8x/32x scale-up. CC DESIGN_POLICY, no GT6 source.",
+    "energy_converters": "Counts converter PAIRS, not machines. pair1 = firebox + boiler (chemical -> HU -> steam, 80 HU + 1 mB water -> 160 mB steam); pair2 = fuel engine + dynamo (chemical -> RU -> EU, 32 RU -> 22 EU + 10 loss). Note: the handover sketch 'firebox -> boiler -> steam engine -> dynamo' is physically impossible in code - SteamEngineBlockEntity outputs KINETIC_PUSH (KU) while DynamoBlockEntity accepts only KINETIC_ROTATION (RU) - so pair2 is realized as fuel engine -> dynamo and the steam engine powers the KU machine (press) directly via the proven t18a adjacency.",
+    "steam_engines": "One bronze steam engine per firebox+boiler pair, feeding the KU machine leg (boiler -> steam engine -> press adjacency, t18a topology).",
+    "ru_machine_powering": "The RU machine (centrifuge) is powered by harness-injected RU (machine.insert(KINETIC_ROTATION, ...)) because the fuel engine has a single RU output face and RotationalGearboxBlockEntity is 1:1 directional pass-through, so one source cannot feed two RU consumers (dynamo + centrifuge). Mirrors the existing fillKu test idiom. Documented as the only synthetic power injection.",
+    "fluid_pipes": "10/250/1000 item and fluid pipes each; pipes_total 20/500/2000 are divisible by 5 on purpose.",
+    "pipes_total": "500 and 2000 chosen so the 5-tick position-phased schedule yields exactly 100 and 400 due pipes per tick (PipeTransferPhaseTest); small 20 -> 4 due/tick.",
+    "covers": "4 covers in small exercise the major cover roles (pump x2, filter, valve); 24/96 keep a 1:1 cover-per-machine ratio at target/stress. CC DESIGN_POLICY.",
+    "multiblocks": "Only the three T23 selected structures are used; no new structure is introduced. small uses tank_3x3x3 (27 positions, 25 ports); target one of each; stress 4 of each.",
+    "petroleum_chain": "Reuses the T22 closed crude-oil family; no new recipe row. small has none (deterministic fuel injection instead); target 1 chain; stress 4 chains for density.",
+    "warmup_ticks": "200 ticks is enough for boiler batches to settle in small (firebox 24 HU/t x 200 ticks = 4800 HU >= one 80 HU batch); 600 for target/stress.",
+    "sampling_ticks": "1200 ticks = 1 game minute in small; 12000 ticks = 10 game minutes at target/stress. Values are DESIGN_POLICY; they gate the deterministic summary window, never wall-clock correctness.",
+    "declared_evidence_class": "small = MEASURED_AT_SCALE (GameTest suite). target/stress = STATIC_INFERENCE for bounded operation counts; wall-clock/memory/network at scale is explicitly SKIPped (no declared measurement environment; recorded in tools/t24_scale_evidence.json measured_at_scale)."
+  },
+  "scenarios": {
+    "small": {
+      "purpose": "minimum complete industrial mainline; fast functional regression",
+      "seed": 24001,
+      "dimension": "minecraft:overworld",
+      "loaded_chunks": {"x": 3, "z": 3},
+      "counts": {
+        "processing_machines": 3,
+        "energy_converters": 2,
+        "fluid_pipes": 10,
+        "item_pipes": 10,
+        "covers": 4,
+        "multiblocks": 1,
+        "petroleum_chains": 0
+      },
+      "composition": {
+        "processing_machines": {"RU": 1, "KU": 1, "EU": 1},
+        "converter_pairs": {"firebox_boiler": 1, "fuel_engine_dynamo": 1},
+        "steam_engines": 1,
+        "multiblock_ids": ["tank_3x3x3"]
+      },
+      "ticks": {"warmup": 200, "sampling": 1200},
+      "declared_evidence_class": "MEASURED_AT_SCALE"
+    },
+    "target": {
+      "purpose": "expected sustained Beta-scale footprint; used for release judgement",
+      "seed": 24002,
+      "dimension": "minecraft:overworld",
+      "loaded_chunks": {"x": 8, "z": 8},
+      "counts": {
+        "processing_machines": 24,
+        "energy_converters": 8,
+        "fluid_pipes": 250,
+        "item_pipes": 250,
+        "covers": 24,
+        "multiblocks": 3,
+        "petroleum_chains": 1
+      },
+      "composition": {
+        "processing_machines": {"RU": 8, "KU": 8, "EU": 8},
+        "converter_pairs": {"firebox_boiler": 4, "fuel_engine_dynamo": 4},
+        "steam_engines": 4,
+        "multiblock_ids": ["distillation_tower", "large_boiler", "tank_3x3x3"]
+      },
+      "ticks": {"warmup": 600, "sampling": 12000},
+      "declared_evidence_class": "STATIC_INFERENCE"
+    },
+    "stress": {
+      "purpose": "amplify the same topology and work distribution to expose nonlinearity; never claimed as normal player load",
+      "seed": 24003,
+      "dimension": "minecraft:overworld",
+      "loaded_chunks": {"x": 8, "z": 8},
+      "counts": {
+        "processing_machines": 96,
+        "energy_converters": 32,
+        "fluid_pipes": 1000,
+        "item_pipes": 1000,
+        "covers": 96,
+        "multiblocks": 12,
+        "petroleum_chains": 4
+      },
+      "composition": {
+        "processing_machines": {"RU": 32, "KU": 32, "EU": 32},
+        "converter_pairs": {"firebox_boiler": 16, "fuel_engine_dynamo": 16},
+        "steam_engines": 16,
+        "multiblock_ids": ["distillation_tower", "large_boiler", "tank_3x3x3"]
+      },
+      "ticks": {"warmup": 600, "sampling": 12000},
+      "declared_evidence_class": "STATIC_INFERENCE"
+    }
+  },
+  "success_summary_fields": [
+    "items_consumed", "items_produced", "fluids_consumed_mb",
+    "fluids_produced_mb", "energy_supplied", "energy_consumed",
+    "energy_declared_loss", "recipes_completed",
+    "pipes_due_per_tick_max", "route_discovery_visited_max",
+    "route_cache_entries_max", "port_scan_ops_max",
+    "structure_validation_ops_max"
+  ]
+}

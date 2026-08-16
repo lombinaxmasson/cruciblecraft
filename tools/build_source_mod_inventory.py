@@ -61,7 +61,7 @@ def main() -> int:
         ],
         "mods": mods,
     }
-    OUT.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    OUT.write_text(json.dumps(doc, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     print(f"Wrote {OUT} ({len(mods)} mods)")
     non_native = [m for m, row in mods.items() if not row["native_for_ownership"]]
     print("non-native mods", len(non_native), "sample", non_native[:15])

@@ -32,7 +32,7 @@ import org.jetbrains.annotations.Nullable;
 
 public final class CeramicMoldBlock extends Block implements EntityBlock {
     public static final BooleanProperty FILLED = BooleanProperty.create("filled");
-    private static final VoxelShape SHAPE = Block.box(2.0, 0.0, 2.0, 14.0, 5.0, 14.0);
+    private static final VoxelShape SHAPE = Block.box(0.0, 0.0, 0.0, 16.0, 5.0, 16.0);
 
     public CeramicMoldBlock(Properties properties) {
         super(properties);

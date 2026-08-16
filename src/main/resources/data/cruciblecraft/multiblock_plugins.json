@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "plugins": [
+    {
+      "id": "cruciblecraft:processing_host",
+      "stability": "stable",
+      "roles": [
+        "shared processing host gated by the JSON structure"
+      ],
+      "consumers": [
+        "large_centrifuge",
+        "distillation_tower"
+      ]
+    },
+    {
+      "id": "cruciblecraft:shared_port_supply",
+      "stability": "stable",
+      "roles": [
+        "matcher supply is one item and one fluid per shared host, never counted per physical port block (T15e)"
+      ],
+      "consumers": [
+        "large_centrifuge",
+        "distillation_tower",
+        "large_boiler",
+        "tank_3x3x3"
+      ]
+    },
+    {
+      "id": "cruciblecraft:heat_energy_input",
+      "stability": "stable",
+      "roles": [
+        "energy_input ports carry HU, not the KU default (GT6 mEnergyTypeAccepted=HU)"
+      ],
+      "consumers": [
+        "large_boiler"
+      ]
+    },
+    {
+      "id": "cruciblecraft:steam_conversion",
+      "stability": "stable",
+      "roles": [
+        "water + HU -> steam continuous conversion (SteamConversion constants)"
+      ],
+      "consumers": [
+        "large_boiler"
+      ]
+    },
+    {
+      "id": "cruciblecraft:storage_host",
+      "stability": "stable",
+      "roles": [
+        "bulk fluid storage with bidirectional ports, no recipe transaction, no energy"
+      ],
+      "consumers": [
+        "tank_3x3x3"
+      ]
+    }
+  ],
+  "quarantine_policy": "Unknown plugin ids fail closed at the registry; a persisted id mismatch quarantines the controller with progress and contents preserved (loss, never duplication)."
+}

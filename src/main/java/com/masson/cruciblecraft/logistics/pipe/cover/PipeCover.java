@@ -3,33 +3,95 @@ package com.masson.cruciblecraft.logistics.pipe.cover;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * One immutable face attachment.
- *
- * <p>The optional match id is an item or fluid registry id for FILTER. T8
- * intentionally has no fuzzy/tag filter mode yet.
- */
+import net.minecraft.resources.ResourceLocation;
+
+/** One immutable face attachment identified by a data definition. */
 public record PipeCover(
-        PipeCoverType type,
-        Optional<String> matchId) {
+        ResourceLocation definitionId,
+        PipeCoverConfig config) {
     public PipeCover {
-        Objects.requireNonNull(type, "type");
-        matchId = matchId == null ? Optional.empty() : matchId;
-        if (type != PipeCoverType.FILTER && matchId.isPresent()) {
-            throw new IllegalArgumentException(
-                    "Only filter covers may carry a match id");
+        Objects.requireNonNull(definitionId, "definitionId");
+        config = config == null ? PipeCoverConfig.EMPTY : config;
+        Optional<CoverDefinition> definition =
+                CoverDefinitionCatalog.find(definitionId);
+        if (definition.isPresent()) {
+            definition.orElseThrow().resolve(config);
         }
-        matchId.ifPresent(id -> {
-            if (!id.matches("[a-z0-9_.-]+:[a-z0-9_./-]+")) {
-                throw new IllegalArgumentException(
-                        "Invalid pipe cover match id " + id);
-            }
-        });
+    }
+
+    /** T8 source compatibility adapter; new persistence writes definition ids. */
+    @Deprecated(forRemoval = false)
+    public PipeCover(PipeCoverType type, Optional<String> matchId) {
+        this(
+                Objects.requireNonNull(type, "type").definitionId(),
+                new PipeCoverConfig(
+                        matchId,
+                        Optional.empty(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        Optional.empty()));
+    }
+
+    public static PipeCover of(String definitionId) {
+        return of(ResourceLocation.parse(definitionId));
+    }
+
+    public static PipeCover of(ResourceLocation definitionId) {
+        CoverDefinitionCatalog.require(definitionId);
+        return new PipeCover(definitionId, PipeCoverConfig.EMPTY);
+    }
+
+    public Optional<CoverDefinition> definition() {
+        return CoverDefinitionCatalog.find(definitionId);
+    }
+
+    public CoverBehavior behavior() {
+        return CoverBehaviorRegistry.resolve(definition().orElse(null));
+    }
+
+    public boolean supports(CoverDefinition.Medium medium) {
+        return definition()
+                .map(value -> value.medium().supports(medium))
+                .orElse(false);
+    }
+
+    public PipeCover withConfig(PipeCoverConfig changed) {
+        CoverDefinition definition = CoverDefinitionCatalog.require(
+                definitionId);
+        definition.resolve(changed);
+        return new PipeCover(definitionId, changed);
+    }
+
+    public PipeCover configure(
+            CoverDefinition.ConfigField field, int value) {
+        CoverDefinition definition = CoverDefinitionCatalog.require(
+                definitionId);
+        return behavior().configure(
+                this,
+                definition,
+                new CoverBehavior.ConfigRequest(field, value));
+    }
+
+    public Optional<String> matchId() {
+        return config.matchId();
+    }
+
+    /**
+     * Legacy inspection adapter. New behavior definitions do not have an enum
+     * representation.
+     */
+    @Deprecated(forRemoval = false)
+    public PipeCoverType type() {
+        return PipeCoverType.fromDefinition(definitionId)
+                .orElseThrow(() -> new IllegalStateException(
+                        "Cover has no legacy PipeCoverType: " + definitionId));
     }
 
     public static PipeCover filter(String matchId) {
         return new PipeCover(
-                PipeCoverType.FILTER, Optional.of(matchId));
+                PipeCoverType.FILTER,
+                Optional.of(matchId));
     }
 
     public static PipeCover valve() {

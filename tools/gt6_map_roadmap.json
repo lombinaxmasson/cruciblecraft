@@ -315,10 +315,10 @@
       "deferral_category": "CHEMICAL_OR_THERMAL_PIPELINE"
     },
     "gt.recipe.fuels.burn": {
-      "status": "DEFERRED",
-      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.burn has 49 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
-      "owner": "Unassigned future content owner",
-      "phase": "POST_T3",
+      "status": "BOUNDED_SUBSET_PORTED",
+      "reason": "T18c publishes fixed methane row 20 through the source-selected GeneratorGas -> HU runtime; the other 48 rows remain explicitly deferred in the T11 source ledger.",
+      "owner": "CrucibleCraft T18c gas/HU runtime",
+      "phase": "T18",
       "reference_recipe_count": 49,
       "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
     },
@@ -339,10 +339,10 @@
       "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
     },
     "gt.recipe.fuels.gas": {
-      "status": "BOUNDED_SUBSET_PORTED",
-      "reason": "T11 publishes fixed methane row 2 through the Burning Gas Generator; the other 8 rows remain explicitly deferred in the T11 source ledger.",
-      "owner": "CrucibleCraft T11 fuel generation runtime",
-      "phase": "T11",
+      "status": "DEFERRED",
+      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.gas has 9 pinned recipe(s); the current audited scope in T18 migrated Burning Gas Generator from legacy FM.Gas/direct-EU to source-selected FM.Burn/HU, so all FM.Gas rows remain outside the bounded runtime.",
+      "owner": "Unassigned future content owner",
+      "phase": "POST_T3",
       "reference_recipe_count": 9,
       "deferral_category": "ENERGY_AND_FUEL_SYSTEM"
     },

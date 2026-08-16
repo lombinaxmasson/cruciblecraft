@@ -2,6 +2,16 @@
 
 NeoForge 1.21.1 metalworking inspired by GregTech 6 and TerraFirmaCraft.
 
+## Installation
+
+1. Minecraft 1.21.1 with NeoForge ≥ 21.1.243;
+2. drop `cruciblecraft-0.1.0-beta.1.jar` into `mods/`;
+3. optional: EMI (recipes), Jade (block info), KubeJS (startup material scripts).
+
+Player-facing install, first-play path, save-compatibility and known-issue
+information lives in [docs/CrucibleCraft-玩家指南.md](docs/CrucibleCraft-玩家指南.md).
+Attribution: [CREDITS.md](CREDITS.md). Changes: [CHANGELOG.md](CHANGELOG.md).
+
 ## Current progression
 
 Coal coke is produced in a 3x3x3 hollow coke oven. Place the controller in the
@@ -27,9 +37,12 @@ without rounding loss. Water enters from the bottom or horizontal faces and
 steam leaves from the top.
 
 A bronze steam engine accepts steam on every face except its front output and
-converts 2 mB steam into 1 KU. This keeps the GT6-inspired `2 SU = 1 EU`
-accounting while giving the bronze engine a nominal, rate-limited 24 KU/t
-packet. Its signed push/return piston phase is observable through the public
+uses the pinned source conservation of 200 mB steam into 50 KU (4 mB/KU).
+Source row 1302 and `STEAM_PER_EU = 2` derive a nominal `mOutput` of
+`24 / 2 = 12 KU`; CrucibleCraft intentionally fixes emission at 12 KU/t.
+GT6 instead varies that source engine from 6–24 KU/t by engine state, and that
+dynamics replacement remains explicitly deferred. The signed push/return
+piston phase is observable through the public
 kinetic capability; consumers extract magnitude with simulation before
 mutation. Place a bronze crusher directly in front of the engine. It requires
 a full 16 KU/t for 128 sustained powered ticks and turns any supported
@@ -68,12 +81,24 @@ stored air, and reaction progress are deliberately not portable.
 ## Development roadmap
 
 - [Overall rules and architecture](CrucibleCraft-%E6%80%BB%E4%BD%93%E8%A7%84%E5%88%92.md)
-- [Current phase: T13–T19](CrucibleCraft-%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%E6%80%BB%E4%BD%93%E8%A7%84%E5%88%92.md)
+- [Current phase: T27 v1.0 portfolio freeze](CrucibleCraft-%E7%AC%AC%E4%BA%94%E9%98%B6%E6%AE%B5%E6%80%BB%E4%BD%93%E8%A7%84%E5%88%92.md)
+- [Handover (2026-08-14)](CrucibleCraft-%E4%BA%A4%E6%8E%A5%E8%AF%B4%E6%98%8E.md)
+- [Phase 3 closure summary: T13–T19](CrucibleCraft-%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%E6%80%BB%E4%BD%93%E8%A7%84%E5%88%92.md)
 - [Phase 2 closure summary](CrucibleCraft-%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%E6%80%BB%E4%BD%93%E8%A7%84%E5%88%92.md)
 - [T7–T9 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T7-T9.md)
 - [T10–T12 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T10-T12.md)
 - [T13–T16 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T13-T16.md)
 - [T17 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T17.md)
+- [T18 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T18.md)
+- [T19 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T19.md)
+- [T20 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T20.md)
+- [T21 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T21.md)
+- [T22 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T22.md)
+- [T22.5 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T22.5.md)
+- [T23 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T23.md)
+- [T24 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T24.md)
+- [T25 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T25.md)
+- [T26 archive](CrucibleCraft-%E9%98%B6%E6%AE%B5%E6%A1%A3%E6%A1%88-T26.md)
 
 The second phase closed the Kind/Tier, RU/KU/EU, and JSON multiblock
 architecture with selected vertical slices. The third phase has closed T13
@@ -90,8 +115,66 @@ Electrolyzer kind is a preimplemented EU reference and 24 kinds remain
 explicitly deferred; this is not a claim that all 28 kinds are implemented.
 The nine acquisition recipes are vanilla crafting, while RecipeMap stable ids,
 18,875 logical / 16,650 eager / 2,225 lazy rows, and EMI enumeration remain
-equal to T16 with zero GT publication delta. T18 steam, fuel, and energy
-conversion is the current entry.
+equal to T16 with zero GT publication delta.
+
+T18 is now `T18_READY`: its 29-kind denominator is classified with zero
+unclassified, but only 6 converters are selected; 3 existing transport/motor
+kinds are references and 20 kinds remain explicitly deferred. The six
+converter acquisition routes have reachable operands and bidirectionally
+closed profile/block/item/model/language/loot/tag resources. Converter and
+identity adjustments add zero GT rows; 32 RecipeMap ids, 18,875 logical /
+16,650 eager / 2,225 lazy rows, and EMI enumeration remain equal to T17.
+O-37 is permanently closed as a zero-publication `DESIGN_POLICY`, without a T9
+identity migration.
+
+T19 is now `T19_READY`: all 47 canonical cover kinds are classified as
+4 implemented, 5 selected, 28 deferred-with-reason, and 10 out of scope, with
+zero unclassified. The selected cover batch adds 5 reachable crafting routes
+and O-27 adds 25 reachable nonmetal-pipe routes. Those exact 30 generated
+vanilla datapack entries remain separate from GT publication: 32 RecipeMap ids,
+18,875 logical / 16,650 eager / 2,225 lazy rows, and EMI enumeration over 24
+maps are unchanged. The readiness ledger also locks the five-tick schedule,
+32,768-pipe route-discovery bound, 256-entry per-pipe route cache, 13-byte
+configuration payload, and blocked-transfer conservation. O-20, O-27, and O-28
+are closed. Third phase T13–T19 and fourth-phase T20–T26 are complete; T27
+is the v1.0 portfolio freeze. T26 delivered public Beta `0.1.0-beta.1` with
+a 15-row known-issue ledger (no Beta blockers), O-15 closed, and anvil_bend
+reserved as `post_1_0`.
+T21 closed on replay-verified Mixer templates (3,414 units, gunpowder 4/4)
+rather than the 45,044 input-touch diagnostic rows. T22 closed petroleum
+`v1_required` at 0 with three consumed downstream products. T23 shipped
+distillation tower, large boiler and 3×3×3 tank. T24 recorded a reproducible
+scale baseline with zero blocking findings; T25 closed with selected = 0.
+T20's fixed-source
+audit observes 40 GT6 large, 75 explicit-small, and one dynamic
+small-gem rule; the 129 CC catalog identities classify as 73 SOURCE_DERIVED and
+56 explicit DESIGN_POLICY profiles, not as 129 canonical GT6 large veins.
+
+Pre-release cleanup is complete without reopening T19 or the third phase.
+Unpublished machine save migrations, parallel Anvil/Crusher recipe APIs, and
+unused compatibility entry points are gone; blank/current identity acceptance,
+quarantine, future-version handling, MaterialRule Anvil/Crusher execution,
+`INTEGRATED_CLIENT`, and the eight-host KINETIC audit remain. The final closure
+locks 3,173 English keys / 874 real Chinese translations, 2 RecipeTypes / 2
+serializers, and expected suites of 560 JUnit / 120 GameTest / 705 Python tests.
+O-15 is closed: v1 critical domains are complete, while 1,566 long-tail
+material names are explicit `post_1_0` fallbacks.
+
+Phase 4 has closed O-29 worldgen fidelity, template-classified ordinary chemistry
+in T21, petrochemical `v1_required` plus downstream depth in T22, three selected
+industrial multiblocks, a reproducible scale baseline, a zero-blocker T25, and
+the public Beta gate. T27 classifies the complete portfolio and generates only
+the remaining v1-required family cards. CrucibleCraft v1.0 means a complete, stably publishable
+GT6-style industrial mainline; G10, nuclear/fusion/plasma, and GT6U are post-1.0
+work, not v1 blockers. The current concrete datapack recipe count is 3,243;
+logical/eager/lazy publication remains 18,882 / 16,657 / 2,225. See
+[`tools/phase4_v1_planning_contract.json`](tools/phase4_v1_planning_contract.json)
+for the machine-readable scope and counter definitions.
+
+The `ru_tier_*`, `ku_tier_*`, `eu_tier_*`, and `hu_tier_*` values in
+`machine_tiers.json` are stable shared tier-band identities. The `tierBand`
+field name describes that role; it does not authorize renaming those ids or
+churning persisted machine identity.
 
 ## Development verification
 
@@ -125,6 +208,25 @@ policy, and toolchain; snapshot drift opens a new session. `--check-ready`
 builds the current snapshot and validates the committed `READY` report without
 starting Gradle, GameTest, or Python. The compatible `--check` mode still runs
 the full read-only closure.
+
+On Windows GBK consoles, prefix rebuild and `--record` with `PYTHONUTF8=1` so
+child-process output does not fail to decode.
+
+The ordered builder list is owned by
+`tools/verification_builder_policy.json`. Ordinary CI uses either `rederived`
+checks or `compact` receipts and never requires the gitignored GT6 corpus.
+`hash-fast` streams the pinned blobs and validates their sizes/SHA-256 values;
+`full-replay` re-parses source rows and is invoked explicitly by the
+`source-replay` suite. A compact PASS must not be described as source replay,
+and one raw corpus has exactly one canonical full-replay owner.
+
+The 2026-08-07 acceptance measurement covered all 50 current builders:
+23.248 seconds for the first pass and a 22.996-second warm median, compared
+with the former 161-second baseline. A clean-checkout guard that denied every
+listed raw/cache/fetched-source path still passed all 50 builders in
+27.290 seconds. T13 compact/hash-fast/full-replay measured
+0.143/0.823/51.066 seconds respectively; timings are soft observations, while
+hash, set, semantic, and currentness drift remain hard failures.
 
 The report is replaced atomically only after every step passes. If a late step
 fails, keep the same snapshot, fix the cause, and use `--record --resume`; the

@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "status": "T19_COVER_ACQUISITION_POLICY",
+  "expected_set_source": "independent_t19_selected_cover_policy",
+  "definitions": {
+    "conveyor": {
+      "item": "cruciblecraft:conveyor_cover",
+      "item_field": "CONVEYOR_COVER",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/conveyor_cover.json",
+      "model": "src/generated/resources/assets/cruciblecraft/models/item/conveyor_cover.json"
+    },
+    "retriever_item": {
+      "item": "cruciblecraft:retriever_item_cover",
+      "item_field": "RETRIEVER_ITEM_COVER",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/retriever_item_cover.json",
+      "model": "src/generated/resources/assets/cruciblecraft/models/item/retriever_item_cover.json"
+    },
+    "robot_arm": {
+      "item": "cruciblecraft:robot_arm_cover",
+      "item_field": "ROBOT_ARM_COVER",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/robot_arm_cover.json",
+      "model": "src/generated/resources/assets/cruciblecraft/models/item/robot_arm_cover.json"
+    },
+    "pressure_valve": {
+      "item": "cruciblecraft:pressure_valve_cover",
+      "item_field": "PRESSURE_VALVE_COVER",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pressure_valve_cover.json",
+      "model": "src/generated/resources/assets/cruciblecraft/models/item/pressure_valve_cover.json"
+    },
+    "selector_manual": {
+      "item": "cruciblecraft:selector_manual_cover",
+      "item_field": "SELECTOR_MANUAL_COVER",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/selector_manual_cover.json",
+      "model": "src/generated/resources/assets/cruciblecraft/models/item/selector_manual_cover.json"
+    }
+  },
+  "language_resources": {
+    "en_us": "src/generated/resources/assets/cruciblecraft/lang/en_us.json",
+    "zh_cn": "src/generated/resources/assets/cruciblecraft/lang/zh_cn.json"
+  },
+  "survival_sources": [
+    "minecraft:comparator",
+    "minecraft:compass",
+    "minecraft:copper_ingot",
+    "minecraft:hopper",
+    "minecraft:iron_ingot",
+    "minecraft:lever",
+    "minecraft:piston",
+    "minecraft:powered_rail",
+    "minecraft:redstone",
+    "minecraft:tripwire_hook"
+  ]
+}

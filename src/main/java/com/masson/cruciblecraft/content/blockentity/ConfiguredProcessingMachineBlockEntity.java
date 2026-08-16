@@ -7,6 +7,7 @@ import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineEnergyPlacement;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineFluidPolicy;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineDisplayData;
+import com.masson.cruciblecraft.machine.processing.ProcessingProgressSync;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModCapabilities;
 import com.masson.cruciblecraft.registry.ModMenus;
@@ -30,6 +31,8 @@ import net.neoforged.neoforge.fluids.FluidStack;
 /** One production host configured by the block's immutable machine spec. */
 public class ConfiguredProcessingMachineBlockEntity
         extends ProcessingMachineBlockEntity implements MenuProvider {
+    private final ProcessingProgressSync menuProgress = new ProcessingProgressSync();
+    private String completedMenuRecipe = "";
     private final ContainerData data = new ContainerData() {
         @Override public int get(int index) {
             return switch (index) {
@@ -37,6 +40,8 @@ public class ConfiguredProcessingMachineBlockEntity
                         ProcessingMachineDisplayData.statusIndex(spec(), pausedReason());
                 case ConfiguredProcessingMachineMenu.STATUS_ARGUMENT_DATA_INDEX ->
                         statusArgument();
+                case ConfiguredProcessingMachineMenu.PROGRESS_PERMILLE_DATA_INDEX ->
+                        menuProgress.value();
                 default -> 0;
             };
         }
@@ -68,7 +73,16 @@ public class ConfiguredProcessingMachineBlockEntity
     public static void serverTick(
             Level level, BlockPos pos, BlockState state,
             ConfiguredProcessingMachineBlockEntity machine) {
+        machine.completedMenuRecipe = "";
         machine.tickProcessingServer();
+        boolean completed = !machine.completedMenuRecipe.isEmpty();
+        machine.menuProgress.update(
+                completed
+                        ? machine.completedMenuRecipe
+                        : machine.runtime().processor().activeId(),
+                machine.workProgressLong(),
+                machine.workRequiredLong(),
+                completed);
     }
 
     public ContainerData data() { return data; }
@@ -110,6 +124,10 @@ public class ConfiguredProcessingMachineBlockEntity
 
     @Override protected boolean isFluidInputValid(int tank, FluidStack stack) {
         return ProcessingMachineFluidPolicy.accepts(spec(), tank, stack);
+    }
+
+    @Override protected void onProcessingCompleted(String recipeId) {
+        completedMenuRecipe = recipeId;
     }
 
     @Override protected IEnergyHandler adjacentEnergySource() {

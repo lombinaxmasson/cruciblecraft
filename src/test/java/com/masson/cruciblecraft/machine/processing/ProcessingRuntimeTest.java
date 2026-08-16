@@ -94,20 +94,13 @@ class ProcessingRuntimeTest {
         assertTrue(supportedAgain.unsupportedVersion().isEmpty());
         assertEquals(512, supportedAgain.energy());
 
-        CompoundTag legacyLatch = original.write();
-        int legacyFutureVersion = ProcessingMachineState.VERSION + 1;
-        legacyLatch.putString(
-                "status",
-                "unsupported_version_" + legacyFutureVersion);
-        ProcessingMachineState migratedLatch =
-                ProcessingMachineState.read(legacyLatch);
-        assertEquals("idle", migratedLatch.status());
-        assertEquals(
-                legacyFutureVersion,
-                migratedLatch.unsupportedVersion().orElseThrow());
-        assertEquals(
-                legacyFutureVersion,
-                migratedLatch.write().getInt("processing_version"));
+        CompoundTag rejectedProfile = original.write();
+        rejectedProfile.putString("tier_profile", "test:removed_profile");
+        ProcessingMachineState quarantined =
+                ProcessingMachineState.read(rejectedProfile);
+        assertTrue(quarantined.identityQuarantine()
+                .orElseThrow().contains("tier_profile is unsupported"));
+        assertEquals("", quarantined.tierBand());
 
         CompoundTag invalid = original.write();
         invalid.putInt("processing_version", -1);

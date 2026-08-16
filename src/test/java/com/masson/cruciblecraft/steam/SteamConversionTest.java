@@ -10,9 +10,17 @@ class SteamConversionTest {
         assertEquals(1, SteamConversion.boilerBatches(1, 160, 80));
         assertEquals(3, SteamConversion.boilerBatches(5, 500, 400));
     }
-    @Test void engineConversionKeepsOddSteamBuffered() {
-        assertEquals(0, SteamConversion.kineticFromSteam(1, 16));
-        assertEquals(16, SteamConversion.kineticFromSteam(33, 16));
+    @Test void engineConversionUsesExactSourceEfficiencyBatches() {
+        assertEquals(0, SteamConversion.engineBatches(200, 50, 0));
+        assertEquals(1, SteamConversion.engineBatches(200, 50, 1));
+        assertEquals(2, SteamConversion.engineBatches(400, 100, 2));
+        assertEquals(200, SteamConversion.ENGINE_STEAM_PER_BATCH);
+        assertEquals(50, SteamConversion.KU_PER_ENGINE_BATCH);
+        assertEquals(
+                4,
+                SteamConversion.ENGINE_STEAM_PER_BATCH
+                        / SteamConversion.KU_PER_ENGINE_BATCH);
+        assertEquals(1, SteamConversion.EXHAUST_WATER_PER_BATCH);
     }
     @Test void extractionSimulationDoesNotMutateAndRateLimits() {
         KineticBuffer buffer = new KineticBuffer(64, 16);

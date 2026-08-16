@@ -57,7 +57,7 @@ def load(path: Path) -> Any:
 
 
 def dump_json(path: Path, obj: Any) -> None:
-    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8", newline="\n")
 
 
 def has_tag(tags: Any, needle: str) -> bool:
