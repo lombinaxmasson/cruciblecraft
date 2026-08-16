@@ -9296,10 +9296,13 @@
     ],
     "source_fluid_bridges": {
       "liquid_medium_oil": {
-        "evidence": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json#recipes[872] names the source fluid Raw Oil, but the pinned normalized fluid map does not bind it to GT6 material 9852 CrudeOil.",
-        "gt6_equivalence": "UNVERIFIED",
-        "open_item": "O-37",
-        "replacement_condition": "Replace only after a fixed-revision GT6 fluid-registration source proves the material identity, or after T9 deposit identity is migrated through an explicit compatibility plan.",
+        "closed_item": "O-37",
+        "closure": "O37_CLOSED_PERMANENT_DESIGN_POLICY",
+        "evidence": "tools/t18_o37_identity_projection.json records a complete fixed-revision Java replay: liquid_medium_oil is registered as Raw Oil with a null material argument, FL.Oil_Medium is separate from material 9852 MT.CrudeOil, and no direct binding candidate exists.",
+        "gt6_equivalence": "NO_DIRECT_BINDING_AT_FIXED_REVISION",
+        "material_9852_role": "SOURCE_MATERIAL_LAYER_ONLY",
+        "permanent": true,
+        "publication_delta": 0,
         "runtime_identity": "cruciblecraft:crude_oil",
         "status": "DESIGN_POLICY"
       }
@@ -9324,13 +9327,13 @@
       "t5_plus_t11_chemical_recipes": 200
     },
     "current": {
-      "datapack_recipe_entries": 3202,
+      "datapack_recipe_entries": 3235,
       "published_recipes": 18871,
       "t5_chemical_recipes": 152
     },
     "projected": {
-      "compression_ratio": 5.880062,
-      "datapack_recipe_entries": 3210,
+      "compression_ratio": 5.820228,
+      "datapack_recipe_entries": 3243,
       "published_recipes": 18875,
       "t5_plus_t11_chemical_recipes": 154
     },
@@ -9391,7 +9394,28 @@
         "vent_overflow": true
       }
     },
-    "sha256": "64875e6d1d780b70c7abf2dfd8da106780a7ef69e70f6264bf9cf9a0208d1382",
+    "publication_policy": {
+      "duplicate_fluid_registration_allowed": false,
+      "t18_o37_fluid_registration_delta": 0,
+      "t18_o37_recipe_publication_delta": 0
+    },
+    "raw_oil_identity": {
+      "closure": "O37_CLOSED_PERMANENT_DESIGN_POLICY",
+      "distillery_runtime_input": "cruciblecraft:crude_oil",
+      "distillery_source_fluid": "liquid_medium_oil",
+      "duplicate_registration_allowed": false,
+      "evidence": "tools/t18_o37_identity_projection.json",
+      "fluid_id_changed": false,
+      "material_9852": "MT.CrudeOil",
+      "material_9852_role": "SOURCE_MATERIAL_LAYER_ONLY",
+      "publication_delta": 0,
+      "registered_runtime_fluid": "cruciblecraft:crude_oil",
+      "registration_owner": "t11_hydrocarbon_fluid_gate",
+      "status": "DESIGN_POLICY",
+      "t9_identity_migration": "NONE",
+      "worldgen_material": "cruciblecraft:crude_oil"
+    },
+    "sha256": "964de6c1e050049fd39f4126d38883dfebcd3c88c844d52d2450ddf166abe816",
     "status": "DESIGN_POLICY"
   },
   "schema_version": 1,
@@ -9491,8 +9515,8 @@
     },
     "methane_gas_fuel": {
       "id": "methane_gas_fuel",
-      "map": "gt.recipe.fuels.gas",
-      "recipe_index": 2,
+      "map": "gt.recipe.fuels.burn",
+      "recipe_index": 20,
       "role": "fuel_consumer",
       "runtime_projection": {
         "fluid_inputs": [
@@ -9516,11 +9540,11 @@
         ]
       },
       "source": {
-        "path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.gas.json#recipes[2]",
-        "row_sha256": "927813432bfc91a48de932305d28bbcbe73dd3f61a046375c0fbb9ab6315143e"
+        "path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.burn.json#recipes[20]",
+        "row_sha256": "ebd1dd1055840987c1e7f22a2929c1507bb1751339fc1de586a596a516e74eb9"
       },
       "source_recipe": {
-        "duration": 30,
+        "duration": 24,
         "eut": -64,
         "fluid_inputs": [
           {
@@ -9724,10 +9748,10 @@
     },
     "methane_gas_fuel": {
       "counts": {
-        "classified": 9,
-        "deferred_outside_minimal_t11_set": 8,
+        "classified": 49,
+        "deferred_outside_minimal_t11_set": 48,
         "selected_source_backed": 1,
-        "source_rows": 9,
+        "source_rows": 49,
         "unclassified": 0
       },
       "rows": [
@@ -9735,58 +9759,298 @@
           "classification": "deferred_outside_minimal_t11_set",
           "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
           "recipe_index": 0,
-          "row_sha256": "7cb895fbaad362eb657263fe058719dfda50f7910918238ac862318da1399bc0"
+          "row_sha256": "95b1eb23591a719d70708b8498b1b6dd3f84d6fd77c2aa8f8c45dff5e1f9fbb8"
         },
         {
           "classification": "deferred_outside_minimal_t11_set",
           "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
           "recipe_index": 1,
-          "row_sha256": "334519039b2265d8d85ffe5a8cef3f4066655f43adabee330e62d060f28aa6bb"
+          "row_sha256": "03dde81ee02e071a8da24fcbaea3317d33a97850db0821616bc2696f9b3ed8af"
         },
         {
-          "classification": "selected_source_backed",
-          "reason_code": "independent_expectation_match",
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
           "recipe_index": 2,
-          "row_sha256": "927813432bfc91a48de932305d28bbcbe73dd3f61a046375c0fbb9ab6315143e"
+          "row_sha256": "880ea5fa2998a7b2d4ac9b66ec8ac3f8b983ad96c7c2653b36b660e0508e2e2d"
         },
         {
           "classification": "deferred_outside_minimal_t11_set",
           "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
           "recipe_index": 3,
-          "row_sha256": "e4e1114a8781c6a468d650e72043c97d091b63593f702c3782d6858f9ddbaf80"
+          "row_sha256": "1941ef1d51f8eaf134a41cf30acac223e9d369d82ea8dc6fb18b54f664e81f6e"
         },
         {
           "classification": "deferred_outside_minimal_t11_set",
           "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
           "recipe_index": 4,
-          "row_sha256": "8466259876894618772ecca81a28230c8f93ce8b761f9855bcf452c02fc606d7"
+          "row_sha256": "732b3a12f572b32f60db1fb7b6ab83e5c73f741cf72305ad5b2e1e27f3a312e4"
         },
         {
           "classification": "deferred_outside_minimal_t11_set",
           "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
           "recipe_index": 5,
-          "row_sha256": "be683d9a109b4910f85ec05c35bdd6008a84c04b2f1b4d0405466f75ed15445d"
+          "row_sha256": "dec9b2676c6778cf4ba5fefd1d09b1059426a8f14102a48a624393ce3d01df54"
         },
         {
           "classification": "deferred_outside_minimal_t11_set",
           "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
           "recipe_index": 6,
-          "row_sha256": "3f9af2619b6e1b455f8fff0797fe1be282748576f44782fe54f01781ca4a0f52"
+          "row_sha256": "9aa07b3441b71b2fcaee81a856a51b9715b50eec27190dbc6c2e97a3d137abf2"
         },
         {
           "classification": "deferred_outside_minimal_t11_set",
           "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
           "recipe_index": 7,
-          "row_sha256": "75af32687f41347338c8a7cc00e026c6e487f23e7fb5193718ada89d8539d8a1"
+          "row_sha256": "e8ab304ccf646c920075342e1221ba6599bcab675315ba25d06436ce1e7cd659"
         },
         {
           "classification": "deferred_outside_minimal_t11_set",
           "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
           "recipe_index": 8,
-          "row_sha256": "7a40848d1be20a3768e26541e5fc98cdaffc00df4288380d29defdb4617e2022"
+          "row_sha256": "617d0ff47e4951afc6870e8be80a6cce9335ced8d619f75d56276be54878799f"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 9,
+          "row_sha256": "c846420ea9aeae06d2fe18a322691fa7c795f509a8e9fd754cb5ea86d63f6ce6"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 10,
+          "row_sha256": "396cf706a6ec3f585e6d16b9546b87c8a928864306a8d486b49d760605ee9595"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 11,
+          "row_sha256": "29d3dabb8cdcd5abaa315f457c4e5d6a51232d405b5ea42a2ae5f4d924cb9f69"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 12,
+          "row_sha256": "a9b1a9f8212a9e4342fb06d43f0a222f868290f47e34d786a34c746984b1c65c"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 13,
+          "row_sha256": "79aaedbaead7f8341f68c62ca8585545c291175525d1e64c9ec8ab6dfc342b45"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 14,
+          "row_sha256": "43917addfaabd2ac29810bd9505882236947af731abfee4afad4634f95e5e697"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 15,
+          "row_sha256": "5220a2a148f6ba210a24b0c058c119372f1748682b9fa3608fd6d95e797e869f"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 16,
+          "row_sha256": "84edaa69ae6b44f4bf6bd3bbd33e988b828c4e71779787b40c9caf380c55cd6c"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 17,
+          "row_sha256": "65b934a6847a9f1524f1cdcfd23e1cd9b7912065db7404ac4092ee5ed4ff3a91"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 18,
+          "row_sha256": "6dd615ae9516580b20e4eb3a2dd342f609c7a15b9d1f5d620bcc26854d7c8cd3"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 19,
+          "row_sha256": "efcbb4025e547167ae80658e06877f28899eb7c817001ec4c7bafbc84b8dc24d"
+        },
+        {
+          "classification": "selected_source_backed",
+          "reason_code": "independent_expectation_match",
+          "recipe_index": 20,
+          "row_sha256": "ebd1dd1055840987c1e7f22a2929c1507bb1751339fc1de586a596a516e74eb9"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 21,
+          "row_sha256": "63f148fb77666701658fc4fd98be705ff49bbeef124434d4eaeb362850c95cdb"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 22,
+          "row_sha256": "c95342a21b6ac084ef911e8318e51438f91b3a733a932ec2af9b9d75c6e89080"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 23,
+          "row_sha256": "0905911c5d9687a7a440767a6068db3cc83fd4f97a09b26dfe68d46ff2c30109"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 24,
+          "row_sha256": "c87f1869ddbdcaf3b6abf5fbe5e0c0a28793cb48092cb4fbd6973dd4b0fd30b6"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 25,
+          "row_sha256": "376251d951af96acb4c2acdff8727aad8ef5c8a686fff39cf72f44fa873ce542"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 26,
+          "row_sha256": "34b645767f17c11920bf8600b4cbf27287efc638b87eabba4095bd3b50802fb1"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 27,
+          "row_sha256": "4d3cd0b81979ec2a3943ba5cbf0b8d59178cb890f61531d44239ef3b5678c585"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 28,
+          "row_sha256": "5d96f28124eb523cffec834757cd9ac3b842a4422f21d4d5f247627a6fc9b98d"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 29,
+          "row_sha256": "b5ae6033859294d93918a3fb1b397d3e84a7724e6506f5fadd13a649a19177c6"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 30,
+          "row_sha256": "039c4ccd55b878e60d0c8355c6b88420225c2d8258ec8824ead0cf4398993b24"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 31,
+          "row_sha256": "abe99c76d42b4e9354311f24bf16a2250c2367fc8261a38becafb9c50fcfaa35"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 32,
+          "row_sha256": "d5eef2cca0ff21931f371906a5a896e7ca538f149a3ee93437868d511798c26b"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 33,
+          "row_sha256": "47988b6f25b9ed4973e7292e68186e31d2b2d8823a5ff9fef487a52dbf1acada"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 34,
+          "row_sha256": "5f2c5f3319899787e1b1a0c47f5173c8054a8411fe449910d662d545e654ee7c"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 35,
+          "row_sha256": "63310f5191caf843bf2272dc214b39f5d90b01e2d121b383b6c334e69522613e"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 36,
+          "row_sha256": "35cd34fac87984baee6a3a030a217fd98925aa2e616b3ec610d6d56b915d2f94"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 37,
+          "row_sha256": "eb67d372527159e9a1e311e917d55cfa6b9d0fe36b00e19e55f4a425a5422336"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 38,
+          "row_sha256": "4cb045926a3a235bf9f6ea25de0233b6b197f6ed03fdd4a8ba53ec005e9bc4f1"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 39,
+          "row_sha256": "5316d492af8a978b60c380e96e58e5e833bf7b82dd2be84130869248a52f4a6c"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 40,
+          "row_sha256": "c2fa68c2aff2f3c3ac168ef37efa7d6b0d1fd4c7ab08f7ab33f57fb817dba59b"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 41,
+          "row_sha256": "c2e5be07bcd39644cc22aa1ef7f76c5bd1393186992d4e2b55cc763bd972e52f"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 42,
+          "row_sha256": "17afcc0d8161114c695a1508cecd127959c5de2ce53abda19414e40cb7d456b3"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 43,
+          "row_sha256": "0cd719b549c366c45516a53c6f0043105b1a486840332d755ede9966632a9aac"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 44,
+          "row_sha256": "144ee2f8e488906fba5e82a33dd761695703922afa13f86836766c657744d88d"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 45,
+          "row_sha256": "3c01356ed7b5b1487997be2276c1e5ec4916298753cfcbcbad44ee2470a0b999"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 46,
+          "row_sha256": "5bcb51c6823f02ed943f07575ce26774242103ba97016300e963e1dc046d4928"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 47,
+          "row_sha256": "b62fd491d9cd4afe1cbc43f527557305134d430cba88c7d2eb64b803d193a4ae"
+        },
+        {
+          "classification": "deferred_outside_minimal_t11_set",
+          "reason_code": "not_in_t11_minimal_hydrocarbon_expectation_set",
+          "recipe_index": 48,
+          "row_sha256": "73c9ff20bf6a03ba754c8003e19111763a0bafffc21a5113d24869ff5ffce17e"
         }
       ],
-      "selected_recipe_index": 2
+      "selected_recipe_index": 20
     },
     "natural_gas_to_methane": {
       "counts": {
@@ -71221,12 +71485,12 @@
   "sources": {
     "builder": {
       "path": "tools/build_t11_preflight_projection.py",
-      "sha256": "309b420dcdfcb10b0bfd41298b2fb77b1e94e6b91e25b65cddd7775911b29259"
+      "sha256": "f4af1be6c444e0e257ecf9c2330083289be07fa886df5f46b4c3803cdc522d09"
     },
     "fluid_gates": {
       "src/main/resources/data/cruciblecraft/t10_container_fluid_gate.json": "4d08680716d74970df6404de747de500135b4ad367c07f8fa830c834fe6206bd",
       "src/main/resources/data/cruciblecraft/t11_cell_content_gate.json": "fb692c9f5f48670cc0a7b4fcbe42b9c72fc030f7d0bbc486859c52c6ac12c674",
-      "src/main/resources/data/cruciblecraft/t11_hydrocarbon_fluid_gate.json": "771305a3eaaf6ccca069eb72a86b304b0e26965fa4831413f91b614ebf3bde0e",
+      "src/main/resources/data/cruciblecraft/t11_hydrocarbon_fluid_gate.json": "9bda08f0940fdf5fb8486621ed33eb847977f9bd9f92f63a2ae7b8695e247375",
       "src/t5_chemical_generated/resources/data/cruciblecraft/t5_chemical_fluid_gate.json": "be96b1f8f8d0de02e8a1c5be9d31f65854067fa020f7b36e6246ccdd5ea469a8"
     },
     "maps": {
@@ -71235,15 +71499,15 @@
         "recipe_count": 1517,
         "sha256": "72aa8d4afee742cf67a935310809e78588102a961c8af68c137dc65f03668646"
       },
+      "gt.recipe.fuels.burn": {
+        "path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.burn.json",
+        "recipe_count": 49,
+        "sha256": "d577d3ad1c4622128aceee6574326b54f84bf86dcd3e5516f6d4277e7c3bf3a3"
+      },
       "gt.recipe.fuels.engine": {
         "path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.engine.json",
         "recipe_count": 21,
         "sha256": "fab9cc2282529afd6e6f1559fd6d6dc7173ec402f0978a4b6a16e29590bd90aa"
-      },
-      "gt.recipe.fuels.gas": {
-        "path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.gas.json",
-        "recipe_count": 9,
-        "sha256": "0cc436b3e1a7903732ec710860f1b93718591622b74d4c69dcd4969bcccf0607"
       },
       "gt.recipe.generifier": {
         "path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.generifier.json",
@@ -71251,13 +71515,17 @@
         "sha256": "acd07dbdda3531543a24664e9be0922d10ac519cc85fa79bdf7f2f64910c24b7"
       }
     },
+    "o37_identity": {
+      "path": "tools/t18_o37_identity_projection.json",
+      "sha256": "ed27240bdbc21c0b8e5fdf51d2405c6962582a74152ea0e8144f3e21bcbfae47"
+    },
     "policy": {
       "path": "tools/t11_preflight_policy.json",
-      "sha256": "d40d417a50882791729870e90ff7be88e10a0b4084e65f09786f8129d065790f"
+      "sha256": "f277f72c26c9dc0cfb9f78be637aed91250df4335a9c36fe7fd621267fc40e2c"
     },
     "runtime_policy": {
       "path": "src/main/resources/data/cruciblecraft/t11_hydrocarbon_runtime_policy.json",
-      "sha256": "64875e6d1d780b70c7abf2dfd8da106780a7ef69e70f6264bf9cf9a0208d1382"
+      "sha256": "964de6c1e050049fd39f4126d38883dfebcd3c88c844d52d2450ddf166abe816"
     }
   },
   "status": "T11_READY"

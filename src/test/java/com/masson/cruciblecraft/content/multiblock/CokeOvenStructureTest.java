@@ -66,7 +66,7 @@ class CokeOvenStructureTest {
         assertEquals(27, definition.scanVolume());
         var source = document().getAsJsonObject("source");
         assertEquals(
-                "behavior_migration:NO_BEHAVIOR_DRIFT",
+                "behavior_projection:NO_BEHAVIOR_DRIFT",
                 source.get("method").getAsString());
         assertTrue(source.get("revision").getAsString()
                 .contains("t12a_machine_readiness.json"));

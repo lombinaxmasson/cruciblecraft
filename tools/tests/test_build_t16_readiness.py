@@ -25,6 +25,10 @@ class T16ReadinessTest(unittest.TestCase):
             self.document["stage_gates"][stage]["status"] == "COMPLETE"
             for stage in ("T16a", "T16b", "T16c", "T16d")
         ))
+        self.assertEqual(
+            [],
+            self.document["currentness"]["pending_report"]["pending"],
+        )
 
     def test_t16a_evidence_locks_catalog_and_registration_counts(self):
         evidence = self.document["t16a_evidence"]
@@ -44,7 +48,7 @@ class T16ReadinessTest(unittest.TestCase):
         self.assertEqual(8, evidence["new_block_registrations"])
         self.assertEqual(8, evidence["new_item_registrations"])
         self.assertEqual(0, evidence["unclassified"])
-        self.assertEqual(1, evidence["controller_profiles"])
+        self.assertEqual(2, evidence["controller_profiles"])
 
     def test_t16b_evidence_locks_press_runtime_scope(self):
         evidence = self.document["t16b_evidence"]
@@ -71,7 +75,7 @@ class T16ReadinessTest(unittest.TestCase):
 
     def test_t16d_closes_zero_load_publication_and_emi(self):
         resources = self.document[
-            "resource_acquisition_migration_gate"
+            "resource_acquisition_identity_gate"
         ]
         publication = self.document["publication_gate"]
         self.assertEqual("T16C_COMPLETE", resources["status"])
@@ -104,10 +108,10 @@ class T16ReadinessTest(unittest.TestCase):
             {"RU": "KINETIC_ROTATION", "KU": "KINETIC_PUSH"},
             evidence["energy_identity"],
         )
-        self.assertEqual(0, evidence["migration_acquisition"][
+        self.assertEqual(0, evidence["identity_acquisition"][
             "gt_recipe_rows"
         ])
-        self.assertEqual(15, evidence["migration_acquisition"][
+        self.assertEqual(15, evidence["identity_acquisition"][
             "vanilla_crafting_rows"
         ])
         self.assertTrue(all(
@@ -138,7 +142,7 @@ class T16ReadinessTest(unittest.TestCase):
         ])
         self.assertEqual(6, evidence["gametest"]["t16_test_count"])
 
-    def test_t16c_evidence_locks_resources_acquisition_and_migrations(self):
+    def test_t16c_evidence_locks_resources_acquisition_and_identity(self):
         self.assertEqual({
             "selected_kinds": 5,
             "selected_variants": 15,
@@ -149,7 +153,8 @@ class T16ReadinessTest(unittest.TestCase):
             "source_declarations": 4,
             "unreachable": 0,
             "resource_sets_bidirectional": True,
-            "exact_legacy_tier1_migrations": 5,
+            "identity_policy":
+                "CURRENT_OR_BLANK_ACCEPTED_OTHERWISE_QUARANTINED",
         }, self.document["t16c_evidence"])
 
     def test_currentness_covers_every_completed_stage(self):
@@ -196,7 +201,7 @@ class T16ReadinessTest(unittest.TestCase):
                 "t16c_full_artifact_currentness",
                 "t16c_full_builder",
                 "t16c_gametests",
-                "t16c_identity_migrations",
+                "t16c_identity_policy",
                 "t16c_identity_persistence_junit",
                 "t16c_identity_policy_junit",
                 "t16c_language",
@@ -262,6 +267,7 @@ class T16ReadinessTest(unittest.TestCase):
         )
         self.assertEqual(
             [
+                "test_build_processing_machine_energy_audit",
                 "test_build_t16_machine_acquisition",
                 "test_build_t16_machine_denominator",
                 "test_build_t16_readiness",

@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "status": "T19_READINESS_POLICY",
+  "status_policy": {
+    "in_progress": "T19_IN_PROGRESS",
+    "ready": "T19_READY",
+    "complete_stage_status": "COMPLETE",
+    "pending_stage_status": "PENDING"
+  },
+  "refresh_policy": {
+    "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+    "this_refresh_final_closure_attempted": true,
+    "evidence": "tools/full_verification_report.json"
+  },
+  "dependencies": {
+    "T18": {
+      "path": "tools/t18_readiness.json",
+      "required_status": "T18_READY"
+    },
+    "denominator": {
+      "path": "tools/t19_cover_denominator.json",
+      "required_status": "T19_COVER_DENOMINATOR_READY"
+    },
+    "acquisition": {
+      "path": "tools/t19_cover_acquisition.json",
+      "required_status": "T19_COVER_ACQUISITION_READY"
+    },
+    "pipe_acquisition": {
+      "path": "tools/t19_pipe_acquisition.json",
+      "required_status": "T19_PIPE_ACQUISITION_READY"
+    },
+    "load_projection": {
+      "path": "tools/t19_load_projection.json",
+      "required_status": "PASS"
+    }
+  },
+  "stages": {
+    "T19a": {
+      "name": "selected_cover_runtime",
+      "status": "COMPLETE",
+      "acceptance": "Implement conveyor, retriever_item, robot_arm, pressure_valve and selector_manual on the shared five-tick pipe phase with simulated/executed conservation, blocked retention, route invalidation and bounded synchronization."
+    },
+    "T19b": {
+      "name": "definition_behavior_boundary",
+      "status": "COMPLETE",
+      "acceptance": "Load strict bounded CoverDefinition rows, resolve only registered CoverBehavior plugins, adapt T8 identities through the active cover boundary, fail closed on unknown/conflicting persistence, and prove a second conveyor definition changes only JSON."
+    },
+    "T19c": {
+      "name": "pipe_acquisition_and_gauge_predicates",
+      "status": "COMPLETE",
+      "acceptance": "Close O-27 with five pinned GT6 Wood crafting rows plus twenty explicit CrucibleCraft shaped-policy rows, and close O-28 with exact output/specification predicate lookup shared with PipeCatalog."
+    },
+    "T19d": {
+      "name": "short_recipe_progress",
+      "status": "COMPLETE",
+      "acceptance": "Close O-20 for ConfiguredProcessingMachine with per-tick bounded progress permille, exact long-work handling and completion/reset lifecycle while preserving exact block-entity state; audit Crusher and CokeOven as already covered by per-tick ContainerData."
+    }
+  },
+  "source_contracts": {
+    "definition_catalog": "src/main/resources/data/cruciblecraft/cover_definitions.json",
+    "definition_schema": "src/main/resources/data/cruciblecraft/schema/cover_definitions.schema.json",
+    "definition_record": "src/main/java/com/masson/cruciblecraft/logistics/pipe/cover/CoverDefinition.java",
+    "definition_loader": "src/main/java/com/masson/cruciblecraft/logistics/pipe/cover/CoverDefinitionCatalog.java",
+    "behavior_registry": "src/main/java/com/masson/cruciblecraft/logistics/pipe/cover/CoverBehaviorRegistry.java",
+    "definition_junit": "src/test/java/com/masson/cruciblecraft/logistics/pipe/cover/CoverDefinitionCatalogTest.java",
+    "language_provider": "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
+    "language_junit": "src/test/java/com/masson/cruciblecraft/datagen/T19CoverResourceTest.java",
+    "processing_language_junit": "src/test/java/com/masson/cruciblecraft/datagen/ProcessingMachineResourceTest.java",
+    "generated_language_english": "src/generated/resources/assets/cruciblecraft/lang/en_us.json",
+    "generated_language_chinese": "src/generated/resources/assets/cruciblecraft/lang/zh_cn.json",
+    "recipe_registry": "src/main/java/com/masson/cruciblecraft/registry/ModRecipes.java",
+    "recipe_registry_junit": "src/test/java/com/masson/cruciblecraft/registry/ModRecipesRegistrationTest.java",
+    "item_pipe_runtime": "src/main/java/com/masson/cruciblecraft/content/blockentity/ItemPipeBlockEntity.java",
+    "fluid_pipe_runtime": "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java",
+    "configuration_payload": "src/main/java/com/masson/cruciblecraft/network/CoverConfigurationPayload.java",
+    "configuration_junit": "src/test/java/com/masson/cruciblecraft/network/CoverConfigurationPayloadTest.java",
+    "pipe_transfer_phase": "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeTransferPhase.java",
+    "item_route_discovery": "src/main/java/com/masson/cruciblecraft/logistics/pipe/item/ItemPipeNetworkTraversal.java",
+    "item_route_cache": "src/main/java/com/masson/cruciblecraft/content/blockentity/ItemPipeRouteCache.java",
+    "item_transfer_conservation": "src/main/java/com/masson/cruciblecraft/logistics/pipe/item/ItemPipeTransferPlan.java",
+    "cover_set_bounds": "src/main/java/com/masson/cruciblecraft/logistics/pipe/cover/PipeCoverSet.java",
+    "pipe_catalog": "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalog.java",
+    "pipe_recipe_catalog": "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeAcquisitionRecipeCatalog.java",
+    "material_rule_expansion": "src/main/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansion.java",
+    "rule_expression": "src/main/java/com/masson/cruciblecraft/recipe/rule/RuleExpression.java",
+    "processing_progress_sync": "src/main/java/com/masson/cruciblecraft/machine/processing/ProcessingProgressSync.java",
+    "configured_machine_host": "src/main/java/com/masson/cruciblecraft/content/blockentity/ConfiguredProcessingMachineBlockEntity.java",
+    "configured_machine_menu": "src/main/java/com/masson/cruciblecraft/content/menu/ConfiguredProcessingMachineMenu.java",
+    "shared_processing_menu": "src/main/java/com/masson/cruciblecraft/content/menu/ProcessingMachineMenu.java",
+    "processing_machine_screen": "src/main/java/com/masson/cruciblecraft/client/screen/ProcessingMachineScreen.java",
+    "crusher_host_audit": "src/main/java/com/masson/cruciblecraft/content/blockentity/CrusherBlockEntity.java",
+    "crusher_menu_audit": "src/main/java/com/masson/cruciblecraft/content/menu/CrusherMenu.java",
+    "coke_oven_host_audit": "src/main/java/com/masson/cruciblecraft/content/blockentity/CokeOvenBlockEntity.java",
+    "coke_oven_menu_audit": "src/main/java/com/masson/cruciblecraft/content/menu/CokeOvenMenu.java",
+    "production_gametest": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+    "progress_junit": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingProgressSyncTest.java",
+    "menu_junit": "src/test/java/com/masson/cruciblecraft/content/menu/ProcessingMachineMenuTest.java"
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T19a-d, publication/load accounting, bounded pipe performance, blocked-transfer conservation and currentness are closed; repository-wide verification is bound separately by the snapshot report."
+  }
+}

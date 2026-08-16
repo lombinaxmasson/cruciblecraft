@@ -1,0 +1,1203 @@
+{
+  "classification_policy": {
+    "DESIGN_POLICY_NON_GT6": "Explicit CrucibleCraft vanilla-shaped acquisition for a non-Wood material whose five GT6 fluid-pipe recipe flags remain false.",
+    "GT6_SOURCE_CRAFTING": "Only the five exact MT.Wood CR.shaped rows at Loader_MultiTileEntities.java:1887-1891.",
+    "unclassified_allowed": false
+  },
+  "counts": {
+    "block_models": 25,
+    "block_tags": 25,
+    "design_policy_non_gt6": 20,
+    "gauges": 5,
+    "gt6_source_crafting": 5,
+    "item_models": 25,
+    "item_tags": 25,
+    "loot_tables": 25,
+    "materials": 5,
+    "registered_blocks": 25,
+    "registered_items": 25,
+    "rows": 25,
+    "unreachable": 0,
+    "vanilla_shaped_recipes": 25
+  },
+  "currentness": {
+    "owned_inputs": {
+      "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeAcquisitionRecipeCatalog.java": "40d2061edf045f0bdaf50a576c9855317eb732d3974177dad5382b104e9dc836",
+      "src/main/java/com/masson/cruciblecraft/logistics/pipe/PipeCatalog.java": "978ce19f010d0079722f999d5b6f11618e476bef2462c023543b8c19ea4296b8",
+      "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java": "818e22379429fa5520b1e00d3c30f3cbc8143edf8d1ebc3d74ac0f3d4d21a329",
+      "src/main/resources/data/cruciblecraft/material_registration_gate.json#t19c_registered_output_forms": "09ae10d9bca817c542fdee074729bdd7dc9d05725bc739e2d6ba2a0b9bb45d9b",
+      "tools/build_t19_pipe_acquisition.py": "901d9953d7fd96a9f7846c161b0837c8cef35e2897656faccd3445dd4ec09f69",
+      "tools/gt6_pipe_source.json": "4fef531e383bd9a2e173031ce1a73ba39c6d4057b7ea37dc8866746d7eeff19c",
+      "tools/t19_pipe_acquisition_policy.json": "0c010090b9f950f87f17dffa710d33605eda58d11c9b0fe6e626c3b25166ea06",
+      "tools/t8_pipe_readiness.json": "825a709988423e49a31e32ad9fa2987e180856e6e502518c5198812a4788b5af"
+    },
+    "resources": {
+      "src/generated/resources/assets/cruciblecraft/blockstates/carbon/fluid_pipe.json": "9042d6100703aad1f94f41887617ec90f970325aac3bc9961d19048bf93d9d79",
+      "src/generated/resources/assets/cruciblecraft/blockstates/carbon/huge_fluid_pipe.json": "c421563ca043bb86eea4d7c21a23849909ddbfa6dc039e93560b4b72b6113c28",
+      "src/generated/resources/assets/cruciblecraft/blockstates/carbon/large_fluid_pipe.json": "5da9cbbf7e373157e0e663f50b0c99d4922d981ecd403d2112013a334b077457",
+      "src/generated/resources/assets/cruciblecraft/blockstates/carbon/small_fluid_pipe.json": "3e559f6898bcedfce5dcb682a83a523e611adc9ee40879f128ad3598e1da4f7e",
+      "src/generated/resources/assets/cruciblecraft/blockstates/carbon/tiny_fluid_pipe.json": "9ee97f639c2a46658e3050d975662e43c95135c6c91010a11431052837e17fe3",
+      "src/generated/resources/assets/cruciblecraft/blockstates/plastic/fluid_pipe.json": "9042d6100703aad1f94f41887617ec90f970325aac3bc9961d19048bf93d9d79",
+      "src/generated/resources/assets/cruciblecraft/blockstates/plastic/huge_fluid_pipe.json": "c421563ca043bb86eea4d7c21a23849909ddbfa6dc039e93560b4b72b6113c28",
+      "src/generated/resources/assets/cruciblecraft/blockstates/plastic/large_fluid_pipe.json": "5da9cbbf7e373157e0e663f50b0c99d4922d981ecd403d2112013a334b077457",
+      "src/generated/resources/assets/cruciblecraft/blockstates/plastic/small_fluid_pipe.json": "3e559f6898bcedfce5dcb682a83a523e611adc9ee40879f128ad3598e1da4f7e",
+      "src/generated/resources/assets/cruciblecraft/blockstates/plastic/tiny_fluid_pipe.json": "9ee97f639c2a46658e3050d975662e43c95135c6c91010a11431052837e17fe3",
+      "src/generated/resources/assets/cruciblecraft/blockstates/rubber/fluid_pipe.json": "9042d6100703aad1f94f41887617ec90f970325aac3bc9961d19048bf93d9d79",
+      "src/generated/resources/assets/cruciblecraft/blockstates/rubber/huge_fluid_pipe.json": "c421563ca043bb86eea4d7c21a23849909ddbfa6dc039e93560b4b72b6113c28",
+      "src/generated/resources/assets/cruciblecraft/blockstates/rubber/large_fluid_pipe.json": "5da9cbbf7e373157e0e663f50b0c99d4922d981ecd403d2112013a334b077457",
+      "src/generated/resources/assets/cruciblecraft/blockstates/rubber/small_fluid_pipe.json": "3e559f6898bcedfce5dcb682a83a523e611adc9ee40879f128ad3598e1da4f7e",
+      "src/generated/resources/assets/cruciblecraft/blockstates/rubber/tiny_fluid_pipe.json": "9ee97f639c2a46658e3050d975662e43c95135c6c91010a11431052837e17fe3",
+      "src/generated/resources/assets/cruciblecraft/blockstates/wood/fluid_pipe.json": "9042d6100703aad1f94f41887617ec90f970325aac3bc9961d19048bf93d9d79",
+      "src/generated/resources/assets/cruciblecraft/blockstates/wood/huge_fluid_pipe.json": "c421563ca043bb86eea4d7c21a23849909ddbfa6dc039e93560b4b72b6113c28",
+      "src/generated/resources/assets/cruciblecraft/blockstates/wood/large_fluid_pipe.json": "5da9cbbf7e373157e0e663f50b0c99d4922d981ecd403d2112013a334b077457",
+      "src/generated/resources/assets/cruciblecraft/blockstates/wood/small_fluid_pipe.json": "3e559f6898bcedfce5dcb682a83a523e611adc9ee40879f128ad3598e1da4f7e",
+      "src/generated/resources/assets/cruciblecraft/blockstates/wood/tiny_fluid_pipe.json": "9ee97f639c2a46658e3050d975662e43c95135c6c91010a11431052837e17fe3",
+      "src/generated/resources/assets/cruciblecraft/blockstates/wood_treated/fluid_pipe.json": "9042d6100703aad1f94f41887617ec90f970325aac3bc9961d19048bf93d9d79",
+      "src/generated/resources/assets/cruciblecraft/blockstates/wood_treated/huge_fluid_pipe.json": "c421563ca043bb86eea4d7c21a23849909ddbfa6dc039e93560b4b72b6113c28",
+      "src/generated/resources/assets/cruciblecraft/blockstates/wood_treated/large_fluid_pipe.json": "5da9cbbf7e373157e0e663f50b0c99d4922d981ecd403d2112013a334b077457",
+      "src/generated/resources/assets/cruciblecraft/blockstates/wood_treated/small_fluid_pipe.json": "3e559f6898bcedfce5dcb682a83a523e611adc9ee40879f128ad3598e1da4f7e",
+      "src/generated/resources/assets/cruciblecraft/blockstates/wood_treated/tiny_fluid_pipe.json": "9ee97f639c2a46658e3050d975662e43c95135c6c91010a11431052837e17fe3",
+      "src/generated/resources/assets/cruciblecraft/models/carbon/fluid_pipe.json": "7deb4ea8147a3b89d6b6b6eb6b8c4046925f505d3cb81b52193ba8e2e053f559",
+      "src/generated/resources/assets/cruciblecraft/models/carbon/huge_fluid_pipe.json": "a4aaa82671662747e5ce8b84c293e0d23a2420d921ca0a457d180e0ddaebfaab",
+      "src/generated/resources/assets/cruciblecraft/models/carbon/large_fluid_pipe.json": "842b51497464f7d78ddd69fe39a578bfcc2ec48ccb3d2c5182675b72c280ba66",
+      "src/generated/resources/assets/cruciblecraft/models/carbon/small_fluid_pipe.json": "24fefe8f35445859e7da8736802f97237a9a6c00985e8b95b6a6ee8e9b8677eb",
+      "src/generated/resources/assets/cruciblecraft/models/carbon/tiny_fluid_pipe.json": "78dce0f300022900293cf4c242ab8ea162ff3ad950c3bf250bdd2c129f8d572f",
+      "src/generated/resources/assets/cruciblecraft/models/plastic/fluid_pipe.json": "7deb4ea8147a3b89d6b6b6eb6b8c4046925f505d3cb81b52193ba8e2e053f559",
+      "src/generated/resources/assets/cruciblecraft/models/plastic/huge_fluid_pipe.json": "a4aaa82671662747e5ce8b84c293e0d23a2420d921ca0a457d180e0ddaebfaab",
+      "src/generated/resources/assets/cruciblecraft/models/plastic/large_fluid_pipe.json": "842b51497464f7d78ddd69fe39a578bfcc2ec48ccb3d2c5182675b72c280ba66",
+      "src/generated/resources/assets/cruciblecraft/models/plastic/small_fluid_pipe.json": "24fefe8f35445859e7da8736802f97237a9a6c00985e8b95b6a6ee8e9b8677eb",
+      "src/generated/resources/assets/cruciblecraft/models/plastic/tiny_fluid_pipe.json": "78dce0f300022900293cf4c242ab8ea162ff3ad950c3bf250bdd2c129f8d572f",
+      "src/generated/resources/assets/cruciblecraft/models/rubber/fluid_pipe.json": "7deb4ea8147a3b89d6b6b6eb6b8c4046925f505d3cb81b52193ba8e2e053f559",
+      "src/generated/resources/assets/cruciblecraft/models/rubber/huge_fluid_pipe.json": "a4aaa82671662747e5ce8b84c293e0d23a2420d921ca0a457d180e0ddaebfaab",
+      "src/generated/resources/assets/cruciblecraft/models/rubber/large_fluid_pipe.json": "842b51497464f7d78ddd69fe39a578bfcc2ec48ccb3d2c5182675b72c280ba66",
+      "src/generated/resources/assets/cruciblecraft/models/rubber/small_fluid_pipe.json": "24fefe8f35445859e7da8736802f97237a9a6c00985e8b95b6a6ee8e9b8677eb",
+      "src/generated/resources/assets/cruciblecraft/models/rubber/tiny_fluid_pipe.json": "78dce0f300022900293cf4c242ab8ea162ff3ad950c3bf250bdd2c129f8d572f",
+      "src/generated/resources/assets/cruciblecraft/models/wood/fluid_pipe.json": "7deb4ea8147a3b89d6b6b6eb6b8c4046925f505d3cb81b52193ba8e2e053f559",
+      "src/generated/resources/assets/cruciblecraft/models/wood/huge_fluid_pipe.json": "a4aaa82671662747e5ce8b84c293e0d23a2420d921ca0a457d180e0ddaebfaab",
+      "src/generated/resources/assets/cruciblecraft/models/wood/large_fluid_pipe.json": "842b51497464f7d78ddd69fe39a578bfcc2ec48ccb3d2c5182675b72c280ba66",
+      "src/generated/resources/assets/cruciblecraft/models/wood/small_fluid_pipe.json": "24fefe8f35445859e7da8736802f97237a9a6c00985e8b95b6a6ee8e9b8677eb",
+      "src/generated/resources/assets/cruciblecraft/models/wood/tiny_fluid_pipe.json": "78dce0f300022900293cf4c242ab8ea162ff3ad950c3bf250bdd2c129f8d572f",
+      "src/generated/resources/assets/cruciblecraft/models/wood_treated/fluid_pipe.json": "7deb4ea8147a3b89d6b6b6eb6b8c4046925f505d3cb81b52193ba8e2e053f559",
+      "src/generated/resources/assets/cruciblecraft/models/wood_treated/huge_fluid_pipe.json": "a4aaa82671662747e5ce8b84c293e0d23a2420d921ca0a457d180e0ddaebfaab",
+      "src/generated/resources/assets/cruciblecraft/models/wood_treated/large_fluid_pipe.json": "842b51497464f7d78ddd69fe39a578bfcc2ec48ccb3d2c5182675b72c280ba66",
+      "src/generated/resources/assets/cruciblecraft/models/wood_treated/small_fluid_pipe.json": "24fefe8f35445859e7da8736802f97237a9a6c00985e8b95b6a6ee8e9b8677eb",
+      "src/generated/resources/assets/cruciblecraft/models/wood_treated/tiny_fluid_pipe.json": "78dce0f300022900293cf4c242ab8ea162ff3ad950c3bf250bdd2c129f8d572f",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/carbon/fluid_pipe.json": "d75b0d940e5cebaa28d657fdfd41fa02422f7402534c318c3c67183ad031ad7d",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/carbon/huge_fluid_pipe.json": "07782146a3b8bfcc946380b49315b13be7955e9e3ab19f8549750d7d39936a64",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/carbon/large_fluid_pipe.json": "beac0ec854a0725d947b7c8697bdc9cc79e95aaa98aa13bf36ff6b12c6d4954b",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/carbon/small_fluid_pipe.json": "a2af7687c709bccb41ce0fa8b5f51e2fa50e521d401b5ec3ce89be59d9d437b4",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/carbon/tiny_fluid_pipe.json": "9407fee2b4c591950ad2c2a298befdadf71e90a748074d5d3ea41de16734b773",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/plastic/fluid_pipe.json": "1da199352e0147ba89fdab40e7050d9e0c77574f71afe8dc92ed222d90183e33",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/plastic/huge_fluid_pipe.json": "35ed1336946f50c385e2500c26261e251cf5a5b14b13e899dc4bd73a0274e2c0",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/plastic/large_fluid_pipe.json": "4be21b76783acc57dea527dfe8c6cc7f646c1a50121053709efe7613eb9dd969",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/plastic/small_fluid_pipe.json": "4855e2ce574aac186a7e70592045a641eaff310515dfe82ed7bed6577c9a913a",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/plastic/tiny_fluid_pipe.json": "a8c5fafab7ca29f9172bdf74944759a1675c63dfc3e80ffce9efe2808a166660",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/rubber/fluid_pipe.json": "30b1b2153938d1d9c7b918405fe227bbb5a968aa41516aefce51b43419d213d6",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/rubber/huge_fluid_pipe.json": "65331303668e64ad6d07937f198cf7c148b6bba63cfadac9a03c69b996923f78",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/rubber/large_fluid_pipe.json": "13ffffb7ccf46b47ae224bf7b92d265b13bc27db6a2d4cea41fdf5be0eb78c45",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/rubber/small_fluid_pipe.json": "43073432b4fa2cfb787a11fe2babc33e9ec20d3c4c83ce64dcc5fc2b43db1c64",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/rubber/tiny_fluid_pipe.json": "7aa3e68fc3cab452d53e618e876cdebdf9d7c94fd4f0601e735612f50cce4fa1",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood/fluid_pipe.json": "3ffab95d25c6b7a3b4111ca506305d1fdf41352a2b0134f31517ca162a601823",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood/huge_fluid_pipe.json": "640aa215c65df9b2228ae6bd2b5cc44df889d52cbfe35198fb07aad154554d95",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood/large_fluid_pipe.json": "6fa516ccdf260589545ddd1527e7946fe0eff68ba10d3011827c0143299c7660",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood/small_fluid_pipe.json": "66b8adc3607fa888514bf7169938df0ca477cfd7d820a2b4ca5905e7b3e4f066",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood/tiny_fluid_pipe.json": "4e5c0b9551f929291f7c60540a7c0c1407b9486aa80267a1fdac4b662b9a8d79",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood_treated/fluid_pipe.json": "3f279608269ff63a9c112fc4dd7aacef075f4e729d3c5909fd4674dbfa4258a3",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood_treated/huge_fluid_pipe.json": "c206834b57fd15867b3845a2f228a66a05ee090ca34547004af65e69ed7fbb4c",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood_treated/large_fluid_pipe.json": "02b6d46da51851107f1e453faee7417a17363d7a131c62d64d44f755555e8597",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood_treated/small_fluid_pipe.json": "e3eb7b9bdd05d2388137b6c4f2d91b4d7e2bcfd2b793cb4ea1fa49480055edff",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood_treated/tiny_fluid_pipe.json": "b85496ca195156833899277e139c6b698cff28033829cc47557aaf160808ca9d",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/fluid_pipe.json": "aa0ff196cedfaf6e32a4c4019fc014dd58c895f9b0bd19b33de2df4a81204e25",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/huge_fluid_pipe.json": "a61a3c3012f614d5783ee10726a04c88c003411d4b9283bc6ace286eaf8b99d0",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/large_fluid_pipe.json": "e55ed2df347433f54c2b8444c429314beb1487e8d36cd8afa5cded1d2a27e7e3",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/small_fluid_pipe.json": "44d7812cbe71a7d4c30cd773f8009afe3f8e2083d75e80be7d54eb115411a02e",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/tiny_fluid_pipe.json": "de8de6ea3c483b98b4d2d371a0faa7bcfc871d0bd4dbacf5433895dfbf1f6ca0",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/plastic/fluid_pipe.json": "3cca6d8d5aaeb5386829ab65c1360b4b3b93afac6d8d1e77789189e2d4909965",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/plastic/huge_fluid_pipe.json": "1a1656c147c9b0f6d5a351f945063fe86dd611b6f3ca03eb6deb524438ed0521",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/plastic/large_fluid_pipe.json": "1dd653d010670702e45ce18dd0a2d4307d1439dbadf31ee912efaa86d124ea60",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/plastic/small_fluid_pipe.json": "eafa54e58b30d9a3497f2aebad183690fa13562de9cc9ebaf24ac07a95ba952f",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/plastic/tiny_fluid_pipe.json": "ba803beb1b6ad1b568edad89a0be7bcda84c860eb8b04a32819c2e7d45b87a87",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/rubber/fluid_pipe.json": "97032571ccd0425d67311acde2f363d2d6a87c213d7a34265ab97879356a4eea",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/rubber/huge_fluid_pipe.json": "9c2d100573b3c54f87f6f05a2fa378855995226d3aa9f55d1b3faa499e5c7fe0",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/rubber/large_fluid_pipe.json": "6e96837a1435bbb8cf50d72cc69bb877d11c6944c21e1abdcf89d41207e3f44d",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/rubber/small_fluid_pipe.json": "ed63001e3fbd184370a32f131a938a152124a2884dd3d290b258a0e6eb7fcb0e",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/rubber/tiny_fluid_pipe.json": "4ec2ad08402ef1bb70fc3b931be5b2c30317fe575dc3e0a1474431fa1a4e3a05",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood/fluid_pipe.json": "55976673e885b318936a598fcfaf3e148e90a5163f71106f2b8e42e38f053731",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood/huge_fluid_pipe.json": "ebfee285ec3da5fae6a91d7fc95dd7c5dfeaa8ebca3ac4314e8f52d25494e7e1",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood/large_fluid_pipe.json": "a6fc9408907975c37b6ef568a9f4cc0eb80295375bc331a790a823c6fab3b03e",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood/small_fluid_pipe.json": "522afee94cfcd9ac04b52bc1a26628d0eefed32d4bac55e8e0f3d82453c9b457",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood/tiny_fluid_pipe.json": "e2c73b088b3ebf488fc87e006167232e6f292a949df006dfa5e754b1612f108c",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood_treated/fluid_pipe.json": "b6e19aadc7a36c653fed4e3f0c425071c4f49f504b42d1954c96a9b6b9cfaaeb",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood_treated/huge_fluid_pipe.json": "2b3944e27e5762d50545660fe9d5d4360671c7339d57079bc60f41645dffdc4f",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood_treated/large_fluid_pipe.json": "d267c3f102fa5efe2b41cd460f802f0fcbbd449b44806e2c6ee26b98b5ca3a77",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood_treated/small_fluid_pipe.json": "4f167b3aa66e6dee341b39562c90f644553cdd4c6b7f5f9d3fb6a56bc37c16ec",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood_treated/tiny_fluid_pipe.json": "26bae2385856c90e8f3aa118b020ddf2864f3fc4a3c77533a826c2ac5f1c6e4d",
+      "src/main/resources/data/cruciblecraft/material_prefixes/fluid_pipe.json": "73f11b526a46313b4bee36aa3d1b1d412430ce6dda359103038aa1ca80cec6b2",
+      "src/main/resources/data/cruciblecraft/material_prefixes/huge_fluid_pipe.json": "e10c86f68698dc54c0c1a24f48e943f38017a3d880e6ef55aabc4fc6da8fb53f",
+      "src/main/resources/data/cruciblecraft/material_prefixes/large_fluid_pipe.json": "fd17a4de2ac00f423f447c0687c7afd8b120aedfbb6295306d77e4bd9608ff9b",
+      "src/main/resources/data/cruciblecraft/material_prefixes/small_fluid_pipe.json": "b79b9090884f1a3cb281f7234d903206a704756d87d3b83ffd664b1dc5640024",
+      "src/main/resources/data/cruciblecraft/material_prefixes/tiny_fluid_pipe.json": "ed71bd74af055fed533071a4eab7ce15c4c887ebd947a55ea983a9decab4a4b7"
+    }
+  },
+  "rows": [
+    {
+      "classification": "GT6_SOURCE_CRAFTING",
+      "gauge": "tiny",
+      "gt6_recipe_flag": false,
+      "key": {
+        "W": "minecraft:wooden_slabs"
+      },
+      "material": "wood",
+      "output": "cruciblecraft:wood/tiny_fluid_pipe",
+      "output_count": 1,
+      "output_form": "tiny_fluid_pipe",
+      "pattern": [
+        "W"
+      ],
+      "producer_operands": {
+        "W": {
+          "kind": "vanilla_tag",
+          "reachable": true,
+          "representative": "minecraft:oak_slab"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/wood/tiny_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:tiny_fluid_pipes/wood",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/wood/tiny_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/wood/tiny_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:tiny_fluid_pipes/wood",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood/tiny_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood/tiny_fluid_pipe.json"
+      },
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood/tiny_fluid_pipe.json",
+      "source_line": 1887,
+      "source_operand": "OD.slabWood",
+      "source_pattern": [
+        " s",
+        " W ",
+        "r "
+      ],
+      "specification": "pipeTiny"
+    },
+    {
+      "classification": "GT6_SOURCE_CRAFTING",
+      "gauge": "small",
+      "gt6_recipe_flag": false,
+      "key": {
+        "W": "minecraft:planks"
+      },
+      "material": "wood",
+      "output": "cruciblecraft:wood/small_fluid_pipe",
+      "output_count": 1,
+      "output_form": "small_fluid_pipe",
+      "pattern": [
+        "W"
+      ],
+      "producer_operands": {
+        "W": {
+          "kind": "vanilla_tag",
+          "reachable": true,
+          "representative": "minecraft:oak_planks"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/wood/small_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:small_fluid_pipes/wood",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/wood/small_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/wood/small_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:small_fluid_pipes/wood",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood/small_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood/small_fluid_pipe.json"
+      },
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood/small_fluid_pipe.json",
+      "source_line": 1888,
+      "source_operand": "OD.plankAnyWood",
+      "source_pattern": [
+        " s",
+        " W ",
+        "r "
+      ],
+      "specification": "pipeSmall"
+    },
+    {
+      "classification": "GT6_SOURCE_CRAFTING",
+      "gauge": "normal",
+      "gt6_recipe_flag": false,
+      "key": {
+        "W": "minecraft:planks"
+      },
+      "material": "wood",
+      "output": "cruciblecraft:wood/fluid_pipe",
+      "output_count": 1,
+      "output_form": "fluid_pipe",
+      "pattern": [
+        "WWW"
+      ],
+      "producer_operands": {
+        "W": {
+          "kind": "vanilla_tag",
+          "reachable": true,
+          "representative": "minecraft:oak_planks"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/wood/fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:fluid_pipes/wood",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/wood/fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/wood/fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:fluid_pipes/wood",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood/fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood/fluid_pipe.json"
+      },
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood/fluid_pipe.json",
+      "source_line": 1889,
+      "source_operand": "OD.plankAnyWood",
+      "source_pattern": [
+        " s",
+        "WWW",
+        "r "
+      ],
+      "specification": "pipeMedium"
+    },
+    {
+      "classification": "GT6_SOURCE_CRAFTING",
+      "gauge": "large",
+      "gt6_recipe_flag": false,
+      "key": {
+        "W": "minecraft:planks"
+      },
+      "material": "wood",
+      "output": "cruciblecraft:wood/large_fluid_pipe",
+      "output_count": 1,
+      "output_form": "large_fluid_pipe",
+      "pattern": [
+        "WW ",
+        "W W",
+        " WW"
+      ],
+      "producer_operands": {
+        "W": {
+          "kind": "vanilla_tag",
+          "reachable": true,
+          "representative": "minecraft:oak_planks"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/wood/large_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:large_fluid_pipes/wood",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/wood/large_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/wood/large_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:large_fluid_pipes/wood",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood/large_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood/large_fluid_pipe.json"
+      },
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood/large_fluid_pipe.json",
+      "source_line": 1890,
+      "source_operand": "OD.plankAnyWood",
+      "source_pattern": [
+        "WWs",
+        "W W",
+        "rWW"
+      ],
+      "specification": "pipeLarge"
+    },
+    {
+      "classification": "GT6_SOURCE_CRAFTING",
+      "gauge": "huge",
+      "gt6_recipe_flag": false,
+      "key": {
+        "W": "minecraft:logs"
+      },
+      "material": "wood",
+      "output": "cruciblecraft:wood/huge_fluid_pipe",
+      "output_count": 1,
+      "output_form": "huge_fluid_pipe",
+      "pattern": [
+        "W W"
+      ],
+      "producer_operands": {
+        "W": {
+          "kind": "vanilla_tag",
+          "reachable": true,
+          "representative": "minecraft:oak_log"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/wood/huge_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:huge_fluid_pipes/wood",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/wood/huge_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/wood/huge_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:huge_fluid_pipes/wood",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood/huge_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood/huge_fluid_pipe.json"
+      },
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood/huge_fluid_pipe.json",
+      "source_line": 1891,
+      "source_operand": "OD.beamWood",
+      "source_pattern": [
+        " s",
+        "W W",
+        "r "
+      ],
+      "specification": "pipeHuge"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "tiny",
+      "gt6_recipe_flag": false,
+      "key": {
+        "P": "cruciblecraft:carbon/dust"
+      },
+      "material": "carbon",
+      "operand_pattern": "one structural unit for four tiny outputs",
+      "output": "cruciblecraft:carbon/tiny_fluid_pipe",
+      "output_count": 4,
+      "output_form": "tiny_fluid_pipe",
+      "pattern": [
+        "P"
+      ],
+      "producer_operands": {
+        "P": {
+          "kind": "fixed_recipe_output",
+          "path": "src/main/resources/data/cruciblecraft/recipe/coal_coke_to_carbon_dust.json",
+          "reachable": true,
+          "sha256": "75fd0ec35013ff014f2255c45c838c9354bcfc416ae8f7221c701129bef56b7d"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/carbon/tiny_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:tiny_fluid_pipes/carbon",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/carbon/tiny_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/carbon/tiny_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:tiny_fluid_pipes/carbon",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/carbon/tiny_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/tiny_fluid_pipe.json"
+      },
+      "reason": "CC shaped policy uses produced carbon dust while preserving GT6 recipe=false.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/tiny_fluid_pipe.json",
+      "specification": "pipeTiny"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "small",
+      "gt6_recipe_flag": false,
+      "key": {
+        "P": "cruciblecraft:carbon/dust"
+      },
+      "material": "carbon",
+      "operand_pattern": "two structural units for four small outputs",
+      "output": "cruciblecraft:carbon/small_fluid_pipe",
+      "output_count": 4,
+      "output_form": "small_fluid_pipe",
+      "pattern": [
+        "PP"
+      ],
+      "producer_operands": {
+        "P": {
+          "kind": "fixed_recipe_output",
+          "path": "src/main/resources/data/cruciblecraft/recipe/coal_coke_to_carbon_dust.json",
+          "reachable": true,
+          "sha256": "75fd0ec35013ff014f2255c45c838c9354bcfc416ae8f7221c701129bef56b7d"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/carbon/small_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:small_fluid_pipes/carbon",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/carbon/small_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/carbon/small_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:small_fluid_pipes/carbon",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/carbon/small_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/small_fluid_pipe.json"
+      },
+      "reason": "CC shaped policy uses produced carbon dust while preserving GT6 recipe=false.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/small_fluid_pipe.json",
+      "specification": "pipeSmall"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "normal",
+      "gt6_recipe_flag": false,
+      "key": {
+        "P": "cruciblecraft:carbon/dust"
+      },
+      "material": "carbon",
+      "operand_pattern": "three structural units for two normal outputs",
+      "output": "cruciblecraft:carbon/fluid_pipe",
+      "output_count": 2,
+      "output_form": "fluid_pipe",
+      "pattern": [
+        "PPP"
+      ],
+      "producer_operands": {
+        "P": {
+          "kind": "fixed_recipe_output",
+          "path": "src/main/resources/data/cruciblecraft/recipe/coal_coke_to_carbon_dust.json",
+          "reachable": true,
+          "sha256": "75fd0ec35013ff014f2255c45c838c9354bcfc416ae8f7221c701129bef56b7d"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/carbon/fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:fluid_pipes/carbon",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/carbon/fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/carbon/fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:fluid_pipes/carbon",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/carbon/fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/fluid_pipe.json"
+      },
+      "reason": "CC shaped policy uses produced carbon dust while preserving GT6 recipe=false.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/fluid_pipe.json",
+      "specification": "pipeMedium"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "large",
+      "gt6_recipe_flag": false,
+      "key": {
+        "P": "cruciblecraft:carbon/dust"
+      },
+      "material": "carbon",
+      "operand_pattern": "three vertical structural units for one large output",
+      "output": "cruciblecraft:carbon/large_fluid_pipe",
+      "output_count": 1,
+      "output_form": "large_fluid_pipe",
+      "pattern": [
+        "P",
+        "P",
+        "P"
+      ],
+      "producer_operands": {
+        "P": {
+          "kind": "fixed_recipe_output",
+          "path": "src/main/resources/data/cruciblecraft/recipe/coal_coke_to_carbon_dust.json",
+          "reachable": true,
+          "sha256": "75fd0ec35013ff014f2255c45c838c9354bcfc416ae8f7221c701129bef56b7d"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/carbon/large_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:large_fluid_pipes/carbon",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/carbon/large_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/carbon/large_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:large_fluid_pipes/carbon",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/carbon/large_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/large_fluid_pipe.json"
+      },
+      "reason": "CC shaped policy uses produced carbon dust while preserving GT6 recipe=false.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/large_fluid_pipe.json",
+      "specification": "pipeLarge"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "huge",
+      "gt6_recipe_flag": false,
+      "key": {
+        "P": "cruciblecraft:carbon/dust"
+      },
+      "material": "carbon",
+      "operand_pattern": "six structural units form two walls for one huge output",
+      "output": "cruciblecraft:carbon/huge_fluid_pipe",
+      "output_count": 1,
+      "output_form": "huge_fluid_pipe",
+      "pattern": [
+        "P P",
+        "P P",
+        "P P"
+      ],
+      "producer_operands": {
+        "P": {
+          "kind": "fixed_recipe_output",
+          "path": "src/main/resources/data/cruciblecraft/recipe/coal_coke_to_carbon_dust.json",
+          "reachable": true,
+          "sha256": "75fd0ec35013ff014f2255c45c838c9354bcfc416ae8f7221c701129bef56b7d"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/carbon/huge_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:huge_fluid_pipes/carbon",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/carbon/huge_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/carbon/huge_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:huge_fluid_pipes/carbon",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/carbon/huge_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/huge_fluid_pipe.json"
+      },
+      "reason": "CC shaped policy uses produced carbon dust while preserving GT6 recipe=false.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/huge_fluid_pipe.json",
+      "specification": "pipeHuge"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "tiny",
+      "gt6_recipe_flag": false,
+      "key": {
+        "P": "cruciblecraft:plastic/plate"
+      },
+      "material": "plastic",
+      "operand_pattern": "one structural unit for four tiny outputs",
+      "output": "cruciblecraft:plastic/tiny_fluid_pipe",
+      "output_count": 4,
+      "output_form": "tiny_fluid_pipe",
+      "pattern": [
+        "P"
+      ],
+      "producer_operands": {
+        "P": {
+          "kind": "compact_material_rule_output",
+          "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_plate.json",
+          "reachable": true,
+          "sha256": "b5a8295d2035d7a6d8c07ca0347619db9d4645294cc1e6fe0254d5fa18ccfb49"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/plastic/tiny_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:tiny_fluid_pipes/plastic",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/plastic/tiny_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/plastic/tiny_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:tiny_fluid_pipes/plastic",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/plastic/tiny_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/plastic/tiny_fluid_pipe.json"
+      },
+      "reason": "CC shaped policy uses the current compact-extruder plastic plate.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/plastic/tiny_fluid_pipe.json",
+      "specification": "pipeTiny"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "small",
+      "gt6_recipe_flag": false,
+      "key": {
+        "P": "cruciblecraft:plastic/plate"
+      },
+      "material": "plastic",
+      "operand_pattern": "two structural units for four small outputs",
+      "output": "cruciblecraft:plastic/small_fluid_pipe",
+      "output_count": 4,
+      "output_form": "small_fluid_pipe",
+      "pattern": [
+        "PP"
+      ],
+      "producer_operands": {
+        "P": {
+          "kind": "compact_material_rule_output",
+          "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_plate.json",
+          "reachable": true,
+          "sha256": "b5a8295d2035d7a6d8c07ca0347619db9d4645294cc1e6fe0254d5fa18ccfb49"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/plastic/small_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:small_fluid_pipes/plastic",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/plastic/small_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/plastic/small_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:small_fluid_pipes/plastic",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/plastic/small_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/plastic/small_fluid_pipe.json"
+      },
+      "reason": "CC shaped policy uses the current compact-extruder plastic plate.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/plastic/small_fluid_pipe.json",
+      "specification": "pipeSmall"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "normal",
+      "gt6_recipe_flag": false,
+      "key": {
+        "P": "cruciblecraft:plastic/plate"
+      },
+      "material": "plastic",
+      "operand_pattern": "three structural units for two normal outputs",
+      "output": "cruciblecraft:plastic/fluid_pipe",
+      "output_count": 2,
+      "output_form": "fluid_pipe",
+      "pattern": [
+        "PPP"
+      ],
+      "producer_operands": {
+        "P": {
+          "kind": "compact_material_rule_output",
+          "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_plate.json",
+          "reachable": true,
+          "sha256": "b5a8295d2035d7a6d8c07ca0347619db9d4645294cc1e6fe0254d5fa18ccfb49"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/plastic/fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:fluid_pipes/plastic",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/plastic/fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/plastic/fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:fluid_pipes/plastic",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/plastic/fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/plastic/fluid_pipe.json"
+      },
+      "reason": "CC shaped policy uses the current compact-extruder plastic plate.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/plastic/fluid_pipe.json",
+      "specification": "pipeMedium"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "large",
+      "gt6_recipe_flag": false,
+      "key": {
+        "P": "cruciblecraft:plastic/plate"
+      },
+      "material": "plastic",
+      "operand_pattern": "three vertical structural units for one large output",
+      "output": "cruciblecraft:plastic/large_fluid_pipe",
+      "output_count": 1,
+      "output_form": "large_fluid_pipe",
+      "pattern": [
+        "P",
+        "P",
+        "P"
+      ],
+      "producer_operands": {
+        "P": {
+          "kind": "compact_material_rule_output",
+          "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_plate.json",
+          "reachable": true,
+          "sha256": "b5a8295d2035d7a6d8c07ca0347619db9d4645294cc1e6fe0254d5fa18ccfb49"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/plastic/large_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:large_fluid_pipes/plastic",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/plastic/large_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/plastic/large_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:large_fluid_pipes/plastic",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/plastic/large_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/plastic/large_fluid_pipe.json"
+      },
+      "reason": "CC shaped policy uses the current compact-extruder plastic plate.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/plastic/large_fluid_pipe.json",
+      "specification": "pipeLarge"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "huge",
+      "gt6_recipe_flag": false,
+      "key": {
+        "P": "cruciblecraft:plastic/plate"
+      },
+      "material": "plastic",
+      "operand_pattern": "six structural units form two walls for one huge output",
+      "output": "cruciblecraft:plastic/huge_fluid_pipe",
+      "output_count": 1,
+      "output_form": "huge_fluid_pipe",
+      "pattern": [
+        "P P",
+        "P P",
+        "P P"
+      ],
+      "producer_operands": {
+        "P": {
+          "kind": "compact_material_rule_output",
+          "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_plate.json",
+          "reachable": true,
+          "sha256": "b5a8295d2035d7a6d8c07ca0347619db9d4645294cc1e6fe0254d5fa18ccfb49"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/plastic/huge_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:huge_fluid_pipes/plastic",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/plastic/huge_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/plastic/huge_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:huge_fluid_pipes/plastic",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/plastic/huge_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/plastic/huge_fluid_pipe.json"
+      },
+      "reason": "CC shaped policy uses the current compact-extruder plastic plate.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/plastic/huge_fluid_pipe.json",
+      "specification": "pipeHuge"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "tiny",
+      "gt6_recipe_flag": false,
+      "key": {
+        "P": "cruciblecraft:rubber/plate"
+      },
+      "material": "rubber",
+      "operand_pattern": "one structural unit for four tiny outputs",
+      "output": "cruciblecraft:rubber/tiny_fluid_pipe",
+      "output_count": 4,
+      "output_form": "tiny_fluid_pipe",
+      "pattern": [
+        "P"
+      ],
+      "producer_operands": {
+        "P": {
+          "kind": "material_rule_output",
+          "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/press/slime_ball_to_rubber_plate.json",
+          "reachable": true,
+          "sha256": "51e289f8a26a3863f709c6226911bf32f9ae18b556a6df39c63cb12e660de333"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/rubber/tiny_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:tiny_fluid_pipes/rubber",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/rubber/tiny_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/rubber/tiny_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:tiny_fluid_pipes/rubber",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/rubber/tiny_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/rubber/tiny_fluid_pipe.json"
+      },
+      "reason": "CC shaped policy uses the current slime-to-rubber press plate.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/rubber/tiny_fluid_pipe.json",
+      "specification": "pipeTiny"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "small",
+      "gt6_recipe_flag": false,
+      "key": {
+        "P": "cruciblecraft:rubber/plate"
+      },
+      "material": "rubber",
+      "operand_pattern": "two structural units for four small outputs",
+      "output": "cruciblecraft:rubber/small_fluid_pipe",
+      "output_count": 4,
+      "output_form": "small_fluid_pipe",
+      "pattern": [
+        "PP"
+      ],
+      "producer_operands": {
+        "P": {
+          "kind": "material_rule_output",
+          "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/press/slime_ball_to_rubber_plate.json",
+          "reachable": true,
+          "sha256": "51e289f8a26a3863f709c6226911bf32f9ae18b556a6df39c63cb12e660de333"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/rubber/small_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:small_fluid_pipes/rubber",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/rubber/small_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/rubber/small_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:small_fluid_pipes/rubber",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/rubber/small_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/rubber/small_fluid_pipe.json"
+      },
+      "reason": "CC shaped policy uses the current slime-to-rubber press plate.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/rubber/small_fluid_pipe.json",
+      "specification": "pipeSmall"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "normal",
+      "gt6_recipe_flag": false,
+      "key": {
+        "P": "cruciblecraft:rubber/plate"
+      },
+      "material": "rubber",
+      "operand_pattern": "three structural units for two normal outputs",
+      "output": "cruciblecraft:rubber/fluid_pipe",
+      "output_count": 2,
+      "output_form": "fluid_pipe",
+      "pattern": [
+        "PPP"
+      ],
+      "producer_operands": {
+        "P": {
+          "kind": "material_rule_output",
+          "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/press/slime_ball_to_rubber_plate.json",
+          "reachable": true,
+          "sha256": "51e289f8a26a3863f709c6226911bf32f9ae18b556a6df39c63cb12e660de333"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/rubber/fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:fluid_pipes/rubber",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/rubber/fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/rubber/fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:fluid_pipes/rubber",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/rubber/fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/rubber/fluid_pipe.json"
+      },
+      "reason": "CC shaped policy uses the current slime-to-rubber press plate.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/rubber/fluid_pipe.json",
+      "specification": "pipeMedium"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "large",
+      "gt6_recipe_flag": false,
+      "key": {
+        "P": "cruciblecraft:rubber/plate"
+      },
+      "material": "rubber",
+      "operand_pattern": "three vertical structural units for one large output",
+      "output": "cruciblecraft:rubber/large_fluid_pipe",
+      "output_count": 1,
+      "output_form": "large_fluid_pipe",
+      "pattern": [
+        "P",
+        "P",
+        "P"
+      ],
+      "producer_operands": {
+        "P": {
+          "kind": "material_rule_output",
+          "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/press/slime_ball_to_rubber_plate.json",
+          "reachable": true,
+          "sha256": "51e289f8a26a3863f709c6226911bf32f9ae18b556a6df39c63cb12e660de333"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/rubber/large_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:large_fluid_pipes/rubber",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/rubber/large_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/rubber/large_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:large_fluid_pipes/rubber",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/rubber/large_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/rubber/large_fluid_pipe.json"
+      },
+      "reason": "CC shaped policy uses the current slime-to-rubber press plate.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/rubber/large_fluid_pipe.json",
+      "specification": "pipeLarge"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "huge",
+      "gt6_recipe_flag": false,
+      "key": {
+        "P": "cruciblecraft:rubber/plate"
+      },
+      "material": "rubber",
+      "operand_pattern": "six structural units form two walls for one huge output",
+      "output": "cruciblecraft:rubber/huge_fluid_pipe",
+      "output_count": 1,
+      "output_form": "huge_fluid_pipe",
+      "pattern": [
+        "P P",
+        "P P",
+        "P P"
+      ],
+      "producer_operands": {
+        "P": {
+          "kind": "material_rule_output",
+          "path": "src/component_rule_generated/resources/data/cruciblecraft/recipe/press/slime_ball_to_rubber_plate.json",
+          "reachable": true,
+          "sha256": "51e289f8a26a3863f709c6226911bf32f9ae18b556a6df39c63cb12e660de333"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/rubber/huge_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:huge_fluid_pipes/rubber",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/rubber/huge_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/rubber/huge_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:huge_fluid_pipes/rubber",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/rubber/huge_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/rubber/huge_fluid_pipe.json"
+      },
+      "reason": "CC shaped policy uses the current slime-to-rubber press plate.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/rubber/huge_fluid_pipe.json",
+      "specification": "pipeHuge"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "tiny",
+      "gt6_recipe_flag": false,
+      "key": {
+        "C": "cruciblecraft:coal_coke",
+        "P": "minecraft:planks"
+      },
+      "material": "wood_treated",
+      "operand_pattern": "one structural plank and one treatment marker for four tiny outputs",
+      "output": "cruciblecraft:wood_treated/tiny_fluid_pipe",
+      "output_count": 4,
+      "output_form": "tiny_fluid_pipe",
+      "pattern": [
+        "P",
+        "C"
+      ],
+      "producer_operands": {
+        "C": {
+          "kind": "gt_recipe_output",
+          "path": "src/generated/resources/data/cruciblecraft/recipe/coke_oven/coal.json",
+          "reachable": true,
+          "sha256": "f8eaf0d93a1196a974cca1114ef73b270ffd501a058687f76f2b7783723b2d88"
+        },
+        "P": {
+          "kind": "vanilla_tag",
+          "reachable": true,
+          "representative": "minecraft:oak_planks"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/wood_treated/tiny_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:tiny_fluid_pipes/wood_treated",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/wood_treated/tiny_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/wood_treated/tiny_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:tiny_fluid_pipes/wood_treated",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood_treated/tiny_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood_treated/tiny_fluid_pipe.json"
+      },
+      "reason": "CC shaped policy combines produced planks and coal coke as an explicit treatment marker.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood_treated/tiny_fluid_pipe.json",
+      "specification": "pipeTiny"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "small",
+      "gt6_recipe_flag": false,
+      "key": {
+        "C": "cruciblecraft:coal_coke",
+        "P": "minecraft:planks"
+      },
+      "material": "wood_treated",
+      "operand_pattern": "two structural planks and one treatment marker for four small outputs",
+      "output": "cruciblecraft:wood_treated/small_fluid_pipe",
+      "output_count": 4,
+      "output_form": "small_fluid_pipe",
+      "pattern": [
+        "PP",
+        "C "
+      ],
+      "producer_operands": {
+        "C": {
+          "kind": "gt_recipe_output",
+          "path": "src/generated/resources/data/cruciblecraft/recipe/coke_oven/coal.json",
+          "reachable": true,
+          "sha256": "f8eaf0d93a1196a974cca1114ef73b270ffd501a058687f76f2b7783723b2d88"
+        },
+        "P": {
+          "kind": "vanilla_tag",
+          "reachable": true,
+          "representative": "minecraft:oak_planks"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/wood_treated/small_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:small_fluid_pipes/wood_treated",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/wood_treated/small_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/wood_treated/small_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:small_fluid_pipes/wood_treated",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood_treated/small_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood_treated/small_fluid_pipe.json"
+      },
+      "reason": "CC shaped policy combines produced planks and coal coke as an explicit treatment marker.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood_treated/small_fluid_pipe.json",
+      "specification": "pipeSmall"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "normal",
+      "gt6_recipe_flag": false,
+      "key": {
+        "C": "cruciblecraft:coal_coke",
+        "P": "minecraft:planks"
+      },
+      "material": "wood_treated",
+      "operand_pattern": "three structural planks and one treatment marker for two normal outputs",
+      "output": "cruciblecraft:wood_treated/fluid_pipe",
+      "output_count": 2,
+      "output_form": "fluid_pipe",
+      "pattern": [
+        "PPP",
+        " C "
+      ],
+      "producer_operands": {
+        "C": {
+          "kind": "gt_recipe_output",
+          "path": "src/generated/resources/data/cruciblecraft/recipe/coke_oven/coal.json",
+          "reachable": true,
+          "sha256": "f8eaf0d93a1196a974cca1114ef73b270ffd501a058687f76f2b7783723b2d88"
+        },
+        "P": {
+          "kind": "vanilla_tag",
+          "reachable": true,
+          "representative": "minecraft:oak_planks"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/wood_treated/fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:fluid_pipes/wood_treated",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/wood_treated/fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/wood_treated/fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:fluid_pipes/wood_treated",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood_treated/fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood_treated/fluid_pipe.json"
+      },
+      "reason": "CC shaped policy combines produced planks and coal coke as an explicit treatment marker.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood_treated/fluid_pipe.json",
+      "specification": "pipeMedium"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "large",
+      "gt6_recipe_flag": false,
+      "key": {
+        "C": "cruciblecraft:coal_coke",
+        "P": "minecraft:planks"
+      },
+      "material": "wood_treated",
+      "operand_pattern": "three structural planks and one treatment marker for one large output",
+      "output": "cruciblecraft:wood_treated/large_fluid_pipe",
+      "output_count": 1,
+      "output_form": "large_fluid_pipe",
+      "pattern": [
+        "PC",
+        "P ",
+        "P "
+      ],
+      "producer_operands": {
+        "C": {
+          "kind": "gt_recipe_output",
+          "path": "src/generated/resources/data/cruciblecraft/recipe/coke_oven/coal.json",
+          "reachable": true,
+          "sha256": "f8eaf0d93a1196a974cca1114ef73b270ffd501a058687f76f2b7783723b2d88"
+        },
+        "P": {
+          "kind": "vanilla_tag",
+          "reachable": true,
+          "representative": "minecraft:oak_planks"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/wood_treated/large_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:large_fluid_pipes/wood_treated",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/wood_treated/large_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/wood_treated/large_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:large_fluid_pipes/wood_treated",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood_treated/large_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood_treated/large_fluid_pipe.json"
+      },
+      "reason": "CC shaped policy combines produced planks and coal coke as an explicit treatment marker.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood_treated/large_fluid_pipe.json",
+      "specification": "pipeLarge"
+    },
+    {
+      "classification": "DESIGN_POLICY_NON_GT6",
+      "gauge": "huge",
+      "gt6_recipe_flag": false,
+      "key": {
+        "C": "cruciblecraft:coal_coke",
+        "P": "minecraft:planks"
+      },
+      "material": "wood_treated",
+      "operand_pattern": "six structural planks and one treatment marker form one huge output",
+      "output": "cruciblecraft:wood_treated/huge_fluid_pipe",
+      "output_count": 1,
+      "output_form": "huge_fluid_pipe",
+      "pattern": [
+        "P P",
+        "PCP",
+        "P P"
+      ],
+      "producer_operands": {
+        "C": {
+          "kind": "gt_recipe_output",
+          "path": "src/generated/resources/data/cruciblecraft/recipe/coke_oven/coal.json",
+          "reachable": true,
+          "sha256": "f8eaf0d93a1196a974cca1114ef73b270ffd501a058687f76f2b7783723b2d88"
+        },
+        "P": {
+          "kind": "vanilla_tag",
+          "reachable": true,
+          "representative": "minecraft:oak_planks"
+        }
+      },
+      "reachability": {
+        "block_model": "src/generated/resources/assets/cruciblecraft/models/wood_treated/huge_fluid_pipe.json",
+        "block_registered": true,
+        "block_tag": "c:huge_fluid_pipes/wood_treated",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/wood_treated/huge_fluid_pipe.json",
+        "item_model": "runtime-generated:assets/cruciblecraft/models/item/wood_treated/huge_fluid_pipe.json",
+        "item_registered": true,
+        "item_tag": "c:huge_fluid_pipes/wood_treated",
+        "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/wood_treated/huge_fluid_pipe.json",
+        "reachable": true,
+        "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood_treated/huge_fluid_pipe.json"
+      },
+      "reason": "CC shaped policy combines produced planks and coal coke as an explicit treatment marker.",
+      "recipe": "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/wood_treated/huge_fluid_pipe.json",
+      "specification": "pipeHuge"
+    }
+  ],
+  "schema_version": 1,
+  "source_evidence": {
+    "line_range": [
+      1887,
+      1891
+    ],
+    "path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+    "repository": "GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "sha256": "96f579dd5c0a26a759ddee34c312dadbc5d52123e2b85e82da6a40f68b494393"
+  },
+  "status": "T19_PIPE_ACQUISITION_READY",
+  "unreachable": []
+}

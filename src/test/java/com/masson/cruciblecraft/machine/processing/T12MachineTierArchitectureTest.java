@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.machine.processing;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -15,7 +16,6 @@ import com.masson.cruciblecraft.registry.ModMachineVariants;
 import com.masson.cruciblecraft.registry.ModMultiblockControllers;
 
 import net.minecraft.SharedConstants;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.Bootstrap;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -74,7 +74,7 @@ class T12MachineTierArchitectureTest {
         MachineExecutionPlan single = MachineExecutionPlan.create(
                         recipe,
                         centrifuge.kind(),
-                        centrifuge.tier(),
+                        centrifuge.tierBand(),
                         1)
                 .orElseThrow();
         assertEquals(16L, single.minimumPower());
@@ -91,7 +91,7 @@ class T12MachineTierArchitectureTest {
         MachineExecutionPlan parallel = MachineExecutionPlan.create(
                         recipe,
                         sifter.kind(),
-                        sifter.tier(),
+                        sifter.tierBand(),
                         4)
                 .orElseThrow();
         assertEquals(4, parallel.operations());
@@ -100,30 +100,43 @@ class T12MachineTierArchitectureTest {
         assertTrue(MachineExecutionPlan.create(
                 recipe(65L, 10),
                 centrifuge.kind(),
-                centrifuge.tier(),
+                centrifuge.tierBand(),
                 1).isEmpty());
     }
 
     @Test
-    void versionOneStateMigratesWithoutInventingTierIdentity() {
-        CompoundTag legacy = new CompoundTag();
-        legacy.putInt("processing_version", 1);
-        legacy.putString("active_recipe", "cruciblecraft:test");
-        legacy.putInt("progress", 2);
-        legacy.putInt("duration", 10);
-        ProcessingMachineState migrated =
-                ProcessingMachineState.read(legacy);
-        assertEquals("", migrated.machineKind());
-        assertEquals("", migrated.tierProfile());
-        assertEquals(1, migrated.operations());
-        assertFalse(migrated.unsupported());
-        assertEquals(ProcessingMachineState.VERSION,
-                migrated.write().getInt("processing_version"));
+    void tierBandSharesCapabilitiesButVariantOwnsParallelAndIdentity() {
+        MachineVariant centrifuge = ModMachineVariants.require(
+                net.minecraft.resources.ResourceLocation.parse(
+                        "cruciblecraft:steel_centrifuge"));
+        MachineVariant lathe = ModMachineVariants.require(
+                net.minecraft.resources.ResourceLocation.parse(
+                        "cruciblecraft:steel_lathe"));
+        TierProfile centrifugeBand = centrifuge.tierBand();
+        TierProfile latheBand = lathe.tierBand();
 
-        legacy.putInt(
-                "processing_version",
-                ProcessingMachineState.VERSION + 1);
-        assertTrue(ProcessingMachineState.read(legacy).unsupported());
+        assertEquals(
+                centrifugeBand.tierBandId(),
+                latheBand.tierBandId());
+        assertEquals(centrifugeBand.materialId(), latheBand.materialId());
+        assertEquals(centrifugeBand.energyType(), latheBand.energyType());
+        assertEquals(
+                centrifugeBand.inputMinimum(),
+                latheBand.inputMinimum());
+        assertEquals(
+                centrifugeBand.inputNominal(),
+                latheBand.inputNominal());
+        assertEquals(
+                centrifugeBand.inputMaximum(),
+                latheBand.inputMaximum());
+        assertEquals(
+                centrifugeBand.energyCapacity(),
+                latheBand.energyCapacity());
+        assertEquals(centrifugeBand.efficiency(), latheBand.efficiency());
+        assertNotEquals(
+                centrifugeBand.parallelLimit(),
+                latheBand.parallelLimit());
+        assertNotEquals(centrifuge.id(), lathe.id());
     }
 
     @Test

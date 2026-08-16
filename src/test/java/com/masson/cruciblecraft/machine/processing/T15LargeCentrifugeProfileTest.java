@@ -18,7 +18,6 @@ import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
-import com.masson.cruciblecraft.registry.ModMachineIdentityMigrations;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
 import com.masson.cruciblecraft.registry.ModMultiblockControllers;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
@@ -59,13 +58,29 @@ class T15LargeCentrifugeProfileTest {
                         .filter(entry -> !t17Kinds.contains(
                                 entry.kindId().toString()))
                         .count());
-        assertEquals(1, MachineTierCatalog.controllerProfiles().size());
+        assertEquals(2, MachineTierCatalog.controllerTierBands().size());
+
+        TierProfile tower =
+                ModMultiblockControllers.DISTILLATION_TOWER_VARIANT
+                        .tierBand();
+        assertEquals(
+                "cruciblecraft:distillation_tower_profile",
+                tower.tierBandId().toString());
+        assertEquals(
+                "cruciblecraft:distillation_tower",
+                tower.materialId());
+        assertEquals(EnergyType.HEAT, tower.energyType());
+        assertEquals(512L, tower.inputNominal());
+        assertEquals(1_024L, tower.inputMaximum());
+        assertEquals(4_096L, tower.energyCapacity());
+        assertEquals(1, tower.parallelLimit());
+        assertEquals(10_000, tower.efficiency());
 
         TierProfile profile =
-                ModMultiblockControllers.LARGE_CENTRIFUGE_VARIANT.tier();
+                ModMultiblockControllers.LARGE_CENTRIFUGE_VARIANT.tierBand();
         assertEquals(
                 "cruciblecraft:large_centrifuge_profile",
-                profile.id().toString());
+                profile.tierBandId().toString());
         assertEquals(
                 "cruciblecraft:large_centrifuge",
                 profile.materialId());
@@ -82,8 +97,9 @@ class T15LargeCentrifugeProfileTest {
                         .fromNamespaceAndPath(
                                 "cruciblecraft",
                                 "titanium_centrifuge"))
-                .tier();
-        assertNotEquals(titanium.id(), profile.id());
+                .tierBand();
+        assertNotEquals(
+                titanium.tierBandId(), profile.tierBandId());
         assertNotEquals(titanium.materialId(), profile.materialId());
         assertEquals(
                 4_096L,
@@ -98,7 +114,7 @@ class T15LargeCentrifugeProfileTest {
         MachineKindSpec kind =
                 ModMultiblockControllers.LARGE_CENTRIFUGE_KIND;
         TierProfile profile =
-                ModMultiblockControllers.LARGE_CENTRIFUGE_VARIANT.tier();
+                ModMultiblockControllers.LARGE_CENTRIFUGE_VARIANT.tierBand();
         assertSame(ModProcessingMachines.CENTRIFUGE, kind.behavior());
         assertEquals(
                 ModMachineVariants.CENTRIFUGE.recipeMapId(),
@@ -151,6 +167,9 @@ class T15LargeCentrifugeProfileTest {
                 .getAsJsonArray("controller_profiles")
                 .get(0)
                 .getAsJsonObject();
+        assertEquals(
+                "cruciblecraft:large_centrifuge_profile",
+                profile.get("tierBand").getAsString());
         assertEquals(4_096, profile.get("inputMaximum").getAsInt());
         assertEquals(16, profile.get("parallel").getAsInt());
         assertEquals(5_000, profile.get("efficiency").getAsInt());
@@ -193,76 +212,6 @@ class T15LargeCentrifugeProfileTest {
         assertEquals(2, host.fluids().outputs().size());
         assertEquals(3, host.fluids().all().size());
         assertNotEquals(itemFluidPorts, host.items().inputs().size());
-    }
-
-    @Test
-    void exactLegacyIdentityMigratesAndNearMissesStayQuarantined() {
-        MachineIdentityPolicy.Identity current =
-                ModMachineIdentityMigrations.identityOf(
-                        ModMultiblockControllers.LARGE_CENTRIFUGE_VARIANT);
-        assertEquals(
-                ModMachineIdentityMigrations.LARGE_CENTRIFUGE_IDENTITY,
-                current);
-
-        MachineIdentityPolicy.Identity legacy =
-                ModMachineIdentityMigrations
-                        .LEGACY_LARGE_CENTRIFUGE_IDENTITY;
-        TierProfile titanium = ModMachineVariants.require(
-                net.minecraft.resources.ResourceLocation
-                        .fromNamespaceAndPath(
-                                "cruciblecraft",
-                                "titanium_centrifuge"))
-                .tier();
-        assertEquals(titanium.id().toString(), legacy.tierProfile());
-        assertEquals(titanium.materialId(), legacy.materialId());
-        assertEquals(
-                titanium.energyType().name(), legacy.energyIdentity());
-        MachineIdentityPolicy.Decision migrated =
-                ModMachineIdentityMigrations.resolve(
-                        ModMachineIdentityMigrations
-                                .LARGE_CENTRIFUGE_VARIANT_ID,
-                        legacy,
-                        current);
-        assertEquals(
-                MachineIdentityPolicy.Resolution.MIGRATED,
-                migrated.resolution());
-        assertEquals(current, migrated.persistedIdentity());
-        assertTrue(migrated.quarantineReason().isEmpty());
-
-        List<MachineIdentityPolicy.Identity> nearMisses = List.of(
-                new MachineIdentityPolicy.Identity(
-                        "cruciblecraft:large_centrifuge_other",
-                        legacy.tierProfile(),
-                        legacy.materialId(),
-                        legacy.energyIdentity()),
-                new MachineIdentityPolicy.Identity(
-                        legacy.machineKind(),
-                        "cruciblecraft:ru_tier_2",
-                        legacy.materialId(),
-                        legacy.energyIdentity()),
-                new MachineIdentityPolicy.Identity(
-                        legacy.machineKind(),
-                        legacy.tierProfile(),
-                        "cruciblecraft:steel",
-                        legacy.energyIdentity()),
-                new MachineIdentityPolicy.Identity(
-                        legacy.machineKind(),
-                        legacy.tierProfile(),
-                        legacy.materialId(),
-                        "KINETIC_PUSH"));
-        for (MachineIdentityPolicy.Identity nearMiss : nearMisses) {
-            MachineIdentityPolicy.Decision decision =
-                    ModMachineIdentityMigrations.resolve(
-                            ModMachineIdentityMigrations
-                                    .LARGE_CENTRIFUGE_VARIANT_ID,
-                            nearMiss,
-                            current);
-            assertEquals(
-                    MachineIdentityPolicy.Resolution.QUARANTINED,
-                    decision.resolution());
-            assertEquals(nearMiss, decision.persistedIdentity());
-            assertTrue(decision.quarantineReason().isPresent());
-        }
     }
 
     private static GTRecipe recipe(long eut, int duration) {

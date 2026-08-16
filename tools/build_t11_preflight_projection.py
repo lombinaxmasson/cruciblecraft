@@ -30,6 +30,7 @@ RUNTIME_POLICY = (
     / "src/main/resources/data/cruciblecraft"
     / "t11_hydrocarbon_runtime_policy.json"
 )
+O37_IDENTITY = TOOLS / "t18_o37_identity_projection.json"
 T5_FLUID_GATE = (
     ROOT
     / "src/t5_chemical_generated/resources/data/cruciblecraft"
@@ -204,6 +205,15 @@ def build_fluid_gate(
     policy: dict[str, Any],
     selected: dict[str, dict[str, Any]],
 ) -> dict[str, Any]:
+    o37 = load(O37_IDENTITY)
+    if (
+        o37.get("status") != "O37_CLOSED"
+        or o37.get("resolution") != "DESIGN_POLICY"
+        or o37.get("negative_evidence", {}).get(
+            "direct_binding_candidate_count"
+        ) != 0
+    ):
+        raise ValueError("O-37 fixed-source identity evidence is not closed")
     fluids: list[dict[str, Any]] = []
     for fluid_id, expected in sorted(
         policy["identity_gate"]["entries"].items()
@@ -228,10 +238,43 @@ def build_fluid_gate(
         if bridge is not None and (
             bridge["runtime_identity"] != runtime_identity
             or bridge["status"] != "DESIGN_POLICY"
-            or bridge["gt6_equivalence"] != "UNVERIFIED"
-            or not bridge["open_item"]
-            or route["source"]["path"] not in bridge["evidence"]
-            or not bridge["replacement_condition"]
+            or bridge["closure"]
+            != "O37_CLOSED_PERMANENT_DESIGN_POLICY"
+            or bridge["gt6_equivalence"]
+            != "NO_DIRECT_BINDING_AT_FIXED_REVISION"
+            or bridge["closed_item"] != "O-37"
+            or bridge["permanent"] is not True
+            or bridge["material_9852_role"]
+            != "SOURCE_MATERIAL_LAYER_ONLY"
+            or "tools/t18_o37_identity_projection.json"
+            not in bridge["evidence"]
+            or bridge["publication_delta"] != 0
+            or {
+                key: o37["bridge"][key]
+                for key in (
+                    "runtime_identity",
+                    "status",
+                    "closure",
+                    "gt6_equivalence",
+                    "closed_item",
+                    "permanent",
+                    "material_9852_role",
+                    "publication_delta",
+                )
+            }
+            != {
+                key: bridge[key]
+                for key in (
+                    "runtime_identity",
+                    "status",
+                    "closure",
+                    "gt6_equivalence",
+                    "closed_item",
+                    "permanent",
+                    "material_9852_role",
+                    "publication_delta",
+                )
+            }
         ):
             raise ValueError(f"T11 identity bridge drifted for {fluid_id}")
         source_reason = expected.get("source_reason")
@@ -247,9 +290,10 @@ def build_fluid_gate(
             "source": {
                 "path": route["source"]["path"],
                 "reason": source_reason or (
-                    "CrucibleCraft DESIGN_POLICY bridge: the pinned row names "
-                    "liquid_medium_oil as Raw Oil, but GT6 material equivalence "
-                    "to the T9 crude_oil deposit remains UNVERIFIED under O-37."
+                    "CrucibleCraft permanent DESIGN_POLICY bridge: the complete "
+                    "fixed-revision Java replay found no direct binding between "
+                    "liquid_medium_oil and material 9852 MT.CrudeOil. O-37 is "
+                    "closed while the T9/runtime crude_oil identity stays fixed."
                 ),
                 "repository": GT6_REPOSITORY,
                 "revision": policy["source_revision"],
@@ -520,6 +564,8 @@ def runtime_policy_acceptance(
     path = ROOT / policy["load_policy"]["runtime_policy"]
     document = load(path)
     production = document["production"]
+    raw_oil = document["raw_oil_identity"]
+    publication = document["publication_policy"]
     expected = {
         "cruciblecraft:crude_oil": {
             "state": "liquid",
@@ -555,6 +601,27 @@ def runtime_policy_acceptance(
             "material_tags"
         ]
         or document["source_policy"]["gt6_spring_amounts_are_rates"]
+        or raw_oil != {
+            "status": "DESIGN_POLICY",
+            "closure": "O37_CLOSED_PERMANENT_DESIGN_POLICY",
+            "worldgen_material": "cruciblecraft:crude_oil",
+            "distillery_source_fluid": "liquid_medium_oil",
+            "distillery_runtime_input": "cruciblecraft:crude_oil",
+            "registered_runtime_fluid": "cruciblecraft:crude_oil",
+            "registration_owner": "t11_hydrocarbon_fluid_gate",
+            "material_9852": "MT.CrudeOil",
+            "material_9852_role": "SOURCE_MATERIAL_LAYER_ONLY",
+            "t9_identity_migration": "NONE",
+            "duplicate_registration_allowed": False,
+            "fluid_id_changed": False,
+            "publication_delta": 0,
+            "evidence": "tools/t18_o37_identity_projection.json",
+        }
+        or publication != {
+            "t18_o37_recipe_publication_delta": 0,
+            "t18_o37_fluid_registration_delta": 0,
+            "duplicate_fluid_registration_allowed": False,
+        }
     ):
         raise ValueError("T11 hydrocarbon runtime policy drifted")
     return {
@@ -563,6 +630,8 @@ def runtime_policy_acceptance(
         "gas_cloud": document["gas_cloud"],
         "hazards": document["hazards"],
         "path": path.relative_to(ROOT).as_posix(),
+        "raw_oil_identity": raw_oil,
+        "publication_policy": publication,
         "production": production,
         "sha256": digest(path),
         "status": document["status"],
@@ -696,6 +765,10 @@ def planned_documents() -> dict[Path, str]:
                 "path": runtime_policy["path"],
                 "sha256": runtime_policy["sha256"],
             },
+            "o37_identity": {
+                "path": O37_IDENTITY.relative_to(ROOT).as_posix(),
+                "sha256": digest(O37_IDENTITY),
+            },
             "maps": maps,
             "fluid_gates": {
                 T5_FLUID_GATE.relative_to(ROOT).as_posix(): digest(
@@ -784,6 +857,11 @@ def reference_only_check() -> list[str]:
             != digest(runtime_path)
         ):
             errors.append("T11 runtime policy hash drifted")
+        if (sources.get("o37_identity") or {}) != {
+            "path": O37_IDENTITY.relative_to(ROOT).as_posix(),
+            "sha256": digest(O37_IDENTITY),
+        }:
+            errors.append("T11 O-37 identity evidence hash drifted")
 
         t13 = load(T13_RECIPE_MAPS)
         map_rows = {

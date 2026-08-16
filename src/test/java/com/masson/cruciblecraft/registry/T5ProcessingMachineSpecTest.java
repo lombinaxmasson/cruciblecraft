@@ -37,9 +37,12 @@ class T5ProcessingMachineSpecTest {
     }
 
     @Test
-    void configuredMenusSynchronizeOnlyStatusAndStatusArgument() {
-        assertEquals(2, ConfiguredProcessingMachineMenu.DATA_COUNT);
-        assertEquals(2, ConfiguredProcessingMachineMenu.dataCount());
+    void configuredMenusSynchronizeStatusArgumentAndProgressPermille() {
+        assertEquals(3, ConfiguredProcessingMachineMenu.DATA_COUNT);
+        assertEquals(3, ConfiguredProcessingMachineMenu.dataCount());
+        assertEquals(
+                2,
+                ConfiguredProcessingMachineMenu.PROGRESS_PERMILLE_DATA_INDEX);
     }
 
     @Test
@@ -150,8 +153,25 @@ class T5ProcessingMachineSpecTest {
 
     @Test
     void configuredMachineSlotsAndTanksNeverOverlapOnScreen() {
-        for (ProcessingMachineSpec spec : ModProcessingMachines.CONFIGURED_MACHINES) {
-            for (ProcessingMachineSpec.SlotPosition slot : spec.ui().machineSlots()) {
+            for (ProcessingMachineSpec spec : java.util.stream.Stream.concat(
+                    java.util.stream.Stream.of(ModProcessingMachines.CRUSHER),
+                    ModProcessingMachines.CONFIGURED_MACHINES.stream())
+                    .toList()) {
+            List<ProcessingMachineSpec.SlotPosition> slots = spec.ui().machineSlots();
+            for (int left = 0; left < slots.size(); left++) {
+                for (int right = left + 1; right < slots.size(); right++) {
+                    ProcessingMachineSpec.SlotPosition a = slots.get(left);
+                    ProcessingMachineSpec.SlotPosition b = slots.get(right);
+                    boolean overlaps = a.x() < b.x() + 18
+                            && a.x() + 18 > b.x()
+                            && a.y() < b.y() + 18
+                            && a.y() + 18 > b.y();
+                    assertFalse(
+                            overlaps,
+                            spec.id() + " slot " + a + " overlaps slot " + b);
+                }
+            }
+            for (ProcessingMachineSpec.SlotPosition slot : slots) {
                 for (ProcessingMachineSpec.TankPosition tank : spec.ui().tanks()) {
                     boolean overlaps = slot.x() < tank.x() + tank.width()
                             && slot.x() + 18 > tank.x()

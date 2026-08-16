@@ -18,6 +18,7 @@ POLICY = TOOLS / "t17_machine_denominator_policy.json"
 OUTPUT = TOOLS / "t17_machine_denominator.json"
 MACHINE_DENOMINATOR = TOOLS / "t13_denominators/machine_kinds.json"
 ENERGY_DENOMINATOR = TOOLS / "t13_denominators/energy_identities.json"
+T16_POLICY = TOOLS / "t16_machine_denominator_policy.json"
 MACHINE_TIERS = (
     ROOT / "src/main/resources/data/cruciblecraft/machine_tiers.json"
 )
@@ -31,7 +32,9 @@ DISPOSITIONS = {
     "PREIMPLEMENTED_REFERENCE",
     "MAPPED_DEFERRED",
     "T13_ONLY_DEFERRED",
+    "CROSS_OWNER_DEFERRED",
 }
+OWNED_DISPOSITIONS = DISPOSITIONS - {"CROSS_OWNER_DEFERRED"}
 LIVE = {"IMPLEMENTED_T17A", "PREIMPLEMENTED_REFERENCE"}
 
 
@@ -77,7 +80,7 @@ def validate_policy(policy: dict[str, Any]) -> None:
     for recipe_map, row in kinds.items():
         if row.get("accepted_energy") not in {"HU", "EU"}:
             raise ValueError(f"{recipe_map}: invalid T17 energy")
-        if row.get("disposition") not in DISPOSITIONS:
+        if row.get("disposition") not in OWNED_DISPOSITIONS:
             raise ValueError(f"{recipe_map}: invalid disposition")
         require_explanation(row, recipe_map)
         require_explanation(
@@ -100,6 +103,34 @@ def validate_policy(policy: dict[str, Any]) -> None:
             raise ValueError(
                 f"{recipe_map}: deferred kind claims live catalog identity"
             )
+
+    cross_owner = policy.get("cross_owner_dispositions")
+    if not isinstance(cross_owner, dict) or set(cross_owner) != {
+        "RM.Compressor"
+    }:
+        raise ValueError(
+            "T17 must carry exactly the T16-owned Compressor disposition"
+        )
+    compressor = cross_owner["RM.Compressor"]
+    require_explanation(compressor, "RM.Compressor cross-owner disposition")
+    if (
+        compressor.get("owner") != "T16"
+        or compressor.get("accepted_energy") != "KU"
+        or compressor.get("local_map") != "cruciblecraft:compressor"
+        or compressor.get("current_local_energy_type") != "ELECTRIC"
+        or compressor.get("source_local_energy_type") != "KINETIC_PUSH"
+        or compressor.get("disposition") != "CROSS_OWNER_DEFERRED"
+    ):
+        raise ValueError("RM.Compressor cross-owner disposition drifted")
+    t16_policy = load(T16_POLICY)
+    t16_compressor = (t16_policy.get("kinds") or {}).get("RM.Compressor") or {}
+    if (
+        t16_policy.get("owner") != "T16"
+        or t16_compressor.get("accepted_energy") != "KU"
+        or t16_compressor.get("local_map") != "cruciblecraft:compressor"
+        or t16_compressor.get("disposition") != "MAPPED_DEFERRED"
+    ):
+        raise ValueError("RM.Compressor no longer matches its T16 owner ledger")
 
     mappings = policy.get("heat_material_mappings")
     expected = {"ANY.Steel", "Invar", "Ti"}
@@ -322,7 +353,7 @@ def source_variants(
 
 def catalog_rows(document: dict[str, Any]) -> dict[str, dict[str, Any]]:
     if (
-        document.get("schemaVersion") != 1
+        document.get("schemaVersion") != 2
         or document.get("source", {}).get("revision") != SOURCE_REVISION
     ):
         raise ValueError("machine tier catalog header drifted")
@@ -349,7 +380,13 @@ def validate_catalog_kind(
         raise ValueError(f"{kind_id}: catalog must expose source tiers 1-3")
     energy = selection["accepted_energy"]
     for expected_source, row in zip(source[:3], actual):
+        tier_band_prefix = "heat" if energy == "HU" else "electric"
         expected = {
+            "tierBand": (
+                "cruciblecraft:"
+                f"{tier_band_prefix}_tier_"
+                f"{expected_source['source_tier']}"
+            ),
             "energy": "HEAT" if energy == "HU" else "ELECTRIC",
             "sourceId": expected_source["source_id"],
             "sourceTier": expected_source["source_tier"],
@@ -457,6 +494,16 @@ def build(policy: dict[str, Any] | None = None) -> dict[str, Any]:
             "source_variants": projected_variants,
         })
 
+    cross_owner_rows = [
+        {
+            "recipe_map": recipe_map,
+            **row,
+        }
+        for recipe_map, row in sorted(
+            policy["cross_owner_dispositions"].items()
+        )
+    ]
+
     dispositions = Counter(row["disposition"] for row in rows)
     selected = dispositions["IMPLEMENTED_T17A"]
     reference = dispositions["PREIMPLEMENTED_REFERENCE"]
@@ -500,6 +547,36 @@ def build(policy: dict[str, Any] | None = None) -> dict[str, Any]:
             "live HU/EU catalog kinds differ from T17 policy"
         )
 
+    extruder = next(
+        row for row in rows if row["recipe_map"] == "RM.Extruder"
+    )
+    extruder_policy = policy["kinds"]["RM.Extruder"]
+    if (
+        extruder["accepted_energy"] != "HU"
+        or extruder["disposition"] != "MAPPED_DEFERRED"
+        or extruder_policy.get("current_local_energy_type") != "KINETIC"
+        or extruder_policy.get("source_local_energy_type") != "HEAT"
+    ):
+        raise ValueError("RM.Extruder T17 disposition drifted")
+    disposition_rows = [
+        {
+            "recipe_map": "RM.Extruder",
+            "owner": "T17",
+            "accepted_energy": extruder["accepted_energy"],
+            "current_local_energy_type": extruder_policy[
+                "current_local_energy_type"
+            ],
+            "source_local_energy_type": extruder_policy[
+                "source_local_energy_type"
+            ],
+            "disposition": extruder["disposition"],
+            "reason": extruder["reason"],
+            "replacement_condition": extruder["replacement_condition"],
+            "recheck_point": extruder["recheck_point"],
+        },
+        cross_owner_rows[0],
+    ]
+
     material_paths = {
         mapping["registration_path"]
         for mapping in policy["heat_material_mappings"].values()
@@ -517,6 +594,7 @@ def build(policy: dict[str, Any] | None = None) -> dict[str, Any]:
             "selected_kinds": selected,
             "preimplemented_reference_kinds": reference,
             "deferred_kinds": deferred,
+            "cross_owner_deferred_kinds": len(cross_owner_rows),
             "catalog_variants_selected_and_reference": len(
                 catalog_variant_ids
             ),
@@ -536,6 +614,16 @@ def build(policy: dict[str, Any] | None = None) -> dict[str, Any]:
         },
         "heat_material_mappings": policy["heat_material_mappings"],
         "rows": rows,
+        "cross_owner_dispositions": cross_owner_rows,
+        "energy_disposition_audit": {
+            "status": "AUDITED",
+            "criterion": (
+                "INCORRECT_ENERGY_IDENTITIES_HAVE_EXPLICIT_DISPOSITIONS"
+            ),
+            "implemented": 0,
+            "deferred": len(disposition_rows),
+            "rows": disposition_rows,
+        },
         "deferred_source_tiers": deferred_source_tiers,
         "currentness": {
             "owned_inputs": {
@@ -545,6 +633,9 @@ def build(policy: dict[str, Any] | None = None) -> dict[str, Any]:
             "t13_denominators": {
                 relative(MACHINE_DENOMINATOR): sha256(MACHINE_DENOMINATOR),
                 relative(ENERGY_DENOMINATOR): sha256(ENERGY_DENOMINATOR),
+            },
+            "cross_owner_ledger": {
+                relative(T16_POLICY): sha256(T16_POLICY),
             },
             "runtime_projection": {
                 relative(MACHINE_TIERS): sha256(MACHINE_TIERS),

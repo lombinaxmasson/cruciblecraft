@@ -1,0 +1,22 @@
+{
+  "conditions": [
+    "has_registered_for(\"processing_target:cutting\", foil)"
+  ],
+  "duration": "80 * (144 * prefix_units(foil) / gcd(target_units(cutting) * 144, 144 * prefix_units(foil)))",
+  "eut": "24",
+  "item_inputs": [
+    {
+      "count": "1 * (144 * prefix_units(foil) / gcd(target_units(cutting) * 144, 144 * prefix_units(foil)))",
+      "prefix": "cruciblecraft:plate"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "target_units(cutting) * 144 / gcd(target_units(cutting) * 144, 144 * prefix_units(foil))",
+      "material_selector": "processing_target:cutting",
+      "prefix": "cruciblecraft:foil"
+    }
+  ],
+  "target": "cruciblecraft:cutter",
+  "type": "cruciblecraft:material_rule"
+}

@@ -989,11 +989,41 @@ class ProcessExpectationTest(unittest.TestCase):
         self.assertEqual(
             {
                 "EXACT": 1,
-                "INTENTIONAL": 1,
-                "TODO_PORT": 5,
+                "INTENTIONAL": 2,
+                "TODO_PORT": 4,
                 "OUT_OF_SCOPE": 0,
             },
             result["counts"],
+        )
+        steam = expectations["groups"]["steam"]
+        self.assertEqual(
+            "SOURCE_BACKED_EXACT_CONSERVATION",
+            steam["evidence"]["gt6_reference_status"],
+        )
+        engine = expectations["groups"]["steam_engine"]
+        self.assertEqual("INTENTIONAL", engine["verdict"])
+        self.assertEqual(
+            "SOURCE_BACKED_CONSERVATION_WITH_DESIGN_POLICY_OUTPUT",
+            engine["evidence"]["gt6_reference_status"],
+        )
+        self.assertEqual(1302, engine["gt6_constants"]["SOURCE_ID"])
+        self.assertEqual(2, engine["gt6_constants"]["STEAM_PER_EU"])
+        self.assertEqual(4, engine["gt6_constants"]["STEAM_MB_PER_KU"])
+        self.assertEqual(
+            50,
+            engine["gt6_constants"]["STEAM_INPUT_MB"]
+            // engine["gt6_constants"]["STEAM_MB_PER_KU"],
+        )
+        self.assertEqual(
+            12,
+            engine["gt6_constants"]["MOUTPUT_NOMINAL_KU"],
+        )
+        self.assertEqual(
+            [6, 24],
+            [
+                engine["gt6_constants"]["RUNTIME_MINIMUM_KU_PER_TICK"],
+                engine["gt6_constants"]["RUNTIME_MAXIMUM_KU_PER_TICK"],
+            ],
         )
 
     def test_process_expectations_reject_placeholders_and_stale_evidence(self):

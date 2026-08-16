@@ -1,0 +1,26 @@
+{
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", triple_plate)"
+  ],
+  "duration": "180 * (144 * prefix_units(triple_plate) / gcd(target_units(working) * 432, 144 * prefix_units(triple_plate)))",
+  "eut": "48",
+  "item_inputs": [
+    {
+      "count": "1 * (144 * prefix_units(triple_plate) / gcd(target_units(working) * 432, 144 * prefix_units(triple_plate)))",
+      "prefix": "cruciblecraft:double_plate"
+    },
+    {
+      "count": "1 * (144 * prefix_units(triple_plate) / gcd(target_units(working) * 432, 144 * prefix_units(triple_plate)))",
+      "prefix": "cruciblecraft:plate"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "target_units(working) * 432 / gcd(target_units(working) * 432, 144 * prefix_units(triple_plate))",
+      "material_selector": "processing_target:working",
+      "prefix": "cruciblecraft:triple_plate"
+    }
+  ],
+  "target": "cruciblecraft:press",
+  "type": "cruciblecraft:material_rule"
+}

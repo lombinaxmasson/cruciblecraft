@@ -7,14 +7,16 @@ import com.masson.cruciblecraft.api.energy.EnergyType;
 import net.minecraft.resources.ResourceLocation;
 
 /**
- * Source-backed numeric capability of one machine tier.
+ * Source-backed numeric capability of one machine variant within a tier band.
  *
  * <p>This value deliberately contains no validators, side rules, slot
  * acceptance or UI callbacks. Those are machine-kind behavior and must not
- * drift when another tier is added.
+ * drift when another tier is added. {@link #tierBandId()} identifies the
+ * shared material/energy/input-window/efficiency band; variant-scoped values
+ * such as {@link #parallelLimit()} may differ inside that band.
  */
 public record TierProfile(
-        ResourceLocation id,
+        ResourceLocation tierBandId,
         String materialId,
         EnergyType energyType,
         long inputMinimum,
@@ -25,7 +27,7 @@ public record TierProfile(
         int efficiency) {
 
     public TierProfile {
-        Objects.requireNonNull(id, "id");
+        Objects.requireNonNull(tierBandId, "tierBandId");
         if (materialId == null || materialId.isBlank()) {
             throw new IllegalArgumentException("Tier material id must not be blank");
         }
@@ -39,7 +41,7 @@ public record TierProfile(
                 || efficiency > 10_000) {
             throw new IllegalArgumentException(
                     "Invalid tier input window/capacity/parallel/efficiency for "
-                            + id);
+                            + tierBandId);
         }
     }
 

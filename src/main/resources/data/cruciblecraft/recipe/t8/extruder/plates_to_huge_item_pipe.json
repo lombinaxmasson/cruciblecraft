@@ -2,7 +2,7 @@
   "type": "cruciblecraft:material_rule",
   "conditions": [
     "material.tag(\"PROCESSING.EXTRUDABLE\")",
-    "has_registered(plate) && has_registered(huge_item_pipe) && material.pipe.item_recipe == 1"
+    "has_registered(plate) && has_registered(huge_item_pipe) && item_pipe_recipe(huge_item_pipe) == 1"
   ],
   "duration": "256",
   "eut": "32",

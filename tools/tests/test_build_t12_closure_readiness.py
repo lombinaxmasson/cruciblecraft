@@ -26,11 +26,32 @@ class T12ClosureReadinessTest(unittest.TestCase):
         self.assertEqual(9, document["kind_tier"]["variants"])
         self.assertEqual(0, document["kind_tier"]["publication_delta"])
         self.assertEqual(
-            ["coke_oven", "large_centrifuge"],
+            ["coke_oven", "distillation_tower", "large_boiler", "large_centrifuge", "tank_3x3x3"],
             document["multiblock"]["structures"],
         )
         self.assertEqual(
             ["RU", "KU", "EU"], document["energy"]["identities"]
+        )
+        audit = document["energy"]["processing_machine_audit"]
+        self.assertEqual(
+            "PROCESSING_MACHINE_ENERGY_AUDIT_READY", audit["status"]
+        )
+        self.assertEqual(25, audit["machine_specs"])
+        self.assertEqual(25, audit["explicit_energy_arguments"])
+        self.assertEqual(0, audit["implicit_energy_arguments"])
+        self.assertEqual(8, audit["legacy_kinetic"])
+        self.assertEqual(0, audit["new_legacy_kinetic"])
+        # The audit is written by builder #24, after this closure (#23): the
+        # closure records its status/counts but no sha256 (forward edge
+        # 23 -> 24 proves equality instead).
+        self.assertNotIn("sha256", audit)
+        self.assertEqual(
+            {"tools/t12a_machine_readiness.json"},
+            set(document["currentness"]["dependencies"]),
+        )
+        self.assertEqual(
+            [],
+            document["currentness"]["pending_report"]["pending"],
         )
         self.assertGreaterEqual(
             document["load_gate"]["compression_ratio"], 3.0

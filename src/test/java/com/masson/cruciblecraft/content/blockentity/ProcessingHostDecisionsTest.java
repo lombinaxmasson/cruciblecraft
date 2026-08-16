@@ -17,13 +17,12 @@ import org.junit.jupiter.api.Test;
 class ProcessingHostDecisionsTest {
     /**
      * Deferred block-level GameTests: Crusher capability mutation before save,
-     * Crusher chance-roll restart, legacy input replacement before first tick,
-     * and Coke Oven item+fluid+HEAT completion across chunk reload.
+     * Crusher chance-roll restart, and Coke Oven item+fluid+HEAT completion
+     * across chunk reload.
      */
     private static final List<String> FULL_BLOCK_GAME_TESTS = List.of(
             "crusher_capability_autosave",
             "crusher_chance_restart",
-            "crusher_legacy_input_replaced",
             "coke_oven_atomic_heat_reload");
 
     @Test
@@ -59,6 +58,6 @@ class ProcessingHostDecisionsTest {
         assertEquals(
                 MachineTransaction.class,
                 CokeOvenBlockEntity.class.getDeclaredField("pendingTransaction").getType());
-        assertEquals(4, FULL_BLOCK_GAME_TESTS.size());
+        assertEquals(3, FULL_BLOCK_GAME_TESTS.size());
     }
 }

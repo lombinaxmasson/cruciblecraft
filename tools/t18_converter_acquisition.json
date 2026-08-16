@@ -1,0 +1,712 @@
+{
+  "counts": {
+    "block_tag_rows": 6,
+    "concrete_producer_recipes": 1,
+    "converter_profiles": 6,
+    "gt_recipe_rows_added": 0,
+    "language_rows": 12,
+    "material_source_declarations": 1,
+    "minecraft_source_declarations": 8,
+    "producer_rules": 2,
+    "profile_resource_rows": 24,
+    "recipe_operand_rows": 14,
+    "recipe_tag_sources": 2,
+    "registered_blocks": 6,
+    "registered_items": 6,
+    "unreachable": 0,
+    "vanilla_crafting_recipes": 6
+  },
+  "currentness": {
+    "catalog": {
+      "src/main/resources/data/cruciblecraft/energy_converters.json": "99021576f5dd91fa49a3ac60a8c84afc9b6d6496fd9434236003d851acf15e84"
+    },
+    "concrete_recipes": {
+      "src/main/resources/data/cruciblecraft/recipe/firebrick.json": "a394892a817d205330b62b58a49e9cd6532e03bd98f5375a2af9b13cc9c0ef19"
+    },
+    "crafting_recipes": {
+      "src/generated/resources/data/cruciblecraft/recipe/machines/burning_gas_generator.json": "c572d92becbe3bf45802c50f03d5177a79b713d1d9d2bbe375fb4cc0c8c90b76",
+      "src/generated/resources/data/cruciblecraft/recipe/machines/firebox.json": "f221023d145a5d82cccc6dc8123869a1fff5d145720ddda99c8255a81a91af06",
+      "src/generated/resources/data/cruciblecraft/recipe/machines/fuel_engine.json": "bbd0b2d1f72558ce7b957029f2880b109eaee7f65b44ee78a0a9e094b2d65193",
+      "src/main/resources/data/cruciblecraft/recipe/bronze_boiler.json": "0a5ff1e68990b9d6b69a69318712e447e6aeaf9d4708c91aefda3ffe1fddcdb2",
+      "src/main/resources/data/cruciblecraft/recipe/bronze_dynamo.json": "e30d02977ce20053904773bf892ee88f11e4279dcc0609c18e3ca509cd06f5bf",
+      "src/main/resources/data/cruciblecraft/recipe/bronze_steam_engine.json": "93e3b665a1212b3aeb6c22901cd40a8672cf2d34748b285ca9ae8829ac3c5397"
+    },
+    "owned_inputs": {
+      "tools/build_t18_converter_acquisition.py": "49aaf2be3d2a93b07b6b3ff96a2acd801c66082cb441001dec38e0e1f856b5de",
+      "tools/t18_converter_acquisition_policy.json": "1f1e80506a99932b7b06319b3181a429c5ed014812de2086c1573d76fba524b7"
+    },
+    "producer_rules": {
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/lathe/ingot_to_rods.json": "31164a81c71407534ccf833ba67beeb874ec195ef69cb12b770198d0fe4a5693",
+      "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json": "69885ea9e6dbb555f460d512a7d77227e3e2787b559bfeac0e76eb933475b994"
+    },
+    "registrations": {
+      "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java": "06437e4ae5357d82f3d9f64e2de915b4ff2b6a4d0719d9e465d6490fc6b4f1d7",
+      "src/main/java/com/masson/cruciblecraft/registry/ModItems.java": "058ba94a477762a9f376c1a63782f5366f5979ba237171de777aed7ca1962756",
+      "src/main/resources/data/cruciblecraft/material_registration_gate.json": "17675d0fddce52332d00373839661bc1b0ac70e9e546417458bacd60a0cd199d"
+    },
+    "resources": {
+      "src/generated/resources/assets/cruciblecraft/blockstates/burning_gas_generator.json": "23c7807f4ba593f8ef578090eed046d6df6fea6fd922442f166d92ac9dd26120",
+      "src/generated/resources/assets/cruciblecraft/blockstates/firebox.json": "82260664853864cbc9529f360cebc0be80aeb7d27a6556ca654747abf11ff870",
+      "src/generated/resources/assets/cruciblecraft/blockstates/fuel_engine.json": "d36f179cf6fc70f2714f3385a4e7958e5f6c82a598ed1d218c062d075bc3d3f2",
+      "src/generated/resources/assets/cruciblecraft/lang/en_us.json": "a3ea2677a871973e583bb9e62230028f2fa6bfb9e769583a23d08d5c63414963",
+      "src/generated/resources/assets/cruciblecraft/lang/zh_cn.json": "246af9a08d4ac6cd4829e8599a66643da2a678526587c16dac8cb3fa5a1aa32d",
+      "src/generated/resources/assets/cruciblecraft/models/block/burning_gas_generator.json": "a46a7cfd9ef467f2cbd95c01fa6bf904da121c82208210e6dd3df6ce434f9412",
+      "src/generated/resources/assets/cruciblecraft/models/block/firebox.json": "adf52c32059187b062bff36f0528f3daf81f0dba88835c8fd779c4f03b9d9689",
+      "src/generated/resources/assets/cruciblecraft/models/block/fuel_engine.json": "0a2bb055e46d416970c2a8a39725c4cb6a8ec68965a3c56bfd1f6c56008bea1a",
+      "src/generated/resources/assets/cruciblecraft/models/item/burning_gas_generator.json": "4391dd828b90c483d3744a18357cc3c5b36a8147c4eb58bf4689ef3092639e87",
+      "src/generated/resources/assets/cruciblecraft/models/item/firebox.json": "ceddca5f3d0ead33588eb6b92a911cc379d84b1205066c0cb7edc6725c4f4a1e",
+      "src/generated/resources/assets/cruciblecraft/models/item/fuel_engine.json": "3345375e166a2bfa10260960983a1df701b09118ef1a4e4007cf8045f7c707db",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/burning_gas_generator.json": "7168a42a933a59a45973a7ea232368ba4a022d6754a4a0c5d582b0d4643f1fb5",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/firebox.json": "1ae96daa98f563b1f299f53d2d6fe2f8dc5ccaa6c3ce5d8cb418396f2a6594e7",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/fuel_engine.json": "309043833062f6e551460f531af28cde822b6a9e3bcb832e54e0f5fa93606410",
+      "src/generated/resources/data/minecraft/tags/block/mineable/pickaxe.json": "176534fa773b773e92f3f329b7873e19a8661bb27361e60b56561d3daeca3716",
+      "src/main/resources/assets/cruciblecraft/blockstates/bronze_boiler.json": "3150a44f6aa96e4ef9e876fe2e37705881c32889855a127b2c1886d66aa3e0e9",
+      "src/main/resources/assets/cruciblecraft/blockstates/bronze_dynamo.json": "c589a0eeb23183aa600bb10187355f8f801c4176e9130f1c54a28efb88f04060",
+      "src/main/resources/assets/cruciblecraft/blockstates/bronze_steam_engine.json": "a960185ea4b6faf2b487264adb5d8d0848eee0d4ed5d5197877c9d652a8366dd",
+      "src/main/resources/assets/cruciblecraft/models/block/bronze_boiler.json": "45b72fedfbef79577692c38e73deb21aee872e71639509ffdfc6cea5bcb2aabd",
+      "src/main/resources/assets/cruciblecraft/models/block/bronze_dynamo.json": "89d81b62238ba8d3e6d6ae07284ac6f111890f2195a843283981f0600e559b9d",
+      "src/main/resources/assets/cruciblecraft/models/block/bronze_steam_engine.json": "96d2b11e1263af52dd129128769162447a6882e91abd49332d05ee06a51720f1",
+      "src/main/resources/assets/cruciblecraft/models/item/bronze_boiler.json": "ef0918507faac6d2e6731335d1f18f5cbac6217ab68e41cb4d770d10d3a6c95d",
+      "src/main/resources/assets/cruciblecraft/models/item/bronze_dynamo.json": "cf0bf0aabe6a1f9a3c8a24d67c94210b91c9e18d579b6691e53cc29d1281b21a",
+      "src/main/resources/assets/cruciblecraft/models/item/bronze_steam_engine.json": "62d5de27911d137b54909edf30a45ea3d61006fbee3767ca0c5fac37c346a4f1",
+      "src/main/resources/data/cruciblecraft/loot_table/blocks/bronze_boiler.json": "72ea04861c1cdd7d54473251736f10f1f0363944f0dfde12fe31c972bf74ec23",
+      "src/main/resources/data/cruciblecraft/loot_table/blocks/bronze_dynamo.json": "7341cde27f7f7f96956dce9d993bcdbdbe6f4792d6e59896bf99b2bd0d7319f7",
+      "src/main/resources/data/cruciblecraft/loot_table/blocks/bronze_steam_engine.json": "22469c173075018e61ca527a75f6a026046c5e687b9923454ec47cdda9b8cec2"
+    },
+    "source_materials": {
+      "src/main/resources/data/cruciblecraft/materials/bronze.json": "8b5eaca6c080bd74a75e708ac8625f96a15d60c66f3e53f9d1a7a183c52b1d4f"
+    },
+    "tag_contracts": {
+      "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java": "818e22379429fa5520b1e00d3c30f3cbc8143edf8d1ebc3d74ac0f3d4d21a329",
+      "src/main/resources/data/cruciblecraft/material_prefixes/plate.json": "1d523232ac7c2df120224497f6c0c9c82cf7e53753154a5d464d139f89d67899",
+      "src/main/resources/data/cruciblecraft/material_prefixes/rod.json": "f2c6825accea9e6854566a31709eab5588f74bd31582671dc1f8a7c6e60475f9"
+    }
+  },
+  "delivery": "T18d",
+  "expected_set": {
+    "production_mapping_reused": false,
+    "profile_ids": [
+      "cruciblecraft:bronze_boiler",
+      "cruciblecraft:bronze_dynamo",
+      "cruciblecraft:bronze_firebox",
+      "cruciblecraft:bronze_fuel_engine",
+      "cruciblecraft:bronze_gas_generator",
+      "cruciblecraft:bronze_steam_engine"
+    ],
+    "recipe_ids": [
+      "cruciblecraft:bronze_boiler",
+      "cruciblecraft:bronze_dynamo",
+      "cruciblecraft:bronze_steam_engine",
+      "cruciblecraft:machines/burning_gas_generator",
+      "cruciblecraft:machines/firebox",
+      "cruciblecraft:machines/fuel_engine"
+    ],
+    "source": "independent_t18d_converter_acceptance_policy"
+  },
+  "profiles": [
+    {
+      "id": "cruciblecraft:bronze_boiler",
+      "result_item": "cruciblecraft:bronze_boiler",
+      "runtime_binding": "bronze_boiler",
+      "source_id": 1202
+    },
+    {
+      "id": "cruciblecraft:bronze_dynamo",
+      "result_item": "cruciblecraft:bronze_dynamo",
+      "runtime_binding": "bronze_dynamo",
+      "source_id": 10111
+    },
+    {
+      "id": "cruciblecraft:bronze_firebox",
+      "result_item": "cruciblecraft:firebox",
+      "runtime_binding": "firebox",
+      "source_id": 1102
+    },
+    {
+      "id": "cruciblecraft:bronze_fuel_engine",
+      "result_item": "cruciblecraft:fuel_engine",
+      "runtime_binding": "fuel_engine",
+      "source_id": 9147
+    },
+    {
+      "id": "cruciblecraft:bronze_gas_generator",
+      "result_item": "cruciblecraft:burning_gas_generator",
+      "runtime_binding": "burning_gas_generator",
+      "source_id": 1602
+    },
+    {
+      "id": "cruciblecraft:bronze_steam_engine",
+      "result_item": "cruciblecraft:bronze_steam_engine",
+      "runtime_binding": "bronze_steam_engine",
+      "source_id": 1302
+    }
+  ],
+  "recipes": [
+    {
+      "ingredients": [
+        {
+          "classification": "minecraft_survival_source",
+          "inputs": [],
+          "item": "minecraft:bucket",
+          "occurrences": 1,
+          "producer": "minecraft",
+          "reachable": true,
+          "registered": true,
+          "symbol": "B"
+        },
+        {
+          "classification": "dynamic_material_tag",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "registered_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:bronze/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:bronze/plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "#c:plates/bronze",
+          "occurrences": 8,
+          "producer": "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+          "reachable": true,
+          "registered": true,
+          "symbol": "P"
+        }
+      ],
+      "profile_id": "cruciblecraft:bronze_boiler",
+      "reachable": true,
+      "recipe_id": "cruciblecraft:bronze_boiler",
+      "recipe_path": "src/main/resources/data/cruciblecraft/recipe/bronze_boiler.json",
+      "result_item": "cruciblecraft:bronze_boiler",
+      "runtime_binding": "bronze_boiler"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "minecraft_survival_source",
+          "inputs": [],
+          "item": "minecraft:redstone_block",
+          "occurrences": 1,
+          "producer": "minecraft",
+          "reachable": true,
+          "registered": true,
+          "symbol": "B"
+        },
+        {
+          "classification": "dynamic_material_tag",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "registered_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:bronze/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:bronze/plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "#c:plates/bronze",
+          "occurrences": 4,
+          "producer": "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+          "reachable": true,
+          "registered": true,
+          "symbol": "P"
+        },
+        {
+          "classification": "dynamic_material_tag",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "registered_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:bronze/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:bronze/rod",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/lathe/ingot_to_rods.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "#c:rods/bronze",
+          "occurrences": 4,
+          "producer": "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+          "reachable": true,
+          "registered": true,
+          "symbol": "R"
+        }
+      ],
+      "profile_id": "cruciblecraft:bronze_dynamo",
+      "reachable": true,
+      "recipe_id": "cruciblecraft:bronze_dynamo",
+      "recipe_path": "src/main/resources/data/cruciblecraft/recipe/bronze_dynamo.json",
+      "result_item": "cruciblecraft:bronze_dynamo",
+      "runtime_binding": "bronze_dynamo"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "concrete_shaped_recipe",
+          "inputs": [
+            {
+              "classification": "minecraft_survival_source",
+              "inputs": [],
+              "item": "minecraft:clay_ball",
+              "producer": "minecraft",
+              "reachable": true,
+              "registered": true
+            },
+            {
+              "classification": "minecraft_survival_source",
+              "inputs": [],
+              "item": "minecraft:brick",
+              "producer": "minecraft",
+              "reachable": true,
+              "registered": true
+            },
+            {
+              "classification": "minecraft_survival_source",
+              "inputs": [],
+              "item": "minecraft:water_bucket",
+              "producer": "minecraft",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "cruciblecraft:firebrick",
+          "occurrences": 8,
+          "producer": "cruciblecraft:firebrick",
+          "producer_path": "src/main/resources/data/cruciblecraft/recipe/firebrick.json",
+          "reachable": true,
+          "registered": true,
+          "symbol": "B"
+        },
+        {
+          "classification": "minecraft_survival_source",
+          "inputs": [],
+          "item": "minecraft:furnace",
+          "occurrences": 1,
+          "producer": "minecraft",
+          "reachable": true,
+          "registered": true,
+          "symbol": "F"
+        }
+      ],
+      "profile_id": "cruciblecraft:bronze_firebox",
+      "reachable": true,
+      "recipe_id": "cruciblecraft:machines/firebox",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/machines/firebox.json",
+      "result_item": "cruciblecraft:firebox",
+      "runtime_binding": "firebox"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "minecraft_survival_source",
+          "inputs": [],
+          "item": "minecraft:copper_ingot",
+          "occurrences": 8,
+          "producer": "minecraft",
+          "reachable": true,
+          "registered": true,
+          "symbol": "C"
+        },
+        {
+          "classification": "minecraft_survival_source",
+          "inputs": [],
+          "item": "minecraft:furnace",
+          "occurrences": 1,
+          "producer": "minecraft",
+          "reachable": true,
+          "registered": true,
+          "symbol": "F"
+        }
+      ],
+      "profile_id": "cruciblecraft:bronze_fuel_engine",
+      "reachable": true,
+      "recipe_id": "cruciblecraft:machines/fuel_engine",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/machines/fuel_engine.json",
+      "result_item": "cruciblecraft:fuel_engine",
+      "runtime_binding": "fuel_engine"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "minecraft_survival_source",
+          "inputs": [],
+          "item": "minecraft:copper_ingot",
+          "occurrences": 8,
+          "producer": "minecraft",
+          "reachable": true,
+          "registered": true,
+          "symbol": "C"
+        },
+        {
+          "classification": "minecraft_survival_source",
+          "inputs": [],
+          "item": "minecraft:furnace",
+          "occurrences": 1,
+          "producer": "minecraft",
+          "reachable": true,
+          "registered": true,
+          "symbol": "F"
+        }
+      ],
+      "profile_id": "cruciblecraft:bronze_gas_generator",
+      "reachable": true,
+      "recipe_id": "cruciblecraft:machines/burning_gas_generator",
+      "recipe_path": "src/generated/resources/data/cruciblecraft/recipe/machines/burning_gas_generator.json",
+      "result_item": "cruciblecraft:burning_gas_generator",
+      "runtime_binding": "burning_gas_generator"
+    },
+    {
+      "ingredients": [
+        {
+          "classification": "minecraft_survival_source",
+          "inputs": [],
+          "item": "minecraft:piston",
+          "occurrences": 1,
+          "producer": "minecraft",
+          "reachable": true,
+          "registered": true,
+          "symbol": "B"
+        },
+        {
+          "classification": "dynamic_material_tag",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "registered_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:bronze/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:bronze/plate",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/rollingmill/ingot_to_plate.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "#c:plates/bronze",
+          "occurrences": 6,
+          "producer": "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+          "reachable": true,
+          "registered": true,
+          "symbol": "P"
+        },
+        {
+          "classification": "dynamic_material_tag",
+          "inputs": [
+            {
+              "classification": "material_rule",
+              "inputs": [
+                {
+                  "classification": "registered_survival_source",
+                  "inputs": [],
+                  "item": "cruciblecraft:bronze/ingot",
+                  "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+                  "reachable": true,
+                  "registered": true
+                }
+              ],
+              "item": "cruciblecraft:bronze/rod",
+              "producer": "src/component_rule_generated/resources/data/cruciblecraft/recipe/lathe/ingot_to_rods.json",
+              "reachable": true,
+              "registered": true
+            }
+          ],
+          "item": "#c:rods/bronze",
+          "occurrences": 2,
+          "producer": "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+          "reachable": true,
+          "registered": true,
+          "symbol": "R"
+        }
+      ],
+      "profile_id": "cruciblecraft:bronze_steam_engine",
+      "reachable": true,
+      "recipe_id": "cruciblecraft:bronze_steam_engine",
+      "recipe_path": "src/main/resources/data/cruciblecraft/recipe/bronze_steam_engine.json",
+      "result_item": "cruciblecraft:bronze_steam_engine",
+      "runtime_binding": "bronze_steam_engine"
+    }
+  ],
+  "resource_closure": {
+    "component_sets": {
+      "block_models": [
+        "cruciblecraft:bronze_boiler",
+        "cruciblecraft:bronze_dynamo",
+        "cruciblecraft:bronze_firebox",
+        "cruciblecraft:bronze_fuel_engine",
+        "cruciblecraft:bronze_gas_generator",
+        "cruciblecraft:bronze_steam_engine"
+      ],
+      "block_tags": [
+        "cruciblecraft:bronze_boiler",
+        "cruciblecraft:bronze_dynamo",
+        "cruciblecraft:bronze_firebox",
+        "cruciblecraft:bronze_fuel_engine",
+        "cruciblecraft:bronze_gas_generator",
+        "cruciblecraft:bronze_steam_engine"
+      ],
+      "blocks": [
+        "cruciblecraft:bronze_boiler",
+        "cruciblecraft:bronze_dynamo",
+        "cruciblecraft:bronze_firebox",
+        "cruciblecraft:bronze_fuel_engine",
+        "cruciblecraft:bronze_gas_generator",
+        "cruciblecraft:bronze_steam_engine"
+      ],
+      "blockstates": [
+        "cruciblecraft:bronze_boiler",
+        "cruciblecraft:bronze_dynamo",
+        "cruciblecraft:bronze_firebox",
+        "cruciblecraft:bronze_fuel_engine",
+        "cruciblecraft:bronze_gas_generator",
+        "cruciblecraft:bronze_steam_engine"
+      ],
+      "item_models": [
+        "cruciblecraft:bronze_boiler",
+        "cruciblecraft:bronze_dynamo",
+        "cruciblecraft:bronze_firebox",
+        "cruciblecraft:bronze_fuel_engine",
+        "cruciblecraft:bronze_gas_generator",
+        "cruciblecraft:bronze_steam_engine"
+      ],
+      "items": [
+        "cruciblecraft:bronze_boiler",
+        "cruciblecraft:bronze_dynamo",
+        "cruciblecraft:bronze_firebox",
+        "cruciblecraft:bronze_fuel_engine",
+        "cruciblecraft:bronze_gas_generator",
+        "cruciblecraft:bronze_steam_engine"
+      ],
+      "loot": [
+        "cruciblecraft:bronze_boiler",
+        "cruciblecraft:bronze_dynamo",
+        "cruciblecraft:bronze_firebox",
+        "cruciblecraft:bronze_fuel_engine",
+        "cruciblecraft:bronze_gas_generator",
+        "cruciblecraft:bronze_steam_engine"
+      ],
+      "profiles": [
+        "cruciblecraft:bronze_boiler",
+        "cruciblecraft:bronze_dynamo",
+        "cruciblecraft:bronze_firebox",
+        "cruciblecraft:bronze_fuel_engine",
+        "cruciblecraft:bronze_gas_generator",
+        "cruciblecraft:bronze_steam_engine"
+      ]
+    },
+    "profiles": {
+      "cruciblecraft:bronze_boiler": {
+        "block_field": "BRONZE_BOILER",
+        "block_tag": "minecraft:mineable/pickaxe",
+        "item_field": "BRONZE_BOILER",
+        "lang_key": "block.cruciblecraft.bronze_boiler",
+        "languages": [
+          "en_us",
+          "zh_cn"
+        ],
+        "paths": {
+          "block_model": "src/main/resources/assets/cruciblecraft/models/block/bronze_boiler.json",
+          "blockstate": "src/main/resources/assets/cruciblecraft/blockstates/bronze_boiler.json",
+          "item_model": "src/main/resources/assets/cruciblecraft/models/item/bronze_boiler.json",
+          "loot": "src/main/resources/data/cruciblecraft/loot_table/blocks/bronze_boiler.json"
+        },
+        "result": "cruciblecraft:bronze_boiler"
+      },
+      "cruciblecraft:bronze_dynamo": {
+        "block_field": "BRONZE_DYNAMO",
+        "block_tag": "minecraft:mineable/pickaxe",
+        "item_field": "BRONZE_DYNAMO",
+        "lang_key": "block.cruciblecraft.bronze_dynamo",
+        "languages": [
+          "en_us",
+          "zh_cn"
+        ],
+        "paths": {
+          "block_model": "src/main/resources/assets/cruciblecraft/models/block/bronze_dynamo.json",
+          "blockstate": "src/main/resources/assets/cruciblecraft/blockstates/bronze_dynamo.json",
+          "item_model": "src/main/resources/assets/cruciblecraft/models/item/bronze_dynamo.json",
+          "loot": "src/main/resources/data/cruciblecraft/loot_table/blocks/bronze_dynamo.json"
+        },
+        "result": "cruciblecraft:bronze_dynamo"
+      },
+      "cruciblecraft:bronze_firebox": {
+        "block_field": "FIREBOX",
+        "block_tag": "minecraft:mineable/pickaxe",
+        "item_field": "FIREBOX",
+        "lang_key": "block.cruciblecraft.firebox",
+        "languages": [
+          "en_us",
+          "zh_cn"
+        ],
+        "paths": {
+          "block_model": "src/generated/resources/assets/cruciblecraft/models/block/firebox.json",
+          "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/firebox.json",
+          "item_model": "src/generated/resources/assets/cruciblecraft/models/item/firebox.json",
+          "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/firebox.json"
+        },
+        "result": "cruciblecraft:firebox"
+      },
+      "cruciblecraft:bronze_fuel_engine": {
+        "block_field": "FUEL_ENGINE",
+        "block_tag": "minecraft:mineable/pickaxe",
+        "item_field": "FUEL_ENGINE",
+        "lang_key": "block.cruciblecraft.fuel_engine",
+        "languages": [
+          "en_us",
+          "zh_cn"
+        ],
+        "paths": {
+          "block_model": "src/generated/resources/assets/cruciblecraft/models/block/fuel_engine.json",
+          "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/fuel_engine.json",
+          "item_model": "src/generated/resources/assets/cruciblecraft/models/item/fuel_engine.json",
+          "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/fuel_engine.json"
+        },
+        "result": "cruciblecraft:fuel_engine"
+      },
+      "cruciblecraft:bronze_gas_generator": {
+        "block_field": "BURNING_GAS_GENERATOR",
+        "block_tag": "minecraft:mineable/pickaxe",
+        "item_field": "BURNING_GAS_GENERATOR",
+        "lang_key": "block.cruciblecraft.burning_gas_generator",
+        "languages": [
+          "en_us",
+          "zh_cn"
+        ],
+        "paths": {
+          "block_model": "src/generated/resources/assets/cruciblecraft/models/block/burning_gas_generator.json",
+          "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/burning_gas_generator.json",
+          "item_model": "src/generated/resources/assets/cruciblecraft/models/item/burning_gas_generator.json",
+          "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/burning_gas_generator.json"
+        },
+        "result": "cruciblecraft:burning_gas_generator"
+      },
+      "cruciblecraft:bronze_steam_engine": {
+        "block_field": "BRONZE_STEAM_ENGINE",
+        "block_tag": "minecraft:mineable/pickaxe",
+        "item_field": "BRONZE_STEAM_ENGINE",
+        "lang_key": "block.cruciblecraft.bronze_steam_engine",
+        "languages": [
+          "en_us",
+          "zh_cn"
+        ],
+        "paths": {
+          "block_model": "src/main/resources/assets/cruciblecraft/models/block/bronze_steam_engine.json",
+          "blockstate": "src/main/resources/assets/cruciblecraft/blockstates/bronze_steam_engine.json",
+          "item_model": "src/main/resources/assets/cruciblecraft/models/item/bronze_steam_engine.json",
+          "loot": "src/main/resources/data/cruciblecraft/loot_table/blocks/bronze_steam_engine.json"
+        },
+        "result": "cruciblecraft:bronze_steam_engine"
+      }
+    },
+    "status": "BIDIRECTIONAL_CLOSURE"
+  },
+  "schema_version": 1,
+  "source_declarations": [
+    {
+      "classification": "registered_survival_source",
+      "inputs": [],
+      "item": "cruciblecraft:bronze/ingot",
+      "producer": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "minecraft_survival_source",
+      "inputs": [],
+      "item": "minecraft:brick",
+      "producer": "minecraft",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "minecraft_survival_source",
+      "inputs": [],
+      "item": "minecraft:bucket",
+      "producer": "minecraft",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "minecraft_survival_source",
+      "inputs": [],
+      "item": "minecraft:clay_ball",
+      "producer": "minecraft",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "minecraft_survival_source",
+      "inputs": [],
+      "item": "minecraft:copper_ingot",
+      "producer": "minecraft",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "minecraft_survival_source",
+      "inputs": [],
+      "item": "minecraft:furnace",
+      "producer": "minecraft",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "minecraft_survival_source",
+      "inputs": [],
+      "item": "minecraft:piston",
+      "producer": "minecraft",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "minecraft_survival_source",
+      "inputs": [],
+      "item": "minecraft:redstone_block",
+      "producer": "minecraft",
+      "reachable": true,
+      "registered": true
+    },
+    {
+      "classification": "minecraft_survival_source",
+      "inputs": [],
+      "item": "minecraft:water_bucket",
+      "producer": "minecraft",
+      "reachable": true,
+      "registered": true
+    }
+  ],
+  "status": "T18D_CONVERTER_ACQUISITION_READY",
+  "unreachable": []
+}

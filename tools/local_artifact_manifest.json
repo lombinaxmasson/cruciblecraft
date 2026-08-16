@@ -24,8 +24,8 @@
       "id": "gt6_recipe_normalized_reference",
       "kind": "normalized_cache",
       "path": "tools/gt6_recipe_normalized_reference.json",
-      "bytes": 129927378,
-      "sha256": "84f90e5a5b6c70246e758f4063879ec23ce8e2ed7d8bb08ec59e2b26d60a4985",
+      "bytes": 129927377,
+      "sha256": "9cc36733316182976726cd9842f62ba73f2befabe2023eec86b2737f179faef8",
       "source": "Authoritative local gt6_dump/gt6_recipe_dump normalized with tools/compare_gt6_recipes.py",
       "rebuild_command": "python tools/compare_gt6_recipes.py --write-reference"
     },
@@ -58,6 +58,13 @@
       "path": "build/gt6-machine-crafting-source",
       "source": "Fixed GT6 crafting-machine source replay cache",
       "rebuild_command": "python tools/build_machine_crafting_readiness.py --fetch-source"
+    },
+    {
+      "id": "gt6_process_evidence_source",
+      "kind": "fetched_source_tree",
+      "path": "gt6_code",
+      "source": "Fixed GT6 source files referenced by process evidence (compare_gt6_recipes.py). Full-replay only; ordinary CI uses committed compact evidence (tools/gt6_process_expectations.json) and SKIPs missing sources.",
+      "rebuild_command": "Clone the fixed GT6 repository and place under gt6_code/"
     }
   ],
   "committed_compact_evidence": [
@@ -76,6 +83,22 @@
     "tools/t12a_machine_readiness.json",
     "tools/t13_denominators/prefixes.json",
     "tools/t13_denominators/itemgenerator_domains.json",
+    "tools/t20_gt6_worldgen_source.json",
+    "tools/t20_worldgen_expected.json",
+    "tools/t20_readiness.json",
+    "tools/t21_chemical_axis.json",
+    "tools/t21_composition_expected.json",
+    "tools/t21_composition_expansion.json",
+    "tools/t21_source_denominator.json",
+    "tools/gt6_mixer_templates_index.json",
+    "tools/gt6_mixer_templates_membership.json",
+    "tools/gt6_mixer_templates_report.json",
+    "tools/mixer_groups.json",
+    "tools/t21_template_denominator.json",
+    "tools/t21_mixer_gunpowder_expected.json",
+    "tools/t21_mixer_gunpowder_manifest.json",
+    "tools/t21_load_projection.json",
+    "tools/t21_readiness.json",
     "tools/verification_builder_policy.json",
     "tools/full_verification_report.json"
   ]

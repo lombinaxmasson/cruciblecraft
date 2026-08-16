@@ -268,6 +268,9 @@ class DumpSchemaTest(unittest.TestCase):
         ))
 
     def test_reference_manifest_rejects_alias_tampering(self):
+        # artifact_hashes records self/upstream integrity only; downstream
+        # consumers (#3 ore chain, #5 form gate) pin the import's outputs as
+        # forward edges, so their artifacts are deliberately absent here.
         required_names = {
             MODULE.NORMALIZED_MATERIALS.name,
             MODULE.NORMALIZED_PREFIXES.name,
@@ -282,11 +285,7 @@ class DumpSchemaTest(unittest.TestCase):
             MODULE.gt6_l3_materials.GENERATION_BITS_PATH.name,
             MODULE.gt6_l3_materials.MAPPING_PATH.name,
             MODULE.gt6_l3_materials.OUT.name,
-            MODULE.GATE_OPERANDS.name,
-            MODULE.ORE_CHAIN.name,
-            MODULE.ORE_CHAIN_OPERANDS.name,
             MODULE.REGISTRY_BUDGET.name,
-            MODULE.REGISTRATION_GATE_MANIFEST_KEY,
         }
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

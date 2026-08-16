@@ -290,7 +290,7 @@ def t16c_evidence(acquisition: dict[str, Any]) -> dict[str, Any]:
         "source_declarations": counts["source_declarations"],
         "unreachable": counts["unreachable"],
         "resource_sets_bidirectional": True,
-        "exact_legacy_tier1_migrations": 5,
+        "identity_policy": "CURRENT_OR_BLANK_ACCEPTED_OTHERWISE_QUARANTINED",
     }
 
 
@@ -433,8 +433,8 @@ def t16d_evidence(
                 "local_energy_type"
             ],
         },
-        "migration_acquisition": {
-            "exact_legacy_tier1_migrations": 5,
+        "identity_acquisition": {
+            "identity_policy": "CURRENT_ONLY_FAIL_CLOSED",
             "vanilla_crafting_rows": 15,
             "gt_recipe_rows": 0,
             "unreachable": acquisition["counts"]["unreachable"],
@@ -498,7 +498,7 @@ def build(policy: dict[str, Any] | None = None) -> dict[str, Any]:
             "emi_recipe_enumeration_equal": True,
             "logical_eager_lazy_totals_equal": True,
         },
-        "resource_acquisition_migration_gate": {
+        "resource_acquisition_identity_gate": {
             "status": "T16C_COMPLETE",
             "runtime_registrations_are_closure": True,
             "selected_variants": 15,
@@ -529,6 +529,10 @@ def build(policy: dict[str, Any] | None = None) -> dict[str, Any]:
                     if row["stage"] == stage
                 }
                 for stage in completed
+            },
+            "pending_report": {
+                **policy["refresh_policy"],
+                "pending": [],
             },
         },
     }

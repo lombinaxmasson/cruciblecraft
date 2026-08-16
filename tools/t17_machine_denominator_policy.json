@@ -11,7 +11,8 @@
     "IMPLEMENTED_T17A",
     "PREIMPLEMENTED_REFERENCE",
     "MAPPED_DEFERRED",
-    "T13_ONLY_DEFERRED"
+    "T13_ONLY_DEFERRED",
+    "CROSS_OWNER_DEFERRED"
   ],
   "heat_material_mappings": {
     "ANY.Steel": {
@@ -31,6 +32,19 @@
       "registered": true,
       "registration_path": "src/main/resources/data/cruciblecraft/materials/titanium.json",
       "acquisition_blocker": null
+    }
+  },
+  "cross_owner_dispositions": {
+    "RM.Compressor": {
+      "owner": "T16",
+      "accepted_energy": "KU",
+      "local_map": "cruciblecraft:compressor",
+      "current_local_energy_type": "ELECTRIC",
+      "source_local_energy_type": "KINETIC_PUSH",
+      "disposition": "CROSS_OWNER_DEFERRED",
+      "reason": "Compressor is a KU kind owned by T16 while the live T5 host remains explicitly ELECTRIC; the energy disposition audit records the mismatch without stealing owner scope or silently rewriting runtime semantics.",
+      "replacement_condition": "The T16 owner must approve a KU Compressor batch with adjacent-push supply, current identity, resources and acquisition evidence.",
+      "recheck_point": "Recheck in the next T16-owned KU machine batch before changing Compressor energy."
     }
   },
   "kinds": {
@@ -96,7 +110,7 @@
       "recheck_point": "Recheck when the T17 electric batch is selected.",
       "deferred_tiers": {
         "reason": "Electrolyzer Electric_T tiers 4-5 are outside T17a and have no approved acquisition closure.",
-        "replacement_condition": "Provide exact tier-4/5 materials, electrical limits, resources, migration and acquisition.",
+        "replacement_condition": "Provide exact tier-4/5 materials, electrical limits, resources, current identity and acquisition.",
         "recheck_point": "Recheck in T17b electric-machine selection."
       }
     },
@@ -144,7 +158,7 @@
       "disposition": "MAPPED_DEFERRED",
       "local_map": "cruciblecraft:mixer",
       "reason": "The local electric Mixer map exists, but T17a is the bounded HU selection and does not add Mixer tiers.",
-      "replacement_condition": "Select Mixer with exact Electric_T materials, variant migration, resources and acquisition.",
+      "replacement_condition": "Select Mixer with exact Electric_T materials, current variants, resources and acquisition.",
       "recheck_point": "Recheck in T17b electric-machine selection.",
       "deferred_tiers": {
         "reason": "Mixer Electric_T tiers 4-5 are outside T17a and cannot skip lower-tier acquisition.",
@@ -174,7 +188,7 @@
       "recheck_point": "Recheck when data-bearing crafting is selected.",
       "deferred_tiers": {
         "reason": "Electric tiers 4-5 cannot precede Printer data semantics and tiers 1-3.",
-        "replacement_condition": "Close lower tiers and data migration before higher tiers.",
+        "replacement_condition": "Close lower tiers and data semantics before higher tiers.",
         "recheck_point": "Recheck after Printer tiers 1-3."
       }
     },
@@ -196,7 +210,7 @@
       "disposition": "MAPPED_DEFERRED",
       "local_map": "cruciblecraft:sifter",
       "reason": "The local Sifter is a KU source kind; T17 Electric Sifting must not silently reuse its energy identity.",
-      "replacement_condition": "Approve a distinct electric behavior or explicit identity migration with exact Electric_T tiers.",
+      "replacement_condition": "Approve a distinct electric behavior and current identity with exact Electric_T tiers.",
       "recheck_point": "Recheck during T17 electric-machine selection.",
       "deferred_tiers": {
         "reason": "Electric Sifting tiers 4-5 are deferred with the unresolved KU/EU identity boundary.",
@@ -266,7 +280,7 @@
       "recheck_point": "Recheck at T17c resources and acquisition.",
       "deferred_tiers": {
         "reason": "Distillery Heat_T tier 4 is outside the three-tier T17a runtime.",
-        "replacement_condition": "Provide exact Tungsten Carbide mapping, migration, resources and acquisition.",
+        "replacement_condition": "Provide exact Tungsten Carbide mapping, current identity, resources and acquisition.",
         "recheck_point": "Recheck after Distillery tiers 1-3 acquisition closes."
       }
     },
@@ -280,7 +294,7 @@
       "recheck_point": "Recheck at T17c resources and acquisition.",
       "deferred_tiers": {
         "reason": "Dryer Heat_T tier 4 is outside the three-tier T17a runtime.",
-        "replacement_condition": "Provide exact Tungsten Carbide mapping, migration, resources and acquisition.",
+        "replacement_condition": "Provide exact Tungsten Carbide mapping, current identity, resources and acquisition.",
         "recheck_point": "Recheck after Dryer tiers 1-3 acquisition closes."
       }
     },
@@ -288,8 +302,10 @@
       "accepted_energy": "HU",
       "disposition": "MAPPED_DEFERRED",
       "local_map": "cruciblecraft:extruder",
+      "current_local_energy_type": "KINETIC",
+      "source_local_energy_type": "HEAT",
       "reason": "The local Extruder is a legacy kinetic tool host; T17a does not silently rewrite it to HU.",
-      "replacement_condition": "Approve HU Extruder identity migration while preserving shape tools, recipes and acquisition.",
+      "replacement_condition": "Approve HU Extruder current identity while preserving shape tools, recipes and acquisition.",
       "recheck_point": "Recheck after T17a selected HU machines stabilize.",
       "deferred_tiers": {
         "reason": "Extruder Heat_T tier 4 is deferred with the unresolved kinetic/HU behavior boundary.",
@@ -385,7 +401,7 @@
       "recheck_point": "Recheck at T17c resources and acquisition.",
       "deferred_tiers": {
         "reason": "Smelter Heat_T tier 4 is outside the three-tier T17a runtime.",
-        "replacement_condition": "Provide exact Tungsten Carbide mapping, migration, resources and acquisition.",
+        "replacement_condition": "Provide exact Tungsten Carbide mapping, current identity, resources and acquisition.",
         "recheck_point": "Recheck after Smelter tiers 1-3 acquisition closes."
       }
     },

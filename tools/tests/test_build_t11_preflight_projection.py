@@ -33,7 +33,7 @@ class T11PreflightProjectionTest(unittest.TestCase):
         routes = self.document["selected_routes"]
         self.assertEqual(872, routes["crude_oil_distillation"]["recipe_index"])
         self.assertEqual(14, routes["fuel_oil_engine"]["recipe_index"])
-        self.assertEqual(2, routes["methane_gas_fuel"]["recipe_index"])
+        self.assertEqual(20, routes["methane_gas_fuel"]["recipe_index"])
         self.assertEqual(
             553, routes["natural_gas_to_methane"]["recipe_index"]
         )
@@ -94,7 +94,7 @@ class T11PreflightProjectionTest(unittest.TestCase):
         expected = {
             "natural_gas_to_methane": (10_236, 553),
             "fuel_oil_engine": (21, 14),
-            "methane_gas_fuel": (9, 2),
+            "methane_gas_fuel": (49, 20),
         }
         for route, (source_rows, selected_index) in expected.items():
             route_ledger = self.document["source_map_ledgers"][route]
@@ -152,8 +152,17 @@ class T11PreflightProjectionTest(unittest.TestCase):
         )
         bridge = closure["source_fluid_bridges"]["liquid_medium_oil"]
         self.assertEqual("DESIGN_POLICY", bridge["status"])
-        self.assertEqual("UNVERIFIED", bridge["gt6_equivalence"])
-        self.assertEqual("O-37", bridge["open_item"])
+        self.assertEqual(
+            "NO_DIRECT_BINDING_AT_FIXED_REVISION",
+            bridge["gt6_equivalence"],
+        )
+        self.assertEqual("O-37", bridge["closed_item"])
+        self.assertEqual(
+            "O37_CLOSED_PERMANENT_DESIGN_POLICY",
+            bridge["closure"],
+        )
+        self.assertTrue(bridge["permanent"])
+        self.assertEqual(0, bridge["publication_delta"])
         self.assertFalse(
             closure["coproducts"]["cruciblecraft:lubricant"][
                 "fake_voiding_allowed"
@@ -177,7 +186,7 @@ class T11PreflightProjectionTest(unittest.TestCase):
         self.assertEqual(18_871, load["current"]["published_recipes"])
         self.assertEqual(18_875, load["projected"]["published_recipes"])
         self.assertEqual(
-            3_210, load["projected"]["datapack_recipe_entries"]
+            3_243, load["projected"]["datapack_recipe_entries"]
         )
         self.assertEqual(
             154, load["projected"]["t5_plus_t11_chemical_recipes"]
@@ -189,6 +198,17 @@ class T11PreflightProjectionTest(unittest.TestCase):
         self.assertGreaterEqual(
             load["projected"]["compression_ratio"],
             load["budgets"]["minimum_compression_ratio"],
+        )
+        runtime = self.document["runtime_policy"]
+        self.assertEqual(
+            "SOURCE_MATERIAL_LAYER_ONLY",
+            runtime["raw_oil_identity"]["material_9852_role"],
+        )
+        self.assertEqual(
+            0,
+            runtime["publication_policy"][
+                "t18_o37_fluid_registration_delta"
+            ],
         )
         self.assertTrue(all(
             value

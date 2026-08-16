@@ -354,9 +354,31 @@ class OreResourceTest {
         Path generatedRecipes = GENERATED_RESOURCES.resolve("data/cruciblecraft/recipe");
         Path generatedAdvancements = GENERATED_RESOURCES.resolve(
                 "data/cruciblecraft/advancement/recipes");
-        // T17 adds six net-new high-tier machine crafting files; its three
-        // tier-one recipes reuse existing generated ids.
-        assertEquals(876, countRegularFiles(generatedRecipes));
+        Set<String> generatedRecipeSet;
+        try (var paths = Files.walk(generatedRecipes)) {
+            generatedRecipeSet = paths
+                    .filter(Files::isRegularFile)
+                    .map(path -> generatedRecipes.relativize(path)
+                            .toString().replace('\\', '/'))
+                    .collect(Collectors.toUnmodifiableSet());
+        }
+        Set<String> t19CoverRecipes = Set.of(
+                "conveyor_cover.json",
+                "pressure_valve_cover.json",
+                "retriever_item_cover.json",
+                "robot_arm_cover.json",
+                "selector_manual_cover.json");
+        Set<String> t19RecipeSet = generatedRecipeSet.stream()
+                .filter(path -> path.startsWith("pipe_acquisition/")
+                        || t19CoverRecipes.contains(path))
+                .collect(Collectors.toUnmodifiableSet());
+        // Keep the pre-T19 actual set distinct and derive the new total from
+        // that set plus the exact 5-cover + 25-pipe generated acquisition set.
+        assertEquals(30, t19RecipeSet.size());
+        assertEquals(877, generatedRecipeSet.size() - t19RecipeSet.size());
+        assertEquals(
+                877 + t19RecipeSet.size(),
+                generatedRecipeSet.size());
         assertEquals(48, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
                 "data/cruciblecraft/recipe")));
         assertEquals(0, countRegularFiles(generatedAdvancements));

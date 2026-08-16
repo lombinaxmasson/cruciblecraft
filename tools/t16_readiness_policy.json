@@ -7,6 +7,11 @@
     "complete_stage_status": "COMPLETE",
     "pending_stage_status": "PENDING"
   },
+  "refresh_policy": {
+    "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+    "this_refresh_final_closure_attempted": true,
+    "evidence": "tools/full_verification_report.json"
+  },
   "dependencies": {
     "T15": {
       "path": "tools/t15_readiness.json",
@@ -33,9 +38,9 @@
       "acceptance": "Bind Press bronze, steel and titanium to the exact KU source tiers, reuse the Press behavior/map/menu host, and verify execution plus adjacent steam and controlled higher-tier supply."
     },
     "T16c": {
-      "name": "resources_acquisition_and_migration",
+      "name": "resources_acquisition_and_identity",
       "status": "COMPLETE",
-      "acceptance": "Generate real-texture models, real en_us/zh_cn names, loot/tags and source-projected crafting for all 15 selected variants; prove operand closure and exact legacy tier-1 identity migrations while preserving recoverable machine state."
+      "acceptance": "Generate real-texture models, real en_us/zh_cn names, loot/tags and source-projected crafting for all 15 selected variants; prove operand closure plus current-only identity acceptance and fail-closed mismatch handling while preserving recoverable machine state."
     },
     "T16d": {
       "name": "zero_publication_and_full_verification",
@@ -80,6 +85,8 @@
       "stage": "T16a",
       "path": "src/main/resources/data/cruciblecraft/machine_tiers.json",
       "required_tokens": [
+        "\"schemaVersion\": 2",
+        "\"tierBand\": \"cruciblecraft:ru_tier_2\"",
         "\"cruciblecraft:steel_lathe\"",
         "\"cruciblecraft:titanium_rollingmill\"",
         "\"cruciblecraft:steel_wiremill\"",
@@ -93,6 +100,8 @@
       "stage": "T16a",
       "path": "src/main/java/com/masson/cruciblecraft/machine/processing/MachineTierCatalog.java",
       "required_tokens": [
+        "tierBand",
+        "TierBandCapabilities",
         "sourceId",
         "sourceTier",
         "overclockPolicy",
@@ -154,6 +163,8 @@
       "stage": "T16a",
       "path": "src/test/resources/t16_machine_tier_expected.json",
       "required_tokens": [
+        "\"schema_version\": 2",
+        "\"tier_band\"",
         "\"preserved_pre_t16\"",
         "\"t16a_selected\"",
         "\"controller_profile\"",
@@ -205,6 +216,7 @@
       "stage": "T16b",
       "path": "src/main/resources/data/cruciblecraft/machine_tiers.json",
       "required_tokens": [
+        "\"tierBand\": \"cruciblecraft:ku_tier_3\"",
         "\"cruciblecraft:press\"",
         "\"cruciblecraft:steel_press\"",
         "\"cruciblecraft:titanium_press\"",
@@ -385,21 +397,22 @@
         "assertEquals(15, expected.size())"
       ]
     },
-    "t16c_identity_migrations": {
+    "t16c_identity_policy": {
       "stage": "T16c",
-      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineIdentityMigrations.java",
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineIdentities.java",
       "required_tokens": [
-        "T16_LEGACY_TIER1_MIGRATIONS",
-        "legacyIdentityOf",
-        "t16LegacyTier1Migration(\"press\")"
+        "MachineIdentityPolicy.resolve(",
+        "ProcessingMachineState state)",
+        "MachineVariant variant)"
       ]
     },
     "t16c_identity_policy_junit": {
       "stage": "T16c",
       "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineIdentityPolicyTest.java",
       "required_tokens": [
-        "fiveLegacyTierOneTuplesAreDerivedExactlyAndNearMissesQuarantine",
-        "MachineIdentityPolicy.Resolution.MIGRATED",
+        "blankAndCurrentIdentitiesAreAcceptedAsCurrent",
+        "kindTierMaterialAndEnergyMismatchesAllQuarantine",
+        "MachineIdentityPolicy.Resolution.ACCEPTED",
         "MachineIdentityPolicy.Resolution.QUARANTINED"
       ]
     },
@@ -407,8 +420,8 @@
       "stage": "T16c",
       "path": "src/test/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineIdentityPersistenceTest.java",
       "required_tokens": [
-        "representativeT16LegacyLathePreservesInventoryAndProgress",
-        "legacyIdentityOf",
+        "blankIdentityAdoptsCurrentWithoutQuarantine",
+        "currentIdentityReloadResumesAndPreservesState",
         "assertEquals(9, restored.progress())"
       ]
     },
@@ -417,7 +430,7 @@
       "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
       "required_tokens": [
         "t16SelectedMachineRecipesExecuteFromLiveRecipeManager",
-        "exactLegacyLatheIdentityMigratesAcrossNbtReload",
+        "tierProfileIdentityIsQuarantinedAcrossNbtReload",
         "cases.size() == 15"
       ]
     },
@@ -542,7 +555,7 @@
         "\"t16_load_projection_input.json\"",
         "\"t16_load_projection.json\"",
         "derived_t16_readiness_acceptance",
-        "\"t16_readiness_result\": \"PASS\""
+        "\"tools/build_t16_readiness.py\", \"T16 readiness gate\""
       ]
     },
     "t16d_third_phase_status": {
@@ -552,8 +565,7 @@
         "T16_READY",
         "selected 5",
         "deferred 13",
-        "publication delta = 0",
-        "当前入口 **T18"
+        "publication delta = 0"
       ]
     },
     "t16d_overall_status": {
@@ -561,7 +573,6 @@
       "path": "CrucibleCraft-总体规划.md",
       "required_tokens": [
         "T16_READY",
-        "当前转入 T18",
         "selected 5",
         "deferred 13"
       ]
@@ -571,7 +582,7 @@
       "path": "README.md",
       "required_tokens": [
         "T16_READY",
-        "T18 steam, fuel, and energy"
+        "T19 is now `T19_READY`"
       ]
     },
     "t16d_tools_readme": {
@@ -603,7 +614,7 @@
         "t16bSteamEnginePowersPressThroughKu",
         "t16bHigherTierControlledInjection",
         "t16SelectedMachineRecipesExecuteFromLiveRecipeManager",
-        "exactLegacyLatheIdentityMigratesAcrossNbtReload",
+        "tierProfileIdentityIsQuarantinedAcrossNbtReload",
         "t16dRecipePublicationBaselineRemainsStable"
       ]
     }

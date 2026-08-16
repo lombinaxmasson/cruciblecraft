@@ -23,15 +23,15 @@
   },
   "currentness": {
     "owned_inputs": {
-      "src/main/java/com/masson/cruciblecraft/content/blockentity/MultiblockPortBlockEntity.java": "5e3fea8eed0322514266cfb7e5c884a22b27768464d2ed7ed1d4f984e8b30a43",
-      "src/main/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineBlockEntity.java": "1be3a22a53dfee3a04eda7d55fc8ad7757ac16999c686847410eca7dbe9b0fb6",
+      "src/main/java/com/masson/cruciblecraft/content/blockentity/MultiblockPortBlockEntity.java": "7d17189637c5b60373a918da15031fb91b16a9857b63edfd999739082c5c371f",
+      "src/main/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineBlockEntity.java": "fe2adaf007f57a30e870ba24e56d78272a5f40c83856d2d0169dd1c5c4a2643a",
       "src/main/java/com/masson/cruciblecraft/recipe/gt/CapacityMatcher.java": "d75db571d60b708d070a132c730b2f26e05ae0a70e9b21e9ad4b39def2e11e35",
-      "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java": "a27476dbc406dbb874590cc8689cd31ab01812a7660a4a9e91225536845694e8",
+      "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java": "bc461a2a2212a9da11bb14d4d9e5e5f7abb1a04f63cb56ed705577dc3a80a370",
       "src/main/resources/data/cruciblecraft/multiblock_structures/large_centrifuge.json": "b1e2799d9bf6eddea50c07b4deea1c51ffeec06fd947a2aad30ab6029232b21d",
       "src/test/java/com/masson/cruciblecraft/recipe/gt/CapacityMatcherBenchmarkHarness.java": "37e9b2676be7e6c37258d9350bbcdb203e7fadd10ca12a8a80b839968e954f27",
       "tools/build_t15_matcher_boundary.py": "5169054c64e3d4566e11e489682393305b16fff93bddbf9b5b4acdea95a16f6a",
       "tools/t12_capacity_matcher_benchmark.json": "5d8cf9583bb39df1be5fd2baf7b2f26e9cbc33c4025661114f3bcbe62a18d98b",
-      "tools/t12_machine_policy.json": "a790f443d4898cf3599e306530435675e9b9d4abf89ac5b0d6214e6da661de3f"
+      "tools/t12_machine_policy.json": "c33d281d301327a5344b69b187ac56b657ccae635d19036b2da79212ce3f7d29"
     }
   },
   "historical_correction_audit": {
@@ -42,7 +42,7 @@
     "historical_status": "SUPERSEDED_INCORRECT_EXPECTATION",
     "owner": "T15e",
     "policy": "tools/t12_machine_policy.json",
-    "policy_sha256": "a790f443d4898cf3599e306530435675e9b9d4abf89ac5b0d6214e6da661de3f"
+    "policy_sha256": "c33d281d301327a5344b69b187ac56b657ccae635d19036b2da79212ce3f7d29"
   },
   "host_layout": {
     "fluid_input_capacity": 4000,
@@ -54,7 +54,7 @@
     "item_outputs": 6,
     "item_slots": 7,
     "path": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
-    "sha256": "a27476dbc406dbb874590cc8689cd31ab01812a7660a4a9e91225536845694e8"
+    "sha256": "bc461a2a2212a9da11bb14d4d9e5e5f7abb1a04f63cb56ed705577dc3a80a370"
   },
   "matcher_boundary": {
     "current_item_supply_count": 1,
@@ -90,7 +90,7 @@
         "host.tanks().size()",
         "host.tanks().get(tank).getFluid().copy()"
       ],
-      "sha256": "5e3fea8eed0322514266cfb7e5c884a22b27768464d2ed7ed1d4f984e8b30a43"
+      "sha256": "7d17189637c5b60373a918da15031fb91b16a9857b63edfd999739082c5c371f"
     },
     "processing_host": {
       "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineBlockEntity.java",
@@ -99,7 +99,7 @@
         "spec.fluids().inputs().stream().map(",
         "recipeCache.find(itemInputs, fluidInputs)"
       ],
-      "sha256": "1be3a22a53dfee3a04eda7d55fc8ad7757ac16999c686847410eca7dbe9b0fb6"
+      "sha256": "fe2adaf007f57a30e870ba24e56d78272a5f40c83856d2d0169dd1c5c4a2643a"
     }
   },
   "status": "T15E_MATCHER_BOUNDARY_READY"

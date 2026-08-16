@@ -27,6 +27,18 @@ REGISTRATION_GATE = (
     ROOT
     / "src/main/resources/data/cruciblecraft/material_registration_gate.json"
 )
+# The gate (#5) is a pure projection of these <=#4 sources; the closure pins
+# them instead of the gate's own bytes so the builder graph stays acyclic.
+REGISTRATION_GATE_SOURCES = {
+    "l1b_selected": TOOLS / "gt6_l1b_selected.json",
+    "cross_reference": TOOLS / "gt6_oredict_cross_reference.json",
+    "prefix_mapping": TOOLS / "gt6_prefix_mapping.json",
+    "material_activation_policy": TOOLS / "gt6_material_activation_policy.json",
+    "ore_chain_operands": TOOLS / "gt6_ore_chain_operands.json",
+    "acceptance_form_corrections": (
+        TOOLS / "component_rule_sources" / "acceptance_form_corrections.json"
+    ),
+}
 VEIN_ROOT = ROOT / "src/main/resources/data/cruciblecraft/veins"
 L3_PLAN = TOOLS / "gt6_l3_prefix_plan.json"
 T5_CHEMICAL_POLICY = TOOLS / "t5_chemical_policy.json"
@@ -575,12 +587,22 @@ def build_document() -> dict[str, Any]:
                 ),
                 "sha256": directory_sha256(MATERIAL_ROOT),
             },
+            "material_registration_sources": {
+                name: {
+                    "path": path.relative_to(ROOT).as_posix(),
+                    "sha256": sha256(path),
+                }
+                for name, path in REGISTRATION_GATE_SOURCES.items()
+            },
             "material_registration_gate": {
                 "path": (
                     "src/main/resources/data/cruciblecraft/"
                     "material_registration_gate.json"
                 ),
-                "sha256": sha256(REGISTRATION_GATE),
+                "note": (
+                    "informational; gate is a pure projection of "
+                    "material_registration_sources"
+                ),
             },
             "factual_form_plan": {
                 "path": "tools/gt6_l3_prefix_plan.json",
@@ -631,7 +653,7 @@ def main() -> int:
         return 0
     expected = stable_json(document, compact=True)
     if args.write:
-        OUTPUT.write_text(expected, encoding="utf-8")
+        OUTPUT.write_text(expected, encoding="utf-8", newline="\n")
         print(f"Wrote {OUTPUT}")
         return 0
     if not OUTPUT.is_file() or OUTPUT.read_text(encoding="utf-8") != expected:

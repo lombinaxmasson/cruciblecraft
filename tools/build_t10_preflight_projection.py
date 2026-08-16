@@ -102,6 +102,9 @@ T16_RECIPE_PATHS = {
     "data/cruciblecraft/recipe/machines/steel_press.json",
     "data/cruciblecraft/recipe/machines/titanium_press.json",
 }
+T18_RECIPE_PATHS = {
+    "data/cruciblecraft/recipe/machines/firebox.json",
+}
 PINNED_SOURCE_REVISION = "3703e40308c8c030763fd6297dea8b210d2a77b1"
 PINNED_OP_BLOB = "f915645f3009d3dbe61abbafe77791000be32747"
 PINNED_UT_BLOB = "e1a89b2c04e1183fda13a490c5a035512acf7f14"
@@ -159,6 +162,7 @@ def datapack_recipe_entries() -> dict[str, Path]:
                 T11_MACHINE_RECIPE_PATHS
                 | T12_RECIPE_PATHS
                 | T16_RECIPE_PATHS
+                | T18_RECIPE_PATHS
             ):
                 continue
             content = path.read_bytes()

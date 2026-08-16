@@ -1,0 +1,5328 @@
+{
+  "byproduct_only_debt": {
+    "added_to_candidate_denominator": 0,
+    "outside_candidates": 50,
+    "overlap_with_candidates": 60,
+    "rows": 110
+  },
+  "candidates": [
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "actinium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 20,
+      "composition": {
+        "alumina": 5,
+        "iron": 3,
+        "oxygen": 3,
+        "silicon_dioxide": 9
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "almandine",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/almandine"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 7,
+      "composition": {
+        "aluminium": 1,
+        "hydrogen": 3,
+        "oxygen": 3
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "aluminium_hydroxide",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.drying"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/drying/aluminium_hydroxide"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 61,
+      "composition": {
+        "alumina": 159503606,
+        "oxygen": 95702163,
+        "potassium_hydroxide": 63801442,
+        "sulfur_trioxide": 170137180,
+        "water": 159503606
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "alunite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/alunite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "amber",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.autoclave"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/autoclave/amber"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "ambrosium",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.autoclave"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/autoclave/ambrosium"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "americium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 5,
+      "composition": {
+        "iron": 1,
+        "silicon_dioxide": 4
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "amethyst",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/amethyst"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 5,
+      "composition": {
+        "iron": 1,
+        "magic": 1,
+        "silicon_dioxide": 4
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "amethyst_ender",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/amethyst_ender"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 20,
+      "composition": {
+        "calcium": 3,
+        "iron": 2,
+        "oxygen": 6,
+        "silicon_dioxide": 9
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "andradite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/andradite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 1,
+      "composition": {
+        "carbon": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "anthracite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/anthracite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 6,
+      "composition": {
+        "carbon": 1,
+        "cerium": 1,
+        "fluorine": 1,
+        "oxygen": 3
+      },
+      "implementation": "SOURCE_ELIGIBLE_NOT_PUBLISHED",
+      "material": "bastnasite",
+      "no_decompose": false,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 5,
+      "composition": {
+        "alumina": 2,
+        "ilmenite": 2,
+        "rutile": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "bauxite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.autoclave"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/autoclave/bauxite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "berkelium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 45,
+      "composition": {
+        "alumina": 15,
+        "fluorine": 4,
+        "magnesium": 6,
+        "potassium": 2,
+        "silicon_dioxide": 18
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "biotite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/biotite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 3,
+      "composition": {
+        "magnesium_chloride": 1,
+        "water": 2
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "bischofite",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.drying"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/drying/bischofite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "carbon": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "blue_diamond",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/blue_diamond"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 13,
+      "composition": {
+        "alumina": 5,
+        "fluorine": 2,
+        "silicon_dioxide": 3,
+        "water": 3
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "blue_topaz",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/blue_topaz"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "bohrium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 8,
+      "composition": {
+        "calcium": 1
+      },
+      "implementation": "SOURCE_ELIGIBLE_NOT_PUBLISHED",
+      "material": "bone",
+      "no_decompose": false,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 43,
+      "composition": {
+        "boron": 30169674,
+        "oxygen": 52796930,
+        "sodium": 15084837,
+        "water": 226272558
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "borax",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/borax"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 4,
+      "composition": {
+        "hydrogen": 1,
+        "iron": 1,
+        "oxygen": 2
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "brown_limonite",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/brown_limonite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "calcium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "Factual components, DECOMPOSABLE, and commonDivider <= 64 are present, but neither source route tag selects centrifuge or electrolyzer. no_decompose is not used as a route substitute.",
+        "reason_code": "NO_CENTRIFUGE_OR_ELECTROLYZER_TAG",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": 3,
+      "composition": {
+        "calcium": 1,
+        "chlorine": 2
+      },
+      "implementation": "BLOCKED",
+      "material": "calcium_chloride",
+      "no_decompose": false,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "californium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "carbon14",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.smelter"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/smelter/carbon14"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "carminite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.autoclave"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/autoclave/carminite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 6,
+      "composition": {
+        "oxygen": 4,
+        "strontium": 1,
+        "sulfur": 1
+      },
+      "implementation": "SOURCE_ELIGIBLE_NOT_PUBLISHED",
+      "material": "celestine",
+      "no_decompose": false,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "silicon_dioxide": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "certus_quartz",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/certus_quartz"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 1,
+      "composition": {
+        "calcite": 1
+      },
+      "implementation": "SOURCE_ELIGIBLE_NOT_PUBLISHED",
+      "material": "chalk",
+      "no_decompose": false,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 1,
+      "composition": {
+        "carbon": 1
+      },
+      "implementation": "SELECTED_T21",
+      "material": "charcoal",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/charcoal"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "silicon_dioxide": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "charged_certus_quartz",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/charged_certus_quartz"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "chimerite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.compressor"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/compressor/chimerite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "chromium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 18,
+      "composition": {
+        "clay": 18,
+        "lithium_hydroxide": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "clay_brown",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/clay_brown"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 18,
+      "composition": {
+        "clay": 18,
+        "potassium_hydroxide": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "clay_red",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/clay_red"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 1,
+      "composition": {
+        "carbon": 1
+      },
+      "implementation": "SELECTED_T21",
+      "material": "coal",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/coal"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 2,
+      "composition": {
+        "columbite": 1,
+        "tantalite": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5",
+      "material": "coltan",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/centrifuge/coltan"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 8,
+      "composition": {
+        "niobium_pentoxide": 7,
+        "pyrolusite": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5",
+      "material": "columbite",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/columbite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "continuum",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.autoclave"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/autoclave/continuum"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "copernicium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "craponite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.autoclave"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/autoclave/craponite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "crude_oil",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "Factual components, DECOMPOSABLE, and commonDivider <= 64 are present, but neither source route tag selects centrifuge or electrolyzer. no_decompose is not used as a route substitute.",
+        "reason_code": "NO_CENTRIFUGE_OR_ELECTROLYZER_TAG",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": 10,
+      "composition": {
+        "aluminium": 1,
+        "fluorine": 6,
+        "sodium": 3
+      },
+      "implementation": "BLOCKED",
+      "material": "cryolite",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "curium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "darmstadtium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "carbon": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "diamond",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/diamond"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "carbon": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "diamond_industrial",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/diamond_industrial"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 10,
+      "composition": {
+        "flint": 8,
+        "hematite": 1,
+        "sapphire": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "diatomite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/centrifuge/diatomite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 5,
+      "composition": {
+        "duranium_elemental": 2,
+        "oxygen": 3
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "diduranium_trioxide",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/diduranium_trioxide"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 8,
+      "composition": {
+        "copper": 1,
+        "oxygen": 1,
+        "silicon_dioxide": 3,
+        "water": 3
+      },
+      "implementation": "PREIMPLEMENTED_T5",
+      "material": "dioptase",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/dioptase"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 2,
+      "composition": {
+        "calcite": 1,
+        "magnesium_carbonate": 1
+      },
+      "implementation": "SOURCE_ELIGIBLE_NOT_PUBLISHED",
+      "material": "dolomite",
+      "no_decompose": false,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge"
+      ],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "dominican_amber",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.autoclave"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/autoclave/dominican_amber"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "dubnium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "duranium_elemental",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.smelter"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/smelter/duranium_elemental"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 7,
+      "composition": {
+        "astatine": 6,
+        "duranium_elemental": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "duranium_hexaastatide",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/duranium_hexaastatide"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 7,
+      "composition": {
+        "bromine": 6,
+        "duranium_elemental": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "duranium_hexabromide",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/duranium_hexabromide"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 7,
+      "composition": {
+        "chlorine": 6,
+        "duranium_elemental": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "duranium_hexachloride",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/duranium_hexachloride"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 7,
+      "composition": {
+        "duranium_elemental": 1,
+        "fluorine": 6
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "duranium_hexafluoride",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/duranium_hexafluoride"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 7,
+      "composition": {
+        "duranium_elemental": 1,
+        "iodine": 6
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "duranium_hexaiodide",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/duranium_hexaiodide"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "dysprosium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "einsteinium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 2,
+      "composition": {
+        "gold": 1,
+        "silver": 1
+      },
+      "implementation": "SOURCE_ELIGIBLE_NOT_PUBLISHED",
+      "material": "electrum",
+      "no_decompose": false,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge"
+      ],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "carbon": 2,
+        "magic": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "elven_dragonstone",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/elven_dragonstone"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "emery",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 9,
+      "composition": {
+        "nikolite": 5,
+        "sapphire": 4
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "energium_cyan",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/centrifuge/energium_cyan"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "erbium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "europium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "farnsium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 6,
+      "composition": {
+        "iron": 1,
+        "oxygen": 1,
+        "tungsten_trioxide": 4
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "ferberite",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.bath"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/bath/ferberite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "fermium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "firestone",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.autoclave"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/autoclave/firestone"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "flerovium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 2,
+      "composition": {
+        "redstone": 1,
+        "silicon_dioxide": 2
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "fluix",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/fluix"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "forcicium",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.autoclave"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/autoclave/forcicium"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "forcillium",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.autoclave"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/autoclave/forcillium"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "francium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "gadolinium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 6,
+      "composition": {
+        "almandine": 1,
+        "andradite": 1,
+        "grossular": 1,
+        "pyrope": 1,
+        "spessartine": 1,
+        "uvarovite": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5",
+      "material": "garnet_sand",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/centrifuge/garnet_sand"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 1,
+      "composition": {
+        "nickel": 1,
+        "oxygen": 1
+      },
+      "implementation": "SOURCE_ELIGIBLE_NOT_PUBLISHED",
+      "material": "garnierite",
+      "no_decompose": false,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 1,
+      "composition": {
+        "silicon_dioxide": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5",
+      "material": "glass",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge",
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/glass"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 23,
+      "composition": {
+        "alumina": 282020869,
+        "magnesium": 56404173,
+        "oxygen": 197414608,
+        "potassium": 28202086,
+        "water": 84606260
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "glauconite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/glauconite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 10,
+      "composition": {
+        "gold": 3,
+        "helium": 1,
+        "phosphorite": 5,
+        "silicon_dioxide": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "gloomstone",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/centrifuge/gloomstone"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 10,
+      "composition": {
+        "gold": 3,
+        "helium": 1,
+        "phosphorite": 5,
+        "silicon_dioxide": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "glowstone",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.autoclave",
+        "gt.recipe.centrifuge"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/autoclave/glowstone"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "golden_amber",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.autoclave"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/autoclave/golden_amber"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "carbon": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "graphite",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/graphite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "carbon": 4,
+        "gravitonium": 1,
+        "magic": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "gravitite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/gravitite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "carbon": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "green_diamond",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/green_diamond"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 20,
+      "composition": {
+        "alumina": 5,
+        "calcium": 3,
+        "oxygen": 3,
+        "silicon_dioxide": 9
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "grossular",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/grossular"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 6,
+      "composition": {
+        "calcium_sulfate": 1,
+        "water": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "gypsum",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.drying"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/drying/gypsum"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "hassium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 5,
+      "composition": {
+        "iron": 2,
+        "oxygen": 3
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "hematite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/hematite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "hexorium_black",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.autoclave"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/autoclave/hexorium_black"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "hexorium_blue",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.autoclave"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/autoclave/hexorium_blue"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "hexorium_green",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.autoclave"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/autoclave/hexorium_green"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "hexorium_red",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.autoclave"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/autoclave/hexorium_red"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "hexorium_white",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.autoclave"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/autoclave/hexorium_white"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "holmium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 6,
+      "composition": {
+        "manganese": 1,
+        "oxygen": 1,
+        "tungsten_trioxide": 4
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "huebnerite",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.bath"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/bath/huebnerite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 5,
+      "composition": {
+        "iron": 1,
+        "oxygen": 3,
+        "titanium": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "ilmenite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.smelter"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/smelter/ilmenite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "iodine",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/iodine"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 5,
+      "composition": {
+        "iodine": 1,
+        "oxygen": 3,
+        "potassium": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "iodine_salt",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/iodine_salt"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 8,
+      "composition": {
+        "alumina": 5,
+        "silicon_dioxide": 3
+      },
+      "implementation": "PREIMPLEMENTED_T5",
+      "material": "kyanite",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/kyanite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "lanthanium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 16,
+      "composition": {
+        "calcite": 1,
+        "lazurite": 12,
+        "pyrite": 1,
+        "sodalite": 2
+      },
+      "implementation": "PREIMPLEMENTED_T5",
+      "material": "lapis",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/centrifuge/lapis"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "lawrencium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 28,
+      "composition": {
+        "alumina": 3,
+        "calcium": 4,
+        "silicon_dioxide": 3,
+        "sodium": 4
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "lazurite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/lazurite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 22,
+      "composition": {
+        "alumina": 10,
+        "fluorine": 2,
+        "lithium": 3,
+        "oxygen": 6,
+        "potassium": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "lepidolite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/lepidolite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 7,
+      "composition": {
+        "carbon": 2,
+        "dark_ashes": 1
+      },
+      "implementation": "SOURCE_ELIGIBLE_NOT_PUBLISHED",
+      "material": "lignite_coke",
+      "no_decompose": false,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "livermorium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "lutetium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "magnesium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "Factual components, DECOMPOSABLE, and commonDivider <= 64 are present, but neither source route tag selects centrifuge or electrolyzer. no_decompose is not used as a route substitute.",
+        "reason_code": "NO_CENTRIFUGE_OR_ELECTROLYZER_TAG",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": 3,
+      "composition": {
+        "chlorine": 2,
+        "magnesium": 1
+      },
+      "implementation": "BLOCKED",
+      "material": "magnesium_chloride",
+      "no_decompose": false,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 7,
+      "composition": {
+        "iron": 3,
+        "oxygen": 4
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "magnetite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/magnetite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "carbon": 4,
+        "magic": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "mana_diamond",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/mana_diamond"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "manganese",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "meitnerium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "mendelevium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 39,
+      "composition": {
+        "alumina": 15,
+        "fluorine": 4,
+        "potassium": 2,
+        "silicon_dioxide": 18
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "mica",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/mica"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "silicon_dioxide": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "milky_quartz",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/milky_quartz"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 7,
+      "composition": {
+        "sodium_sulfate": 7,
+        "water": 30
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "mirabilite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.drying"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/drying/mirabilite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "molybdenum",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 2,
+      "composition": {
+        "phosphate": 1,
+        "rare_earth": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5",
+      "material": "monazite",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/monazite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "moscovium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "neptunium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "silicon_dioxide": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "nether_quartz",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/nether_quartz"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "nether_star",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "nihonium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 10,
+      "composition": {
+        "argon": 1,
+        "copper": 3,
+        "silicon_dioxide": 1,
+        "sodalite": 5
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "nikolite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge",
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/nikolite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 7,
+      "composition": {
+        "niobium": 2,
+        "oxygen": 5
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "niobium_pentoxide",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.bath"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/bath/niobium_pentoxide"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 2,
+      "composition": {
+        "potassium_nitrate": 1,
+        "sodium_nitrate": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5",
+      "material": "niter",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/centrifuge/niter"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "nobelium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "oganesson",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "oil_sand",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 4,
+      "composition": {
+        "calcite": 2,
+        "clay": 1,
+        "milky_quartz": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5",
+      "material": "oil_shale",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/centrifuge/oil_shale"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 1,
+      "composition": {
+        "silicon_dioxide": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5",
+      "material": "opal",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/opal"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 5,
+      "composition": {
+        "iron": 1,
+        "magnesium": 2,
+        "silicon_dioxide": 2
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "peridot",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/peridot"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "obsidian": 1,
+        "water": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "perlite",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.drying"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/drying/perlite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 1,
+      "composition": {
+        "carbon": 2,
+        "sulfur": 1
+      },
+      "implementation": "SOURCE_ELIGIBLE_NOT_PUBLISHED",
+      "material": "petroleum_coke",
+      "no_decompose": false,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 5,
+      "composition": {
+        "oxygen": 4,
+        "phosphor": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "phosphate",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/phosphate"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "phosphor",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.assembler"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/assembler/phosphor"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 9,
+      "composition": {
+        "calcium": 5,
+        "fluorine": 1,
+        "phosphate": 3
+      },
+      "implementation": "PREIMPLEMENTED_T5",
+      "material": "phosphorite",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/phosphorite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 5,
+      "composition": {
+        "calcium": 3,
+        "phosphate": 2
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "phosphorus",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/centrifuge/phosphorus"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: decomposable_tag, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": 1,
+      "composition": {
+        "wrought_iron": 1
+      },
+      "implementation": "BLOCKED",
+      "material": "pig_iron",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "Factual components, DECOMPOSABLE, and commonDivider <= 64 are present, but neither source route tag selects centrifuge or electrolyzer. no_decompose is not used as a route substitute.",
+        "reason_code": "NO_CENTRIFUGE_OR_ELECTROLYZER_TAG",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": 11,
+      "composition": {
+        "chlorine": 2,
+        "lead": 3,
+        "oxygen": 2,
+        "tungsten_trioxide": 4
+      },
+      "implementation": "BLOCKED",
+      "material": "pinalite",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "carbon": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "pink_diamond",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/pink_diamond"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 5,
+      "composition": {
+        "lead": 1,
+        "thorium": 1,
+        "uraninite": 3
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "pitchblende",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/centrifuge/pitchblende"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "platinum_group_sludge",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/centrifuge/platinum_group_sludge"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "plutonium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 26,
+      "composition": {
+        "alumina": 5,
+        "caesium": 2,
+        "oxygen": 1,
+        "silicon_dioxide": 12,
+        "water": 6
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "pollucite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/pollucite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "polonium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "potassium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 26,
+      "composition": {
+        "alumina": 5,
+        "oxygen": 1,
+        "potassium": 2,
+        "silicon_dioxide": 18
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "potassium_feldspar",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/potassium_feldspar"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 5,
+      "composition": {
+        "nitrogen": 1,
+        "oxygen": 3,
+        "potassium": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "potassium_nitrate",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/potassium_nitrate"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "praseodymium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "promethium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "protactinium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "carbon": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "purple_diamond",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/purple_diamond"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 3,
+      "composition": {
+        "iron": 1,
+        "sulfur": 2
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "pyrite",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.compressor"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/compressor/pyrite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 20,
+      "composition": {
+        "alumina": 5,
+        "magnesium": 3,
+        "oxygen": 3,
+        "silicon_dioxide": 9
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "pyrope",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/pyrope"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 2,
+      "composition": {
+        "certus_quartz": 1,
+        "milky_quartz": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5",
+      "material": "quartz_sand",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/centrifuge/quartz_sand"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "quartzite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/quartzite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "Factual components, DECOMPOSABLE, and commonDivider <= 64 are present, but neither source route tag selects centrifuge or electrolyzer. no_decompose is not used as a route substitute.",
+        "reason_code": "NO_CENTRIFUGE_OR_ELECTROLYZER_TAG",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": 2,
+      "composition": {
+        "calcium": 1,
+        "oxygen": 1
+      },
+      "implementation": "BLOCKED",
+      "material": "quicklime",
+      "no_decompose": false,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "rare_earth",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/centrifuge/rare_earth"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "carbon": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "red_diamond",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/red_diamond"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 10,
+      "composition": {
+        "mercury": 3,
+        "pyrite": 5,
+        "ruby": 1,
+        "silicon_dioxide": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "redstone",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge",
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/redstone"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "roentgenium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "rutherfordium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 2,
+      "composition": {
+        "chlorine": 1,
+        "sodium": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "salt",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/salt"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "samarium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "scandium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 6,
+      "composition": {
+        "calcium": 1,
+        "oxygen": 1,
+        "tungsten_trioxide": 4
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "scheelite",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.bath"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/bath/scheelite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "seaborgium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 3,
+      "composition": {
+        "oxygen": 2,
+        "silicon": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "silicon_dioxide",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/silicon_dioxide"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 11,
+      "composition": {
+        "alumina": 3,
+        "chlorine": 1,
+        "silicon_dioxide": 3,
+        "sodium": 4
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "sodalite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/sodalite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 5,
+      "composition": {
+        "nitrogen": 1,
+        "oxygen": 3,
+        "sodium": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "sodium_nitrate",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/sodium_nitrate"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "soulsand",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/soulsand"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 20,
+      "composition": {
+        "alumina": 5,
+        "manganese": 3,
+        "oxygen": 3,
+        "silicon_dioxide": 9
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "spessartine",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/spessartine"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 7,
+      "composition": {
+        "alumina": 5,
+        "magnesium": 1,
+        "oxygen": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "spinel",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/spinel"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 20,
+      "composition": {
+        "alumina": 5,
+        "lithium": 2,
+        "oxygen": 1,
+        "silicon_dioxide": 12
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "spodumene",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/spodumene"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "Factual components, DECOMPOSABLE, and commonDivider <= 64 are present, but neither source route tag selects centrifuge or electrolyzer. no_decompose is not used as a route substitute.",
+        "reason_code": "NO_CENTRIFUGE_OR_ELECTROLYZER_TAG",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": 6,
+      "composition": {
+        "lead": 1,
+        "oxygen": 1,
+        "tungsten_trioxide": 4
+      },
+      "implementation": "BLOCKED",
+      "material": "stolzite",
+      "no_decompose": false,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 46,
+      "composition": {
+        "lithium": 42303130,
+        "oxygen": 28202086,
+        "potassium": 14101043,
+        "pyrolusite": 28202086,
+        "silicon_dioxide": 507637565,
+        "sodium": 28202086
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "sugilite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/sugilite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "sulfur",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/sulfur"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "sunstone",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.compressor"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/compressor/sunstone"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 2,
+      "composition": {
+        "chlorine": 1,
+        "potassium": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "sylvite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/sylvite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 21,
+      "composition": {
+        "magnesium": 1,
+        "oxygen": 1,
+        "silicon_dioxide": 4,
+        "water": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "talc",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/talc"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 8,
+      "composition": {
+        "pyrolusite": 1,
+        "tantalum_pentoxide": 7
+      },
+      "implementation": "PREIMPLEMENTED_T5",
+      "material": "tantalite",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/tantalite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 7,
+      "composition": {
+        "oxygen": 5,
+        "tantalum": 2
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "tantalum_pentoxide",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/tantalum_pentoxide"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 44,
+      "composition": {
+        "alumina": 15,
+        "calcium": 4,
+        "oxygen": 4,
+        "silicon_dioxide": 18,
+        "water": 3
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "tanzanite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/tanzanite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "technetium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "tellurium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "terbium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "thallium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "thulium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 13,
+      "composition": {
+        "alumina": 5,
+        "fluorine": 2,
+        "silicon_dioxide": 3,
+        "water": 3
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "topaz",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/topaz"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 3,
+      "composition": {
+        "oxygen": 2,
+        "tritanium_elemental": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "tritanium_dioxide",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/tritanium_dioxide"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "tritanium_elemental",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.smelter"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/smelter/tritanium_elemental"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 7,
+      "composition": {
+        "astatine": 6,
+        "tritanium_elemental": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "tritanium_hexaastatide",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/tritanium_hexaastatide"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 7,
+      "composition": {
+        "bromine": 6,
+        "tritanium_elemental": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "tritanium_hexabromide",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/tritanium_hexabromide"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 7,
+      "composition": {
+        "chlorine": 6,
+        "tritanium_elemental": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "tritanium_hexachloride",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/tritanium_hexachloride"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 7,
+      "composition": {
+        "fluorine": 6,
+        "tritanium_elemental": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "tritanium_hexafluoride",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/tritanium_hexafluoride"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 7,
+      "composition": {
+        "iodine": 6,
+        "tritanium_elemental": 1
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "tritanium_hexaiodide",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/tritanium_hexaiodide"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 6,
+      "composition": {
+        "sodium_carbonate": 1,
+        "water": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5",
+      "material": "trona",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/trona"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 7,
+      "composition": {
+        "lithium": 2,
+        "oxygen": 1,
+        "tungsten_trioxide": 4
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "tungstate",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.bath"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/bath/tungstate"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "Factual components, DECOMPOSABLE, and commonDivider <= 64 are present, but neither source route tag selects centrifuge or electrolyzer. no_decompose is not used as a route substitute.",
+        "reason_code": "NO_CENTRIFUGE_OR_ELECTROLYZER_TAG",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": 4,
+      "composition": {
+        "oxygen": 3,
+        "tungsten": 1
+      },
+      "implementation": "BLOCKED",
+      "material": "tungsten_trioxide",
+      "no_decompose": false,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "uranium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "uranium233",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "uranium235",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 20,
+      "composition": {
+        "calcium": 3,
+        "chromium": 2,
+        "oxygen": 6,
+        "silicon_dioxide": 9
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "uvarovite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/uvarovite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "vanadium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 2,
+      "composition": {
+        "magnetite": 1,
+        "vanadium_pentoxide": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5",
+      "material": "vanadium_magnetite",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.centrifuge",
+        "gt.recipe.smelter"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/smelter/vanadium_magnetite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_ready"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 7,
+      "composition": {
+        "oxygen": 5,
+        "vanadium": 2
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "vanadium_pentoxide",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/vanadium_pentoxide"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 39,
+      "composition": {
+        "alumina": 10,
+        "hydrogen": 2,
+        "iron": 3,
+        "silicon_dioxide": 12,
+        "water": 12
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "vermiculite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/vermiculite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "vibranium",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.compressor"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/compressor/vibranium"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "magic": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "vinteum",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.compressor"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/compressor/vinteum"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "silicon_dioxide": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "void_quartz",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/void_quartz"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 6,
+      "composition": {
+        "magnesium": 1,
+        "oxygen": 1,
+        "tungsten_trioxide": 4
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "wolframite",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.bath"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/bath/wolframite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 5,
+      "composition": {
+        "calcium": 1,
+        "oxygen": 1,
+        "silicon_dioxide": 3
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "wollastonite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust",
+        "crusher"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/wollastonite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 1,
+      "composition": {
+        "carbon": 1
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "yellow_diamond",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/yellow_diamond"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": null,
+      "classification": "named_reaction",
+      "component_common_divider": 4,
+      "composition": {
+        "hydrogen": 1,
+        "iron": 1,
+        "oxygen": 2
+      },
+      "implementation": "PREIMPLEMENTED_T5_EXACT_ROW",
+      "material": "yellow_limonite",
+      "no_decompose": false,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.mixer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/mixer/yellow_limonite"
+      ],
+      "source_loader_eligible": false,
+      "t5_classification": "decomposable_without_route"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "ytterbium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 44,
+      "composition": {
+        "alumina": 15,
+        "calcium": 4,
+        "oxygen": 4,
+        "silicon_dioxide": 18,
+        "water": 3
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "zanite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/zanite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": null,
+      "classification": "composition_generated",
+      "component_common_divider": 26,
+      "composition": {
+        "alumina": 5,
+        "oxygen": 1,
+        "silicon_dioxide": 12,
+        "sodium": 2,
+        "water": 6
+      },
+      "implementation": "QUARANTINED_BY_NO_DECOMPOSE",
+      "material": "zeolite",
+      "no_decompose": true,
+      "origins": [
+        "terminal_dust"
+      ],
+      "referenced_recipe_maps": [
+        "gt.recipe.electrolyzer"
+      ],
+      "runtime_recipe_ids": [
+        "cruciblecraft:t5/electrolyzer/zeolite"
+      ],
+      "source_loader_eligible": true,
+      "t5_classification": "route_tagged_but_quarantined"
+    },
+    {
+      "blocking": {
+        "dependency": "A fixed source reaction/behavior, machine semantic, container route, or explicit no-route product decision.",
+        "owner": "T27 portfolio classification",
+        "reason": "The pinned Loader_Recipes_Decomp conjunction is incomplete: components_present, decomposable_tag, component_common_divider_known, component_common_divider_lte_64, at_least_one_route_tag. No route is inferred from no_decompose or unrelated tags.",
+        "reason_code": "LOADER_CONJUNCTION_INCOMPLETE",
+        "recheck_point": "T27 and any generated chemistry card",
+        "replacement_condition": "A fixed-revision source fact and closed runtime consumer identify one executable implementation shape."
+      },
+      "classification": "blocked_by_new_subsystem",
+      "component_common_divider": null,
+      "composition": {},
+      "implementation": "BLOCKED",
+      "material": "zirconium",
+      "no_decompose": true,
+      "origins": [
+        "crusher"
+      ],
+      "referenced_recipe_maps": [],
+      "runtime_recipe_ids": [],
+      "source_loader_eligible": false,
+      "t5_classification": "unresolved_deferred"
+    }
+  ],
+  "counts": {
+    "classifications": {
+      "blocked_by_new_subsystem": 70,
+      "composition_generated": 84,
+      "named_reaction": 70,
+      "prefix_matrix": 0
+    },
+    "referenced_recipe_maps": 9,
+    "unclassified": 0
+  },
+  "denominator": {
+    "candidates": 224,
+    "correction": "The phase-4 prose value 234 is stale. The authoritative T5 ledger is 145 terminal + 110 crusher - 31 overlap = 224 unique chemical candidates.",
+    "kind": "t5_unique_chemical_union",
+    "stale_prose_value": 234
+  },
+  "inputs": {
+    "tools/t21_chemical_axis_policy.json": "88199c13ed506f7990b436461b8ce7a93acae1df691fe97efc4a7443b21cf36f",
+    "tools/t21_composition_expected.json": "ea54cdb4c8a35bc1f621240242178e458eb86212056f5dd7b4879ec082845ffb",
+    "tools/t5_chemical_readiness.json": "9e6428d322110d18cf801f0238a5246795f152f7e0946635ccad6f93f9f74fc5",
+    "tools/t5_chemical_recipe_manifest.json": "3ed7dc79032abfb62c12eed0f71705ac3b82bd42c7a5f22492b84f643c285aa5"
+  },
+  "load": {
+    "authored_rules": 1,
+    "datapack_files": 2,
+    "eager_rows": 2,
+    "lazy_rows": 0,
+    "logical_rows": 2,
+    "publication_delta": {
+      "eager": 0,
+      "lazy": 0,
+      "logical": 0
+    },
+    "source_facts": 2
+  },
+  "recipe_maps": [
+    {
+      "candidate_classifications": [
+        "named_reaction"
+      ],
+      "map": "gt.recipe.assembler",
+      "status": "CLASSIFIED"
+    },
+    {
+      "candidate_classifications": [
+        "composition_generated",
+        "named_reaction"
+      ],
+      "map": "gt.recipe.autoclave",
+      "status": "CLASSIFIED"
+    },
+    {
+      "candidate_classifications": [
+        "named_reaction"
+      ],
+      "map": "gt.recipe.bath",
+      "status": "CLASSIFIED"
+    },
+    {
+      "candidate_classifications": [
+        "composition_generated",
+        "named_reaction"
+      ],
+      "map": "gt.recipe.centrifuge",
+      "status": "CLASSIFIED"
+    },
+    {
+      "candidate_classifications": [
+        "named_reaction"
+      ],
+      "map": "gt.recipe.compressor",
+      "status": "CLASSIFIED"
+    },
+    {
+      "candidate_classifications": [
+        "named_reaction"
+      ],
+      "map": "gt.recipe.drying",
+      "status": "CLASSIFIED"
+    },
+    {
+      "candidate_classifications": [
+        "composition_generated",
+        "named_reaction"
+      ],
+      "map": "gt.recipe.electrolyzer",
+      "status": "CLASSIFIED"
+    },
+    {
+      "candidate_classifications": [
+        "composition_generated",
+        "named_reaction"
+      ],
+      "map": "gt.recipe.mixer",
+      "status": "CLASSIFIED"
+    },
+    {
+      "candidate_classifications": [
+        "composition_generated",
+        "named_reaction"
+      ],
+      "map": "gt.recipe.smelter",
+      "status": "CLASSIFIED"
+    }
+  ],
+  "schema_version": 1,
+  "selected_family": {
+    "consumer_count": 5,
+    "energy_identity": "EU",
+    "expansion_equals_runtime": true,
+    "expected_equals_expansion": true,
+    "id": "carbon_electrolysis",
+    "input_acquisition": {
+      "charcoal": "T20 source-classified charcoal worldgen -> existing ore chain -> charcoal dust",
+      "coal": "T20 source-classified coal worldgen -> existing ore chain -> coal dust"
+    },
+    "machine_kind": "electrolyzer",
+    "map": "cruciblecraft:electrolyzer",
+    "members": [
+      "charcoal",
+      "coal"
+    ]
+  },
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T21_CHEMICAL_CALIBRATION_READY"
+}

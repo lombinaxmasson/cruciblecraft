@@ -1,0 +1,287 @@
+{
+  "budget_evaluation": {
+    "hard_failures": [],
+    "metrics": {
+      "allocation_bytes": {
+        "actual": {
+          "max": 0,
+          "min": 0
+        },
+        "comparison_value": 0,
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "status": "PASS"
+      },
+      "client_index_ms": {
+        "actual": {
+          "max": 0,
+          "min": 0
+        },
+        "comparison_value": 0,
+        "hard_ceiling": 3000,
+        "soft_budget": 1000,
+        "status": "PASS"
+      },
+      "client_reload_ms": {
+        "actual": {
+          "max": 0,
+          "min": 0
+        },
+        "comparison_value": 0,
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "status": "PASS"
+      },
+      "datapack_authored_entries": {
+        "actual": 30,
+        "comparison_value": 30,
+        "hard_ceiling": 6600,
+        "soft_budget": 6000,
+        "status": "PASS"
+      },
+      "eager_publication_rows": {
+        "actual": 0,
+        "comparison_value": 0,
+        "hard_ceiling": 21000,
+        "soft_budget": 18000,
+        "status": "PASS"
+      },
+      "lazy_cache_ceiling_rows": {
+        "actual": 0,
+        "comparison_value": 0,
+        "hard_ceiling": 4096,
+        "soft_budget": 1024,
+        "status": "PASS"
+      },
+      "lazy_logical_rows": {
+        "actual": 0,
+        "comparison_value": 0,
+        "hard_ceiling": 56000,
+        "soft_budget": 16000,
+        "status": "PASS"
+      },
+      "lookup_candidate_count": {
+        "actual": {
+          "max": 0,
+          "min": 0
+        },
+        "comparison_value": 0,
+        "hard_ceiling": 128,
+        "soft_budget": 64,
+        "status": "PASS"
+      },
+      "lookup_p95_ns": {
+        "actual": {
+          "max": 0,
+          "min": 0
+        },
+        "comparison_value": 0,
+        "hard_ceiling": 2000000,
+        "soft_budget": 1000000,
+        "status": "PASS"
+      },
+      "retained_memory_bytes": {
+        "actual": {
+          "max": 0,
+          "min": 0
+        },
+        "comparison_value": 0,
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "status": "PASS"
+      },
+      "server_index_ms": {
+        "actual": {
+          "max": 0,
+          "min": 0
+        },
+        "comparison_value": 0,
+        "hard_ceiling": 1000,
+        "soft_budget": 500,
+        "status": "PASS"
+      },
+      "server_reload_ms": {
+        "actual": {
+          "max": 0,
+          "min": 0
+        },
+        "comparison_value": 0,
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "status": "PASS"
+      },
+      "sync_bytes": {
+        "actual": 0,
+        "comparison_value": 0,
+        "hard_ceiling": 67108864,
+        "soft_budget": 16777216,
+        "status": "PASS"
+      }
+    },
+    "pending_measurements": [],
+    "soft_exceeded": [],
+    "status": "PASS"
+  },
+  "currentness": {
+    "budget_policy": "tools/t14_load_budget_policy.json",
+    "budget_policy_sha256": "d4e934d9753cd6d4bcac5867e9fb78b97d4191e1a5cb67042bb8886ee78d8e87",
+    "projection_schema": "tools/recipe_load_projection.schema.json",
+    "projection_schema_sha256": "2670b042546d45a1092593f3f8059890eaf397664edeec8949351f3b50b33c4d",
+    "t13_canonical_rows": 95,
+    "t13_map_row_sha256": "e8a635d62d4c11b7995d64ec3c6cfe2a7038b24338bfb00920a614f442f9af99",
+    "t13_recipe_maps": "tools/t13_denominators/recipe_maps.json"
+  },
+  "delivery_phase": "T19",
+  "families": [
+    {
+      "authored_entries": 30,
+      "canonical_ids": [],
+      "eager_publication_rows": 0,
+      "family": "t19/vanilla-cover-and-pipe-acquisition",
+      "lazy_cache_ceiling_rows": 0,
+      "lazy_logical_rows": 0,
+      "logical_rows": 0,
+      "measurement_basis": {
+        "kind": "family_specific_measurement",
+        "measured_logical_rows": [
+          0
+        ],
+        "source": "Exact generated set derived by T19 cover and pipe acquisition builders: 5 cover plus 25 pipe vanilla crafting files. These resources are outside GTRecipeMapLoader, so GT logical/publication/sync work is zero."
+      },
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 0,
+          "min": 0
+        },
+        "client_index_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "client_reload_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "lookup_candidate_count": {
+          "max": 0,
+          "min": 0
+        },
+        "lookup_p95_ns": {
+          "max": 0,
+          "min": 0
+        },
+        "retained_memory_bytes": {
+          "max": 0,
+          "min": 0
+        },
+        "server_index_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "server_reload_ms": {
+          "max": 0,
+          "min": 0
+        }
+      },
+      "publication_account": {
+        "domain": "vanilla_crafting",
+        "gt_authored_entries": 0,
+        "gt_logical_rows": 0,
+        "vanilla_datapack_entries": 30
+      },
+      "publication_domain": "vanilla_crafting",
+      "ratios": {
+        "authored_to_eager": {
+          "denominator": 0,
+          "formula": "eager_publication_rows / authored_entries",
+          "numerator": 0,
+          "status": "NOT_APPLICABLE",
+          "value": null
+        },
+        "authored_to_logical": {
+          "denominator": 0,
+          "formula": "logical_rows / authored_entries",
+          "numerator": 0,
+          "status": "NOT_APPLICABLE",
+          "value": null
+        }
+      },
+      "strategy": "immediate",
+      "sync_bytes": 0,
+      "t13_references": [],
+      "vanilla_datapack_entries": 30
+    }
+  ],
+  "ledger": {
+    "aggregation": {
+      "counts": "sum of explicit family counts",
+      "lookup": "maximum family interval bounds; one lookup is not additive",
+      "reload_index_memory": "sum of family interval bounds"
+    },
+    "counts": {
+      "datapack_authored_entries": 30,
+      "eager_publication_rows": 0,
+      "lazy_cache_ceiling_rows": 0,
+      "lazy_logical_rows": 0,
+      "logical_rows": 0,
+      "sync_bytes": 0
+    },
+    "measurement_intervals": {
+      "allocation_bytes": {
+        "max": 0,
+        "min": 0
+      },
+      "client_index_ms": {
+        "max": 0,
+        "min": 0
+      },
+      "client_reload_ms": {
+        "max": 0,
+        "min": 0
+      },
+      "lookup_candidate_count": {
+        "max": 0,
+        "min": 0
+      },
+      "lookup_p95_ns": {
+        "max": 0,
+        "min": 0
+      },
+      "retained_memory_bytes": {
+        "max": 0,
+        "min": 0
+      },
+      "server_index_ms": {
+        "max": 0,
+        "min": 0
+      },
+      "server_reload_ms": {
+        "max": 0,
+        "min": 0
+      }
+    },
+    "publication_domains": {
+      "gt_authored_entries": 0,
+      "gt_logical_rows": 0,
+      "vanilla_datapack_entries": 30
+    },
+    "ratios": {
+      "authored_to_eager": {
+        "denominator": 30,
+        "formula": "eager_publication_rows / authored_entries",
+        "numerator": 0,
+        "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+        "value": 0.0
+      },
+      "authored_to_logical": {
+        "denominator": 30,
+        "formula": "logical_rows / authored_entries",
+        "numerator": 0,
+        "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+        "value": 0.0
+      }
+    }
+  },
+  "projection_id": "t19/vanilla-cover-and-pipe-acquisition",
+  "schema_version": 2,
+  "status": "PASS"
+}

@@ -1,0 +1,412 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.example/schema/energy_converters.schema.json",
+  "title": "CrucibleCraft energy converter catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "source",
+    "profiles"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "repository",
+        "revision",
+        "machineRegistration",
+        "steamConstants",
+        "steamPerEu"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string"
+        },
+        "revision": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "machineRegistration": {
+          "type": "string"
+        },
+        "steamConstants": {
+          "type": "string"
+        },
+        "steamPerEu": {
+          "const": 2
+        }
+      }
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/profile"
+      }
+    }
+  },
+  "$defs": {
+    "packet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "medium",
+        "identity",
+        "size",
+        "maxAmountPerTick"
+      ],
+      "properties": {
+        "medium": {
+          "type": "string"
+        },
+        "identity": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "maxAmountPerTick": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "window": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum",
+        "nominal",
+        "maximum"
+      ],
+      "properties": {
+        "minimum": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "nominal": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "maximum": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "machineKind",
+        "sourceId",
+        "sourceLine",
+        "materialExpression",
+        "normalizedRowKey",
+        "outputExpression",
+        "efficiencyExpression",
+        "fuelMap"
+      ],
+      "properties": {
+        "machineKind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceId": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sourceLine": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "materialExpression": {
+          "type": "string"
+        },
+        "normalizedRowKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "outputExpression": {
+          "type": "string"
+        },
+        "efficiencyExpression": {
+          "type": "string"
+        },
+        "fuelMap": {
+          "type": "string"
+        }
+      }
+    },
+    "outputSemantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "conservation",
+        "sourceNominal",
+        "fixedOutput",
+        "gt6Runtime",
+        "sourceEvidencePaths"
+      ],
+      "properties": {
+        "conservation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "classification",
+            "steamInputMb",
+            "kuOutput",
+            "steamMbPerKu"
+          ],
+          "properties": {
+            "classification": {
+              "const": "SOURCE_BACKED"
+            },
+            "steamInputMb": {
+              "const": 200
+            },
+            "kuOutput": {
+              "const": 50
+            },
+            "steamMbPerKu": {
+              "const": 4
+            }
+          }
+        },
+        "sourceNominal": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "classification",
+            "registeredNumerator",
+            "steamPerEu",
+            "mOutputKu"
+          ],
+          "properties": {
+            "classification": {
+              "const": "SOURCE_DERIVED_NOMINAL"
+            },
+            "registeredNumerator": {
+              "const": 24
+            },
+            "steamPerEu": {
+              "const": 2
+            },
+            "mOutputKu": {
+              "const": 12
+            }
+          }
+        },
+        "fixedOutput": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "classification",
+            "kuPerTick"
+          ],
+          "properties": {
+            "classification": {
+              "const": "DESIGN_POLICY_FIXED_OUTPUT"
+            },
+            "kuPerTick": {
+              "const": 12
+            }
+          }
+        },
+        "gt6Runtime": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "classification",
+            "minimumKuPerTick",
+            "maximumKuPerTick",
+            "behavior",
+            "replacementCondition",
+            "recheckPoint"
+          ],
+          "properties": {
+            "classification": {
+              "const": "DEFERRED_REPLACEMENT"
+            },
+            "minimumKuPerTick": {
+              "const": 6
+            },
+            "maximumKuPerTick": {
+              "const": 24
+            },
+            "behavior": {
+              "const": "STATE_DEPENDENT_MOUTPUT_HALF_TO_DOUBLE"
+            },
+            "replacementCondition": {
+              "type": "string",
+              "minLength": 1
+            },
+            "recheckPoint": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "sourceEvidencePaths": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "stage",
+        "status",
+        "runtimeBinding",
+        "source",
+        "accepts",
+        "emits",
+        "inputPacket",
+        "outputPacket",
+        "inputWindow",
+        "efficiencyBps",
+        "fuelMap",
+        "conservation",
+        "exhaust",
+        "faces",
+        "policy",
+        "inputCapacity",
+        "outputCapacity"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^cruciblecraft:[a-z0-9_]+$"
+        },
+        "stage": {
+          "enum": [
+            "T18a",
+            "T18b",
+            "T18c",
+            "T18d"
+          ]
+        },
+        "status": {
+          "enum": [
+            "COMPLETE",
+            "PENDING"
+          ]
+        },
+        "runtimeBinding": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "accepts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "emits": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "inputPacket": {
+          "$ref": "#/$defs/packet"
+        },
+        "outputPacket": {
+          "$ref": "#/$defs/packet"
+        },
+        "inputWindow": {
+          "$ref": "#/$defs/window"
+        },
+        "efficiencyBps": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1,
+          "maximum": 10000
+        },
+        "fuelMap": {
+          "type": "string"
+        },
+        "conservation": {
+          "type": "object",
+          "required": [
+            "primaryInput",
+            "primaryInputUnits",
+            "secondaryInput",
+            "secondaryInputUnits",
+            "output",
+            "outputUnits",
+            "exhaust",
+            "exhaustUnits"
+          ]
+        },
+        "exhaust": {
+          "type": "object",
+          "required": [
+            "identity",
+            "mode",
+            "capacity"
+          ]
+        },
+        "faces": {
+          "type": "object",
+          "required": [
+            "energyInputs",
+            "energyOutputs",
+            "fluidInputs",
+            "fluidOutputs"
+          ]
+        },
+        "policy": {
+          "type": "object",
+          "required": [
+            "simulateBeforeExecute",
+            "exactCommit",
+            "blockage",
+            "overflow",
+            "sourceResolution"
+          ]
+        },
+        "outputSemantics": {
+          "$ref": "#/$defs/outputSemantics"
+        },
+        "inputCapacity": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "outputCapacity": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

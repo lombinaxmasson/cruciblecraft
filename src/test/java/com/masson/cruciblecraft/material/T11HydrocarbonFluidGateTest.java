@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.material;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.util.function.Function;
@@ -35,6 +36,8 @@ class T11HydrocarbonFluidGateTest {
         assertEquals(
                 "3703e40308c8c030763fd6297dea8b210d2a77b1",
                 crudeOil.source().revision());
+        assertTrue(crudeOil.source().reason().contains(
+                "permanent DESIGN_POLICY"));
         var naturalGas = byId.get("natural_gas");
         assertEquals("natural_gas", naturalGas.materialId());
         assertEquals(

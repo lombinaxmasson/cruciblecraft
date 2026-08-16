@@ -854,8 +854,8 @@ def build(source_root: Path | None = None) -> dict[str, Any]:
     blockers = [
         {
             "owner": "T12b",
-            "blocker": "MachineKind/TierProfile schema, one-map-to-many lookup and save migration are not implemented.",
-            "replacement_condition": "Complete T12b codec/runtime migration tests."
+            "blocker": "MachineKind/TierProfile schema, one-map-to-many lookup and current-state persistence are not implemented.",
+            "replacement_condition": "Complete T12b codec/runtime persistence tests."
         },
         {
             "owner": "T12c",
@@ -865,7 +865,7 @@ def build(source_root: Path | None = None) -> dict[str, Any]:
         {
             "owner": "T12d",
             "blocker": "Coke Oven remains Java-defined and Large Centrifuge has no shared JSON validator/runtime.",
-            "replacement_condition": "Migrate both exact predicate/port projections to the generic schema."
+            "replacement_condition": "Move both exact predicate/port projections to the generic schema."
         },
         {
             "owner": "T12e",

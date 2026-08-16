@@ -126,7 +126,7 @@
     "budget_policy": "tools/t14_load_budget_policy.json",
     "budget_policy_sha256": "d4e934d9753cd6d4bcac5867e9fb78b97d4191e1a5cb67042bb8886ee78d8e87",
     "projection_schema": "tools/recipe_load_projection.schema.json",
-    "projection_schema_sha256": "6a2b09b777275a5ea482fd63d3929e262021029382fa6a7265ef6878e32a4de6",
+    "projection_schema_sha256": "2670b042546d45a1092593f3f8059890eaf397664edeec8949351f3b50b33c4d",
     "t13_canonical_rows": 95,
     "t13_map_row_sha256": "e8a635d62d4c11b7995d64ec3c6cfe2a7038b24338bfb00920a614f442f9af99",
     "t13_recipe_maps": "tools/t13_denominators/recipe_maps.json"
@@ -183,6 +183,12 @@
           "max": 0,
           "min": 0
         }
+      },
+      "publication_account": {
+        "domain": "gt_recipe_family",
+        "gt_authored_entries": 0,
+        "gt_logical_rows": 0,
+        "vanilla_datapack_entries": 0
       },
       "ratios": {
         "authored_to_eager": {
@@ -258,6 +264,11 @@
         "max": 0,
         "min": 0
       }
+    },
+    "publication_domains": {
+      "gt_authored_entries": 0,
+      "gt_logical_rows": 0,
+      "vanilla_datapack_entries": 0
     },
     "ratios": {
       "authored_to_eager": {

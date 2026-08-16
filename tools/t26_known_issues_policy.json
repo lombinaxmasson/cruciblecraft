@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "status_policy": "The known-issue ledger is derived by build(): T25 findings are inherited and remapped, playtest rows are copied from this policy, freeze rows are validated against the localization ledger. Status is T26_KNOWN_ISSUES_COMPLETE only when every row is complete and no issue blocks Beta.",
+  "issue_vocabulary": [
+    "post_beta_polish",
+    "non_blocking"
+  ],
+  "severity_vocabulary": [
+    "info",
+    "low",
+    "medium",
+    "high",
+    "blocker"
+  ],
+  "required_issue_fields": [
+    "id",
+    "title",
+    "severity",
+    "workaround",
+    "owner",
+    "disposition",
+    "blocks_beta",
+    "evidence_artifact"
+  ],
+  "playtest_source": "CrucibleCraft-4.5-体验精修规划.md",
+  "playtest_issues": [
+    {
+      "id": "CC-4.5-P0",
+      "title": "First world generation can stall for minutes",
+      "severity": "medium",
+      "workaround": "Wait out the first load; recipe epoch expansion is already excluded (3034 ms). Capture a timestamped thread dump before changing worldgen or the recipe pipeline.",
+      "owner": "4.5",
+      "disposition": "post_beta_polish",
+      "blocks_beta": false,
+      "evidence_artifact": "CrucibleCraft-4.5-体验精修规划.md#P0"
+    },
+    {
+      "id": "CC-4.5-P1",
+      "title": "Wrench toggles the whole clicked face instead of GT6 nine-grid sides",
+      "severity": "low",
+      "workaround": "Click the face whose connection should change. Overlay and UV nine-grid belong to 4.5, not the Beta gate.",
+      "owner": "4.5",
+      "disposition": "post_beta_polish",
+      "blocks_beta": false,
+      "evidence_artifact": "CrucibleCraft-4.5-体验精修规划.md#P1"
+    },
+    {
+      "id": "CC-4.5-P2",
+      "title": "Wire cutters are missing; cables are set with a wrench",
+      "severity": "low",
+      "workaround": "Use a wrench on cables and wires. GT6 TOOL_cutter plus nine-grid is a 4.5 interaction patch.",
+      "owner": "4.5",
+      "disposition": "post_beta_polish",
+      "blocks_beta": false,
+      "evidence_artifact": "CrucibleCraft-4.5-体验精修规划.md#P2"
+    },
+    {
+      "id": "CC-4.5-P3",
+      "title": "Creative-tab wires and cables are split across pages",
+      "severity": "low",
+      "workaround": "Search both the Wires and Cables tabs; pipes currently share the Cables tab.",
+      "owner": "4.5",
+      "disposition": "post_beta_polish",
+      "blocks_beta": false,
+      "evidence_artifact": "CrucibleCraft-4.5-体验精修规划.md#P3"
+    },
+    {
+      "id": "CC-4.5-P4",
+      "title": "Surface pebbles (rockGt) are not generated",
+      "severity": "low",
+      "workaround": "Obtain cobble from vanilla stone or ore processing. Surface rocks are a 4.5 worldgen polish, not a T20 vein gap.",
+      "owner": "4.5",
+      "disposition": "post_beta_polish",
+      "blocks_beta": false,
+      "evidence_artifact": "CrucibleCraft-4.5-体验精修规划.md#P4"
+    },
+    {
+      "id": "CC-4.5-P5",
+      "title": "EMI does not fold same-prefix items (ingots, dusts, cables)",
+      "severity": "low",
+      "workaround": "Search by exact material and form. Tag-namespace unification (P8) is a prerequisite.",
+      "owner": "4.5",
+      "disposition": "post_beta_polish",
+      "blocks_beta": false,
+      "evidence_artifact": "CrucibleCraft-4.5-体验精修规划.md#P5"
+    },
+    {
+      "id": "CC-4.5-P6",
+      "title": "Creative tab and EMI omit most registered tool material variants",
+      "severity": "low",
+      "workaround": "Craft tools in the assembler; recipes exist. Creative/EMI enumeration is display-only.",
+      "owner": "4.5",
+      "disposition": "post_beta_polish",
+      "blocks_beta": false,
+      "evidence_artifact": "CrucibleCraft-4.5-体验精修规划.md#P6"
+    },
+    {
+      "id": "CC-4.5-P7",
+      "title": "Creative tab omits 18 registered higher-tier processing machines",
+      "severity": "low",
+      "workaround": "Craft the steel/titanium/invar variants from recipes or EMI; they are registered and craftable.",
+      "owner": "4.5",
+      "disposition": "post_beta_polish",
+      "blocks_beta": false,
+      "evidence_artifact": "CrucibleCraft-4.5-体验精修规划.md#P7"
+    },
+    {
+      "id": "CC-4.5-P8",
+      "title": "Most material-form tags stay in cruciblecraft: instead of c:",
+      "severity": "low",
+      "workaround": "Use cruciblecraft:small_dusts, cruciblecraft:cables and similar tags until 4.5 backfills c:.",
+      "owner": "4.5",
+      "disposition": "post_beta_polish",
+      "blocks_beta": false,
+      "evidence_artifact": "CrucibleCraft-4.5-体验精修规划.md#P8"
+    },
+    {
+      "id": "CC-4.5-P9",
+      "title": "Creative inventory has almost no filled fluid cells or buckets",
+      "severity": "low",
+      "workaround": "Produce fluids in machines on the survival path. Empty fluid_cell / gas_cell still exist.",
+      "owner": "4.5",
+      "disposition": "post_beta_polish",
+      "blocks_beta": false,
+      "evidence_artifact": "CrucibleCraft-4.5-体验精修规划.md#P9"
+    }
+  ],
+  "t25_carry_forward": {
+    "source": "tools/t25_findings_disposition.json",
+    "remap": {
+      "T24-F003": {
+        "owner": "T27 RC",
+        "recheck_point": "T27 RC candidate"
+      },
+      "T24-F005": {
+        "owner": "T27 RC",
+        "recheck_point": "T27 RC candidate"
+      }
+    }
+  },
+  "freeze": {
+    "o15": {
+      "item": "O-15",
+      "disposition": "closed",
+      "classification": "v1_required",
+      "owner": "T26",
+      "reason": "Player-visible domains are accounted: v1 critical GUI/config/container/disconnect/item_group/screen domains have zero zh gap; 208 critical-path materials are translated; 1566 long-tail materials are explicit post_1_0 and fall back to en_us. English-copy fake translations are forbidden.",
+      "replacement_condition": "not applicable: closed at T26 freeze",
+      "recheck_point": "GA localization audit"
+    },
+    "anvil_bend": [
+      {
+        "id": "cruciblecraft:anvil_bend_big",
+        "disposition": "post_1_0",
+        "owner": "post-1.0 portfolio",
+        "reason": "Registered-zero-logical reserved slot. GT6 gt.recipe.anvil.bend.big is already PORTED through the playable bender; the empty CC RecipeMap is not an unimplemented GT6 map and is not a v1 mainline gap.",
+        "replacement_condition": "Fill recipes, hide the slot, or keep as an explicit reserved map after T27 freeze recheck.",
+        "recheck_point": "T27 freeze",
+        "v1_replacement": "Use cruciblecraft:bender for plate bending."
+      },
+      {
+        "id": "cruciblecraft:anvil_bend_small",
+        "disposition": "post_1_0",
+        "owner": "post-1.0 portfolio",
+        "reason": "Registered-zero-logical reserved slot. GT6 gt.recipe.anvil.bend.small is already PORTED through the playable bender; the empty CC RecipeMap is not an unimplemented GT6 map and is not a v1 mainline gap.",
+        "replacement_condition": "Fill recipes, hide the slot, or keep as an explicit reserved map after T27 freeze recheck.",
+        "recheck_point": "T27 freeze",
+        "v1_replacement": "Use cruciblecraft:bender for plate bending."
+      }
+    ],
+    "crucible": {
+      "canonical_id": "crucible",
+      "disposition": "v1_required",
+      "owner": "T27",
+      "implementation": "none",
+      "naming_constraint": "New controller/block id must not collide with the existing single-block cruciblecraft:crucible; T27 writes the concrete id into phase5_portfolio_contract.json.",
+      "reason": "Only unimplemented T23 v1_required multiblock kind. Thermal/steelmaking family with mold slots; T23 selected tower/boiler/tank instead because of the 2-3 batch cap.",
+      "replacement_condition": "Implement as a bounded thermal/steelmaking behavior card generated by T27.",
+      "recheck_point": "T28+ thermal/steelmaking behavior card"
+    }
+  }
+}

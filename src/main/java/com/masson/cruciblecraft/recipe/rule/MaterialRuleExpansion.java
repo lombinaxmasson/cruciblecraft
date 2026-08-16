@@ -18,6 +18,7 @@ import com.masson.cruciblecraft.material.MaterialComponentPolicies;
 import com.masson.cruciblecraft.material.def.GT6MaterialMetadata;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
+import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.recipe.gt.ComponentIngredientIndex;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
@@ -1320,26 +1321,6 @@ public final class MaterialRuleExpansion {
                 case "material.heat_damage" -> material.gt6Metadata()
                         .map(GT6MaterialMetadata::heatDamage)
                         .orElse(0.0D);
-                case "material.pipe.fluid_recipe" -> material.gt6Metadata()
-                        .map(metadata -> metadata.pipeProperties()
-                                .fluidBySpecification()
-                                .values()
-                                .stream()
-                                .anyMatch(GT6MaterialMetadata
-                                        .FluidPipeProperties::recipe)
-                                ? 1.0D
-                                : 0.0D)
-                        .orElse(0.0D);
-                case "material.pipe.item_recipe" -> material.gt6Metadata()
-                        .map(metadata -> metadata.pipeProperties()
-                                .itemBySpecification()
-                                .values()
-                                .stream()
-                                .anyMatch(GT6MaterialMetadata
-                                        .ItemPipeProperties::recipe)
-                                ? 1.0D
-                                : 0.0D)
-                        .orElse(0.0D);
                 case "material.tool.types" -> material.gt6Metadata()
                         .map(metadata -> (double) metadata.tool().types())
                         .orElse(0.0D);
@@ -1366,9 +1347,15 @@ public final class MaterialRuleExpansion {
                         .orElseThrow(() -> new IllegalArgumentException(
                                 "target_units(" + key + ") requires an exact target amount"));
                 case "prefix_units" -> MaterialPrefixCatalog.require(key).units();
+                case "fluid_pipe_recipe" -> PipeCatalog.recipeEnabled(
+                        material, PipeCatalog.Kind.FLUID, key) ? 1L : 0L;
+                case "item_pipe_recipe" -> PipeCatalog.recipeEnabled(
+                        material, PipeCatalog.Kind.ITEM, key) ? 1L : 0L;
                 default -> throw new IllegalArgumentException("unknown lookup " + function);
             };
-            if (value <= 0L || value > 9_007_199_254_740_991L) {
+            if ((function.equals("target_units")
+                            || function.equals("prefix_units"))
+                    && (value <= 0L || value > 9_007_199_254_740_991L)) {
                 throw new IllegalArgumentException(
                         function + "(" + key + ") requires a positive exact safe integer");
             }

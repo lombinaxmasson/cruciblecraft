@@ -706,7 +706,7 @@ def main() -> int:
             raise SystemExit("machine-crafting readiness ledger is stale")
         print("Machine-crafting readiness ledger is current.")
         return 0
-    OUTPUT.write_text(encoded, encoding="utf-8")
+    OUTPUT.write_text(encoded, encoding="utf-8", newline="\n")
     print(f"wrote {OUTPUT.relative_to(ROOT)}")
     print(json.dumps(document["counts"], sort_keys=True))
     return 0

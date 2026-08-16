@@ -1,0 +1,26 @@
+{
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", quintuple_plate)"
+  ],
+  "duration": "260 * (144 * prefix_units(quintuple_plate) / gcd(target_units(working) * 720, 144 * prefix_units(quintuple_plate)))",
+  "eut": "64",
+  "item_inputs": [
+    {
+      "count": "1 * (144 * prefix_units(quintuple_plate) / gcd(target_units(working) * 720, 144 * prefix_units(quintuple_plate)))",
+      "prefix": "cruciblecraft:quadruple_plate"
+    },
+    {
+      "count": "1 * (144 * prefix_units(quintuple_plate) / gcd(target_units(working) * 720, 144 * prefix_units(quintuple_plate)))",
+      "prefix": "cruciblecraft:plate"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "target_units(working) * 720 / gcd(target_units(working) * 720, 144 * prefix_units(quintuple_plate))",
+      "material_selector": "processing_target:working",
+      "prefix": "cruciblecraft:quintuple_plate"
+    }
+  ],
+  "target": "cruciblecraft:press",
+  "type": "cruciblecraft:material_rule"
+}

@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "status": "T21_READINESS_POLICY",
+  "status_policy": {
+    "ready": "T21_READY",
+    "in_progress": "T21_IN_PROGRESS",
+    "complete_stage_status": "COMPLETE",
+    "in_progress_stage_status": "IN_PROGRESS"
+  },
+  "dependencies": {
+    "T20": {
+      "path": "tools/t20_readiness.json",
+      "required_status": "T20_READY"
+    },
+    "chemical_axis": {
+      "path": "tools/t21_chemical_axis.json",
+      "required_status": "T21_CHEMICAL_CALIBRATION_READY"
+    },
+    "mixer_templates": {
+      "path": "tools/gt6_mixer_templates_report.json",
+      "required_status": "GT6_MIXER_TEMPLATE_REPORT_READY"
+    },
+    "template_denominator": {
+      "path": "tools/t21_template_denominator.json",
+      "required_status": "T21_TEMPLATE_DENOMINATOR_READY"
+    },
+    "gunpowder_family": {
+      "path": "tools/t21_mixer_gunpowder_manifest.json",
+      "required_status": "T21_MIXER_GUNPOWDER_READY"
+    },
+    "load_projection": {
+      "path": "tools/t21_load_projection.json",
+      "required_status": "PASS"
+    }
+  },
+  "stages": {
+    "T21a": {
+      "name": "material_axis_and_carbon_calibration",
+      "status": "COMPLETE",
+      "acceptance": "Retain the 224-material classification axis and coal/charcoal Carbon electrolysis calibration without using raw touched-row counts as closure progress."
+    },
+    "T21b": {
+      "name": "mixer_template_replay",
+      "status": "COMPLETE",
+      "acceptance": "Partition all 64,245 fixed Mixer rows into 3,414 content-addressed material-matrix/enumerated/opaque templates with total membership and zero multiset replay difference."
+    },
+    "T21c": {
+      "name": "template_necessity_denominator",
+      "status": "IN_PROGRESS",
+      "acceptance": "Classify every Mixer template fragment and nine-map singleton unit with independently re-validated Beta reachability evidence, split partial coverage, and keep unclassified zero."
+    },
+    "T21d": {
+      "name": "v1_template_publication",
+      "status": "IN_PROGRESS",
+      "acceptance": "Publish every v1-required template as exact Mixer rows, execute all members on the dedicated GameTest server, and close load measurement, currentness, and a single clean full verification."
+    }
+  },
+  "refresh_policy": {
+    "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+    "this_refresh_final_closure_attempted": false,
+    "evidence": "tools/full_verification_report.json"
+  },
+  "closure_policy": {
+    "final_closure_attempted": false,
+    "pending": [
+      "Independently re-validate Beta seeds, reachable identities, and template necessity; the single v1-required template may be undercounted",
+      "Audit compact artifact size and rebuild strategy for the ~11 MB template denominator",
+      "Replace conservative generator-side gunpowder load figures with isolated runtime measurement",
+      "Run the new T21 GameTests on the dedicated GameTest server",
+      "Fix the stale T16/T17 currentness failures in the fast Python suite",
+      "Run source-replay, closure, and one clean run_full_verification.py --record before marking T21_READY"
+    ],
+    "reason": "T21 material calibration, full Mixer template replay, template necessity classification, and gunpowder publication evidence exist, but necessity re-validation, isolated load measurement, dedicated GameTest execution, and final verification are not complete; the previously drafted T21_READY is not closure evidence."
+  }
+}

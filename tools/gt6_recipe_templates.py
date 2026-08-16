@@ -527,6 +527,7 @@ def attach_material_names(report: dict[str, Any]) -> None:
         json.dumps({"schema_version": 1, "records": named}, indent=2, ensure_ascii=False)
         + "\n",
         encoding="utf-8",
+        newline="\n",
     )
     OUT_INDEX.write_text(
         json.dumps(
@@ -540,6 +541,7 @@ def attach_material_names(report: dict[str, Any]) -> None:
         )
         + "\n",
         encoding="utf-8",
+        newline="\n",
     )
     for preview in report["material_heat_preview"]:
         preview["nameInternal"] = names.get(preview["material_id"])
@@ -559,6 +561,7 @@ def main(argv: list[str] | None = None) -> int:
     OUT_REPORT.write_text(
         json.dumps(report, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
     print(f"Wrote {OUT_REPORT}")
     print(f"Wrote {OUT_MATERIAL_HEAT}")

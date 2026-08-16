@@ -56,10 +56,10 @@
       "role": "fuel_consumer"
     },
     "methane_gas_fuel": {
-      "map": "gt.recipe.fuels.gas",
-      "path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.gas.json",
-      "expected_source_rows": 9,
-      "duration": 30,
+      "map": "gt.recipe.fuels.burn",
+      "path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.burn.json",
+      "expected_source_rows": 49,
+      "duration": 24,
       "eut": -64,
       "fluid_inputs": [
         {
@@ -114,10 +114,13 @@
       "liquid_medium_oil": {
         "runtime_identity": "cruciblecraft:crude_oil",
         "status": "DESIGN_POLICY",
-        "gt6_equivalence": "UNVERIFIED",
-        "open_item": "O-37",
-        "evidence": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json#recipes[872] names the source fluid Raw Oil, but the pinned normalized fluid map does not bind it to GT6 material 9852 CrudeOil.",
-        "replacement_condition": "Replace only after a fixed-revision GT6 fluid-registration source proves the material identity, or after T9 deposit identity is migrated through an explicit compatibility plan."
+        "closure": "O37_CLOSED_PERMANENT_DESIGN_POLICY",
+        "gt6_equivalence": "NO_DIRECT_BINDING_AT_FIXED_REVISION",
+        "closed_item": "O-37",
+        "permanent": true,
+        "material_9852_role": "SOURCE_MATERIAL_LAYER_ONLY",
+        "evidence": "tools/t18_o37_identity_projection.json records a complete fixed-revision Java replay: liquid_medium_oil is registered as Raw Oil with a null material argument, FL.Oil_Medium is separate from material 9852 MT.CrudeOil, and no direct binding candidate exists.",
+        "publication_delta": 0
       }
     },
     "entries": {
@@ -178,7 +181,7 @@
     }
   },
   "load_policy": {
-    "current_datapack_recipe_entries": 3202,
+    "current_datapack_recipe_entries": 3235,
     "datapack_recipe_entry_budget": 6600,
     "current_published_recipes": 18871,
     "projected_t11_datapack_recipe_additions": 8,

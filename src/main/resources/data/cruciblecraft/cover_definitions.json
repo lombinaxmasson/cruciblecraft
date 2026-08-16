@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "definitions": [
+    {
+      "id": "cruciblecraft:filter",
+      "behavior": "cruciblecraft:filter",
+      "medium": "both",
+      "values": {
+        "rate": 0,
+        "pressureThreshold": 0,
+        "exactCount": 0,
+        "mode": "up_to",
+        "selector": 0
+      },
+      "configurable": ["match_id"]
+    },
+    {
+      "id": "cruciblecraft:shutter",
+      "behavior": "cruciblecraft:shutter",
+      "medium": "both",
+      "values": {
+        "rate": 0,
+        "pressureThreshold": 0,
+        "exactCount": 0,
+        "mode": "up_to",
+        "selector": 0
+      },
+      "configurable": []
+    },
+    {
+      "id": "cruciblecraft:pump",
+      "behavior": "cruciblecraft:pump_adapter",
+      "medium": "both",
+      "values": {
+        "rate": 64,
+        "pressureThreshold": 0,
+        "exactCount": 0,
+        "mode": "up_to",
+        "selector": 0
+      },
+      "configurable": []
+    },
+    {
+      "id": "cruciblecraft:conveyor",
+      "behavior": "cruciblecraft:conveyor",
+      "medium": "item",
+      "values": {
+        "rate": 16,
+        "pressureThreshold": 0,
+        "exactCount": 0,
+        "mode": "up_to",
+        "selector": 0
+      },
+      "configurable": ["rate", "match_id"]
+    },
+    {
+      "id": "cruciblecraft:conveyor_fast",
+      "behavior": "cruciblecraft:conveyor",
+      "medium": "item",
+      "values": {
+        "rate": 32,
+        "pressureThreshold": 0,
+        "exactCount": 0,
+        "mode": "up_to",
+        "selector": 0
+      },
+      "configurable": ["rate", "match_id"]
+    },
+    {
+      "id": "cruciblecraft:retriever_item",
+      "behavior": "cruciblecraft:retriever_item",
+      "medium": "item",
+      "values": {
+        "rate": 16,
+        "pressureThreshold": 0,
+        "exactCount": 0,
+        "mode": "up_to",
+        "selector": 0
+      },
+      "configurable": ["rate", "match_id"]
+    },
+    {
+      "id": "cruciblecraft:robot_arm",
+      "behavior": "cruciblecraft:robot_arm",
+      "medium": "item",
+      "values": {
+        "rate": 64,
+        "pressureThreshold": 0,
+        "exactCount": 8,
+        "mode": "exact",
+        "selector": 0
+      },
+      "configurable": ["exact_count", "mode", "match_id"]
+    },
+    {
+      "id": "cruciblecraft:pressure_valve",
+      "behavior": "cruciblecraft:pressure_valve",
+      "medium": "fluid",
+      "values": {
+        "rate": 0,
+        "pressureThreshold": 500,
+        "exactCount": 0,
+        "mode": "up_to",
+        "selector": 0
+      },
+      "configurable": ["pressure_threshold"]
+    },
+    {
+      "id": "cruciblecraft:selector_manual",
+      "behavior": "cruciblecraft:selector_manual",
+      "medium": "both",
+      "values": {
+        "rate": 0,
+        "pressureThreshold": 0,
+        "exactCount": 0,
+        "mode": "up_to",
+        "selector": 0
+      },
+      "configurable": ["selector"]
+    }
+  ]
+}

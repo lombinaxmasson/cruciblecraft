@@ -30,8 +30,12 @@ sourceSets.main.resources {
     srcDir('src/component_rule_generated/resources')
     // Audited T5 chemical fluids and recipes are generated from pinned GT6 data.
     srcDir('src/t5_chemical_generated/resources')
+    // T21 template-backed ordinary chemistry families.
+    srcDir('src/t21_chemical_generated/resources')
     // T11 hydrocarbon processing and fuel rows are fixed-source projections.
     srcDir('src/t11_hydrocarbon_generated/resources')
+    // T22 petroleum processing rows from distillery + T21 denominator families.
+    srcDir('src/t22_petroleum_generated/resources')
 
     // Exclude common development only resources from finalized outputs
     exclude("**/*.bbmodel") // BlockBench project files
@@ -201,6 +205,9 @@ dependencies {
     compileOnly 'maven.modrinth:jade:15.10.0+neoforge'
     compileOnly 'maven.modrinth:emi:1.1.24+1.21.1+neoforge'
     compileOnly 'dev.latvian.mods:kubejs-neoforge:2101.7.2-build.368'
+    // Dev-only: load optional recipe/HUD mods in runClient without shipping them.
+    localRuntime 'maven.modrinth:jade:15.10.0+neoforge'
+    localRuntime 'maven.modrinth:emi:1.1.24+1.21.1+neoforge'
 
     testImplementation platform('org.junit:junit-bom:5.11.4')
     testImplementation 'org.junit.jupiter:junit-jupiter'
@@ -337,5 +344,24 @@ idea {
     module {
         downloadSources = true
         downloadJavadoc = true
+    }
+}
+
+// Beta distribution bundle: the mod jar plus the player-facing docs
+// (install guide, changelog, credits). Deterministic and clean-checkout
+// reproducible; run with `.\gradlew.bat distBeta`.
+tasks.register('distBeta', Zip) {
+    group = 'distribution'
+    description = 'Bundle the mod jar with player-facing documentation.'
+    dependsOn jar
+    archiveBaseName = mod_id
+    archiveVersion = mod_version
+    destinationDirectory = layout.buildDirectory.dir('distributions')
+    from(jar)
+    from('.') {
+        include 'CHANGELOG.md'
+        include 'CREDITS.md'
+        include 'docs/**'
+        include 'TEMPLATE_LICENSE.txt'
     }
 }

@@ -2059,52 +2059,52 @@
         {
           "canonical_id": "large_boiler",
           "cc_multiblock": null,
-          "deferred_template": "t18_energy",
-          "disposition": "deferred_with_reason",
+          "disposition": "in_scope",
           "id": "multiblock-t18-large-boiler",
-          "implementation_status": "third_stage_deferred",
-          "reason": "Large Boiler belongs to the T18 steam chain.",
-          "roadmap_bucket": "T18"
+          "implementation_status": "selected_t23",
+          "reason": "T23 A2 selected: the T18 large-boiler deferral is closed by selection; structure, HU energy identity, conservation and exhaust transaction close in T23 C1 (successor of the T18 replacement condition).",
+          "roadmap_bucket": "T23",
+          "deferred": null
         },
         {
           "canonical_id": "large_dynamo",
           "cc_multiblock": null,
-          "deferred_template": "t18_energy",
+          "deferred_template": "post_t19_multiblock",
           "disposition": "deferred_with_reason",
           "id": "multiblock-t18-large-dynamo",
-          "implementation_status": "third_stage_deferred",
-          "reason": "Large Dynamo belongs to the T18 RU-to-EU chain.",
-          "roadmap_bucket": "T18"
+          "implementation_status": "post_t19",
+          "reason": "T23 A1 post_1_0: single bronze_dynamo already covers the v1 RU->EU conversion; multiblock form is pure scale-up.",
+          "roadmap_bucket": "POST_T19"
         },
         {
           "canonical_id": "large_heat_exchanger",
           "cc_multiblock": null,
-          "deferred_template": "t18_energy",
+          "deferred_template": "post_t19_multiblock",
           "disposition": "deferred_with_reason",
           "id": "multiblock-t18-large-heat-exchanger",
-          "implementation_status": "third_stage_deferred",
-          "reason": "Large Heat Exchanger belongs to later T18 thermal conversion.",
-          "roadmap_bucket": "T18"
+          "implementation_status": "post_t19",
+          "reason": "T23 A1 post_1_0: hot-fluid exchange chain is not closed in CC v1.",
+          "roadmap_bucket": "POST_T19"
         },
         {
           "canonical_id": "large_turbine_gas",
           "cc_multiblock": null,
-          "deferred_template": "t18_energy",
+          "deferred_template": "post_t19_multiblock",
           "disposition": "deferred_with_reason",
           "id": "multiblock-t18-turbine-gas",
-          "implementation_status": "third_stage_deferred",
-          "reason": "Gas turbine conversion belongs to the T18 fuel/energy chain.",
-          "roadmap_bucket": "T18"
+          "implementation_status": "post_t19",
+          "reason": "T23 A1 post_1_0: single burning_gas_generator covers the v1 gas chain; HU->RU has no v1 gap.",
+          "roadmap_bucket": "POST_T19"
         },
         {
           "canonical_id": "large_turbine_steam",
           "cc_multiblock": null,
-          "deferred_template": "t18_energy",
+          "deferred_template": "post_t19_multiblock",
           "disposition": "deferred_with_reason",
           "id": "multiblock-t18-turbine-steam",
-          "implementation_status": "third_stage_deferred",
-          "reason": "Steam turbine conversion belongs to the T18 steam/energy chain.",
-          "roadmap_bucket": "T18"
+          "implementation_status": "post_t19",
+          "reason": "T23 A1 post_1_0: single bronze_steam_engine covers the v1 steam consumption; multiblock form is pure scale-up.",
+          "roadmap_bucket": "POST_T19"
         },
         {
           "canonical_id": "autoclave",
@@ -2129,12 +2129,12 @@
         {
           "canonical_id": "bedrock_drill",
           "cc_multiblock": null,
-          "deferred_template": "post_t19_multiblock",
-          "disposition": "deferred_with_reason",
+          "disposition": "out_of_scope",
           "id": "multiblock-post-bedrock-drill",
-          "implementation_status": "post_t19",
-          "reason": "Bedrock world interaction is outside the third-stage selected families.",
-          "roadmap_bucket": "POST_T19"
+          "implementation_status": "out_of_scope",
+          "reason": "T23 A1 out_of_scope: bedrock/dimension world interaction is excluded by the phase-4 master plan T23 scope.",
+          "roadmap_bucket": "T23",
+          "deferred": null
         },
         {
           "canonical_id": "coagulator",
@@ -2179,12 +2179,12 @@
         {
           "canonical_id": "distillation_tower",
           "cc_multiblock": null,
-          "deferred_template": "post_t19_multiblock",
-          "disposition": "deferred_with_reason",
+          "disposition": "in_scope",
           "id": "multiblock-post-distillation-tower",
-          "implementation_status": "post_t19",
-          "reason": "No distillation tower multiblock batch is selected through T19.",
-          "roadmap_bucket": "POST_T19"
+          "implementation_status": "selected_t23",
+          "reason": "T23 A2 selected: petroleum-chain scale-up tower (selection criteria in tools/t23_multiblock_behavior_classification.json).",
+          "roadmap_bucket": "T23",
+          "deferred": null
         },
         {
           "canonical_id": "electrolyzer",
@@ -2209,12 +2209,12 @@
         {
           "canonical_id": "fusion_reactor",
           "cc_multiblock": null,
-          "deferred_template": "post_t19_multiblock",
-          "disposition": "deferred_with_reason",
+          "disposition": "out_of_scope",
           "id": "multiblock-post-fusion",
-          "implementation_status": "post_t19",
-          "reason": "Fusion is explicitly beyond the third-stage energy scope.",
-          "roadmap_bucket": "POST_T19"
+          "implementation_status": "out_of_scope",
+          "reason": "T23 A1 out_of_scope: nuclear fusion controller is excluded by the phase-4 master plan T23 scope (classification artifact tools/t23_multiblock_behavior_classification.json).",
+          "roadmap_bucket": "T23",
+          "deferred": null
         },
         {
           "canonical_id": "implosion_compressor",
@@ -2229,12 +2229,12 @@
         {
           "canonical_id": "lightning_rod",
           "cc_multiblock": null,
-          "deferred_template": "post_t19_multiblock",
-          "disposition": "deferred_with_reason",
+          "disposition": "out_of_scope",
           "id": "multiblock-post-lightning",
-          "implementation_status": "post_t19",
-          "reason": "World lightning collection is outside the selected third-stage chains.",
-          "roadmap_bucket": "POST_T19"
+          "implementation_status": "out_of_scope",
+          "reason": "T23 A1 out_of_scope: weather world interaction is excluded by the phase-4 master plan T23 scope.",
+          "roadmap_bucket": "T23",
+          "deferred": null
         },
         {
           "canonical_id": "logistics_core",
@@ -2249,12 +2249,12 @@
         {
           "canonical_id": "matter_fabricator",
           "cc_multiblock": null,
-          "deferred_template": "post_t19_multiblock",
-          "disposition": "deferred_with_reason",
+          "disposition": "out_of_scope",
           "id": "multiblock-post-matter-fabricator",
-          "implementation_status": "post_t19",
-          "reason": "Matter fabrication is outside the selected third-stage families.",
-          "roadmap_bucket": "POST_T19"
+          "implementation_status": "out_of_scope",
+          "reason": "T23 A1 out_of_scope: post-scarcity QU content is excluded by the phase-4 master plan T23 scope.",
+          "roadmap_bucket": "T23",
+          "deferred": null
         },
         {
           "canonical_id": "mixer",
@@ -2309,12 +2309,12 @@
         {
           "canonical_id": "tank_3x3x3",
           "cc_multiblock": null,
-          "deferred_template": "post_t19_multiblock",
-          "disposition": "deferred_with_reason",
+          "disposition": "in_scope",
           "id": "multiblock-post-tank-3",
-          "implementation_status": "post_t19",
-          "reason": "Generic multiblock tanks are outside the selected third-stage structures.",
-          "roadmap_bucket": "POST_T19"
+          "implementation_status": "selected_t23",
+          "reason": "T23 A2 selected: bulk fluid storage for the closed steam/fuel/petroleum chains (selection criteria in tools/t23_multiblock_behavior_classification.json).",
+          "roadmap_bucket": "T23",
+          "deferred": null
         },
         {
           "canonical_id": "tank_5x5x5_metal",
@@ -2329,25 +2329,25 @@
         {
           "canonical_id": "von_da_graagg",
           "cc_multiblock": null,
-          "deferred_template": "post_t19_multiblock",
-          "disposition": "deferred_with_reason",
+          "disposition": "out_of_scope",
           "id": "multiblock-post-von-da-graagg",
-          "implementation_status": "post_t19",
-          "reason": "This specialized controller has no selected batch through T19.",
-          "roadmap_bucket": "POST_T19"
+          "implementation_status": "out_of_scope",
+          "reason": "T23 A1 out_of_scope: easter-egg content is excluded by the phase-4 master plan T23 scope.",
+          "roadmap_bucket": "T23",
+          "deferred": null
         }
       ],
       "deferred_templates": {
         "post_t19_multiblock": {
           "owner": "POST_T19",
           "reason": "The source controller is valid but has no selected implementation batch through T19.",
-          "recheck_point": "Post-T19 multiblock family prioritization.",
+          "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
           "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
         },
         "t18_energy": {
           "owner": "T18",
           "reason": "The source controller is selected for the third-stage energy-chain family but T13 adds no runtime.",
-          "recheck_point": "T18 multiblock energy-chain implementation gate.",
+          "recheck_point": "T23 A1 behavior classification executed; remaining third_stage_deferred member (large_boiler) rechecks at T23 A2 selection.",
           "replacement_condition": "T18 supplies the exact source-backed structure, energy identities, conservation, overload and exhaust transaction."
         }
       },

@@ -1,0 +1,96 @@
+{
+  "schema_version": 2,
+  "schema_changelog": "v2: Added operand_proof requirement to v1_required records.  Partial-coverage policy extended to also cover partial-reachability.  Both consumer_proof and operand_proof are mandatory; missing either disqualifies a unit from v1_required.",
+  "status": "T21_TEMPLATE_DENOMINATOR_POLICY",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "mixer_templates": {
+    "index": "tools/gt6_mixer_templates_index.json",
+    "membership": "tools/gt6_mixer_templates_membership.json",
+    "report": "tools/gt6_mixer_templates_report.json"
+  },
+  "row_diagnostic": {
+    "path": "tools/t21_source_denominator.json",
+    "status": "DIAGNOSTIC_ONLY",
+    "closure_numerator": false,
+    "reason": "Input-touch rows overcount combinatorial and non-product Mixer registrations; template necessity replaces row count as the closure metric."
+  },
+  "classifications": [
+    "v1_required",
+    "ordinary_optional",
+    "already_covered",
+    "petroleum_t22",
+    "post_1_0_nuclear",
+    "post_1_0_g10",
+    "out_of_scope"
+  ],
+  "beta_seed_materials": [
+    "aluminium",
+    "bronze",
+    "carbon",
+    "cryolite",
+    "electrum",
+    "glue",
+    "hydrochloric_acid",
+    "hydrogen_fluoride",
+    "lubricant",
+    "plastic",
+    "rubber",
+    "stainless_steel",
+    "steel",
+    "tin_alloy"
+  ],
+  "currently_available_materials": [
+    "aluminium",
+    "bronze",
+    "carbon",
+    "charcoal",
+    "coal",
+    "coal_coke",
+    "cryolite",
+    "electrum",
+    "glue",
+    "hydrochloric_acid",
+    "hydrogen_fluoride",
+    "lubricant",
+    "niter",
+    "plastic",
+    "rubber",
+    "stainless_steel",
+    "steel",
+    "tin_alloy"
+  ],
+  "forced_v1_templates": [
+    {
+      "template_id": "sha256:1b36aeb956cea348f8eaf5006a3e16c52c59c607b820d92941de6249d2efea66",
+      "reason": "Four-material coal/charcoal/carbon/coke plus niter/blaze-powder Mixer family automates gunpowder for the Beta industrial path.",
+      "consumer_proof": "minecraft:tnt and other vanilla gunpowder consumers",
+      "operand_proof": "All four operands (coal/dust, charcoal/dust, carbon/dust, coal_coke/dust, niter/dust) are reachable via ore chain (coal,niter), T5 electrolysis (carbon), and form_items gem bridge (charcoal, coal_coke).  Verified by tools/t21_operand_reachability.py --check exit 0 on 2026-08-10.",
+      "expected_rows": 4
+    }
+  ],
+  "petroleum_materials": [
+    "crude_oil",
+    "natural_gas",
+    "oil_sand",
+    "oil_shale",
+    "petroleum_coke"
+  ],
+  "g10_fluid_tokens": [
+    "juice",
+    "smoothie",
+    "honey",
+    "milk",
+    "biomass",
+    "fermented",
+    "seedoil"
+  ],
+  "reverse_closure": {
+    "include_current_t5_outputs_as_seeds": false,
+    "exclude_inactive_rows": true,
+    "stop_at_petroleum": true,
+    "stop_at_nuclear": true,
+    "stop_at_g10": true
+  },
+  "partial_coverage_policy": "Split a replay-verified template by final row classification AND by operand reachability before denominator publication.  A unit with partially-covered rows or partially-reachable operands must be split; each sub-unit is independently classified.  No unit may mix already_covered and uncovered rows, nor reachable and unreachable operands.",
+  "other_maps_policy": "The nine non-Mixer maps use exact source-row singleton units until their denominator size proves a dedicated extractor necessary."
+}

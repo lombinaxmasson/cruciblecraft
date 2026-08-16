@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.content.menu;
 
 import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
+import com.masson.cruciblecraft.machine.processing.Gt6BasicMachineGui;
 import com.masson.cruciblecraft.registry.ModMenus;
 
 import net.minecraft.world.entity.player.Inventory;
@@ -15,6 +16,8 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 
 public final class CokeOvenMenu extends AbstractContainerMenu {
     private static final int MACHINE_SLOTS = 2;
+    public static final Gt6BasicMachineGui.Layout LAYOUT = Gt6BasicMachineGui.layout(
+            1, 9, 0, 1, 1, 1, 0, 1, -1);
     private final CokeOvenBlockEntity blockEntity;
     private final ContainerData data;
 
@@ -53,13 +56,13 @@ public final class CokeOvenMenu extends AbstractContainerMenu {
         addSlot(new ProcessingMachineMenu.NotifyingSlotItemHandler(
                 machineInventory,
                 CokeOvenBlockEntity.INPUT_SLOT,
-                56,
-                35));
+                LAYOUT.itemSlots().get(0).x(),
+                LAYOUT.itemSlots().get(0).y()));
         addSlot(new ProcessingMachineMenu.NotifyingSlotItemHandler(
                 machineInventory,
                 CokeOvenBlockEntity.OUTPUT_SLOT,
-                116,
-                35) {
+                LAYOUT.itemSlots().get(1).x(),
+                LAYOUT.itemSlots().get(1).y()) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return false;

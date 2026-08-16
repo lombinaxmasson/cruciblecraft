@@ -40,6 +40,8 @@ IMPLEMENTATION_STATUSES = {
             "implemented",
             "third_stage_deferred",
             "post_t19",
+            "selected_t23",
+            "out_of_scope",
         }
     ),
 }
@@ -821,6 +823,7 @@ def write(documents: dict[str, dict[str, Any]]) -> None:
         OUTPUTS[domain_id].write_text(
             stable_json(document),
             encoding="utf-8",
+            newline="\n",
         )
 
 
@@ -851,7 +854,7 @@ def main() -> int:
     policy = load(POLICY)
     if args.refresh_source_manifest:
         policy = refresh_source_manifest(policy)
-        POLICY.write_text(stable_json(policy), encoding="utf-8")
+        POLICY.write_text(stable_json(policy), encoding="utf-8", newline="\n")
     documents = build(policy)
     if args.check:
         errors = check(documents)

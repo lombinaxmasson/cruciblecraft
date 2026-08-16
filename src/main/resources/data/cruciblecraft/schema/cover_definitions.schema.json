@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.example/schema/cover_definitions.schema.json",
+  "title": "CrucibleCraft cover definition catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "definitions"],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "definitions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {
+        "$ref": "#/$defs/definition"
+      }
+    }
+  },
+  "$defs": {
+    "values": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rate",
+        "pressureThreshold",
+        "exactCount",
+        "mode",
+        "selector"
+      ],
+      "properties": {
+        "rate": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 8000
+        },
+        "pressureThreshold": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "exactCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 64
+        },
+        "mode": {
+          "enum": ["up_to", "exact"]
+        },
+        "selector": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 5
+        }
+      }
+    },
+    "definition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "behavior",
+        "medium",
+        "values",
+        "configurable"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^cruciblecraft:[a-z0-9_./-]+$",
+          "maxLength": 128
+        },
+        "behavior": {
+          "type": "string",
+          "pattern": "^cruciblecraft:[a-z0-9_./-]+$",
+          "maxLength": 128
+        },
+        "medium": {
+          "enum": ["item", "fluid", "both"]
+        },
+        "values": {
+          "$ref": "#/$defs/values"
+        },
+        "configurable": {
+          "type": "array",
+          "maxItems": 6,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "match_id",
+              "rate",
+              "pressure_threshold",
+              "exact_count",
+              "mode",
+              "selector"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

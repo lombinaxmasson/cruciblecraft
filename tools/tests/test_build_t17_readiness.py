@@ -27,6 +27,10 @@ class T17ReadinessTest(unittest.TestCase):
             self.document["stage_gates"][stage]["status"] == "COMPLETE"
             for stage in ("T17a", "T17b", "T17c", "T17d")
         ))
+        self.assertEqual(
+            [],
+            self.document["currentness"]["pending_report"]["pending"],
+        )
 
     def test_t17a_evidence_locks_denominator_catalog_and_zero_gt_rows(self):
         evidence = self.document["t17a_evidence"]
@@ -50,6 +54,27 @@ class T17ReadinessTest(unittest.TestCase):
         self.assertEqual(6, evidence["new_item_registrations"])
         self.assertEqual(0, evidence["gt_recipe_row_mutation"])
         self.assertEqual(0, evidence["unclassified"])
+        audit = evidence["energy_disposition_audit"]
+        self.assertEqual("AUDITED", audit["status"])
+        audit_rows = {
+            row["recipe_map"]: row for row in audit["rows"]
+        }
+        self.assertEqual(
+            "MAPPED_DEFERRED",
+            audit_rows["RM.Extruder"]["disposition"],
+        )
+        self.assertEqual(
+            "CROSS_OWNER_DEFERRED",
+            audit_rows["RM.Compressor"]["disposition"],
+        )
+        audit = evidence["processing_machine_energy_audit"]
+        self.assertEqual(
+            "PROCESSING_MACHINE_ENERGY_AUDIT_READY", audit["status"]
+        )
+        self.assertEqual(25, audit["machine_specs"])
+        self.assertEqual(0, audit["implicit_energy_arguments"])
+        self.assertEqual(8, audit["legacy_kinetic"])
+        self.assertEqual(0, audit["new_legacy_kinetic"])
 
     def test_t17b_records_execution_tests_and_source_contracts(self):
         gate = self.document["stage_gates"]["T17b"]
@@ -95,7 +120,7 @@ class T17ReadinessTest(unittest.TestCase):
         )
         self.assertEqual(0, evidence["electric_mixer_tier_variants"])
 
-    def test_t17c_records_closed_acquisition_resources_and_migrations(self):
+    def test_t17c_records_closed_acquisition_resources_and_identity(self):
         gate = self.document["stage_gates"]["T17c"]
         evidence = self.document["t17c_evidence"]
         self.assertEqual(3, evidence["selected_kinds"])
@@ -137,6 +162,11 @@ class T17ReadinessTest(unittest.TestCase):
                 "deferred_kinds": 24,
                 "heat_tier4_deferred": 10,
                 "electric_tier4_5_deferred": 32,
+                "cross_owner_deferred_kinds": 1,
+                "energy_disposition_audit":
+                    self.document["t17a_evidence"][
+                        "energy_disposition_audit"
+                    ],
             },
             evidence["denominator"],
         )
@@ -150,16 +180,17 @@ class T17ReadinessTest(unittest.TestCase):
             },
             evidence["energy_topology"],
         )
-        self.assertEqual(3, evidence["migration_acquisition"][
-            "exact_legacy_tier1_migrations"
-        ])
-        self.assertEqual(9, evidence["migration_acquisition"][
+        self.assertEqual(
+            "CURRENT_ONLY_FAIL_CLOSED",
+            evidence["identity_acquisition"]["identity_policy"],
+        )
+        self.assertEqual(9, evidence["identity_acquisition"][
             "vanilla_crafting_rows"
         ])
-        self.assertEqual(0, evidence["migration_acquisition"][
+        self.assertEqual(0, evidence["identity_acquisition"][
             "gt_recipe_rows"
         ])
-        self.assertEqual(0, evidence["migration_acquisition"]["unreachable"])
+        self.assertEqual(0, evidence["identity_acquisition"]["unreachable"])
         self.assertEqual("T17", evidence["load_projection"]["delivery_phase"])
         self.assertEqual("PASS", evidence["load_projection"]["status"])
         self.assertTrue(all(
@@ -224,7 +255,7 @@ class T17ReadinessTest(unittest.TestCase):
                 set(current_contracts[stage]),
             )
         self.assertEqual(
-            {"T16", "denominator", "acquisition"},
+            {"T16", "denominator", "acquisition", "energy_audit"},
             set(currentness["dependencies"]),
         )
 
@@ -252,6 +283,7 @@ class T17ReadinessTest(unittest.TestCase):
         )
         self.assertEqual(
             [
+                "test_build_processing_machine_energy_audit",
                 "test_build_machine_crafting_readiness",
                 "test_build_t17_machine_acquisition",
                 "test_build_t17_machine_denominator",
@@ -273,7 +305,13 @@ class T17ReadinessTest(unittest.TestCase):
             ("tools/build_t17_readiness.py", "--check"),
             run_full_verification.BUILDER_CHECKS,
         )
+        self.assertIn(
+            ("tools/build_processing_machine_energy_audit.py", "--check"),
+            run_full_verification.BUILDER_CHECKS,
+        )
         for artifact in (
+            "processing_machine_energy_audit_policy.json",
+            "processing_machine_energy_audit.json",
             "t17_machine_denominator.json",
             "t17_machine_acquisition.json",
             "t17_load_projection_input.json",

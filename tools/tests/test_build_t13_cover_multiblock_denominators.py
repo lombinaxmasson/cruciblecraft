@@ -282,14 +282,16 @@ class T13CoverMultiblockDenominatorTest(unittest.TestCase):
                 "canonical": 30,
                 "classified": 30,
                 "classifications": {
-                    "deferred_with_reason": 28,
-                    "in_scope": 2,
+                    "deferred_with_reason": 20,
+                    "in_scope": 5,
+                    "out_of_scope": 5,
                 },
                 "excluded": 13,
                 "implementation_statuses": {
                     "implemented": 2,
-                    "post_t19": 23,
-                    "third_stage_deferred": 5,
+                    "post_t19": 20,
+                    "selected_t23": 3,
+                    "out_of_scope": 5,
                 },
                 "raw_classes": 44,
                 "raw_files": 44,
@@ -309,16 +311,36 @@ class T13CoverMultiblockDenominatorTest(unittest.TestCase):
         )
         self.assertEqual(
             {
+                "distillation_tower",
                 "large_boiler",
-                "large_dynamo",
-                "large_heat_exchanger",
-                "large_turbine_gas",
-                "large_turbine_steam",
+                "tank_3x3x3",
             },
             {
                 row["canonical_id"]
                 for row in rows.values()
+                if row["implementation_status"] == "selected_t23"
+            },
+        )
+        self.assertEqual(
+            set(),
+            {
+                row["canonical_id"]
+                for row in rows.values()
                 if row["implementation_status"] == "third_stage_deferred"
+            },
+        )
+        self.assertEqual(
+            {
+                "bedrock_drill",
+                "fusion_reactor",
+                "lightning_rod",
+                "matter_fabricator",
+                "von_da_graagg",
+            },
+            {
+                row["canonical_id"]
+                for row in rows.values()
+                if row["implementation_status"] == "out_of_scope"
             },
         )
 

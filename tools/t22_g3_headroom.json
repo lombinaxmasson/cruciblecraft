@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "status": "G3_PRECALCULATION",
+  "generated_by": "tools/build_t22_readiness.py G3 pre-work",
+  "generated_on": "2026-08-11",
+  "sources": {
+    "publication_baseline": "src/main/resources/data/cruciblecraft/t22_publication_baseline.json",
+    "template_denominator": "tools/t21_template_denominator.json",
+    "t11_hydrocarbon_manifest": "tools/t11_hydrocarbon_recipe_manifest.json",
+    "gt6_map_roadmap": "tools/gt6_map_roadmap.json",
+    "t5_distillery_projection": "tools/t5_distillery_projection.json",
+    "full_verification_report": "tools/full_verification_report.json"
+  },
+  "known": {
+    "t21_close": {
+      "logical": 18879,
+      "eager": 16654,
+      "lazy": 2225
+    },
+    "hard_ceiling": {
+      "logical": 21000,
+      "eager_soft": 18000,
+      "eager_hard": 21000,
+      "lazy_soft": 16000,
+      "lazy_hard": 56000,
+      "datapack_soft": 6000,
+      "datapack_hard": 6600
+    },
+    "headroom": {
+      "logical_remaining": 2121,
+      "logical_post_petroleum_est_min": 1050,
+      "datapack_current": 3260
+    },
+    "petroleum_t22_t21_covered": {
+      "description": "petroleum_t22 units classified by T21 template denominator across 10 maps",
+      "total_units": 63,
+      "total_rows": 1071,
+      "rows_per_unit": 17.0,
+      "per_map_units": {
+        "mixer": 49,
+        "centrifuge": 9,
+        "smelter": 3,
+        "electrolyzer": 1,
+        "compressor": 1
+      },
+      "per_map_rows": {
+        "mixer": 1057,
+        "centrifuge": 9,
+        "smelter": 3,
+        "electrolyzer": 1,
+        "compressor": 1
+      },
+      "maps_with_zero_petroleum": [
+        "autoclave",
+        "bath",
+        "drying",
+        "roaster",
+        "assembler"
+      ],
+      "mixer_note": "Mixer 49 units → 1057 rows (21.6 rows/unit via template expansion). All other maps are 1 row/unit (no templates)."
+    }
+  },
+  "to_calculate": {
+    "distillery": {
+      "total_source_rows": 1517,
+      "published_so_far": 2,
+      "published_details": [
+        "T11 fixed row 872: crude_oil → fuel_oil + lubricant (distillery)",
+        "T5.5: distilled_water (distillery)"
+      ],
+      "petroleum_v1_rows": "UNKNOWN — A1 must classify each of the ~1515 remaining rows",
+      "data_source": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json",
+      "classification_source": "tools/t5_distillery_projection.json (1517 rows with row_sha256)"
+    },
+    "generifier": {
+      "total_source_rows": 10236,
+      "published_so_far": 1,
+      "published_details": [
+        "T11 fixed row 553: natural_gas → methane (generifier)"
+      ],
+      "petroleum_v1_rows": "UNKNOWN — A1 must classify if any generifier rows are petroleum v1",
+      "data_source": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.generifier.json"
+    },
+    "other_uncovered_maps": {
+      "description": "T21 denominator covers 10 maps. Other GT6 maps may have petroleum rows.",
+      "candidates": [
+        "gt.recipe.cryodistillationtower (3 rows, DEFERRED POST_T3 — likely out of scope)",
+        "gt.recipe.distillationtower (8 rows, DEFERRED POST_T3 — likely out of scope)",
+        "gt.recipe.fuels.engine (petroleum consumer, not producer)",
+        "gt.recipe.fuels.gas (petroleum consumer, not producer)",
+        "gt.recipe.fuels.burn (petroleum consumer, not producer)"
+      ]
+    },
+    "new_registrations": {
+      "fluids": "UNKNOWN — depends on distillery petroleum fluid identity mapping",
+      "materials": "UNKNOWN — depends on whether new materials are needed",
+      "containers": "UNKNOWN — cell/portable罐 allowlist reuse expected (T10)",
+      "en_us_keys": "UNKNOWN",
+      "zh_cn_coverage": "UNKNOWN — must not regress from current baseline",
+      "models": "UNKNOWN — expected to be generated/inherited, no placeholder textures"
+    },
+    "gametest_delta": {
+      "current": 85,
+      "t22_expected_minimum": "UNKNOWN — at least 3 (one per downstream product consumer loop) + anomaly paths"
+    }
+  },
+  "headroom_formula": {
+    "total_projection": "1071 + distillery_petroleum_rows + generifier_petroleum_rows + other_map_petroleum_rows",
+    "remaining_after_projection": "2121 - (distillery_petroleum_rows + generifier_petroleum_rows + other_map_petroleum_rows)",
+    "decision_threshold": "if total > 2121: partial lazy/on-demand or T14 ceiling remeasurement required",
+    "current_best_case": "if distillery_petroleum ≤ 1050 then fits within headroom",
+    "current_worst_case": "if distillery_petroleum ≈ 1515 then total ≈ 2586 → exceeds headroom by ~465 rows → need strategy decision"
+  },
+  "A1_priority_order": [
+    "1. Count distillery petroleum rows (the single largest unknown)",
+    "2. Count generifier petroleum rows (likely small or zero)",
+    "3. Check other uncovered maps for petroleum rows",
+    "4. Sum: 1071 + distillery + generifier + other → total T22 projection",
+    "5. Compare against 2121 headroom → immediate / lazy / ceiling-adjust decision"
+  ]
+}

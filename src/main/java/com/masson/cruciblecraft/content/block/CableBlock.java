@@ -14,7 +14,11 @@ import com.masson.cruciblecraft.registry.ModCapabilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -27,6 +31,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -95,16 +100,7 @@ public final class CableBlock extends Block implements EntityBlock {
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        BlockState state = defaultBlockState();
-        for (Direction direction : Direction.values()) {
-            state = state.setValue(
-                    PROPERTY_BY_DIRECTION.get(direction),
-                    connectsTo(
-                            context.getLevel(),
-                            context.getClickedPos(),
-                            direction));
-        }
-        return state;
+        return defaultBlockState();
     }
 
     @Override
@@ -115,12 +111,10 @@ public final class CableBlock extends Block implements EntityBlock {
             LevelAccessor level,
             BlockPos pos,
             BlockPos neighborPos) {
-        return state.setValue(
-                PROPERTY_BY_DIRECTION.get(direction),
-                connectsTo(level, pos, direction));
+        return state;
     }
 
-    private static boolean connectsTo(
+    boolean connectsTo(
             LevelAccessor level, BlockPos pos, Direction direction) {
         BlockPos neighborPos = pos.relative(direction);
         if (!level.hasChunkAt(neighborPos)) {
@@ -141,22 +135,16 @@ public final class CableBlock extends Block implements EntityBlock {
     }
 
     @Override
-    protected void onPlace(
+    protected ItemInteractionResult useItemOn(
+            ItemStack stack,
             BlockState state,
             Level level,
             BlockPos pos,
-            BlockState oldState,
-            boolean movedByPiston) {
-        super.onPlace(state, level, pos, oldState, movedByPiston);
-        BlockState connected = state;
-        for (Direction direction : Direction.values()) {
-            connected = connected.setValue(
-                    PROPERTY_BY_DIRECTION.get(direction),
-                    connectsTo(level, pos, direction));
-        }
-        if (connected != state) {
-            level.setBlock(pos, connected, Block.UPDATE_CLIENTS);
-        }
+            Player player,
+            InteractionHand hand,
+            BlockHitResult hit) {
+        return Gt6StyleConnections.wrench(
+                stack, state, level, pos, player, hand, hit);
     }
 
     @Override

@@ -72,7 +72,7 @@ public final class ModMachineVariants {
                     .map(entry -> new MachineVariant(
                             entry.variantId(),
                             requireKind(entry.kindId()),
-                            entry.tier()))
+                            entry.tierBand()))
                     .toList();
     public static final List<MachineVariant> T16_SELECTED =
             ALL.stream()

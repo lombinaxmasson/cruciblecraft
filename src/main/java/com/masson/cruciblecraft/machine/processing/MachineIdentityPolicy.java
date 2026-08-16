@@ -1,68 +1,39 @@
 package com.masson.cruciblecraft.machine.processing;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 /**
- * Pure persisted-identity policy. Exact migrations are data; all other
- * mismatches remain quarantined with their original tuple intact.
+ * Pure current persisted-identity policy. Blank first-save identities adopt
+ * the current tuple; every nonblank mismatch remains quarantined unchanged.
  */
 public final class MachineIdentityPolicy {
     public enum Resolution {
         ACCEPTED,
-        MIGRATED,
         QUARANTINED
     }
 
     public record Identity(
             String machineKind,
-            String tierProfile,
+            String tierBand,
             String materialId,
             String energyIdentity) {
         public Identity {
             machineKind = normalize(machineKind);
-            tierProfile = normalize(tierProfile);
+            tierBand = normalize(tierBand);
             materialId = normalize(materialId);
             energyIdentity = normalize(energyIdentity);
         }
 
         public boolean allBlank() {
             return machineKind.isBlank()
-                    && tierProfile.isBlank()
+                    && tierBand.isBlank()
                     && materialId.isBlank()
                     && energyIdentity.isBlank();
         }
 
         private static String normalize(String value) {
             return value == null ? "" : value;
-        }
-    }
-
-    public record Migration(
-            String variantId,
-            Identity from,
-            Identity to) {
-        public Migration {
-            if (variantId == null || variantId.isBlank()) {
-                throw new IllegalArgumentException(
-                        "Migration variant id must not be blank");
-            }
-            Objects.requireNonNull(from, "from");
-            Objects.requireNonNull(to, "to");
-            if (from.equals(to)) {
-                throw new IllegalArgumentException(
-                        "Identity migration must change the tuple");
-            }
-        }
-
-        private boolean applies(
-                String candidateVariantId,
-                Identity saved,
-                Identity current) {
-            return variantId.equals(candidateVariantId)
-                    && from.equals(saved)
-                    && to.equals(current);
         }
     }
 
@@ -86,29 +57,13 @@ public final class MachineIdentityPolicy {
     }
 
     public static Decision resolve(
-            String variantId,
             Identity saved,
-            Identity current,
-            List<Migration> migrations) {
-        if (variantId == null || variantId.isBlank()) {
-            throw new IllegalArgumentException(
-                    "Variant id must not be blank");
-        }
+            Identity current) {
         Objects.requireNonNull(saved, "saved");
         Objects.requireNonNull(current, "current");
-        List<Migration> known = List.copyOf(
-                Objects.requireNonNull(migrations, "migrations"));
         if (saved.allBlank() || saved.equals(current)) {
             return new Decision(
                     Resolution.ACCEPTED,
-                    current,
-                    Optional.empty());
-        }
-        if (known.stream().anyMatch(
-                migration -> migration.applies(
-                        variantId, saved, current))) {
-            return new Decision(
-                    Resolution.MIGRATED,
                     current,
                     Optional.empty());
         }
@@ -126,11 +81,11 @@ public final class MachineIdentityPolicy {
                     + " does not match "
                     + current.machineKind();
         }
-        if (!saved.tierProfile().equals(current.tierProfile())) {
-            return "saved tier "
-                    + saved.tierProfile()
+        if (!saved.tierBand().equals(current.tierBand())) {
+            return "saved tier band "
+                    + saved.tierBand()
                     + " does not match "
-                    + current.tierProfile();
+                    + current.tierBand();
         }
         if (!saved.materialId().equals(current.materialId())) {
             return "saved material "

@@ -1,0 +1,1188 @@
+{
+  "schema_version": 1,
+  "classification_vocabulary": {
+    "v1_required": {
+      "definition": "该 kind 是 v1 已闭合主链（矿处链 / 蒸汽燃油链 / 石油链 / 炼钢链）的 GT6 标准多方块代表：该链在 CC 输入可获取、产品有真实消费端，且多方块形态提供单块机器不具备的差异化角色（分布式端口层、大容量存储、环境能量耦合、规模化吞吐）。已实现的 kind（coke_oven / centrifuge）以已实现状态计入。"
+    },
+    "post_1_0": {
+      "definition": "该 kind 对应主链在 v1 尚未闭合（长尾化学 / 生物质 / 奇异材料 / 核后），或属于 v1 后内容类别（G10 化学、高级物流），或单块 CC 机器已完全覆盖其 v1 功能且多方块形态无差异化角色（纯规模放大）。"
+    },
+    "out_of_scope": {
+      "definition": "第四阶段总体规划 T23 明确排除：核裂变/聚变/等离子 controller、世界交互（天气/基岩/维度）、魔法/彩蛋内容、动态合并渲染与全结构预览 GUI。"
+    },
+    "unclassified": {
+      "definition": "禁止；计数必须为 0。"
+    }
+  },
+  "kinds": [
+    {
+      "canonical_id": "autoclave",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityAutoclave"
+        ],
+        "family": "chemical_processing"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 27,
+        "needed_extensions": [],
+        "notes": "3x3x3 hollow cube; 26x 18022 ONLY_ITEM_FLUID_ENERGY + 1 AIR center; output via bottom adjacent tank."
+      },
+      "controller_behavior": {
+        "kind": "processing_host",
+        "transaction": "RecipeMap autoclave on shared processing host",
+        "ui": "status screen",
+        "environment": "none"
+      },
+      "economy": {
+        "recipe_map": "cruciblecraft:autoclave",
+        "energy_identity": "ELECTRIC (GT6 TU)",
+        "input_path": "single-block chain inputs",
+        "consumers": [],
+        "chain": "T5 化学预算 200 行封顶；无长尾 source 行，v1 未闭合"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：单块 autoclave（T5 ELECTRIC）已覆盖 v1 功能，多方块形态为纯规模放大，且 autoclave 长尾化学在 v1 未闭合。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later multiblock batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "bath",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityBath"
+        ],
+        "family": "ore_processing"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 50,
+        "needed_extensions": [],
+        "notes": "5x5x2 solid box; 50x 18002 ONLY_ITEM_FLUID; no air."
+      },
+      "controller_behavior": {
+        "kind": "processing_host",
+        "transaction": "RecipeMap bath on shared processing host",
+        "ui": "status screen",
+        "environment": "none"
+      },
+      "economy": {
+        "recipe_map": "cruciblecraft:bath",
+        "energy_identity": "KINETIC (GT6 TU)",
+        "input_path": "ore washing chain (water input tank)",
+        "consumers": [
+          "dust -> smelter chain"
+        ],
+        "chain": "矿处链已由单块 bath（T2/T5）闭合"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：单块 bath 已闭合矿处链，多方块形态为纯规模放大、无差异化角色。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later multiblock batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "bedrock_drill",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityBedrockDrill"
+        ],
+        "family": "world_interaction"
+      },
+      "schema_expressibility": {
+        "verdict": "needs_extension",
+        "positions": 54,
+        "needed_extensions": [
+          "environment_bedrock_probe",
+          "dimension_dependent_outputs"
+        ],
+        "notes": "3x6x3 with a 3x3 bedrock/ore probe layer below (y<5 precondition); lubricant 100 L/op; dimension-dependent outputs. Structure check probes world blocks, not registry blocks."
+      },
+      "controller_behavior": {
+        "kind": "world_interaction",
+        "transaction": "bedrock ore tap",
+        "ui": "status screen",
+        "environment": "bedrock patch + dimension dependent"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "KINETIC_ROTATION (GT6 RU) + lubricant",
+        "input_path": "bedrock ore patch",
+        "consumers": [],
+        "chain": "not in CC"
+      },
+      "classification": {
+        "class": "out_of_scope",
+        "basis": "out_of_scope 定义：世界交互（基岩矿脉探测 + 维度依赖输出）在第四阶段总体规划 T23 范围之外。",
+        "owner": "T23 out-of-scope (第四阶段总体规划 T23 范围之外)",
+        "replacement_condition": "总体规划范围变更（重新纳入需改总体规划）",
+        "recheck_point": "每次阶段规划评审"
+      }
+    },
+    {
+      "canonical_id": "centrifuge",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityCentrifuge"
+        ],
+        "family": "ore_processing / chemical"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 18,
+        "needed_extensions": [],
+        "notes": "已实现：large_centrifuge.json（15 item_fluid + 2 energy_input + 1 controller）。"
+      },
+      "controller_behavior": {
+        "kind": "processing_host",
+        "transaction": "RecipeMap centrifuge on shared processing host (MultiblockControllerBinding)",
+        "ui": "status screen",
+        "environment": "none"
+      },
+      "economy": {
+        "recipe_map": "cruciblecraft:centrifuge",
+        "energy_identity": "KINETIC_ROTATION (GT6 RU)",
+        "input_path": "ore/fluid chains",
+        "consumers": [
+          "dust -> smelter chain"
+        ],
+        "chain": "矿处/流体链闭合"
+      },
+      "classification": {
+        "class": "v1_required",
+        "basis": "v1_required 定义：矿处链闭合；已实现（large_centrifuge，T15e/T16），以已实现状态计入。",
+        "owner": null,
+        "replacement_condition": null,
+        "recheck_point": null
+      }
+    },
+    {
+      "canonical_id": "coagulator",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityCoagulator"
+        ],
+        "family": "chemical_processing"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 50,
+        "needed_extensions": [],
+        "notes": "Structurally identical to bath: 5x5x2 solid, 50x 18002 ONLY_ITEM_FLUID."
+      },
+      "controller_behavior": {
+        "kind": "processing_host",
+        "transaction": "latex/coagulation recipes (no CC map)",
+        "ui": "status screen",
+        "environment": "none"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "ELECTRIC (GT6 TU)",
+        "input_path": "latex chain (not in CC)",
+        "consumers": [],
+        "chain": "橡胶/胶乳链 v1 未闭合"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：胶乳/橡胶主链在 v1 尚未闭合，属于长尾化学。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later multiblock batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "coke_oven",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityCokeOven"
+        ],
+        "family": "steelmaking"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 27,
+        "needed_extensions": [],
+        "notes": "已实现：coke_oven.json（26 firebrick + 1 controller + heat_source anchor）。"
+      },
+      "controller_behavior": {
+        "kind": "thermal",
+        "transaction": "RecipeMap coke_oven; 1 HU/tick heat_source anchor consumption",
+        "ui": "status screen",
+        "environment": "heat anchor below (firebox)"
+      },
+      "economy": {
+        "recipe_map": "cruciblecraft:coke_oven",
+        "energy_identity": "HEAT (GT6 HU)",
+        "input_path": "coal -> coal_coke + creosote",
+        "consumers": [
+          "coal_coke -> crucible steelmaking"
+        ],
+        "chain": "炼钢链闭合；creosote 为无消费端副产（open loop，记录在案）"
+      },
+      "classification": {
+        "class": "v1_required",
+        "basis": "v1_required 定义：炼钢链闭合；已实现（coke_oven），以已实现状态计入。",
+        "owner": null,
+        "replacement_condition": null,
+        "recheck_point": null
+      }
+    },
+    {
+      "canonical_id": "crucible",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityCrucible"
+        ],
+        "family": "steelmaking"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 28,
+        "needed_extensions": [],
+        "notes": "3x3x3 open-top: 26 walls + 2 AIR above center; layer0 8x ONLY_ENERGY_IN (HU bottom), layer1 8x ONLY_CRUCIBLE (mold slots - no CC port role: DESIGN_POLICY, mold slots live in controller inventory/UI), layer2 8x ONLY_ITEM_FLUID; wall meta 0/4 both accepted."
+      },
+      "controller_behavior": {
+        "kind": "thermal",
+        "transaction": "SteelmakingController state machine (single-block precedent)",
+        "ui": "mold slots + status screen",
+        "environment": "HU from bottom layer"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "HEAT (GT6 HU) + AIR (bellows)",
+        "input_path": "iron + carbon -> steel",
+        "consumers": [
+          "steel -> extruder/steel-tier machines/tools"
+        ],
+        "chain": "炼钢链闭合（单块 crucible + SteelmakingController）"
+      },
+      "classification": {
+        "class": "v1_required",
+        "basis": "v1_required 定义：炼钢链闭合，多方块坩埚是该链的 GT6 标准规模化代表（更大熔量 + 分布式端口层 + 底层能量耦合）。",
+        "owner": null,
+        "replacement_condition": null,
+        "recheck_point": null
+      }
+    },
+    {
+      "canonical_id": "crusher",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityCrusher"
+        ],
+        "family": "ore_processing"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 75,
+        "needed_extensions": [],
+        "notes": "5x5x3 basin: 18003 walls + 18107 wheel core with running-state spin meta (refreshStructureOnActiveStateChange); 2 side energy ports ONLY_ENERGY_IN; walk-over damage on running machine."
+      },
+      "controller_behavior": {
+        "kind": "processing_host",
+        "transaction": "RecipeMap crusher on shared processing host",
+        "ui": "status screen",
+        "environment": "walk-over damage hazard"
+      },
+      "economy": {
+        "recipe_map": "cruciblecraft:crusher",
+        "energy_identity": "KINETIC_PUSH (GT6 RU)",
+        "input_path": "raw ore -> crushed",
+        "consumers": [
+          "sluice/sifter/centrifuge -> smelter"
+        ],
+        "chain": "矿处链已由单块 bronze_crusher 闭合"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：单块 bronze_crusher 已闭合矿处链，多方块形态为纯规模放大、无差异化角色。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later multiblock batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "cryo_distillation_tower",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityCryoDistillationTower"
+        ],
+        "family": "chemical_processing (post-nuclear)"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 81,
+        "needed_extensions": [],
+        "notes": "3x3x9 tower: bottom 9x 18101 ONLY_ENERGY_IN (CU floor), 9x 18102 ONLY_ITEM_FLUID, 7x9 ONLY_FLUID_OUT layers keyed by fluid type (helium/neon/nitrogen/oxygen/argon/CO2)."
+      },
+      "controller_behavior": {
+        "kind": "processing_host",
+        "transaction": "cryogenic distillation (no CC map)",
+        "ui": "status screen",
+        "environment": "none"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "CRYO (GT6 CU - CC deferred identity)",
+        "input_path": "air/hydrogen processing (not in CC)",
+        "consumers": [],
+        "chain": "深冷分离链 v1 未闭合"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：深冷分离链在 v1 尚未闭合，属于核后内容类别（CU 能量身份在 CC 为 deferred）。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later multiblock batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "distillation_tower",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityDistillationTower"
+        ],
+        "family": "petroleum (T22)"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 81,
+        "needed_extensions": [],
+        "notes": "3x3x9 tower: bottom 9x 18101 ONLY_ENERGY_IN, second 9x 18102 ONLY_ITEM_FLUID, 7x9 ONLY_FLUID_OUT layers. FLUID_OUT/IN/ITEM_FLUID all collapse to CC item_fluid port with host-side directionality (DESIGN_POLICY)."
+      },
+      "controller_behavior": {
+        "kind": "processing_host",
+        "transaction": "RecipeMap distillery on shared processing host",
+        "ui": "status screen",
+        "environment": "none"
+      },
+      "economy": {
+        "recipe_map": "cruciblecraft:distillery",
+        "energy_identity": "HEAT (GT6 HU)",
+        "input_path": "crude_oil/oil -> fuel + lubricant",
+        "consumers": [
+          "fuel/lubricant -> fuels_engine -> RU"
+        ],
+        "chain": "石油链闭合（T22）"
+      },
+      "classification": {
+        "class": "v1_required",
+        "basis": "v1_required 定义：石油链闭合（T22），塔式多层分馏输出提供单块 distillery 不具备的差异化角色（分层产物端口）。",
+        "owner": null,
+        "replacement_condition": null,
+        "recheck_point": null
+      }
+    },
+    {
+      "canonical_id": "electrolyzer",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityElectrolyzer"
+        ],
+        "family": "chemical_processing"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 18,
+        "needed_extensions": [],
+        "notes": "3x3x2 solid, 18x 18105; top-layer meta is random when active (refreshStructureOnActiveStateChange)."
+      },
+      "controller_behavior": {
+        "kind": "processing_host",
+        "transaction": "RecipeMap electrolyzer on shared processing host",
+        "ui": "status screen",
+        "environment": "none"
+      },
+      "economy": {
+        "recipe_map": "cruciblecraft:electrolyzer",
+        "energy_identity": "ELECTRIC (GT6 EU)",
+        "input_path": "electrolysis chains",
+        "consumers": [
+          "chemical outputs -> downstream maps"
+        ],
+        "chain": "电解链已由单块 electrolyzer 闭合"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：单块 electrolyzer（+铝/不锈钢变体）已闭合 v1 功能，多方块形态为纯规模放大、无差异化角色。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later multiblock batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "fermenter",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityFermenter"
+        ],
+        "family": "biomass"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 75,
+        "needed_extensions": [],
+        "notes": "5x5x3 solid: bottom 25x 18101 ONLY_ENERGY_IN (HU floor) + 2 layers 18002 ONLY_ITEM_FLUID with facing-conditional meta-7 output designators."
+      },
+      "controller_behavior": {
+        "kind": "processing_host",
+        "transaction": "fermentation recipes (no CC map)",
+        "ui": "status screen",
+        "environment": "HU heat floor"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "HEAT (GT6 HU)",
+        "input_path": "biomass chain (not in CC)",
+        "consumers": [],
+        "chain": "生物质链 v1 未闭合"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：生物质主链在 v1 尚未闭合。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later multiblock batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "fusion_reactor",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityFusionReactor"
+        ],
+        "family": "nuclear_fusion"
+      },
+      "schema_expressibility": {
+        "verdict": "needs_extension",
+        "positions": 1017,
+        "needed_extensions": [
+          "octagon_rings",
+          "active_state_meta"
+        ],
+        "notes": "5x5x5 CPU core (3/12/12 quota, 125 cells) + 6 axial walls + 19x19 octagon section on 5 layers; source tooltip part count 886 (144 iridium coils + 576 tungstensteel + 50 ventilation + 36 stainless + 53 galvanized + 27 CPUs); TU+LU in, EU out."
+      },
+      "controller_behavior": {
+        "kind": "nuclear_fusion",
+        "transaction": "fusion recipes (no CC map)",
+        "ui": "dedicated UI",
+        "environment": "none"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "TIME + LASER (GT6 TU+LU - deferred identities)",
+        "input_path": "plasma chain (not in CC)",
+        "consumers": [],
+        "chain": "核聚变链 v1 未闭合"
+      },
+      "classification": {
+        "class": "out_of_scope",
+        "basis": "out_of_scope 定义：核聚变 controller 在第四阶段总体规划 T23 明确排除（核裂变/聚变/等离子）。",
+        "owner": "T23 out-of-scope (第四阶段总体规划 T23 范围之外)",
+        "replacement_condition": "总体规划范围变更（重新纳入需改总体规划）",
+        "recheck_point": "每次阶段规划评审"
+      }
+    },
+    {
+      "canonical_id": "implosion_compressor",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityImplosionCompressor"
+        ],
+        "family": "exotic_materials"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 27,
+        "needed_extensions": [],
+        "notes": "3x3x3 hollow: 26x 18023 ONLY_ITEM_FLUID_ENERGY + 1 AIR center; explosion SFX on process start."
+      },
+      "controller_behavior": {
+        "kind": "processing_host",
+        "transaction": "implosion recipes (no CC map)",
+        "ui": "status screen",
+        "environment": "none"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "TIME (GT6 TU)",
+        "input_path": "exotic material chain (not in CC)",
+        "consumers": [],
+        "chain": "奇异材料链 v1 未闭合（CC 仅有单块 ELECTRIC compressor）"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：奇异材料主链在 v1 尚未闭合。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later multiblock batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "large_boiler",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityLargeBoiler"
+        ],
+        "family": "steam_energy (T18)"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 36,
+        "needed_extensions": [],
+        "notes": "3x3x3 shell: base 9x ONLY_ENERGY_IN (HU heat transmitters), 17x ONLY_FLUID_OUT (steam), 9x ONLY_FLUID_IN (water), 1 AIR check above controller. mBoilerWalls material param -> fixed casing block (DESIGN_POLICY). GT6 energy = HU (mEnergyTypeAccepted)."
+      },
+      "controller_behavior": {
+        "kind": "conversion",
+        "transaction": "water + HU -> steam continuous conversion (SteamConversion precedent)",
+        "ui": "status screen",
+        "environment": "HU via base energy ports"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "HEAT (GT6 HU) -> STEAM",
+        "input_path": "water + HU -> steam",
+        "consumers": [
+          "steam -> steam_engine -> KU"
+        ],
+        "chain": "蒸汽链闭合（T18，bronze_boiler/steam_engine）"
+      },
+      "classification": {
+        "class": "v1_required",
+        "basis": "v1_required 定义：蒸汽链闭合（T18），大型锅炉是该链的 GT6 标准规模化代表（分布式水/蒸汽端口 + HU 环境耦合，提供 bronze_boiler 不具备的吞吐角色）。",
+        "owner": null,
+        "replacement_condition": null,
+        "recheck_point": null
+      }
+    },
+    {
+      "canonical_id": "large_dynamo",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityLargeDynamo"
+        ],
+        "family": "energy_conversion"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 36,
+        "needed_extensions": [],
+        "notes": "4x3x3: 18x 18040 coils + design-parameterized end caps (NBT_DESIGN); single ONLY_ENERGY_OUT at facing-far cell; RU in, EU out with tier params."
+      },
+      "controller_behavior": {
+        "kind": "conversion",
+        "transaction": "RU -> EU continuous conversion",
+        "ui": "status screen",
+        "environment": "none"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "KINETIC_ROTATION -> ELECTRIC (GT6 RU->EU)",
+        "input_path": "RU shaft",
+        "consumers": [
+          "EU -> electric machines"
+        ],
+        "chain": "转换链已由单块 bronze_dynamo 闭合"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：单块 bronze_dynamo 已覆盖 RU->EU 转换的 v1 功能，多方块形态为纯规模放大、无差异化角色。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later energy batch selects the exact converter structure and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "large_heat_exchanger",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityLargeHeatExchanger"
+        ],
+        "family": "energy_conversion"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 18,
+        "needed_extensions": [],
+        "notes": "3x2x3: bottom 8x 18024 ONLY_ITEM_FLUID_ENERGY_IN + top 8x 18101 NOTHING; HU out pushed into the ring above; efficiency/rate/fuelmap params."
+      },
+      "controller_behavior": {
+        "kind": "conversion",
+        "transaction": "hot fluid -> HU continuous conversion",
+        "ui": "status screen",
+        "environment": "HU out through transmitter ring"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "HEAT (GT6 HU out)",
+        "input_path": "hot fluids (not in CC)",
+        "consumers": [],
+        "chain": "热流体交换链 v1 未闭合"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：热流体交换链在 v1 尚未闭合（CC 无对应热流体源），单块转换器已覆盖 v1 能量转换。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later energy batch selects the exact converter structure and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "large_turbine_gas",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityLargeTurbineGas"
+        ],
+        "family": "energy_conversion"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 36,
+        "needed_extensions": [],
+        "notes": "4x3x3 design-parameterized walls (NBT_DESIGN); single ONLY_ENERGY_OUT; HU in -> RU out; gas input + up to 3 exhaust tanks."
+      },
+      "controller_behavior": {
+        "kind": "conversion",
+        "transaction": "gas/HU -> RU continuous conversion with exhaust management",
+        "ui": "status screen",
+        "environment": "exhaust must be emptied"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "HEAT -> KINETIC_ROTATION (GT6 HU->RU)",
+        "input_path": "gas fuel (methane via generifier)",
+        "consumers": [],
+        "chain": "燃气链已由单块 burning_gas_generator（gas->HU）闭合；HU->RU 转换在 v1 由 fuel_engine/electric_motor 承担"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：单块 burning_gas_generator 已覆盖 v1 燃气功能，燃气轮机的 HU->RU 转换在 v1 无硬缺口，属纯规模放大。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later energy batch selects the exact converter structure and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "large_turbine_steam",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityLargeTurbineSteam"
+        ],
+        "family": "energy_conversion"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 36,
+        "needed_extensions": [],
+        "notes": "4x3x3 design-parameterized walls; STEAM in -> RU out; fluid-only ports (ONLY_FLUID variants); distilled water exhaust 1L/170 steam."
+      },
+      "controller_behavior": {
+        "kind": "conversion",
+        "transaction": "steam -> RU continuous conversion",
+        "ui": "status screen",
+        "environment": "none"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "STEAM -> KINETIC_ROTATION (GT6 STEAM->RU)",
+        "input_path": "steam (boiler chain)",
+        "consumers": [],
+        "chain": "蒸汽链已由单块 bronze_steam_engine（steam->KU）闭合；蒸汽轮机为规模放大"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：单块 bronze_steam_engine 已覆盖 v1 蒸汽消费（steam->KU），蒸汽轮机属纯规模放大、无差异化角色。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later energy batch selects the exact converter structure and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "lightning_rod",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityLightningRod"
+        ],
+        "family": "world_interaction"
+      },
+      "schema_expressibility": {
+        "verdict": "needs_extension",
+        "positions": 45,
+        "needed_extensions": [
+          "unbounded_pillar",
+          "weather_condition"
+        ],
+        "notes": "3x3x5 base + unbounded 1x1 pillar (mSize<100); strike requires thunder/rain, tip Y>=100, proximity odds reduction; EU out."
+      },
+      "controller_behavior": {
+        "kind": "world_interaction",
+        "transaction": "weather -> EU collection",
+        "ui": "status screen",
+        "environment": "weather-critical"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "ELECTRIC (GT6 EU out)",
+        "input_path": "thunderstorms",
+        "consumers": [],
+        "chain": "not in CC"
+      },
+      "classification": {
+        "class": "out_of_scope",
+        "basis": "out_of_scope 定义：世界交互（天气依赖 + 无界支柱）在第四阶段总体规划 T23 范围之外。",
+        "owner": "T23 out-of-scope (第四阶段总体规划 T23 范围之外)",
+        "replacement_condition": "总体规划范围变更（重新纳入需改总体规划）",
+        "recheck_point": "每次阶段规划评审"
+      }
+    },
+    {
+      "canonical_id": "logistics_core",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityLogisticsCore"
+        ],
+        "family": "advanced_logistics"
+      },
+      "schema_expressibility": {
+        "verdict": "needs_extension",
+        "positions": 125,
+        "needed_extensions": [
+          "logistics_port_role"
+        ],
+        "notes": "5x5x5 with radius-squared tiers (CPU mix parameter 18200-18204 + 18299 ventilation + 18008 shell); ONLY_LOGISTICS port role has no CC mapping."
+      },
+      "controller_behavior": {
+        "kind": "logistics",
+        "transaction": "network routing (CPU-costed)",
+        "ui": "dedicated UI",
+        "environment": "none"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "ELECTRIC (GT6 EU)",
+        "input_path": "item network",
+        "consumers": [],
+        "chain": "v1 物流由 pipes/covers 承担（T19）"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：高级物流属于 v1 后内容类别；v1 物流已由管道/盖板（T19）覆盖。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later logistics batch selects the canonical controller and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "matter_fabricator",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityMatterFabricator"
+        ],
+        "family": "post_scarcity"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 150,
+        "needed_extensions": [],
+        "notes": "5x6x5: 18031 lead walls + 18044 osmium coils + 1 AIR center + CPU quota top layer (18200/18202/18204); QU energy."
+      },
+      "controller_behavior": {
+        "kind": "processing_host",
+        "transaction": "UUM recipes (no CC map)",
+        "ui": "dedicated UI",
+        "environment": "none"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "QUANTUM (GT6 QU - deferred identity)",
+        "input_path": "EU-scale energy -> UUM (not in CC)",
+        "consumers": [],
+        "chain": "not in CC"
+      },
+      "classification": {
+        "class": "out_of_scope",
+        "basis": "out_of_scope 定义：后稀缺 UUM 内容（QU 能量身份）在第四阶段总体规划 T23 范围之外。",
+        "owner": "T23 out-of-scope (第四阶段总体规划 T23 范围之外)",
+        "replacement_condition": "总体规划范围变更（重新纳入需改总体规划）",
+        "recheck_point": "每次阶段规划评审"
+      }
+    },
+    {
+      "canonical_id": "mixer",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityMixer"
+        ],
+        "family": "chemical_processing"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 18,
+        "needed_extensions": [],
+        "notes": "3x3x2 solid, 18x 18002; center-column ONLY_ENERGY_IN (both layers)."
+      },
+      "controller_behavior": {
+        "kind": "processing_host",
+        "transaction": "RecipeMap mixer on shared processing host",
+        "ui": "status screen",
+        "environment": "none"
+      },
+      "economy": {
+        "recipe_map": "cruciblecraft:mixer",
+        "energy_identity": "ELECTRIC (GT6 RU)",
+        "input_path": "chemical mixing chains",
+        "consumers": [
+          "chemical outputs -> downstream maps"
+        ],
+        "chain": "化学链已由单块 mixer 闭合"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：单块 mixer 已闭合 v1 功能，多方块形态为纯规模放大、无差异化角色。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later multiblock batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "oven",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityOven"
+        ],
+        "family": "steelmaking_adjacent"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 27,
+        "needed_extensions": [],
+        "notes": "3x3x3: 18x 18007 walls + 8x coil middle ring (18042/18043, same-id cross-position constraint, two temperature tiers) + 1 AIR center; coil mix constraint degenerates with a fixed coil variant (DESIGN_POLICY)."
+      },
+      "controller_behavior": {
+        "kind": "thermal",
+        "transaction": "heat furnace recipes (no CC map)",
+        "ui": "status screen",
+        "environment": "coil temperature tiers"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "HEAT (GT6 HU)",
+        "input_path": "heat smelting",
+        "consumers": [],
+        "chain": "熔炉角色在 CC 由单块 smelter（HEAT-ADJACENT）承担"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：单块 smelter 已覆盖熔炉角色的 v1 功能，多方块烤箱无差异化角色（纯规模放大）。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later steel batch selects the canonical controller and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "shredder",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityShredder"
+        ],
+        "family": "ore_processing"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 75,
+        "needed_extensions": [],
+        "notes": "Structurally identical to crusher basin with 18108 blade core; spin meta on running state; walk-over damage."
+      },
+      "controller_behavior": {
+        "kind": "processing_host",
+        "transaction": "RecipeMap shredder on shared processing host",
+        "ui": "status screen",
+        "environment": "walk-over damage hazard"
+      },
+      "economy": {
+        "recipe_map": "cruciblecraft:shredder",
+        "energy_identity": "KINETIC_ROTATION (GT6 RU)",
+        "input_path": "ore/plant shredding",
+        "consumers": [
+          "downstream ore chain"
+        ],
+        "chain": "矿处链已由单块 shredder（+钢/钛）闭合"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：单块 shredder 已闭合矿处链，多方块形态为纯规模放大、无差异化角色。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later multiblock batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "sluice",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntitySluice"
+        ],
+        "family": "ore_processing"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 63,
+        "needed_extensions": [],
+        "notes": "3x7x3 oriented box: 18006 walls + 18106 sluice parts with active-state spin meta; 2 far-corner energy ports; facing-dependent orientation."
+      },
+      "controller_behavior": {
+        "kind": "processing_host",
+        "transaction": "RecipeMap sluice on shared processing host",
+        "ui": "status screen",
+        "environment": "water wash"
+      },
+      "economy": {
+        "recipe_map": "cruciblecraft:sluice",
+        "energy_identity": "KINETIC_ROTATION (GT6 RU) + water",
+        "input_path": "crushed ore washing",
+        "consumers": [
+          "dust -> smelter chain"
+        ],
+        "chain": "矿处链已由单块 sluice 闭合"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：单块 sluice 已闭合洗矿链，多方块形态为纯规模放大、无差异化角色。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later multiblock batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "squeezer",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntitySqueezer"
+        ],
+        "family": "chemical_processing"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 75,
+        "needed_extensions": [],
+        "notes": "5x5x3 hollow box, 18009 walls; 9 AIR interior cells; 2 side energy ports."
+      },
+      "controller_behavior": {
+        "kind": "processing_host",
+        "transaction": "seed pressing recipes (no CC map)",
+        "ui": "status screen",
+        "environment": "none"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "KINETIC_ROTATION (GT6 RU)",
+        "input_path": "seeds (not in CC)",
+        "consumers": [],
+        "chain": "榨油长尾链 v1 未闭合"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：榨油/种子主链在 v1 尚未闭合，属于长尾化学。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later multiblock batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "tank_3x3x3",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityTank3x3x3Metal",
+          "MultiTileEntityTank3x3x3Wood"
+        ],
+        "family": "fluid_storage"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 26,
+        "needed_extensions": [],
+        "notes": "Hollow 3x3x3: all 26 walls are ONLY_FLUID ports, center AIR; controller on any face. Material collapse (Metal/Wood variants) -> single casing material (DESIGN_POLICY). GT6 meltdown/acid/magic/gas hazard behaviors are controller behaviors, not structure constraints."
+      },
+      "controller_behavior": {
+        "kind": "storage",
+        "transaction": "bulk fluid storage + auto-emission, no recipes",
+        "ui": "status screen",
+        "environment": "meltdown on hot fluids (DESIGN_POLICY candidate)"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "none",
+        "input_path": "any fluid chain",
+        "consumers": [
+          "steam/fuel/creosote chains need bulk storage"
+        ],
+        "chain": "CC 无大容量储罐（仅 64k 便携罐）——闭合链的储运缺口"
+      },
+      "classification": {
+        "class": "v1_required",
+        "basis": "v1_required 定义：闭合流体链（蒸汽/燃油/石油）在 CC 无大容量储罐，3x3x3 储罐提供单块容器不具备的差异化角色（大容量存储 + 26 面分布式端口）。",
+        "owner": null,
+        "replacement_condition": null,
+        "recheck_point": null
+      }
+    },
+    {
+      "canonical_id": "tank_5x5x5_metal",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityTank5x5x5Metal"
+        ],
+        "family": "fluid_storage"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 125,
+        "needed_extensions": [],
+        "notes": "5x5x5 shell: 27 AIR interior + 98 material-parameterized walls (NBT_DESIGN) ONLY_FLUID; 125 positions approaches the aisle/repeat trigger line."
+      },
+      "controller_behavior": {
+        "kind": "storage",
+        "transaction": "bulk fluid storage + auto-emission, no recipes",
+        "ui": "status screen",
+        "environment": "meltdown/fluid-proof flags"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "none",
+        "input_path": "any fluid chain",
+        "consumers": [],
+        "chain": "tank_3x3x3 承担 v1 储罐角色；5x5x5 为参数化放大"
+      },
+      "classification": {
+        "class": "post_1_0",
+        "basis": "post_1_0 定义：tank_3x3x3 已承担 v1 储罐角色，5x5x5 为参数化规模放大、无差异化角色。",
+        "owner": "post-1.0 portfolio",
+        "replacement_condition": "a later storage batch selects the canonical controller and closes structure, ports, transaction, UI and acquisition",
+        "recheck_point": "next multiblock batch selection"
+      }
+    },
+    {
+      "canonical_id": "von_da_graagg",
+      "source_identity": {
+        "raw_members": [
+          "MultiTileEntityVonDaGraagg"
+        ],
+        "family": "easter_egg"
+      },
+      "schema_expressibility": {
+        "verdict": "v1_expressible",
+        "positions": 64,
+        "needed_extensions": [],
+        "notes": "5x9x5 coil pole with cross arms and dense steel shell; EU; mob-spawn inhibitor in range."
+      },
+      "controller_behavior": {
+        "kind": "easter_egg",
+        "transaction": "mob spawn inhibition (energy-costed)",
+        "ui": "none",
+        "environment": "mob spawn suppression"
+      },
+      "economy": {
+        "recipe_map": null,
+        "energy_identity": "ELECTRIC (GT6 EU)",
+        "input_path": "EU",
+        "consumers": [],
+        "chain": "not in CC"
+      },
+      "classification": {
+        "class": "out_of_scope",
+        "basis": "out_of_scope 定义：彩蛋/魔法内容（刷怪抑制）在第四阶段总体规划 T23 范围之外。",
+        "owner": "T23 out-of-scope (第四阶段总体规划 T23 范围之外)",
+        "replacement_condition": "总体规划范围变更（重新纳入需改总体规划）",
+        "recheck_point": "每次阶段规划评审"
+      }
+    }
+  ],
+  "selected": [
+    {
+      "canonical_id": "distillation_tower",
+      "structure_id": "distillation_tower",
+      "selection_criteria": {
+        "serves_closed_chain": "T22 petroleum chain closed: crude_oil/oil -> fuel + lubricant; consumer operand proof in tools/t22_c1_consumer_audit.json",
+        "inputs_obtainable_products_consumed": "input crude_oil/oil obtainable (T11 deposit -> extractor -> pipe, closed); products fuel/lubricant -> fuels_engine -> RU (real consumer, not display)",
+        "schema_v1_expressible": "81 fixed positions; FLUID_OUT/IN/ITEM_FLUID collapse to the CC item_fluid port with host-side directionality (DESIGN_POLICY)",
+        "behavioral_difference": "processing_host - shares the processing-host behavior with large_centrifuge (second real consumer for the B2 generic extraction)"
+      },
+      "fidelity_evidence": {
+        "geometry_bidirectional": true,
+        "evidence": "C1 card: per-position JSON equivalence against the pinned GT6 checkStructure2, asserted by GameTests t23DistillationTowerFidelity / t23LargeBoilerFidelity / t23Tank3x3x3Fidelity."
+      },
+      "acquisition": {
+        "reachable": true,
+        "evidence": "t21_operand_reachability closure: every operand reachable except item:cruciblecraft:invar_distillery (crucible alloying is outside the closure graph, a documented approximation); the machine core itself is proven survival-obtainable by the T16 acquisition closure (build_t16_machine_acquisition, machine_acquisition_unreachable == 0 gate). Tank chain precedent: tank_3x3x3 fully reachable in the same closure."
+      },
+      "consumers": [
+        "fuels_engine"
+      ]
+    },
+    {
+      "canonical_id": "large_boiler",
+      "structure_id": "large_boiler",
+      "selection_criteria": {
+        "serves_closed_chain": "T18 steam chain closed: boiler -> steam -> steam_engine -> KU (SteamConversion conservation 80 HU + 1 water -> 160 steam)",
+        "inputs_obtainable_products_consumed": "input water + HU obtainable (firebox chain, closed); product steam -> steam_engine (the sole real steam consumer)",
+        "schema_v1_expressible": "36 positions; mBoilerWalls material parameter collapses to a fixed casing (DESIGN_POLICY)",
+        "behavioral_difference": "conversion - environment-coupled energy identity: energy_input ports carry HU (not the KU default), first heat_energy_input plugin consumer"
+      },
+      "fidelity_evidence": {
+        "geometry_bidirectional": true,
+        "evidence": "C1 card: per-position JSON equivalence against the pinned GT6 checkStructure2, asserted by GameTests t23DistillationTowerFidelity / t23LargeBoilerFidelity / t23Tank3x3x3Fidelity."
+      },
+      "acquisition": {
+        "reachable": true,
+        "evidence": "t21_operand_reachability closure: every operand reachable except item:cruciblecraft:bronze_boiler (crucible alloying is outside the closure graph, a documented approximation); the machine core itself is proven survival-obtainable by the T16 acquisition closure (machine_acquisition_unreachable == 0 gate)."
+      },
+      "consumers": [
+        "steam_engine"
+      ]
+    },
+    {
+      "canonical_id": "tank_3x3x3",
+      "structure_id": "tank_3x3x3",
+      "selection_criteria": {
+        "serves_closed_chain": "fluid storage gap: CC has no bulk tank (only 64k portable tank); steam/fuel/petroleum chains all need bulk storage",
+        "inputs_obtainable_products_consumed": "any registered fluid in/out; 26 all-wall ports are the strongest T15e shared-host measurement case (supply = 1 item + 1 fluid, never per physical block)",
+        "schema_v1_expressible": "26 positions; Metal/Wood material collapse -> single casing material (DESIGN_POLICY)",
+        "behavioral_difference": "storage - no recipe transaction, no energy; third behavior family (storage_host plugin consumer)"
+      },
+      "fidelity_evidence": {
+        "geometry_bidirectional": true,
+        "evidence": "C1 card: per-position JSON equivalence against the pinned GT6 checkStructure2, asserted by GameTests t23DistillationTowerFidelity / t23LargeBoilerFidelity / t23Tank3x3x3Fidelity."
+      },
+      "acquisition": {
+        "reachable": true,
+        "evidence": "t21_operand_reachability closure: all operands reachable (portable_fluid_tank + multiblock_item_fluid_port chains; bucket/hopper/chest vanilla seeds added to fix the pre-existing port false negative)."
+      },
+      "consumers": [
+        "steam_chain",
+        "fuel_chain",
+        "petroleum_chain"
+      ]
+    }
+  ],
+  "unselected_v1_required": [
+    {
+      "canonical_id": "crucible",
+      "reason": "batch size cap (2-3) reached: tower/boiler/tank cover processing_host, conversion and storage behavior families; crucible is the fourth family (thermal + mold slots) and stays deferred",
+      "recheck_point": "next multiblock batch selection (before T26 freeze)"
+    }
+  ],
+  "schema_policy": {
+    "schema_version": 1,
+    "verdict": "no_extension",
+    "justification": "All three selected structures are fixed-geometry with explicit per-position entries (distillation_tower 81, large_boiler 36, tank_3x3x3 26); the largest (81) is below the 125-position aisle/repeat trigger line and MAX_SCAN_VOLUME 4,096 leaves 35x headroom. No selected geometry needs aisle/repeat, dynamic ports or environment anchors; unknown predicate/port roles fail closed via the codec (MultiblockStructureDefinition), enforced by mutation tests.",
+    "old_structures_untouched": "coke_oven.json and large_centrifuge.json remain schema_version 1 and load unchanged; full-rotation and pinned-shape tests re-verified (T23 B1).",
+    "preview": "Loader, validator and runtime share one codec semantics; rendering preview is not implemented (phase-4 master plan T23 out-of-scope)."
+  }
+}

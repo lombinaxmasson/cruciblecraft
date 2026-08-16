@@ -19,6 +19,8 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
  * Every ore chunk represents 144 material units (one ingot).
  */
 public record LargeVeinConfiguration(
+        int profileVersion,
+        ResourceLocation profileId,
         List<WeightedState> top,
         List<WeightedState> bottom,
         List<WeightedState> between,
@@ -46,6 +48,10 @@ public record LargeVeinConfiguration(
 
     public static final MapCodec<LargeVeinConfiguration> MAP_CODEC =
             RecordCodecBuilder.<LargeVeinConfiguration>mapCodec(instance -> instance.group(
+            Codec.intRange(1, 2).fieldOf("profile_version")
+                    .forGetter(LargeVeinConfiguration::profileVersion),
+            ResourceLocation.CODEC.fieldOf("profile_id")
+                    .forGetter(LargeVeinConfiguration::profileId),
             WeightedState.CODEC.listOf().fieldOf("top").forGetter(LargeVeinConfiguration::top),
             WeightedState.CODEC.listOf().fieldOf("bottom").forGetter(LargeVeinConfiguration::bottom),
             WeightedState.CODEC.listOf().fieldOf("between").forGetter(LargeVeinConfiguration::between),
@@ -65,6 +71,9 @@ public record LargeVeinConfiguration(
             MAP_CODEC.codec().validate(LargeVeinConfiguration::validate);
 
     private static DataResult<LargeVeinConfiguration> validate(LargeVeinConfiguration config) {
+        if (!"cruciblecraft".equals(config.profileId.getNamespace())) {
+            return DataResult.error(() -> "profile_id must use the cruciblecraft namespace");
+        }
         if (config.minY > config.maxY) {
             return DataResult.error(() -> "min_y must not exceed max_y");
         }

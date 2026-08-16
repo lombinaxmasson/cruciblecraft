@@ -1,0 +1,819 @@
+{
+  "bidirectional_assignment": {
+    "complete": true,
+    "projected_canonical_keys": [
+      "MultiTileEntityAxle|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityBatteryBoxLarge|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityBatteryBox|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityBoilerTank|NONE|accepts:HU|emits:STEAM|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityCoolerElectric|NONE|accepts:EU|emits:CU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityDynamoElectric|NONE|accepts:RU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityEngineElectric|NONE|accepts:EU|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityEngineRotation|NONE|accepts:RU|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityEngineSteam|NONE|accepts:STEAM|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityGearBox|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityGeneratorBrick|fuel:FM.Furnace|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityGeneratorFluidBed|fuel:FM.FluidBed|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityGeneratorGas|fuel:FM.Burn|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityGeneratorHotFluid|fuel:FM.Hot|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityGeneratorLiquid|fuel:FM.Burn|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityGeneratorMetal|fuel:FM.Furnace|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityHeaterElectric|NONE|accepts:EU|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityLaserAbsorberElectric|NONE|accepts:LU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityLaserElectric|NONE|accepts:EU|emits:LU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityLongDistanceTransformer|NONE|accepts:EU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityMagicFieldAbsorber|NONE|accepts:NONE|emits:CU+HU+KU+LU+QU+TU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityMagnetElectric|NONE|accepts:EU|emits:MU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityMotorElectric|NONE|accepts:EU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityMotorLiquid|fuel:FM.Engine|accepts:NONE|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntitySolarPanelElectric|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityTransformerElectric|NONE|accepts:EU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityTransformerRotation|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityTurbineSteam|NONE|accepts:STEAM|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityZPMDechargerEU|NONE|accepts:QU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+    ],
+    "source_canonical_keys": [
+      "MultiTileEntityAxle|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityBatteryBoxLarge|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityBatteryBox|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityBoilerTank|NONE|accepts:HU|emits:STEAM|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityCoolerElectric|NONE|accepts:EU|emits:CU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityDynamoElectric|NONE|accepts:RU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityEngineElectric|NONE|accepts:EU|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityEngineRotation|NONE|accepts:RU|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityEngineSteam|NONE|accepts:STEAM|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityGearBox|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityGeneratorBrick|fuel:FM.Furnace|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityGeneratorFluidBed|fuel:FM.FluidBed|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityGeneratorGas|fuel:FM.Burn|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityGeneratorHotFluid|fuel:FM.Hot|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityGeneratorLiquid|fuel:FM.Burn|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityGeneratorMetal|fuel:FM.Furnace|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityHeaterElectric|NONE|accepts:EU|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityLaserAbsorberElectric|NONE|accepts:LU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityLaserElectric|NONE|accepts:EU|emits:LU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityLongDistanceTransformer|NONE|accepts:EU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityMagicFieldAbsorber|NONE|accepts:NONE|emits:CU+HU+KU+LU+QU+TU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityMagnetElectric|NONE|accepts:EU|emits:MU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityMotorElectric|NONE|accepts:EU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityMotorLiquid|fuel:FM.Engine|accepts:NONE|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntitySolarPanelElectric|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityTransformerElectric|NONE|accepts:EU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityTransformerRotation|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityTurbineSteam|NONE|accepts:STEAM|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "MultiTileEntityZPMDechargerEU|NONE|accepts:QU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false"
+    ],
+    "unique": true
+  },
+  "counts": {
+    "classified": 29,
+    "deferred_kinds": 20,
+    "dispositions": {
+      "DEFERRED_WITH_REASON": 20,
+      "PREIMPLEMENTED_REFERENCE": 3,
+      "SELECTED_T18": 6
+    },
+    "energy_identities": 2,
+    "preimplemented_reference_kinds": 3,
+    "selected_kinds": 6,
+    "selected_source_variants": 6,
+    "source_variants": 333,
+    "t18_owner_machine_kinds": 29,
+    "unclassified": 0
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t18_machine_energy_denominator.py": "10b4c3dce1e8bc87ef9f51f80371e3ad6d24a07bcab379fc7f83cd1149803422",
+      "tools/t18_machine_energy_denominator_policy.json": "43f9831eadecd73caaec238491b91890a503a715209500878954bd0de20b2c1c"
+    },
+    "runtime_projection": {
+      "src/main/resources/data/cruciblecraft/energy_converters.json": "99021576f5dd91fa49a3ac60a8c84afc9b6d6496fd9434236003d851acf15e84"
+    },
+    "t13_denominators": {
+      "tools/t13_denominators/energy_identities.json": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+      "tools/t13_denominators/machine_kinds.json": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2"
+    }
+  },
+  "energy_identities": {
+    "AU": {
+      "aliases": [
+        "AU"
+      ],
+      "local_energy_type": "AIR",
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.AIR",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.AIR"
+      },
+      "symbol": "AIR",
+      "topology": "AIR_PRESSURE"
+    },
+    "STEAM": {
+      "aliases": [],
+      "local_energy_type": null,
+      "source_identity": {
+        "normalized_row_key": "energy:ENERGY.STEAM",
+        "source_blob": "d1eaea41fc9b818a874e5dc83082447c27ae8053",
+        "source_path": "src/main/java/gregapi/data/TD.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "TD.Energy.STEAM"
+      },
+      "symbol": "STEAM",
+      "topology": "FLUID_STEAM_TRANSPORT"
+    }
+  },
+  "rows": [
+    {
+      "accepted_energy": "RU",
+      "behavior_class": "MultiTileEntityAxle",
+      "canonical_key": "MultiTileEntityAxle|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "PREIMPLEMENTED_REFERENCE",
+      "emitted_energy": "RU",
+      "implemented_by": "src/main/java/com/masson/cruciblecraft/content/blockentity/RotationalAxleBlockEntity.java",
+      "local_reference": "cruciblecraft:rotational_axle",
+      "process_map": "NONE",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityAxle|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityAxle"
+      },
+      "source_variant_count": 52
+    },
+    {
+      "accepted_energy": "NONE",
+      "behavior_class": "MultiTileEntityBatteryBox",
+      "canonical_key": "MultiTileEntityBatteryBox|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "EU",
+      "process_map": "NONE",
+      "reason": "The small battery-box family has no selected storage chemistry, inventory contract or T18 acquisition route.",
+      "recheck_point": "Recheck in a bounded electrical-storage phase after T18.",
+      "replacement_condition": "Select exact battery materials, charge/discharge packet windows, inventory safety and current-state persistence.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityBatteryBox|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityBatteryBox"
+      },
+      "source_variant_count": 1
+    },
+    {
+      "accepted_energy": "NONE",
+      "behavior_class": "MultiTileEntityBatteryBoxLarge",
+      "canonical_key": "MultiTileEntityBatteryBoxLarge|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "EU",
+      "process_map": "NONE",
+      "reason": "Large battery boxes require multiblock-scale storage and inventory semantics outside the converter batch.",
+      "recheck_point": "Recheck after the small battery-box contract is closed.",
+      "replacement_condition": "Provide exact large-box source rows, battery inventory transactions, packet limits and acquisition.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityBatteryBoxLarge|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityBatteryBoxLarge"
+      },
+      "source_variant_count": 1
+    },
+    {
+      "accepted_energy": "HU",
+      "behavior_class": "MultiTileEntityBoilerTank",
+      "canonical_key": "MultiTileEntityBoilerTank|NONE|accepts:HU|emits:STEAM|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "converter_profile": "cruciblecraft:bronze_boiler",
+      "disposition": "SELECTED_T18",
+      "emitted_energy": "STEAM",
+      "process_map": "NONE",
+      "selected_source": {
+        "efficiency_expression": "NONE",
+        "input_window": {
+          "maximum": "NONE",
+          "minimum": "NONE",
+          "nominal": "NONE"
+        },
+        "material_expression": "MT.Bronze",
+        "output_expression": "NONE",
+        "source_id": 1202,
+        "source_identity": {
+          "normalized_row_key": "loader:Steam Boilers|1202|MultiTileEntityBoilerTank",
+          "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+          "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+          "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+          "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+        },
+        "source_line": 555
+      },
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityBoilerTank|NONE|accepts:HU|emits:STEAM|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityBoilerTank"
+      },
+      "source_variant_count": 26,
+      "stage": "T18a"
+    },
+    {
+      "accepted_energy": "EU",
+      "behavior_class": "MultiTileEntityCoolerElectric",
+      "canonical_key": "MultiTileEntityCoolerElectric|NONE|accepts:EU|emits:CU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "CU",
+      "process_map": "NONE",
+      "reason": "EU to CU conversion cannot be implemented before the deferred cryogenic identity has a producer and transport contract.",
+      "recheck_point": "Recheck after T19 scope review or a dedicated cryogenic phase.",
+      "replacement_condition": "Open CU as a source-backed identity with coolant, exhaust, failure and acquisition semantics.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityCoolerElectric|NONE|accepts:EU|emits:CU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityCoolerElectric"
+      },
+      "source_variant_count": 5
+    },
+    {
+      "accepted_energy": "RU",
+      "behavior_class": "MultiTileEntityDynamoElectric",
+      "canonical_key": "MultiTileEntityDynamoElectric|NONE|accepts:RU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "converter_profile": "cruciblecraft:bronze_dynamo",
+      "disposition": "SELECTED_T18",
+      "emitted_energy": "EU",
+      "process_map": "NONE",
+      "selected_source": {
+        "efficiency_expression": "NONE",
+        "input_window": {
+          "maximum": "(32)*2",
+          "minimum": "(32)/2",
+          "nominal": "32"
+        },
+        "material_expression": "MT.DATA.Electric_T[1]",
+        "output_expression": "22",
+        "source_id": 10111,
+        "source_identity": {
+          "normalized_row_key": "loader:Dynamos|10111|MultiTileEntityDynamoElectric",
+          "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+          "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+          "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+          "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+        },
+        "source_line": 946
+      },
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityDynamoElectric|NONE|accepts:RU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityDynamoElectric"
+      },
+      "source_variant_count": 5,
+      "stage": "T18b"
+    },
+    {
+      "accepted_energy": "EU",
+      "behavior_class": "MultiTileEntityEngineElectric",
+      "canonical_key": "MultiTileEntityEngineElectric|NONE|accepts:EU|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "KU",
+      "process_map": "NONE",
+      "reason": "EU to KU is distinct from the selected steam-to-KU chain and has no T18 acquisition or efficiency closure.",
+      "recheck_point": "Recheck after T18b RU-to-EU closes.",
+      "replacement_condition": "Select an exact electric-engine tier and close KU packet, loss, faces and current identity.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityEngineElectric|NONE|accepts:EU|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityEngineElectric"
+      },
+      "source_variant_count": 5
+    },
+    {
+      "accepted_energy": "RU",
+      "behavior_class": "MultiTileEntityEngineRotation",
+      "canonical_key": "MultiTileEntityEngineRotation|NONE|accepts:RU|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "KU",
+      "process_map": "NONE",
+      "reason": "RU to KU conversion is not required by the three selected T18 energy verticals.",
+      "recheck_point": "Recheck when a later machine batch requires an RU-to-KU bridge.",
+      "replacement_condition": "Provide an exact rotation-engine row, loss model, overload behavior and a consumer-driven use case.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityEngineRotation|NONE|accepts:RU|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityEngineRotation"
+      },
+      "source_variant_count": 13
+    },
+    {
+      "accepted_energy": "STEAM",
+      "behavior_class": "MultiTileEntityEngineSteam",
+      "canonical_key": "MultiTileEntityEngineSteam|NONE|accepts:STEAM|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "converter_profile": "cruciblecraft:bronze_steam_engine",
+      "disposition": "SELECTED_T18",
+      "emitted_energy": "KU",
+      "output_semantics": {
+        "conservation": {
+          "classification": "SOURCE_BACKED",
+          "kuOutput": 50,
+          "steamInputMb": 200,
+          "steamMbPerKu": 4
+        },
+        "fixedOutput": {
+          "classification": "DESIGN_POLICY_FIXED_OUTPUT",
+          "kuPerTick": 12
+        },
+        "gt6Runtime": {
+          "behavior": "STATE_DEPENDENT_MOUTPUT_HALF_TO_DOUBLE",
+          "classification": "DEFERRED_REPLACEMENT",
+          "maximumKuPerTick": 24,
+          "minimumKuPerTick": 6,
+          "recheckPoint": "Recheck when a dedicated steam-engine dynamics batch is selected or before adding another steam-engine tier.",
+          "replacementCondition": "Replace the fixed 12 KU/t CC output only with a measured state accumulator, piston-phase emission, saturation/venting, persistence and transaction model matching the pinned GT6 behavior."
+        },
+        "sourceEvidencePaths": [
+          "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java:586",
+          "gt6_code/gregtech6/src/main/java/gregapi/data/CS.java:240",
+          "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityEngineSteam.java:58,62-63,77-80,98-103,121-146"
+        ],
+        "sourceNominal": {
+          "classification": "SOURCE_DERIVED_NOMINAL",
+          "mOutputKu": 12,
+          "registeredNumerator": 24,
+          "steamPerEu": 2
+        }
+      },
+      "process_map": "NONE",
+      "selected_source": {
+        "efficiency_expression": "5000",
+        "input_window": {
+          "maximum": "NONE",
+          "minimum": "NONE",
+          "nominal": "NONE"
+        },
+        "material_expression": "MT.Bronze",
+        "output_expression": "24/STEAM_PER_EU",
+        "source_id": 1302,
+        "source_identity": {
+          "normalized_row_key": "loader:Engines|1302|MultiTileEntityEngineSteam",
+          "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+          "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+          "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+          "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+        },
+        "source_line": 586
+      },
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityEngineSteam|NONE|accepts:STEAM|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityEngineSteam"
+      },
+      "source_variant_count": 28,
+      "stage": "T18a"
+    },
+    {
+      "accepted_energy": "RU",
+      "behavior_class": "MultiTileEntityGearBox",
+      "canonical_key": "MultiTileEntityGearBox|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "PREIMPLEMENTED_REFERENCE",
+      "emitted_energy": "RU",
+      "implemented_by": "src/main/java/com/masson/cruciblecraft/content/blockentity/RotationalGearboxBlockEntity.java",
+      "local_reference": "cruciblecraft:rotational_gearbox",
+      "process_map": "NONE",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityGearBox|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityGearBox"
+      },
+      "source_variant_count": 13
+    },
+    {
+      "accepted_energy": "NONE",
+      "behavior_class": "MultiTileEntityGeneratorBrick",
+      "canonical_key": "MultiTileEntityGeneratorBrick|fuel:FM.Furnace|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "HU",
+      "process_map": "fuel:FM.Furnace",
+      "reason": "The primitive brick generator is not the selected bronze Firebox source row.",
+      "recheck_point": "Recheck if a pre-bronze heat tier is deliberately added.",
+      "replacement_condition": "Select it only as a distinct primitive machine with source id 1199, 25% efficiency and separate acquisition.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityGeneratorBrick|fuel:FM.Furnace|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityGeneratorBrick"
+      },
+      "source_variant_count": 1
+    },
+    {
+      "accepted_energy": "NONE",
+      "behavior_class": "MultiTileEntityGeneratorFluidBed",
+      "canonical_key": "MultiTileEntityGeneratorFluidBed|fuel:FM.FluidBed|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "HU",
+      "process_map": "fuel:FM.FluidBed",
+      "reason": "Fluid-bed heat generation needs its own fuel map, bed medium and exhaust transaction.",
+      "recheck_point": "Recheck in a post-T18 advanced-combustion batch.",
+      "replacement_condition": "Select an exact material row and implement FM.FluidBed inputs, residue, faces and acquisition.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityGeneratorFluidBed|fuel:FM.FluidBed|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityGeneratorFluidBed"
+      },
+      "source_variant_count": 26
+    },
+    {
+      "accepted_energy": "NONE",
+      "behavior_class": "MultiTileEntityGeneratorGas",
+      "canonical_key": "MultiTileEntityGeneratorGas|fuel:FM.Burn|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "converter_profile": "cruciblecraft:bronze_gas_generator",
+      "disposition": "SELECTED_T18",
+      "emitted_energy": "HU",
+      "process_map": "fuel:FM.Burn",
+      "selected_source": {
+        "efficiency_expression": "7500",
+        "input_window": {
+          "maximum": "NONE",
+          "minimum": "NONE",
+          "nominal": "NONE"
+        },
+        "material_expression": "MT.Bronze",
+        "output_expression": "24",
+        "source_id": 1602,
+        "source_identity": {
+          "normalized_row_key": "loader:Burning Boxes|1602|MultiTileEntityGeneratorGas",
+          "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+          "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+          "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+          "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+        },
+        "source_line": 649
+      },
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityGeneratorGas|fuel:FM.Burn|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityGeneratorGas"
+      },
+      "source_variant_count": 22,
+      "stage": "T18c"
+    },
+    {
+      "accepted_energy": "NONE",
+      "behavior_class": "MultiTileEntityGeneratorHotFluid",
+      "canonical_key": "MultiTileEntityGeneratorHotFluid|fuel:FM.Hot|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "HU",
+      "process_map": "fuel:FM.Hot",
+      "reason": "Hot-fluid heat recovery has no selected source fluid set or cooled-fluid exhaust mapping.",
+      "recheck_point": "Recheck when a source-backed hot-fluid loop is selected.",
+      "replacement_condition": "Bind FM.Hot rows to exact fluids, return products, heat packets and acquisition.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityGeneratorHotFluid|fuel:FM.Hot|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityGeneratorHotFluid"
+      },
+      "source_variant_count": 8
+    },
+    {
+      "accepted_energy": "NONE",
+      "behavior_class": "MultiTileEntityGeneratorLiquid",
+      "canonical_key": "MultiTileEntityGeneratorLiquid|fuel:FM.Burn|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "HU",
+      "process_map": "fuel:FM.Burn",
+      "reason": "The liquid HU generator overlaps fuel families but is not the selected liquid-to-RU motor vertical.",
+      "recheck_point": "Recheck after T18c and T18d source-family decisions are complete.",
+      "replacement_condition": "Select an exact FM.Burn row and preserve HU output, fuel efficiency, exhaust and faces.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityGeneratorLiquid|fuel:FM.Burn|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityGeneratorLiquid"
+      },
+      "source_variant_count": 22
+    },
+    {
+      "accepted_energy": "NONE",
+      "behavior_class": "MultiTileEntityGeneratorMetal",
+      "canonical_key": "MultiTileEntityGeneratorMetal|fuel:FM.Furnace|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "converter_profile": "cruciblecraft:bronze_firebox",
+      "disposition": "SELECTED_T18",
+      "emitted_energy": "HU",
+      "process_map": "fuel:FM.Furnace",
+      "selected_source": {
+        "efficiency_expression": "7500",
+        "input_window": {
+          "maximum": "NONE",
+          "minimum": "NONE",
+          "nominal": "NONE"
+        },
+        "material_expression": "MT.Bronze",
+        "output_expression": "24",
+        "source_id": 1102,
+        "source_identity": {
+          "normalized_row_key": "loader:Burning Boxes|1102|MultiTileEntityGeneratorMetal",
+          "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+          "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+          "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+          "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+        },
+        "source_line": 524
+      },
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityGeneratorMetal|fuel:FM.Furnace|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityGeneratorMetal"
+      },
+      "source_variant_count": 26,
+      "stage": "T18a"
+    },
+    {
+      "accepted_energy": "EU",
+      "behavior_class": "MultiTileEntityHeaterElectric",
+      "canonical_key": "MultiTileEntityHeaterElectric|NONE|accepts:EU|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "HU",
+      "process_map": "NONE",
+      "reason": "EU to HU electric heating is outside the solid-fuel steam-chain baseline.",
+      "recheck_point": "Recheck after the T18 steam and RU-to-EU stages.",
+      "replacement_condition": "Select an exact heater tier and close electrical loss, HU faces, overload and acquisition.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityHeaterElectric|NONE|accepts:EU|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityHeaterElectric"
+      },
+      "source_variant_count": 5
+    },
+    {
+      "accepted_energy": "LU",
+      "behavior_class": "MultiTileEntityLaserAbsorberElectric",
+      "canonical_key": "MultiTileEntityLaserAbsorberElectric|NONE|accepts:LU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "EU",
+      "process_map": "NONE",
+      "reason": "LU to EU cannot precede the deferred laser identity and transport topology.",
+      "recheck_point": "Recheck only in a dedicated laser-energy phase.",
+      "replacement_condition": "Open LU with exact emitter/absorber rows, optical topology, loss and acquisition.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityLaserAbsorberElectric|NONE|accepts:LU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityLaserAbsorberElectric"
+      },
+      "source_variant_count": 5
+    },
+    {
+      "accepted_energy": "EU",
+      "behavior_class": "MultiTileEntityLaserElectric",
+      "canonical_key": "MultiTileEntityLaserElectric|NONE|accepts:EU|emits:LU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "LU",
+      "process_map": "NONE",
+      "reason": "EU to LU cannot be selected while LU consumers and optical transport remain deferred.",
+      "recheck_point": "Recheck only in a dedicated laser-energy phase.",
+      "replacement_condition": "Provide exact laser rows, beam topology, safety, efficiency and acquisition.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityLaserElectric|NONE|accepts:EU|emits:LU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityLaserElectric"
+      },
+      "source_variant_count": 5
+    },
+    {
+      "accepted_energy": "EU",
+      "behavior_class": "MultiTileEntityLongDistanceTransformer",
+      "canonical_key": "MultiTileEntityLongDistanceTransformer|NONE|accepts:EU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "EU",
+      "process_map": "NONE",
+      "reason": "Long-distance EU transport requires endpoint pairing and chunk-safe topology beyond T18 conversion.",
+      "recheck_point": "Recheck in a selected long-distance power phase.",
+      "replacement_condition": "Define paired endpoints, loss, unloaded chunks, overload, persistence and acquisition.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityLongDistanceTransformer|NONE|accepts:EU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityLongDistanceTransformer"
+      },
+      "source_variant_count": 5
+    },
+    {
+      "accepted_energy": "NONE",
+      "behavior_class": "MultiTileEntityMagicFieldAbsorber",
+      "canonical_key": "MultiTileEntityMagicFieldAbsorber|NONE|accepts:NONE|emits:CU+HU+KU+LU+QU+TU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "CU+HU+KU+LU+QU+TU",
+      "process_map": "NONE",
+      "reason": "The multi-identity magic absorber emits deferred CU/LU/QU/TU kinds and cannot be partially folded into T18.",
+      "recheck_point": "Recheck after T19 scope review and only with the required compatibility dependencies.",
+      "replacement_condition": "Select every emitted identity with source-backed production, storage, faces and integration.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityMagicFieldAbsorber|NONE|accepts:NONE|emits:CU+HU+KU+LU+QU+TU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityMagicFieldAbsorber"
+      },
+      "source_variant_count": 1
+    },
+    {
+      "accepted_energy": "EU",
+      "behavior_class": "MultiTileEntityMagnetElectric",
+      "canonical_key": "MultiTileEntityMagnetElectric|NONE|accepts:EU|emits:MU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "MU",
+      "process_map": "NONE",
+      "reason": "EU to MU cannot precede the deferred magnetic-energy identity and consumers.",
+      "recheck_point": "Recheck in a dedicated magnetic-energy phase.",
+      "replacement_condition": "Open MU with exact source rows, field topology, loss, failure and acquisition.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityMagnetElectric|NONE|accepts:EU|emits:MU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityMagnetElectric"
+      },
+      "source_variant_count": 5
+    },
+    {
+      "accepted_energy": "EU",
+      "behavior_class": "MultiTileEntityMotorElectric",
+      "canonical_key": "MultiTileEntityMotorElectric|NONE|accepts:EU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "PREIMPLEMENTED_REFERENCE",
+      "emitted_energy": "RU",
+      "implemented_by": "src/main/java/com/masson/cruciblecraft/content/blockentity/ElectricMotorBlockEntity.java",
+      "local_reference": "cruciblecraft:electric_motor",
+      "process_map": "NONE",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityMotorElectric|NONE|accepts:EU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityMotorElectric"
+      },
+      "source_variant_count": 5
+    },
+    {
+      "accepted_energy": "NONE",
+      "behavior_class": "MultiTileEntityMotorLiquid",
+      "canonical_key": "MultiTileEntityMotorLiquid|fuel:FM.Engine|accepts:NONE|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "converter_profile": "cruciblecraft:bronze_fuel_engine",
+      "disposition": "SELECTED_T18",
+      "emitted_energy": "RU",
+      "process_map": "fuel:FM.Engine",
+      "selected_source": {
+        "efficiency_expression": "10000",
+        "input_window": {
+          "maximum": "NONE",
+          "minimum": "NONE",
+          "nominal": "NONE"
+        },
+        "material_expression": "MT.Bronze",
+        "output_expression": "16",
+        "source_id": 9147,
+        "source_identity": {
+          "normalized_row_key": "loader:Engines|9147|MultiTileEntityMotorLiquid",
+          "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+          "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+          "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+          "source_symbol_or_extraction_key": "Loader_MultiTileEntities#aRegistry.add"
+        },
+        "source_line": 722
+      },
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityMotorLiquid|fuel:FM.Engine|accepts:NONE|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityMotorLiquid"
+      },
+      "source_variant_count": 8,
+      "stage": "T18b"
+    },
+    {
+      "accepted_energy": "NONE",
+      "behavior_class": "MultiTileEntitySolarPanelElectric",
+      "canonical_key": "MultiTileEntitySolarPanelElectric|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "EU",
+      "process_map": "NONE",
+      "reason": "Solar EU production is generation rather than one of the selected conversion verticals and needs weather semantics.",
+      "recheck_point": "Recheck in a bounded renewable-generation phase.",
+      "replacement_condition": "Select exact panel rows and close light, weather, dimension, packet and acquisition policy.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntitySolarPanelElectric|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntitySolarPanelElectric"
+      },
+      "source_variant_count": 2
+    },
+    {
+      "accepted_energy": "EU",
+      "behavior_class": "MultiTileEntityTransformerElectric",
+      "canonical_key": "MultiTileEntityTransformerElectric|NONE|accepts:EU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "EU",
+      "process_map": "NONE",
+      "reason": "EU transformer ratios and overload behavior are not required for the bounded bronze T18 chains.",
+      "recheck_point": "Recheck when multiple electrical voltage tiers require a bridge.",
+      "replacement_condition": "Select exact transformer tiers and close bidirectional packet ratios, loss, overload and acquisition.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityTransformerElectric|NONE|accepts:EU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityTransformerElectric"
+      },
+      "source_variant_count": 9
+    },
+    {
+      "accepted_energy": "RU",
+      "behavior_class": "MultiTileEntityTransformerRotation",
+      "canonical_key": "MultiTileEntityTransformerRotation|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "RU",
+      "process_map": "NONE",
+      "reason": "RU transformer behavior is distinct from the already implemented axle and gearbox references.",
+      "recheck_point": "Recheck when the RU network gains a source-backed ratio boundary.",
+      "replacement_condition": "Select an exact row and define RU packet transformation, loss, direction and overload.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityTransformerRotation|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityTransformerRotation"
+      },
+      "source_variant_count": 13
+    },
+    {
+      "accepted_energy": "STEAM",
+      "behavior_class": "MultiTileEntityTurbineSteam",
+      "canonical_key": "MultiTileEntityTurbineSteam|NONE|accepts:STEAM|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "RU",
+      "process_map": "NONE",
+      "reason": "The steam turbine emits RU and must not be conflated with the selected steam engine that emits KU.",
+      "recheck_point": "Recheck after the T18a KU engine and T18c RU fuel engine are closed.",
+      "replacement_condition": "Select an exact turbine material row and close STEAM-to-RU efficiency, exhaust, faces and acquisition.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityTurbineSteam|NONE|accepts:STEAM|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityTurbineSteam"
+      },
+      "source_variant_count": 15
+    },
+    {
+      "accepted_energy": "QU",
+      "behavior_class": "MultiTileEntityZPMDechargerEU",
+      "canonical_key": "MultiTileEntityZPMDechargerEU|NONE|accepts:QU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "disposition": "DEFERRED_WITH_REASON",
+      "emitted_energy": "EU",
+      "process_map": "NONE",
+      "reason": "QU to EU conversion depends on the deferred quantum identity and ZPM storage semantics.",
+      "recheck_point": "Recheck only in a dedicated quantum-energy phase.",
+      "replacement_condition": "Open QU, exact ZPM storage, packet limits, depletion, current identity and acquisition.",
+      "source_identity": {
+        "normalized_row_key": "MultiTileEntityZPMDechargerEU|NONE|accepts:QU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "source_path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+        "source_symbol_or_extraction_key": "MultiTileEntityZPMDechargerEU"
+      },
+      "source_variant_count": 1
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T18_MACHINE_ENERGY_DENOMINATOR_READY"
+}

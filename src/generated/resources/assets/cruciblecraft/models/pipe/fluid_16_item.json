@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:block/block",
+  "elements": [
+    {
+      "faces": {
+        "down": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#end",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#end",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#side",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#side",
+          "tintindex": 0
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout_mipped",
+  "textures": {
+    "end": "cruciblecraft:block/pipe/pipe_huge_in",
+    "particle": "cruciblecraft:block/pipe/pipe_side",
+    "side": "cruciblecraft:block/pipe/pipe_side"
+  }
+}

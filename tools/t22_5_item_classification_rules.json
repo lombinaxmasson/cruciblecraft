@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "status": "T22_5_ITEM_CLASSIFICATION_RULES",
+  "principle": "Every class is a category definition with a discriminant and a recheck point. A reason is never \"cannot translate\".",
+  "classes": [
+    {
+      "class": "equivalence_crushed_ore",
+      "definition": "GT6 ore meta items (broken ore x host-rock variants and normal ore x host-rock variants) are the same physical form as the CC crushed_ore prefix. GT6's 22 host rocks are a GT6 worldgen setting; CC generates only stone/deepslate hosts (T9 policy). The host-rock suffix does not change the operand semantics of the recipe.",
+      "discriminant": ["gregtech:gt.meta.ore.broken.", "gregtech:gt.meta.ore.normal."],
+      "target_form": "cruciblecraft:crushed_ore",
+      "recheck_point": "T9 host-rock policy changes (CC adds host-rock variants)."
+    },
+    {
+      "class": "out_of_scope_packaging_form",
+      "definition": "GT6 64x crate items are a logistics packaging layer (bulk transport compression). CC does not implement crate packaging and it is G10 peripheral. Recipes referencing crates are GT6 bulk-logistics rows, not process recipes.",
+      "discriminant": ["gregtech:gt.meta.crate."],
+      "target_form": null,
+      "recheck_point": "CC implements bulk packaging / crate logistics."
+    },
+    {
+      "class": "out_of_scope_machine_item_variant",
+      "definition": "GT6 machine meta items (machine, machine.dense/double/quadruple) are machine-item variants of the T12/T16 machine identity system, not recipe operands. Machine items are not material-prefix pairs and are not handled by recipe operand projection.",
+      "discriminant": ["gregtech:gt.meta.machine"],
+      "target_form": null,
+      "recheck_point": "T12/T16 machine identity system covers GT6 machine items."
+    },
+    {
+      "class": "equivalence_block_variant",
+      "definition": "GT6 storage.ingot (9-ingot storage block) is the CC block prefix (units 1296 = 9 x 144, capability cruciblecraft:storage).",
+      "discriminant": ["gregtech:gt.meta.storage.ingot"],
+      "target_form": "cruciblecraft:block",
+      "recheck_point": "CC block prefix semantics change."
+    },
+    {
+      "class": "equivalence_dense_plate",
+      "definition": "GT6 storage.plate (9-plate compressed plate block) is the CC dense_plate prefix (units 1296 = 9 x 144).",
+      "discriminant": ["gregtech:gt.meta.storage.plate"],
+      "target_form": "cruciblecraft:dense_plate",
+      "recheck_point": "CC dense_plate prefix semantics change."
+    },
+    {
+      "class": "out_of_scope_storage_variant",
+      "definition": "GT6 storage blocks for forms CC does not compress: dust, gem, plateGem and raw storage blocks have no CC prefix equivalent (CC has no dust/gem/plateGem/raw block prefixes). These are compression forms of the GT6 storage layer.",
+      "discriminant": [
+        "gregtech:gt.meta.storage.dust",
+        "gregtech:gt.meta.storage.gem",
+        "gregtech:gt.meta.storage.plateGem",
+        "gregtech:gt.meta.storage.raw"
+      ],
+      "target_form": null,
+      "recheck_point": "CC adds dust/gem/plateGem/raw storage block prefixes."
+    }
+  ],
+  "keys": {
+    "gregtech:gt.meta.ore.broken.andesite": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.broken.basalt": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.broken.blackgranite": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.broken.blueschist": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.broken.default": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.broken.diorite": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.broken.granite": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.broken.greenschist": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.broken.kimberlite": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.broken.komatiite": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.broken.limestone": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.broken.marble": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.broken.prismarine.dark": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.broken.prismarine.light": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.broken.quartzite": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.broken.redgranite": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.broken.shale": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.broken.slate": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.normal.bedrock": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.normal.default": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.normal.endstone": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.normal.gravel": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.normal.mud": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.normal.netherrack": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.normal.redsand": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.normal.sand": "equivalence_crushed_ore",
+    "gregtech:gt.meta.ore.normal.sandstone": "equivalence_crushed_ore",
+    "gregtech:gt.meta.crate.64.dust": "out_of_scope_packaging_form",
+    "gregtech:gt.meta.crate.64.gem": "out_of_scope_packaging_form",
+    "gregtech:gt.meta.crate.64.ingot": "out_of_scope_packaging_form",
+    "gregtech:gt.meta.crate.64.plate": "out_of_scope_packaging_form",
+    "gregtech:gt.meta.crate.64.plateGem": "out_of_scope_packaging_form",
+    "gregtech:gt.meta.crate.64.raw": "out_of_scope_packaging_form",
+    "gregtech:gt.meta.crate.dust": "out_of_scope_packaging_form",
+    "gregtech:gt.meta.crate.gem": "out_of_scope_packaging_form",
+    "gregtech:gt.meta.crate.ingot": "out_of_scope_packaging_form",
+    "gregtech:gt.meta.crate.plate": "out_of_scope_packaging_form",
+    "gregtech:gt.meta.crate.plateGem": "out_of_scope_packaging_form",
+    "gregtech:gt.meta.crate.raw": "out_of_scope_packaging_form",
+    "gregtech:gt.meta.machine": "out_of_scope_machine_item_variant",
+    "gregtech:gt.meta.machine.dense": "out_of_scope_machine_item_variant",
+    "gregtech:gt.meta.machine.double": "out_of_scope_machine_item_variant",
+    "gregtech:gt.meta.machine.quadruple": "out_of_scope_machine_item_variant",
+    "gregtech:gt.meta.storage.dust": "out_of_scope_storage_variant",
+    "gregtech:gt.meta.storage.gem": "out_of_scope_storage_variant",
+    "gregtech:gt.meta.storage.ingot": "equivalence_block_variant",
+    "gregtech:gt.meta.storage.plate": "equivalence_dense_plate",
+    "gregtech:gt.meta.storage.plateGem": "out_of_scope_storage_variant",
+    "gregtech:gt.meta.storage.raw": "out_of_scope_storage_variant"
+  }
+}

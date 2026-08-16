@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status_policy": "The status field is derived by build() from the gates below; check() recomputes and compares. Missing status is fail-closed (not ready).",
+  "stages": {
+    "T25a": "Every T24 finding disposed into selected_fixed / non_blocking / invalid_measurement / post_1_0 with reason, owner and evidence; selected = 0 because the T24 ledger contains zero blocking findings.",
+    "T25b": "Zero-content three-axis closeout: no fixes applied, source-backed facts untouched, publication delta 0/0/0, no new registrations, T24 SKIP recheck contracts handed to T26."
+  },
+  "dependencies": {
+    "findings_disposition": "tools/t25_findings_disposition.json",
+    "t24_findings": "tools/t24_findings.json",
+    "t24_scale_evidence": "tools/t24_scale_evidence.json",
+    "publication_baseline": "src/main/resources/data/cruciblecraft/t23_publication_baseline.json",
+    "full_verification_report": "tools/full_verification_report.json",
+    "gametest_sources": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java"
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T25 is a zero-content close: the T24 ledger has zero blocking findings, so selected = 0 with complete dispositions; repository-wide verification is bound separately by the full snapshot report."
+  },
+  "refresh_policy": {
+    "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+    "evidence": "tools/full_verification_report.json"
+  }
+}

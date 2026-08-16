@@ -1,5 +1,6 @@
 {
-  "schemaVersion": 1,
+  "$schema": "schema/machine_tiers.schema.json",
+  "schemaVersion": 2,
   "source": {
     "repository": "https://github.com/GregTech6/gregtech6",
     "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
@@ -50,14 +51,15 @@
       "cruciblecraft:titanium_smelter": "Loader_MultiTileEntities.java:1433"
     },
     "controller_profile_rows": {
-      "cruciblecraft:large_centrifuge_profile": "Loader_MultiTileEntities.java:1229; t12a_machine_readiness.json#structure_projection.large_centrifuge"
+      "cruciblecraft:large_centrifuge_profile": "Loader_MultiTileEntities.java:1229; t12a_machine_readiness.json#structure_projection.large_centrifuge",
+      "cruciblecraft:distillation_tower_profile": "Loader_MultiTileEntities.java:1226"
     }
   },
   "variants": [
     {
       "id": "cruciblecraft:centrifuge",
       "kind": "cruciblecraft:centrifuge",
-      "tier": "cruciblecraft:ru_tier_1",
+      "tierBand": "cruciblecraft:ru_tier_1",
       "material": "cruciblecraft:bronze",
       "energy": "KINETIC_ROTATION",
       "sourceId": 20081,
@@ -74,7 +76,7 @@
     {
       "id": "cruciblecraft:steel_centrifuge",
       "kind": "cruciblecraft:centrifuge",
-      "tier": "cruciblecraft:ru_tier_2",
+      "tierBand": "cruciblecraft:ru_tier_2",
       "material": "cruciblecraft:steel",
       "energy": "KINETIC_ROTATION",
       "sourceId": 20082,
@@ -91,7 +93,7 @@
     {
       "id": "cruciblecraft:titanium_centrifuge",
       "kind": "cruciblecraft:centrifuge",
-      "tier": "cruciblecraft:ru_tier_3",
+      "tierBand": "cruciblecraft:ru_tier_3",
       "material": "cruciblecraft:titanium",
       "energy": "KINETIC_ROTATION",
       "sourceId": 20083,
@@ -108,7 +110,7 @@
     {
       "id": "cruciblecraft:sifter",
       "kind": "cruciblecraft:sifter",
-      "tier": "cruciblecraft:ku_tier_1",
+      "tierBand": "cruciblecraft:ku_tier_1",
       "material": "cruciblecraft:bronze",
       "energy": "KINETIC_PUSH",
       "sourceId": 20051,
@@ -125,7 +127,7 @@
     {
       "id": "cruciblecraft:steel_sifter",
       "kind": "cruciblecraft:sifter",
-      "tier": "cruciblecraft:ku_tier_2",
+      "tierBand": "cruciblecraft:ku_tier_2",
       "material": "cruciblecraft:steel",
       "energy": "KINETIC_PUSH",
       "sourceId": 20052,
@@ -142,7 +144,7 @@
     {
       "id": "cruciblecraft:titanium_sifter",
       "kind": "cruciblecraft:sifter",
-      "tier": "cruciblecraft:ku_tier_3",
+      "tierBand": "cruciblecraft:ku_tier_3",
       "material": "cruciblecraft:titanium",
       "energy": "KINETIC_PUSH",
       "sourceId": 20053,
@@ -159,7 +161,7 @@
     {
       "id": "cruciblecraft:electrolyzer",
       "kind": "cruciblecraft:electrolyzer",
-      "tier": "cruciblecraft:electric_tier_1",
+      "tierBand": "cruciblecraft:electric_tier_1",
       "material": "cruciblecraft:steel_galvanized",
       "energy": "ELECTRIC",
       "sourceId": 20091,
@@ -176,7 +178,7 @@
     {
       "id": "cruciblecraft:aluminium_electrolyzer",
       "kind": "cruciblecraft:electrolyzer",
-      "tier": "cruciblecraft:electric_tier_2",
+      "tierBand": "cruciblecraft:electric_tier_2",
       "material": "cruciblecraft:aluminium",
       "energy": "ELECTRIC",
       "sourceId": 20092,
@@ -193,7 +195,7 @@
     {
       "id": "cruciblecraft:stainless_steel_electrolyzer",
       "kind": "cruciblecraft:electrolyzer",
-      "tier": "cruciblecraft:electric_tier_3",
+      "tierBand": "cruciblecraft:electric_tier_3",
       "material": "cruciblecraft:stainless_steel",
       "energy": "ELECTRIC",
       "sourceId": 20093,
@@ -210,7 +212,7 @@
     {
       "id": "cruciblecraft:lathe",
       "kind": "cruciblecraft:lathe",
-      "tier": "cruciblecraft:ru_tier_1",
+      "tierBand": "cruciblecraft:ru_tier_1",
       "material": "cruciblecraft:bronze",
       "energy": "KINETIC_ROTATION",
       "sourceId": 20041,
@@ -227,7 +229,7 @@
     {
       "id": "cruciblecraft:steel_lathe",
       "kind": "cruciblecraft:lathe",
-      "tier": "cruciblecraft:ru_tier_2",
+      "tierBand": "cruciblecraft:ru_tier_2",
       "material": "cruciblecraft:steel",
       "energy": "KINETIC_ROTATION",
       "sourceId": 20042,
@@ -244,7 +246,7 @@
     {
       "id": "cruciblecraft:titanium_lathe",
       "kind": "cruciblecraft:lathe",
-      "tier": "cruciblecraft:ru_tier_3",
+      "tierBand": "cruciblecraft:ru_tier_3",
       "material": "cruciblecraft:titanium",
       "energy": "KINETIC_ROTATION",
       "sourceId": 20043,
@@ -261,7 +263,7 @@
     {
       "id": "cruciblecraft:rollingmill",
       "kind": "cruciblecraft:rollingmill",
-      "tier": "cruciblecraft:ru_tier_1",
+      "tierBand": "cruciblecraft:ru_tier_1",
       "material": "cruciblecraft:bronze",
       "energy": "KINETIC_ROTATION",
       "sourceId": 20111,
@@ -278,7 +280,7 @@
     {
       "id": "cruciblecraft:steel_rollingmill",
       "kind": "cruciblecraft:rollingmill",
-      "tier": "cruciblecraft:ru_tier_2",
+      "tierBand": "cruciblecraft:ru_tier_2",
       "material": "cruciblecraft:steel",
       "energy": "KINETIC_ROTATION",
       "sourceId": 20112,
@@ -295,7 +297,7 @@
     {
       "id": "cruciblecraft:titanium_rollingmill",
       "kind": "cruciblecraft:rollingmill",
-      "tier": "cruciblecraft:ru_tier_3",
+      "tierBand": "cruciblecraft:ru_tier_3",
       "material": "cruciblecraft:titanium",
       "energy": "KINETIC_ROTATION",
       "sourceId": 20113,
@@ -312,7 +314,7 @@
     {
       "id": "cruciblecraft:wiremill",
       "kind": "cruciblecraft:wiremill",
-      "tier": "cruciblecraft:ru_tier_1",
+      "tierBand": "cruciblecraft:ru_tier_1",
       "material": "cruciblecraft:bronze",
       "energy": "KINETIC_ROTATION",
       "sourceId": 20151,
@@ -329,7 +331,7 @@
     {
       "id": "cruciblecraft:steel_wiremill",
       "kind": "cruciblecraft:wiremill",
-      "tier": "cruciblecraft:ru_tier_2",
+      "tierBand": "cruciblecraft:ru_tier_2",
       "material": "cruciblecraft:steel",
       "energy": "KINETIC_ROTATION",
       "sourceId": 20152,
@@ -346,7 +348,7 @@
     {
       "id": "cruciblecraft:titanium_wiremill",
       "kind": "cruciblecraft:wiremill",
-      "tier": "cruciblecraft:ru_tier_3",
+      "tierBand": "cruciblecraft:ru_tier_3",
       "material": "cruciblecraft:titanium",
       "energy": "KINETIC_ROTATION",
       "sourceId": 20153,
@@ -363,7 +365,7 @@
     {
       "id": "cruciblecraft:shredder",
       "kind": "cruciblecraft:shredder",
-      "tier": "cruciblecraft:ru_tier_1",
+      "tierBand": "cruciblecraft:ru_tier_1",
       "material": "cruciblecraft:bronze",
       "energy": "KINETIC_ROTATION",
       "sourceId": 20011,
@@ -380,7 +382,7 @@
     {
       "id": "cruciblecraft:steel_shredder",
       "kind": "cruciblecraft:shredder",
-      "tier": "cruciblecraft:ru_tier_2",
+      "tierBand": "cruciblecraft:ru_tier_2",
       "material": "cruciblecraft:steel",
       "energy": "KINETIC_ROTATION",
       "sourceId": 20012,
@@ -397,7 +399,7 @@
     {
       "id": "cruciblecraft:titanium_shredder",
       "kind": "cruciblecraft:shredder",
-      "tier": "cruciblecraft:ru_tier_3",
+      "tierBand": "cruciblecraft:ru_tier_3",
       "material": "cruciblecraft:titanium",
       "energy": "KINETIC_ROTATION",
       "sourceId": 20013,
@@ -414,7 +416,7 @@
     {
       "id": "cruciblecraft:press",
       "kind": "cruciblecraft:press",
-      "tier": "cruciblecraft:ku_tier_1",
+      "tierBand": "cruciblecraft:ku_tier_1",
       "material": "cruciblecraft:bronze",
       "energy": "KINETIC_PUSH",
       "sourceId": 20231,
@@ -431,7 +433,7 @@
     {
       "id": "cruciblecraft:steel_press",
       "kind": "cruciblecraft:press",
-      "tier": "cruciblecraft:ku_tier_2",
+      "tierBand": "cruciblecraft:ku_tier_2",
       "material": "cruciblecraft:steel",
       "energy": "KINETIC_PUSH",
       "sourceId": 20232,
@@ -448,7 +450,7 @@
     {
       "id": "cruciblecraft:titanium_press",
       "kind": "cruciblecraft:press",
-      "tier": "cruciblecraft:ku_tier_3",
+      "tierBand": "cruciblecraft:ku_tier_3",
       "material": "cruciblecraft:titanium",
       "energy": "KINETIC_PUSH",
       "sourceId": 20233,
@@ -465,7 +467,7 @@
     {
       "id": "cruciblecraft:distillery",
       "kind": "cruciblecraft:distillery",
-      "tier": "cruciblecraft:heat_tier_1",
+      "tierBand": "cruciblecraft:heat_tier_1",
       "material": "cruciblecraft:steel",
       "sourceMaterial": "ANY.Steel",
       "materialRegistered": true,
@@ -484,7 +486,7 @@
     {
       "id": "cruciblecraft:invar_distillery",
       "kind": "cruciblecraft:distillery",
-      "tier": "cruciblecraft:heat_tier_2",
+      "tierBand": "cruciblecraft:heat_tier_2",
       "material": "cruciblecraft:invar",
       "sourceMaterial": "Invar",
       "materialRegistered": true,
@@ -503,7 +505,7 @@
     {
       "id": "cruciblecraft:titanium_distillery",
       "kind": "cruciblecraft:distillery",
-      "tier": "cruciblecraft:heat_tier_3",
+      "tierBand": "cruciblecraft:heat_tier_3",
       "material": "cruciblecraft:titanium",
       "sourceMaterial": "Ti",
       "materialRegistered": true,
@@ -522,7 +524,7 @@
     {
       "id": "cruciblecraft:drying",
       "kind": "cruciblecraft:drying",
-      "tier": "cruciblecraft:heat_tier_1",
+      "tierBand": "cruciblecraft:heat_tier_1",
       "material": "cruciblecraft:steel",
       "sourceMaterial": "ANY.Steel",
       "materialRegistered": true,
@@ -541,7 +543,7 @@
     {
       "id": "cruciblecraft:invar_drying",
       "kind": "cruciblecraft:drying",
-      "tier": "cruciblecraft:heat_tier_2",
+      "tierBand": "cruciblecraft:heat_tier_2",
       "material": "cruciblecraft:invar",
       "sourceMaterial": "Invar",
       "materialRegistered": true,
@@ -560,7 +562,7 @@
     {
       "id": "cruciblecraft:titanium_drying",
       "kind": "cruciblecraft:drying",
-      "tier": "cruciblecraft:heat_tier_3",
+      "tierBand": "cruciblecraft:heat_tier_3",
       "material": "cruciblecraft:titanium",
       "sourceMaterial": "Ti",
       "materialRegistered": true,
@@ -579,7 +581,7 @@
     {
       "id": "cruciblecraft:smelter",
       "kind": "cruciblecraft:smelter",
-      "tier": "cruciblecraft:heat_tier_1",
+      "tierBand": "cruciblecraft:heat_tier_1",
       "material": "cruciblecraft:steel",
       "sourceMaterial": "ANY.Steel",
       "materialRegistered": true,
@@ -598,7 +600,7 @@
     {
       "id": "cruciblecraft:invar_smelter",
       "kind": "cruciblecraft:smelter",
-      "tier": "cruciblecraft:heat_tier_2",
+      "tierBand": "cruciblecraft:heat_tier_2",
       "material": "cruciblecraft:invar",
       "sourceMaterial": "Invar",
       "materialRegistered": true,
@@ -617,7 +619,7 @@
     {
       "id": "cruciblecraft:titanium_smelter",
       "kind": "cruciblecraft:smelter",
-      "tier": "cruciblecraft:heat_tier_3",
+      "tierBand": "cruciblecraft:heat_tier_3",
       "material": "cruciblecraft:titanium",
       "sourceMaterial": "Ti",
       "materialRegistered": true,
@@ -636,7 +638,7 @@
   ],
   "controller_profiles": [
     {
-      "id": "cruciblecraft:large_centrifuge_profile",
+      "tierBand": "cruciblecraft:large_centrifuge_profile",
       "material": "cruciblecraft:large_centrifuge",
       "energy": "KINETIC_ROTATION",
       "inputMinimum": 512,
@@ -645,6 +647,17 @@
       "energyCapacity": 4096,
       "parallel": 16,
       "efficiency": 5000
+    },
+    {
+      "tierBand": "cruciblecraft:distillation_tower_profile",
+      "material": "cruciblecraft:distillation_tower",
+      "energy": "HEAT",
+      "inputMinimum": 1,
+      "inputNominal": 512,
+      "inputMaximum": 1024,
+      "energyCapacity": 4096,
+      "parallel": 1,
+      "efficiency": 10000
     }
   ]
 }

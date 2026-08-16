@@ -1,0 +1,22 @@
+{
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", double_wire)"
+  ],
+  "duration": "80 * (144 * prefix_units(double_wire) / gcd(target_units(working) * 72, 144 * prefix_units(double_wire)))",
+  "eut": "24",
+  "item_inputs": [
+    {
+      "count": "1 * (144 * prefix_units(double_wire) / gcd(target_units(working) * 72, 144 * prefix_units(double_wire)))",
+      "prefix": "cruciblecraft:wire"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "target_units(working) * 72 / gcd(target_units(working) * 72, 144 * prefix_units(double_wire))",
+      "material_selector": "processing_target:working",
+      "prefix": "cruciblecraft:double_wire"
+    }
+  ],
+  "target": "cruciblecraft:wiremill",
+  "type": "cruciblecraft:material_rule"
+}

@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-/** Fixed bronze dynamo: kinetic back input, electric front output. */
+/** Source-10111 bronze dynamo: RU back input, waste-policy EU front output. */
 public final class DynamoBlockEntity extends BlockEntity implements IEnergyHandler {
     private final BronzeDynamoEnergy energy = new BronzeDynamoEnergy();
     private final PerTickEnergyBudget outputBudget = new PerTickEnergyBudget();
@@ -36,11 +36,12 @@ public final class DynamoBlockEntity extends BlockEntity implements IEnergyHandl
             BlockPos pos,
             BlockState state,
             DynamoBlockEntity dynamo) {
-        if (dynamo.energy.convertOnePacket()) {
+        Direction front = state.getValue(DynamoBlock.FACING);
+        long delivered = EnergyEmitter.emit(
+                level, pos, dynamo, EnergyType.ELECTRIC, front);
+        if (delivered == 0L && dynamo.energy.wasteBlockedInput()) {
             dynamo.markMutation();
         }
-        Direction front = state.getValue(DynamoBlock.FACING);
-        EnergyEmitter.emit(level, pos, dynamo, EnergyType.ELECTRIC, front);
         long phase = CheckpointDecisions.phaseKey(pos.getX(), pos.getY(), pos.getZ());
         if (dynamo.checkpoint.shouldSync(false, level.getGameTime(), phase, 20)) {
             dynamo.syncToClient();
@@ -78,9 +79,9 @@ public final class DynamoBlockEntity extends BlockEntity implements IEnergyHandl
     @Override public long outputSize(EnergyType type, Direction side) {
         return type == EnergyType.ELECTRIC
                         && handles(type, side)
-                        && energy.electricStored() >= BronzeDynamoEnergy.PACKET_SIZE
+                        && energy.outputSize() > 0L
                         && outputBudget.claim(gameTime(), 1L, 1L, true) > 0L
-                ? BronzeDynamoEnergy.PACKET_SIZE
+                ? energy.outputSize()
                 : 0L;
     }
 
@@ -92,7 +93,7 @@ public final class DynamoBlockEntity extends BlockEntity implements IEnergyHandl
             boolean simulate) {
         if (type != EnergyType.ELECTRIC
                 || !handles(type, side)
-                || size != BronzeDynamoEnergy.PACKET_SIZE
+                || size != energy.outputSize()
                 || maxAmount <= 0L) {
             return 0L;
         }
@@ -117,16 +118,31 @@ public final class DynamoBlockEntity extends BlockEntity implements IEnergyHandl
     @Override public long stored(EnergyType type) {
         return switch (type) {
             case KINETIC_ROTATION -> energy.kineticStored();
-            case ELECTRIC -> energy.electricStored();
+            case ELECTRIC -> 0L;
             default -> 0L;
         };
     }
 
     @Override public long capacity(EnergyType type) {
         return type == EnergyType.KINETIC_ROTATION
-                        || type == EnergyType.ELECTRIC
                 ? BronzeDynamoEnergy.BUFFER_CAPACITY
                 : 0L;
+    }
+
+    public long kineticConsumed() {
+        return energy.kineticConsumed();
+    }
+
+    public long electricExtracted() {
+        return energy.electricExtracted();
+    }
+
+    public long conversionLoss() {
+        return energy.conversionLoss();
+    }
+
+    public boolean overloaded() {
+        return energy.overloaded();
     }
 
     @Override protected void saveAdditional(
@@ -134,14 +150,21 @@ public final class DynamoBlockEntity extends BlockEntity implements IEnergyHandl
         super.saveAdditional(tag, registries);
         BronzeDynamoEnergy.State state = energy.snapshot();
         tag.putLong("kinetic", state.kinetic());
-        tag.putLong("electric", state.electric());
+        tag.putLong("kinetic_consumed", state.kineticConsumed());
+        tag.putLong("electric_extracted", state.electricExtracted());
+        tag.putLong("conversion_loss", state.conversionLoss());
+        tag.putBoolean("overloaded", state.overloaded());
     }
 
     @Override protected void loadAdditional(
             CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         energy.restore(new BronzeDynamoEnergy.State(
-                tag.getLong("kinetic"), tag.getLong("electric")));
+                tag.getLong("kinetic"),
+                tag.getLong("kinetic_consumed"),
+                tag.getLong("electric_extracted"),
+                tag.getLong("conversion_loss"),
+                tag.getBoolean("overloaded")));
     }
 
     @Override public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
@@ -170,13 +193,20 @@ public final class DynamoBlockEntity extends BlockEntity implements IEnergyHandl
         BronzeDynamoEnergy.State state = energy.snapshot();
         CompoundTag tag = new CompoundTag();
         tag.putLong("kinetic", state.kinetic());
-        tag.putLong("electric", state.electric());
+        tag.putLong("kinetic_consumed", state.kineticConsumed());
+        tag.putLong("electric_extracted", state.electricExtracted());
+        tag.putLong("conversion_loss", state.conversionLoss());
+        tag.putBoolean("overloaded", state.overloaded());
         return tag;
     }
 
     private void readClientTag(CompoundTag tag) {
         energy.restore(new BronzeDynamoEnergy.State(
-                tag.getLong("kinetic"), tag.getLong("electric")));
+                tag.getLong("kinetic"),
+                tag.getLong("kinetic_consumed"),
+                tag.getLong("electric_extracted"),
+                tag.getLong("conversion_loss"),
+                tag.getBoolean("overloaded")));
     }
 
     private long gameTime() {

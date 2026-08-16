@@ -27,6 +27,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
         dropSelf(ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get());
         dropSelf(ModBlocks.LARGE_CENTRIFUGE.get());
+        dropSelf(ModBlocks.DISTILLATION_TOWER.get());
+        dropSelf(ModBlocks.LARGE_BOILER.get());
+        dropSelf(ModBlocks.TANK_3X3X3.get());
         dropSelf(ModBlocks.BELLOWS.get());
         dropSelf(ModBlocks.SLUICE.get());
         dropSelf(ModBlocks.BATH.get());
@@ -78,6 +81,9 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get(),
                 ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get(),
                 ModBlocks.LARGE_CENTRIFUGE.get(),
+                ModBlocks.DISTILLATION_TOWER.get(),
+                ModBlocks.LARGE_BOILER.get(),
+                ModBlocks.TANK_3X3X3.get(),
                 ModBlocks.BELLOWS.get(),
                 ModBlocks.SLUICE.get(),
                 ModBlocks.BATH.get(),

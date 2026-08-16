@@ -317,8 +317,8 @@ def t15d_evidence(
     junit_count = sum(
         len(row.get("tests") or []) for row in junit_classes
     )
-    if junit_count != 4 or junit.get("test_count") != junit_count:
-        raise ValueError("T15d must record exactly four dedicated JUnit tests")
+    if junit_count != 6 or junit.get("test_count") != junit_count:
+        raise ValueError("T15d must record exactly six dedicated JUnit tests")
     if any(
         not (ROOT / row.get("path", "")).is_file()
         or not row.get("tests")
@@ -331,10 +331,10 @@ def t15d_evidence(
     gametest_names = gametest.get("tests") or []
     if (
         not gametest_path.is_file()
-        or gametest.get("added_test_count") != 2
-        or len(gametest_names) != 2
+        or gametest.get("added_test_count") != 3
+        or len(gametest_names) != 3
     ):
-        raise ValueError("T15d must record exactly two added GameTests")
+        raise ValueError("T15d must record exactly three added GameTests")
     current_suite_count = gametest_path.read_text(
         encoding="utf-8"
     ).count("@GameTest(")
@@ -517,6 +517,10 @@ def build() -> dict[str, Any]:
             "owned_inputs": {
                 POLICY.relative_to(ROOT).as_posix(): sha256(POLICY),
                 BUILDER.relative_to(ROOT).as_posix(): sha256(BUILDER),
+            },
+            "pending_report": {
+                **policy["refresh_policy"],
+                "pending": [],
             },
         },
         "source_contracts": contracts,

@@ -1,0 +1,439 @@
+{
+  "allowed_legacy_kinetic_ids": [
+    "assembler",
+    "bath",
+    "bender",
+    "cutter",
+    "extruder",
+    "mortar",
+    "rollbender",
+    "welder"
+  ],
+  "counts": {
+    "dispositions": {
+      "CROSS_OWNER_DEFERRED": 1,
+      "FIXED_UTILITY": 4,
+      "MAPPED_DEFERRED": 7,
+      "SOURCE_ALIGNED": 13
+    },
+    "energy_types": {
+      "ELECTRIC": 5,
+      "HEAT": 3,
+      "KINETIC": 8,
+      "KINETIC_PUSH": 3,
+      "KINETIC_ROTATION": 6
+    },
+    "explicit_energy_arguments": 25,
+    "implicit_energy_arguments": 0,
+    "legacy_kinetic": 8,
+    "machine_specs": 25,
+    "new_legacy_kinetic": 0
+  },
+  "currentness": {
+    "ledgers": {
+      "tools/t12_closure_readiness.json": "262a414ba37ae611741ed81f9d5cfd1127d7d50220dbaeae6415a1b0903e2d1d",
+      "tools/t12_machine_policy.json": "c33d281d301327a5344b69b187ac56b657ccae635d19036b2da79212ce3f7d29",
+      "tools/t16_machine_denominator_policy.json": "25f7d595bb27fd6b282abfeb9dddc3fd70d64863efe936e149580c1ef78a7255",
+      "tools/t17_machine_denominator_policy.json": "1451c472f01e9c31a718b6f02707588531531635d429c8e0c6bcec5250945993"
+    },
+    "owned_inputs": {
+      "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java": "bc461a2a2212a9da11bb14d4d9e5e5f7abb1a04f63cb56ed705577dc3a80a370",
+      "tools/build_processing_machine_energy_audit.py": "45823d053f1a0c235e56f197db54b2182f8993b3c6f94c9bd24b0c4c0a688aa0",
+      "tools/processing_machine_energy_audit_policy.json": "421225f3a2413c51df21e335336d78a53c1321f44c71bc568276245111631d75"
+    }
+  },
+  "default_overload_audit": {
+    "forbidden_default_overloads": [],
+    "helper_declarations": {
+      "mechanical": 1,
+      "t3": 1,
+      "t5": 1
+    },
+    "helpers": [
+      "mechanical",
+      "t3",
+      "t5"
+    ],
+    "policy": "DEFAULT_ENERGY_OVERLOAD_TOKEN_FORBIDDEN",
+    "required_parameter": "EnergyType energyType"
+  },
+  "rows": [
+    {
+      "actual": "KINETIC_PUSH",
+      "disposition": "SOURCE_ALIGNED",
+      "expected": "KINETIC_PUSH",
+      "id": "bronze_crusher",
+      "java_constant": "CRUSHER",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.Crusher",
+        "path": "tools/t16_machine_denominator_policy.json",
+        "section": "kinds",
+        "value": "MAPPED_DEFERRED"
+      },
+      "reason": "The explicit bronze Crusher host already uses the source KU split; only a shared tier-host transition remains deferred."
+    },
+    {
+      "actual": "KINETIC_ROTATION",
+      "disposition": "SOURCE_ALIGNED",
+      "expected": "KINETIC_ROTATION",
+      "id": "sluice",
+      "java_constant": "SLUICE",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.Sluice",
+        "path": "tools/t16_machine_denominator_policy.json",
+        "section": "kinds",
+        "value": "MAPPED_DEFERRED"
+      },
+      "reason": "The current Sluice host explicitly preserves its RU identity while tier selection remains deferred."
+    },
+    {
+      "actual": "KINETIC",
+      "disposition": "FIXED_UTILITY",
+      "expected": "KINETIC",
+      "id": "bath",
+      "java_constant": "BATH",
+      "ledger": {
+        "field": "classification",
+        "key": "bath",
+        "path": "tools/t12_machine_policy.json",
+        "section": "processing_kinds",
+        "value": "fixed_utility"
+      },
+      "reason": "Bath remains an explicitly classified fixed utility; this audit does not invent a TU runtime identity."
+    },
+    {
+      "actual": "KINETIC_ROTATION",
+      "disposition": "SOURCE_ALIGNED",
+      "expected": "KINETIC_ROTATION",
+      "id": "centrifuge",
+      "java_constant": "CENTRIFUGE",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.Centrifuge",
+        "path": "tools/t16_machine_denominator_policy.json",
+        "section": "kinds",
+        "value": "IMPLEMENTED_PRE_T16"
+      },
+      "reason": "Centrifuge is the preimplemented RU reference."
+    },
+    {
+      "actual": "KINETIC_ROTATION",
+      "disposition": "SOURCE_ALIGNED",
+      "expected": "KINETIC_ROTATION",
+      "id": "shredder",
+      "java_constant": "SHREDDER",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.Shredder",
+        "path": "tools/t16_machine_denominator_policy.json",
+        "section": "kinds",
+        "value": "IMPLEMENTED_T16A"
+      },
+      "reason": "Shredder is implemented with the source RU identity."
+    },
+    {
+      "actual": "KINETIC_PUSH",
+      "disposition": "SOURCE_ALIGNED",
+      "expected": "KINETIC_PUSH",
+      "id": "sifter",
+      "java_constant": "SIFTER",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.Sifting",
+        "path": "tools/t16_machine_denominator_policy.json",
+        "section": "kinds",
+        "value": "IMPLEMENTED_PRE_T16"
+      },
+      "reason": "Sifter is the preimplemented KU reference."
+    },
+    {
+      "actual": "KINETIC",
+      "disposition": "FIXED_UTILITY",
+      "expected": "KINETIC",
+      "id": "mortar",
+      "java_constant": "MORTAR",
+      "ledger": {
+        "field": "classification",
+        "key": "mortar",
+        "path": "tools/t12_machine_policy.json",
+        "section": "processing_kinds",
+        "value": "fixed_utility"
+      },
+      "reason": "Mortar remains an explicitly classified fixed utility until its manual-source divergence is resolved."
+    },
+    {
+      "actual": "HEAT",
+      "disposition": "SOURCE_ALIGNED",
+      "expected": "HEAT",
+      "id": "smelter",
+      "java_constant": "SMELTER",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.Smelter",
+        "path": "tools/t17_machine_denominator_policy.json",
+        "section": "kinds",
+        "value": "IMPLEMENTED_T17A"
+      },
+      "reason": "Smelter is implemented with the source HU identity."
+    },
+    {
+      "actual": "KINETIC",
+      "disposition": "MAPPED_DEFERRED",
+      "expected": "KINETIC",
+      "id": "extruder",
+      "java_constant": "EXTRUDER",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.Extruder",
+        "path": "tools/t17_machine_denominator_policy.json",
+        "section": "kinds",
+        "value": "MAPPED_DEFERRED"
+      },
+      "reason": "Extruder preserves the existing kinetic tool-host behavior while its source HU transition remains explicitly deferred."
+    },
+    {
+      "actual": "KINETIC",
+      "disposition": "MAPPED_DEFERRED",
+      "expected": "KINETIC",
+      "id": "cutter",
+      "java_constant": "CUTTER",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.Cutter",
+        "path": "tools/t16_machine_denominator_policy.json",
+        "section": "kinds",
+        "value": "MAPPED_DEFERRED"
+      },
+      "reason": "Cutter keeps its audited kinetic behavior until the T16 owner approves an RU transition."
+    },
+    {
+      "actual": "KINETIC_ROTATION",
+      "disposition": "SOURCE_ALIGNED",
+      "expected": "KINETIC_ROTATION",
+      "id": "lathe",
+      "java_constant": "LATHE",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.Lathe",
+        "path": "tools/t16_machine_denominator_policy.json",
+        "section": "kinds",
+        "value": "IMPLEMENTED_T16A"
+      },
+      "reason": "Lathe is implemented with the source RU identity."
+    },
+    {
+      "actual": "KINETIC_ROTATION",
+      "disposition": "SOURCE_ALIGNED",
+      "expected": "KINETIC_ROTATION",
+      "id": "rollingmill",
+      "java_constant": "ROLLINGMILL",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.RollingMill",
+        "path": "tools/t16_machine_denominator_policy.json",
+        "section": "kinds",
+        "value": "IMPLEMENTED_T16A"
+      },
+      "reason": "Rolling Mill is implemented with the source RU identity."
+    },
+    {
+      "actual": "KINETIC",
+      "disposition": "MAPPED_DEFERRED",
+      "expected": "KINETIC",
+      "id": "rollbender",
+      "java_constant": "ROLLBENDER",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.RollBender",
+        "path": "tools/t16_machine_denominator_policy.json",
+        "section": "kinds",
+        "value": "MAPPED_DEFERRED"
+      },
+      "reason": "Roll Bender keeps its audited kinetic behavior until the T16 owner approves an RU transition."
+    },
+    {
+      "actual": "KINETIC_ROTATION",
+      "disposition": "SOURCE_ALIGNED",
+      "expected": "KINETIC_ROTATION",
+      "id": "wiremill",
+      "java_constant": "WIREMILL",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.Wiremill",
+        "path": "tools/t16_machine_denominator_policy.json",
+        "section": "kinds",
+        "value": "IMPLEMENTED_T16A"
+      },
+      "reason": "Wiremill is implemented with the source RU identity."
+    },
+    {
+      "actual": "KINETIC",
+      "disposition": "MAPPED_DEFERRED",
+      "expected": "KINETIC",
+      "id": "bender",
+      "java_constant": "BENDER",
+      "ledger": {
+        "field": "classification",
+        "key": "bender",
+        "path": "tools/t12_machine_policy.json",
+        "section": "processing_kinds",
+        "value": "deferred_with_reason"
+      },
+      "reason": "Bender has no exact selected source kind, so its legacy kinetic host remains deferred."
+    },
+    {
+      "actual": "KINETIC",
+      "disposition": "MAPPED_DEFERRED",
+      "expected": "KINETIC",
+      "id": "assembler",
+      "java_constant": "ASSEMBLER",
+      "ledger": {
+        "field": "classification",
+        "key": "assembler",
+        "path": "tools/t12_machine_policy.json",
+        "section": "processing_kinds",
+        "value": "deferred_with_reason"
+      },
+      "reason": "Assembler has no exact selected source kind, so its legacy kinetic host remains deferred."
+    },
+    {
+      "actual": "KINETIC",
+      "disposition": "MAPPED_DEFERRED",
+      "expected": "KINETIC",
+      "id": "welder",
+      "java_constant": "WELDER",
+      "ledger": {
+        "field": "classification",
+        "key": "welder",
+        "path": "tools/t12_machine_policy.json",
+        "section": "processing_kinds",
+        "value": "deferred_with_reason"
+      },
+      "reason": "Welder remains a legacy kinetic host until a separately scoped LU runtime exists."
+    },
+    {
+      "actual": "KINETIC_PUSH",
+      "disposition": "SOURCE_ALIGNED",
+      "expected": "KINETIC_PUSH",
+      "id": "press",
+      "java_constant": "PRESS",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.Press",
+        "path": "tools/t16_machine_denominator_policy.json",
+        "section": "kinds",
+        "value": "IMPLEMENTED_T16B"
+      },
+      "reason": "Press is implemented with the source KU identity."
+    },
+    {
+      "actual": "ELECTRIC",
+      "disposition": "SOURCE_ALIGNED",
+      "expected": "ELECTRIC",
+      "id": "electrolyzer",
+      "java_constant": "ELECTROLYZER",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.Electrolyzer",
+        "path": "tools/t17_machine_denominator_policy.json",
+        "section": "kinds",
+        "value": "PREIMPLEMENTED_REFERENCE"
+      },
+      "reason": "Electrolyzer remains the preimplemented EU reference."
+    },
+    {
+      "actual": "ELECTRIC",
+      "disposition": "MAPPED_DEFERRED",
+      "expected": "ELECTRIC",
+      "id": "mixer",
+      "java_constant": "MIXER",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.Mixer",
+        "path": "tools/t17_machine_denominator_policy.json",
+        "section": "kinds",
+        "value": "MAPPED_DEFERRED"
+      },
+      "reason": "The live electric Mixer host remains explicit while tier-family selection stays deferred."
+    },
+    {
+      "actual": "HEAT",
+      "disposition": "SOURCE_ALIGNED",
+      "expected": "HEAT",
+      "id": "distillery",
+      "java_constant": "DISTILLERY",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.Distillery",
+        "path": "tools/t17_machine_denominator_policy.json",
+        "section": "kinds",
+        "value": "IMPLEMENTED_T17A"
+      },
+      "reason": "Distillery is implemented with the source HU identity."
+    },
+    {
+      "actual": "ELECTRIC",
+      "disposition": "FIXED_UTILITY",
+      "expected": "ELECTRIC",
+      "id": "autoclave",
+      "java_constant": "AUTOCLAVE",
+      "ledger": {
+        "field": "classification",
+        "key": "autoclave",
+        "path": "tools/t12_machine_policy.json",
+        "section": "processing_kinds",
+        "value": "fixed_utility"
+      },
+      "reason": "Autoclave remains an explicit fixed-utility bridge; this change does not invent a TU runtime."
+    },
+    {
+      "actual": "HEAT",
+      "disposition": "SOURCE_ALIGNED",
+      "expected": "HEAT",
+      "id": "drying",
+      "java_constant": "DRYING",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.Drying",
+        "path": "tools/t17_machine_denominator_policy.json",
+        "section": "kinds",
+        "value": "IMPLEMENTED_T17A"
+      },
+      "reason": "Drying is implemented with the source HU identity."
+    },
+    {
+      "actual": "ELECTRIC",
+      "disposition": "CROSS_OWNER_DEFERRED",
+      "expected": "ELECTRIC",
+      "id": "compressor",
+      "java_constant": "COMPRESSOR",
+      "ledger": {
+        "field": "disposition",
+        "key": "RM.Compressor",
+        "path": "tools/t17_machine_denominator_policy.json",
+        "section": "cross_owner_dispositions",
+        "value": "CROSS_OWNER_DEFERRED"
+      },
+      "reason": "Compressor remains explicitly electric while its KU identity debt stays with the T16 owner."
+    },
+    {
+      "actual": "ELECTRIC",
+      "disposition": "FIXED_UTILITY",
+      "expected": "ELECTRIC",
+      "id": "generifier",
+      "java_constant": "GENERIFIER",
+      "ledger": {
+        "field": "classification",
+        "key": "generifier",
+        "path": "tools/t12_machine_policy.json",
+        "section": "processing_kinds",
+        "value": "fixed_utility"
+      },
+      "reason": "Generifier remains the explicit fixed one-tick electric utility bridge."
+    }
+  ],
+  "schema_version": 1,
+  "status": "PROCESSING_MACHINE_ENERGY_AUDIT_READY"
+}

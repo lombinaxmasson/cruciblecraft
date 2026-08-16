@@ -1,0 +1,506 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "repository": "https://github.com/GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "machineRegistration": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+    "steamConstants": "src/main/java/gregapi/data/CS.java:237-242",
+    "steamPerEu": 2
+  },
+  "profiles": [
+    {
+      "id": "cruciblecraft:bronze_firebox",
+      "stage": "T18a",
+      "status": "COMPLETE",
+      "runtimeBinding": "firebox",
+      "source": {
+        "machineKind": "MultiTileEntityGeneratorMetal",
+        "sourceId": 1102,
+        "sourceLine": 524,
+        "materialExpression": "MT.Bronze",
+        "normalizedRowKey": "loader:Burning Boxes|1102|MultiTileEntityGeneratorMetal",
+        "outputExpression": "24",
+        "efficiencyExpression": "7500",
+        "fuelMap": "FM.Furnace"
+      },
+      "accepts": [
+        "FM.Furnace"
+      ],
+      "emits": [
+        "HU"
+      ],
+      "inputPacket": {
+        "medium": "ITEM_FUEL",
+        "identity": "FM.Furnace",
+        "size": 1,
+        "maxAmountPerTick": 1
+      },
+      "outputPacket": {
+        "medium": "ENERGY",
+        "identity": "HU",
+        "size": 1,
+        "maxAmountPerTick": 24
+      },
+      "inputWindow": {
+        "minimum": null,
+        "nominal": null,
+        "maximum": null
+      },
+      "efficiencyBps": 7500,
+      "fuelMap": "FM.Furnace",
+      "conservation": {
+        "primaryInput": "FUEL_HU",
+        "primaryInputUnits": 10000,
+        "secondaryInput": "NONE",
+        "secondaryInputUnits": 0,
+        "output": "HU",
+        "outputUnits": 7500,
+        "exhaust": "NONE",
+        "exhaustUnits": 0
+      },
+      "exhaust": {
+        "identity": "NONE",
+        "mode": "NONE",
+        "capacity": 0
+      },
+      "faces": {
+        "energyInputs": [],
+        "energyOutputs": [
+          "UP"
+        ],
+        "fluidInputs": [],
+        "fluidOutputs": []
+      },
+      "policy": {
+        "simulateBeforeExecute": true,
+        "exactCommit": true,
+        "blockage": "KEEP_HU_BUFFERED",
+        "overflow": "REJECT_FUEL",
+        "sourceResolution": "EXACT_SOURCE_1102_BRONZE_GENERATOR_METAL"
+      },
+      "inputCapacity": 12000,
+      "outputCapacity": 288000
+    },
+    {
+      "id": "cruciblecraft:bronze_boiler",
+      "stage": "T18a",
+      "status": "COMPLETE",
+      "runtimeBinding": "bronze_boiler",
+      "source": {
+        "machineKind": "MultiTileEntityBoilerTank",
+        "sourceId": 1202,
+        "sourceLine": 555,
+        "materialExpression": "MT.Bronze",
+        "normalizedRowKey": "loader:Steam Boilers|1202|MultiTileEntityBoilerTank",
+        "outputExpression": "NONE",
+        "efficiencyExpression": "NONE",
+        "fuelMap": "NONE"
+      },
+      "accepts": [
+        "HU",
+        "minecraft:water"
+      ],
+      "emits": [
+        "STEAM"
+      ],
+      "inputPacket": {
+        "medium": "ENERGY",
+        "identity": "HU",
+        "size": 1,
+        "maxAmountPerTick": 24
+      },
+      "outputPacket": {
+        "medium": "FLUID",
+        "identity": "STEAM",
+        "size": 160,
+        "maxAmountPerTick": 1280
+      },
+      "inputWindow": {
+        "minimum": 1,
+        "nominal": 24,
+        "maximum": 24
+      },
+      "efficiencyBps": 10000,
+      "fuelMap": "NONE",
+      "conservation": {
+        "primaryInput": "HU",
+        "primaryInputUnits": 80,
+        "secondaryInput": "minecraft:water",
+        "secondaryInputUnits": 1,
+        "output": "STEAM",
+        "outputUnits": 160,
+        "exhaust": "NONE",
+        "exhaustUnits": 0
+      },
+      "exhaust": {
+        "identity": "NONE",
+        "mode": "NONE",
+        "capacity": 0
+      },
+      "faces": {
+        "energyInputs": [
+          "DOWN"
+        ],
+        "energyOutputs": [],
+        "fluidInputs": [
+          "DOWN",
+          "NORTH",
+          "SOUTH",
+          "WEST",
+          "EAST"
+        ],
+        "fluidOutputs": [
+          "UP"
+        ]
+      },
+      "policy": {
+        "simulateBeforeExecute": true,
+        "exactCommit": true,
+        "blockage": "NO_WATER_NO_HEAT_OR_STEAM_FULL",
+        "overflow": "KEEP_HU_AND_WATER_BUFFERED",
+        "sourceResolution": "SOURCE_1202_WITH_CC_80_HU_PLUS_1_MB_WATER_TO_160_MB_STEAM"
+      },
+      "inputCapacity": 16000,
+      "outputCapacity": 64000
+    },
+    {
+      "id": "cruciblecraft:bronze_steam_engine",
+      "stage": "T18a",
+      "status": "COMPLETE",
+      "runtimeBinding": "bronze_steam_engine",
+      "source": {
+        "machineKind": "MultiTileEntityEngineSteam",
+        "sourceId": 1302,
+        "sourceLine": 586,
+        "materialExpression": "MT.Bronze",
+        "normalizedRowKey": "loader:Engines|1302|MultiTileEntityEngineSteam",
+        "outputExpression": "24/STEAM_PER_EU",
+        "efficiencyExpression": "5000",
+        "fuelMap": "NONE"
+      },
+      "accepts": [
+        "STEAM"
+      ],
+      "emits": [
+        "KU",
+        "minecraft:water"
+      ],
+      "inputPacket": {
+        "medium": "FLUID",
+        "identity": "STEAM",
+        "size": 200,
+        "maxAmountPerTick": 200
+      },
+      "outputPacket": {
+        "medium": "ENERGY",
+        "identity": "KU",
+        "size": 12,
+        "maxAmountPerTick": 1
+      },
+      "inputWindow": {
+        "minimum": 200,
+        "nominal": 200,
+        "maximum": 200
+      },
+      "efficiencyBps": 5000,
+      "fuelMap": "NONE",
+      "conservation": {
+        "primaryInput": "STEAM",
+        "primaryInputUnits": 200,
+        "secondaryInput": "NONE",
+        "secondaryInputUnits": 0,
+        "output": "KU",
+        "outputUnits": 50,
+        "exhaust": "minecraft:water",
+        "exhaustUnits": 1
+      },
+      "exhaust": {
+        "identity": "minecraft:water",
+        "mode": "BUFFER_THEN_DRAIN",
+        "capacity": 16000
+      },
+      "faces": {
+        "energyInputs": [],
+        "energyOutputs": [
+          "FRONT"
+        ],
+        "fluidInputs": [
+          "NON_FRONT"
+        ],
+        "fluidOutputs": [
+          "NON_FRONT"
+        ]
+      },
+      "policy": {
+        "simulateBeforeExecute": true,
+        "exactCommit": true,
+        "blockage": "NO_STEAM_KU_FULL_OR_EXHAUST_FULL",
+        "overflow": "KEEP_STEAM_BUFFERED",
+        "sourceResolution": "EXACT_STANDARD_BRONZE_SOURCE_1302; SOURCE_BACKED_200_MB_TO_50_KU_AT_4_MB_PER_KU; SOURCE_DERIVED_NOMINAL_24_DIV_STEAM_PER_EU_2_EQUALS_12_KU_MOUTPUT; DESIGN_POLICY_FIXED_OUTPUT_12_KU_PER_TICK; GT6_STATE_DEPENDENT_6_TO_24_KU_DEFERRED_REPLACEMENT"
+      },
+      "outputSemantics": {
+        "conservation": {
+          "classification": "SOURCE_BACKED",
+          "steamInputMb": 200,
+          "kuOutput": 50,
+          "steamMbPerKu": 4
+        },
+        "sourceNominal": {
+          "classification": "SOURCE_DERIVED_NOMINAL",
+          "registeredNumerator": 24,
+          "steamPerEu": 2,
+          "mOutputKu": 12
+        },
+        "fixedOutput": {
+          "classification": "DESIGN_POLICY_FIXED_OUTPUT",
+          "kuPerTick": 12
+        },
+        "gt6Runtime": {
+          "classification": "DEFERRED_REPLACEMENT",
+          "minimumKuPerTick": 6,
+          "maximumKuPerTick": 24,
+          "behavior": "STATE_DEPENDENT_MOUTPUT_HALF_TO_DOUBLE",
+          "replacementCondition": "Replace the fixed 12 KU/t CC output only with a measured state accumulator, piston-phase emission, saturation/venting, persistence and transaction model matching the pinned GT6 behavior.",
+          "recheckPoint": "Recheck when a dedicated steam-engine dynamics batch is selected or before adding another steam-engine tier."
+        },
+        "sourceEvidencePaths": [
+          "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java:586",
+          "gt6_code/gregtech6/src/main/java/gregapi/data/CS.java:240",
+          "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityEngineSteam.java:58,62-63,77-80,98-103,121-146"
+        ]
+      },
+      "inputCapacity": 16000,
+      "outputCapacity": 1024
+    },
+    {
+      "id": "cruciblecraft:bronze_dynamo",
+      "stage": "T18b",
+      "status": "COMPLETE",
+      "runtimeBinding": "bronze_dynamo",
+      "source": {
+        "machineKind": "MultiTileEntityDynamoElectric",
+        "sourceId": 10111,
+        "sourceLine": 946,
+        "materialExpression": "MT.DATA.Electric_T[1]",
+        "normalizedRowKey": "loader:Dynamos|10111|MultiTileEntityDynamoElectric",
+        "outputExpression": "22",
+        "efficiencyExpression": "22/32",
+        "fuelMap": "NONE"
+      },
+      "accepts": [
+        "RU"
+      ],
+      "emits": [
+        "EU"
+      ],
+      "inputPacket": {
+        "medium": "ENERGY",
+        "identity": "RU",
+        "size": 32,
+        "maxAmountPerTick": 1
+      },
+      "outputPacket": {
+        "medium": "ENERGY",
+        "identity": "EU",
+        "size": 22,
+        "maxAmountPerTick": 1
+      },
+      "inputWindow": {
+        "minimum": 16,
+        "nominal": 32,
+        "maximum": 64
+      },
+      "efficiencyBps": 6875,
+      "fuelMap": "NONE",
+      "conservation": {
+        "primaryInput": "RU",
+        "primaryInputUnits": 32,
+        "secondaryInput": "NONE",
+        "secondaryInputUnits": 0,
+        "output": "EU",
+        "outputUnits": 22,
+        "exhaust": "LOSS",
+        "exhaustUnits": 10
+      },
+      "exhaust": {
+        "identity": "LOSS",
+        "mode": "DISSIPATE",
+        "capacity": 0
+      },
+      "faces": {
+        "energyInputs": [
+          "BACK"
+        ],
+        "energyOutputs": [
+          "FRONT"
+        ],
+        "fluidInputs": [],
+        "fluidOutputs": []
+      },
+      "policy": {
+        "simulateBeforeExecute": true,
+        "exactCommit": true,
+        "blockage": "NBT_WASTE_ENERGY_DISCARDS_RU_WHEN_EU_BLOCKED",
+        "overflow": "INPUT_ABOVE_64_RU_OVERLOADS_AND_DISSIPATES",
+        "sourceResolution": "EXACT_SOURCE_10111_ELECTRIC_T1; LEGACY_LOCAL_24_RU_TO_24_EU_REPLACED_BY_16_32_64_RU_WINDOW_TO_11_22_44_EU; NOMINAL_32_RU=22_EU+10_LOSS"
+      },
+      "inputCapacity": 64,
+      "outputCapacity": 0
+    },
+    {
+      "id": "cruciblecraft:bronze_fuel_engine",
+      "stage": "T18b",
+      "status": "COMPLETE",
+      "runtimeBinding": "fuel_engine",
+      "source": {
+        "machineKind": "MultiTileEntityMotorLiquid",
+        "sourceId": 9147,
+        "sourceLine": 722,
+        "materialExpression": "MT.Bronze",
+        "normalizedRowKey": "loader:Engines|9147|MultiTileEntityMotorLiquid",
+        "outputExpression": "16",
+        "efficiencyExpression": "10000",
+        "fuelMap": "FM.Engine"
+      },
+      "accepts": [
+        "FM.Engine"
+      ],
+      "emits": [
+        "RU"
+      ],
+      "inputPacket": {
+        "medium": "FLUID_FUEL",
+        "identity": "FM.Engine",
+        "size": 1,
+        "maxAmountPerTick": 1
+      },
+      "outputPacket": {
+        "medium": "ENERGY",
+        "identity": "RU",
+        "size": 16,
+        "maxAmountPerTick": 1
+      },
+      "inputWindow": {
+        "minimum": null,
+        "nominal": null,
+        "maximum": null
+      },
+      "efficiencyBps": 10000,
+      "fuelMap": "FM.Engine",
+      "conservation": {
+        "primaryInput": "FM.Engine",
+        "primaryInputUnits": 1,
+        "secondaryInput": "NONE",
+        "secondaryInputUnits": 0,
+        "output": "RU",
+        "outputUnits": 512,
+        "exhaust": "cruciblecraft:carbon_dioxide",
+        "exhaustUnits": 1
+      },
+      "exhaust": {
+        "identity": "RECIPE_DEFINED",
+        "mode": "BUFFER_ALL_OUTPUTS",
+        "capacity": 8000
+      },
+      "faces": {
+        "energyInputs": [],
+        "energyOutputs": [
+          "FRONT"
+        ],
+        "fluidInputs": [
+          "NON_FRONT"
+        ],
+        "fluidOutputs": [
+          "UP",
+          "DOWN"
+        ]
+      },
+      "policy": {
+        "simulateBeforeExecute": true,
+        "exactCommit": true,
+        "blockage": "EXHAUST_AND_RU_OUTPUT_GATE_START",
+        "overflow": "KEEP_RECIPE_ENERGY_IN_RU_BUFFER_AND_EMIT_ONE_16_RU_PACKET_PER_TICK",
+        "sourceResolution": "EXACT_SOURCE_9147_BRONZE_MOTOR_LIQUID_16_RU_10000_BPS; CURRENT_KINETIC_ROTATION_IDENTITY_REQUIRED; MISSING_PARTIAL_OR_WRONG_IDENTITY_QUARANTINED"
+      },
+      "inputCapacity": 8000,
+      "outputCapacity": 65536
+    },
+    {
+      "id": "cruciblecraft:bronze_gas_generator",
+      "stage": "T18c",
+      "status": "COMPLETE",
+      "runtimeBinding": "burning_gas_generator",
+      "source": {
+        "machineKind": "MultiTileEntityGeneratorGas",
+        "sourceId": 1602,
+        "sourceLine": 649,
+        "materialExpression": "MT.Bronze",
+        "normalizedRowKey": "loader:Burning Boxes|1602|MultiTileEntityGeneratorGas",
+        "outputExpression": "24",
+        "efficiencyExpression": "7500",
+        "fuelMap": "FM.Burn"
+      },
+      "accepts": [
+        "FM.Burn"
+      ],
+      "emits": [
+        "HU"
+      ],
+      "inputPacket": {
+        "medium": "FLUID_FUEL",
+        "identity": "FM.Burn",
+        "size": 1,
+        "maxAmountPerTick": 1
+      },
+      "outputPacket": {
+        "medium": "ENERGY",
+        "identity": "HU",
+        "size": 1,
+        "maxAmountPerTick": 24
+      },
+      "inputWindow": {
+        "minimum": null,
+        "nominal": null,
+        "maximum": null
+      },
+      "efficiencyBps": 7500,
+      "fuelMap": "FM.Burn",
+      "conservation": {
+        "primaryInput": "FM.Burn",
+        "primaryInputUnits": 1536,
+        "secondaryInput": "NONE",
+        "secondaryInputUnits": 0,
+        "output": "HU",
+        "outputUnits": 1152,
+        "exhaust": "RECIPE_DEFINED",
+        "exhaustUnits": 9
+      },
+      "exhaust": {
+        "identity": "RECIPE_DEFINED",
+        "mode": "BUFFER_ALL_OUTPUTS",
+        "capacity": 16000
+      },
+      "faces": {
+        "energyInputs": [],
+        "energyOutputs": [
+          "UP"
+        ],
+        "fluidInputs": [
+          "NON_OUTPUT"
+        ],
+        "fluidOutputs": [
+          "SIDE"
+        ]
+      },
+      "policy": {
+        "simulateBeforeExecute": true,
+        "exactCommit": true,
+        "blockage": "EXHAUST_AND_HU_OUTPUT_GATE_START",
+        "overflow": "KEEP_RECIPE_HU_BUFFERED_AND_EMIT_UP_TO_24_HU_PER_TICK",
+        "sourceResolution": "EXACT_SOURCE_1602_BRONZE_GENERATOR_GAS_24_HU_7500_BPS_FM_BURN; METHANE_ROW_20_5_MB_AT_-64_X_24_EQUALS_1536_SOURCE_UNITS_AND_1152_HU; CURRENT_HEAT_IDENTITY_REQUIRED; MISSING_PARTIAL_OR_WRONG_IDENTITY_QUARANTINED"
+      },
+      "inputCapacity": 16000,
+      "outputCapacity": 288000
+    }
+  ]
+}

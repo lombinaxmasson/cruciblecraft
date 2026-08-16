@@ -23,7 +23,7 @@ POLICY_STATUSES = {
     "T14D_LOAD_BUDGET_POLICY_MEASURED",
 }
 STRATEGIES = ("immediate", "on_demand", "hybrid")
-DELIVERY_PHASES = ("T15", "T16", "T17", "T18", "T19")
+DELIVERY_PHASES = ("T15", "T16", "T17", "T18", "T19", "T21")
 PROJECTION_PHASES = ("T14",) + DELIVERY_PHASES
 COUNT_FIELDS = (
     "authored_entries",
@@ -33,6 +33,7 @@ COUNT_FIELDS = (
     "lazy_cache_ceiling_rows",
     "sync_bytes",
 )
+PUBLICATION_DOMAINS = ("gt_recipe_family", "vanilla_crafting")
 INTERVAL_FIELDS = (
     "server_reload_ms",
     "server_index_ms",
@@ -181,22 +182,25 @@ def _validate_family(
     index: int,
     canonical: dict[str, dict[str, Any]],
     seen_canonical_ids: set[str],
+    schema_version: int,
 ) -> dict[str, Any]:
     context = f"families[{index}]"
     if not isinstance(family, dict):
         raise ProjectionError(f"{context}: expected an object")
-    _exact_fields(
-        family,
-        (
-            "family",
-            "canonical_ids",
-            "strategy",
-            *COUNT_FIELDS,
-            "measurement_basis",
-            "measurement_intervals",
-        ),
-        context,
+    expected_fields = (
+        "family",
+        "canonical_ids",
+        "strategy",
+        *COUNT_FIELDS,
+        "measurement_basis",
+        "measurement_intervals",
     )
+    if schema_version == 2:
+        expected_fields += (
+            "publication_domain",
+            "vanilla_datapack_entries",
+        )
+    _exact_fields(family, expected_fields, context)
     family_id = family["family"]
     if (
         not isinstance(family_id, str)
@@ -205,14 +209,40 @@ def _validate_family(
         raise ProjectionError(f"{context}.family: invalid stable family id")
 
     canonical_ids = family["canonical_ids"]
+    publication_domain = (
+        family["publication_domain"]
+        if schema_version == 2
+        else "gt_recipe_family"
+    )
+    vanilla_entries = (
+        _nonnegative_integer(
+            family["vanilla_datapack_entries"],
+            f"{context}.vanilla_datapack_entries",
+        )
+        if schema_version == 2
+        else 0
+    )
+    if publication_domain not in PUBLICATION_DOMAINS:
+        raise ProjectionError(
+            f"{context}.publication_domain: unknown domain "
+            f"{publication_domain!r}"
+        )
     if (
         not isinstance(canonical_ids, list)
-        or not canonical_ids
         or any(not isinstance(value, str) or not value for value in canonical_ids)
         or len(canonical_ids) != len(set(canonical_ids))
+        or (
+            publication_domain == "gt_recipe_family"
+            and not canonical_ids
+        )
+        or (
+            publication_domain == "vanilla_crafting"
+            and canonical_ids
+        )
     ):
         raise ProjectionError(
-            f"{context}.canonical_ids: expected unique non-empty ids"
+            f"{context}.canonical_ids: GT families require unique ids and "
+            "vanilla crafting requires an empty list"
         )
     references = []
     for canonical_id in canonical_ids:
@@ -245,6 +275,30 @@ def _validate_family(
         field: _nonnegative_integer(family[field], f"{context}.{field}")
         for field in COUNT_FIELDS
     }
+    if publication_domain == "vanilla_crafting":
+        if (
+            vanilla_entries <= 0
+            or counts["authored_entries"] != vanilla_entries
+            or any(
+                counts[field] != 0
+                for field in (
+                    "logical_rows",
+                    "eager_publication_rows",
+                    "lazy_logical_rows",
+                    "lazy_cache_ceiling_rows",
+                    "sync_bytes",
+                )
+            )
+        ):
+            raise ProjectionError(
+                f"{context}: vanilla crafting entries must be counted as "
+                "authored datapack entries with zero GT logical/publication "
+                "and sync rows"
+            )
+    elif vanilla_entries != 0:
+        raise ProjectionError(
+            f"{context}: GT recipe families cannot declare vanilla entries"
+        )
     logical = counts["logical_rows"]
     eager = counts["eager_publication_rows"]
     lazy = counts["lazy_logical_rows"]
@@ -335,8 +389,22 @@ def _validate_family(
         **family,
         "t13_references": references,
         "measurement_intervals": validated_intervals,
+        "publication_account": {
+            "domain": publication_domain,
+            "vanilla_datapack_entries": vanilla_entries,
+            "gt_authored_entries": (
+                counts["authored_entries"]
+                if publication_domain == "gt_recipe_family"
+                else 0
+            ),
+            "gt_logical_rows": counts["logical_rows"],
+        },
         "ratios": _ratios(
-            counts["authored_entries"],
+            (
+                counts["authored_entries"]
+                if publication_domain == "gt_recipe_family"
+                else 0
+            ),
             counts["logical_rows"],
             counts["eager_publication_rows"],
         ),
@@ -361,8 +429,9 @@ def validate_input(
         ),
         "input",
     )
+    schema_version = document["schema_version"]
     if (
-        document["schema_version"] != 1
+        schema_version not in {1, 2}
         or document["status"] != "FAMILY_LOAD_PROJECTION_INPUT"
     ):
         raise ProjectionError("projection input schema or status drifted")
@@ -373,7 +442,7 @@ def validate_input(
     ):
         raise ProjectionError("projection_id is not a stable lowercase id")
     if document["delivery_phase"] not in PROJECTION_PHASES:
-        raise ProjectionError("delivery_phase must be T14 through T19")
+        raise ProjectionError("delivery_phase must be T14 through T21")
     families = document["families"]
     if not isinstance(families, list) or not families:
         raise ProjectionError("projection input must declare at least one family")
@@ -381,7 +450,13 @@ def validate_input(
     canonical = _canonical_rows(t13)
     seen_ids: set[str] = set()
     validated = [
-        _validate_family(family, index, canonical, seen_ids)
+        _validate_family(
+            family,
+            index,
+            canonical,
+            seen_ids,
+            schema_version,
+        )
         for index, family in enumerate(families)
     ]
     family_ids = [family["family"] for family in validated]
@@ -520,6 +595,15 @@ def _max_intervals(
 
 
 def build_ledger(families: list[dict[str, Any]]) -> dict[str, Any]:
+    publication_accounts = [
+        family.get("publication_account") or {
+            "domain": "gt_recipe_family",
+            "vanilla_datapack_entries": 0,
+            "gt_authored_entries": family["authored_entries"],
+            "gt_logical_rows": family["logical_rows"],
+        }
+        for family in families
+    ]
     counts = {
         "datapack_authored_entries": sum(
             family["authored_entries"] for family in families
@@ -536,6 +620,20 @@ def build_ledger(families: list[dict[str, Any]]) -> dict[str, Any]:
         ),
         "sync_bytes": sum(family["sync_bytes"] for family in families),
     }
+    domain_counts = {
+        "vanilla_datapack_entries": sum(
+            account["vanilla_datapack_entries"]
+            for account in publication_accounts
+        ),
+        "gt_authored_entries": sum(
+            account["gt_authored_entries"]
+            for account in publication_accounts
+        ),
+        "gt_logical_rows": sum(
+            account["gt_logical_rows"]
+            for account in publication_accounts
+        ),
+    }
     measurements = {
         field: _sum_intervals(families, field)
         for field in SUM_INTERVAL_FIELDS
@@ -546,6 +644,7 @@ def build_ledger(families: list[dict[str, Any]]) -> dict[str, Any]:
     })
     return {
         "counts": counts,
+        "publication_domains": domain_counts,
         "ratios": _ratios(
             counts["datapack_authored_entries"],
             counts["logical_rows"],
@@ -643,7 +742,7 @@ def project(
     ledger = build_ledger(families)
     budget_evaluation = evaluate_budgets(ledger, policy)
     return {
-        "schema_version": 1,
+        "schema_version": document["schema_version"],
         "status": budget_evaluation["status"],
         "projection_id": document["projection_id"],
         "delivery_phase": document["delivery_phase"],

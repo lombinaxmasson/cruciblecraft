@@ -232,8 +232,8 @@ def main() -> int:
             "scenarios": results,
         }
         budget = build_budget(results)
-        REPORT.write_text(stable_json(report), encoding="utf-8")
-        BUDGET.write_text(stable_json(budget), encoding="utf-8")
+        REPORT.write_text(stable_json(report), encoding="utf-8", newline="\n")
+        BUDGET.write_text(stable_json(budget), encoding="utf-8", newline="\n")
         print(f"Wrote {REPORT}")
         print(f"Wrote {BUDGET}")
         return 0
@@ -251,8 +251,8 @@ def main() -> int:
             max(value["elapsed_ms"] for value in full_server_runs.values()),
             minimum=300_000,
         )
-        REPORT.write_text(stable_json(report), encoding="utf-8")
-        BUDGET.write_text(stable_json(budget), encoding="utf-8")
+        REPORT.write_text(stable_json(report), encoding="utf-8", newline="\n")
+        BUDGET.write_text(stable_json(budget), encoding="utf-8", newline="\n")
         print(f"Wrote full-server measurements to {REPORT}")
         print(f"Updated full-server budget in {BUDGET}")
         return 0

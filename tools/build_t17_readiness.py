@@ -20,6 +20,10 @@ try:
     from tools import recipe_load_projection
 except ModuleNotFoundError:
     import recipe_load_projection
+try:
+    from tools import build_processing_machine_energy_audit as energy_audit_builder
+except ModuleNotFoundError:
+    import build_processing_machine_energy_audit as energy_audit_builder
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -144,6 +148,10 @@ def dependencies(policy: dict[str, Any]) -> dict[str, dict[str, Any]]:
     errors = acquisition_builder.check()
     if errors:
         raise ValueError("T17 acquisition is stale: " + "; ".join(errors))
+    errors = energy_audit_builder.check()
+    if errors:
+        raise ValueError("processing-machine energy audit is stale: "
+                         + "; ".join(errors))
     return result
 
 
@@ -211,6 +219,15 @@ def t17a_evidence(denominator: dict[str, Any]) -> dict[str, Any]:
         "cruciblecraft:titanium_smelter",
     })
     counts = denominator["counts"]
+    disposition_audit = denominator.get("energy_disposition_audit") or {}
+    disposition_rows = {
+        row.get("recipe_map"): row
+        for row in disposition_audit.get("rows") or []
+    }
+    audit = load(energy_audit_builder.OUTPUT)
+    audit_rows = {
+        row["id"]: row for row in audit.get("rows") or []
+    }
     if (
         denominator.get("status") != "T17_MACHINE_DENOMINATOR_READY"
         or counts.get("t17_owner_hu_eu_kinds") != 28
@@ -221,6 +238,24 @@ def t17a_evidence(denominator: dict[str, Any]) -> dict[str, Any]:
         or len(selected_variants) != 9
         or len(tiers) != 33
         or selected_catalog != expected_catalog
+        or counts.get("cross_owner_deferred_kinds") != 1
+        or disposition_audit.get("status") != "AUDITED"
+        or set(disposition_rows) != {"RM.Extruder", "RM.Compressor"}
+        or disposition_rows["RM.Extruder"].get("accepted_energy") != "HU"
+        or disposition_rows["RM.Extruder"].get("disposition")
+        != "MAPPED_DEFERRED"
+        or disposition_rows["RM.Compressor"].get("owner") != "T16"
+        or disposition_rows["RM.Compressor"].get("accepted_energy") != "KU"
+        or disposition_rows["RM.Compressor"].get("disposition")
+        != "CROSS_OWNER_DEFERRED"
+        or audit.get("status")
+        != "PROCESSING_MACHINE_ENERGY_AUDIT_READY"
+        or audit.get("counts", {}).get("machine_specs") != 25
+        or audit.get("counts", {}).get("implicit_energy_arguments") != 0
+        or audit.get("counts", {}).get("legacy_kinetic") != 8
+        or audit.get("counts", {}).get("new_legacy_kinetic") != 0
+        or audit_rows.get("extruder", {}).get("actual") != "KINETIC"
+        or audit_rows.get("compressor", {}).get("actual") != "ELECTRIC"
     ):
         raise ValueError("T17a denominator/runtime matrix is incomplete")
     return {
@@ -242,6 +277,18 @@ def t17a_evidence(denominator: dict[str, Any]) -> dict[str, Any]:
         "new_item_registrations": 6,
         "gt_recipe_row_mutation": 0,
         "unclassified": counts["unclassified"],
+        "energy_disposition_audit": disposition_audit,
+        "processing_machine_energy_audit": {
+            "path": relative(energy_audit_builder.OUTPUT),
+            "sha256": sha256(energy_audit_builder.OUTPUT),
+            "status": audit["status"],
+            "machine_specs": audit["counts"]["machine_specs"],
+            "implicit_energy_arguments": audit["counts"][
+                "implicit_energy_arguments"
+            ],
+            "legacy_kinetic": audit["counts"]["legacy_kinetic"],
+            "new_legacy_kinetic": audit["counts"]["new_legacy_kinetic"],
+        },
     }
 
 
@@ -516,6 +563,9 @@ def t17d_evidence(
         or counts.get("deferred_kinds") != 24
         or counts.get("heat_tier4_deferred") != 10
         or counts.get("electric_tier4_5_deferred") != 32
+        or counts.get("cross_owner_deferred_kinds") != 1
+        or denominator.get("energy_disposition_audit", {}).get("status")
+        != "AUDITED"
     ):
         raise ValueError("T17d denominator closure counts drifted")
 
@@ -536,6 +586,12 @@ def t17d_evidence(
             "electric_tier4_5_deferred": counts[
                 "electric_tier4_5_deferred"
             ],
+            "cross_owner_deferred_kinds": counts[
+                "cross_owner_deferred_kinds"
+            ],
+            "energy_disposition_audit": denominator[
+                "energy_disposition_audit"
+            ],
         },
         "energy_topology": {
             "HU": "HEAT_ADJACENT_BOTTOM_FIREBOX",
@@ -544,8 +600,8 @@ def t17d_evidence(
             "eu_reference_variants": 3,
             "electric_mixer_tier_variants": 0,
         },
-        "migration_acquisition": {
-            "exact_legacy_tier1_migrations": 3,
+        "identity_acquisition": {
+            "identity_policy": "CURRENT_ONLY_FAIL_CLOSED",
             "vanilla_crafting_rows": 9,
             "gt_recipe_rows": 0,
             "unreachable": acquisition["counts"]["unreachable"],
@@ -615,7 +671,7 @@ def build(policy: dict[str, Any] | None = None) -> dict[str, Any]:
             "emi_recipe_enumeration_equal_to_t16": True,
             "logical_eager_lazy_totals_equal_to_t16": True,
         },
-        "resource_acquisition_migration_gate": {
+        "resource_acquisition_identity_gate": {
             "status": "T17C_COMPLETE",
             "runtime_registrations_are_closure": True,
             "selected_variants": 9,
@@ -630,6 +686,13 @@ def build(policy: dict[str, Any] | None = None) -> dict[str, Any]:
             "selected_variants": evidence["implemented_variants"],
             "preimplemented_reference_kinds": 1,
             "deferred_kinds": evidence["deferred_kinds"],
+            "cross_owner_deferred_kinds": 1,
+            "energy_disposition_audit": evidence[
+                "energy_disposition_audit"
+            ]["status"],
+            "processing_machine_energy_audit": evidence[
+                "processing_machine_energy_audit"
+            ]["status"],
             "gt_recipe_row_mutation": evidence["gt_recipe_row_mutation"],
             "hu_execution_variants": execution_evidence[
                 "hu_execution_variants"
@@ -672,6 +735,10 @@ def build(policy: dict[str, Any] | None = None) -> dict[str, Any]:
                     if row["stage"] == stage
                 }
                 for stage in completed
+            },
+            "pending_report": {
+                **policy["refresh_policy"],
+                "pending": [],
             },
         },
     }

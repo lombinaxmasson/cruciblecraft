@@ -1,0 +1,22 @@
+{
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", wire)"
+  ],
+  "duration": "120 * (144 * prefix_units(wire) / gcd(target_units(working) * 144, 144 * prefix_units(wire)))",
+  "eut": "32",
+  "item_inputs": [
+    {
+      "count": "1 * (144 * prefix_units(wire) / gcd(target_units(working) * 144, 144 * prefix_units(wire)))",
+      "prefix": "cruciblecraft:ingot"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "target_units(working) * 144 / gcd(target_units(working) * 144, 144 * prefix_units(wire))",
+      "material_selector": "processing_target:working",
+      "prefix": "cruciblecraft:wire"
+    }
+  ],
+  "target": "cruciblecraft:wiremill",
+  "type": "cruciblecraft:material_rule"
+}

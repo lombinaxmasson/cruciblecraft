@@ -197,20 +197,30 @@ class T8PipeReadinessTest(unittest.TestCase):
                 ),
             )
 
-    def test_nonmetal_fluid_pipe_obtainability_debt_is_exact(self):
-        debt = self.document["unobtainable_nonmetal_fluid_pipes"]
-        self.assertEqual("O-27", debt["open_item"])
-        self.assertEqual("SOURCE_ROUTE_UNRESOLVED", debt["status"])
+    def test_nonmetal_fluid_pipe_acquisition_closure_is_exact(self):
+        acquisition = self.document[
+            "nonmetal_fluid_pipe_acquisition"
+        ]
+        self.assertEqual("O-27", acquisition["open_item"])
+        self.assertEqual("CLOSED_T19C", acquisition["status"])
+        # Equality with the T19 runtime rows is proven by
+        # build_t19_pipe_acquisition (index 48) as a forward edge; T8 records
+        # only its own derived forms.
+        self.assertEqual(
+            "tools/build_t19_pipe_acquisition.py (index 48)",
+            acquisition["validation_owner"],
+        )
         self.assertEqual(
             ["carbon", "plastic", "rubber", "wood", "wood_treated"],
-            debt["materials"],
+            acquisition["materials"],
         )
-        self.assertEqual(25, debt["form_count"])
+        self.assertEqual(25, acquisition["form_count"])
+        self.assertEqual(0, acquisition["unreachable"])
         self.assertEqual(
             25,
             len({
                 (row["material"], row["gauge"])
-                for row in debt["forms"]
+                for row in acquisition["forms"]
             }),
         )
 

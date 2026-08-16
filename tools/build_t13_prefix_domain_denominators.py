@@ -1153,7 +1153,7 @@ def check_or_write(
                 stale.append(path.relative_to(ROOT).as_posix())
         else:
             path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text(expected, encoding="utf-8")
+            path.write_text(expected, encoding="utf-8", newline="\n")
     if stale:
         raise SystemExit(
             "T13b denominator artifacts are stale: " + ", ".join(stale)

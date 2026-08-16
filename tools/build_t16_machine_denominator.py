@@ -249,7 +249,7 @@ def validate_variant_source(
 
 def catalog_rows(document: dict[str, Any]) -> dict[str, dict[str, Any]]:
     if (
-        document.get("schemaVersion") != 1
+        document.get("schemaVersion") != 2
         or document.get("source", {}).get("revision") != SOURCE_REVISION
     ):
         raise ValueError("machine tier catalog header drifted")
@@ -296,7 +296,7 @@ def validate_catalog_kind(
     for index, (source, row) in enumerate(zip(source_rows[:3], actual), 1):
         expected = {
             "kind": kind_id,
-            "tier": f"cruciblecraft:{tier_prefix}_tier_{index}",
+            "tierBand": f"cruciblecraft:{tier_prefix}_tier_{index}",
             "material": materials[index - 1],
             "energy": local_energy,
             "sourceId": source["source_id"],

@@ -285,8 +285,27 @@ class T13RecipeMapDenominatorTest(unittest.TestCase):
             )
             builder.validate_dump_hashes(document, root)
             first = maps / Path(document["rows"][0]["source_path"]).name
-            first.write_bytes(first.read_bytes() + b"!")
+            original = first.read_bytes()
+            first.write_bytes(original + b"!")
             with self.assertRaisesRegex(ValueError, "hash/size drifted"):
+                builder.validate_dump_hashes(document, root)
+            first.write_bytes(original)
+
+            removed = maps / Path(document["rows"][-1]["source_path"]).name
+            removed_payload = removed.read_bytes()
+            removed.unlink()
+            with self.assertRaisesRegex(ValueError, "found 94"):
+                builder.validate_dump_hashes(document, root)
+            removed.write_bytes(removed_payload)
+
+            extra = maps / "unexpected.json"
+            extra.write_text("{}\n", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "found 96"):
+                builder.validate_dump_hashes(document, root)
+            extra.unlink()
+
+            index_path.write_text('{"drift": true}\n', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "index digest drifted"):
                 builder.validate_dump_hashes(document, root)
 
 

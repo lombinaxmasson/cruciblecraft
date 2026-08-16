@@ -1,0 +1,1312 @@
+{
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T18a-d are complete: source identities, four conversion chains, current-only identity policy, acquisition, O-37 permanent policy, zero-load publication and currentness are closed."
+  },
+  "closure_summary": {
+    "converter_acquisition_recipes": 6,
+    "converter_acquisition_unreachable": 0,
+    "converter_profiles": 6,
+    "current_identity_profiles": 2,
+    "deferred_kinds": 20,
+    "denominator_kinds": 29,
+    "energy_identities": 2,
+    "four_chain_conservation": "PASS",
+    "gt_recipe_row_mutation": 0,
+    "o37_publication_delta": 0,
+    "o37_resolution": "DESIGN_POLICY",
+    "pending": 0,
+    "preimplemented_reference_kinds": 3,
+    "publication_delta": 0,
+    "selected_kinds": 6,
+    "unclassified": 0
+  },
+  "completed_stages": [
+    "T18a",
+    "T18b",
+    "T18c",
+    "T18d"
+  ],
+  "currentness": {
+    "completed_stage_sources": {
+      "T18a": {
+        "boiler_runtime": "50cb712ae6e85605e8111f71058878db718b8fbdb3d4b813c34564dfce10403d",
+        "converter_catalog_loader": "0390883203b4e88f807716b90c9534a5ec26848cacbbaa8e46e7c4b146acef37",
+        "converter_catalog_resource": "99021576f5dd91fa49a3ac60a8c84afc9b6d6496fd9434236003d851acf15e84",
+        "converter_catalog_test": "4a90986141546b625b2efdfad7466d882ae3e7479d03d987fc61c96b4821da34",
+        "converter_records": "3bbae4c24e369dc7cb975b5dbbb6bf934642771ce70109f71414d36c8c74caaf",
+        "converter_schema": "1619ba917b779fc4e2769ecf33baee551246b21799e1cc8812adad75979690e0",
+        "denominator_builder": "10b4c3dce1e8bc87ef9f51f80371e3ad6d24a07bcab379fc7f83cd1149803422",
+        "denominator_policy": "43f9831eadecd73caaec238491b91890a503a715209500878954bd0de20b2c1c",
+        "denominator_test": "d64a3f777659d5739c3ca70e6c8b8cd2c93e6233c0bf916a56af2a21bd665d1f",
+        "firebox_buffer": "c4e63e5c0b2998a8bb68816c1ec16fe2a1601d7a1f5329e810daaa7cce8f1b2b",
+        "firebox_recipe_provider": "d42bb0e8eab65be4c1f0d6934526f1a4dd48bbca608fe68f8085429f987585e1",
+        "firebox_runtime": "5b670bf2d6b61021b35068546e11bd90c05f4553cb2a1a873ad676ba0fe425ba",
+        "python_test_policy": "7ec0ec13febbcff13d01da08f6706bdb64cff9c75349375f9bc6baa02e6986f6",
+        "readiness_test": "e23fcb6747b90278e2e37a2d67fcff741d4d9353c19b9fab8da43bb7f7b2024d",
+        "steam_chain_gametest": "09421cfce9e850684ce377c7203163b9fe067db2f4c0d525581c348336ef4d58",
+        "steam_conversion": "fc66a00cad6dfb1d55d479842d41f0c90cd11c226e6ecccd3938a87f6307d108",
+        "steam_engine_runtime": "6be8c7a035044d48155d3eded514f72c8a0b39e408184a0a94f3aae6e852ccdf",
+        "steam_resource_test": "7f61a8cc13a49d7ed188ae3890f55266e557d2d21f208f2daecc4600c9c616e8"
+      },
+      "T18b": {
+        "dynamo_energy": "3f48455fcb948bd330e00d8015f1841f75a7fbd9f18a58856ea7fdd2dc27df2b",
+        "dynamo_energy_test": "edbce30c5fb21a040b0c08f14da14dad55c0f6c9dc578cec3180fc7225a6dbed",
+        "dynamo_runtime": "7f13346d1353a90e10b7830ad6914ad5c3f69958838b9f544355b44093755aeb",
+        "fuel_generator_energy": "794275ae26e06f8b6673ae1f545c944f2baee59905ad4f5bd3002949d9f3ec98",
+        "fuel_generator_energy_test": "db316e3fdf7d689cabbab09bf3cdac2bdb106de9c510416876acf24c8eabb857",
+        "fuel_generator_identity": "34ee97dcb1b5e7b1e0693ec102a44195ee4c5f8d71440533c97a20cc8e60c4c4",
+        "fuel_generator_identity_test": "b5f18a899cc570429a294356569892c400623a611f347dc4e6770e188cedbea7",
+        "fuel_generator_registry": "8439a576f2b11cbfd4380517a32fef2af9a23ee3105e74b9d7fafc8d2356ec41",
+        "fuel_generator_runtime": "4a9676a002b5417d701fced0499501c513161203fdde92614004c50e5c79e218",
+        "fuel_generator_spec": "ee9befb0e14b47a1798b1c442391ce9fae2331a2bce0bc454409583eb33b5ece",
+        "t18b_converter_catalog_loader": "0390883203b4e88f807716b90c9534a5ec26848cacbbaa8e46e7c4b146acef37",
+        "t18b_converter_catalog_resource": "99021576f5dd91fa49a3ac60a8c84afc9b6d6496fd9434236003d851acf15e84",
+        "t18b_converter_tests": "4a90986141546b625b2efdfad7466d882ae3e7479d03d987fc61c96b4821da34",
+        "t18b_gametest": "09421cfce9e850684ce377c7203163b9fe067db2f4c0d525581c348336ef4d58",
+        "t18b_readiness_builder": "fda4005426269275c0c42aa032074e310cf824f2bbda8a50572001a844b72efc",
+        "t18b_readiness_test": "e23fcb6747b90278e2e37a2d67fcff741d4d9353c19b9fab8da43bb7f7b2024d"
+      },
+      "T18c": {
+        "t18c_converter_catalog_loader": "0390883203b4e88f807716b90c9534a5ec26848cacbbaa8e46e7c4b146acef37",
+        "t18c_converter_catalog_resource": "99021576f5dd91fa49a3ac60a8c84afc9b6d6496fd9434236003d851acf15e84",
+        "t18c_converter_tests": "4a90986141546b625b2efdfad7466d882ae3e7479d03d987fc61c96b4821da34",
+        "t18c_fuel_generator_registry": "8439a576f2b11cbfd4380517a32fef2af9a23ee3105e74b9d7fafc8d2356ec41",
+        "t18c_fuel_generator_runtime": "4a9676a002b5417d701fced0499501c513161203fdde92614004c50e5c79e218",
+        "t18c_fuel_generator_spec": "ee9befb0e14b47a1798b1c442391ce9fae2331a2bce0bc454409583eb33b5ece",
+        "t18c_gametest": "09421cfce9e850684ce377c7203163b9fe067db2f4c0d525581c348336ef4d58",
+        "t18c_identity_policy": "34ee97dcb1b5e7b1e0693ec102a44195ee4c5f8d71440533c97a20cc8e60c4c4",
+        "t18c_identity_tests": "b5f18a899cc570429a294356569892c400623a611f347dc4e6770e188cedbea7",
+        "t18c_o37_builder": "0e869fdbb7fc58499cc64aea0d72269877cf4d48ee2e5a9dbcd24595dc96daf9",
+        "t18c_o37_policy": "9230f1105ab6943a54c27613d05e51b9ce410592b330fecac18eba7f9fe57838",
+        "t18c_o37_projection": "ed27240bdbc21c0b8e5fdf51d2405c6962582a74152ea0e8144f3e21bcbfae47",
+        "t18c_o37_tests": "4876ce37d838601bea7447d813ad114547b3c4cf65cd5ae707946f2d78970a22",
+        "t18c_readiness_builder": "fda4005426269275c0c42aa032074e310cf824f2bbda8a50572001a844b72efc",
+        "t18c_readiness_test": "e23fcb6747b90278e2e37a2d67fcff741d4d9353c19b9fab8da43bb7f7b2024d",
+        "t18c_t11_policy": "f277f72c26c9dc0cfb9f78be637aed91250df4335a9c36fe7fd621267fc40e2c",
+        "t18c_t11_runtime_policy": "964de6c1e050049fd39f4126d38883dfebcd3c88c844d52d2450ddf166abe816"
+      },
+      "T18d": {
+        "t18d_acquisition_builder": "49aaf2be3d2a93b07b6b3ff96a2acd801c66082cb441001dec38e0e1f856b5de",
+        "t18d_acquisition_policy": "1f1e80506a99932b7b06319b3181a429c5ed014812de2086c1573d76fba524b7",
+        "t18d_acquisition_test": "e3d929d832fb57dcaf67173eb62e7e60e2ef3dce8d43cfcefe7816ccb1f42bd1",
+        "t18d_load_input": "572aeb0394b288512fb77b4084c698caabeae884085f52e888c82d1f0bb89eef",
+        "t18d_load_projection": "66731d0f460c63388e5b4ddc6b4eccc9df921d2db3521b5768820f6e9ce2c9e3",
+        "t18d_load_test": "eac69a3b08ef27897a5c88a41ec87d8ca7a148de4d062baf02aeeb8a2aa2b137",
+        "t18d_publication_baseline": "6a7fabd3de4faa0bceb3e949ddef8fbb7e24b40e0cc4dd842b5255d2cba27782",
+        "t18d_readiness_builder": "fda4005426269275c0c42aa032074e310cf824f2bbda8a50572001a844b72efc",
+        "t18d_readiness_test": "e23fcb6747b90278e2e37a2d67fcff741d4d9353c19b9fab8da43bb7f7b2024d"
+      }
+    },
+    "dependencies": {
+      "O37": {
+        "path": "tools/t18_o37_identity_projection.json",
+        "sha256": "ed27240bdbc21c0b8e5fdf51d2405c6962582a74152ea0e8144f3e21bcbfae47",
+        "status": "O37_CLOSED"
+      },
+      "T17": {
+        "path": "tools/t17_readiness.json",
+        "sha256": "22e6275a0c177743af55cf12673cea4eb56b15840f940788be769b44c80b5f65",
+        "status": "T17_READY"
+      },
+      "acquisition": {
+        "path": "tools/t18_converter_acquisition.json",
+        "sha256": "624213640b233eac4c750d53819bda7dc95c223c3b85320f122c538306b114db",
+        "status": "T18D_CONVERTER_ACQUISITION_READY"
+      },
+      "denominator": {
+        "path": "tools/t18_machine_energy_denominator.json",
+        "sha256": "58f26585f961c626e2eb57d82061adf6f24341c0be3954f1a4f1f16157c3fcf8",
+        "status": "T18_MACHINE_ENERGY_DENOMINATOR_READY"
+      }
+    },
+    "owned_inputs": {
+      "tools/build_t18_readiness.py": "fda4005426269275c0c42aa032074e310cf824f2bbda8a50572001a844b72efc",
+      "tools/t18_readiness_policy.json": "a50467ead2d2af8c4c3155426e7f7d4e906cf6f9d303f0e090df5b59cd8fad78"
+    },
+    "pending_report": {
+      "evidence": "tools/full_verification_report.json",
+      "pending": [],
+      "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+      "this_refresh_final_closure_attempted": true
+    }
+  },
+  "pending_stages": [],
+  "publication_gate": {
+    "emi_recipe_enumeration_equal_to_t17": true,
+    "logical_eager_lazy_totals_equal_to_t17": true,
+    "o37_publication_recorded_separately": true,
+    "publication_delta": 0,
+    "publication_unchanged_claimed": true,
+    "recipe_map_stable_id_set_equal_to_t17": true,
+    "status": "PASS"
+  },
+  "resource_acquisition_identity_gate": {
+    "current_identity_profiles": 2,
+    "gt_recipe_rows_added": 0,
+    "pending": [],
+    "profiles": 6,
+    "status": "T18D_COMPLETE",
+    "unreachable": 0,
+    "vanilla_crafting_recipes": 6
+  },
+  "schema_version": 1,
+  "source_contracts": {
+    "boiler_runtime": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/BoilerBlockEntity.java",
+      "required_tokens": [
+        "cruciblecraft:bronze_boiler",
+        "FluidAction.SIMULATE",
+        "steam_full",
+        "no_water",
+        "no_heat"
+      ],
+      "sha256": "50cb712ae6e85605e8111f71058878db718b8fbdb3d4b813c34564dfce10403d",
+      "stage": "T18a"
+    },
+    "converter_catalog_loader": {
+      "path": "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java",
+      "required_tokens": [
+        "EXPECTED_IDS",
+        "COMPLETE_PROFILES",
+        "source().sourceId() != 1302",
+        "outputPacket().size() != 12L",
+        "SOURCE_DERIVED_NOMINAL",
+        "DESIGN_POLICY_FIXED_OUTPUT",
+        "DEFERRED_REPLACEMENT"
+      ],
+      "sha256": "0390883203b4e88f807716b90c9534a5ec26848cacbbaa8e46e7c4b146acef37",
+      "stage": "T18a"
+    },
+    "converter_catalog_resource": {
+      "path": "src/main/resources/data/cruciblecraft/energy_converters.json",
+      "required_tokens": [
+        "\"cruciblecraft:bronze_firebox\"",
+        "\"cruciblecraft:bronze_boiler\"",
+        "\"cruciblecraft:bronze_steam_engine\"",
+        "\"sourceId\": 1302",
+        "\"classification\": \"SOURCE_BACKED\"",
+        "\"classification\": \"SOURCE_DERIVED_NOMINAL\"",
+        "\"classification\": \"DESIGN_POLICY_FIXED_OUTPUT\"",
+        "\"classification\": \"DEFERRED_REPLACEMENT\"",
+        "\"cruciblecraft:bronze_gas_generator\""
+      ],
+      "sha256": "99021576f5dd91fa49a3ac60a8c84afc9b6d6496fd9434236003d851acf15e84",
+      "stage": "T18a"
+    },
+    "converter_catalog_test": {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "required_tokens": [
+        "selectedSourceRowsAreFixedAndStagesRemainExplicit",
+        "bronzeSteamEngineChooses1302AndResolvesThe24UnitExpression",
+        "completeSteamChainProfilesLockConservationAndFaces",
+        "SOURCE_BACKED",
+        "SOURCE_DERIVED_NOMINAL",
+        "DESIGN_POLICY_FIXED_OUTPUT",
+        "DEFERRED_REPLACEMENT"
+      ],
+      "sha256": "4a90986141546b625b2efdfad7466d882ae3e7479d03d987fc61c96b4821da34",
+      "stage": "T18a"
+    },
+    "converter_records": {
+      "path": "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterProfile.java",
+      "required_tokens": [
+        "record EnergyConverterProfile",
+        "record Conservation",
+        "record Exhaust",
+        "record Faces",
+        "record Policy",
+        "record OutputSemantics",
+        "record Gt6RuntimeOutput"
+      ],
+      "sha256": "3bbae4c24e369dc7cb975b5dbbb6bf934642771ce70109f71414d36c8c74caaf",
+      "stage": "T18a"
+    },
+    "converter_schema": {
+      "path": "src/main/resources/data/cruciblecraft/schema/energy_converters.schema.json",
+      "required_tokens": [
+        "\"sourceId\"",
+        "\"inputPacket\"",
+        "\"outputPacket\"",
+        "\"efficiencyBps\"",
+        "\"conservation\"",
+        "\"exhaust\"",
+        "\"faces\"",
+        "\"policy\"",
+        "\"outputSemantics\"",
+        "SOURCE_BACKED",
+        "SOURCE_DERIVED_NOMINAL",
+        "DESIGN_POLICY_FIXED_OUTPUT",
+        "DEFERRED_REPLACEMENT"
+      ],
+      "sha256": "1619ba917b779fc4e2769ecf33baee551246b21799e1cc8812adad75979690e0",
+      "stage": "T18a"
+    },
+    "denominator_builder": {
+      "path": "tools/build_t18_machine_energy_denominator.py",
+      "required_tokens": [
+        "T18_MACHINE_ENERGY_DENOMINATOR_READY",
+        "expected 29",
+        "bidirectionally cover STEAM/AU",
+        "selected T18 kinds and converter profiles are not bidirectional"
+      ],
+      "sha256": "10b4c3dce1e8bc87ef9f51f80371e3ad6d24a07bcab379fc7f83cd1149803422",
+      "stage": "T18a"
+    },
+    "denominator_policy": {
+      "path": "tools/t18_machine_energy_denominator_policy.json",
+      "required_tokens": [
+        "\"MultiTileEntityGeneratorMetal\"",
+        "\"selected_source_id\": 1102",
+        "\"selected_source_id\": 1202",
+        "\"selected_source_id\": 1302",
+        "\"MultiTileEntityAxle\"",
+        "\"DEFERRED_WITH_REASON\""
+      ],
+      "sha256": "43f9831eadecd73caaec238491b91890a503a715209500878954bd0de20b2c1c",
+      "stage": "T18a"
+    },
+    "denominator_test": {
+      "path": "tools/tests/test_build_t18_machine_energy_denominator.py",
+      "required_tokens": [
+        "test_t13_t18_owner_set_is_bidirectionally_classified",
+        "test_standard_bronze_steam_row_resolves_legacy_24_conflict",
+        "test_every_deferred_kind_has_an_individual_exit_contract",
+        "test_artifact_matches_current_builder"
+      ],
+      "sha256": "d64a3f777659d5739c3ca70e6c8b8cd2c93e6233c0bf916a56af2a21bd665d1f",
+      "stage": "T18a"
+    },
+    "dynamo_energy": {
+      "path": "src/main/java/com/masson/cruciblecraft/energy/BronzeDynamoEnergy.java",
+      "required_tokens": [
+        "INPUT_MINIMUM = 16L",
+        "INPUT_NOMINAL = 32L",
+        "INPUT_MAXIMUM = 64L",
+        "OUTPUT_NOMINAL = 22L",
+        "wasteBlockedInput",
+        "conversionLoss"
+      ],
+      "sha256": "3f48455fcb948bd330e00d8015f1841f75a7fbd9f18a58856ea7fdd2dc27df2b",
+      "stage": "T18b"
+    },
+    "dynamo_energy_test": {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/BronzeDynamoEnergyTest.java",
+      "required_tokens": [
+        "sourceWindowEfficiencyAndWastePolicyAreExact",
+        "kineticConsumed",
+        "electricExtracted",
+        "conversionLoss"
+      ],
+      "sha256": "edbce30c5fb21a040b0c08f14da14dad55c0f6c9dc578cec3180fc7225a6dbed",
+      "stage": "T18b"
+    },
+    "dynamo_runtime": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/DynamoBlockEntity.java",
+      "required_tokens": [
+        "EnergyType.KINETIC_ROTATION",
+        "wasteBlockedInput",
+        "electricExtracted",
+        "conversionLoss"
+      ],
+      "sha256": "7f13346d1353a90e10b7830ad6914ad5c3f69958838b9f544355b44093755aeb",
+      "stage": "T18b"
+    },
+    "firebox_buffer": {
+      "path": "src/main/java/com/masson/cruciblecraft/heat/FireboxHeatBuffer.java",
+      "required_tokens": [
+        "configuredOutputRate",
+        "efficiencyBps",
+        "efficientFuel"
+      ],
+      "sha256": "c4e63e5c0b2998a8bb68816c1ec16fe2a1601d7a1f5329e810daaa7cce8f1b2b",
+      "stage": "T18a"
+    },
+    "firebox_recipe_provider": {
+      "path": "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
+      "required_tokens": [
+        "ModItems.FIREBOX.get()",
+        "ModItems.FIREBRICK.get()",
+        "id(\"machines/firebox\")"
+      ],
+      "sha256": "d42bb0e8eab65be4c1f0d6934526f1a4dd48bbca608fe68f8085429f987585e1",
+      "stage": "T18a"
+    },
+    "firebox_runtime": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/FireboxBlockEntity.java",
+      "required_tokens": [
+        "cruciblecraft:bronze_firebox",
+        "PROFILE.outputPacket().maxAmountPerTick()",
+        "PROFILE.efficiencyBps()",
+        "heat_output_blocked"
+      ],
+      "sha256": "5b670bf2d6b61021b35068546e11bd90c05f4553cb2a1a873ad676ba0fe425ba",
+      "stage": "T18a"
+    },
+    "fuel_generator_energy": {
+      "path": "src/main/java/com/masson/cruciblecraft/machine/generation/FuelGeneratorEnergy.java",
+      "required_tokens": [
+        "canGenerate",
+        "generated",
+        "extracted",
+        "packetsForUnits"
+      ],
+      "sha256": "794275ae26e06f8b6673ae1f545c944f2baee59905ad4f5bd3002949d9f3ec98",
+      "stage": "T18b"
+    },
+    "fuel_generator_energy_test": {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/generation/FuelGeneratorEnergyTest.java",
+      "required_tokens": [
+        "recipePowerIsConservedAcrossSmallerSourcePackets",
+        "fullBufferRejectsGenerationWithoutPartialMutation"
+      ],
+      "sha256": "db316e3fdf7d689cabbab09bf3cdac2bdb106de9c510416876acf24c8eabb857",
+      "stage": "T18b"
+    },
+    "fuel_generator_identity": {
+      "path": "src/main/java/com/masson/cruciblecraft/machine/generation/FuelGeneratorIdentityPolicy.java",
+      "required_tokens": [
+        "MISSING_SCHEMA_VERSION",
+        "saved fuel-generator identity is missing",
+        "Resolution.ACCEPTED",
+        "QUARANTINED"
+      ],
+      "sha256": "34ee97dcb1b5e7b1e0693ec102a44195ee4c5f8d71440533c97a20cc8e60c4c4",
+      "stage": "T18b"
+    },
+    "fuel_generator_identity_test": {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/generation/FuelGeneratorIdentityPolicyTest.java",
+      "required_tokens": [
+        "completeCurrentIdentitiesAreAccepted",
+        "missingPartialAndWrongIdentitiesFailClosed"
+      ],
+      "sha256": "b5f18a899cc570429a294356569892c400623a611f347dc4e6770e188cedbea7",
+      "stage": "T18b"
+    },
+    "fuel_generator_registry": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModFuelGenerators.java",
+      "required_tokens": [
+        "EnergyType.KINETIC_ROTATION",
+        "16L",
+        "EnergyOutputFace.FRONT",
+        "65_536L"
+      ],
+      "sha256": "8439a576f2b11cbfd4380517a32fef2af9a23ee3105e74b9d7fafc8d2356ec41",
+      "stage": "T18b"
+    },
+    "fuel_generator_runtime": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/FuelGeneratorBlockEntity.java",
+      "required_tokens": [
+        "fuel_generator_schema_version",
+        "FuelGeneratorIdentityPolicy.resolve(",
+        "identity_quarantined",
+        "spec.outputEnergyType()",
+        "energy.canGenerate",
+        "commitOutputs"
+      ],
+      "sha256": "4a9676a002b5417d701fced0499501c513161203fdde92614004c50e5c79e218",
+      "stage": "T18b"
+    },
+    "fuel_generator_spec": {
+      "path": "src/main/java/com/masson/cruciblecraft/machine/generation/FuelGeneratorSpec.java",
+      "required_tokens": [
+        "EnergyType outputEnergyType",
+        "long outputPacketSize",
+        "long energyCapacity",
+        "generatedEnergy"
+      ],
+      "sha256": "ee9befb0e14b47a1798b1c442391ce9fae2331a2bce0bc454409583eb33b5ece",
+      "stage": "T18b"
+    },
+    "python_test_policy": {
+      "path": "tools/python_test_policy.json",
+      "required_tokens": [
+        "tools/build_t18_*.py",
+        "test_build_t18_machine_energy_denominator",
+        "test_build_t18_readiness"
+      ],
+      "sha256": "7ec0ec13febbcff13d01da08f6706bdb64cff9c75349375f9bc6baa02e6986f6",
+      "stage": "T18a"
+    },
+    "readiness_test": {
+      "path": "tools/tests/test_build_t18_readiness.py",
+      "required_tokens": [
+        "test_t18a_through_d_complete_with_no_pending",
+        "test_t18a_evidence_locks_profiles_conservation_and_resources",
+        "test_currentness_covers_every_completed_t18a_source",
+        "test_artifact_matches_current_builder"
+      ],
+      "sha256": "e23fcb6747b90278e2e37a2d67fcff741d4d9353c19b9fab8da43bb7f7b2024d",
+      "stage": "T18a"
+    },
+    "steam_chain_gametest": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "t18aFireboxBoilerSteamEnginePowersPress",
+        "t18aSteamChainDiagnosticsAndTransactions",
+        "no_water",
+        "no_heat",
+        "steam_full",
+        "kinetic_full",
+        "saveWithoutMetadata"
+      ],
+      "sha256": "09421cfce9e850684ce377c7203163b9fe067db2f4c0d525581c348336ef4d58",
+      "stage": "T18a"
+    },
+    "steam_conversion": {
+      "path": "src/main/java/com/masson/cruciblecraft/steam/SteamConversion.java",
+      "required_tokens": [
+        "HU_PER_BATCH",
+        "WATER_PER_BATCH",
+        "STEAM_PER_BATCH",
+        "ENGINE_STEAM_PER_BATCH",
+        "KU_PER_ENGINE_BATCH",
+        "EXHAUST_WATER_PER_BATCH"
+      ],
+      "sha256": "fc66a00cad6dfb1d55d479842d41f0c90cd11c226e6ecccd3938a87f6307d108",
+      "stage": "T18a"
+    },
+    "steam_engine_runtime": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/SteamEngineBlockEntity.java",
+      "required_tokens": [
+        "cruciblecraft:bronze_steam_engine",
+        "Source 1302",
+        "fixed 12 KU/t",
+        "state-dependent 6..24 KU/t",
+        "convertOneBatch",
+        "kinetic_full",
+        "exhaust_full",
+        "FluidAction.SIMULATE"
+      ],
+      "sha256": "6be8c7a035044d48155d3eded514f72c8a0b39e408184a0a94f3aae6e852ccdf",
+      "stage": "T18a"
+    },
+    "steam_resource_test": {
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/SteamChainResourceTest.java",
+      "required_tokens": [
+        "fireboxHasGeneratedSurvivalResourceClosure",
+        "recipe/machines/firebox.json",
+        "loot_table/blocks/firebox.json"
+      ],
+      "sha256": "7f61a8cc13a49d7ed188ae3890f55266e557d2d21f208f2daecc4600c9c616e8",
+      "stage": "T18a"
+    },
+    "t18b_converter_catalog_loader": {
+      "path": "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java",
+      "required_tokens": [
+        "validateT18b",
+        "source().sourceId() != 10111",
+        "inputWindow().minimum() != 16L",
+        "outputPacket().size() != 16L"
+      ],
+      "sha256": "0390883203b4e88f807716b90c9534a5ec26848cacbbaa8e46e7c4b146acef37",
+      "stage": "T18b"
+    },
+    "t18b_converter_catalog_resource": {
+      "path": "src/main/resources/data/cruciblecraft/energy_converters.json",
+      "required_tokens": [
+        "\"sourceId\": 10111",
+        "\"sourceId\": 9147",
+        "\"efficiencyBps\": 6875",
+        "LEGACY_LOCAL_24_RU_TO_24_EU_REPLACED",
+        "CURRENT_KINETIC_ROTATION_IDENTITY_REQUIRED",
+        "MISSING_PARTIAL_OR_WRONG_IDENTITY_QUARANTINED"
+      ],
+      "sha256": "99021576f5dd91fa49a3ac60a8c84afc9b6d6496fd9434236003d851acf15e84",
+      "stage": "T18b"
+    },
+    "t18b_converter_tests": {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "required_tokens": [
+        "t18bDynamoCorrectsLegacy24To24WithAuditableSourceLoss",
+        "t18bFuelEngineLocksMotorLiquidSourceAndRuPacket"
+      ],
+      "sha256": "4a90986141546b625b2efdfad7466d882ae3e7479d03d987fc61c96b4821da34",
+      "stage": "T18b"
+    },
+    "t18b_gametest": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "t18bCrudeOilFuelEngineDynamoPowersElectrolyzer",
+        "t18bTransactionsAndBlockedFuelEngineStates",
+        "t18bFuelEngineCurrentIdentityAndCableOverload",
+        "energyGenerated",
+        "energyExtracted",
+        "fuel_generator_schema_version",
+        "burnCounter"
+      ],
+      "sha256": "09421cfce9e850684ce377c7203163b9fe067db2f4c0d525581c348336ef4d58",
+      "stage": "T18b"
+    },
+    "t18b_readiness_builder": {
+      "path": "tools/build_t18_readiness.py",
+      "required_tokens": [
+        "t18b_evidence",
+        "T18b converter profile evidence drifted",
+        "t18d_evidence"
+      ],
+      "sha256": "fda4005426269275c0c42aa032074e310cf824f2bbda8a50572001a844b72efc",
+      "stage": "T18b"
+    },
+    "t18b_readiness_test": {
+      "path": "tools/tests/test_build_t18_readiness.py",
+      "required_tokens": [
+        "test_t18b_evidence_locks_source_conservation_and_current_identity",
+        "completed_stage_sources",
+        "test_artifact_matches_current_builder"
+      ],
+      "sha256": "e23fcb6747b90278e2e37a2d67fcff741d4d9353c19b9fab8da43bb7f7b2024d",
+      "stage": "T18b"
+    },
+    "t18c_converter_catalog_loader": {
+      "path": "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java",
+      "required_tokens": [
+        "validateT18c",
+        "source().sourceId() != 1602",
+        "conservation().outputUnits() != 1152",
+        "T18c fixed-source gas-generator row drifted"
+      ],
+      "sha256": "0390883203b4e88f807716b90c9534a5ec26848cacbbaa8e46e7c4b146acef37",
+      "stage": "T18c"
+    },
+    "t18c_converter_catalog_resource": {
+      "path": "src/main/resources/data/cruciblecraft/energy_converters.json",
+      "required_tokens": [
+        "\"sourceId\": 1602",
+        "\"fuelMap\": \"FM.Burn\"",
+        "\"outputUnits\": 1152",
+        "\"maxAmountPerTick\": 24",
+        "CURRENT_HEAT_IDENTITY_REQUIRED",
+        "MISSING_PARTIAL_OR_WRONG_IDENTITY_QUARANTINED"
+      ],
+      "sha256": "99021576f5dd91fa49a3ac60a8c84afc9b6d6496fd9434236003d851acf15e84",
+      "stage": "T18c"
+    },
+    "t18c_converter_tests": {
+      "path": "src/test/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalogTest.java",
+      "required_tokens": [
+        "t18cGasGeneratorLocksBurnFuelHuRateAndEfficiency",
+        "assertEquals(1_152",
+        "CURRENT_HEAT_IDENTITY_REQUIRED"
+      ],
+      "sha256": "4a90986141546b625b2efdfad7466d882ae3e7479d03d987fc61c96b4821da34",
+      "stage": "T18c"
+    },
+    "t18c_fuel_generator_registry": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModFuelGenerators.java",
+      "required_tokens": [
+        "EnergyType.HEAT",
+        "24L",
+        "288_000L",
+        "EnergyOutputFace.UP"
+      ],
+      "sha256": "8439a576f2b11cbfd4380517a32fef2af9a23ee3105e74b9d7fafc8d2356ec41",
+      "stage": "T18c"
+    },
+    "t18c_fuel_generator_runtime": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/FuelGeneratorBlockEntity.java",
+      "required_tokens": [
+        "spec.generatedEnergyAtTick",
+        "spec.maximumOutputPacketsPerTick",
+        "spec.exhaustOutputSides",
+        "FuelGeneratorIdentityPolicy.current(spec)"
+      ],
+      "sha256": "4a9676a002b5417d701fced0499501c513161203fdde92614004c50e5c79e218",
+      "stage": "T18c"
+    },
+    "t18c_fuel_generator_spec": {
+      "path": "src/main/java/com/masson/cruciblecraft/machine/generation/FuelGeneratorSpec.java",
+      "required_tokens": [
+        "int efficiencyBps",
+        "long maximumOutputPacketsPerTick",
+        "generatedEnergyAtTick",
+        "EnergyOutputFace"
+      ],
+      "sha256": "ee9befb0e14b47a1798b1c442391ce9fae2331a2bce0bc454409583eb33b5ece",
+      "stage": "T18c"
+    },
+    "t18c_gametest": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "required_tokens": [
+        "t18cNaturalGasConvertsAndHeatsBoiler",
+        "t18cGasGeneratorTransactionsIdentityAndBlockedStates",
+        "generator.energyGenerated() == 1_152L",
+        "HU gas generator directly energized an EU cable",
+        "exhaust_blocked"
+      ],
+      "sha256": "09421cfce9e850684ce377c7203163b9fe067db2f4c0d525581c348336ef4d58",
+      "stage": "T18c"
+    },
+    "t18c_identity_policy": {
+      "path": "src/main/java/com/masson/cruciblecraft/machine/generation/FuelGeneratorIdentityPolicy.java",
+      "required_tokens": [
+        "Identity expected = current(spec)",
+        "saved.equals(expected)",
+        "mismatchReason(saved, expected)"
+      ],
+      "sha256": "34ee97dcb1b5e7b1e0693ec102a44195ee4c5f8d71440533c97a20cc8e60c4c4",
+      "stage": "T18c"
+    },
+    "t18c_identity_tests": {
+      "path": "src/test/java/com/masson/cruciblecraft/machine/generation/FuelGeneratorIdentityPolicyTest.java",
+      "required_tokens": [
+        "completeCurrentIdentitiesAreAccepted",
+        "missingPartialAndWrongIdentitiesFailClosed",
+        "EnergyType.HEAT"
+      ],
+      "sha256": "b5f18a899cc570429a294356569892c400623a611f347dc4e6770e188cedbea7",
+      "stage": "T18c"
+    },
+    "t18c_o37_builder": {
+      "path": "tools/build_t18_o37_identity_projection.py",
+      "required_tokens": [
+        "replay_sources",
+        "direct_binding_candidates",
+        "fixed source blob mismatch",
+        "O-37 direct-binding result changed"
+      ],
+      "sha256": "0e869fdbb7fc58499cc64aea0d72269877cf4d48ee2e5a9dbcd24595dc96daf9",
+      "stage": "T18c"
+    },
+    "t18c_o37_policy": {
+      "path": "tools/t18_o37_identity_policy.json",
+      "required_tokens": [
+        "O37_CLOSED_PERMANENT_DESIGN_POLICY",
+        "NO_DIRECT_BINDING_AT_FIXED_REVISION",
+        "SOURCE_MATERIAL_LAYER_ONLY",
+        "\"publication_delta\": 0"
+      ],
+      "sha256": "9230f1105ab6943a54c27613d05e51b9ce410592b330fecac18eba7f9fe57838",
+      "stage": "T18c"
+    },
+    "t18c_o37_projection": {
+      "path": "tools/t18_o37_identity_projection.json",
+      "required_tokens": [
+        "\"status\": \"O37_CLOSED\"",
+        "\"direct_binding_candidate_count\": 0",
+        "\"resolution\": \"DESIGN_POLICY\"",
+        "\"publication_delta\": 0"
+      ],
+      "sha256": "ed27240bdbc21c0b8e5fdf51d2405c6962582a74152ea0e8144f3e21bcbfae47",
+      "stage": "T18c"
+    },
+    "t18c_o37_tests": {
+      "path": "tools/tests/test_build_t18_o37_identity_projection.py",
+      "required_tokens": [
+        "test_fixed_revision_negative_evidence_closes_o37_permanently",
+        "test_binding_candidate_detector_fails_closed_on_direct_statement",
+        "test_full_revision_source_replay_matches_projection"
+      ],
+      "sha256": "4876ce37d838601bea7447d813ad114547b3c4cf65cd5ae707946f2d78970a22",
+      "stage": "T18c"
+    },
+    "t18c_readiness_builder": {
+      "path": "tools/build_t18_readiness.py",
+      "required_tokens": [
+        "t18c_evidence",
+        "T18c gas-generator profile evidence drifted",
+        "T18d O-37 publication receipt drifted"
+      ],
+      "sha256": "fda4005426269275c0c42aa032074e310cf824f2bbda8a50572001a844b72efc",
+      "stage": "T18c"
+    },
+    "t18c_readiness_test": {
+      "path": "tools/tests/test_build_t18_readiness.py",
+      "required_tokens": [
+        "test_t18c_evidence_locks_hu_conservation_and_o37_receipt",
+        "test_t18a_through_d_complete_with_no_pending",
+        "test_artifact_matches_current_builder"
+      ],
+      "sha256": "e23fcb6747b90278e2e37a2d67fcff741d4d9353c19b9fab8da43bb7f7b2024d",
+      "stage": "T18c"
+    },
+    "t18c_t11_policy": {
+      "path": "tools/t11_preflight_policy.json",
+      "required_tokens": [
+        "\"map\": \"gt.recipe.fuels.burn\"",
+        "\"duration\": 24",
+        "O37_CLOSED_PERMANENT_DESIGN_POLICY",
+        "NO_DIRECT_BINDING_AT_FIXED_REVISION"
+      ],
+      "sha256": "f277f72c26c9dc0cfb9f78be637aed91250df4335a9c36fe7fd621267fc40e2c",
+      "stage": "T18c"
+    },
+    "t18c_t11_runtime_policy": {
+      "path": "src/main/resources/data/cruciblecraft/t11_hydrocarbon_runtime_policy.json",
+      "required_tokens": [
+        "\"raw_oil_identity\"",
+        "SOURCE_MATERIAL_LAYER_ONLY",
+        "\"publication_delta\": 0",
+        "\"duplicate_registration_allowed\": false"
+      ],
+      "sha256": "964de6c1e050049fd39f4126d38883dfebcd3c88c844d52d2450ddf166abe816",
+      "stage": "T18c"
+    },
+    "t18d_acquisition_builder": {
+      "path": "tools/build_t18_converter_acquisition.py",
+      "required_tokens": [
+        "T18D_CONVERTER_ACQUISITION_READY",
+        "converter profile/resource sets are not bidirectional",
+        "T18d converter acquisition has unreachable operands",
+        "\"gt_recipe_rows_added\": 0"
+      ],
+      "sha256": "49aaf2be3d2a93b07b6b3ff96a2acd801c66082cb441001dec38e0e1f856b5de",
+      "stage": "T18d"
+    },
+    "t18d_acquisition_policy": {
+      "path": "tools/t18_converter_acquisition_policy.json",
+      "required_tokens": [
+        "independent_t18d_converter_acceptance_policy",
+        "\"cruciblecraft:bronze_firebox\"",
+        "\"cruciblecraft:bronze_gas_generator\"",
+        "\"c:plates/bronze\"",
+        "\"c:rods/bronze\""
+      ],
+      "sha256": "1f1e80506a99932b7b06319b3181a429c5ed014812de2086c1573d76fba524b7",
+      "stage": "T18d"
+    },
+    "t18d_acquisition_test": {
+      "path": "tools/tests/test_build_t18_converter_acquisition.py",
+      "required_tokens": [
+        "test_independent_expected_set_closes_all_six_profiles",
+        "test_recipe_results_operands_and_producers_are_reachable",
+        "test_profile_block_item_model_lang_loot_tag_sets_are_bidirectional",
+        "test_artifact_matches_current_builder"
+      ],
+      "sha256": "e3d929d832fb57dcaf67173eb62e7e60e2ef3dce8d43cfcefe7816ccb1f42bd1",
+      "stage": "T18d"
+    },
+    "t18d_load_input": {
+      "path": "tools/t18_load_projection_input.json",
+      "required_tokens": [
+        "\"delivery_phase\": \"T18\"",
+        "zero_workload_fixture",
+        "\"gt.recipe.fuels.burn\"",
+        "\"gt.recipe.fuels.engine\""
+      ],
+      "sha256": "572aeb0394b288512fb77b4084c698caabeae884085f52e888c82d1f0bb89eef",
+      "stage": "T18d"
+    },
+    "t18d_load_projection": {
+      "path": "tools/t18_load_projection.json",
+      "required_tokens": [
+        "\"status\": \"PASS\"",
+        "\"datapack_authored_entries\": 0",
+        "\"logical_rows\": 0",
+        "\"eager_publication_rows\": 0"
+      ],
+      "sha256": "66731d0f460c63388e5b4ddc6b4eccc9df921d2db3521b5768820f6e9ce2c9e3",
+      "stage": "T18d"
+    },
+    "t18d_load_test": {
+      "path": "tools/tests/test_recipe_load_projection.py",
+      "required_tokens": [
+        "test_committed_t18_projection_is_current_zero_workload",
+        "t18_load_projection_input.json",
+        "t18_load_projection.json"
+      ],
+      "sha256": "eac69a3b08ef27897a5c88a41ec87d8ca7a148de4d062baf02aeeb8a2aa2b137",
+      "stage": "T18d"
+    },
+    "t18d_publication_baseline": {
+      "path": "src/main/resources/data/cruciblecraft/t18_publication_baseline.json",
+      "required_tokens": [
+        "T18D_PUBLICATION_BASELINE",
+        "\"baseline\": \"T17\"",
+        "\"logical_rows\": 18875",
+        "\"eager_rows\": 16650",
+        "\"lazy_rows\": 2225",
+        "\"publication_delta\": 0"
+      ],
+      "sha256": "6a7fabd3de4faa0bceb3e949ddef8fbb7e24b40e0cc4dd842b5255d2cba27782",
+      "stage": "T18d"
+    },
+    "t18d_readiness_builder": {
+      "path": "tools/build_t18_readiness.py",
+      "required_tokens": [
+        "T18 readiness requires T18a-d complete",
+        "T18d four-chain conservation receipt drifted",
+        "o37_publication",
+        "\"final_closure_attempted\": True"
+      ],
+      "sha256": "fda4005426269275c0c42aa032074e310cf824f2bbda8a50572001a844b72efc",
+      "stage": "T18d"
+    },
+    "t18d_readiness_test": {
+      "path": "tools/tests/test_build_t18_readiness.py",
+      "required_tokens": [
+        "test_t18a_through_d_complete_with_no_pending",
+        "test_t18d_closes_denominator_acquisition_load_and_o37",
+        "test_closure_summary_has_no_pending",
+        "test_artifact_matches_current_builder"
+      ],
+      "sha256": "e23fcb6747b90278e2e37a2d67fcff741d4d9353c19b9fab8da43bb7f7b2024d",
+      "stage": "T18d"
+    }
+  },
+  "stage_gates": {
+    "T18a": {
+      "acceptance": "Close the source-selected bronze Firebox, Boiler and standard Steam Engine profiles; execute Firebox -> Boiler -> Steam Engine -> KU Press with exact 80 HU + 1 mB water -> 160 mB steam accounting. For source 1302, classify 200 mB steam -> 50 KU and 4 mB/KU as SOURCE_BACKED conservation, 24/STEAM_PER_EU(2)=12 KU mOutput only as SOURCE_DERIVED_NOMINAL, and CC's fixed 12 KU/t as DESIGN_POLICY_FIXED_OUTPUT; defer GT6's state-dependent 6-24 KU/t dynamics behind an explicit replacement/recheck contract. Preserve simulate/execute transactions, blocked-state diagnostics, persistence and Firebox survival resources.",
+      "game_tests": [
+        "t18aFireboxBoilerSteamEnginePowersPress",
+        "t18aSteamChainDiagnosticsAndTransactions"
+      ],
+      "junit_tests": [
+        "selectedSourceRowsAreFixedAndStagesRemainExplicit",
+        "bronzeSteamEngineChooses1302AndResolvesThe24UnitExpression",
+        "completeSteamChainProfilesLockConservationAndFaces",
+        "t18BronzeProfileAppliesSourceOutputAndEfficiency",
+        "engineConversionUsesExactSourceEfficiencyBatches",
+        "fireboxHasGeneratedSurvivalResourceClosure"
+      ],
+      "name": "steam_chain",
+      "status": "COMPLETE"
+    },
+    "T18b": {
+      "acceptance": "Close exact source rows 9147 and 10111: emit Fuel Engine power through a 16 RU packet buffer, route RU through axle/gearbox into the 16/32/64 RU DynamoElectric window, account nominal 32 RU = 22 EU + 10 loss and source waste behavior, require complete current Fuel Engine identity, and execute crude oil -> HU distillery -> fuel -> Fuel Engine -> RU -> Dynamo -> EU cable -> Electrolyzer with blocked-state, transaction and overload evidence.",
+      "game_tests": [
+        "t18bCrudeOilFuelEngineDynamoPowersElectrolyzer",
+        "t18bTransactionsAndBlockedFuelEngineStates",
+        "t18bFuelEngineCurrentIdentityAndCableOverload"
+      ],
+      "junit_tests": [
+        "t18bDynamoCorrectsLegacy24To24WithAuditableSourceLoss",
+        "t18bFuelEngineLocksMotorLiquidSourceAndRuPacket",
+        "sourceWindowEfficiencyAndWastePolicyAreExact",
+        "recipePowerIsConservedAcrossSmallerSourcePackets",
+        "completeCurrentIdentitiesAreAccepted",
+        "missingPartialAndWrongIdentitiesFailClosed"
+      ],
+      "name": "fuel_ru_to_eu_chain",
+      "status": "COMPLETE"
+    },
+    "T18c": {
+      "acceptance": "Bind Burning Gas Generator to exact source row 1602 MultiTileEntityGeneratorGas / FM.Burn -> 24 HU/t at 75% efficiency; project methane row 20 as 5 mB * -64 * 24 = 1536 source units -> 1152 HU with exact water/CO2 exhaust, adjacent-up HU boiler output, blocked-state retention, and complete current schema-2 HEAT identity.",
+      "game_tests": [
+        "t18cNaturalGasConvertsAndHeatsBoiler",
+        "t18cGasGeneratorTransactionsIdentityAndBlockedStates",
+        "t11NaturalGasLeaksAndFlammableCloudIgnites"
+      ],
+      "junit_tests": [
+        "t18cGasGeneratorLocksBurnFuelHuRateAndEfficiency",
+        "completeCurrentIdentitiesAreAccepted",
+        "missingPartialAndWrongIdentitiesFailClosed",
+        "processingAndFuelValidatorsKeepSignedEnergyDomainsSeparate"
+      ],
+      "name": "burning_gas_generator",
+      "status": "COMPLETE"
+    },
+    "T18d": {
+      "acceptance": "Close all six converter recipe/result/operand producer graphs at unreachable 0; prove profile/block/item/model/lang/loot/tag bidirectional closure; lock zero GT RecipeMap row mutation, 32 stable ids, 18,875/16,650/2,225 publication totals and exact EMI enumeration to T17; record O-37 permanent DESIGN_POLICY publication delta 0 independently; close four-chain conservation and current-only identities with no stage gate pending.",
+      "game_tests": [
+        "t18aFireboxBoilerSteamEnginePowersPress",
+        "t18bCrudeOilFuelEngineDynamoPowersElectrolyzer",
+        "t18cNaturalGasConvertsAndHeatsBoiler"
+      ],
+      "junit_tests": [
+        "fireboxHasGeneratedSurvivalResourceClosure",
+        "selectedSourceRowsAreFixedAndStagesRemainExplicit",
+        "processingAndFuelValidatorsKeepSignedEnergyDomainsSeparate"
+      ],
+      "name": "acquisition_load_o37_closure",
+      "python_tests": [
+        "test_independent_expected_set_closes_all_six_profiles",
+        "test_recipe_results_operands_and_producers_are_reachable",
+        "test_profile_block_item_model_lang_loot_tag_sets_are_bidirectional",
+        "test_committed_t18_projection_is_current_zero_workload"
+      ],
+      "status": "COMPLETE"
+    }
+  },
+  "status": "T18_READY",
+  "t18a_evidence": {
+    "boiler": {
+      "hu": 80,
+      "steam_mb": 160,
+      "water_mb": 1
+    },
+    "complete_profiles": [
+      "cruciblecraft:bronze_boiler",
+      "cruciblecraft:bronze_firebox",
+      "cruciblecraft:bronze_steam_engine"
+    ],
+    "denominator": {
+      "deferred_kinds": 20,
+      "energy_identities": 2,
+      "machine_kinds": 29,
+      "preimplemented_reference_kinds": 3,
+      "selected_kinds": 6,
+      "unclassified": 0
+    },
+    "firebox": {
+      "efficiency_bps": 7500,
+      "fuel_map": "FM.Furnace",
+      "hu_per_tick": 24
+    },
+    "full_suite_test_count": 120,
+    "game_tests": [
+      "t18aFireboxBoilerSteamEnginePowersPress",
+      "t18aSteamChainDiagnosticsAndTransactions"
+    ],
+    "junit_tests": [
+      "selectedSourceRowsAreFixedAndStagesRemainExplicit",
+      "bronzeSteamEngineChooses1302AndResolvesThe24UnitExpression",
+      "completeSteamChainProfilesLockConservationAndFaces",
+      "t18BronzeProfileAppliesSourceOutputAndEfficiency",
+      "engineConversionUsesExactSourceEfficiencyBatches",
+      "fireboxHasGeneratedSurvivalResourceClosure"
+    ],
+    "resources": {
+      "src/generated/resources/assets/cruciblecraft/blockstates/firebox.json": "82260664853864cbc9529f360cebc0be80aeb7d27a6556ca654747abf11ff870",
+      "src/generated/resources/assets/cruciblecraft/models/block/firebox.json": "adf52c32059187b062bff36f0528f3daf81f0dba88835c8fd779c4f03b9d9689",
+      "src/generated/resources/assets/cruciblecraft/models/item/firebox.json": "ceddca5f3d0ead33588eb6b92a911cc379d84b1205066c0cb7edc6725c4f4a1e",
+      "src/generated/resources/data/cruciblecraft/loot_table/blocks/firebox.json": "1ae96daa98f563b1f299f53d2d6fe2f8dc5ccaa6c3ce5d8cb418396f2a6594e7",
+      "src/generated/resources/data/cruciblecraft/recipe/machines/firebox.json": "f221023d145a5d82cccc6dc8123869a1fff5d145720ddda99c8255a81a91af06"
+    },
+    "selected_source_ids": {
+      "cruciblecraft:bronze_boiler": 1202,
+      "cruciblecraft:bronze_firebox": 1102,
+      "cruciblecraft:bronze_steam_engine": 1302
+    },
+    "selected_t18a_kinds": [
+      "MultiTileEntityBoilerTank",
+      "MultiTileEntityEngineSteam",
+      "MultiTileEntityGeneratorMetal"
+    ],
+    "steam_engine": {
+      "efficiency_bps": 5000,
+      "fixed_output": {
+        "classification": "DESIGN_POLICY_FIXED_OUTPUT",
+        "kuPerTick": 12
+      },
+      "gt6_runtime": {
+        "behavior": "STATE_DEPENDENT_MOUTPUT_HALF_TO_DOUBLE",
+        "classification": "DEFERRED_REPLACEMENT",
+        "maximumKuPerTick": 24,
+        "minimumKuPerTick": 6,
+        "recheckPoint": "Recheck when a dedicated steam-engine dynamics batch is selected or before adding another steam-engine tier.",
+        "replacementCondition": "Replace the fixed 12 KU/t CC output only with a measured state accumulator, piston-phase emission, saturation/venting, persistence and transaction model matching the pinned GT6 behavior."
+      },
+      "ku_packet": 12,
+      "source_conservation": {
+        "classification": "SOURCE_BACKED",
+        "kuOutput": 50,
+        "steamInputMb": 200,
+        "steamMbPerKu": 4
+      },
+      "source_evidence_paths": [
+        "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java:586",
+        "gt6_code/gregtech6/src/main/java/gregapi/data/CS.java:240",
+        "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityEngineSteam.java:58,62-63,77-80,98-103,121-146"
+      ],
+      "source_id": 1302,
+      "source_line": 586,
+      "source_nominal": {
+        "classification": "SOURCE_DERIVED_NOMINAL",
+        "mOutputKu": 12,
+        "registeredNumerator": 24,
+        "steamPerEu": 2
+      },
+      "source_output_expression": "24/STEAM_PER_EU",
+      "steam_per_eu": 2
+    }
+  },
+  "t18b_evidence": {
+    "complete_profiles": [
+      "cruciblecraft:bronze_dynamo",
+      "cruciblecraft:bronze_fuel_engine"
+    ],
+    "dynamo": {
+      "efficiency_bps": 6875,
+      "input_window_ru": [
+        16,
+        32,
+        64
+      ],
+      "legacy_24_to_24_corrected": true,
+      "loss_units": 10,
+      "nominal_input_ru": 32,
+      "output_eu": 22,
+      "waste_energy": true
+    },
+    "fuel_engine": {
+      "current_energy_identity": "KINETIC_ROTATION",
+      "fuel_map": "FM.Engine",
+      "fuel_recipe_total_ru": 512,
+      "identity_policy": "CURRENT_COMPLETE_ONLY",
+      "missing_partial_wrong": "QUARANTINE",
+      "output_identity": "RU",
+      "packet_ru": 16
+    },
+    "full_suite_test_count": 120,
+    "game_tests": [
+      "t18bCrudeOilFuelEngineDynamoPowersElectrolyzer",
+      "t18bTransactionsAndBlockedFuelEngineStates",
+      "t18bFuelEngineCurrentIdentityAndCableOverload"
+    ],
+    "junit_tests": [
+      "t18bDynamoCorrectsLegacy24To24WithAuditableSourceLoss",
+      "t18bFuelEngineLocksMotorLiquidSourceAndRuPacket",
+      "sourceWindowEfficiencyAndWastePolicyAreExact",
+      "recipePowerIsConservedAcrossSmallerSourcePackets",
+      "completeCurrentIdentitiesAreAccepted",
+      "missingPartialAndWrongIdentitiesFailClosed"
+    ],
+    "selected_source_ids": {
+      "cruciblecraft:bronze_dynamo": 10111,
+      "cruciblecraft:bronze_fuel_engine": 9147
+    }
+  },
+  "t18c_evidence": {
+    "complete_profiles": [
+      "cruciblecraft:bronze_gas_generator"
+    ],
+    "full_suite_test_count": 120,
+    "game_tests": [
+      "t18cNaturalGasConvertsAndHeatsBoiler",
+      "t18cGasGeneratorTransactionsIdentityAndBlockedStates",
+      "t11NaturalGasLeaksAndFlammableCloudIgnites"
+    ],
+    "gas_generator": {
+      "carbon_dioxide_exhaust_mb": 3,
+      "current_energy_identity": "HEAT",
+      "efficiency_bps": 7500,
+      "energy_output_face": "UP",
+      "fuel_map": "FM.Burn",
+      "generated_hu": 1152,
+      "identity_policy": "CURRENT_COMPLETE_ONLY",
+      "maximum_hu_per_tick": 24,
+      "methane_input_mb": 5,
+      "missing_partial_wrong": "QUARANTINE",
+      "output_identity": "HU",
+      "packet_hu": 1,
+      "source_energy_units": 1536,
+      "water_exhaust_mb": 6
+    },
+    "junit_tests": [
+      "t18cGasGeneratorLocksBurnFuelHuRateAndEfficiency",
+      "completeCurrentIdentitiesAreAccepted",
+      "missingPartialAndWrongIdentitiesFailClosed",
+      "processingAndFuelValidatorsKeepSignedEnergyDomainsSeparate"
+    ],
+    "o37": {
+      "closure": "O37_CLOSED_PERMANENT_DESIGN_POLICY",
+      "direct_binding_candidates": 0,
+      "material_9852_role": "SOURCE_MATERIAL_LAYER_ONLY",
+      "publication_delta": 0,
+      "resolution": "DESIGN_POLICY",
+      "status": "O37_CLOSED"
+    },
+    "selected_source_ids": {
+      "cruciblecraft:bronze_gas_generator": 1602
+    }
+  },
+  "t18d_evidence": {
+    "acquisition": {
+      "gt_recipe_rows_added": 0,
+      "pending": [],
+      "profiles": 6,
+      "resource_closure": "BIDIRECTIONAL_CLOSURE",
+      "status": "T18D_CONVERTER_ACQUISITION_READY",
+      "unreachable": 0,
+      "vanilla_crafting_recipes": 6
+    },
+    "denominator": {
+      "deferred_kinds": 20,
+      "energy_identities": 2,
+      "machine_kinds": 29,
+      "preimplemented_reference_kinds": 3,
+      "selected_kinds": 6,
+      "unclassified": 0
+    },
+    "emi_enumeration": {
+      "configured_maps": 24,
+      "contract": "Every logical RecipeMap entry from each configured processing map is enumerated exactly once under its stable machine category and recipe id.",
+      "recipe_enumeration_equal_to_t17": true,
+      "recipe_map_ids": [
+        "cruciblecraft:assembler",
+        "cruciblecraft:autoclave",
+        "cruciblecraft:bath",
+        "cruciblecraft:bender",
+        "cruciblecraft:centrifuge",
+        "cruciblecraft:compressor",
+        "cruciblecraft:cutter",
+        "cruciblecraft:distillery",
+        "cruciblecraft:drying",
+        "cruciblecraft:electrolyzer",
+        "cruciblecraft:extruder",
+        "cruciblecraft:generifier",
+        "cruciblecraft:lathe",
+        "cruciblecraft:mixer",
+        "cruciblecraft:mortar",
+        "cruciblecraft:press",
+        "cruciblecraft:rollbender",
+        "cruciblecraft:rollingmill",
+        "cruciblecraft:shredder",
+        "cruciblecraft:sifter",
+        "cruciblecraft:sluice",
+        "cruciblecraft:smelter",
+        "cruciblecraft:welder",
+        "cruciblecraft:wiremill"
+      ]
+    },
+    "four_chain_conservation": {
+      "fuel_to_ru": {
+        "exhaust_units": 1,
+        "fuel_units": 1,
+        "ru_units": 512
+      },
+      "gas_to_hu": {
+        "exhaust_units": 9,
+        "hu_units": 1152,
+        "source_units": 1536
+      },
+      "ru_to_eu": {
+        "eu_units": 22,
+        "loss_units": 10,
+        "ru_units": 32
+      },
+      "steam_chain": {
+        "boiler_hu": 80,
+        "boiler_steam_mb": 160,
+        "boiler_water_mb": 1,
+        "firebox_efficiency_bps": 7500,
+        "steam_engine_ku_packet": 12
+      }
+    },
+    "gametest": {
+      "full_suite_test_count": 120,
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "t18_test_count": 8,
+      "tests": [
+        "t18aFireboxBoilerSteamEnginePowersPress",
+        "t18aSteamChainDiagnosticsAndTransactions",
+        "t18bCrudeOilFuelEngineDynamoPowersElectrolyzer",
+        "t18bTransactionsAndBlockedFuelEngineStates",
+        "t18bFuelEngineCurrentIdentityAndCableOverload",
+        "t18cNaturalGasConvertsAndHeatsBoiler",
+        "t18cGasGeneratorTransactionsIdentityAndBlockedStates",
+        "t11NaturalGasLeaksAndFlammableCloudIgnites"
+      ]
+    },
+    "identity": {
+      "blank_or_missing_policy": "QUARANTINE",
+      "current_identity_profiles": 2,
+      "fuel_engine": "KINETIC_ROTATION",
+      "gas_generator": "HEAT",
+      "partial_or_wrong_policy": "QUARANTINE",
+      "pending": []
+    },
+    "load_projection": {
+      "delivery_phase": "T18",
+      "incremental_counts": {
+        "datapack_authored_entries": 0,
+        "eager_publication_rows": 0,
+        "lazy_cache_ceiling_rows": 0,
+        "lazy_logical_rows": 0,
+        "logical_rows": 0,
+        "sync_bytes": 0
+      },
+      "input": "tools/t18_load_projection_input.json",
+      "input_sha256": "572aeb0394b288512fb77b4084c698caabeae884085f52e888c82d1f0bb89eef",
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 0,
+          "min": 0
+        },
+        "client_index_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "client_reload_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "lookup_candidate_count": {
+          "max": 0,
+          "min": 0
+        },
+        "lookup_p95_ns": {
+          "max": 0,
+          "min": 0
+        },
+        "retained_memory_bytes": {
+          "max": 0,
+          "min": 0
+        },
+        "server_index_ms": {
+          "max": 0,
+          "min": 0
+        },
+        "server_reload_ms": {
+          "max": 0,
+          "min": 0
+        }
+      },
+      "output": "tools/t18_load_projection.json",
+      "output_sha256": "66731d0f460c63388e5b4ddc6b4eccc9df921d2db3521b5768820f6e9ce2c9e3",
+      "pending": [],
+      "status": "PASS"
+    },
+    "o37_publication": {
+      "closure": "O37_CLOSED_PERMANENT_DESIGN_POLICY",
+      "direct_binding_candidates": 0,
+      "gt_recipe_rows_added": 0,
+      "pending": [],
+      "publication_delta": 0,
+      "resolution": "DESIGN_POLICY",
+      "runtime_registrations_added": 0,
+      "status": "O37_CLOSED"
+    },
+    "pending": [],
+    "publication_baseline": {
+      "path": "src/main/resources/data/cruciblecraft/t18_publication_baseline.json",
+      "publication_delta": 0,
+      "publication_totals": {
+        "eager_rows": 16650,
+        "lazy_rows": 2225,
+        "logical_rows": 18875
+      },
+      "recipe_map_ids": [
+        "cruciblecraft:anvil",
+        "cruciblecraft:anvil_bend_big",
+        "cruciblecraft:anvil_bend_small",
+        "cruciblecraft:assembler",
+        "cruciblecraft:autoclave",
+        "cruciblecraft:bath",
+        "cruciblecraft:bender",
+        "cruciblecraft:centrifuge",
+        "cruciblecraft:coke_oven",
+        "cruciblecraft:compressor",
+        "cruciblecraft:cooling",
+        "cruciblecraft:crusher",
+        "cruciblecraft:cutter",
+        "cruciblecraft:distillery",
+        "cruciblecraft:drying",
+        "cruciblecraft:electrolyzer",
+        "cruciblecraft:extruder",
+        "cruciblecraft:fuels_engine",
+        "cruciblecraft:fuels_gas",
+        "cruciblecraft:generifier",
+        "cruciblecraft:lathe",
+        "cruciblecraft:mixer",
+        "cruciblecraft:mortar",
+        "cruciblecraft:press",
+        "cruciblecraft:rollbender",
+        "cruciblecraft:rollingmill",
+        "cruciblecraft:shredder",
+        "cruciblecraft:sifter",
+        "cruciblecraft:sluice",
+        "cruciblecraft:smelter",
+        "cruciblecraft:welder",
+        "cruciblecraft:wiremill"
+      ],
+      "sha256": "6a7fabd3de4faa0bceb3e949ddef8fbb7e24b40e0cc4dd842b5255d2cba27782",
+      "stable_id_set_equal_to_t17": true,
+      "t17_path": "src/main/resources/data/cruciblecraft/t17_publication_baseline.json",
+      "t17_sha256": "7acd05da0882583d1072e70ea8a40ef2031c6aa78bb2ac92da8ee272c8f0dbb6"
+    },
+    "status": "PASS"
+  }
+}

@@ -25,6 +25,7 @@ class T17MachineDenominatorTest(unittest.TestCase):
         self.assertEqual(3, counts["selected_kinds"])
         self.assertEqual(1, counts["preimplemented_reference_kinds"])
         self.assertEqual(24, counts["deferred_kinds"])
+        self.assertEqual(1, counts["cross_owner_deferred_kinds"])
         self.assertEqual(
             {
                 "IMPLEMENTED_T17A": 3,
@@ -38,6 +39,44 @@ class T17MachineDenominatorTest(unittest.TestCase):
             set(builder.load(builder.POLICY)["kinds"]),
             {row["recipe_map"] for row in self.document["rows"]},
         )
+
+    def test_energy_disposition_audit_locks_deferred_extruder_and_compressor(self):
+        rows = {
+            row["recipe_map"]: row
+            for row in self.document["energy_disposition_audit"]["rows"]
+        }
+        audit = self.document["energy_disposition_audit"]
+        self.assertEqual("AUDITED", audit["status"])
+        self.assertEqual(0, audit["implemented"])
+        self.assertEqual(2, audit["deferred"])
+        self.assertEqual(
+            "MAPPED_DEFERRED", rows["RM.Extruder"]["disposition"]
+        )
+        self.assertEqual("HU", rows["RM.Extruder"]["accepted_energy"])
+        self.assertEqual(
+            "KINETIC", rows["RM.Extruder"]["current_local_energy_type"]
+        )
+        self.assertEqual(
+            "HEAT", rows["RM.Extruder"]["source_local_energy_type"]
+        )
+        self.assertEqual(
+            "CROSS_OWNER_DEFERRED",
+            rows["RM.Compressor"]["disposition"],
+        )
+        self.assertEqual("T16", rows["RM.Compressor"]["owner"])
+        self.assertEqual("KU", rows["RM.Compressor"]["accepted_energy"])
+        self.assertEqual(
+            "ELECTRIC", rows["RM.Compressor"]["current_local_energy_type"]
+        )
+        self.assertEqual(
+            "KINETIC_PUSH",
+            rows["RM.Compressor"]["source_local_energy_type"],
+        )
+        self.assertTrue(all(
+            row[field]
+            for row in rows.values()
+            for field in ("reason", "replacement_condition", "recheck_point")
+        ))
 
     def test_energy_denominator_preserves_hu_and_eu_identities(self):
         energies = self.document["energy_identities"]

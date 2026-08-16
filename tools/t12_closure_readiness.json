@@ -1,4 +1,19 @@
 {
+  "currentness": {
+    "dependencies": {
+      "tools/t12a_machine_readiness.json": "76f756e525c2619e72eee1b67fc6d615a35ac8114cc4d57a64234695c1f7166f"
+    },
+    "owned_inputs": {
+      "tools/build_t12_closure_readiness.py": "3d0fe7d095236e1bdd3a530c70a1ff0b2d1b4f1c52d9c7b8f7c4bf559bf3d451",
+      "tools/t12_machine_policy.json": "c33d281d301327a5344b69b187ac56b657ccae635d19036b2da79212ce3f7d29"
+    },
+    "pending_report": {
+      "evidence": "tools/full_verification_report.json",
+      "pending": [],
+      "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+      "this_refresh_final_closure_attempted": true
+    }
+  },
   "energy": {
     "eu_topology": "existing_cable_network",
     "identities": [
@@ -7,6 +22,15 @@
       "EU"
     ],
     "ku_topology": "adjacent_push",
+    "processing_machine_audit": {
+      "explicit_energy_arguments": 25,
+      "implicit_energy_arguments": 0,
+      "legacy_kinetic": 8,
+      "machine_specs": 25,
+      "new_legacy_kinetic": 0,
+      "path": "tools/processing_machine_energy_audit.json",
+      "status": "PROCESSING_MACHINE_ENERGY_AUDIT_READY"
+    },
     "ru_topology": [
       "electric_motor",
       "rotational_axle",
@@ -20,14 +44,16 @@
       "cruciblecraft:electrolyzer": 3,
       "cruciblecraft:sifter": 3
     },
+    "legacy_tier_identity_field": "tier_profile",
     "publication_delta": 0,
-    "state_schema_version": 2,
+    "state_schema_version": 3,
+    "tier_identity_field": "tier_band",
     "variants": 9
   },
   "load_gate": {
-    "compression_ratio": 3.150559,
-    "concrete_datapack_recipe_entries": 3229,
-    "datapack_recipe_entries": 5991,
+    "compression_ratio": 3.13278,
+    "concrete_datapack_recipe_entries": 3263,
+    "datapack_recipe_entries": 6025,
     "datapack_recipe_entry_budget": 6600,
     "minimum_compression_ratio": 3.0,
     "post_t12_virtualized_recipe_entries": 2762,
@@ -57,7 +83,10 @@
     "large_centrifuge_scan_volume": 18,
     "structures": [
       "coke_oven",
-      "large_centrifuge"
+      "distillation_tower",
+      "large_boiler",
+      "large_centrifuge",
+      "tank_3x3x3"
     ]
   },
   "runtime_acceptance": {
@@ -73,14 +102,14 @@
   },
   "schema_version": 1,
   "source_contracts": {
-    "coke_migration_source": {
+    "coke_projection_source": {
       "path": "src/main/resources/data/cruciblecraft/multiblock_structures/coke_oven.json",
       "required_tokens": [
-        "behavior_migration:NO_BEHAVIOR_DRIFT",
+        "behavior_projection:NO_BEHAVIOR_DRIFT",
         "t12a_machine_readiness.json#structure_projection.coke_oven",
         "CokeOvenStructure"
       ],
-      "sha256": "452ffeb2516e455eaefad6730dfd7e27643e34858901a114c5e948150687517b"
+      "sha256": "d76b14867e043de3dfb949f1562899403d810074e2e3d44b434a94242e1dfec5"
     },
     "energy_types": {
       "path": "src/main/java/com/masson/cruciblecraft/api/energy/EnergyType.java",
@@ -107,7 +136,7 @@
         "t12TierProfilesExposeDistinctFailureStates",
         "steamEnginePowersSifterThroughKu"
       ],
-      "sha256": "17baa4e071718669ed291152ae3d82d7ead56d8878ca2da3581cf61429b60848"
+      "sha256": "09421cfce9e850684ce377c7203163b9fe067db2f4c0d525581c348336ef4d58"
     },
     "kind_tier": {
       "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineVariants.java",
@@ -118,17 +147,19 @@
         "SIFTER",
         "ELECTROLYZER"
       ],
-      "sha256": "2a966d84576cdcd71c6c1810c7ca669f26170440b54a4ac271b3e881abaa7aa6"
+      "sha256": "6933a067857f167870abd9111e9ae6d656e43d255d946a9a12fc45c3538f15d8"
     },
     "machine_tier_data": {
       "path": "src/main/resources/data/cruciblecraft/machine_tiers.json",
       "required_tokens": [
+        "\"schemaVersion\": 2",
         "\"source\"",
+        "\"tierBand\"",
         "\"variant_rows\"",
         "MultiTileEntityBasicMachine.java:126-131,489-518,712-815",
         "defaults mEfficiency to 10000"
       ],
-      "sha256": "cc1df2b2d3693203a6ed5246d9887efbf6e89b03576682be748894e69f4e84a5"
+      "sha256": "4ca2160e5369dd812ee5bd781bf6f08106ad363fddcd40b76786d37487dae827"
     },
     "machine_tier_loader": {
       "path": "src/main/java/com/masson/cruciblecraft/machine/processing/MachineTierCatalog.java",
@@ -137,7 +168,16 @@
         "Machine tier source rows do not cover variants",
         "3703e40308c8c030763fd6297dea8b210d2a77b1"
       ],
-      "sha256": "374d8b1ce7c42b21efb61a65d1695e0e85960dc87b6b15baa99af05fcf7cd2c6"
+      "sha256": "b776d433cd99a5fa258f0b830a8d04cd77da8af0917460d490ca4fa9dd2cd830"
+    },
+    "machine_tier_schema": {
+      "path": "src/main/resources/data/cruciblecraft/schema/machine_tiers.schema.json",
+      "required_tokens": [
+        "Shared tier-band identity",
+        "Complete machine variant identity",
+        "Per-variant parallel limit"
+      ],
+      "sha256": "291cb2415d603283549baba08b59921f79b07aab4bd2ea52adbe602cd63f291c"
     },
     "multiblock_validator": {
       "path": "src/main/java/com/masson/cruciblecraft/content/multiblock/MultiblockStructureValidator.java",
@@ -151,12 +191,12 @@
     "processing_runtime_window": {
       "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineBlockEntity.java",
       "required_tokens": [
-        "variant.tier().inputMinimum()",
+        "variant.tierBand().inputMinimum()",
         "energy.stored()",
         "runtime.tickWork(",
         "workProgress"
       ],
-      "sha256": "1be3a22a53dfee3a04eda7d55fc8ad7757ac16999c686847410eca7dbe9b0fb6"
+      "sha256": "fe2adaf007f57a30e870ba24e56d78272a5f40c83856d2d0169dd1c5c4a2643a"
     },
     "ru_axle": {
       "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/RotationalAxleBlockEntity.java",
@@ -185,15 +225,18 @@
       ],
       "sha256": "97922be3293bb5fce69cbee26babda617426caf61fdcfd256fcf620725b3e056"
     },
-    "state_v2": {
+    "state_v3": {
       "path": "src/main/java/com/masson/cruciblecraft/machine/processing/ProcessingMachineState.java",
       "required_tokens": [
-        "VERSION = 2",
+        "VERSION = 3",
         "machine_kind",
-        "tier_profile",
+        "tier_band",
+        "tier_profile is unsupported",
+        "version < VERSION",
+        "identity_quarantine",
         "energy_identity"
       ],
-      "sha256": "905ef83782679c41943bd083359a5b10f7e4e4dd570a3ea175f70669241d744f"
+      "sha256": "1ec0a08e2843d876fa4727f5eedfcd2ef550e90240bb4559ce2c42ce50999e13"
     }
   },
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
@@ -226,9 +269,9 @@
     "processing_kinds": {
       "bronze_crusher": 1,
       "classifications": {
-        "deferred_with_reason": 2,
+        "deferred_with_reason": 3,
         "fixed_utility": 4,
-        "source_tiered": 19
+        "source_tiered": 18
       },
       "classified": 25,
       "configured": 24,
@@ -245,7 +288,7 @@
       "total": 25,
       "unclassified": 0
     },
-    "sha256": "7a4062b915707b469f14aa1f20e59dc43ad76ce7132c8b323cb0ce53117dc4a2",
+    "sha256": "76f756e525c2619e72eee1b67fc6d615a35ac8114cc4d57a64234695c1f7166f",
     "status": "T12A_READY"
   }
 }

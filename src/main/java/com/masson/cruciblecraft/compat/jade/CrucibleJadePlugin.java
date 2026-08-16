@@ -84,6 +84,7 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
             IServerDataProvider<BlockAccessor> {
         INSTANCE;
         private static final String TRANSFERRED = "cc_transferred";
+        private static final String COVERS = "cc_covers";
         private static final ResourceLocation UID =
                 ResourceLocation.fromNamespaceAndPath(
                         CrucibleCraft.MODID, "fluid_pipe");
@@ -109,6 +110,13 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                             : 0L,
                     pipe.failureSnapshot().pendingFailure()
                             .serializedName()));
+            if (accessor.getServerData().contains(COVERS)
+                    && !accessor.getServerData()
+                            .getString(COVERS).isBlank()) {
+                tooltip.add(Component.translatable(
+                        "jade.cruciblecraft.pipe_covers",
+                        accessor.getServerData().getString(COVERS)));
+            }
         }
 
         @Override
@@ -117,6 +125,7 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
             if (accessor.getBlockEntity()
                     instanceof FluidPipeBlockEntity pipe) {
                 data.putLong(TRANSFERRED, pipe.transferredThisWindow());
+                data.putString(COVERS, pipe.coverSummary());
             }
         }
 
@@ -133,6 +142,7 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
         private static final String DELIVERED = "cc_delivered";
         private static final String CLOG_EVENTS = "cc_clog_events";
         private static final String COVER_COUNT = "cc_cover_count";
+        private static final String COVERS = "cc_covers";
         private static final ResourceLocation UID =
                 ResourceLocation.fromNamespaceAndPath(
                         CrucibleCraft.MODID, "item_pipe");
@@ -159,6 +169,13 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                     accessor.getServerData().contains(COVER_COUNT)
                             ? accessor.getServerData().getInt(COVER_COUNT)
                             : pipe.coverSnapshot().size()));
+            if (accessor.getServerData().contains(COVERS)
+                    && !accessor.getServerData()
+                            .getString(COVERS).isBlank()) {
+                tooltip.add(Component.translatable(
+                        "jade.cruciblecraft.pipe_covers",
+                        accessor.getServerData().getString(COVERS)));
+            }
         }
 
         @Override
@@ -169,6 +186,7 @@ public final class CrucibleJadePlugin implements IWailaPlugin {
                 data.putInt(DELIVERED, pipe.deliveredThisWindow());
                 data.putLong(CLOG_EVENTS, pipe.clogEvents());
                 data.putInt(COVER_COUNT, pipe.coverSnapshot().size());
+                data.putString(COVERS, pipe.coverSummary());
             }
         }
 

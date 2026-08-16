@@ -9,7 +9,7 @@
   "schema_version": 2,
   "source": {
     "global_policy": "tools/t13_denominator_policy.json",
-    "global_policy_sha256": "9df06c7c8785c9ad36cd3180899e80680b754c0716000c5795f1aeab6d583238",
+    "global_policy_sha256": "f463aba911435f1c397aad8b4ba4bdd1f41f3bf3b0aa2957ccfb9a63607e8141",
     "repository": "https://github.com/GregTech6/gregtech6",
     "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
     "selected_java_blobs": 1229,
@@ -24,9 +24,9 @@
   "tables": {
     "cover_kinds": {
       "artifact": "tools/t13_denominators/cover_kinds.json",
-      "artifact_sha256": "358f12ba98fbf72ecc3dff623a88a6c37567a9483f444d360af7b5c5b635425a",
+      "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
       "builder": "tools/build_t13_cover_multiblock_denominators.py",
-      "builder_sha256": "c9bbc5537b153676ced94e4d81bb5fa6840a1415bb0eb75101bc43120b33fab6",
+      "builder_sha256": "ab44ef3fe19e96f2bfe6c9ba3801cba598cea3c0108b3f773a6f75317cfedb1e",
       "canonical_count": 47,
       "classification_counts": {
         "deferred_with_reason": 28,
@@ -34,10 +34,10 @@
         "out_of_scope": 10
       },
       "policy": "tools/t13_cover_multiblock_policy.json",
-      "policy_sha256": "106fd3736db2da03329dc4918aba7e0d591d868f7937bfde4315c044e6732f9a",
+      "policy_sha256": "f41fe98cde84b730de4562d2c43e2eaaf65454fe6d9fc830fad40d385b502a9d",
       "raw_count": 65,
       "test": "tools/tests/test_build_t13_cover_multiblock_denominators.py",
-      "test_sha256": "0b212e7eb138789fb7a39368d054c5293a3246d102cfe18039f4c854e26e4ca8",
+      "test_sha256": "8dff9700f3c0fe55e5acb15654d4efc3c43a644de307cdfe61a84bcc20378a55",
       "unclassified": 0,
       "uniform_status": "PASS"
     },
@@ -62,9 +62,9 @@
     },
     "itemgenerator_domains": {
       "artifact": "tools/t13_denominators/itemgenerator_domains.json",
-      "artifact_sha256": "96970ea8ca6ef7b70bf9edb3dd83bdd4340f79c2372874a6c10b199db7a4728a",
+      "artifact_sha256": "d0910cd28459b5c6386f7ac4fe4a787a83e2181de271fbc42f4093ba64f8e48c",
       "builder": "tools/build_t13_prefix_domain_denominators.py",
-      "builder_sha256": "62405618153168c90b66d56afe48b5a424caf4d1604cdf1d6d98240e2af47b2d",
+      "builder_sha256": "a298536926822593bbce7de36dd3a625b3d1367a0334e3a5acda868c065c15bd",
       "canonical_count": 25,
       "classification_counts": {
         "deferred_with_reason": 3,
@@ -99,27 +99,28 @@
     },
     "multiblock_kinds": {
       "artifact": "tools/t13_denominators/multiblock_kinds.json",
-      "artifact_sha256": "a661277f3420943b200df9789966dc79836b0c3968b8757084a5f37308ed93a8",
+      "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
       "builder": "tools/build_t13_cover_multiblock_denominators.py",
-      "builder_sha256": "c9bbc5537b153676ced94e4d81bb5fa6840a1415bb0eb75101bc43120b33fab6",
+      "builder_sha256": "ab44ef3fe19e96f2bfe6c9ba3801cba598cea3c0108b3f773a6f75317cfedb1e",
       "canonical_count": 30,
       "classification_counts": {
-        "deferred_with_reason": 28,
-        "in_scope": 2
+        "deferred_with_reason": 20,
+        "in_scope": 5,
+        "out_of_scope": 5
       },
       "policy": "tools/t13_cover_multiblock_policy.json",
-      "policy_sha256": "106fd3736db2da03329dc4918aba7e0d591d868f7937bfde4315c044e6732f9a",
+      "policy_sha256": "f41fe98cde84b730de4562d2c43e2eaaf65454fe6d9fc830fad40d385b502a9d",
       "raw_count": 44,
       "test": "tools/tests/test_build_t13_cover_multiblock_denominators.py",
-      "test_sha256": "0b212e7eb138789fb7a39368d054c5293a3246d102cfe18039f4c854e26e4ca8",
+      "test_sha256": "8dff9700f3c0fe55e5acb15654d4efc3c43a644de307cdfe61a84bcc20378a55",
       "unclassified": 0,
       "uniform_status": "PASS"
     },
     "prefixes": {
       "artifact": "tools/t13_denominators/prefixes.json",
-      "artifact_sha256": "d2f515c12470dc41909bc0e1973a39fb23b6696c76f8235ced4ab15bfddff0e6",
+      "artifact_sha256": "e4ba251247624aefc425bd5fa82825a03bb536a01e2d24cae9fccd5cdfb7db80",
       "builder": "tools/build_t13_prefix_domain_denominators.py",
-      "builder_sha256": "62405618153168c90b66d56afe48b5a424caf4d1604cdf1d6d98240e2af47b2d",
+      "builder_sha256": "a298536926822593bbce7de36dd3a625b3d1367a0334e3a5acda868c065c15bd",
       "canonical_count": 452,
       "classification_counts": {
         "deferred_with_reason": 272,
@@ -136,7 +137,7 @@
     },
     "recipe_maps": {
       "artifact": "tools/t13_denominators/recipe_maps.json",
-      "artifact_sha256": "8ffcaf2b146df12002935cc2c5458f4f5da1caabecb328aa9efffb3c4c94c322",
+      "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
       "builder": "tools/build_t13_recipe_map_denominator.py",
       "builder_sha256": "9a3dca558629a03c7a1b2dd5d89fea73df83522cbb5a5e459c06c47c93c33101",
       "canonical_count": 95,
@@ -149,11 +150,11 @@
       "full_replay_receipt": {
         "builder_sha256": "9a3dca558629a03c7a1b2dd5d89fea73df83522cbb5a5e459c06c47c93c33101",
         "dump_index_sha256": "04a1ddf9f0bee4432206d2e89890839c10e4a9ad0b66aa3cd67f7385c31abc7f",
-        "legacy_roadmap_sha256": "9a6dbb0dc639712be18c2e68450eefeb23148520707820fd66aa231130b38d29",
+        "legacy_roadmap_sha256": "72b8d94d08277611ca4cccd9bb698fedafc6af7c07e4ca41932579c544b308f7",
         "map_count": 95,
         "map_row_sha256": "e8a635d62d4c11b7995d64ec3c6cfe2a7038b24338bfb00920a614f442f9af99",
         "map_tree_sha256": "ad3f229f0f43bbf3f72fa1115201f127ac910978c0d92f0313493344234c08df",
-        "policy_sha256": "45294c2656447c9dee4af687bac64a2f5b274905984a83b30c502031b6ae35ce",
+        "policy_sha256": "49c29032007c84c235dfd66bb3f055c6d5a777aa284ac2bd242824481480eafe",
         "proof_tier": "full_replay",
         "recipe_count": 720841,
         "scanner_semantics": "python-byte-state-machine-v1",
@@ -162,10 +163,10 @@
         "tree_manifest_sha256": "cfb7aeb7951a3c4ef761cb4f79ff04099f504cf90c9eeb40acfc87a4926b8f9f"
       },
       "policy": "tools/t13_recipe_map_policy.json",
-      "policy_sha256": "45294c2656447c9dee4af687bac64a2f5b274905984a83b30c502031b6ae35ce",
+      "policy_sha256": "49c29032007c84c235dfd66bb3f055c6d5a777aa284ac2bd242824481480eafe",
       "raw_count": 95,
       "test": "tools/tests/test_build_t13_recipe_map_denominator.py",
-      "test_sha256": "3532eb92fbe4cc96e775b5ca91e9dcc506e8e8903ef869b502cd885090cdaa07",
+      "test_sha256": "4af5f789bc96a9a32b987845cd6ba3dda20693d284268b2a87a67bb2c0ff4c7b",
       "unclassified": 0,
       "uniform_status": "UNIFORM_PASS"
     }

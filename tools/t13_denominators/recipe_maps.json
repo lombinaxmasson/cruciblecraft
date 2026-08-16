@@ -16,11 +16,11 @@
   "full_replay_receipt": {
     "builder_sha256": "9a3dca558629a03c7a1b2dd5d89fea73df83522cbb5a5e459c06c47c93c33101",
     "dump_index_sha256": "04a1ddf9f0bee4432206d2e89890839c10e4a9ad0b66aa3cd67f7385c31abc7f",
-    "legacy_roadmap_sha256": "9a6dbb0dc639712be18c2e68450eefeb23148520707820fd66aa231130b38d29",
+    "legacy_roadmap_sha256": "72b8d94d08277611ca4cccd9bb698fedafc6af7c07e4ca41932579c544b308f7",
     "map_count": 95,
     "map_row_sha256": "e8a635d62d4c11b7995d64ec3c6cfe2a7038b24338bfb00920a614f442f9af99",
     "map_tree_sha256": "ad3f229f0f43bbf3f72fa1115201f127ac910978c0d92f0313493344234c08df",
-    "policy_sha256": "45294c2656447c9dee4af687bac64a2f5b274905984a83b30c502031b6ae35ce",
+    "policy_sha256": "49c29032007c84c235dfd66bb3f055c6d5a777aa284ac2bd242824481480eafe",
     "proof_tier": "full_replay",
     "recipe_count": 720841,
     "scanner_semantics": "python-byte-state-machine-v1",
@@ -183,17 +183,15 @@
         "output_fluids": 2,
         "output_items": 2
       },
-      "classification": "deferred_with_reason",
+      "classification": "in_scope",
       "dump_size": 38685,
       "index_position": 3,
       "name_internal": "gt.recipe.fuels.burn",
       "name_local": "Burnable Fuels",
       "normalized_row_key": "gt.recipe.fuels.burn",
-      "owner": "POST_T19",
-      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.burn has 49 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
-      "recheck_point": "POST_T19 intake after T14-T19 closure",
+      "owner": "T18",
+      "reason": "T18c publishes fixed methane row 20 through the source-selected GeneratorGas -> HU runtime; the other 48 rows remain explicitly deferred in the T11 source ledger.",
       "recipe_count": 49,
-      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
       "source_blob": "d577d3ad1c4622128aceee6574326b54f84bf86dcd3e5516f6d4277e7c3bf3a3",
       "source_blob_algorithm": "sha256",
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.burn.json",
@@ -201,10 +199,10 @@
       "source_symbol_or_extraction_key": "gt.recipe.fuels.burn",
       "supersedes": {
         "artifact": "tools/gt6_map_roadmap.json",
-        "owner": "Unassigned future content owner",
-        "phase": "POST_T3",
+        "owner": "CrucibleCraft T18c gas/HU runtime",
+        "phase": "T18",
         "source_key": "gt.recipe.fuels.burn",
-        "status": "DEFERRED"
+        "status": "BOUNDED_SUBSET_PORTED"
       }
     },
     {
@@ -214,15 +212,17 @@
         "output_fluids": 2,
         "output_items": 2
       },
-      "classification": "in_scope",
+      "classification": "deferred_with_reason",
       "dump_size": 7569,
       "index_position": 4,
       "name_internal": "gt.recipe.fuels.gas",
       "name_local": "Gas Fuels",
       "normalized_row_key": "gt.recipe.fuels.gas",
-      "owner": "T15",
-      "reason": "T11 publishes fixed methane row 2 through the Burning Gas Generator; the other 8 rows remain explicitly deferred in the T11 source ledger.",
+      "owner": "POST_T19",
+      "reason": "T18c replaced the old Burning Gas Generator FM.Gas/direct-EU projection with source-selected FM.Burn/HU; all 9 FM.Gas rows now remain outside the bounded runtime.",
+      "recheck_point": "POST_T19 intake after T18-T19 closure",
       "recipe_count": 9,
+      "replacement_condition": "Select a distinct future FM.Gas consumer and source-backed energy identity before restoring any row.",
       "source_blob": "0cc436b3e1a7903732ec710860f1b93718591622b74d4c69dcd4969bcccf0607",
       "source_blob_algorithm": "sha256",
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.fuels.gas.json",
@@ -230,10 +230,10 @@
       "source_symbol_or_extraction_key": "gt.recipe.fuels.gas",
       "supersedes": {
         "artifact": "tools/gt6_map_roadmap.json",
-        "owner": "CrucibleCraft T11 fuel generation runtime",
-        "phase": "T11",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
         "source_key": "gt.recipe.fuels.gas",
-        "status": "BOUNDED_SUBSET_PORTED"
+        "status": "DEFERRED"
       }
     },
     {
@@ -2981,16 +2981,16 @@
   "source_hashes": {
     "builder": "9a3dca558629a03c7a1b2dd5d89fea73df83522cbb5a5e459c06c47c93c33101",
     "dump_index": "04a1ddf9f0bee4432206d2e89890839c10e4a9ad0b66aa3cd67f7385c31abc7f",
-    "legacy_roadmap": "9a6dbb0dc639712be18c2e68450eefeb23148520707820fd66aa231130b38d29",
+    "legacy_roadmap": "72b8d94d08277611ca4cccd9bb698fedafc6af7c07e4ca41932579c544b308f7",
     "map_tree": "ad3f229f0f43bbf3f72fa1115201f127ac910978c0d92f0313493344234c08df",
-    "policy": "45294c2656447c9dee4af687bac64a2f5b274905984a83b30c502031b6ae35ce",
+    "policy": "49c29032007c84c235dfd66bb3f055c6d5a777aa284ac2bd242824481480eafe",
     "source_symbol_inventory": "d5aa1faa86ac336d83a0c120d6b4aaa29a07d9f95390a4c7ffc50757eac81f91",
     "tree_manifest": "cfb7aeb7951a3c4ef761cb4f79ff04099f504cf90c9eeb40acfc87a4926b8f9f"
   },
   "status": "T13A_RECIPE_MAP_DENOMINATOR_READY",
   "supersession": {
     "historical_artifact": "tools/gt6_map_roadmap.json",
-    "historical_artifact_sha256": "9a6dbb0dc639712be18c2e68450eefeb23148520707820fd66aa231130b38d29",
+    "historical_artifact_sha256": "72b8d94d08277611ca4cccd9bb698fedafc6af7c07e4ca41932579c544b308f7",
     "historical_phase_owner": "POST_T3",
     "historical_unassigned_owner": "Unassigned future content owner",
     "history_preserved": true,

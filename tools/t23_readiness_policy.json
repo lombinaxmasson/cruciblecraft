@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "status_policy": "The status field is derived by build() from the gates below; check() recomputes and compares. Missing status is fail-closed (not ready).",
+  "stages": {
+    "T23a": "A1 behavior-requirement classification of all 30 canonical multiblock kinds (unclassified = 0); A2 selection of 2-3 structures serving closed v1 main chains with four written criteria.",
+    "T23b": "B1 schema-v1 expressibility evidence for every selected structure (no aisle/repeat unless inexpressible); B2 controller plugin whitelist registry with quarantine semantics.",
+    "T23c": "C1 per-structure implementation (JSON, registration, models, language, recipes); C2 survival acquisition and real product consumers; C3 six lifecycle paths per structure as GameTests.",
+    "T23d": "D1 three-axis closeout with MEASURED worst-case load bounds; D2 chain rebuild with historical baselines untouched; D3 single clean record."
+  },
+  "dependencies": {
+    "t13_multiblock_kinds": "tools/t13_denominators/multiblock_kinds.json",
+    "t23_multiblock_policy": "tools/t23_multiblock_policy.json",
+    "t23_multiblock_behavior_classification": "tools/t23_multiblock_behavior_classification.json",
+    "t23_plugin_whitelist": "tools/t23_plugin_whitelist.json",
+    "t23_load_bounds": "tools/t23_load_bounds.json",
+    "t21_operand_reachability": "tools/t21_operand_reachability.json",
+    "t23_publication_baseline": "src/main/resources/data/cruciblecraft/t23_publication_baseline.json",
+    "full_verification_report": "tools/full_verification_report.json",
+    "gametest_sources": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java"
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T23 classification, selection, plugin, lifecycle, acquisition and load gates are complete; repository-wide verification is bound separately by the full snapshot report."
+  },
+  "refresh_policy": {
+    "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+    "evidence": "tools/full_verification_report.json"
+  }
+}

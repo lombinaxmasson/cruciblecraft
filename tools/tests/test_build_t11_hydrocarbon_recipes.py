@@ -45,6 +45,12 @@ class T11HydrocarbonRecipeBuilderTest(unittest.TestCase):
         ]
         self.assertEqual(-64, engine["eut"])
         self.assertEqual(-64, gas["eut"])
+        self.assertEqual(24, gas["duration"])
+        self.assertTrue(
+            gas["provenance"]["selected_source_recipe"].endswith(
+                "gt.recipe.fuels.burn.json#recipes[20]"
+            )
+        )
         self.assertEqual(2, len(gas["fluid_outputs"]))
         self.assertEqual(2, len(distillery["fluid_outputs"]))
 

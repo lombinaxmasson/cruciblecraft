@@ -18,6 +18,10 @@ class T14ReadinessTest(unittest.TestCase):
             "tools/t12a_machine_readiness.json",
             document["currentness"],
         )
+        self.assertEqual(
+            [],
+            document["currentness"]["pending_report"]["pending"],
+        )
         self.assertTrue(
             {
                 "provider",
@@ -73,7 +77,7 @@ class T14ReadinessTest(unittest.TestCase):
     def test_load_budget_and_projection_have_no_pending_dimensions(self):
         document = readiness.build()
         gate = document["load_gate"]
-        self.assertEqual(3_229, gate["datapack_authored_entries"])
+        self.assertEqual(3_263, gate["datapack_authored_entries"])
         self.assertEqual(18_875, gate["logical_recipes"])
         self.assertEqual(16_650, gate["eager_recipes"])
         self.assertEqual(2_225, gate["lazy_recipes"])

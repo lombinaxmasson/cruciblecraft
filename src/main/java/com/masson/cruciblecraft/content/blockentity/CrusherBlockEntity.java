@@ -2,16 +2,12 @@ package com.masson.cruciblecraft.content.blockentity;
 
 import com.masson.cruciblecraft.content.block.CrusherBlock;
 import com.masson.cruciblecraft.content.menu.CrusherMenu;
-import com.masson.cruciblecraft.machine.processing.CrusherLegacyMigration;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineDisplayData;
-import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
@@ -29,7 +25,6 @@ public final class CrusherBlockEntity extends ProcessingMachineBlockEntity
     public static final int INPUT_SLOT = 0;
     public static final int OUTPUT_SLOT = 1;
     public static final long KU_CAPACITY = 1_024L;
-    private CrusherLegacyMigration.BoundHint legacyMigrationHint;
 
     private final ContainerData data = new ContainerData() {
         @Override public int get(int index) {
@@ -118,97 +113,4 @@ public final class CrusherBlockEntity extends ProcessingMachineBlockEntity
                 : null;
     }
 
-    @Override protected void beforeRuntimeSelect(RecipeMap.Match match) {
-        if (legacyMigrationHint == null) {
-            return;
-        }
-        ItemStack output = match.recipe().itemOutputs().stream()
-                .findFirst().orElse(ItemStack.EMPTY);
-        CrusherLegacyMigration.Adoption adoption = CrusherLegacyMigration.adopt(
-                legacyMigrationHint,
-                match.id(),
-                match.recipe().duration(),
-                output);
-        runtime().restore(
-                adoption.recipeId(),
-                adoption.progress(),
-                adoption.duration(),
-                adoption.status());
-        legacyMigrationHint = null;
-        markMutation();
-    }
-
-    @Override protected void onItemSlotChanged(int slot) {
-        if (slot != INPUT_SLOT || legacyMigrationHint == null) {
-            return;
-        }
-        boolean unchanged = level != null && CrusherLegacyMigration.inputUnchanged(
-                legacyMigrationHint,
-                inventory().getStackInSlot(INPUT_SLOT),
-                level.registryAccess());
-        if (!unchanged) {
-            legacyMigrationHint = null;
-            runtime().reset();
-            markMutation();
-        }
-    }
-
-    @Override protected void loadAdditional(
-            CompoundTag tag,
-            HolderLookup.Provider registries) {
-        super.loadAdditional(tag, registries);
-        if (!tag.contains("processing_version")) {
-            CrusherLegacyMigration.Hint hint = new CrusherLegacyMigration.Hint(
-                    tag.getString("active_output"),
-                    tag.getInt("progress"),
-                    tag.getInt("duration"),
-                    tag.contains("paused_reason")
-                            ? tag.getString("paused_reason") : "idle");
-            legacyMigrationHint = CrusherLegacyMigration.bind(
-                    hint, inventory().getStackInSlot(INPUT_SLOT), registries).orElse(null);
-            runtime().restore(
-                    "",
-                    0,
-                    tag.getInt("duration"),
-                    tag.contains("paused_reason")
-                            ? tag.getString("paused_reason") : "idle");
-            restoreEnergy(tag.getLong("kinetic_energy"));
-        } else if (tag.contains("legacy_output_hint")) {
-            try {
-                CrusherLegacyMigration.BoundHint loaded =
-                        new CrusherLegacyMigration.BoundHint(
-                        new CrusherLegacyMigration.Hint(
-                                tag.getString("legacy_output_hint"),
-                                tag.getInt("legacy_progress"),
-                                tag.getInt("legacy_duration"),
-                                tag.getString("legacy_status")),
-                        tag.getString("legacy_input_fingerprint"));
-                legacyMigrationHint = CrusherLegacyMigration.inputUnchanged(
-                        loaded,
-                        inventory().getStackInSlot(INPUT_SLOT),
-                        registries) ? loaded : null;
-                if (legacyMigrationHint == null) {
-                    runtime().reset();
-                }
-            } catch (IllegalArgumentException exception) {
-                legacyMigrationHint = null;
-                runtime().reset();
-            }
-        }
-    }
-
-    @Override protected void saveAdditional(
-            CompoundTag tag,
-            HolderLookup.Provider registries) {
-        super.saveAdditional(tag, registries);
-        if (legacyMigrationHint != null) {
-            CrusherLegacyMigration.Hint hint = legacyMigrationHint.hint();
-            tag.putString("legacy_output_hint", hint.outputItemId());
-            tag.putInt("legacy_progress", hint.progress());
-            tag.putInt("legacy_duration", hint.duration());
-            tag.putString("legacy_status", hint.status());
-            tag.putString(
-                    "legacy_input_fingerprint", legacyMigrationHint.inputFingerprint());
-        }
-    }
 }

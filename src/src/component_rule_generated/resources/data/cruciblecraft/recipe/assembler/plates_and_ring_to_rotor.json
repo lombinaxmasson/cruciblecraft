@@ -1,0 +1,26 @@
+{
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", rotor)"
+  ],
+  "duration": "300 * (144 * prefix_units(rotor) / gcd(target_units(working) * 612, 144 * prefix_units(rotor)))",
+  "eut": "64",
+  "item_inputs": [
+    {
+      "count": "4 * (144 * prefix_units(rotor) / gcd(target_units(working) * 612, 144 * prefix_units(rotor)))",
+      "prefix": "cruciblecraft:plate"
+    },
+    {
+      "count": "1 * (144 * prefix_units(rotor) / gcd(target_units(working) * 612, 144 * prefix_units(rotor)))",
+      "prefix": "cruciblecraft:ring"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "target_units(working) * 612 / gcd(target_units(working) * 612, 144 * prefix_units(rotor))",
+      "material_selector": "processing_target:working",
+      "prefix": "cruciblecraft:rotor"
+    }
+  ],
+  "target": "cruciblecraft:assembler",
+  "type": "cruciblecraft:material_rule"
+}

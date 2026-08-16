@@ -61,9 +61,10 @@ class T8PipeRuleDataTest {
             MaterialRule rule = loadRule(
                     RULE_ROOT.resolve(entry.getKey() + ".json"));
             Domain domain = entry.getValue();
-            String recipeFact = domain.fluid()
-                    ? "material.pipe.fluid_recipe"
-                    : "material.pipe.item_recipe";
+            String recipeFact = (domain.fluid()
+                    ? "fluid_pipe_recipe("
+                    : "item_pipe_recipe(")
+                    + domain.outputForm() + ")";
             assertEquals(
                     List.of(
                             "material.tag(\"PROCESSING.EXTRUDABLE\")",

@@ -92,23 +92,26 @@ class T16MachineTierMatrixTest {
             assertEquals(
                     row.get("parallel_duration").getAsBoolean(),
                     entry.parallelDuration());
-            assertEquals(row.get("tier").getAsString(),
-                    entry.tier().id().toString());
+            assertEquals(row.get("tier_band").getAsString(),
+                    entry.tierBand().tierBandId().toString());
             assertEquals(row.get("material").getAsString(),
-                    entry.tier().materialId());
+                    entry.tierBand().materialId());
             assertEquals(
                     EnergyType.valueOf(row.get("energy").getAsString()),
-                    entry.tier().energyType());
-            assertEquals(nominal / 2L, entry.tier().inputMinimum());
-            assertEquals(nominal, entry.tier().inputNominal());
-            assertEquals(nominal * 2L, entry.tier().inputMaximum());
-            assertEquals(nominal * 2L, entry.tier().energyCapacity());
+                    entry.tierBand().energyType());
+            assertEquals(
+                    nominal / 2L, entry.tierBand().inputMinimum());
+            assertEquals(nominal, entry.tierBand().inputNominal());
+            assertEquals(
+                    nominal * 2L, entry.tierBand().inputMaximum());
+            assertEquals(
+                    nominal * 2L, entry.tierBand().energyCapacity());
             assertEquals(
                     row.get("parallel").getAsInt(),
-                    entry.tier().parallelLimit());
-            assertEquals(10_000, entry.tier().efficiency());
+                    entry.tierBand().parallelLimit());
+            assertEquals(10_000, entry.tierBand().efficiency());
 
-            assertSame(entry.tier(), variant.tier());
+            assertSame(entry.tierBand(), variant.tierBand());
             assertEquals(entry.kindId(), variant.kind().id());
             assertEquals(
                     entry.overclockPolicy(),
@@ -212,8 +215,10 @@ class T16MachineTierMatrixTest {
 
         JsonObject controller =
                 expected.getAsJsonObject("controller_profile");
-        TierProfile profile = MachineTierCatalog.requireControllerProfile(
-                ResourceLocation.parse(controller.get("id").getAsString()));
+        TierProfile profile =
+                MachineTierCatalog.requireControllerTierBand(
+                        ResourceLocation.parse(
+                                controller.get("tier_band").getAsString()));
         assertEquals(controller.get("material").getAsString(),
                 profile.materialId());
         assertEquals(
@@ -261,15 +266,15 @@ class T16MachineTierMatrixTest {
                                 : 1;
 
                 assertEquals(selected.getValue(),
-                        variant.tier().energyType());
+                        variant.tierBand().energyType());
                 assertEquals(nominal / 2L,
-                        variant.tier().inputMinimum());
+                        variant.tierBand().inputMinimum());
                 assertEquals(nominal,
-                        variant.tier().inputNominal());
+                        variant.tierBand().inputNominal());
                 assertEquals(nominal * 2L,
-                        variant.tier().inputMaximum());
+                        variant.tierBand().inputMaximum());
                 assertEquals(parallel,
-                        variant.tier().parallelLimit());
+                        variant.tierBand().parallelLimit());
                 assertEquals(
                         MachineKindSpec.OverclockPolicy.STANDARD,
                         variant.kind().overclockPolicy());
@@ -292,7 +297,7 @@ class T16MachineTierMatrixTest {
         GTRecipe recipe = recipe(4L, 100);
 
         MachineExecutionPlan ruPlan = MachineExecutionPlan.create(
-                recipe, ru.kind(), ru.tier(), 1).orElseThrow();
+                recipe, ru.kind(), ru.tierBand(), 1).orElseThrow();
         assertEquals(16L, ruPlan.minimumPower());
         assertEquals(32L, ruPlan.nominalPower());
         assertEquals(800L, ruPlan.totalWork());
@@ -302,8 +307,8 @@ class T16MachineTierMatrixTest {
         MachineExecutionPlan kuPlan = MachineExecutionPlan.create(
                 recipe,
                 ku.kind(),
-                ku.tier(),
-                ku.tier().parallelLimit()).orElseThrow();
+                ku.tierBand(),
+                ku.tierBand().parallelLimit()).orElseThrow();
         assertEquals(16L, kuPlan.minimumPower());
         assertEquals(32L, kuPlan.nominalPower());
         assertEquals(3_200L, kuPlan.totalWork());
@@ -337,9 +342,11 @@ class T16MachineTierMatrixTest {
             runtime.overcharged();
             assertEquals("overcharged", runtime.status());
             assertFalse(MachineExecutionPlan.create(
-                    recipe(variant.tier().inputMaximum() + 1L, 20),
+                    recipe(
+                            variant.tierBand().inputMaximum() + 1L,
+                            20),
                     variant.kind(),
-                    variant.tier(),
+                    variant.tierBand(),
                     1).isPresent());
             runtime.recipePowerExceeded("test:matrix", 20);
             assertEquals("recipe_power_exceeded", runtime.status());

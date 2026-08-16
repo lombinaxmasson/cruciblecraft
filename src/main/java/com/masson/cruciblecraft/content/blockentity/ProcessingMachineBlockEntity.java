@@ -34,7 +34,7 @@ import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeCache;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
-import com.masson.cruciblecraft.registry.ModMachineIdentityMigrations;
+import com.masson.cruciblecraft.registry.ModMachineIdentities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -59,7 +59,8 @@ import net.neoforged.neoforge.items.ItemStackHandler;
  * only a spec, facing, optional fluid filters, and adjacent energy source.
  */
 public abstract class ProcessingMachineBlockEntity extends BlockEntity
-        implements IEnergyHandler, MachineTransaction.ResourceAccess {
+        implements IEnergyHandler, MachineTransaction.ResourceAccess,
+        com.masson.cruciblecraft.content.multiblock.MultiblockPortHost {
     private static final int CHECKPOINT_INTERVAL = 20;
 
     private final MachineVariant variant;
@@ -98,6 +99,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
     private Optional<String> materialQuarantine = Optional.empty();
     private MachineIdentityPolicy.Identity savedMachineIdentity =
             new MachineIdentityPolicy.Identity("", "", "", "");
+    private Optional<String> persistedIdentityQuarantine = Optional.empty();
     private boolean quarantineWarningLogged;
 
     protected ProcessingMachineBlockEntity(
@@ -206,7 +208,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 MachineExecutionPlan.create(
                         recipe,
                         variant.kind(),
-                        variant.tier(),
+                        variant.tierBand(),
                         1);
         if (invalid.isEmpty() && singlePlan.isEmpty()) {
             selectPowerExceeded(match);
@@ -296,6 +298,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 throw new IllegalStateException(
                         "Processing resources changed after committed energy extraction");
             }
+            onProcessingCompleted(match.id().toString());
             runtime.completed(plan.effectiveDuration());
             clearSelection();
             checkpoint.markDirty();
@@ -403,6 +406,8 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
 
     protected void beforeRuntimeSelect(RecipeMap.Match match) {}
 
+    protected void onProcessingCompleted(String recipeId) {}
+
     private Optional<MachineTransaction> prepareTransaction(GTRecipe recipe) {
         return MachineTransaction.prepare(
                 recipe,
@@ -417,14 +422,14 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
 
     private Optional<PlannedExecution> planExecution(
             GTRecipe recipe) {
-        for (int operations = variant.tier().parallelLimit();
+        for (int operations = variant.tierBand().parallelLimit();
                 operations >= 1;
                 operations--) {
             Optional<MachineExecutionPlan> plan =
                     MachineExecutionPlan.create(
                             recipe,
                             variant.kind(),
-                            variant.tier(),
+                            variant.tierBand(),
                             operations);
             if (plan.isEmpty()) {
                 continue;
@@ -488,7 +493,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         long minimum = legacy
                 ? plan.minimumPower()
                 : Math.max(
-                        variant.tier().inputMinimum(),
+                        variant.tierBand().inputMinimum(),
                         plan.minimumPower());
         long maximum = legacy
                 ? plan.nominalPower()
@@ -648,7 +653,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         if (!handles(type, side)) {
             return 0L;
         }
-        if (variant.tier().overcharges(size)) {
+        if (variant.tierBand().overcharges(size)) {
             if (!simulate && amount > 0L) {
                 runtime.overcharged();
                 markMutation();
@@ -668,6 +673,35 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
 
     @Override public long capacity(EnergyType type) {
         return energy != null && type == spec.energy().type() ? energy.capacity() : 0L;
+    }
+
+    @Override
+    public List<Integer> itemInputSlots() {
+        return spec.items().inputs();
+    }
+
+    @Override
+    public List<Integer> itemOutputSlots() {
+        return spec.items().outputs();
+    }
+
+    @Override
+    public List<Integer> fluidInputTanks() {
+        return spec.fluids().inputs().stream()
+                .map(ProcessingMachineSpec.TankSpec::index)
+                .toList();
+    }
+
+    @Override
+    public List<Integer> fluidOutputTanks() {
+        return spec.fluids().outputs().stream()
+                .map(ProcessingMachineSpec.TankSpec::index)
+                .toList();
+    }
+
+    @Override
+    public BlockState blockState() {
+        return getBlockState();
     }
 
     public final ProcessingMachineSpec spec() { return spec; }
@@ -798,7 +832,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
         boolean quarantinedIdentity = materialQuarantine.isPresent();
         MachineIdentityPolicy.Identity identity = quarantinedIdentity
                 ? savedMachineIdentity
-                : ModMachineIdentityMigrations.identityOf(variant);
+                : ModMachineIdentities.identityOf(variant);
         tag.merge(new ProcessingMachineState(
                 runtime.processor().activeId(),
                 progress(),
@@ -810,7 +844,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                         : energy.stored(),
                 resourceRevision,
                 identity.machineKind(),
-                identity.tierProfile(),
+                identity.tierBand(),
                 identity.materialId(),
                 identity.energyIdentity(),
                 selectedPlan == null
@@ -822,6 +856,7 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 selectedPlan == null
                         ? restoredWorkRequired
                         : selectedPlan.totalWork(),
+                persistedIdentityQuarantine,
                 unsupportedProcessingVersion).write());
         tag.put("inventory", inventory.serializeNBT(registries));
         for (int tank = 0; tank < tanks.size(); tank++) {
@@ -859,8 +894,9 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
                 state.activeRecipe(), state.progress(), state.duration(), state.status());
         unsupportedProcessingVersion = state.unsupportedVersion();
         MachineIdentityPolicy.Decision identity =
-                ModMachineIdentityMigrations.resolve(variant, state);
+                ModMachineIdentities.resolve(variant, state);
         savedMachineIdentity = identity.persistedIdentity();
+        persistedIdentityQuarantine = state.identityQuarantine();
         materialQuarantine = identity.quarantineReason();
         restoredOperations = state.operations();
         restoredWorkProgress = state.workProgress();

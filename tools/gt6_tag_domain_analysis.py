@@ -356,6 +356,7 @@ def main() -> int:
     OUT.write_text(
         json.dumps(report, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
+        newline="\n",
     )
     print(f"Wrote {OUT}")
     print(json.dumps({

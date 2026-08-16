@@ -1,0 +1,70 @@
+{
+  "closure": {
+    "acquisition_unreachable": 0,
+    "behavior_unclassified": 0,
+    "canonical_total": 30,
+    "consumer_operand_proof": true,
+    "lifecycle_paths_expected": 18,
+    "lifecycle_paths_measured": 18,
+    "selected_ids": [
+      "distillation_tower",
+      "large_boiler",
+      "tank_3x3x3"
+    ],
+    "selected_structure_count": 3
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T23 classification, selection, plugin, lifecycle, acquisition and load gates are complete; repository-wide verification is bound separately by the full snapshot report."
+  },
+  "completed_stages": [
+    "T23a",
+    "T23b",
+    "T23c",
+    "T23d"
+  ],
+  "currentness": {
+    "full_verification": {
+      "evidence": "tools/full_verification_report.json",
+      "pending": [],
+      "status": "BOUND_TO_FULL_VERIFICATION_REPORT"
+    },
+    "owned_inputs": {
+      "tools/build_t23_readiness.py": "601933e931960e90aa7ea127cfec87730ccff8b8a02566229006477d25c4f8ab",
+      "tools/t23_readiness_policy.json": "583dfb0cdbecc105bccc7901fcba8256220b28f4454e364c006805138496acee"
+    }
+  },
+  "fidelity": {
+    "consumers_within_selected": true,
+    "every_plugin_consumed": true,
+    "geometry_equivalence": true,
+    "plugin_count": 5,
+    "port_supply_not_per_block": true,
+    "quarantine_declared": true
+  },
+  "load": {
+    "evidence": {
+      "load_bounds": "tools/t23_load_bounds.json",
+      "publication_baseline": "src/main/resources/data/cruciblecraft/t23_publication_baseline.json"
+    },
+    "headroom_remaining": 2118,
+    "projection_status": "MEASURED",
+    "publication_baseline_consistent": true,
+    "publication_delta": {
+      "eager": 0,
+      "lazy": 0,
+      "logical": 0
+    },
+    "worst_case_bounds": true
+  },
+  "pending_stages": [],
+  "policy": "The status field is derived from evidence by build(). Any mismatch between the committed value and a fresh build is detected by check().",
+  "runtime": {
+    "gametest_passing": true,
+    "gametest_total": 119
+  },
+  "schema_version": 1,
+  "status": "T23_READY",
+  "status_owner": "run_full_verification"
+}

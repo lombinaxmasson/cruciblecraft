@@ -59,9 +59,9 @@ class T12MachineReadinessTest(unittest.TestCase):
         self.assertEqual(0, processing["counts"]["unclassified"])
         self.assertEqual(
             {
-                "deferred_with_reason": 2,
+                "deferred_with_reason": 3,
                 "fixed_utility": 4,
-                "source_tiered": 19,
+                "source_tiered": 18,
             },
             processing["counts"]["classifications"],
         )

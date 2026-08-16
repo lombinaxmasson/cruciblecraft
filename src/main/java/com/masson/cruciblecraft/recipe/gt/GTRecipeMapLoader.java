@@ -14,7 +14,6 @@ import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.MaterialRegistrationGate;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
-import com.masson.cruciblecraft.recipe.rule.LegacyMaterialRuleAdapter;
 import com.masson.cruciblecraft.recipe.rule.MaterialRule;
 import com.masson.cruciblecraft.recipe.rule.MaterialRuleRecipe;
 import com.masson.cruciblecraft.recipe.rule.MaterialRuleExpansion;
@@ -35,15 +34,10 @@ public final class GTRecipeMapLoader {
     private static final int LOOKUP_BENCHMARK_SAMPLES = 256;
     private static final int LOOKUP_BENCHMARK_TIMING_SAMPLES = 61;
     private static final int LOOKUP_BENCHMARK_OPERATIONS_PER_SAMPLE = 32;
-    private static volatile int rejectedUnindexedRecipeCount;
     private static volatile PublicationMetrics lastPublicationMetrics =
             PublicationMetrics.empty();
 
     private GTRecipeMapLoader() {}
-
-    public static int rejectedUnindexedRecipeCount() {
-        return rejectedUnindexedRecipeCount;
-    }
 
     public static PublicationMetrics lastPublicationMetrics() {
         return lastPublicationMetrics;
@@ -101,19 +95,6 @@ public final class GTRecipeMapLoader {
                 .filter(holder -> holder.value().rule().target().isPresent())
                 .forEach(holder -> rules.add(
                         new RuleSource(holder.id(), holder.value().rule())));
-        manager.getAllRecipesFor(ModRecipes.CRUSHER_TYPE.get()).stream()
-                .sorted(Comparator.comparing(holder -> holder.id().toString()))
-                .filter(holder ->
-                        !LegacyMaterialRuleAdapter.replacedByConcreteOreChain(
-                                holder.value()))
-                .forEach(holder -> rules.add(new RuleSource(
-                        holder.id(),
-                        LegacyMaterialRuleAdapter.fromCrusher(holder.value()))));
-        manager.getAllRecipesFor(ModRecipes.ANVIL_TYPE.get()).stream()
-                .sorted(Comparator.comparing(holder -> holder.id().toString()))
-                .forEach(holder -> rules.add(new RuleSource(
-                        holder.id(),
-                        LegacyMaterialRuleAdapter.fromAnvil(holder.value()))));
         rules.stream()
                 .map(RuleSource::id)
                 .map(GTRecipeMapLoader::authoredMaterialRuleStage)
@@ -157,7 +138,6 @@ public final class GTRecipeMapLoader {
                     ? List.of(extruderFamily)
                     : List.of());
         }
-        int rejectedUnindexed = 0;
         for (RecipeMap map : ModRecipeMaps.ALL) {
             List<RecipeMap.Entry> ordered = resolved.get(map).stream()
                     .sorted((left, right) -> RecipeExpansionRules.comparePriority(
@@ -275,10 +255,7 @@ public final class GTRecipeMapLoader {
         long epoch = GTRecipeRuntimeEpoch.publish(
                 materialPreview,
                 List.copyOf(preparedByMap.values()),
-                () -> {
-                    lastPublicationMetrics = candidateMetrics;
-                    rejectedUnindexedRecipeCount = rejectedUnindexed;
-                });
+                () -> lastPublicationMetrics = candidateMetrics);
         long sideReloadBudget = runtimeSide
                 == ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT
                 ? ModProcessingMachines.CLIENT_RECIPE_RELOAD_BUDGET_MS
@@ -413,6 +390,12 @@ public final class GTRecipeMapLoader {
         return new GTRecipeQuery(items, recipe.fluidInputs());
     }
 
+    /**
+     * @param t5ChemicalRecipes total recipes on dedicated chemical maps
+     *     (T5 electrolyzer/centrifuge/bath/…, T11 distillery/generifier,
+     *     and T21 mixer families).  The name retains "t5" for API stability;
+     *     the counter has covered t11 since T11 and t21 since T21.
+     */
     public record PublicationMetrics(
             int t3ComponentRecipes,
             int t4ToolRecipes,
@@ -641,6 +624,16 @@ public final class GTRecipeMapLoader {
                         || id.getPath().startsWith("t11/generifier/"));
     }
 
+    static boolean isT21ChemicalRecipe(ResourceLocation id) {
+        return CrucibleCraft.MODID.equals(id.getNamespace())
+                && id.getPath().startsWith("t21/");
+    }
+
+    static boolean isT22PetroleumRecipe(ResourceLocation id) {
+        return CrucibleCraft.MODID.equals(id.getNamespace())
+                && id.getPath().startsWith("t22/");
+    }
+
     private static boolean isT14CompactExtruder(RuleSource source) {
         return CrucibleCraft.MODID.equals(source.id().getNamespace())
                 && source.id().getPath().startsWith("extruder/compact/")
@@ -651,7 +644,8 @@ public final class GTRecipeMapLoader {
     }
 
     private static boolean isChemicalRecipe(ResourceLocation id) {
-        return isT5ChemicalRecipe(id) || isT11ChemicalRecipe(id);
+        return isT5ChemicalRecipe(id) || isT11ChemicalRecipe(id)
+                || isT21ChemicalRecipe(id);
     }
 
     private static boolean isT11FixedRecipe(ResourceLocation id) {
@@ -813,13 +807,15 @@ public final class GTRecipeMapLoader {
         for (RecipeMap.Entry entry : entries) {
             boolean t5Recipe = isT5ChemicalRecipe(entry.id());
             boolean t11Chemical = isT11ChemicalRecipe(entry.id());
+            boolean t21Chemical = isT21ChemicalRecipe(entry.id());
+            boolean t22Petroleum = isT22PetroleumRecipe(entry.id());
             if (t5Recipe && !t5Map) {
                 throw new IllegalArgumentException(
                         "T5 recipe " + entry.id() + " targets non-T5 map " + map.id());
             }
-            if (dedicatedT5Map && !t5Recipe && !t11Chemical) {
+            if (dedicatedT5Map && !t5Recipe && !t11Chemical && !t21Chemical && !t22Petroleum) {
                 throw new IllegalArgumentException(
-                        "Dedicated T5 map " + map.id() + " requires recipe-id prefix t5/: "
+                        "Dedicated T5 map " + map.id() + " requires recipe-id prefix t5/, t11/, t21/, or t22/: "
                                 + entry.id());
             }
             if (t11Chemical

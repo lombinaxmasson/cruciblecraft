@@ -1,29 +1,26 @@
 {
+  "parent": "minecraft:block/block",
   "elements": [
     {
       "faces": {
         "down": {
-          "texture": "#all",
+          "texture": "#side",
           "tintindex": 0
         },
         "east": {
-          "texture": "#all",
+          "texture": "#side",
           "tintindex": 0
         },
         "north": {
-          "texture": "#all",
-          "tintindex": 0
-        },
-        "south": {
-          "texture": "#all",
+          "texture": "#end",
           "tintindex": 0
         },
         "up": {
-          "texture": "#all",
+          "texture": "#side",
           "tintindex": 0
         },
         "west": {
-          "texture": "#all",
+          "texture": "#side",
           "tintindex": 0
         }
       },
@@ -37,10 +34,31 @@
         12,
         4
       ]
+    },
+    {
+      "faces": {
+        "north": {
+          "texture": "#overlay",
+          "tintindex": 0
+        }
+      },
+      "from": [
+        3.998,
+        3.998,
+        -0.002
+      ],
+      "to": [
+        12.002,
+        12.002,
+        4.002
+      ]
     }
   ],
+  "render_type": "minecraft:cutout_mipped",
   "textures": {
-    "all": "minecraft:block/white_concrete",
-    "particle": "minecraft:block/white_concrete"
+    "end": "cruciblecraft:block/material/wire_end",
+    "overlay": "cruciblecraft:block/cable/insulation_2",
+    "particle": "cruciblecraft:block/cable/insulation_5",
+    "side": "cruciblecraft:block/cable/insulation_5"
   }
 }

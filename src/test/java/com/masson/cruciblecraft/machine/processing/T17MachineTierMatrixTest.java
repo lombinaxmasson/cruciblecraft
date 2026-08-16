@@ -89,21 +89,25 @@ class T17MachineTierMatrixTest {
                     MachineKindSpec.OverclockPolicy.CHEAP,
                     entry.overclockPolicy());
             assertTrue(entry.parallelDuration());
-            assertEquals(row.get("tier").getAsString(),
-                    entry.tier().id().toString());
+            assertEquals(row.get("tier_band").getAsString(),
+                    entry.tierBand().tierBandId().toString());
             assertEquals(row.get("material").getAsString(),
-                    entry.tier().materialId());
-            assertEquals(EnergyType.HEAT, entry.tier().energyType());
-            assertEquals(nominal / 2L, entry.tier().inputMinimum());
-            assertEquals(nominal, entry.tier().inputNominal());
-            assertEquals(nominal * 2L, entry.tier().inputMaximum());
-            assertEquals(nominal * 2L, entry.tier().energyCapacity());
+                    entry.tierBand().materialId());
+            assertEquals(EnergyType.HEAT,
+                    entry.tierBand().energyType());
+            assertEquals(nominal / 2L,
+                    entry.tierBand().inputMinimum());
+            assertEquals(nominal, entry.tierBand().inputNominal());
+            assertEquals(nominal * 2L,
+                    entry.tierBand().inputMaximum());
+            assertEquals(nominal * 2L,
+                    entry.tierBand().energyCapacity());
             assertEquals(
                     row.get("parallel").getAsInt(),
-                    entry.tier().parallelLimit());
-            assertEquals(10_000, entry.tier().efficiency());
+                    entry.tierBand().parallelLimit());
+            assertEquals(10_000, entry.tierBand().efficiency());
 
-            assertSame(entry.tier(), variant.tier());
+            assertSame(entry.tierBand(), variant.tierBand());
             assertEquals(entry.kindId(), variant.kind().id());
             assertEquals(
                     ProcessingMachineSpec.EnergyMode.ADJACENT,
@@ -141,11 +145,13 @@ class T17MachineTierMatrixTest {
                                 ? row.getValue()
                                 : row.getValue() << index;
                 assertEquals(nominal / 2L,
-                        variant.tier().inputMinimum());
-                assertEquals(nominal, variant.tier().inputNominal());
+                        variant.tierBand().inputMinimum());
+                assertEquals(
+                        nominal, variant.tierBand().inputNominal());
                 assertEquals(nominal * 2L,
-                        variant.tier().inputMaximum());
-                assertEquals(parallel, variant.tier().parallelLimit());
+                        variant.tierBand().inputMaximum());
+                assertEquals(
+                        parallel, variant.tierBand().parallelLimit());
                 assertEquals(
                         MachineKindSpec.OverclockPolicy.CHEAP,
                         variant.kind().overclockPolicy());
@@ -166,7 +172,9 @@ class T17MachineTierMatrixTest {
             assertEquals(
                     row.get("source_tier").getAsInt(),
                     entry.sourceTier());
-            assertEquals(EnergyType.ELECTRIC, entry.tier().energyType());
+            assertEquals(
+                    EnergyType.ELECTRIC,
+                    entry.tierBand().energyType());
             assertEquals(
                     MachineKindSpec.OverclockPolicy.STANDARD,
                     entry.overclockPolicy());
@@ -244,7 +252,7 @@ class T17MachineTierMatrixTest {
             assertEquals(3, variants.size(), kindRow.getKey().toString());
             for (int tierIndex = 0; tierIndex < variants.size(); tierIndex++) {
                 MachineVariant variant = variants.get(tierIndex);
-                TierProfile tier = variant.tier();
+                TierProfile tier = variant.tierBand();
                 assertEquals(EnergyType.HEAT, tier.energyType());
                 assertEquals(
                         ProcessingMachineSpec.EnergyMode.ADJACENT,
@@ -309,20 +317,20 @@ class T17MachineTierMatrixTest {
         MachineExecutionPlan boundary = MachineExecutionPlan.create(
                 recipe(16L, 20),
                 smelter.kind(),
-                smelter.tier(),
+                smelter.tierBand(),
                 1_000).orElseThrow();
         assertEquals(1_000, boundary.operations());
         assertFalse(MachineExecutionPlan.create(
                 recipe(16L, 20),
                 smelter.kind(),
-                smelter.tier(),
+                smelter.tierBand(),
                 1_001).isPresent());
         assertFalse(MachineExecutionPlan.create(
                 recipe(
-                        smelter.tier().inputMaximum(),
+                        smelter.tierBand().inputMaximum(),
                         Integer.MAX_VALUE),
                 smelter.kind(),
-                smelter.tier(),
+                smelter.tierBand(),
                 1_000).isPresent());
 
         List<ItemStack> compacted =
@@ -341,7 +349,7 @@ class T17MachineTierMatrixTest {
         assertEquals(3, variants.size());
         for (int index = 0; index < variants.size(); index++) {
             MachineVariant variant = variants.get(index);
-            TierProfile tier = variant.tier();
+            TierProfile tier = variant.tierBand();
             long nominal = 32L << (index * 2);
             assertEquals(nominal / 2L, tier.inputMinimum());
             assertEquals(nominal, tier.inputNominal());
@@ -421,9 +429,11 @@ class T17MachineTierMatrixTest {
             runtime.overcharged();
             assertEquals("overcharged", runtime.status());
             assertFalse(MachineExecutionPlan.create(
-                    recipe(variant.tier().inputMaximum() + 1L, 20),
+                    recipe(
+                            variant.tierBand().inputMaximum() + 1L,
+                            20),
                     variant.kind(),
-                    variant.tier(),
+                    variant.tierBand(),
                     1).isPresent());
             runtime.recipePowerExceeded("test:t17", 20);
             assertEquals("recipe_power_exceeded", runtime.status());

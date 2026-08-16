@@ -191,6 +191,35 @@ class ProcessingMachineMenuTest {
         assertEquals(2_500_000, menu.tankCapacity(0));
     }
 
+    @Test
+    void configuredStyleMenuScalesOnlyTheSynchronizedPermilleSlot() {
+        SimpleContainerData synchronizedData =
+                new SimpleContainerData(ConfiguredProcessingMachineMenu.dataCount());
+        synchronizedData.set(
+                ConfiguredProcessingMachineMenu.PROGRESS_PERMILLE_DATA_INDEX,
+                500);
+        PermilleMenu menu = new PermilleMenu(
+                new SimpleContainer(36),
+                synchronizedData);
+
+        assertEquals(63, menu.progress());
+        assertEquals(64, menu.duration());
+        assertEquals(9, menu.scaledProgress(18));
+
+        synchronizedData.set(
+                ConfiguredProcessingMachineMenu.PROGRESS_PERMILLE_DATA_INDEX,
+                1_000);
+        assertEquals(18, menu.scaledProgress(18));
+        synchronizedData.set(
+                ConfiguredProcessingMachineMenu.PROGRESS_PERMILLE_DATA_INDEX,
+                1_001);
+        assertEquals(18, menu.scaledProgress(18));
+        synchronizedData.set(
+                ConfiguredProcessingMachineMenu.PROGRESS_PERMILLE_DATA_INDEX,
+                -1);
+        assertEquals(0, menu.scaledProgress(18));
+    }
+
     private static SimpleContainer blockedPlayerInventory(int openSlot) {
         SimpleContainer player = new SimpleContainer(36);
         for (int slot = 0; slot < player.getContainerSize(); slot++) {
@@ -346,6 +375,33 @@ class ProcessingMachineMenuTest {
 
         @Override public int tankAmount(int tank) {
             return tankFluid(tank).getAmount();
+        }
+    }
+
+    private static final class PermilleMenu extends ProcessingMachineMenu {
+        private PermilleMenu(
+                SimpleContainer player,
+                SimpleContainerData synchronizedData) {
+            super(
+                    null,
+                    0,
+                    player,
+                    new ItemStackHandler(SPEC.items().slotCount()),
+                    synchronizedData,
+                    SPEC,
+                    ignored -> true);
+        }
+
+        @Override public int progress() {
+            return 63;
+        }
+
+        @Override public int duration() {
+            return 64;
+        }
+
+        @Override protected int progressPermilleDataIndex() {
+            return ConfiguredProcessingMachineMenu.PROGRESS_PERMILLE_DATA_INDEX;
         }
     }
 

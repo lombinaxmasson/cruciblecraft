@@ -9,7 +9,7 @@
       "deferred": {
         "owner": "POST_T19",
         "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
         "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
@@ -30,7 +30,7 @@
       "deferred": {
         "owner": "POST_T19",
         "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
         "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
@@ -48,20 +48,15 @@
       "cc_behavior": null,
       "cc_multiblock": null,
       "classification_rule_id": "multiblock-post-bedrock-drill",
-      "deferred": {
-        "owner": "POST_T19",
-        "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
-        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
-      },
-      "disposition": "deferred_with_reason",
-      "implementation_status": "post_t19",
+      "deferred": null,
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
       "normalization_reason": "MultiTileEntityBedrockDrill is a concrete world-interacting controller.",
       "raw_members": [
         "MultiTileEntityBedrockDrill"
       ],
-      "roadmap_bucket": "POST_T19",
-      "scope_reason": "Bedrock world interaction is outside the third-stage selected families."
+      "roadmap_bucket": "T23",
+      "scope_reason": "T23 A1 out_of_scope: bedrock/dimension world interaction is excluded by the phase-4 master plan T23 scope."
     },
     {
       "canonical_id": "centrifuge",
@@ -88,7 +83,7 @@
       "deferred": {
         "owner": "POST_T19",
         "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
         "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
@@ -125,7 +120,7 @@
       "deferred": {
         "owner": "POST_T19",
         "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
         "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
@@ -146,7 +141,7 @@
       "deferred": {
         "owner": "POST_T19",
         "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
         "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
@@ -167,7 +162,7 @@
       "deferred": {
         "owner": "POST_T19",
         "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
         "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
@@ -185,20 +180,15 @@
       "cc_behavior": null,
       "cc_multiblock": null,
       "classification_rule_id": "multiblock-post-distillation-tower",
-      "deferred": {
-        "owner": "POST_T19",
-        "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
-        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
-      },
-      "disposition": "deferred_with_reason",
-      "implementation_status": "post_t19",
+      "deferred": null,
+      "disposition": "in_scope",
+      "implementation_status": "selected_t23",
       "normalization_reason": "The standard distillation tower is a concrete processing controller.",
       "raw_members": [
         "MultiTileEntityDistillationTower"
       ],
-      "roadmap_bucket": "POST_T19",
-      "scope_reason": "No distillation tower multiblock batch is selected through T19."
+      "roadmap_bucket": "T23",
+      "scope_reason": "T23 A2 selected: petroleum-chain scale-up tower (selection criteria in tools/t23_multiblock_behavior_classification.json)."
     },
     {
       "canonical_id": "electrolyzer",
@@ -209,7 +199,7 @@
       "deferred": {
         "owner": "POST_T19",
         "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
         "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
@@ -230,7 +220,7 @@
       "deferred": {
         "owner": "POST_T19",
         "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
         "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
@@ -248,20 +238,15 @@
       "cc_behavior": null,
       "cc_multiblock": null,
       "classification_rule_id": "multiblock-post-fusion",
-      "deferred": {
-        "owner": "POST_T19",
-        "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
-        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
-      },
-      "disposition": "deferred_with_reason",
-      "implementation_status": "post_t19",
+      "deferred": null,
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
       "normalization_reason": "MultiTileEntityFusionReactor is a concrete high-energy controller.",
       "raw_members": [
         "MultiTileEntityFusionReactor"
       ],
-      "roadmap_bucket": "POST_T19",
-      "scope_reason": "Fusion is explicitly beyond the third-stage energy scope."
+      "roadmap_bucket": "T23",
+      "scope_reason": "T23 A1 out_of_scope: nuclear fusion controller is excluded by the phase-4 master plan T23 scope (classification artifact tools/t23_multiblock_behavior_classification.json)."
     },
     {
       "canonical_id": "implosion_compressor",
@@ -272,7 +257,7 @@
       "deferred": {
         "owner": "POST_T19",
         "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
         "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
@@ -290,20 +275,15 @@
       "cc_behavior": null,
       "cc_multiblock": null,
       "classification_rule_id": "multiblock-t18-large-boiler",
-      "deferred": {
-        "owner": "T18",
-        "reason": "The source controller is selected for the third-stage energy-chain family but T13 adds no runtime.",
-        "recheck_point": "T18 multiblock energy-chain implementation gate.",
-        "replacement_condition": "T18 supplies the exact source-backed structure, energy identities, conservation, overload and exhaust transaction."
-      },
-      "disposition": "deferred_with_reason",
-      "implementation_status": "third_stage_deferred",
+      "deferred": null,
+      "disposition": "in_scope",
+      "implementation_status": "selected_t23",
       "normalization_reason": "MultiTileEntityLargeBoiler is a concrete heat-to-steam controller.",
       "raw_members": [
         "MultiTileEntityLargeBoiler"
       ],
-      "roadmap_bucket": "T18",
-      "scope_reason": "Large Boiler belongs to the T18 steam chain."
+      "roadmap_bucket": "T23",
+      "scope_reason": "T23 A2 selected: the T18 large-boiler deferral is closed by selection; structure, HU energy identity, conservation and exhaust transaction close in T23 C1 (successor of the T18 replacement condition)."
     },
     {
       "canonical_id": "large_dynamo",
@@ -312,19 +292,19 @@
       "cc_multiblock": null,
       "classification_rule_id": "multiblock-t18-large-dynamo",
       "deferred": {
-        "owner": "T18",
-        "reason": "The source controller is selected for the third-stage energy-chain family but T13 adds no runtime.",
-        "recheck_point": "T18 multiblock energy-chain implementation gate.",
-        "replacement_condition": "T18 supplies the exact source-backed structure, energy identities, conservation, overload and exhaust transaction."
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
-      "implementation_status": "third_stage_deferred",
+      "implementation_status": "post_t19",
       "normalization_reason": "MultiTileEntityLargeDynamo is a concrete energy conversion controller.",
       "raw_members": [
         "MultiTileEntityLargeDynamo"
       ],
-      "roadmap_bucket": "T18",
-      "scope_reason": "Large Dynamo belongs to the T18 RU-to-EU chain."
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "T23 A1 post_1_0: single bronze_dynamo already covers the v1 RU->EU conversion; multiblock form is pure scale-up."
     },
     {
       "canonical_id": "large_heat_exchanger",
@@ -333,19 +313,19 @@
       "cc_multiblock": null,
       "classification_rule_id": "multiblock-t18-large-heat-exchanger",
       "deferred": {
-        "owner": "T18",
-        "reason": "The source controller is selected for the third-stage energy-chain family but T13 adds no runtime.",
-        "recheck_point": "T18 multiblock energy-chain implementation gate.",
-        "replacement_condition": "T18 supplies the exact source-backed structure, energy identities, conservation, overload and exhaust transaction."
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
-      "implementation_status": "third_stage_deferred",
+      "implementation_status": "post_t19",
       "normalization_reason": "MultiTileEntityLargeHeatExchanger is a concrete thermal conversion controller.",
       "raw_members": [
         "MultiTileEntityLargeHeatExchanger"
       ],
-      "roadmap_bucket": "T18",
-      "scope_reason": "Large Heat Exchanger belongs to later T18 thermal conversion."
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "T23 A1 post_1_0: hot-fluid exchange chain is not closed in CC v1."
     },
     {
       "canonical_id": "large_turbine_gas",
@@ -354,19 +334,19 @@
       "cc_multiblock": null,
       "classification_rule_id": "multiblock-t18-turbine-gas",
       "deferred": {
-        "owner": "T18",
-        "reason": "The source controller is selected for the third-stage energy-chain family but T13 adds no runtime.",
-        "recheck_point": "T18 multiblock energy-chain implementation gate.",
-        "replacement_condition": "T18 supplies the exact source-backed structure, energy identities, conservation, overload and exhaust transaction."
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
-      "implementation_status": "third_stage_deferred",
+      "implementation_status": "post_t19",
       "normalization_reason": "Gas turbine fuel semantics are behaviorally distinct from steam.",
       "raw_members": [
         "MultiTileEntityLargeTurbineGas"
       ],
-      "roadmap_bucket": "T18",
-      "scope_reason": "Gas turbine conversion belongs to the T18 fuel/energy chain."
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "T23 A1 post_1_0: single burning_gas_generator covers the v1 gas chain; HU->RU has no v1 gap."
     },
     {
       "canonical_id": "large_turbine_steam",
@@ -375,19 +355,19 @@
       "cc_multiblock": null,
       "classification_rule_id": "multiblock-t18-turbine-steam",
       "deferred": {
-        "owner": "T18",
-        "reason": "The source controller is selected for the third-stage energy-chain family but T13 adds no runtime.",
-        "recheck_point": "T18 multiblock energy-chain implementation gate.",
-        "replacement_condition": "T18 supplies the exact source-backed structure, energy identities, conservation, overload and exhaust transaction."
+        "owner": "POST_T19",
+        "reason": "The source controller is valid but has no selected implementation batch through T19.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
+        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
-      "implementation_status": "third_stage_deferred",
+      "implementation_status": "post_t19",
       "normalization_reason": "Steam turbine fluid semantics are behaviorally distinct from gas.",
       "raw_members": [
         "MultiTileEntityLargeTurbineSteam"
       ],
-      "roadmap_bucket": "T18",
-      "scope_reason": "Steam turbine conversion belongs to the T18 steam/energy chain."
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "T23 A1 post_1_0: single bronze_steam_engine covers the v1 steam consumption; multiblock form is pure scale-up."
     },
     {
       "canonical_id": "lightning_rod",
@@ -395,20 +375,15 @@
       "cc_behavior": null,
       "cc_multiblock": null,
       "classification_rule_id": "multiblock-post-lightning",
-      "deferred": {
-        "owner": "POST_T19",
-        "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
-        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
-      },
-      "disposition": "deferred_with_reason",
-      "implementation_status": "post_t19",
+      "deferred": null,
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
       "normalization_reason": "MultiTileEntityLightningRod is a concrete world-energy controller.",
       "raw_members": [
         "MultiTileEntityLightningRod"
       ],
-      "roadmap_bucket": "POST_T19",
-      "scope_reason": "World lightning collection is outside the selected third-stage chains."
+      "roadmap_bucket": "T23",
+      "scope_reason": "T23 A1 out_of_scope: weather world interaction is excluded by the phase-4 master plan T23 scope."
     },
     {
       "canonical_id": "logistics_core",
@@ -419,7 +394,7 @@
       "deferred": {
         "owner": "POST_T19",
         "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
         "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
@@ -437,20 +412,15 @@
       "cc_behavior": null,
       "cc_multiblock": null,
       "classification_rule_id": "multiblock-post-matter-fabricator",
-      "deferred": {
-        "owner": "POST_T19",
-        "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
-        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
-      },
-      "disposition": "deferred_with_reason",
-      "implementation_status": "post_t19",
+      "deferred": null,
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
       "normalization_reason": "MultiTileEntityMatterFabricator is a concrete high-energy processing controller.",
       "raw_members": [
         "MultiTileEntityMatterFabricator"
       ],
-      "roadmap_bucket": "POST_T19",
-      "scope_reason": "Matter fabrication is outside the selected third-stage families."
+      "roadmap_bucket": "T23",
+      "scope_reason": "T23 A1 out_of_scope: post-scarcity QU content is excluded by the phase-4 master plan T23 scope."
     },
     {
       "canonical_id": "mixer",
@@ -461,7 +431,7 @@
       "deferred": {
         "owner": "POST_T19",
         "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
         "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
@@ -482,7 +452,7 @@
       "deferred": {
         "owner": "POST_T19",
         "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
         "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
@@ -503,7 +473,7 @@
       "deferred": {
         "owner": "POST_T19",
         "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
         "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
@@ -524,7 +494,7 @@
       "deferred": {
         "owner": "POST_T19",
         "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
         "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
@@ -545,7 +515,7 @@
       "deferred": {
         "owner": "POST_T19",
         "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
         "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
@@ -563,21 +533,16 @@
       "cc_behavior": null,
       "cc_multiblock": null,
       "classification_rule_id": "multiblock-post-tank-3",
-      "deferred": {
-        "owner": "POST_T19",
-        "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
-        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
-      },
-      "disposition": "deferred_with_reason",
-      "implementation_status": "post_t19",
+      "deferred": null,
+      "disposition": "in_scope",
+      "implementation_status": "selected_t23",
       "normalization_reason": "The metal and wood classes are material variants of one 3x3x3 tank controller.",
       "raw_members": [
         "MultiTileEntityTank3x3x3Metal",
         "MultiTileEntityTank3x3x3Wood"
       ],
-      "roadmap_bucket": "POST_T19",
-      "scope_reason": "Generic multiblock tanks are outside the selected third-stage structures."
+      "roadmap_bucket": "T23",
+      "scope_reason": "T23 A2 selected: bulk fluid storage for the closed steam/fuel/petroleum chains (selection criteria in tools/t23_multiblock_behavior_classification.json)."
     },
     {
       "canonical_id": "tank_5x5x5_metal",
@@ -588,7 +553,7 @@
       "deferred": {
         "owner": "POST_T19",
         "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
+        "recheck_point": "T23 A1 behavior classification executed (see tools/t23_multiblock_behavior_classification.json); next recheck at the next multiblock batch selection.",
         "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
       },
       "disposition": "deferred_with_reason",
@@ -606,34 +571,31 @@
       "cc_behavior": null,
       "cc_multiblock": null,
       "classification_rule_id": "multiblock-post-von-da-graagg",
-      "deferred": {
-        "owner": "POST_T19",
-        "reason": "The source controller is valid but has no selected implementation batch through T19.",
-        "recheck_point": "Post-T19 multiblock family prioritization.",
-        "replacement_condition": "A later roadmap batch selects the exact canonical controller and closes structure, ports, transaction, UI and acquisition."
-      },
-      "disposition": "deferred_with_reason",
-      "implementation_status": "post_t19",
+      "deferred": null,
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
       "normalization_reason": "MultiTileEntityVonDaGraagg is a concrete controller with unique behavior.",
       "raw_members": [
         "MultiTileEntityVonDaGraagg"
       ],
-      "roadmap_bucket": "POST_T19",
-      "scope_reason": "This specialized controller has no selected batch through T19."
+      "roadmap_bucket": "T23",
+      "scope_reason": "T23 A1 out_of_scope: easter-egg content is excluded by the phase-4 master plan T23 scope."
     }
   ],
   "counts": {
     "canonical": 30,
     "classifications": {
-      "deferred_with_reason": 28,
-      "in_scope": 2
+      "deferred_with_reason": 20,
+      "in_scope": 5,
+      "out_of_scope": 5
     },
     "classified": 30,
     "excluded": 13,
     "implementation_statuses": {
       "implemented": 2,
-      "post_t19": 23,
-      "third_stage_deferred": 5
+      "out_of_scope": 5,
+      "post_t19": 20,
+      "selected_t23": 3
     },
     "raw_classes": 44,
     "raw_files": 44,
@@ -905,8 +867,8 @@
   "field_cardinality": {
     "canonical_output": {
       "canonical_id": 30,
-      "disposition": 2,
-      "implementation_status": 3,
+      "disposition": 3,
+      "implementation_status": 4,
       "roadmap_bucket": 3
     },
     "raw_source": {

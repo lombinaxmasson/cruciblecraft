@@ -1,0 +1,2988 @@
+{
+  "consumers": "Runtime derivation reference remains build_t5_source_projection.fluid_form(); wiring the translation layer to consume this artifact is T23 work.",
+  "counts": {
+    "mapped": 302,
+    "no_cc_fluid": 18,
+    "out_of_scope": 2,
+    "total": 322,
+    "unclassified": 0
+  },
+  "derivation_chain": {
+    "activation_policy": "tools/gt6_material_activation_policy.json",
+    "builtins": {
+      "creosote": "cruciblecraft:creosote",
+      "lava": "minecraft:lava",
+      "steam": "cruciblecraft:steam",
+      "water": "minecraft:water"
+    },
+    "gate_files": [
+      "src/main/resources/data/cruciblecraft/t10_container_fluid_gate.json",
+      "src/main/resources/data/cruciblecraft/t11_hydrocarbon_fluid_gate.json",
+      "src/t5_chemical_generated/resources/data/cruciblecraft/t5_chemical_fluid_gate.json"
+    ],
+    "material_molten_flags": "src/main/resources/data/cruciblecraft/materials",
+    "normalized_fluids": "tools/gt6_oredict_fluids_normalized.json"
+  },
+  "fixtures": [
+    {
+      "cc_fluid_id": "cruciblecraft:molten_brass",
+      "gt6_fluid": "molten.brass"
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_asphalt",
+      "gt6_fluid": "molten.asphalt"
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:construction_foam",
+      "gt6_fluid": "ic2constructionfoam"
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:water_distilled",
+      "gt6_fluid": "ic2distilledwater"
+    }
+  ],
+  "inputs": {
+    "tools/build_t22_5_fluid_mapping.py": "63a89233f7930d87244cd65671bc7d7ef02fe710a6105b11726196a7df35cf25",
+    "tools/gt6_material_activation_policy.json": "3c863cf10bb24b7185f762b47518b106e971a1d1b0cfc5ce2e94a60069881c9b",
+    "tools/gt6_oredict_fluids_normalized.json": "3857607584cc7b26ea29f7c7b024157ffb18b2b3652dca0bdbc9aadb11bdac5a"
+  },
+  "mapping": [
+    {
+      "cc_fluid_id": "cruciblecraft:air",
+      "cc_material": "air",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "air",
+      "material_id": 9830
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:ammonia",
+      "cc_material": "ammonia",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "ammonia",
+      "material_id": 8025
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:aqua_regia",
+      "cc_material": "aqua_regia",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "aquaregia",
+      "material_id": 9827
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:argon",
+      "cc_material": "argon",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "argon",
+      "material_id": 180
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:astatine",
+      "cc_material": "astatine",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "astatine",
+      "material_id": 850
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:olive_oil",
+      "cc_material": "olive_oil",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "binnie.juiceolive",
+      "material_id": 9877
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:ethanol",
+      "cc_material": "ethanol",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "bioethanol",
+      "material_id": 9842
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:biomass",
+      "cc_material": "biomass",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "biomass",
+      "material_id": 9840
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:black_vitriol",
+      "cc_material": "black_vitriol",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "blackvitriol",
+      "material_id": 8403
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:blue_vitriol",
+      "cc_material": "blue_vitriol",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "bluevitriol",
+      "material_id": 8404
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:bromine",
+      "cc_material": "bromine",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "bromine",
+      "material_id": 350
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:butane",
+      "cc_material": "butane",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "butane",
+      "material_id": 9866
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:carbon_dioxide",
+      "cc_material": "carbon_dioxide",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "carbondioxide",
+      "material_id": 9836
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:carbon_monoxide",
+      "cc_material": "carbon_monoxide",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "carbonmonoxide",
+      "material_id": 9838
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:carbon_trioxide",
+      "cc_material": "carbon_trioxide",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "carbontrioxide",
+      "material_id": 9843
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:chlorine",
+      "cc_material": "chlorine",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "chlorine",
+      "material_id": 170
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:chloroauric_acid",
+      "cc_material": "chloroauric_acid",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "chloroauricacid",
+      "material_id": 8400
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:chloroplatinic_acid",
+      "cc_material": "chloroplatinic_acid",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "chloroplatinicacid",
+      "material_id": 8401
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:creosote",
+      "derivation": "builtin",
+      "disposition": "mapped",
+      "fluid": "creosote",
+      "material_id": 9870
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:cyan_vitriol",
+      "cc_material": "cyan_vitriol",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "cyanvitriol",
+      "material_id": 8408
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:deuterium",
+      "cc_material": "deuterium",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "deuterium",
+      "material_id": 11
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:diesel",
+      "cc_material": "diesel",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "diesel",
+      "material_id": 9863
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:disulfuric_acid",
+      "cc_material": "disulfuric_acid",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "disulfuricacid",
+      "material_id": 9844
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:ethanol",
+      "cc_material": "ethanol",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "ethanol",
+      "material_id": 9842
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:ethylene",
+      "cc_material": "ethylene",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "ethylene",
+      "material_id": 9868
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:fish_oil",
+      "cc_material": "fish_oil",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "fishoil",
+      "material_id": 9871
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:fluorine",
+      "cc_material": "fluorine",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "fluorine",
+      "material_id": 90
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:fuel",
+      "cc_material": "fuel",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "fuel",
+      "material_id": 9860
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:glue",
+      "cc_material": "glue",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "glue",
+      "material_id": 9881
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:glycerol",
+      "cc_material": "glycerol",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "glycerol",
+      "material_id": 9828
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:glyceryl",
+      "cc_material": "glyceryl",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "glyceryl",
+      "material_id": 9821
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:gray_vitriol",
+      "cc_material": "gray_vitriol",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "grayvitriol",
+      "material_id": 8410
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:green_vitriol",
+      "cc_material": "green_vitriol",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "greenvitriol",
+      "material_id": 8405
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:heavy_water",
+      "cc_material": "heavy_water",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "heavywater",
+      "material_id": 9812
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:helium",
+      "cc_material": "helium",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "helium",
+      "material_id": 20
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:helium3",
+      "cc_material": "helium3",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "helium3",
+      "material_id": 21
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:helium_neon",
+      "cc_material": "helium_neon",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "heliumneon",
+      "material_id": 9839
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:helium",
+      "cc_material": "helium",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "heliumplasma",
+      "material_id": 20
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:hemp_oil",
+      "cc_material": "hemp_oil",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "hempoil",
+      "material_id": 9873
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:hexafluorosilicic_acid",
+      "cc_material": "hexafluorosilicic_acid",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "hexafluorosilicicacid",
+      "material_id": 8011
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:holy_water",
+      "cc_material": "holy_water",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "holywater",
+      "material_id": 9805
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:frying_oil_hot",
+      "cc_material": "frying_oil_hot",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "hotfryingoil",
+      "material_id": 9880
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:hydrochloric_acid",
+      "cc_material": "hydrochloric_acid",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "hydrochloricacid",
+      "material_id": 9826
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:hydrogen",
+      "cc_material": "hydrogen",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "hydrogen",
+      "material_id": 10
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:hydrogen_fluoride",
+      "cc_material": "hydrogen_fluoride",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "hydrogenfluoride",
+      "material_id": 9829
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:hydrogen_peroxide",
+      "cc_material": "hydrogen_peroxide",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "hydrogenperoxide",
+      "material_id": 9809
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:hydrosulfuric_acid",
+      "cc_material": "hydrosulfuric_acid",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "hydrosulfuricacid",
+      "material_id": 8024
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:biomass",
+      "cc_material": "biomass",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "ic2biomass",
+      "material_id": 9840
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:construction_foam",
+      "cc_material": "construction_foam",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "ic2constructionfoam",
+      "material_id": 9883
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:water_distilled",
+      "cc_material": "water_distilled",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "ic2distilledwater",
+      "material_id": 9808
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:uumatter",
+      "cc_material": "uumatter",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "ic2uumatter",
+      "material_id": 9885
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:kerosine",
+      "cc_material": "kerosine",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "kerosene",
+      "material_id": 9862
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:kerosine",
+      "cc_material": "kerosine",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "kerosine",
+      "material_id": 9862
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:krypton",
+      "cc_material": "krypton",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "krypton",
+      "material_id": 360
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:latex",
+      "cc_material": "latex",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "latex",
+      "material_id": 9886
+    },
+    {
+      "cc_fluid_id": "minecraft:lava",
+      "derivation": "builtin",
+      "disposition": "mapped",
+      "fluid": "lava",
+      "material_id": 9810
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:lin_oil",
+      "cc_material": "lin_oil",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "linoil",
+      "material_id": 9874
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:oxygen",
+      "cc_material": "oxygen",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "liquidoxygen",
+      "material_id": 80
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:lubricant",
+      "cc_material": "lubricant",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "lubricant",
+      "material_id": 9882
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:martian_vitriol",
+      "cc_material": "martian_vitriol",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "martianvitriol",
+      "material_id": 8411
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:methane",
+      "cc_material": "methane",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "methane",
+      "material_id": 9832
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_hslasteel",
+      "cc_material": "hslasteel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten hsla",
+      "material_id": 8637
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_abyssalnite",
+      "cc_material": "abyssalnite",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.abyssalnite",
+      "material_id": 1850
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_adamantium",
+      "cc_material": "adamantium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.adamantium",
+      "material_id": 2220
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_alumina",
+      "cc_material": "alumina",
+      "derivation": "route_gate",
+      "disposition": "mapped",
+      "fluid": "molten.alumina",
+      "material_id": 8008
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_aluminium",
+      "cc_material": "aluminium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.aluminium",
+      "material_id": 130
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_aluminium_brass",
+      "cc_material": "aluminium_brass",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.aluminiumbrass",
+      "material_id": 8700
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_aluminium_fluoride",
+      "cc_material": "aluminium_fluoride",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.aluminiumfluoride",
+      "material_id": 8010
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_alumite",
+      "cc_material": "alumite",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.alumite",
+      "material_id": 8702
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_ancient_debris",
+      "cc_material": "ancient_debris",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.ancientdebris",
+      "material_id": 8744
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_angmallen",
+      "cc_material": "angmallen",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.angmallen",
+      "material_id": 8603
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_annealed_copper",
+      "cc_material": "annealed_copper",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.annealedcopper",
+      "material_id": 8640
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_antimony",
+      "cc_material": "antimony",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.antimony",
+      "material_id": 510
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_ardite",
+      "cc_material": "ardite",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.ardite",
+      "material_id": 8707
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_arsenic",
+      "cc_material": "arsenic",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.arsenic",
+      "material_id": 330
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_arsenic_bronze",
+      "cc_material": "arsenic_bronze",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.arsenicbronze",
+      "material_id": 8615
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_arsenic_copper",
+      "cc_material": "arsenic_copper",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.arseniccopper",
+      "material_id": 8614
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_asphalt",
+      "cc_material": "asphalt",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.asphalt",
+      "material_id": 8266
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_astatine",
+      "cc_material": "astatine",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.astatine",
+      "material_id": 850
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_astral_silver",
+      "cc_material": "astral_silver",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.astralsilver",
+      "material_id": 8676
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_atlarus",
+      "cc_material": "atlarus",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.atlarus",
+      "material_id": 2210
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_barium",
+      "cc_material": "barium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.barium",
+      "material_id": 560
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_battery_alloy",
+      "cc_material": "battery_alloy",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.batteryalloy",
+      "material_id": 8668
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_beryllium",
+      "cc_material": "beryllium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.beryllium",
+      "material_id": 40
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_beryllium7",
+      "cc_material": "beryllium7",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.beryllium7",
+      "material_id": 41
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_beryllium8",
+      "cc_material": "beryllium8",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.beryllium8",
+      "material_id": 42
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_bismuth",
+      "cc_material": "bismuth",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.bismuth",
+      "material_id": 830
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_bismuth_bronze",
+      "cc_material": "bismuth_bronze",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.bismuthbronze",
+      "material_id": 8612
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_black_bronze",
+      "cc_material": "black_bronze",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.blackbronze",
+      "material_id": 8611
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_black_steel",
+      "cc_material": "black_steel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.blacksteel",
+      "material_id": 8631
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_blue_alloy",
+      "cc_material": "blue_alloy",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.bluealloy",
+      "material_id": 8659
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_blue_steel",
+      "cc_material": "blue_steel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.bluesteel",
+      "material_id": 8632
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_boron",
+      "cc_material": "boron",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.boron",
+      "material_id": 50
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_boron11",
+      "cc_material": "boron11",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.boron11",
+      "material_id": 51
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_brass",
+      "cc_material": "brass",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.brass",
+      "material_id": 8620
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_bronze",
+      "cc_material": "bronze",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.bronze",
+      "material_id": 8610
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_caesium",
+      "cc_material": "caesium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.caesium",
+      "material_id": 550
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_calcite",
+      "cc_material": "calcite",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.calcite",
+      "material_id": 9107
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_calcium",
+      "cc_material": "calcium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.calcium",
+      "material_id": 200
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_calcium_chloride",
+      "cc_material": "calcium_chloride",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.calciumchloride",
+      "material_id": 8028
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_carbon",
+      "cc_material": "carbon",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.carbon",
+      "material_id": 60
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_carbon13",
+      "cc_material": "carbon13",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.carbon13",
+      "material_id": 61
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_carbon14",
+      "cc_material": "carbon14",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.carbon14",
+      "material_id": 62
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_celenegil",
+      "cc_material": "celenegil",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.celenegil",
+      "material_id": 8779
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_cheese",
+      "cc_material": "cheese",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.cheese",
+      "material_id": 9780
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_chocolate",
+      "cc_material": "chocolate",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.chocolate",
+      "material_id": 9783
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_chromium",
+      "cc_material": "chromium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.chromium",
+      "material_id": 240
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_cobalt",
+      "cc_material": "cobalt",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.cobalt",
+      "material_id": 270
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_cobalt_brass",
+      "cc_material": "cobalt_brass",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.cobaltbrass",
+      "material_id": 8621
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_constantan",
+      "cc_material": "constantan",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.constantan",
+      "material_id": 8662
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_copper",
+      "cc_material": "copper",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.copper",
+      "material_id": 290
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_coralium",
+      "cc_material": "coralium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.coralium",
+      "material_id": 1860
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_cryolite",
+      "cc_material": "cryolite",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.cryolite",
+      "material_id": 8009
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_damascus_steel",
+      "cc_material": "damascus_steel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.damascussteel",
+      "material_id": 8634
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_dark_thaumium",
+      "cc_material": "dark_thaumium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.darkthaumium",
+      "material_id": 8680
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_desh",
+      "cc_material": "desh",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.desh",
+      "material_id": 8750
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_draconium",
+      "cc_material": "draconium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.draconium",
+      "material_id": 8791
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_draconium_awakened",
+      "cc_material": "draconium_awakened",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.draconiumawakened",
+      "material_id": 8792
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_dreadium",
+      "cc_material": "dreadium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.dreadium",
+      "material_id": 1870
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_duranium_elemental",
+      "cc_material": "duranium_elemental",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.duraniumelemental",
+      "material_id": 1450
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_efrine",
+      "cc_material": "efrine",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.efrine",
+      "material_id": 8747
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_electrotine_alloy",
+      "cc_material": "electrotine_alloy",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.electrotinealloy",
+      "material_id": 8658
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_electrum",
+      "cc_material": "electrum",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.electrum",
+      "material_id": 8600
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_enderium",
+      "cc_material": "enderium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.enderium",
+      "material_id": 8710
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_enderium_base",
+      "cc_material": "enderium_base",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.enderiumbase",
+      "material_id": 8729
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_ender_pearl",
+      "cc_material": "ender_pearl",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.enderpearl",
+      "material_id": 8318
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_ethaxium",
+      "cc_material": "ethaxium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.ethaxium",
+      "material_id": 1880
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_ferrous_chloride",
+      "cc_material": "ferrous_chloride",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.ferrouschloride",
+      "material_id": 8030
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_fiery_steel",
+      "cc_material": "fiery_steel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.fierysteel",
+      "material_id": 8675
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_flamascus_steel",
+      "cc_material": "flamascus_steel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.flamascussteel",
+      "material_id": 8697
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_fluorite",
+      "cc_material": "fluorite",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.fluorite",
+      "material_id": 9215
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_francium",
+      "cc_material": "francium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.francium",
+      "material_id": 870
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_germanium",
+      "cc_material": "germanium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.germanium",
+      "material_id": 320
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_gloomstone",
+      "cc_material": "gloomstone",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.gloomstone",
+      "material_id": 8456
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_glowstone",
+      "cc_material": "glowstone",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.glowstone",
+      "material_id": 8341
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_glowstone_ceres",
+      "cc_material": "glowstone_ceres",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.glowstoneceres",
+      "material_id": 8368
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_glowstone_enceladus",
+      "cc_material": "glowstone_enceladus",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.glowstoneenceladus",
+      "material_id": 8370
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_glowstone_io",
+      "cc_material": "glowstone_io",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.glowstoneio",
+      "material_id": 8369
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_glowstone_pluto",
+      "cc_material": "glowstone_pluto",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.glowstonepluto",
+      "material_id": 8372
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_glowstone_proteus",
+      "cc_material": "glowstone_proteus",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.glowstoneproteus",
+      "material_id": 8371
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_gold",
+      "cc_material": "gold",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.gold",
+      "material_id": 790
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_gold198",
+      "cc_material": "gold198",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.gold198",
+      "material_id": 791
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_gold_inductive",
+      "cc_material": "gold_inductive",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.goldinductive",
+      "material_id": 8604
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_hematite",
+      "cc_material": "hematite",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.hematite",
+      "material_id": 9104
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_hepatizon",
+      "cc_material": "hepatizon",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.hepatizon",
+      "material_id": 8613
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_hsse",
+      "cc_material": "hsse",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.hsse",
+      "material_id": 8797
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_hssg",
+      "cc_material": "hssg",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.hssg",
+      "material_id": 8796
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_hsss",
+      "cc_material": "hsss",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.hsss",
+      "material_id": 8798
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_ilmenite",
+      "cc_material": "ilmenite",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.ilmenite",
+      "material_id": 9120
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_invar",
+      "cc_material": "invar",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.invar",
+      "material_id": 8661
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_iridium",
+      "cc_material": "iridium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.iridium",
+      "material_id": 770
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_iron",
+      "cc_material": "iron",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.iron",
+      "material_id": 260
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_ironwood",
+      "cc_material": "ironwood",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.ironwood",
+      "material_id": 8672
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_kanthal",
+      "cc_material": "kanthal",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.kanthal",
+      "material_id": 8664
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_knightmetal",
+      "cc_material": "knightmetal",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.knightmetal",
+      "material_id": 8674
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_kreknorite",
+      "cc_material": "kreknorite",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.kreknorite",
+      "material_id": 8759
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_latex",
+      "cc_material": "latex",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.latex",
+      "material_id": 9886
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_lead",
+      "cc_material": "lead",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.lead",
+      "material_id": 820
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_lithium",
+      "cc_material": "lithium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.lithium",
+      "material_id": 30
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_lithium6",
+      "cc_material": "lithium6",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.lithium6",
+      "material_id": 31
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_lithium_chlorate",
+      "cc_material": "lithium_chlorate",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.lithiumchlorate",
+      "material_id": 8033
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_lithium_chloride",
+      "cc_material": "lithium_chloride",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.lithiumchloride",
+      "material_id": 8029
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_lithium_perchlorate",
+      "cc_material": "lithium_perchlorate",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.lithiumperchlorate",
+      "material_id": 8034
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_lumium",
+      "cc_material": "lumium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.lumium",
+      "material_id": 8709
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_magnalium",
+      "cc_material": "magnalium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.magnalium",
+      "material_id": 8665
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_magnesium",
+      "cc_material": "magnesium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.magnesium",
+      "material_id": 120
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_magnesium_carbonate",
+      "cc_material": "magnesium_carbonate",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.magnesiumcarbonate",
+      "material_id": 8016
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_magnesium_chloride",
+      "cc_material": "magnesium_chloride",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.magnesiumchloride",
+      "material_id": 8018
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_manganese",
+      "cc_material": "manganese",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.manganese",
+      "material_id": 250
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_manganese_chloride",
+      "cc_material": "manganese_chloride",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.manganesechloride",
+      "material_id": 8031
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_manyullyn",
+      "cc_material": "manyullyn",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.manyullyn",
+      "material_id": 8703
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_mars_stone",
+      "cc_material": "mars_stone",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.marsstone",
+      "material_id": 8515
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_meteoflame_black_steel",
+      "cc_material": "meteoflame_black_steel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.meteoflameblacksteel",
+      "material_id": 8694
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_meteoflame_blue_steel",
+      "cc_material": "meteoflame_blue_steel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.meteoflamebluesteel",
+      "material_id": 8695
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_meteoflame_red_steel",
+      "cc_material": "meteoflame_red_steel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.meteoflameredsteel",
+      "material_id": 8696
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_meteoflame_steel",
+      "cc_material": "meteoflame_steel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.meteoflamesteel",
+      "material_id": 8693
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_meteoric_black_steel",
+      "cc_material": "meteoric_black_steel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.meteoricblacksteel",
+      "material_id": 8690
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_meteoric_blue_steel",
+      "cc_material": "meteoric_blue_steel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.meteoricbluesteel",
+      "material_id": 8691
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_meteoric_iron",
+      "cc_material": "meteoric_iron",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.meteoriciron",
+      "material_id": 8649
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_meteoric_red_steel",
+      "cc_material": "meteoric_red_steel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.meteoricredsteel",
+      "material_id": 8692
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_meteoric_steel",
+      "cc_material": "meteoric_steel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.meteoricsteel",
+      "material_id": 8650
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_meteorite",
+      "cc_material": "meteorite",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.meteorite",
+      "material_id": 8757
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_midasium",
+      "cc_material": "midasium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.midasium",
+      "material_id": 8677
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_mithril",
+      "cc_material": "mithril",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.mithril",
+      "material_id": 8678
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_molybdenum",
+      "cc_material": "molybdenum",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.molybdenum",
+      "material_id": 420
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_moon_stone",
+      "cc_material": "moon_stone",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.moonstone",
+      "material_id": 8513
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_naquadah",
+      "cc_material": "naquadah",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.naquadah",
+      "material_id": 1740
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_naquadah_enriched",
+      "cc_material": "naquadah_enriched",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.naquadahenriched",
+      "material_id": 1741
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_naquadria",
+      "cc_material": "naquadria",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.naquadria",
+      "material_id": 1742
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_neodymium",
+      "cc_material": "neodymium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.neodymium",
+      "material_id": 600
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_netherite",
+      "cc_material": "netherite",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.netherite",
+      "material_id": 8745
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_nichrome",
+      "cc_material": "nichrome",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.nichrome",
+      "material_id": 8663
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_nickel",
+      "cc_material": "nickel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.nickel",
+      "material_id": 280
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_nikoline_alloy",
+      "cc_material": "nikoline_alloy",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.nikolinealloy",
+      "material_id": 8737
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_nikolite",
+      "cc_material": "nikolite",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.nikolite",
+      "material_id": 8340
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_octine",
+      "cc_material": "octine",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.octine",
+      "material_id": 8786
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_orichalcum",
+      "cc_material": "orichalcum",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.orichalcum",
+      "material_id": 8769
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_osmiridium",
+      "cc_material": "osmiridium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.osmiridium",
+      "material_id": 8682
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_osmium_elemental",
+      "cc_material": "osmium_elemental",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.osmiumelemental",
+      "material_id": 760
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_pig_iron",
+      "cc_material": "pig_iron",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.pigiron",
+      "material_id": 8642
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_platinum",
+      "cc_material": "platinum",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.platinum",
+      "material_id": 780
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_potassium",
+      "cc_material": "potassium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.potassium",
+      "material_id": 190
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_potassium_carbonate",
+      "cc_material": "potassium_carbonate",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.potassiumcarbonate",
+      "material_id": 8020
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_purple_alloy",
+      "cc_material": "purple_alloy",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.purplealloy",
+      "material_id": 8657
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_radium",
+      "cc_material": "radium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.radium",
+      "material_id": 880
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_red_alloy",
+      "cc_material": "red_alloy",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.redalloy",
+      "material_id": 8660
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_red_steel",
+      "cc_material": "red_steel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.redsteel",
+      "material_id": 8633
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_redstone",
+      "cc_material": "redstone",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.redstone",
+      "material_id": 8333
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_redstone_alloy",
+      "cc_material": "redstone_alloy",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.redstonealloy",
+      "material_id": 8733
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_rose_gold",
+      "cc_material": "rose_gold",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.rosegold",
+      "material_id": 8602
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_rubber",
+      "cc_material": "rubber",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.rubber",
+      "material_id": 8217
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_rubidium",
+      "cc_material": "rubidium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.rubidium",
+      "material_id": 370
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_rutile",
+      "cc_material": "rutile",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.rutile",
+      "material_id": 9192
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_signalum",
+      "cc_material": "signalum",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.signalum",
+      "material_id": 8708
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_silicon",
+      "cc_material": "silicon",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.silicon",
+      "material_id": 140
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_silver",
+      "cc_material": "silver",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.silver",
+      "material_id": 470
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_sodium",
+      "cc_material": "sodium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.sodium",
+      "material_id": 110
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_sodium_carbonate",
+      "cc_material": "sodium_carbonate",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.sodiumcarbonate",
+      "material_id": 8013
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_soldering_alloy",
+      "cc_material": "soldering_alloy",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.solderingalloy",
+      "material_id": 8669
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_space_stone",
+      "cc_material": "space_stone",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.spacestone",
+      "material_id": 8512
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_spectre_iron",
+      "cc_material": "spectre_iron",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.spectreiron",
+      "material_id": 8734
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_stainless_steel",
+      "cc_material": "stainless_steel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.stainlesssteel",
+      "material_id": 8636
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_steel",
+      "cc_material": "steel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.steel",
+      "material_id": 8630
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_sterling_silver",
+      "cc_material": "sterling_silver",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.sterlingsilver",
+      "material_id": 8601
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_stone",
+      "cc_material": "stone",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.stone",
+      "material_id": 8500
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_strontium",
+      "cc_material": "strontium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.strontium",
+      "material_id": 380
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_sugar",
+      "cc_material": "sugar",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.sugar",
+      "material_id": 9703
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_sulfur",
+      "cc_material": "sulfur",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.sulfur",
+      "material_id": 160
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_syrmorite",
+      "cc_material": "syrmorite",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.syrmorite",
+      "material_id": 8785
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_tallow",
+      "cc_material": "tallow",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.tallow",
+      "material_id": 8244
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_tellurium",
+      "cc_material": "tellurium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.tellurium",
+      "material_id": 520
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_thaumium",
+      "cc_material": "thaumium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.thaumium",
+      "material_id": 8679
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_tin",
+      "cc_material": "tin",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.tin",
+      "material_id": 500
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_tin_alloy",
+      "cc_material": "tin_alloy",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.tinalloy",
+      "material_id": 8667
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_titanium",
+      "cc_material": "titanium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.titanium",
+      "material_id": 220
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_titanium_gold",
+      "cc_material": "titanium_gold",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.titaniumgold",
+      "material_id": 8654
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_trinium",
+      "cc_material": "trinium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.trinium",
+      "material_id": 1260
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_tritanium_elemental",
+      "cc_material": "tritanium_elemental",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.tritaniumelemental",
+      "material_id": 1250
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_tungsten",
+      "cc_material": "tungsten",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.tungsten",
+      "material_id": 740
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_tungstensteel",
+      "cc_material": "tungstensteel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.tungstensteel",
+      "material_id": 8635
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_tungsten_trioxide",
+      "cc_material": "tungsten_trioxide",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.tungstentrioxide",
+      "material_id": 8026
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_ultimet",
+      "cc_material": "ultimet",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.ultimet",
+      "material_id": 8666
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_uranium",
+      "cc_material": "uranium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.uranium",
+      "material_id": 920
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_uranium235",
+      "cc_material": "uranium235",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.uranium235",
+      "material_id": 921
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_uranium235_tetrafluoride",
+      "cc_material": "uranium235_tetrafluoride",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.uranium235tetrafluoride",
+      "material_id": 9011
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_uranium238_tetrafluoride",
+      "cc_material": "uranium238_tetrafluoride",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.uranium238tetrafluoride",
+      "material_id": 9009
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_uranium_tetrafluoride",
+      "cc_material": "uranium_tetrafluoride",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.uraniumtetrafluoride",
+      "material_id": 9007
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_vanadium",
+      "cc_material": "vanadium",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.vanadium",
+      "material_id": 230
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_vanadium_magnetite",
+      "cc_material": "vanadium_magnetite",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.vanadiummagnetite",
+      "material_id": 9143
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_vanadium_steel",
+      "cc_material": "vanadium_steel",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.vanadiumsteel",
+      "material_id": 8653
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_void_metal",
+      "cc_material": "void_metal",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.voidmetal",
+      "material_id": 8681
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_wax",
+      "cc_material": "wax",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.wax",
+      "material_id": 8235
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_wax_amnesic",
+      "cc_material": "wax_amnesic",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.waxamnesic",
+      "material_id": 8280
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_wax_bee",
+      "cc_material": "wax_bee",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.waxbee",
+      "material_id": 8236
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_wax_magic",
+      "cc_material": "wax_magic",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.waxmagic",
+      "material_id": 8240
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_wax_paraffin",
+      "cc_material": "wax_paraffin",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.waxparaffin",
+      "material_id": 8238
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_wax_plant",
+      "cc_material": "wax_plant",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.waxplant",
+      "material_id": 8239
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_wax_refractory",
+      "cc_material": "wax_refractory",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.waxrefractory",
+      "material_id": 8237
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_wax_soulful",
+      "cc_material": "wax_soulful",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.waxsoulful",
+      "material_id": 8281
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_workers_alloy",
+      "cc_material": "workers_alloy",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.workersalloy",
+      "material_id": 8780
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_wrought_iron",
+      "cc_material": "wrought_iron",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.wroughtiron",
+      "material_id": 8643
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:molten_zinc",
+      "cc_material": "zinc",
+      "derivation": "molten_fluid",
+      "disposition": "mapped",
+      "fluid": "molten.zinc",
+      "material_id": 300
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:neon",
+      "cc_material": "neon",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "neon",
+      "material_id": 100
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:nitric_acid",
+      "cc_material": "nitric_acid",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "nitricacid",
+      "material_id": 9825
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:nitro_fuel",
+      "cc_material": "nitro_fuel",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "nitrofuel",
+      "material_id": 9861
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:nitrogen",
+      "cc_material": "nitrogen",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "nitrogen",
+      "material_id": 70
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:nitrogen_dioxide",
+      "cc_material": "nitrogen_dioxide",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "nitrogendioxide",
+      "material_id": 9831
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:nitrogen_monoxide",
+      "cc_material": "nitrogen_monoxide",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "nitrogenmonoxide",
+      "material_id": 9837
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:nitrogen",
+      "cc_material": "nitrogen",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "nitrogenplasma",
+      "material_id": 70
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:nut_oil",
+      "cc_material": "nut_oil",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "nutoil",
+      "material_id": 9876
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:oil",
+      "cc_material": "oil",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "oil",
+      "material_id": 9850
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:oxygen",
+      "cc_material": "oxygen",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "oxygen",
+      "material_id": 80
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:petrol",
+      "cc_material": "petrol",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "petrol",
+      "material_id": 9864
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:pink_vitriol",
+      "cc_material": "pink_vitriol",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "pinkvitriol",
+      "material_id": 8407
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:propane",
+      "cc_material": "propane",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "propane",
+      "material_id": 9865
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:propylene",
+      "cc_material": "propylene",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "propylene",
+      "material_id": 9867
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:radon",
+      "cc_material": "radon",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "radon",
+      "material_id": 860
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:red_vitriol",
+      "cc_material": "red_vitriol",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "redvitriol",
+      "material_id": 8406
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:salted_water",
+      "cc_material": "salted_water",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "saltedwater",
+      "material_id": 9815
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:saltwater",
+      "cc_material": "saltwater",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "saltwater",
+      "material_id": 9804
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:sea_water",
+      "cc_material": "sea_water",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "seawater",
+      "material_id": 9806
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:seed_oil",
+      "cc_material": "seed_oil",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "seedoil",
+      "material_id": 9872
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:semiheavy_water",
+      "cc_material": "semiheavy_water",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "semiheavywater",
+      "material_id": 9811
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:stannic_chloride",
+      "cc_material": "stannic_chloride",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "stannicchloride",
+      "material_id": 8402
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:steam",
+      "derivation": "builtin",
+      "disposition": "mapped",
+      "fluid": "steam",
+      "material_id": 9814
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:sulfur_dioxide",
+      "cc_material": "sulfur_dioxide",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "sulfurdioxide",
+      "material_id": 9834
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:sulfuric_acid",
+      "cc_material": "sulfuric_acid",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "sulfuricacid",
+      "material_id": 9824
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:sulfur_trioxide",
+      "cc_material": "sulfur_trioxide",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "sulfurtrioxide",
+      "material_id": 9835
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:sunflower_oil",
+      "cc_material": "sunflower_oil",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "sunfloweroil",
+      "material_id": 9875
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:titanium_tetrachloride",
+      "cc_material": "titanium_tetrachloride",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "titaniumtetrachloride",
+      "material_id": 8413
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:tritiated_water",
+      "cc_material": "tritiated_water",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "tritiatedwater",
+      "material_id": 9813
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:tritium",
+      "cc_material": "tritium",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "tritium",
+      "material_id": 12
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:uranium235_hexafluoride",
+      "cc_material": "uranium235_hexafluoride",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "uranium235hexafluoride",
+      "material_id": 9012
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:uranium238_hexafluoride",
+      "cc_material": "uranium238_hexafluoride",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "uranium238hexafluoride",
+      "material_id": 9010
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:uranium_hexafluoride",
+      "cc_material": "uranium_hexafluoride",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "uraniumhexafluoride",
+      "material_id": 9008
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:uuamplifier",
+      "cc_material": "uuamplifier",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "uuamplifier",
+      "material_id": 9884
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:vitriol_of_clay",
+      "cc_material": "vitriol_of_clay",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "vitriolofclay",
+      "material_id": 8412
+    },
+    {
+      "cc_fluid_id": "minecraft:water",
+      "derivation": "builtin",
+      "disposition": "mapped",
+      "fluid": "water",
+      "material_id": 9800
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:water_dirty",
+      "cc_material": "water_dirty",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "waterdirty",
+      "material_id": 9807
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:whale_oil",
+      "cc_material": "whale_oil",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "whaleoil",
+      "material_id": 9887
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:white_vitriol",
+      "cc_material": "white_vitriol",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "whitevitriol",
+      "material_id": 8409
+    },
+    {
+      "cc_fluid_id": "cruciblecraft:xenon",
+      "cc_material": "xenon",
+      "derivation": "chemical_gate",
+      "disposition": "mapped",
+      "fluid": "xenon",
+      "material_id": 540
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "aerotheum",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "aerotheum",
+      "material_id": 8246
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "blaze",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "blaze",
+      "material_id": 8211
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "concrete",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "concrete",
+      "material_id": 8501
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "cryotheum",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "cryotheum",
+      "material_id": 8213
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "ectoplasm",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "ectoplasm",
+      "material_id": 8373
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "honey",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "for.honey",
+      "material_id": 9791
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "glass",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "glass",
+      "material_id": 8001
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "honey",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "grc.honey",
+      "material_id": 9791
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "milk",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "grcmilk.milk",
+      "material_id": 9790
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "honey",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "honey",
+      "material_id": 9791
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "honeydew",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "honeydew",
+      "material_id": 9793
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "ice",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "ice",
+      "material_id": 9802
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "mac_guffium",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "mcguffium",
+      "material_id": 2390
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "mercury",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "mercury",
+      "material_id": 800
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "milk",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "milk",
+      "material_id": 9790
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "petrotheum",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "petrotheum",
+      "material_id": 8245
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "plastic",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "plastic",
+      "material_id": 8218
+    },
+    {
+      "cc_fluid_id": null,
+      "cc_material": "pyrotheum",
+      "derivation": "chemical_gate",
+      "disposition": "no_cc_fluid",
+      "fluid": "pyrotheum",
+      "material_id": 8212
+    },
+    {
+      "cc_fluid_id": null,
+      "derivation": "policy_out_of_scope",
+      "disposition": "out_of_scope",
+      "fluid": "molten.euphemium",
+      "material_id": -1
+    },
+    {
+      "cc_fluid_id": null,
+      "derivation": "policy_out_of_scope",
+      "disposition": "out_of_scope",
+      "fluid": "molten.schrabidium",
+      "material_id": -1
+    }
+  ],
+  "publication_delta": 0,
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T22_5_FLUID_MAPPING_READY",
+  "unknown_identity": {
+    "definition": "Fluid names referenced by T21 source rows but absent from the 322 normalized GT6 oredict fluids. Each has an explicit identity decision; recorded_rows come from the GT6-dump scan (full-replay).",
+    "recorded_rows_total": 47719,
+    "records": [
+      {
+        "class": "out_of_scope_g10_food",
+        "fluid": "applevinegar",
+        "rationale": "G10 food-processing fluid; no CC consumer.",
+        "recheck_point": "CC adds a food chain.",
+        "recorded_rows": 11
+      },
+      {
+        "class": "out_of_scope_g10_food",
+        "fluid": "bbqsauce",
+        "rationale": "G10 food-processing fluid; no CC consumer.",
+        "recheck_point": "CC adds a food chain.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_food",
+        "fluid": "canevinegar",
+        "rationale": "G10 food-processing fluid; no CC consumer.",
+        "recheck_point": "CC adds a food chain.",
+        "recorded_rows": 11
+      },
+      {
+        "class": "equivalence_construction_foam_color",
+        "fluid": "cfoam.black",
+        "rationale": "GT6 colored variant of the CC-ACTIVE construction_foam material (see ic2constructionfoam). CC has one uncolored fluid; the color channel is GT6 cosmetic.",
+        "recheck_point": "CC adds colored construction foam.",
+        "recorded_rows": 2560
+      },
+      {
+        "class": "equivalence_construction_foam_color",
+        "fluid": "cfoam.brown",
+        "rationale": "GT6 colored variant of the CC-ACTIVE construction_foam material (see ic2constructionfoam). CC has one uncolored fluid; the color channel is GT6 cosmetic.",
+        "recheck_point": "CC adds colored construction foam.",
+        "recorded_rows": 1280
+      },
+      {
+        "class": "equivalence_construction_foam_color",
+        "fluid": "cfoam.gray",
+        "rationale": "GT6 colored variant of the CC-ACTIVE construction_foam material (see ic2constructionfoam). CC has one uncolored fluid; the color channel is GT6 cosmetic.",
+        "recheck_point": "CC adds colored construction foam.",
+        "recorded_rows": 3200
+      },
+      {
+        "class": "equivalence_construction_foam_color",
+        "fluid": "cfoam.green",
+        "rationale": "GT6 colored variant of the CC-ACTIVE construction_foam material (see ic2constructionfoam). CC has one uncolored fluid; the color channel is GT6 cosmetic.",
+        "recheck_point": "CC adds colored construction foam.",
+        "recorded_rows": 1920
+      },
+      {
+        "class": "equivalence_construction_foam_color",
+        "fluid": "cfoam.lightblue",
+        "rationale": "GT6 colored variant of the CC-ACTIVE construction_foam material (see ic2constructionfoam). CC has one uncolored fluid; the color channel is GT6 cosmetic.",
+        "recheck_point": "CC adds colored construction foam.",
+        "recorded_rows": 640
+      },
+      {
+        "class": "equivalence_construction_foam_color",
+        "fluid": "cfoam.lightgray",
+        "rationale": "GT6 colored variant of the CC-ACTIVE construction_foam material (see ic2constructionfoam). CC has one uncolored fluid; the color channel is GT6 cosmetic.",
+        "recheck_point": "CC adds colored construction foam.",
+        "recorded_rows": 3840
+      },
+      {
+        "class": "equivalence_construction_foam_color",
+        "fluid": "cfoam.lime",
+        "rationale": "GT6 colored variant of the CC-ACTIVE construction_foam material (see ic2constructionfoam). CC has one uncolored fluid; the color channel is GT6 cosmetic.",
+        "recheck_point": "CC adds colored construction foam.",
+        "recorded_rows": 1920
+      },
+      {
+        "class": "equivalence_construction_foam_color",
+        "fluid": "cfoam.orange",
+        "rationale": "GT6 colored variant of the CC-ACTIVE construction_foam material (see ic2constructionfoam). CC has one uncolored fluid; the color channel is GT6 cosmetic.",
+        "recheck_point": "CC adds colored construction foam.",
+        "recorded_rows": 640
+      },
+      {
+        "class": "equivalence_construction_foam_color",
+        "fluid": "cfoam.pink",
+        "rationale": "GT6 colored variant of the CC-ACTIVE construction_foam material (see ic2constructionfoam). CC has one uncolored fluid; the color channel is GT6 cosmetic.",
+        "recheck_point": "CC adds colored construction foam.",
+        "recorded_rows": 1696
+      },
+      {
+        "class": "equivalence_construction_foam_color",
+        "fluid": "cfoam.red",
+        "rationale": "GT6 colored variant of the CC-ACTIVE construction_foam material (see ic2constructionfoam). CC has one uncolored fluid; the color channel is GT6 cosmetic.",
+        "recheck_point": "CC adds colored construction foam.",
+        "recorded_rows": 3840
+      },
+      {
+        "class": "equivalence_construction_foam_color",
+        "fluid": "cfoam.white",
+        "rationale": "GT6 colored variant of the CC-ACTIVE construction_foam material (see ic2constructionfoam). CC has one uncolored fluid; the color channel is GT6 cosmetic.",
+        "recheck_point": "CC adds colored construction foam.",
+        "recorded_rows": 5536
+      },
+      {
+        "class": "equivalence_construction_foam_color",
+        "fluid": "cfoam.yellow",
+        "rationale": "GT6 colored variant of the CC-ACTIVE construction_foam material (see ic2constructionfoam). CC has one uncolored fluid; the color channel is GT6 cosmetic.",
+        "recheck_point": "CC adds colored construction foam.",
+        "recorded_rows": 1280
+      },
+      {
+        "class": "out_of_scope_g10_food",
+        "fluid": "coconutmilk",
+        "rationale": "G10 food-processing fluid; no CC consumer.",
+        "recheck_point": "CC adds a food chain.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.chemical.black",
+        "rationale": "GT6 chemical dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.chemical.blue",
+        "rationale": "GT6 chemical dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.chemical.brown",
+        "rationale": "GT6 chemical dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.chemical.cyan",
+        "rationale": "GT6 chemical dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.chemical.gray",
+        "rationale": "GT6 chemical dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.chemical.green",
+        "rationale": "GT6 chemical dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.chemical.lightblue",
+        "rationale": "GT6 chemical dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.chemical.lightgray",
+        "rationale": "GT6 chemical dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.chemical.lime",
+        "rationale": "GT6 chemical dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.chemical.magenta",
+        "rationale": "GT6 chemical dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.chemical.orange",
+        "rationale": "GT6 chemical dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.chemical.pink",
+        "rationale": "GT6 chemical dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.chemical.purple",
+        "rationale": "GT6 chemical dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.chemical.red",
+        "rationale": "GT6 chemical dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.chemical.white",
+        "rationale": "GT6 chemical dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 5
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.chemical.yellow",
+        "rationale": "GT6 chemical dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.watermixed.blue",
+        "rationale": "GT6 water-diluted dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 12
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.watermixed.brown",
+        "rationale": "GT6 water-diluted dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.watermixed.cyan",
+        "rationale": "GT6 water-diluted dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 8
+      },
+      {
+        "class": "out_of_scope_g10_dyeing",
+        "fluid": "dye.watermixed.yellow",
+        "rationale": "GT6 water-diluted dye fluid; dyeing is G10.",
+        "recheck_point": "CC adds a dye system.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "out_of_scope_g10_dimension",
+        "fluid": "enderair",
+        "rationale": "End dimension atmosphere fluid; no CC consumer.",
+        "recheck_point": "CC adds End dimension content.",
+        "recorded_rows": 5
+      },
+      {
+        "class": "out_of_scope_g10_nether_mobs",
+        "fluid": "fieryblood",
+        "rationale": "GT6 nether mob-drop fluid; mob drops are G10.",
+        "recheck_point": "CC adds nether mob processing.",
+        "recorded_rows": 75
+      },
+      {
+        "class": "out_of_scope_g10_nether_mobs",
+        "fluid": "fierytears",
+        "rationale": "GT6 nether mob-drop fluid; mob drops are G10.",
+        "recheck_point": "CC adds nether mob processing.",
+        "recorded_rows": 75
+      },
+      {
+        "class": "out_of_scope_g10_food",
+        "fluid": "ketchup",
+        "rationale": "G10 food-processing fluid; no CC consumer.",
+        "recheck_point": "CC adds a food chain.",
+        "recorded_rows": 4
+      },
+      {
+        "class": "covered_by_petroleum_identity",
+        "fluid": "liquid_extra_heavy_oil",
+        "rationale": "Same as liquid_light_oil.",
+        "recheck_point": "Same as liquid_light_oil.",
+        "recorded_rows": 1
+      },
+      {
+        "class": "covered_by_petroleum_identity",
+        "fluid": "liquid_heavy_oil",
+        "rationale": "Same as liquid_light_oil.",
+        "recheck_point": "Same as liquid_light_oil.",
+        "recorded_rows": 1
+      },
+      {
+        "class": "covered_by_petroleum_identity",
+        "fluid": "liquid_light_oil",
+        "rationale": "GT6 distillation fraction covered by the T11/T22 petroleum identity (crude_oil chain); O-37 keeps GT6 fluid names unbound from CC materials.",
+        "recheck_point": "T22.5 B1 reclassifies its rows under the petroleum vocabulary.",
+        "recorded_rows": 1
+      },
+      {
+        "class": "covered_by_petroleum_identity",
+        "fluid": "liquid_medium_oil",
+        "rationale": "Same as liquid_light_oil.",
+        "recheck_point": "Same as liquid_light_oil.",
+        "recorded_rows": 1
+      },
+      {
+        "class": "out_of_scope_g10_dimension",
+        "fluid": "netherair",
+        "rationale": "Nether dimension atmosphere fluid; no CC consumer.",
+        "recheck_point": "CC adds Nether dimension content.",
+        "recorded_rows": 5
+      },
+      {
+        "class": "out_of_scope_g10_brewing",
+        "fluid": "potion.dressing",
+        "rationale": "GT6 brewing byproduct; same as potion.mineralwater.",
+        "recheck_point": "CC adds a brewing system.",
+        "recorded_rows": 40
+      },
+      {
+        "class": "out_of_scope_g10_brewing",
+        "fluid": "potion.mineralwater",
+        "rationale": "GT6 potion-brewing base fluid; CC has no brewing system and potions are G10 (out of scope for v1).",
+        "recheck_point": "CC adds a brewing system with fluid consumers.",
+        "recorded_rows": 9506
+      },
+      {
+        "class": "out_of_scope_g10_food",
+        "fluid": "ricevinegar",
+        "rationale": "G10 food-processing fluid; no CC consumer.",
+        "recheck_point": "CC adds a food chain.",
+        "recorded_rows": 11
+      },
+      {
+        "class": "out_of_scope_g10_dimension",
+        "fluid": "soulsandoil",
+        "rationale": "Soul sand processing fluid; nether content is G10.",
+        "recheck_point": "CC adds nether processing.",
+        "recorded_rows": 2
+      },
+      {
+        "class": "out_of_scope_magic_compat",
+        "fluid": "spectral_dew",
+        "rationale": "GT6 magic-compat fluid with no CC identity; no CC consumer or producer route.",
+        "recheck_point": "CC introduces a magic system consuming it.",
+        "recorded_rows": 9506
+      },
+      {
+        "class": "out_of_scope_g10_food",
+        "fluid": "vinegar",
+        "rationale": "G10 food-processing fluid; no CC consumer.",
+        "recheck_point": "CC adds a food chain.",
+        "recorded_rows": 11
+      }
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "status": "T19_COVER_DENOMINATOR_POLICY",
+  "source_artifact": "tools/t13_denominators/cover_kinds.json",
+  "expected_counts": {
+    "canonical": 47,
+    "implemented": 4,
+    "selected_t19": 5,
+    "deferred_with_reason": 28,
+    "out_of_scope": 10,
+    "unclassified": 0
+  },
+  "implemented": {
+    "filter_fluid": "cruciblecraft:filter",
+    "filter_item": "cruciblecraft:filter",
+    "pump": "cruciblecraft:pump",
+    "shutter": "cruciblecraft:shutter"
+  },
+  "selected": {
+    "conveyor": {
+      "definition": "cruciblecraft:conveyor",
+      "item": "cruciblecraft:conveyor_cover",
+      "recipe": "cruciblecraft:conveyor_cover"
+    },
+    "retriever_item": {
+      "definition": "cruciblecraft:retriever_item",
+      "item": "cruciblecraft:retriever_item_cover",
+      "recipe": "cruciblecraft:retriever_item_cover"
+    },
+    "robot_arm": {
+      "definition": "cruciblecraft:robot_arm",
+      "item": "cruciblecraft:robot_arm_cover",
+      "recipe": "cruciblecraft:robot_arm_cover"
+    },
+    "pressure_valve": {
+      "definition": "cruciblecraft:pressure_valve",
+      "item": "cruciblecraft:pressure_valve_cover",
+      "recipe": "cruciblecraft:pressure_valve_cover"
+    },
+    "selector_manual": {
+      "definition": "cruciblecraft:selector_manual",
+      "item": "cruciblecraft:selector_manual_cover",
+      "recipe": "cruciblecraft:selector_manual_cover"
+    }
+  },
+  "definition_catalog": "src/main/resources/data/cruciblecraft/cover_definitions.json",
+  "definition_schema": "src/main/resources/data/cruciblecraft/schema/cover_definitions.schema.json",
+  "pure_json_reuse": {
+    "base": "cruciblecraft:conveyor",
+    "second": "cruciblecraft:conveyor_fast",
+    "required_behavior": "cruciblecraft:conveyor"
+  }
+}

@@ -8,6 +8,31 @@
     "tables": 7,
     "unclassified": 0
   },
+  "currentness": {
+    "dependencies": {
+      "tools/t12_closure_readiness.json": "262a414ba37ae611741ed81f9d5cfd1127d7d50220dbaeae6415a1b0903e2d1d",
+      "tools/t13_denominator_manifest.json": "a952e37359b2fe84bb3c7337c78861ea0d410d347d29ab3a9b9deb0ad3aba87f"
+    },
+    "owned_inputs": {
+      "tools/build_t13_denominator_readiness.py": "50ffbe53af41e7e9888c4849b8579202d082e2029b111fe8affe295bcc34c1c8",
+      "tools/t13_denominator_policy.json": "f463aba911435f1c397aad8b4ba4bdd1f41f3bf3b0aa2957ccfb9a63607e8141"
+    },
+    "pending_report": {
+      "evidence": "tools/full_verification_report.json",
+      "pending": [],
+      "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+      "this_refresh_final_closure_attempted": true
+    },
+    "processing_machine_energy_audit": {
+      "explicit_energy_arguments": 25,
+      "implicit_energy_arguments": 0,
+      "legacy_kinetic": 8,
+      "machine_specs": 25,
+      "new_legacy_kinetic": 0,
+      "path": "tools/processing_machine_energy_audit.json",
+      "status": "PROCESSING_MACHINE_ENERGY_AUDIT_READY"
+    }
+  },
   "delivery_boundary": "T13_CANONICAL_DENOMINATORS",
   "denominators": {
     "cover_kinds": {
@@ -48,8 +73,9 @@
     "multiblock_kinds": {
       "canonical": 30,
       "classifications": {
-        "deferred_with_reason": 28,
-        "in_scope": 2
+        "deferred_with_reason": 20,
+        "in_scope": 5,
+        "out_of_scope": 5
       },
       "raw": 44
     },
@@ -108,7 +134,7 @@
   },
   "manifest": {
     "path": "tools/t13_denominator_manifest.json",
-    "sha256": "b256c35fa9af3d6e95dd6d0a4a6d7fb07876303d063002220a47353507b794c1"
+    "sha256": "a952e37359b2fe84bb3c7337c78861ea0d410d347d29ab3a9b9deb0ad3aba87f"
   },
   "schema_version": 2,
   "source_replay": {
@@ -123,7 +149,7 @@
   "status": "T13_READY",
   "zero_content_delta": {
     "datapack_delta": 0,
-    "datapack_recipe_entries": 5991,
+    "datapack_recipe_entries": 6025,
     "publication_delta": 0,
     "published_recipes": 18875
   }

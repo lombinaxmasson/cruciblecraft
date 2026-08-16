@@ -8,7 +8,10 @@ import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
 
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
+import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -22,7 +25,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        var firebrickTexture = mcLoc("block/bricks");
+        var firebrickTexture = modLoc("block/firebrick");
         simpleBlockWithItem(
                 ModBlocks.FIREBRICK.get(),
                 models().cubeAll("firebrick", firebrickTexture));
@@ -35,26 +38,30 @@ public class ModBlockStateProvider extends BlockStateProvider {
         var anvil = models().getExistingFile(modLoc("block/anvil"));
         horizontalBlock(ModBlocks.ANVIL.get(), anvil);
         simpleBlockItem(ModBlocks.ANVIL.get(), anvil);
-        simpleBlockWithItem(
-                ModBlocks.COKE_OVEN.get(),
-                models().cubeAll("coke_oven", firebrickTexture));
+        configuredMachine("coke_oven", ModBlocks.COKE_OVEN.get());
         simpleBlockWithItem(
                 ModBlocks.MULTIBLOCK_CASING.get(),
                 models().cubeAll(
                         "multiblock_casing",
-                        mcLoc("block/iron_block")));
+                        modLoc("block/multiblock_casing")));
         simpleBlockWithItem(
                 ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get(),
                 models().cubeAll(
                         "multiblock_item_fluid_port",
-                        mcLoc("block/copper_block")));
+                        modLoc("block/multiblock_item_fluid_port")));
         simpleBlockWithItem(
                 ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get(),
                 models().cubeAll(
                         "multiblock_energy_input_port",
-                        mcLoc("block/redstone_block")));
+                        modLoc("block/multiblock_energy_input_port")));
         configuredMachine(
                 "large_centrifuge", ModBlocks.LARGE_CENTRIFUGE.get());
+        configuredMachine(
+                "distillation_tower", ModBlocks.DISTILLATION_TOWER.get());
+        configuredMachine(
+                "large_boiler", ModBlocks.LARGE_BOILER.get());
+        configuredMachine(
+                "tank_3x3x3", ModBlocks.TANK_3X3X3.get());
         configuredMachine("sluice", ModBlocks.SLUICE.get());
         configuredMachine("bath", ModBlocks.BATH.get());
         configuredMachine("centrifuge", ModBlocks.CENTRIFUGE.get());
@@ -103,51 +110,44 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 ModBlocks.ROTATIONAL_AXLE.get(),
                 models().cubeAll(
                         "rotational_axle",
-                        mcLoc("block/iron_block")));
+                        modLoc("block/rotational_axle")));
         simpleBlockWithItem(
                 ModBlocks.FLUID_DEPOSIT_EXTRACTOR.get(),
                 models().cubeAll(
                         "fluid_deposit_extractor",
-                        mcLoc("block/cut_copper")));
+                        modLoc("block/fluid_deposit_extractor")));
         configuredMachine("fuel_engine", ModBlocks.FUEL_ENGINE.get());
         configuredMachine(
                 "burning_gas_generator",
                 ModBlocks.BURNING_GAS_GENERATOR.get());
         simpleBlock(
                 ModBlocks.GAS_CLOUD.get(),
-                models().cubeAll(
-                        "gas_cloud",
-                        mcLoc("block/white_stained_glass")));
+                models()
+                        .cubeAll("gas_cloud", modLoc("block/gas_cloud"))
+                        .renderType("translucent"));
         var bellows = models().orientable(
                 "bellows",
-                mcLoc("block/oak_planks"),
-                mcLoc("block/piston_top"),
-                mcLoc("block/oak_planks"));
+                modLoc("block/bellows_side"),
+                modLoc("block/bellows_front"),
+                modLoc("block/bellows_side"));
         var activeBellows = models().orientable(
                 "bellows_active",
-                mcLoc("block/oak_planks"),
-                mcLoc("block/piston_top_sticky"),
-                mcLoc("block/oak_planks"));
+                modLoc("block/bellows_side"),
+                modLoc("block/bellows_front_active"),
+                modLoc("block/bellows_side"));
         horizontalBlock(
                 ModBlocks.BELLOWS.get(),
                 state -> state.getValue(BellowsBlock.ACTIVE)
                         ? activeBellows
                         : bellows);
         simpleBlockItem(ModBlocks.BELLOWS.get(), bellows);
-        var emptyMold = models().slab(
-                "ceramic_mold",
-                firebrickTexture,
-                firebrickTexture,
-                firebrickTexture);
-        var filledMold = models().slab(
-                "ceramic_mold_filled",
-                firebrickTexture,
-                mcLoc("block/magma"),
-                firebrickTexture);
+        var emptyMold = models().getExistingFile(modLoc("block/ceramic_mold"));
+        var filledMold = models().getExistingFile(modLoc("block/ceramic_mold_filled"));
         getVariantBuilder(ModBlocks.CERAMIC_MOLD.get()).forAllStates(state ->
                 ConfiguredModel.builder()
                         .modelFile(state.getValue(CeramicMoldBlock.FILLED) ? filledMold : emptyMold)
                         .build());
+        simpleBlockItem(ModBlocks.CERAMIC_MOLD.get(), emptyMold);
         registerConductors();
         registerPipes();
     }
@@ -155,6 +155,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     private void registerConductors() {
         java.util.Map<String, ModelFile> cores = new java.util.LinkedHashMap<>();
         java.util.Map<String, ModelFile> arms = new java.util.LinkedHashMap<>();
+        java.util.Set<String> itemModels = new java.util.HashSet<>();
         ModBlocks.electricalConductorBlocks().forEach(holder -> {
             CableBlock block = holder.get();
             String specification = block.conductor().sourceSpecification();
@@ -170,47 +171,58 @@ public class ModBlockStateProvider extends BlockStateProvider {
             conductorArm(multipart, arm, CableBlock.SOUTH, 0, 180);
             conductorArm(multipart, arm, CableBlock.WEST, 0, 270);
             conductorArm(multipart, arm, CableBlock.EAST, 0, 90);
+            if (itemModels.add(specification)) {
+                itemThroughModel(
+                        "conductor/"
+                                + specification.toLowerCase(java.util.Locale.ROOT)
+                                + "_item",
+                        conductorWidth(specification),
+                        conductorSide(specification),
+                        modLoc("block/material/wire_end"),
+                        conductorOverlay(specification));
+            }
         });
     }
 
     private ModelFile conductorCore(String specification) {
-        float width = conductorWidth(specification);
-        float minimum = 8.0F - width / 2.0F;
-        float maximum = 8.0F + width / 2.0F;
-        return models()
-                .getBuilder(
-                        "conductor/"
-                                + specification.toLowerCase(
-                                        java.util.Locale.ROOT)
-                                + "_core")
-                .texture("particle", mcLoc("block/white_concrete"))
-                .texture("all", mcLoc("block/white_concrete"))
-                .element()
-                .from(minimum, minimum, minimum)
-                .to(maximum, maximum, maximum)
-                .allFaces((direction, face) ->
-                        face.texture("#all").tintindex(0))
-                .end();
+        return pipeCube(
+                "conductor/"
+                        + specification.toLowerCase(java.util.Locale.ROOT)
+                        + "_core",
+                conductorWidth(specification),
+                false,
+                conductorSide(specification),
+                modLoc("block/material/wire_end"),
+                null);
     }
 
     private ModelFile conductorArm(String specification) {
-        float width = conductorWidth(specification);
-        float minimum = 8.0F - width / 2.0F;
-        float maximum = 8.0F + width / 2.0F;
-        return models()
-                .getBuilder(
-                        "conductor/"
-                                + specification.toLowerCase(
-                                        java.util.Locale.ROOT)
-                                + "_arm")
-                .texture("particle", mcLoc("block/white_concrete"))
-                .texture("all", mcLoc("block/white_concrete"))
-                .element()
-                .from(minimum, minimum, 0.0F)
-                .to(maximum, maximum, minimum)
-                .allFaces((direction, face) ->
-                        face.texture("#all").tintindex(0))
-                .end();
+        return pipeCube(
+                "conductor/"
+                        + specification.toLowerCase(java.util.Locale.ROOT)
+                        + "_arm",
+                conductorWidth(specification),
+                true,
+                conductorSide(specification),
+                modLoc("block/material/wire_end"),
+                conductorOverlay(specification));
+    }
+
+    private ResourceLocation conductorSide(String specification) {
+        return "wireGt01".equals(specification)
+                ? modLoc("block/material/wire_side")
+                : modLoc("block/cable/insulation_5");
+    }
+
+    private ResourceLocation conductorOverlay(String specification) {
+        return switch (specification) {
+            case "cableGt01" -> modLoc("block/cable/insulation_0");
+            case "cableGt02" -> modLoc("block/cable/insulation_1");
+            case "cableGt04" -> modLoc("block/cable/insulation_2");
+            case "cableGt08" -> modLoc("block/cable/insulation_3");
+            case "cableGt12" -> modLoc("block/cable/insulation_4");
+            default -> null;
+        };
     }
 
     private static void conductorArm(
@@ -248,18 +260,31 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 new java.util.LinkedHashMap<>();
         java.util.Map<String, ModelFile> arms =
                 new java.util.LinkedHashMap<>();
+        java.util.Set<String> itemModels = new java.util.HashSet<>();
         ModBlocks.pipeBlocks().forEach(holder -> {
             AbstractPipeBlock block = holder.get();
             String modelKey = block.pipe().kind().name().toLowerCase(
                     java.util.Locale.ROOT) + "_" + block.pipe().width();
+            ResourceLocation side = modLoc("block/pipe/pipe_side");
+            ResourceLocation end = pipeEndTexture(block.pipe().width());
             ModelFile core = cores.computeIfAbsent(
                     modelKey,
-                    ignored -> pipePart(
-                            modelKey, block.pipe().width(), false));
+                    ignored -> pipeCube(
+                            "pipe/" + modelKey + "_core",
+                            block.pipe().width(),
+                            false,
+                            side,
+                            end,
+                            null));
             ModelFile arm = arms.computeIfAbsent(
                     modelKey,
-                    ignored -> pipePart(
-                            modelKey, block.pipe().width(), true));
+                    ignored -> pipeCube(
+                            "pipe/" + modelKey + "_arm",
+                            block.pipe().width(),
+                            true,
+                            side,
+                            end,
+                            null));
             var multipart = getMultipartBuilder(block);
             multipart.part().modelFile(core).addModel().end();
             conductorArm(
@@ -274,40 +299,158 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     multipart, arm, AbstractPipeBlock.WEST, 0, 270);
             conductorArm(
                     multipart, arm, AbstractPipeBlock.EAST, 0, 90);
+            if (itemModels.add(modelKey)) {
+                itemThroughModel(
+                        "pipe/" + modelKey + "_item",
+                        block.pipe().width(),
+                        side,
+                        end,
+                        null);
+            }
         });
     }
 
-    private ModelFile pipePart(
-            String key, int width, boolean arm) {
+    private ResourceLocation pipeEndTexture(int width) {
+        return switch (width) {
+            case 4 -> modLoc("block/pipe/pipe_tiny_in");
+            case 6 -> modLoc("block/pipe/pipe_small_in");
+            case 8 -> modLoc("block/pipe/pipe_normal_in");
+            case 12 -> modLoc("block/pipe/pipe_large_in");
+            case 16 -> modLoc("block/pipe/pipe_huge_in");
+            default -> throw new IllegalArgumentException(
+                    "Unsupported pipe width " + width);
+        };
+    }
+
+    private ModelFile pipeCube(
+            String path,
+            float width,
+            boolean arm,
+            ResourceLocation side,
+            ResourceLocation end,
+            ResourceLocation overlay) {
         float minimum = 8.0F - width / 2.0F;
         float maximum = 8.0F + width / 2.0F;
-        return models()
-                .getBuilder(
-                        "pipe/" + key + (arm ? "_arm" : "_core"))
-                .texture("particle", mcLoc("block/white_concrete"))
-                .texture("all", mcLoc("block/white_concrete"))
-                .element()
-                .from(
-                        minimum,
-                        minimum,
-                        arm ? 0.0F : minimum)
-                .to(
-                        maximum,
-                        maximum,
-                        arm ? minimum : maximum)
-                .allFaces((direction, face) ->
-                        face.texture("#all").tintindex(0))
-                .end();
+        BlockModelBuilder builder = models()
+                .withExistingParent(path, mcLoc("block/block"))
+                .renderType("cutout_mipped")
+                .texture("particle", side)
+                .texture("side", side)
+                .texture("end", end);
+        if (overlay != null) {
+            builder.texture("overlay", overlay);
+        }
+        addPipeElement(
+                builder,
+                minimum,
+                minimum,
+                arm ? 0.0F : minimum,
+                maximum,
+                maximum,
+                arm ? minimum : maximum,
+                arm ? Direction.NORTH : null,
+                false);
+        if (arm && overlay != null) {
+            addPipeElement(
+                    builder,
+                    minimum,
+                    minimum,
+                    0.0F,
+                    maximum,
+                    maximum,
+                    minimum,
+                    Direction.NORTH,
+                    true);
+        }
+        return builder;
+    }
+
+    private ModelFile itemThroughModel(
+            String path,
+            float width,
+            ResourceLocation side,
+            ResourceLocation end,
+            ResourceLocation overlay) {
+        float minimum = 8.0F - width / 2.0F;
+        float maximum = 8.0F + width / 2.0F;
+        BlockModelBuilder builder = models()
+                .withExistingParent(path, mcLoc("block/block"))
+                .renderType("cutout_mipped")
+                .texture("particle", side)
+                .texture("side", side)
+                .texture("end", end);
+        if (overlay != null) {
+            builder.texture("overlay", overlay);
+        }
+        var element = builder.element()
+                .from(minimum, minimum, 0.0F)
+                .to(maximum, maximum, 16.0F);
+        for (Direction direction : Direction.values()) {
+            boolean cap = direction.getAxis() == Direction.Axis.Z;
+            element.face(direction)
+                    .texture(cap ? "#end" : "#side")
+                    .tintindex(0)
+                    .end();
+        }
+        element.end();
+        if (overlay != null) {
+            var overlayElement = builder.element()
+                    .from(minimum, minimum, 0.0F)
+                    .to(maximum, maximum, 16.0F);
+            overlayElement.face(Direction.NORTH)
+                    .texture("#overlay")
+                    .tintindex(0)
+                    .end();
+            overlayElement.face(Direction.SOUTH)
+                    .texture("#overlay")
+                    .tintindex(0)
+                    .end();
+            overlayElement.end();
+        }
+        return builder;
+    }
+
+    private static void addPipeElement(
+            BlockModelBuilder builder,
+            float x1,
+            float y1,
+            float z1,
+            float x2,
+            float y2,
+            float z2,
+            Direction endFace,
+            boolean overlay) {
+        float offset = overlay ? 0.002F : 0.0F;
+        var element = builder.element()
+                .from(x1 - offset, y1 - offset, z1 - offset)
+                .to(x2 + offset, y2 + offset, z2 + offset);
+        for (Direction direction : Direction.values()) {
+            if (!overlay && endFace != null && direction == endFace.getOpposite()) {
+                continue;
+            }
+            boolean cap = endFace == direction;
+            if (overlay && !cap) {
+                continue;
+            }
+            element.face(direction)
+                    .texture(overlay ? "#overlay" : cap ? "#end" : "#side")
+                    .tintindex(0)
+                    .end();
+        }
+        element.end();
     }
 
     private void configuredMachine(String id, net.minecraft.world.level.block.Block block) {
         String textureId = machineTextureId(id);
+        String shaped = shapedMachineModel(textureId);
         ModelFile model;
-        if (hasMachineTextures(textureId)) {
+        if (shaped != null) {
+            model = models().getExistingFile(modLoc("block/" + shaped));
+        } else if (hasMachineTextures(textureId)) {
             String base = "block/machine/" + textureId;
             model = models()
                     .withExistingParent(id, modLoc("block/machine_cube_2_layer"))
-                    .texture("particle", modLoc(base + "/overlay/front"))
+                    .texture("particle", modLoc(base + "/colored/front"))
                     .texture("bot_down", modLoc(base + "/colored/bottom"))
                     .texture("bot_up", modLoc(base + "/colored/top"))
                     .texture("bot_north", modLoc(base + "/colored/front"))
@@ -344,9 +487,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
             case "aluminium_electrolyzer", "stainless_steel_electrolyzer" ->
                     "electrolyzer";
             case "invar_distillery", "titanium_distillery" -> "distillery";
+            case "distillation_tower" -> "distillery";
+            case "large_boiler" -> "boiler";
+            case "tank_3x3x3" -> "tank_3x3x3";
             case "drying", "invar_drying", "titanium_drying" -> "dryer";
             case "invar_smelter", "titanium_smelter" -> "smelter";
             default -> id;
+        };
+    }
+
+    private static String shapedMachineModel(String textureId) {
+        return switch (textureId) {
+            case "mortar", "sifter", "bath", "smelter" -> textureId;
+            default -> null;
         };
     }
 
@@ -379,7 +532,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     "electric_motor",
                     "rotational_gearbox",
                     "fuel_engine",
-                    "burning_gas_generator" -> true;
+                    "burning_gas_generator",
+                    "boiler",
+                    "tank_3x3x3",
+                    "mortar",
+                    "coke_oven" -> true;
             default -> false;
         };
     }

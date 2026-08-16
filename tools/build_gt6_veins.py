@@ -134,8 +134,9 @@ def validate_vein(
 ) -> dict[str, Any]:
     if not isinstance(document, dict):
         raise ValueError(f"{source}: vein source must be a JSON object")
-    if document.get("schema_version") != 1:
-        raise ValueError(f"{source}: schema_version must be 1")
+    schema_version = document.get("schema_version", 2)
+    if schema_version not in {1, 2}:
+        raise ValueError(f"{source}: schema_version must be 1 or 2")
 
     vein_id = document.get("id")
     if not isinstance(vein_id, str) or RESOURCE_PATH.fullmatch(vein_id) is None:
@@ -146,12 +147,46 @@ def validate_vein(
         )
 
     provenance = document.get("provenance")
-    if not isinstance(provenance, str) or not provenance.strip():
-        raise ValueError(f"{source}: provenance must be a non-empty string")
+    if schema_version == 1:
+        if not isinstance(provenance, str) or not provenance.strip():
+            raise ValueError(f"{source}: provenance must be a non-empty string")
+        profile_version = 1
+        catalog_material = None
+    else:
+        if not isinstance(provenance, dict):
+            raise ValueError(f"{source}: provenance must be an object")
+        status = provenance.get("status")
+        if status not in {"SOURCE_BACKED", "SOURCE_DERIVED", "DESIGN_POLICY"}:
+            raise ValueError(f"{source}: unsupported provenance status {status}")
+        if any(
+            value in {"PLACEHOLDER", "UNVERIFIED"}
+            for value in provenance.get("field_status", {}).values()
+        ):
+            raise ValueError(
+                f"{source}: placeholder/unverified field cannot enter profile v2"
+            )
+        transformations = provenance.get("transformations")
+        if not isinstance(transformations, list) or not transformations:
+            raise ValueError(
+                f"{source}: provenance transformations must be non-empty"
+            )
+        profile_version = require_int(
+            document, "profile_version", 2, 2, source
+        )
+        catalog_material = document.get("catalog_material")
+        if (
+            not isinstance(catalog_material, str)
+            or RESOURCE_PATH.fullmatch(catalog_material) is None
+        ):
+            raise ValueError(
+                f"{source}: catalog_material must be a resource path"
+            )
 
     normalized: dict[str, Any] = {
-        "schema_version": 1,
+        "schema_version": schema_version,
         "id": vein_id,
+        "profile_version": profile_version,
+        "catalog_material": catalog_material,
     }
     for layer in LAYERS:
         entries = document.get(layer)
@@ -268,6 +303,8 @@ def configured_feature(vein: dict[str, Any]) -> dict[str, Any]:
         for layer in LAYERS
     }
     config.update({
+        "profile_version": vein["profile_version"],
+        "profile_id": f"cruciblecraft:{vein['id']}",
         "min_y": vein["min_y"],
         "max_y": vein["max_y"],
         "horizontal_radius": vein["horizontal_radius"],
@@ -355,6 +392,7 @@ def review_document(
                 "id": vein["id"],
                 "salt": vein["salt"],
                 "provenance": vein["provenance"],
+                "profile_version": vein["profile_version"],
             }
             for vein in veins
         ],

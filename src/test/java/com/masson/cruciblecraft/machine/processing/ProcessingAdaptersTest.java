@@ -25,9 +25,7 @@ import com.masson.cruciblecraft.steam.MachineSideRules;
 import net.minecraft.SharedConstants;
 import net.minecraft.core.Direction;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.Bootstrap;
 import net.minecraft.world.item.ItemStack;
@@ -824,7 +822,7 @@ class ProcessingAdaptersTest {
         assertEquals(250, maintenance.drain(
                 250, IFluidHandler.FluidAction.EXECUTE).getAmount());
         assertEquals(500, recoverable.getFluidAmount());
-        assertEquals(2, ConfiguredProcessingMachineMenu.DATA_COUNT);
+        assertEquals(3, ConfiguredProcessingMachineMenu.DATA_COUNT);
         assertEquals(1, ProcessingMachineDisplayData.statusIndex(
                 ModProcessingMachines.ASSEMBLER, ""));
         assertEquals(7, ProcessingMachineDisplayData.statusIndex(
@@ -857,36 +855,4 @@ class ProcessingAdaptersTest {
         }
     }
 
-    @Test
-    void crusherLegacyHintAdoptsRecipeIdOnlyForMatchingOutput() {
-        ResourceLocation recipe = ResourceLocation.fromNamespaceAndPath("test", "crusher/iron");
-        CrusherLegacyMigration.Hint hint = new CrusherLegacyMigration.Hint(
-                "minecraft:iron_ingot", 42, 128, "underpowered");
-        ItemStack loadedInput = new ItemStack(Items.STONE, 2);
-        loadedInput.set(DataComponents.CUSTOM_NAME, Component.literal("loaded"));
-        CrusherLegacyMigration.BoundHint bound = CrusherLegacyMigration.bind(
-                hint, loadedInput, registries).orElseThrow();
-        assertTrue(CrusherLegacyMigration.inputUnchanged(
-                bound, loadedInput.copy(), registries));
-        CrusherLegacyMigration.Adoption matching = CrusherLegacyMigration.adopt(
-                bound, recipe, 128, new ItemStack(Items.IRON_INGOT, 2));
-        assertTrue(matching.preservedProgress());
-        assertEquals(recipe.toString(), matching.recipeId());
-        assertEquals(42, matching.progress());
-
-        CrusherLegacyMigration.Adoption mismatch = CrusherLegacyMigration.adopt(
-                bound, recipe, 128, new ItemStack(Items.GOLD_INGOT, 2));
-        assertFalse(mismatch.preservedProgress());
-        assertEquals(recipe.toString(), mismatch.recipeId());
-        assertEquals(0, mismatch.progress());
-        assertEquals("idle", mismatch.status());
-
-        assertFalse(CrusherLegacyMigration.inputUnchanged(
-                bound, new ItemStack(Items.STONE), registries));
-        ItemStack replacedComponent = new ItemStack(Items.STONE, 2);
-        replacedComponent.set(
-                DataComponents.CUSTOM_NAME, Component.literal("replacement"));
-        assertFalse(CrusherLegacyMigration.inputUnchanged(
-                bound, replacedComponent, registries));
-    }
 }

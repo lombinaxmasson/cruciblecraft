@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "status": "T20_WORLDGEN_SOURCE_POLICY",
+  "source": {
+    "repository": "GregTech6/gregtech6",
+    "repository_url": "https://github.com/GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "tree_sha1": "a164302f62a326208fd2076de6fb7cdb0b4602ee",
+    "license": "LGPL-3.0-or-later",
+    "files": {
+      "generator": {
+        "path": "src/main/java/gregapi/worldgen/GT6WorldGenerator.java",
+        "git_blob_sha1": "67d67a55efe160121d48b4dfdf01c46e3e7003e8",
+        "anchors": [
+          "for (WorldgenObject tWorldGen : mGenLargeOres)",
+          "((tChunkX >> 4)+402653184) % 3 == 1",
+          "tRandomWeight -= tWorldGen.mWeight"
+        ]
+      },
+      "large_runtime": {
+        "path": "src/main/java/gregapi/worldgen/WorldgenOresLarge.java",
+        "git_blob_sha1": "7bfbadf9efb609ed7d669c234c23f0cc0b937f3e",
+        "anchors": [
+          "public final int mWeight, mDistance;",
+          "public final short mMinY, mMaxY, mDensity, mSize;",
+          "for (int i=tMinY-1; i<tMinY+2; i++)",
+          "for (int i=tMinY+3; i<tMinY+6; i++)"
+        ]
+      },
+      "small_runtime": {
+        "path": "src/main/java/gregapi/worldgen/WorldgenOresSmall.java",
+        "git_blob_sha1": "77f4718601b8e7dd80beb43f962b82dd7a343a90",
+        "anchors": [
+          "public final short mMinY, mMaxY, mAmount;",
+          "Math.max(1, mAmount/2 + aRandom.nextInt(1+mAmount)/2)"
+        ]
+      },
+      "loader": {
+        "path": "src/main/java/gregtech/loaders/b/Loader_Worldgen.java",
+        "git_blob_sha1": "1c9af061bafec3d13ed27558e6280b3e567fee4e",
+        "anchors": [
+          "// Small Ores.",
+          "for (OreDictMaterial tGem : OreDictMaterial.MATERIAL_ARRAY)",
+          "new WorldgenOresLarge(\"ore.large.lignite\"",
+          "new WorldgenOresLarge(\"ore.large.octine\""
+        ]
+      },
+      "materials": {
+        "path": "src/main/java/gregapi/data/MT.java",
+        "git_blob_sha1": "1681c2072f28ad2d31bc285aef1c6fd2a3bcef92",
+        "anchors": [
+          "public static class OREMATS",
+          "RANDOM_SMALL_GEM_ORE"
+        ]
+      }
+    }
+  },
+  "target": {
+    "catalog": "src/main/resources/data/cruciblecraft/worldgen_catalog/ore_veins.json",
+    "closure_ledger": "tools/gt6_ore_chain_closure.json",
+    "catalog_entries": 129
+  },
+  "classification": {
+    "precedence": [
+      "EXPLICIT_SMALL_SOURCE",
+      "RANDOM_SMALL_GEM_SOURCE",
+      "UNIQUE_LARGE_ROLE_SOURCE",
+      "DESIGN_POLICY_NO_GT6_WORLDGEN_FACT"
+    ],
+    "contract": "Every catalog identity is classified exactly once. GT6-backed fields retain their source fact and transformation id; fields without a GT6 fact are explicit DESIGN_POLICY and are excluded from GT6 parity claims.",
+    "large_role_ambiguity": "A material with multiple large-role candidates is not selected by proximity or name; it falls through unless an independent reviewed override is added.",
+    "dimension_policy": "The existing overworld acquisition contract is retained as DESIGN_POLICY_OVERWORLD_ACCESS; GT6 dimensions are recorded as source facts but are not represented as direct parity."
+  },
+  "transformations": {
+    "large_geometry_v1": {
+      "horizontal_radius": "min(source_size, 23)",
+      "vertical_radius": "3, derived from the seven GT6 role levels tMinY-1 through tMinY+5",
+      "density": "clamp(source_density / source_size, 0.01, 1.0)",
+      "min_y": "source_min_y",
+      "max_y": "source_max_y",
+      "region_size_chunks": "32, DESIGN_POLICY load boundary",
+      "generation_chance": "clamp(0.25 + source_weight / 240, 0.25, 0.95)"
+    },
+    "small_geometry_v1": {
+      "layers": "the single source material is repeated in all four CC roles",
+      "min_y": "source_min_y",
+      "max_y": "source_max_y",
+      "horizontal_radius": "4 + min(source_amount, 24) // 6",
+      "vertical_radius": "2 + min(source_amount, 16) // 8",
+      "density": "clamp(0.10 + source_amount / 256, 0.10, 0.35)",
+      "region_size_chunks": "32, DESIGN_POLICY load boundary",
+      "generation_chance": "clamp(0.45 + source_amount / 128, 0.45, 0.95)"
+    },
+    "random_small_gem_geometry_v1": {
+      "source_parameters": "GT6 dynamic row min_y=5, max_y=250, amount=1",
+      "projection": "small_geometry_v1"
+    },
+    "design_policy_hash_v1": {
+      "input": "sha256('cruciblecraft:t20:' + catalog_id)",
+      "purpose": "Deterministically distribute non-GT6-owned catalog resources without presenting the values as source facts.",
+      "bounds": {
+        "min_y": [-48, -17],
+        "max_y": [32, 95],
+        "horizontal_radius": [4, 8],
+        "vertical_radius": [2, 4],
+        "density": [0.12, 0.27],
+        "region_size_chunks": [28, 32],
+        "generation_chance": [0.5, 0.74]
+      }
+    },
+    "identity_preserving_profile_v2": {
+      "rule": "Configured/placed feature ids and salts remain unchanged. Existing generated blocks are not rewritten; unexplored chunks consume profile_version=2. Unsupported profile versions fail codec validation."
+    }
+  },
+  "non_claims": [
+    "The 129 CrucibleCraft catalog identities are 129 canonical GT6 large veins.",
+    "DESIGN_POLICY rows have GT6 geometry parity.",
+    "The NeoForge placement algorithm is behaviorally identical to the Minecraft 1.7.10 GT6 generator.",
+    "Third-party mod-native worldgen is reproduced without a separately pinned source."
+  ]
+}

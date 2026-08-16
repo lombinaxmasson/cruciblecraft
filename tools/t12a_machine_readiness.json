@@ -382,12 +382,12 @@
       "t12_authored_material_rules": 0
     },
     "current": {
-      "datapack_recipe_entries": 3210,
+      "datapack_recipe_entries": 3243,
       "published_recipes": 18875
     },
     "projected_after_tiers_only": {
       "concrete_recipe_id_set_change": 0,
-      "datapack_recipe_entries": 3210,
+      "datapack_recipe_entries": 3243,
       "published_recipes": 18875
     },
     "runtime_contract": {
@@ -422,7 +422,7 @@
       "energy_identity": "RU",
       "output_packet": 16,
       "reason": "Existing Steam Engine is source-proven KU and existing Fuel Engine emits direct EU; neither proves a RU source.",
-      "replacement_condition": "Implement a distinct pinned Bronze Diesel Engine or migrate Fuel Engine through an explicit compatibility plan, then close casingDouble/curvedPlate/rod/gear/smallGear/lubricant operands.",
+      "replacement_condition": "Implement a distinct pinned Bronze Diesel Engine or rebuild Fuel Engine around an explicit current identity, then close casingDouble/curvedPlate/rod/gear/smallGear/lubricant operands.",
       "source_identity": "Bronze Diesel Engine",
       "source_meta": 9147,
       "status": "FAIL_CLOSED_RUNTIME_AND_COMPONENT_DIVERGENCE"
@@ -461,7 +461,7 @@
         "energy_identity": "NONE",
         "id": "anvil",
         "reason": "Workpiece, hammer and anvil material capability is not a packet-input tier.",
-        "revisit_point": "Keep separate capability type through T12b migration tests.",
+        "revisit_point": "Keep the capability type separate through T12b codec tests.",
         "source_lines": "Loader_MultiTileEntities.java:2190"
       },
       {
@@ -492,8 +492,8 @@
         "classification": "fixed_infrastructure",
         "energy_identity": "HU",
         "id": "coke_oven",
-        "reason": "Fixed multiblock consumes adjacent HU and is the no-drift JSON migration baseline.",
-        "revisit_point": "T12d structure migration.",
+        "reason": "Fixed multiblock consumes adjacent HU and is the no-drift JSON projection baseline.",
+        "revisit_point": "T12d structure projection.",
         "source_lines": "CC CokeOvenStructure and CokeOvenBlockEntity"
       },
       {
@@ -501,7 +501,7 @@
         "energy_identity": "HU",
         "id": "crucible",
         "reason": "Casing material controls capacity, temperature and workpiece capability; this is not machine input voltage tier.",
-        "revisit_point": "Keep separately typed in T12b codec/migration.",
+        "revisit_point": "Keep separately typed in the T12b codec.",
         "source_lines": "CC MachineMaterialRules and CrucibleBlockEntity"
       },
       {
@@ -509,7 +509,7 @@
         "energy_identity": "RU_TO_EU",
         "id": "dynamo",
         "reason": "Fixed source Electric Dynamo tiers consume RU and emit EU; current KINETIC must not decide whether input is RU or KU.",
-        "revisit_point": "T12c energy identity migration.",
+        "revisit_point": "T12c current energy identity.",
         "source_lines": "Loader_MultiTileEntities.java:944-950"
       },
       {
@@ -524,9 +524,9 @@
         "classification": "tier_profile_participant",
         "energy_identity": "KU",
         "id": "steam_engine",
-        "reason": "Fixed source Steam Engine emits KU, not RU; bronze output is 24 KU/t.",
-        "revisit_point": "T12c split current KINETIC to KINETIC_PUSH.",
-        "source_lines": "Loader_MultiTileEntities.java:582-597"
+        "reason": "Source 1302 with STEAM_PER_EU=2 gives nominal mOutput 24/2=12 KU; GT6 runtime output is state-dependent 6-24 KU/t, while CC intentionally fixes output at 12 KU/t and preserves source-backed 200 mB steam -> 50 KU conservation.",
+        "revisit_point": "Recheck the deferred GT6 dynamics replacement before adding another steam-engine tier.",
+        "source_lines": "Loader_MultiTileEntities.java:586; CS.java:240; MultiTileEntityEngineSteam.java:58,98-103,121-146"
       },
       {
         "classification": "fixed_infrastructure",
@@ -563,9 +563,9 @@
     "counts": {
       "bronze_crusher": 1,
       "classifications": {
-        "deferred_with_reason": 2,
+        "deferred_with_reason": 3,
         "fixed_utility": 4,
-        "source_tiered": 19
+        "source_tiered": 18
       },
       "classified": 25,
       "configured": 24,
@@ -652,7 +652,7 @@
         "id": "extruder",
         "reason": "Exact source Low Heat Extruder/Extruder family accepts HU; current KU is not source evidence.",
         "recipe_map": "extruder",
-        "revisit_point": "Resolve runtime HU migration before activation.",
+        "revisit_point": "Resolve the current HU identity before activation.",
         "source_lines": "Loader_MultiTileEntities.java:1405-1409"
       },
       {
@@ -719,12 +719,12 @@
         "source_lines": "Loader_MultiTileEntities.java:1-2243 negative search"
       },
       {
-        "classification": "source_tiered",
+        "classification": "deferred_with_reason",
         "energy_identity": "LU",
         "id": "welder",
-        "reason": "Exact source kind is a five-tier Laser Welder accepting LU; LU is outside the first RU/KU/EU/HU slice.",
+        "reason": "Exact source kind is a five-tier Laser Welder accepting LU; the current legacy KINETIC host is deferred because LU is outside the first RU/KU/EU/HU slice.",
         "recipe_map": "welder",
-        "revisit_point": "A future LU phase must add its own source-backed energy contract.",
+        "revisit_point": "A future LU phase must add its own source-backed energy contract before replacing the explicit legacy KINETIC host.",
         "source_lines": "Loader_MultiTileEntities.java:1489-1494"
       },
       {
@@ -760,7 +760,7 @@
         "id": "distillery",
         "reason": "Exact Heat_T Distillery family accepts HU; current EU is not source evidence.",
         "recipe_map": "distillery",
-        "revisit_point": "Resolve runtime HU migration before activation.",
+        "revisit_point": "Resolve the current HU identity before activation.",
         "source_lines": "Loader_MultiTileEntities.java:1397-1401"
       },
       {
@@ -778,7 +778,7 @@
         "id": "drying",
         "reason": "Exact source Dryer family is Heat_T/HU; current EU is not source evidence.",
         "recipe_map": "drying",
-        "revisit_point": "Resolve Dryer display bridge and HU runtime migration.",
+        "revisit_point": "Resolve the Dryer display bridge and current HU identity.",
         "source_lines": "Loader_MultiTileEntities.java:1476-1480"
       },
       {
@@ -787,7 +787,7 @@
         "id": "compressor",
         "reason": "Exact Kinetic_T Compressor family accepts KU; current EU is not source evidence.",
         "recipe_map": "compressor",
-        "revisit_point": "Resolve runtime KU migration before activation.",
+        "revisit_point": "Resolve the current KU identity before activation.",
         "source_lines": "Loader_MultiTileEntities.java:1342-1346"
       },
       {
@@ -1700,21 +1700,21 @@
   },
   "schema_version": 2,
   "source_hashes": {
-    "builder": "14bd3e7beafc05a6e83406ecce6c0a531d4270d1f94e88985323c6fe3a13b2f0",
+    "builder": "10a1dd989be1e34a591a167ff34f5058794c40d988106672325d0bd6cb0dae3f",
     "capacity_matcher": "d75db571d60b708d070a132c730b2f26e05ae0a70e9b21e9ad4b39def2e11e35",
     "capacity_matcher_benchmark": "5d8cf9583bb39df1be5fd2baf7b2f26e9cbc33c4025661114f3bcbe62a18d98b",
     "capacity_matcher_benchmark_harness": "37e9b2676be7e6c37258d9350bbcdb203e7fadd10ca12a8a80b839968e954f27",
     "gt6_reference_metadata": "1b62ce423c6a6a62dcd3b3eaade997dbc7e7afc29931c6f9432f040a43e88164",
-    "machine_crafting_readiness": "ae58ebadffe5e8531ef71274c101b6b1451d9ae8b33814fbfa3c1454b115a8e2",
-    "material_registration_gate": "766a6772a8181638e715a7818dd67bd524ebab4595e5c3e2fd8f435815f8e3cf",
-    "mod_processing_machines": "a27476dbc406dbb874590cc8689cd31ab01812a7660a4a9e91225536845694e8",
-    "policy": "a790f443d4898cf3599e306530435675e9b9d4abf89ac5b0d6214e6da661de3f",
+    "machine_crafting_readiness": "6e5f682332a2bfa29c7dcb00a97b76e29583165d08a82d0099191de0fc2f4786",
+    "material_registration_gate": "17675d0fddce52332d00373839661bc1b0ac70e9e546417458bacd60a0cd199d",
+    "mod_processing_machines": "bc461a2a2212a9da11bb14d4d9e5e5f7abb1a04f63cb56ed705577dc3a80a370",
+    "policy": "c33d281d301327a5344b69b187ac56b657ccae635d19036b2da79212ce3f7d29",
     "representative_recipe_rows": {
       "centrifuge": "fc0d67517ce93b123c0f99f8767ecdeb5a9bb7fdc53e6dc9559c7aaa85ca48ca",
       "electrolyzer": "881375c44d4b2d9f7da61f245be2aaa535e608f1eaf23d998c94f6d6356b8fcb",
       "sifter": "807526cb23901416417955ab3872d4197f099fc1c2449d70985b340cba70aecb"
     },
-    "t11_preflight_projection": "b1e31d27dc3af04d4f89d3e7674e2e8443d00e29bc68726832da08c83926b61c"
+    "t11_preflight_projection": "6f051fb8905dca1dceab121d8bc777d22da28424c827ae0835b530c29b6c02cf"
   },
   "source_verification": {
     "anchors": {
@@ -1826,7 +1826,7 @@
       "recheck_ticks": 20,
       "scan_volume": 27,
       "source": "current CrucibleCraft no-drift baseline",
-      "status": "READY_AS_T12D_MIGRATION_BASELINE"
+      "status": "READY_AS_T12D_PROJECTION_BASELINE"
     },
     "large_centrifuge": {
       "cheap_overclock": true,
@@ -1874,7 +1874,7 @@
     "history_preserved": true,
     "material_tag_policy": {
       "path": "src/main/resources/data/cruciblecraft/material_tag_policy.json#energy_type_decision",
-      "replacement": "T12 source identity is split into RU/KINETIC_ROTATION and KU/KINETIC_PUSH. Runtime enum migration remains T12c and cannot be inferred from current KINETIC.",
+      "replacement": "T12 source identity is split into RU/KINETIC_ROTATION and KU/KINETIC_PUSH. The runtime enum decision belongs to T12c and cannot be inferred from current KINETIC.",
       "superseded_statement": "GT6 RU is intentionally represented by the existing KINETIC packet type."
     },
     "replacement_owner": "T12b_kind_tier_schema_and_T12c_machine_variants",
@@ -1882,9 +1882,9 @@
   },
   "t12b_blockers": [
     {
-      "blocker": "MachineKind/TierProfile schema, one-map-to-many lookup and save migration are not implemented.",
+      "blocker": "MachineKind/TierProfile schema, one-map-to-many lookup and current-state persistence are not implemented.",
       "owner": "T12b",
-      "replacement_condition": "Complete T12b codec/runtime migration tests."
+      "replacement_condition": "Complete T12b codec/runtime persistence tests."
     },
     {
       "blocker": "Nine variants/crafts are fail-closed on machine casing components and RU/KU runtime identity split.",
@@ -1894,7 +1894,7 @@
     {
       "blocker": "Coke Oven remains Java-defined and Large Centrifuge has no shared JSON validator/runtime.",
       "owner": "T12d",
-      "replacement_condition": "Migrate both exact predicate/port projections to the generic schema."
+      "replacement_condition": "Move both exact predicate/port projections to the generic schema."
     },
     {
       "blocker": "RU producer/Axle/GearBox runtime is absent and 16 Large Centrifuge item/fluid ports exceed the 12-supply presence-reservation cap.",

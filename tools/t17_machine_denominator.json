@@ -3,6 +3,7 @@
     "catalog_variants_selected_and_reference": 12,
     "catalog_variants_total": 33,
     "classified": 28,
+    "cross_owner_deferred_kinds": 1,
     "deferred_kinds": 24,
     "dispositions": {
       "IMPLEMENTED_T17A": 3,
@@ -22,10 +23,27 @@
     "t17_owner_hu_eu_kinds": 28,
     "unclassified": 0
   },
+  "cross_owner_dispositions": [
+    {
+      "accepted_energy": "KU",
+      "current_local_energy_type": "ELECTRIC",
+      "disposition": "CROSS_OWNER_DEFERRED",
+      "local_map": "cruciblecraft:compressor",
+      "owner": "T16",
+      "reason": "Compressor is a KU kind owned by T16 while the live T5 host remains explicitly ELECTRIC; the energy disposition audit records the mismatch without stealing owner scope or silently rewriting runtime semantics.",
+      "recheck_point": "Recheck in the next T16-owned KU machine batch before changing Compressor energy.",
+      "recipe_map": "RM.Compressor",
+      "replacement_condition": "The T16 owner must approve a KU Compressor batch with adjacent-push supply, current identity, resources and acquisition evidence.",
+      "source_local_energy_type": "KINETIC_PUSH"
+    }
+  ],
   "currentness": {
+    "cross_owner_ledger": {
+      "tools/t16_machine_denominator_policy.json": "25f7d595bb27fd6b282abfeb9dddc3fd70d64863efe936e149580c1ef78a7255"
+    },
     "owned_inputs": {
-      "tools/build_t17_machine_denominator.py": "c444d8cdf74c6cebb9ee120c73196d64f2fa892152414c13317bd1268870694f",
-      "tools/t17_machine_denominator_policy.json": "c1ab1e48bfd74ac190d5d31810735ad2b62bef553615b1c74adfa73a633e1c0b"
+      "tools/build_t17_machine_denominator.py": "9ad591533ef22d07ec82298062092bd4c60fc0ce5eecc3590c4ea2b51bbd9777",
+      "tools/t17_machine_denominator_policy.json": "1451c472f01e9c31a718b6f02707588531531635d429c8e0c6bcec5250945993"
     },
     "registered_heat_materials": {
       "src/main/resources/data/cruciblecraft/materials/invar.json": "53e8b477db4c725b5ac854b6434e516efac06a36a011381ee13b2c18854a1b2a",
@@ -34,7 +52,7 @@
     },
     "runtime_projection": {
       "src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java": "146e43f2edf6a45149f7a6efc41ef3bdf1b4b5a30cc8a72735e21d7530a14e8b",
-      "src/main/resources/data/cruciblecraft/machine_tiers.json": "cc1df2b2d3693203a6ed5246d9887efbf6e89b03576682be748894e69f4e84a5"
+      "src/main/resources/data/cruciblecraft/machine_tiers.json": "4ca2160e5369dd812ee5bd781bf6f08106ad363fddcd40b76786d37487dae827"
     },
     "t13_denominators": {
       "tools/t13_denominators/energy_identities.json": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
@@ -276,7 +294,7 @@
       "reason": "Distillery Heat_T tier 4 is outside the three-tier T17a runtime.",
       "recheck_point": "Recheck after Distillery tiers 1-3 acquisition closes.",
       "recipe_map": "RM.Distillery",
-      "replacement_condition": "Provide exact Tungsten Carbide mapping, migration, resources and acquisition.",
+      "replacement_condition": "Provide exact Tungsten Carbide mapping, current identity, resources and acquisition.",
       "source_id": 20194,
       "source_line": 1401,
       "source_material": "TungstenCarbide",
@@ -298,7 +316,7 @@
       "reason": "Dryer Heat_T tier 4 is outside the three-tier T17a runtime.",
       "recheck_point": "Recheck after Dryer tiers 1-3 acquisition closes.",
       "recipe_map": "RM.Drying",
-      "replacement_condition": "Provide exact Tungsten Carbide mapping, migration, resources and acquisition.",
+      "replacement_condition": "Provide exact Tungsten Carbide mapping, current identity, resources and acquisition.",
       "source_id": 20314,
       "source_line": 1480,
       "source_material": "TungstenCarbide",
@@ -320,7 +338,7 @@
       "reason": "Electrolyzer Electric_T tiers 4-5 are outside T17a and have no approved acquisition closure.",
       "recheck_point": "Recheck in T17b electric-machine selection.",
       "recipe_map": "RM.Electrolyzer",
-      "replacement_condition": "Provide exact tier-4/5 materials, electrical limits, resources, migration and acquisition.",
+      "replacement_condition": "Provide exact tier-4/5 materials, electrical limits, resources, current identity and acquisition.",
       "source_id": 20094,
       "source_line": 1339,
       "source_material": "Cr",
@@ -342,7 +360,7 @@
       "reason": "Electrolyzer Electric_T tiers 4-5 are outside T17a and have no approved acquisition closure.",
       "recheck_point": "Recheck in T17b electric-machine selection.",
       "recipe_map": "RM.Electrolyzer",
-      "replacement_condition": "Provide exact tier-4/5 materials, electrical limits, resources, migration and acquisition.",
+      "replacement_condition": "Provide exact tier-4/5 materials, electrical limits, resources, current identity and acquisition.",
       "source_id": 20095,
       "source_line": 1340,
       "source_material": "Ti",
@@ -694,7 +712,7 @@
       "reason": "Electric tiers 4-5 cannot precede Printer data semantics and tiers 1-3.",
       "recheck_point": "Recheck after Printer tiers 1-3.",
       "recipe_map": "RM.Printer",
-      "replacement_condition": "Close lower tiers and data migration before higher tiers.",
+      "replacement_condition": "Close lower tiers and data semantics before higher tiers.",
       "source_id": 20274,
       "source_line": 1453,
       "source_material": "Cr",
@@ -716,7 +734,7 @@
       "reason": "Electric tiers 4-5 cannot precede Printer data semantics and tiers 1-3.",
       "recheck_point": "Recheck after Printer tiers 1-3.",
       "recipe_map": "RM.Printer",
-      "replacement_condition": "Close lower tiers and data migration before higher tiers.",
+      "replacement_condition": "Close lower tiers and data semantics before higher tiers.",
       "source_id": 20275,
       "source_line": 1454,
       "source_material": "Ti",
@@ -892,7 +910,7 @@
       "reason": "Smelter Heat_T tier 4 is outside the three-tier T17a runtime.",
       "recheck_point": "Recheck after Smelter tiers 1-3 acquisition closes.",
       "recipe_map": "RM.Smelter",
-      "replacement_condition": "Provide exact Tungsten Carbide mapping, migration, resources and acquisition.",
+      "replacement_condition": "Provide exact Tungsten Carbide mapping, current identity, resources and acquisition.",
       "source_id": 20244,
       "source_line": 1434,
       "source_material": "TungstenCarbide",
@@ -967,6 +985,37 @@
       "tier_array": "Electric_T"
     }
   ],
+  "energy_disposition_audit": {
+    "criterion": "INCORRECT_ENERGY_IDENTITIES_HAVE_EXPLICIT_DISPOSITIONS",
+    "deferred": 2,
+    "implemented": 0,
+    "rows": [
+      {
+        "accepted_energy": "HU",
+        "current_local_energy_type": "KINETIC",
+        "disposition": "MAPPED_DEFERRED",
+        "owner": "T17",
+        "reason": "The local Extruder is a legacy kinetic tool host; T17a does not silently rewrite it to HU.",
+        "recheck_point": "Recheck after T17a selected HU machines stabilize.",
+        "recipe_map": "RM.Extruder",
+        "replacement_condition": "Approve HU Extruder current identity while preserving shape tools, recipes and acquisition.",
+        "source_local_energy_type": "HEAT"
+      },
+      {
+        "accepted_energy": "KU",
+        "current_local_energy_type": "ELECTRIC",
+        "disposition": "CROSS_OWNER_DEFERRED",
+        "local_map": "cruciblecraft:compressor",
+        "owner": "T16",
+        "reason": "Compressor is a KU kind owned by T16 while the live T5 host remains explicitly ELECTRIC; the energy disposition audit records the mismatch without stealing owner scope or silently rewriting runtime semantics.",
+        "recheck_point": "Recheck in the next T16-owned KU machine batch before changing Compressor energy.",
+        "recipe_map": "RM.Compressor",
+        "replacement_condition": "The T16 owner must approve a KU Compressor batch with adjacent-push supply, current identity, resources and acquisition evidence.",
+        "source_local_energy_type": "KINETIC_PUSH"
+      }
+    ],
+    "status": "AUDITED"
+  },
   "energy_identities": {
     "EU": {
       "local_energy_type": "ELECTRIC",
@@ -1773,7 +1822,7 @@
           "parallel_duration": true,
           "reason": "Distillery Heat_T tier 4 is outside the three-tier T17a runtime.",
           "recheck_point": "Recheck after Distillery tiers 1-3 acquisition closes.",
-          "replacement_condition": "Provide exact Tungsten Carbide mapping, migration, resources and acquisition.",
+          "replacement_condition": "Provide exact Tungsten Carbide mapping, current identity, resources and acquisition.",
           "source_id": 20194,
           "source_line": 1401,
           "source_material": "TungstenCarbide",
@@ -1880,7 +1929,7 @@
           "parallel_duration": true,
           "reason": "Dryer Heat_T tier 4 is outside the three-tier T17a runtime.",
           "recheck_point": "Recheck after Dryer tiers 1-3 acquisition closes.",
-          "replacement_condition": "Provide exact Tungsten Carbide mapping, migration, resources and acquisition.",
+          "replacement_condition": "Provide exact Tungsten Carbide mapping, current identity, resources and acquisition.",
           "source_id": 20314,
           "source_line": 1480,
           "source_material": "TungstenCarbide",
@@ -1972,7 +2021,7 @@
           "parallel_duration": true,
           "reason": "Electrolyzer Electric_T tiers 4-5 are outside T17a and have no approved acquisition closure.",
           "recheck_point": "Recheck in T17b electric-machine selection.",
-          "replacement_condition": "Provide exact tier-4/5 materials, electrical limits, resources, migration and acquisition.",
+          "replacement_condition": "Provide exact tier-4/5 materials, electrical limits, resources, current identity and acquisition.",
           "source_id": 20094,
           "source_line": 1339,
           "source_material": "Cr",
@@ -1992,7 +2041,7 @@
           "parallel_duration": true,
           "reason": "Electrolyzer Electric_T tiers 4-5 are outside T17a and have no approved acquisition closure.",
           "recheck_point": "Recheck in T17b electric-machine selection.",
-          "replacement_condition": "Provide exact tier-4/5 materials, electrical limits, resources, migration and acquisition.",
+          "replacement_condition": "Provide exact tier-4/5 materials, electrical limits, resources, current identity and acquisition.",
           "source_id": 20095,
           "source_line": 1340,
           "source_material": "Ti",
@@ -2012,7 +2061,7 @@
       "reason": "The local Extruder is a legacy kinetic tool host; T17a does not silently rewrite it to HU.",
       "recheck_point": "Recheck after T17a selected HU machines stabilize.",
       "recipe_map": "RM.Extruder",
-      "replacement_condition": "Approve HU Extruder identity migration while preserving shape tools, recipes and acquisition.",
+      "replacement_condition": "Approve HU Extruder current identity while preserving shape tools, recipes and acquisition.",
       "source_identity": {
         "normalized_row_key": "MultiTileEntityBasicMachine|recipe:RM.Extruder|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
         "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
@@ -2745,7 +2794,7 @@
       "reason": "The local electric Mixer map exists, but T17a is the bounded HU selection and does not add Mixer tiers.",
       "recheck_point": "Recheck in T17b electric-machine selection.",
       "recipe_map": "RM.Mixer",
-      "replacement_condition": "Select Mixer with exact Electric_T materials, variant migration, resources and acquisition.",
+      "replacement_condition": "Select Mixer with exact Electric_T materials, current variants, resources and acquisition.",
       "source_identity": {
         "normalized_row_key": "MultiTileEntityBasicMachineElectric|recipe:RM.Mixer|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
         "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
@@ -3153,7 +3202,7 @@
           "parallel_duration": false,
           "reason": "Electric tiers 4-5 cannot precede Printer data semantics and tiers 1-3.",
           "recheck_point": "Recheck after Printer tiers 1-3.",
-          "replacement_condition": "Close lower tiers and data migration before higher tiers.",
+          "replacement_condition": "Close lower tiers and data semantics before higher tiers.",
           "source_id": 20274,
           "source_line": 1453,
           "source_material": "Cr",
@@ -3173,7 +3222,7 @@
           "parallel_duration": false,
           "reason": "Electric tiers 4-5 cannot precede Printer data semantics and tiers 1-3.",
           "recheck_point": "Recheck after Printer tiers 1-3.",
-          "replacement_condition": "Close lower tiers and data migration before higher tiers.",
+          "replacement_condition": "Close lower tiers and data semantics before higher tiers.",
           "source_id": 20275,
           "source_line": 1454,
           "source_material": "Ti",
@@ -3412,7 +3461,7 @@
       "reason": "The local Sifter is a KU source kind; T17 Electric Sifting must not silently reuse its energy identity.",
       "recheck_point": "Recheck during T17 electric-machine selection.",
       "recipe_map": "RM.Sifting",
-      "replacement_condition": "Approve a distinct electric behavior or explicit identity migration with exact Electric_T tiers.",
+      "replacement_condition": "Approve a distinct electric behavior and current identity with exact Electric_T tiers.",
       "source_identity": {
         "normalized_row_key": "MultiTileEntityBasicMachineElectric|recipe:RM.Sifting|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
         "source_blob": "cf80887c5e572ee0942f087d1c75238115ca5255",
@@ -3723,7 +3772,7 @@
           "parallel_duration": true,
           "reason": "Smelter Heat_T tier 4 is outside the three-tier T17a runtime.",
           "recheck_point": "Recheck after Smelter tiers 1-3 acquisition closes.",
-          "replacement_condition": "Provide exact Tungsten Carbide mapping, migration, resources and acquisition.",
+          "replacement_condition": "Provide exact Tungsten Carbide mapping, current identity, resources and acquisition.",
           "source_id": 20244,
           "source_line": 1434,
           "source_material": "TungstenCarbide",

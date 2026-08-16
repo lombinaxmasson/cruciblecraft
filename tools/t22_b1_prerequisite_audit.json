@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "status": "T22_B1_PREREQUISITE_AUDIT",
+  "audited_on": "2026-08-11",
+  "families": 7,
+  "v1_prerequisites": {
+    "machines": {
+      "status": "ALL_PRESENT",
+      "detail": "All 9 petroleum-processing machines are implemented: distillery(T17), centrifuge(T16/T17), mixer(T16), smelter(T17), compressor(T16), electrolyzer(T17), fuels_engine(T18), fuels_gas(T18), generifier(T11). No new machine Kind/Tier needed."
+    },
+    "energy": {
+      "status": "ALL_MAPPED",
+      "detail": "Energy identities are explicit per family: distillery/smelter=HU, centrifuge/mixer/electrolyzer/generifier=EU, compressor=KU, fuels_engine=KU(producer), fuels_gas=HU(producer). No energy folding. Compressor KU/ELECTRIC mismatch is a known T16 audit item, not a B1 blocker."
+    },
+    "fluids": {
+      "status": "V1_COMPLETE",
+      "v1_registered": [
+        "cruciblecraft:crude_oil (material_id 9852, SOURCE_MATERIAL_LAYER_ONLY)",
+        "cruciblecraft:oil (material_id 9850, registered in gt6_oredict_fluids_normalized)",
+        "cruciblecraft:fuel (material_id 9860)",
+        "cruciblecraft:lubricant (material_id 9882)",
+        "cruciblecraft:natural_gas (t11_materials/natural_gas.json)",
+        "cruciblecraft:methane (T11 published)",
+        "cruciblecraft:oil_sand (worldgen material, T20)",
+        "cruciblecraft:oil_shale (worldgen material, T20)",
+        "cruciblecraft:petroleum_coke"
+      ],
+      "ordinary_optional_unregistered": [
+        "soulsandoil (no CC identity — not in gt6_oredict_fluids_normalized)",
+        "liquid_extra_heavy_oil (no CC identity)",
+        "liquid_heavy_oil (no CC identity)",
+        "liquid_light_oil (no CC identity)",
+        "liquid_medium_oil (no CC identity — row 872 published via T11 as crude_oil path)"
+      ],
+      "b1_deferred_decision": "The 5 ordinary_optional fluids are deferred to post-1.0 portfolio. Each has owner(T22 B1), replacement_condition(fluid identity registration per T11 source-backed route), and recheck_point(post-1.0 fluid audit). Registering them now would add 5 new CC fluid identities for 5 optional rows — not justified for Beta where the core crude_oil chain suffices."
+    },
+    "containers": {
+      "status": "ADEQUATE",
+      "detail": "T10 cell/portable罐 allowlist covers fluid containment. T11 cell_content_gate already includes natural_gas. Other petroleum fluids are cell-compatible via the T10 generic fluid cell mechanism."
+    },
+    "localization": {
+      "status": "ADEQUATE",
+      "en_us": "crude_oil, natural_gas, lubricant, oil_sand, oil_shale, petroleum_coke have both fluid_type and material keys. oil/fuel/methane are internal materials (not player-facing items).",
+      "zh_cn": "crude_oil(原油), natural_gas(天然气) confirmed. Coverage not regressed from T21 baseline.",
+      "models": "Petroleum fluids use generated/placeholder fluid textures via the standard fluid rendering pipeline. No custom item/block models needed for fluids."
+    },
+    "acquisition": {
+      "status": "REACHABLE",
+      "crude_oil": "T9 identity, T20 worldgen subsurface fluid deposit, extracted via pump",
+      "natural_gas": "T9 identity, T20 worldgen subsurface fluid deposit, extracted via pump",
+      "oil_sand": "T20 worldgen large vein, mined as ore",
+      "oil_shale": "T20 worldgen large vein, mined as ore",
+      "acquisition_proof": "T18 GameTest: crude_oil extraction → fuel_engine → dynamo → electrolyzer chain verifies operand reachability"
+    }
+  },
+  "t21_cascade_risk": {
+    "assessment": "LOW",
+    "reason": "No new material or fluid registrations are added in B1. The v1 petroleum fluids were all registered in T9/T11/T20. Unlike T21 which added new chemical materials triggering ~50 downstream product rebuilds, B1 adds zero new identities — thus zero cascade risk.",
+    "rebuild_required": false,
+    "rebuild_note": "Full rebuild (58 builders) requires GT6 dump which is not in worktree. Without new registrations, rebuild would produce zero diffs — not worth the overhead."
+  }
+}

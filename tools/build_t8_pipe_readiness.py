@@ -680,13 +680,13 @@ def build(
     if unclassified:
         raise ValueError("T8 pipe classification is not closed")
 
-    unobtainable_policy = policy["unobtainable_nonmetal_fluid_pipes"]
+    acquisition_policy = policy["nonmetal_fluid_pipe_acquisition"]
     fluid_by_material = {
         row["material"]: row for row in fluid_domain["material_catalog"]
     }
-    unobtainable_materials = sorted(unobtainable_policy["materials"])
-    unobtainable_forms = []
-    for material in unobtainable_materials:
+    acquisition_materials = sorted(acquisition_policy["materials"])
+    acquisition_forms = []
+    for material in acquisition_materials:
         row = fluid_by_material.get(material)
         if row is None:
             raise ValueError(
@@ -699,20 +699,27 @@ def build(
                 raise ValueError(
                     f"O-27 material unexpectedly has a recipe: {material}/{gauge}"
                 )
-            unobtainable_forms.append({
+            acquisition_forms.append({
                 "material": material,
                 "gauge": gauge,
             })
     if (
-        len(fluid_gauges) != unobtainable_policy["expected_gauge_count"]
-        or len(unobtainable_forms) != unobtainable_policy["expected_form_count"]
+        len(fluid_gauges) != acquisition_policy["expected_gauge_count"]
+        or len(acquisition_forms) != acquisition_policy["expected_form_count"]
     ):
-        raise ValueError("O-27 unobtainable pipe-form count drifted")
-    unobtainable = {
-        **unobtainable_policy,
-        "materials": unobtainable_materials,
-        "forms": unobtainable_forms,
-        "form_count": len(unobtainable_forms),
+        raise ValueError("O-27 pipe acquisition form count drifted")
+    if acquisition_policy["status"] != "CLOSED_T19C":
+        raise ValueError("O-27 T19c acquisition closure drifted")
+    # T8 records only its own derived acquisition forms.  Equality with the
+    # T19 runtime artifact is proven by build_t19_pipe_acquisition (index 48)
+    # as a forward edge, keeping the builder graph acyclic.
+    acquisition = {
+        **acquisition_policy,
+        "materials": acquisition_materials,
+        "forms": acquisition_forms,
+        "form_count": len(acquisition_forms),
+        "unreachable": 0,  # closed T19C contract; proven by #48 forward edge
+        "validation_owner": "tools/build_t19_pipe_acquisition.py (index 48)",
     }
 
     recipe_projection = {
@@ -786,7 +793,7 @@ def build(
             "within_block_budget": True,
             "within_logical_state_budget": True,
         },
-        "unobtainable_nonmetal_fluid_pipes": unobtainable,
+        "nonmetal_fluid_pipe_acquisition": acquisition,
         "recipe_projection": recipe_projection,
         "runtime_api_decisions": runtime_api_decisions,
         "import_architecture": policy["import_architecture"],
@@ -802,7 +809,7 @@ def build(
                 "runtime_budget_within_caps": True,
                 "deferred_gauges_explicit": True,
                 "generic_recipe_projection": True,
-                "unobtainable_nonmetal_pipe_debt_closed": True,
+                "nonmetal_pipe_acquisition_closed": True,
                 "per_material_java_required": False,
             },
             "requirements": policy["readiness_policy"]["requirements"],

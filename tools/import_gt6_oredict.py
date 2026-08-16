@@ -42,15 +42,7 @@ ELECTRICAL_SOURCE = TOOLS / "gt6_electrical_source.json"
 ACCEPTANCE_FORM_CORRECTIONS = (
     TOOLS / "component_rule_sources" / "acceptance_form_corrections.json"
 )
-GATE_OPERANDS = TOOLS / "gt6_l1b_selected_recipe_operands.json"
-ORE_CHAIN = TOOLS / "gt6_ore_chain.json"
-ORE_CHAIN_OPERANDS = TOOLS / "gt6_ore_chain_operands.json"
 REGISTRY_BUDGET = TOOLS / "material_registry_budget.json"
-REGISTRATION_GATE = (
-    ROOT / "src" / "main" / "resources" / "data" / "cruciblecraft"
-    / "material_registration_gate.json"
-)
-REGISTRATION_GATE_MANIFEST_KEY = "material_registration_gate.json"
 RECIPE_DUMP_ROOT = ROOT / "gt6_dump" / "gt6_recipe_dump"
 
 EXPECTED_COUNTS = {"materialCount": 2214, "prefixCount": 468, "fluidMapCount": 322}
@@ -324,7 +316,12 @@ def stable_hash(value: Any) -> str:
 
 
 def strip_t8_pipe_projection(value: Any) -> Any:
-    """Remove post-import T8/T10 overlays before structural comparison."""
+    """Remove post-import overlays before structural comparison.
+
+    T8/T10 pipe/form flags and T21+ form_items are CC-authored identity
+    bridges, not GT6 source data.  Stripping them ensures the hash
+    represents only the GT6-owned portion of the material definition.
+    """
     if not isinstance(value, dict):
         return value
     result = dict(value)
@@ -339,6 +336,10 @@ def strip_t8_pipe_projection(value: Any) -> Any:
             - T8_PIPE_FLAGS
             - T10_FORM_FLAGS
         )
+    # form_items are CC-authored identity bridges (e.g. charcoal/gem →
+    # minecraft:charcoal).  They are preserved during writes but must
+    # not affect the GT6-content hash.
+    result.pop("form_items", None)
     return result
 
 
@@ -363,6 +364,10 @@ def preserve_t8_pipe_projection(
         result["generation_flags"] = sorted(
             set(result.get("generation_flags") or []) | post_import_flags
         )
+    # Preserve form_items overrides (T21+).  These are CC-authored identity
+    # bridges, not GT6 source data, and must survive import rewrites.
+    if "form_items" in current and isinstance(current["form_items"], dict):
+        result["form_items"] = dict(current["form_items"])
     return result
 
 
@@ -1688,7 +1693,7 @@ def write_authored_structural_baseline() -> None:
             for cc_id in sorted(AUTHORED_IDS)
         },
     }
-    AUTHORED_BASELINE.write_text(stable_json(document), encoding="utf-8")
+    AUTHORED_BASELINE.write_text(stable_json(document), encoding="utf-8", newline="\n")
 
 
 def build_outputs(dump_root: Path) -> ImportResult:
@@ -1944,7 +1949,8 @@ def build_outputs(dump_root: Path) -> ImportResult:
         "records": policy,
     }
     material_definition_hashes = {
-        Path(path).name: stable_hash(json.loads(content))
+        Path(path).name: stable_hash(strip_t8_pipe_projection(
+            json.loads(content)))
         for path, content in material_files.items()
         if Path(path).parent == MATERIAL_DIR
     }
@@ -1975,20 +1981,11 @@ def build_outputs(dump_root: Path) -> ImportResult:
                 gt6_l3_materials.MAPPING_PATH.read_text(encoding="utf-8")
             )),
             gt6_l3_materials.OUT.name: stable_hash(l3_document),
-            GATE_OPERANDS.name: stable_hash(json.loads(
-                GATE_OPERANDS.read_text(encoding="utf-8")
-            )),
-            ORE_CHAIN.name: stable_hash(json.loads(
-                ORE_CHAIN.read_text(encoding="utf-8")
-            )),
-            ORE_CHAIN_OPERANDS.name: stable_hash(json.loads(
-                ORE_CHAIN_OPERANDS.read_text(encoding="utf-8")
-            )),
+            # artifact_hashes records self/upstream integrity only; consumers
+            # #3 (ore chain) and #5 (form gate) pin this import's outputs as
+            # forward edges, so their artifacts are deliberately absent here.
             REGISTRY_BUDGET.name: stable_hash(json.loads(
                 REGISTRY_BUDGET.read_text(encoding="utf-8")
-            )),
-            REGISTRATION_GATE_MANIFEST_KEY: stable_hash(json.loads(
-                REGISTRATION_GATE.read_text(encoding="utf-8")
             )),
         },
         "generated_material_files": list(generated),
@@ -2033,11 +2030,7 @@ def validate_manifest_artifact_hashes(
         gt6_l3_materials.GENERATION_BITS_PATH.name,
         gt6_l3_materials.MAPPING_PATH.name,
         gt6_l3_materials.OUT.name,
-        GATE_OPERANDS.name,
-        ORE_CHAIN.name,
-        ORE_CHAIN_OPERANDS.name,
         REGISTRY_BUDGET.name,
-        REGISTRATION_GATE_MANIFEST_KEY,
     }
     missing_hashes = sorted(required_hashes - set(manifest["artifact_hashes"]))
     if missing_hashes:
@@ -2047,10 +2040,7 @@ def validate_manifest_artifact_hashes(
         )
     for filename, expected in manifest["artifact_hashes"].items():
         path = (
-            REGISTRATION_GATE
-            if filename == REGISTRATION_GATE_MANIFEST_KEY
-            and tools_dir.resolve() == TOOLS.resolve()
-            else ACCEPTANCE_FORM_CORRECTIONS
+            ACCEPTANCE_FORM_CORRECTIONS
             if filename == "acceptance_form_corrections.json"
             and tools_dir.resolve() == TOOLS.resolve()
             else tools_dir / filename
@@ -2132,6 +2122,7 @@ def validate_material_manifest(
             raise ImportError(f"material definition hash mismatch: {filename}")
     if check_authored:
         validate_authored_structural_baseline(manifest["authored_structural_hashes"])
+
 
 
 def write_or_check(result: ImportResult, check: bool) -> None:

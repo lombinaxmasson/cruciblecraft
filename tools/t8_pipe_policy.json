@@ -206,9 +206,10 @@
       "reason": "PipeCoverSet.version had no production consumer; cover mutations already invalidate PipeTopology and synchronize the owning block entity."
     }
   },
-  "unobtainable_nonmetal_fluid_pipes": {
+  "nonmetal_fluid_pipe_acquisition": {
     "open_item": "O-27",
-    "status": "SOURCE_ROUTE_UNRESOLVED",
+    "status": "CLOSED_T19C",
+    "artifact": "tools/t19_pipe_acquisition.json",
     "materials": [
       "carbon",
       "plastic",
@@ -218,7 +219,7 @@
     ],
     "expected_gauge_count": 5,
     "expected_form_count": 25,
-    "decision": "Keep the source-backed pipe forms creative-visible, but do not invent an extruder route while every GT6 recipe flag is false. Locate the nonmetal pipe acquisition route with T10 containers."
+    "decision": "Keep all GT6 recipe flags false; use the five exact GT6 Wood crafting rows and twenty explicit CrucibleCraft DESIGN_POLICY_NON_GT6 shaped rows recorded by the T19c acquisition artifact."
   },
   "import_architecture": {
     "source_of_truth": "tools/gt6_pipe_source.json plus explicit tools/t8_pipe_policy.json acceptance extensions",
@@ -236,7 +237,8 @@
       "combined_runtime_blocks_at_most_300",
       "logical_states_equal_blocks_times_64_and_at_most_20000",
       "all_unselected_and_restrictive_gauges_are_explicitly_deferred",
-      "recipe_projection_is_generic_and_requires_no_per_material_java"
+      "recipe_projection_is_generic_and_requires_no_per_material_java",
+      "t19c_nonmetal_pipe_acquisition_is_closed_without_changing_gt6_recipe_flags"
     ],
     "runtime_implementation_status": "IMPLEMENTED_AND_GAME_TESTED"
   }

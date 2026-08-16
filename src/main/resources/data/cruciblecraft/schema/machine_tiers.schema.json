@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/machine_tiers.schema.json",
+  "title": "CrucibleCraft processing machine tier bands",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "source",
+    "variants",
+    "controller_profiles"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 2
+    },
+    "source": {
+      "type": "object"
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/variant"
+      }
+    },
+    "controller_profiles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/controllerProfile"
+      }
+    }
+  },
+  "$defs": {
+    "resourceLocation": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.-]+:[a-z0-9/._-]+$"
+    },
+    "capabilities": {
+      "type": "object",
+      "required": [
+        "tierBand",
+        "material",
+        "energy",
+        "inputMinimum",
+        "inputNominal",
+        "inputMaximum",
+        "energyCapacity",
+        "parallel",
+        "efficiency"
+      ],
+      "properties": {
+        "tierBand": {
+          "$ref": "#/$defs/resourceLocation",
+          "description": "Shared tier-band identity. Rows with this value must share material, energy, input window, capacity, and efficiency; it is not the complete variant id."
+        },
+        "material": {
+          "$ref": "#/$defs/resourceLocation"
+        },
+        "energy": {
+          "enum": [
+            "ELECTRIC",
+            "HEAT",
+            "KINETIC_PUSH",
+            "KINETIC_ROTATION"
+          ]
+        },
+        "inputMinimum": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "inputNominal": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "inputMaximum": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "energyCapacity": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "parallel": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Per-variant parallel limit; variants in one tier band may differ."
+        },
+        "efficiency": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000
+        }
+      }
+    },
+    "variant": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/capabilities"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "kind",
+            "sourceId",
+            "sourceTier",
+            "overclock",
+            "parallelDuration"
+          ],
+          "properties": {
+            "id": {
+              "$ref": "#/$defs/resourceLocation",
+              "description": "Complete machine variant identity. It scopes persistence migrations and distinguishes variants even when their tierBand values match."
+            },
+            "kind": {
+              "$ref": "#/$defs/resourceLocation"
+            },
+            "tierBand": true,
+            "material": true,
+            "energy": true,
+            "sourceId": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sourceTier": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sourceMaterial": {
+              "type": "string",
+              "minLength": 1
+            },
+            "materialRegistered": {
+              "type": "boolean"
+            },
+            "acquisitionBlocker": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "overclock": {
+              "enum": [
+                "CHEAP",
+                "STANDARD"
+              ]
+            },
+            "parallelDuration": {
+              "type": "boolean",
+              "description": "Machine-kind execution policy; it is not part of tier-band identity."
+            },
+            "inputMinimum": true,
+            "inputNominal": true,
+            "inputMaximum": true,
+            "energyCapacity": true,
+            "parallel": true,
+            "efficiency": true
+          }
+        }
+      ]
+    },
+    "controllerProfile": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/capabilities"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tierBand": true,
+            "material": true,
+            "energy": true,
+            "inputMinimum": true,
+            "inputNominal": true,
+            "inputMaximum": true,
+            "energyCapacity": true,
+            "parallel": true,
+            "efficiency": true
+          }
+        }
+      ]
+    }
+  }
+}

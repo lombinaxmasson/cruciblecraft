@@ -1,0 +1,22 @@
+{
+  "conditions": [
+    "has_registered_for(\"processing_target:working\", quadruple_wire)"
+  ],
+  "duration": "100 * (144 * prefix_units(quadruple_wire) / gcd(target_units(working) * 144, 144 * prefix_units(quadruple_wire)))",
+  "eut": "32",
+  "item_inputs": [
+    {
+      "count": "1 * (144 * prefix_units(quadruple_wire) / gcd(target_units(working) * 144, 144 * prefix_units(quadruple_wire)))",
+      "prefix": "cruciblecraft:double_wire"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "target_units(working) * 144 / gcd(target_units(working) * 144, 144 * prefix_units(quadruple_wire))",
+      "material_selector": "processing_target:working",
+      "prefix": "cruciblecraft:quadruple_wire"
+    }
+  ],
+  "target": "cruciblecraft:wiremill",
+  "type": "cruciblecraft:material_rule"
+}

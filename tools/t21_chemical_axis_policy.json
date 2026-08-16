@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "status": "T21_CHEMICAL_CALIBRATION_POLICY",
+  "source": {
+    "repository": "GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "loader": "src/main/java/gregtech/loaders/c/Loader_Recipes_Decomp.java",
+    "t5_readiness": "tools/t5_chemical_readiness.json",
+    "t5_recipe_manifest": "tools/t5_chemical_recipe_manifest.json"
+  },
+  "denominator": {
+    "kind": "t5_unique_chemical_union",
+    "expected_candidates": 224,
+    "correction": "The phase-4 prose value 234 is stale. The authoritative T5 ledger is 145 terminal + 110 crusher - 31 overlap = 224 unique chemical candidates.",
+    "byproduct_only_debt_is_separate": true,
+    "expected_byproduct_only_debt": 110,
+    "expected_byproduct_overlap": 60,
+    "expected_byproduct_outside": 50
+  },
+  "classification": {
+    "precedence": [
+      "composition_generated",
+      "named_reaction",
+      "blocked_by_new_subsystem"
+    ],
+    "prefix_matrix_rule": "The T5 chemical candidate ledger contains no source-backed prefix eligibility matrix; prefix_matrix is an explicit zero rather than an inferred category.",
+    "composition_generated_rule": "Loader conjunction passes: components, DECOMPOSABLE, divider <= 64 and a centrifuge/electrolyzer source tag. no_decompose may quarantine implementation but does not change the source shape.",
+    "named_reaction_rule": "A current pinned T5 concrete source row exists, but the Loader_Recipes_Decomp conjunction does not define the behavior.",
+    "blocked_rule": "No Loader composition route and no current pinned concrete T5 runtime row exists."
+  },
+  "selected_family": {
+    "id": "carbon_electrolysis",
+    "classification": "composition_generated",
+    "map": "cruciblecraft:electrolyzer",
+    "machine_kind": "electrolyzer",
+    "energy_identity": "EU",
+    "input_prefix": "dust",
+    "output_material": "carbon",
+    "output_prefix": "dust",
+    "duration": 292,
+    "eut": 16,
+    "special_value": 0,
+    "can_be_buffered": true,
+    "members": [
+      {
+        "material": "charcoal",
+        "source_recipe_index": 72
+      },
+      {
+        "material": "coal",
+        "source_recipe_index": 275
+      }
+    ],
+    "acquisition": {
+      "coal": "T20 source-classified coal worldgen -> existing ore chain -> coal dust",
+      "charcoal": "T20 source-classified charcoal worldgen -> existing ore chain -> charcoal dust"
+    },
+    "consumers": [
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/tiny_fluid_pipe.json",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/small_fluid_pipe.json",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/fluid_pipe.json",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/large_fluid_pipe.json",
+      "src/generated/resources/data/cruciblecraft/recipe/pipe_acquisition/carbon/huge_fluid_pipe.json"
+    ],
+    "publication_policy": "The two logical rows already existed in T5 and are adopted without changing their ids or bytes; the calibration publication delta is zero. This first slice is not T21 closure."
+  },
+  "load": {
+    "source_facts": 2,
+    "authored_rules": 1,
+    "datapack_files": 2,
+    "logical_rows": 2,
+    "eager_rows": 2,
+    "lazy_rows": 0,
+    "logical_delta": 0,
+    "eager_delta": 0,
+    "lazy_delta": 0
+  }
+}

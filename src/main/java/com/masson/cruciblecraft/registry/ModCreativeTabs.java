@@ -48,6 +48,9 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.MULTIBLOCK_ITEM_FLUID_PORT.get());
                         output.accept(ModItems.MULTIBLOCK_ENERGY_INPUT_PORT.get());
                         output.accept(ModItems.LARGE_CENTRIFUGE.get());
+                        output.accept(ModItems.DISTILLATION_TOWER.get());
+                        output.accept(ModItems.LARGE_BOILER.get());
+                        output.accept(ModItems.TANK_3X3X3.get());
                         output.accept(ModItems.RAW_CERAMIC_CRUCIBLE.get());
                         output.accept(ModItems.RAW_CERAMIC_MOLD.get());
                         output.accept(ModItems.RAW_INGOT_MOLD.get());
@@ -66,6 +69,14 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.PORTABLE_FLUID_TANK.get());
                         output.accept(ModItems.FLUID_CELL.get());
                         output.accept(ModItems.GAS_CELL.get());
+                        output.accept(ModItems.PIPE_FILTER_COVER.get());
+                        output.accept(ModItems.PIPE_VALVE_COVER.get());
+                        output.accept(ModItems.PIPE_PUMP_COVER.get());
+                        output.accept(ModItems.CONVEYOR_COVER.get());
+                        output.accept(ModItems.RETRIEVER_ITEM_COVER.get());
+                        output.accept(ModItems.ROBOT_ARM_COVER.get());
+                        output.accept(ModItems.PRESSURE_VALVE_COVER.get());
+                        output.accept(ModItems.SELECTOR_MANUAL_COVER.get());
                         output.accept(
                                 ModItems.BRONZE_DOUBLE_MACHINE_CASING.get());
                         output.accept(

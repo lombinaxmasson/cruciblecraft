@@ -1,0 +1,331 @@
+{
+  "class_definitions": [
+    {
+      "class": "equivalence_crushed_ore",
+      "definition": "GT6 ore meta items (broken ore x host-rock variants and normal ore x host-rock variants) are the same physical form as the CC crushed_ore prefix. GT6's 22 host rocks are a GT6 worldgen setting; CC generates only stone/deepslate hosts (T9 policy). The host-rock suffix does not change the operand semantics of the recipe.",
+      "discriminant": [
+        "gregtech:gt.meta.ore.broken.",
+        "gregtech:gt.meta.ore.normal."
+      ],
+      "recheck_point": "T9 host-rock policy changes (CC adds host-rock variants).",
+      "target_form": "cruciblecraft:crushed_ore"
+    },
+    {
+      "class": "out_of_scope_packaging_form",
+      "definition": "GT6 64x crate items are a logistics packaging layer (bulk transport compression). CC does not implement crate packaging and it is G10 peripheral. Recipes referencing crates are GT6 bulk-logistics rows, not process recipes.",
+      "discriminant": [
+        "gregtech:gt.meta.crate."
+      ],
+      "recheck_point": "CC implements bulk packaging / crate logistics.",
+      "target_form": null
+    },
+    {
+      "class": "out_of_scope_machine_item_variant",
+      "definition": "GT6 machine meta items (machine, machine.dense/double/quadruple) are machine-item variants of the T12/T16 machine identity system, not recipe operands. Machine items are not material-prefix pairs and are not handled by recipe operand projection.",
+      "discriminant": [
+        "gregtech:gt.meta.machine"
+      ],
+      "recheck_point": "T12/T16 machine identity system covers GT6 machine items.",
+      "target_form": null
+    },
+    {
+      "class": "equivalence_block_variant",
+      "definition": "GT6 storage.ingot (9-ingot storage block) is the CC block prefix (units 1296 = 9 x 144, capability cruciblecraft:storage).",
+      "discriminant": [
+        "gregtech:gt.meta.storage.ingot"
+      ],
+      "recheck_point": "CC block prefix semantics change.",
+      "target_form": "cruciblecraft:block"
+    },
+    {
+      "class": "equivalence_dense_plate",
+      "definition": "GT6 storage.plate (9-plate compressed plate block) is the CC dense_plate prefix (units 1296 = 9 x 144).",
+      "discriminant": [
+        "gregtech:gt.meta.storage.plate"
+      ],
+      "recheck_point": "CC dense_plate prefix semantics change.",
+      "target_form": "cruciblecraft:dense_plate"
+    },
+    {
+      "class": "out_of_scope_storage_variant",
+      "definition": "GT6 storage blocks for forms CC does not compress: dust, gem, plateGem and raw storage blocks have no CC prefix equivalent (CC has no dust/gem/plateGem/raw block prefixes). These are compression forms of the GT6 storage layer.",
+      "discriminant": [
+        "gregtech:gt.meta.storage.dust",
+        "gregtech:gt.meta.storage.gem",
+        "gregtech:gt.meta.storage.plateGem",
+        "gregtech:gt.meta.storage.raw"
+      ],
+      "recheck_point": "CC adds dust/gem/plateGem/raw storage block prefixes.",
+      "target_form": null
+    }
+  ],
+  "counts": {
+    "class_totals": {
+      "equivalence_block_variant": 9686,
+      "equivalence_crushed_ore": 13413,
+      "equivalence_dense_plate": 15096,
+      "out_of_scope_machine_item_variant": 23492,
+      "out_of_scope_packaging_form": 20179,
+      "out_of_scope_storage_variant": 33615
+    },
+    "total_keys": 49,
+    "total_occurrences": 115481,
+    "unclassified": 0
+  },
+  "inputs": {
+    "tools/build_t22_5_item_classification.py": "11627d05fc2041b2625539ad3fde6568b87121c33331461625e2ced0678138d1",
+    "tools/gt6_l1b_selected_recipe_operands.json": "0a424dd437e5e4e744c1b5825aa0fd88cde82365e5f6fa8df20c22e79c7959b2",
+    "tools/t22_5_item_classification_rules.json": "4aace849f9020b453c0c5a2d62568ca3177b5ce03be6a11b9b9216757755db5a"
+  },
+  "principle": "Every class is a category definition with a discriminant and a recheck point. A reason is never \"cannot translate\".",
+  "records": [
+    {
+      "class": "out_of_scope_packaging_form",
+      "item": "gregtech:gt.meta.crate.64.dust",
+      "occurrences": 4855
+    },
+    {
+      "class": "out_of_scope_packaging_form",
+      "item": "gregtech:gt.meta.crate.64.gem",
+      "occurrences": 1047
+    },
+    {
+      "class": "out_of_scope_packaging_form",
+      "item": "gregtech:gt.meta.crate.64.ingot",
+      "occurrences": 1867
+    },
+    {
+      "class": "out_of_scope_packaging_form",
+      "item": "gregtech:gt.meta.crate.64.plate",
+      "occurrences": 2657
+    },
+    {
+      "class": "out_of_scope_packaging_form",
+      "item": "gregtech:gt.meta.crate.64.plateGem",
+      "occurrences": 1035
+    },
+    {
+      "class": "out_of_scope_packaging_form",
+      "item": "gregtech:gt.meta.crate.64.raw",
+      "occurrences": 2465
+    },
+    {
+      "class": "out_of_scope_packaging_form",
+      "item": "gregtech:gt.meta.crate.dust",
+      "occurrences": 2913
+    },
+    {
+      "class": "out_of_scope_packaging_form",
+      "item": "gregtech:gt.meta.crate.gem",
+      "occurrences": 209
+    },
+    {
+      "class": "out_of_scope_packaging_form",
+      "item": "gregtech:gt.meta.crate.ingot",
+      "occurrences": 1869
+    },
+    {
+      "class": "out_of_scope_packaging_form",
+      "item": "gregtech:gt.meta.crate.plate",
+      "occurrences": 562
+    },
+    {
+      "class": "out_of_scope_packaging_form",
+      "item": "gregtech:gt.meta.crate.plateGem",
+      "occurrences": 207
+    },
+    {
+      "class": "out_of_scope_packaging_form",
+      "item": "gregtech:gt.meta.crate.raw",
+      "occurrences": 493
+    },
+    {
+      "class": "out_of_scope_machine_item_variant",
+      "item": "gregtech:gt.meta.machine",
+      "occurrences": 5873
+    },
+    {
+      "class": "out_of_scope_machine_item_variant",
+      "item": "gregtech:gt.meta.machine.dense",
+      "occurrences": 5873
+    },
+    {
+      "class": "out_of_scope_machine_item_variant",
+      "item": "gregtech:gt.meta.machine.double",
+      "occurrences": 5873
+    },
+    {
+      "class": "out_of_scope_machine_item_variant",
+      "item": "gregtech:gt.meta.machine.quadruple",
+      "occurrences": 5873
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.andesite",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.basalt",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.blackgranite",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.blueschist",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.default",
+      "occurrences": 241
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.diorite",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.granite",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.greenschist",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.kimberlite",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.komatiite",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.limestone",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.marble",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.prismarine.dark",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.prismarine.light",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.quartzite",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.redgranite",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.shale",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.broken.slate",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.normal.bedrock",
+      "occurrences": 51
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.normal.default",
+      "occurrences": 770
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.normal.endstone",
+      "occurrences": 494
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.normal.gravel",
+      "occurrences": 618
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.normal.mud",
+      "occurrences": 618
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.normal.netherrack",
+      "occurrences": 493
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.normal.redsand",
+      "occurrences": 618
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.normal.sand",
+      "occurrences": 618
+    },
+    {
+      "class": "equivalence_crushed_ore",
+      "item": "gregtech:gt.meta.ore.normal.sandstone",
+      "occurrences": 494
+    },
+    {
+      "class": "out_of_scope_storage_variant",
+      "item": "gregtech:gt.meta.storage.dust",
+      "occurrences": 28157
+    },
+    {
+      "class": "out_of_scope_storage_variant",
+      "item": "gregtech:gt.meta.storage.gem",
+      "occurrences": 1446
+    },
+    {
+      "class": "equivalence_block_variant",
+      "item": "gregtech:gt.meta.storage.ingot",
+      "occurrences": 9686
+    },
+    {
+      "class": "equivalence_dense_plate",
+      "item": "gregtech:gt.meta.storage.plate",
+      "occurrences": 15096
+    },
+    {
+      "class": "out_of_scope_storage_variant",
+      "item": "gregtech:gt.meta.storage.plateGem",
+      "occurrences": 1544
+    },
+    {
+      "class": "out_of_scope_storage_variant",
+      "item": "gregtech:gt.meta.storage.raw",
+      "occurrences": 2468
+    }
+  ],
+  "rules": "tools/t22_5_item_classification_rules.json",
+  "schema_version": 1,
+  "status": "T22_5_ITEM_CLASSIFICATION_READY"
+}

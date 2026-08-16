@@ -41,11 +41,27 @@ public final class FireboxHeatBuffer {
     }
 
     public boolean deposit(FuelDefinition fuel) {
-        if (hasHeat() && outputRate != fuel.energyPerTick()) {
+        return deposit(fuel, fuel.energyPerTick(), 10_000);
+    }
+
+    public boolean deposit(
+            FuelDefinition fuel,
+            long configuredOutputRate,
+            int efficiencyBps) {
+        if (configuredOutputRate <= 0L
+                || efficiencyBps <= 0
+                || efficiencyBps > 10_000) {
+            throw new IllegalArgumentException(
+                    "Firebox profile output and efficiency are invalid");
+        }
+        if (hasHeat() && outputRate != configuredOutputRate) {
             return false;
         }
-        long depositRate = hasHeat() ? outputRate : fuel.energyPerTick();
-        long accepted = Math.min(fuel.totalEnergy(), capacity(depositRate) - storedHeat);
+        long depositRate = hasHeat() ? outputRate : configuredOutputRate;
+        long efficientFuel = Math.multiplyExact(
+                fuel.totalEnergy(), efficiencyBps) / 10_000L;
+        long accepted = Math.min(
+                efficientFuel, capacity(depositRate) - storedHeat);
         if (accepted <= 0L) {
             return false;
         }

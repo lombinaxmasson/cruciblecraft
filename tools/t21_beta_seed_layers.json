@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "document": "T21 Beta seed layers: derivable (machine-generated) vs forward_declared (T22/T23 owner-tracked)",
+  "generated_by": "tools/t21_operand_reachability.py",
+  "generated_on": "2026-08-10",
+  "policy": "The derivable layer must be 100% reproducible from committed artifacts. Any manual entry in the derivable layer is a bug. The forward_declared layer documents seeds that do not yet have a measurable reaching path; every entry must carry an owner card and a recheck point.",
+  "derivable": {
+    "description": "Seeds that are derivable from committed artifacts: worldgen ore veins, T5 terminal closure, registered energy/logistics objects, and the T21-C reachable-identity closure. Zero manual entries.",
+    "source_artifacts": [
+      "src/main/resources/data/cruciblecraft/worldgen_catalog/ore_veins.json (129 ore materials)",
+      "src/main/resources/data/cruciblecraft/material_registration_gate.json (registered forms per material)",
+      "tools/t21_operand_reachability.json (2,163 reachable item identities via item-only convergence)",
+      "src/main/resources/data/cruciblecraft/materials/*.json (bundled material definitions)",
+      "src/main/resources/data/cruciblecraft/energy_converters.json (energy converter profiles)",
+      "src/main/resources/data/cruciblecraft/machine_tiers.json (33 machine variants)"
+    ],
+    "ore_materials": 129,
+    "t21c_reachable_identities": 2163,
+    "derivable_material_seeds": [
+      "aluminium",
+      "bronze",
+      "carbon",
+      "charcoal",
+      "coal",
+      "coal_coke",
+      "cryolite",
+      "electrum",
+      "glue",
+      "hydrochloric_acid",
+      "hydrogen_fluoride",
+      "lubricant",
+      "niter",
+      "plastic",
+      "rubber",
+      "stainless_steel",
+      "steel",
+      "tin_alloy"
+    ],
+    "derivable_count": 18,
+    "spot_check_material_sources": {
+      "coal": {
+        "artifact": "src/main/resources/data/cruciblecraft/worldgen_catalog/ore_veins.json",
+        "route": "worldgen ore vein → crushed → dust via ore chain GT recipes"
+      },
+      "niter": {
+        "artifact": "src/main/resources/data/cruciblecraft/worldgen_catalog/ore_veins.json",
+        "route": "worldgen ore vein → crushed → dust via ore chain GT recipes"
+      },
+      "charcoal": {
+        "artifact": "src/main/resources/data/cruciblecraft/materials/charcoal.json",
+        "route": "vanilla minecraft:charcoal → form_items gem bridge → gem_to_dust material_rule → dust"
+      },
+      "coal_coke": {
+        "artifact": "src/main/resources/data/cruciblecraft/materials/coal_coke.json",
+        "route": "coke_oven GT recipe coal→coal_coke → form_items gem bridge → gem_to_dust material_rule → dust"
+      },
+      "carbon": {
+        "artifact": "src/t5_chemical_generated/resources/data/cruciblecraft/recipe/t5/electrolyzer/coal.json",
+        "route": "T5 electrolysis coal/charcoal dust → carbon dust"
+      },
+      "aluminium": {
+        "artifact": "src/t5_chemical_generated/resources/data/cruciblecraft/recipe/t5/bath/",
+        "route": "T5 chemical bath processing (alumina → aluminium)"
+      },
+      "bronze": {
+        "artifact": "src/main/resources/data/cruciblecraft/materials/bronze.json",
+        "route": "Crucible alloy: 3 copper + 1 tin → bronze ingot"
+      },
+      "cryolite": {
+        "artifact": "src/t5_chemical_generated/resources/data/cruciblecraft/recipe/t5/electrolyzer/",
+        "route": "T5 electrolysis of cryolite for aluminium production"
+      },
+      "electrum": {
+        "artifact": "src/main/resources/data/cruciblecraft/materials/electrum.json",
+        "route": "Crucible alloy: gold + silver → electrum"
+      },
+      "glue": {
+        "artifact": "src/t5_chemical_generated/resources/data/cruciblecraft/t5_chemical_fluid_gate.json",
+        "route": "T5 chemical fluid production chain"
+      },
+      "hydrochloric_acid": {
+        "artifact": "src/t5_chemical_generated/resources/data/cruciblecraft/t5_chemical_fluid_gate.json",
+        "route": "T5 chemical fluid production chain (salt + sulfuric acid)"
+      },
+      "hydrogen_fluoride": {
+        "artifact": "src/t5_chemical_generated/resources/data/cruciblecraft/t5_chemical_fluid_gate.json",
+        "route": "T5 chemical fluid production chain"
+      },
+      "lubricant": {
+        "artifact": "src/main/resources/data/cruciblecraft/materials/lubricant.json",
+        "route": "T5/T11 hydrocarbon processing byproduct"
+      },
+      "plastic": {
+        "artifact": "src/main/resources/data/cruciblecraft/materials/plastic.json",
+        "route": "Polymer processing from petroleum/natural gas intermediates"
+      },
+      "rubber": {
+        "artifact": "src/main/resources/data/cruciblecraft/materials/rubber.json",
+        "route": "Rubber processing (natural or synthetic routes)"
+      },
+      "stainless_steel": {
+        "artifact": "src/main/resources/data/cruciblecraft/machine_tiers.json",
+        "route": "Crucible alloy: iron + chromium + nickel → stainless steel"
+      },
+      "steel": {
+        "artifact": "src/main/resources/data/cruciblecraft/machine_tiers.json",
+        "route": "Crucible alloy: 3 iron + 1 carbon → steel (existing steelmaking process)"
+      },
+      "tin_alloy": {
+        "artifact": "src/main/resources/data/cruciblecraft/materials/tin_alloy.json",
+        "route": "Crucible alloy: tin + copper/antimony → tin alloy"
+      }
+    }
+  },
+  "forward_declared": {
+    "description": "Seeds that depend on not-yet-implemented subsystems. Every entry carries owner, reason, and recheck point. These seeds are NOT included in the lower bound; they are only used to estimate the upper bound.",
+    "entries": [
+      {
+        "material": "crude_oil",
+        "owner": "T22",
+        "reason": "Petroleum distillation family requires crude oil fluid extraction from subsurface deposits. The T11 deposit marker identity exists, but petroleum chemistry templates are not yet published.",
+        "recheck_point": "T22a petroleum exact denominator construction"
+      },
+      {
+        "material": "natural_gas",
+        "owner": "T22",
+        "reason": "Natural gas generification and direct-electric fuel generators require published petroleum families.",
+        "recheck_point": "T22a petroleum exact denominator construction"
+      },
+      {
+        "material": "oil_sand",
+        "owner": "T22",
+        "reason": "Oil sand processing requires petroleum family publication; source rows exist in fixed GT6 revision but are not yet projected to CC.",
+        "recheck_point": "T22b full projection per selected petroleum families"
+      },
+      {
+        "material": "oil_shale",
+        "owner": "T22",
+        "reason": "Oil shale processing requires petroleum family publication.",
+        "recheck_point": "T22b full projection per selected petroleum families"
+      },
+      {
+        "material": "petroleum_coke",
+        "owner": "T22",
+        "reason": "Petroleum coke is a petroleum byproduct; requires distillation family publication.",
+        "recheck_point": "T22c player loop (at least three downstream products)"
+      },
+      {
+        "material": "sulfuric_acid",
+        "owner": "T22",
+        "reason": "Sulfuric acid production chain depends on petroleum sulfur byproducts; may also be served by non-petroleum routes (T5 chemical). Needs T22 petroleum closure to determine.",
+        "recheck_point": "T22d three-axis closure"
+      },
+      {
+        "material": "titanium",
+        "owner": "T23",
+        "reason": "Titanium processing (Kroll process) requires a multiblock industrial blast furnace or equivalent controlled-atmosphere reactor. The machine kind is in the T23 multiblock classification scope.",
+        "recheck_point": "T23a multiblock behavioral requirement classification"
+      },
+      {
+        "material": "tungsten",
+        "owner": "T23",
+        "reason": "Tungsten reduction from oxide requires hydrogen atmosphere multiblock furnace. Not implementable with current single-block processing machines.",
+        "recheck_point": "T23a multiblock behavioral requirement classification"
+      }
+    ],
+    "forward_declared_count": 8
+  },
+  "closure_bounds": {
+    "lower_bound": {
+      "seed_layer": "derivable",
+      "seed_count": 18,
+      "v1_required_templates": 1,
+      "v1_template_description": "Gunpowder Mixer family (4 members: coal, charcoal, carbon, coal_coke)",
+      "method": "Build closure from derivable seeds only; no forward-declared or petroleum entries.",
+      "note": "The number 1 is reproducible: rerunning the closure with the same derivable seed set produces the same result."
+    },
+    "upper_bound": {
+      "seed_layer": "derivable + forward_declared",
+      "seed_count": 26,
+      "v1_required_templates": "To be determined by actual T22/T23 implementation — not estimated here",
+      "method": "Forward-declared seeds are added. The actual v1 template count will change when T22/T23 publish their families and register their machine/energy identities.",
+      "warning": "This is NOT a firm upper bound; it only reflects the current forward-declared list. New v1-required families may emerge when T22/T23 implement their subsystems."
+    }
+  },
+  "archive_revision_policy": {
+    "current_wording": "唯一 v1-required unit 是 4-row gunpowder Mixer family",
+    "recommended_wording": "由 derivable seed 自动闭包得出 1 个 v1-required template（gunpowder Mixer family, 4 members）；forward_declared 层另有 8 个材料 seed 待 T22/T23 确认。Derivable 层 100% 由 tools/t21_operand_reachability.py 从已提交 artifact 生成，无人工条目。Forward_declared 层每项有 owner、reason 和 recheck point。T22/T23 开工时必须回头重算闭包。"
+  }
+}

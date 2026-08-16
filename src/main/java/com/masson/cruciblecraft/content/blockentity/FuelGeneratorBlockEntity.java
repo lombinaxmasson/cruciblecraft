@@ -3,11 +3,14 @@ package com.masson.cruciblecraft.content.blockentity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
 import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.energy.PerTickEnergyBudget;
+import com.masson.cruciblecraft.machine.generation.FuelGeneratorEnergy;
+import com.masson.cruciblecraft.machine.generation.FuelGeneratorIdentityPolicy;
 import com.masson.cruciblecraft.machine.generation.FuelGeneratorSpec;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeQuery;
@@ -18,6 +21,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.resources.ResourceLocation;
@@ -30,27 +34,35 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 
 /**
- * Signed-eut fuel consumer. Exhaust capacity gates operation start and
- * unaccepted electric packets remain buffered instead of escaping the tick.
+ * Signed-eut fuel consumer. Recipe power is unit-buffered independently from
+ * the configured output packet, and every exhaust/energy mutation is gated by
+ * a simulation-first check.
  */
 public final class FuelGeneratorBlockEntity extends BlockEntity
         implements IEnergyHandler {
-    public static final long ENERGY_CAPACITY = 65_536L;
+    private static final String SCHEMA_KEY =
+            "fuel_generator_schema_version";
+    private static final String IDENTITY_KEY = "fuel_generator_id";
+    private static final String ENERGY_IDENTITY_KEY = "energy_identity";
+    private static final String QUARANTINE_KEY =
+            "fuel_generator_quarantine";
     private final FuelGeneratorSpec spec;
+    private final FuelGeneratorEnergy energy;
     private final FluidTank input;
     private final List<FluidTank> outputs;
     private final IFluidHandler inputView = new InputHandler();
     private final List<IFluidHandler> outputViews;
     private final PerTickEnergyBudget outputBudget =
             new PerTickEnergyBudget();
-    private long energyStored;
-    private long packetSize = 64L;
     private ResourceLocation activeRecipe;
     private int progress;
     private int duration;
     private String status = "idle";
     private boolean clientSyncPending;
     private long lastClientSyncGameTime = Long.MIN_VALUE;
+    private FuelGeneratorIdentityPolicy.Identity persistedIdentity;
+    private String identityQuarantine = "";
+    private boolean quarantineWarningLogged;
 
     public FuelGeneratorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.FUEL_GENERATOR.get(), pos, state);
@@ -59,6 +71,9 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
                     "Fuel generator block entity requires a configured block");
         }
         spec = block.spec();
+        energy = new FuelGeneratorEnergy(
+                spec.outputPacketSize(), spec.energyCapacity());
+        persistedIdentity = FuelGeneratorIdentityPolicy.current(spec);
         input = new FluidTank(
                 spec.inputCapacityMb(), spec::acceptsInput) {
             @Override
@@ -83,6 +98,23 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         outputViews = List.copyOf(views);
     }
 
+    @Override
+    public void onLoad() {
+        super.onLoad();
+        if (!quarantineWarningLogged
+                && !identityQuarantine.isBlank()
+                && level != null
+                && !level.isClientSide) {
+            quarantineWarningLogged = true;
+            CrucibleCraft.LOGGER.warn(
+                    "Quarantined fuel generator {} at {} {}: {}",
+                    spec.id(),
+                    level.dimension().location(),
+                    worldPosition,
+                    identityQuarantine);
+        }
+    }
+
     public static void serverTick(
             Level level,
             BlockPos pos,
@@ -93,10 +125,11 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
                 level,
                 pos,
                 generator,
-                EnergyType.ELECTRIC,
-                state.getValue(FuelGeneratorBlock.FACING));
+                generator.spec.outputEnergyType(),
+                generator.energyOutputSide());
         if (delivered == 0L
-                && generator.energyStored >= ENERGY_CAPACITY) {
+                && generator.energy.stored()
+                        >= generator.spec.outputPacketSize()) {
             generator.setStatus("energy_output_blocked");
         }
         generator.flushClientSync(level.getGameTime());
@@ -104,6 +137,10 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
 
     private void tickGeneration() {
         if (level == null || level.isClientSide) {
+            return;
+        }
+        if (!identityQuarantine.isBlank()) {
+            setStatus("identity_quarantined");
             return;
         }
         GTRecipe recipe;
@@ -130,11 +167,17 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
                 setStatus("exhaust_blocked");
                 return;
             }
+            long firstTickEnergy =
+                    spec.generatedEnergyAtTick(recipe, 0);
+            if (firstTickEnergy > 0L
+                    && !energy.canGenerate(firstTickEnergy)) {
+                setStatus("energy_output_blocked");
+                return;
+            }
             consumeFuel(recipe);
             activeRecipe = match.id();
             progress = 0;
             duration = recipe.duration();
-            packetSize = Math.abs(recipe.eut());
             markPersistentMutation();
         } else {
             recipe = spec.requireRecipeMap().entry(activeRecipe)
@@ -149,15 +192,23 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
             setStatus("exhaust_blocked");
             return;
         }
-        if (ENERGY_CAPACITY - energyStored < packetSize) {
+        long generatedThisTick =
+                spec.generatedEnergyAtTick(recipe, progress);
+        if (generatedThisTick > 0L
+                && !energy.canGenerate(generatedThisTick)) {
             setStatus("energy_output_blocked");
             return;
         }
-        energyStored += packetSize;
+        boolean completes = progress + 1 >= duration;
+        if (completes) {
+            commitOutputs(recipe);
+        }
+        if (generatedThisTick > 0L) {
+            energy.generate(generatedThisTick);
+        }
         progress++;
         setStatus("running");
-        if (progress >= duration) {
-            commitOutputs(recipe);
+        if (completes) {
             progress = 0;
             activeRecipe = null;
             duration = 0;
@@ -220,17 +271,14 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
     }
 
     public IFluidHandler fluids(Direction side) {
-        Direction front = front();
-        if (side == null || front == null) {
+        if (side == null || front() == null) {
             return null;
         }
-        if (side == Direction.UP) {
-            return outputViews.getFirst();
+        int outputIndex = spec.exhaustOutputSides().indexOf(side);
+        if (outputIndex >= 0) {
+            return outputViews.get(outputIndex);
         }
-        if (side == Direction.DOWN && outputViews.size() > 1) {
-            return outputViews.get(1);
-        }
-        return side == front ? null : inputView;
+        return side == energyOutputSide() ? null : inputView;
     }
 
     public String status() {
@@ -249,22 +297,49 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         return outputs.get(index).getFluidAmount();
     }
 
+    public long energyStored() {
+        return energy.stored();
+    }
+
+    public long energyGenerated() {
+        return energy.generated();
+    }
+
+    public long energyExtracted() {
+        return energy.extracted();
+    }
+
+    public EnergyType outputEnergyType() {
+        return spec.outputEnergyType();
+    }
+
+    public boolean identityQuarantined() {
+        return !identityQuarantine.isBlank();
+    }
+
+    public String identityQuarantine() {
+        return identityQuarantine;
+    }
+
     @Override
     public boolean handles(EnergyType type, Direction side) {
-        return type == EnergyType.ELECTRIC
+        return identityQuarantine.isBlank()
+                && type == spec.outputEnergyType()
                 && side != null
-                && side == front();
+                && side == energyOutputSide();
     }
 
     @Override
     public long outputSize(EnergyType type, Direction side) {
         return handles(type, side)
-                        && packetSize > 0L
-                        && energyStored >= packetSize
+                        && energy.stored() >= spec.outputPacketSize()
                         && outputBudget.claim(
-                                        gameTime(), 1L, 1L, true)
+                                        gameTime(),
+                                        1L,
+                                        spec.maximumOutputPacketsPerTick(),
+                                        true)
                                 > 0L
-                ? packetSize
+                ? spec.outputPacketSize()
                 : 0L;
     }
 
@@ -276,36 +351,53 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
             Direction side,
             boolean simulate) {
         if (!handles(type, side)
-                || size != packetSize
+                || size != spec.outputPacketSize()
                 || maximum <= 0L
-                || energyStored < packetSize
+                || energy.stored() < spec.outputPacketSize()
                 || outputBudget.claim(
-                                gameTime(), 1L, 1L, true)
+                                gameTime(),
+                                maximum,
+                                spec.maximumOutputPacketsPerTick(),
+                                true)
                         <= 0L) {
             return 0L;
         }
+        long available = energy.extract(
+                size,
+                outputBudget.claim(
+                        gameTime(),
+                        maximum,
+                        spec.maximumOutputPacketsPerTick(),
+                        true),
+                true);
         if (!simulate && level != null && !level.isClientSide) {
             long claimed = outputBudget.claim(
-                    gameTime(), 1L, 1L, false);
-            if (claimed != 1L || energyStored < packetSize) {
+                    gameTime(),
+                    available,
+                    spec.maximumOutputPacketsPerTick(),
+                    false);
+            if (claimed != available
+                    || energy.extract(size, available, false)
+                            != available) {
                 throw new IllegalStateException(
                         "Generator output changed after simulation");
             }
-            energyStored -= packetSize;
             markPersistentMutation();
         }
-        return 1L;
+        return available;
     }
 
     @Override
     public long stored(EnergyType type) {
-        return type == EnergyType.ELECTRIC ? energyStored : 0L;
+        return type == spec.outputEnergyType()
+                ? energy.stored()
+                : 0L;
     }
 
     @Override
     public long capacity(EnergyType type) {
-        return type == EnergyType.ELECTRIC
-                ? ENERGY_CAPACITY
+        return type == spec.outputEnergyType()
+                ? spec.energyCapacity()
                 : 0L;
     }
 
@@ -322,6 +414,10 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         return state.hasProperty(FuelGeneratorBlock.FACING)
                 ? state.getValue(FuelGeneratorBlock.FACING)
                 : null;
+    }
+
+    private Direction energyOutputSide() {
+        return spec.energyOutputSide(front());
     }
 
     private void setStatus(String nextStatus) {
@@ -368,20 +464,41 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
             tag.put("output_" + index, outputs.get(index).writeToNBT(
                     registries, new CompoundTag()));
         }
-        tag.putLong("energy", energyStored);
-        tag.putLong("packet_size", packetSize);
+        FuelGeneratorEnergy.State energyState = energy.snapshot();
+        tag.putLong("energy", energyState.stored());
+        tag.putLong("energy_generated", energyState.generated());
+        tag.putLong("energy_extracted", energyState.extracted());
+        tag.putLong("packet_size", spec.outputPacketSize());
         if (activeRecipe != null) {
             tag.putString("active_recipe", activeRecipe.toString());
         }
         tag.putInt("progress", progress);
         tag.putInt("duration", duration);
         tag.putString("status", status);
+        tag.putInt(
+                SCHEMA_KEY, persistedIdentity.schemaVersion());
+        tag.putString(
+                IDENTITY_KEY, persistedIdentity.generatorId());
+        tag.putString(
+                ENERGY_IDENTITY_KEY,
+                persistedIdentity.energyIdentity());
+        if (!identityQuarantine.isBlank()) {
+            tag.putString(QUARANTINE_KEY, identityQuarantine);
+        }
     }
 
     @Override
     protected void loadAdditional(
             CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
+        FuelGeneratorIdentityPolicy.Identity savedIdentity =
+                readIdentity(tag);
+        FuelGeneratorIdentityPolicy.Decision identity =
+                FuelGeneratorIdentityPolicy.resolve(
+                        spec, savedIdentity);
+        persistedIdentity = identity.persistedIdentity();
+        identityQuarantine =
+                identity.quarantineReason().orElse("");
         if (tag.contains("input")) {
             input.readFromNBT(registries, tag.getCompound("input"));
         }
@@ -392,10 +509,19 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
                         tag.getCompound("output_" + index));
             }
         }
-        energyStored = Math.max(
-                0L, Math.min(ENERGY_CAPACITY, tag.getLong("energy")));
-        packetSize = Math.max(
-                1L, Math.min(1_024L, tag.getLong("packet_size")));
+        long stored = Math.max(
+                0L,
+                Math.min(
+                        spec.energyCapacity(),
+                        tag.getLong("energy")));
+        long generated = tag.contains(
+                        "energy_generated", Tag.TAG_ANY_NUMERIC)
+                ? Math.max(stored, tag.getLong("energy_generated"))
+                : stored;
+        long extracted = Math.max(
+                0L, tag.getLong("energy_extracted"));
+        energy.restore(new FuelGeneratorEnergy.State(
+                stored, generated, extracted));
         activeRecipe = ResourceLocation.tryParse(
                 tag.getString("active_recipe"));
         progress = Math.max(0, tag.getInt("progress"));
@@ -404,27 +530,61 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         if (status.isBlank()) {
             status = "idle";
         }
+        if (!identityQuarantine.isBlank()) {
+            status = "identity_quarantined";
+        }
     }
 
     @Override
     public CompoundTag getUpdateTag(
             HolderLookup.Provider registries) {
         CompoundTag tag = new CompoundTag();
-        tag.putLong("energy", energyStored);
+        tag.putLong("energy", energy.stored());
         tag.putString("status", status);
         tag.putInt("progress", progress);
         tag.putInt("duration", duration);
+        if (!identityQuarantine.isBlank()) {
+            tag.putString(QUARANTINE_KEY, identityQuarantine);
+        }
         return tag;
     }
 
     @Override
     public void handleUpdateTag(
             CompoundTag tag, HolderLookup.Provider registries) {
-        energyStored = Math.max(
-                0L, Math.min(ENERGY_CAPACITY, tag.getLong("energy")));
+        energy.restore(new FuelGeneratorEnergy.State(
+                Math.max(
+                        0L,
+                        Math.min(
+                                spec.energyCapacity(),
+                                tag.getLong("energy"))),
+                energy.generated(),
+                energy.extracted()));
         status = tag.getString("status");
         progress = Math.max(0, tag.getInt("progress"));
         duration = Math.max(0, tag.getInt("duration"));
+        identityQuarantine = tag.getString(QUARANTINE_KEY);
+    }
+
+    private FuelGeneratorIdentityPolicy.Identity readIdentity(
+            CompoundTag tag) {
+        boolean anyIdentity = tag.contains(SCHEMA_KEY)
+                || tag.contains(IDENTITY_KEY)
+                || tag.contains(ENERGY_IDENTITY_KEY);
+        if (!anyIdentity) {
+            return null;
+        }
+        return new FuelGeneratorIdentityPolicy.Identity(
+                tag.contains(SCHEMA_KEY, Tag.TAG_ANY_NUMERIC)
+                        ? tag.getInt(SCHEMA_KEY)
+                        : FuelGeneratorIdentityPolicy
+                                .MISSING_SCHEMA_VERSION,
+                tag.contains(IDENTITY_KEY, Tag.TAG_STRING)
+                        ? tag.getString(IDENTITY_KEY)
+                        : "",
+                tag.contains(ENERGY_IDENTITY_KEY, Tag.TAG_STRING)
+                        ? tag.getString(ENERGY_IDENTITY_KEY)
+                        : "");
     }
 
     @Override

@@ -51,7 +51,7 @@ class T13DenominatorReadinessTest(unittest.TestCase):
             0, document["zero_content_delta"]["publication_delta"]
         )
         self.assertEqual(
-            5_991,
+            6_025,
             document["zero_content_delta"]["datapack_recipe_entries"],
         )
         self.assertEqual(
@@ -61,6 +61,26 @@ class T13DenominatorReadinessTest(unittest.TestCase):
         self.assertNotIn(
             "18,875 / 720,841",
             document["acceptance"]["canonical_completion_metric"],
+        )
+        currentness = document["currentness"]
+        self.assertEqual(
+            [],
+            currentness["pending_report"]["pending"],
+        )
+        self.assertEqual(
+            {"tools/t12_closure_readiness.json",
+             "tools/t13_denominator_manifest.json"},
+            set(currentness["dependencies"]),
+        )
+        self.assertEqual(
+            "PROCESSING_MACHINE_ENERGY_AUDIT_READY",
+            currentness["processing_machine_energy_audit"]["status"],
+        )
+        self.assertEqual(
+            0,
+            currentness["processing_machine_energy_audit"][
+                "implicit_energy_arguments"
+            ],
         )
 
     def test_unclassified_mutation_is_observable(self):

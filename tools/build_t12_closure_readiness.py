@@ -8,10 +8,17 @@ import json
 from pathlib import Path
 from typing import Any
 
+try:
+    from tools import build_processing_machine_energy_audit as energy_audit_builder
+except ModuleNotFoundError:
+    import build_processing_machine_energy_audit as energy_audit_builder
+
 ROOT = Path(__file__).resolve().parents[1]
 TOOLS = ROOT / "tools"
+BUILDER = Path(__file__).resolve()
 OUTPUT = TOOLS / "t12_closure_readiness.json"
 T12A = TOOLS / "t12a_machine_readiness.json"
+MACHINE_POLICY = TOOLS / "t12_machine_policy.json"
 BENCHMARK = TOOLS / "t12_capacity_matcher_benchmark.json"
 MACHINE_TIERS = (
     ROOT
@@ -59,7 +66,7 @@ SOURCE_CONTRACTS = {
     "processing_runtime_window": (
         "src/main/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineBlockEntity.java",
         (
-            "variant.tier().inputMinimum()",
+            "variant.tierBand().inputMinimum()",
             "energy.stored()",
             "runtime.tickWork(",
             "workProgress",
@@ -68,10 +75,20 @@ SOURCE_CONTRACTS = {
     "machine_tier_data": (
         "src/main/resources/data/cruciblecraft/machine_tiers.json",
         (
+            "\"schemaVersion\": 2",
             "\"source\"",
+            "\"tierBand\"",
             "\"variant_rows\"",
             "MultiTileEntityBasicMachine.java:126-131,489-518,712-815",
             "defaults mEfficiency to 10000",
+        ),
+    ),
+    "machine_tier_schema": (
+        "src/main/resources/data/cruciblecraft/schema/machine_tiers.schema.json",
+        (
+            "Shared tier-band identity",
+            "Complete machine variant identity",
+            "Per-variant parallel limit",
         ),
     ),
     "machine_tier_loader": (
@@ -82,9 +99,17 @@ SOURCE_CONTRACTS = {
             "3703e40308c8c030763fd6297dea8b210d2a77b1",
         ),
     ),
-    "state_v2": (
+    "state_v3": (
         "src/main/java/com/masson/cruciblecraft/machine/processing/ProcessingMachineState.java",
-        ("VERSION = 2", "machine_kind", "tier_profile", "energy_identity"),
+        (
+            "VERSION = 3",
+            "machine_kind",
+            "tier_band",
+            "tier_profile is unsupported",
+            "version < VERSION",
+            "identity_quarantine",
+            "energy_identity",
+        ),
     ),
     "ru_axle": (
         "src/main/java/com/masson/cruciblecraft/content/blockentity/RotationalAxleBlockEntity.java",
@@ -102,10 +127,10 @@ SOURCE_CONTRACTS = {
         "src/main/java/com/masson/cruciblecraft/content/multiblock/MultiblockStructureValidator.java",
         ("UNLOADED", "MAX_DIAGNOSTICS", "worldPosition"),
     ),
-    "coke_migration_source": (
+    "coke_projection_source": (
         "src/main/resources/data/cruciblecraft/multiblock_structures/coke_oven.json",
         (
-            "behavior_migration:NO_BEHAVIOR_DRIFT",
+            "behavior_projection:NO_BEHAVIOR_DRIFT",
             "t12a_machine_readiness.json#structure_projection.coke_oven",
             "CokeOvenStructure",
         ),
@@ -206,7 +231,7 @@ def build() -> dict[str, Any]:
 
     structure_paths = sorted(STRUCTURES.glob("*.json"))
     structure_ids = [path.stem for path in structure_paths]
-    if structure_ids != ["coke_oven", "large_centrifuge"]:
+    if structure_ids != ["coke_oven", "distillation_tower", "large_boiler", "large_centrifuge", "tank_3x3x3"]:
         raise ValueError(f"T12 structure set drifted: {structure_ids}")
     if (
         ROOT
@@ -227,6 +252,24 @@ def build() -> dict[str, Any]:
         raise ValueError(
             f"T12 matcher benchmarks exceed budget: {failed_benchmarks}"
         )
+
+    audit_errors = energy_audit_builder.check()
+    if audit_errors:
+        raise ValueError(
+            "T12 processing-machine energy audit is stale: "
+            + "; ".join(audit_errors)
+        )
+    energy_audit = load(energy_audit_builder.OUTPUT)
+    audit_counts = energy_audit.get("counts") or {}
+    if (
+        energy_audit.get("status")
+        != "PROCESSING_MACHINE_ENERGY_AUDIT_READY"
+        or audit_counts.get("machine_specs") != 25
+        or audit_counts.get("implicit_energy_arguments") != 0
+        or audit_counts.get("legacy_kinetic") != 8
+        or audit_counts.get("new_legacy_kinetic") != 0
+    ):
+        raise ValueError("T12 processing-machine energy audit is incomplete")
 
     concrete_entries = datapack_recipe_entries()
     virtualized_entries = post_t12_virtualized_recipe_entries()
@@ -258,13 +301,33 @@ def build() -> dict[str, Any]:
             "kinds": by_kind,
             "publication_delta": 0,
             "authored_material_rule_budget": 0,
-            "state_schema_version": 2,
+            "state_schema_version": 3,
+            "tier_identity_field": "tier_band",
+            "legacy_tier_identity_field": "tier_profile",
         },
         "energy": {
             "identities": ["RU", "KU", "EU"],
             "ru_topology": ["electric_motor", "rotational_axle", "rotational_gearbox"],
             "ku_topology": "adjacent_push",
             "eu_topology": "existing_cable_network",
+            "processing_machine_audit": {
+                "path": energy_audit_builder.OUTPUT.relative_to(
+                    ROOT
+                ).as_posix(),
+                # No sha256 here: the audit is written by builder #24, after
+                # this closure (#23).  The audit itself validates these counts
+                # against this recorded block as a forward edge 23 -> 24.
+                "status": energy_audit["status"],
+                "machine_specs": audit_counts["machine_specs"],
+                "explicit_energy_arguments": audit_counts[
+                    "explicit_energy_arguments"
+                ],
+                "implicit_energy_arguments": audit_counts[
+                    "implicit_energy_arguments"
+                ],
+                "legacy_kinetic": audit_counts["legacy_kinetic"],
+                "new_legacy_kinetic": audit_counts["new_legacy_kinetic"],
+            },
         },
         "multiblock": {
             "structures": structure_ids,
@@ -320,6 +383,22 @@ def build() -> dict[str, Any]:
             ],
         },
         "source_contracts": contracts,
+        "currentness": {
+            "owned_inputs": {
+                BUILDER.relative_to(ROOT).as_posix(): digest(BUILDER),
+                MACHINE_POLICY.relative_to(ROOT).as_posix():
+                    digest(MACHINE_POLICY),
+            },
+            "dependencies": {
+                T12A.relative_to(ROOT).as_posix(): digest(T12A),
+            },
+            "pending_report": {
+                "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+                "this_refresh_final_closure_attempted": True,
+                "pending": [],
+                "evidence": "tools/full_verification_report.json",
+            },
+        },
     }
 
 

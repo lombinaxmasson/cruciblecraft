@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "document": "T21 compact artifact volume upper bounds and layered proof strategy",
+  "precedent": "T13 three-layer proof (compact / hash-fast / full-replay)",
+  "policy": {
+    "ordinary_ci": "Consumes only compact receipts with input/output content hashes. Must not read raw GT6 dumps, fetched corpora, or full-replay artifacts.",
+    "hash_fast": "Streams pinned blobs and validates sizes/SHA-256. Used for CI pre-submit validation.",
+    "full_replay": "Re-parses all source rows. Owned exclusively by --source-replay suite. Same raw corpus has exactly one canonical full-replay owner."
+  },
+  "volume_upper_bounds": {
+    "t21_operand_reachability_compact": {
+      "artifact": "tools/t21_operand_reachability.json",
+      "current_size_bytes": 5242880,
+      "current_size_mb": 5.0,
+      "upper_bound_bytes": 10485760,
+      "upper_bound_mb": 10,
+      "basis": "Contains unreachable_operand_recipes_all list (~11,111 entries) plus reachable_identities list (~2,163 entries). Upper bound set at 2x current size to allow growth within T21 scope."
+    },
+    "t21_template_denominator_compact": {
+      "artifact": "tools/t21_template_denominator.json",
+      "current_size_bytes": 9338880,
+      "current_size_mb": 8.9,
+      "upper_bound_bytes": 12582912,
+      "upper_bound_mb": 12,
+      "basis": "93,133 denominator units with classification metadata. T13 compact artifacts are in the KB range because they only store counts/hashes; T21 carries per-unit classification for fidelity tracking. Upper bound at 12 MB accommodates the full T21 denominator with per-unit metadata."
+    },
+    "gt6_mixer_templates_index_compact": {
+      "artifact": "tools/gt6_mixer_templates_index.json",
+      "current_size_bytes": 8703180,
+      "current_size_mb": 8.3,
+      "upper_bound_bytes": 11534336,
+      "upper_bound_mb": 11,
+      "basis": "3,414 authored template units with support/membership data. Required for immediate family load projection. Upper bound at 11 MB."
+    },
+    "t21_source_denominator_compact": {
+      "artifact": "tools/t21_source_denominator.json",
+      "current_size_bytes": 7654604,
+      "current_size_mb": 7.3,
+      "upper_bound_bytes": 9437184,
+      "upper_bound_mb": 9,
+      "basis": "Source row diagnostic — input-touch mapping and rejection data. Marked DIAGNOSTIC_ONLY in policy; not a closure numerator. Upper bound at 9 MB."
+    }
+  },
+  "compact_total_upper_bound_mb": 42,
+  "compact_total_upper_bound_basis": "Sum of individual artifact upper bounds rounded up. The T21 compact portfolio is ~30 MB currently; the 42 MB ceiling provides headroom for the remaining T21 cards (T21-H through T21-M).",
+  "clean_checkout_verification": {
+    "method": "Delete all local raw/cache/fetched-source paths before running ordinary CI builders. Each builder's proof_tier determines expected behavior: compact builders must PASS, rederived builders must PASS, full_replay builders are SKIPPED.",
+    "t21_operand_reachability_status": "proof_tier=compact, reads only committed resource trees and material definitions. Clean-checkout compatible by design."
+  },
+  "ci_assertions": [
+    {
+      "check": "compact_artifact_size",
+      "rule": "Each compact artifact must be under its declared upper_bound_bytes.",
+      "failure": "hard"
+    },
+    {
+      "check": "compact_total_size",
+      "rule": "Sum of all compact artifacts must not exceed compact_total_upper_bound_mb MB.",
+      "failure": "hard"
+    },
+    {
+      "check": "no_raw_in_ordinary_ci",
+      "rule": "Ordinary CI path must not read from gt6_dump/, build/t13-gt6-source/, or fetched external corpora.",
+      "failure": "hard"
+    },
+    {
+      "check": "single_full_replay_owner",
+      "rule": "Each raw corpus has exactly one canonical full-replay owner. Multiple builders replaying the same source rows is a hard error.",
+      "failure": "hard"
+    }
+  ]
+}

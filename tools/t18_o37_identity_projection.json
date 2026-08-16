@@ -1,0 +1,248 @@
+{
+  "bridge": {
+    "closed_item": "O-37",
+    "closure": "O37_CLOSED_PERMANENT_DESIGN_POLICY",
+    "evidence_projection": "tools/t18_o37_identity_projection.json",
+    "gt6_equivalence": "NO_DIRECT_BINDING_AT_FIXED_REVISION",
+    "material_9852_role": "SOURCE_MATERIAL_LAYER_ONLY",
+    "permanent": true,
+    "publication_delta": 0,
+    "runtime_identity": "cruciblecraft:crude_oil",
+    "source_fluid": "liquid_medium_oil",
+    "status": "DESIGN_POLICY"
+  },
+  "closure": "O37_CLOSED_PERMANENT_DESIGN_POLICY",
+  "currentness": {
+    "builder": {
+      "path": "tools/build_t18_o37_identity_projection.py",
+      "sha256": "0e869fdbb7fc58499cc64aea0d72269877cf4d48ee2e5a9dbcd24595dc96daf9"
+    },
+    "policy": {
+      "path": "tools/t18_o37_identity_policy.json",
+      "sha256": "9230f1105ab6943a54c27613d05e51b9ce410592b330fecac18eba7f9fe57838"
+    },
+    "tree_manifest": {
+      "path": "tools/t13_gt6_tree_manifest.json",
+      "sha256": "cfb7aeb7951a3c4ef761cb4f79ff04099f504cf90c9eeb40acfc87a4926b8f9f"
+    }
+  },
+  "negative_evidence": {
+    "candidate_rule": "A direct candidate must join a fluid token and material token in one Java statement, or use a material-fluid pattern. Names and display text alone are not a binding.",
+    "conclusion": "The fixed revision registers liquid_medium_oil as Raw Oil with a null material argument, exposes it as FL.Oil_Medium, and separately declares material 9852 MT.CrudeOil. No Java statement binds those identities directly.",
+    "direct_binding_candidate_count": 0,
+    "direct_binding_candidates": [],
+    "token_inventory": {
+      "9852": {
+        "occurrence_count": 4,
+        "recorded_location_limit": 25,
+        "recorded_locations": [
+          {
+            "blob": "8a2b6721ea7d798a83fb8c613a1fecb68d6dc914",
+            "line": 633,
+            "path": "src/main/java/gregapi/block/metatype/BlockStones.java",
+            "snippet": "@Override public boolean func_149852_a(World aWorld, Random aRandom, int aX, int aY, int aZ) {return MOSSY[WD.meta(aWorld, aX, aY, aZ)];}",
+            "symbol": "9852"
+          },
+          {
+            "blob": "fe632017f0189d3e8235fc732f8ec83f721a0942",
+            "line": 133,
+            "path": "src/main/java/gregapi/block/misc/BlockBaseFlower.java",
+            "snippet": "@Override public boolean func_149852_a(World aWorld, Random aRandom, int aX, int aY, int aZ) {return T;}",
+            "symbol": "9852"
+          },
+          {
+            "blob": "c2bf3e2666683582a25e011af696ff0e62dcf7d2",
+            "line": 151,
+            "path": "src/main/java/gregapi/block/tree/BlockBaseSapling.java",
+            "snippet": "@Override public boolean func_149852_a(World aWorld, Random aRandom, int aX, int aY, int aZ) {return aRandom.nextFloat() < 0.45;}",
+            "symbol": "9852"
+          },
+          {
+            "blob": "1681c2072f28ad2d31bc285aef1c6fd2a3bcef92",
+            "line": 1200,
+            "path": "src/main/java/gregapi/data/MT.java",
+            "snippet": "CrudeOil                = oredust       ( 9852, \"Crude Oil\"             , SET_DULL              ,  10,  10,  10, 255, TICKS_PER_SMELT* 60)                                                                                                                                                                                                                                                                                  .heat( 100,  400).aspects(TC.MORTUUS, 2, TC.LUX, 1),",
+            "symbol": "9852"
+          }
+        ]
+      },
+      "CrudeOil": {
+        "occurrence_count": 1,
+        "recorded_location_limit": 25,
+        "recorded_locations": [
+          {
+            "blob": "1681c2072f28ad2d31bc285aef1c6fd2a3bcef92",
+            "line": 1200,
+            "path": "src/main/java/gregapi/data/MT.java",
+            "snippet": "CrudeOil                = oredust       ( 9852, \"Crude Oil\"             , SET_DULL              ,  10,  10,  10, 255, TICKS_PER_SMELT* 60)                                                                                                                                                                                                                                                                                  .heat( 100,  400).aspects(TC.MORTUUS, 2, TC.LUX, 1),",
+            "symbol": "CrudeOil"
+          }
+        ]
+      },
+      "MT.CrudeOil": {
+        "occurrence_count": 0,
+        "recorded_location_limit": 25,
+        "recorded_locations": []
+      },
+      "Oil_Medium": {
+        "occurrence_count": 11,
+        "recorded_location_limit": 25,
+        "recorded_locations": [
+          {
+            "blob": "bbc60df02553aaedf7d1c29dd09428ed2d20fb52",
+            "line": 404,
+            "path": "src/main/java/gregapi/data/FL.java",
+            "snippet": ", Oil_Medium                (\"liquid_medium_oil\"                                        , SIMPLE, LIQUID)",
+            "symbol": "Oil_Medium"
+          },
+          {
+            "blob": "4f5a0c6ce03e76771d0c80e501407118979fbe0a",
+            "line": 61,
+            "path": "src/main/java/gregapi/worldgen/dungeon/DungeonChunkRoomStorage.java",
+            "snippet": ", {FL.Oil_Normal.make(64000), FL.Oil_Normal.make(64000), FL.Oil_Soulsand.make(64000), FL.Oil_Light.make(64000), FL.Oil_Medium.make(64000), FL.Oil_Heavy.make(64000), FL.Oil_ExtraHeavy.make(64000)}",
+            "symbol": "Oil_Medium"
+          },
+          {
+            "blob": "bcd0ee9e58b4fc0dd2192eb5312272bf137f25de",
+            "line": 74,
+            "path": "src/main/java/gregtech/compat/Compat_Recipes_Reika.java",
+            "snippet": "RM.Drying           .addRecipe0(T, 16,   64, FL.Oil_Medium    .make(200), NF, ST.make(MD.RoC, \"rotarycraft_item_powders\", 1, 1));",
+            "symbol": "Oil_Medium"
+          },
+          {
+            "blob": "179873c2580550e9db1dfec077113fe5ab35f86e",
+            "line": 151,
+            "path": "src/main/java/gregtech/loaders/a/Loader_Blocks.java",
+            "snippet": "BlocksGT.OilMedium                                                      = new BlockBaseFluid            (\"gt.block.fluid.oil.medium\"        , FL.Oil_Medium      , 1000, MaterialOil.instance).setLighterThanWater().addEffectBreathing(Potion.poison.id, 300, 0).addEffectBreathing(Potion.confusion.id, 120, 0).addEffectBathing(PotionsGT.ID_FLAMMABLE, 300, 1).addEffectBathing(PotionsGT.ID_SLIPPERY, 300, 1).addEffectBathing(Potion.blindness.id, 60, 1);",
+            "symbol": "Oil_Medium"
+          },
+          {
+            "blob": "183e00b5b0dd24d11634d9375f35589ae0611216",
+            "line": 48,
+            "path": "src/main/java/gregtech/loaders/b/Loader_Fuels.java",
+            "snippet": "FM.Burn         .addRecipe0(T, - 16, 24, FL.Oil_Medium.make(1)                       , FL.CarbonDioxide.make(1), ZL_IS);",
+            "symbol": "Oil_Medium"
+          },
+          {
+            "blob": "1c9af061bafec3d13ed27558e6280b3e567fee4e",
+            "line": 784,
+            "path": "src/main/java/gregtech/loaders/b/Loader_Worldgen.java",
+            "snippet": "new WorldgenFluidSpring(   \"overworld.fluid.oil.medium\"    , T, BlocksGT.OilMedium      , 15, 400, 2, tInfiniteOil ? FL.Oil_Medium      .make( 6000) : NF, GEN_OVERWORLD, GEN_GT, GEN_PFAA, GEN_A97, GEN_A97_GT, GEN_TFC);",
+            "symbol": "Oil_Medium"
+          },
+          {
+            "blob": "1c9af061bafec3d13ed27558e6280b3e567fee4e",
+            "line": 791,
+            "path": "src/main/java/gregtech/loaders/b/Loader_Worldgen.java",
+            "snippet": "new WorldgenFluidSpring(        \"atum.fluid.oil.medium\"    , T, BlocksGT.OilMedium      , 15, 200, 2, tInfiniteOil ? FL.Oil_Medium      .make( 2000) : NF, GEN_ATUM);",
+            "symbol": "Oil_Medium"
+          },
+          {
+            "blob": "c8a56b6eb807932b3da5e6e2dd544b8affb10420",
+            "line": 338,
+            "path": "src/main/java/gregtech/loaders/c/Loader_Recipes_Chem.java",
+            "snippet": "RM.Distillery       .addRecipe1(T, 16,  16, ST.tag(0), FL.Oil_Medium    .make( 25), FL.Fuel.make(25), FL.lube(25));",
+            "symbol": "Oil_Medium"
+          },
+          {
+            "blob": "c8a56b6eb807932b3da5e6e2dd544b8affb10420",
+            "line": 355,
+            "path": "src/main/java/gregtech/loaders/c/Loader_Recipes_Chem.java",
+            "snippet": "RM.DistillationTower.addRecipe0(F, 64, 128, new long[] {3000, 3000, 3000}, FL.array(FL.Oil_Medium    .make( 25)), FL.array(FL.Fuel.make(25), FL.Diesel.make(15), FL.Kerosine.make(15), FL.Petrol.make(15), FL.Propane.make(15), FL.Butane.make(15), FL.lube(25)), dustTiny.mat(MT.WaxParaffin, 1), dustTiny.mat(MT.Asphalt, 1), dustTiny.mat(MT.PetCoke, 1));",
+            "symbol": "Oil_Medium"
+          },
+          {
+            "blob": "9cd6f862afe25e95b1d838976c96a18ad3522568",
+            "line": 628,
+            "path": "src/main/java/gregtech/loaders/c/Loader_Recipes_Other.java",
+            "snippet": "RM.Mixer.addRecipe1(T, 16, 16, OM.dust(tMat), FL.Oil_Medium    .make(1000), FL.lube(4000), ZL_IS);",
+            "symbol": "Oil_Medium"
+          },
+          {
+            "blob": "bb01ff8eb538514aeed60d2a919664431a533b76",
+            "line": 719,
+            "path": "src/main/java/gregtech/loaders/c/Loader_Recipes_Temporary.java",
+            "snippet": "RM.generify   (FL.Oil_Medium              .make( 4), FL.Oil_Normal.make(1));",
+            "symbol": "Oil_Medium"
+          }
+        ]
+      },
+      "liquid_medium_oil": {
+        "occurrence_count": 2,
+        "recorded_location_limit": 25,
+        "recorded_locations": [
+          {
+            "blob": "bbc60df02553aaedf7d1c29dd09428ed2d20fb52",
+            "line": 404,
+            "path": "src/main/java/gregapi/data/FL.java",
+            "snippet": ", Oil_Medium                (\"liquid_medium_oil\"                                        , SIMPLE, LIQUID)",
+            "symbol": "liquid_medium_oil"
+          },
+          {
+            "blob": "23d79e9be0b2a3587d83c21f8dd0301b62cfb176",
+            "line": 61,
+            "path": "src/main/java/gregtech/loaders/a/Loader_Fluids.java",
+            "snippet": "FL.create(\"liquid_medium_oil\"        , \"Raw Oil\"             , null                  , 1).setDensity(  700);",
+            "symbol": "liquid_medium_oil"
+          }
+        ]
+      }
+    }
+  },
+  "resolution": "DESIGN_POLICY",
+  "runtime_identity_lock": {
+    "distillery_runtime_input": "cruciblecraft:crude_oil",
+    "distillery_source_fluid": "liquid_medium_oil",
+    "duplicate_registration_allowed": false,
+    "fluid_id_changed": false,
+    "material_9852": "MT.CrudeOil",
+    "material_9852_role": "SOURCE_MATERIAL_LAYER_ONLY",
+    "publication_delta": 0,
+    "registered_runtime_fluid": "cruciblecraft:crude_oil",
+    "registration_owner": "t11_hydrocarbon_fluid_gate",
+    "t9_identity_migration": "NONE",
+    "worldgen_deposit": "cruciblecraft:crude_oil_deposit",
+    "worldgen_material": "cruciblecraft:crude_oil"
+  },
+  "schema_version": 1,
+  "source": {
+    "java_blob_bytes": 14138745,
+    "java_blob_count": 1229,
+    "repository": "GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "search_scope": "every fixed-revision Java blob in the complete T13 tree manifest",
+    "tree_manifest": "tools/t13_gt6_tree_manifest.json",
+    "tree_sha1": "a164302f62a326208fd2076de6fb7cdb0b4602ee"
+  },
+  "status": "O37_CLOSED",
+  "symbol_evidence": [
+    {
+      "blob": "23d79e9be0b2a3587d83c21f8dd0301b62cfb176",
+      "line": 61,
+      "path": "src/main/java/gregtech/loaders/a/Loader_Fluids.java",
+      "snippet": "FL.create(\"liquid_medium_oil\"        , \"Raw Oil\"             , null                  , 1).setDensity(  700);",
+      "symbol": "Loader_Fluids#run"
+    },
+    {
+      "blob": "bbc60df02553aaedf7d1c29dd09428ed2d20fb52",
+      "line": 404,
+      "path": "src/main/java/gregapi/data/FL.java",
+      "snippet": ", Oil_Medium                (\"liquid_medium_oil\"                                        , SIMPLE, LIQUID)",
+      "symbol": "FL.Oil_Medium"
+    },
+    {
+      "blob": "1681c2072f28ad2d31bc285aef1c6fd2a3bcef92",
+      "line": 1200,
+      "path": "src/main/java/gregapi/data/MT.java",
+      "snippet": "CrudeOil                = oredust       ( 9852, \"Crude Oil\"             , SET_DULL              ,  10,  10,  10, 255, TICKS_PER_SMELT* 60)                                                                                                                                                                                                                                                                                  .heat( 100,  400).aspects(TC.MORTUUS, 2, TC.LUX, 1),",
+      "symbol": "MT.CrudeOil"
+    },
+    {
+      "blob": "183e00b5b0dd24d11634d9375f35589ae0611216",
+      "line": 48,
+      "path": "src/main/java/gregtech/loaders/b/Loader_Fuels.java",
+      "snippet": "FM.Burn         .addRecipe0(T, - 16, 24, FL.Oil_Medium.make(1)                       , FL.CarbonDioxide.make(1), ZL_IS);",
+      "symbol": "Loader_Fuels#run"
+    }
+  ]
+}

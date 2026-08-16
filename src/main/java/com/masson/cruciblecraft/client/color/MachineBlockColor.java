@@ -38,6 +38,14 @@ public final class MachineBlockColor {
         blocks.add(ModBlocks.ROTATIONAL_GEARBOX.get());
         blocks.add(ModBlocks.FUEL_ENGINE.get());
         blocks.add(ModBlocks.BURNING_GAS_GENERATOR.get());
+        blocks.add(ModBlocks.BRONZE_BOILER.get());
+        blocks.add(ModBlocks.BRONZE_CRUSHER.get());
+        blocks.add(ModBlocks.BRONZE_DYNAMO.get());
+        blocks.add(ModBlocks.BRONZE_STEAM_ENGINE.get());
+        blocks.add(ModBlocks.COKE_OVEN.get());
+        blocks.add(ModBlocks.LARGE_BOILER.get());
+        blocks.add(ModBlocks.TANK_3X3X3.get());
+        blocks.add(ModBlocks.MORTAR.get());
         return blocks.stream()
                 .filter(MachineBlockColor::usesDualLayerTextures)
                 .toArray(Block[]::new);
@@ -71,6 +79,9 @@ public final class MachineBlockColor {
         if (path.startsWith("stainless_steel_")) {
             return "stainless_steel";
         }
+        if (path.startsWith("invar_")) {
+            return "invar";
+        }
         if (path.startsWith("steel_")) {
             return "steel";
         }
@@ -81,9 +92,18 @@ public final class MachineBlockColor {
         return switch (id) {
             case "steel_centrifuge", "titanium_centrifuge" -> "centrifuge";
             case "steel_sifter", "titanium_sifter" -> "sifter";
+            case "steel_lathe", "titanium_lathe" -> "lathe";
+            case "steel_rollingmill", "titanium_rollingmill" -> "rollingmill";
+            case "steel_wiremill", "titanium_wiremill" -> "wiremill";
+            case "steel_shredder", "titanium_shredder" -> "shredder";
+            case "steel_press", "titanium_press" -> "press";
             case "aluminium_electrolyzer", "stainless_steel_electrolyzer" ->
                     "electrolyzer";
-            case "drying" -> "dryer";
+            case "invar_distillery", "titanium_distillery" -> "distillery";
+            case "distillation_tower" -> "distillery";
+            case "large_boiler" -> "boiler";
+            case "drying", "invar_drying", "titanium_drying" -> "dryer";
+            case "invar_smelter", "titanium_smelter" -> "smelter";
             default -> id;
         };
     }
@@ -117,7 +137,15 @@ public final class MachineBlockColor {
                     "electric_motor",
                     "rotational_gearbox",
                     "fuel_engine",
-                    "burning_gas_generator" -> true;
+                    "burning_gas_generator",
+                    "boiler",
+                    "tank_3x3x3",
+                    "mortar",
+                    "coke_oven",
+                    "bronze_boiler",
+                    "bronze_crusher",
+                    "bronze_dynamo",
+                    "bronze_steam_engine" -> true;
             default -> false;
         };
     }

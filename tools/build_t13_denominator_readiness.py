@@ -10,6 +10,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 TOOLS = ROOT / "tools"
+BUILDER = Path(__file__).resolve()
 DENOMINATORS = TOOLS / "t13_denominators"
 POLICY = TOOLS / "t13_denominator_policy.json"
 TREE = TOOLS / "t13_gt6_tree_manifest.json"
@@ -247,6 +248,17 @@ def build_readiness(manifest: dict[str, Any]) -> dict[str, Any]:
     policy = load(POLICY)
     if t12["status"] != "T12_READY":
         raise ValueError("T13 requires current T12_READY baseline")
+    energy_audit = (
+        t12.get("energy", {}).get("processing_machine_audit") or {}
+    )
+    if (
+        energy_audit.get("status")
+        != "PROCESSING_MACHINE_ENERGY_AUDIT_READY"
+        or energy_audit.get("machine_specs") != 25
+        or energy_audit.get("implicit_energy_arguments") != 0
+        or energy_audit.get("new_legacy_kinetic") != 0
+    ):
+        raise ValueError("T13 requires the current 25-machine energy audit")
     load_gate = t12["load_gate"]
     expected_zero_content = policy["zero_content_delta"]
     if (
@@ -329,6 +341,25 @@ def build_readiness(manifest: dict[str, Any]) -> dict[str, Any]:
             "T18": ["machine_kinds", "energy_identities", "recipe_maps"],
             "T19": ["cover_kinds", "prefixes"],
             "post_T19": ["multiblock_kinds", "itemgenerator_domains"],
+        },
+        "currentness": {
+            "owned_inputs": {
+                BUILDER.relative_to(ROOT).as_posix(): sha256(BUILDER),
+                POLICY.relative_to(ROOT).as_posix(): sha256(POLICY),
+            },
+            "dependencies": {
+                T12.relative_to(ROOT).as_posix(): sha256(T12),
+                MANIFEST.relative_to(ROOT).as_posix(): hashlib.sha256(
+                    stable(manifest).encode("utf-8")
+                ).hexdigest(),
+            },
+            "processing_machine_energy_audit": energy_audit,
+            "pending_report": {
+                "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+                "this_refresh_final_closure_attempted": True,
+                "pending": [],
+                "evidence": "tools/full_verification_report.json",
+            },
         },
     }
 

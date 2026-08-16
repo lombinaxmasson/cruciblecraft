@@ -266,7 +266,7 @@ def assert_legacy_recipe(
 ) -> None:
     expected_path = f"extruder/{source_row['shape']}/{source_row['material']}.json"
     if legacy.get("type") != "cruciblecraft:material_rule":
-        raise EquivalenceError(f"{expected_path}: wrong legacy recipe type")
+        raise EquivalenceError(f"{expected_path}: wrong compact recipe type")
     if legacy.get("target") != "cruciblecraft:extruder":
         raise EquivalenceError(f"{expected_path}: wrong legacy target")
     if legacy.get("material") != source_row["material"]:

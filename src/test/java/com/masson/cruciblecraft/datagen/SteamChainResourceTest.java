@@ -12,6 +12,8 @@ import com.google.gson.JsonParser;
 
 class SteamChainResourceTest {
     private static final Path ROOT = Path.of("src/main/resources");
+    private static final Path GENERATED =
+            Path.of("src/generated/resources");
     private static final Path ORE_CHAIN_CRUSHER = Path.of(
             "src/ore_chain_generated/resources/data/cruciblecraft/recipe/"
                     + "ore_chain/crusher");
@@ -29,9 +31,26 @@ class SteamChainResourceTest {
             resource("data/cruciblecraft/loot_table/blocks/" + id + ".json");
             resource("data/cruciblecraft/recipe/" + id + ".json");
         }
-        resource("assets/cruciblecraft/models/item/steam_bucket.json");
+        resource("assets/cruciblecraft/models/item/steam_bucket.json", GENERATED);
         resource("data/c/tags/fluid/steam.json");
         assertTrue(Files.isDirectory(ORE_CHAIN_CRUSHER.resolve("copper")));
+    }
+
+    @Test
+    void fireboxHasGeneratedSurvivalResourceClosure() throws Exception {
+        for (String path : java.util.List.of(
+                "assets/cruciblecraft/blockstates/firebox.json",
+                "assets/cruciblecraft/models/block/firebox.json",
+                "assets/cruciblecraft/models/item/firebox.json",
+                "data/cruciblecraft/loot_table/blocks/firebox.json",
+                "data/cruciblecraft/recipe/machines/firebox.json")) {
+            assertTrue(Files.isRegularFile(GENERATED.resolve(path)), path);
+        }
+        String recipe = Files.readString(GENERATED.resolve(
+                "data/cruciblecraft/recipe/machines/firebox.json"));
+        assertTrue(recipe.contains("\"cruciblecraft:firebrick\""));
+        assertTrue(recipe.contains("\"minecraft:furnace\""));
+        assertTrue(recipe.contains("\"cruciblecraft:firebox\""));
     }
 
     @Test
@@ -41,7 +60,13 @@ class SteamChainResourceTest {
         assertCrusherRecipe("nickel", 384);
     }
 
-    private static void resource(String path) { assertTrue(Files.isRegularFile(ROOT.resolve(path)), path); }
+    private static void resource(String path) {
+        resource(path, ROOT);
+    }
+
+    private static void resource(String path, Path root) {
+        assertTrue(Files.isRegularFile(root.resolve(path)), path);
+    }
 
     private static void assertCrusherRecipe(String material, int duration) throws Exception {
         Path directory = ORE_CHAIN_CRUSHER.resolve(material);

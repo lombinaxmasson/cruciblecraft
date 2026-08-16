@@ -5,6 +5,8 @@ import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.block.FireboxBlock;
 import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.energy.PerTickEnergyBudget;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
+import com.masson.cruciblecraft.energy.converter.EnergyConverterProfile;
 import com.masson.cruciblecraft.heat.FireboxHeatBuffer;
 import com.masson.cruciblecraft.heat.FuelDefinition;
 import com.masson.cruciblecraft.machine.component.CheckpointTracker;
@@ -22,9 +24,13 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class FireboxBlockEntity extends BlockEntity implements IEnergyHandler {
+    private static final EnergyConverterProfile PROFILE =
+            EnergyConverterCatalog.require(
+                    "cruciblecraft:bronze_firebox");
     private FireboxHeatBuffer heat = new FireboxHeatBuffer();
     private final PerTickEnergyBudget outputBudget = new PerTickEnergyBudget();
     private final CheckpointTracker checkpoint = new CheckpointTracker();
+    private String status = "no_fuel";
 
     public FireboxBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.FIREBOX.get(), pos, blockState);
@@ -35,7 +41,14 @@ public class FireboxBlockEntity extends BlockEntity implements IEnergyHandler {
             BlockPos pos,
             BlockState state,
             FireboxBlockEntity firebox) {
-        EnergyEmitter.emit(level, pos, firebox, EnergyType.HEAT, Direction.UP);
+        long delivered = EnergyEmitter.emit(
+                level, pos, firebox, EnergyType.HEAT, Direction.UP);
+        firebox.setStatus(
+                !firebox.heat.hasHeat()
+                        ? "no_fuel"
+                        : delivered > 0L
+                                ? "running"
+                                : "heat_output_blocked");
         firebox.updateLitState();
         long phaseKey = CheckpointDecisions.phaseKey(pos.getX(), pos.getY(), pos.getZ());
         if (firebox.checkpoint.shouldCheckpoint(level.getGameTime(), phaseKey, 20)) {
@@ -47,9 +60,32 @@ public class FireboxBlockEntity extends BlockEntity implements IEnergyHandler {
     }
 
     public boolean addFuel(FuelDefinition fuel) {
-        if (!heat.deposit(fuel)) {
+        return addFuel(
+                fuel,
+                PROFILE.outputPacket().maxAmountPerTick(),
+                PROFILE.efficiencyBps());
+    }
+
+    /**
+     * Explicit controlled-source hook used by higher-tier adjacent-energy
+     * GameTests; player fuel insertion always uses the fixed bronze profile.
+     */
+    public boolean addControlledFuel(
+            FuelDefinition fuel, long outputRate) {
+        return addFuel(fuel, outputRate, 10_000);
+    }
+
+    private boolean addFuel(
+            FuelDefinition fuel,
+            long outputRate,
+            int efficiencyBps) {
+        if (!heat.deposit(
+                fuel,
+                outputRate,
+                efficiencyBps)) {
             return false;
         }
+        setStatus("running");
         setChanged();
         checkpoint.checkpointed();
         updateLitState();
@@ -78,6 +114,10 @@ public class FireboxBlockEntity extends BlockEntity implements IEnergyHandler {
 
     public String fuelId() {
         return heat.fuelId();
+    }
+
+    public String status() {
+        return status;
     }
 
     @Override
@@ -151,7 +191,7 @@ public class FireboxBlockEntity extends BlockEntity implements IEnergyHandler {
     public long capacity(EnergyType type) {
         return type == EnergyType.HEAT
                 ? FireboxHeatBuffer.capacity(Math.max(
-                        FuelDefinition.CHARCOAL.energyPerTick(),
+                        PROFILE.outputPacket().maxAmountPerTick(),
                         heat.outputRate()))
                 : 0L;
     }
@@ -162,7 +202,7 @@ public class FireboxBlockEntity extends BlockEntity implements IEnergyHandler {
         if (tag.contains("stored_hu", Tag.TAG_ANY_NUMERIC)) {
             heat = new FireboxHeatBuffer(
                     Math.max(0L, tag.getLong("stored_hu")),
-                    Math.max(0L, tag.getLong("output_rate")),
+                    PROFILE.outputPacket().maxAmountPerTick(),
                     tag.getString("fuel_id"));
         } else {
             int legacyTicks = tag.getInt("burn_ticks");
@@ -172,8 +212,16 @@ public class FireboxBlockEntity extends BlockEntity implements IEnergyHandler {
             String legacyFuel = tag.contains("fuel_id", Tag.TAG_STRING)
                     ? tag.getString("fuel_id")
                     : FuelDefinition.CHARCOAL.id();
-            heat = FireboxHeatBuffer.migrateLegacy(legacyTicks, legacyRate, legacyFuel);
+            FireboxHeatBuffer migrated = FireboxHeatBuffer.migrateLegacy(
+                    legacyTicks, legacyRate, legacyFuel);
+            heat = new FireboxHeatBuffer(
+                    migrated.storedHeat(),
+                    PROFILE.outputPacket().maxAmountPerTick(),
+                    migrated.fuelId());
         }
+        status = tag.contains("status", Tag.TAG_STRING)
+                ? tag.getString("status")
+                : heat.hasHeat() ? "running" : "no_fuel";
     }
 
     @Override
@@ -182,6 +230,7 @@ public class FireboxBlockEntity extends BlockEntity implements IEnergyHandler {
         tag.putLong("stored_hu", heat.storedHeat());
         tag.putLong("output_rate", heat.outputRate());
         tag.putString("fuel_id", heat.fuelId());
+        tag.putString("status", status);
     }
 
     @Override
@@ -210,6 +259,13 @@ public class FireboxBlockEntity extends BlockEntity implements IEnergyHandler {
         if (level != null && !level.isClientSide) {
             BlockState state = getBlockState();
             level.sendBlockUpdated(worldPosition, state, state, Block.UPDATE_CLIENTS);
+        }
+    }
+
+    private void setStatus(String next) {
+        if (!status.equals(next)) {
+            status = next;
+            checkpoint.markDirty();
         }
     }
 }

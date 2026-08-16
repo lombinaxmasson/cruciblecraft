@@ -16,7 +16,8 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 public final class ConfiguredProcessingMachineMenu extends ProcessingMachineMenu {
     public static final int STATUS_DATA_INDEX = 0;
     public static final int STATUS_ARGUMENT_DATA_INDEX = 1;
-    public static final int DATA_COUNT = 2;
+    public static final int PROGRESS_PERMILLE_DATA_INDEX = 2;
+    public static final int DATA_COUNT = 3;
     private final Level level;
     private final BlockPos machinePos;
 
@@ -105,6 +106,11 @@ public final class ConfiguredProcessingMachineMenu extends ProcessingMachineMenu
     @Override
     protected int statusArgumentDataIndex() {
         return STATUS_ARGUMENT_DATA_INDEX;
+    }
+
+    @Override
+    protected int progressPermilleDataIndex() {
+        return PROGRESS_PERMILLE_DATA_INDEX;
     }
 
     private ConfiguredProcessingMachineBlockEntity machine() {

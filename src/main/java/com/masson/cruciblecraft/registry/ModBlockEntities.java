@@ -19,6 +19,9 @@ import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.GasCloudBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCentrifugeBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.DistillationTowerBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.TankBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MultiblockPortBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.RotationalAxleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.RotationalGearboxBlockEntity;
@@ -79,6 +82,33 @@ public final class ModBlockEntities {
                                     MultiblockPortBlockEntity::new,
                                     ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get(),
                                     ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<DistillationTowerBlockEntity>>
+                    DISTILLATION_TOWER = BLOCK_ENTITIES.register(
+                            "distillation_tower",
+                            () -> BlockEntityType.Builder.of(
+                                    DistillationTowerBlockEntity::new,
+                                    ModBlocks.DISTILLATION_TOWER.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LargeBoilerBlockEntity>>
+                    LARGE_BOILER = BLOCK_ENTITIES.register(
+                            "large_boiler",
+                            () -> BlockEntityType.Builder.of(
+                                    LargeBoilerBlockEntity::new,
+                                    ModBlocks.LARGE_BOILER.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<TankBlockEntity>>
+                    TANK_3X3X3 = BLOCK_ENTITIES.register(
+                            "tank_3x3x3",
+                            () -> BlockEntityType.Builder.of(
+                                    TankBlockEntity::new,
+                                    ModBlocks.TANK_3X3X3.get())
                                     .build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BellowsBlockEntity>>

@@ -1,0 +1,52 @@
+{
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t24_scale_bounds.py": "e0627328d499ddead495b259b719c39ba4c8fed97dedb5e055ebcd1e1fb6185c",
+      "tools/t24_scale_evidence.json": "b28340ad03cd356d9a7065f534eb430964dbb971ce55386d732cf2fb2453b9fe",
+      "tools/t24_workload_manifest.json": "d9e99fa684a957bd71c0a89f88691cad8fbd1d68a1837a5af9752a4e81ee23db"
+    }
+  },
+  "declared_caps": {
+    "cover_configuration_payload_bytes": 13,
+    "cover_slots_per_pipe": 6,
+    "menu_container_data_ints": 3,
+    "multiblock_scan_volume": 4096,
+    "route_cache_entries_per_item_pipe": 256,
+    "route_discovery_visited": 32768
+  },
+  "measured_by": "src/test/java/com/masson/cruciblecraft/scale/ScaleWorkloadBoundTest.java (JUnit, deterministic exact counts; pipe schedule tests are pure JVM, multiblock counters use a fake StructureAccess)",
+  "policy": "Deterministic operation counts are hard gates; wall-clock elapsed is recorded for reference only and is never gated. Bounds are worst-case, never averaged. Uncollectable metrics are explicit SKIPs, never zero-filled.",
+  "scenarios": {
+    "small": {
+      "cover_configuration_payload_bytes_max": 13,
+      "menu_container_data_ints": 3,
+      "pipes_due_per_tick_max": 4,
+      "port_scan_ops_max": 50,
+      "route_cache_entries_per_pipe_max": 256,
+      "route_discovery_visited_max": 20,
+      "structure_validation_ops_max": 54
+    },
+    "stress": {
+      "cover_configuration_payload_bytes_max": 13,
+      "menu_container_data_ints": 3,
+      "pipes_due_per_tick_max": 400,
+      "port_scan_ops_max": 160,
+      "route_cache_entries_per_pipe_max": 256,
+      "route_discovery_visited_max": 2000,
+      "structure_validation_ops_max": 162
+    },
+    "target": {
+      "cover_configuration_payload_bytes_max": 13,
+      "menu_container_data_ints": 3,
+      "pipes_due_per_tick_max": 100,
+      "port_scan_ops_max": 160,
+      "route_cache_entries_per_pipe_max": 256,
+      "route_discovery_visited_max": 500,
+      "structure_validation_ops_max": 162
+    }
+  },
+  "schema_version": 1,
+  "status": "MEASURED",
+  "status_owner": "build_t24_scale_bounds",
+  "worst_case": true
+}

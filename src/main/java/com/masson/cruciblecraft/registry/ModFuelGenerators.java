@@ -5,8 +5,10 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.machine.generation.FuelGeneratorSpec;
 
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 
 /** Registry-owned T11 fuel-generator configurations. */
@@ -17,13 +19,29 @@ public final class ModFuelGenerators {
                     () -> ModRecipeMaps.FUELS_ENGINE,
                     8_000,
                     8_000,
+                    1,
+                    EnergyType.KINETIC_ROTATION,
+                    16L,
+                    1L,
+                    65_536L,
+                    10_000,
+                    FuelGeneratorSpec.EnergyOutputFace.FRONT,
+                    List.of(Direction.UP),
                     1);
     public static final FuelGeneratorSpec BURNING_GAS_GENERATOR =
             new FuelGeneratorSpec(
                     id("burning_gas_generator"),
                     () -> ModRecipeMaps.FUELS_GAS,
-                    8_000,
-                    8_000,
+                    16_000,
+                    16_000,
+                    2,
+                    EnergyType.HEAT,
+                    1L,
+                    24L,
+                    288_000L,
+                    7_500,
+                    FuelGeneratorSpec.EnergyOutputFace.UP,
+                    List.of(Direction.NORTH, Direction.SOUTH),
                     2);
     public static final List<FuelGeneratorSpec> ALL =
             List.of(FUEL_ENGINE, BURNING_GAS_GENERATOR);

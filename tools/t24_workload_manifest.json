@@ -1,0 +1,148 @@
+{
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t24_workload_manifest.py": "bd5ed7afafa77b3467512fe27c32d914cbcf2d799a334113534aa4f85692a5ef",
+      "tools/t24_workload_policy.json": "86c2cfc91ed51b0ad1a844c8b10f933f9c69ddfcd275b2d455dceee516cd57aa"
+    }
+  },
+  "fidelity_class": "DESIGN_POLICY",
+  "scenarios": {
+    "small": {
+      "composition": {
+        "converter_pairs": {
+          "firebox_boiler": 1,
+          "fuel_engine_dynamo": 1
+        },
+        "multiblock_ids": [
+          "tank_3x3x3"
+        ],
+        "processing_machines": {
+          "EU": 1,
+          "KU": 1,
+          "RU": 1
+        },
+        "steam_engines": 1
+      },
+      "counts": {
+        "covers": 4,
+        "energy_converters": 2,
+        "fluid_pipes": 10,
+        "item_pipes": 10,
+        "multiblocks": 1,
+        "petroleum_chains": 0,
+        "processing_machines": 3
+      },
+      "declared_evidence_class": "MEASURED_AT_SCALE",
+      "derived": {
+        "pipes_due_per_tick": 4,
+        "pipes_partition_exact": true,
+        "pipes_total": 20
+      },
+      "dimension": "minecraft:overworld",
+      "loaded_chunks": {
+        "x": 3,
+        "z": 3
+      },
+      "purpose": "minimum complete industrial mainline; fast functional regression",
+      "seed": 24001,
+      "ticks": {
+        "sampling": 1200,
+        "warmup": 200
+      }
+    },
+    "stress": {
+      "composition": {
+        "converter_pairs": {
+          "firebox_boiler": 16,
+          "fuel_engine_dynamo": 16
+        },
+        "multiblock_ids": [
+          "distillation_tower",
+          "large_boiler",
+          "tank_3x3x3"
+        ],
+        "processing_machines": {
+          "EU": 32,
+          "KU": 32,
+          "RU": 32
+        },
+        "steam_engines": 16
+      },
+      "counts": {
+        "covers": 96,
+        "energy_converters": 32,
+        "fluid_pipes": 1000,
+        "item_pipes": 1000,
+        "multiblocks": 12,
+        "petroleum_chains": 4,
+        "processing_machines": 96
+      },
+      "declared_evidence_class": "STATIC_INFERENCE",
+      "derived": {
+        "pipes_due_per_tick": 400,
+        "pipes_partition_exact": true,
+        "pipes_total": 2000
+      },
+      "dimension": "minecraft:overworld",
+      "loaded_chunks": {
+        "x": 8,
+        "z": 8
+      },
+      "purpose": "amplify the same topology and work distribution to expose nonlinearity; never claimed as normal player load",
+      "seed": 24003,
+      "ticks": {
+        "sampling": 12000,
+        "warmup": 600
+      }
+    },
+    "target": {
+      "composition": {
+        "converter_pairs": {
+          "firebox_boiler": 4,
+          "fuel_engine_dynamo": 4
+        },
+        "multiblock_ids": [
+          "distillation_tower",
+          "large_boiler",
+          "tank_3x3x3"
+        ],
+        "processing_machines": {
+          "EU": 8,
+          "KU": 8,
+          "RU": 8
+        },
+        "steam_engines": 4
+      },
+      "counts": {
+        "covers": 24,
+        "energy_converters": 8,
+        "fluid_pipes": 250,
+        "item_pipes": 250,
+        "multiblocks": 3,
+        "petroleum_chains": 1,
+        "processing_machines": 24
+      },
+      "declared_evidence_class": "STATIC_INFERENCE",
+      "derived": {
+        "pipes_due_per_tick": 100,
+        "pipes_partition_exact": true,
+        "pipes_total": 500
+      },
+      "dimension": "minecraft:overworld",
+      "loaded_chunks": {
+        "x": 8,
+        "z": 8
+      },
+      "purpose": "expected sustained Beta-scale footprint; used for release judgement",
+      "seed": 24002,
+      "ticks": {
+        "sampling": 12000,
+        "warmup": 600
+      }
+    }
+  },
+  "schema_version": 1,
+  "status": "MANIFEST_COMPLETE",
+  "status_owner": "build_t24_workload_manifest",
+  "workload_identity": "b5e0192c21e381fcb6e97be9c6243eec06d14a17b3197ec25b702c9f5b8e2197"
+}

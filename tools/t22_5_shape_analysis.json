@@ -1,0 +1,195 @@
+{
+  "aggregate": {
+    "maps": 9,
+    "overall_rows_per_unit": 16.3426,
+    "total_enabled_rows": 87188,
+    "total_templates": 5335
+  },
+  "conclusions": [
+    "gt.recipe.bath: 59855 enabled rows -> 1375 templates (43.5309 rows/unit); largest family 1148 rows; 228 singletons / 1147 combinatorial. Conclusion only — publication_delta = 0.",
+    "gt.recipe.smelter: 21969 enabled rows -> 2983 templates (7.3647 rows/unit); largest family 624 rows; 2873 singletons / 110 combinatorial. Conclusion only — publication_delta = 0.",
+    "gt.recipe.assembler: 1582 enabled rows -> 344 templates (4.5988 rows/unit); largest family 620 rows; 342 singletons / 2 combinatorial. Conclusion only — publication_delta = 0.",
+    "gt.recipe.compressor: 1472 enabled rows -> 57 templates (25.8246 rows/unit); largest family 321 rows; 44 singletons / 13 combinatorial. Conclusion only — publication_delta = 0.",
+    "gt.recipe.centrifuge: 1296 enabled rows -> 224 templates (5.7857 rows/unit); largest family 474 rows; 176 singletons / 48 combinatorial. Conclusion only — publication_delta = 0.",
+    "gt.recipe.autoclave: 392 enabled rows -> 60 templates (6.5333 rows/unit); largest family 58 rows; 42 singletons / 18 combinatorial. Conclusion only — publication_delta = 0.",
+    "gt.recipe.electrolyzer: 290 enabled rows -> 107 templates (2.7103 rows/unit); largest family 40 rows; 64 singletons / 43 combinatorial. Conclusion only — publication_delta = 0.",
+    "gt.recipe.drying: 217 enabled rows -> 155 templates (1.4 rows/unit); largest family 33 rows; 145 singletons / 10 combinatorial. Conclusion only — publication_delta = 0.",
+    "gt.recipe.roaster: 115 enabled rows -> 30 templates (3.8333 rows/unit); largest family 42 rows; 13 singletons / 17 combinatorial. Conclusion only — publication_delta = 0."
+  ],
+  "inputs": {
+    "gt6_dump/gt6_recipe_dump/maps/gt.recipe.assembler.json": "061e6a66439ea75907465bbccf90ed4af316075c93f2b248c0fc861668e7fbe2",
+    "gt6_dump/gt6_recipe_dump/maps/gt.recipe.autoclave.json": "13dc6039e20c2a903a71195dc503918e3a0b9ef803bba8b00df501f4efdc5b38",
+    "gt6_dump/gt6_recipe_dump/maps/gt.recipe.bath.json": "9eb212ac765fcda2d6e8b9789762d5b3efcce4d72cd385e0e9d10f1bfda33f1a",
+    "gt6_dump/gt6_recipe_dump/maps/gt.recipe.centrifuge.json": "b7a828695847a6fbffc50e4e73e9b88990c8bc2610348a34ebd3f1642aa80322",
+    "gt6_dump/gt6_recipe_dump/maps/gt.recipe.compressor.json": "e89db5c37f62ca6475a4d231f08f66c215eb10f2e2a369fc62cfb22b7392883d",
+    "gt6_dump/gt6_recipe_dump/maps/gt.recipe.drying.json": "ce36dbba8b568d33d6ae93945187cbde9e6805b0ff85fccc8e50ee16fe9cd94a",
+    "gt6_dump/gt6_recipe_dump/maps/gt.recipe.electrolyzer.json": "d7922743f3817d7cc43da3ca990e26fbfcc6bdb1309edc1f2b1513d9696e4cf8",
+    "gt6_dump/gt6_recipe_dump/maps/gt.recipe.roaster.json": "6bff7ea298d00f7f09c7e872f956cda6e8d8943981720530039a8dfbd5561658",
+    "gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json": "18485809a26988c4eb3dcb37f28cccfd09e8e24655c23d82b33dd642e2ea70ca",
+    "tools/build_t22_5_shape_analysis.py": "dbb5a547f8d798f7d102d53c101a26a2d5930099da5c526c9cdd285be7af10de"
+  },
+  "per_map": [
+    {
+      "combinatorial_template_count": 1147,
+      "enabled_rows": 59855,
+      "expanded_recipe_count": 59855,
+      "largest_family_expanded_count": 1148,
+      "map": "gt.recipe.bath",
+      "membership": {
+        "duplicate": 0,
+        "total": 59855,
+        "unassigned": 0
+      },
+      "publication_delta": 0,
+      "rows_per_unit": 43.5309,
+      "singleton_template_count": 228,
+      "source_rows": 59855,
+      "template_count": 1375
+    },
+    {
+      "combinatorial_template_count": 110,
+      "enabled_rows": 21969,
+      "expanded_recipe_count": 21969,
+      "largest_family_expanded_count": 624,
+      "map": "gt.recipe.smelter",
+      "membership": {
+        "duplicate": 0,
+        "total": 21969,
+        "unassigned": 0
+      },
+      "publication_delta": 0,
+      "rows_per_unit": 7.3647,
+      "singleton_template_count": 2873,
+      "source_rows": 21969,
+      "template_count": 2983
+    },
+    {
+      "combinatorial_template_count": 2,
+      "enabled_rows": 1582,
+      "expanded_recipe_count": 1582,
+      "largest_family_expanded_count": 620,
+      "map": "gt.recipe.assembler",
+      "membership": {
+        "duplicate": 0,
+        "total": 1582,
+        "unassigned": 0
+      },
+      "publication_delta": 0,
+      "rows_per_unit": 4.5988,
+      "singleton_template_count": 342,
+      "source_rows": 1582,
+      "template_count": 344
+    },
+    {
+      "combinatorial_template_count": 13,
+      "enabled_rows": 1472,
+      "expanded_recipe_count": 1472,
+      "largest_family_expanded_count": 321,
+      "map": "gt.recipe.compressor",
+      "membership": {
+        "duplicate": 0,
+        "total": 1472,
+        "unassigned": 0
+      },
+      "publication_delta": 0,
+      "rows_per_unit": 25.8246,
+      "singleton_template_count": 44,
+      "source_rows": 1472,
+      "template_count": 57
+    },
+    {
+      "combinatorial_template_count": 48,
+      "enabled_rows": 1296,
+      "expanded_recipe_count": 1296,
+      "largest_family_expanded_count": 474,
+      "map": "gt.recipe.centrifuge",
+      "membership": {
+        "duplicate": 0,
+        "total": 1296,
+        "unassigned": 0
+      },
+      "publication_delta": 0,
+      "rows_per_unit": 5.7857,
+      "singleton_template_count": 176,
+      "source_rows": 1296,
+      "template_count": 224
+    },
+    {
+      "combinatorial_template_count": 18,
+      "enabled_rows": 392,
+      "expanded_recipe_count": 392,
+      "largest_family_expanded_count": 58,
+      "map": "gt.recipe.autoclave",
+      "membership": {
+        "duplicate": 0,
+        "total": 392,
+        "unassigned": 0
+      },
+      "publication_delta": 0,
+      "rows_per_unit": 6.5333,
+      "singleton_template_count": 42,
+      "source_rows": 392,
+      "template_count": 60
+    },
+    {
+      "combinatorial_template_count": 43,
+      "enabled_rows": 290,
+      "expanded_recipe_count": 290,
+      "largest_family_expanded_count": 40,
+      "map": "gt.recipe.electrolyzer",
+      "membership": {
+        "duplicate": 0,
+        "total": 290,
+        "unassigned": 0
+      },
+      "publication_delta": 0,
+      "rows_per_unit": 2.7103,
+      "singleton_template_count": 64,
+      "source_rows": 290,
+      "template_count": 107
+    },
+    {
+      "combinatorial_template_count": 10,
+      "enabled_rows": 217,
+      "expanded_recipe_count": 217,
+      "largest_family_expanded_count": 33,
+      "map": "gt.recipe.drying",
+      "membership": {
+        "duplicate": 0,
+        "total": 217,
+        "unassigned": 0
+      },
+      "publication_delta": 0,
+      "rows_per_unit": 1.4,
+      "singleton_template_count": 145,
+      "source_rows": 217,
+      "template_count": 155
+    },
+    {
+      "combinatorial_template_count": 17,
+      "enabled_rows": 115,
+      "expanded_recipe_count": 115,
+      "largest_family_expanded_count": 42,
+      "map": "gt.recipe.roaster",
+      "membership": {
+        "duplicate": 0,
+        "total": 115,
+        "unassigned": 0
+      },
+      "publication_delta": 0,
+      "rows_per_unit": 3.8333,
+      "singleton_template_count": 13,
+      "source_rows": 115,
+      "template_count": 30
+    }
+  ],
+  "schema_version": 1,
+  "scope": "Conclusions only: compression ratios and family structure. No recipe publication; publication_delta = 0 everywhere.",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T22_5_SHAPE_ANALYSIS_READY",
+  "verification": {
+    "extra_count": 0,
+    "missing_count": 0,
+    "replay_verified": true
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "status": "T22_D3_BLOCKED_BY_PREEXISTING_STALE_ARTIFACTS",
+  "checked_on": "2026-08-11",
+  "blockers": [
+    {
+      "artifact": "tools/t15_matcher_boundary.json",
+      "error": "stale generated file",
+      "cause": "Pre-existing — needs GT6 dump full-replay rebuild. Not caused by T22 changes.",
+      "resolution": "Run rebuild_artifacts.py --keep-going from main repo with GT6 dump available."
+    },
+    {
+      "artifact": "Multiple T11-T14 readiness/currentness files",
+      "error": "stale — committed artifact differs from fresh build",
+      "cause": "Same as above. T21 closure also hit these; resolved by full-replay rebuild before --record.",
+      "resolution": "Same as above."
+    }
+  ],
+  "t22_specific_status": {
+    "builders": "6 T22 builders created (build_t22_*.py). NOT in verification_builder_policy.json yet — need registration.",
+    "gametests": "4 T22 GameTests written. NOT yet verified on GameTest server. Need runGameTestServer gradle task.",
+    "recipes": "2 T22 recipes in src/t22_petroleum_generated/. Need verification via GameTest + datagen integration.",
+    "readiness": "tools/t22_readiness.json status=null (gametest_passing=null). Will be set by --record after GameTest server passes."
+  },
+  "d3_execution_plan": [
+    "1. Register T22 builders in tools/verification_builder_policy.json",
+    "2. Run rebuild_artifacts.py --keep-going from main repo (clears stale T11-T15 artifacts)",
+    "3. Run datagen (./gradlew runData) to generate/verify generated resources",
+    "4. Run Java tests (./gradlew test) — verify 539→543 tests, including T22 GameTests compile",
+    "5. Run GameTest server (./gradlew runGameTestServer) — verify 89 GameTests pass including 4 new T22 tests",
+    "6. Run Python closure + source-replay (python tools/run_python_tests.py --suite closure)",
+    "7. Run python tools/run_full_verification.py --record --new-session",
+    "8. Verify T22_READY status is derived (not hand-written)"
+  ],
+  "current_compilation": "Gradle compileJava running in background — verifies Cutter futureFluidInput change + GameTests compile"
+}

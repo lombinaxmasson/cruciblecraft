@@ -1,0 +1,406 @@
+{
+  "counts": {
+    "fluid_names": 18,
+    "materials": 15,
+    "no_registration": 15,
+    "register": 0
+  },
+  "inputs": {
+    "tools/build_t22_5_fluid_gap_disposition.py": "fcf10e0a4aef7d1eb542a5ede7c3c6680c90d61e3af9efe4e7644268d99f04b2",
+    "tools/t22_5_fluid_mapping.json": "32f0739315339160fe3f8bbdec3be246d74b8e07382b0c1c6268ed2bf63b7857",
+    "tools/t22_5_row_classification.json": "d79a58378972122a3cbbb87c183a4d1cd95984a6b100f73eec7def78af89ce33"
+  },
+  "material_tree": {
+    "note": "materials/*.json must remain byte-identical",
+    "path": "src/main/resources/data/cruciblecraft/materials",
+    "sha256": "b2b04ae4e9e41c43b28aee39c7df89ab91f3873a3da2445bd056f1049521d62a"
+  },
+  "records": [
+    {
+      "disposition": "no_registration",
+      "evidence_by_fluid": {
+        "aerotheum": {
+          "already_covered": 0,
+          "cross_mod_compat": 11,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 0,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        }
+      },
+      "fluid_names": [
+        "aerotheum"
+      ],
+      "material": "aerotheum",
+      "rationale": "No CC fluid form on any registration path and no v1 consumer among the B1-classified rows touching it. Recorded, not registered (T22.5 registers no fluids).",
+      "status": "no_cc_consumer",
+      "v1_rows_touching": 0
+    },
+    {
+      "disposition": "no_registration",
+      "evidence_by_fluid": {
+        "blaze": {
+          "already_covered": 0,
+          "cross_mod_compat": 49,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 0,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        }
+      },
+      "fluid_names": [
+        "blaze"
+      ],
+      "material": "blaze",
+      "rationale": "No CC fluid form on any registration path and no v1 consumer among the B1-classified rows touching it. Recorded, not registered (T22.5 registers no fluids).",
+      "status": "no_cc_consumer",
+      "v1_rows_touching": 0
+    },
+    {
+      "disposition": "no_registration",
+      "evidence_by_fluid": {
+        "concrete": {
+          "already_covered": 0,
+          "cross_mod_compat": 23,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 0,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        }
+      },
+      "fluid_names": [
+        "concrete"
+      ],
+      "material": "concrete",
+      "rationale": "No CC fluid form on any registration path and no v1 consumer among the B1-classified rows touching it. Recorded, not registered (T22.5 registers no fluids).",
+      "status": "no_cc_consumer",
+      "v1_rows_touching": 0
+    },
+    {
+      "disposition": "no_registration",
+      "evidence_by_fluid": {
+        "cryotheum": {
+          "already_covered": 0,
+          "cross_mod_compat": 50,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 0,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        }
+      },
+      "fluid_names": [
+        "cryotheum"
+      ],
+      "material": "cryotheum",
+      "rationale": "No CC fluid form on any registration path and no v1 consumer among the B1-classified rows touching it. Recorded, not registered (T22.5 registers no fluids).",
+      "status": "no_cc_consumer",
+      "v1_rows_touching": 0
+    },
+    {
+      "disposition": "no_registration",
+      "evidence_by_fluid": {
+        "ectoplasm": {
+          "already_covered": 0,
+          "cross_mod_compat": 0,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 0,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        }
+      },
+      "fluid_names": [
+        "ectoplasm"
+      ],
+      "material": "ectoplasm",
+      "rationale": "No CC fluid form on any registration path and no v1 consumer among the B1-classified rows touching it. Recorded, not registered (T22.5 registers no fluids).",
+      "status": "no_cc_consumer",
+      "v1_rows_touching": 0
+    },
+    {
+      "disposition": "no_registration",
+      "evidence_by_fluid": {
+        "glass": {
+          "already_covered": 0,
+          "cross_mod_compat": 262,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 0,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        }
+      },
+      "fluid_names": [
+        "glass"
+      ],
+      "material": "glass",
+      "rationale": "No CC fluid form on any registration path and no v1 consumer among the B1-classified rows touching it. Recorded, not registered (T22.5 registers no fluids).",
+      "status": "no_cc_consumer",
+      "v1_rows_touching": 0
+    },
+    {
+      "disposition": "no_registration",
+      "evidence_by_fluid": {
+        "for.honey": {
+          "already_covered": 0,
+          "cross_mod_compat": 0,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 0,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        },
+        "grc.honey": {
+          "already_covered": 0,
+          "cross_mod_compat": 0,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 0,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        },
+        "honey": {
+          "already_covered": 0,
+          "cross_mod_compat": 0,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 0,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        }
+      },
+      "fluid_names": [
+        "for.honey",
+        "grc.honey",
+        "honey"
+      ],
+      "material": "honey",
+      "rationale": "No CC fluid form on any registration path and no v1 consumer among the B1-classified rows touching it. Recorded, not registered (T22.5 registers no fluids).",
+      "status": "no_cc_consumer",
+      "v1_rows_touching": 0
+    },
+    {
+      "disposition": "no_registration",
+      "evidence_by_fluid": {
+        "honeydew": {
+          "already_covered": 0,
+          "cross_mod_compat": 0,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 0,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        }
+      },
+      "fluid_names": [
+        "honeydew"
+      ],
+      "material": "honeydew",
+      "rationale": "No CC fluid form on any registration path and no v1 consumer among the B1-classified rows touching it. Recorded, not registered (T22.5 registers no fluids).",
+      "status": "no_cc_consumer",
+      "v1_rows_touching": 0
+    },
+    {
+      "disposition": "no_registration",
+      "evidence_by_fluid": {
+        "ice": {
+          "already_covered": 0,
+          "cross_mod_compat": 4,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 0,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        }
+      },
+      "fluid_names": [
+        "ice"
+      ],
+      "material": "ice",
+      "rationale": "No CC fluid form on any registration path and no v1 consumer among the B1-classified rows touching it. Recorded, not registered (T22.5 registers no fluids).",
+      "status": "no_cc_consumer",
+      "v1_rows_touching": 0
+    },
+    {
+      "disposition": "no_registration",
+      "evidence_by_fluid": {
+        "mcguffium": {
+          "already_covered": 0,
+          "cross_mod_compat": 0,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 0,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        }
+      },
+      "fluid_names": [
+        "mcguffium"
+      ],
+      "material": "mac_guffium",
+      "rationale": "No CC fluid form on any registration path and no v1 consumer among the B1-classified rows touching it. Recorded, not registered (T22.5 registers no fluids).",
+      "status": "no_cc_consumer",
+      "v1_rows_touching": 0
+    },
+    {
+      "disposition": "no_registration",
+      "evidence_by_fluid": {
+        "mercury": {
+          "already_covered": 0,
+          "cross_mod_compat": 193,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 4,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        }
+      },
+      "fluid_names": [
+        "mercury"
+      ],
+      "material": "mercury",
+      "rationale": "No CC fluid form on any registration path and no v1 consumer among the B1-classified rows touching it. Recorded, not registered (T22.5 registers no fluids).",
+      "status": "no_cc_consumer",
+      "v1_rows_touching": 0
+    },
+    {
+      "disposition": "no_registration",
+      "evidence_by_fluid": {
+        "grcmilk.milk": {
+          "already_covered": 0,
+          "cross_mod_compat": 0,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 0,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        },
+        "milk": {
+          "already_covered": 0,
+          "cross_mod_compat": 0,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 0,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        }
+      },
+      "fluid_names": [
+        "grcmilk.milk",
+        "milk"
+      ],
+      "material": "milk",
+      "rationale": "No CC fluid form on any registration path and no v1 consumer among the B1-classified rows touching it. Recorded, not registered (T22.5 registers no fluids).",
+      "status": "no_cc_consumer",
+      "v1_rows_touching": 0
+    },
+    {
+      "disposition": "no_registration",
+      "evidence_by_fluid": {
+        "petrotheum": {
+          "already_covered": 0,
+          "cross_mod_compat": 12,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 0,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        }
+      },
+      "fluid_names": [
+        "petrotheum"
+      ],
+      "material": "petrotheum",
+      "rationale": "No CC fluid form on any registration path and no v1 consumer among the B1-classified rows touching it. Recorded, not registered (T22.5 registers no fluids).",
+      "status": "no_cc_consumer",
+      "v1_rows_touching": 0
+    },
+    {
+      "disposition": "no_registration",
+      "evidence_by_fluid": {
+        "plastic": {
+          "already_covered": 0,
+          "cross_mod_compat": 452,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 0,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        }
+      },
+      "fluid_names": [
+        "plastic"
+      ],
+      "material": "plastic",
+      "rationale": "No CC fluid form on any registration path and no v1 consumer among the B1-classified rows touching it. Recorded, not registered (T22.5 registers no fluids).",
+      "status": "no_cc_consumer",
+      "v1_rows_touching": 0
+    },
+    {
+      "disposition": "no_registration",
+      "evidence_by_fluid": {
+        "pyrotheum": {
+          "already_covered": 0,
+          "cross_mod_compat": 41,
+          "generic_processing": 0,
+          "ordinary_optional": 0,
+          "ore_processing_byproduct": 0,
+          "out_of_scope": 0,
+          "post_1_0_g10": 0,
+          "post_1_0_nuclear": 0,
+          "v1_required": 0
+        }
+      },
+      "fluid_names": [
+        "pyrotheum"
+      ],
+      "material": "pyrotheum",
+      "rationale": "No CC fluid form on any registration path and no v1 consumer among the B1-classified rows touching it. Recorded, not registered (T22.5 registers no fluids).",
+      "status": "no_cc_consumer",
+      "v1_rows_touching": 0
+    }
+  ],
+  "registration_policy": "If disposition == register: append an entry to a chemical gate file per the ChemicalFluidRegistrationGate schema; source.reason must point at a real consumer or producer route. materials/*.json must never be modified.",
+  "schema_version": 1,
+  "scope_correction": "The plan §0.4 listed 13 gap materials / 16 names. The A2 derivation finds 15 materials / 18 names: concrete, glass, mercury and mac_guffium were not in the plan's list; the 'molten hsla' space-variant resolves to hslasteel, which DOES have a molten_fluid form and is therefore not a gap.",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T22_5_FLUID_GAP_DISPOSITION_READY"
+}

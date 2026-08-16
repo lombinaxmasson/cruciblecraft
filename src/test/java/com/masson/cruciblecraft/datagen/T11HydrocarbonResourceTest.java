@@ -59,7 +59,7 @@ class T11HydrocarbonResourceTest {
         assertRecipe(
                 "t11/fuels_gas/methane.json",
                 "cruciblecraft:fuels_gas",
-                "gt.recipe.fuels.gas.json#recipes[2]");
+                "gt.recipe.fuels.burn.json#recipes[20]");
     }
 
     @Test
@@ -100,6 +100,26 @@ class T11HydrocarbonResourceTest {
                 .validate(engine).isPresent());
         assertEquals(-64L, engine.eut());
         assertEquals(-64L, gas.eut());
+        assertEquals(24, gas.duration());
+        assertEquals(1_152L,
+                ModFuelGenerators.BURNING_GAS_GENERATOR
+                        .generatedEnergy(gas));
+        assertEquals(
+                1_152L,
+                java.util.stream.IntStream.range(0, gas.duration())
+                        .mapToLong(tick ->
+                                ModFuelGenerators.BURNING_GAS_GENERATOR
+                                        .generatedEnergyAtTick(gas, tick))
+                        .sum());
+        assertEquals(
+                net.minecraft.core.Direction.UP,
+                ModFuelGenerators.BURNING_GAS_GENERATOR
+                        .energyOutputSide(
+                                net.minecraft.core.Direction.EAST));
+        assertEquals(
+                com.masson.cruciblecraft.api.energy.EnergyType.HEAT,
+                ModFuelGenerators.BURNING_GAS_GENERATOR
+                        .outputEnergyType());
 
         var indexedMap = new com.masson.cruciblecraft.recipe.gt.RecipeMap(
                 ResourceLocation.fromNamespaceAndPath(

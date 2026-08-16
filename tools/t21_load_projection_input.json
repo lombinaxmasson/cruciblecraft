@@ -1,0 +1,62 @@
+{
+  "schema_version": 2,
+  "status": "FAMILY_LOAD_PROJECTION_INPUT",
+  "projection_id": "t21/mixer-gunpowder-template",
+  "delivery_phase": "T21",
+  "families": [
+    {
+      "family": "t21/mixer-gunpowder-template",
+      "canonical_ids": [
+        "gt.recipe.mixer"
+      ],
+      "strategy": "immediate",
+      "publication_domain": "gt_recipe_family",
+      "vanilla_datapack_entries": 0,
+      "authored_entries": 4,
+      "logical_rows": 4,
+      "eager_publication_rows": 4,
+      "lazy_logical_rows": 0,
+      "lazy_cache_ceiling_rows": 0,
+      "sync_bytes": 2865,
+      "measurement_basis": {
+        "kind": "family_specific_measurement",
+        "source": "Count: MEASURED — 4 source rows → 4 authored entries → 4 logical → 4 eager → 0 lazy, deterministic from fixed GT6 template replay. Timing: STATIC_INFERENCE — server_reload/client_index upper bounds include Python startup and artifact writes; isolated runtime measurement deferred to T21-K dedicated GameTest server.",
+        "measured_logical_rows": [4]
+      },
+      "measurement_intervals": {
+        "server_reload_ms": {
+          "min": 0,
+          "max": 3265
+        },
+        "server_index_ms": {
+          "min": 0,
+          "max": 10
+        },
+        "client_reload_ms": {
+          "min": 0,
+          "max": 3265
+        },
+        "client_index_ms": {
+          "min": 0,
+          "max": 10
+        },
+        "retained_memory_bytes": {
+          "min": 0,
+          "max": 65536
+        },
+        "allocation_bytes": {
+          "min": 0,
+          "max": 1048576
+        },
+        "lookup_p95_ns": {
+          "min": 0,
+          "max": 1000000
+        },
+        "lookup_candidate_count": {
+          "min": 1,
+          "max": 1
+        }
+      }
+    }
+  ]
+}

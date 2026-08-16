@@ -1,0 +1,357 @@
+{
+  "counting_method": {
+    "authored": "one pass over committed datapack dirs counting cruciblecraft:gt_recipe entries by map field and cruciblecraft:material_rule files by target field",
+    "expansions": "component_rule_manifest.per_map, t7 post_t7_mortar_recipes, t8 pipe expansions, T21 publication delta",
+    "zero_is_derived": true
+  },
+  "counts": {
+    "blockers": [
+      "cruciblecraft:anvil_bend_big",
+      "cruciblecraft:anvil_bend_small"
+    ],
+    "registered_maps": 32,
+    "registered_playable": 30,
+    "registered_zero_logical": 2
+  },
+  "inputs": {
+    "src/main/resources/data/cruciblecraft/t21_publication_baseline.json": "bdedbc209f2b1359f8d6b1ff1e749be76dd592e6c70eac0b25e881325c58d7b9",
+    "src/main/resources/data/cruciblecraft/t22_publication_baseline.json": "0889a837dea9b6c1d5dd0ad7f5323c9a907b0134c8e3a2842418e4d92163b33a",
+    "tools/build_t22_5_machine_playability.py": "6b982d0bfcf474fda4171b208e4ff16e43212d7f2f8f4c1ce1effb5e435ad08a",
+    "tools/component_rule_manifest.json": "59e488eb7417545883a3695e46e05972a957f6f52b653dfe8b7b5fc7eade9bd5",
+    "tools/t7_material_tag_readiness.json": "8174a273f3a9c3a2bf562a4cabe8598a0964b1cb2e06969ba90c0f2667d59613",
+    "tools/t8_pipe_readiness.json": "825a709988423e49a31e32ad9fa2987e180856e6e502518c5198812a4788b5af"
+  },
+  "records": [
+    {
+      "authored_gt_recipes": 0,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 0,
+      "map": "cruciblecraft:anvil",
+      "material_rule_files": 6,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "锻造主链：板材/杆材/螺栓的手工成型入口（T16 646 行展开由运行时 MaterialRule 承载）"
+    },
+    {
+      "authored_gt_recipes": 0,
+      "blocker": true,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 0,
+      "map": "cruciblecraft:anvil_bend_big",
+      "material_rule_files": 0,
+      "owner": "T22.5 C0 (registered RecipeMap with zero recipes — player can build it and cannot use it)",
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_zero_logical",
+      "v1_role": "预留的大弯曲操作槽位"
+    },
+    {
+      "authored_gt_recipes": 0,
+      "blocker": true,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 0,
+      "map": "cruciblecraft:anvil_bend_small",
+      "material_rule_files": 0,
+      "owner": "T22.5 C0 (registered RecipeMap with zero recipes — player can build it and cannot use it)",
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_zero_logical",
+      "v1_role": "预留的小弯曲操作槽位"
+    },
+    {
+      "authored_gt_recipes": 1,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 569,
+      "map": "cruciblecraft:assembler",
+      "material_rule_files": 28,
+      "rule_expanded_from_manifests": 568,
+      "status": "registered_playable",
+      "v1_role": "组件装配主链（线缆/齿轮/转子，T3/T4 规则展开）"
+    },
+    {
+      "authored_gt_recipes": 17,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 17,
+      "map": "cruciblecraft:autoclave",
+      "material_rule_files": 0,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "高压化学容器（T5 化学链）"
+    },
+    {
+      "authored_gt_recipes": 6,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 6,
+      "map": "cruciblecraft:bath",
+      "material_rule_files": 1,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "洗矿 + T5 钨链化学（MaterialRule crushed_to_washed + 6 条钨链配方）"
+    },
+    {
+      "authored_gt_recipes": 0,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 638,
+      "map": "cruciblecraft:bender",
+      "material_rule_files": 2,
+      "rule_expanded_from_manifests": 638,
+      "status": "registered_playable",
+      "v1_role": "板材折弯（组件规则展开）"
+    },
+    {
+      "authored_gt_recipes": 371,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 371,
+      "map": "cruciblecraft:centrifuge",
+      "material_rule_files": 0,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "矿物提纯主链（crushed -> purified/centrifuged，371 authored）"
+    },
+    {
+      "authored_gt_recipes": 1,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 1,
+      "map": "cruciblecraft:coke_oven",
+      "material_rule_files": 0,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "焦炉：煤炭 -> 焦炭与杂酚油"
+    },
+    {
+      "authored_gt_recipes": 5,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 5,
+      "map": "cruciblecraft:compressor",
+      "material_rule_files": 0,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "粉料压缩（dust -> plateGem 等）"
+    },
+    {
+      "authored_gt_recipes": 0,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 0,
+      "map": "cruciblecraft:cooling",
+      "material_rule_files": 1,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "热锭冷却（T10 hot ingot -> ingot MaterialRule）"
+    },
+    {
+      "authored_gt_recipes": 494,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 494,
+      "map": "cruciblecraft:crusher",
+      "material_rule_files": 1,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "矿物粉碎主链（raw ore -> crushed，494 authored + T20 矿链）"
+    },
+    {
+      "authored_gt_recipes": 0,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 651,
+      "map": "cruciblecraft:cutter",
+      "material_rule_files": 2,
+      "rule_expanded_from_manifests": 651,
+      "status": "registered_playable",
+      "v1_role": "润滑油消费端（板材切割，组件规则展开）"
+    },
+    {
+      "authored_gt_recipes": 3,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 3,
+      "map": "cruciblecraft:distillery",
+      "material_rule_files": 0,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "蒸馏主链（T11 原油 / T22 石油化工，3 authored + T5 生成）"
+    },
+    {
+      "authored_gt_recipes": 5,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 5,
+      "map": "cruciblecraft:drying",
+      "material_rule_files": 0,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "干燥（T5 化学链）"
+    },
+    {
+      "authored_gt_recipes": 62,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 62,
+      "map": "cruciblecraft:electrolyzer",
+      "material_rule_files": 0,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "电解化学主链（T5 钨链，62 authored）"
+    },
+    {
+      "authored_gt_recipes": 0,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 2782,
+      "map": "cruciblecraft:extruder",
+      "material_rule_files": 28,
+      "rule_expanded_from_manifests": 2782,
+      "status": "registered_playable",
+      "v1_role": "管线/型材挤压（T8 管线 257 展开 + 20 authored 模板）"
+    },
+    {
+      "authored_gt_recipes": 2,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 2,
+      "map": "cruciblecraft:fuels_engine",
+      "material_rule_files": 0,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "燃料引擎消费端（T22 润滑油）"
+    },
+    {
+      "authored_gt_recipes": 1,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 1,
+      "map": "cruciblecraft:fuels_gas",
+      "material_rule_files": 0,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "燃气消费端（T22）"
+    },
+    {
+      "authored_gt_recipes": 2,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 2,
+      "map": "cruciblecraft:generifier",
+      "material_rule_files": 0,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "气体重整（T22 煤油重整）"
+    },
+    {
+      "authored_gt_recipes": 0,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 929,
+      "map": "cruciblecraft:lathe",
+      "material_rule_files": 2,
+      "rule_expanded_from_manifests": 929,
+      "status": "registered_playable",
+      "v1_role": "车削（组件规则展开）"
+    },
+    {
+      "authored_gt_recipes": 38,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 38,
+      "map": "cruciblecraft:mixer",
+      "material_rule_files": 0,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "化学混合主链（T21 碳族 gunpowder + 38 authored + T5/T22）"
+    },
+    {
+      "authored_gt_recipes": 0,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 0,
+      "map": "cruciblecraft:mortar",
+      "material_rule_files": 3,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "手动研磨（T7 691 条 mortar 规则展开）"
+    },
+    {
+      "authored_gt_recipes": 0,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 1191,
+      "map": "cruciblecraft:press",
+      "material_rule_files": 5,
+      "rule_expanded_from_manifests": 1191,
+      "status": "registered_playable",
+      "v1_role": "冲压（组件规则展开）"
+    },
+    {
+      "authored_gt_recipes": 0,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 438,
+      "map": "cruciblecraft:rollbender",
+      "material_rule_files": 1,
+      "rule_expanded_from_manifests": 438,
+      "status": "registered_playable",
+      "v1_role": "辊弯（组件规则展开）"
+    },
+    {
+      "authored_gt_recipes": 0,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 336,
+      "map": "cruciblecraft:rollingmill",
+      "material_rule_files": 1,
+      "rule_expanded_from_manifests": 336,
+      "status": "registered_playable",
+      "v1_role": "轧制（组件规则展开）"
+    },
+    {
+      "authored_gt_recipes": 357,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 357,
+      "map": "cruciblecraft:shredder",
+      "material_rule_files": 0,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "矿物破碎（357 authored，T20 矿链）"
+    },
+    {
+      "authored_gt_recipes": 357,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 357,
+      "map": "cruciblecraft:sifter",
+      "material_rule_files": 0,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "矿物筛分（357 authored，T20 矿链）"
+    },
+    {
+      "authored_gt_recipes": 357,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 357,
+      "map": "cruciblecraft:sluice",
+      "material_rule_files": 0,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "矿物淘洗（357 authored，T20 矿链）"
+    },
+    {
+      "authored_gt_recipes": 202,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 202,
+      "map": "cruciblecraft:smelter",
+      "material_rule_files": 1,
+      "rule_expanded_from_manifests": 0,
+      "status": "registered_playable",
+      "v1_role": "熔炼主链（202 authored + T16/T17 热金属规则展开）"
+    },
+    {
+      "authored_gt_recipes": 0,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 321,
+      "map": "cruciblecraft:welder",
+      "material_rule_files": 1,
+      "rule_expanded_from_manifests": 321,
+      "status": "registered_playable",
+      "v1_role": "焊接（组件规则展开）"
+    },
+    {
+      "authored_gt_recipes": 0,
+      "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
+      "logical_lower_bound": 287,
+      "map": "cruciblecraft:wiremill",
+      "material_rule_files": 7,
+      "rule_expanded_from_manifests": 287,
+      "status": "registered_playable",
+      "v1_role": "线材轧制（组件规则展开）"
+    }
+  ],
+  "runtime_guard": "GameTest t22_5RegisteredMapsHaveLogicalRecipes asserts per-map runtime recipe presence matches this audit.",
+  "schema_version": 1,
+  "status": "T22_5_MACHINE_PLAYABILITY_READY",
+  "universe": {
+    "registered_maps": 32,
+    "source": "src/main/resources/data/cruciblecraft/t22_publication_baseline.json"
+  }
+}

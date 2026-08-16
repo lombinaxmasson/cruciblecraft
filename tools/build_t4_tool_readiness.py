@@ -815,7 +815,7 @@ def main() -> int:
         if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != encoded:
             raise SystemExit("T4 tool readiness ledger is stale")
         return 0
-    OUTPUT.write_text(encoded, encoding="utf-8")
+    OUTPUT.write_text(encoded, encoding="utf-8", newline="\n")
     print(f"wrote {OUTPUT.relative_to(ROOT)}")
     return 0
 

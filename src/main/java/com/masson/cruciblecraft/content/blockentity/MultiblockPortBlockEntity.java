@@ -9,6 +9,7 @@ import com.masson.cruciblecraft.content.block.MultiblockPortBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.multiblock.MultiblockControllerBinding;
 import com.masson.cruciblecraft.content.multiblock.MultiblockPort;
+import com.masson.cruciblecraft.content.multiblock.MultiblockPortHost;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.machine.processing.SidedFluidHandler;
@@ -96,20 +97,20 @@ public final class MultiblockPortBlockEntity extends BlockEntity
         if (!(level.getBlockEntity(controller)
                 instanceof MultiblockControllerBinding binding)
                 || !binding.structureValid()
-                || !structure.equals(binding.controllerSpec().structureId())) {
+                || !structure.equals(binding.structureId())) {
             return null;
         }
         return binding;
     }
 
-    private ProcessingMachineBlockEntity host() {
+    private MultiblockPortHost host() {
         MultiblockControllerBinding binding = binding();
-        return binding == null ? null : binding.processingHost();
+        return binding == null ? null : binding.portHost();
     }
 
-    private Direction hostInputSide(ProcessingMachineBlockEntity host) {
-        return host.getBlockState().hasProperty(ProcessingMachineBlock.FACING)
-                ? host.getBlockState()
+    private Direction hostInputSide(MultiblockPortHost host) {
+        return host.blockState().hasProperty(ProcessingMachineBlock.FACING)
+                ? host.blockState()
                         .getValue(ProcessingMachineBlock.FACING)
                         .getOpposite()
                 : Direction.SOUTH;
@@ -117,7 +118,7 @@ public final class MultiblockPortBlockEntity extends BlockEntity
 
     @Override
     public boolean handles(EnergyType type, Direction side) {
-        ProcessingMachineBlockEntity host =
+        MultiblockPortHost host =
                 portType() == PortType.ENERGY_INPUT ? host() : null;
         return host != null && host.handles(type, hostInputSide(host));
     }
@@ -129,7 +130,7 @@ public final class MultiblockPortBlockEntity extends BlockEntity
             long amount,
             Direction side,
             boolean simulate) {
-        ProcessingMachineBlockEntity host =
+        MultiblockPortHost host =
                 portType() == PortType.ENERGY_INPUT ? host() : null;
         return host == null
                 ? 0L
@@ -143,19 +144,19 @@ public final class MultiblockPortBlockEntity extends BlockEntity
 
     @Override
     public long stored(EnergyType type) {
-        ProcessingMachineBlockEntity host = host();
+        MultiblockPortHost host = host();
         return host == null ? 0L : host.stored(type);
     }
 
     @Override
     public long capacity(EnergyType type) {
-        ProcessingMachineBlockEntity host = host();
+        MultiblockPortHost host = host();
         return host == null ? 0L : host.capacity(type);
     }
 
     @Override
     public void invalidateSimulationCache() {
-        ProcessingMachineBlockEntity host = host();
+        MultiblockPortHost host = host();
         if (host != null) {
             host.invalidateSimulationCache();
         }
@@ -192,13 +193,13 @@ public final class MultiblockPortBlockEntity extends BlockEntity
     private final class PortItems implements IItemHandler {
         @Override
         public int getSlots() {
-            ProcessingMachineBlockEntity host = host();
+            MultiblockPortHost host = host();
             return host == null ? 0 : host.inventory().getSlots();
         }
 
         @Override
         public ItemStack getStackInSlot(int slot) {
-            ProcessingMachineBlockEntity host = host();
+            MultiblockPortHost host = host();
             return host == null
                     ? ItemStack.EMPTY
                     : host.inventory().getStackInSlot(slot);
@@ -207,8 +208,8 @@ public final class MultiblockPortBlockEntity extends BlockEntity
         @Override
         public ItemStack insertItem(
                 int slot, ItemStack stack, boolean simulate) {
-            ProcessingMachineBlockEntity host = host();
-            return host != null && host.spec().items().inputs().contains(slot)
+            MultiblockPortHost host = host();
+            return host != null && host.itemInputSlots().contains(slot)
                     ? host.inventory().insertItem(slot, stack, simulate)
                     : stack;
         }
@@ -216,23 +217,23 @@ public final class MultiblockPortBlockEntity extends BlockEntity
         @Override
         public ItemStack extractItem(
                 int slot, int amount, boolean simulate) {
-            ProcessingMachineBlockEntity host = host();
-            return host != null && host.spec().items().outputs().contains(slot)
+            MultiblockPortHost host = host();
+            return host != null && host.itemOutputSlots().contains(slot)
                     ? host.inventory().extractItem(slot, amount, simulate)
                     : ItemStack.EMPTY;
         }
 
         @Override
         public int getSlotLimit(int slot) {
-            ProcessingMachineBlockEntity host = host();
+            MultiblockPortHost host = host();
             return host == null ? 0 : host.inventory().getSlotLimit(slot);
         }
 
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
-            ProcessingMachineBlockEntity host = host();
+            MultiblockPortHost host = host();
             return host != null
-                    && host.spec().items().inputs().contains(slot)
+                    && host.itemInputSlots().contains(slot)
                     && host.inventory().isItemValid(slot, stack);
         }
     }
@@ -240,13 +241,13 @@ public final class MultiblockPortBlockEntity extends BlockEntity
     private final class PortFluids implements IFluidHandler {
         @Override
         public int getTanks() {
-            ProcessingMachineBlockEntity host = host();
+            MultiblockPortHost host = host();
             return host == null ? 0 : host.tanks().size();
         }
 
         @Override
         public FluidStack getFluidInTank(int tank) {
-            ProcessingMachineBlockEntity host = host();
+            MultiblockPortHost host = host();
             return host == null
                     ? FluidStack.EMPTY
                     : host.tanks().get(tank).getFluid().copy();
@@ -254,22 +255,21 @@ public final class MultiblockPortBlockEntity extends BlockEntity
 
         @Override
         public int getTankCapacity(int tank) {
-            ProcessingMachineBlockEntity host = host();
+            MultiblockPortHost host = host();
             return host == null ? 0 : host.tanks().get(tank).getCapacity();
         }
 
         @Override
         public boolean isFluidValid(int tank, FluidStack stack) {
-            ProcessingMachineBlockEntity host = host();
+            MultiblockPortHost host = host();
             return host != null
-                    && host.spec().fluids().inputs().stream()
-                            .anyMatch(spec -> spec.index() == tank)
+                    && host.fluidInputTanks().contains(tank)
                     && host.tanks().get(tank).isFluidValid(stack);
         }
 
         @Override
         public int fill(FluidStack resource, FluidAction action) {
-            ProcessingMachineBlockEntity host = host();
+            MultiblockPortHost host = host();
             return host == null
                     ? 0
                     : inputView(host).fill(resource, action);
@@ -278,7 +278,7 @@ public final class MultiblockPortBlockEntity extends BlockEntity
         @Override
         public FluidStack drain(
                 FluidStack resource, FluidAction action) {
-            ProcessingMachineBlockEntity host = host();
+            MultiblockPortHost host = host();
             return host == null
                     ? FluidStack.EMPTY
                     : outputView(host).drain(resource, action);
@@ -286,35 +286,33 @@ public final class MultiblockPortBlockEntity extends BlockEntity
 
         @Override
         public FluidStack drain(int maxDrain, FluidAction action) {
-            ProcessingMachineBlockEntity host = host();
+            MultiblockPortHost host = host();
             return host == null
                     ? FluidStack.EMPTY
                     : outputView(host).drain(maxDrain, action);
         }
 
-        private IFluidHandler inputView(ProcessingMachineBlockEntity host) {
+        private IFluidHandler inputView(MultiblockPortHost host) {
             return view(
                     host,
-                    host.spec().fluids().inputs(),
+                    host.fluidInputTanks(),
                     ProcessingMachineSpec.CapabilityAccess.INPUT);
         }
 
-        private IFluidHandler outputView(ProcessingMachineBlockEntity host) {
+        private IFluidHandler outputView(MultiblockPortHost host) {
             return view(
                     host,
-                    host.spec().fluids().outputs(),
+                    host.fluidOutputTanks(),
                     ProcessingMachineSpec.CapabilityAccess.OUTPUT);
         }
 
         private IFluidHandler view(
-                ProcessingMachineBlockEntity host,
-                List<ProcessingMachineSpec.TankSpec> tanks,
+                MultiblockPortHost host,
+                List<Integer> tankIndexes,
                 ProcessingMachineSpec.CapabilityAccess access) {
             return new SidedFluidHandler(
                     host.tanks(),
-                    tanks.stream()
-                            .map(ProcessingMachineSpec.TankSpec::index)
-                            .toList(),
+                    tankIndexes,
                     access);
         }
     }

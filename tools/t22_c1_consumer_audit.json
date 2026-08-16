@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "status": "T22_C1_DOWNSTREAM_CONSUMERS",
+  "audited_on": "2026-08-11",
+  "products": {
+    "fuel": {
+      "cc_id": "cruciblecraft:fuel",
+      "producer": "T11 distillery (crude_oil->fuel), T22 B2 distillery (oil->fuel)",
+      "consumer": "cruciblecraft:fuels_engine -> KU power",
+      "verified_by": "T18 GameTest: crude_oil -> fuel_engine -> dynamo -> electrolyzer",
+      "status": "CLOSED",
+      "efficiency": "16 KU/t from 25mB fuel",
+      "o37_boundary": "INTACT"
+    },
+    "methane": {
+      "cc_id": "cruciblecraft:methane",
+      "producer": "T11 generifier (natural_gas->methane), T20 worldgen natural_gas deposit",
+      "consumer": "cruciblecraft:fuels_gas -> HU heat",
+      "verified_by": "T18 GameTest: natural_gas -> gas_generator",
+      "status": "CLOSED",
+      "o37_boundary": "INTACT"
+    },
+    "lubricant": {
+      "cc_id": "cruciblecraft:lubricant",
+      "producer": "T11 distillery (crude_oil->lubricant co-product), T22 B2 distillery (oil->lubricant co-product)",
+      "gt6_consumer": "Cutter (6,599 recipes) + CNC Machine (38) as cutting fluid",
+      "cc_consumer": "DESIGN_POLICY: fuels_engine (4 KU/t from 50mB lubricant, low-grade fuel)",
+      "cc_consumer_recipe": "src/t22_petroleum_generated/resources/.../t22/fuels_engine/lubricant.json",
+      "status": "CLOSED_DESIGN_POLICY",
+      "rationale": "Cutter approach rolled back: CUTTER is T16-deferred on deprecated KINETIC. Lubricant consumer moved to fuels_engine (T18-accepted machine). DESIGN_POLICY — lubricant is combustible, burning it is real (not void). Post-1.0 cutter/CNC will restore GT6 parity.",
+      "o37_boundary": "INTACT"
+    }
+  },
+  "identity_boundaries": {
+    "T18_O37": "INTACT — crude_oil (9852) SOURCE_MATERIAL_LAYER_ONLY role preserved",
+    "T11_identity": "INTACT — crude_oil/natural_gas source-backed identities unchanged",
+    "T9_worldgen": "INTACT — crude_oil/natural_gas deposits via T20 subsurface fluid extraction",
+    "cutter_rollback": "CUTTER futureFluidInput reverted to false. deprecated KINETIC unchanged. No T22 code changes to deferred machines.",
+    "DESIGN_POLICY_entries": [
+      "lubricant -> fuels_engine (CC-only, not GT6-backed)"
+    ]
+  },
+  "unreachable_resolved": {
+    "crude_oil_distillation": "lubricant consumer: CLOSED via DESIGN_POLICY fuels_engine recipe",
+    "compressor_petroleum": "NEEDS_GT6_DUMP — 0 fluid-petroleum rows in GT6 dump, 1 T21 unit item-based",
+    "electrolyzer_petroleum": "NEEDS_GT6_DUMP — 0 fluid-petroleum rows in GT6 dump, 1 T21 unit item-based"
+  }
+}

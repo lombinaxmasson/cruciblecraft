@@ -3,6 +3,7 @@ package com.masson.cruciblecraft.content.menu;
 import java.util.function.Predicate;
 
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineDisplayData;
+import com.masson.cruciblecraft.machine.processing.ProcessingProgressSync;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 
 import net.minecraft.world.Container;
@@ -81,14 +82,34 @@ public abstract class ProcessingMachineMenu extends AbstractContainerMenu {
         return data.getCount() > 1 ? Math.max(0, data.get(1)) : 0;
     }
 
+    public int progressPermille() {
+        int dataIndex = progressPermilleDataIndex();
+        if (dataIndex >= 0 && data.getCount() > dataIndex) {
+            return Math.max(
+                    0,
+                    Math.min(
+                            ProcessingProgressSync.COMPLETE_PERMILLE,
+                            data.get(dataIndex)));
+        }
+        return ProcessingProgressSync.permille(progress(), duration());
+    }
+
     public final int scaledProgress(int width) {
-        int duration = duration();
-        if (duration <= 0 || width <= 0) {
+        if (width <= 0) {
             return 0;
+        }
+        if (progressPermilleDataIndex() < 0) {
+            int duration = duration();
+            return duration <= 0
+                    ? 0
+                    : (int) Math.min(
+                            width,
+                            (long) progress() * width / duration);
         }
         return (int) Math.min(
                 width,
-                (long) progress() * width / duration);
+                (long) progressPermille() * width
+                        / ProcessingProgressSync.COMPLETE_PERMILLE);
     }
 
     public final String status() {
@@ -118,6 +139,10 @@ public abstract class ProcessingMachineMenu extends AbstractContainerMenu {
 
     protected int statusArgumentDataIndex() {
         return 6;
+    }
+
+    protected int progressPermilleDataIndex() {
+        return -1;
     }
 
     public int tankAmount(int tank) {

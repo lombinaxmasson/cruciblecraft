@@ -224,6 +224,77 @@ class MaterialRuleExpansionTest {
     }
 
     @Test
+    void pipeRecipePredicateSelectsTheExactGaugeAndRejectsAnyGaugeAlias() {
+        GT6MaterialMetadata.FluidPipeProperties enabled =
+                new GT6MaterialMetadata.FluidPipeProperties(
+                        100, 400, false, false, false, false,
+                        false, false, true, true);
+        GT6MaterialMetadata.FluidPipeProperties disabled =
+                new GT6MaterialMetadata.FluidPipeProperties(
+                        200, 400, false, false, false, false,
+                        false, false, false, true);
+        MaterialDefinition mixed = material(
+                "mixed",
+                1,
+                MaterialPrefixes.PLATE,
+                MaterialPrefixes.TINY_FLUID_PIPE,
+                MaterialPrefixes.SMALL_FLUID_PIPE)
+                .withImportedMetadata(new GT6MaterialMetadata(
+                        1,
+                        "Mixed",
+                        List.of(),
+                        "solid",
+                        Optional.empty(),
+                        new GT6MaterialMetadata.SourceThermal(
+                                1000, 726.85, 2000, 1726.85,
+                                3000, 2726.85, 7),
+                        GT6MaterialMetadata.ToolStats.EMPTY,
+                        List.of(),
+                        Map.of(),
+                        List.of(),
+                        List.of(),
+                        0,
+                        0,
+                        Optional.empty(),
+                        Map.of(),
+                        new GT6MaterialMetadata.PipeProperties(
+                                Map.of(
+                                        "pipeTiny", enabled,
+                                        "pipeSmall", disabled),
+                                Map.of())));
+        MaterialRule tiny = pipeRule(
+                MaterialPrefixes.TINY_FLUID_PIPE,
+                "fluid_pipe_recipe(tiny_fluid_pipe) == 1");
+        MaterialRule small = pipeRule(
+                MaterialPrefixes.SMALL_FLUID_PIPE,
+                "fluid_pipe_recipe(small_fluid_pipe) == 1");
+
+        assertEquals(
+                1,
+                MaterialRuleExpansion.expandFactualPlans(
+                                id("pipe/tiny"), tiny, List.of(mixed))
+                        .size());
+        assertTrue(MaterialRuleExpansion.expandFactualPlans(
+                id("pipe/small"), small, List.of(mixed)).isEmpty());
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> MaterialRuleExpansion.expandFactualPlans(
+                        id("pipe/unknown"),
+                        pipeRule(
+                                MaterialPrefixes.TINY_FLUID_PIPE,
+                                "fluid_pipe_recipe(pipeTypo) == 1"),
+                        List.of(mixed)));
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> MaterialRuleExpansion.expandFactualPlans(
+                        id("pipe/forbidden_any"),
+                        pipeRule(
+                                MaterialPrefixes.TINY_FLUID_PIPE,
+                                "material.pipe.fluid_recipe == 1"),
+                        List.of(mixed)));
+    }
+
+    @Test
     void unknownTagsAndRequiredResourcesFailLoudly() {
         MaterialDefinition material = material(
                 "iron", 1, MaterialPrefixes.INGOT, MaterialPrefixes.DUST)
@@ -715,6 +786,25 @@ class MaterialRuleExpansionTest {
             String chance) {
         return new MaterialRule.ItemResource(
                 Optional.of(prefix.serializedId()), Optional.empty(), count, chance);
+    }
+
+    private static MaterialRule pipeRule(
+            MaterialPrefix output, String recipeCondition) {
+        return new MaterialRule(
+                Optional.of(CRUSHER),
+                List.of(prefix(MaterialPrefixes.PLATE, "1", "10000")),
+                List.of(prefix(output, "1", "10000")),
+                List.of(),
+                List.of(),
+                "1",
+                "1",
+                "0",
+                true,
+                Optional.of("mixed"),
+                Map.of(),
+                List.of(recipeCondition),
+                Optional.empty(),
+                List.of());
     }
 
     private static MaterialRule.MaterialOverride overrideDuration(String duration) {

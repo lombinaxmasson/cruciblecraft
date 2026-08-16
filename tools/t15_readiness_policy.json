@@ -7,6 +7,11 @@
     "complete_stage_status": "COMPLETE",
     "pending_stage_status": "PENDING"
   },
+  "refresh_policy": {
+    "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+    "this_refresh_final_closure_attempted": true,
+    "evidence": "tools/full_verification_report.json"
+  },
   "dependencies": {
     "T12": {
       "path": "tools/t12_closure_readiness.json",
@@ -30,7 +35,7 @@
     "T15b": {
       "name": "large_centrifuge_profile",
       "status": "COMPLETE",
-      "acceptance": "Bind Large Centrifuge to an independent fixed-source RU profile, preserve the nine single-block variants, and migrate only the exact legacy titanium identity tuple."
+      "acceptance": "Bind Large Centrifuge to an independent fixed-source RU profile, preserve the nine single-block variants, and persist only its current complete identity."
     },
     "T15c": {
       "name": "existing_variant_acquisition",
@@ -40,7 +45,7 @@
     "T15d": {
       "name": "identity_quarantine",
       "status": "COMPLETE",
-      "acceptance": "Fail closed on isolated kind, tier, material and energy mismatches; retain recoverable machine state and the original bad tuple across reload/save; migrate only the exact legacy Large Centrifuge tuple."
+      "acceptance": "Accept blank first-save and complete current identities; fail closed on isolated kind, tier-band, material and energy mismatches and on removed tier_profile input while retaining recoverable state and the original bad tuple."
     },
     "T15e": {
       "name": "port_matcher_boundary",
@@ -50,31 +55,34 @@
   },
   "t15d_evidence": {
     "junit": {
-      "test_count": 4,
+      "test_count": 6,
       "classes": [
         {
           "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineIdentityPolicyTest.java",
           "tests": [
             "kindTierMaterialAndEnergyMismatchesAllQuarantine",
-            "onlyExactLegacyLargeCentrifugeTupleMigrates"
+            "blankAndCurrentIdentitiesAreAcceptedAsCurrent"
           ]
         },
         {
           "path": "src/test/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineIdentityPersistenceTest.java",
           "tests": [
             "quarantineReloadStopsProcessingAndPreservesRecoverableState",
-            "exactMigrationReloadResumesAndWritesCurrentIdentityOnNextSave"
+            "currentIdentityReloadResumesAndPreservesState",
+            "blankIdentityAdoptsCurrentWithoutQuarantine",
+            "tierProfileIsRejectedAndQuarantinePersistsCanonically"
           ]
         }
       ]
     },
     "gametest": {
       "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
-      "added_test_count": 2,
+      "added_test_count": 3,
       "full_suite_test_count": 56,
       "tests": [
         "processingIdentityMismatchesQuarantineAcrossNbtReload",
-        "exactLargeCentrifugeIdentityMigratesAcrossNbtReload"
+        "blankProcessingIdentityAdoptsCurrentAcrossNbtReload",
+        "tierProfileIdentityIsQuarantinedAcrossNbtReload"
       ]
     },
     "source_contracts": [
@@ -157,7 +165,7 @@
       "path": "src/main/resources/data/cruciblecraft/multiblock_structures/coke_oven.json",
       "required_tokens": [
         "t12a_machine_readiness.json#structure_projection.coke_oven",
-        "behavior_migration:NO_BEHAVIOR_DRIFT"
+        "behavior_projection:NO_BEHAVIOR_DRIFT"
       ],
       "forbidden_tokens": [
         "t12_machine_readiness.json"
@@ -226,7 +234,9 @@
       "stage": "T15b",
       "path": "src/main/resources/data/cruciblecraft/machine_tiers.json",
       "required_tokens": [
+        "\"schemaVersion\": 2",
         "\"controller_profiles\"",
+        "\"tierBand\": \"cruciblecraft:large_centrifuge_profile\"",
         "\"cruciblecraft:large_centrifuge_profile\"",
         "\"inputMinimum\": 512",
         "\"inputNominal\": 512",
@@ -241,8 +251,9 @@
       "stage": "T15b",
       "path": "src/main/java/com/masson/cruciblecraft/machine/processing/MachineTierCatalog.java",
       "required_tokens": [
-        "controllerProfiles()",
-        "requireControllerProfile",
+        "controllerTierBands()",
+        "requireControllerTierBand",
+        "tierBandId()",
         "controller_profile_rows",
         "Machine tier source rows do not cover controller profiles"
       ]
@@ -251,7 +262,7 @@
       "stage": "T15b",
       "path": "src/main/java/com/masson/cruciblecraft/registry/ModMultiblockControllers.java",
       "required_tokens": [
-        "MachineTierCatalog.requireControllerProfile",
+        "MachineTierCatalog.requireControllerTierBand",
         "id(\"large_centrifuge_profile\")",
         "MachineKindSpec.OverclockPolicy.CHEAP",
         "ModProcessingMachines.CENTRIFUGE"
@@ -260,39 +271,34 @@
         "titanium_centrifuge"
       ]
     },
-    "machine_identity_migration": {
+    "machine_identity_policy": {
       "stage": "T15b",
-      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineIdentityMigrations.java",
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineIdentities.java",
       "required_tokens": [
-        "LEGACY_LARGE_CENTRIFUGE_IDENTITY",
-        "ModMachineVariants.require",
-        "\"titanium_centrifuge\"",
-        "titanium.tier().materialId()",
-        "titanium.tier().energyType().name()",
-        "LARGE_CENTRIFUGE_PROFILE_ID",
-        "MachineIdentityPolicy.Migration"
-      ]
+        "MachineIdentityPolicy.resolve(",
+        "ProcessingMachineState state)",
+        "MachineVariant variant)"
+      ],
+      "forbidden_tokens": []
     },
     "processing_identity_integration": {
       "stage": "T15b",
       "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineBlockEntity.java",
       "required_tokens": [
-        "ModMachineIdentityMigrations.resolve(variant, state)",
+        "ModMachineIdentities.resolve(variant, state)",
         "identity.persistedIdentity()",
         "identity.quarantineReason()",
-        "ModMachineIdentityMigrations.identityOf(variant)"
+        "ModMachineIdentities.identityOf(variant)"
       ]
     },
     "t15b_java_test": {
       "stage": "T15b",
       "path": "src/test/java/com/masson/cruciblecraft/machine/processing/T15LargeCentrifugeProfileTest.java",
       "required_tokens": [
-        "assertEquals(9, ModMachineVariants.ALL.size())",
+        "controllerProfileIsSourceBackedAndOutsideSingleBlockVariants",
         "recipe(4_096L, 40)",
         "assertEquals(16, parallel.operations())",
-        "assertEquals(5_000, profile.efficiency())",
-        "MachineIdentityPolicy.Resolution.MIGRATED",
-        "MachineIdentityPolicy.Resolution.QUARANTINED"
+        "assertEquals(5_000, profile.efficiency())"
       ]
     },
     "t15c_acquisition_builder": {
@@ -392,10 +398,10 @@
       "path": "src/test/java/com/masson/cruciblecraft/machine/processing/MachineIdentityPolicyTest.java",
       "required_tokens": [
         "kindTierMaterialAndEnergyMismatchesAllQuarantine",
-        "onlyExactLegacyLargeCentrifugeTupleMigrates",
+        "blankAndCurrentIdentitiesAreAcceptedAsCurrent",
         "MachineIdentityPolicy.Resolution.QUARANTINED",
-        "MachineIdentityPolicy.Resolution.MIGRATED",
-        "assertEquals(nearMiss, decision.persistedIdentity())"
+        "MachineIdentityPolicy.Resolution.ACCEPTED",
+        "assertEquals(mismatch, decision.persistedIdentity())"
       ]
     },
     "t15d_persistence_junit": {
@@ -403,12 +409,14 @@
       "path": "src/test/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineIdentityPersistenceTest.java",
       "required_tokens": [
         "quarantineReloadStopsProcessingAndPreservesRecoverableState",
-        "exactMigrationReloadResumesAndWritesCurrentIdentityOnNextSave",
+        "currentIdentityReloadResumesAndPreservesState",
+        "blankIdentityAdoptsCurrentWithoutQuarantine",
+        "tierProfileIsRejectedAndQuarantinePersistsCanonically",
         "restored.processingAllowed()",
         "clientTagForTest()",
         "extractItem(",
-        "LEGACY_LARGE_CENTRIFUGE_IDENTITY",
-        "LARGE_CENTRIFUGE_IDENTITY"
+        "tier_profile is unsupported",
+        "identity_quarantine"
       ]
     },
     "t15d_identity_gametest": {
@@ -416,7 +424,8 @@
       "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
       "required_tokens": [
         "processingIdentityMismatchesQuarantineAcrossNbtReload",
-        "exactLargeCentrifugeIdentityMigratesAcrossNbtReload",
+        "blankProcessingIdentityAdoptsCurrentAcrossNbtReload",
+        "tierProfileIdentityIsQuarantinedAcrossNbtReload",
         "saveWithoutMetadata(",
         "loadWithComponents(",
         "hasMachineIdentity(",
@@ -428,8 +437,8 @@
       "path": "tools/tests/test_build_t15_readiness.py",
       "required_tokens": [
         "test_t15d_gate_records_identity_regression_matrix",
-        "\"test_count\"], 4",
-        "\"added_test_count\"], 2",
+        "\"test_count\"], 6",
+        "\"added_test_count\"], 3",
         "\"full_suite_test_count\"], 56"
       ]
     },
@@ -446,9 +455,8 @@
       "stage": "T15d",
       "path": "tools/tests/test_full_verification_report.py",
       "required_tokens": [
-        "self.assertEqual(508, snapshot[\"java_source_test_count\"])",
-        "self.assertEqual(441, snapshot[\"python_test_count\"])",
-        "self.assertEqual(69, MODULE.current_game_test_count())",
+        "validate_report_document",
+        "MODULE.current_game_test_count()",
         "t15d_identity_gate"
       ]
     },

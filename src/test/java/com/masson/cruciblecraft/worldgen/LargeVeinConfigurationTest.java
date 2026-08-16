@@ -39,7 +39,24 @@ class LargeVeinConfigurationTest {
                 .isPresent());
     }
 
+    @Test
+    void codecAcceptsCurrentProfileAndQuarantinesUnknownFutureProfile() {
+        assertTrue(LargeVeinConfiguration.CODEC
+                .encodeStart(JsonOps.INSTANCE, configuration(23, 2))
+                .result()
+                .isPresent());
+        assertTrue(LargeVeinConfiguration.CODEC
+                .encodeStart(JsonOps.INSTANCE, configuration(23, 3))
+                .error()
+                .isPresent());
+    }
+
     private static LargeVeinConfiguration configuration(int horizontalRadius) {
+        return configuration(horizontalRadius, 2);
+    }
+
+    private static LargeVeinConfiguration configuration(
+            int horizontalRadius, int profileVersion) {
         var state = new LargeVeinConfiguration.WeightedState(
                 Blocks.IRON_ORE.defaultBlockState(), 1);
         TagKey<Block> replaceable = TagKey.create(
@@ -47,6 +64,9 @@ class LargeVeinConfigurationTest {
                 ResourceLocation.fromNamespaceAndPath(
                         "cruciblecraft", "large_vein_replaceables"));
         return new LargeVeinConfiguration(
+                profileVersion,
+                ResourceLocation.fromNamespaceAndPath(
+                        "cruciblecraft", "large_test_vein"),
                 List.of(state),
                 List.of(state),
                 List.of(state),

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "_notes": "Verdicts are pinned to the local authoritative GT6 checkout. TODO_PORT means no directly comparable constant model was found.",
+  "_notes": "Verdicts are pinned to the local authoritative GT6 checkout. Steam conversion conservation is source-backed; the fixed CC steam-engine output is an intentional policy over a state-dependent GT6 runtime.",
   "groups": {
     "air": {
       "verdict": "TODO_PORT",
@@ -36,7 +36,7 @@
       "evidence": {
         "group": "firebox",
         "cc_source_path": "src/main/java/com/masson/cruciblecraft/heat/FireboxHeatBuffer.java",
-        "cc_source_sha256": "24d0acff84695f74d311bea4dea5fa5e043dcf435daff71f21cabeecf15cf268",
+        "cc_source_sha256": "c4e63e5c0b2998a8bb68816c1ec16fe2a1601d7a1f5329e810daaa7cce8f1b2b",
         "cc_constants": {
           "MAX_EQUIVALENT_TICKS": 12000
         },
@@ -48,7 +48,7 @@
         "verdict": "TODO_PORT",
         "declared_gt6_constants": null
       },
-      "evidence_digest": "5a3e2da7a6d55635766b18fc0b3ad9f0991ecdacd82f10341e70d99b915bdb34"
+      "evidence_digest": "2bb38b4da0bfc8682be18a8dbc17c817d840d25f9a4ab3986b15731a27b17427"
     },
     "fuels": {
       "verdict": "TODO_PORT",
@@ -96,14 +96,14 @@
       "evidence": {
         "group": "steam",
         "cc_source_path": "src/main/java/com/masson/cruciblecraft/steam/SteamConversion.java",
-        "cc_source_sha256": "d1b0eb3ffee3b72b82681e2c82d99b3efb00dfe6812bada03d8e7a8abeb191e5",
+        "cc_source_sha256": "fc66a00cad6dfb1d55d479842d41f0c90cd11c226e6ecccd3938a87f6307d108",
         "cc_constants": {
           "HU_PER_BATCH": 80,
           "WATER_PER_BATCH": 1,
           "STEAM_PER_BATCH": 160,
           "STEAM_PER_KU": 2
         },
-        "gt6_reference_status": "TODO_PORT",
+        "gt6_reference_status": "SOURCE_BACKED_EXACT_CONSERVATION",
         "gt6_source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityBoilerTank.java:96,115-124 and gt6_code/gregtech6/src/main/java/gregapi/data/CS.java:240; fluid amounts are liters/mB and energy is HU/KU",
         "gt6_source_fingerprints": {
           "gt6_code/gregtech6/src/main/java/gregapi/data/CS.java": "947391068b8078c35cc126ebd1513fa348aa81a98964227f20dbb3574a124e26",
@@ -117,32 +117,58 @@
           "STEAM_PER_KU": 2
         }
       },
-      "evidence_digest": "2fc9874e1c8cb8f2b6e67edc2acd85aa48217db9713e880eb11ea8dc8b933421"
+      "evidence_digest": "21faf90aa5e19835097334380fbf3abf7b3cbdd95f89c9ed679653780e6759d4"
     },
     "steam_engine": {
-      "verdict": "TODO_PORT",
-      "issue": "GT6 steam-engine capacity/output are NBT-configured per registered machine variant; CC's single bronze 24 KU/t profile has no source-level universal tuple.",
-      "source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityEngineSteam.java:58-80,96-103",
+      "verdict": "INTENTIONAL",
+      "reason": "The pinned bronze source row 1302 and STEAM_PER_EU=2 make mOutput nominally 24/2=12 KU, while GT6 emits a state-dependent mOutput/2..mOutput*2 (6..24 KU/t). CC keeps 200 mB steam -> 50 KU conservation at 4 mB/KU but deliberately emits a fixed 12 KU/t; replacing that dynamics policy remains deferred with an explicit recheck contract.",
+      "cc_constants": {
+        "STEAM_CAPACITY": 16000,
+        "KU_CAPACITY": 1024,
+        "OUTPUT_RATE": 12
+      },
+      "gt6_constants": {
+        "SOURCE_ID": 1302,
+        "STEAM_PER_EU": 2,
+        "STEAM_INPUT_MB": 200,
+        "KU_OUTPUT": 50,
+        "STEAM_MB_PER_KU": 4,
+        "MOUTPUT_NOMINAL_KU": 12,
+        "RUNTIME_MINIMUM_KU_PER_TICK": 6,
+        "RUNTIME_MAXIMUM_KU_PER_TICK": 24
+      },
+      "source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java:586; gt6_code/gregtech6/src/main/java/gregapi/data/CS.java:240; gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityEngineSteam.java:58,62-63,77-80,98-103,121-146",
       "review_mode": "automated",
       "evidence_method": "pinned_cc_constants_and_gt6_source_fingerprints",
       "evidence": {
         "group": "steam_engine",
         "cc_source_path": "src/main/java/com/masson/cruciblecraft/content/blockentity/SteamEngineBlockEntity.java",
-        "cc_source_sha256": "210183db06baba7be3f49c09e1fd9a5b476da48c889b1fb110119f002878139b",
+        "cc_source_sha256": "6be8c7a035044d48155d3eded514f72c8a0b39e408184a0a94f3aae6e852ccdf",
         "cc_constants": {
           "STEAM_CAPACITY": 16000,
           "KU_CAPACITY": 1024,
-          "OUTPUT_RATE": 24
+          "OUTPUT_RATE": 12
         },
-        "gt6_reference_status": "TODO_PORT",
-        "gt6_source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityEngineSteam.java:58-80,96-103",
+        "gt6_reference_status": "SOURCE_BACKED_CONSERVATION_WITH_DESIGN_POLICY_OUTPUT",
+        "gt6_source_evidence": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java:586; gt6_code/gregtech6/src/main/java/gregapi/data/CS.java:240; gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityEngineSteam.java:58,62-63,77-80,98-103,121-146",
         "gt6_source_fingerprints": {
+          "gt6_code/gregtech6/src/main/java/gregapi/data/CS.java": "947391068b8078c35cc126ebd1513fa348aa81a98964227f20dbb3574a124e26",
+          "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java": "93414ed9510ff0465b062efbfe7775d256100425379a24d3857c437cef7ddc27",
           "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityEngineSteam.java": "c700ce5b285ddcecd034708615a5f25fbaa7bb1e5584e5a14c3f79d531ec14e6"
         },
-        "verdict": "TODO_PORT",
-        "declared_gt6_constants": null
+        "verdict": "INTENTIONAL",
+        "declared_gt6_constants": {
+          "SOURCE_ID": 1302,
+          "STEAM_PER_EU": 2,
+          "STEAM_INPUT_MB": 200,
+          "KU_OUTPUT": 50,
+          "STEAM_MB_PER_KU": 4,
+          "MOUTPUT_NOMINAL_KU": 12,
+          "RUNTIME_MINIMUM_KU_PER_TICK": 6,
+          "RUNTIME_MAXIMUM_KU_PER_TICK": 24
+        }
       },
-      "evidence_digest": "c0b15ae1124cb74cceb59c51c89f61d5fd3e76d673f58bae66cb8117d23dcc56"
+      "evidence_digest": "dd2a615fa4399f5365f4c87d819c09402dfe37d5c1afa1f7da56dd401757cac2"
     },
     "steelmaking": {
       "verdict": "TODO_PORT",

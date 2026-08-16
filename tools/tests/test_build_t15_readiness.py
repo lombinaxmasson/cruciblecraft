@@ -31,6 +31,12 @@ class T15ReadinessTest(unittest.TestCase):
         self.assertTrue(all(
             gate["status"] == "COMPLETE" for gate in gates.values()
         ))
+        pending = self.document["currentness"]["pending_report"]
+        self.assertEqual(
+            "BOUND_TO_FULL_VERIFICATION_REPORT", pending["status"]
+        )
+        self.assertTrue(pending["this_refresh_final_closure_attempted"])
+        self.assertEqual([], pending["pending"])
 
     def test_t12a_is_immutable_history_not_a_current_dependency(self):
         history = self.document["historical_immutable_evidence"]
@@ -78,7 +84,7 @@ class T15ReadinessTest(unittest.TestCase):
                 "full_verification_reporter",
                 "full_verification_runner",
                 "large_centrifuge_controller",
-                "machine_identity_migration",
+                "machine_identity_policy",
                 "machine_tier_catalog_loader",
                 "machine_tier_catalog_resource",
                 "processing_identity_integration",
@@ -152,7 +158,7 @@ class T15ReadinessTest(unittest.TestCase):
         self.assertEqual(
             {
                 "large_centrifuge_controller",
-                "machine_identity_migration",
+                "machine_identity_policy",
                 "machine_tier_catalog_loader",
                 "machine_tier_catalog_resource",
                 "processing_identity_integration",
@@ -228,13 +234,15 @@ class T15ReadinessTest(unittest.TestCase):
     def test_t15d_gate_records_identity_regression_matrix(self):
         gate = self.document["t15d_identity_gate"]
         self.assertEqual("PASS", gate["status"])
-        self.assertEqual(gate["junit"]["test_count"], 4)
+        self.assertEqual(gate["junit"]["test_count"], 6)
         self.assertEqual(
             {
                 "kindTierMaterialAndEnergyMismatchesAllQuarantine",
-                "onlyExactLegacyLargeCentrifugeTupleMigrates",
+                "blankAndCurrentIdentitiesAreAcceptedAsCurrent",
                 "quarantineReloadStopsProcessingAndPreservesRecoverableState",
-                "exactMigrationReloadResumesAndWritesCurrentIdentityOnNextSave",
+                "currentIdentityReloadResumesAndPreservesState",
+                "blankIdentityAdoptsCurrentWithoutQuarantine",
+                "tierProfileIsRejectedAndQuarantinePersistsCanonically",
             },
             {
                 name
@@ -242,12 +250,13 @@ class T15ReadinessTest(unittest.TestCase):
                 for name in row["tests"]
             },
         )
-        self.assertEqual(gate["gametest"]["added_test_count"], 2)
+        self.assertEqual(gate["gametest"]["added_test_count"], 3)
         self.assertEqual(gate["gametest"]["full_suite_test_count"], 56)
         self.assertEqual(
             {
                 "processingIdentityMismatchesQuarantineAcrossNbtReload",
-                "exactLargeCentrifugeIdentityMigratesAcrossNbtReload",
+                "blankProcessingIdentityAdoptsCurrentAcrossNbtReload",
+                "tierProfileIdentityIsQuarantinedAcrossNbtReload",
             },
             set(gate["gametest"]["tests"]),
         )

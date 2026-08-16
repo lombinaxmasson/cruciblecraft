@@ -11,6 +11,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PipeCatalogTest {
@@ -36,6 +37,25 @@ class PipeCatalogTest {
         assertEquals(432, MaterialPrefixes.ITEM_PIPE.units());
         assertEquals(864, MaterialPrefixes.LARGE_ITEM_PIPE.units());
         assertEquals(1728, MaterialPrefixes.HUGE_ITEM_PIPE.units());
+        assertEquals(
+                "pipeTiny",
+                PipeCatalog.requireSpecification(
+                        Kind.FLUID, "tiny_fluid_pipe"));
+        assertEquals(
+                "pipeTiny",
+                PipeCatalog.requireSpecification(Kind.FLUID, "pipeTiny"));
+        assertEquals(
+                "pipeLarge",
+                PipeCatalog.requireSpecification(
+                        Kind.ITEM, "large_item_pipe"));
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> PipeCatalog.requireSpecification(
+                        Kind.FLUID, "large_item_pipe"));
+        assertThrows(
+                IllegalArgumentException.class,
+                () -> PipeCatalog.requireSpecification(
+                        Kind.ITEM, "pipeTiny"));
 
         var copperFluid = PipeCatalog.require(
                 "copper", MaterialPrefixes.FLUID_PIPE, Kind.FLUID);

@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import com.masson.cruciblecraft.energy.converter.EnergyConverterCatalog;
+
 class FireboxHeatBufferTest {
     @Test
     void fuelDepositsPreserveTotalEnergyAndEquivalentTime() {
@@ -74,5 +76,23 @@ class FireboxHeatBufferTest {
         assertEquals(FireboxHeatBuffer.capacity(8L), buffer.storedHeat());
         assertEquals(8L, buffer.outputRate());
         assertEquals("legacy", buffer.fuelId());
+    }
+
+    @Test
+    void t18BronzeProfileAppliesSourceOutputAndEfficiency() {
+        var profile = EnergyConverterCatalog.require(
+                "cruciblecraft:bronze_firebox");
+        FireboxHeatBuffer buffer = new FireboxHeatBuffer();
+
+        assertTrue(buffer.deposit(
+                FuelDefinition.COAL_COKE,
+                profile.outputPacket().maxAmountPerTick(),
+                profile.efficiencyBps()));
+        assertEquals(24L, buffer.outputRate());
+        assertEquals(
+                FuelDefinition.COAL_COKE.totalEnergy() * 3L / 4L,
+                buffer.storedHeat());
+        assertEquals(24L, buffer.extract(100L, true));
+        assertEquals(24L, buffer.extract(100L, false));
     }
 }

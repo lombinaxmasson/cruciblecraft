@@ -1,0 +1,87 @@
+{
+  "closure": {
+    "beta_seed_derivable_count": 18,
+    "beta_seed_forward_declared_count": 8,
+    "compact_artifact_upper_bound_mb": 42,
+    "in_scope_runtime_blockers": 0,
+    "material_candidates": 224,
+    "mixer_source_rows": 64245,
+    "mixer_templates": 3414,
+    "row_diagnostic_is_closure_numerator": false,
+    "template_denominator_units": 93133,
+    "unclassified": 0,
+    "v1_required_remaining": 0,
+    "v1_required_units": 1
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T21a-d implementation and currentness gates are complete; repository-wide verification is bound separately by the full snapshot report."
+  },
+  "closure_summary": {
+    "material_candidates": 224,
+    "mixer_authored_units": 3414,
+    "mixer_source_rows": 64245,
+    "template_denominator_units": 93133,
+    "unclassified": 0,
+    "v1_required_remaining": 0,
+    "v1_required_units": 1
+  },
+  "completed_stages": [
+    "T21a",
+    "T21b",
+    "T21c",
+    "T21d"
+  ],
+  "currentness": {
+    "full_verification": {
+      "evidence": "tools/full_verification_report.json",
+      "pending": [],
+      "status": "BOUND_TO_FULL_VERIFICATION_REPORT"
+    },
+    "owned_inputs": {
+      "tools/build_t21_readiness.py": "ceea96c0739413b1f17a2e6fe5ae0fb8acdbbc87b7fba61c469e41c16adee20d"
+    }
+  },
+  "fidelity": {
+    "chemical_axis_carbon_calibration": "T21_CHEMICAL_CALIBRATION_READY",
+    "gunpowder_expected_equals_runtime": true,
+    "membership_duplicate": 0,
+    "membership_unassigned": 0,
+    "mixer_actual_multiset_sha256": "c8531d6d85dccdc13453e2731337ae0d9fdb9437a487c6f77056ead5e9de8448",
+    "mixer_actual_rows": 64245,
+    "mixer_expected_multiset_sha256": "c8531d6d85dccdc13453e2731337ae0d9fdb9437a487c6f77056ead5e9de8448",
+    "mixer_expected_rows": 64245,
+    "mixer_extra": 0,
+    "mixer_missing": 0
+  },
+  "load": {
+    "authored_rules": 1,
+    "datapack_files": 4,
+    "eager_rows": 4,
+    "lazy_rows": 0,
+    "logical_rows": 4,
+    "projection_status": "PASS",
+    "publication_delta": {
+      "eager": 4,
+      "lazy": 0,
+      "logical": 4
+    },
+    "source_facts": 4
+  },
+  "pending_stages": [],
+  "policy": "The status field, if present, must only be written by run_full_verification.py --record. Any other write path is a hard error. Downstream readers must treat a missing status field as fail-closed (not-ready).",
+  "runtime": {
+    "family_count": 4,
+    "family_members": [
+      "carbon",
+      "charcoal",
+      "coal",
+      "coal_coke"
+    ],
+    "gametest_passing": true
+  },
+  "schema_version": 1,
+  "status": "T21_READY",
+  "status_owner": "run_full_verification"
+}

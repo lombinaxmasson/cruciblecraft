@@ -6,12 +6,16 @@ import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
 
+import com.masson.cruciblecraft.content.block.Gt6StyleConnections;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.state.BlockState;
 
 /** Material-form block item retaining the former generated item identity. */
 public final class CableBlockItem extends BlockItem
@@ -50,6 +54,12 @@ public final class CableBlockItem extends BlockItem
     }
 
     @Override
+    protected boolean placeBlock(BlockPlaceContext context, BlockState state) {
+        return Gt6StyleConnections.placeBlock(
+                context, super.placeBlock(context, state));
+    }
+
+    @Override
     public void appendHoverText(
             ItemStack stack,
             Item.TooltipContext context,
@@ -72,5 +82,8 @@ public final class CableBlockItem extends BlockItem
                                 ? "tooltip.cruciblecraft.electrical.insulated"
                                 : "tooltip.cruciblecraft.electrical.bare")
                 .withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable(
+                        "tooltip.cruciblecraft.pipe.connect")
+                .withStyle(ChatFormatting.DARK_GRAY));
     }
 }

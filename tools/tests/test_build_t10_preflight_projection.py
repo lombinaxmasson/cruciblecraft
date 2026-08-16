@@ -112,7 +112,7 @@ class T10PreflightProjectionTest(unittest.TestCase):
     def test_load_gate_closes_datapack_publication_and_runtime_contract(self):
         load = self.document["load_gate"]
         self.assertEqual("READY", load["status"])
-        self.assertEqual(3_202, load["datapack_recipe_entries"])
+        self.assertEqual(3_235, load["datapack_recipe_entries"])
         self.assertEqual(18_871, load["published_recipes"])
         self.assertGreaterEqual(load["compression_ratio"], 3.0)
         self.assertTrue(

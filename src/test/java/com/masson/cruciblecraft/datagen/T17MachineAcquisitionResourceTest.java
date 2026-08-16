@@ -77,6 +77,17 @@ class T17MachineAcquisitionResourceTest {
             assertTrue(Files.isRegularFile(GENERATED.resolve(
                     "assets/cruciblecraft/models/item/" + id + ".json")), id);
 
+            if (textureKind(id).equals("smelter")) {
+                var model = JsonParser.parseString(Files.readString(
+                        Path.of("src/main/resources/assets/cruciblecraft/models/block/smelter.json")))
+                        .getAsJsonObject();
+                assertTrue(model.has("elements"), id);
+                assertEquals(
+                        "cruciblecraft:block/metal_surface",
+                        model.getAsJsonObject("textures").get("texture").getAsString(),
+                        id);
+                continue;
+            }
             var model = document(
                     "assets/cruciblecraft/models/block/" + id + ".json");
             assertEquals(

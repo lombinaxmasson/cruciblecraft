@@ -522,17 +522,15 @@
       }
     },
     "gt.recipe.fuels.burn": {
-      "classification": "deferred_with_reason",
-      "owner": "POST_T19",
-      "reason": "DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.burn has 49 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
-      "recheck_point": "POST_T19 intake after T14-T19 closure",
-      "replacement_condition": "A named post-T19 delivery owner accepts this fixed-source map and supplies an executable runtime/data contract or an explicit exclusion decision.",
+      "classification": "in_scope",
+      "owner": "T18",
+      "reason": "T18c publishes fixed methane row 20 through the source-selected GeneratorGas -> HU runtime; the other 48 rows remain explicitly deferred in the T11 source ledger.",
       "supersedes": {
         "artifact": "tools/gt6_map_roadmap.json",
-        "owner": "Unassigned future content owner",
-        "phase": "POST_T3",
+        "owner": "CrucibleCraft T18c gas/HU runtime",
+        "phase": "T18",
         "source_key": "gt.recipe.fuels.burn",
-        "status": "DEFERRED"
+        "status": "BOUNDED_SUBSET_PORTED"
       }
     },
     "gt.recipe.fuels.engine": {
@@ -562,15 +560,17 @@
       }
     },
     "gt.recipe.fuels.gas": {
-      "classification": "in_scope",
-      "owner": "T15",
-      "reason": "T11 publishes fixed methane row 2 through the Burning Gas Generator; the other 8 rows remain explicitly deferred in the T11 source ledger.",
+      "classification": "deferred_with_reason",
+      "owner": "POST_T19",
+      "reason": "T18c replaced the old Burning Gas Generator FM.Gas/direct-EU projection with source-selected FM.Burn/HU; all 9 FM.Gas rows now remain outside the bounded runtime.",
+      "recheck_point": "POST_T19 intake after T18-T19 closure",
+      "replacement_condition": "Select a distinct future FM.Gas consumer and source-backed energy identity before restoring any row.",
       "supersedes": {
         "artifact": "tools/gt6_map_roadmap.json",
-        "owner": "CrucibleCraft T11 fuel generation runtime",
-        "phase": "T11",
+        "owner": "Unassigned future content owner",
+        "phase": "POST_T3",
         "source_key": "gt.recipe.fuels.gas",
-        "status": "BOUNDED_SUBSET_PORTED"
+        "status": "DEFERRED"
       }
     },
     "gt.recipe.fuels.hot": {

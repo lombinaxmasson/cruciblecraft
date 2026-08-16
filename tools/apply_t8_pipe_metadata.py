@@ -167,7 +167,7 @@ def main() -> int:
     ]
     if args.write:
         for path, content in documents.items():
-            path.write_text(content, encoding="utf-8")
+            path.write_text(content, encoding="utf-8", newline="\n")
         print(stable_json({
             "status": "WRITTEN",
             "material_documents": len(documents),
