@@ -45,8 +45,8 @@ replay，逐文件来源指针与 sha 钉见 `tools/` 下的来源政策产物�
 
 ## 模板与第三方依赖
 
-- **NeoForged MDK 模板**：`TEMPLATE_LICENSE.txt`（MIT，NeoForged 项目，
-  仅适用于模板文件）
+- **NeoForged MDK 模板**：MIT（NeoForged 项目，仅适用于模板文件；全文见
+  `NOTICE`）
 - **NeoForged 参考副本**：`net/neoforged/` 下的参考/补丁文件保留其
   LGPL-2.1-only SPDX 文件头，且不是模组运行时源码集。
 - **Jade**（可选，方块信息）：https://modrinth.com/mod/jade
@@ -57,9 +57,9 @@ replay，逐文件来源指针与 sha 钉见 `tools/` 下的来源政策产物�
 
 ## 本地参考树
 
-- `gt6u_code/GregTech6-Unofficial` 是本地 Git 参考树，不属于模组运行时输入；
-  公开仓库不承诺其内容可由 clone 自动取得。GT6U 本身声明 LGPL-3.0-or-later，
-  默认资产 CC0 1.0，logo 例外为 CC-BY-NC-4.0。
+- `gt6u_code/` 是本地 Git 参考树，已从公开仓库忽略；不属于模组运行时输入，
+  clone 也不会自动取得。GT6U 本身声明 LGPL-3.0-or-later，默认资产 CC0 1.0，
+  logo 例外为 CC-BY-NC-4.0。
 
 ## 免责声明
 
