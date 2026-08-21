@@ -37,11 +37,11 @@ def load_builder_policy(path: Path = BUILDER_POLICY) -> dict[str, Any]:
     names = [row.get("name") for row in builders]
     scripts = [row.get("script") for row in builders]
     if (
-        len(builders) != 86
+        len(builders) != 110
         or len(names) != len(set(names))
         or len(scripts) != len(set(scripts))
     ):
-        raise ValueError("verification builder policy must contain 86 unique builders")
+        raise ValueError("verification builder policy must contain 110 unique builders")
     for row in builders:
         if (
             not isinstance(row.get("name"), str)

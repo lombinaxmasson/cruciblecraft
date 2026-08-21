@@ -15,13 +15,15 @@
         "large_centrifuge",
         "distillation_tower",
         "large_boiler",
-        "tank_3x3x3"
+        "tank_3x3x3",
+        "large_crucible"
       ]
     },
     {
       "id": "cruciblecraft:heat_energy_input",
       "consumers": [
-        "large_boiler"
+        "large_boiler",
+        "large_crucible"
       ]
     },
     {
@@ -34,6 +36,12 @@
       "id": "cruciblecraft:storage_host",
       "consumers": [
         "tank_3x3x3"
+      ]
+    },
+    {
+      "id": "cruciblecraft:thermal_steelmaking_host",
+      "consumers": [
+        "large_crucible"
       ]
     }
   ],

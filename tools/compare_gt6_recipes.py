@@ -4510,8 +4510,7 @@ def main() -> int:
                 file=sys.stderr,
             )
             return 1
-        BASELINE_JSON.write_text(
-            json.dumps(
+        payload = json.dumps(
                 {
                     "schema_version": 2,
                     "reference_fingerprint": reference_fingerprint,
@@ -4519,10 +4518,10 @@ def main() -> int:
                 },
                 indent=2,
                 ensure_ascii=False,
-            ),
-            encoding="utf-8",
-            newline="\n",
-        )
+            ) + "\n"
+        tmp = BASELINE_JSON.with_name(BASELINE_JSON.name + ".tmp")
+        tmp.write_bytes(payload.encode("utf-8"))
+        tmp.replace(BASELINE_JSON)
         print(f"Wrote {BASELINE_JSON}")
     if check_baseline:
         if not BASELINE_JSON.is_file():

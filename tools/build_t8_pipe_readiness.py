@@ -849,7 +849,7 @@ def main() -> int:
                     "committed T8 pipe readiness ledger is stale"
                 )
         else:
-            OUTPUT.write_text(encoded, encoding="utf-8", newline="\n")
+            OUTPUT.write_bytes(encoded.encode("utf-8"))
         result = json.loads(encoded)
         print(json.dumps({
             "output": OUTPUT.relative_to(ROOT).as_posix(),

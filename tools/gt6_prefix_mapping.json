@@ -1,58 +1,254 @@
 {
   "schema_version": 1,
   "mappings": [
-    {"gt_prefix": "blockIngot", "cc_prefix": "block", "strategy": "rule"},
-    {"gt_prefix": "blockGem", "cc_prefix": "block", "strategy": "rule"},
-    {"gt_prefix": "oreRaw", "cc_prefix": "raw_ore", "strategy": "rule"},
-    {"gt_prefix": "crushed", "cc_prefix": "crushed_ore", "strategy": "rule"},
-    {"gt_prefix": "crushedTiny", "cc_prefix": "tiny_crushed_ore", "strategy": "rule"},
-    {"gt_prefix": "crushedPurified", "cc_prefix": "washed_crushed_ore", "strategy": "rule"},
-    {"gt_prefix": "crushedCentrifuged", "cc_prefix": "centrifuged_crushed_ore", "strategy": "rule"},
-    {"gt_prefix": "crushedCentrifugedTiny", "cc_prefix": "tiny_centrifuged_crushed_ore", "strategy": "rule"},
+    {
+      "gt_prefix": "blockIngot",
+      "cc_prefix": "block",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "blockGem",
+      "cc_prefix": "block",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "oreRaw",
+      "cc_prefix": "raw_ore",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "crushed",
+      "cc_prefix": "crushed_ore",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "crushedTiny",
+      "cc_prefix": "tiny_crushed_ore",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "crushedPurified",
+      "cc_prefix": "washed_crushed_ore",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "crushedCentrifuged",
+      "cc_prefix": "centrifuged_crushed_ore",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "crushedCentrifugedTiny",
+      "cc_prefix": "tiny_centrifuged_crushed_ore",
+      "strategy": "rule"
+    },
     {
       "gt_prefix": "dustPure",
       "cc_prefix": "purified_dust",
       "strategy": "derived_intersection",
-      "domain_prefixes": ["crushedCentrifuged", "dust"]
+      "domain_prefixes": [
+        "crushedCentrifuged",
+        "dust"
+      ]
     },
-    {"gt_prefix": "ingot", "cc_prefix": "ingot", "strategy": "rule"},
-    {"gt_prefix": "dust", "cc_prefix": "dust", "strategy": "rule"},
-    {"gt_prefix": "dustSmall", "cc_prefix": "small_dust", "strategy": "rule"},
-    {"gt_prefix": "dustTiny", "cc_prefix": "tiny_dust", "strategy": "rule"},
-    {"gt_prefix": "plate", "cc_prefix": "plate", "strategy": "rule"},
-    {"gt_prefix": "plateGem", "cc_prefix": "plate_gem", "strategy": "rule"},
-    {"gt_prefix": "stick", "cc_prefix": "rod", "strategy": "rule"},
-    {"gt_prefix": "stickLong", "cc_prefix": "long_rod", "strategy": "rule"},
-    {"gt_prefix": "bolt", "cc_prefix": "bolt", "strategy": "rule"},
-    {"gt_prefix": "screw", "cc_prefix": "screw", "strategy": "rule"},
-    {"gt_prefix": "ring", "cc_prefix": "ring", "strategy": "rule"},
-    {"gt_prefix": "spring", "cc_prefix": "spring", "strategy": "rule"},
-    {"gt_prefix": "springSmall", "cc_prefix": "small_spring", "strategy": "rule"},
-    {"gt_prefix": "gearGt", "cc_prefix": "gear", "strategy": "rule"},
-    {"gt_prefix": "gearGtSmall", "cc_prefix": "small_gear", "strategy": "rule"},
-    {"gt_prefix": "rotor", "cc_prefix": "rotor", "strategy": "rule"},
-    {"gt_prefix": "foil", "cc_prefix": "foil", "strategy": "rule"},
-    {"gt_prefix": "plateDouble", "cc_prefix": "double_plate", "strategy": "rule"},
-    {"gt_prefix": "plateTriple", "cc_prefix": "triple_plate", "strategy": "rule"},
-    {"gt_prefix": "plateQuadruple", "cc_prefix": "quadruple_plate", "strategy": "rule"},
-    {"gt_prefix": "plateQuintuple", "cc_prefix": "quintuple_plate", "strategy": "rule"},
-    {"gt_prefix": "plateDense", "cc_prefix": "dense_plate", "strategy": "rule"},
-    {"gt_prefix": "wireFine", "cc_prefix": "fine_wire", "strategy": "rule"},
-    {"gt_prefix": "wireGt01", "cc_prefix": "wire", "strategy": "explicit_enumeration"},
-    {"gt_prefix": "wireGt02", "cc_prefix": "double_wire", "strategy": "explicit_enumeration"},
-    {"gt_prefix": "wireGt04", "cc_prefix": "quadruple_wire", "strategy": "explicit_enumeration"},
-    {"gt_prefix": "wireGt08", "cc_prefix": "octuple_wire", "strategy": "explicit_enumeration"},
-    {"gt_prefix": "wireGt12", "cc_prefix": "dodecuple_wire", "strategy": "explicit_enumeration"},
-    {"gt_prefix": "wireGt16", "cc_prefix": "hexadecuple_wire", "strategy": "explicit_enumeration"},
-    {"gt_prefix": "cableGt01", "cc_prefix": "cable", "strategy": "explicit_enumeration"},
-    {"gt_prefix": "cableGt02", "cc_prefix": "double_cable", "strategy": "explicit_enumeration"},
-    {"gt_prefix": "cableGt04", "cc_prefix": "quadruple_cable", "strategy": "explicit_enumeration"},
-    {"gt_prefix": "cableGt08", "cc_prefix": "octuple_cable", "strategy": "explicit_enumeration"},
-    {"gt_prefix": "cableGt12", "cc_prefix": "dodecuple_cable", "strategy": "explicit_enumeration"},
-    {"gt_prefix": "nugget", "cc_prefix": "nugget", "strategy": "rule"},
-    {"gt_prefix": "gem", "cc_prefix": "gem", "strategy": "rule"},
-    {"gt_prefix": "block", "cc_prefix": null, "strategy": "compatibility_absorption"},
-    {"gt_prefix": "wire", "cc_prefix": null, "strategy": "compatibility_absorption"},
-    {"gt_prefix": "ore", "cc_prefix": "ore", "strategy": "rule"}
+    {
+      "gt_prefix": "ingot",
+      "cc_prefix": "ingot",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "dust",
+      "cc_prefix": "dust",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "dustSmall",
+      "cc_prefix": "small_dust",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "dustTiny",
+      "cc_prefix": "tiny_dust",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "plate",
+      "cc_prefix": "plate",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "plateGem",
+      "cc_prefix": "plate_gem",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "stick",
+      "cc_prefix": "rod",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "stickLong",
+      "cc_prefix": "long_rod",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "bolt",
+      "cc_prefix": "bolt",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "screw",
+      "cc_prefix": "screw",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "ring",
+      "cc_prefix": "ring",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "spring",
+      "cc_prefix": "spring",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "springSmall",
+      "cc_prefix": "small_spring",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "gearGt",
+      "cc_prefix": "gear",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "gearGtSmall",
+      "cc_prefix": "small_gear",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "rotor",
+      "cc_prefix": "rotor",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "foil",
+      "cc_prefix": "foil",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "plateDouble",
+      "cc_prefix": "double_plate",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "plateTriple",
+      "cc_prefix": "triple_plate",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "plateQuadruple",
+      "cc_prefix": "quadruple_plate",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "plateQuintuple",
+      "cc_prefix": "quintuple_plate",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "plateDense",
+      "cc_prefix": "dense_plate",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "wireFine",
+      "cc_prefix": "fine_wire",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "wireGt01",
+      "cc_prefix": "wire",
+      "strategy": "explicit_enumeration"
+    },
+    {
+      "gt_prefix": "wireGt02",
+      "cc_prefix": "double_wire",
+      "strategy": "explicit_enumeration"
+    },
+    {
+      "gt_prefix": "wireGt04",
+      "cc_prefix": "quadruple_wire",
+      "strategy": "explicit_enumeration"
+    },
+    {
+      "gt_prefix": "wireGt08",
+      "cc_prefix": "octuple_wire",
+      "strategy": "explicit_enumeration"
+    },
+    {
+      "gt_prefix": "wireGt12",
+      "cc_prefix": "dodecuple_wire",
+      "strategy": "explicit_enumeration"
+    },
+    {
+      "gt_prefix": "wireGt16",
+      "cc_prefix": "hexadecuple_wire",
+      "strategy": "explicit_enumeration"
+    },
+    {
+      "gt_prefix": "cableGt01",
+      "cc_prefix": "cable",
+      "strategy": "explicit_enumeration"
+    },
+    {
+      "gt_prefix": "cableGt02",
+      "cc_prefix": "double_cable",
+      "strategy": "explicit_enumeration"
+    },
+    {
+      "gt_prefix": "cableGt04",
+      "cc_prefix": "quadruple_cable",
+      "strategy": "explicit_enumeration"
+    },
+    {
+      "gt_prefix": "cableGt08",
+      "cc_prefix": "octuple_cable",
+      "strategy": "explicit_enumeration"
+    },
+    {
+      "gt_prefix": "cableGt12",
+      "cc_prefix": "dodecuple_cable",
+      "strategy": "explicit_enumeration"
+    },
+    {
+      "gt_prefix": "nugget",
+      "cc_prefix": "nugget",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "gem",
+      "cc_prefix": "gem",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "block",
+      "cc_prefix": null,
+      "strategy": "compatibility_absorption"
+    },
+    {
+      "gt_prefix": "wire",
+      "cc_prefix": null,
+      "strategy": "compatibility_absorption"
+    },
+    {
+      "gt_prefix": "ore",
+      "cc_prefix": "ore",
+      "strategy": "rule"
+    },
+    {
+      "gt_prefix": "rockGt",
+      "cc_prefix": "rock",
+      "strategy": "rule"
+    }
   ]
 }

@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "table": "machine_kinds",
+  "status": "T27_TABLE_POLICY",
+  "review": "T27-2 P4. T13 in_scope is energy-batch membership, not v1 machine closure. T16/T17/T18 batch dispositions are reviewed: implemented/selected/preimplemented kinds are v1_required closed; MAPPED_DEFERRED keeps a related_host descriptor without closing the kind; T13-only and T18 deferred kinds stay post_1_0. Machine kind, CC block and RecipeMap host stay separate. Reactors/massfab/replicator/ZPM/quantum stay Track C. Magic absorber stays post_1_0, not a VIS-energy exclusion.",
+  "defaults": {
+    "in_scope": {
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "cc_implementation": "none",
+      "replacement_condition": "A later 1.x machine card measures this canonical kind separately from any related RecipeMap host or existing CC block; presence of a block is not closure.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "T13 in_scope only means the kind sat in a T15-T18 energy batch. T27 does not treat that as a closed v1 machine."
+        },
+        "fidelity": {
+          "status": "source_backed",
+          "evidence": "T13 machine_kinds canonical key. A live RecipeMap or CC block may belong to a different energy identity."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "Unselected machine-kind load cannot be filled with 0."
+        }
+      }
+    },
+    "deferred_with_reason": {
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "cc_implementation": "none",
+      "replacement_condition": "A later 1.x card measures or excludes this energy/nuclear kind; T27 does not implement it.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "T13 deferred_with_reason machine kind. T27 keeps it post_1_0."
+        },
+        "fidelity": {
+          "status": "source_backed",
+          "evidence": "T13 deferred machine kind plus T16-T18 energy-batch evidence."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "Deferred machine-kind load cannot be filled with 0."
+        }
+      }
+    }
+  },
+  "batch_disposition_map": {
+    "IMPLEMENTED_PRE_T16": {
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "replacement_condition": "Not applicable: this canonical kind already has a selected or preimplemented CC host.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "T16 marks this kind IMPLEMENTED_PRE_T16. Kind-level v1 obligation is the selected host, not row-level map completion."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T16 machine denominator plus T13 canonical key. RecipeMap leftover rows stay Track A."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "Selected host already participates in the T26 READY publication; T27 adds no machines."
+        }
+      }
+    },
+    "IMPLEMENTED_T16A": {
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "replacement_condition": "Not applicable: T16a selected this canonical kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "T16a implemented this canonical kind. Existing block plus selected energy identity close the kind, not every source tier."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T16 machine denominator IMPLEMENTED_T16A."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "T16a host is on the T26 READY path; T27 adds no machines."
+        }
+      }
+    },
+    "IMPLEMENTED_T16B": {
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "replacement_condition": "Not applicable: T16b selected this canonical kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "T16b implemented Press as the selected KU kind."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T16 machine denominator IMPLEMENTED_T16B."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "T16b host is on the T26 READY path; T27 adds no machines."
+        }
+      }
+    },
+    "IMPLEMENTED_T17A": {
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "replacement_condition": "Not applicable: T17a selected this canonical kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "T17a implemented this Heat_T kind."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T17 machine denominator IMPLEMENTED_T17A."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "T17a host is on the T26 READY path; T27 adds no machines."
+        }
+      }
+    },
+    "PREIMPLEMENTED_REFERENCE": {
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "replacement_condition": "Not applicable: a pre-T16/T17/T18 reference already hosts this kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "T16/T17/T18 marks this kind PREIMPLEMENTED_REFERENCE with a live CC host."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "Batch preimplemented reference plus T13 canonical key. A related map on another energy identity is a different kind."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "Reference host is on the T26 READY path; T27 adds no machines."
+        }
+      }
+    },
+    "SELECTED_T18": {
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "replacement_condition": "Not applicable: T18 selected this converter/generator kind.",
+      "recheck_point": "T27 RC candidate energy-machine recheck",
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "T18 selected this energy machine kind and bound a converter profile."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T18 machine energy denominator SELECTED_T18. An existing axle/gearbox is not a substitute for a different converter kind."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "T18 converter is on the T26 READY path; T27 adds no machines."
+        }
+      }
+    },
+    "MAPPED_DEFERRED": {
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "replacement_condition": "A later card may adopt this energy-identity kind only after measuring it separately from the related_host block; the related host does not close this canonical key.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "A CC block/map exists, but T16/T17 classified this canonical kind MAPPED_DEFERRED because the live host uses a different energy identity or was not selected."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T16/T17 MAPPED_DEFERRED plus related_host descriptor. Machine kind, CC block and RecipeMap host remain three identities."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "Related-host presence is not a load measurement for this kind."
+        }
+      }
+    },
+    "T13_ONLY_DEFERRED": {
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "cc_implementation": "none",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected."
+        },
+        "fidelity": {
+          "status": "source_backed",
+          "evidence": "T13 canonical kind with no CC host in the selected batch."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "Absent-family machine-kind load cannot be filled with 0."
+        }
+      }
+    },
+    "DEFERRED_WITH_REASON": {
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "cc_implementation": "none",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind."
+        },
+        "fidelity": {
+          "status": "source_backed",
+          "evidence": "T18 machine energy denominator deferred row."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "Unselected T18 kind load cannot be filled with 0."
+        }
+      }
+    }
+  },
+  "recipe_map_implementations": {
+    "RM.Autoclave": "cruciblecraft:autoclave",
+    "RM.Bath": "cruciblecraft:bath",
+    "RM.Generifier": "cruciblecraft:generifier"
+  },
+  "recipe_map_overrides": {
+    "RM.Autoclave": {
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "replacement_condition": "Not applicable: T15/T22.5 already host a playable autoclave.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "reason": "T15 TU autoclave is a playable CC host. Kind-level closure is not map-row completion.",
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "T22.5 registered_playable cruciblecraft:autoclave plus T13 T15-owned kind."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T13 RM.Autoclave kind plus T22.5 playability. Not a multiblock autoclave."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "Autoclave is on the T26 READY path; T27 adds no machines."
+        }
+      }
+    },
+    "RM.Bath": {
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "replacement_condition": "Not applicable: T15/T22.5 already host a playable bath.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "reason": "T15 TU bath is a playable CC host.",
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "T22.5 registered_playable cruciblecraft:bath plus T13 T15-owned kind."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T13 RM.Bath kind plus T22.5 playability."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "Bath is on the T26 READY path; T27 adds no machines."
+        }
+      }
+    },
+    "RM.Generifier": {
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "replacement_condition": "Not applicable: T15/T22.5 already host a playable generifier.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "reason": "T15 TU generifier is a playable CC host.",
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "T22.5 registered_playable cruciblecraft:generifier plus T13 T15-owned kind."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T13 RM.Generifier kind plus T22.5 playability."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "Generifier is on the T26 READY path; T27 adds no machines."
+        }
+      }
+    },
+    "RM.Coagulator": {
+      "reason": "T15-owned kind, but gt.recipe.coagulator remains a deferred chemical pipeline. A T15 owner label is not a playable host."
+    },
+    "RM.Welder": {
+      "cc_implementation": "related_host:cruciblecraft:welder",
+      "reason": "The LU welder machine kind is T13 deferred. The playable cruciblecraft:welder hosts the v1 RecipeMap, not this LU canonical kind."
+    },
+    "RM.Massfab": {
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "Matter fabricator machine kind is Track C, not a default industrial post-1.0 card. The fusion_reactor multiblock kind remains out_of_scope."
+    },
+    "RM.Replicator": {
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "Replicator is Track C quantum/nuclear topology, not Track E."
+    },
+    "RM.ScannerMolecular": {
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "Molecular scanner is Track C quantum topology, not Track E."
+    }
+  },
+  "behavior_implementations": {
+    "MultiTileEntityBoilerTank": "cruciblecraft:bronze_boiler",
+    "MultiTileEntityDynamoElectric": "cruciblecraft:bronze_dynamo",
+    "MultiTileEntityEngineSteam": "cruciblecraft:bronze_steam_engine",
+    "MultiTileEntityGeneratorGas": "cruciblecraft:bronze_gas_generator",
+    "MultiTileEntityGeneratorMetal": "cruciblecraft:bronze_firebox",
+    "MultiTileEntityMotorLiquid": "cruciblecraft:bronze_fuel_engine"
+  },
+  "behavior_overrides": {
+    "MultiTileEntityReactorCore1x1": {
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "Nuclear 1x1 reactor core is Track C physics, not a default post-1.0 industrial machine card and not Track E."
+    },
+    "MultiTileEntityReactorCore2x2": {
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "Nuclear 2x2 reactor core is Track C physics, not a default post-1.0 industrial machine card and not Track E."
+    },
+    "MultiTileEntityQuantumEnergizerLaser": {
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "LU-to-QU energizer is Track C quantum/nuclear topology, not Track E."
+    },
+    "MultiTileEntityZPMDechargerQU": {
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "QU ZPM decharger is Track C quantum topology, not Track E."
+    },
+    "MultiTileEntityZPMDechargerEU": {
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "QU-to-EU ZPM decharger depends on the deferred quantum identity; Track C owns it, not Track E."
+    }
+  },
+  "cc_implementations": {},
+  "overrides": {}
+}

@@ -1,0 +1,1557 @@
+{
+  "counts": {
+    "canonical": 47,
+    "missing": 0,
+    "out_of_scope": 10,
+    "post_1_0": 28,
+    "unclassified": 0,
+    "unexpected": 0,
+    "v1_required": 9
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t27_portfolio.py": "af2635234c6815ea6598982a61e096a01dfc415f9ba9e436dd7acad8dd966387",
+      "tools/t13_denominators/cover_kinds.json": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+      "tools/t27_portfolio_policy/cover_kinds.json": "b669ffc917073a3bcd58799404f8c05093ca1276b6fcc7fce8c01e5d0f90bc26"
+    }
+  },
+  "generated_by": "python tools/build_t27_portfolio.py",
+  "records": [
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope cover kind.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Decorative or CPU-display covers are excluded by the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded covers are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "asphalt",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). Movement-surface decoration is outside the third-stage pipe automation axis.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: texture, crafting, drain and logistics-CPU covers stay outside v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "26af9eb6556c4409b0bb8c2f9a56dc63f26d620473dd565d33e0e7c337611126",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "controller_auto",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Automatic machine control needs a later machine-control cover batch.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "9f41b8c4358415fe07774619cfec24836a278f3d07f6c3739cd1d9785f2ad779",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "controller_auto_redstone",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Redstone-conditioned machine control needs a later machine-control batch.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "50dadb0868697bae5327d77620a0e7e158c95a3118c877a73f893eea8baefa87",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "controller_auto_timer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Timed machine control needs a later tick-bearing cover batch.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "ce4c4cca0e408ad2915ed6cd8bfaf0c5cd8075b0cb9f44d034636e94b5f3ceb2",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "controller_covers",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Cross-cover control requires a later cover orchestration contract.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "8341ddd7e83c4f680ddb65cd98abe9ef805c9af06bcffd6778eaf21583dadb27",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "controller_display",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Display-driven control requires a later UI and synchronization contract.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "4ac8d8d3cafb6e936256995af9a4a896ecb5edb3f9f5d5e13b3952ed0fa0310a",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "controller_redstone",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). General redstone machine control is not in the selected T19 batch.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "12e025dc3efb0c2297cc35a0fbe14cb935b2e756c1f3fa51ca9337208b4125a1",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 in_scope cover is implemented or T19-selected. Player acquisition, network/save and server behavior were T19 obligations.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds row plus T19 cover/pipe mapping. Pipe capability does not erase a later unimplemented cover identity.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Cover kind is on the T19/T26 READY logistics path; T27 adds no covers.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "conveyor",
+      "cc_implementation": "t19:conveyor",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_covers",
+      "reason": "T13 in_scope; roadmap MISSING (none). Configurable item movement materially expands the T19 automation surface.",
+      "recheck_point": "T27 RC candidate cover/logistics recheck",
+      "replacement_condition": "Not applicable: T19 closed this cover kind for v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "963664b0e2b9013cad5a2b1d826c96f80e1b21e4d3f7759a898422a763201282",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope cover kind.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Decorative or CPU-display covers are excluded by the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded covers are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "crafting",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). Attached crafting UI is outside T19 pipe automation.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: texture, crafting, drain and logistics-CPU covers stay outside v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "ca16ec919e3fe6b7d14c640b908526e30f485bc3f2598d847a08832e67fcba20",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "detector_running_actively",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Machine-state detector integration needs a later machine diagnostics batch.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "80b8f60386b32aff62392dd8fab08381fa1d0d71b9df7d13721bd7591bece509",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "detector_running_passively",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Machine-state detector integration needs a later machine diagnostics batch.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "f51d16ff772405fe0a7cbc2caa579004dec2fa83e98d21046b49c39b0b438e98",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "detector_running_possible",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Machine-state detector integration needs a later machine diagnostics batch.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "4904a214658aea4ccd0315d0b7eee5d6bd1448d9207901382f29be9562d85d88",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "detector_running_successfully",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Machine-state detector integration needs a later machine diagnostics batch.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "52eb3107802d1ffe5745dc4cf4ba7fbbb7a6afe82a6740ff81b8d5aaf8a7726b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "display_energy",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Energy display needs a later UI and energy-identity-aware display contract.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "760290efbb428bea4654815c96f79e386a04b29686ef5412db250c741caf62e6",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope cover kind.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Decorative or CPU-display covers are excluded by the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded covers are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "drain",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). World-fluid harvesting is outside the selected cover and pipe acquisition scope.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: texture, crafting, drain and logistics-CPU covers stay outside v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "ff2bad9a0287cb9518a4e2461d7da003ef5e1e909e27c81c021870cfc79cdd5d",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 in_scope cover is implemented or T19-selected. Player acquisition, network/save and server behavior were T19 obligations.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds row plus T19 cover/pipe mapping. Pipe capability does not erase a later unimplemented cover identity.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Cover kind is on the T19/T26 READY logistics path; T27 adds no covers.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "filter_fluid",
+      "cc_implementation": "cruciblecraft:cover/filter_fluid",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_covers",
+      "reason": "T13 in_scope; roadmap MISSING (none). CC FILTER already represents source fluid filtering on fluid pipes.",
+      "recheck_point": "T27 RC candidate cover/logistics recheck",
+      "replacement_condition": "Not applicable: T19 closed this cover kind for v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "282b5b0a83578f59d5215830677978b868ba07dbbdca85e38e8934e0d96b4e7f",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 in_scope cover is implemented or T19-selected. Player acquisition, network/save and server behavior were T19 obligations.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds row plus T19 cover/pipe mapping. Pipe capability does not erase a later unimplemented cover identity.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Cover kind is on the T19/T26 READY logistics path; T27 adds no covers.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "filter_item",
+      "cc_implementation": "cruciblecraft:cover/filter_item",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_covers",
+      "reason": "T13 in_scope; roadmap MISSING (none). CC FILTER already represents source item filtering on item pipes.",
+      "recheck_point": "T27 RC candidate cover/logistics recheck",
+      "replacement_condition": "Not applicable: T19 closed this cover kind for v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "258df6b465db2309b90a472726a8529579fd2c307865dfd7753dbb8888071114",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope cover kind.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Decorative or CPU-display covers are excluded by the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded covers are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "logistics_display_cpu_control",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). GT6 logistics CPU display infrastructure is not part of the CC pipe runtime.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: texture, crafting, drain and logistics-CPU covers stay outside v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "a7b3f5a0e904021c3191c99be7b0bad2a4a8969787ce660804bbc4b253544e8a",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope cover kind.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Decorative or CPU-display covers are excluded by the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded covers are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "logistics_display_cpu_conversion",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). GT6 logistics CPU display infrastructure is not part of the CC pipe runtime.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: texture, crafting, drain and logistics-CPU covers stay outside v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "5ea631c4e298ea33598640017e7025d4df0733c3ec2d9b805d9c2de1e35ce956",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope cover kind.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Decorative or CPU-display covers are excluded by the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded covers are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "logistics_display_cpu_logic",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). GT6 logistics CPU display infrastructure is not part of the CC pipe runtime.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: texture, crafting, drain and logistics-CPU covers stay outside v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "24c12b835338812d24644530d2a576c341096fcb357faf24a580d568183b4d90",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope cover kind.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Decorative or CPU-display covers are excluded by the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded covers are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "logistics_display_cpu_storage",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). GT6 logistics CPU display infrastructure is not part of the CC pipe runtime.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: texture, crafting, drain and logistics-CPU covers stay outside v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "f6eb3e7ad49e9e3281fe637cc8ccdee61fa61f1414ca9fd50901a0df18257099",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "logistics_fluid_storage",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). GT6 logistics-network storage policy requires a later network runtime.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "535ad600fd3fc31f3f7ba1516e29da59417a7430bf004cde06ce84b34af157e1",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "logistics_fluid_transfer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). GT6 logistics-network fluid routing exceeds adjacent T19 transfer scope.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "bb4f6510f63307eebe6f2961f4399cb99e903ea438cd05d8fb42088d443cdd66",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "logistics_generic_dump",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). GT6 generic logistics dumping requires a later network runtime.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "0a62fbb67c7bf28aa98bbf1be3be77c0bc559c7185964243d9beabde3d0141e3",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "logistics_generic_storage",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). GT6 generic logistics storage requires a later network runtime.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "2ac2840782aca72cf1aa5a0781001391622fdf524e75814e2d9b28271cb2cf22",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "logistics_generic_transfer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). GT6 generic logistics routing requires a later network runtime.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "3a2b0f93ae3e8a5902e258d242a0bcafb38fac5a6e5bc38858d00222ab048406",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "logistics_item_storage",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). GT6 logistics-network item storage requires a later network runtime.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "3d277a5ac9683c69863f272bb9bcc3455a8016a110672616367568dbf0083578",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "logistics_item_transfer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). GT6 logistics-network item routing exceeds adjacent T19 transfer scope.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "a97d98a29a2799c4eeb2c88dfbd29fb46417d2a0bb9ac1b2213badc75a2d0758",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 in_scope cover is implemented or T19-selected. Player acquisition, network/save and server behavior were T19 obligations.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds row plus T19 cover/pipe mapping. Pipe capability does not erase a later unimplemented cover identity.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Cover kind is on the T19/T26 READY logistics path; T27 adds no covers.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "pressure_valve",
+      "cc_implementation": "t19:pressure_valve",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_covers",
+      "reason": "T13 in_scope; roadmap MISSING (none). A pressure-aware fluid gate complements the existing one-way valve.",
+      "recheck_point": "T27 RC candidate cover/logistics recheck",
+      "replacement_condition": "Not applicable: T19 closed this cover kind for v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "da422e09d8817cb0577825b27fe88c334f06610a1a8830304fd4aed7484c518f",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 in_scope cover is implemented or T19-selected. Player acquisition, network/save and server behavior were T19 obligations.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds row plus T19 cover/pipe mapping. Pipe capability does not erase a later unimplemented cover identity.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Cover kind is on the T19/T26 READY logistics path; T27 adds no covers.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "pump",
+      "cc_implementation": "cruciblecraft:cover/pump",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_covers",
+      "reason": "T13 in_scope; roadmap MISSING (none). CC OUTPUT_PUMP represents active outward adjacent transfer.",
+      "recheck_point": "T27 RC candidate cover/logistics recheck",
+      "replacement_condition": "Not applicable: T19 closed this cover kind for v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "383d1d37cf1c2bf8f7ab1c2a6ed046241fdc040d4170068b162ec782c2316bec",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "redstone_conductor",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Redstone network bridging is outside the selected T19 batch.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "6ec27821b8fd41cebb145d82c3ceeaeb797d1f5695e9b582ec2cd9493b244da4",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "redstone_emitter",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Configurable emission needs a later redstone-cover batch.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "73dc40b6605577fd184bfd8e9fa363e4975e35decb72fcb572c5df264f4c8cc3",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "redstone_repeater",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Tick-delayed redstone behavior needs a later redstone-cover batch.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "c68e3597b9b8e0fd862b64564498947fc7f8549f175ed644896c3c66a0093303",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "redstone_torch",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Redstone inversion needs a later redstone-cover batch.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "e69e32c7d166082e12d853732af07b6686e4ac6cc8e8571eebe0f89656c7b102",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 in_scope cover is implemented or T19-selected. Player acquisition, network/save and server behavior were T19 obligations.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds row plus T19 cover/pipe mapping. Pipe capability does not erase a later unimplemented cover identity.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Cover kind is on the T19/T26 READY logistics path; T27 adds no covers.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "retriever_item",
+      "cc_implementation": "t19:retriever_item",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_covers",
+      "reason": "T13 in_scope; roadmap MISSING (none). Demand-driven retrieval is a high-value automation behavior.",
+      "recheck_point": "T27 RC candidate cover/logistics recheck",
+      "replacement_condition": "Not applicable: T19 closed this cover kind for v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "391a80b658acf3811d2bcc47e36a76aee88050c059c24d2248cd19d3fc3c4218",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 in_scope cover is implemented or T19-selected. Player acquisition, network/save and server behavior were T19 obligations.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds row plus T19 cover/pipe mapping. Pipe capability does not erase a later unimplemented cover identity.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Cover kind is on the T19/T26 READY logistics path; T27 adds no covers.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "robot_arm",
+      "cc_implementation": "t19:robot_arm",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_covers",
+      "reason": "T13 in_scope; roadmap MISSING (none). Count-aware item transfer is a high-value automation behavior.",
+      "recheck_point": "T27 RC candidate cover/logistics recheck",
+      "replacement_condition": "Not applicable: T19 closed this cover kind for v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "36bd2fe25e94066f2ed3e258b7905cd0f3e3b017ac30232c4a53ffa3e09b73ab",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "scale_energy",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Energy scale display needs a later diagnostics/UI batch.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "4e24443d7d719d699e79e61f83993ca5dd136362115e390be4183f566d683a67",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "scale_progress",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Progress scale display remains owned by later diagnostics work after T19.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "7fba67d336125ff74cc2f35effe33446826cb175694c8814c69886b517fdf202",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "selector_button_panel",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Multi-button UI is outside the bounded T19 selector selection.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "893290e0a4949e2cee5f203d88ec5b786083deeea7b959e81ecef8f0e98f1d6b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 in_scope cover is implemented or T19-selected. Player acquisition, network/save and server behavior were T19 obligations.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds row plus T19 cover/pipe mapping. Pipe capability does not erase a later unimplemented cover identity.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Cover kind is on the T19/T26 READY logistics path; T27 adds no covers.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "selector_manual",
+      "cc_implementation": "t19:selector_manual",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_covers",
+      "reason": "T13 in_scope; roadmap MISSING (none). Manual side configuration supplies a bounded selector behavior for T19.",
+      "recheck_point": "T27 RC candidate cover/logistics recheck",
+      "replacement_condition": "Not applicable: T19 closed this cover kind for v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "d5a5a49a3db36656e4ca43bc6b899f5efbbc1d612c3527dcc7c0808acfb665c5",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "selector_redstone",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Redstone-driven selection needs a later selector batch.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "0f22095469313d11e02db1898d6c62828b768e24861aec7ff24610058c3ef79f",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "selector_tag",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Tag-driven selection needs a later selector and tag-identity contract.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "04e9c29feb70b659419cbd5c61b00b8f13c12630d2052f56bd1d45985e553c15",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 in_scope cover is implemented or T19-selected. Player acquisition, network/save and server behavior were T19 obligations.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds row plus T19 cover/pipe mapping. Pipe capability does not erase a later unimplemented cover identity.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Cover kind is on the T19/T26 READY logistics path; T27 adds no covers.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "shutter",
+      "cc_implementation": "cruciblecraft:cover/shutter",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_covers",
+      "reason": "T13 in_scope; roadmap MISSING (none). CC ONE_WAY_VALVE represents the existing one-direction side gate.",
+      "recheck_point": "T27 RC candidate cover/logistics recheck",
+      "replacement_condition": "Not applicable: T19 closed this cover kind for v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "990f5a3118ab5bda29e428fb95866501d1255986d83c7cebd0b655f50a7eb873",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope cover kind.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Decorative or CPU-display covers are excluded by the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded covers are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "texture_canvas",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). Decorative texture covers are outside T19 behavior and acquisition closure.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: texture, crafting, drain and logistics-CPU covers stay outside v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "a53f51ce59614ff5276d0ea0c0b9999a8ca335466a399b73d847fc1749a4c63c",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope cover kind.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Decorative or CPU-display covers are excluded by the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded covers are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "texture_multi",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). Decorative texture covers are outside T19 behavior and acquisition closure.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: texture, crafting, drain and logistics-CPU covers stay outside v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "b763c67f95b7a403bea1b0c8187244c2de78354993ea35a34b1aad9a27ce6502",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope cover kind.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Decorative or CPU-display covers are excluded by the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded covers are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "texture_simple",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). Decorative texture covers are outside T19 behavior and acquisition closure.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: texture, crafting, drain and logistics-CPU covers stay outside v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "166dfae7f89095a3cbc82db703bb9d8185ed794ec3e94b8ae5ee58cde49ae67f",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "cover_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred cover kind. T27 does not implement covers.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 cover_kinds deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured cover kind cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "vent",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Machine ventilation is outside the selected pipe automation batch.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "source": {
+        "artifact": "tools/t13_denominators/cover_kinds.json",
+        "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+        "record_sha256": "b268c8abcf48bc4ee210fd1f3f9404058cf3e1809ea26f6ac4650f8eab37bed4",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "cover_kinds"
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T27_TABLE_CLASSIFIED",
+  "table": "cover_kinds"
+}

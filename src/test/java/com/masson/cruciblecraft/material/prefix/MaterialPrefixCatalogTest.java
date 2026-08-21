@@ -190,7 +190,7 @@ class MaterialPrefixCatalogTest {
                         MaterialPrefixes.ROD,
                         MaterialPrefixes.SMALL_DUST),
                 List.copyOf(MaterialPrefixCatalog.values()).subList(0, 15));
-        assertEquals(56, MaterialPrefixCatalog.values().size());
+        assertEquals(57, MaterialPrefixCatalog.values().size());
         assertEquals(16, MaterialPrefixes.TINY_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.WASHED_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.CENTRIFUGED_CRUSHED_ORE.units());
@@ -207,7 +207,7 @@ class MaterialPrefixCatalogTest {
         assertEquals("c", MaterialPrefixes.GEM.tagNamespace());
         assertEquals("storage_blocks", MaterialPrefixes.BLOCK.tagDirectory());
         assertEquals("c", MaterialPrefixes.BLOCK.tagNamespace());
-        assertEquals("cruciblecraft", MaterialPrefixes.SMALL_DUST.tagNamespace());
+        assertEquals("c", MaterialPrefixes.SMALL_DUST.tagNamespace());
         assertEquals(MaterialPrefixes.RAW_ORE, MaterialPrefixCatalog.require("oreraw"));
         assertEquals(MaterialPrefixes.CRUSHED_ORE, MaterialPrefixCatalog.require("crushed"));
         assertEquals(MaterialPrefixes.SMALL_DUST, MaterialPrefixCatalog.require("dustsmall"));
@@ -239,7 +239,32 @@ class MaterialPrefixCatalogTest {
                         MaterialPrefixes.ROD,
                         MaterialPrefixes.NUGGET,
                         MaterialPrefixes.GEM,
-                        MaterialPrefixes.WIRE),
+                        MaterialPrefixes.WIRE,
+                        MaterialPrefixes.SMALL_DUST,
+                        MaterialPrefixes.TINY_DUST,
+                        MaterialPrefixes.CRUSHED_ORE,
+                        MaterialPrefixes.FOIL,
+                        MaterialPrefixes.GEAR,
+                        MaterialPrefixes.FINE_WIRE,
+                        MaterialPrefixes.CABLE,
+                        MaterialPrefixes.DOUBLE_CABLE,
+                        MaterialPrefixes.QUADRUPLE_CABLE,
+                        MaterialPrefixes.OCTUPLE_CABLE,
+                        MaterialPrefixes.DODECUPLE_CABLE,
+                        MaterialPrefixes.TINY_FLUID_PIPE,
+                        MaterialPrefixes.SMALL_FLUID_PIPE,
+                        MaterialPrefixes.FLUID_PIPE,
+                        MaterialPrefixes.LARGE_FLUID_PIPE,
+                        MaterialPrefixes.HUGE_FLUID_PIPE,
+                        MaterialPrefixes.ITEM_PIPE,
+                        MaterialPrefixCatalog.require("large_item_pipe"),
+                        MaterialPrefixCatalog.require("huge_item_pipe"),
+                        MaterialPrefixes.DOUBLE_WIRE,
+                        MaterialPrefixes.QUADRUPLE_WIRE,
+                        MaterialPrefixes.OCTUPLE_WIRE,
+                        MaterialPrefixes.DODECUPLE_WIRE,
+                        MaterialPrefixes.HEXADECUPLE_WIRE,
+                        MaterialPrefixCatalog.require("rock")),
                 MaterialPrefixCatalog.values().stream()
                         .filter(prefix -> prefix.tagNamespace().equals("c"))
                         .collect(java.util.stream.Collectors.toUnmodifiableSet()));

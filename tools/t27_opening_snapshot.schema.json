@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/t27_opening_snapshot.schema.json",
+  "title": "T27 opening snapshot",
+  "description": "Derived from the T26 READY full verification report and named input artifacts. Historical T23 18882/16657 numbers may appear only as labeled historical baselines.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "source_revision",
+    "t26_gate",
+    "input_artifacts",
+    "publication",
+    "datapack",
+    "tests",
+    "measurements",
+    "t13_tables",
+    "t14_budgets",
+    "t22_5",
+    "t26_known_issues",
+    "publication_delta",
+    "historical_baselines"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "T27_OPENING_SNAPSHOT"
+    },
+    "source_revision": {
+      "const": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    "generated_by": {
+      "type": "string"
+    },
+    "currentness": {
+      "type": "object"
+    },
+    "t26_gate": {
+      "type": "object"
+    },
+    "input_artifacts": {
+      "type": "object"
+    },
+    "publication": {
+      "type": "object"
+    },
+    "datapack": {
+      "type": "object"
+    },
+    "tests": {
+      "type": "object"
+    },
+    "measurements": {
+      "type": "object"
+    },
+    "t13_tables": {
+      "type": "object"
+    },
+    "t14_budgets": {
+      "type": "object"
+    },
+    "t22_5": {
+      "type": "object"
+    },
+    "t26_known_issues": {
+      "type": "object"
+    },
+    "publication_delta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "logical",
+        "eager",
+        "lazy",
+        "scope"
+      ],
+      "properties": {
+        "logical": {
+          "const": 0
+        },
+        "eager": {
+          "const": 0
+        },
+        "lazy": {
+          "const": 0
+        },
+        "scope": {
+          "const": "T27_CARD"
+        }
+      }
+    },
+    "historical_baselines": {
+      "type": "object"
+    }
+  }
+}

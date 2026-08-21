@@ -54,7 +54,7 @@ RESOURCE_TEST = (
 PYTHON_PROJECTION_TEST = (
     TOOLS / "tests/test_build_t20_worldgen_projection.py"
 )
-PHASE4_PLAN = ROOT / "CrucibleCraft-第四阶段总体规划.md"
+PROJECT_PLAN = ROOT / "CrucibleCraft-总体规划.md"
 T20_ARCHIVE = ROOT / "CrucibleCraft-阶段档案-T20.md"
 PHASE4_CONTRACT = TOOLS / "phase4_v1_planning_contract.json"
 STAGE_ORDER = ("T20a", "T20b", "T20c", "T20d", "T20e")
@@ -484,7 +484,7 @@ def build() -> dict[str, Any]:
                 relative(PYTHON_PROJECTION_TEST): sha256(
                     PYTHON_PROJECTION_TEST
                 ),
-                relative(PHASE4_PLAN): sha256(PHASE4_PLAN),
+                relative(PROJECT_PLAN): sha256(PROJECT_PLAN),
                 relative(T20_ARCHIVE): sha256(T20_ARCHIVE),
                 relative(PHASE4_CONTRACT): sha256(PHASE4_CONTRACT),
             },
@@ -519,9 +519,7 @@ def main() -> int:
     try:
         document = build()
         if args.write:
-            OUTPUT.write_text(
-                stable(document), encoding="utf-8", newline="\n"
-            )
+            OUTPUT.write_bytes(stable(document).encode("utf-8"))
             print(f"Wrote {relative(OUTPUT)}")
             return 0
         errors = check(document)

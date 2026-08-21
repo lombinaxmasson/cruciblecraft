@@ -4,12 +4,7 @@
     "pending": [],
     "reason": "T22.5 mapping, classification and denominator recompute gates are complete; repository-wide verification is bound separately by the full snapshot report."
   },
-  "completed_stages": [
-    "T22_5a",
-    "T22_5b",
-    "T22_5c",
-    "T22_5d"
-  ],
+  "completed_stages": [],
   "currentness": {
     "full_verification": {
       "evidence": "tools/full_verification_report.json",
@@ -17,8 +12,8 @@
       "status": "BOUND_TO_FULL_VERIFICATION_REPORT"
     },
     "owned_inputs": {
-      "tools/build_t22_5_readiness.py": "d3f90c688c8905055a61c3245f18b99e8c52f7ddd068c87035c7200d1d839dfc",
-      "tools/t22_5_readiness_policy.json": "cb963b9cbd0386f2058fba03afef23f17a4ec1340b7e20cf0abf2c251c7bd3cc"
+      "tools/build_t22_5_readiness.py": "e8c2e8b079924833acb2075e553602c0d7c5a900e9d15977b4f88bda6fe2ae55",
+      "tools/t22_5_readiness_policy.json": "0f589c1833d6bb7fcec1053ab08a93322e0d986852701b21b47cee733e5a022a"
     }
   },
   "evidence": {
@@ -69,11 +64,12 @@
     "c0_machine_playability": {
       "blockers": [
         "cruciblecraft:anvil_bend_big",
-        "cruciblecraft:anvil_bend_small"
+        "cruciblecraft:anvil_bend_small",
+        "cruciblecraft:cooling"
       ],
       "blockers_all_owned": true,
       "registered_maps": 32,
-      "zero_blockers": 2
+      "zero_blockers": 3
     },
     "c1_denominator_recompute": {
       "ceiling_adjustment": "not required",
@@ -82,12 +78,11 @@
       "v1": 0
     },
     "c2_beta_wording": {
-      "wording_updated": true
+      "wording_updated": false
     }
   },
   "pending_stages": [],
   "policy": "The status field is derived from evidence by build(). Any mismatch between the committed value and a fresh build is detected by check().",
   "schema_version": 1,
-  "status": "T22_5_READY",
   "status_owner": "run_full_verification"
 }

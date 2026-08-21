@@ -1,0 +1,147 @@
+{
+  "axes": {
+    "client_cc_only": true,
+    "dedicated_cc_only": true,
+    "emi": true,
+    "jade": true,
+    "kubejs": true,
+    "save_reload": true
+  },
+  "client_cc_only": {
+    "command": [
+      "D:\\Baobao\\projects\\dev\\java\\cruciblecraft-template-1.21.1\\gradlew.bat",
+      "-Dorg.gradle.java.home=C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.6.7-hotspot",
+      "--console=plain",
+      "runClient",
+      "-Pt31Compat=ccOnly"
+    ],
+    "cruciblecraft_loaded": true,
+    "cruciblecraft_published": false,
+    "done_line": false,
+    "emi_loaded": false,
+    "exit_code": 1,
+    "failed_to_start": false,
+    "game_dir": "run-t31-compat-client",
+    "jade_loaded": false,
+    "kubejs_loaded": false,
+    "log": "tools/t31_compat_samples/client_cc_only.log",
+    "reached_ready": true,
+    "skipped_block_entity": false,
+    "world_present": false
+  },
+  "client_optional": {
+    "command": [
+      "D:\\Baobao\\projects\\dev\\java\\cruciblecraft-template-1.21.1\\gradlew.bat",
+      "-Dorg.gradle.java.home=C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.6.7-hotspot",
+      "--console=plain",
+      "runClient",
+      "-Pt31Compat=optional"
+    ],
+    "cruciblecraft_loaded": true,
+    "cruciblecraft_published": false,
+    "done_line": false,
+    "emi_loaded": true,
+    "exit_code": 1,
+    "failed_to_start": false,
+    "game_dir": "run-t31-compat-client-optional",
+    "jade_loaded": true,
+    "kubejs_loaded": false,
+    "log": "tools/t31_compat_samples/client_optional.log",
+    "reached_ready": true,
+    "skipped_block_entity": false,
+    "world_present": false
+  },
+  "dedicated_cc_only": {
+    "command": [
+      "D:\\Baobao\\projects\\dev\\java\\cruciblecraft-template-1.21.1\\gradlew.bat",
+      "-Dorg.gradle.java.home=C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.6.7-hotspot",
+      "--console=plain",
+      "runServer",
+      "-Pt31Compat=ccOnly"
+    ],
+    "cruciblecraft_loaded": true,
+    "cruciblecraft_published": true,
+    "done_line": true,
+    "emi_loaded": false,
+    "exit_code": 1,
+    "failed_to_start": false,
+    "game_dir": "run-t31-compat-server",
+    "jade_loaded": false,
+    "kubejs_loaded": false,
+    "log": "tools/t31_compat_samples/dedicated_cc_only.log",
+    "reached_ready": true,
+    "skipped_block_entity": false,
+    "world_present": true
+  },
+  "dedicated_cc_only_reload": {
+    "command": [
+      "D:\\Baobao\\projects\\dev\\java\\cruciblecraft-template-1.21.1\\gradlew.bat",
+      "-Dorg.gradle.java.home=C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.6.7-hotspot",
+      "--console=plain",
+      "runServer",
+      "-Pt31Compat=ccOnly"
+    ],
+    "cruciblecraft_loaded": true,
+    "cruciblecraft_published": true,
+    "done_line": true,
+    "emi_loaded": false,
+    "exit_code": 1,
+    "failed_to_start": false,
+    "game_dir": "run-t31-compat-server",
+    "jade_loaded": false,
+    "kubejs_loaded": false,
+    "log": "tools/t31_compat_samples/dedicated_cc_only_reload.log",
+    "reached_ready": true,
+    "skipped_block_entity": false,
+    "world_present": true
+  },
+  "dedicated_optional": {
+    "command": [
+      "D:\\Baobao\\projects\\dev\\java\\cruciblecraft-template-1.21.1\\gradlew.bat",
+      "-Dorg.gradle.java.home=C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.6.7-hotspot",
+      "--console=plain",
+      "runServer",
+      "-Pt31Compat=optional"
+    ],
+    "cruciblecraft_loaded": true,
+    "cruciblecraft_published": false,
+    "done_line": true,
+    "emi_loaded": true,
+    "exit_code": 1,
+    "failed_to_start": false,
+    "game_dir": "run-t31-compat-optional",
+    "jade_loaded": true,
+    "kubejs_loaded": false,
+    "log": "tools/t31_compat_samples/dedicated_optional.log",
+    "reached_ready": true,
+    "skipped_block_entity": false,
+    "world_present": true
+  },
+  "hopper_menu_mentions_handshake": false,
+  "java_home": "C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.6.7-hotspot",
+  "junit": {
+    "command": [
+      "D:\\Baobao\\projects\\dev\\java\\cruciblecraft-template-1.21.1\\gradlew.bat",
+      "-Dorg.gradle.java.home=C:\\Program Files\\Eclipse Adoptium\\jdk-21.0.6.7-hotspot",
+      "--console=plain",
+      "test",
+      "--tests",
+      "com.masson.cruciblecraft.network.MaterialConfigurationHandshakeTest",
+      "--tests",
+      "com.masson.cruciblecraft.content.blockentity.HopperBlockEntityTest",
+      "--tests",
+      "com.masson.cruciblecraft.content.blockentity.DustFunnelBlockEntityTest",
+      "--tests",
+      "com.masson.cruciblecraft.content.blockentity.ProcessingMachineIdentityPersistenceTest",
+      "--tests",
+      "com.masson.cruciblecraft.compat.emi.EmiDisplayPlanTest"
+    ],
+    "exit_code": 0,
+    "log": "tools/t31_compat_samples/junit.log",
+    "passed": true
+  },
+  "last_required_gametest_pass": true,
+  "mod_version": "0.1.0-beta.1",
+  "required_game_test_count": 137,
+  "schema_version": 1
+}

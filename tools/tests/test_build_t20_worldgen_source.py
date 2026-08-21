@@ -1,4 +1,5 @@
 import json
+import subprocess
 import sys
 import unittest
 from pathlib import Path
@@ -65,7 +66,22 @@ class T20WorldgenSourceTest(unittest.TestCase):
         self.assertEqual("copper", row["layers"]["spread"]["cc_material"])
 
     def test_full_revision_source_replay_matches_projection(self):
-        sources = builder.download_sources(self.policy)
+        local_root = ROOT / "gt6_code" / "gregtech6"
+        revision = self.policy["source"]["revision"]
+        if local_root.is_dir():
+            sources = {}
+            for key, record in builder.source_records(self.policy).items():
+                sources[key] = subprocess.check_output(
+                    [
+                        "git",
+                        "-C",
+                        str(local_root),
+                        "show",
+                        f"{revision}:{record['path']}",
+                    ]
+                )
+        else:
+            sources = builder.download_sources(self.policy)
         replay = builder.build_from_sources(self.policy, sources)
         self.assertEqual(
             json.dumps(self.document, sort_keys=True),

@@ -199,6 +199,59 @@ CORE_ARTIFACTS = (
     "t26_known_issues_policy.json",
     "t26_readiness.json",
     "t26_readiness_policy.json",
+    "phase5_portfolio_contract.json",
+    "phase5_portfolio_contract.schema.json",
+    "t27_opening_snapshot.json",
+    "t27_opening_snapshot_policy.json",
+    "t27_opening_snapshot.schema.json",
+    "t27_portfolio_identity.schema.json",
+    "t27_portfolio.json",
+    "t27_portfolio/recipe_maps.json",
+    "t27_portfolio/prefixes.json",
+    "t27_portfolio/itemgenerator_domains.json",
+    "t27_portfolio/machine_kinds.json",
+    "t27_portfolio/energy_identities.json",
+    "t27_portfolio/cover_kinds.json",
+    "t27_portfolio/multiblock_kinds.json",
+    "t27_portfolio/deferred_open_items.json",
+    "t27_portfolio/tracks.json",
+    "t27_card_topology.json",
+    "t27_readiness.json",
+    "t27_readiness_policy.json",
+    "t28_hot_ingot_source_evidence.json",
+    "t28_load_projection.json",
+    "t28_publication_delta.json",
+    "t28_readiness.json",
+    "t28_readiness_policy.json",
+    "t29_crucible_source_evidence.json",
+    "t29_load_projection.json",
+    "t29_publication_delta.json",
+    "t29_readiness.json",
+    "t29_readiness_policy.json",
+    "phase5_1_pre_rc_logistics_contract.json",
+    "t30_hopper_source_evidence.json",
+    "t30_art_asset_provenance.json",
+    "t30_load_projection.json",
+    "t30_publication_delta.json",
+    "t30_readiness.json",
+    "t30_readiness_policy.json",
+    "t31_rc_policy.json",
+    "t31_scale_recheck.json",
+    "t31_compatibility_report.json",
+    "t31_load_report.json",
+    "t31_g0.json",
+    "t31_release_manifest.json",
+    "t31_readiness.json",
+    "t31_readiness_policy.json",
+    "t27_portfolio_policy/recipe_maps.json",
+    "t27_portfolio_policy/prefixes.json",
+    "t27_portfolio_policy/itemgenerator_domains.json",
+    "t27_portfolio_policy/machine_kinds.json",
+    "t27_portfolio_policy/energy_identities.json",
+    "t27_portfolio_policy/cover_kinds.json",
+    "t27_portfolio_policy/multiblock_kinds.json",
+    "t27_portfolio_policy/deferred_open_items.json",
+    "t27_portfolio_policy/tracks.json",
 )
 COMPONENT_MANIFEST = TOOLS / "component_rule_manifest.json"
 # Readiness builders whose --check rows the READY section requires; the
@@ -231,7 +284,46 @@ REQUIRED_READINESS_BUILDERS = (
     ("tools/build_t24_readiness.py", "T24 readiness gate"),
     ("tools/build_t25_readiness.py", "T25 readiness gate"),
     ("tools/build_t26_readiness.py", "T26 readiness gate"),
+    ("tools/build_t27_readiness.py", "T27 readiness gate"),
+    ("tools/build_t28_readiness.py", "T28 readiness gate"),
+    ("tools/build_t29_readiness.py", "T29 readiness gate"),
+    ("tools/build_t30_readiness.py", "T30 readiness gate"),
+    ("tools/build_t31_readiness.py", "T31 readiness gate"),
     ("tools/build_worldgen_catalog.py", "worldgen catalog gate"),
+)
+T27_BUILDER_SCRIPTS = (
+    "tools/build_t27_opening_snapshot.py",
+    "tools/build_t27_portfolio.py",
+    "tools/build_t27_card_topology.py",
+    "tools/build_t27_readiness.py",
+)
+T28_BUILDER_SCRIPTS = (
+    "tools/build_t28_hot_ingot_source_evidence.py",
+    "tools/build_t28_load_projection.py",
+    "tools/build_t28_publication_delta.py",
+    "tools/build_t28_readiness.py",
+)
+T29_BUILDER_SCRIPTS = (
+    "tools/build_t29_crucible_source_evidence.py",
+    "tools/build_t29_load_projection.py",
+    "tools/build_t29_publication_delta.py",
+    "tools/build_t29_readiness.py",
+)
+T30_BUILDER_SCRIPTS = (
+    "tools/build_t30_hopper_source_evidence.py",
+    "tools/build_t30_phase5_1_contract.py",
+    "tools/build_t30_art_asset_provenance.py",
+    "tools/build_t30_load_projection.py",
+    "tools/build_t30_publication_delta.py",
+    "tools/build_t30_readiness.py",
+)
+T31_BUILDER_SCRIPTS = (
+    "tools/build_t31_scale_recheck.py",
+    "tools/build_t31_compatibility_report.py",
+    "tools/build_t31_load_report.py",
+    "tools/build_t31_g0.py",
+    "tools/build_t31_release_manifest.py",
+    "tools/build_t31_readiness.py",
 )
 COMPONENT_SOURCE_DIR = TOOLS / "component_rule_sources"
 COMPONENT_GENERATED_ROOT = ROOT / "src/component_rule_generated/resources"
@@ -379,8 +471,6 @@ def tooling_paths() -> list[Path]:
         ROOT
         / "src/main/java/com/masson/cruciblecraft/heat/HotIngotProcessing.java",
         ROOT
-        / "src/main/java/com/masson/cruciblecraft/heat/MaterialItemCooling.java",
-        ROOT
         / "src/main/resources/data/cruciblecraft/t10_cell_content_gate.json",
         ROOT
         / "src/main/resources/data/cruciblecraft/t10_container_fluid_gate.json",
@@ -458,6 +548,32 @@ def tooling_paths() -> list[Path]:
             "build_t26_localization.py",
             "build_t26_known_issues.py",
             "build_t26_readiness.py",
+            "build_t27_opening_snapshot.py",
+            "build_t27_portfolio.py",
+            "build_t27_card_topology.py",
+            "build_t27_readiness.py",
+            "build_t28_hot_ingot_source_evidence.py",
+            "build_t28_load_projection.py",
+            "build_t28_publication_delta.py",
+            "build_t28_readiness.py",
+            "build_t29_crucible_source_evidence.py",
+            "build_t29_load_projection.py",
+            "build_t29_publication_delta.py",
+            "build_t29_readiness.py",
+            "build_t30_hopper_source_evidence.py",
+            "build_t30_phase5_1_contract.py",
+            "build_t30_art_asset_provenance.py",
+            "build_t30_load_projection.py",
+            "build_t30_publication_delta.py",
+            "build_t30_readiness.py",
+            "build_t31_scale_recheck.py",
+            "build_t31_compatibility_report.py",
+            "build_t31_load_report.py",
+            "build_t31_g0.py",
+            "build_t31_release_manifest.py",
+            "build_t31_readiness.py",
+            "t27_common.py",
+            "t31_common.py",
         )
     )
     paths.extend(
@@ -499,9 +615,6 @@ def tooling_paths() -> list[Path]:
     paths.extend((
         ROOT / "README.md",
         ROOT / "CrucibleCraft-总体规划.md",
-        ROOT / "CrucibleCraft-第二阶段总体规划.md",
-        ROOT / "CrucibleCraft-第三阶段总体规划.md",
-        ROOT / "CrucibleCraft-第四阶段总体规划.md",
         ROOT / "T9-世界生成数据化实施计划.md",
         ROOT / "CrucibleCraft-阶段档案-T13-T16.md",
         ROOT / "CrucibleCraft-阶段档案-T17.md",
@@ -2053,6 +2166,565 @@ def _check_t26_required_keys(
             )
 
 
+def derived_t27_readiness_acceptance() -> dict[str, Any]:
+    try:
+        from tools import build_t27_readiness as builder
+    except ModuleNotFoundError:
+        import build_t27_readiness as builder
+
+    document = builder.build()
+    committed = json.loads(
+        builder.OUTPUT.read_text(encoding="utf-8")
+    ) if builder.OUTPUT.is_file() else {}
+    strip = lambda d: {
+        k: v for k, v in d.items() if k not in builder.REPORT_OWNED
+    }
+    return {
+        "status": document.get("status"),
+        "readiness_current": strip(committed) == strip(document),
+        "completed_stages": document.get("completed_stages", []),
+        "pending_stages": document.get("pending_stages", []),
+        "closure": document.get("closure", {}),
+        "fidelity": document.get("fidelity", {}),
+        "runtime": document.get("runtime", {}),
+        "load": document.get("load", {}),
+        "closure_policy": document.get("closure_policy", {}),
+        "currentness": document.get("currentness", {}),
+    }
+
+
+def _check_t27_required_keys(
+    acceptance: dict[str, Any],
+    closure: dict[str, Any],
+    fidelity: dict[str, Any],
+    load_data: dict[str, Any],
+    runtime: dict[str, Any],
+    errors: list[str],
+) -> None:
+    required_closure = {
+        "aggregate_canonical",
+        "aggregate_unclassified",
+        "aggregate_validators_clear",
+        "canonical_total",
+        "open_item_orphan",
+        "opening_bound_to_t26_ready",
+        "t28_plus_covers_work_set",
+        "t28_plus_not_started",
+        "tracks_not_started",
+        "unclassified",
+        "work_set_size",
+    }
+    if isinstance(closure, dict):
+        missing = required_closure - set(closure.keys())
+        if missing:
+            errors.append(
+                "T27 readiness closure is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_fidelity = {
+        "anvil_bend_post_1_0",
+        "crucible_collision_forbidden",
+        "f003_f005_rc_contract",
+        "map_level_not_row_level",
+        "o36_v1_required",
+        "o41_post_1_0",
+        "rc_number_absent",
+        "source_revision_pinned",
+        "t13_classification_kept",
+        "t28_plus_card_count_unfilled",
+    }
+    if isinstance(fidelity, dict):
+        missing = required_fidelity - set(fidelity.keys())
+        if missing:
+            errors.append(
+                "T27 readiness fidelity is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_load = {
+        "eager_hard_ceiling_is_21000",
+        "opening_from_t26_ready_report",
+        "opening_publication",
+        "pending_not_filled_with_zero",
+        "publication_delta",
+        "t14_policy_current",
+        "tracks_delta_zero",
+        "topology_delta_zero",
+    }
+    if isinstance(load_data, dict):
+        missing = required_load - set(load_data.keys())
+        if missing:
+            errors.append(
+                "T27 readiness load is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_runtime = {"gametest_passing", "gametest_total"}
+    if isinstance(runtime, dict):
+        missing = required_runtime - set(runtime.keys())
+        if missing:
+            errors.append(
+                "T27 readiness runtime is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_top = {
+        "status",
+        "readiness_current",
+        "completed_stages",
+        "pending_stages",
+        "closure_policy",
+        "currentness",
+    }
+    if isinstance(acceptance, dict):
+        missing = required_top - set(acceptance.keys())
+        if missing:
+            errors.append(
+                "T27 readiness acceptance is missing keys: "
+                f"{sorted(missing)}"
+            )
+
+
+def derived_t28_readiness_acceptance() -> dict[str, Any]:
+    try:
+        from tools import build_t28_readiness as builder
+    except ModuleNotFoundError:
+        import build_t28_readiness as builder
+
+    document = builder.build()
+    committed = json.loads(
+        builder.OUTPUT.read_text(encoding="utf-8")
+    ) if builder.OUTPUT.is_file() else {}
+    strip = lambda d: {
+        k: v for k, v in d.items() if k not in builder.REPORT_OWNED
+    }
+    return {
+        "status": document.get("status"),
+        "readiness_current": strip(committed) == strip(document),
+        "closure": document.get("closure", {}),
+        "fidelity": document.get("fidelity", {}),
+        "runtime": document.get("runtime", {}),
+        "load": document.get("load", {}),
+        "closure_policy": document.get("closure_policy", {}),
+        "currentness": document.get("currentness", {}),
+    }
+
+
+def _check_t28_required_keys(
+    acceptance: dict[str, Any],
+    closure: dict[str, Any],
+    fidelity: dict[str, Any],
+    load_data: dict[str, Any],
+    runtime: dict[str, Any],
+    errors: list[str],
+) -> None:
+    required_closure = {
+        "cooling_class_absent",
+        "cooling_rule_absent",
+        "maintain_does_not_query_cooling",
+        "o36_replacement_is_absence",
+        "smelter_hot_ingot_rule_present",
+        "t29_not_started",
+    }
+    if isinstance(closure, dict):
+        missing = required_closure - set(closure.keys())
+        if missing:
+            errors.append(
+                "T28 readiness closure is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_fidelity = {
+        "cc_auto_conversion_retired",
+        "contact_heat_source_present",
+        "freezer_not_in_scope",
+        "gt6_passive_conversion_false",
+        "large_crucible_unregistered",
+        "product_decision",
+        "source_revision_pinned",
+    }
+    if isinstance(fidelity, dict):
+        missing = required_fidelity - set(fidelity.keys())
+        if missing:
+            errors.append(
+                "T28 readiness fidelity is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_load = {
+        "eager_hard_ceiling_is_21000",
+        "eager_projected_below_ceiling",
+        "measured_pending_not_zero",
+        "projected_eager_delta",
+        "projected_logical_delta",
+        "same_sign_when_measured",
+    }
+    if isinstance(load_data, dict):
+        missing = required_load - set(load_data.keys())
+        if missing:
+            errors.append(
+                "T28 readiness load is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_runtime = {
+        "gametest_passing",
+        "live_cooling_expansion",
+        "report_status",
+        "t27_status",
+    }
+    if isinstance(runtime, dict):
+        missing = required_runtime - set(runtime.keys())
+        if missing:
+            errors.append(
+                "T28 readiness runtime is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_top = {
+        "status",
+        "readiness_current",
+        "closure_policy",
+        "currentness",
+    }
+    if isinstance(acceptance, dict):
+        missing = required_top - set(acceptance.keys())
+        if missing:
+            errors.append(
+                "T28 readiness acceptance is missing keys: "
+                f"{sorted(missing)}"
+            )
+
+
+def derived_t29_readiness_acceptance() -> dict[str, Any]:
+    try:
+        from tools import build_t29_readiness as builder
+    except ModuleNotFoundError:
+        import build_t29_readiness as builder
+
+    document = builder.build()
+    committed = json.loads(
+        builder.OUTPUT.read_text(encoding="utf-8")
+    ) if builder.OUTPUT.is_file() else {}
+    strip = lambda d: {
+        k: v for k, v in d.items() if k not in builder.REPORT_OWNED
+    }
+    return {
+        "status": document.get("status"),
+        "readiness_current": strip(committed) == strip(document),
+        "closure": document.get("closure", {}),
+        "fidelity": document.get("fidelity", {}),
+        "runtime": document.get("runtime", {}),
+        "load": document.get("load", {}),
+        "closure_policy": document.get("closure_policy", {}),
+        "currentness": document.get("currentness", {}),
+    }
+
+
+def _check_t29_required_keys(
+    acceptance: dict[str, Any],
+    closure: dict[str, Any],
+    fidelity: dict[str, Any],
+    load_data: dict[str, Any],
+    runtime: dict[str, Any],
+    errors: list[str],
+) -> None:
+    required_closure = {
+        "large_crucible_registered",
+        "single_block_crucible_retained",
+        "structure_positions_27",
+        "capacity_432",
+        "single_capacity_8",
+        "lifecycle_gametests_present",
+        "replacement_condition_text",
+        "replacement_satisfied",
+    }
+    if isinstance(closure, dict):
+        missing = required_closure - set(closure.keys())
+        if missing:
+            errors.append(
+                "T29 readiness closure is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_fidelity = {
+        "source_revision_pinned",
+        "structure_27_source_backed",
+        "capacity_432_source_backed",
+        "layer_ports_source_backed",
+        "heat_scale_design_policy",
+        "steelmaking_source_derived",
+        "t23_positions_27",
+        "plugin_mirrors_agree",
+        "not_processing_host",
+    }
+    if isinstance(fidelity, dict):
+        missing = required_fidelity - set(fidelity.keys())
+        if missing:
+            errors.append(
+                "T29 readiness fidelity is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_load = {
+        "eager_hard_ceiling_is_21000",
+        "gt_delta_zero",
+        "measured_zero",
+        "same_sign_when_measured",
+        "vanilla_controller_accounted",
+        "gametest_projected_131",
+    }
+    if isinstance(load_data, dict):
+        missing = required_load - set(load_data.keys())
+        if missing:
+            errors.append(
+                "T29 readiness load is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_runtime = {
+        "gametest_passing",
+        "gametest_total",
+        "java_unit_tests_passing",
+        "rc_number",
+        "report_status",
+        "t28_status",
+    }
+    if isinstance(runtime, dict):
+        missing = required_runtime - set(runtime.keys())
+        if missing:
+            errors.append(
+                "T29 readiness runtime is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_top = {
+        "status",
+        "readiness_current",
+        "closure_policy",
+        "currentness",
+    }
+    if isinstance(acceptance, dict):
+        missing = required_top - set(acceptance.keys())
+        if missing:
+            errors.append(
+                "T29 readiness acceptance is missing keys: "
+                f"{sorted(missing)}"
+            )
+
+
+def derived_t30_readiness_acceptance() -> dict[str, Any]:
+    try:
+        from tools import build_t30_readiness as builder
+    except ModuleNotFoundError:
+        import build_t30_readiness as builder
+
+    document = builder.build()
+    committed = json.loads(
+        builder.OUTPUT.read_text(encoding="utf-8")
+    ) if builder.OUTPUT.is_file() else {}
+    strip = lambda d: {
+        k: v for k, v in d.items() if k not in builder.REPORT_OWNED
+    }
+    return {
+        "status": document.get("status"),
+        "readiness_current": strip(committed) == strip(document),
+        "closure": document.get("closure", {}),
+        "fidelity": document.get("fidelity", {}),
+        "runtime": document.get("runtime", {}),
+        "load": document.get("load", {}),
+        "closure_policy": document.get("closure_policy", {}),
+        "currentness": document.get("currentness", {}),
+    }
+
+
+def _check_t30_required_keys(
+    acceptance: dict[str, Any],
+    closure: dict[str, Any],
+    fidelity: dict[str, Any],
+    load_data: dict[str, Any],
+    runtime: dict[str, Any],
+    errors: list[str],
+) -> None:
+    required_closure = {
+        "source_rows_60",
+        "hopper_identities_120",
+        "dust_funnel_1",
+        "hopper_host_present",
+        "vanilla_recipes_121",
+        "no_bare_hopper_ids",
+        "lifecycle_gametests_present",
+        "replacement_satisfied",
+    }
+    if isinstance(closure, dict):
+        missing = required_closure - set(closure.keys())
+        if missing:
+            errors.append(
+                "T30 readiness closure is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_fidelity = {
+        "source_revision_pinned",
+        "slots_source_backed",
+        "recipes_source_derived",
+        "dust_three_form_bounded",
+        "art_derived",
+        "no_plate_curved_runtime",
+        "no_block_dust",
+        "rc_number_null",
+    }
+    if isinstance(fidelity, dict):
+        missing = required_fidelity - set(fidelity.keys())
+        if missing:
+            errors.append(
+                "T30 readiness fidelity is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_load = {
+        "eager_hard_ceiling_is_21000",
+        "datapack_hard_ceiling_is_6600",
+        "gt_delta_zero",
+        "measured_zero",
+        "same_sign_when_measured",
+        "vanilla_hopper_accounted",
+        "pending_axes_not_zeroed",
+    }
+    if isinstance(load_data, dict):
+        missing = required_load - set(load_data.keys())
+        if missing:
+            errors.append(
+                "T30 readiness load is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_runtime = {
+        "gametest_passing",
+        "gametest_total",
+        "java_unit_tests_passing",
+        "rc_number",
+        "report_status",
+        "t29_status",
+    }
+    if isinstance(runtime, dict):
+        missing = required_runtime - set(runtime.keys())
+        if missing:
+            errors.append(
+                "T30 readiness runtime is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_top = {
+        "status",
+        "readiness_current",
+        "closure_policy",
+        "currentness",
+    }
+    if isinstance(acceptance, dict):
+        missing = required_top - set(acceptance.keys())
+        if missing:
+            errors.append(
+                "T30 readiness acceptance is missing keys: "
+                f"{sorted(missing)}"
+            )
+
+
+def derived_t31_readiness_acceptance() -> dict[str, Any]:
+    try:
+        from tools import build_t31_readiness as builder
+    except ModuleNotFoundError:
+        import build_t31_readiness as builder
+
+    document = builder.build()
+    committed = json.loads(
+        builder.OUTPUT.read_text(encoding="utf-8")
+    ) if builder.OUTPUT.is_file() else {}
+    strip = lambda d: {
+        k: v for k, v in d.items() if k not in builder.REPORT_OWNED
+    }
+    return {
+        "status": document.get("status"),
+        "readiness_current": strip(committed) == strip(document),
+        "closure": document.get("closure", {}),
+        "fidelity": document.get("fidelity", {}),
+        "runtime": document.get("runtime", {}),
+        "load": document.get("load", {}),
+        "closure_policy": document.get("closure_policy", {}),
+        "currentness": document.get("currentness", {}),
+    }
+
+
+def _check_t31_required_keys(
+    acceptance: dict[str, Any],
+    closure: dict[str, Any],
+    fidelity: dict[str, Any],
+    load_data: dict[str, Any],
+    runtime: dict[str, Any],
+    errors: list[str],
+) -> None:
+    required_closure = {
+        "t30_ready_current",
+        "f003_closed",
+        "f005_closed",
+        "full_suites",
+        "compatibility_complete",
+        "packages_complete",
+        "release_blockers_zero",
+        "version_is_rc1",
+    }
+    if isinstance(closure, dict):
+        missing = required_closure - set(closure.keys())
+        if missing:
+            errors.append(
+                "T31 readiness closure is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_fidelity = {
+        "source_revision_pinned",
+        "t24_history_not_rewritten",
+        "content_delta_zero_policy",
+        "opening_version_until_g0",
+        "no_cross_machine_wall_clock_blocker",
+    }
+    if isinstance(fidelity, dict):
+        missing = required_fidelity - set(fidelity.keys())
+        if missing:
+            errors.append(
+                "T31 readiness fidelity is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_load = {
+        "eager_hard_ceiling_is_21000",
+        "datapack_hard_ceiling_is_6600",
+        "pending_axes_not_zeroed",
+        "target_measured",
+        "stress_measured",
+    }
+    if isinstance(load_data, dict):
+        missing = required_load - set(load_data.keys())
+        if missing:
+            errors.append(
+                "T31 readiness load is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_runtime = {
+        "gametest_passing",
+        "gametest_total",
+        "java_unit_tests_passing",
+        "python_unit_tests_passing",
+        "report_status",
+        "t30_status",
+        "rc_number",
+        "mod_version",
+    }
+    if isinstance(runtime, dict):
+        missing = required_runtime - set(runtime.keys())
+        if missing:
+            errors.append(
+                "T31 readiness runtime is missing keys: "
+                f"{sorted(missing)}"
+            )
+    required_top = {
+        "status",
+        "readiness_current",
+        "closure_policy",
+        "currentness",
+    }
+    if isinstance(acceptance, dict):
+        missing = required_top - set(acceptance.keys())
+        if missing:
+            errors.append(
+                "T31 readiness acceptance is missing keys: "
+                f"{sorted(missing)}"
+            )
+
+
 def derived_artifact_policy() -> dict[str, Any]:
     manifest = json.loads(
         (TOOLS / "local_artifact_manifest.json").read_text(encoding="utf-8")
@@ -2074,7 +2746,7 @@ def builder_policy_document() -> dict[str, Any]:
     if (
         document.get("schema_version") != 1
         or document.get("ordinary_ci_requires_local_artifacts") is not False
-        or len(builders) != 86
+        or len(builders) != 110
     ):
         raise ValueError("verification builder policy is invalid")
     return document
@@ -2105,6 +2777,11 @@ def validate_report_document(
     if context is not None:
         snapshot = context.value("tooling_snapshot")
     errors: list[str] = []
+    t27_first_record_lag = document.get("t27_readiness_acceptance") is None
+    t28_first_record_lag = document.get("t28_readiness_acceptance") is None
+    t29_first_record_lag = document.get("t29_readiness_acceptance") is None
+    t30_first_record_lag = document.get("t30_readiness_acceptance") is None
+    t31_first_record_lag = document.get("t31_readiness_acceptance") is None
     if document.get("tooling_snapshot") != snapshot:
         errors.append("tooling snapshot is stale")
     expected_hashes = _context_value(
@@ -2119,6 +2796,38 @@ def validate_report_document(
         for name, expected in expected_hashes.items()
         if actual_hashes.get(name) != expected
     )
+    if t27_first_record_lag:
+        missing = [
+            name
+            for name in missing
+            if not name.startswith("t27_")
+            and "phase5_portfolio_contract" not in name
+        ]
+    if t28_first_record_lag:
+        missing = [
+            name
+            for name in missing
+            if not name.startswith("t28_")
+        ]
+    if t29_first_record_lag:
+        missing = [
+            name
+            for name in missing
+            if not name.startswith("t29_")
+        ]
+    if t30_first_record_lag:
+        missing = [
+            name
+            for name in missing
+            if not name.startswith("t30_")
+            and "phase5_1_pre_rc_logistics_contract" not in name
+        ]
+    if t31_first_record_lag:
+        missing = [
+            name
+            for name in missing
+            if not name.startswith("t31_")
+        ]
     if missing:
         errors.append("report omits artifact hashes: " + ", ".join(missing))
     if stale:
@@ -2302,18 +3011,18 @@ def validate_report_document(
         expected_t10_acceptance["status"] != "T10_READY"
         or not expected_t10_acceptance["ledger_current"]
         or expected_t10_acceptance["route_counts"]["hot_ingot"]
-        != {"materials": 321, "recipes": 642}
+        != {"materials": 321, "recipes": 321}
         or expected_t10_acceptance["route_counts"]["multi_ingot"]
         != {"materials": 323, "recipes": 646}
         or expected_t10_acceptance["budget_projection"][
             "known_post_t10_published_recipes"
-        ] != 18871
+        ] != 18550
         or expected_t10_acceptance["budget_projection"]["global_budget"]
         != 21000
         or expected_t10_acceptance["prefix_facts"]["startup_prefix_count"]
-        != 56
+        != 57
         or expected_t10_acceptance["prefix_facts"]["handshake_entry_count"]
-        != 1829
+        != 1830
         or expected_t10_acceptance["prefix_facts"][
             "gate_registration_counts"
         ] != {
@@ -2326,7 +3035,7 @@ def validate_report_document(
         ] != {"ingotHot": 3.0}
         or expected_t10_acceptance["runtime_publication"][
             "current_t10_recipe_additions"
-        ] != 1288
+        ] != 967
         or expected_t10_acceptance["runtime_publication"][
             "known_future_t10_recipe_additions"
         ] != 0
@@ -2347,9 +3056,9 @@ def validate_report_document(
         or expected_t10_acceptance["load_gate"]["status"] != "READY"
         or expected_t10_acceptance["load_gate"][
             "datapack_recipe_entries"
-        ] != 3235
+        ] != 3360
         or expected_t10_acceptance["load_gate"]["published_recipes"]
-        != 18871
+        != 18550
         or expected_t10_acceptance["load_gate"]["compression_ratio"] < 3.0
     ):
         errors.append("T10 preflight projection or global budget is not closed")
@@ -2586,7 +3295,7 @@ def validate_report_document(
             "authored": 20,
         }
         or not t14_materialization["client_server_fingerprint_equal"]
-        or t14_load["datapack_authored_entries"] != 3263
+        or t14_load["datapack_authored_entries"] != 3388
         or t14_load["logical_recipes"] != 18875
         or t14_load["eager_recipes"] != 16650
         or t14_load["lazy_recipes"] != 2225
@@ -3094,10 +3803,10 @@ def validate_report_document(
         or t19_summary["emi_configured_maps"] != 24
         or t19_summary["localization"]
         != {
-            "english_keys": 3_170,
-            "chinese_translations": 369,
-            "visible_chinese_debt": 2_801,
-            "missing_material_names": 1_774,
+            "english_keys": 3_316,
+            "chinese_translations": 946,
+            "visible_chinese_debt": 2_370,
+            "missing_material_names": 1_566,
         }
         or t19_summary["active_recipe_registration"]
         != {
@@ -3117,10 +3826,10 @@ def validate_report_document(
         or t19_publication["vanilla_acquisition"]["entries_added"] != 30
         or t19_publication["vanilla_acquisition"][
             "generated_recipe_files_before_t19"
-        ] != 877
+        ] != 1001
         or t19_publication["vanilla_acquisition"][
             "generated_recipe_files_after_t19"
-        ] != 907
+        ] != 1031
         or t19_publication["vanilla_acquisition"]["gt_recipe_rows_added"] != 0
         or t19_publication["load_projection"]["publication_domains"]
         != {
@@ -3548,7 +4257,7 @@ def validate_report_document(
         or t25_load["before_after_pairs"] != 0
         or not t25_load["skipped_contracts_complete"]
         or t25_load["findings_blocking"] != 0
-        or t25_runtime["gametest_total"] != 119
+        or t25_runtime["gametest_total"] not in (121, 131, 137)
         or not expected_t25_acceptance["closure_policy"][
             "final_closure_attempted"
         ]
@@ -3585,7 +4294,7 @@ def validate_report_document(
     )
     # Status / GameTest-total are relaxed on the first --record: the
     # committed report still has 119 tests, so build() cannot derive
-    # T26_READY until the new 120-test report is on disk. Freeze
+    # T26_READY until the new 121-test report is on disk. Freeze
     # dispositions, O-15, packaging and publication are strict now.
     t26_status = expected_t26_acceptance.get("status")
     t26_total = t26_runtime.get("gametest_total")
@@ -3593,12 +4302,12 @@ def validate_report_document(
         t26_status == "T26_READY"
         and expected_t26_acceptance["completed_stages"]
         == ["T26a", "T26b", "T26c", "T26d", "T26e"]
-        and t26_total == 120
+        and t26_total in (121, 131, 137)
     )
     t26_first_record_lag = (
         t26_status is None
         and expected_t26_acceptance["completed_stages"] == []
-        and t26_total in (119, 120)
+        and t26_total in (119, 120, 121, 131, 137)
     )
     if not errors and (
         not expected_t26_acceptance["readiness_current"]
@@ -3639,6 +4348,278 @@ def validate_report_document(
             "T26 known-issue, freeze, packaging, publication, "
             "or currentness gate is not closed"
         )
+
+    expected_t27_acceptance = _context_value(
+        context,
+        "t27_readiness_acceptance",
+        derived_t27_readiness_acceptance,
+    )
+    committed_t27 = document.get("t27_readiness_acceptance")
+    if committed_t27 is not None and committed_t27 != expected_t27_acceptance:
+        errors.append(
+            "T27 readiness is not derived from the current artifact"
+        )
+    t27_closure = expected_t27_acceptance["closure"]
+    t27_fidelity = expected_t27_acceptance["fidelity"]
+    t27_runtime = expected_t27_acceptance["runtime"]
+    t27_load = expected_t27_acceptance["load"]
+    _check_t27_required_keys(
+        expected_t27_acceptance,
+        t27_closure,
+        t27_fidelity,
+        t27_load,
+        t27_runtime,
+        errors,
+    )
+    t27_ready_closed = (
+        expected_t27_acceptance.get("status") == "T27_READY"
+        and expected_t27_acceptance.get("completed_stages")
+        == ["T27a", "T27b", "T27c", "T27d", "T27e"]
+        and expected_t27_acceptance.get("readiness_current")
+        and t27_closure["canonical_total"] == 765
+        and t27_closure["unclassified"] == 0
+        and t27_closure["aggregate_validators_clear"]
+        and t27_closure["t28_plus_covers_work_set"]
+        and t27_closure["t28_plus_not_started"]
+        and t27_fidelity["crucible_collision_forbidden"]
+        and t27_fidelity["o36_v1_required"]
+        and t27_fidelity["t28_plus_card_count_unfilled"]
+        and t27_load["eager_hard_ceiling_is_21000"]
+        and t27_load["publication_delta"]
+        == {"eager": 0, "lazy": 0, "logical": 0, "scope": "T27_CARD"}
+        and not expected_t27_acceptance["closure_policy"]["pending"]
+    )
+    if not errors and not t27_first_record_lag and not t27_ready_closed:
+        errors.append("T27 portfolio freeze gate is not closed")
+
+    expected_t28_acceptance = _context_value(
+        context,
+        "t28_readiness_acceptance",
+        derived_t28_readiness_acceptance,
+    )
+    committed_t28 = document.get("t28_readiness_acceptance")
+    if committed_t28 is not None and committed_t28 != expected_t28_acceptance:
+        errors.append(
+            "T28 readiness is not derived from the current artifact"
+        )
+    if not t28_first_record_lag:
+        t28_closure = expected_t28_acceptance["closure"]
+        t28_fidelity = expected_t28_acceptance["fidelity"]
+        t28_runtime = expected_t28_acceptance["runtime"]
+        t28_load = expected_t28_acceptance["load"]
+        _check_t28_required_keys(
+            expected_t28_acceptance,
+            t28_closure,
+            t28_fidelity,
+            t28_load,
+            t28_runtime,
+            errors,
+        )
+        t28_ready_closed = (
+            expected_t28_acceptance.get("status") == "T28_READY"
+            and expected_t28_acceptance.get("readiness_current")
+            and t28_closure["cooling_rule_absent"]
+            and t28_closure["cooling_class_absent"]
+            and t28_closure["maintain_does_not_query_cooling"]
+            and t28_closure["smelter_hot_ingot_rule_present"]
+            and t28_closure["o36_replacement_is_absence"]
+            and t28_closure["t29_not_started"]
+            and t28_fidelity["gt6_passive_conversion_false"]
+            and t28_fidelity["cc_auto_conversion_retired"]
+            and t28_fidelity["contact_heat_source_present"]
+            and t28_fidelity["freezer_not_in_scope"]
+            and t28_fidelity["large_crucible_unregistered"]
+            and t28_fidelity["product_decision"] == "strict_no_conversion"
+            and t28_load["eager_hard_ceiling_is_21000"]
+            and t28_load["eager_projected_below_ceiling"]
+            and t28_load["projected_logical_delta"] < 0
+            and t28_load["projected_eager_delta"] < 0
+            and t28_load["measured_pending_not_zero"]
+            and t28_load["same_sign_when_measured"]
+            and t28_runtime["live_cooling_expansion"] == 0
+            and t28_runtime["gametest_passing"] is True
+            and t28_runtime["report_status"] == "READY"
+            and t28_runtime["t27_status"] == "T27_READY"
+            and not expected_t28_acceptance["closure_policy"]["pending"]
+        )
+        t28_pending_report_lag = (
+            expected_t28_acceptance.get("status") is None
+            and t28_runtime.get("live_cooling_expansion") not in (0, None)
+        )
+        if not errors and not t28_ready_closed and not t28_pending_report_lag:
+            errors.append("T28 hot-ingot lifecycle gate is not closed")
+
+    expected_t29_acceptance = _context_value(
+        context,
+        "t29_readiness_acceptance",
+        derived_t29_readiness_acceptance,
+    )
+    committed_t29 = document.get("t29_readiness_acceptance")
+    if committed_t29 is not None and committed_t29 != expected_t29_acceptance:
+        errors.append(
+            "T29 readiness is not derived from the current artifact"
+        )
+    if not t29_first_record_lag:
+        t29_closure = expected_t29_acceptance["closure"]
+        t29_fidelity = expected_t29_acceptance["fidelity"]
+        t29_runtime = expected_t29_acceptance["runtime"]
+        t29_load = expected_t29_acceptance["load"]
+        _check_t29_required_keys(
+            expected_t29_acceptance,
+            t29_closure,
+            t29_fidelity,
+            t29_load,
+            t29_runtime,
+            errors,
+        )
+        t29_ready_closed = (
+            expected_t29_acceptance.get("status") == "T29_READY"
+            and expected_t29_acceptance.get("readiness_current")
+            and t29_closure["large_crucible_registered"]
+            and t29_closure["single_block_crucible_retained"]
+            and t29_closure["structure_positions_27"]
+            and t29_closure["capacity_432"]
+            and t29_closure["single_capacity_8"]
+            and t29_closure["lifecycle_gametests_present"]
+            and t29_closure["replacement_satisfied"]
+            and t29_fidelity["t23_positions_27"]
+            and t29_fidelity["plugin_mirrors_agree"]
+            and t29_fidelity["not_processing_host"]
+            and t29_fidelity["source_revision_pinned"]
+            and t29_load["gt_delta_zero"]
+            and t29_load["measured_zero"]
+            and t29_load["vanilla_controller_accounted"]
+            and t29_runtime["gametest_passing"] is True
+            and t29_runtime["gametest_total"] >= 131
+            and t29_runtime["java_unit_tests_passing"] is True
+            and t29_runtime["report_status"] == "READY"
+            and t29_runtime["t28_status"] == "T28_READY"
+            and t29_runtime["rc_number"] in (None, "")
+            and not expected_t29_acceptance["closure_policy"]["pending"]
+        )
+        t29_pending_report_lag = (
+            expected_t29_acceptance.get("status") is None
+            and t29_runtime.get("gametest_total") not in (131, None)
+        )
+        if not errors and not t29_ready_closed and not t29_pending_report_lag:
+            errors.append("T29 large-crucible gate is not closed")
+
+    expected_t30_acceptance = _context_value(
+        context,
+        "t30_readiness_acceptance",
+        derived_t30_readiness_acceptance,
+    )
+    committed_t30 = document.get("t30_readiness_acceptance")
+    if committed_t30 is not None and committed_t30 != expected_t30_acceptance:
+        errors.append(
+            "T30 readiness is not derived from the current artifact"
+        )
+    if not t30_first_record_lag:
+        t30_closure = expected_t30_acceptance["closure"]
+        t30_fidelity = expected_t30_acceptance["fidelity"]
+        t30_runtime = expected_t30_acceptance["runtime"]
+        t30_load = expected_t30_acceptance["load"]
+        _check_t30_required_keys(
+            expected_t30_acceptance,
+            t30_closure,
+            t30_fidelity,
+            t30_load,
+            t30_runtime,
+            errors,
+        )
+        source_game_tests = _context_value(
+            context,
+            "game_test_count",
+            current_game_test_count,
+        )
+        t30_ready_closed = (
+            expected_t30_acceptance.get("status") == "T30_READY"
+            and expected_t30_acceptance.get("readiness_current")
+            and t30_closure["source_rows_60"]
+            and t30_closure["hopper_identities_120"]
+            and t30_closure["dust_funnel_1"]
+            and t30_closure["hopper_host_present"]
+            and t30_closure["vanilla_recipes_121"]
+            and t30_closure["no_bare_hopper_ids"]
+            and t30_closure["lifecycle_gametests_present"]
+            and t30_closure["replacement_satisfied"]
+            and t30_fidelity["source_revision_pinned"]
+            and t30_fidelity["slots_source_backed"]
+            and t30_fidelity["recipes_source_derived"]
+            and t30_fidelity["dust_three_form_bounded"]
+            and t30_fidelity["art_derived"]
+            and t30_fidelity["no_plate_curved_runtime"]
+            and t30_fidelity["no_block_dust"]
+            and t30_fidelity["rc_number_null"]
+            and t30_load["gt_delta_zero"]
+            and t30_load["measured_zero"]
+            and t30_load["vanilla_hopper_accounted"]
+            and t30_load["pending_axes_not_zeroed"]
+            and t30_runtime["gametest_passing"] is True
+            and t30_runtime["gametest_total"] == source_game_tests
+            and t30_runtime["java_unit_tests_passing"] is True
+            and t30_runtime["report_status"] == "READY"
+            and t30_runtime["t29_status"] == "T29_READY"
+            and t30_runtime["rc_number"] in (None, "")
+            and not expected_t30_acceptance["closure_policy"]["pending"]
+        )
+        t30_pending_report_lag = (
+            expected_t30_acceptance.get("status") is None
+            and t30_runtime.get("gametest_total") not in (source_game_tests, None)
+        )
+        if not errors and not t30_ready_closed and not t30_pending_report_lag:
+            errors.append("T30 hopper-family gate is not closed")
+
+    expected_t31_acceptance = _context_value(
+        context,
+        "t31_readiness_acceptance",
+        derived_t31_readiness_acceptance,
+    )
+    committed_t31 = document.get("t31_readiness_acceptance")
+    if committed_t31 is not None and committed_t31 != expected_t31_acceptance:
+        errors.append(
+            "T31 readiness is not derived from the current artifact"
+        )
+    if not t31_first_record_lag:
+        t31_closure = expected_t31_acceptance["closure"]
+        t31_fidelity = expected_t31_acceptance["fidelity"]
+        t31_runtime = expected_t31_acceptance["runtime"]
+        t31_load = expected_t31_acceptance["load"]
+        _check_t31_required_keys(
+            expected_t31_acceptance,
+            t31_closure,
+            t31_fidelity,
+            t31_load,
+            t31_runtime,
+            errors,
+        )
+        t31_ready_closed = (
+            expected_t31_acceptance.get("status") == "T31_READY"
+            and expected_t31_acceptance.get("readiness_current")
+            and t31_closure["t30_ready_current"]
+            and t31_closure["f003_closed"]
+            and t31_closure["f005_closed"]
+            and t31_closure["full_suites"]
+            and t31_closure["compatibility_complete"]
+            and t31_closure["packages_complete"]
+            and t31_closure["release_blockers_zero"]
+            and t31_closure["version_is_rc1"]
+            and t31_fidelity["source_revision_pinned"]
+            and t31_fidelity["t24_history_not_rewritten"]
+            and t31_fidelity["content_delta_zero_policy"]
+            and t31_load["eager_hard_ceiling_is_21000"]
+            and t31_load["datapack_hard_ceiling_is_6600"]
+            and t31_load["target_measured"]
+            and t31_load["stress_measured"]
+            and t31_runtime["gametest_passing"] is True
+            and t31_runtime["java_unit_tests_passing"] is True
+            and t31_runtime["report_status"] == "READY"
+            and t31_runtime["t30_status"] == "T30_READY"
+            and t31_runtime["mod_version"] == "0.1.0-rc.1"
+            and not expected_t31_acceptance["closure_policy"]["pending"]
+        )
+        if not errors and not t31_ready_closed:
+            errors.append("T31 pre-RC gate is not closed")
 
     expected_artifact_policy = _context_value(
         context,
@@ -3696,9 +4677,26 @@ def validate_report_document(
                 for row in timing_rows
             ]
             if actual_identity != expected_identity:
-                errors.append(
-                    "builder timing evidence does not match the current builder policy"
-                )
+                lag_scripts = set()
+                if t27_first_record_lag:
+                    lag_scripts.update(T27_BUILDER_SCRIPTS)
+                if t28_first_record_lag:
+                    lag_scripts.update(T28_BUILDER_SCRIPTS)
+                if t29_first_record_lag:
+                    lag_scripts.update(T29_BUILDER_SCRIPTS)
+                if t30_first_record_lag:
+                    lag_scripts.update(T30_BUILDER_SCRIPTS)
+                if t31_first_record_lag:
+                    lag_scripts.update(T31_BUILDER_SCRIPTS)
+                expected_without_lag = [
+                    row
+                    for row in expected_identity
+                    if row[0] not in lag_scripts
+                ]
+                if actual_identity != expected_without_lag:
+                    errors.append(
+                        "builder timing evidence does not match the current builder policy"
+                    )
             if any(
                 row.get("result") != "PASS"
                 or not isinstance(row.get("elapsed_ms"), (int, float))
@@ -3716,6 +4714,29 @@ def validate_report_document(
             errors.append("extruder replay SKIP must rely on passing compact evidence")
         builder_results = builder.get("builder_results") or {}
         for script, description in REQUIRED_READINESS_BUILDERS:
+            if (
+                (
+                    t27_first_record_lag
+                    and script == "tools/build_t27_readiness.py"
+                )
+                or (
+                    t28_first_record_lag
+                    and script == "tools/build_t28_readiness.py"
+                )
+                or (
+                    t29_first_record_lag
+                    and script == "tools/build_t29_readiness.py"
+                )
+                or (
+                    t30_first_record_lag
+                    and script == "tools/build_t30_readiness.py"
+                )
+                or (
+                    t31_first_record_lag
+                    and script == "tools/build_t31_readiness.py"
+                )
+            ):
+                continue
             if builder_results.get(script) != "PASS":
                 errors.append(
                     "READY requires a passing " + description
@@ -3900,6 +4921,11 @@ def build_validation_context(
         "t24_readiness_acceptance": derived_t24_readiness_acceptance,
         "t25_readiness_acceptance": derived_t25_readiness_acceptance,
         "t26_readiness_acceptance": derived_t26_readiness_acceptance,
+        "t27_readiness_acceptance": derived_t27_readiness_acceptance,
+        "t28_readiness_acceptance": derived_t28_readiness_acceptance,
+        "t29_readiness_acceptance": derived_t29_readiness_acceptance,
+        "t30_readiness_acceptance": derived_t30_readiness_acceptance,
+        "t31_readiness_acceptance": derived_t31_readiness_acceptance,
         "artifact_policy": derived_artifact_policy,
         "ore_pipeline_acceptance": derived_ore_pipeline_acceptance,
         "java_test_metrics": current_java_test_metrics,
@@ -4064,7 +5090,7 @@ def refresh_measured_metrics(
     ]
     expanded["cruciblecraft:anvil"] = 646
     expanded["cruciblecraft:smelter"] += 321
-    expanded["cruciblecraft:cooling"] = 321
+    expanded["cruciblecraft:cooling"] = 0
     expanded["cruciblecraft:distillery"] = (
         t5_chemical["generated_recipes_by_map"].get(
             "distillery", 0
@@ -4088,7 +5114,7 @@ def refresh_measured_metrics(
     document["rules"]["t8_declarative_rule_definitions"] = t8_pipes[
         "generic_rule_count"
     ]
-    document["rules"]["t10_declarative_rule_definitions"] = 4
+    document["rules"]["t10_declarative_rule_definitions"] = 3
     document["rules"]["t3_expanded_total"] = component["expanded_recipes"]
     document["rules"]["t3_expansion_budget"] = component["expansion_budget"]
     document["rules"]["t4_expanded_total"] = t4_tools["expanded_recipes"]
@@ -4198,6 +5224,36 @@ def refresh_measured_metrics(
         derived_t26_readiness_acceptance,
     )
     document["t26_readiness_acceptance"] = t26_readiness
+    t27_readiness = _context_value(
+        context,
+        "t27_readiness_acceptance",
+        derived_t27_readiness_acceptance,
+    )
+    document["t27_readiness_acceptance"] = t27_readiness
+    t28_readiness = _context_value(
+        context,
+        "t28_readiness_acceptance",
+        derived_t28_readiness_acceptance,
+    )
+    document["t28_readiness_acceptance"] = t28_readiness
+    t29_readiness = _context_value(
+        context,
+        "t29_readiness_acceptance",
+        derived_t29_readiness_acceptance,
+    )
+    document["t29_readiness_acceptance"] = t29_readiness
+    t30_readiness = _context_value(
+        context,
+        "t30_readiness_acceptance",
+        derived_t30_readiness_acceptance,
+    )
+    document["t30_readiness_acceptance"] = t30_readiness
+    t31_readiness = _context_value(
+        context,
+        "t31_readiness_acceptance",
+        derived_t31_readiness_acceptance,
+    )
+    document["t31_readiness_acceptance"] = t31_readiness
     document["artifact_policy"] = _context_value(
         context,
         "artifact_policy",

@@ -30,18 +30,11 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.DISTILLATION_TOWER.get());
         dropSelf(ModBlocks.LARGE_BOILER.get());
         dropSelf(ModBlocks.TANK_3X3X3.get());
+        dropSelf(ModBlocks.LARGE_CRUCIBLE.get());
         dropSelf(ModBlocks.BELLOWS.get());
         dropSelf(ModBlocks.SLUICE.get());
         dropSelf(ModBlocks.BATH.get());
-        dropSelf(ModBlocks.CENTRIFUGE.get());
-        dropSelf(ModBlocks.STEEL_CENTRIFUGE.get());
-        dropSelf(ModBlocks.TITANIUM_CENTRIFUGE.get());
-        dropSelf(ModBlocks.SIFTER.get());
-        dropSelf(ModBlocks.STEEL_SIFTER.get());
-        dropSelf(ModBlocks.TITANIUM_SIFTER.get());
-        ModMachineVariants.T16_SELECTED.forEach(variant ->
-                dropSelf(ModBlocks.configuredProcessingBlock(variant)));
-        ModMachineVariants.T17_SELECTED.forEach(variant ->
+        ModMachineVariants.ALL.forEach(variant ->
                 dropSelf(ModBlocks.configuredProcessingBlock(variant)));
         dropSelf(ModBlocks.MORTAR.get());
         dropSelf(ModBlocks.EXTRUDER.get());
@@ -50,9 +43,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.BENDER.get());
         dropSelf(ModBlocks.ASSEMBLER.get());
         dropSelf(ModBlocks.WELDER.get());
-        dropSelf(ModBlocks.ELECTROLYZER.get());
-        dropSelf(ModBlocks.ALUMINIUM_ELECTROLYZER.get());
-        dropSelf(ModBlocks.STAINLESS_STEEL_ELECTROLYZER.get());
         dropSelf(ModBlocks.MIXER.get());
         dropSelf(ModBlocks.AUTOCLAVE.get());
         dropSelf(ModBlocks.COMPRESSOR.get());
@@ -67,11 +57,13 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 block -> dropSelf(block.get()));
         ModBlocks.pipeBlocks().forEach(
                 block -> dropSelf(block.get()));
+        ModBlocks.hopperBlocks().forEach(block -> dropSelf(block.get()));
+        dropSelf(ModBlocks.STEEL_DUST_FUNNEL.get());
     }
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return Stream.concat(Stream.concat(Stream.concat(Stream.concat(Stream.of(
+        return Stream.concat(Stream.concat(Stream.concat(Stream.of(
                 (Block) ModBlocks.FIREBRICK.get(),
                 ModBlocks.FIREBOX.get(),
                 ModBlocks.CRUCIBLE.get(),
@@ -84,15 +76,10 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.DISTILLATION_TOWER.get(),
                 ModBlocks.LARGE_BOILER.get(),
                 ModBlocks.TANK_3X3X3.get(),
+                ModBlocks.LARGE_CRUCIBLE.get(),
                 ModBlocks.BELLOWS.get(),
                 ModBlocks.SLUICE.get(),
                 ModBlocks.BATH.get(),
-                ModBlocks.CENTRIFUGE.get(),
-                ModBlocks.STEEL_CENTRIFUGE.get(),
-                ModBlocks.TITANIUM_CENTRIFUGE.get(),
-                ModBlocks.SIFTER.get(),
-                ModBlocks.STEEL_SIFTER.get(),
-                ModBlocks.TITANIUM_SIFTER.get(),
                 ModBlocks.MORTAR.get(),
                 ModBlocks.EXTRUDER.get(),
                 ModBlocks.CUTTER.get(),
@@ -100,9 +87,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.BENDER.get(),
                 ModBlocks.ASSEMBLER.get(),
                 ModBlocks.WELDER.get(),
-                ModBlocks.ELECTROLYZER.get(),
-                ModBlocks.ALUMINIUM_ELECTROLYZER.get(),
-                ModBlocks.STAINLESS_STEEL_ELECTROLYZER.get(),
                 ModBlocks.MIXER.get(),
                 ModBlocks.AUTOCLAVE.get(),
                 ModBlocks.COMPRESSOR.get(),
@@ -113,13 +97,17 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.FLUID_DEPOSIT_EXTRACTOR.get(),
                 ModBlocks.FUEL_ENGINE.get(),
                 ModBlocks.BURNING_GAS_GENERATOR.get()),
-                ModMachineVariants.T16_SELECTED.stream()
-                        .map(ModBlocks::configuredProcessingBlock)),
-                ModMachineVariants.T17_SELECTED.stream()
+                ModMachineVariants.ALL.stream()
                         .map(ModBlocks::configuredProcessingBlock)),
                 ModBlocks.electricalConductorBlocks().stream()
                         .map(holder -> (Block) holder.get())),
-                ModBlocks.pipeBlocks().stream()
-                        .map(holder -> (Block) holder.get())).toList();
+                Stream.concat(
+                        ModBlocks.pipeBlocks().stream()
+                                .map(holder -> (Block) holder.get()),
+                        Stream.concat(
+                                ModBlocks.hopperBlocks().stream()
+                                        .map(holder -> (Block) holder.get()),
+                                Stream.of(ModBlocks.STEEL_DUST_FUNNEL.get()))))
+                .toList();
     }
 }

@@ -229,7 +229,7 @@
       "stage": "T17a",
       "path": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
       "required_tokens": [
-        "processing(\"distillery\", machineVariant(\"distillery\"))",
+        "tieredProcessing(\"distillery\")",
         "INVAR_DISTILLERY",
         "TITANIUM_DRYING",
         "INVAR_SMELTER",
@@ -383,7 +383,7 @@
       "stage": "T17c",
       "path": "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
       "required_tokens": [
-        "ModMachineVariants.T17_SELECTED",
+        "ModMachineVariants.ALL",
         "\"invar_distillery\", \"titanium_distillery\"",
         "\"drying\", \"invar_drying\", \"titanium_drying\"",
         "\"invar_smelter\", \"titanium_smelter\""
@@ -414,7 +414,7 @@
       "stage": "T17c",
       "path": "src/main/java/com/masson/cruciblecraft/datagen/ModBlockLootTables.java",
       "required_tokens": [
-        "ModMachineVariants.T17_SELECTED",
+        "ModMachineVariants.ALL",
         "dropSelf",
         "configuredProcessingBlock"
       ]
@@ -588,7 +588,7 @@
     },
     "t17d_third_phase_status": {
       "stage": "T17d",
-      "path": "CrucibleCraft-第三阶段总体规划.md",
+      "path": "CrucibleCraft-总体规划.md",
       "required_tokens": [
         "T17_READY",
         "selected 3",
@@ -607,7 +607,7 @@
     },
     "t17d_project_readme": {
       "stage": "T17d",
-      "path": "README.md",
+      "path": "CrucibleCraft-总体规划.md",
       "required_tokens": [
         "T17_READY",
         "T19 is now `T19_READY`"

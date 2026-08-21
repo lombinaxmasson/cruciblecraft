@@ -62,10 +62,10 @@ class T5ChemicalResourceTest {
                                             .map(ingredient -> ingredient.get("tag").getAsString())
                                             .anyMatch(tag -> tag.equals("c:dusts/" + material)
                                                     || tag.equals(
-                                                            "cruciblecraft:small_dusts/"
+                                                            "c:small_dusts/"
                                                                     + material)
                                                     || tag.equals(
-                                                            "cruciblecraft:tiny_dusts/"
+                                                            "c:tiny_dusts/"
                                                                     + material)),
                             "T5 route must consume the declared terminal material "
                                     + material);

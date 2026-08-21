@@ -266,6 +266,12 @@
       "strategy": "rule"
     },
     {
+      "cc_prefix": "rock",
+      "mapping_rule": "CC_PREFIX_RULE_MAPPING",
+      "source_prefix": "rockGt",
+      "strategy": "rule"
+    },
+    {
       "cc_prefix": "rotor",
       "mapping_rule": "CC_PREFIX_RULE_MAPPING",
       "source_prefix": "rotor",
@@ -438,6 +444,7 @@
       "quintuple_plate",
       "raw_ore",
       "ring",
+      "rock",
       "rod",
       "rotor",
       "screw",
@@ -750,7 +757,6 @@
       "reed",
       "river",
       "rock",
-      "rockGt",
       "rod",
       "round",
       "rubble",
@@ -867,7 +873,7 @@
         "2": 3,
         "3": 3,
         "452": 4,
-        "55": 1,
+        "56": 1,
         "80": 1
       },
       "field_count": 16,
@@ -882,7 +888,7 @@
           }
         },
         "cc_mappings": {
-          "distinct_count": 55,
+          "distinct_count": 56,
           "missing_count": 0,
           "null_count": 0,
           "present_count": 452,
@@ -974,20 +980,20 @@
         },
         "recheck_point": {
           "distinct_count": 1,
-          "missing_count": 180,
+          "missing_count": 181,
           "null_count": 0,
-          "present_count": 272,
+          "present_count": 271,
           "type_distribution": {
-            "string": 272
+            "string": 271
           }
         },
         "replacement_condition": {
           "distinct_count": 1,
-          "missing_count": 180,
+          "missing_count": 181,
           "null_count": 0,
-          "present_count": 272,
+          "present_count": 271,
           "type_distribution": {
-            "string": 272
+            "string": 271
           }
         },
         "serialized_identity": {
@@ -1029,8 +1035,8 @@
         "395": 1,
         "452": 1,
         "456": 1,
-        "46": 1,
         "468": 1,
+        "47": 1,
         "48": 1,
         "5": 1,
         "50": 1,
@@ -1170,13 +1176,13 @@
           }
         },
         "t0_mapping": {
-          "distinct_count": 46,
+          "distinct_count": 47,
           "missing_count": 0,
-          "null_count": 422,
+          "null_count": 421,
           "present_count": 468,
           "type_distribution": {
-            "null": 422,
-            "string": 46
+            "null": 421,
+            "string": 47
           }
         },
         "tags": {
@@ -1202,14 +1208,14 @@
     }
   },
   "generation": {
-    "builder_sha256": "a298536926822593bbce7de36dd3a625b3d1367a0334e3a5acda868c065c15bd",
+    "builder_sha256": "e5204949d7ee0af7d47c41e11ffe3b013ae2142795c12ceca81859a64b5c427a",
     "command": "python tools/build_t13_prefix_domain_denominators.py",
     "policy": "tools/t13_prefix_domain_policy.json",
-    "policy_sha256": "cc7325879eb1281b21c6fb041845cd641c61626f8f40dfee33693e5a56a2401b",
+    "policy_sha256": "28cca3d473bdfae4e73d7defcc667a33be30ad17ddbc7952137be4757786154c",
     "proof_tier": "full_replay"
   },
   "l3_evidence": {
-    "prefix_count": 45,
+    "prefix_count": 46,
     "prefix_ids": [
       "block",
       "bolt",
@@ -1243,6 +1249,7 @@
       "quintuple_plate",
       "raw_ore",
       "ring",
+      "rock",
       "rod",
       "rotor",
       "screw",
@@ -1257,7 +1264,7 @@
       "washed_crushed_ore",
       "wire"
     ],
-    "sha256": "478e7140f83a4964d508473736300a8a5b52666f0e9fd9c199e3ee13648f5b30"
+    "sha256": "0d022a2eeb22936f1046f05238eef0ab3a492a6f22222aa99a9c40d71d871137"
   },
   "op_field_variants": [
     {
@@ -3694,7 +3701,7 @@
       "canonical_key": "rockGt",
       "raw_key": "rockGt",
       "relation": "canonical_identity",
-      "source_record_sha256": "6f5c4efde301644e99da65fe1b3726f2e24f9584a4c33527b5a831daddcf4ce0",
+      "source_record_sha256": "a412d00ff3b55f01041b9cd6ff412330577e7e3b94e168a78a1f689ef90242bc",
       "transformation_rule": "PFX_IDENTITY"
     },
     {
@@ -15418,15 +15425,22 @@
     },
     {
       "canonical_id": "rockGt",
-      "cc_mappings": [],
-      "classification": "deferred_with_reason",
+      "cc_mappings": [
+        {
+          "cc_prefix": "rock",
+          "mapping_rule": "CC_PREFIX_RULE_MAPPING",
+          "source_prefix": "rockGt",
+          "strategy": "rule"
+        }
+      ],
+      "classification": "in_scope",
       "condition_expression": "new Or(ORES, STONE)",
       "dump_presence": true,
       "explicit_unused": false,
       "identical_names": [],
       "initializer_kind": "create",
       "initializer_sha256": "17c8f34218c69885be4b813e4f69c59d39a8f9b5304fbeb964aa7037b7e09cdb",
-      "owner": "post-T19",
+      "owner": "T14",
       "property_method_counts": {
         "add": 1,
         "aspects": 1,
@@ -15438,13 +15452,11 @@
           "canonical_key": "rockGt",
           "raw_key": "rockGt",
           "relation": "canonical_identity",
-          "source_record_sha256": "6f5c4efde301644e99da65fe1b3726f2e24f9584a4c33527b5a831daddcf4ce0",
+          "source_record_sha256": "a412d00ff3b55f01041b9cd6ff412330577e7e3b94e168a78a1f689ef90242bc",
           "transformation_rule": "PFX_IDENTITY"
         }
       ],
-      "reason": "The pinned OP prefix has no current CrucibleCraft runtime mapping; T13 records the denominator without designing a new form.",
-      "recheck_point": "Recheck after T19 scope closure.",
-      "replacement_condition": "A later milestone selects the canonical prefix and supplies source-backed generation, serialization, and acquisition semantics.",
+      "reason": "Canonical OP prefix has a current CrucibleCraft runtime mapping.",
       "serialized_identity": "rockGt",
       "source_field": "rockGt",
       "source_variant_fields": []
@@ -19337,11 +19349,11 @@
   "source": {
     "l3_prefix_plan": {
       "path": "tools/gt6_l3_prefix_plan.json",
-      "sha256": "6701cccd7df991e04eded75e545c4882c9e4b2ea482864fd3a27e17b175362a4"
+      "sha256": "3cf761a9689d68a536d02c0ebb6035571988df37243002b0e461922ff7cd48be"
     },
     "normalized_prefix_dump": {
       "path": "tools/gt6_oredict_prefixes_normalized.json",
-      "sha256": "cdd29c3d4b4d31ea2065ff80be0e34c60d6c49608b7913d57905297d23239ddd"
+      "sha256": "7bd153f3c14cbd388e444b297763c81b9182cc7eefdc6fdb9e58605d71858638"
     },
     "op_java": {
       "acquisition": "verified_build_cache_or_pinned_raw_url",
@@ -19353,22 +19365,22 @@
     },
     "prefix_mapping": {
       "path": "tools/gt6_prefix_mapping.json",
-      "sha256": "1a94952c67be1de0e9f47832e1ab6d0083d5b73099a5add078da3fafba5ec421"
+      "sha256": "fa60b9137b4e48b6021ff5d8244f7933d0a02d08a04697d15b98f8dc116a24de"
     },
     "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
     "runtime_prefix_index": {
       "path": "src/main/resources/data/cruciblecraft/material_prefixes/index.json",
-      "sha256": "3364eda83dd61741b9dd1afa205d4b4384af625810a15d479c7a7c0c4ddf8bad"
+      "sha256": "c30bc1e0b4f76957c946e6c38013a73f93146aa5217d0992af91ec7fd6aba216"
     },
-    "runtime_prefix_tree_sha256": "591829a71a787476c8e64699c0f59684a1bdbeb5bc851493b7929eacb1feaab9"
+    "runtime_prefix_tree_sha256": "a2f1d09241968ff724b7cccdd39f4c13794fe9ebd6e56a604755f39c611483d1"
   },
   "summary": {
-    "canonical_with_cc_mapping_count": 54,
-    "cc_mapping_relation_count": 57,
-    "cc_runtime_prefix_count": 56,
+    "canonical_with_cc_mapping_count": 55,
+    "cc_mapping_relation_count": 58,
+    "cc_runtime_prefix_count": 57,
     "classification_counts": {
-      "deferred_with_reason": 272,
-      "in_scope": 54,
+      "deferred_with_reason": 271,
+      "in_scope": 55,
       "out_of_scope": 126
     },
     "dump_only_count": 0,

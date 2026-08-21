@@ -143,7 +143,7 @@ public final class CableBlock extends Block implements EntityBlock {
             Player player,
             InteractionHand hand,
             BlockHitResult hit) {
-        return Gt6StyleConnections.wrench(
+        return Gt6StyleConnections.cutter(
                 stack, state, level, pos, player, hand, hit);
     }
 
@@ -159,6 +159,20 @@ public final class CableBlock extends Block implements EntityBlock {
             BlockGetter level,
             BlockPos pos,
             CollisionContext context) {
+        return Gt6StyleConnections.interactionShape(
+                state, context, connectedShape(state));
+    }
+
+    @Override
+    protected VoxelShape getCollisionShape(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            CollisionContext context) {
+        return connectedShape(state);
+    }
+
+    private VoxelShape connectedShape(BlockState state) {
         int mask = 0;
         for (Direction direction : Direction.values()) {
             if (isConnected(state, direction)) {

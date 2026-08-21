@@ -31,7 +31,7 @@
       "status": "BOUND_TO_FULL_VERIFICATION_REPORT"
     },
     "owned_inputs": {
-      "tools/build_t23_readiness.py": "601933e931960e90aa7ea127cfec87730ccff8b8a02566229006477d25c4f8ab",
+      "tools/build_t23_readiness.py": "7d16fdafcb32304162ee77f1ffc82a7d946f26ad3e5955780b26a85e87df7909",
       "tools/t23_readiness_policy.json": "583dfb0cdbecc105bccc7901fcba8256220b28f4454e364c006805138496acee"
     }
   },
@@ -39,7 +39,7 @@
     "consumers_within_selected": true,
     "every_plugin_consumed": true,
     "geometry_equivalence": true,
-    "plugin_count": 5,
+    "plugin_count": 6,
     "port_supply_not_per_block": true,
     "quarantine_declared": true
   },
@@ -62,7 +62,7 @@
   "policy": "The status field is derived from evidence by build(). Any mismatch between the committed value and a fresh build is detected by check().",
   "runtime": {
     "gametest_passing": true,
-    "gametest_total": 119
+    "gametest_total": 121
   },
   "schema_version": 1,
   "status": "T23_READY",

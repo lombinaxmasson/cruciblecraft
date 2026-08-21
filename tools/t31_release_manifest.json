@@ -1,0 +1,76 @@
+{
+  "content_checks": {
+    "jar": {
+      "embedded_version": "0.1.0-rc.1",
+      "forbidden_hits": [],
+      "has_assets": true,
+      "has_data": true,
+      "has_hopper_resources": true,
+      "has_mixins": true,
+      "has_mods_toml": true,
+      "has_test_classes": false,
+      "status": "measured",
+      "zero_filled": false
+    },
+    "zip": {
+      "contains_beta_jar": false,
+      "contains_rc1_jar": true,
+      "has_changelog": true,
+      "has_credits": true,
+      "has_docs": true,
+      "has_license": true,
+      "status": "measured",
+      "zero_filled": false
+    }
+  },
+  "currentness": {
+    "owned_inputs": {
+      "gradle.properties": "493aa028d3ca77f096ddeaf8587b0c5b5636ecbd488c1b33e75b2365187b7745",
+      "tools/build_t31_release_manifest.py": "7b57880e3f3d5ec4363a08e129fd46b09f377ded6b6d96b063a71802975a43ab",
+      "tools/t31_common.py": "24c0f8231f055507f77a5297ee727deb6d696775695d843babb3b73452cfa5f7"
+    }
+  },
+  "docs": {
+    "changelog_present": true,
+    "mods_toml_present": true,
+    "player_guide_present": true,
+    "readme_present": true,
+    "version_is_rc1": true,
+    "version_still_beta": false
+  },
+  "generated_by": "python tools/build_t31_release_manifest.py --write",
+  "mod_version": "0.1.0-rc.1",
+  "owned_inputs": {
+    "gradle.properties": "493aa028d3ca77f096ddeaf8587b0c5b5636ecbd488c1b33e75b2365187b7745",
+    "tools/build_t31_release_manifest.py": "7b57880e3f3d5ec4363a08e129fd46b09f377ded6b6d96b063a71802975a43ab",
+    "tools/t31_common.py": "24c0f8231f055507f77a5297ee727deb6d696775695d843babb3b73452cfa5f7"
+  },
+  "packages": {
+    "jar": {
+      "bytes": 7666238,
+      "kind": "jar",
+      "path": "build/libs/cruciblecraft-0.1.0-rc.1.jar",
+      "sha256": "6800a13b33ab98db6898ef0e5fb42691be346255f3a60eca0f68b5f192ff5324",
+      "status": "measured",
+      "zero_filled": false
+    },
+    "zip": {
+      "bytes": 5158724,
+      "kind": "zip",
+      "path": "build/distributions/cruciblecraft-0.1.0-rc.1.zip",
+      "sha256": "6f026e5280140ae4e8c8ffe81c7fa7ad4d9ba2c948de565bbbc72f62697d929a",
+      "status": "measured",
+      "zero_filled": false
+    }
+  },
+  "pending": [],
+  "platform": {
+    "java": 21,
+    "minecraft": "1.21.1",
+    "neoforge": "21.1.243"
+  },
+  "schema_version": 1,
+  "status": "T31_RELEASE_MANIFEST_COMPLETE",
+  "status_owner": "build_t31_release_manifest",
+  "target_version": "0.1.0-rc.1"
+}

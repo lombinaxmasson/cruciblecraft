@@ -70,6 +70,14 @@ public final class T4ToolRules {
             NOT_BOUNCY,
             NOT_STRETCHY,
             "material.tool.quality >= 1");
+    // GT6 Loader_Tools.java:324: And(ANTIMATTER.NOT, Wood.NOT, BOUNCY.NOT,
+    // STRETCHY.NOT, typemin(2)) — no qualmin, COATED accepted like the wrench.
+    private static final String WIRE_CUTTER_ELIGIBLE = and(
+            TOOL_DOMAIN + "2",
+            NOT_ANTIMATTER,
+            NOT_EXACT_WOOD,
+            NOT_BOUNCY,
+            NOT_STRETCHY);
 
     // GT6 Loader_Tools.java at 3703e403 uses PII/CGG for generic heads;
     // only the exact MT.Stone identity retains the direct vanilla stone route.
@@ -90,6 +98,8 @@ public final class T4ToolRules {
             "has_registered(plate)";
     private static final String GEM =
             "has_registered(gem)";
+    private static final String SCREW =
+            "has_registered(screw)";
 
     public static final List<Definition> PICKAXES = List.of(
             definition(
@@ -325,6 +335,37 @@ public final class T4ToolRules {
                             prefix(MaterialPrefixes.GEM, 4),
                             file())));
 
+    // GT6 Loader_Tools.java:324 wirecutter shapes {"PfP","hPd","STS"} and
+    // {"CfC","hCd","STS"}: P=plate, C=plateGem (-> gem), T=screw, S=stick
+    // (-> rod), f/h/d are the file, hammer and screwdriver catalysts.
+    // The d (screwdriver) catalyst is dropped: the assembler tool-slot cap
+    // (3 slots, 6 input rows) cannot carry three catalysts plus the pattern.
+    public static final List<Definition> WIRE_CUTTERS = List.of(
+            definition(
+                    "wire_cutter",
+                    "metal",
+                    ModItems.MATERIAL_WIRE_CUTTER.getId(),
+                    WIRE_CUTTER_ELIGIBLE,
+                    firstRoute(and(PLATE, SCREW, ROD)),
+                    List.of(
+                            prefix(MaterialPrefixes.PLATE, 3),
+                            prefix(MaterialPrefixes.SCREW, 1),
+                            prefix(MaterialPrefixes.ROD, 2),
+                            hammer(),
+                            file())),
+            definition(
+                    "wire_cutter",
+                    "gem",
+                    ModItems.MATERIAL_WIRE_CUTTER.getId(),
+                    WIRE_CUTTER_ELIGIBLE,
+                    laterRoute(and(GEM, SCREW, ROD), and(PLATE, SCREW, ROD)),
+                    List.of(
+                            prefix(MaterialPrefixes.GEM, 3),
+                            prefix(MaterialPrefixes.SCREW, 1),
+                            prefix(MaterialPrefixes.ROD, 2),
+                            hammer(),
+                            file())));
+
     public static final List<Definition> ALL = Stream.of(
                     PICKAXES,
                     SHOVELS,
@@ -336,7 +377,8 @@ public final class T4ToolRules {
                     CHISELS,
                     SAWS,
                     SCREWDRIVERS,
-                    WRENCHES)
+                    WRENCHES,
+                    WIRE_CUTTERS)
             .flatMap(List::stream)
             .toList();
 

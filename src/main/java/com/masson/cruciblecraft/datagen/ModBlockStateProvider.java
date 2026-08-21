@@ -5,6 +5,9 @@ import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.BellowsBlock;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
+import com.masson.cruciblecraft.content.block.HopperBlock;
+import com.masson.cruciblecraft.logistics.hopper.HopperKind;
+import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
 
@@ -62,25 +65,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 "large_boiler", ModBlocks.LARGE_BOILER.get());
         configuredMachine(
                 "tank_3x3x3", ModBlocks.TANK_3X3X3.get());
+        configuredMachine(
+                "large_crucible", ModBlocks.LARGE_CRUCIBLE.get());
         configuredMachine("sluice", ModBlocks.SLUICE.get());
         configuredMachine("bath", ModBlocks.BATH.get());
-        configuredMachine("centrifuge", ModBlocks.CENTRIFUGE.get());
-        configuredMachine(
-                "steel_centrifuge",
-                ModBlocks.STEEL_CENTRIFUGE.get());
-        configuredMachine(
-                "titanium_centrifuge",
-                ModBlocks.TITANIUM_CENTRIFUGE.get());
-        configuredMachine("sifter", ModBlocks.SIFTER.get());
-        configuredMachine("steel_sifter", ModBlocks.STEEL_SIFTER.get());
-        configuredMachine(
-                "titanium_sifter",
-                ModBlocks.TITANIUM_SIFTER.get());
-        ModMachineVariants.T16_SELECTED.forEach(variant ->
-                configuredMachine(
-                        variant.id().getPath(),
-                        ModBlocks.configuredProcessingBlock(variant)));
-        ModMachineVariants.T17_SELECTED.forEach(variant ->
+        ModMachineVariants.ALL.forEach(variant ->
                 configuredMachine(
                         variant.id().getPath(),
                         ModBlocks.configuredProcessingBlock(variant)));
@@ -91,13 +80,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         configuredMachine("bender", ModBlocks.BENDER.get());
         configuredMachine("assembler", ModBlocks.ASSEMBLER.get());
         configuredMachine("welder", ModBlocks.WELDER.get());
-        configuredMachine("electrolyzer", ModBlocks.ELECTROLYZER.get());
-        configuredMachine(
-                "aluminium_electrolyzer",
-                ModBlocks.ALUMINIUM_ELECTROLYZER.get());
-        configuredMachine(
-                "stainless_steel_electrolyzer",
-                ModBlocks.STAINLESS_STEEL_ELECTROLYZER.get());
         configuredMachine("mixer", ModBlocks.MIXER.get());
         configuredMachine("autoclave", ModBlocks.AUTOCLAVE.get());
         configuredMachine("compressor", ModBlocks.COMPRESSOR.get());
@@ -150,6 +132,42 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockItem(ModBlocks.CERAMIC_MOLD.get(), emptyMold);
         registerConductors();
         registerPipes();
+        registerHoppers();
+    }
+
+    private void registerHoppers() {
+        ModelFile hopper = models().getExistingFile(modLoc("block/hopper"));
+        ModelFile hopperSide = models().getExistingFile(modLoc("block/hopper_side"));
+        ModelFile queue = models().getExistingFile(modLoc("block/queue_hopper"));
+        ModelFile queueSide = models().getExistingFile(
+                modLoc("block/queue_hopper_side"));
+        HopperVariantCatalog.variants().forEach(variant -> {
+            HopperBlock block = ModBlocks.hopperBlocksById().get(variant.id()).get();
+            boolean queueKind = variant.kind() == HopperKind.QUEUE_HOPPER;
+            ModelFile down = queueKind ? queue : hopper;
+            ModelFile side = queueKind ? queueSide : hopperSide;
+            getVariantBuilder(block).forAllStates(state -> {
+                Direction facing = state.getValue(HopperBlock.FACING);
+                var builder = ConfiguredModel.builder();
+                if (facing == Direction.DOWN) {
+                    return builder.modelFile(down).build();
+                }
+                if (facing == Direction.UP) {
+                    return builder.modelFile(down).rotationX(180).build();
+                }
+                int y = switch (facing) {
+                    case SOUTH -> 180;
+                    case WEST -> 270;
+                    case EAST -> 90;
+                    default -> 0;
+                };
+                return builder.modelFile(side).rotationY(y).build();
+            });
+            simpleBlockItem(block, down);
+        });
+        simpleBlockWithItem(
+                ModBlocks.STEEL_DUST_FUNNEL.get(),
+                models().getExistingFile(modLoc("block/dust_funnel")));
     }
 
     private void registerConductors() {
@@ -490,6 +508,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
             case "distillation_tower" -> "distillery";
             case "large_boiler" -> "boiler";
             case "tank_3x3x3" -> "tank_3x3x3";
+            case "large_crucible" -> "coke_oven";
             case "drying", "invar_drying", "titanium_drying" -> "dryer";
             case "invar_smelter", "titanium_smelter" -> "smelter";
             default -> id;

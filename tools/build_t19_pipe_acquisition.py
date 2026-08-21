@@ -564,7 +564,7 @@ def main() -> int:
         print("T19c pipe acquisition is current")
         return 0
     if args.write:
-        OUTPUT.write_text(stable(document), encoding="utf-8", newline="\n")
+        OUTPUT.write_bytes(stable(document).encode("utf-8"))
         print(f"wrote {relative(OUTPUT)}")
         return 0
     print(stable(document), end="")

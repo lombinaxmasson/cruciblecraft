@@ -3,7 +3,7 @@
 ## 项目
 
 - **作者**：Lorbineitte Masson
-- **许可证**：All Rights Reserved（本模组代码与资源）
+- **许可证**：LGPL-3.0-or-later（见 `LICENSE`）
 - **Issue Tracker**：https://github.com/icodestuljh/cruciblecraft/issues
 
 ## 固定来源（GT6 / GTM）
@@ -24,6 +24,9 @@ replay，逐文件来源指针与 sha 钉见 `tools/` 下的来源政策产物�
   WorldgenOresSmall / Loader_Worldgen / MT）、材料与配方分母、机器与
   前缀身份。派生数据按 SOURCE_BACKED / SOURCE_DERIVED 分类；平衡性
   调整均为显式 `DESIGN_POLICY`，不冒充来源事实。
+- **资产说明**：GT6 默认资产按上游 `LICENSE.assets` 为 CC0 1.0；GregTech
+  logo 与其衍生资产按上游 `LICENSE.logos` 为 CC-BY-NC-4.0。本项目不使用
+  GregTech logo。
 
 ### GregTech Modern
 
@@ -34,15 +37,29 @@ replay，逐文件来源指针与 sha 钉见 `tools/` 下的来源政策产物�
   ItemPipeType.java 逐文件 sha256 见 `tools/gt6_pipe_source.json`）。
   T8 材质资格与管道统计以 GT6 直接注册为准。
 
+### TerraFirmaCraft
+
+- **使用方式**：`assets/cruciblecraft/models/block/anvil.json` 的砧几何改编自
+  TerraFirmaCraft 砧模型；原模型内的 credit 保留在该文件。其余许可与来源边界
+  见 `NOTICE`。
+
 ## 模板与第三方依赖
 
 - **NeoForged MDK 模板**：`TEMPLATE_LICENSE.txt`（MIT，NeoForged 项目，
   仅适用于模板文件）
+- **NeoForged 参考副本**：`net/neoforged/` 下的参考/补丁文件保留其
+  LGPL-2.1-only SPDX 文件头，且不是模组运行时源码集。
 - **Jade**（可选，方块信息）：https://modrinth.com/mod/jade
 - **EMI**（可选，配方查看）：https://modrinth.com/mod/emi
 - **KubeJS**（可选，启动期材质注册）：https://modrinth.com/mod/kubejs
 
 以上可选兼容模组均未捆绑；运行时按能力门控启用集成。
+
+## 本地参考树
+
+- `gt6u_code/GregTech6-Unofficial` 是本地 Git 参考树，不属于模组运行时输入；
+  公开仓库不承诺其内容可由 clone 自动取得。GT6U 本身声明 LGPL-3.0-or-later，
+  默认资产 CC0 1.0，logo 例外为 CC-BY-NC-4.0。
 
 ## 免责声明
 

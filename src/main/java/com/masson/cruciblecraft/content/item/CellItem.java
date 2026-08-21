@@ -45,6 +45,19 @@ public final class CellItem extends Item {
         return stackLimit(content(stack));
     }
 
+    @Override
+    public Component getName(ItemStack stack) {
+        SimpleFluidContent content = content(stack);
+        if (content.isEmpty()) {
+            return super.getName(stack);
+        }
+        return Component.translatable(
+                kind == CellContentGate.Kind.FLUID
+                        ? "item.cruciblecraft.fluid_cell.filled"
+                        : "item.cruciblecraft.gas_cell.filled",
+                content.copy().getHoverName());
+    }
+
     static int stackLimit(SimpleFluidContent content) {
         return content.isEmpty() ? 64 : 1;
     }

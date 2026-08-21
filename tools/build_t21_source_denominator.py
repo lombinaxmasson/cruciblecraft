@@ -286,8 +286,8 @@ def validate_compact(document: dict[str, Any]) -> None:
         or counts.get("material_candidates") != 224
         or counts.get("source_rows") != 45_353
         or counts.get("ordinary_v1_required") != 45_044
-        or counts.get("ordinary_translatable") != 2_592
-        or counts.get("ordinary_blocked_translation") != 42_452
+        or counts.get("ordinary_translatable") != 2_638
+        or counts.get("ordinary_blocked_translation") != 42_406
         or counts.get("unclassified") != 0
         or len(document.get("map_summaries") or []) != 10
         or len(document.get("rows") or []) != 45_353
@@ -326,9 +326,7 @@ def main() -> int:
             return 0
         document = build()
         if args.write:
-            OUTPUT.write_text(
-                stable(document), encoding="utf-8", newline="\n"
-            )
+            OUTPUT.write_bytes(stable(document).encode("utf-8"))
             print(json.dumps(document["counts"], sort_keys=True))
             return 0
         errors = check(document)

@@ -999,6 +999,31 @@ def write(source_root: Path | None = None) -> dict[str, Any]:
     return document
 
 
+def refresh_declared_source_hashes() -> dict[str, Any]:
+    """Refresh only the T12a hashes whose upstream inputs changed."""
+    current = load(OUTPUT)
+    rebuilt = build()
+    current_without_hashes = dict(current)
+    rebuilt_without_hashes = dict(rebuilt)
+    current_without_hashes.pop("source_hashes", None)
+    rebuilt_without_hashes.pop("source_hashes", None)
+    if current_without_hashes != rebuilt_without_hashes:
+        raise ValueError(
+            "T12a non-hash projection drifted; full rebuild is not permitted"
+        )
+    source_hashes = dict(current["source_hashes"])
+    rebuilt_hashes = rebuilt["source_hashes"]
+    for key in (
+        "builder",
+        "material_registration_gate",
+        "machine_crafting_readiness",
+    ):
+        source_hashes[key] = rebuilt_hashes[key]
+    current["source_hashes"] = source_hashes
+    OUTPUT.write_bytes(stable_json(current).encode("utf-8"))
+    return current
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -1019,7 +1044,20 @@ def main() -> int:
         type=Path,
         help="fetch and verify only the pinned T12a GT6 source files",
     )
+    parser.add_argument(
+        "--refresh-declared-source-hashes",
+        action="store_true",
+        help="refresh only the declared upstream source hashes",
+    )
     args = parser.parse_args()
+    if args.refresh_declared_source_hashes and (
+        args.check
+        or args.verify_source is not None
+        or args.fetch_source is not None
+    ):
+        parser.error(
+            "--refresh-declared-source-hashes is an exclusive write command"
+        )
     if (
         args.reference_only or args.full_replay
     ) and not args.check:
@@ -1033,6 +1071,11 @@ def main() -> int:
             "Fetched and verified pinned T12a GT6 source under "
             f"{args.fetch_source}"
         )
+        return 0
+
+    if args.refresh_declared_source_hashes:
+        refresh_declared_source_hashes()
+        print("Refreshed declared T12a source hashes")
         return 0
 
     if args.check:

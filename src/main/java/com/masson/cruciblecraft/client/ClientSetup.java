@@ -6,12 +6,15 @@ import java.util.List;
 import java.util.Set;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.client.color.HopperBlockColor;
 import com.masson.cruciblecraft.client.color.MachineBlockColor;
 import com.masson.cruciblecraft.client.color.MaterialItemColor;
 import com.masson.cruciblecraft.client.color.MaterialOreColor;
 import com.masson.cruciblecraft.client.color.MaterialStorageColor;
+import com.masson.cruciblecraft.client.color.RockColor;
 import com.masson.cruciblecraft.client.render.AnvilRenderer;
 import com.masson.cruciblecraft.client.render.CrucibleRenderer;
+import com.masson.cruciblecraft.client.screen.HopperScreen;
 import com.masson.cruciblecraft.client.screen.ConfiguredProcessingMachineScreen;
 import com.masson.cruciblecraft.client.screen.CokeOvenScreen;
 import com.masson.cruciblecraft.client.screen.CrusherScreen;
@@ -74,7 +77,8 @@ public class ClientSetup {
                 ModItems.MATERIAL_CHISEL.get(),
                 ModItems.MATERIAL_SAW.get(),
                 ModItems.MATERIAL_SCREWDRIVER.get(),
-                ModItems.MATERIAL_WRENCH.get()));
+                ModItems.MATERIAL_WRENCH.get(),
+                ModItems.MATERIAL_WIRE_CUTTER.get()));
         com.masson.cruciblecraft.material.MaterialCatalog.values().forEach(material ->
                 material.formItems().keySet().forEach(form ->
                         MaterialLookup.item(material.id(), form).ifPresent(materialItems::add)));
@@ -97,6 +101,12 @@ public class ClientSetup {
                         .map(net.minecraft.world.level.block.Block::asItem)
                         .toArray(Item[]::new));
         event.register(MaterialOreColor::itemColor, MaterialOreColor.oreBlockItems());
+        Block[] tintedHoppers = HopperBlockColor.tintedBlocks();
+        event.register(
+                HopperBlockColor::itemColor,
+                java.util.Arrays.stream(tintedHoppers)
+                        .map(net.minecraft.world.level.block.Block::asItem)
+                        .toArray(Item[]::new));
     }
 
     @SubscribeEvent
@@ -158,10 +168,14 @@ public class ClientSetup {
                 },
                 ModBlocks.ANVIL.get());
         event.register(MachineBlockColor::blockColor, MachineBlockColor.tintedBlocks());
+        event.register(HopperBlockColor::blockColor, HopperBlockColor.tintedBlocks());
         event.register(MaterialOreColor::blockColor, MaterialOreColor.oreBlocks());
         event.register(
                 MaterialStorageColor::blockColor,
                 MaterialStorageColor.storageBlocks());
+        event.register(
+                RockColor::blockColor,
+                RockColor.rockBlocks());
     }
 
     @SubscribeEvent
@@ -172,6 +186,7 @@ public class ClientSetup {
 
     @SubscribeEvent
     static void registerScreens(RegisterMenuScreensEvent event) {
+        event.register(ModMenus.HOPPER.get(), HopperScreen::new);
         event.register(ModMenus.COKE_OVEN.get(), CokeOvenScreen::new);
         event.register(ModMenus.CRUSHER.get(), CrusherScreen::new);
         event.register(ModMenus.SLUICE.get(), ConfiguredProcessingMachineScreen::new);

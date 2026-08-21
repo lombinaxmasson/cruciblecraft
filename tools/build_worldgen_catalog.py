@@ -647,7 +647,7 @@ def write_outputs(files: dict[str, str]) -> None:
     for relative, content in files.items():
         path = OUTPUT_RESOURCE_ROOT / relative
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(content, encoding="utf-8", newline="\n")
+        path.write_bytes(content.encode("utf-8"))
 
 
 def main() -> int:
@@ -677,9 +677,7 @@ def main() -> int:
         return 0
     if args.write:
         write_outputs(files)
-        READINESS.write_text(
-            expected_readiness, encoding="utf-8", newline="\n"
-        )
+        READINESS.write_bytes(expected_readiness.encode("utf-8"))
         print(
             f"Wrote {len(files)} worldgen catalog files and {READINESS}"
         )

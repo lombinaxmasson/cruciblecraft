@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "table": "multiblock_kinds",
+  "status": "T27_TABLE_POLICY",
+  "review": "T27-2 P7. Consumes T23 behavior classification. Five implemented v1 kinds stay closed. crucible is the only unimplemented v1_required kind. 19 post-1.0 kinds go to Track B. Five T13/T23 out-of-scope kinds keep exclusion evidence. T13 in_scope is not the v1 set: crucible is T13 deferred_with_reason and T23/T27 v1_required.",
+  "defaults": {
+    "in_scope": {
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_multiblocks",
+      "replacement_condition": "Not applicable: T23 closed this v1-required kind.",
+      "recheck_point": "T27 RC candidate structure/lifecycle recheck",
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "T23 selected or pre-T23 implemented this kind; lifecycle and acquisition evidence are in t23_readiness."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T23 behavior classification plus T13 canonical kind. Schema/plugin presence is not treated as a later kind being done."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "T23 load bounds and T26.5 publication baseline cover the selected v1 structures; no T27 content delta."
+        }
+      }
+    },
+    "deferred_with_reason": {
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "cc_implementation": "none",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card."
+        },
+        "fidelity": {
+          "status": "source_backed",
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card."
+        }
+      }
+    },
+    "out_of_scope": {
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "cc_implementation": "none",
+      "replacement_condition": "Not applicable: T13/T23 exclusion retained. Re-entry requires a product-contract change.",
+      "recheck_point": "product-contract change only",
+      "axes": {
+        "closure": {
+          "status": "not_applicable",
+          "evidence": "T13 and T23 out_of_scope exclusion evidence retained."
+        },
+        "fidelity": {
+          "status": "design_policy",
+          "evidence": "Nuclear/world-interaction/magic/gimmick controllers stay outside the v1 product contract."
+        },
+        "load": {
+          "status": "not_applicable",
+          "evidence": "Excluded kinds are not load-bearing for v1 or generated T28+ cards."
+        }
+      }
+    }
+  },
+  "cc_implementations": {
+    "centrifuge": "cruciblecraft:large_centrifuge",
+    "coke_oven": "cruciblecraft:coke_oven",
+    "crucible": "cruciblecraft:large_crucible",
+    "distillation_tower": "cruciblecraft:distillation_tower",
+    "large_boiler": "cruciblecraft:large_boiler",
+    "tank_3x3x3": "cruciblecraft:tank_3x3x3"
+  },
+  "overrides": {
+    "crucible": {
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/crucible",
+      "cc_implementation": "cruciblecraft:large_crucible",
+      "reason": "T29 registered cruciblecraft:large_crucible as a 27-position open-top thermal/steelmaking multiblock with 432-ingot capacity. Single-block cruciblecraft:crucible is retained.",
+      "replacement_condition": "Generated T28+ bounded thermal/steelmaking behavior card implements cruciblecraft:large_crucible without colliding with cruciblecraft:crucible.",
+      "recheck_point": "T29_READY; RC candidate structure/lifecycle recheck",
+      "dependencies": [
+        {
+          "kind": "runtime_capability",
+          "id": "cruciblecraft:crucible"
+        },
+        {
+          "kind": "open_item_id",
+          "id": "O-36"
+        }
+      ],
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "cruciblecraft:large_crucible is registered and cruciblecraft:crucible is retained."
+        },
+        "fidelity": {
+          "status": "source_backed",
+          "evidence": "T13 canonical kind crucible plus T23 steelmaking behavior row. T29 implements the reserved cruciblecraft:large_crucible controller."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "T29 GT publication delta is measured 0/0/0. Vanilla controller crafting is a non-GT axis."
+        }
+      }
+    },
+    "cryo_distillation_tower": {
+      "dependencies": [
+        {
+          "kind": "canonical_id",
+          "id": "CRYO"
+        }
+      ],
+      "reason": "Post-1.0 multiblock. Cryo behavior depends on the CRYO energy identity; T27 does not implement cryo distillation."
+    }
+  }
+}

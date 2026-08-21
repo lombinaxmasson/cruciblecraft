@@ -11,6 +11,8 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeAcquisitionRecipeCatalog;
+import com.masson.cruciblecraft.logistics.hopper.HopperKind;
+import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.recipe.rule.MaterialRule;
@@ -59,9 +61,43 @@ public final class ModRecipeProvider extends RecipeProvider {
     protected void buildRecipes(RecipeOutput output) {
         RecipeOutput recipesOnly = new AdvancementFreeRecipeOutput(output);
         addMachineRecipes(recipesOnly);
+        addHopperRecipes(recipesOnly);
         MaterialCatalog.startupValues().stream()
                 .sorted(Comparator.comparing(MaterialDefinition::id))
                 .forEach(material -> addDerivedOreRecipes(recipesOnly, material));
+    }
+
+    private static void addHopperRecipes(RecipeOutput output) {
+        HopperVariantCatalog.variants().forEach(variant -> {
+            Item result = ModItems.hopperItemsById().get(variant.id()).get();
+            Item plate = materialItem(
+                    variant.materialPath(), MaterialPrefixes.PLATE);
+            ShapedRecipeBuilder builder = ShapedRecipeBuilder.shaped(
+                            RecipeCategory.MISC, result)
+                    .define('P', plate)
+                    .define('C', Items.CHEST)
+                    .unlockedBy("has_plate", has(plate))
+                    .unlockedBy("has_chest", has(Items.CHEST));
+            if (variant.kind() == HopperKind.HOPPER) {
+                builder.pattern("P P").pattern("PCP").pattern(" P ");
+            } else {
+                builder.pattern("PPP").pattern("C C").pattern("P P");
+            }
+            builder.save(output, id("hoppers/" + variant.id().getPath()));
+        });
+        Item ironPlate = materialItem("iron", MaterialPrefixes.PLATE);
+        Item ironRod = materialItem("iron", MaterialPrefixes.ROD);
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC, ModItems.STEEL_DUST_FUNNEL.get())
+                .pattern(" P ")
+                .pattern(" H ")
+                .pattern(" R ")
+                .define('P', ironPlate)
+                .define('H', Items.HOPPER)
+                .define('R', ironRod)
+                .unlockedBy("has_hopper", has(Items.HOPPER))
+                .unlockedBy("has_plate", has(ironPlate))
+                .save(output, id("hoppers/steel_dust_funnel"));
     }
 
     private static void addMachineRecipes(RecipeOutput output) {
@@ -557,6 +593,10 @@ public final class ModRecipeProvider extends RecipeProvider {
                     .define('P', Items.PAPER)
                     .define('C', Items.CHARCOAL)
                     .unlockedBy("has_paper", has(Items.PAPER));
+            if (pattern.recipePattern().stream()
+                    .anyMatch(row -> row.contains("S"))) {
+                builder.define('S', Items.STICK);
+            }
             pattern.recipePattern().forEach(builder::pattern);
             builder.save(output, id("tools/pattern/" + pattern.id()));
         });

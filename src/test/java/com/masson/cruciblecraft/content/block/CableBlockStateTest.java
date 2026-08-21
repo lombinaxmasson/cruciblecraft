@@ -39,9 +39,12 @@ class CableBlockStateTest {
                         "src/main/java/com/masson/cruciblecraft/content/item/CableBlockItem.java"));
         assertTrue(cables.contains("return defaultBlockState();"));
         assertTrue(pipes.contains("return defaultBlockState();"));
-        assertTrue(cables.contains("Gt6StyleConnections.wrench"));
+        // GT6 getFacingTool split: cables use the wire cutter, pipes the wrench.
+        assertTrue(cables.contains("Gt6StyleConnections.cutter"));
         assertTrue(pipes.contains("Gt6StyleConnections.wrench"));
         assertTrue(items.contains("Gt6StyleConnections.placeBlock"));
         assertTrue(cables.contains("return state;"));
+        assertTrue(cables.contains("interactionShape"));
+        assertTrue(pipes.contains("interactionShape"));
     }
 }

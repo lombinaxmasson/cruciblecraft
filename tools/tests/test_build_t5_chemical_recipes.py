@@ -20,6 +20,24 @@ def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+_PREFIX_NAMESPACES: dict[str, str] = {}
+
+
+def tag_namespace(prefix: str) -> str:
+    if prefix not in _PREFIX_NAMESPACES:
+        definition = json.loads(
+            (
+                ROOT
+                / "src/main/resources/data/cruciblecraft/material_prefixes"
+                / f"{prefix}.json"
+            ).read_text(encoding="utf-8")
+        )
+        _PREFIX_NAMESPACES[prefix] = definition.get(
+            "tag_namespace", "cruciblecraft"
+        )
+    return _PREFIX_NAMESPACES[prefix]
+
+
 class T5ChemicalRecipeProjectionTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -128,11 +146,8 @@ class T5ChemicalRecipeProjectionTest(unittest.TestCase):
                     )
                     expected_tags = {
                         (
-                            f"c:dusts/{material}"
-                            if row["prefix"] == "dust"
-                            else (
-                                f"cruciblecraft:{row['prefix']}s/{material}"
-                            )
+                            f"{tag_namespace(row['prefix'])}:"
+                            f"{row['prefix']}s/{material}"
                         )
                         for row in source["source_inputs"]["items"]
                         if row.get("material") == material

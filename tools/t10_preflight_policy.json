@@ -14,7 +14,7 @@
     },
     "normalized_prefix_dump": {
       "path": "tools/gt6_oredict_prefixes_normalized.json",
-      "sha256": "cdd29c3d4b4d31ea2065ff80be0e34c60d6c49608b7913d57905297d23239ddd",
+      "sha256": "7bd153f3c14cbd388e444b297763c81b9182cc7eefdc6fdb9e58605d71858638",
       "extraction_key": "records[source_name=ingotHot].heat_damage"
     }
   },
@@ -26,9 +26,9 @@
       "ingotTriple": "cruciblecraft:triple_ingot",
       "ingotHot": "cruciblecraft:ingot_hot"
     },
-    "expected_startup_prefix_count": 56,
+    "expected_startup_prefix_count": 57,
     "expected_material_count": 1773,
-    "expected_handshake_entry_count": 1829,
+    "expected_handshake_entry_count": 1830,
     "expected_gate_registration_counts": {
       "double_ingot": 323,
       "triple_ingot": 323,
@@ -63,11 +63,10 @@
       "generation_tag": "ITEMGENERATOR.INGOTS_HOT",
       "required_registered_form": "ingot",
       "routes": [
-        "smelter_to_hot_ingot",
-        "hot_ingot_to_ingot"
+        "smelter_to_hot_ingot"
       ],
       "expected_material_count": 321,
-      "expected_recipe_count": 642
+      "expected_recipe_count": 321
     },
     "multi_ingot": {
       "generation_tag": "ITEMGENERATOR.MULTIINGOTS",
@@ -87,8 +86,8 @@
   ],
   "container_recipe_status": "CLOSED_WITH_COMPONENT_CELLS",
   "t10a_publication": {
-    "expected_current_recipe_additions": 4,
-    "known_future_recipe_additions": 1288,
+    "expected_current_recipe_additions": 3,
+    "known_future_recipe_additions": 967,
     "known_form_material_rule_budget": 1500
   },
   "container_acceptance": {
@@ -100,9 +99,9 @@
     "expected_cell_gate_entries": 109
   },
   "load_policy": {
-    "expected_datapack_recipe_entries": 3235,
+    "expected_datapack_recipe_entries": 3360,
     "datapack_recipe_entry_budget": 6600,
-    "expected_published_recipes": 18871,
+    "expected_published_recipes": 18550,
     "minimum_compression_ratio": 3.0,
     "reload_budget_ms": 10000,
     "index_build_budget_ms": 1000

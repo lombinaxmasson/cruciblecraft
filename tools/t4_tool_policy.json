@@ -19,7 +19,11 @@
     "criterion_status": "historical_pickaxe_batch_closed",
     "batch_recipe_expansion": "superseded_by_exact_per_tool_projection",
     "committed_pickaxe_recipes_before_exact_policy": 542,
-    "current_creative_examples": ["iron", "diamond", "stone"],
+    "current_creative_examples": [
+      "iron",
+      "diamond",
+      "stone"
+    ],
     "oak_status": "source_eligible_but_currently_route_unavailable; retained in the historical vertical-slice list only"
   },
   "scope": {
@@ -36,7 +40,8 @@
       "chisel",
       "saw",
       "screwdriver",
-      "wrench"
+      "wrench",
+      "wire_cutter"
     ],
     "excluded": [
       "electric_tools",
@@ -103,7 +108,7 @@
       }
     },
     "antimatter_exclusion": {
-      "reason": "All eleven Loader_Tools listeners include TD.Atomic.ANTIMATTER.NOT.",
+      "reason": "All twelve Loader_Tools listeners include TD.Atomic.ANTIMATTER.NOT.",
       "observed_tag_population": 2,
       "source": {
         "repository": "GregTech6/gregtech6",
@@ -113,7 +118,7 @@
       }
     },
     "coated_exclusion_with_wrench_exception": {
-      "reason": "Core, hammer, File, Chisel, Saw, and Screwdriver listeners include TD.Coated.NOT; the Wrench listener at line 310 does not. Gilded/coated material is therefore valid for Wrench only when its other gates pass.",
+      "reason": "Core, hammer, File, Chisel, Saw, and Screwdriver listeners include TD.Coated.NOT; the Wrench listener at line 310 and the Wire Cutter listener at line 324 do not. Gilded/coated material is therefore valid for Wrench and Wire Cutter only when their other gates pass.",
       "observed_tag_population": 5,
       "source": {
         "repository": "GregTech6/gregtech6",
@@ -198,7 +203,7 @@
         "3": "advanced"
       }
     },
-    "no_advanced_tools_usage": "diagnostic_only_for_these_11_tools",
+    "no_advanced_tools_usage": "diagnostic_only_for_these_12_tools",
     "eligibility_rule": "the intersection of each GT6 prefix gate, listener gate, and full-tool gate; PROPERTIES.NO_ADVANCED_TOOLS is not consulted"
   },
   "expected_source_facts": {
@@ -222,209 +227,507 @@
     "pickaxe": {
       "prefix": {
         "all": [
-          {"field": "tool.types", "minimum": 1}
+          {
+            "field": "tool.types",
+            "minimum": 1
+          }
         ]
       },
       "listener": {
         "all": [
-          {"tag": "ATOMIC.ANTIMATTER", "present": false},
-          {"identity_use": "exact_wood_exclusion"},
-          {"tag": "COMPOUNDS.COATED", "present": false}
+          {
+            "tag": "ATOMIC.ANTIMATTER",
+            "present": false
+          },
+          {
+            "identity_use": "exact_wood_exclusion"
+          },
+          {
+            "tag": "COMPOUNDS.COATED",
+            "present": false
+          }
         ]
       },
-      "full_tool": {"all": []},
-      "source_lines": {"prefix": "OP.java:240", "listener": "Loader_Tools.java:295", "full_tool": "Loader_Tools.java:339"}
+      "full_tool": {
+        "all": []
+      },
+      "source_lines": {
+        "prefix": "OP.java:240",
+        "listener": "Loader_Tools.java:295",
+        "full_tool": "Loader_Tools.java:339"
+      }
     },
     "shovel": {
       "prefix": {
         "all": [
-          {"field": "tool.types", "minimum": 1}
+          {
+            "field": "tool.types",
+            "minimum": 1
+          }
         ]
       },
       "listener": {
         "all": [
-          {"tag": "ATOMIC.ANTIMATTER", "present": false},
-          {"identity_use": "exact_wood_exclusion"},
-          {"tag": "COMPOUNDS.COATED", "present": false}
+          {
+            "tag": "ATOMIC.ANTIMATTER",
+            "present": false
+          },
+          {
+            "identity_use": "exact_wood_exclusion"
+          },
+          {
+            "tag": "COMPOUNDS.COATED",
+            "present": false
+          }
         ]
       },
-      "full_tool": {"all": []},
-      "source_lines": {"prefix": "OP.java:241", "listener": "Loader_Tools.java:296", "full_tool": "Loader_Tools.java:340"}
+      "full_tool": {
+        "all": []
+      },
+      "source_lines": {
+        "prefix": "OP.java:241",
+        "listener": "Loader_Tools.java:296",
+        "full_tool": "Loader_Tools.java:340"
+      }
     },
     "axe": {
       "prefix": {
         "all": [
-          {"field": "tool.types", "minimum": 1}
+          {
+            "field": "tool.types",
+            "minimum": 1
+          }
         ]
       },
       "listener": {
         "all": [
-          {"tag": "ATOMIC.ANTIMATTER", "present": false},
-          {"identity_use": "exact_wood_exclusion"},
-          {"tag": "COMPOUNDS.COATED", "present": false}
+          {
+            "tag": "ATOMIC.ANTIMATTER",
+            "present": false
+          },
+          {
+            "identity_use": "exact_wood_exclusion"
+          },
+          {
+            "tag": "COMPOUNDS.COATED",
+            "present": false
+          }
         ]
       },
-      "full_tool": {"all": []},
-      "source_lines": {"prefix": "OP.java:243", "listener": "Loader_Tools.java:300", "full_tool": "Loader_Tools.java:342"}
+      "full_tool": {
+        "all": []
+      },
+      "source_lines": {
+        "prefix": "OP.java:243",
+        "listener": "Loader_Tools.java:300",
+        "full_tool": "Loader_Tools.java:342"
+      }
     },
     "hoe": {
       "prefix": {
         "all": [
-          {"field": "tool.types", "minimum": 1}
+          {
+            "field": "tool.types",
+            "minimum": 1
+          }
         ]
       },
       "listener": {
         "all": [
-          {"tag": "ATOMIC.ANTIMATTER", "present": false},
-          {"identity_use": "exact_wood_exclusion"},
-          {"tag": "COMPOUNDS.COATED", "present": false}
+          {
+            "tag": "ATOMIC.ANTIMATTER",
+            "present": false
+          },
+          {
+            "identity_use": "exact_wood_exclusion"
+          },
+          {
+            "tag": "COMPOUNDS.COATED",
+            "present": false
+          }
         ]
       },
-      "full_tool": {"all": []},
-      "source_lines": {"prefix": "OP.java:244", "listener": "Loader_Tools.java:299", "full_tool": "Loader_Tools.java:344"}
+      "full_tool": {
+        "all": []
+      },
+      "source_lines": {
+        "prefix": "OP.java:244",
+        "listener": "Loader_Tools.java:299",
+        "full_tool": "Loader_Tools.java:344"
+      }
     },
     "sword": {
       "prefix": {
         "all": [
-          {"field": "tool.types", "minimum": 1}
+          {
+            "field": "tool.types",
+            "minimum": 1
+          }
         ]
       },
       "listener": {
         "all": [
-          {"tag": "ATOMIC.ANTIMATTER", "present": false},
-          {"identity_use": "exact_wood_exclusion"},
-          {"tag": "COMPOUNDS.COATED", "present": false}
+          {
+            "tag": "ATOMIC.ANTIMATTER",
+            "present": false
+          },
+          {
+            "identity_use": "exact_wood_exclusion"
+          },
+          {
+            "tag": "COMPOUNDS.COATED",
+            "present": false
+          }
         ]
       },
-      "full_tool": {"all": []},
-      "source_lines": {"prefix": "OP.java:239", "listener": "Loader_Tools.java:321", "full_tool": "Loader_Tools.java:335"}
+      "full_tool": {
+        "all": []
+      },
+      "source_lines": {
+        "prefix": "OP.java:239",
+        "listener": "Loader_Tools.java:321",
+        "full_tool": "Loader_Tools.java:335"
+      }
     },
     "smithing_hammer": {
       "prefix": {
         "all": [
-          {"field": "tool.types", "minimum": 1},
+          {
+            "field": "tool.types",
+            "minimum": 1
+          },
           {
             "any": [
-              {"tag": "PROPERTIES.WOOD", "present": true},
-              {"tag": "PROPERTIES.BOUNCY", "present": true},
-              {"tag": "PROPERTIES.STRETCHY", "present": true},
-              {"field": "tool.quality", "minimum": 1}
+              {
+                "tag": "PROPERTIES.WOOD",
+                "present": true
+              },
+              {
+                "tag": "PROPERTIES.BOUNCY",
+                "present": true
+              },
+              {
+                "tag": "PROPERTIES.STRETCHY",
+                "present": true
+              },
+              {
+                "field": "tool.quality",
+                "minimum": 1
+              }
             ]
           }
         ]
       },
       "listener": {
         "all": [
-          {"tag": "ATOMIC.ANTIMATTER", "present": false},
-          {"identity_use": "exact_wood_exclusion"},
-          {"tag": "COMPOUNDS.COATED", "present": false},
-          {"tag": "PROPERTIES.WOOD", "present": false},
-          {"tag": "PROPERTIES.BOUNCY", "present": false},
-          {"tag": "PROPERTIES.STRETCHY", "present": false}
+          {
+            "tag": "ATOMIC.ANTIMATTER",
+            "present": false
+          },
+          {
+            "identity_use": "exact_wood_exclusion"
+          },
+          {
+            "tag": "COMPOUNDS.COATED",
+            "present": false
+          },
+          {
+            "tag": "PROPERTIES.WOOD",
+            "present": false
+          },
+          {
+            "tag": "PROPERTIES.BOUNCY",
+            "present": false
+          },
+          {
+            "tag": "PROPERTIES.STRETCHY",
+            "present": false
+          }
         ]
       },
       "full_tool": {
         "all": [
-          {"tag": "PROPERTIES.WOOD", "present": false},
-          {"tag": "PROPERTIES.BOUNCY", "present": false},
-          {"tag": "PROPERTIES.STRETCHY", "present": false}
+          {
+            "tag": "PROPERTIES.WOOD",
+            "present": false
+          },
+          {
+            "tag": "PROPERTIES.BOUNCY",
+            "present": false
+          },
+          {
+            "tag": "PROPERTIES.STRETCHY",
+            "present": false
+          }
         ]
       },
-      "source_lines": {"prefix": "OP.java:247", "listener": "Loader_Tools.java:327", "full_tool": "Loader_Tools.java:333"}
+      "source_lines": {
+        "prefix": "OP.java:247",
+        "listener": "Loader_Tools.java:327",
+        "full_tool": "Loader_Tools.java:333"
+      }
     },
     "file": {
       "prefix": {
         "all": [
-          {"field": "tool.types", "minimum": 2},
-          {"tag": "PROPERTIES.BOUNCY", "present": false},
-          {"tag": "PROPERTIES.STRETCHY", "present": false}
+          {
+            "field": "tool.types",
+            "minimum": 2
+          },
+          {
+            "tag": "PROPERTIES.BOUNCY",
+            "present": false
+          },
+          {
+            "tag": "PROPERTIES.STRETCHY",
+            "present": false
+          }
         ]
       },
       "listener": {
         "all": [
-          {"tag": "ATOMIC.ANTIMATTER", "present": false},
-          {"identity_use": "exact_wood_exclusion"},
-          {"tag": "COMPOUNDS.COATED", "present": false},
-          {"field": "tool.types", "minimum": 2},
-          {"field": "tool.quality", "maximum": 2}
+          {
+            "tag": "ATOMIC.ANTIMATTER",
+            "present": false
+          },
+          {
+            "identity_use": "exact_wood_exclusion"
+          },
+          {
+            "tag": "COMPOUNDS.COATED",
+            "present": false
+          },
+          {
+            "field": "tool.types",
+            "minimum": 2
+          },
+          {
+            "field": "tool.quality",
+            "maximum": 2
+          }
         ]
       },
-      "full_tool": {"all": []},
-      "source_lines": {"prefix": "OP.java:233", "listener": "Loader_Tools.java:304", "full_tool": "Loader_Tools.java:347"}
+      "full_tool": {
+        "all": []
+      },
+      "source_lines": {
+        "prefix": "OP.java:233",
+        "listener": "Loader_Tools.java:304",
+        "full_tool": "Loader_Tools.java:347"
+      }
     },
     "chisel": {
       "prefix": {
         "all": [
-          {"field": "tool.types", "minimum": 2},
-          {"tag": "PROPERTIES.BOUNCY", "present": false},
-          {"tag": "PROPERTIES.STRETCHY", "present": false}
+          {
+            "field": "tool.types",
+            "minimum": 2
+          },
+          {
+            "tag": "PROPERTIES.BOUNCY",
+            "present": false
+          },
+          {
+            "tag": "PROPERTIES.STRETCHY",
+            "present": false
+          }
         ]
       },
       "listener": {
         "all": [
-          {"tag": "ATOMIC.ANTIMATTER", "present": false},
-          {"identity_use": "exact_wood_exclusion"},
-          {"tag": "COMPOUNDS.COATED", "present": false},
-          {"field": "tool.types", "minimum": 2}
+          {
+            "tag": "ATOMIC.ANTIMATTER",
+            "present": false
+          },
+          {
+            "identity_use": "exact_wood_exclusion"
+          },
+          {
+            "tag": "COMPOUNDS.COATED",
+            "present": false
+          },
+          {
+            "field": "tool.types",
+            "minimum": 2
+          }
         ]
       },
-      "full_tool": {"all": []},
-      "source_lines": {"prefix": "OP.java:234", "listener": "Loader_Tools.java:305", "full_tool": "Loader_Tools.java:348"}
+      "full_tool": {
+        "all": []
+      },
+      "source_lines": {
+        "prefix": "OP.java:234",
+        "listener": "Loader_Tools.java:305",
+        "full_tool": "Loader_Tools.java:348"
+      }
     },
     "saw": {
       "prefix": {
         "all": [
-          {"field": "tool.types", "minimum": 2},
-          {"tag": "PROPERTIES.BOUNCY", "present": false},
-          {"tag": "PROPERTIES.STRETCHY", "present": false}
+          {
+            "field": "tool.types",
+            "minimum": 2
+          },
+          {
+            "tag": "PROPERTIES.BOUNCY",
+            "present": false
+          },
+          {
+            "tag": "PROPERTIES.STRETCHY",
+            "present": false
+          }
         ]
       },
       "listener": {
         "all": [
-          {"tag": "ATOMIC.ANTIMATTER", "present": false},
-          {"identity_use": "exact_wood_exclusion"},
-          {"tag": "COMPOUNDS.COATED", "present": false},
-          {"field": "tool.types", "minimum": 2}
+          {
+            "tag": "ATOMIC.ANTIMATTER",
+            "present": false
+          },
+          {
+            "identity_use": "exact_wood_exclusion"
+          },
+          {
+            "tag": "COMPOUNDS.COATED",
+            "present": false
+          },
+          {
+            "field": "tool.types",
+            "minimum": 2
+          }
         ]
       },
-      "full_tool": {"all": []},
-      "source_lines": {"prefix": "OP.java:232", "listener": "Loader_Tools.java:307", "full_tool": "Loader_Tools.java:350"}
+      "full_tool": {
+        "all": []
+      },
+      "source_lines": {
+        "prefix": "OP.java:232",
+        "listener": "Loader_Tools.java:307",
+        "full_tool": "Loader_Tools.java:350"
+      }
     },
     "screwdriver": {
       "prefix": {
         "all": [
-          {"field": "tool.types", "minimum": 2}
+          {
+            "field": "tool.types",
+            "minimum": 2
+          }
         ]
       },
       "listener": {
         "all": [
-          {"tag": "ATOMIC.ANTIMATTER", "present": false},
-          {"identity_use": "exact_wood_exclusion"},
-          {"tag": "COMPOUNDS.COATED", "present": false},
-          {"field": "tool.types", "minimum": 2}
+          {
+            "tag": "ATOMIC.ANTIMATTER",
+            "present": false
+          },
+          {
+            "identity_use": "exact_wood_exclusion"
+          },
+          {
+            "tag": "COMPOUNDS.COATED",
+            "present": false
+          },
+          {
+            "field": "tool.types",
+            "minimum": 2
+          }
         ]
       },
-      "full_tool": {"all": []},
-      "source_lines": {"prefix": "OP.java:248", "listener": "Loader_Tools.java:306", "full_tool": "Loader_Tools.java:349"}
+      "full_tool": {
+        "all": []
+      },
+      "source_lines": {
+        "prefix": "OP.java:248",
+        "listener": "Loader_Tools.java:306",
+        "full_tool": "Loader_Tools.java:349"
+      }
     },
     "wrench": {
       "prefix": {
         "all": [
-          {"field": "tool.types", "minimum": 2},
-          {"tag": "PROPERTIES.BOUNCY", "present": false},
-          {"tag": "PROPERTIES.STRETCHY", "present": false}
+          {
+            "field": "tool.types",
+            "minimum": 2
+          },
+          {
+            "tag": "PROPERTIES.BOUNCY",
+            "present": false
+          },
+          {
+            "tag": "PROPERTIES.STRETCHY",
+            "present": false
+          }
         ]
       },
       "listener": {
         "all": [
-          {"tag": "ATOMIC.ANTIMATTER", "present": false},
-          {"identity_use": "exact_wood_exclusion"},
-          {"field": "tool.types", "minimum": 2},
-          {"field": "tool.quality", "minimum": 1}
+          {
+            "tag": "ATOMIC.ANTIMATTER",
+            "present": false
+          },
+          {
+            "identity_use": "exact_wood_exclusion"
+          },
+          {
+            "field": "tool.types",
+            "minimum": 2
+          },
+          {
+            "field": "tool.quality",
+            "minimum": 1
+          }
         ]
       },
-      "full_tool": {"all": []},
-      "source_lines": {"prefix": "OP.java:237", "listener": "Loader_Tools.java:310", "full_tool": "Loader_Tools.java:310"}
+      "full_tool": {
+        "all": []
+      },
+      "source_lines": {
+        "prefix": "OP.java:237",
+        "listener": "Loader_Tools.java:310",
+        "full_tool": "Loader_Tools.java:310"
+      }
+    },
+    "wire_cutter": {
+      "prefix": {
+        "all": [
+          {
+            "field": "tool.types",
+            "minimum": 2
+          }
+        ]
+      },
+      "listener": {
+        "all": [
+          {
+            "tag": "ATOMIC.ANTIMATTER",
+            "present": false
+          },
+          {
+            "identity_use": "exact_wood_exclusion"
+          },
+          {
+            "field": "tool.types",
+            "minimum": 2
+          },
+          {
+            "tag": "PROPERTIES.BOUNCY",
+            "present": false
+          },
+          {
+            "tag": "PROPERTIES.STRETCHY",
+            "present": false
+          }
+        ]
+      },
+      "full_tool": {
+        "all": []
+      },
+      "source_lines": {
+        "prefix": "none (no OP tool-head prefix; WIRECUTTER is a direct full-tool listener)",
+        "listener": "Loader_Tools.java:324",
+        "full_tool": "Loader_Tools.java:324"
+      }
     }
   },
   "gt6_recipe_facts": {
@@ -434,7 +737,8 @@
       "G": "gem",
       "C": "gem_plate",
       "S": "stick",
-      "H": "handle_material_stick"
+      "H": "handle_material_stick",
+      "T": "screw"
     },
     "catalyst_symbols": {
       "d": "screwdriver",
@@ -445,93 +749,622 @@
     "tools": {
       "pickaxe": {
         "head_patterns": [
-          {"id": "metal", "rows": ["PII", "f h"], "material_inputs": [{"form": "plate", "count": 1}, {"form": "ingot", "count": 2}], "catalysts": ["file", "smithing_hammer"]},
-          {"id": "gem", "rows": ["CGG", "f "], "material_inputs": [{"form": "gem_plate", "count": 1}, {"form": "gem", "count": 2}], "catalysts": ["file"]}
+          {
+            "id": "metal",
+            "rows": [
+              "PII",
+              "f h"
+            ],
+            "material_inputs": [
+              {
+                "form": "plate",
+                "count": 1
+              },
+              {
+                "form": "ingot",
+                "count": 2
+              }
+            ],
+            "catalysts": [
+              "file",
+              "smithing_hammer"
+            ]
+          },
+          {
+            "id": "gem",
+            "rows": [
+              "CGG",
+              "f "
+            ],
+            "material_inputs": [
+              {
+                "form": "gem_plate",
+                "count": 1
+              },
+              {
+                "form": "gem",
+                "count": 2
+              }
+            ],
+            "catalysts": [
+              "file"
+            ]
+          }
         ],
         "head_source": "Loader_Tools.java:295",
-        "full_assembly": {"kind": "head_plus_handle", "handle_form": "handle_material_stick", "handle_count": 1, "catalysts": [], "source": "Loader_Tools.java:339; AdvancedCraftingTool.java:49-79"}
+        "full_assembly": {
+          "kind": "head_plus_handle",
+          "handle_form": "handle_material_stick",
+          "handle_count": 1,
+          "catalysts": [],
+          "source": "Loader_Tools.java:339; AdvancedCraftingTool.java:49-79"
+        }
       },
       "shovel": {
         "head_patterns": [
-          {"id": "metal", "rows": ["fPh"], "material_inputs": [{"form": "plate", "count": 1}], "catalysts": ["file", "smithing_hammer"]},
-          {"id": "gem", "rows": ["fC "], "material_inputs": [{"form": "gem_plate", "count": 1}], "catalysts": ["file"]}
+          {
+            "id": "metal",
+            "rows": [
+              "fPh"
+            ],
+            "material_inputs": [
+              {
+                "form": "plate",
+                "count": 1
+              }
+            ],
+            "catalysts": [
+              "file",
+              "smithing_hammer"
+            ]
+          },
+          {
+            "id": "gem",
+            "rows": [
+              "fC "
+            ],
+            "material_inputs": [
+              {
+                "form": "gem_plate",
+                "count": 1
+              }
+            ],
+            "catalysts": [
+              "file"
+            ]
+          }
         ],
         "head_source": "Loader_Tools.java:296",
-        "full_assembly": {"kind": "head_plus_handle", "handle_form": "handle_material_stick", "handle_count": 1, "catalysts": [], "source": "Loader_Tools.java:340; AdvancedCraftingTool.java:49-79"}
+        "full_assembly": {
+          "kind": "head_plus_handle",
+          "handle_form": "handle_material_stick",
+          "handle_count": 1,
+          "catalysts": [],
+          "source": "Loader_Tools.java:340; AdvancedCraftingTool.java:49-79"
+        }
       },
       "axe": {
         "head_patterns": [
-          {"id": "metal", "rows": ["PIh", "P ", "f "], "material_inputs": [{"form": "plate", "count": 2}, {"form": "ingot", "count": 1}], "catalysts": ["smithing_hammer", "file"]},
-          {"id": "gem", "rows": ["CG ", "C ", "f "], "material_inputs": [{"form": "gem_plate", "count": 2}, {"form": "gem", "count": 1}], "catalysts": ["file"]}
+          {
+            "id": "metal",
+            "rows": [
+              "PIh",
+              "P ",
+              "f "
+            ],
+            "material_inputs": [
+              {
+                "form": "plate",
+                "count": 2
+              },
+              {
+                "form": "ingot",
+                "count": 1
+              }
+            ],
+            "catalysts": [
+              "smithing_hammer",
+              "file"
+            ]
+          },
+          {
+            "id": "gem",
+            "rows": [
+              "CG ",
+              "C ",
+              "f "
+            ],
+            "material_inputs": [
+              {
+                "form": "gem_plate",
+                "count": 2
+              },
+              {
+                "form": "gem",
+                "count": 1
+              }
+            ],
+            "catalysts": [
+              "file"
+            ]
+          }
         ],
         "head_source": "Loader_Tools.java:300",
-        "full_assembly": {"kind": "head_plus_handle", "handle_form": "handle_material_stick", "handle_count": 1, "catalysts": [], "source": "Loader_Tools.java:342; AdvancedCraftingTool.java:49-79"}
+        "full_assembly": {
+          "kind": "head_plus_handle",
+          "handle_form": "handle_material_stick",
+          "handle_count": 1,
+          "catalysts": [],
+          "source": "Loader_Tools.java:342; AdvancedCraftingTool.java:49-79"
+        }
       },
       "hoe": {
         "head_patterns": [
-          {"id": "metal", "rows": ["PIh", "f "], "material_inputs": [{"form": "plate", "count": 1}, {"form": "ingot", "count": 1}], "catalysts": ["smithing_hammer", "file"]},
-          {"id": "gem", "rows": ["CG ", "f "], "material_inputs": [{"form": "gem_plate", "count": 1}, {"form": "gem", "count": 1}], "catalysts": ["file"]}
+          {
+            "id": "metal",
+            "rows": [
+              "PIh",
+              "f "
+            ],
+            "material_inputs": [
+              {
+                "form": "plate",
+                "count": 1
+              },
+              {
+                "form": "ingot",
+                "count": 1
+              }
+            ],
+            "catalysts": [
+              "smithing_hammer",
+              "file"
+            ]
+          },
+          {
+            "id": "gem",
+            "rows": [
+              "CG ",
+              "f "
+            ],
+            "material_inputs": [
+              {
+                "form": "gem_plate",
+                "count": 1
+              },
+              {
+                "form": "gem",
+                "count": 1
+              }
+            ],
+            "catalysts": [
+              "file"
+            ]
+          }
         ],
         "head_source": "Loader_Tools.java:299",
-        "full_assembly": {"kind": "head_plus_handle", "handle_form": "handle_material_stick", "handle_count": 1, "catalysts": [], "source": "Loader_Tools.java:344; AdvancedCraftingTool.java:49-79"}
+        "full_assembly": {
+          "kind": "head_plus_handle",
+          "handle_form": "handle_material_stick",
+          "handle_count": 1,
+          "catalysts": [],
+          "source": "Loader_Tools.java:344; AdvancedCraftingTool.java:49-79"
+        }
       },
       "sword": {
         "head_patterns": [
-          {"id": "metal", "rows": [" P ", "fPh"], "material_inputs": [{"form": "plate", "count": 2}], "catalysts": ["file", "smithing_hammer"]},
-          {"id": "gem", "rows": [" C ", "fC "], "material_inputs": [{"form": "gem_plate", "count": 2}], "catalysts": ["file"]}
+          {
+            "id": "metal",
+            "rows": [
+              " P ",
+              "fPh"
+            ],
+            "material_inputs": [
+              {
+                "form": "plate",
+                "count": 2
+              }
+            ],
+            "catalysts": [
+              "file",
+              "smithing_hammer"
+            ]
+          },
+          {
+            "id": "gem",
+            "rows": [
+              " C ",
+              "fC "
+            ],
+            "material_inputs": [
+              {
+                "form": "gem_plate",
+                "count": 2
+              }
+            ],
+            "catalysts": [
+              "file"
+            ]
+          }
         ],
         "head_source": "Loader_Tools.java:321",
-        "full_assembly": {"kind": "head_plus_handle", "handle_form": "handle_material_stick", "handle_count": 1, "catalysts": [], "source": "Loader_Tools.java:335; AdvancedCraftingTool.java:49-79"}
+        "full_assembly": {
+          "kind": "head_plus_handle",
+          "handle_form": "handle_material_stick",
+          "handle_count": 1,
+          "catalysts": [],
+          "source": "Loader_Tools.java:335; AdvancedCraftingTool.java:49-79"
+        }
       },
       "smithing_hammer": {
         "head_patterns": [
-          {"id": "metal", "rows": ["II ", "IIh", "II "], "material_inputs": [{"form": "ingot", "count": 6}], "catalysts": ["smithing_hammer"]},
-          {"id": "gem", "rows": ["GG ", "GGf", "GG "], "material_inputs": [{"form": "gem", "count": 6}], "catalysts": ["file"]}
+          {
+            "id": "metal",
+            "rows": [
+              "II ",
+              "IIh",
+              "II "
+            ],
+            "material_inputs": [
+              {
+                "form": "ingot",
+                "count": 6
+              }
+            ],
+            "catalysts": [
+              "smithing_hammer"
+            ]
+          },
+          {
+            "id": "gem",
+            "rows": [
+              "GG ",
+              "GGf",
+              "GG "
+            ],
+            "material_inputs": [
+              {
+                "form": "gem",
+                "count": 6
+              }
+            ],
+            "catalysts": [
+              "file"
+            ]
+          }
         ],
         "head_source": "Loader_Tools.java:327",
-        "full_assembly": {"kind": "head_plus_handle", "handle_form": "handle_material_stick", "handle_count": 1, "catalysts": [], "source": "Loader_Tools.java:333; AdvancedCraftingTool.java:49-79"}
+        "full_assembly": {
+          "kind": "head_plus_handle",
+          "handle_form": "handle_material_stick",
+          "handle_count": 1,
+          "catalysts": [],
+          "source": "Loader_Tools.java:333; AdvancedCraftingTool.java:49-79"
+        }
       },
       "file": {
         "head_patterns": [
-          {"id": "metal", "rows": [" P ", " Pk"], "material_inputs": [{"form": "plate", "count": 2}], "catalysts": ["knife"]}
+          {
+            "id": "metal",
+            "rows": [
+              " P ",
+              " Pk"
+            ],
+            "material_inputs": [
+              {
+                "form": "plate",
+                "count": 2
+              }
+            ],
+            "catalysts": [
+              "knife"
+            ]
+          }
         ],
         "head_source": "Loader_Tools.java:304",
-        "full_assembly": {"kind": "head_plus_handle", "handle_form": "handle_material_stick", "handle_count": 1, "catalysts": [], "source": "Loader_Tools.java:347; AdvancedCraftingTool.java:49-79"}
+        "full_assembly": {
+          "kind": "head_plus_handle",
+          "handle_form": "handle_material_stick",
+          "handle_count": 1,
+          "catalysts": [],
+          "source": "Loader_Tools.java:347; AdvancedCraftingTool.java:49-79"
+        }
       },
       "chisel": {
         "head_patterns": [
-          {"id": "metal", "rows": ["hPf", " S "], "material_inputs": [{"form": "plate", "count": 1}, {"form": "stick", "count": 1}], "catalysts": ["smithing_hammer", "file"]},
-          {"id": "gem", "rows": ["Cf", "S "], "material_inputs": [{"form": "gem_plate", "count": 1}, {"form": "stick", "count": 1}], "catalysts": ["file"]}
+          {
+            "id": "metal",
+            "rows": [
+              "hPf",
+              " S "
+            ],
+            "material_inputs": [
+              {
+                "form": "plate",
+                "count": 1
+              },
+              {
+                "form": "stick",
+                "count": 1
+              }
+            ],
+            "catalysts": [
+              "smithing_hammer",
+              "file"
+            ]
+          },
+          {
+            "id": "gem",
+            "rows": [
+              "Cf",
+              "S "
+            ],
+            "material_inputs": [
+              {
+                "form": "gem_plate",
+                "count": 1
+              },
+              {
+                "form": "stick",
+                "count": 1
+              }
+            ],
+            "catalysts": [
+              "file"
+            ]
+          }
         ],
         "head_source": "Loader_Tools.java:305",
-        "full_assembly": {"kind": "head_plus_handle", "handle_form": "handle_material_stick", "handle_count": 1, "catalysts": [], "source": "Loader_Tools.java:348; AdvancedCraftingTool.java:49-79"}
+        "full_assembly": {
+          "kind": "head_plus_handle",
+          "handle_form": "handle_material_stick",
+          "handle_count": 1,
+          "catalysts": [],
+          "source": "Loader_Tools.java:348; AdvancedCraftingTool.java:49-79"
+        }
       },
       "saw": {
         "head_patterns": [
-          {"id": "metal", "rows": ["PP", "fh"], "material_inputs": [{"form": "plate", "count": 2}], "catalysts": ["file", "smithing_hammer"]},
-          {"id": "gem", "rows": ["CC", "f "], "material_inputs": [{"form": "gem_plate", "count": 2}], "catalysts": ["file"]}
+          {
+            "id": "metal",
+            "rows": [
+              "PP",
+              "fh"
+            ],
+            "material_inputs": [
+              {
+                "form": "plate",
+                "count": 2
+              }
+            ],
+            "catalysts": [
+              "file",
+              "smithing_hammer"
+            ]
+          },
+          {
+            "id": "gem",
+            "rows": [
+              "CC",
+              "f "
+            ],
+            "material_inputs": [
+              {
+                "form": "gem_plate",
+                "count": 2
+              }
+            ],
+            "catalysts": [
+              "file"
+            ]
+          }
         ],
         "head_source": "Loader_Tools.java:307",
-        "full_assembly": {"kind": "head_plus_handle", "handle_form": "handle_material_stick", "handle_count": 1, "catalysts": [], "source": "Loader_Tools.java:350; AdvancedCraftingTool.java:49-79"}
+        "full_assembly": {
+          "kind": "head_plus_handle",
+          "handle_form": "handle_material_stick",
+          "handle_count": 1,
+          "catalysts": [],
+          "source": "Loader_Tools.java:350; AdvancedCraftingTool.java:49-79"
+        }
       },
       "screwdriver": {
         "head_patterns": [
-          {"id": "rod", "rows": ["hS", "Sf"], "material_inputs": [{"form": "stick", "count": 2}], "catalysts": ["smithing_hammer", "file"]}
+          {
+            "id": "rod",
+            "rows": [
+              "hS",
+              "Sf"
+            ],
+            "material_inputs": [
+              {
+                "form": "stick",
+                "count": 2
+              }
+            ],
+            "catalysts": [
+              "smithing_hammer",
+              "file"
+            ]
+          }
         ],
         "head_source": "Loader_Tools.java:306",
-        "full_assembly": {"kind": "head_plus_handle", "handle_form": "handle_material_stick", "handle_count": 1, "catalysts": [], "source": "Loader_Tools.java:349; AdvancedCraftingTool.java:49-79"}
+        "full_assembly": {
+          "kind": "head_plus_handle",
+          "handle_form": "handle_material_stick",
+          "handle_count": 1,
+          "catalysts": [],
+          "source": "Loader_Tools.java:349; AdvancedCraftingTool.java:49-79"
+        }
       },
       "wrench": {
         "head_patterns": [
-          {"id": "metal_head", "rows": ["hPW", "PVP", "WPd"], "material_inputs": [{"form": "plate", "count": 4}], "fixed_inputs": [{"form": "ring", "material": "any_steel", "count": 1}, {"form": "screw", "material": "any_steel", "count": 2}], "catalysts": ["smithing_hammer", "screwdriver"]},
-          {"id": "gem_head", "rows": ["hCW", "CVC", "WCd"], "material_inputs": [{"form": "gem_plate", "count": 4}], "fixed_inputs": [{"form": "ring", "material": "any_steel", "count": 1}, {"form": "screw", "material": "any_steel", "count": 2}], "catalysts": ["smithing_hammer", "screwdriver"]}
+          {
+            "id": "metal_head",
+            "rows": [
+              "hPW",
+              "PVP",
+              "WPd"
+            ],
+            "material_inputs": [
+              {
+                "form": "plate",
+                "count": 4
+              }
+            ],
+            "fixed_inputs": [
+              {
+                "form": "ring",
+                "material": "any_steel",
+                "count": 1
+              },
+              {
+                "form": "screw",
+                "material": "any_steel",
+                "count": 2
+              }
+            ],
+            "catalysts": [
+              "smithing_hammer",
+              "screwdriver"
+            ]
+          },
+          {
+            "id": "gem_head",
+            "rows": [
+              "hCW",
+              "CVC",
+              "WCd"
+            ],
+            "material_inputs": [
+              {
+                "form": "gem_plate",
+                "count": 4
+              }
+            ],
+            "fixed_inputs": [
+              {
+                "form": "ring",
+                "material": "any_steel",
+                "count": 1
+              },
+              {
+                "form": "screw",
+                "material": "any_steel",
+                "count": 2
+              }
+            ],
+            "catalysts": [
+              "smithing_hammer",
+              "screwdriver"
+            ]
+          }
         ],
         "head_source": "Loader_Tools.java:310",
         "full_patterns": [
-          {"id": "metal", "rows": ["PhP", " P ", " P "], "material_inputs": [{"form": "plate", "count": 4}], "handle_count": 0, "catalysts": ["smithing_hammer"]},
-          {"id": "gem", "rows": ["CfC", " C ", " C "], "material_inputs": [{"form": "gem_plate", "count": 4}], "handle_count": 0, "catalysts": ["file"]}
+          {
+            "id": "metal",
+            "rows": [
+              "PhP",
+              " P ",
+              " P "
+            ],
+            "material_inputs": [
+              {
+                "form": "plate",
+                "count": 4
+              }
+            ],
+            "handle_count": 0,
+            "catalysts": [
+              "smithing_hammer"
+            ]
+          },
+          {
+            "id": "gem",
+            "rows": [
+              "CfC",
+              " C ",
+              " C "
+            ],
+            "material_inputs": [
+              {
+                "form": "gem_plate",
+                "count": 4
+              }
+            ],
+            "handle_count": 0,
+            "catalysts": [
+              "file"
+            ]
+          }
         ],
         "full_source": "Loader_Tools.java:310"
+      },
+      "wire_cutter": {
+        "full_patterns": [
+          {
+            "id": "metal",
+            "rows": [
+              "PfP",
+              "hPd",
+              "STS"
+            ],
+            "material_inputs": [
+              {
+                "form": "plate",
+                "count": 3
+              },
+              {
+                "form": "screw",
+                "count": 1
+              },
+              {
+                "form": "stick",
+                "count": 2
+              }
+            ],
+            "handle_count": 0,
+            "catalysts": [
+              "smithing_hammer",
+              "file"
+            ]
+          },
+          {
+            "id": "gem",
+            "rows": [
+              "CfC",
+              "hCd",
+              "STS"
+            ],
+            "material_inputs": [
+              {
+                "form": "gem_plate",
+                "count": 3
+              },
+              {
+                "form": "screw",
+                "count": 1
+              },
+              {
+                "form": "stick",
+                "count": 2
+              }
+            ],
+            "handle_count": 0,
+            "catalysts": [
+              "smithing_hammer",
+              "file"
+            ]
+          }
+        ],
+        "flattened_drops": {
+          "catalysts": [
+            "screwdriver"
+          ],
+          "reason": "The assembler tool-slot cap (3 tool rows incl. the pattern selector) cannot carry the GT6 f/h/d catalysts together; the d (screwdriver) catalyst is dropped, matching the wrench flattening precedent."
+        },
+        "full_source": "Loader_Tools.java:324"
       }
     }
   },
@@ -553,33 +1386,95 @@
       "reason": "Preserve the GT6 shaped-pattern identity in the flattened assembler multiset so different tools cannot shadow one another"
     },
     "catalyst_mapping": {
-      "file": {"item": "cruciblecraft:material_file", "material": "iron", "action": "wear", "damage": 1},
-      "smithing_hammer": {"item": "cruciblecraft:smithing_hammer", "action": "wear", "damage": 1},
-      "screwdriver": {"item": "cruciblecraft:material_screwdriver", "material": "iron", "action": "wear", "damage": 1},
-      "knife": {"item": "cruciblecraft:flint_knife", "action": "wear", "damage": 1, "bootstrap": "fixed_flint_knife"}
+      "file": {
+        "item": "cruciblecraft:material_file",
+        "material": "iron",
+        "action": "wear",
+        "damage": 1
+      },
+      "smithing_hammer": {
+        "item": "cruciblecraft:smithing_hammer",
+        "action": "wear",
+        "damage": 1
+      },
+      "screwdriver": {
+        "item": "cruciblecraft:material_screwdriver",
+        "material": "iron",
+        "action": "wear",
+        "damage": 1
+      },
+      "knife": {
+        "item": "cruciblecraft:flint_knife",
+        "action": "wear",
+        "damage": 1,
+        "bootstrap": "fixed_flint_knife"
+      }
     },
     "tool_pattern_precedence": {
-      "pickaxe": ["stone_rod_exception", "metal", "gem"],
-      "shovel": ["metal", "gem"],
-      "axe": ["metal", "gem"],
-      "hoe": ["metal", "gem"],
-      "sword": ["metal", "gem"],
-      "smithing_hammer": ["metal", "gem"],
-      "file": ["metal"],
-      "chisel": ["metal", "gem"],
-      "saw": ["metal", "gem"],
-      "screwdriver": ["rod"],
-      "wrench": ["metal", "gem"]
+      "pickaxe": [
+        "stone_rod_exception",
+        "metal",
+        "gem"
+      ],
+      "shovel": [
+        "metal",
+        "gem"
+      ],
+      "axe": [
+        "metal",
+        "gem"
+      ],
+      "hoe": [
+        "metal",
+        "gem"
+      ],
+      "sword": [
+        "metal",
+        "gem"
+      ],
+      "smithing_hammer": [
+        "metal",
+        "gem"
+      ],
+      "file": [
+        "metal"
+      ],
+      "chisel": [
+        "metal",
+        "gem"
+      ],
+      "saw": [
+        "metal",
+        "gem"
+      ],
+      "screwdriver": [
+        "rod"
+      ],
+      "wrench": [
+        "metal",
+        "gem"
+      ],
+      "wire_cutter": [
+        "metal",
+        "gem"
+      ]
     },
     "material_identity_exceptions": [
       {
         "tool": "pickaxe",
         "pattern": "stone_rod_exception",
         "identity_use": "stone_pickaxe_route",
-        "material_inputs": [{"form": "rod", "count": 2}],
+        "material_inputs": [
+          {
+            "form": "rod",
+            "count": 2
+          }
+        ],
         "handle_count": 1,
         "handle_included_in_material_inputs": true,
-        "catalysts": ["file"],
+        "catalysts": [
+          "file"
+        ],
         "reason": "Retain the committed exact-stone rod bootstrap without widening it to a generic rod fallback",
         "source": {
           "repository": "GregTech6/gregtech6",
@@ -659,7 +1554,7 @@
     "kind": "measured_strategy_not_source_fact",
     "projected_counts": {
       "t3_component": 8141,
-      "t4_tool": 3452,
+      "t4_tool": 3657,
       "live_t3_map": 11593
     },
     "count_limits": {

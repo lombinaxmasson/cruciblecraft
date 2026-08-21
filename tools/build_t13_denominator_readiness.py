@@ -371,7 +371,7 @@ def write_or_check(path: Path, encoded: str, check: bool) -> None:
         ) != encoded:
             raise ValueError(f"stale generated file: {path}")
     else:
-        path.write_text(encoded, encoding="utf-8", newline="\n")
+        path.write_bytes(encoded.encode("utf-8"))
 
 
 def main() -> int:

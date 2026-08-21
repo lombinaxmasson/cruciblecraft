@@ -13,8 +13,6 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.item.MaterialFormItem;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.material.def.ThermalProperties;
-import com.masson.cruciblecraft.recipe.gt.GTRecipe;
-import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
 import com.masson.cruciblecraft.registry.ModComponents;
 
 import net.minecraft.SharedConstants;
@@ -24,7 +22,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.Bootstrap;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.fml.loading.LoadingModList;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.junit.jupiter.api.BeforeAll;
@@ -71,45 +68,20 @@ class HotIngotLifecycleTest {
     }
 
     @Test
-    void coolingRulePreservesUnrelatedComponentsAndClearsHeat() {
+    void maintenanceKeepsItemIdentityAndOnlyClearsHeatComponent() {
         ItemStack hot = new ItemStack(Items.IRON_INGOT, 2);
         hot.set(DataComponents.CUSTOM_NAME, Component.literal("forged"));
         ItemHeat.set(hot, 21.0f, 0L);
 
-        ItemStack cooled = MaterialItemCooling.apply(hot, coolingRecipe())
-                .orElseThrow();
+        ItemStack maintained = HeatMaintenanceEvents.maintain(hot, 2L);
 
-        assertTrue(cooled.is(Items.GOLD_INGOT));
-        assertEquals(2, cooled.getCount());
-        assertEquals(Component.literal("forged"), cooled.getHoverName());
-        assertFalse(cooled.has(ModComponents.HEAT.get()));
-
-        ItemStack differentPrototype = new ItemStack(Items.NETHER_STAR);
-        ItemHeat.set(differentPrototype, 21.0f, 0L);
-        ItemStack ordinary = MaterialItemCooling.apply(
-                        differentPrototype,
-                        coolingRecipe())
-                .orElseThrow();
-        assertTrue(ItemStack.isSameItemSameComponents(
-                ordinary,
-                new ItemStack(Items.GOLD_INGOT)));
-        assertTrue(ordinary.getComponentsPatch().isEmpty());
-    }
-
-    private static GTRecipe coolingRecipe() {
-        return new GTRecipe(
-                List.of(Ingredient.of(Items.IRON_INGOT)),
-                List.of(1),
-                List.of(ItemInputAction.CONSUME),
-                List.of(new ItemStack(Items.GOLD_INGOT)),
-                List.of(),
-                List.of(),
-                List.of(GTRecipe.GUARANTEED_CHANCE),
-                1,
-                0,
-                0,
-                true,
-                Optional.empty());
+        assertTrue(maintained.is(Items.IRON_INGOT));
+        assertEquals(2, maintained.getCount());
+        assertEquals(Component.literal("forged"), maintained.getHoverName());
+        assertFalse(maintained.has(ModComponents.HEAT.get()));
+        ItemStack expected = new ItemStack(Items.IRON_INGOT, 2);
+        expected.set(DataComponents.CUSTOM_NAME, Component.literal("forged"));
+        assertTrue(ItemStack.isSameItemSameComponents(maintained, expected));
     }
 
     private static MaterialDefinition material() {

@@ -213,7 +213,7 @@ def build_from_dump() -> dict[str, Any]:
 
 def write() -> dict[str, Any]:
     document = build_from_dump()
-    OUTPUT.write_text(_stable(document), encoding="utf-8", newline="\n")
+    OUTPUT.write_bytes(_stable(document).encode("utf-8"))
     return document
 
 

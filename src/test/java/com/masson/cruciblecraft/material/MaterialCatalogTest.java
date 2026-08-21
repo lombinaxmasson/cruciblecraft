@@ -51,6 +51,7 @@ class MaterialCatalogTest {
 
     @Test
     void loadsConfigJsonDecomposesBronzeAndIndexesAlloy(@TempDir Path configDirectory) throws Exception {
+        MaterialCatalog.resetForTests();
         Files.writeString(configDirectory.resolve("lead.json"), """
                 {
                   "id": "lead",

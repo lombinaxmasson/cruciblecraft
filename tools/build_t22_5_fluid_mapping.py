@@ -506,7 +506,7 @@ def write_with_replay() -> dict[str, Any]:
             f"undecided={sorted(scanned_names - decision_names)}, "
             f"stale={sorted(decision_names - scanned_names)}"
         )
-    OUTPUT.write_text(_stable(document), encoding="utf-8", newline="\n")
+    OUTPUT.write_bytes(_stable(document).encode("utf-8"))
     return document
 
 

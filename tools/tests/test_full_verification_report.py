@@ -84,7 +84,7 @@ class FullVerificationReportTest(unittest.TestCase):
         )
         self.assertGreater(snapshot["java_source_test_count"], 0)
         self.assertGreater(snapshot["python_test_count"], 0)
-        self.assertEqual(120, MODULE.current_game_test_count())
+        self.assertEqual(137, MODULE.current_game_test_count())
         self.assertEqual(
             snapshot["java_source_test_count"],
             document["tests"]["java_unit_tests"]["tests"],
@@ -107,12 +107,12 @@ class FullVerificationReportTest(unittest.TestCase):
         )
         self.assertTrue(all(ore["game_tests"].values()))
         t4 = document["t4_tool_acceptance"]
-        self.assertEqual(21, t4["source_rules"])
-        self.assertEqual(11, t4["tool_types"])
-        self.assertEqual(3452, t4["expanded_recipes"])
+        self.assertEqual(23, t4["source_rules"])
+        self.assertEqual(12, t4["tool_types"])
+        self.assertEqual(3657, t4["expanded_recipes"])
         self.assertEqual(0, t4["unclassified"])
         self.assertEqual(0, t4["signature_collisions"])
-        self.assertEqual(1020, t4["eligible_without_route"]["total"])
+        self.assertEqual(1127, t4["eligible_without_route"]["total"])
         self.assertEqual(
             208,
             t4["eligible_without_route"]["by_tool"]["pickaxe"],
@@ -182,10 +182,10 @@ class FullVerificationReportTest(unittest.TestCase):
         )
         self.assertEqual(101, t7["material_tag_vocabulary"]["count"])
         self.assertEqual(
-            605, t7["fact_counts"]["formula_visible_material_count"]
+            609, t7["fact_counts"]["formula_visible_material_count"]
         )
         self.assertEqual(
-            347,
+            343,
             t7["fact_counts"]["formula_without_registered_form_count"],
         )
         self.assertEqual(
@@ -277,7 +277,7 @@ class FullVerificationReportTest(unittest.TestCase):
         self.assertEqual("T10_READY", t10["status"])
         self.assertTrue(t10["ledger_current"])
         self.assertEqual(
-            {"materials": 321, "recipes": 642},
+            {"materials": 321, "recipes": 321},
             t10["route_counts"]["hot_ingot"],
         )
         self.assertEqual(
@@ -287,8 +287,8 @@ class FullVerificationReportTest(unittest.TestCase):
         self.assertEqual(
             21000, t10["budget_projection"]["global_budget"]
         )
-        self.assertEqual(56, t10["prefix_facts"]["startup_prefix_count"])
-        self.assertEqual(1829, t10["prefix_facts"]["handshake_entry_count"])
+        self.assertEqual(57, t10["prefix_facts"]["startup_prefix_count"])
+        self.assertEqual(1830, t10["prefix_facts"]["handshake_entry_count"])
         self.assertEqual(
             {
                 "double_ingot": 323,
@@ -302,7 +302,7 @@ class FullVerificationReportTest(unittest.TestCase):
             t10["prefix_facts"]["nonzero_source_heat_damage"],
         )
         self.assertEqual(
-            1288,
+            967,
             t10["runtime_publication"]["current_t10_recipe_additions"],
         )
         self.assertEqual(
@@ -321,8 +321,8 @@ class FullVerificationReportTest(unittest.TestCase):
                 "new_t10_chemical_fluids"
             ],
         )
-        self.assertEqual(3235, t10["load_gate"]["datapack_recipe_entries"])
-        self.assertEqual(18871, t10["load_gate"]["published_recipes"])
+        self.assertEqual(3360, t10["load_gate"]["datapack_recipe_entries"])
+        self.assertEqual(18550, t10["load_gate"]["published_recipes"])
         t11 = document["t11_preflight_acceptance"]
         self.assertEqual("T11_READY", t11["status"])
         self.assertTrue(t11["ledger_current"])
@@ -455,7 +455,7 @@ class FullVerificationReportTest(unittest.TestCase):
             t14["materialization"]["extruder"],
         )
         self.assertEqual(
-            3263, t14["load_gate"]["datapack_authored_entries"]
+            3388, t14["load_gate"]["datapack_authored_entries"]
         )
         self.assertEqual([], t14["load_gate"]["pending_measurements"])
         t15 = document["t15_readiness_acceptance"]
@@ -832,7 +832,7 @@ class FullVerificationReportTest(unittest.TestCase):
         )
         publication = t19["publication_load_gate"]
         self.assertEqual(
-            (877, 907, 30),
+            (1001, 1031, 30),
             (
                 publication["vanilla_acquisition"][
                     "generated_recipe_files_before_t19"

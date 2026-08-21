@@ -583,9 +583,7 @@ def main() -> int:
         document = build() if args.full_replay else None
         if args.write:
             assert document is not None
-            OUTPUT.write_text(
-                compact(document), encoding="utf-8", newline="\n"
-            )
+            OUTPUT.write_bytes(compact(document).encode("utf-8"))
             print(json.dumps(document["counts"], sort_keys=True))
             return 0
         errors = check(document)

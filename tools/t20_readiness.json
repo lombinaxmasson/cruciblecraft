@@ -36,25 +36,25 @@
       "this_refresh_final_closure_attempted": true
     },
     "owned_inputs": {
-      "CrucibleCraft-第四阶段总体规划.md": "23b1a235fd4ea1810a3be5e4992bec0a79389807a107386501018de41ee20b15",
+      "CrucibleCraft-总体规划.md": "7deec142217e8e3bd62811db436831ae446f53997e1114d80f3904a6edea62c5",
       "CrucibleCraft-阶段档案-T20.md": "58ddd2a8ccbf31fdd4d1f98d7add1795f87d71d0d5114a1cd2b6ac5255e92986",
-      "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java": "09421cfce9e850684ce377c7203163b9fe067db2f4c0d525581c348336ef4d58",
+      "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java": "be2e740ecfdfaa66250f79a5888ed309ebb93ed16fa5a2ab7dbe9123c67c69d0",
       "src/main/java/com/masson/cruciblecraft/worldgen/LargeVeinConfiguration.java": "4feeb97405597c663c17e9d6815e3ed370e20032bd23950642d9363a9f4cb3ad",
       "src/main/resources/data/cruciblecraft/schema/worldgen_ore_veins.schema.json": "3280afe9282e3d945c784300e9f1a464351521b8d037854f83fbf4c9e2865f11",
       "src/main/resources/data/cruciblecraft/worldgen_catalog/ore_veins.json": "80c66623e3aee77171f732c818da08798b581ec3d78b78d4a96091a260958d90",
       "src/test/java/com/masson/cruciblecraft/worldgen/LargeVeinConfigurationTest.java": "8be7810ce47e382469c3592c2e4aee5d2ab14d861a94a4e58a0fa6efff30bb94",
       "src/test/java/com/masson/cruciblecraft/worldgen/WorldgenCatalogResourceTest.java": "74350bbf84345fa5979b9d578c317a5713e89979f15e9392e670354f57b26b73",
-      "tools/build_t20_readiness.py": "8cd4920dae92397c44c45b13fa5d62a85074f28c29ccb0f17ce9354b5617c771",
-      "tools/build_t20_worldgen_projection.py": "0169b545221e26f0a00bb536d6ac86f9ab47920779c6552523e841bf8204272c",
+      "tools/build_t20_readiness.py": "fb574b83c50a1ec84e67e06612b54bc5325f26f61c6e52b9239eaf7005537692",
+      "tools/build_t20_worldgen_projection.py": "4d27b6f76ee126378602743334c7cb22ee5082d4bf6441ac2b70c00d97a04f02",
       "tools/build_t20_worldgen_source.py": "35a0d4b3e449d2dabef325afcb3736f2863342da5ac27bdde665f5aac0a2de50",
-      "tools/build_worldgen_catalog.py": "74641fd513f714811bf93cb09122ac8586cd462876c1d7bdcdb799351c5d0463",
+      "tools/build_worldgen_catalog.py": "45fec1e21d97e47d2b051ddccfc57cefebeedabebdf466ad3f1cbf40d5b1526b",
       "tools/phase4_v1_planning_contract.json": "c9436c521c6c39a1fbf1e45bc88e097553a9bb5996da7493bfb2368b373d0bed",
       "tools/t20_gt6_worldgen_source.json": "b6f47482eb0fa1489bccc53a230cafebb34c6138766abd543fddf0f88678c392",
       "tools/t20_readiness_policy.json": "88fd9b5e506e87abeb75d4d81cec570d914709097f2c505370dcb96147f6d4bc",
-      "tools/t20_worldgen_expected.json": "e8841ef6e5fef6e6be93ada15d1ef37bb3c8370b677d8cd758b3a1e2f01c4415",
+      "tools/t20_worldgen_expected.json": "802463c8ba4d6c543d0f9745ff8dcea971bba8d2362252769b66adee3ba6aca1",
       "tools/t20_worldgen_source_policy.json": "585b365382554323e557b9ce44eb68414e2b50748a0882dd398f0722095f7414",
       "tools/tests/test_build_t20_worldgen_projection.py": "328749066d1fa337f577fa76679cdf482bf523ee677b097444c619b03a92fb88",
-      "tools/worldgen_catalog_readiness.json": "0d1e4543115b9efab7155619a5329c3ad1d198dc0e2d74ea0e639fdb91240fb8"
+      "tools/worldgen_catalog_readiness.json": "70e0a6fbc120acacaab36b9c9d8ba00085adc4fd3a568312ade1772440b09362"
     },
     "source_replay_command": "python tools/build_t20_worldgen_source.py --check --full-replay"
   },
@@ -62,20 +62,20 @@
     "T19": {
       "path": "tools/t19_readiness.json",
       "required_status": "T19_READY",
-      "sha256": "323caa9044929feb31492e9847a3c261f047b1c157cd9dbca5ec8c37fed7bedf",
+      "sha256": "461f43dc9b4e7fdaede01741685260f887a498dacefb7eebcc88c56925084d93",
       "status": "T19_READY"
     },
     "expected": {
       "path": "tools/t20_worldgen_expected.json",
       "required_status": "T20_WORLDGEN_EXPECTED_READY",
-      "sha256": "e8841ef6e5fef6e6be93ada15d1ef37bb3c8370b677d8cd758b3a1e2f01c4415",
+      "sha256": "802463c8ba4d6c543d0f9745ff8dcea971bba8d2362252769b66adee3ba6aca1",
       "status": "T20_WORLDGEN_EXPECTED_READY"
     },
     "runtime_catalog": {
       "geometry_status": "T20_CLASSIFIED",
       "path": "tools/worldgen_catalog_readiness.json",
       "required_geometry_status": "T20_CLASSIFIED",
-      "sha256": "0d1e4543115b9efab7155619a5329c3ad1d198dc0e2d74ea0e639fdb91240fb8"
+      "sha256": "70e0a6fbc120acacaab36b9c9d8ba00085adc4fd3a568312ade1772440b09362"
     },
     "source": {
       "path": "tools/t20_gt6_worldgen_source.json",

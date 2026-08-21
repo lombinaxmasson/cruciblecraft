@@ -245,7 +245,7 @@
       "stage": "T16b",
       "path": "src/main/java/com/masson/cruciblecraft/registry/ModBlocks.java",
       "required_tokens": [
-        "processing(\"press\", machineVariant(\"press\"))",
+        "tieredProcessing(\"press\")",
         "STEEL_PRESS",
         "TITANIUM_PRESS"
       ]
@@ -345,7 +345,7 @@
       "stage": "T16c",
       "path": "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
       "required_tokens": [
-        "ModMachineVariants.T16_SELECTED",
+        "ModMachineVariants.ALL",
         "\"steel_lathe\", \"titanium_lathe\"",
         "\"steel_press\", \"titanium_press\""
       ]
@@ -375,7 +375,7 @@
       "stage": "T16c",
       "path": "src/main/java/com/masson/cruciblecraft/datagen/ModBlockLootTables.java",
       "required_tokens": [
-        "ModMachineVariants.T16_SELECTED",
+        "ModMachineVariants.ALL",
         "ModBlocks.configuredProcessingBlock"
       ]
     },
@@ -560,7 +560,7 @@
     },
     "t16d_third_phase_status": {
       "stage": "T16d",
-      "path": "CrucibleCraft-第三阶段总体规划.md",
+      "path": "CrucibleCraft-总体规划.md",
       "required_tokens": [
         "T16_READY",
         "selected 5",
@@ -579,7 +579,7 @@
     },
     "t16d_project_readme": {
       "stage": "T16d",
-      "path": "README.md",
+      "path": "CrucibleCraft-总体规划.md",
       "required_tokens": [
         "T16_READY",
         "T19 is now `T19_READY`"

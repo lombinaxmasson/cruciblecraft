@@ -46,15 +46,15 @@ class T21SourceDenominatorTest(unittest.TestCase):
     def test_ordinary_translation_gap_is_explicit_not_hidden(self):
         counts = self.document["counts"]
         self.assertEqual(45_044, counts["ordinary_v1_required"])
-        self.assertEqual(2_592, counts["ordinary_translatable"])
-        self.assertEqual(42_452, counts["ordinary_blocked_translation"])
+        self.assertEqual(2_638, counts["ordinary_translatable"])
+        self.assertEqual(42_406, counts["ordinary_blocked_translation"])
         rejections = {
             row["reason"]: row["rows"]
             for row in self.document["rejection_summary"]
         }
         self.assertEqual(30_437, rejections["fluid_mapping"])
-        self.assertEqual(3_646, rejections["chemical_fluid_state"])
-        self.assertEqual(3_068, rejections["item_mapping"])
+        self.assertEqual(3_647, rejections["chemical_fluid_state"])
+        self.assertEqual(3_019, rejections["item_mapping"])
         self.assertEqual(2_508, rejections["item_registration"])
         self.assertEqual(2_039, rejections["machine_shape"])
 

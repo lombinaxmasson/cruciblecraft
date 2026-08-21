@@ -1,0 +1,3147 @@
+{
+  "counts": {
+    "canonical": 95,
+    "missing": 0,
+    "out_of_scope": 2,
+    "post_1_0": 64,
+    "unclassified": 0,
+    "unexpected": 0,
+    "v1_required": 29
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t27_portfolio.py": "af2635234c6815ea6598982a61e096a01dfc415f9ba9e436dd7acad8dd966387",
+      "tools/t13_denominators/recipe_maps.json": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+      "tools/t27_portfolio_policy/recipe_maps.json": "2447fc43256da2b7e1731f777e8e3ab19527440cba435a4eda9ba5947217cb0e"
+    }
+  },
+  "generated_by": "python tools/build_t27_portfolio.py",
+  "records": [
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 and roadmap OUT_OF_SCOPE; T27 does not create a v1 or post-1.0 content obligation.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Explicit product-contract exclusion retained from T13/roadmap.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded maps are not load-bearing for v1 or 1.x content cards.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "gt.recipe.anvil",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap OUT_OF_SCOPE (none). gt.recipe.anvil has 9228 pinned recipes dominated by GT6 hand-tool, zero-count-tool, and broad crafting semantics; CC ports the bounded bend maps separately and does not claim this base map as a machine implementation.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: excluded by the v1 product contract. Re-entry requires an explicit product-contract change.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "bdbde9a40d8c16bb7dd6f3568c67a95ea0bec35009b76a938a137f604a2cad5b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.anvil.bend.big",
+      "cc_implementation": "cruciblecraft:bender",
+      "dependencies": [
+        {
+          "id": "anvil_bend_big",
+          "kind": "open_item_id"
+        },
+        {
+          "id": "cruciblecraft:bender",
+          "kind": "runtime_capability"
+        }
+      ],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "GT6 gt.recipe.anvil.bend.big is already PORTED through the playable cruciblecraft:bender. The empty CC RecipeMap cruciblecraft:anvil_bend_big is a registered-zero-logical reserved slot, not this source map and not a v1 blocker.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "e7f114e3c2219acecca762005cbd2f1576cea0f9b31d6b4e8e3d498b725f83cf",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.anvil.bend.small",
+      "cc_implementation": "cruciblecraft:bender",
+      "dependencies": [
+        {
+          "id": "anvil_bend_small",
+          "kind": "open_item_id"
+        },
+        {
+          "id": "cruciblecraft:bender",
+          "kind": "runtime_capability"
+        }
+      ],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "GT6 gt.recipe.anvil.bend.small is already PORTED through the playable cruciblecraft:bender. The empty CC RecipeMap cruciblecraft:anvil_bend_small is a registered-zero-logical reserved slot, not this source map and not a v1 blocker.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "c1841b60dfd461bd988d3c44a867fb25e46819911da718295437a7bc27d5fd16",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.assembler",
+      "cc_implementation": "cruciblecraft:assembler",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap BOUNDED_SUBSET_PORTED (FULL_MAP_REPLAY_DEFERRED). The playable assembler includes the existing T3 component scope and 1 source-pinned T5 recipe; replay of the full 1582-row GT6 map remains deferred.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "15e0cc9a328b7bf9d15398ccbf67264adf7cd7593b377c9b559632e32d8ba559",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.autoclave",
+      "cc_implementation": "cruciblecraft:autoclave",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap BOUNDED_SUBSET_PORTED (FULL_MAP_REPLAY_DEFERRED). T5 publishes 17 source-pinned autoclave recipes through the playable host; replay of the full 392-row GT6 map remains deferred.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "8ab2571ea07db5655ffa121377734edde70784010a658d70092366f55f2ee9ab",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.autocrafting",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (EMPTY_PINNED_MAP). DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.autocrafting has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "f4167c52481965111c59b34c853b441103029be4178057e4435155f31d0dec65",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.bath",
+      "cc_implementation": "cruciblecraft:bath",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap BOUNDED_SUBSET_PORTED (FULL_MAP_REPLAY_DEFERRED). The playable bath includes the T2 ore-washing scope and 6 source-pinned T5 recipes; replay of the full 59855-row GT6 map remains deferred.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "11d4ccc10e92570e08bc39ed5231741f86b44d5b088e98ca3a6162b34ad06166",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.bedrockorelist",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (REFERENCE_OR_ANALYSIS_MAP). DEFERRAL[REFERENCE_OR_ANALYSIS_MAP]: gt.recipe.bedrockorelist has 52 pinned recipe(s); the current audited scope does not expose GT6 list, scanner, or analysis-map semantics as executable CrucibleCraft recipes.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "fe9aa9486fc1b504f3514a12e38365278e2272c1ae9b277f212a819524ad2efa",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.blastfurnace",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (EMPTY_PINNED_MAP). DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.blastfurnace has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "ca9a9ede1d0dacd78a2f5c2f447d54cc69a6b804ae3750107eab3c38ab134be1",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.boxinator",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (PACKAGING_OR_AUTOMATION). DEFERRAL[PACKAGING_OR_AUTOMATION]: gt.recipe.boxinator has 27291 pinned recipe(s); the current audited scope does not implement packaging, container, printing, generic conversion, or autocrafting machines.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "d7b932a380ea642ae1e5948e840f7775e984a87a025b71c7c2efa943fd708d1f",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.bumblelyzer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (BIOLOGICAL_PROCESSING). DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.bumblelyzer has 1440 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "77d7d3ef58071c84f211b304525ec8b129ee6ed86a35ee5312a0f8a7f14ac4f2",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.bumblequeen",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (BIOLOGICAL_PROCESSING). DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.bumblequeen has 80 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "9e17af551390903ef35766034f48e2474380be265338c5d41c65434acfbb43bf",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.burnmixer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (CHEMICAL_OR_THERMAL_PIPELINE). DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.burnmixer has 29 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "bc6a11b65c431e7bde964036e8d37186fe3cb4e2f340fbbd24791a649b0a0c6e",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.byproductlist",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (REFERENCE_OR_ANALYSIS_MAP). DEFERRAL[REFERENCE_OR_ANALYSIS_MAP]: gt.recipe.byproductlist has 289 pinned recipe(s); the current audited scope does not expose GT6 list, scanner, or analysis-map semantics as executable CrucibleCraft recipes.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "cfce0449c604c805da56f058b0a9542d7a4c42d3373ce51064093d0da71ed590",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.calciner",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (EMPTY_PINNED_MAP). DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.calciner has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "61ebfb052e43ee0a1eeb08a72853e43cf2461512d791ca7cacda77c5d7ff4bf4",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.canner",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (PACKAGING_OR_AUTOMATION). DEFERRAL[PACKAGING_OR_AUTOMATION]: gt.recipe.canner has 3609 pinned recipe(s); the current audited scope does not implement packaging, container, printing, generic conversion, or autocrafting machines.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "6c5d16a5bfc5cfecaac739c729b7fc08a598802d33ffdf6178955fca92f14e1d",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.catalyticcracking",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (CHEMICAL_OR_THERMAL_PIPELINE). DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.catalyticcracking has 3 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "8911f2f9f09651b716a92552b5eb1f4505e51d72e9533ef8f74ac4c95e6eb3aa",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.centrifuge",
+      "cc_implementation": "cruciblecraft:centrifuge",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap BOUNDED_SUBSET_PORTED (FULL_MAP_REPLAY_DEFERRED). The playable centrifuge includes the T2 ore-chain scope and 14 source-pinned T5 recipes; replay of the full 1296-row GT6 map remains deferred.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "ddcb4ab294b40abafb273e4f4561d5df1e9075e83ce1fdef23d052a53d1114ec",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.chisel",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (UNIMPLEMENTED_SPECIALIZED_MACHINE). DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.chisel has 2 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "d84af760f71114a706a55560322d6b41dc304833c495490ebb3af3463b2c61ad",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.clustermill",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (UNIMPLEMENTED_SPECIALIZED_MACHINE). DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.clustermill has 307 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "44c503cd05e1954a7b7eb5b04602d381666e2e452d7351c17ba52f5a29f0cff2",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.cncmachine",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (UNIMPLEMENTED_SPECIALIZED_MACHINE). DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.cncmachine has 38 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "024454a5cd423215e49efdff7ed760ee7ab6a09a7029975e19fcb87b23b2dae6",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.coagulator",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (CHEMICAL_OR_THERMAL_PIPELINE). DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.coagulator has 5 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "c7aeb35375f19998d1dfa8e0e0faf7acab504192f0250cb8de7bf3ebf99ed5b9",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.cokeoven",
+      "cc_implementation": "cruciblecraft:coke_oven",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap PORTED (none). The playable coke oven implements the committed coal-to-coke and creosote route; this is a bounded subset of the pinned GT6 map.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "d89db063e6208be4a51d2d67d4b6ea8d3fc741d3372c3a9de9c01cdf7456d17f",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.compressor",
+      "cc_implementation": "cruciblecraft:compressor",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap BOUNDED_SUBSET_PORTED (FULL_MAP_REPLAY_DEFERRED). T5 publishes 5 source-pinned compressor recipes through the playable host; replay of the full 1472-row GT6 map remains deferred.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "40cebd8b50e0c90a7cb5487ab07cfda6beacc45b7095ee6a4d1d7aca71d06f1a",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.cooker",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (EMPTY_PINNED_MAP). DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.cooker has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "891844194c9b3c198e8017125077383c1243294d6185fb358d03903db18170f1",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 and roadmap OUT_OF_SCOPE; T27 does not create a v1 or post-1.0 content obligation.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Explicit product-contract exclusion retained from T13/roadmap.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded maps are not load-bearing for v1 or 1.x content cards.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "gt.recipe.cruciblealloying",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap OUT_OF_SCOPE (none). gt.recipe.cruciblealloying has 414 pinned fake/reference recipes; CC alloying is composition- and thermal-model-driven, so the comparator audits semantic parity without exposing a direct GT6-map runtime.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: excluded by the v1 product contract. Re-entry requires an explicit product-contract change.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "46d6a1613ecf8ce5739f5113560080dc6874377260269760748c2783d82b37b2",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.cruciblesmelting",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (EMPTY_PINNED_MAP). DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.cruciblesmelting has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "d3b172f1911fe9cec2cacd91509b8b47d0476c93dc61b915ec2b22212e7a9413",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.crusher",
+      "cc_implementation": "cruciblecraft:crusher",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap PORTED (none). The playable crusher route implements the committed ore-chain subset through declarative material rules; unmodeled GT6 recipes remain comparison TODOs.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "3f2f7000f9a7801817ccd4ec6745e5c1deafdc6ca6272e47c41886fc2758e156",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.cryodistillationtower",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (CHEMICAL_OR_THERMAL_PIPELINE). DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.cryodistillationtower has 3 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "8b7cf420ebfcd3e6d36f8cc3d60a37e4149ae9e2547fdf3534f7450e6353b61c",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.cryomixer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (CHEMICAL_OR_THERMAL_PIPELINE). DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.cryomixer has 57 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "da0a8580c39a6a179e0c9d948a28194a4f0ca2b44f6d2ad7ee7f24e421b8fd9b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.crystallisationcrucible",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (CHEMICAL_OR_THERMAL_PIPELINE). DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.crystallisationcrucible has 132 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "c3922966a1c895c99997137f730eead5ee4c064f6cafd55be42332565ada512f",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.cutter",
+      "cc_implementation": "cruciblecraft:cutter",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap PORTED (none). Playable cutter block executes the bounded T3 declarative recipe map through the shared KU runtime.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "400cb6702cbcdaf25860d97b7d85d184636d20a617432a82f7796617e788ea08",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.distillationtower",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (CHEMICAL_OR_THERMAL_PIPELINE). DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.distillationtower has 8 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "630ed1b59459f3b7d510719c5aea47a5c9653ee18cf552a7a5e456ce32eac1e0",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.distillery",
+      "cc_implementation": "cruciblecraft:distillery",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap BOUNDED_SUBSET_PORTED (FULL_MAP_REPLAY_DEFERRED). T5.5 publishes distilled water and T11 publishes fixed hydrocarbon row 872; all 1517 rows retain explicit T11 dispositions and the remaining subset stays deferred.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "8a989ca558cc3cd67f1234f64ff7d3a570c5ed248ce8020fea1b25a2f78624b9",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.drying",
+      "cc_implementation": "cruciblecraft:drying",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap BOUNDED_SUBSET_PORTED (FULL_MAP_REPLAY_DEFERRED). T5 publishes 5 source-pinned drying recipes through the playable host; replay of the full 217-row GT6 map remains deferred.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "7bd95926aebcaf4a200962c4ab147688706b8405b47a05ea67ea33f51bb79d77",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.electrolyzer",
+      "cc_implementation": "cruciblecraft:electrolyzer",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap BOUNDED_SUBSET_PORTED (FULL_MAP_REPLAY_DEFERRED). T5 publishes 62 source-pinned electrolyzer recipes through the playable host; replay of the full 290-row GT6 map remains deferred.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "f62acfe497eb91276f01e135b14ac8a7a61d2fbf7b9005d8c8acab3106f3986b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.extruder",
+      "cc_implementation": "cruciblecraft:extruder",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap PORTED (none). Playable extruder block executes the bounded T3 declarative recipe map through the shared KU runtime.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "e873d5057bd79884c27f3763a1b05e13cbdd50b9ce2b01f3e53fc9f6393fc93d",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.fermenter",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (BIOLOGICAL_PROCESSING). DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.fermenter has 6435 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "150c9ab18cab28e05141c950af3bd47f986bb8ee4810fec86ad7e2cdaeb2306d",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.freezer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (CHEMICAL_OR_THERMAL_PIPELINE). DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.freezer has 957 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "03b9d383aac7de2d478f3ee9e76e61fe037522c539d3667a049d7633327ad5e5",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.fuels.burn",
+      "cc_implementation": "runtime:t18_generator_gas_fm_burn_hu",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap BOUNDED_SUBSET_PORTED (ENERGY_AND_FUEL_SYSTEM). T18c publishes fixed methane row 20 through the source-selected GeneratorGas -> HU runtime; the other 48 rows remain explicitly deferred in the T11 source ledger.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "8d82b52a26cf7c9e853874e307d893a7dad4914f28851effccf613a6c894cd24",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.fuels.engine",
+      "cc_implementation": "cruciblecraft:fuels_engine",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap BOUNDED_SUBSET_PORTED (ENERGY_AND_FUEL_SYSTEM). T11 publishes fixed row 14 through the direct-electric Fuel Engine; the other 20 rows remain explicitly deferred in the T11 source ledger.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "c2e3709904af9d5df7506bb1a86d5a3afb60605ab80acd602d6b0edf6bba8874",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.fuels.fluidbed",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (ENERGY_AND_FUEL_SYSTEM). DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.fluidbed has 55 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "28e150139a2e63341a97704f28f85e108141d7c591c8fe55e1f41b5b6ab7e3e1",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.fuels.gas",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "GT6 FM.Gas rows remain unported after T18 moved Burning Gas Generator to FM.Burn/HU. cruciblecraft:fuels_gas is the T11 methane hydrocarbon map and must not be claimed as this GT6 identity.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "6612480891d723ccdeb5bf8ff1388d420eb0bdcbb505314d8d770981f7ab5ac2",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.fuels.hot",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (ENERGY_AND_FUEL_SYSTEM). DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.hot has 12 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "7b2076f895922852f02b94a71f742e33385fa5419e9bbb389477711e0095f114",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.fuels.magic",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (EMPTY_PINNED_MAP). DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.fuels.magic has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "36a1e85262ad2490e7592b540106f5bb0bf821c2eba91ee05268b1771f16bbdf",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Plasma fuel map is Track C, not Track E, and is not a v1 implementation gap.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred empty pinned map; T27 assigns Track C because plasma is the nuclear/fusion/plasma axis.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "C0 must measure or exclude before any plasma content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.fuels.plasma",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (EMPTY_PINNED_MAP). DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.fuels.plasma has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "Track C0 source/physics measurement",
+      "replacement_condition": "C0 source/physics measurement decides whether this empty plasma fuel map is excluded or later owned by a 1.x physics card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "8e905dda0b91ccb59efea7caf3d5dae110dc88fb5fa9a3acc2144db37ea0e4c8",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.fuels.turbine",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (ENERGY_AND_FUEL_SYSTEM). DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fuels.turbine has 1 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "85d205daa49977e0a81002ff4f5b5a017e0999f166096cc41b62b4545ecb230b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Fusion recipe map is Track C, not Track E, and is not a v1 implementation gap.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred ENERGY_AND_FUEL_SYSTEM map; T27 assigns Track C because fusion is the nuclear/fusion/plasma axis.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "C0 must measure or exclude before any fusion content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.fusionreactor",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (ENERGY_AND_FUEL_SYSTEM). DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.fusionreactor has 18 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "recheck_point": "Track C0 source/physics measurement",
+      "replacement_condition": "C0 source/physics measurement decides whether this fusion map is excluded or later owned by a 1.x physics card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "e9c68865bba21da4fdc1dcfe8cd4d35a137710fa1381f930c23bbc5698cf6d4f",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.generifier",
+      "cc_implementation": "cruciblecraft:generifier",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap BOUNDED_SUBSET_PORTED (PACKAGING_OR_AUTOMATION). T11 publishes fixed natural-gas row 553 through a dedicated zero-energy Generifier; the other 10235 rows remain explicitly deferred in the T11 source ledger.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "b0d44197ea4a65c5ef05b29f63503d5bc0d067da04d2dc2de388c6fc75eb37e4",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.hammer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (UNIMPLEMENTED_SPECIALIZED_MACHINE). DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.hammer has 309 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "4ff4ea17e50cb83a98cb70885277afddea075ac483a7f69e94c23a2f7a5cc6f2",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.implosioncompressor",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (UNIMPLEMENTED_SPECIALIZED_MACHINE). DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.implosioncompressor has 1072 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "b15cd60b9dfa0a7bc2c69ee92cc7437062e5e924600d0cc9578c82bd67e862e0",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.injector",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (UNIMPLEMENTED_SPECIALIZED_MACHINE). DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.injector has 638 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "53c776e575e94c8ab357f88b64a5d5063f5d6d90e92b3e7c77b4f977c96501f3",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.juicer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (BIOLOGICAL_PROCESSING). DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.juicer has 96 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "59f8665f3d0222eb6921da833ba040f68aa1734ff2025dfbb933032fa12a455a",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.laminator",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (UNIMPLEMENTED_SPECIALIZED_MACHINE). DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.laminator has 498 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "908ade8e8f2f8123b6cf8282c8b455afcfa2d70f0082a0614e98aa683e625164",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.laserengraver",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (UNIMPLEMENTED_SPECIALIZED_MACHINE). DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.laserengraver has 1787 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "3823fac47884ffb7029164ab683ad7037eeaa29ba46638166f66a9838cbf8881",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.lathe",
+      "cc_implementation": "cruciblecraft:lathe",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap PORTED (none). Playable lathe block executes the bounded T3 declarative recipe map through the shared KU runtime.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "12bca15289995bbb3e3ffe5b6776c1898c2c137166edb2494d0ac37a235d92f0",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.lightning",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (ENERGY_AND_FUEL_SYSTEM). DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.lightning has 12 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "cad11f8e6e183726da7390a22a875a6a2554dbe280cfdd14bf4a5f0999557ff2",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.loom",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (UNIMPLEMENTED_SPECIALIZED_MACHINE). DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.loom has 1334 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "c73b34bcdf4d8724e3e1c96f91fd4c564f7e0658949360eca5e4b7c2c7796237",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.magneticseparator",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (UNIMPLEMENTED_SPECIALIZED_MACHINE). DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.magneticseparator has 179 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "ce50ec4c5d9532510c08b9d15babf1463d3bdd4ba4f8905e9772dfa6d896f8a6",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.massfab",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (ENERGY_AND_FUEL_SYSTEM). DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.massfab has 920 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "a49c5ddafe1c1d1297b1d2bb312333cb693f71393202fb9dd4c39c42a069c17d",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.melter",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (CHEMICAL_OR_THERMAL_PIPELINE). DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.melter has 6756 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "b03985351ed2fbdaaf358c8542b19f7f13b49cad2000b9bfc5ab6316de3de13e",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.microwave",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (EMPTY_PINNED_MAP). DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.microwave has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "e266fb650e2f9e52d111dfb51c1cd241d36d3f8de39b3f943c4e6e031645608a",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.mixer",
+      "cc_implementation": "cruciblecraft:mixer",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap BOUNDED_SUBSET_PORTED (FULL_MAP_REPLAY_DEFERRED). T5 publishes 34 source-pinned mixer recipes through the playable host; replay of the full 64245-row GT6 map remains deferred.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "65e7e69db9e625c25ea773f736297f3cea4d8a62d1518b2b3403b24636f1f774",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.mortar",
+      "cc_implementation": "cruciblecraft:mortar",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap PORTED (none). T2 ships a playable crushed-ore to dust mechanical alternative.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "6a4734e3bd2bcc046cebb18199d6300d61fb241165855f5e7aab3598c7f64617",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.nanofab",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (UNIMPLEMENTED_SPECIALIZED_MACHINE). DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.nanofab has 64 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "e747494e1aaf557d362f097d3b43e015d1bd1c8446470113e3fc6946ca642bb7",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.other",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (REFERENCE_OR_ANALYSIS_MAP). DEFERRAL[REFERENCE_OR_ANALYSIS_MAP]: gt.recipe.other has 71 pinned recipe(s); the current audited scope does not expose GT6 list, scanner, or analysis-map semantics as executable CrucibleCraft recipes.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "765dc6c862a0f6bbacf16f9ea51ef98faeedc5f26f36d56275a8b5c776026314",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.plantalyzer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (EMPTY_PINNED_MAP). DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.plantalyzer has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "9276199b28f37b5081104f05c8d5f8459887e318a85f9fc9696b42176451073b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.polarizer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (UNIMPLEMENTED_SPECIALIZED_MACHINE). DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.polarizer has 943 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "d3c1077c19cd16a4bf50eb1eb4cfecfca596ca4be86b3cb5171f7d1594a2cf32",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.press",
+      "cc_implementation": "cruciblecraft:press",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap PORTED (none). Playable press block supports atomic two-item plate aggregation through the shared KU runtime.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "30bc3fc7b661e55678db1833adb0486920c09e4bd2dc4537c1572c60c7a6d56c",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.pressurewasher",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (UNIMPLEMENTED_SPECIALIZED_MACHINE). DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.pressurewasher has 312 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "8239fea72335bca276e4eec4867d1540c123698f3faebcbd26c476f9a5eed4b0",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.printer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (PACKAGING_OR_AUTOMATION). DEFERRAL[PACKAGING_OR_AUTOMATION]: gt.recipe.printer has 22 pinned recipe(s); the current audited scope does not implement packaging, container, printing, generic conversion, or autocrafting machines.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "36f69b434d881ff4d90c17816fec2214d84547612f4c0a47171ca1282e2bba29",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.replicator",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (ENERGY_AND_FUEL_SYSTEM). DEFERRAL[ENERGY_AND_FUEL_SYSTEM]: gt.recipe.replicator has 895 pinned recipe(s); the current audited scope has no matching fuel-value, generator, fusion, or matter-production runtime.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "fd33fc10753ed7d284e00bf77a9d66acebf22d45ee85219af56afe8a70f3d2b8",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.roaster",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (CHEMICAL_OR_THERMAL_PIPELINE). DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.roaster has 115 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "f171100055e0ad212e96fba1455c3a8fe673b94c777a8bd98509ccb6ce8a2739",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.rollbender",
+      "cc_implementation": "cruciblecraft:rollbender",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap PORTED (none). Playable roll bender block executes the bounded T3 declarative recipe map through the shared KU runtime.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "e6c4bdf8b095c45a682faabba9f5399782ce9071ae5e7acf07aeb26f92a4e23a",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.rollformer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (UNIMPLEMENTED_SPECIALIZED_MACHINE). DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.rollformer has 28 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "97298ee2be1453ade5106cc582385d8ede8e7e0be6b8a7916176b410f62f732b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.rollingmill",
+      "cc_implementation": "cruciblecraft:rollingmill",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap PORTED (none). Playable rolling mill block executes the bounded T3 declarative recipe map through the shared KU runtime.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "f2a0839ad475f4a64328616c19c81cbbe690feddc6f7f9b813742bfdded99ca0",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.scannermolecular",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (EMPTY_PINNED_MAP). DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.scannermolecular has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "a5f5d6c4bd4f5057be697c43d6fd0fe22ba372612dbc89f8ff70d8a039871215",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.scannervisuals",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (REFERENCE_OR_ANALYSIS_MAP). DEFERRAL[REFERENCE_OR_ANALYSIS_MAP]: gt.recipe.scannervisuals has 50 pinned recipe(s); the current audited scope does not expose GT6 list, scanner, or analysis-map semantics as executable CrucibleCraft recipes.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "8808a704525630af58175367e65f105183fc645d3e59d80ec7aaf86c1d89381f",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.sharpener",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (UNIMPLEMENTED_SPECIALIZED_MACHINE). DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.sharpener has 7637 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "2d790f0c1e60f43e67e24161c8fb0e6cf86efb727d458ec572dd6cce51d56b70",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.shredder",
+      "cc_implementation": "cruciblecraft:shredder",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap PORTED (none). T2 ships the playable centrifuged-ore to purified-dust subset.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "5420077645fa76e726daa3024211a6c5b8fe3c92394b8d39b96aba79d7414e8c",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.sifter",
+      "cc_implementation": "cruciblecraft:sifter",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap PORTED (none). T2 ships the playable purified-dust finishing subset.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "e6a3f5dcf33291f34ab21224f8b09fce8abcdd3f1c5579d2600b44ac5ea8656d",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.slicer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (UNIMPLEMENTED_SPECIALIZED_MACHINE). DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.slicer has 33 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "deaccb11cfd9b24c54f53777c029dd61eca9d4d287d44365029a53737859af35",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.sluice",
+      "cc_implementation": "cruciblecraft:sluice",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap PORTED (none). T2 ships a playable water-fed ore-washing route with ordered byproducts.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "96ecce08843b859483de0f2dab16a65bf8cb4598ef4735e479e12c8dad026a65",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.smelter",
+      "cc_implementation": "cruciblecraft:smelter",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap BOUNDED_SUBSET_PORTED (FULL_MAP_REPLAY_DEFERRED). The playable smelter includes the T2 dust scope and 7 source-pinned T5 recipes; replay of the full 21969-row GT6 map remains deferred.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "076347e257df177b393c050f57e3aa710a8a1e69a85978d1ddad3b0fb7c5bb39",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.squeezer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (BIOLOGICAL_PROCESSING). DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.squeezer has 5322 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "b859222b817dbf05599f1a380657fde8ec35c3b2a06ef833f8b9b12903ead486",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.steamcracking",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (CHEMICAL_OR_THERMAL_PIPELINE). DEFERRAL[CHEMICAL_OR_THERMAL_PIPELINE]: gt.recipe.steamcracking has 7746 pinned recipe(s); the current audited scope lacks the required chemical, pressure, phase-separation, or controlled-atmosphere pipeline.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "e4033dfc0d0695708393da8f06fb61a3a5371ab95b47fd24888b18306c9a361a",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.toolhead",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (UNIMPLEMENTED_SPECIALIZED_MACHINE). DEFERRAL[UNIMPLEMENTED_SPECIALIZED_MACHINE]: gt.recipe.toolhead has 10960 pinned recipe(s); the current audited scope implements the named T0-T3 processing maps only and has no executable map-specific machine.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "0faa24523a9b0a034e8d13899294ffe8970cedce832ec5d9445360c89d3b218c",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.trees",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (BIOLOGICAL_PROCESSING). DEFERRAL[BIOLOGICAL_PROCESSING]: gt.recipe.trees has 15 pinned recipe(s); the current audited scope is material processing and does not include bee, plant, tree, juice, or fermentation systems.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "edc81783273e6788dca15b06afe15936b6e38d2d5525bfca80f4947f61ab1059",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.unboxinator",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (PACKAGING_OR_AUTOMATION). DEFERRAL[PACKAGING_OR_AUTOMATION]: gt.recipe.unboxinator has 17513 pinned recipe(s); the current audited scope does not implement packaging, container, printing, generic conversion, or autocrafting machines.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "2435b68bd38c45b98f147d7a0b90b5b34fb6efde61ff710ff17c61bfc6f991c7",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "gt.recipe.vacuumfreezer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (EMPTY_PINNED_MAP). DEFERRAL[EMPTY_PINNED_MAP]: gt.recipe.vacuumfreezer has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "456e5160d991a43adebf85e3b20f5798745edb56fabceded6a09ecb19b6f563f",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.welder",
+      "cc_implementation": "cruciblecraft:welder",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap PORTED (none). Playable welder block supports atomic two-item recipes and an optional fluid input through the shared KU runtime.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "a0c29cfb966a18005d82030bfd32c5ef6b58d1289d6ef7e64fa09d968c544c10",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "gt.recipe.wiremill",
+      "cc_implementation": "cruciblecraft:wiremill",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "reason": "T13 in_scope; roadmap PORTED (none). Playable wire mill block supports the current one- and two-item gauge transformations through shared KU runtime.",
+      "recheck_point": "Track A0 measurement card",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "3e3566ac2a8bdadf839aa699c28891306b847983d9369d5ceb5a96ffdf82e68f",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "mc.recipe.furnace",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (EMPTY_PINNED_MAP). DEFERRAL[EMPTY_PINNED_MAP]: mc.recipe.furnace has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "3b37fc6cc801b49581c00d21fccb585c5abb3c31ff187c9f5d63f3a766d07ac6",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "mc.recipe.furnacefuel",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (EMPTY_PINNED_MAP). DEFERRAL[EMPTY_PINNED_MAP]: mc.recipe.furnacefuel has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "017597c93ae88fc95266e3046fd1ab79f4aa5dea9817b4b4423d95fddc363466",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "unnamed",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "reason": "T13 deferred_with_reason; roadmap DEFERRED (EMPTY_PINNED_MAP). DEFERRAL[EMPTY_PINNED_MAP]: <unnamed> has 0 pinned recipe(s); the pinned source map is empty, so there is no deterministic recipe set to port.",
+      "recheck_point": "Track E0 secondary denominator",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "source": {
+        "artifact": "tools/t13_denominators/recipe_maps.json",
+        "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+        "record_sha256": "1361d6284cd58c3a5158b2caa264b3a9085d216a6cb3502c852d654ef51ccb88",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "recipe_maps"
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T27_TABLE_CLASSIFIED",
+  "table": "recipe_maps"
+}

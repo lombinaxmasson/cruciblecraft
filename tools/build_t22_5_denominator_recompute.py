@@ -338,9 +338,7 @@ def main(argv: list[str] | None = None) -> int:
             if not args.full_replay:
                 raise ValueError("--write requires --full-replay")
             document = build()
-            OUTPUT.write_text(
-                _stable(document), encoding="utf-8", newline="\n"
-            )
+            OUTPUT.write_bytes(_stable(document).encode("utf-8"))
         else:
             parser.error("choose --check or --write")
     except (OSError, ValueError, KeyError, json.JSONDecodeError) as error:

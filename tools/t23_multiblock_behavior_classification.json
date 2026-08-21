@@ -24,7 +24,7 @@
   "currentness": {
     "owned_inputs": {
       "tools/build_t23_multiblock_classification.py": "2387685d6be4ae9abdbec440755e188c41b25310255291a5ebb7819cdabc5e9b",
-      "tools/t23_multiblock_policy.json": "bbbab656db7cb2609f9d2d55ab0c9e3582f226bf83f91168c20c058c65419242"
+      "tools/t23_multiblock_policy.json": "967dadab1e43094cde3bbee5be0dbbe73687b3742ae81aa19067c1c51ba0a502"
     },
     "t13_denominator": {
       "path": "tools/t13_denominators/multiblock_kinds.json",
@@ -278,8 +278,8 @@
       },
       "schema_expressibility": {
         "needed_extensions": [],
-        "notes": "3x3x3 open-top: 26 walls + 2 AIR above center; layer0 8x ONLY_ENERGY_IN (HU bottom), layer1 8x ONLY_CRUCIBLE (mold slots - no CC port role: DESIGN_POLICY, mold slots live in controller inventory/UI), layer2 8x ONLY_ITEM_FLUID; wall meta 0/4 both accepted.",
-        "positions": 28,
+        "notes": "3x3x3 open-top: controller at bottom-center; 8 walls × 3 layers = 24 walls; 2 AIR above controller; total 27 positions. Layer0 ONLY_ENERGY_IN (HU), layer1 ONLY_CRUCIBLE (CC: mold slots in controller UI, DESIGN_POLICY), layer2 ONLY_ITEM_FLUID. Wall meta 0/4 both accepted in GT6; CC collapses to a fixed casing.",
+        "positions": 27,
         "verdict": "v1_expressible"
       },
       "source_identity": {

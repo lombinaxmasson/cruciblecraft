@@ -19,7 +19,13 @@
     "pending": [],
     "reason": "T26 freeze closes the public Beta gate with a complete known-issue ledger, O-15 accounting, anvil_bend post_1_0 reserved slots and crucible owned by T27. Publication delta remains 0/0/0. F003/F005 are not remeasured here; their SKIP contracts transfer to T27 RC. Repository-wide verification is bound separately by the full snapshot report."
   },
-  "completed_stages": [],
+  "completed_stages": [
+    "T26a",
+    "T26b",
+    "T26c",
+    "T26d",
+    "T26e"
+  ],
   "currentness": {
     "full_verification": {
       "evidence": "tools/full_verification_report.json",
@@ -27,8 +33,8 @@
       "status": "BOUND_TO_FULL_VERIFICATION_REPORT"
     },
     "owned_inputs": {
-      "tools/build_t26_readiness.py": "b43ad7c3a145e63ce9954c3ea475c04a91a2ba97f119383bc26e382982bd110c",
-      "tools/t26_readiness_policy.json": "0c02da1183f671d7d0ab6c9f843f8b2ec0bcf7ebf4d84178546fd0960b983522"
+      "tools/build_t26_readiness.py": "db8ce161e1b79cc2ea79916a75461a539a2a5a38cf061a49b8a182c80eabac06",
+      "tools/t26_readiness_policy.json": "3b76274e1909d01324a9ef808bfb16cfe860bc6f59e3932b9a3765224cefed4e"
     }
   },
   "fidelity": {
@@ -69,8 +75,9 @@
   "policy": "The status field is derived from evidence by build(). Any mismatch between the committed value and a fresh build is detected by check().",
   "runtime": {
     "gametest_passing": true,
-    "gametest_total": 119
+    "gametest_total": 137
   },
   "schema_version": 1,
+  "status": "T26_READY",
   "status_owner": "run_full_verification"
 }

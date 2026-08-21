@@ -57,10 +57,6 @@ public final class HeatMaintenanceEvents {
 
     static ItemStack maintain(ItemStack stack, long gameTime) {
         HotIngotProcessing.initializeIfMissing(stack, gameTime);
-        var cooled = MaterialItemCooling.coolIfReady(stack, gameTime);
-        if (cooled.isPresent()) {
-            return cooled.orElseThrow();
-        }
         ItemHeat.clearIfCooled(stack, gameTime);
         return stack;
     }

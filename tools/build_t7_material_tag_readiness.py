@@ -505,7 +505,7 @@ def main() -> int:
             if OUTPUT.read_text(encoding="utf-8") != encoded:
                 raise ValueError("committed T7 readiness ledger is stale")
         else:
-            OUTPUT.write_text(encoded, encoding="utf-8", newline="\n")
+            OUTPUT.write_bytes(encoded.encode("utf-8"))
         print(json.dumps({
             "output": OUTPUT.relative_to(ROOT).as_posix(),
             "status": json.loads(encoded)["status"],

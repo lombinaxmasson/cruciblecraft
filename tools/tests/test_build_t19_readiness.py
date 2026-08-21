@@ -185,16 +185,16 @@ class T19ReadinessTest(unittest.TestCase):
             vanilla["entries_added"],
         ))
         self.assertEqual(
-            907,
+            1031,
             vanilla["generated_recipe_files_after_t19"],
         )
         self.assertEqual(0, vanilla["gt_recipe_rows_added"])
         summary = self.document["closure_summary"]
         self.assertEqual(
             {
-                "english_keys": 3_174,
-                "chinese_translations": 876,
-                "visible_chinese_debt": 2_298,
+                "english_keys": 3_316,
+                "chinese_translations": 946,
+                "visible_chinese_debt": 2_370,
                 "missing_material_names": 1_566,
             },
             summary["localization"],

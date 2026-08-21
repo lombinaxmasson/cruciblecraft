@@ -1,0 +1,63 @@
+{
+  "closure": {
+    "cooling_class_absent": true,
+    "cooling_rule_absent": true,
+    "maintain_does_not_query_cooling": true,
+    "o36_replacement_is_absence": true,
+    "smelter_hot_ingot_rule_present": true,
+    "t29_not_started": true
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T28 retires the T10 DESIGN_POLICY hot-ingot conversion leftover. GT6 has no passive ingotHot to ingot conversion. O-36 replacement is absence of conversion plus retained contact heat."
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t28_readiness.py": "183947191272bb5f6412fb56df93d6895deed1538b1cd1cbc2631cb3f4d372c7",
+      "tools/t27_card_topology.json": "52f1dcc60e2b2662bb803b6ac349cb3f7055e7f6d3c3424cf6a106c2dbdf7a42",
+      "tools/t28_hot_ingot_source_evidence.json": "05ff2a982fc34fdb9138a0991bafb66c12e5a92fec0742bf637ef020c796b201",
+      "tools/t28_load_projection.json": "5ac473620d6b25b2dbdb43f37eb74b099caaf261d4e30e2503e5291d2eab9f2f",
+      "tools/t28_publication_delta.json": "8b4e049ba31470e834aca33a8cb4939bb39119c3664b16260c09005752cbcf27",
+      "tools/t28_readiness_policy.json": "ebcaa096e45d39987f562398b7228d94639557b4b325f8b133a1dec0b07a73e5"
+    }
+  },
+  "fidelity": {
+    "cc_auto_conversion_retired": true,
+    "contact_heat_source_present": true,
+    "freezer_not_in_scope": true,
+    "gt6_passive_conversion_false": true,
+    "large_crucible_unregistered": true,
+    "product_decision": "strict_no_conversion",
+    "source_revision_pinned": true
+  },
+  "generated_by": "python tools/build_t28_readiness.py --write",
+  "load": {
+    "eager_hard_ceiling_is_21000": true,
+    "eager_projected_below_ceiling": true,
+    "measured_pending_not_zero": true,
+    "projected_eager_delta": -321,
+    "projected_logical_delta": -321,
+    "same_sign_when_measured": true
+  },
+  "owned_inputs": {
+    "tools/build_t28_readiness.py": "183947191272bb5f6412fb56df93d6895deed1538b1cd1cbc2631cb3f4d372c7",
+    "tools/t27_card_topology.json": "52f1dcc60e2b2662bb803b6ac349cb3f7055e7f6d3c3424cf6a106c2dbdf7a42",
+    "tools/t28_hot_ingot_source_evidence.json": "05ff2a982fc34fdb9138a0991bafb66c12e5a92fec0742bf637ef020c796b201",
+    "tools/t28_load_projection.json": "5ac473620d6b25b2dbdb43f37eb74b099caaf261d4e30e2503e5291d2eab9f2f",
+    "tools/t28_publication_delta.json": "8b4e049ba31470e834aca33a8cb4939bb39119c3664b16260c09005752cbcf27",
+    "tools/t28_readiness_policy.json": "ebcaa096e45d39987f562398b7228d94639557b4b325f8b133a1dec0b07a73e5"
+  },
+  "policy": "The status field is derived from evidence by build(). T28_READY cannot be hand-written.",
+  "runtime": {
+    "gametest_passing": true,
+    "gametest_total": 137,
+    "live_cooling_expansion": 0,
+    "report_status": "READY",
+    "t27_status": "T27_READY"
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T28_READY",
+  "status_owner": "run_full_verification"
+}

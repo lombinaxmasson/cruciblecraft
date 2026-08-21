@@ -47,10 +47,10 @@ class T7MaterialTagReadinessTest(unittest.TestCase):
         self.assertEqual(64, len(vocabulary["sha256"]))
         self.assertIn("PROCESSING.MORTAR_GRINDABLE", vocabulary["values"])
         audit = self.document["material_rule_audit"]
-        self.assertEqual(90, audit["total_rule_files"])
-        self.assertEqual(89, audit["cross_material_rule_files"])
+        self.assertEqual(91, audit["total_rule_files"])
+        self.assertEqual(90, audit["cross_material_rule_files"])
         self.assertEqual(
-            57, audit["conditioned_cross_material_rule_files"]
+            58, audit["conditioned_cross_material_rule_files"]
         )
         self.assertEqual(
             12, len(audit["unconditioned_cross_material_rule_files"])
@@ -82,8 +82,8 @@ class T7MaterialTagReadinessTest(unittest.TestCase):
         counts = self.document["counts"]
         self.assertEqual(1773, counts["material_count"])
         self.assertEqual(952, counts["formula_count"])
-        self.assertEqual(605, counts["formula_visible_material_count"])
-        self.assertEqual(347, counts["formula_without_registered_form_count"])
+        self.assertEqual(609, counts["formula_visible_material_count"])
+        self.assertEqual(343, counts["formula_without_registered_form_count"])
         self.assertEqual(0, counts["nonzero_explosion_damage_count"])
         self.assertEqual(0, counts["nonzero_heat_damage_count"])
         self.assertEqual(603, counts["mortar_tagged_material_count"])

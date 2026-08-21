@@ -157,7 +157,7 @@ def _load_plugins() -> dict[str, Any]:
     allowed_structures = {
         row.get("structure_id")
         for row in (classification.get("selected") or [])
-    } | {"large_centrifuge", "coke_oven"}
+    } | {"large_centrifuge", "coke_oven", "large_crucible"}
     consumed = []
     for row in plugins:
         consumers = row.get("consumers") or []

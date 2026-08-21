@@ -1,0 +1,326 @@
+{
+  "contract_publication_delta": {
+    "eager": 0,
+    "lazy": 0,
+    "logical": 0
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t27_opening_snapshot.py": "837ad56334d09d75efbea778dcf775d2d0ff70299edab00d8d19678f11f5d4ad",
+      "tools/phase5_portfolio_contract.json": "ca9be41df6cb391c4076ab0acbf35950dca868b5569fb7ce03388ef0cfab2cc7",
+      "tools/t27_opening_snapshot_policy.json": "8328ad647cb7965310465c6bafec0dd007ec6ec37e73306c3d5fc64598ee8476"
+    }
+  },
+  "datapack": {
+    "report_counter": {
+      "authority": "tools/full_verification_report.json#rules.datapack_recipe_entries",
+      "name": "concrete_datapack_recipe_entries",
+      "value": 3243
+    },
+    "t14_authored_files": {
+      "authority": "tools/full_verification_report.json#t14_load_acceptance.load_gate.datapack_authored_entries",
+      "name": "datapack_authored_entries",
+      "value": 3267
+    }
+  },
+  "generated_by": "python tools/build_t27_opening_snapshot.py",
+  "historical_baselines": {
+    "phase5_plan_2026_08_15": {
+      "current_baseline": false,
+      "note": "Fifth-phase planning prose opening is not T27 current; use publication.current."
+    },
+    "t23_ledger": {
+      "authority": "src/main/resources/data/cruciblecraft/t23_publication_baseline.json",
+      "current_baseline": false,
+      "eager": 16657,
+      "lazy": 2225,
+      "logical": 18882
+    }
+  },
+  "input_artifacts": {
+    "src/main/resources/data/cruciblecraft/t23_publication_baseline.json": "86c4572e4ee28d80b7c3df86337952adceaaab2cf345e9b8304a04100e1309ad",
+    "src/main/resources/data/cruciblecraft/t26_5_publication_baseline.json": "2f3274f5c5ba1e0f349e0e6c74221fde30b620da2507933416242ca2993b1aea",
+    "tools/full_verification_report.json": "8aa91164bffdc2e157b0bd86e4fa9e7bdbfd1f1908a16fad766d2b5c91bd449e",
+    "tools/gt6_map_roadmap.json": "72b8d94d08277611ca4cccd9bb698fedafc6af7c07e4ca41932579c544b308f7",
+    "tools/phase4_v1_planning_contract.json": "c9436c521c6c39a1fbf1e45bc88e097553a9bb5996da7493bfb2368b373d0bed",
+    "tools/phase5_portfolio_contract.json": "ca9be41df6cb391c4076ab0acbf35950dca868b5569fb7ce03388ef0cfab2cc7",
+    "tools/t13_denominator_manifest.json": "9bf87bdbd4bda82d4417f899ef44b920d1cb147ed30f1adee7d917c1d23ec400",
+    "tools/t13_denominators/cover_kinds.json": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+    "tools/t13_denominators/energy_identities.json": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+    "tools/t13_denominators/itemgenerator_domains.json": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+    "tools/t13_denominators/machine_kinds.json": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+    "tools/t13_denominators/multiblock_kinds.json": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+    "tools/t13_denominators/prefixes.json": "fc7c5b9f84eda867a057442e0e37697ce198e7c5167783b12176fd6a31312205",
+    "tools/t13_denominators/recipe_maps.json": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+    "tools/t14_load_budget_policy.json": "7e87ddb3b987f52fd8fd918a426bd6a2c640682fb89b52cb7b3cc5731c339270",
+    "tools/t20_readiness.json": "66aef0be611c9527836f121fb961402d366060c61befa484683875c42ef1cb4e",
+    "tools/t21_readiness.json": "acf19f20256d2904e18a7b75ff5e8744d41a765a8dcb19dfe2e6869d9a2d72b6",
+    "tools/t22_5_readiness.json": "6e60fc83e55d44276437cccfa947d38ceb97b9c4132f545a1a2652ce7bfac8ec",
+    "tools/t22_readiness.json": "735a21907ed1bce2c0d7dcc78ddeb205d99f182a12c1b4f5b2717b4514bfa8c3",
+    "tools/t23_readiness.json": "acc0c5572f2234649d18562acfbad4e3e4555ff481152162409d8af749e98a69",
+    "tools/t24_readiness.json": "d15ef479a73e86e68db0ee3e0acd0cf84fcd2b17a9ef3600560690732885e1fc",
+    "tools/t25_readiness.json": "7ce3ca4afe2ae4e4d15b6f9fbec1027305019fab6100488047e80d04bee5a791",
+    "tools/t26_known_issues.json": "87a7bb20e1d717cb8e739bb48c71974b9e6cad3d856f7af4fe3352a0eb7a3d0d",
+    "tools/t26_readiness.json": "0741d5ae52c8b4feb94e78fe53e646cfed74ff9f8677e4d17fa174ccfa86b2d1"
+  },
+  "measurements": {
+    "authority": "tools/full_verification_report.json#t14_load_acceptance.measurements",
+    "selected_1x": {
+      "dedicated_client_index_p95_ns": 1057400,
+      "dedicated_client_reexpansion_p95_ns": 1872000,
+      "jfr_allocation_bytes_p50": 32,
+      "jfr_allocation_status": "PASS",
+      "lookup_candidates_max": 8,
+      "lookup_candidates_p95": 8,
+      "lookup_p95_ns": 1543,
+      "retained_status": "PASS",
+      "retained_total_bytes_p50": 2241752,
+      "server_index_p95_ns": 1530700,
+      "server_reload_p95_ns": 2811900,
+      "sync_bytes": 331124
+    },
+    "selected_20x": {
+      "dedicated_client_index_p95_ns": 32241300,
+      "dedicated_client_reexpansion_p95_ns": 53864000,
+      "jfr_allocation_bytes_p50": 0,
+      "jfr_allocation_status": "PASS",
+      "lookup_candidates_max": 8,
+      "lookup_candidates_p95": 8,
+      "lookup_p95_ns": 2950,
+      "retained_status": "PASS",
+      "retained_total_bytes_p50": 21934784,
+      "server_index_p95_ns": 34456500,
+      "server_reload_p95_ns": 56006000,
+      "sync_bytes": 9877420
+    },
+    "snapshot": "T14 selected hybrid evidence retained in the T26 READY report"
+  },
+  "publication": {
+    "authority": "src/main/resources/data/cruciblecraft/t26_5_publication_baseline.json",
+    "current": {
+      "eager": 16862,
+      "lazy": 2225,
+      "logical": 19087
+    },
+    "report_rules_all_published_total": {
+      "authority": "tools/full_verification_report.json#rules.all_published_total",
+      "current_baseline": false,
+      "value": 18875
+    },
+    "t26_5_delta": {
+      "eager": 205,
+      "lazy": 0,
+      "logical": 205
+    }
+  },
+  "publication_delta": {
+    "eager": 0,
+    "lazy": 0,
+    "logical": 0,
+    "scope": "T27_CARD"
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T27_OPENING_SNAPSHOT",
+  "t13_tables": {
+    "canonical_identities_total": 765,
+    "cover_kinds": {
+      "artifact": "tools/t13_denominators/cover_kinds.json",
+      "artifact_sha256": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+      "canonical_count": 47,
+      "classification_counts": {
+        "deferred_with_reason": 28,
+        "in_scope": 9,
+        "out_of_scope": 10
+      },
+      "id_field": "canonical_id",
+      "unclassified": 0
+    },
+    "energy_identities": {
+      "artifact": "tools/t13_denominators/energy_identities.json",
+      "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+      "canonical_count": 20,
+      "classification_counts": {
+        "deferred_with_reason": 5,
+        "in_scope": 7,
+        "out_of_scope": 8
+      },
+      "id_field": "symbol",
+      "unclassified": 0
+    },
+    "itemgenerator_domains": {
+      "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+      "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+      "canonical_count": 25,
+      "classification_counts": {
+        "deferred_with_reason": 3,
+        "in_scope": 16,
+        "out_of_scope": 6
+      },
+      "id_field": "canonical_id",
+      "unclassified": 0
+    },
+    "machine_kinds": {
+      "artifact": "tools/t13_denominators/machine_kinds.json",
+      "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+      "canonical_count": 96,
+      "classification_counts": {
+        "deferred_with_reason": 15,
+        "in_scope": 81
+      },
+      "id_field": "canonical_key",
+      "unclassified": 0
+    },
+    "multiblock_kinds": {
+      "artifact": "tools/t13_denominators/multiblock_kinds.json",
+      "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+      "canonical_count": 30,
+      "classification_counts": {
+        "deferred_with_reason": 20,
+        "in_scope": 5,
+        "out_of_scope": 5
+      },
+      "id_field": "canonical_id",
+      "unclassified": 0
+    },
+    "prefixes": {
+      "artifact": "tools/t13_denominators/prefixes.json",
+      "artifact_sha256": "fc7c5b9f84eda867a057442e0e37697ce198e7c5167783b12176fd6a31312205",
+      "canonical_count": 452,
+      "classification_counts": {
+        "deferred_with_reason": 271,
+        "in_scope": 55,
+        "out_of_scope": 126
+      },
+      "id_field": "canonical_id",
+      "unclassified": 0
+    },
+    "recipe_maps": {
+      "artifact": "tools/t13_denominators/recipe_maps.json",
+      "artifact_sha256": "79db0b788edde6bf17544f9528171ede862b4062676ea818507dfe3073569afc",
+      "canonical_count": 95,
+      "classification_counts": {
+        "deferred_with_reason": 64,
+        "in_scope": 29,
+        "out_of_scope": 2
+      },
+      "id_field": "normalized_row_key",
+      "unclassified": 0
+    }
+  },
+  "t14_budgets": {
+    "authority": "tools/t14_load_budget_policy.json",
+    "axes": {
+      "allocation_bytes": {
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "unit": "bytes"
+      },
+      "client_index_ms": {
+        "hard_ceiling": 3000,
+        "soft_budget": 1000,
+        "unit": "ms"
+      },
+      "client_reload_ms": {
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "unit": "ms"
+      },
+      "datapack_authored_entries": {
+        "hard_ceiling": 6600,
+        "soft_budget": 6000,
+        "unit": "entries"
+      },
+      "eager_publication_rows": {
+        "hard_ceiling": 21000,
+        "soft_budget": 18000,
+        "unit": "rows"
+      },
+      "lazy_cache_ceiling_rows": {
+        "hard_ceiling": 4096,
+        "soft_budget": 1024,
+        "unit": "rows"
+      },
+      "lazy_logical_rows": {
+        "hard_ceiling": 56000,
+        "soft_budget": 16000,
+        "unit": "rows"
+      },
+      "lookup_candidate_count": {
+        "hard_ceiling": 128,
+        "soft_budget": 64,
+        "unit": "candidates"
+      },
+      "lookup_p95_ns": {
+        "hard_ceiling": 2000000,
+        "soft_budget": 1000000,
+        "unit": "ns"
+      },
+      "retained_memory_bytes": {
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "unit": "bytes"
+      },
+      "server_index_ms": {
+        "hard_ceiling": 1000,
+        "soft_budget": 500,
+        "unit": "ms"
+      },
+      "server_reload_ms": {
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "unit": "ms"
+      },
+      "sync_bytes": {
+        "hard_ceiling": 67108864,
+        "soft_budget": 16777216,
+        "unit": "bytes"
+      }
+    },
+    "eager_hard_ceiling": 21000,
+    "eager_soft_budget": 18000
+  },
+  "t22_5": {
+    "ordinary_optional": 78682,
+    "row_classification_total": 146841
+  },
+  "t26_gate": {
+    "ready_binding": {
+      "marked_after_all_verification_at": "2026-08-17T20:46:41.275627+00:00",
+      "tooling_snapshot_sha256": "c27e1677755dbae4856858f2f6f674598a7d0bfb94aa842de048e92d6a11a437"
+    },
+    "report": "tools/full_verification_report.json",
+    "report_sha256": "8aa91164bffdc2e157b0bd86e4fa9e7bdbfd1f1908a16fad766d2b5c91bd449e",
+    "report_status": "READY",
+    "session": "20260817T204031.938332Z-c27e1677755d-03920af9",
+    "t26_status": "T26_READY",
+    "tooling_snapshot_sha256": "c27e1677755dbae4856858f2f6f674598a7d0bfb94aa842de048e92d6a11a437"
+  },
+  "t26_known_issues": {
+    "anvil_bend": [
+      {
+        "disposition": "post_1_0",
+        "id": "cruciblecraft:anvil_bend_big",
+        "owner": "post-1.0 portfolio"
+      },
+      {
+        "disposition": "post_1_0",
+        "id": "cruciblecraft:anvil_bend_small",
+        "owner": "post-1.0 portfolio"
+      }
+    ],
+    "blocks_beta": 0,
+    "crucible_owner": "T27",
+    "o15": "closed",
+    "total": 15
+  },
+  "t28_plus_card_count": null,
+  "tests": {
+    "gametest_result": "PASS",
+    "java_result": "PASS",
+    "java_unit_tests": 582,
+    "production_game_tests": 121,
+    "python_result": "PASS",
+    "python_unit_tests": 723
+  }
+}

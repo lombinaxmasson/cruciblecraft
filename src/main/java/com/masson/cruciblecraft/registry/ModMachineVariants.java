@@ -12,7 +12,9 @@ import com.masson.cruciblecraft.machine.processing.MachineVariant;
 
 import net.minecraft.resources.ResourceLocation;
 
-/** Registry-time projection of the bundled T12/T16 machine-tier catalog. */
+/** Registry-time projection of the bundled T12/T16 machine-tier catalog.
+ *  The public API is entries / variantsOf / require. There is no tierOf(kind, n)
+ *  matrix completion. */
 public final class ModMachineVariants {
     public static final MachineKindSpec CENTRIFUGE =
             sourceKind(ModProcessingMachines.CENTRIFUGE);
@@ -107,6 +109,11 @@ public final class ModMachineVariants {
 
     public static List<MachineVariant> forKind(ResourceLocation id) {
         return BY_KIND.getOrDefault(id, List.of());
+    }
+
+    /** Actual existing variants of one kind. Not a kind × tier completion. */
+    public static List<MachineVariant> variantsOf(ResourceLocation kindId) {
+        return forKind(kindId);
     }
 
     private static MachineKindSpec sourceKind(

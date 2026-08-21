@@ -114,6 +114,8 @@ public final class ItemPipeNetworkTraversal {
                 }
             }
         }
+        com.masson.cruciblecraft.scale.ScaleInstrumentation
+                .recordRouteVisit(visited.size());
         routes.sort(
                 Comparator.comparingLong(Route::cost)
                         .thenComparingLong(

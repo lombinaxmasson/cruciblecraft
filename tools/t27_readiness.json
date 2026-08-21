@@ -1,0 +1,96 @@
+{
+  "closure": {
+    "aggregate_canonical": 765,
+    "aggregate_unclassified": 0,
+    "aggregate_validators_clear": true,
+    "canonical_total": 765,
+    "open_item_orphan": 0,
+    "opening_bound_to_t26_ready": true,
+    "t28_plus_covers_work_set": true,
+    "t28_plus_not_started": true,
+    "tracks_not_started": true,
+    "unclassified": 0,
+    "work_set_size": 0
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T27 freezes the v1.0 portfolio. Publication delta remains 0/0/0. Unclosed v1_required identities generate T28+ topology only. T27 does not implement crucible, O-36, or any 1.x content. F003/F005 stay on the T27 RC candidate contract."
+  },
+  "completed_stages": [
+    "T27a",
+    "T27b",
+    "T27c",
+    "T27d",
+    "T27e"
+  ],
+  "currentness": {
+    "full_verification": {
+      "evidence": "tools/full_verification_report.json",
+      "pending": [],
+      "status": "BOUND_TO_FULL_VERIFICATION_REPORT"
+    },
+    "owned_inputs": {
+      "tools/build_t27_readiness.py": "c90f108ef9cdd1d59c9afea6272dd951cafceb156950e004632dc9e3b856081c",
+      "tools/t27_readiness_policy.json": "58da02710d403a69da69a35b72dc6df4f7ea327133ab6b8a1b3ef76e7e2162fe"
+    }
+  },
+  "fidelity": {
+    "anvil_bend_post_1_0": true,
+    "crucible_collision_forbidden": true,
+    "f003_f005_rc_contract": true,
+    "map_level_not_row_level": true,
+    "o36_v1_required": true,
+    "o41_post_1_0": true,
+    "rc_number_absent": true,
+    "source_revision_pinned": true,
+    "t13_classification_kept": true,
+    "t28_plus_card_count_unfilled": true
+  },
+  "load": {
+    "eager_hard_ceiling_is_21000": true,
+    "opening_from_t26_ready_report": true,
+    "opening_publication": {
+      "eager": 16862,
+      "lazy": 2225,
+      "logical": 19087
+    },
+    "pending_not_filled_with_zero": true,
+    "publication_delta": {
+      "eager": 0,
+      "lazy": 0,
+      "logical": 0,
+      "scope": "T27_CARD"
+    },
+    "t14_policy_current": true,
+    "topology_delta_zero": true,
+    "tracks_delta_zero": true
+  },
+  "owned_inputs": {
+    "tools/build_t27_readiness.py": "c90f108ef9cdd1d59c9afea6272dd951cafceb156950e004632dc9e3b856081c",
+    "tools/phase5_portfolio_contract.json": "ca9be41df6cb391c4076ab0acbf35950dca868b5569fb7ce03388ef0cfab2cc7",
+    "tools/t14_load_budget_policy.json": "7e87ddb3b987f52fd8fd918a426bd6a2c640682fb89b52cb7b3cc5731c339270",
+    "tools/t27_card_topology.json": "52f1dcc60e2b2662bb803b6ac349cb3f7055e7f6d3c3424cf6a106c2dbdf7a42",
+    "tools/t27_opening_snapshot.json": "91cdbe33de4c56781e38dba507c90179e3ed7b7ea3342b8d8a15336a3fa5c9e3",
+    "tools/t27_portfolio.json": "7b289c0b042420b561c62816095f4bcbb7686524d41eed5020645b6f460c9462",
+    "tools/t27_portfolio/cover_kinds.json": "c739d43370b6623e1bfc792f9651a981cb0f0ae8a15bdbba41ae7a93cfd08242",
+    "tools/t27_portfolio/deferred_open_items.json": "b4ff655f020089c13c694dc7e1c98d3c52850c16fee6dba67e273b6f4a975272",
+    "tools/t27_portfolio/energy_identities.json": "b9a404f29206c818866a043bb7b66a7ab106d3a0b3366b9f3030cee850c7af28",
+    "tools/t27_portfolio/itemgenerator_domains.json": "52df0504e75b239f937857080650d26b6d677423f3b9357f5bc010911db0d3c1",
+    "tools/t27_portfolio/machine_kinds.json": "a04b109efef3235cac738f1692824fbcd42d3fa97ede1b914751102603f93ec2",
+    "tools/t27_portfolio/multiblock_kinds.json": "fff2a8db21eefd16f2d4fa5b03a61ef5c63bba0d22c47f0df403294d25e4db74",
+    "tools/t27_portfolio/prefixes.json": "79f5f76e6de65fa386760c26ae71f29ea963f735ed4af1c99127d357bb762dd2",
+    "tools/t27_portfolio/recipe_maps.json": "2f9a57ef10278514ff5a21d34082011d724504781c222017339b466adcb20d1c",
+    "tools/t27_portfolio/tracks.json": "8563818b40a162c174e50412402c8c754f7520bfc1645c905625068ec1cce915",
+    "tools/t27_readiness_policy.json": "58da02710d403a69da69a35b72dc6df4f7ea327133ab6b8a1b3ef76e7e2162fe"
+  },
+  "pending_stages": [],
+  "policy": "The status field is derived from evidence by build(). Any mismatch between the committed value and a fresh build is detected by check(). T27_READY cannot be hand-written.",
+  "runtime": {
+    "gametest_passing": true,
+    "gametest_total": 137
+  },
+  "schema_version": 1,
+  "status": "T27_READY",
+  "status_owner": "run_full_verification"
+}

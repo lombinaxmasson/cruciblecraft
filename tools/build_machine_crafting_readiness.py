@@ -165,12 +165,17 @@ def placeholder_machines() -> list[tuple[str, str]]:
 
 def machine_item_registrations() -> dict[str, str]:
     source = MOD_ITEMS.read_text(encoding="utf-8")
-    return dict(re.findall(
+    rows = re.findall(
         r"DeferredItem<BlockItem>\s+([A-Z0-9_]+)\s*=\s*"
-        r"ITEMS\.registerSimpleBlockItem\(\s*\"([^\"]+)\"",
+        r"(?:ITEMS\.registerSimpleBlockItem\(\s*\"([^\"]+)\""
+        r"|tieredProcessingItem\(\s*\"([^\"]+)\")",
         source,
         flags=re.DOTALL,
-    ))
+    )
+    return {
+        field: simple_id or tiered_id
+        for field, simple_id, tiered_id in rows
+    }
 
 
 def extract_java_method(source: str, signature: str) -> str:

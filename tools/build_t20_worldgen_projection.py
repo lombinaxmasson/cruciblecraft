@@ -506,7 +506,7 @@ def main() -> int:
         expected = build_expected()
         encoded = stable(expected)
         if args.write:
-            OUTPUT.write_text(encoded, encoding="utf-8", newline="\n")
+            OUTPUT.write_bytes(encoded.encode("utf-8"))
             if args.bootstrap_authoring:
                 AUTHORING.write_text(
                     stable(authored_document(expected)),

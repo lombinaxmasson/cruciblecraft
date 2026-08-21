@@ -194,9 +194,9 @@ def pre_release_cleanup_evidence() -> dict[str, Any]:
         not chinese_keys.issubset(english_keys)
         or localization
         != {
-            "english_keys": 3_174,
-            "chinese_translations": 876,
-            "visible_chinese_debt": 2_298,
+            "english_keys": 3_316,
+            "chinese_translations": 946,
+            "visible_chinese_debt": 2_370,
             "missing_material_names": 1_566,
         }
     ):
@@ -734,7 +734,7 @@ def main() -> int:
         print("T19 readiness artifact is current")
         return 0
     if args.write:
-        OUTPUT.write_text(stable(document), encoding="utf-8", newline="\n")
+        OUTPUT.write_bytes(stable(document).encode("utf-8"))
         print(f"wrote {relative(OUTPUT)}")
         return 0
     print(stable(document), end="")

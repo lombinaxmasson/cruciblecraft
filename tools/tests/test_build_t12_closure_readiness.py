@@ -26,7 +26,7 @@ class T12ClosureReadinessTest(unittest.TestCase):
         self.assertEqual(9, document["kind_tier"]["variants"])
         self.assertEqual(0, document["kind_tier"]["publication_delta"])
         self.assertEqual(
-            ["coke_oven", "distillation_tower", "large_boiler", "large_centrifuge", "tank_3x3x3"],
+            ["coke_oven", "distillation_tower", "large_boiler", "large_centrifuge", "large_crucible", "tank_3x3x3"],
             document["multiblock"]["structures"],
         )
         self.assertEqual(

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "card": "T31",
+  "kind": "pre_rc_board_freeze",
+  "opening": {
+    "mod_version": "0.1.0-beta.1",
+    "target_version": "0.1.0-rc.1",
+    "rc_number": null,
+    "t30_status": "T30_READY",
+    "report_status": "READY",
+    "junit": 644,
+    "gametest": 137,
+    "python": 807,
+    "opening_publication": {
+      "logical": 18766,
+      "eager": 16541,
+      "lazy": 2225
+    },
+    "eager_hard_ceiling": 21000,
+    "datapack_hard_ceiling": 6600,
+    "minecraft": "1.21.1",
+    "neoforge": "21.1.243",
+    "java": 21,
+    "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "physical_ram_bytes": 34070192128,
+    "physical_ram_meets_16gib": true,
+    "os": "Windows 11 64-bit 10.0.26200",
+    "cpu": "Intel(R) Core(TM) i9-14900HX",
+    "logical_processors": 32,
+    "bind_session": "20260820T100339.610287Z-0f9354e5b5c4-87f34309",
+    "skipped_check_ready": true,
+    "skip_reason": "full verification had just been recorded; 0.1 --check-ready skipped by operator"
+  },
+  "environment_gate": {
+    "physical_ram_min_bytes": 17179869184,
+    "physical_ram_not_xmx": true,
+    "blocked_status": "BLOCKED_ENVIRONMENT"
+  },
+  "f003_f005": {
+    "historical_artifact": "tools/t24_scale_evidence.json",
+    "current_artifact": "tools/t31_scale_recheck.json",
+    "must_not_rewrite_t24_skip_as_measured": true,
+    "target_before_stress": true
+  },
+  "save_network_optional_mod_plan": {
+    "save_reload": "beta.1 world -> reload after R7 rc.1 jar on a copy; hopper menu must not mask handshake errors",
+    "handshake": "MaterialConfigurationHandshake NETWORK_VERSION remains 1 unless T30 changed payloads; test connect, mismatch, malformed",
+    "client_cc_only": "fresh client with only CrucibleCraft",
+    "dedicated_cc_only": "fresh dedicated server with only CrucibleCraft",
+    "emi": "optional matrix present/absent per existing contract",
+    "jade": "optional matrix present/absent per existing contract",
+    "kubejs": "optional matrix present/absent per existing contract"
+  },
+  "release_notes_draft": {
+    "title": "CrucibleCraft pre-RC board freeze",
+    "must_not_claim": ["已发布", "GA", "1.0.0", "shipped"],
+    "body": "CrucibleCraft 0.1.0-rc.1 freezes the T30 hopper-complete tree and closes T24-F003/F005 with measured target/stress evidence. This candidate is an RC package, not a general-availability release."
+  },
+  "package_content_checklist": [
+    "cruciblecraft-${version}.jar in build/libs",
+    "cruciblecraft-${version}.zip in build/distributions",
+    "SHA-256 manifest derived from files",
+    "mods.toml version matches gradle.properties",
+    "no IDE class tree substituted for the release jar"
+  ]
+}

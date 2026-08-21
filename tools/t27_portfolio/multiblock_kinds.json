@@ -1,0 +1,1019 @@
+{
+  "counts": {
+    "canonical": 30,
+    "missing": 0,
+    "out_of_scope": 5,
+    "post_1_0": 19,
+    "unclassified": 0,
+    "unexpected": 0,
+    "v1_required": 6
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t27_portfolio.py": "af2635234c6815ea6598982a61e096a01dfc415f9ba9e436dd7acad8dd966387",
+      "tools/t13_denominators/multiblock_kinds.json": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+      "tools/t27_portfolio_policy/multiblock_kinds.json": "e6f394bd40a53ae7320a807642c89b8f16a48c03c210402a07ef2531b5b5840c"
+    }
+  },
+  "generated_by": "python tools/build_t27_portfolio.py",
+  "records": [
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "autoclave",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). No autoclave multiblock batch is selected through T19.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "33e8502bd322d3933e5d6d9e64161ed788f7bcabf821a0dd2566b4fbfbbcfa51",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "bath",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). No bath multiblock batch is selected through T19.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "107a5c76536c1991440c3c8081fb8602f72c39cd02e30135c4dfbee40cfa57f1",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 and T23 out_of_scope exclusion evidence retained.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Nuclear/world-interaction/magic/gimmick controllers stay outside the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded kinds are not load-bearing for v1 or generated T28+ cards.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "bedrock_drill",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). T23 A1 out_of_scope: bedrock/dimension world interaction is excluded by the phase-4 master plan T23 scope.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: T13/T23 exclusion retained. Re-entry requires a product-contract change.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "ada8b945851d8dc5fc46899f381b540535d4ebfd9f78c67fc7710c06ed1f30f3",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 selected or pre-T23 implemented this kind; lifecycle and acquisition evidence are in t23_readiness.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T23 behavior classification plus T13 canonical kind. Schema/plugin presence is not treated as a later kind being done.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T23 load bounds and T26.5 publication baseline cover the selected v1 structures; no T27 content delta.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "centrifuge",
+      "cc_implementation": "cruciblecraft:large_centrifuge",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_multiblocks",
+      "reason": "T13 in_scope; roadmap MISSING (none). CC Large Centrifuge maps to the GT6 multiblock centrifuge controller kind.",
+      "recheck_point": "T27 RC candidate structure/lifecycle recheck",
+      "replacement_condition": "Not applicable: T23 closed this v1-required kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "ce7cd76a3ca337fb672cf310350210507f521cff6c12a2a0688933f9da63f39c",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "coagulator",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). No coagulator multiblock batch is selected through T19.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "f373778f8bbeb52d153e9a10f06ecaf2a844538db2fa5dc0e1ff8db0c13a010b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 selected or pre-T23 implemented this kind; lifecycle and acquisition evidence are in t23_readiness.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T23 behavior classification plus T13 canonical kind. Schema/plugin presence is not treated as a later kind being done.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T23 load bounds and T26.5 publication baseline cover the selected v1 structures; no T27 content delta.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "coke_oven",
+      "cc_implementation": "cruciblecraft:coke_oven",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_multiblocks",
+      "reason": "T13 in_scope; roadmap MISSING (none). CC has a source-mapped Coke Oven JSON structure and controller.",
+      "recheck_point": "T27 RC candidate structure/lifecycle recheck",
+      "replacement_condition": "Not applicable: T23 closed this v1-required kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "b68c79f01bb92903172e462bb5e6788c6ed7d37cf7220f59d7a1720a3621b8f8",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "cruciblecraft:large_crucible is registered and cruciblecraft:crucible is retained.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind crucible plus T23 steelmaking behavior row. T29 implements the reserved cruciblecraft:large_crucible controller.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "T29 GT publication delta is measured 0/0/0. Vanilla controller crafting is a non-GT axis.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "crucible",
+      "cc_implementation": "cruciblecraft:large_crucible",
+      "dependencies": [
+        {
+          "id": "cruciblecraft:crucible",
+          "kind": "runtime_capability"
+        },
+        {
+          "id": "O-36",
+          "kind": "open_item_id"
+        }
+      ],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/crucible",
+      "reason": "T29 registered cruciblecraft:large_crucible as a 27-position open-top thermal/steelmaking multiblock with 432-ingot capacity. Single-block cruciblecraft:crucible is retained.",
+      "recheck_point": "T29_READY; RC candidate structure/lifecycle recheck",
+      "replacement_condition": "Generated T28+ bounded thermal/steelmaking behavior card implements cruciblecraft:large_crucible without colliding with cruciblecraft:crucible.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "1f334aaf4aa6b670b33f5e2637faaf4d66d586200a1c16cfb373c171307cf8d5",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "crusher",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). No crusher multiblock batch is selected through T19.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "5250ddbe0c996fa20aca2acceedd4f3d308bf9b061f8b7452a53a2209ed33de6",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "cryo_distillation_tower",
+      "cc_implementation": "none",
+      "dependencies": [
+        {
+          "id": "CRYO",
+          "kind": "canonical_id"
+        }
+      ],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "Post-1.0 multiblock. Cryo behavior depends on the CRYO energy identity; T27 does not implement cryo distillation.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "ae2d15238634628b80db75db780bb757437d8acc46725d20084be9e70a7bb064",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 selected or pre-T23 implemented this kind; lifecycle and acquisition evidence are in t23_readiness.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T23 behavior classification plus T13 canonical kind. Schema/plugin presence is not treated as a later kind being done.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T23 load bounds and T26.5 publication baseline cover the selected v1 structures; no T27 content delta.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "distillation_tower",
+      "cc_implementation": "cruciblecraft:distillation_tower",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_multiblocks",
+      "reason": "T13 in_scope; roadmap MISSING (none). T23 A2 selected: petroleum-chain scale-up tower (selection criteria in tools/t23_multiblock_behavior_classification.json).",
+      "recheck_point": "T27 RC candidate structure/lifecycle recheck",
+      "replacement_condition": "Not applicable: T23 closed this v1-required kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "d7745f78f9a6006fa0012fe0732509c34a89a572cdcb4dca7abaa05a37fc53d0",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "electrolyzer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). No electrolyzer multiblock batch is selected through T19.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "83105405a6edc2d6925eea806bcb342f6de9a9f3ea774c324ba24648057d8978",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "fermenter",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). No fermenter multiblock batch is selected through T19.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "f702989ea0e6be3e9497d1f382b9f5af5a492c58d141fe2cb05a66c8bbc722a4",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 and T23 out_of_scope exclusion evidence retained.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Nuclear/world-interaction/magic/gimmick controllers stay outside the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded kinds are not load-bearing for v1 or generated T28+ cards.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "fusion_reactor",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). T23 A1 out_of_scope: nuclear fusion controller is excluded by the phase-4 master plan T23 scope (classification artifact tools/t23_multiblock_behavior_classification.json).",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: T13/T23 exclusion retained. Re-entry requires a product-contract change.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "ce4864a60f3f5cdf7b476100ac4c76580c92e0e4a963d49765819d66e9047b9a",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "implosion_compressor",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). No implosion compressor batch is selected through T19.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "c75ab00fb9c9aa1412f25fa5a87ff66a163530e6a3f1404c0f6123aaf602e96c",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 selected or pre-T23 implemented this kind; lifecycle and acquisition evidence are in t23_readiness.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T23 behavior classification plus T13 canonical kind. Schema/plugin presence is not treated as a later kind being done.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T23 load bounds and T26.5 publication baseline cover the selected v1 structures; no T27 content delta.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "large_boiler",
+      "cc_implementation": "cruciblecraft:large_boiler",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_multiblocks",
+      "reason": "T13 in_scope; roadmap MISSING (none). T23 A2 selected: the T18 large-boiler deferral is closed by selection; structure, HU energy identity, conservation and exhaust transaction close in T23 C1 (successor of the T18 replacement condition).",
+      "recheck_point": "T27 RC candidate structure/lifecycle recheck",
+      "replacement_condition": "Not applicable: T23 closed this v1-required kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "0b7aece509052402d4f7a0367707bca132abf8294ffa689e5e11abf642a94b68",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "large_dynamo",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). T23 A1 post_1_0: single bronze_dynamo already covers the v1 RU->EU conversion; multiblock form is pure scale-up.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "db300a46ab919607e717003245f9a37314228c013cd40e312558ae9ea5e5a39b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "large_heat_exchanger",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). T23 A1 post_1_0: hot-fluid exchange chain is not closed in CC v1.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "f372c57a9030038d5b34dedce90a6ebd3211a4658df46d36374d93c5223f14cd",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "large_turbine_gas",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). T23 A1 post_1_0: single burning_gas_generator covers the v1 gas chain; HU->RU has no v1 gap.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "a3937732e44f1eda748958b2e1cfb61ad306a37eb63cc9cd8084fe525ebee61c",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "large_turbine_steam",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). T23 A1 post_1_0: single bronze_steam_engine covers the v1 steam consumption; multiblock form is pure scale-up.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "dc65e215f340f3d30e91fab25db6a6a479797696e54bd7956e18bc19bd2e18ed",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 and T23 out_of_scope exclusion evidence retained.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Nuclear/world-interaction/magic/gimmick controllers stay outside the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded kinds are not load-bearing for v1 or generated T28+ cards.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "lightning_rod",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). T23 A1 out_of_scope: weather world interaction is excluded by the phase-4 master plan T23 scope.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: T13/T23 exclusion retained. Re-entry requires a product-contract change.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "99fb0fc9225f06acae3d7fa35510edf626d03b05470bc99c92f8a6d7e9617931",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "logistics_core",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). GT6 logistics-core runtime is outside T19 adjacent-pipe automation.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "a4bac2a6b520f37a504519153b5e0eba198793678f679701138fea5c9f17553d",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 and T23 out_of_scope exclusion evidence retained.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Nuclear/world-interaction/magic/gimmick controllers stay outside the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded kinds are not load-bearing for v1 or generated T28+ cards.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "matter_fabricator",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). T23 A1 out_of_scope: post-scarcity QU content is excluded by the phase-4 master plan T23 scope.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: T13/T23 exclusion retained. Re-entry requires a product-contract change.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "20d7456fc9ec9e038b7644d27eb6b4d9e3320de0844c6dfc41ee889e12aeef31",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "mixer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). No mixer multiblock batch is selected through T19.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "414575d3ab1560d530073c09374923f837b7e2e00c68f8dda67dc6ed91314124",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "oven",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). No oven multiblock batch is selected through T19.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "9501e9895e890cc1d2555ed15ebf617fd704bc9c6be53c0ae6d814653d738c2f",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "shredder",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). No shredder multiblock batch is selected through T19.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "f9f6ae59cd3467d90ffc41a96fb672663f34ff9e8efaf08cc194ea0bc25882bd",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "sluice",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). No sluice multiblock batch is selected through T19.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "36852ec421f683dbe1e73219588fa953c9d2ee91ef16a87cca88a38b099ad2fa",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "squeezer",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). No squeezer multiblock batch is selected through T19.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "1c8d6d13b7e0330aa78f47e70704fa999a21e6a555f5a9b46bf55def6692cfa0",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 selected or pre-T23 implemented this kind; lifecycle and acquisition evidence are in t23_readiness.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T23 behavior classification plus T13 canonical kind. Schema/plugin presence is not treated as a later kind being done.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T23 load bounds and T26.5 publication baseline cover the selected v1 structures; no T27 content delta.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "tank_3x3x3",
+      "cc_implementation": "cruciblecraft:tank_3x3x3",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_multiblocks",
+      "reason": "T13 in_scope; roadmap MISSING (none). T23 A2 selected: bulk fluid storage for the closed steam/fuel/petroleum chains (selection criteria in tools/t23_multiblock_behavior_classification.json).",
+      "recheck_point": "T27 RC candidate structure/lifecycle recheck",
+      "replacement_condition": "Not applicable: T23 closed this v1-required kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "9829e73f41af461347f5cdaa3429f7a2f2d1fedbe5aa8f59871be867acbdc0e7",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T23 classifies this kind post_1_0. T27 does not start a multiblock implementation card.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason kind plus T23 post_1_0 behavior row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "B0 must measure controller/runtime cost before any 1.x multiblock card.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "tank_5x5x5_metal",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_b/post_1_0_multiblocks",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Generic multiblock tanks are outside the selected third-stage structures.",
+      "recheck_point": "Track B0 declarative controller measurement",
+      "replacement_condition": "B0 declarative-controller measurement assigns this kind a later 1.x card or explicit exclusion; schema/plugin existence is not completion.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "7e6ba0dfb3ab21f472f920268ff3762363008d3f75fc75c707043c47522ef87b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "multiblock_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 and T23 out_of_scope exclusion evidence retained.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Nuclear/world-interaction/magic/gimmick controllers stay outside the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded kinds are not load-bearing for v1 or generated T28+ cards.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "von_da_graagg",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). T23 A1 out_of_scope: easter-egg content is excluded by the phase-4 master plan T23 scope.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: T13/T23 exclusion retained. Re-entry requires a product-contract change.",
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "artifact_sha256": "5cb96535c0ae241c58b6899cabc5943b09c157c2abc56b07984038914bfcb52a",
+        "record_sha256": "0c75361eb7c66b0b856a7b9ec6b636a1149a875e824605485fef4a7cf160ae19",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "multiblock_kinds"
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T27_TABLE_CLASSIFIED",
+  "table": "multiblock_kinds"
+}

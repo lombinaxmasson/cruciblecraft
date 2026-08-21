@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
+import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.MaterialZhNames;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
@@ -91,7 +92,9 @@ public class ModLanguageProvider extends LanguageProvider {
             add("tooltip.cruciblecraft.pipe.item_rating",
                     "吞吐：%s 组/秒，路径成本：%s");
             add("tooltip.cruciblecraft.pipe.connect",
-                    "扳手：切换点击面的连接");
+                    "扳手：九宫格切换连接");
+            add("tooltip.cruciblecraft.cable.connect",
+                    "剪线钳：九宫格切换连接");
             add("jade.cruciblecraft.fluid_pipe",
                     "%s：%s/%s mB，近 20 tick 传输 %s mB，失效 %s");
             add("jade.cruciblecraft.item_pipe",
@@ -149,6 +152,7 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.DISTILLATION_TOWER, "蒸馏塔");
             addBlock(ModBlocks.LARGE_BOILER, "大型锅炉");
             addBlock(ModBlocks.TANK_3X3X3, "3x3x3 储罐");
+            addBlock(ModBlocks.LARGE_CRUCIBLE, "大型坩埚");
             addBlock(ModBlocks.CENTRIFUGE, "离心机");
             addBlock(ModBlocks.SIFTER, "筛选机");
             addBlock(ModBlocks.EXTRUDER, "挤压机");
@@ -237,6 +241,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("item.cruciblecraft.material_saw", "%s锯");
             add("item.cruciblecraft.material_screwdriver", "%s螺丝刀");
             add("item.cruciblecraft.material_wrench", "%s扳手");
+            add("item.cruciblecraft.material_wire_cutter", "%s剪线钳");
             add("jade.cruciblecraft.pipe_covers", "Cover 参数：%s");
             add("tooltip.cruciblecraft.cover.behavior", "行为：%s");
             add("tooltip.cruciblecraft.cover.parameters",
@@ -267,8 +272,14 @@ public class ModLanguageProvider extends LanguageProvider {
                     "Crucible Craft：矿石处理");
             add("itemGroup.cruciblecraft.ores", "Crucible Craft：矿石");
             add("itemGroup.cruciblecraft.parts", "Crucible Craft：部件");
+            add("itemGroup.cruciblecraft.pipes", "Crucible Craft：管道");
             add("itemGroup.cruciblecraft.plates", "Crucible Craft：板");
-            add("itemGroup.cruciblecraft.wires", "Crucible Craft：线");
+            add("itemGroup.cruciblecraft.tools", "Crucible Craft：工具");
+            add("itemGroup.cruciblecraft.fluid_cells",
+                    "Crucible Craft：流体单元");
+            add("item.cruciblecraft.fluid_cell.filled", "%s 流体单元");
+            add("item.cruciblecraft.gas_cell.filled", "%s 气体单元");
+            add("itemGroup.cruciblecraft.wires", "Crucible Craft：线材");
             add("cruciblecraft.configuration.section.cruciblecraft.client.toml",
                     "客户端");
             add("cruciblecraft.configuration.section.cruciblecraft.client.toml.title",
@@ -364,6 +375,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("emi.category.cruciblecraft.crucible", "坩埚合金");
             add("emi.category.cruciblecraft.crusher", "破碎机");
             add("emi.category.cruciblecraft.mold_casting", "陶瓷模具铸造");
+            addHopperTranslations(true);
             // v1 关键路径材料名域：表内材料按表生成，表外显式 post_1_0
             // （不写 zh 键，回退 en_us，禁止英文冒充）。
             MaterialCatalog.startupValues().forEach(material ->
@@ -435,8 +447,13 @@ public class ModLanguageProvider extends LanguageProvider {
         add("itemGroup.cruciblecraft.plates", "Crucible Craft: Plates");
         add("itemGroup.cruciblecraft.parts", "Crucible Craft: Parts");
         add("itemGroup.cruciblecraft.mechanical_parts", "Crucible Craft: Mechanical Parts");
-        add("itemGroup.cruciblecraft.wires", "Crucible Craft: Wires");
-        add("itemGroup.cruciblecraft.cables", "Crucible Craft: Cables");
+        add("itemGroup.cruciblecraft.wires", "Crucible Craft: Stranded Wires");
+        add("itemGroup.cruciblecraft.cables", "Crucible Craft: Conductors");
+        add("itemGroup.cruciblecraft.pipes", "Crucible Craft: Pipes");
+        add("itemGroup.cruciblecraft.tools", "Crucible Craft: Tools");
+        add("itemGroup.cruciblecraft.fluid_cells", "Crucible Craft: Fluid Cells");
+        add("item.cruciblecraft.fluid_cell.filled", "%s Fluid Cell");
+        add("item.cruciblecraft.gas_cell.filled", "%s Gas Cell");
         add("itemGroup.cruciblecraft.misc", "Crucible Craft: Miscellaneous Materials");
         addBlock(ModBlocks.FIREBRICK, "Firebrick");
         addBlock(ModBlocks.FIREBOX, "Solid Fuel Firebox");
@@ -454,6 +471,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.DISTILLATION_TOWER, "Distillation Tower");
         addBlock(ModBlocks.LARGE_BOILER, "Large Boiler");
         addBlock(ModBlocks.TANK_3X3X3, "3x3x3 Tank");
+        addBlock(ModBlocks.LARGE_CRUCIBLE, "Large Crucible");
         addItem(ModItems.RAW_CERAMIC_CRUCIBLE, "Unfired Ceramic Crucible");
         addItem(ModItems.RAW_CERAMIC_MOLD, "Unshaped Unfired Ceramic Mold");
         addItem(ModItems.RAW_INGOT_MOLD, "Unfired Ingot Mold");
@@ -596,7 +614,9 @@ public class ModLanguageProvider extends LanguageProvider {
         add("tooltip.cruciblecraft.pipe.item_rating",
                 "Throughput: %s stacks/s, route cost: %s");
         add("tooltip.cruciblecraft.pipe.connect",
-                "Wrench: toggle connection on the clicked face");
+                "Wrench: 3x3 grid connection toggle");
+        add("tooltip.cruciblecraft.cable.connect",
+                "Wire Cutter: 3x3 grid connection toggle");
         add("jade.cruciblecraft.fluid_pipe",
                 "%s: %s/%s mB, last 20 ticks %s mB, failure %s");
         add("jade.cruciblecraft.item_pipe",
@@ -627,6 +647,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("item.cruciblecraft.material_saw", "%s Saw");
         add("item.cruciblecraft.material_screwdriver", "%s Screwdriver");
         add("item.cruciblecraft.material_wrench", "%s Wrench");
+        add("item.cruciblecraft.material_wire_cutter", "%s Wire Cutter");
         addItem(ModItems.UNKNOWN_MATERIAL, "Unknown Material");
         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                 addItem(ModItems.extruderShape(shape.id()), shape.englishName()));
@@ -786,6 +807,50 @@ public class ModLanguageProvider extends LanguageProvider {
         add("cruciblecraft.configuration.section.cruciblecraft.client.toml", "Client");
         add("cruciblecraft.configuration.section.cruciblecraft.client.toml.title", "Client");
         add("cruciblecraft.configuration.temperatureUnit", "Temperature Unit");
+        addHopperTranslations(false);
+    }
+
+    private void addHopperTranslations(boolean chinese) {
+        HopperVariantCatalog.variants().forEach(variant -> {
+            String key = "block." + CrucibleCraft.MODID + "."
+                    + variant.id().getPath();
+            if (chinese) {
+                MaterialZhNames.material(variant.materialPath()).ifPresent(zh ->
+                        add(key, zh + (variant.kind().isQueue()
+                                ? "制队列料斗" : "制料斗")));
+            } else {
+                add(key, title(variant.materialPath())
+                        + (variant.kind().isQueue()
+                                ? " Queue Hopper" : " Hopper"));
+            }
+        });
+        if (chinese) {
+            addBlock(ModBlocks.STEEL_DUST_FUNNEL, "钢制粉末漏斗");
+            add("container.cruciblecraft.hopper", "料斗");
+            add("container.cruciblecraft.queue_hopper", "队列料斗");
+            add("tooltip.cruciblecraft.hopper.slots", "槽位：%s");
+            add("tooltip.cruciblecraft.hopper.fifo", "先进先出");
+            add("message.cruciblecraft.hopper.queue_slot_size", "队列槽上限：%s");
+            add("message.cruciblecraft.hopper.mode_stack", "精确整组输出");
+            add("message.cruciblecraft.hopper.mode_any", "任意数量输出");
+            add("message.cruciblecraft.hopper.mode_exact", "精确输出 %s 个");
+            add("message.cruciblecraft.hopper.mode_divisible", "整除输出 %s 个");
+            add("message.cruciblecraft.hopper.queue_no_exact", "队列料斗没有精确模式");
+            add("message.cruciblecraft.dust_funnel.mode", "粉末漏斗输出：%s");
+        } else {
+            addBlock(ModBlocks.STEEL_DUST_FUNNEL, "Steel Dust Funnel");
+            add("container.cruciblecraft.hopper", "Hopper");
+            add("container.cruciblecraft.queue_hopper", "Queue Hopper");
+            add("tooltip.cruciblecraft.hopper.slots", "Slots: %s");
+            add("tooltip.cruciblecraft.hopper.fifo", "First in, first out");
+            add("message.cruciblecraft.hopper.queue_slot_size", "Queue slot size: %s");
+            add("message.cruciblecraft.hopper.mode_stack", "Exact full-stack output");
+            add("message.cruciblecraft.hopper.mode_any", "Any-count output");
+            add("message.cruciblecraft.hopper.mode_exact", "Exact output of %s");
+            add("message.cruciblecraft.hopper.mode_divisible", "Divisible output of %s");
+            add("message.cruciblecraft.hopper.queue_no_exact", "Queue hoppers have no exact mode");
+            add("message.cruciblecraft.dust_funnel.mode", "Dust funnel output: %s");
+        }
     }
 
     private static String title(String value) {

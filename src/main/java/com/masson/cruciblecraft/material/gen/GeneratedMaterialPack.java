@@ -99,6 +99,7 @@ public final class GeneratedMaterialPack {
         } catch (IOException exception) {
             throw new IllegalStateException("Failed to generate material resource pack", exception);
         }
+
         roots = new Roots(serverRoot, clientRoot);
     }
 
@@ -204,7 +205,8 @@ public final class GeneratedMaterialPack {
                 boolean placeableStorage = isPlaceableStorage(material, form);
                 if (electricalSpecification != null
                         || pipeModelKey != null
-                        || placeableStorage) {
+                        || placeableStorage
+                        || isRockForm(form)) {
                     addTag(
                             files,
                             "data/" + tagNamespace + "/tags/block/" + formTag
@@ -293,6 +295,14 @@ public final class GeneratedMaterialPack {
                             "block." + CrucibleCraft.MODID + "."
                                     + material.registryName(form),
                             title(material.id()) + " Block");
+                    continue;
+                }
+                if (isRockForm(form)) {
+                    addRockClientFiles(files, material);
+                    oreTranslations.addProperty(
+                            "block." + CrucibleCraft.MODID + "."
+                                    + material.registryName(form),
+                            title(material.id()) + " Rock");
                     continue;
                 }
                 JsonObject model = new JsonObject();
@@ -556,6 +566,34 @@ public final class GeneratedMaterialPack {
     private static String title(String id) {
         String spaced = id.replace('_', ' ');
         return Character.toUpperCase(spaced.charAt(0)) + spaced.substring(1);
+    }
+
+    private static boolean isRockForm(MaterialPrefix form) {
+        return com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog
+                .require("rock")
+                .equals(form);
+    }
+
+    private static void addRockClientFiles(
+            Map<String, String> files, MaterialDefinition material) {
+        String path = material.registryName(
+                com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog
+                        .require("rock"));
+        String modelId = CrucibleCraft.MODID + ":block/material_rock";
+        JsonObject blockState = new JsonObject();
+        JsonObject variants = new JsonObject();
+        JsonObject defaultVariant = new JsonObject();
+        defaultVariant.addProperty("model", modelId);
+        variants.add("", defaultVariant);
+        blockState.add("variants", variants);
+        files.put(
+                "assets/" + CrucibleCraft.MODID + "/blockstates/" + path + ".json",
+                GSON.toJson(blockState));
+        JsonObject itemModel = new JsonObject();
+        itemModel.addProperty("parent", modelId);
+        files.put(
+                "assets/" + CrucibleCraft.MODID + "/models/item/" + path + ".json",
+                GSON.toJson(itemModel));
     }
 
     private static void addStorageClientFiles(

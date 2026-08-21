@@ -1,12 +1,12 @@
 {
   "budget_projection": {
     "global_budget": 21000,
-    "known_post_t10_published_recipes": 18871,
-    "known_t10_recipe_additions": 1288,
+    "known_post_t10_published_recipes": 18550,
+    "known_t10_recipe_additions": 967,
     "margin_denominator": 10,
     "margin_numerator": 11,
     "post_t8_published_recipes": 17583,
-    "remaining_after_known_t10": 2129,
+    "remaining_after_known_t10": 2450,
     "round_up_to": 1000,
     "t9_projected_recipe_additions": 0
   },
@@ -318,12 +318,12 @@
     ]
   },
   "load_gate": {
-    "compression_ratio": 5.833385,
-    "datapack_recipe_entries": 3235,
+    "compression_ratio": 5.520833,
+    "datapack_recipe_entries": 3360,
     "datapack_recipe_entry_budget": 6600,
     "minimum_compression_ratio": 3.0,
     "published_recipe_budget": 21000,
-    "published_recipes": 18871,
+    "published_recipes": 18550,
     "runtime_contract": {
       "budget_constants_present": true,
       "index_build_budget_ms": 1000,
@@ -338,7 +338,7 @@
       "ingot_hot": 321,
       "triple_ingot": 323
     },
-    "handshake_entry_count": 1829,
+    "handshake_entry_count": 1830,
     "material_count": 1773,
     "nonzero_runtime_heat_damage": {
       "cruciblecraft:ingot_hot": 3.0
@@ -368,12 +368,12 @@
       "ingotHot": "cruciblecraft:ingot_hot",
       "ingotTriple": "cruciblecraft:triple_ingot"
     },
-    "startup_prefix_count": 56
+    "startup_prefix_count": 57
   },
   "route_projections": {
     "hot_ingot": {
       "expected_material_count": 321,
-      "expected_recipe_count": 642,
+      "expected_recipe_count": 321,
       "generation_tag": "ITEMGENERATOR.INGOTS_HOT",
       "material_count": 321,
       "material_set_sha256": "72ce04d9d05809c63a888f2a643ee3b9e533bb46dcaf4e60c1f20c00a862acc6",
@@ -700,11 +700,10 @@
         "zinc",
         "zirconium"
       ],
-      "recipe_count": 642,
+      "recipe_count": 321,
       "required_registered_form": "ingot",
       "routes": [
-        "smelter_to_hot_ingot",
-        "hot_ingot_to_ingot"
+        "smelter_to_hot_ingot"
       ]
     },
     "multi_ingot": {
@@ -1047,11 +1046,11 @@
     }
   },
   "runtime_publication": {
-    "current_t10_datapack_entries": 4,
-    "current_t10_recipe_additions": 1288,
+    "current_t10_datapack_entries": 3,
+    "current_t10_recipe_additions": 967,
     "known_form_material_rule_budget": 1500,
     "known_future_t10_recipe_additions": 0,
-    "post_t10_published_recipes": 18871,
+    "post_t10_published_recipes": 18550,
     "post_t8_published_recipes": 17583,
     "within_known_form_material_rule_budget": true
   },
@@ -1060,7 +1059,7 @@
     "normalized_prefix_dump": {
       "extraction_key": "records[source_name=ingotHot].heat_damage",
       "path": "tools/gt6_oredict_prefixes_normalized.json",
-      "sha256": "cdd29c3d4b4d31ea2065ff80be0e34c60d6c49608b7913d57905297d23239ddd"
+      "sha256": "7bd153f3c14cbd388e444b297763c81b9182cc7eefdc6fdb9e58605d71858638"
     },
     "op_java": {
       "anchor": "line 578",
@@ -1083,23 +1082,23 @@
       "path": "src/main/resources/data/cruciblecraft/materials/index.json",
       "sha256": "ff3ecf3970191f4feaddb84eb7795ea7714cab665df3fb6822f61c8382e66e05"
     },
-    "material_tree_sha256": "482eca8464f1f56f0c5d870cd55058ac92b6c714de374c658314faad68a52b48",
+    "material_tree_sha256": "5df7b1a2a11c40aeb0e6252d85f396877dde703e0870e0f269029b7410ac373b",
     "normalized_prefix_dump": {
       "path": "tools/gt6_oredict_prefixes_normalized.json",
-      "sha256": "cdd29c3d4b4d31ea2065ff80be0e34c60d6c49608b7913d57905297d23239ddd"
+      "sha256": "7bd153f3c14cbd388e444b297763c81b9182cc7eefdc6fdb9e58605d71858638"
     },
     "policy": {
       "path": "tools/t10_preflight_policy.json",
-      "sha256": "b07082b7b39aa5dfc91d1f8e78a384cf55302d72b758eaaa35fc324b5349af04"
+      "sha256": "23073e315e86712a0be0586e613a2a9216d462d65614e4288711faf5f3b7000c"
     },
     "prefix_index": {
       "path": "src/main/resources/data/cruciblecraft/material_prefixes/index.json",
-      "sha256": "3364eda83dd61741b9dd1afa205d4b4384af625810a15d479c7a7c0c4ddf8bad"
+      "sha256": "c30bc1e0b4f76957c946e6c38013a73f93146aa5217d0992af91ec7fd6aba216"
     },
-    "prefix_tree_sha256": "591829a71a787476c8e64699c0f59684a1bdbeb5bc851493b7929eacb1feaab9",
+    "prefix_tree_sha256": "a2f1d09241968ff724b7cccdd39f4c13794fe9ebd6e56a604755f39c611483d1",
     "registration_gate": {
       "path": "src/main/resources/data/cruciblecraft/material_registration_gate.json",
-      "sha256": "17675d0fddce52332d00373839661bc1b0ac70e9e546417458bacd60a0cd199d"
+      "sha256": "80271812ac9a6a9051a2aad29c4479ebc3c83de81a75b025f1f94e0fde68abf3"
     }
   },
   "status": "T10_READY"

@@ -141,6 +141,13 @@ public final class MaterialCatalog {
         return state.bootstrapped();
     }
 
+    static synchronized void resetForTests() {
+        state = State.empty();
+        runtime = RuntimeState.empty();
+        startupAdditions.clear();
+        startupTunings.clear();
+    }
+
     /** O(1) membership check for persisted and integration-provided material ids. */
     public static boolean contains(String id) {
         requireState();

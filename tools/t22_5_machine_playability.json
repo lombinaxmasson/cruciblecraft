@@ -7,19 +7,20 @@
   "counts": {
     "blockers": [
       "cruciblecraft:anvil_bend_big",
-      "cruciblecraft:anvil_bend_small"
+      "cruciblecraft:anvil_bend_small",
+      "cruciblecraft:cooling"
     ],
     "registered_maps": 32,
-    "registered_playable": 30,
-    "registered_zero_logical": 2
+    "registered_playable": 29,
+    "registered_zero_logical": 3
   },
   "inputs": {
     "src/main/resources/data/cruciblecraft/t21_publication_baseline.json": "bdedbc209f2b1359f8d6b1ff1e749be76dd592e6c70eac0b25e881325c58d7b9",
     "src/main/resources/data/cruciblecraft/t22_publication_baseline.json": "0889a837dea9b6c1d5dd0ad7f5323c9a907b0134c8e3a2842418e4d92163b33a",
-    "tools/build_t22_5_machine_playability.py": "6b982d0bfcf474fda4171b208e4ff16e43212d7f2f8f4c1ce1effb5e435ad08a",
-    "tools/component_rule_manifest.json": "59e488eb7417545883a3695e46e05972a957f6f52b653dfe8b7b5fc7eade9bd5",
-    "tools/t7_material_tag_readiness.json": "8174a273f3a9c3a2bf562a4cabe8598a0964b1cb2e06969ba90c0f2667d59613",
-    "tools/t8_pipe_readiness.json": "825a709988423e49a31e32ad9fa2987e180856e6e502518c5198812a4788b5af"
+    "tools/build_t22_5_machine_playability.py": "55028a17ae81bb216f0945a532885c36a8da1c8f1777a48437410fb5ffd364e4",
+    "tools/component_rule_manifest.json": "de46a54205a4a1c1d91db5e689c844533651dfaaafc1406ef353dbb42648b613",
+    "tools/t7_material_tag_readiness.json": "73e69b82800ae4528a4239e4a58713cd54c2272e1cf18cd9c4dfe4836472b714",
+    "tools/t8_pipe_readiness.json": "85fde798ec88339e450dfe24a1c3f4d389df5fd52d995fa9496da793e8ed6efd"
   },
   "records": [
     {
@@ -61,7 +62,7 @@
       "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
       "logical_lower_bound": 569,
       "map": "cruciblecraft:assembler",
-      "material_rule_files": 28,
+      "material_rule_files": 30,
       "rule_expanded_from_manifests": 568,
       "status": "registered_playable",
       "v1_role": "组件装配主链（线缆/齿轮/转子，T3/T4 规则展开）"
@@ -128,12 +129,14 @@
     },
     {
       "authored_gt_recipes": 0,
+      "blocker": true,
       "counting_note": "logical lower bound = authored + manifest expansions; runtime MaterialRule expansion may add more. A zero here is derived: authored == 0 AND rule files == 0 AND manifest expansions == 0.",
       "logical_lower_bound": 0,
       "map": "cruciblecraft:cooling",
-      "material_rule_files": 1,
+      "material_rule_files": 0,
+      "owner": "T22.5 C0 (registered RecipeMap with zero recipes — player can build it and cannot use it)",
       "rule_expanded_from_manifests": 0,
-      "status": "registered_playable",
+      "status": "registered_zero_logical",
       "v1_role": "热锭冷却（T10 hot ingot -> ingot MaterialRule）"
     },
     {

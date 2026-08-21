@@ -1,5 +1,33 @@
 # CrucibleCraft Changelog
 
+## Source archive maintenance (2026-08-21)
+
+- License changed from All Rights Reserved to LGPL-3.0-or-later; see `LICENSE`,
+  `NOTICE`, and `CREDITS.md` for third-party attribution.
+- This maintenance entry does not create a player release or change the
+  `0.1.0-rc.1` mod version.
+
+## 0.1.0-rc.1 (2026-08-21)
+
+Pre-RC board freeze. This is an RC package, not GA and not 1.0.0.
+
+### RC1 范围
+
+- 冻结 T30 Hopper / Queue Hopper / Dust Funnel 完成树；本卡无新机器、方块、物品、材料或 RecipeMap。
+- 关闭 T24-F003 / T24-F005：在 ≥16 GiB 物理内存上实测 target（250 管）与 stress（1000 管）。T24 历史 SKIP 仍保留在 `tools/t24_scale_evidence.json`。
+- source-derived GT 配方与 bounded dust 保真度不变；publication delta 0/0/0（18766 logical / 16541 eager / 2225 lazy）。
+- Handshake `NETWORK_VERSION` 仍为 `"1"`；Hopper 菜单不把协议错误伪装成 GUI 超时。
+- 安装文件：`cruciblecraft-0.1.0-rc.1.jar`（Minecraft 1.21.1、NeoForge 21.1.243、Java 21）。
+- 可选依赖按现有合同：缺 EMI/Jade/KubeJS 可启动；存在时客户端加载 EMI/Jade。
+
+### 存档
+
+复制的 beta.1 世界可在本候选上加载。不要用唯一玩家存档做升级试验。
+
+### 已知问题
+
+无 RC 阻断项。T14 hard ceiling 全绿。4.5 体验项仍是 `post_beta_polish`，不阻断 RC。
+
 ## 0.1.0-beta.1 (2026-08-14)
 
 首个公开 Beta 候选。工业主链内容按第四阶段规划 T20-T25 全部关闭。

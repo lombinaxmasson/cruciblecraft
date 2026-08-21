@@ -51,7 +51,7 @@ class T13DenominatorReadinessTest(unittest.TestCase):
             0, document["zero_content_delta"]["publication_delta"]
         )
         self.assertEqual(
-            6_025,
+            6_150,
             document["zero_content_delta"]["datapack_recipe_entries"],
         )
         self.assertEqual(

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "status_policy": "The status field is derived by build() from the gates below; check() recomputes and compares. Missing status is fail-closed (not ready). T27_READY is bound by full verification acceptance and is never hand-written.",
+  "stages": {
+    "T27a": "Opening snapshot is bound to the T26 READY report and T26.5 current publication 19087/16862/2225.",
+    "T27b": "Seven T13 tables reclassified: canonical 765, unclassified 0, T13 in_scope does not auto-upgrade to v1_required.",
+    "T27c": "Open-item ledger and A-E tracks are current: orphan 0, tracks not started, F003/F005 remain T27 RC contracts.",
+    "T27d": "Portfolio aggregate is a pure derived view of the seven tables and open items.",
+    "T27e": "T28+ topology is recomputed from unclosed v1_required identities; no RC number; cards are not started and implement no content."
+  },
+  "dependencies": {
+    "phase5_contract": "tools/phase5_portfolio_contract.json",
+    "opening_snapshot": "tools/t27_opening_snapshot.json",
+    "portfolio_aggregate": "tools/t27_portfolio.json",
+    "card_topology": "tools/t27_card_topology.json",
+    "t14_load_budget_policy": "tools/t14_load_budget_policy.json",
+    "full_verification_report": "tools/full_verification_report.json"
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T27 freezes the v1.0 portfolio. Publication delta remains 0/0/0. Unclosed v1_required identities generate T28+ topology only. T27 does not implement crucible, O-36, or any 1.x content. F003/F005 stay on the T27 RC candidate contract."
+  },
+  "refresh_policy": {
+    "status": "BOUND_TO_FULL_VERIFICATION_REPORT",
+    "evidence": "tools/full_verification_report.json"
+  }
+}

@@ -16,6 +16,7 @@ ALLOWED_CONSUMERS = {
     "distillation_tower",
     "large_boiler",
     "tank_3x3x3",
+    "large_crucible",
 }
 
 
@@ -36,6 +37,7 @@ class T23PluginWhitelistTest(unittest.TestCase):
                 "cruciblecraft:heat_energy_input",
                 "cruciblecraft:steam_conversion",
                 "cruciblecraft:storage_host",
+                "cruciblecraft:thermal_steelmaking_host",
             },
             {row["id"] for row in self.tools["plugins"]},
         )

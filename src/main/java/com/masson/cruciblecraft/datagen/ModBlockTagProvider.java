@@ -47,6 +47,7 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 ModBlocks.DISTILLATION_TOWER.getKey(),
                 ModBlocks.LARGE_BOILER.getKey(),
                 ModBlocks.TANK_3X3X3.getKey(),
+                ModBlocks.LARGE_CRUCIBLE.getKey(),
                 ModBlocks.FLUID_DEPOSIT_EXTRACTOR.getKey(),
                 ModBlocks.FUEL_ENGINE.getKey(),
                 ModBlocks.BURNING_GAS_GENERATOR.getKey());
@@ -61,5 +62,11 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
                 block -> pickaxe.add(block.getKey()));
         ModBlocks.pipeBlocks().forEach(
                 block -> pickaxe.add(block.getKey()));
+        ModBlocks.hopperBlocks().forEach(block -> {
+            pickaxe.add(block.getKey());
+            stone.add(block.getKey());
+        });
+        pickaxe.add(ModBlocks.STEEL_DUST_FUNNEL.getKey());
+        stone.add(ModBlocks.STEEL_DUST_FUNNEL.getKey());
     }
 }

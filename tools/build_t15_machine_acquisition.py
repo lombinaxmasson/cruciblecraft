@@ -87,13 +87,17 @@ def mod_item_registrations() -> dict[str, str]:
     source = MOD_ITEMS.read_text(encoding="utf-8")
     rows = re.findall(
         r"DeferredItem<[^>]+>\s+([A-Z0-9_]+)\s*=\s*"
-        r"ITEMS\.registerSimple(?:Block)?Item\(\s*\"([^\"]+)\"",
+        r"(?:ITEMS\.registerSimple(?:Block)?Item\(\s*\"([^\"]+)\""
+        r"|tieredProcessingItem\(\s*\"([^\"]+)\")",
         source,
         flags=re.DOTALL,
     )
-    result = dict(rows)
-    if len(result) != len(rows):
-        raise ValueError("ModItems block-item declarations are duplicated")
+    result: dict[str, str] = {}
+    for field, simple_id, tiered_id in rows:
+        item_id = simple_id or tiered_id
+        if field in result and result[field] != item_id:
+            raise ValueError("ModItems block-item declarations are duplicated")
+        result[field] = item_id
     return result
 
 
@@ -607,7 +611,7 @@ def check() -> list[str]:
 
 def write() -> dict[str, Any]:
     document = build()
-    OUTPUT.write_text(stable(document), encoding="utf-8", newline="\n")
+    OUTPUT.write_bytes(stable(document).encode("utf-8"))
     return document
 
 

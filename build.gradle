@@ -39,7 +39,10 @@ sourceSets.main.resources {
 
     // Exclude common development only resources from finalized outputs
     exclude("**/*.bbmodel") // BlockBench project files
-    exclude("src/generated/**/.cache") // datagen cache files
+    // HashCache lives at <resourcesSrcDir>/.cache; the old src/generated/**/.cache
+    // pattern never matched that relative path, so cache files shipped in the jar.
+    exclude("**/.cache")
+    exclude("**/.cache/**")
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -107,12 +110,22 @@ neoForge {
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            if (providers.gradleProperty('t31Compat').orNull == 'ccOnly') {
+                gameDirectory = project.file('run-t31-compat-client')
+            } else if (providers.gradleProperty('t31Compat').orNull == 'optional') {
+                gameDirectory = project.file('run-t31-compat-client-optional')
+            }
         }
 
         server {
             server()
             programArgument '--nogui'
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            if (providers.gradleProperty('t31Compat').orNull == 'ccOnly') {
+                gameDirectory = project.file('run-t31-compat-server')
+            } else if (providers.gradleProperty('t31Compat').orNull == 'optional') {
+                gameDirectory = project.file('run-t31-compat-optional')
+            }
         }
 
         // This run config launches GameTestServer and runs all registered gametests, then exits.
@@ -120,7 +133,13 @@ neoForge {
         // The gametest system is also enabled by default for other run configs under the /test command.
         gameTestServer {
             type = "gameTestServer"
-            systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            if (providers.gradleProperty('t31Scale').isPresent()) {
+                // Isolate the T31 harness from the daily 137-test grid.
+                systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_scale'
+                gameDirectory = project.file('run-t31-scale')
+            } else {
+                systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            }
         }
 
         data {
@@ -151,6 +170,12 @@ neoForge {
                         providers.gradleProperty('materialStressScenario').get()
                 systemProperty 'cruciblecraft.materialStressCount',
                         providers.gradleProperty('materialStressCount').getOrElse('20000')
+            }
+            if (providers.gradleProperty('t31Scale').isPresent()) {
+                systemProperty 'cruciblecraft.t31.scale',
+                        providers.gradleProperty('t31Scale').get()
+                systemProperty 'cruciblecraft.t31.scale.output',
+                        project.file('tools/t31_scale_samples').absolutePath
             }
         }
     }
@@ -198,7 +223,12 @@ tasks.named('runData').configure {
 // a dependency that will be present for runtime testing but that is
 // "optional", meaning it will not be pulled by dependents of this mod.
 configurations {
-    runtimeClasspath.extendsFrom localRuntime
+    // Always declare localRuntime so -Pt31Compat=ccOnly can still parse
+    // dependencies { localRuntime ... } without putting EMI/Jade on the run.
+    localRuntime
+    if (providers.gradleProperty('t31Compat').orNull != 'ccOnly') {
+        runtimeClasspath.extendsFrom localRuntime
+    }
 }
 
 dependencies {

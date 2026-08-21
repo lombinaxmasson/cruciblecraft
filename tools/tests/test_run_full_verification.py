@@ -16,7 +16,7 @@ class FullVerificationRunnerTest(unittest.TestCase):
     def test_builder_policy_is_complete_and_cache_independent(self) -> None:
         policy = runner.load_builder_policy()
         self.assertFalse(policy["ordinary_ci_requires_local_artifacts"])
-        self.assertEqual(86, len(policy["builders"]))
+        self.assertEqual(110, len(policy["builders"]))
         self.assertEqual(
             len(policy["builders"]),
             len({row["name"] for row in policy["builders"]}),
@@ -30,7 +30,7 @@ class FullVerificationRunnerTest(unittest.TestCase):
         ):
             result = runner.run_builder_checks()
         checks = (result.details or {})["checks"]
-        self.assertEqual(86, len(checks))
+        self.assertEqual(110, len(checks))
         self.assertEqual(
             [row["script"] for row in runner.BUILDER_POLICY_DOCUMENT["builders"]],
             [row["script"] for row in checks],

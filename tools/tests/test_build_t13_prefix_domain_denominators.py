@@ -198,12 +198,12 @@ class T13PrefixDomainDenominatorTest(unittest.TestCase):
             self.prefix_artifact["difference"]["semantics"],
         )
 
-    def test_all_56_runtime_prefixes_have_declared_mapping(self) -> None:
+    def test_all_57_runtime_prefixes_have_declared_mapping(self) -> None:
         target_counts = Counter(
             row["cc_prefix"]
             for row in self.prefix_artifact["cc_mapping_relations"]
         )
-        self.assertEqual(56, len(target_counts))
+        self.assertEqual(57, len(target_counts))
         self.assertEqual(2, target_counts["block"])
         self.assertEqual(
             {"block"},

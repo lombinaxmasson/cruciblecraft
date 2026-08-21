@@ -39,6 +39,14 @@ public final class CellContentGate {
         return ENTRIES;
     }
 
+    /** Gate rows in stable id order for enumeration surfaces (creative tab,
+     *  prefill plan). */
+    public static List<Map.Entry<ResourceLocation, Kind>> sortedEntries() {
+        return ENTRIES.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .toList();
+    }
+
     private static Map<ResourceLocation, Kind> load() {
         LinkedHashMap<ResourceLocation, Kind> entries = new LinkedHashMap<>();
         for (String resource : RESOURCES) {

@@ -549,7 +549,10 @@ def check() -> list[str]:
 
 def write() -> dict[str, Any]:
     document = build()
-    OUTPUT.write_text(stable(document), encoding="utf-8", newline="\n")
+    encoded = stable(document).encode("utf-8")
+    tmp = OUTPUT.with_name(OUTPUT.name + ".tmp")
+    tmp.write_bytes(encoded)
+    tmp.replace(OUTPUT)
     return document
 
 

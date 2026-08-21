@@ -15,8 +15,8 @@
   "classified": 62,
   "counts": {
     "formula_count": 952,
-    "formula_visible_material_count": 605,
-    "formula_without_registered_form_count": 347,
+    "formula_visible_material_count": 609,
+    "formula_without_registered_form_count": 343,
     "material_count": 1773,
     "mortar_gem_to_dust_count": 94,
     "mortar_ingot_to_dust_count": 126,
@@ -96,10 +96,10 @@
     "src/main/java/com/masson/cruciblecraft/material/def/GT6MaterialMetadata.java": "49a5f4ac246c1708305fecddce45b514f1299b7dd9c9765211e66c25bb1bc8d5",
     "src/main/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansion.java": "03ce46c8a62e54a0527d1b3e6c616583781a9692a9cf232e198b53c669a6677f",
     "src/main/java/com/masson/cruciblecraft/recipe/rule/RuleExpression.java": "ec0e0240eee73b3a99e8f1ed5f4932962860aa7f93a484f8ed16e96c5fae94cf",
-    "src/main/resources/data/cruciblecraft/material_registration_gate.json": "17675d0fddce52332d00373839661bc1b0ac70e9e546417458bacd60a0cd199d",
-    "src/main/resources/data/cruciblecraft/material_tag_policy.json": "ea357fc343797198bc504249ae2e1b075f1465df34cc8d66dcb40372dbb5dd6d",
+    "src/main/resources/data/cruciblecraft/material_registration_gate.json": "80271812ac9a6a9051a2aad29c4479ebc3c83de81a75b025f1f94e0fde68abf3",
+    "src/main/resources/data/cruciblecraft/material_tag_policy.json": "21432d810a2517ccebc99660cbb8f065ae7e62054f44be54b6ccc7678c0cd7a4",
     "src/main/resources/data/cruciblecraft/materials/index.json": "ff3ecf3970191f4feaddb84eb7795ea7714cab665df3fb6822f61c8382e66e05",
-    "tools/gt6_oredict_prefixes_normalized.json": "cdd29c3d4b4d31ea2065ff80be0e34c60d6c49608b7913d57905297d23239ddd",
+    "tools/gt6_oredict_prefixes_normalized.json": "7bd153f3c14cbd388e444b297763c81b9182cc7eefdc6fdb9e58605d71858638",
     "tools/gt6_reference_metadata.json": "1b62ce423c6a6a62dcd3b3eaade997dbc7e7afc29931c6f9432f040a43e88164"
   },
   "legacy_rule_condition_backfill": {
@@ -240,10 +240,10 @@
       }
     ]
   },
-  "material_directory_sha256": "ffd22ffec1bb8739b2a9c05f99176b71b2d0460977ae70fcb2e2a3d78449e9fd",
+  "material_directory_sha256": "80fcb0783418f5df514b1b203d2103caa53b1d1d396a7fd0b144419afdd40ae7",
   "material_rule_audit": {
-    "conditioned_cross_material_rule_files": 57,
-    "cross_material_rule_files": 89,
+    "conditioned_cross_material_rule_files": 58,
+    "cross_material_rule_files": 90,
     "material_specific_rule_files": 1,
     "post_t7_unconditioned_cross_material_rule_files": [
       "src/component_rule_generated/resources/data/cruciblecraft/recipe/extruder/compact/low_heat_block.json",
@@ -289,6 +289,8 @@
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/metal.json",
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/sword/gem.json",
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/sword/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wire_cutter/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wire_cutter/metal.json",
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wrench/gem.json",
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wrench/metal.json"
       ],
@@ -335,6 +337,8 @@
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/saw/metal.json",
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/gem.json",
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wire_cutter/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wire_cutter/metal.json",
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wrench/gem.json",
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wrench/metal.json"
       ],
@@ -358,6 +362,8 @@
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/metal.json",
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/sword/gem.json",
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/sword/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wire_cutter/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wire_cutter/metal.json",
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wrench/gem.json",
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wrench/metal.json"
       ],
@@ -369,6 +375,8 @@
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/saw/metal.json",
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/gem.json",
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/metal.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wire_cutter/gem.json",
+        "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wire_cutter/metal.json",
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wrench/gem.json",
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/wrench/metal.json"
       ],
@@ -377,7 +385,7 @@
         "src/generated/resources/data/cruciblecraft/recipe/t4/assembler/smithing_hammer/metal.json"
       ]
     },
-    "total_rule_files": 90,
+    "total_rule_files": 91,
     "unconditioned_cross_material_rule_files": [
       "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/dodecuple_wire_and_rubber_to_dodecuple_cable.json",
       "src/component_rule_generated/resources/data/cruciblecraft/recipe/assembler/double_wire_and_rubber_to_double_cable.json",
@@ -789,7 +797,7 @@
     "material_nonzero_explosion_damage_count": 0,
     "material_nonzero_heat_damage_count": 0,
     "prefix_source": "tools/gt6_oredict_prefixes_normalized.json",
-    "prefix_source_sha256": "cdd29c3d4b4d31ea2065ff80be0e34c60d6c49608b7913d57905297d23239ddd",
+    "prefix_source_sha256": "7bd153f3c14cbd388e444b297763c81b9182cc7eefdc6fdb9e58605d71858638",
     "runtime_anchor": "gregapi/util/UT.java:2949-2952",
     "source_anchor": "gregapi/data/OP.java:578",
     "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

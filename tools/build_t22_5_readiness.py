@@ -38,7 +38,7 @@ B2 = TOOLS / "t22_5_fluid_gap_disposition.json"
 C0 = TOOLS / "t22_5_machine_playability.json"
 C1 = TOOLS / "t22_5_denominator_recompute.json"
 LEDGER_1 = TOOLS / "t21_source_denominator.json"
-BETA_CONTRACT = ROOT / "CrucibleCraft-第四阶段总体规划.md"
+PROJECT_PLAN = ROOT / "CrucibleCraft-总体规划.md"
 MATERIALS_DIR = (
     ROOT / "src/main/resources/data/cruciblecraft/materials"
 )
@@ -214,11 +214,11 @@ def _load_c1() -> dict[str, Any]:
 
 
 def _load_c2() -> dict[str, Any]:
-    if not BETA_CONTRACT.is_file():
+    if not PROJECT_PLAN.is_file():
         raise ValueError(
-            f"missing Beta contract document: {BETA_CONTRACT}"
+            f"missing project plan document: {PROJECT_PLAN}"
         )
-    text = BETA_CONTRACT.read_text(encoding="utf-8")
+    text = PROJECT_PLAN.read_text(encoding="utf-8")
     return {"wording_updated": BETA_WORDING in text}
 
 
@@ -391,7 +391,7 @@ def check() -> list[str]:
 
 def write() -> dict[str, Any]:
     document = build()
-    OUTPUT.write_text(_stable(document), encoding="utf-8", newline="\n")
+    OUTPUT.write_bytes(_stable(document).encode("utf-8"))
     return document
 
 

@@ -15,10 +15,10 @@ class T10PreflightProjectionTest(unittest.TestCase):
         self.assertEqual("T10_READY", self.document["status"])
         routes = self.document["route_projections"]
         self.assertEqual(321, routes["hot_ingot"]["material_count"])
-        self.assertEqual(642, routes["hot_ingot"]["recipe_count"])
+        self.assertEqual(321, routes["hot_ingot"]["recipe_count"])
         self.assertEqual(323, routes["multi_ingot"]["material_count"])
         self.assertEqual(646, routes["multi_ingot"]["recipe_count"])
-        self.assertEqual(2, len(routes["hot_ingot"]["routes"]))
+        self.assertEqual(1, len(routes["hot_ingot"]["routes"]))
         self.assertEqual(2, len(routes["multi_ingot"]["routes"]))
 
     def test_container_domains_close_without_recipe_publication(self):
@@ -52,16 +52,16 @@ class T10PreflightProjectionTest(unittest.TestCase):
         budget = self.document["budget_projection"]
         self.assertEqual(17_583, budget["post_t8_published_recipes"])
         self.assertEqual(0, budget["t9_projected_recipe_additions"])
-        self.assertEqual(1_288, budget["known_t10_recipe_additions"])
-        self.assertEqual(18_871, budget["known_post_t10_published_recipes"])
+        self.assertEqual(967, budget["known_t10_recipe_additions"])
+        self.assertEqual(18_550, budget["known_post_t10_published_recipes"])
         self.assertEqual(21_000, budget["global_budget"])
-        self.assertEqual(2_129, budget["remaining_after_known_t10"])
+        self.assertEqual(2_450, budget["remaining_after_known_t10"])
 
     def test_prefix_fact_layer_is_pinned_with_exact_bulk_registration(self):
         facts = self.document["prefix_facts"]
-        self.assertEqual(56, facts["startup_prefix_count"])
+        self.assertEqual(57, facts["startup_prefix_count"])
         self.assertEqual(1_773, facts["material_count"])
-        self.assertEqual(1_829, facts["handshake_entry_count"])
+        self.assertEqual(1_830, facts["handshake_entry_count"])
         self.assertEqual(
             {
                 "double_ingot": 323,
@@ -98,9 +98,9 @@ class T10PreflightProjectionTest(unittest.TestCase):
             evidence["ut_java"]["git_blob_sha1"],
         )
         publication = self.document["runtime_publication"]
-        self.assertEqual(4, publication["current_t10_datapack_entries"])
-        self.assertEqual(1_288, publication["current_t10_recipe_additions"])
-        self.assertEqual(18_871, publication["post_t10_published_recipes"])
+        self.assertEqual(3, publication["current_t10_datapack_entries"])
+        self.assertEqual(967, publication["current_t10_recipe_additions"])
+        self.assertEqual(18_550, publication["post_t10_published_recipes"])
         self.assertEqual(0, publication["known_future_t10_recipe_additions"])
         self.assertEqual(
             1_500, publication["known_form_material_rule_budget"]
@@ -112,8 +112,8 @@ class T10PreflightProjectionTest(unittest.TestCase):
     def test_load_gate_closes_datapack_publication_and_runtime_contract(self):
         load = self.document["load_gate"]
         self.assertEqual("READY", load["status"])
-        self.assertEqual(3_235, load["datapack_recipe_entries"])
-        self.assertEqual(18_871, load["published_recipes"])
+        self.assertEqual(3_360, load["datapack_recipe_entries"])
+        self.assertEqual(18_550, load["published_recipes"])
         self.assertGreaterEqual(load["compression_ratio"], 3.0)
         self.assertTrue(
             load["runtime_contract"]["budget_constants_present"]

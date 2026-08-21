@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "status": "T27_TRACK_POLICY",
+  "review": "T27-4. Tracks A-E are 1.x measurement programs, not parallel implementation licenses and not started. Unique owner is derived from portfolio:track_{a-e}/ prefixes. Closed v1 recipe maps stay on portfolio:v1/closed_recipe_maps; Track A only indexes them as candidate hosts plus O-41. Fusion/plasma/NEUTRON/reactors stay Track C, so Track E is the remaining deferred maps (62), not a second copy of the T13 64. Track D has no GT6U revision and no T13 identities. T14 Extruder compression must not be extrapolated. Logical 21000 is not a gate; eager hard is 21000. T27 publication delta stays 0/0/0.",
+  "started": false,
+  "tracks": {
+    "A": {
+      "initial_card": "A0",
+      "started": false,
+      "scope": "ordinary_optional long tail on already-hosted maps, plus the O-41 unlockable translation layer",
+      "owner_prefixes": [
+        "portfolio:track_a/"
+      ],
+      "reference_owners": [
+        "portfolio:v1/closed_recipe_maps"
+      ],
+      "candidate_row_field": [
+        "t22_5",
+        "ordinary_optional"
+      ],
+      "method": "A0 measures per hosted map: source-row to exact distinct runtime relation, identity conflicts, and independent authored/logical/eager/lazy projections. T14 Extruder 325595-to-2782 compression is family-specific and must not be used as a global ratio."
+    },
+    "B": {
+      "initial_card": "B0",
+      "started": false,
+      "scope": "post-1.0 multiblock kinds and declarative controller measurement",
+      "owner_prefixes": [
+        "portfolio:track_b/"
+      ],
+      "method": "B0 measures whether post-1.0 processing/storage kinds can reuse existing runtime as data instances. Schema/plugin presence is not completion. GT logical/eager/lazy are usually near zero for the structure itself; registration, controller, GameTest and network/save still require independent axes."
+    },
+    "C": {
+      "initial_card": "C0",
+      "started": false,
+      "scope": "nuclear fission, fusion and plasma source/physics measurement",
+      "owner_prefixes": [
+        "portfolio:track_c/"
+      ],
+      "method": "C0 is a source/physics measurement card. Fusion recipe maps, NEUTRON, reactor cores and adjacent QU machines are uniquely owned here and must not also sit on Track E. C0 does not estimate implementation duration or publish content."
+    },
+    "D": {
+      "initial_card": "D0",
+      "started": false,
+      "scope": "GT6U provenance and denominator, not a GT6U content port",
+      "owner_prefixes": [
+        "portfolio:track_d/"
+      ],
+      "allow_empty_primary": true,
+      "gt6u_revision": null,
+      "method": "D0 must pin a reproducible GT6U revision, license boundary, tree/blob/symbol manifest and recipe dump before any GT6U identity enters a T13-equivalent denominator. GT6ImportUnits U is a GT6 material unit, not GT6U evidence. The current GT6 SOURCE_BACKED chain stays unchanged until D0 closes."
+    },
+    "E": {
+      "initial_card": "E0",
+      "started": false,
+      "scope": "deferred RecipeMaps secondary denominator and dependency graph, excluding identities uniquely owned by Track C",
+      "owner_prefixes": [
+        "portfolio:track_e/"
+      ],
+      "method": "E0 classifies each remaining deferred map: runnable host, player loop, row-level disposition, energy/physics dependency, owner and replacement condition. T13 deferred_with_reason counted 64 maps; Track C uniquely owns fusionreactor and fuels.plasma, so E0's primary set is the leftover deferred maps rather than a second 64-map owner."
+    }
+  },
+  "forbidden": {
+    "start_a0_e0": true,
+    "extrapolate_t14_extruder_ratio": true,
+    "global_average_compression": true,
+    "fill_pending_with_zero": true,
+    "treat_logical_21000_as_authoritative_gate": true,
+    "add_independent_axis_headroom": true
+  }
+}

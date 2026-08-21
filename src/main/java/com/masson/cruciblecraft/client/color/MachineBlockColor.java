@@ -45,6 +45,7 @@ public final class MachineBlockColor {
         blocks.add(ModBlocks.COKE_OVEN.get());
         blocks.add(ModBlocks.LARGE_BOILER.get());
         blocks.add(ModBlocks.TANK_3X3X3.get());
+        blocks.add(ModBlocks.LARGE_CRUCIBLE.get());
         blocks.add(ModBlocks.MORTAR.get());
         return blocks.stream()
                 .filter(MachineBlockColor::usesDualLayerTextures)
@@ -102,6 +103,7 @@ public final class MachineBlockColor {
             case "invar_distillery", "titanium_distillery" -> "distillery";
             case "distillation_tower" -> "distillery";
             case "large_boiler" -> "boiler";
+            case "large_crucible" -> "coke_oven";
             case "drying", "invar_drying", "titanium_drying" -> "dryer";
             case "invar_smelter", "titanium_smelter" -> "smelter";
             default -> id;

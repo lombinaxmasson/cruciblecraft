@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "status": "T26_5_PUBLICATION_BASELINE",
+  "baseline": "T23",
+  "recipe_map_ids": [
+    "cruciblecraft:anvil",
+    "cruciblecraft:anvil_bend_big",
+    "cruciblecraft:anvil_bend_small",
+    "cruciblecraft:assembler",
+    "cruciblecraft:autoclave",
+    "cruciblecraft:bath",
+    "cruciblecraft:bender",
+    "cruciblecraft:centrifuge",
+    "cruciblecraft:coke_oven",
+    "cruciblecraft:compressor",
+    "cruciblecraft:cooling",
+    "cruciblecraft:crusher",
+    "cruciblecraft:cutter",
+    "cruciblecraft:distillery",
+    "cruciblecraft:drying",
+    "cruciblecraft:electrolyzer",
+    "cruciblecraft:extruder",
+    "cruciblecraft:fuels_engine",
+    "cruciblecraft:fuels_gas",
+    "cruciblecraft:generifier",
+    "cruciblecraft:lathe",
+    "cruciblecraft:mixer",
+    "cruciblecraft:mortar",
+    "cruciblecraft:press",
+    "cruciblecraft:rollbender",
+    "cruciblecraft:rollingmill",
+    "cruciblecraft:shredder",
+    "cruciblecraft:sifter",
+    "cruciblecraft:sluice",
+    "cruciblecraft:smelter",
+    "cruciblecraft:welder",
+    "cruciblecraft:wiremill"
+  ],
+  "publication_totals": {
+    "logical_rows": 18875,
+    "eager_rows": 16650,
+    "lazy_rows": 2225
+  },
+  "t26_5_publication_delta": {
+    "logical_rows_added": 205,
+    "eager_rows_added": 205,
+    "lazy_rows_added": 0,
+    "recipe_map_ids_unchanged": true,
+    "emi_recipe_map_ids_unchanged": true,
+    "gt_recipe_rows_added": 205,
+    "vanilla_datapack_entries_added": 1,
+    "evidence": "T4 wire cutter family: t4/assembler/wire_cutter/{metal,gem} x 205 eligible materials; tools/pattern/wire_cutter.json shaped recipe"
+  },
+  "emi_recipe_map_ids": [
+    "cruciblecraft:assembler",
+    "cruciblecraft:autoclave",
+    "cruciblecraft:bath",
+    "cruciblecraft:bender",
+    "cruciblecraft:centrifuge",
+    "cruciblecraft:compressor",
+    "cruciblecraft:cutter",
+    "cruciblecraft:distillery",
+    "cruciblecraft:drying",
+    "cruciblecraft:electrolyzer",
+    "cruciblecraft:extruder",
+    "cruciblecraft:generifier",
+    "cruciblecraft:lathe",
+    "cruciblecraft:mixer",
+    "cruciblecraft:mortar",
+    "cruciblecraft:press",
+    "cruciblecraft:rollbender",
+    "cruciblecraft:rollingmill",
+    "cruciblecraft:shredder",
+    "cruciblecraft:sifter",
+    "cruciblecraft:sluice",
+    "cruciblecraft:smelter",
+    "cruciblecraft:welder",
+    "cruciblecraft:wiremill"
+  ],
+  "emi_enumeration_contract": "Every logical RecipeMap entry from each configured processing map is enumerated exactly once under its stable machine category and recipe id.",
+  "delta_ledger_policy": {
+    "base_eager": 16650,
+    "contract": "GameTest eager assertion MUST equal base_eager + sum(registered_deltas[*].eager). Any new delta registration must include per-family evidence.",
+    "current_eager": 16862,
+    "current_lazy": 2225,
+    "current_logical": 19087,
+    "registered_deltas": [
+      {
+        "logical": 4,
+        "eager": 4,
+        "lazy": 0,
+        "evidence": "src/main/resources/data/cruciblecraft/t21_publication_baseline.json",
+        "phase": "T21"
+      },
+      {
+        "logical": 3,
+        "eager": 3,
+        "lazy": 0,
+        "evidence": "src/main/resources/data/cruciblecraft/t22_publication_baseline.json",
+        "phase": "T22"
+      },
+      {
+        "logical": 0,
+        "eager": 0,
+        "lazy": 0,
+        "evidence": "src/main/resources/data/cruciblecraft/t23_publication_baseline.json",
+        "phase": "T23"
+      },
+      {
+        "logical": 205,
+        "eager": 205,
+        "lazy": 0,
+        "evidence": "src/main/resources/data/cruciblecraft/t26_5_publication_baseline.json",
+        "phase": "T26.5-wire_cutter"
+      }
+    ]
+  }
+}

@@ -30,7 +30,7 @@ class T4ToolReadinessTest(unittest.TestCase):
         self.assertEqual(2, self.document["schema_version"])
         self.assertEqual("READY_FOR_T4_IMPLEMENTATION", self.document["status"])
         self.assertEqual(0, self.document["closure"]["unclassified"])
-        self.assertEqual(546 * 11, self.document["closure"]["classified"])
+        self.assertEqual(546 * 12, self.document["closure"]["classified"])
         self.assertEqual(
             self.document["closure"]["classified"],
             self.document["closure"]["tool_material_pair_count"],
@@ -59,7 +59,7 @@ class T4ToolReadinessTest(unittest.TestCase):
             facts["plate_rod_quadrants"],
         )
         self.assertEqual(
-            ["anti_adamantium", "anti_vibranium"],
+            [],
             facts["gate_empty_materials"],
         )
 
@@ -77,6 +77,7 @@ class T4ToolReadinessTest(unittest.TestCase):
             "saw": (314, 309, 546, 309),
             "screwdriver": (314, 309, 546, 309),
             "wrench": (314, 310, 546, 310),
+            "wire_cutter": (314, 312, 546, 312),
         }
         for tool, counts in expected.items():
             with self.subTest(tool=tool):
@@ -93,7 +94,7 @@ class T4ToolReadinessTest(unittest.TestCase):
         self.assertNotIn('"advanced"', encoded_rules)
         self.assertNotIn("NO_ADVANCED_TOOLS", encoded_rules)
         self.assertEqual(
-            "diagnostic_only_for_these_11_tools",
+            "diagnostic_only_for_these_12_tools",
             self.policy["material_domain"]["no_advanced_tools_usage"],
         )
 
@@ -113,8 +114,9 @@ class T4ToolReadinessTest(unittest.TestCase):
             "saw": 2,
             "screwdriver": 0,
             "wrench": 2,
+            "wire_cutter": 107,
         }
-        self.assertEqual(1020, gaps["total"])
+        self.assertEqual(1127, gaps["total"])
         self.assertEqual(
             expected,
             {
@@ -192,6 +194,11 @@ class T4ToolReadinessTest(unittest.TestCase):
             records["gilded_iron"]["tool_decisions"]["wrench"]["eligible"]
         )
         self.assertTrue(
+            records["gilded_iron"]["tool_decisions"]["wire_cutter"][
+                "eligible"
+            ]
+        )
+        self.assertTrue(
             records["copper"]["tool_decisions"]["file"]["eligible"]
         )
         self.assertFalse(
@@ -211,16 +218,16 @@ class T4ToolReadinessTest(unittest.TestCase):
             ledger["distinct_literal_material_ids"],
         )
         self.assertEqual(2, ledger["identity_use_count"])
-        self.assertEqual(12, ledger["policy_reference_occurrences"])
+        self.assertEqual(13, ledger["policy_reference_occurrences"])
         self.assertEqual(
-            {"exact_wood_exclusion": 11, "stone_pickaxe_route": 1},
+            {"exact_wood_exclusion": 12, "stone_pickaxe_route": 1},
             ledger["policy_references_by_use"],
         )
         self.assertEqual(
-            {"stone": 3, "wood": 21},
+            {"stone": 3, "wood": 23},
             ledger["projected_occurrences_by_material_id"],
         )
-        self.assertEqual(24, ledger["projected_material_is_occurrences"])
+        self.assertEqual(26, ledger["projected_material_is_occurrences"])
         for use in ledger["entries"].values():
             self.assertTrue(use["reason"])
             self.assertEqual(
@@ -285,6 +292,27 @@ class T4ToolReadinessTest(unittest.TestCase):
         )
         self.assertEqual(0, wrench["full_patterns"][0]["handle_count"])
 
+        wire_cutter = recipes["wire_cutter"]
+        self.assertEqual(["PfP", "hPd", "STS"], wire_cutter["full_patterns"][0]["rows"])
+        self.assertEqual(["CfC", "hCd", "STS"], wire_cutter["full_patterns"][1]["rows"])
+        self.assertEqual(
+            [
+                {"form": "plate", "count": 3},
+                {"form": "screw", "count": 1},
+                {"form": "stick", "count": 2},
+            ],
+            wire_cutter["full_patterns"][0]["material_inputs"],
+        )
+        self.assertEqual(
+            ["smithing_hammer", "file"],
+            wire_cutter["full_patterns"][0]["catalysts"],
+        )
+        self.assertEqual(
+            ["screwdriver"],
+            wire_cutter["flattened_drops"]["catalysts"],
+        )
+        self.assertEqual(0, wire_cutter["full_patterns"][0]["handle_count"])
+
     def test_flattened_patterns_use_actual_per_tool_registered_forms(self):
         expected_inputs = {
             ("pickaxe", "metal"): [
@@ -310,6 +338,11 @@ class T4ToolReadinessTest(unittest.TestCase):
             ],
             ("wrench", "metal"): [
                 {"form": "plate", "count": 4},
+            ],
+            ("wire_cutter", "metal"): [
+                {"form": "plate", "count": 3},
+                {"form": "rod", "count": 2},
+                {"form": "screw", "count": 1},
             ],
         }
         for (tool, pattern_id), expected in expected_inputs.items():
@@ -354,6 +387,7 @@ class T4ToolReadinessTest(unittest.TestCase):
             "saw": (307, {"gem": 107, "metal": 200}),
             "screwdriver": (309, {"rod": 309}),
             "wrench": (308, {"gem": 108, "metal": 200}),
+            "wire_cutter": (205, {"gem": 77, "metal": 128}),
         }
         for tool, (total, patterns) in expected.items():
             with self.subTest(tool=tool):
@@ -395,8 +429,8 @@ class T4ToolReadinessTest(unittest.TestCase):
         signatures = self.document["strategy_projections"][
             "recipe_signatures"
         ]
-        self.assertEqual(3452, signatures["projected_recipes"])
-        self.assertEqual(3452, signatures["distinct_signatures"])
+        self.assertEqual(3657, signatures["projected_recipes"])
+        self.assertEqual(3657, signatures["distinct_signatures"])
         self.assertEqual(0, signatures["collision_count"])
         self.assertEqual([], signatures["collision_groups"])
         self.assertEqual("preserve", signatures["pattern_selector_action"])
@@ -409,7 +443,7 @@ class T4ToolReadinessTest(unittest.TestCase):
             for catalyst in pattern["catalysts"]
             if catalyst["source_catalyst"] == "tool_pattern_selector"
         }
-        self.assertEqual(11, len(selectors))
+        self.assertEqual(12, len(selectors))
 
     def test_durability_and_mining_speed_strategies_still_saturate(self):
         self.assertEqual(1, MODULE.max_damage(0, self.policy))

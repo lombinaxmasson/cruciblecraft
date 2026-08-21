@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "table": "cover_kinds",
+  "status": "T27_TABLE_POLICY",
+  "review": "T27-2 P6. T19 in_scope covers are reviewed v1_required closed. Remaining covers stay post_1_0 with a logistics-only owner, not machine/energy owners. Texture/crafting/drain/CPU covers stay out_of_scope. Pipe runtime capability is not treated as a missing cover identity.",
+  "defaults": {
+    "in_scope": {
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_covers",
+      "replacement_condition": "Not applicable: T19 closed this cover kind for v1.",
+      "recheck_point": "T27 RC candidate cover/logistics recheck",
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "T13 in_scope cover is implemented or T19-selected. Player acquisition, network/save and server behavior were T19 obligations."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T13 cover_kinds row plus T19 cover/pipe mapping. Pipe capability does not erase a later unimplemented cover identity."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "Cover kind is on the T19/T26 READY logistics path; T27 adds no covers."
+        }
+      }
+    },
+    "deferred_with_reason": {
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "cc_implementation": "none",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "recheck_point": "post-1.0 logistics cover measurement",
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "T13 deferred cover kind. T27 does not implement covers."
+        },
+        "fidelity": {
+          "status": "source_backed",
+          "evidence": "T13 cover_kinds deferred row."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "Unmeasured cover kind cannot be filled with 0."
+        }
+      }
+    },
+    "out_of_scope": {
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "cc_implementation": "none",
+      "replacement_condition": "Not applicable: texture, crafting, drain and logistics-CPU covers stay outside v1.",
+      "recheck_point": "product-contract change only",
+      "axes": {
+        "closure": {
+          "status": "not_applicable",
+          "evidence": "T13 out_of_scope cover kind."
+        },
+        "fidelity": {
+          "status": "design_policy",
+          "evidence": "Decorative or CPU-display covers are excluded by the v1 product contract."
+        },
+        "load": {
+          "status": "not_applicable",
+          "evidence": "Excluded covers are not v1 load."
+        }
+      }
+    }
+  },
+  "cc_implementations": {
+    "conveyor": "t19:conveyor",
+    "filter_fluid": "cruciblecraft:cover/filter_fluid",
+    "filter_item": "cruciblecraft:cover/filter_item",
+    "pressure_valve": "t19:pressure_valve",
+    "pump": "cruciblecraft:cover/pump",
+    "retriever_item": "t19:retriever_item",
+    "robot_arm": "t19:robot_arm",
+    "selector_manual": "t19:selector_manual",
+    "shutter": "cruciblecraft:cover/shutter"
+  },
+  "overrides": {}
+}

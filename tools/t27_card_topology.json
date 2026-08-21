@@ -1,0 +1,636 @@
+{
+  "card_count": 0,
+  "cards": [],
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t27_card_topology.py": "4458c4a9a126fd56be468f8010904f7512df59d58248e8950aefe0756d8edf6a",
+      "tools/phase5_portfolio_contract.json": "ca9be41df6cb391c4076ab0acbf35950dca868b5569fb7ce03388ef0cfab2cc7",
+      "tools/t27_portfolio.json": "7b289c0b042420b561c62816095f4bcbb7686524d41eed5020645b6f460c9462",
+      "tools/t27_portfolio/cover_kinds.json": "c739d43370b6623e1bfc792f9651a981cb0f0ae8a15bdbba41ae7a93cfd08242",
+      "tools/t27_portfolio/deferred_open_items.json": "b4ff655f020089c13c694dc7e1c98d3c52850c16fee6dba67e273b6f4a975272",
+      "tools/t27_portfolio/energy_identities.json": "b9a404f29206c818866a043bb7b66a7ab106d3a0b3366b9f3030cee850c7af28",
+      "tools/t27_portfolio/itemgenerator_domains.json": "52df0504e75b239f937857080650d26b6d677423f3b9357f5bc010911db0d3c1",
+      "tools/t27_portfolio/machine_kinds.json": "a04b109efef3235cac738f1692824fbcd42d3fa97ede1b914751102603f93ec2",
+      "tools/t27_portfolio/multiblock_kinds.json": "fff2a8db21eefd16f2d4fa5b03a61ef5c63bba0d22c47f0df403294d25e4db74",
+      "tools/t27_portfolio/prefixes.json": "79f5f76e6de65fa386760c26ae71f29ea963f735ed4af1c99127d357bb762dd2",
+      "tools/t27_portfolio/recipe_maps.json": "2f9a57ef10278514ff5a21d34082011d724504781c222017339b466adcb20d1c"
+    }
+  },
+  "excluded": {
+    "canonical_coverage": [
+      "crucible"
+    ],
+    "closed_v1": [
+      {
+        "canonical_id": "conveyor",
+        "table": "cover_kinds"
+      },
+      {
+        "canonical_id": "filter_fluid",
+        "table": "cover_kinds"
+      },
+      {
+        "canonical_id": "filter_item",
+        "table": "cover_kinds"
+      },
+      {
+        "canonical_id": "pressure_valve",
+        "table": "cover_kinds"
+      },
+      {
+        "canonical_id": "pump",
+        "table": "cover_kinds"
+      },
+      {
+        "canonical_id": "retriever_item",
+        "table": "cover_kinds"
+      },
+      {
+        "canonical_id": "robot_arm",
+        "table": "cover_kinds"
+      },
+      {
+        "canonical_id": "selector_manual",
+        "table": "cover_kinds"
+      },
+      {
+        "canonical_id": "shutter",
+        "table": "cover_kinds"
+      },
+      {
+        "canonical_id": "AIR",
+        "table": "energy_identities"
+      },
+      {
+        "canonical_id": "ELECTRICITY",
+        "table": "energy_identities"
+      },
+      {
+        "canonical_id": "HEAT",
+        "table": "energy_identities"
+      },
+      {
+        "canonical_id": "KINETIC_PUSH",
+        "table": "energy_identities"
+      },
+      {
+        "canonical_id": "KINETIC_ROTATION",
+        "table": "energy_identities"
+      },
+      {
+        "canonical_id": "STEAM",
+        "table": "energy_identities"
+      },
+      {
+        "canonical_id": "TIME",
+        "table": "energy_identities"
+      },
+      {
+        "canonical_id": "ITEMGENERATOR.CONTAINERS_FLUID",
+        "table": "itemgenerator_domains"
+      },
+      {
+        "canonical_id": "ITEMGENERATOR.CONTAINERS_GAS",
+        "table": "itemgenerator_domains"
+      },
+      {
+        "canonical_id": "ITEMGENERATOR.DENSEPLATES",
+        "table": "itemgenerator_domains"
+      },
+      {
+        "canonical_id": "ITEMGENERATOR.DUSTS",
+        "table": "itemgenerator_domains"
+      },
+      {
+        "canonical_id": "ITEMGENERATOR.FOILS",
+        "table": "itemgenerator_domains"
+      },
+      {
+        "canonical_id": "ITEMGENERATOR.GEMS",
+        "table": "itemgenerator_domains"
+      },
+      {
+        "canonical_id": "ITEMGENERATOR.INGOTS",
+        "table": "itemgenerator_domains"
+      },
+      {
+        "canonical_id": "ITEMGENERATOR.INGOTS_HOT",
+        "table": "itemgenerator_domains"
+      },
+      {
+        "canonical_id": "ITEMGENERATOR.MOLTEN",
+        "table": "itemgenerator_domains"
+      },
+      {
+        "canonical_id": "ITEMGENERATOR.MULTIINGOTS",
+        "table": "itemgenerator_domains"
+      },
+      {
+        "canonical_id": "ITEMGENERATOR.MULTIPLATES",
+        "table": "itemgenerator_domains"
+      },
+      {
+        "canonical_id": "ITEMGENERATOR.ORES",
+        "table": "itemgenerator_domains"
+      },
+      {
+        "canonical_id": "ITEMGENERATOR.PARTS",
+        "table": "itemgenerator_domains"
+      },
+      {
+        "canonical_id": "ITEMGENERATOR.PLATES",
+        "table": "itemgenerator_domains"
+      },
+      {
+        "canonical_id": "ITEMGENERATOR.STICKS",
+        "table": "itemgenerator_domains"
+      },
+      {
+        "canonical_id": "ITEMGENERATOR.WIRES",
+        "table": "itemgenerator_domains"
+      },
+      {
+        "canonical_id": "MultiTileEntityAxle|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityBasicMachineElectric|recipe:RM.Electrolyzer|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Autoclave|accepts:TU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Bath|accepts:TU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Centrifuge|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Distillery|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Drying|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Generifier|accepts:TU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Lathe|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Press|accepts:KU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.RollingMill|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Shredder|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Sifting|accepts:KU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Smelter|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Wiremill|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityBoilerTank|NONE|accepts:HU|emits:STEAM|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityDynamoElectric|NONE|accepts:RU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityEngineSteam|NONE|accepts:STEAM|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityGearBox|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityGeneratorGas|fuel:FM.Burn|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityGeneratorMetal|fuel:FM.Furnace|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityMotorElectric|NONE|accepts:EU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "MultiTileEntityMotorLiquid|fuel:FM.Engine|accepts:NONE|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+        "table": "machine_kinds"
+      },
+      {
+        "canonical_id": "centrifuge",
+        "table": "multiblock_kinds"
+      },
+      {
+        "canonical_id": "coke_oven",
+        "table": "multiblock_kinds"
+      },
+      {
+        "canonical_id": "crucible",
+        "table": "multiblock_kinds"
+      },
+      {
+        "canonical_id": "distillation_tower",
+        "table": "multiblock_kinds"
+      },
+      {
+        "canonical_id": "large_boiler",
+        "table": "multiblock_kinds"
+      },
+      {
+        "canonical_id": "tank_3x3x3",
+        "table": "multiblock_kinds"
+      },
+      {
+        "canonical_id": "blockGem",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "blockIngot",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "bolt",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "cableGt01",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "cableGt02",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "cableGt04",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "cableGt08",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "cableGt12",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "crushed",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "crushedCentrifuged",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "crushedCentrifugedTiny",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "crushedPurified",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "crushedTiny",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "dust",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "dustPure",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "dustSmall",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "dustTiny",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "foil",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "gearGt",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "gearGtSmall",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "gem",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "ingot",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "ingotDouble",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "ingotHot",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "ingotTriple",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "nugget",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "ore",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "oreRaw",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "pipeHuge",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "pipeLarge",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "pipeMedium",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "pipeSmall",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "pipeTiny",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "plate",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "plateDense",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "plateDouble",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "plateGem",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "plateQuadruple",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "plateQuintuple",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "plateTriple",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "ring",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "rockGt",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "rotor",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "screw",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "spring",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "springSmall",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "stick",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "stickLong",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "wireFine",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "wireGt01",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "wireGt02",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "wireGt04",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "wireGt08",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "wireGt12",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "wireGt16",
+        "table": "prefixes"
+      },
+      {
+        "canonical_id": "gt.recipe.anvil.bend.big",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.anvil.bend.small",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.assembler",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.autoclave",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.bath",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.centrifuge",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.cokeoven",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.compressor",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.crusher",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.cutter",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.distillery",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.drying",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.electrolyzer",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.extruder",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.fuels.burn",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.fuels.engine",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.generifier",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.lathe",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.mixer",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.mortar",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.press",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.rollbender",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.rollingmill",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.shredder",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.sifter",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.sluice",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.smelter",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.welder",
+        "table": "recipe_maps"
+      },
+      {
+        "canonical_id": "gt.recipe.wiremill",
+        "table": "recipe_maps"
+      }
+    ],
+    "closed_v1_count": 145,
+    "out_of_scope_count": 157,
+    "post_1_0_count": 463,
+    "rc_recheck": [
+      "T24-F003",
+      "T24-F005"
+    ],
+    "work_set": []
+  },
+  "generated_by": "python tools/build_t27_card_topology.py --write",
+  "merge_rule": "same independently closable player path and same fidelity/load bounds",
+  "owner_resolution": {},
+  "publication_delta": {
+    "eager": 0,
+    "lazy": 0,
+    "logical": 0
+  },
+  "rc_number": null,
+  "schema_version": 1,
+  "selection": "disposition == v1_required AND closure != closed",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "start_number": 28,
+  "started": false,
+  "status": "T27_CARD_TOPOLOGY",
+  "validators": {
+    "broken_dependencies": 0,
+    "cycles": 0,
+    "duplicate_owner_resolution": 0,
+    "rc_numbers": 0,
+    "started_cards": 0
+  }
+}

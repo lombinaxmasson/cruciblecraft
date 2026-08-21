@@ -554,7 +554,7 @@ def main() -> int:
             raise SystemExit("T10 preflight projection is stale")
         print("T10 preflight projection is current.")
         return 0
-    OUTPUT.write_text(encoded, encoding="utf-8", newline="\n")
+    OUTPUT.write_bytes(encoded.encode("utf-8"))
     print(f"wrote {OUTPUT.relative_to(ROOT)}")
     return 0
 

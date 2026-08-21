@@ -22,7 +22,8 @@
         "large_centrifuge",
         "distillation_tower",
         "large_boiler",
-        "tank_3x3x3"
+        "tank_3x3x3",
+        "large_crucible"
       ]
     },
     {
@@ -32,7 +33,8 @@
         "energy_input ports carry HU, not the KU default (GT6 mEnergyTypeAccepted=HU)"
       ],
       "consumers": [
-        "large_boiler"
+        "large_boiler",
+        "large_crucible"
       ]
     },
     {
@@ -53,6 +55,16 @@
       ],
       "consumers": [
         "tank_3x3x3"
+      ]
+    },
+    {
+      "id": "cruciblecraft:thermal_steelmaking_host",
+      "stability": "stable",
+      "roles": [
+        "bounded thermal/steelmaking host; not a RecipeMap processing_host"
+      ],
+      "consumers": [
+        "large_crucible"
       ]
     }
   ],

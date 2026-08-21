@@ -650,7 +650,7 @@ def build_prefix_document(
     mapped_runtime_ids = {row["cc_prefix"] for row in cc_relations}
     if runtime_ids != mapped_runtime_ids:
         raise ValueError(
-            "current runtime prefix mapping is not 56/56: "
+            "current runtime prefix mapping is not 57/57: "
             f"missing={sorted(runtime_ids - mapped_runtime_ids)}, "
             f"extra={sorted(mapped_runtime_ids - runtime_ids)}"
         )
@@ -1153,7 +1153,7 @@ def check_or_write(
                 stale.append(path.relative_to(ROOT).as_posix())
         else:
             path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text(expected, encoding="utf-8", newline="\n")
+            path.write_bytes(expected.encode("utf-8"))
     if stale:
         raise SystemExit(
             "T13b denominator artifacts are stale: " + ", ".join(stale)

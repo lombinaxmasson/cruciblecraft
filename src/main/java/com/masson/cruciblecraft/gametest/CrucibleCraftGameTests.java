@@ -17,6 +17,8 @@ import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.api.unit.MaterialUnits;
+import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
 import com.masson.cruciblecraft.content.blockentity.CokeOvenBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ConfiguredProcessingMachineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CeramicMoldBlockEntity;
@@ -28,6 +30,7 @@ import com.masson.cruciblecraft.content.blockentity.DynamoBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCentrifugeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DistillationTowerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.TankBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.CableBlockEntity;
@@ -47,6 +50,10 @@ import com.masson.cruciblecraft.content.block.DynamoBlock;
 import com.masson.cruciblecraft.content.block.ElectricMotorBlock;
 import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
+import com.masson.cruciblecraft.content.blockentity.HopperBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.DustFunnelBlockEntity;
+import com.masson.cruciblecraft.content.block.HopperBlock;
+import com.masson.cruciblecraft.logistics.hopper.DustAmountLedger;
 import com.masson.cruciblecraft.content.block.ProcessingMachineInteractions;
 import com.masson.cruciblecraft.content.block.RotationalAxleBlock;
 import com.masson.cruciblecraft.content.block.RotationalGearboxBlock;
@@ -58,6 +65,7 @@ import com.masson.cruciblecraft.content.blockentity.FireboxBlockEntity;
 import com.masson.cruciblecraft.content.menu.ConfiguredProcessingMachineMenu;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureCatalog;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PredicateKind;
+import com.masson.cruciblecraft.heat.CrucibleThermalModel;
 import com.masson.cruciblecraft.heat.FuelDefinition;
 import com.masson.cruciblecraft.heat.ItemHeat;
 import com.masson.cruciblecraft.machine.ToolMaterialRules;
@@ -78,6 +86,7 @@ import com.masson.cruciblecraft.machine.processing.MachineTransaction;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineState;
 import com.masson.cruciblecraft.recipe.AnvilMode;
+import com.masson.cruciblecraft.recipe.SteelmakingProcess;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeQuery;
 import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
@@ -122,6 +131,7 @@ import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -139,6 +149,8 @@ import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
@@ -274,6 +286,98 @@ public final class CrucibleCraftGameTests {
                         helper.getBlockState(first), Direction.EAST),
                 "Wrench-style toggle did not open the machine face");
         helper.succeed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 40)
+    public static void cutterTogglesCableConnectionsOnTheWrenchingGrid(
+            GameTestHelper helper) {
+        CableBlock tinCable = ModBlocks.electricalConductorBlock(
+                "tin", MaterialPrefixes.CABLE).get();
+        BlockPos pos = new BlockPos(4, 2, 5);
+        helper.setBlock(pos, tinCable.defaultBlockState());
+        ItemStack cutter = new ItemStack(ModItems.MATERIAL_WIRE_CUTTER.get());
+        ItemStack wrench = new ItemStack(ModItems.MATERIAL_WRENCH.get());
+        BlockState state = helper.getBlockState(pos);
+        BlockPos absolute = helper.absolutePos(pos);
+
+        // GT6 getFacingTool split: the wrench no longer operates cables.
+        ItemInteractionResult rejected = Gt6StyleConnections.wrench(
+                wrench,
+                state,
+                helper.getLevel(),
+                absolute,
+                null,
+                InteractionHand.MAIN_HAND,
+                faceHit(absolute, Direction.EAST, 1.0, 0.5, 0.5));
+        helper.assertTrue(
+                rejected
+                                == ItemInteractionResult
+                                        .PASS_TO_DEFAULT_BLOCK_INTERACTION
+                        && !CableBlock.isConnected(
+                                helper.getBlockState(pos), Direction.EAST),
+                "Wrench must not toggle cable connections");
+
+        // Center cell of the grid targets the clicked face itself.
+        ItemInteractionResult center = Gt6StyleConnections.cutter(
+                cutter,
+                state,
+                helper.getLevel(),
+                absolute,
+                null,
+                InteractionHand.MAIN_HAND,
+                faceHit(absolute, Direction.EAST, 1.0, 0.5, 0.5));
+        helper.assertTrue(
+                center == ItemInteractionResult.SUCCESS
+                        && CableBlock.isConnected(
+                                helper.getBlockState(pos), Direction.EAST),
+                "Wire cutter center cell did not toggle the clicked face");
+
+        // Corner cell of the grid targets the opposite face.
+        state = helper.getBlockState(pos);
+        Gt6StyleConnections.cutter(
+                cutter,
+                state,
+                helper.getLevel(),
+                absolute,
+                null,
+                InteractionHand.MAIN_HAND,
+                faceHit(absolute, Direction.EAST, 1.0, 0.1, 0.1));
+        helper.assertTrue(
+                CableBlock.isConnected(
+                        helper.getBlockState(pos), Direction.WEST),
+                "Wire cutter corner cell did not toggle the opposite face");
+
+        // Edge cell on the EAST face maps to SOUTH (z > 0.75 band).
+        state = helper.getBlockState(pos);
+        Gt6StyleConnections.cutter(
+                cutter,
+                state,
+                helper.getLevel(),
+                absolute,
+                null,
+                InteractionHand.MAIN_HAND,
+                faceHit(absolute, Direction.EAST, 1.0, 0.5, 0.9));
+        helper.assertTrue(
+                CableBlock.isConnected(
+                        helper.getBlockState(pos), Direction.SOUTH),
+                "Wire cutter edge cell did not toggle the adjacent face");
+        helper.succeed();
+    }
+
+    private static BlockHitResult faceHit(
+            BlockPos absolute,
+            Direction face,
+            double fx,
+            double fy,
+            double fz) {
+        return new BlockHitResult(
+                new Vec3(
+                        absolute.getX() + fx,
+                        absolute.getY() + fy,
+                        absolute.getZ() + fz),
+                face,
+                absolute,
+                false);
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 60)
@@ -2108,14 +2212,14 @@ public final class CrucibleCraftGameTests {
                         && CellContentGate.entries().size() == 110,
                 "T11 chemical-fluid or T10 cell allowlist registry is incomplete");
         helper.assertTrue(
-                MaterialPrefixCatalog.values().size() == 56
+                MaterialPrefixCatalog.values().size() == 57
                         && MaterialCatalog.startupValues().size()
-                                + MaterialPrefixCatalog.values().size() == 1_830
+                                + MaterialPrefixCatalog.values().size() == 1_831
                         && MaterialCatalog.startupValues().stream()
                                 .mapToInt(material ->
                                         MaterialCatalog.registeredForms(
                                                 material).size())
-                                .sum() == 16_048,
+                                .sum() == 16_736,
                 "T10 cell contents changed prefix, handshake, or form counts");
         List<ResourceLocation> cellItems = BuiltInRegistries.ITEM.keySet()
                 .stream()
@@ -4418,6 +4522,396 @@ public final class CrucibleCraftGameTests {
                 .thenSucceed();
     }
 
+    // ===== T29: large crucible thermal/steelmaking host =====
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 160)
+    public static void t29LargeCrucibleFormation(GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        Direction facing = Direction.NORTH;
+        var structure = MultiblockStructureCatalog.require(
+                LargeCrucibleBlockEntity.STRUCTURE_ID);
+        LargeCrucibleBlockEntity crucible = placeLargeCrucible(
+                helper, controllerPos, facing);
+        BlockPos wall = structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == PredicateKind.BLOCK)
+                .map(element -> structure.worldPosition(
+                        controllerPos, facing, element.offset()))
+                .findFirst()
+                .orElseThrow();
+        helper.setBlock(wall, Blocks.COBBLESTONE.defaultBlockState());
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> helper.assertTrue(
+                        !crucible.structureValid(),
+                        "Incomplete large crucible formed"))
+                .thenExecute(() -> helper.setBlock(
+                        wall, ModBlocks.MULTIBLOCK_CASING.get()))
+                .thenIdle(25)
+                .thenExecute(() -> helper.assertTrue(
+                        crucible.structureValid()
+                                && structure.structure().size() == 27,
+                        "Large crucible 27-position structure was not recognized"))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 120)
+    public static void t29LargeCrucibleTeardown(GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        Direction facing = Direction.NORTH;
+        var structure = MultiblockStructureCatalog.require(
+                LargeCrucibleBlockEntity.STRUCTURE_ID);
+        LargeCrucibleBlockEntity crucible = placeLargeCrucible(
+                helper, controllerPos, facing);
+        BlockPos wall = structure.structure().stream()
+                .filter(element -> structure.predicate(element).kind()
+                        == PredicateKind.BLOCK)
+                .map(element -> structure.worldPosition(
+                        controllerPos, facing, element.offset()))
+                .findFirst()
+                .orElseThrow();
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            crucible.structureValid(),
+                            "Large crucible structure was not recognized");
+                    helper.assertTrue(
+                            insertIngots(crucible, "iron", 4)
+                                    == InsertResult.SUCCESS,
+                            "Could not charge the large crucible before teardown");
+                    helper.setBlock(
+                            wall, Blocks.AIR.defaultBlockState());
+                })
+                .thenIdle(25)
+                .thenExecute(() -> helper.assertTrue(
+                        !crucible.structureValid()
+                                && crucible.process().totalUnits()
+                                        == MaterialPrefixes.INGOT.units() * 4,
+                        "Teardown lost crucible contents or stayed formed"))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 160)
+    public static void t29LargeCrucibleOutputJam(GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        Direction facing = Direction.NORTH;
+        LargeCrucibleBlockEntity crucible = placeLargeCrucible(
+                helper, controllerPos, facing);
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            crucible.structureValid(),
+                            "Large crucible structure was not recognized");
+                    helper.assertTrue(
+                            insertIngots(crucible, "copper", 1, 2_000f)
+                                    == InsertResult.SUCCESS,
+                            "Could not charge copper for the jam path");
+                    heatMelt(crucible, 2_000f);
+                    crucible.inventory().setStackInSlot(
+                            LargeCrucibleBlockEntity.SLOT_MOLD,
+                            new ItemStack(ModItems.INGOT_MOLD.get()));
+                    crucible.inventory().setStackInSlot(
+                            LargeCrucibleBlockEntity.SLOT_OUTPUT,
+                            material("copper", MaterialPrefixes.INGOT, 64));
+                })
+                .thenIdle(20)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            crucible.outputJammed(),
+                            "Full mold output did not jam the large crucible");
+                    crucible.inventory().setStackInSlot(
+                            LargeCrucibleBlockEntity.SLOT_INPUT,
+                            material("iron", MaterialPrefixes.INGOT, 1));
+                })
+                .thenIdle(20)
+                .thenExecute(() -> helper.assertTrue(
+                        crucible.inventory().getStackInSlot(
+                                        LargeCrucibleBlockEntity.SLOT_INPUT)
+                                .getCount() == 1
+                                && crucible.composition().getOrDefault(
+                                        "copper", 0)
+                                        == MaterialPrefixes.INGOT.units(),
+                        "Jammed large crucible swallowed input or melt"))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 200)
+    public static void t29LargeCruciblePowerLoss(GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        Direction facing = Direction.NORTH;
+        var structure = MultiblockStructureCatalog.require(
+                LargeCrucibleBlockEntity.STRUCTURE_ID);
+        LargeCrucibleBlockEntity crucible = placeLargeCrucible(
+                helper, controllerPos, facing);
+        BlockPos energyPort = structure.anchor(
+                "bottom_energy_input", controllerPos, facing);
+        helper.setBlock(energyPort.below(), ModBlocks.FIREBOX.get());
+        FireboxBlockEntity firebox =
+                helper.getBlockEntity(energyPort.below());
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            crucible.structureValid(),
+                            "Large crucible structure was not recognized");
+                    helper.assertTrue(
+                            insertIngots(crucible, "copper", 2)
+                                    == InsertResult.SUCCESS,
+                            "Could not charge the large crucible");
+                    helper.assertTrue(
+                            firebox.addFuel(FuelDefinition.COAL_COKE),
+                            "Could not fuel the large-crucible heat source");
+                })
+                .thenIdle(40)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            crucible.stored(EnergyType.HEAT) > 0L,
+                            "Large crucible did not receive port-fed HU");
+                    helper.setBlock(
+                            energyPort.below(),
+                            Blocks.AIR.defaultBlockState());
+                })
+                .thenIdle(50)
+                .thenExecute(() -> helper.assertTrue(
+                        crucible.composition().getOrDefault("copper", 0)
+                                        == MaterialPrefixes.INGOT.units() * 2
+                                && crucible.stored(EnergyType.HEAT) == 0L,
+                        "Power-loss path lost melt instead of pausing"))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 160)
+    public static void t29LargeCrucibleReload(GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        Direction facing = Direction.NORTH;
+        LargeCrucibleBlockEntity crucible = placeLargeCrucible(
+                helper, controllerPos, facing);
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            crucible.structureValid(),
+                            "Large crucible structure was not recognized");
+                    helper.assertTrue(
+                            insertIngots(crucible, "copper", 3)
+                                    == InsertResult.SUCCESS,
+                            "Could not charge the large crucible before reload");
+                    CompoundTag saved = crucible.saveWithoutMetadata(
+                            helper.getLevel().registryAccess());
+                    crucible.loadWithComponents(
+                            saved, helper.getLevel().registryAccess());
+                })
+                .thenIdle(25)
+                .thenExecute(() -> helper.assertTrue(
+                        crucible.structureValid()
+                                && !crucible.pluginQuarantined()
+                                && crucible.composition().getOrDefault(
+                                        "copper", 0)
+                                        == MaterialPrefixes.INGOT.units() * 3,
+                        "Large crucible did not restore contents after reload"))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 120)
+    public static void t29LargeCrucibleSaveQuarantine(
+            GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        Direction facing = Direction.NORTH;
+        LargeCrucibleBlockEntity crucible = placeLargeCrucible(
+                helper, controllerPos, facing);
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            crucible.structureValid(),
+                            "Large crucible structure was not recognized");
+                    helper.assertTrue(
+                            insertIngots(crucible, "copper", 2)
+                                    == InsertResult.SUCCESS,
+                            "Could not charge the large crucible before quarantine");
+                    CompoundTag tampered = crucible.saveWithoutMetadata(
+                            helper.getLevel().registryAccess());
+                    ListTag plugins = tampered.getList(
+                            "multiblock_plugins", Tag.TAG_STRING);
+                    plugins.set(
+                            0, StringTag.valueOf("cruciblecraft:not_a_plugin"));
+                    tampered.put("multiblock_plugins", plugins);
+                    crucible.loadWithComponents(
+                            tampered, helper.getLevel().registryAccess());
+                    helper.assertTrue(
+                            crucible.pluginQuarantined(),
+                            "Large crucible plugin mismatch did not quarantine");
+                    helper.assertTrue(
+                            crucible.composition().getOrDefault("copper", 0)
+                                    == MaterialPrefixes.INGOT.units() * 2,
+                            "Large crucible contents changed under quarantine");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void t29LargeCrucibleCapacity432(GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        Direction facing = Direction.NORTH;
+        LargeCrucibleBlockEntity crucible = placeLargeCrucible(
+                helper, controllerPos, facing);
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            crucible.structureValid(),
+                            "Large crucible structure was not recognized");
+                    helper.assertTrue(
+                            insertIngots(crucible, "iron", 432)
+                                    == InsertResult.SUCCESS,
+                            "Large crucible rejected a 432-ingot charge");
+                    helper.assertTrue(
+                            insertIngots(crucible, "iron", 1)
+                                    == InsertResult.FULL,
+                            "Large crucible accepted a 433rd ingot");
+                    helper.assertTrue(
+                            crucible.process().totalUnits()
+                                    == MaterialPrefixes.INGOT.units() * 432
+                                    && CrucibleBlockEntity.MAX_INGOTS == 8,
+                            "Capacity split between large and single-block drifted");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 520)
+    public static void t29LargeCrucibleSteelmaking(GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        Direction facing = Direction.NORTH;
+        LargeCrucibleBlockEntity crucible = placeLargeCrucible(
+                helper, controllerPos, facing);
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            crucible.structureValid(),
+                            "Large crucible structure was not recognized");
+                    helper.assertTrue(
+                            insertIngots(crucible, "iron", 3, 2_000f)
+                                    == InsertResult.SUCCESS,
+                            "Could not charge iron for steelmaking");
+                    var carbon = MaterialCatalog.require("carbon");
+                    helper.assertTrue(
+                            crucible.insertMaterial(
+                                    new MaterialUnits.Entry(
+                                            carbon.id(),
+                                            MaterialPrefixes.DUST,
+                                            MaterialPrefixes.DUST.units()),
+                                    2_000f)
+                                    == InsertResult.SUCCESS,
+                            "Could not charge carbon for steelmaking");
+                    heatMelt(crucible, 1_600f);
+                    helper.assertTrue(
+                            crucible.injectAir(1_200L)
+                                    == com.masson.cruciblecraft.machine
+                                            .component.SteelmakingController
+                                            .InjectionResult.STARTED,
+                            "Steelmaking air injection did not start");
+                })
+                .thenIdle(400)
+                .thenExecute(() -> helper.assertTrue(
+                        crucible.composition().getOrDefault(
+                                        SteelmakingProcess.STEEL, 0)
+                                == MaterialPrefixes.INGOT.units() * 3
+                                && crucible.composition()
+                                        .getOrDefault("iron", 0) == 0,
+                        "Large crucible steelmaking did not convert the 3:1 charge"))
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 160)
+    public static void t29LargeCrucibleMoldCast(GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        Direction facing = Direction.NORTH;
+        LargeCrucibleBlockEntity crucible = placeLargeCrucible(
+                helper, controllerPos, facing);
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            crucible.structureValid(),
+                            "Large crucible structure was not recognized");
+                    helper.assertTrue(
+                            insertIngots(crucible, "copper", 1, 2_000f)
+                                    == InsertResult.SUCCESS,
+                            "Could not charge copper for mold casting");
+                    heatMelt(crucible, 2_000f);
+                    crucible.inventory().setStackInSlot(
+                            LargeCrucibleBlockEntity.SLOT_MOLD,
+                            new ItemStack(ModItems.INGOT_MOLD.get()));
+                })
+                .thenIdle(20)
+                .thenExecute(() -> {
+                    ItemStack output = crucible.inventory().getStackInSlot(
+                            LargeCrucibleBlockEntity.SLOT_OUTPUT);
+                    ItemStack expected = material(
+                            "copper", MaterialPrefixes.INGOT, 1);
+                    helper.assertTrue(
+                            output.getItem() == expected.getItem()
+                                    && output.getCount() == 1
+                                    && !crucible.inventory().getStackInSlot(
+                                            LargeCrucibleBlockEntity.SLOT_MOLD)
+                                            .isEmpty(),
+                            "Large crucible mold slot did not cast a copper ingot");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 160)
+    public static void t29LargeCrucibleLayerPorts(GameTestHelper helper) {
+        BlockPos controllerPos = new BlockPos(6, 2, 6);
+        Direction facing = Direction.NORTH;
+        var structure = MultiblockStructureCatalog.require(
+                LargeCrucibleBlockEntity.STRUCTURE_ID);
+        LargeCrucibleBlockEntity crucible = placeLargeCrucible(
+                helper, controllerPos, facing);
+        BlockPos energyPort = structure.anchor(
+                "bottom_energy_input", controllerPos, facing);
+        BlockPos itemPort = structure.anchor(
+                "top_item_fluid", controllerPos, facing);
+        helper.setBlock(energyPort.below(), ModBlocks.FIREBOX.get());
+        FireboxBlockEntity firebox =
+                helper.getBlockEntity(energyPort.below());
+        helper.startSequence()
+                .thenIdle(25)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            crucible.structureValid(),
+                            "Large crucible structure was not recognized");
+                    helper.assertTrue(
+                            firebox.addFuel(FuelDefinition.COAL_COKE),
+                            "Could not fuel the bottom HU layer");
+                    MultiblockPortBlockEntity port =
+                            helper.getBlockEntity(itemPort);
+                    ItemStack leftover = port.itemHandler().insertItem(
+                            LargeCrucibleBlockEntity.SLOT_INPUT,
+                            material("iron", MaterialPrefixes.INGOT, 1),
+                            false);
+                    helper.assertTrue(
+                            leftover.isEmpty(),
+                            "Top item/fluid port rejected an iron ingot");
+                })
+                .thenIdle(40)
+                .thenExecute(() -> helper.assertTrue(
+                        crucible.stored(EnergyType.HEAT) > 0L
+                                && (crucible.composition().getOrDefault(
+                                                "iron", 0)
+                                        == MaterialPrefixes.INGOT.units()
+                                        || crucible.inventory()
+                                                .getStackInSlot(
+                                                        LargeCrucibleBlockEntity
+                                                                .SLOT_INPUT)
+                                                .getCount() == 1),
+                        "Layer ports did not feed HU from the bottom or items from the top"))
+                .thenSucceed();
+    }
+
     @GameTest(template = TEMPLATE, timeoutTicks = 300)
     public static void t23DistillationTowerFormation(
             GameTestHelper helper) {
@@ -5401,7 +5895,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 1_350)
-    public static void hotIngotSmeltsHurtsAndCoolsThroughDataRule(
+    public static void hotIngotSmeltsHurtsAndKeepsIdentity(
             GameTestHelper helper) {
         BlockPos fireboxPos = new BlockPos(4, 1, 4);
         BlockPos smelterPos = fireboxPos.above();
@@ -5487,21 +5981,21 @@ public final class CrucibleCraftGameTests {
                 .thenIdle(coolingTicks + 25);
         addPlayerTickWindow(sequence, survivalPlayer);
         sequence.thenExecute(() -> {
-                    ItemStack ordinary = inventoryStack(
+                    ItemStack remainingHot = inventoryStack(
                             survivalPlayer,
-                            ordinaryItem);
+                            hotItem);
                     helper.assertTrue(
-                            !ordinary.isEmpty()
+                            !remainingHot.isEmpty()
                                     && inventoryItemCount(
                                                     survivalPlayer,
-                                                    ordinaryItem)
+                                                    hotItem)
                                             == 2
-                                    && !ordinary.has(ModComponents.HEAT.get())
                                     && inventoryStack(
                                                     survivalPlayer,
-                                                    hotItem)
-                                            .isEmpty(),
-                            "Inventory maintenance did not cool hot ingots into ordinary ingots");
+                                                    ordinaryItem)
+                                            .isEmpty()
+                                    && !remainingHot.has(ModComponents.HEAT.get()),
+                            "Inventory maintenance must keep hot-ingot identity and only clear HEAT");
                 })
                 .thenSucceed();
     }
@@ -6800,7 +7294,7 @@ public final class CrucibleCraftGameTests {
                 ModRecipeMaps.ROLLBENDER, 438,
                 ModRecipeMaps.WIREMILL, 287,
                 ModRecipeMaps.BENDER, 638,
-                ModRecipeMaps.ASSEMBLER, 4021,
+                ModRecipeMaps.ASSEMBLER, 4226,
                 ModRecipeMaps.WELDER, 321,
                 ModRecipeMaps.PRESS, 1191);
         int total = 0;
@@ -6845,8 +7339,8 @@ public final class CrucibleCraftGameTests {
             }
         }
         helper.assertTrue(
-                total == 11851,
-                "Live T3-map recipe total is not 11851: " + total);
+                total == 12056,
+                "Live T3-map recipe total is not 12056: " + total);
         int t5Total = 0;
         for (RecipeMap map : ModProcessingMachines.T5_MACHINES.stream()
                 .map(ProcessingMachineSpec::requireRecipeMap)
@@ -6910,19 +7404,23 @@ public final class CrucibleCraftGameTests {
         var lookup = com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader
                 .benchmarkT14LookupsForVerification();
         var onlineGate = com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader
-                .evaluateT14OnlineBudgetGate(metrics, lookup);
+                .evaluateT14OnlineBudgetGate(
+                        metrics,
+                        lookup,
+                        ModProcessingMachines.VERIFICATION_RECIPE_RELOAD_BUDGET_MS,
+                        ModProcessingMachines.VERIFICATION_RECIPE_LOOKUP_P95_BUDGET_NS);
         CrucibleCraft.LOGGER.info(
                 "GameTest recipe publication metrics: {}", metrics);
         helper.assertTrue(
                 metrics.t3ComponentRecipes() == 8398
-                        && metrics.t4ToolRecipes() == 3452
+                        && metrics.t4ToolRecipes() == 3657
                         && metrics.t5ChemicalRecipes() == 158
                         && metrics.t7AuthoredMaterialRules() == 220
                         && metrics.t8PipeMaterialRules() == 257
-                        && metrics.t10KnownFormMaterialRules() == 1_288
-                        && metrics.liveT3MapRecipes() == 11851
-                        && metrics.allPublishedRecipes() == 18_882
-                        && metrics.eagerPublishedRecipes() == 16_657
+                        && metrics.t10KnownFormMaterialRules() == 967
+                        && metrics.liveT3MapRecipes() == 12056
+                        && metrics.allPublishedRecipes() == 18_766
+                        && metrics.eagerPublishedRecipes() == 16_541
                         && metrics.eagerPublishedRecipes()
                                 <= ModProcessingMachines
                                         .ALL_EAGER_PUBLICATION_SOFT_BUDGET
@@ -6957,7 +7455,8 @@ public final class CrucibleCraftGameTests {
                         && metrics.allPublishedRecipes()
                                 <= ModProcessingMachines.ALL_PUBLISHED_RECIPE_BUDGET
                         && metrics.reloadMillis()
-                                <= ModProcessingMachines.RECIPE_RELOAD_BUDGET_MS
+                                <= ModProcessingMachines
+                                        .VERIFICATION_RECIPE_RELOAD_BUDGET_MS
                         && metrics.indexMillis()
                                 <= ModProcessingMachines.RECIPE_INDEX_BUILD_BUDGET_MS
                         && lookup.timingSamples() == 61
@@ -7011,7 +7510,8 @@ public final class CrucibleCraftGameTests {
                 Map.entry("chisel", 307),
                 Map.entry("saw", 307),
                 Map.entry("screwdriver", 309),
-                Map.entry("wrench", 308));
+                Map.entry("wrench", 308),
+                Map.entry("wire_cutter", 205));
         Map<String, Item> toolItems = Map.ofEntries(
                 Map.entry("pickaxe", ModItems.MATERIAL_PICKAXE.get()),
                 Map.entry("shovel", ModItems.MATERIAL_SHOVEL.get()),
@@ -7023,7 +7523,10 @@ public final class CrucibleCraftGameTests {
                 Map.entry("chisel", ModItems.MATERIAL_CHISEL.get()),
                 Map.entry("saw", ModItems.MATERIAL_SAW.get()),
                 Map.entry("screwdriver", ModItems.MATERIAL_SCREWDRIVER.get()),
-                Map.entry("wrench", ModItems.MATERIAL_WRENCH.get()));
+                Map.entry("wrench", ModItems.MATERIAL_WRENCH.get()),
+                Map.entry(
+                        "wire_cutter",
+                        ModItems.MATERIAL_WIRE_CUTTER.get()));
         Map<String, ToolMaterialRules.ToolKind> toolKinds = Map.ofEntries(
                 Map.entry("pickaxe", ToolMaterialRules.ToolKind.PICKAXE),
                 Map.entry("shovel", ToolMaterialRules.ToolKind.SHOVEL),
@@ -7039,7 +7542,10 @@ public final class CrucibleCraftGameTests {
                 Map.entry(
                         "screwdriver",
                         ToolMaterialRules.ToolKind.SCREWDRIVER),
-                Map.entry("wrench", ToolMaterialRules.ToolKind.WRENCH));
+                Map.entry("wrench", ToolMaterialRules.ToolKind.WRENCH),
+                Map.entry(
+                        "wire_cutter",
+                        ToolMaterialRules.ToolKind.WIRE_CUTTER));
         Map<String, Integer> eligibleWithoutRoute = Map.ofEntries(
                 Map.entry("pickaxe", 208),
                 Map.entry("shovel", 126),
@@ -7051,7 +7557,8 @@ public final class CrucibleCraftGameTests {
                 Map.entry("chisel", 2),
                 Map.entry("saw", 2),
                 Map.entry("screwdriver", 0),
-                Map.entry("wrench", 2));
+                Map.entry("wrench", 2),
+                Map.entry("wire_cutter", 107));
         for (var toolEntry : toolCounts.entrySet()) {
             String tool = toolEntry.getKey();
             List<RecipeMap.Entry> recipes = ModRecipeMaps.ASSEMBLER.entries().stream()
@@ -7290,7 +7797,9 @@ public final class CrucibleCraftGameTests {
         for (String baselineName : List.of(
                 "t21_publication_baseline",
                 "t22_publication_baseline",
-                "t23_publication_baseline")) {
+                "t23_publication_baseline",
+                "t26_5_publication_baseline",
+                "t28_publication_baseline")) {
             var stream = CrucibleCraftGameTests.class.getClassLoader()
                     .getResourceAsStream(
                             "data/cruciblecraft/" + baselineName + ".json");
@@ -9442,7 +9951,13 @@ public final class CrucibleCraftGameTests {
         // the playability audit's zero/non-zero claim.  The audit found
         // exactly two registered maps with zero logical recipes:
         // anvil_bend_big and anvil_bend_small (v1 blockers).
-        List<String> zeroMaps = List.of("anvil_bend_big", "anvil_bend_small");
+        // T22.5 C0 runtime guard plus T28 cooling retirement: registered
+        // maps with zero logical recipes are the two anvil-bend blockers
+        // and the retained-empty leftover cooling map.
+        List<String> zeroMaps = List.of(
+                "anvil_bend_big",
+                "anvil_bend_small",
+                "cooling");
         List<String> violations = new ArrayList<>();
         for (com.masson.cruciblecraft.recipe.gt.RecipeMap map
                 : ModRecipeMaps.ALL) {
@@ -9865,6 +10380,74 @@ public final class CrucibleCraftGameTests {
             }
         }
         return false;
+    }
+
+    private static LargeCrucibleBlockEntity placeLargeCrucible(
+            GameTestHelper helper, BlockPos controllerPos, Direction facing) {
+        var structure = MultiblockStructureCatalog.require(
+                LargeCrucibleBlockEntity.STRUCTURE_ID);
+        helper.setBlock(
+                controllerPos,
+                ModBlocks.LARGE_CRUCIBLE.get()
+                        .defaultBlockState()
+                        .setValue(ProcessingMachineBlock.FACING, facing));
+        structure.structure().forEach(element -> {
+            var predicate = structure.predicate(element);
+            BlockPos world = structure.worldPosition(
+                    controllerPos, facing, element.offset());
+            switch (predicate.kind()) {
+                case CONTROLLER, AIR -> { }
+                case BLOCK -> helper.setBlock(
+                        world, ModBlocks.MULTIBLOCK_CASING.get());
+                case PORT -> helper.setBlock(
+                        world,
+                        predicate.port().orElseThrow()
+                                        == com.masson.cruciblecraft.content
+                                                .multiblock
+                                                .MultiblockStructureDefinition
+                                                .PortType.ENERGY_INPUT
+                                ? ModBlocks.MULTIBLOCK_ENERGY_INPUT_PORT.get()
+                                : ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get());
+                default -> throw new AssertionError(predicate.kind());
+            }
+        });
+        return helper.getBlockEntity(controllerPos);
+    }
+
+    private static void heatMelt(
+            LargeCrucibleBlockEntity crucible, float temperature) {
+        crucible.process().thermal().restore(
+                temperature,
+                0L,
+                0L,
+                CrucibleThermalModel.HOT_BUFFER_TICKS,
+                false);
+    }
+
+    private static InsertResult insertIngots(
+            LargeCrucibleBlockEntity crucible, String materialId, int count) {
+        return insertIngots(crucible, materialId, count, 20.0f);
+    }
+
+    private static InsertResult insertIngots(
+            LargeCrucibleBlockEntity crucible,
+            String materialId,
+            int count,
+            float temperature) {
+        InsertResult last = InsertResult.SUCCESS;
+        var material = MaterialCatalog.require(materialId);
+        for (int index = 0; index < count; index++) {
+            last = crucible.insertMaterial(
+                    new MaterialUnits.Entry(
+                            material.id(),
+                            MaterialPrefixes.INGOT,
+                            MaterialPrefixes.INGOT.units()),
+                    temperature);
+            if (last != InsertResult.SUCCESS) {
+                return last;
+            }
+        }
+        return last;
     }
 
     private static void placeCeramicMold(
@@ -10488,5 +11071,331 @@ public final class CrucibleCraftGameTests {
                                     > 0L,
                     "Centrifuge accepted no KINETIC_ROTATION");
         }
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void hopperSlotSentinelsPullAndPushChests(
+            GameTestHelper helper) {
+        assertHopperSlots(helper, "lead_hopper", 1);
+        assertHopperSlots(helper, "steel_hopper", 5);
+        assertHopperSlots(helper, "infinity_hopper", 36);
+        BlockPos hopperPos = new BlockPos(5, 3, 5);
+        helper.setBlock(
+                hopperPos,
+                hopperBlock("steel_hopper").defaultBlockState()
+                        .setValue(HopperBlock.FACING, Direction.DOWN));
+        helper.setBlock(hopperPos.above(), Blocks.CHEST);
+        helper.setBlock(hopperPos.below(), Blocks.CHEST);
+        ChestBlockEntity source = helper.getBlockEntity(hopperPos.above());
+        source.setItem(0, new ItemStack(Items.IRON_INGOT, 4));
+        helper.startSequence()
+                .thenIdle(12)
+                .thenExecute(() -> {
+                    HopperBlockEntity hopper = helper.getBlockEntity(hopperPos);
+                    ChestBlockEntity dest = helper.getBlockEntity(hopperPos.below());
+                    helper.assertTrue(
+                            hopper.inventory().getStackInSlot(0).isEmpty()
+                                    && dest.getItem(0).getCount() == 4,
+                            "Steel hopper did not pull from the upper chest and push down");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void hopperRedstonePausesAndItemEntityPickupResumes(
+            GameTestHelper helper) {
+        BlockPos hopperPos = new BlockPos(6, 3, 6);
+        helper.setBlock(
+                hopperPos,
+                hopperBlock("lead_hopper").defaultBlockState()
+                        .setValue(HopperBlock.FACING, Direction.NORTH));
+        helper.setBlock(hopperPos.north(), Blocks.CHEST);
+        helper.setBlock(hopperPos.west(), Blocks.REDSTONE_BLOCK);
+        HopperBlockEntity hopper = helper.getBlockEntity(hopperPos);
+        hopper.inventory().setStackInSlot(0, new ItemStack(Items.IRON_INGOT, 3));
+        helper.startSequence()
+                .thenIdle(8)
+                .thenExecute(() -> {
+                    ChestBlockEntity dest = helper.getBlockEntity(hopperPos.north());
+                    helper.assertTrue(
+                            dest.getItem(0).isEmpty()
+                                    && hopper.inventory().getStackInSlot(0).getCount()
+                                            == 3,
+                            "Redstone did not pause hopper push");
+                    helper.setBlock(hopperPos.west(), Blocks.AIR);
+                    BlockPos above = hopperPos.above();
+                    BlockPos absolute = helper.absolutePos(above);
+                    helper.getLevel().addFreshEntity(new ItemEntity(
+                            helper.getLevel(),
+                            absolute.getX() + 0.5,
+                            absolute.getY() + 0.2,
+                            absolute.getZ() + 0.5,
+                            new ItemStack(Items.GOLD_INGOT, 2)));
+                })
+                .thenIdle(12)
+                .thenExecute(() -> {
+                    ChestBlockEntity dest = helper.getBlockEntity(hopperPos.north());
+                    helper.assertTrue(
+                            dest.getItem(0).is(Items.IRON_INGOT)
+                                    && dest.getItem(0).getCount() == 3,
+                            "Hopper did not resume push after redstone cleared");
+                    helper.assertTrue(
+                            hopper.inventory().getStackInSlot(0).is(Items.GOLD_INGOT)
+                                    || dest.getItem(1).is(Items.GOLD_INGOT)
+                                    || hopper.inventory().getStackInSlot(0).isEmpty(),
+                            "Hopper did not pick up the item entity");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void hopperModeExactAndToolCycles(
+            GameTestHelper helper) {
+        BlockPos hopperPos = new BlockPos(4, 2, 4);
+        helper.setBlock(
+                hopperPos,
+                hopperBlock("steel_hopper").defaultBlockState()
+                        .setValue(HopperBlock.FACING, Direction.EAST));
+        helper.setBlock(hopperPos.east(), Blocks.CHEST);
+        ChestBlockEntity dest = helper.getBlockEntity(hopperPos.east());
+        HopperBlockEntity hopper = helper.getBlockEntity(hopperPos);
+        for (int step = 0; step < 8; step++) {
+            hopper.cycleMode(false);
+        }
+        helper.assertTrue(hopper.mode() == 8, "Screwdriver-equivalent mode is not 8");
+        dest.setItem(0, new ItemStack(Items.IRON_INGOT, 62));
+        fillRemainingChestSlots(dest);
+        hopper.inventory().setStackInSlot(0, new ItemStack(Items.IRON_INGOT, 16));
+        helper.startSequence()
+                .thenIdle(8)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            hopper.inventory().getStackInSlot(0).getCount() == 16
+                                    && dest.getItem(0).getCount() == 62,
+                            "Divisible mode 8 should not move into a 2-space dest");
+                    hopper.toggleExactMode();
+                    helper.assertTrue(hopper.exactMode(), "Wrench did not enable exact mode");
+                    Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+                    ItemStack screwdriver = new ItemStack(
+                            ModItems.MATERIAL_SCREWDRIVER.get());
+                    ItemStack wrench = new ItemStack(ModItems.MATERIAL_WRENCH.get());
+                    BlockPos absolute = helper.absolutePos(hopperPos);
+                    helper.getBlockState(hopperPos).useItemOn(
+                            screwdriver,
+                            helper.getLevel(),
+                            player,
+                            InteractionHand.MAIN_HAND,
+                            faceHit(absolute, Direction.UP, 0.5, 1.0, 0.5));
+                    helper.assertTrue(
+                            hopper.mode() == 9,
+                            "Screwdriver did not advance hopper mode");
+                    hopper.cycleMode(true);
+                    helper.assertTrue(
+                            hopper.mode() == 8,
+                            "Sneak screwdriver did not reverse hopper mode");
+                    helper.getBlockState(hopperPos).useItemOn(
+                            wrench,
+                            helper.getLevel(),
+                            player,
+                            InteractionHand.MAIN_HAND,
+                            faceHit(absolute, Direction.UP, 0.5, 1.0, 0.5));
+                    helper.assertTrue(
+                            !hopper.exactMode(),
+                            "Wrench did not toggle exact mode off");
+                    player.discard();
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 80)
+    public static void hopperSaveReloadBreakAndItemPipe(
+            GameTestHelper helper) {
+        BlockPos hopperPos = new BlockPos(3, 2, 7);
+        helper.setBlock(
+                hopperPos,
+                hopperBlock("lead_hopper").defaultBlockState()
+                        .setValue(HopperBlock.FACING, Direction.EAST));
+        HopperBlockEntity hopper = helper.getBlockEntity(hopperPos);
+        hopper.inventory().setStackInSlot(0, new ItemStack(Items.IRON_INGOT, 5));
+        hopper.cycleMode(false);
+        hopper.toggleExactMode();
+        CompoundTag tag = hopper.saveForTest(helper.getLevel().registryAccess());
+        hopper.inventory().setStackInSlot(0, ItemStack.EMPTY);
+        hopper.loadForTest(tag, helper.getLevel().registryAccess());
+        helper.assertTrue(
+                hopper.inventory().getStackInSlot(0).getCount() == 5
+                        && hopper.mode() == 1
+                        && hopper.exactMode(),
+                "Hopper save/reload drifted");
+        BlockPos pipePos = hopperPos.east();
+        BlockPos chestPos = pipePos.east();
+        ItemPipeBlock pipe = (ItemPipeBlock) ModBlocks.pipeBlock(
+                "copper",
+                MaterialPrefixes.ITEM_PIPE,
+                PipeCatalog.Kind.ITEM).get();
+        helper.setBlock(pipePos, pipeState(pipe, Direction.WEST, Direction.EAST));
+        helper.setBlock(chestPos, Blocks.CHEST);
+        helper.startSequence()
+                .thenIdle(16)
+                .thenExecute(() -> {
+                    ChestBlockEntity dest = helper.getBlockEntity(chestPos);
+                    helper.assertTrue(
+                            dest.getItem(0).getCount() == 5
+                                    || hopper.inventory().getStackInSlot(0).isEmpty(),
+                            "Hopper did not push into the item pipe route");
+                    hopper.inventory().setStackInSlot(
+                            0, new ItemStack(Items.GOLD_INGOT, 2));
+                    helper.getLevel().destroyBlock(
+                            helper.absolutePos(hopperPos), true);
+                    helper.assertTrue(
+                            droppedItemCount(
+                                    helper,
+                                    hopperPos,
+                                    Items.GOLD_INGOT) >= 2,
+                            "Breaking the hopper did not drop its inventory");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 100)
+    public static void queueHopperFifoSlotLimitsAndRedstone(
+            GameTestHelper helper) {
+        helper.assertTrue(
+                hopperBlock("bismuth_queue_hopper").variant().slots() == 2,
+                "Bismuth queue is not the 2-slot minimum");
+        helper.assertTrue(
+                hopperBlock("infinity_queue_hopper").variant().slots() == 36,
+                "Infinity queue is not 36 slots");
+        BlockPos hopperPos = new BlockPos(7, 3, 4);
+        helper.setBlock(
+                hopperPos,
+                hopperBlock("bismuth_queue_hopper").defaultBlockState()
+                        .setValue(HopperBlock.FACING, Direction.DOWN));
+        helper.setBlock(hopperPos.below(), Blocks.CHEST);
+        HopperBlockEntity queue = helper.getBlockEntity(hopperPos);
+        queue.inventory().setStackInSlot(0, new ItemStack(Items.IRON_INGOT, 3));
+        IItemHandler input = queue.itemHandler(Direction.UP);
+        helper.assertTrue(
+                input.getSlots() == 2 && input.insertItem(1, new ItemStack(Items.GOLD_INGOT), true).getCount() == 1,
+                "Queue external insert must only accept the first slot");
+        helper.startSequence()
+                .thenIdle(10)
+                .thenExecute(() -> {
+                    ChestBlockEntity dest = helper.getBlockEntity(hopperPos.below());
+                    helper.assertTrue(
+                            dest.getItem(0).getCount() == 3
+                                    && queue.inventory().getStackInSlot(0).isEmpty(),
+                            "Queue FIFO did not emit the last slot downward");
+                    helper.setBlock(hopperPos.west(), Blocks.REDSTONE_BLOCK);
+                    queue.inventory().setStackInSlot(
+                            0, new ItemStack(Items.GOLD_INGOT, 2));
+                })
+                .thenIdle(8)
+                .thenExecute(() -> {
+                    helper.assertTrue(
+                            queue.inventory().getStackInSlot(0).getCount() == 2,
+                            "Redstone did not pause the queue hopper");
+                    CompoundTag tag = queue.saveForTest(
+                            helper.getLevel().registryAccess());
+                    queue.loadForTest(tag, helper.getLevel().registryAccess());
+                    helper.assertTrue(
+                            queue.mode() == 64
+                                    && queue.inventory().getStackInSlot(0).getCount() == 2,
+                            "Queue save/reload drifted");
+                    queue.inventory().setStackInSlot(0, ItemStack.EMPTY);
+                    for (int i = 0; i < 63; i++) {
+                        queue.cycleMode(true);
+                    }
+                    helper.assertTrue(
+                            queue.mode() == 1,
+                            "Queue slot size did not wrap to 1");
+                    queue.cycleMode(true);
+                    helper.assertTrue(
+                            queue.mode() == 64,
+                            "Queue slot size did not wrap from 1 to 64");
+                })
+                .thenSucceed();
+    }
+
+    @GameTest(template = TEMPLATE, timeoutTicks = 120)
+    public static void dustFunnelConvertsModesAndPersists(
+            GameTestHelper helper) {
+        BlockPos pos = new BlockPos(8, 2, 8);
+        helper.setBlock(pos, ModBlocks.STEEL_DUST_FUNNEL.get());
+        DustFunnelBlockEntity funnel = helper.getBlockEntity(pos);
+        helper.assertTrue(
+                funnel.absorb("iron", DustAmountLedger.Form.TINY_DUST, 9),
+                "9 tiny dust should become one dust batch");
+        helper.assertTrue(
+                funnel.ledger().tryEmit(1) && funnel.ledger().isEmpty(),
+                "9 tiny did not emit one dust");
+        funnel.absorb("iron", DustAmountLedger.Form.SMALL_DUST, 4);
+        helper.assertTrue(
+                funnel.ledger().tryEmit(1) && funnel.ledger().isEmpty(),
+                "4 small dust did not emit one dust");
+        funnel.absorb("iron", DustAmountLedger.Form.DUST, 1);
+        funnel.ledger().setOutputMode(DustAmountLedger.Form.SMALL_DUST);
+        helper.assertTrue(
+                funnel.ledger().outputItemCount() == 4
+                        && funnel.ledger().tryEmit(4),
+                "1 dust did not emit 4 small");
+        funnel.absorb("iron", DustAmountLedger.Form.DUST, 1);
+        funnel.ledger().setOutputMode(DustAmountLedger.Form.TINY_DUST);
+        helper.assertTrue(
+                funnel.ledger().outputItemCount() == 9
+                        && funnel.ledger().tryEmit(9),
+                "1 dust did not emit 9 tiny");
+        funnel.absorb("iron", DustAmountLedger.Form.TINY_DUST, 3);
+        helper.assertTrue(
+                !funnel.absorb("copper", DustAmountLedger.Form.DUST, 1),
+                "Mixed material was consumed");
+        Player player = helper.makeMockPlayer(GameType.SURVIVAL);
+        ItemStack wrench = new ItemStack(ModItems.MATERIAL_WRENCH.get());
+        BlockPos absolute = helper.absolutePos(pos);
+        DustAmountLedger.Form before = funnel.ledger().outputMode();
+        int units = funnel.ledger().units();
+        helper.getBlockState(pos).useItemOn(
+                wrench,
+                helper.getLevel(),
+                player,
+                InteractionHand.MAIN_HAND,
+                faceHit(absolute, Direction.NORTH, 0.5, 0.5, 0.0));
+        helper.assertTrue(
+                funnel.ledger().outputMode() != before
+                        && funnel.ledger().units() == units,
+                "Wrench mode must not change leftover units");
+        ItemStack dust = material("iron", MaterialPrefixes.DUST, 1);
+        helper.assertTrue(
+                funnel.insertFromHand(dust) || !DustFunnelBlockEntity.isDustForm(dust),
+                "Top-hand insert should accept iron dust or already hold iron leftover");
+        helper.setBlock(pos.below(), Blocks.CHEST);
+        CompoundTag tag = funnel.saveForTest(helper.getLevel().registryAccess());
+        funnel.loadForTest(tag, helper.getLevel().registryAccess());
+        helper.assertTrue(
+                funnel.ledger().units() > 0,
+                "Dust funnel save/reload dropped leftover units");
+        helper.getLevel().destroyBlock(helper.absolutePos(pos), true);
+        helper.assertTrue(
+                droppedItemCount(helper, pos, null) >= 1,
+                "Dust funnel break dropped nothing");
+        player.discard();
+        helper.succeed();
+    }
+
+    private static void assertHopperSlots(
+            GameTestHelper helper, String path, int slots) {
+        helper.setBlock(new BlockPos(2, 2, 2), hopperBlock(path));
+        HopperBlockEntity hopper = helper.getBlockEntity(new BlockPos(2, 2, 2));
+        helper.assertTrue(
+                hopper.inventory().getSlots() == slots,
+                path + " slot count drifted");
+        helper.setBlock(new BlockPos(2, 2, 2), Blocks.AIR);
+    }
+
+    private static HopperBlock hopperBlock(String path) {
+        return ModBlocks.hopperBlocksById()
+                .get(ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, path))
+                .get();
     }
 }

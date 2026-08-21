@@ -333,7 +333,7 @@ def check() -> list[str]:
 
 def write() -> dict[str, Any]:
     document = build()
-    OUTPUT.write_text(stable(document), encoding="utf-8", newline="\n")
+    OUTPUT.write_bytes(stable(document).encode("utf-8"))
     return document
 
 

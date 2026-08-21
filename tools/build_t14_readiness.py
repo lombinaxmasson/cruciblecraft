@@ -219,9 +219,11 @@ def _compute_registered_deltas() -> dict[str, int]:
             continue
         for rows_key in ("logical_rows_added", "eager_rows_added", "lazy_rows_added"):
             value = pub_delta.get(rows_key, 0)
-            if not isinstance(value, int) or value < 0:
+            # Later phases may register a signed retirement delta (T28 cooling).
+            # Reject bool explicitly: bool is a subclass of int.
+            if type(value) is not int:
                 raise ValueError(
-                    f"{baseline_path.name}: {rows_key} is not a non-negative int"
+                    f"{baseline_path.name}: {rows_key} is not an int"
                 )
             totals[rows_key] = totals.get(rows_key, 0) + value
     return totals
@@ -307,9 +309,9 @@ def build() -> dict[str, Any]:
         "concrete_datapack_recipe_entries"
     ]
     if (
-        t12["load_gate"]["datapack_recipe_entries"] != 6_025
+        t12["load_gate"]["datapack_recipe_entries"] != 6_150
         or t12["load_gate"]["post_t12_virtualized_recipe_entries"] != 2_762
-        or current_datapack_entries != 3_263
+        or current_datapack_entries != 3_388
     ):
         raise ValueError("T14 authored/logical datapack axes drifted")
     logical_recipes = 18_875
@@ -455,7 +457,7 @@ def main() -> int:
             ):
                 raise ValueError("T14 readiness is stale")
         else:
-            OUTPUT.write_text(encoded, encoding="utf-8", newline="\n")
+            OUTPUT.write_bytes(encoded.encode("utf-8"))
     except (OSError, ValueError, KeyError, json.JSONDecodeError) as error:
         print(f"T14 readiness failed: {error}")
         return 1

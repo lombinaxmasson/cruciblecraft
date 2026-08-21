@@ -52,7 +52,7 @@ class T225MachinePlayabilityTest(unittest.TestCase):
                     0,
                 )
 
-    def test_blockers_are_the_bend_maps(self) -> None:
+    def test_blockers_are_the_bend_maps_and_retired_cooling(self) -> None:
         document = json.loads(
             builder.OUTPUT.read_text(encoding="utf-8")
         )
@@ -61,6 +61,7 @@ class T225MachinePlayabilityTest(unittest.TestCase):
             [
                 "cruciblecraft:anvil_bend_big",
                 "cruciblecraft:anvil_bend_small",
+                "cruciblecraft:cooling",
             ],
         )
 
@@ -70,7 +71,7 @@ class T225MachinePlayabilityTest(unittest.TestCase):
         self.assertEqual(authored["cruciblecraft:centrifuge"], 371)
         self.assertEqual(authored["cruciblecraft:sluice"], 357)
         self.assertGreater(rules["cruciblecraft:anvil"], 0)
-        self.assertGreater(rules["cruciblecraft:cooling"], 0)
+        self.assertEqual(rules.get("cruciblecraft:cooling", 0), 0)
 
     def test_runtime_guard_game_test_exists(self) -> None:
         path = (

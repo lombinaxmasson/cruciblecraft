@@ -115,6 +115,7 @@
 - GT6 搬运可依赖 `gt6_dump/gt6_recipe_dump/textures/`（gitignored 参考，不入库）与 `gt6_code/gregtech6/.../textures/`；`tools/import_gt6_oredict.py` 已有 texture-set 导入逻辑可扩展
 - 材质视觉字段目前只有 `color`/`tint_style`；新增字段需同步 MaterialDefinition codec、MaterialFingerprint（结构 vs 调优指纹的归属要先定）
 - 视觉改动由玩家目视验收
+- **T30 Hopper 族 ART_DERIVED（2026-08-20）**：不按 60 材料复制 PNG。共享 parent 为 `models/block/hopper.json` / `hopper_side.json`、`queue_hopper.json` / `queue_hopper_side.json`、`dust_funnel.json`；几何来自 `textures/gt6模型/MultiTileEntityHopper.json` 与 Queue/DustFunnel 对应模型。染色层复用已有 `block/material/block.png`（`tintindex: 0`）；Queue 与 Dust Funnel 的视觉区别复用 `block/material/block_overlay.png`（无 tintindex）。Dust Funnel 运行时固定 steel tint。机读来源：`tools/t30_art_asset_provenance.json`（121 个投影成员，`per_material_pngs = 0`）。
 
 ## 9. 目视未完成（已接线、仍简陋）
 

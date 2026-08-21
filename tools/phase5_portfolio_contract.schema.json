@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/phase5_portfolio_contract.schema.json",
+  "title": "CrucibleCraft phase 5 portfolio contract",
+  "description": "T27-1 machine-readable freeze of v1.0 product bounds, seven T13 tables, dispositions, owner rules, tracks A-E, T14 axes, T28+ generation and hotfix gates. This contract publishes no GT content.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "source_revision",
+    "product_contract",
+    "execution_policy",
+    "publication_delta",
+    "tables",
+    "dispositions",
+    "owner_rules",
+    "tracks",
+    "load_axes",
+    "t28_plus_generation",
+    "rc_policy",
+    "hotfix_gate",
+    "frozen_open_items",
+    "non_claims"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "const": "PHASE5_PORTFOLIO_CONTRACT"
+    },
+    "source_revision": {
+      "const": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    "product_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "v1",
+        "unchanged_from_phase4"
+      ],
+      "properties": {
+        "v1": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unchanged_from_phase4": {
+          "const": true
+        }
+      }
+    },
+    "execution_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "maximum_active_t_cards",
+        "current_active_t",
+        "next_t",
+        "t28_plus_card_count",
+        "tracks_are_not_parallel_licenses"
+      ],
+      "properties": {
+        "maximum_active_t_cards": {
+          "const": 1
+        },
+        "current_active_t": {
+          "const": "T27"
+        },
+        "next_t": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "t28_plus_card_count": {
+          "type": "null"
+        },
+        "tracks_are_not_parallel_licenses": {
+          "const": true
+        }
+      }
+    },
+    "publication_delta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "logical",
+        "eager",
+        "lazy"
+      ],
+      "properties": {
+        "logical": {
+          "const": 0
+        },
+        "eager": {
+          "const": 0
+        },
+        "lazy": {
+          "const": 0
+        }
+      }
+    },
+    "tables": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 7,
+      "maxProperties": 7
+    },
+    "dispositions": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "owner_rules": {
+      "type": "object"
+    },
+    "tracks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ]
+    },
+    "load_axes": {
+      "type": "object"
+    },
+    "t28_plus_generation": {
+      "type": "object"
+    },
+    "rc_policy": {
+      "type": "object"
+    },
+    "hotfix_gate": {
+      "type": "object"
+    },
+    "frozen_open_items": {
+      "type": "object"
+    },
+    "non_claims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

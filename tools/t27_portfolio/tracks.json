@@ -1,0 +1,1723 @@
+{
+  "counts": {
+    "primary_identities": {
+      "A": 1,
+      "B": 19,
+      "C": 11,
+      "D": 0,
+      "E": 62
+    },
+    "started_tracks": 0,
+    "unclassified_tracks": 0
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t27_portfolio.py": "af2635234c6815ea6598982a61e096a01dfc415f9ba9e436dd7acad8dd966387",
+      "tools/t14_load_budget_policy.json": "7e87ddb3b987f52fd8fd918a426bd6a2c640682fb89b52cb7b3cc5731c339270",
+      "tools/t27_opening_snapshot.json": "91cdbe33de4c56781e38dba507c90179e3ed7b7ea3342b8d8a15336a3fa5c9e3",
+      "tools/t27_portfolio/cover_kinds.json": "c739d43370b6623e1bfc792f9651a981cb0f0ae8a15bdbba41ae7a93cfd08242",
+      "tools/t27_portfolio/deferred_open_items.json": "b4ff655f020089c13c694dc7e1c98d3c52850c16fee6dba67e273b6f4a975272",
+      "tools/t27_portfolio/energy_identities.json": "b9a404f29206c818866a043bb7b66a7ab106d3a0b3366b9f3030cee850c7af28",
+      "tools/t27_portfolio/itemgenerator_domains.json": "52df0504e75b239f937857080650d26b6d677423f3b9357f5bc010911db0d3c1",
+      "tools/t27_portfolio/machine_kinds.json": "a04b109efef3235cac738f1692824fbcd42d3fa97ede1b914751102603f93ec2",
+      "tools/t27_portfolio/multiblock_kinds.json": "fff2a8db21eefd16f2d4fa5b03a61ef5c63bba0d22c47f0df403294d25e4db74",
+      "tools/t27_portfolio/prefixes.json": "79f5f76e6de65fa386760c26ae71f29ea963f735ed4af1c99127d357bb762dd2",
+      "tools/t27_portfolio/recipe_maps.json": "2f9a57ef10278514ff5a21d34082011d724504781c222017339b466adcb20d1c",
+      "tools/t27_portfolio_policy/tracks.json": "07857be7b4b938e36d5e8b73e2bd80713749c5921a18e41027c533e702506390"
+    }
+  },
+  "eager_hard_ceiling_is_21000": true,
+  "generated_by": "python tools/build_t27_portfolio.py --write-tracks",
+  "initial_cards": {
+    "A0": {
+      "axes": {
+        "allocation_bytes": {
+          "base": 32,
+          "delta": null,
+          "hard_ceiling": 536870912,
+          "lower_bound": null,
+          "method": "A0 measures per hosted map: source-row to exact distinct runtime relation, identity conflicts, and independent authored/logical/eager/lazy projections. T14 Extruder 325595-to-2782 compression is family-specific and must not be used as a global ratio.",
+          "soft_budget": 134217728,
+          "unit": "bytes",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "client_index_ms": {
+          "base": 1.0574,
+          "delta": null,
+          "hard_ceiling": 3000,
+          "lower_bound": null,
+          "method": "A0 measures per hosted map: source-row to exact distinct runtime relation, identity conflicts, and independent authored/logical/eager/lazy projections. T14 Extruder 325595-to-2782 compression is family-specific and must not be used as a global ratio.",
+          "soft_budget": 1000,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "client_reload_ms": {
+          "base": 1.872,
+          "delta": null,
+          "hard_ceiling": 10000,
+          "lower_bound": null,
+          "method": "A0 measures per hosted map: source-row to exact distinct runtime relation, identity conflicts, and independent authored/logical/eager/lazy projections. T14 Extruder 325595-to-2782 compression is family-specific and must not be used as a global ratio.",
+          "soft_budget": 5000,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "datapack_authored_entries": {
+          "base": 3267,
+          "delta": null,
+          "hard_ceiling": 6600,
+          "lower_bound": null,
+          "method": "A0 measures per hosted map: source-row to exact distinct runtime relation, identity conflicts, and independent authored/logical/eager/lazy projections. T14 Extruder 325595-to-2782 compression is family-specific and must not be used as a global ratio.",
+          "soft_budget": 6000,
+          "unit": "entries",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "eager_publication_rows": {
+          "base": 16862,
+          "delta": null,
+          "hard_ceiling": 21000,
+          "lower_bound": null,
+          "method": "A0 measures per hosted map: source-row to exact distinct runtime relation, identity conflicts, and independent authored/logical/eager/lazy projections. T14 Extruder 325595-to-2782 compression is family-specific and must not be used as a global ratio.",
+          "soft_budget": 18000,
+          "unit": "rows",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lazy_cache_ceiling_rows": {
+          "base": null,
+          "delta": null,
+          "hard_ceiling": 4096,
+          "lower_bound": null,
+          "method": "A0 measures per hosted map: source-row to exact distinct runtime relation, identity conflicts, and independent authored/logical/eager/lazy projections. T14 Extruder 325595-to-2782 compression is family-specific and must not be used as a global ratio.",
+          "soft_budget": 1024,
+          "unit": "rows",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lazy_logical_rows": {
+          "base": 2225,
+          "delta": null,
+          "hard_ceiling": 56000,
+          "lower_bound": null,
+          "method": "A0 measures per hosted map: source-row to exact distinct runtime relation, identity conflicts, and independent authored/logical/eager/lazy projections. T14 Extruder 325595-to-2782 compression is family-specific and must not be used as a global ratio.",
+          "soft_budget": 16000,
+          "unit": "rows",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lookup_candidate_count": {
+          "base": 8,
+          "delta": null,
+          "hard_ceiling": 128,
+          "lower_bound": null,
+          "method": "A0 measures per hosted map: source-row to exact distinct runtime relation, identity conflicts, and independent authored/logical/eager/lazy projections. T14 Extruder 325595-to-2782 compression is family-specific and must not be used as a global ratio.",
+          "soft_budget": 64,
+          "unit": "candidates",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lookup_p95_ns": {
+          "base": 1543,
+          "delta": null,
+          "hard_ceiling": 2000000,
+          "lower_bound": null,
+          "method": "A0 measures per hosted map: source-row to exact distinct runtime relation, identity conflicts, and independent authored/logical/eager/lazy projections. T14 Extruder 325595-to-2782 compression is family-specific and must not be used as a global ratio.",
+          "soft_budget": 1000000,
+          "unit": "ns",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "retained_memory_bytes": {
+          "base": 2241752,
+          "delta": null,
+          "hard_ceiling": 536870912,
+          "lower_bound": null,
+          "method": "A0 measures per hosted map: source-row to exact distinct runtime relation, identity conflicts, and independent authored/logical/eager/lazy projections. T14 Extruder 325595-to-2782 compression is family-specific and must not be used as a global ratio.",
+          "soft_budget": 134217728,
+          "unit": "bytes",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "server_index_ms": {
+          "base": 1.5307,
+          "delta": null,
+          "hard_ceiling": 1000,
+          "lower_bound": null,
+          "method": "A0 measures per hosted map: source-row to exact distinct runtime relation, identity conflicts, and independent authored/logical/eager/lazy projections. T14 Extruder 325595-to-2782 compression is family-specific and must not be used as a global ratio.",
+          "soft_budget": 500,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "server_reload_ms": {
+          "base": 2.8119,
+          "delta": null,
+          "hard_ceiling": 10000,
+          "lower_bound": null,
+          "method": "A0 measures per hosted map: source-row to exact distinct runtime relation, identity conflicts, and independent authored/logical/eager/lazy projections. T14 Extruder 325595-to-2782 compression is family-specific and must not be used as a global ratio.",
+          "soft_budget": 5000,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "sync_bytes": {
+          "base": 331124,
+          "delta": null,
+          "hard_ceiling": 67108864,
+          "lower_bound": null,
+          "method": "A0 measures per hosted map: source-row to exact distinct runtime relation, identity conflicts, and independent authored/logical/eager/lazy projections. T14 Extruder 325595-to-2782 compression is family-specific and must not be used as a global ratio.",
+          "soft_budget": 16777216,
+          "unit": "bytes",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "candidate": {
+        "bounded_subset_ported_maps": [
+          "gt.recipe.assembler",
+          "gt.recipe.autoclave",
+          "gt.recipe.bath",
+          "gt.recipe.centrifuge",
+          "gt.recipe.compressor",
+          "gt.recipe.distillery",
+          "gt.recipe.drying",
+          "gt.recipe.electrolyzer",
+          "gt.recipe.fuels.burn",
+          "gt.recipe.fuels.engine",
+          "gt.recipe.generifier",
+          "gt.recipe.mixer",
+          "gt.recipe.smelter"
+        ],
+        "host_maps": [
+          "gt.recipe.anvil.bend.big",
+          "gt.recipe.anvil.bend.small",
+          "gt.recipe.assembler",
+          "gt.recipe.autoclave",
+          "gt.recipe.bath",
+          "gt.recipe.centrifuge",
+          "gt.recipe.cokeoven",
+          "gt.recipe.compressor",
+          "gt.recipe.crusher",
+          "gt.recipe.cutter",
+          "gt.recipe.distillery",
+          "gt.recipe.drying",
+          "gt.recipe.electrolyzer",
+          "gt.recipe.extruder",
+          "gt.recipe.fuels.burn",
+          "gt.recipe.fuels.engine",
+          "gt.recipe.generifier",
+          "gt.recipe.lathe",
+          "gt.recipe.mixer",
+          "gt.recipe.mortar",
+          "gt.recipe.press",
+          "gt.recipe.rollbender",
+          "gt.recipe.rollingmill",
+          "gt.recipe.shredder",
+          "gt.recipe.sifter",
+          "gt.recipe.sluice",
+          "gt.recipe.smelter",
+          "gt.recipe.welder",
+          "gt.recipe.wiremill"
+        ],
+        "source_rows": 78682,
+        "source_rows_are_not_publication": true
+      },
+      "kind": "measurement_card",
+      "method": "A0 measures per hosted map: source-row to exact distinct runtime relation, identity conflicts, and independent authored/logical/eager/lazy projections. T14 Extruder 325595-to-2782 compression is family-specific and must not be used as a global ratio.",
+      "opening_sha256": "91cdbe33de4c56781e38dba507c90179e3ed7b7ea3342b8d8a15336a3fa5c9e3",
+      "opening_snapshot": "tools/t27_opening_snapshot.json",
+      "publication_delta": {
+        "eager": null,
+        "lazy": null,
+        "logical": null
+      },
+      "started": false,
+      "t14_policy": "tools/t14_load_budget_policy.json",
+      "t14_policy_sha256": "7e87ddb3b987f52fd8fd918a426bd6a2c640682fb89b52cb7b3cc5731c339270",
+      "track": "A"
+    },
+    "B0": {
+      "axes": {
+        "allocation_bytes": {
+          "base": 32,
+          "delta": null,
+          "hard_ceiling": 536870912,
+          "lower_bound": null,
+          "method": "B0 measures whether post-1.0 processing/storage kinds can reuse existing runtime as data instances. Schema/plugin presence is not completion. GT logical/eager/lazy are usually near zero for the structure itself; registration, controller, GameTest and network/save still require independent axes.",
+          "soft_budget": 134217728,
+          "unit": "bytes",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "client_index_ms": {
+          "base": 1.0574,
+          "delta": null,
+          "hard_ceiling": 3000,
+          "lower_bound": null,
+          "method": "B0 measures whether post-1.0 processing/storage kinds can reuse existing runtime as data instances. Schema/plugin presence is not completion. GT logical/eager/lazy are usually near zero for the structure itself; registration, controller, GameTest and network/save still require independent axes.",
+          "soft_budget": 1000,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "client_reload_ms": {
+          "base": 1.872,
+          "delta": null,
+          "hard_ceiling": 10000,
+          "lower_bound": null,
+          "method": "B0 measures whether post-1.0 processing/storage kinds can reuse existing runtime as data instances. Schema/plugin presence is not completion. GT logical/eager/lazy are usually near zero for the structure itself; registration, controller, GameTest and network/save still require independent axes.",
+          "soft_budget": 5000,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "datapack_authored_entries": {
+          "base": 3267,
+          "delta": null,
+          "hard_ceiling": 6600,
+          "lower_bound": null,
+          "method": "B0 measures whether post-1.0 processing/storage kinds can reuse existing runtime as data instances. Schema/plugin presence is not completion. GT logical/eager/lazy are usually near zero for the structure itself; registration, controller, GameTest and network/save still require independent axes.",
+          "soft_budget": 6000,
+          "unit": "entries",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "eager_publication_rows": {
+          "base": 16862,
+          "delta": null,
+          "hard_ceiling": 21000,
+          "lower_bound": null,
+          "method": "B0 measures whether post-1.0 processing/storage kinds can reuse existing runtime as data instances. Schema/plugin presence is not completion. GT logical/eager/lazy are usually near zero for the structure itself; registration, controller, GameTest and network/save still require independent axes.",
+          "soft_budget": 18000,
+          "unit": "rows",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lazy_cache_ceiling_rows": {
+          "base": null,
+          "delta": null,
+          "hard_ceiling": 4096,
+          "lower_bound": null,
+          "method": "B0 measures whether post-1.0 processing/storage kinds can reuse existing runtime as data instances. Schema/plugin presence is not completion. GT logical/eager/lazy are usually near zero for the structure itself; registration, controller, GameTest and network/save still require independent axes.",
+          "soft_budget": 1024,
+          "unit": "rows",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lazy_logical_rows": {
+          "base": 2225,
+          "delta": null,
+          "hard_ceiling": 56000,
+          "lower_bound": null,
+          "method": "B0 measures whether post-1.0 processing/storage kinds can reuse existing runtime as data instances. Schema/plugin presence is not completion. GT logical/eager/lazy are usually near zero for the structure itself; registration, controller, GameTest and network/save still require independent axes.",
+          "soft_budget": 16000,
+          "unit": "rows",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lookup_candidate_count": {
+          "base": 8,
+          "delta": null,
+          "hard_ceiling": 128,
+          "lower_bound": null,
+          "method": "B0 measures whether post-1.0 processing/storage kinds can reuse existing runtime as data instances. Schema/plugin presence is not completion. GT logical/eager/lazy are usually near zero for the structure itself; registration, controller, GameTest and network/save still require independent axes.",
+          "soft_budget": 64,
+          "unit": "candidates",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lookup_p95_ns": {
+          "base": 1543,
+          "delta": null,
+          "hard_ceiling": 2000000,
+          "lower_bound": null,
+          "method": "B0 measures whether post-1.0 processing/storage kinds can reuse existing runtime as data instances. Schema/plugin presence is not completion. GT logical/eager/lazy are usually near zero for the structure itself; registration, controller, GameTest and network/save still require independent axes.",
+          "soft_budget": 1000000,
+          "unit": "ns",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "retained_memory_bytes": {
+          "base": 2241752,
+          "delta": null,
+          "hard_ceiling": 536870912,
+          "lower_bound": null,
+          "method": "B0 measures whether post-1.0 processing/storage kinds can reuse existing runtime as data instances. Schema/plugin presence is not completion. GT logical/eager/lazy are usually near zero for the structure itself; registration, controller, GameTest and network/save still require independent axes.",
+          "soft_budget": 134217728,
+          "unit": "bytes",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "server_index_ms": {
+          "base": 1.5307,
+          "delta": null,
+          "hard_ceiling": 1000,
+          "lower_bound": null,
+          "method": "B0 measures whether post-1.0 processing/storage kinds can reuse existing runtime as data instances. Schema/plugin presence is not completion. GT logical/eager/lazy are usually near zero for the structure itself; registration, controller, GameTest and network/save still require independent axes.",
+          "soft_budget": 500,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "server_reload_ms": {
+          "base": 2.8119,
+          "delta": null,
+          "hard_ceiling": 10000,
+          "lower_bound": null,
+          "method": "B0 measures whether post-1.0 processing/storage kinds can reuse existing runtime as data instances. Schema/plugin presence is not completion. GT logical/eager/lazy are usually near zero for the structure itself; registration, controller, GameTest and network/save still require independent axes.",
+          "soft_budget": 5000,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "sync_bytes": {
+          "base": 331124,
+          "delta": null,
+          "hard_ceiling": 67108864,
+          "lower_bound": null,
+          "method": "B0 measures whether post-1.0 processing/storage kinds can reuse existing runtime as data instances. Schema/plugin presence is not completion. GT logical/eager/lazy are usually near zero for the structure itself; registration, controller, GameTest and network/save still require independent axes.",
+          "soft_budget": 16777216,
+          "unit": "bytes",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "kind": "measurement_card",
+      "method": "B0 measures whether post-1.0 processing/storage kinds can reuse existing runtime as data instances. Schema/plugin presence is not completion. GT logical/eager/lazy are usually near zero for the structure itself; registration, controller, GameTest and network/save still require independent axes.",
+      "opening_sha256": "91cdbe33de4c56781e38dba507c90179e3ed7b7ea3342b8d8a15336a3fa5c9e3",
+      "opening_snapshot": "tools/t27_opening_snapshot.json",
+      "publication_delta": {
+        "eager": null,
+        "lazy": null,
+        "logical": null
+      },
+      "started": false,
+      "t14_policy": "tools/t14_load_budget_policy.json",
+      "t14_policy_sha256": "7e87ddb3b987f52fd8fd918a426bd6a2c640682fb89b52cb7b3cc5731c339270",
+      "track": "B"
+    },
+    "C0": {
+      "axes": {
+        "allocation_bytes": {
+          "base": 32,
+          "delta": null,
+          "hard_ceiling": 536870912,
+          "lower_bound": null,
+          "method": "C0 is a source/physics measurement card. Fusion recipe maps, NEUTRON, reactor cores and adjacent QU machines are uniquely owned here and must not also sit on Track E. C0 does not estimate implementation duration or publish content.",
+          "soft_budget": 134217728,
+          "unit": "bytes",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "client_index_ms": {
+          "base": 1.0574,
+          "delta": null,
+          "hard_ceiling": 3000,
+          "lower_bound": null,
+          "method": "C0 is a source/physics measurement card. Fusion recipe maps, NEUTRON, reactor cores and adjacent QU machines are uniquely owned here and must not also sit on Track E. C0 does not estimate implementation duration or publish content.",
+          "soft_budget": 1000,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "client_reload_ms": {
+          "base": 1.872,
+          "delta": null,
+          "hard_ceiling": 10000,
+          "lower_bound": null,
+          "method": "C0 is a source/physics measurement card. Fusion recipe maps, NEUTRON, reactor cores and adjacent QU machines are uniquely owned here and must not also sit on Track E. C0 does not estimate implementation duration or publish content.",
+          "soft_budget": 5000,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "datapack_authored_entries": {
+          "base": 3267,
+          "delta": null,
+          "hard_ceiling": 6600,
+          "lower_bound": null,
+          "method": "C0 is a source/physics measurement card. Fusion recipe maps, NEUTRON, reactor cores and adjacent QU machines are uniquely owned here and must not also sit on Track E. C0 does not estimate implementation duration or publish content.",
+          "soft_budget": 6000,
+          "unit": "entries",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "eager_publication_rows": {
+          "base": 16862,
+          "delta": null,
+          "hard_ceiling": 21000,
+          "lower_bound": null,
+          "method": "C0 is a source/physics measurement card. Fusion recipe maps, NEUTRON, reactor cores and adjacent QU machines are uniquely owned here and must not also sit on Track E. C0 does not estimate implementation duration or publish content.",
+          "soft_budget": 18000,
+          "unit": "rows",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lazy_cache_ceiling_rows": {
+          "base": null,
+          "delta": null,
+          "hard_ceiling": 4096,
+          "lower_bound": null,
+          "method": "C0 is a source/physics measurement card. Fusion recipe maps, NEUTRON, reactor cores and adjacent QU machines are uniquely owned here and must not also sit on Track E. C0 does not estimate implementation duration or publish content.",
+          "soft_budget": 1024,
+          "unit": "rows",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lazy_logical_rows": {
+          "base": 2225,
+          "delta": null,
+          "hard_ceiling": 56000,
+          "lower_bound": null,
+          "method": "C0 is a source/physics measurement card. Fusion recipe maps, NEUTRON, reactor cores and adjacent QU machines are uniquely owned here and must not also sit on Track E. C0 does not estimate implementation duration or publish content.",
+          "soft_budget": 16000,
+          "unit": "rows",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lookup_candidate_count": {
+          "base": 8,
+          "delta": null,
+          "hard_ceiling": 128,
+          "lower_bound": null,
+          "method": "C0 is a source/physics measurement card. Fusion recipe maps, NEUTRON, reactor cores and adjacent QU machines are uniquely owned here and must not also sit on Track E. C0 does not estimate implementation duration or publish content.",
+          "soft_budget": 64,
+          "unit": "candidates",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lookup_p95_ns": {
+          "base": 1543,
+          "delta": null,
+          "hard_ceiling": 2000000,
+          "lower_bound": null,
+          "method": "C0 is a source/physics measurement card. Fusion recipe maps, NEUTRON, reactor cores and adjacent QU machines are uniquely owned here and must not also sit on Track E. C0 does not estimate implementation duration or publish content.",
+          "soft_budget": 1000000,
+          "unit": "ns",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "retained_memory_bytes": {
+          "base": 2241752,
+          "delta": null,
+          "hard_ceiling": 536870912,
+          "lower_bound": null,
+          "method": "C0 is a source/physics measurement card. Fusion recipe maps, NEUTRON, reactor cores and adjacent QU machines are uniquely owned here and must not also sit on Track E. C0 does not estimate implementation duration or publish content.",
+          "soft_budget": 134217728,
+          "unit": "bytes",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "server_index_ms": {
+          "base": 1.5307,
+          "delta": null,
+          "hard_ceiling": 1000,
+          "lower_bound": null,
+          "method": "C0 is a source/physics measurement card. Fusion recipe maps, NEUTRON, reactor cores and adjacent QU machines are uniquely owned here and must not also sit on Track E. C0 does not estimate implementation duration or publish content.",
+          "soft_budget": 500,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "server_reload_ms": {
+          "base": 2.8119,
+          "delta": null,
+          "hard_ceiling": 10000,
+          "lower_bound": null,
+          "method": "C0 is a source/physics measurement card. Fusion recipe maps, NEUTRON, reactor cores and adjacent QU machines are uniquely owned here and must not also sit on Track E. C0 does not estimate implementation duration or publish content.",
+          "soft_budget": 5000,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "sync_bytes": {
+          "base": 331124,
+          "delta": null,
+          "hard_ceiling": 67108864,
+          "lower_bound": null,
+          "method": "C0 is a source/physics measurement card. Fusion recipe maps, NEUTRON, reactor cores and adjacent QU machines are uniquely owned here and must not also sit on Track E. C0 does not estimate implementation duration or publish content.",
+          "soft_budget": 16777216,
+          "unit": "bytes",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "kind": "measurement_card",
+      "method": "C0 is a source/physics measurement card. Fusion recipe maps, NEUTRON, reactor cores and adjacent QU machines are uniquely owned here and must not also sit on Track E. C0 does not estimate implementation duration or publish content.",
+      "opening_sha256": "91cdbe33de4c56781e38dba507c90179e3ed7b7ea3342b8d8a15336a3fa5c9e3",
+      "opening_snapshot": "tools/t27_opening_snapshot.json",
+      "publication_delta": {
+        "eager": null,
+        "lazy": null,
+        "logical": null
+      },
+      "started": false,
+      "t14_policy": "tools/t14_load_budget_policy.json",
+      "t14_policy_sha256": "7e87ddb3b987f52fd8fd918a426bd6a2c640682fb89b52cb7b3cc5731c339270",
+      "track": "C"
+    },
+    "D0": {
+      "axes": {
+        "allocation_bytes": {
+          "base": 32,
+          "delta": null,
+          "hard_ceiling": 536870912,
+          "lower_bound": null,
+          "method": "D0 must pin a reproducible GT6U revision, license boundary, tree/blob/symbol manifest and recipe dump before any GT6U identity enters a T13-equivalent denominator. GT6ImportUnits U is a GT6 material unit, not GT6U evidence. The current GT6 SOURCE_BACKED chain stays unchanged until D0 closes.",
+          "soft_budget": 134217728,
+          "unit": "bytes",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "client_index_ms": {
+          "base": 1.0574,
+          "delta": null,
+          "hard_ceiling": 3000,
+          "lower_bound": null,
+          "method": "D0 must pin a reproducible GT6U revision, license boundary, tree/blob/symbol manifest and recipe dump before any GT6U identity enters a T13-equivalent denominator. GT6ImportUnits U is a GT6 material unit, not GT6U evidence. The current GT6 SOURCE_BACKED chain stays unchanged until D0 closes.",
+          "soft_budget": 1000,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "client_reload_ms": {
+          "base": 1.872,
+          "delta": null,
+          "hard_ceiling": 10000,
+          "lower_bound": null,
+          "method": "D0 must pin a reproducible GT6U revision, license boundary, tree/blob/symbol manifest and recipe dump before any GT6U identity enters a T13-equivalent denominator. GT6ImportUnits U is a GT6 material unit, not GT6U evidence. The current GT6 SOURCE_BACKED chain stays unchanged until D0 closes.",
+          "soft_budget": 5000,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "datapack_authored_entries": {
+          "base": 3267,
+          "delta": null,
+          "hard_ceiling": 6600,
+          "lower_bound": null,
+          "method": "D0 must pin a reproducible GT6U revision, license boundary, tree/blob/symbol manifest and recipe dump before any GT6U identity enters a T13-equivalent denominator. GT6ImportUnits U is a GT6 material unit, not GT6U evidence. The current GT6 SOURCE_BACKED chain stays unchanged until D0 closes.",
+          "soft_budget": 6000,
+          "unit": "entries",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "eager_publication_rows": {
+          "base": 16862,
+          "delta": null,
+          "hard_ceiling": 21000,
+          "lower_bound": null,
+          "method": "D0 must pin a reproducible GT6U revision, license boundary, tree/blob/symbol manifest and recipe dump before any GT6U identity enters a T13-equivalent denominator. GT6ImportUnits U is a GT6 material unit, not GT6U evidence. The current GT6 SOURCE_BACKED chain stays unchanged until D0 closes.",
+          "soft_budget": 18000,
+          "unit": "rows",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lazy_cache_ceiling_rows": {
+          "base": null,
+          "delta": null,
+          "hard_ceiling": 4096,
+          "lower_bound": null,
+          "method": "D0 must pin a reproducible GT6U revision, license boundary, tree/blob/symbol manifest and recipe dump before any GT6U identity enters a T13-equivalent denominator. GT6ImportUnits U is a GT6 material unit, not GT6U evidence. The current GT6 SOURCE_BACKED chain stays unchanged until D0 closes.",
+          "soft_budget": 1024,
+          "unit": "rows",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lazy_logical_rows": {
+          "base": 2225,
+          "delta": null,
+          "hard_ceiling": 56000,
+          "lower_bound": null,
+          "method": "D0 must pin a reproducible GT6U revision, license boundary, tree/blob/symbol manifest and recipe dump before any GT6U identity enters a T13-equivalent denominator. GT6ImportUnits U is a GT6 material unit, not GT6U evidence. The current GT6 SOURCE_BACKED chain stays unchanged until D0 closes.",
+          "soft_budget": 16000,
+          "unit": "rows",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lookup_candidate_count": {
+          "base": 8,
+          "delta": null,
+          "hard_ceiling": 128,
+          "lower_bound": null,
+          "method": "D0 must pin a reproducible GT6U revision, license boundary, tree/blob/symbol manifest and recipe dump before any GT6U identity enters a T13-equivalent denominator. GT6ImportUnits U is a GT6 material unit, not GT6U evidence. The current GT6 SOURCE_BACKED chain stays unchanged until D0 closes.",
+          "soft_budget": 64,
+          "unit": "candidates",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lookup_p95_ns": {
+          "base": 1543,
+          "delta": null,
+          "hard_ceiling": 2000000,
+          "lower_bound": null,
+          "method": "D0 must pin a reproducible GT6U revision, license boundary, tree/blob/symbol manifest and recipe dump before any GT6U identity enters a T13-equivalent denominator. GT6ImportUnits U is a GT6 material unit, not GT6U evidence. The current GT6 SOURCE_BACKED chain stays unchanged until D0 closes.",
+          "soft_budget": 1000000,
+          "unit": "ns",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "retained_memory_bytes": {
+          "base": 2241752,
+          "delta": null,
+          "hard_ceiling": 536870912,
+          "lower_bound": null,
+          "method": "D0 must pin a reproducible GT6U revision, license boundary, tree/blob/symbol manifest and recipe dump before any GT6U identity enters a T13-equivalent denominator. GT6ImportUnits U is a GT6 material unit, not GT6U evidence. The current GT6 SOURCE_BACKED chain stays unchanged until D0 closes.",
+          "soft_budget": 134217728,
+          "unit": "bytes",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "server_index_ms": {
+          "base": 1.5307,
+          "delta": null,
+          "hard_ceiling": 1000,
+          "lower_bound": null,
+          "method": "D0 must pin a reproducible GT6U revision, license boundary, tree/blob/symbol manifest and recipe dump before any GT6U identity enters a T13-equivalent denominator. GT6ImportUnits U is a GT6 material unit, not GT6U evidence. The current GT6 SOURCE_BACKED chain stays unchanged until D0 closes.",
+          "soft_budget": 500,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "server_reload_ms": {
+          "base": 2.8119,
+          "delta": null,
+          "hard_ceiling": 10000,
+          "lower_bound": null,
+          "method": "D0 must pin a reproducible GT6U revision, license boundary, tree/blob/symbol manifest and recipe dump before any GT6U identity enters a T13-equivalent denominator. GT6ImportUnits U is a GT6 material unit, not GT6U evidence. The current GT6 SOURCE_BACKED chain stays unchanged until D0 closes.",
+          "soft_budget": 5000,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "sync_bytes": {
+          "base": 331124,
+          "delta": null,
+          "hard_ceiling": 67108864,
+          "lower_bound": null,
+          "method": "D0 must pin a reproducible GT6U revision, license boundary, tree/blob/symbol manifest and recipe dump before any GT6U identity enters a T13-equivalent denominator. GT6ImportUnits U is a GT6 material unit, not GT6U evidence. The current GT6 SOURCE_BACKED chain stays unchanged until D0 closes.",
+          "soft_budget": 16777216,
+          "unit": "bytes",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "kind": "measurement_card",
+      "method": "D0 must pin a reproducible GT6U revision, license boundary, tree/blob/symbol manifest and recipe dump before any GT6U identity enters a T13-equivalent denominator. GT6ImportUnits U is a GT6 material unit, not GT6U evidence. The current GT6 SOURCE_BACKED chain stays unchanged until D0 closes.",
+      "opening_sha256": "91cdbe33de4c56781e38dba507c90179e3ed7b7ea3342b8d8a15336a3fa5c9e3",
+      "opening_snapshot": "tools/t27_opening_snapshot.json",
+      "publication_delta": {
+        "eager": null,
+        "lazy": null,
+        "logical": null
+      },
+      "started": false,
+      "t14_policy": "tools/t14_load_budget_policy.json",
+      "t14_policy_sha256": "7e87ddb3b987f52fd8fd918a426bd6a2c640682fb89b52cb7b3cc5731c339270",
+      "track": "D"
+    },
+    "E0": {
+      "axes": {
+        "allocation_bytes": {
+          "base": 32,
+          "delta": null,
+          "hard_ceiling": 536870912,
+          "lower_bound": null,
+          "method": "E0 classifies each remaining deferred map: runnable host, player loop, row-level disposition, energy/physics dependency, owner and replacement condition. T13 deferred_with_reason counted 64 maps; Track C uniquely owns fusionreactor and fuels.plasma, so E0's primary set is the leftover deferred maps rather than a second 64-map owner.",
+          "soft_budget": 134217728,
+          "unit": "bytes",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "client_index_ms": {
+          "base": 1.0574,
+          "delta": null,
+          "hard_ceiling": 3000,
+          "lower_bound": null,
+          "method": "E0 classifies each remaining deferred map: runnable host, player loop, row-level disposition, energy/physics dependency, owner and replacement condition. T13 deferred_with_reason counted 64 maps; Track C uniquely owns fusionreactor and fuels.plasma, so E0's primary set is the leftover deferred maps rather than a second 64-map owner.",
+          "soft_budget": 1000,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "client_reload_ms": {
+          "base": 1.872,
+          "delta": null,
+          "hard_ceiling": 10000,
+          "lower_bound": null,
+          "method": "E0 classifies each remaining deferred map: runnable host, player loop, row-level disposition, energy/physics dependency, owner and replacement condition. T13 deferred_with_reason counted 64 maps; Track C uniquely owns fusionreactor and fuels.plasma, so E0's primary set is the leftover deferred maps rather than a second 64-map owner.",
+          "soft_budget": 5000,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "datapack_authored_entries": {
+          "base": 3267,
+          "delta": null,
+          "hard_ceiling": 6600,
+          "lower_bound": null,
+          "method": "E0 classifies each remaining deferred map: runnable host, player loop, row-level disposition, energy/physics dependency, owner and replacement condition. T13 deferred_with_reason counted 64 maps; Track C uniquely owns fusionreactor and fuels.plasma, so E0's primary set is the leftover deferred maps rather than a second 64-map owner.",
+          "soft_budget": 6000,
+          "unit": "entries",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "eager_publication_rows": {
+          "base": 16862,
+          "delta": null,
+          "hard_ceiling": 21000,
+          "lower_bound": null,
+          "method": "E0 classifies each remaining deferred map: runnable host, player loop, row-level disposition, energy/physics dependency, owner and replacement condition. T13 deferred_with_reason counted 64 maps; Track C uniquely owns fusionreactor and fuels.plasma, so E0's primary set is the leftover deferred maps rather than a second 64-map owner.",
+          "soft_budget": 18000,
+          "unit": "rows",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lazy_cache_ceiling_rows": {
+          "base": null,
+          "delta": null,
+          "hard_ceiling": 4096,
+          "lower_bound": null,
+          "method": "E0 classifies each remaining deferred map: runnable host, player loop, row-level disposition, energy/physics dependency, owner and replacement condition. T13 deferred_with_reason counted 64 maps; Track C uniquely owns fusionreactor and fuels.plasma, so E0's primary set is the leftover deferred maps rather than a second 64-map owner.",
+          "soft_budget": 1024,
+          "unit": "rows",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lazy_logical_rows": {
+          "base": 2225,
+          "delta": null,
+          "hard_ceiling": 56000,
+          "lower_bound": null,
+          "method": "E0 classifies each remaining deferred map: runnable host, player loop, row-level disposition, energy/physics dependency, owner and replacement condition. T13 deferred_with_reason counted 64 maps; Track C uniquely owns fusionreactor and fuels.plasma, so E0's primary set is the leftover deferred maps rather than a second 64-map owner.",
+          "soft_budget": 16000,
+          "unit": "rows",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lookup_candidate_count": {
+          "base": 8,
+          "delta": null,
+          "hard_ceiling": 128,
+          "lower_bound": null,
+          "method": "E0 classifies each remaining deferred map: runnable host, player loop, row-level disposition, energy/physics dependency, owner and replacement condition. T13 deferred_with_reason counted 64 maps; Track C uniquely owns fusionreactor and fuels.plasma, so E0's primary set is the leftover deferred maps rather than a second 64-map owner.",
+          "soft_budget": 64,
+          "unit": "candidates",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "lookup_p95_ns": {
+          "base": 1543,
+          "delta": null,
+          "hard_ceiling": 2000000,
+          "lower_bound": null,
+          "method": "E0 classifies each remaining deferred map: runnable host, player loop, row-level disposition, energy/physics dependency, owner and replacement condition. T13 deferred_with_reason counted 64 maps; Track C uniquely owns fusionreactor and fuels.plasma, so E0's primary set is the leftover deferred maps rather than a second 64-map owner.",
+          "soft_budget": 1000000,
+          "unit": "ns",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "retained_memory_bytes": {
+          "base": 2241752,
+          "delta": null,
+          "hard_ceiling": 536870912,
+          "lower_bound": null,
+          "method": "E0 classifies each remaining deferred map: runnable host, player loop, row-level disposition, energy/physics dependency, owner and replacement condition. T13 deferred_with_reason counted 64 maps; Track C uniquely owns fusionreactor and fuels.plasma, so E0's primary set is the leftover deferred maps rather than a second 64-map owner.",
+          "soft_budget": 134217728,
+          "unit": "bytes",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "server_index_ms": {
+          "base": 1.5307,
+          "delta": null,
+          "hard_ceiling": 1000,
+          "lower_bound": null,
+          "method": "E0 classifies each remaining deferred map: runnable host, player loop, row-level disposition, energy/physics dependency, owner and replacement condition. T13 deferred_with_reason counted 64 maps; Track C uniquely owns fusionreactor and fuels.plasma, so E0's primary set is the leftover deferred maps rather than a second 64-map owner.",
+          "soft_budget": 500,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "server_reload_ms": {
+          "base": 2.8119,
+          "delta": null,
+          "hard_ceiling": 10000,
+          "lower_bound": null,
+          "method": "E0 classifies each remaining deferred map: runnable host, player loop, row-level disposition, energy/physics dependency, owner and replacement condition. T13 deferred_with_reason counted 64 maps; Track C uniquely owns fusionreactor and fuels.plasma, so E0's primary set is the leftover deferred maps rather than a second 64-map owner.",
+          "soft_budget": 5000,
+          "unit": "ms",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        },
+        "sync_bytes": {
+          "base": 331124,
+          "delta": null,
+          "hard_ceiling": 67108864,
+          "lower_bound": null,
+          "method": "E0 classifies each remaining deferred map: runnable host, player loop, row-level disposition, energy/physics dependency, owner and replacement condition. T13 deferred_with_reason counted 64 maps; Track C uniquely owns fusionreactor and fuels.plasma, so E0's primary set is the leftover deferred maps rather than a second 64-map owner.",
+          "soft_budget": 16777216,
+          "unit": "bytes",
+          "upper_bound": null,
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "kind": "measurement_card",
+      "method": "E0 classifies each remaining deferred map: runnable host, player loop, row-level disposition, energy/physics dependency, owner and replacement condition. T13 deferred_with_reason counted 64 maps; Track C uniquely owns fusionreactor and fuels.plasma, so E0's primary set is the leftover deferred maps rather than a second 64-map owner.",
+      "opening_sha256": "91cdbe33de4c56781e38dba507c90179e3ed7b7ea3342b8d8a15336a3fa5c9e3",
+      "opening_snapshot": "tools/t27_opening_snapshot.json",
+      "publication_delta": {
+        "eager": null,
+        "lazy": null,
+        "logical": null
+      },
+      "started": false,
+      "t14_policy": "tools/t14_load_budget_policy.json",
+      "t14_policy_sha256": "7e87ddb3b987f52fd8fd918a426bd6a2c640682fb89b52cb7b3cc5731c339270",
+      "track": "E"
+    }
+  },
+  "logical_21000_is_not_authoritative": true,
+  "publication_delta": {
+    "eager": 0,
+    "lazy": 0,
+    "logical": 0
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "started": false,
+  "status": "T27_TRACKS_CLASSIFIED",
+  "t27_card": {
+    "axes": {
+      "allocation_bytes": {
+        "actual": 32,
+        "base": 32,
+        "delta": 0,
+        "hard_ceiling": 536870912,
+        "method": "opening.measurements.selected_1x.jfr_allocation_bytes_p50",
+        "projected": 32,
+        "soft_budget": 134217728,
+        "unit": "bytes",
+        "verdict": "PASS"
+      },
+      "client_index_ms": {
+        "actual": 1.0574,
+        "base": 1.0574,
+        "delta": 0,
+        "hard_ceiling": 3000,
+        "method": "opening.measurements.selected_1x.dedicated_client_index_p95_ns / 1e6",
+        "projected": 1.0574,
+        "soft_budget": 1000,
+        "unit": "ms",
+        "verdict": "PASS"
+      },
+      "client_reload_ms": {
+        "actual": 1.872,
+        "base": 1.872,
+        "delta": 0,
+        "hard_ceiling": 10000,
+        "method": "opening.measurements.selected_1x.dedicated_client_reexpansion_p95_ns / 1e6",
+        "projected": 1.872,
+        "soft_budget": 5000,
+        "unit": "ms",
+        "verdict": "PASS"
+      },
+      "datapack_authored_entries": {
+        "actual": 3267,
+        "base": 3267,
+        "delta": 0,
+        "hard_ceiling": 6600,
+        "method": "T27 freeze uses opening snapshot actuals; publication delta is 0/0/0.",
+        "projected": 3267,
+        "soft_budget": 6000,
+        "unit": "entries",
+        "verdict": "PASS"
+      },
+      "eager_publication_rows": {
+        "actual": 16862,
+        "base": 16862,
+        "delta": 0,
+        "hard_ceiling": 21000,
+        "method": "T27 freeze uses opening snapshot actuals; publication delta is 0/0/0.",
+        "projected": 16862,
+        "soft_budget": 18000,
+        "unit": "rows",
+        "verdict": "PASS"
+      },
+      "lazy_cache_ceiling_rows": {
+        "base": null,
+        "delta": null,
+        "hard_ceiling": 4096,
+        "lower_bound": null,
+        "method": "Opening snapshot does not copy T14 lazy_cache_ceiling; T27 does not fill 0.",
+        "soft_budget": 1024,
+        "unit": "rows",
+        "upper_bound": null,
+        "verdict": "BLOCKED_PENDING_MEASUREMENT"
+      },
+      "lazy_logical_rows": {
+        "actual": 2225,
+        "base": 2225,
+        "delta": 0,
+        "hard_ceiling": 56000,
+        "method": "T27 freeze uses opening snapshot actuals; publication delta is 0/0/0.",
+        "projected": 2225,
+        "soft_budget": 16000,
+        "unit": "rows",
+        "verdict": "PASS"
+      },
+      "lookup_candidate_count": {
+        "actual": 8,
+        "base": 8,
+        "delta": 0,
+        "hard_ceiling": 128,
+        "method": "opening.measurements.selected_1x.lookup_candidates_p95",
+        "projected": 8,
+        "soft_budget": 64,
+        "unit": "candidates",
+        "verdict": "PASS"
+      },
+      "lookup_p95_ns": {
+        "actual": 1543,
+        "base": 1543,
+        "delta": 0,
+        "hard_ceiling": 2000000,
+        "method": "opening.measurements.selected_1x.lookup_p95_ns",
+        "projected": 1543,
+        "soft_budget": 1000000,
+        "unit": "ns",
+        "verdict": "PASS"
+      },
+      "retained_memory_bytes": {
+        "actual": 2241752,
+        "base": 2241752,
+        "delta": 0,
+        "hard_ceiling": 536870912,
+        "method": "opening.measurements.selected_1x.retained_total_bytes_p50",
+        "projected": 2241752,
+        "soft_budget": 134217728,
+        "unit": "bytes",
+        "verdict": "PASS"
+      },
+      "server_index_ms": {
+        "actual": 1.5307,
+        "base": 1.5307,
+        "delta": 0,
+        "hard_ceiling": 1000,
+        "method": "opening.measurements.selected_1x.server_index_p95_ns / 1e6",
+        "projected": 1.5307,
+        "soft_budget": 500,
+        "unit": "ms",
+        "verdict": "PASS"
+      },
+      "server_reload_ms": {
+        "actual": 2.8119,
+        "base": 2.8119,
+        "delta": 0,
+        "hard_ceiling": 10000,
+        "method": "opening.measurements.selected_1x.server_reload_p95_ns / 1e6",
+        "projected": 2.8119,
+        "soft_budget": 5000,
+        "unit": "ms",
+        "verdict": "PASS"
+      },
+      "sync_bytes": {
+        "actual": 331124,
+        "base": 331124,
+        "delta": 0,
+        "hard_ceiling": 67108864,
+        "method": "opening.measurements.selected_1x.sync_bytes",
+        "projected": 331124,
+        "soft_budget": 16777216,
+        "unit": "bytes",
+        "verdict": "PASS"
+      }
+    },
+    "kind": "portfolio_freeze",
+    "method": "T27 freeze uses opening snapshot actuals; publication delta is 0/0/0.",
+    "opening_sha256": "91cdbe33de4c56781e38dba507c90179e3ed7b7ea3342b8d8a15336a3fa5c9e3",
+    "opening_snapshot": "tools/t27_opening_snapshot.json",
+    "publication": {
+      "eager": 16862,
+      "lazy": 2225,
+      "logical": 19087
+    },
+    "publication_delta": {
+      "eager": 0,
+      "lazy": 0,
+      "logical": 0
+    },
+    "t14_policy": "tools/t14_load_budget_policy.json",
+    "t14_policy_sha256": "7e87ddb3b987f52fd8fd918a426bd6a2c640682fb89b52cb7b3cc5731c339270"
+  },
+  "tracks": {
+    "A": {
+      "gt6u_revision": null,
+      "initial_card": "A0",
+      "method": "A0 measures per hosted map: source-row to exact distinct runtime relation, identity conflicts, and independent authored/logical/eager/lazy projections. T14 Extruder 325595-to-2782 compression is family-specific and must not be used as a global ratio.",
+      "primary_identities": [
+        {
+          "canonical_id": "O-41",
+          "owner": "portfolio:track_a/unlockable_translation",
+          "table": "deferred_open_items"
+        }
+      ],
+      "primary_identity_count": 1,
+      "reference_identities": [
+        {
+          "canonical_id": "gt.recipe.anvil.bend.big",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.anvil.bend.small",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.assembler",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.autoclave",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.bath",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.centrifuge",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.cokeoven",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.compressor",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.crusher",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.cutter",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.distillery",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.drying",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.electrolyzer",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.extruder",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.fuels.burn",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.fuels.engine",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.generifier",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.lathe",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.mixer",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.mortar",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.press",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.rollbender",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.rollingmill",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.shredder",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.sifter",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.sluice",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.smelter",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.welder",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.wiremill",
+          "owner": "portfolio:v1/closed_recipe_maps",
+          "table": "recipe_maps"
+        }
+      ],
+      "scope": "ordinary_optional long tail on already-hosted maps, plus the O-41 unlockable translation layer",
+      "started": false
+    },
+    "B": {
+      "gt6u_revision": null,
+      "initial_card": "B0",
+      "method": "B0 measures whether post-1.0 processing/storage kinds can reuse existing runtime as data instances. Schema/plugin presence is not completion. GT logical/eager/lazy are usually near zero for the structure itself; registration, controller, GameTest and network/save still require independent axes.",
+      "primary_identities": [
+        {
+          "canonical_id": "autoclave",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "bath",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "coagulator",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "crusher",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "cryo_distillation_tower",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "electrolyzer",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "fermenter",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "implosion_compressor",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "large_dynamo",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "large_heat_exchanger",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "large_turbine_gas",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "large_turbine_steam",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "logistics_core",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "mixer",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "oven",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "shredder",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "sluice",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "squeezer",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        },
+        {
+          "canonical_id": "tank_5x5x5_metal",
+          "owner": "portfolio:track_b/post_1_0_multiblocks",
+          "table": "multiblock_kinds"
+        }
+      ],
+      "primary_identity_count": 19,
+      "reference_identities": [],
+      "scope": "post-1.0 multiblock kinds and declarative controller measurement",
+      "started": false
+    },
+    "C": {
+      "gt6u_revision": null,
+      "initial_card": "C0",
+      "method": "C0 is a source/physics measurement card. Fusion recipe maps, NEUTRON, reactor cores and adjacent QU machines are uniquely owned here and must not also sit on Track E. C0 does not estimate implementation duration or publish content.",
+      "primary_identities": [
+        {
+          "canonical_id": "NEUTRON",
+          "owner": "portfolio:track_c/nuclear_fusion_plasma",
+          "table": "energy_identities"
+        },
+        {
+          "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Massfab|accepts:QU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "owner": "portfolio:track_c/nuclear_fusion_plasma",
+          "table": "machine_kinds"
+        },
+        {
+          "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Replicator|accepts:QU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "owner": "portfolio:track_c/nuclear_fusion_plasma",
+          "table": "machine_kinds"
+        },
+        {
+          "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.ScannerMolecular|accepts:QU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "owner": "portfolio:track_c/nuclear_fusion_plasma",
+          "table": "machine_kinds"
+        },
+        {
+          "canonical_id": "MultiTileEntityQuantumEnergizerLaser|NONE|accepts:LU|emits:QU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "owner": "portfolio:track_c/nuclear_fusion_plasma",
+          "table": "machine_kinds"
+        },
+        {
+          "canonical_id": "MultiTileEntityReactorCore1x1|NONE|accepts:NONE|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "owner": "portfolio:track_c/nuclear_fusion_plasma",
+          "table": "machine_kinds"
+        },
+        {
+          "canonical_id": "MultiTileEntityReactorCore2x2|NONE|accepts:NONE|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "owner": "portfolio:track_c/nuclear_fusion_plasma",
+          "table": "machine_kinds"
+        },
+        {
+          "canonical_id": "MultiTileEntityZPMDechargerEU|NONE|accepts:QU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "owner": "portfolio:track_c/nuclear_fusion_plasma",
+          "table": "machine_kinds"
+        },
+        {
+          "canonical_id": "MultiTileEntityZPMDechargerQU|NONE|accepts:QU|emits:QU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+          "owner": "portfolio:track_c/nuclear_fusion_plasma",
+          "table": "machine_kinds"
+        },
+        {
+          "canonical_id": "gt.recipe.fuels.plasma",
+          "owner": "portfolio:track_c/nuclear_fusion_plasma",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.fusionreactor",
+          "owner": "portfolio:track_c/nuclear_fusion_plasma",
+          "table": "recipe_maps"
+        }
+      ],
+      "primary_identity_count": 11,
+      "reference_identities": [],
+      "scope": "nuclear fission, fusion and plasma source/physics measurement",
+      "started": false
+    },
+    "D": {
+      "gt6u_revision": null,
+      "initial_card": "D0",
+      "method": "D0 must pin a reproducible GT6U revision, license boundary, tree/blob/symbol manifest and recipe dump before any GT6U identity enters a T13-equivalent denominator. GT6ImportUnits U is a GT6 material unit, not GT6U evidence. The current GT6 SOURCE_BACKED chain stays unchanged until D0 closes.",
+      "primary_identities": [],
+      "primary_identity_count": 0,
+      "reference_identities": [],
+      "scope": "GT6U provenance and denominator, not a GT6U content port",
+      "started": false
+    },
+    "E": {
+      "gt6u_revision": null,
+      "initial_card": "E0",
+      "method": "E0 classifies each remaining deferred map: runnable host, player loop, row-level disposition, energy/physics dependency, owner and replacement condition. T13 deferred_with_reason counted 64 maps; Track C uniquely owns fusionreactor and fuels.plasma, so E0's primary set is the leftover deferred maps rather than a second 64-map owner.",
+      "primary_identities": [
+        {
+          "canonical_id": "gt.recipe.autocrafting",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.bedrockorelist",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.blastfurnace",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.boxinator",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.bumblelyzer",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.bumblequeen",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.burnmixer",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.byproductlist",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.calciner",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.canner",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.catalyticcracking",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.chisel",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.clustermill",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.cncmachine",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.coagulator",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.cooker",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.cruciblesmelting",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.cryodistillationtower",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.cryomixer",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.crystallisationcrucible",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.distillationtower",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.fermenter",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.freezer",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.fuels.fluidbed",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.fuels.gas",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.fuels.hot",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.fuels.magic",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.fuels.turbine",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.hammer",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.implosioncompressor",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.injector",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.juicer",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.laminator",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.laserengraver",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.lightning",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.loom",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.magneticseparator",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.massfab",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.melter",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.microwave",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.nanofab",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.other",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.plantalyzer",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.polarizer",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.pressurewasher",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.printer",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.replicator",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.roaster",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.rollformer",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.scannermolecular",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.scannervisuals",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.sharpener",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.slicer",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.squeezer",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.steamcracking",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.toolhead",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.trees",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.unboxinator",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "gt.recipe.vacuumfreezer",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "mc.recipe.furnace",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "mc.recipe.furnacefuel",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        },
+        {
+          "canonical_id": "unnamed",
+          "owner": "portfolio:track_e/deferred_recipe_maps",
+          "table": "recipe_maps"
+        }
+      ],
+      "primary_identity_count": 62,
+      "reference_identities": [],
+      "scope": "deferred RecipeMaps secondary denominator and dependency graph, excluding identities uniquely owned by Track C",
+      "started": false
+    }
+  }
+}

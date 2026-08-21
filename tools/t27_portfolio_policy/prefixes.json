@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "table": "prefixes",
+  "status": "T27_TABLE_POLICY",
+  "review": "T27-2 P2. T13 in_scope is not auto-upgraded from the stale plan count of 54. Current T13 has 55 runtime-mapped prefixes; those are reviewed v1_required closed as prefix identities, not as a promise that every material using the prefix is a v1 item. Unmapped create() prefixes stay post_1_0 source-only. PREFIX_UNUSED stays out_of_scope. Pipe one-to-many and blockGem/blockIngot many-to-one stay in the implementation descriptor.",
+  "defaults": {
+    "in_scope": {
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_prefixes",
+      "replacement_condition": "Not applicable: v1 prefix identity is closed by a current CC runtime mapping. Material-level leftover rows stay on Track A or the owning generator domain, not as a second prefix gap.",
+      "recheck_point": "T27 RC candidate prefix/material recheck",
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "T13 in_scope prefix already has a CrucibleCraft runtime mapping. This closes the prefix identity, not every generated item that uses it."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T13 prefixes.cc_mappings plus gt6_prefix_mapping.json. One-to-many pipe splits and blockGem/blockIngot collapse are listed in the implementation descriptor instead of being faked as 1:1."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "Runtime-mapped prefixes already participate in the T26 READY material registry; T27 adds no prefix forms."
+        }
+      }
+    },
+    "deferred_with_reason": {
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/prefixes",
+      "cc_implementation": "none",
+      "replacement_condition": "A later 1.x prefix card selects this canonical OP identity and supplies source-backed generation, serialization and acquisition; it must not remain an unbounded deferred row.",
+      "recheck_point": "post-1.0 prefix measurement card",
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "T13 deferred prefix has no current CC runtime mapping. T27 does not invent a form."
+        },
+        "fidelity": {
+          "status": "source_backed",
+          "evidence": "Pinned OP.java prefix with no CC mapping. Source-only and generator-only prefixes stay here; they are not PREFIX_UNUSED exclusions."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "Unmapped prefix load cannot be filled with 0."
+        }
+      }
+    },
+    "out_of_scope": {
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "cc_implementation": "none",
+      "replacement_condition": "Not applicable: PREFIX_UNUSED compatibility vocabulary stays outside v1.",
+      "recheck_point": "product-contract change only",
+      "axes": {
+        "closure": {
+          "status": "not_applicable",
+          "evidence": "T13 out_of_scope PREFIX_UNUSED declaration."
+        },
+        "fidelity": {
+          "status": "design_policy",
+          "evidence": "Explicit unused OP vocabulary is excluded by the v1 product contract."
+        },
+        "load": {
+          "status": "not_applicable",
+          "evidence": "Unused prefixes are not v1 load."
+        }
+      }
+    }
+  },
+  "cc_implementations": {},
+  "overrides": {
+    "ingotHot": {
+      "dependencies": [
+        {
+          "kind": "open_item_id",
+          "id": "O-36"
+        }
+      ],
+      "reason": "Hot-ingot prefix already maps to cruciblecraft:ingot_hot. GT6-equivalent cooling behavior is O-36 on the open-item ledger, not a second prefix gap."
+    }
+  }
+}

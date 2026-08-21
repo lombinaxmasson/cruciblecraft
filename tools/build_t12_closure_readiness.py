@@ -231,7 +231,7 @@ def build() -> dict[str, Any]:
 
     structure_paths = sorted(STRUCTURES.glob("*.json"))
     structure_ids = [path.stem for path in structure_paths]
-    if structure_ids != ["coke_oven", "distillation_tower", "large_boiler", "large_centrifuge", "tank_3x3x3"]:
+    if structure_ids != ["coke_oven", "distillation_tower", "large_boiler", "large_centrifuge", "large_crucible", "tank_3x3x3"]:
         raise ValueError(f"T12 structure set drifted: {structure_ids}")
     if (
         ROOT
@@ -413,7 +413,7 @@ def main() -> int:
         ) != encoded:
             raise SystemExit("T12 closure readiness is stale")
     else:
-        OUTPUT.write_text(encoded, encoding="utf-8", newline="\n")
+        OUTPUT.write_bytes(encoded.encode("utf-8"))
     print(
         json.dumps(
             {
