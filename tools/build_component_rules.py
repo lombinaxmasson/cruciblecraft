@@ -718,9 +718,9 @@ def _validate_extruder_source(
         if path.name != "index.json"
         for document in [_read_json(path)]
     }
-    if len(allowed_prefixes) != 56:
+    if len(allowed_prefixes) != 57:
         raise SourceError(
-            f"component_rules.json: expected 56 registered prefixes, "
+            f"component_rules.json: expected 57 registered prefixes, "
             f"got {len(allowed_prefixes)}"
         )
     if (

@@ -17,6 +17,29 @@
     "schemaVersion": {
       "const": 2
     },
+    "namingPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tier1BareId",
+        "newSubsystemId",
+        "automaticKindTierCompletion"
+      ],
+      "properties": {
+        "tier1BareId": {
+          "const": "frozen_legacy_baseline",
+          "description": "Existing tier-1 variant ids such as centrifuge remain the frozen legacy baseline. They are not renamed to bronze_centrifuge."
+        },
+        "newSubsystemId": {
+          "const": "<material>_<kind>",
+          "description": "New subsystems such as hoppers use material-prefixed identities. Bare hopper or queue_hopper ids are forbidden."
+        },
+        "automaticKindTierCompletion": {
+          "const": false,
+          "description": "The catalog is a flat list of source-backed rows. It does not synthesize missing kind × tier combinations."
+        }
+      }
+    },
     "source": {
       "type": "object"
     },

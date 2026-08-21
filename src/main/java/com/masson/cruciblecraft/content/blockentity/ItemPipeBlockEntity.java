@@ -140,6 +140,10 @@ public final class ItemPipeBlockEntity extends BlockEntity {
         return covers.snapshot();
     }
 
+    public int routeCacheEntries() {
+        return routeCache.size();
+    }
+
     public String coverSummary() {
         return covers.boundedSummary();
     }

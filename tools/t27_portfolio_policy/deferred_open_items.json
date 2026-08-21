@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "status": "T27_OPEN_ITEM_POLICY",
+  "review": "T27-3. Canonical identities stay on the seven tables. This ledger owns cross-table open items and traces all 15 T26 known issues. crucible is coverage of multiblock_kinds, not a second owner. T28 closed O-36. T29 closed crucible. O-41 and anvil_bend stay post_1_0. O-15 stays closed. F003/F005 copy T26 RC contracts verbatim and do not block T27.",
+  "records": [
+    {
+      "id": "crucible",
+      "kind": "canonical_coverage",
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/crucible",
+      "cc_implementation": "cruciblecraft:large_crucible",
+      "reason": "Canonical coverage of multiblock_kinds/crucible. T29 registered cruciblecraft:large_crucible without colliding with cruciblecraft:crucible. This ledger does not create a second owner.",
+      "replacement_condition": "Generated T28+ bounded thermal/steelmaking behavior card implements cruciblecraft:large_crucible without colliding with cruciblecraft:crucible.",
+      "recheck_point": "T29_READY; RC candidate structure/lifecycle recheck",
+      "dependencies": [
+        {
+          "kind": "canonical_id",
+          "id": "crucible"
+        },
+        {
+          "kind": "open_item_id",
+          "id": "O-36"
+        },
+        {
+          "kind": "runtime_capability",
+          "id": "cruciblecraft:crucible"
+        }
+      ],
+      "coverage": {
+        "table": "multiblock_kinds",
+        "canonical_id": "crucible"
+      },
+      "source": {
+        "artifact": "tools/t13_denominators/multiblock_kinds.json",
+        "canonical_id": "crucible"
+      },
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "Covered canonical row is closed: cruciblecraft:large_crucible is registered and cruciblecraft:crucible is retained."
+        },
+        "fidelity": {
+          "status": "source_backed",
+          "evidence": "T13/T23 crucible kind plus T29 reserved-controller implementation."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "T29 GT publication delta is measured 0/0/0. Vanilla controller crafting is a non-GT axis."
+        }
+      }
+    },
+    {
+      "id": "O-15",
+      "kind": "closed_open_item",
+      "disposition": "closed",
+      "owner": "T26",
+      "cc_implementation": "none",
+      "reason": "O-15 closed at T26 freeze. Player-visible critical domains have zero zh gap; long-tail materials are explicit post_1_0 fallbacks to en_us. T27 does not reopen it.",
+      "replacement_condition": "Not applicable: closed at T26 freeze.",
+      "recheck_point": "GA localization audit",
+      "dependencies": [],
+      "source": {
+        "artifact": "tools/t26_known_issues.json",
+        "item": "O-15"
+      },
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "T26 localization ledger closed O-15. T27 keeps the closed status."
+        },
+        "fidelity": {
+          "status": "design_policy",
+          "evidence": "T26 freeze o15 record plus t26_localization_ledger.json."
+        },
+        "load": {
+          "status": "not_applicable",
+          "evidence": "Closed localization item is not a T27 content gap."
+        }
+      }
+    },
+    {
+      "id": "O-36",
+      "kind": "open_item",
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/hot_ingot_cooling",
+      "cc_implementation": "none",
+      "reason": "T28 retired the T10 DESIGN_POLICY hot-ingot conversion leftover. GT6 has no passive ingotHot to ingot conversion. O-36 replacement is absence of conversion plus retained contact heat.",
+      "replacement_condition": "A generated T28+ fidelity card locates a fixed-revision GT6 hot-ingot cooling source, normalizes behavior, and replaces src/main/resources/data/cruciblecraft/recipe/t10/cooling/hot_ingot_to_ingot.json DESIGN_POLICY.",
+      "recheck_point": "T28_READY; RC candidate contact-heat recheck",
+      "dependencies": [
+        {
+          "kind": "runtime_capability",
+          "id": "cruciblecraft:ingot_hot"
+        }
+      ],
+      "source": {
+        "artifact": "src/main/resources/data/cruciblecraft/recipe/t10/cooling/hot_ingot_to_ingot.json",
+        "gt6_equivalence": "UNVERIFIED",
+        "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "T28 retired hot_ingot_to_ingot.json. Inventory and drops no longer convert ingot_hot to ingot. Contact heat remains."
+        },
+        "fidelity": {
+          "status": "source_backed",
+          "evidence": "Fixed-revision GT6 has no passive ingotHot to ingot conversion. T28 replacement is absence of conversion."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "T28 publication delta is the measured cooling-rule retirement. T29 does not reopen O-36."
+        }
+      }
+    },
+    {
+      "id": "O-41",
+      "kind": "open_item",
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_a/unlockable_translation",
+      "cc_implementation": "none",
+      "reason": "T22.5 1,002-row unlockable translation-layer wiring (fluid mapping + item equivalence) is not a v1 publication obligation.",
+      "replacement_condition": "Track A0 or a later translation-layer card measures the 1,002-row fluid/item wiring separately from ordinary_optional leftovers; it must not become a v1 publication card.",
+      "recheck_point": "Track A0 measurement card",
+      "dependencies": [],
+      "source": {
+        "artifact": "tools/phase4_v1_planning_contract.json",
+        "identity": "O-41"
+      },
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "O-41 stays post_1_0. T27 does not wire the translation layer."
+        },
+        "fidelity": {
+          "status": "source_backed",
+          "evidence": "T22.5 1,002-row unlockable translation-layer count plus phase4 O-41 identity."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "Translation-layer load cannot be filled with 0."
+        }
+      }
+    },
+    {
+      "id": "anvil_bend_big",
+      "kind": "open_item",
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/anvil_bend",
+      "cc_implementation": "cruciblecraft:anvil_bend_big",
+      "reason": "Registered-zero-logical reserved slot. GT6 gt.recipe.anvil.bend.big is already PORTED through the playable bender; this empty CC RecipeMap is not an unimplemented GT6 map and is not a v1 blocker.",
+      "replacement_condition": "A later 1.x card must explicitly enable an independent RecipeMap, hide/migrate the reserved slot, or keep it as an empty reserved map. T27 does not add recipes.",
+      "recheck_point": "post-1.0 reserved-slot decision",
+      "dependencies": [
+        {
+          "kind": "runtime_capability",
+          "id": "cruciblecraft:bender"
+        }
+      ],
+      "source": {
+        "artifact": "tools/t26_known_issues.json",
+        "id": "cruciblecraft:anvil_bend_big"
+      },
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "The reserved CC RecipeMap has zero logical recipes. The GT6 source map is already hosted by bender."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T22.5 registered_zero_logical plus T26 freeze anvil_bend record."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "Reserved-slot enable/delete is unmeasured; T27 does not fill 0."
+        }
+      }
+    },
+    {
+      "id": "anvil_bend_small",
+      "kind": "open_item",
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/anvil_bend",
+      "cc_implementation": "cruciblecraft:anvil_bend_small",
+      "reason": "Registered-zero-logical reserved slot. GT6 gt.recipe.anvil.bend.small is already PORTED through the playable bender; this empty CC RecipeMap is not an unimplemented GT6 map and is not a v1 blocker.",
+      "replacement_condition": "A later 1.x card must explicitly enable an independent RecipeMap, hide/migrate the reserved slot, or keep it as an empty reserved map. T27 does not add recipes.",
+      "recheck_point": "post-1.0 reserved-slot decision",
+      "dependencies": [
+        {
+          "kind": "runtime_capability",
+          "id": "cruciblecraft:bender"
+        }
+      ],
+      "source": {
+        "artifact": "tools/t26_known_issues.json",
+        "id": "cruciblecraft:anvil_bend_small"
+      },
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "The reserved CC RecipeMap has zero logical recipes. The GT6 source map is already hosted by bender."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T22.5 registered_zero_logical plus T26 freeze anvil_bend record."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "Reserved-slot enable/delete is unmeasured; T27 does not fill 0."
+        }
+      }
+    }
+  ],
+  "known_issue_defaults": {
+    "post_beta_polish": {
+      "cc_implementation": "none",
+      "owner": "4.5",
+      "replacement_condition": "Remain post_beta_polish with owner 4.5; do not insert an active T or a v1 content card.",
+      "recheck_point": "4.5 experience-polish backlog",
+      "axes": {
+        "closure": {
+          "status": "not_applicable",
+          "evidence": "4.5 P0-P9 stay post_beta_polish and are not T27 or T28 content."
+        },
+        "fidelity": {
+          "status": "design_policy",
+          "evidence": "T26 known-issues ledger plus CrucibleCraft-4.5-体验精修规划.md."
+        },
+        "load": {
+          "status": "not_applicable",
+          "evidence": "Polish items are not v1 publication load."
+        }
+      }
+    },
+    "non_blocking": {
+      "cc_implementation": "none",
+      "replacement_condition": "None required; verified bound, no Beta action.",
+      "recheck_point": "T26 freeze",
+      "axes": {
+        "closure": {
+          "status": "not_applicable",
+          "evidence": "T25/T24 finding is non_blocking for Beta and T27 freeze."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "tools/t26_known_issues.json inherited T25 finding."
+        },
+        "load": {
+          "status": "not_applicable",
+          "evidence": "Verified or deferred-to-RC finding is not a T27 content gap."
+        }
+      }
+    }
+  },
+  "known_issue_overrides": {
+    "T24-F003": {
+      "recheck_point": "T27 RC candidate",
+      "replacement_condition": "Re-run on a declared environment with >= 16 GB RAM and record tools/t24_scale_evidence.json measured_at_scale.target",
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "Declared route-discovery cap is not measured at scale. Unmeasured SKIP is not PASS and is not filled with 0."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T26 transferred F003 to T27 RC with the verbatim replacement_condition."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "RC candidate on >= 16 GB RAM must record measured_at_scale.target; T27 freeze does not fill 0."
+        }
+      }
+    },
+    "T24-F005": {
+      "recheck_point": "T27 RC candidate",
+      "replacement_condition": "Re-run on a declared environment with >= 16 GB RAM and record tools/t24_scale_evidence.json measured_at_scale.target",
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "target/stress wall-clock, retained-memory and network-sync remain explicit SKIP. SKIP is not PASS."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T26 transferred F005 to T27 RC with the verbatim replacement_condition."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "RC candidate on >= 16 GB RAM must record the SKIP axes; T27 freeze does not fill 0."
+        }
+      }
+    }
+  }
+}

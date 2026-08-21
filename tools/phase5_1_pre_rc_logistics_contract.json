@@ -1,0 +1,109 @@
+{
+  "catalog": {
+    "bare_ids_forbidden": [
+      "hopper",
+      "queue_hopper"
+    ],
+    "dust_funnel_id": "cruciblecraft:steel_dust_funnel",
+    "id_pattern": "<material>_<kind>",
+    "kinds": [
+      "hopper",
+      "queue_hopper"
+    ],
+    "source_rows": 60,
+    "total_new_blocks": 121
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t30_phase5_1_contract.py": "1021ff4d42b8764e6c368d9cc983ecc5f70ad8387d7fcc02587c282f4ba71ab2",
+      "tools/phase5_portfolio_contract.json": "ca9be41df6cb391c4076ab0acbf35950dca868b5569fb7ce03388ef0cfab2cc7",
+      "tools/t29_readiness.json": "180d05f814d89355d1bf3b8c190b0534171ab30d5cd55ef2112ae0bd01671731",
+      "tools/t30_hopper_source_policy.json": "4919d76f9bc1492a1ca69a6ac0408c241e1e04bab650508643f2aa9f1c151fa0"
+    }
+  },
+  "dust_forms": [
+    "dust",
+    "small_dust",
+    "tiny_dust"
+  ],
+  "dust_units": {
+    "dust": 36,
+    "small_dust": 9,
+    "tiny_dust": 4
+  },
+  "exit_conditions": {
+    "closure": "60 source rows, 120 hopper-family identities, one steel_dust_funnel, registration/resources/acquisition equal, player paths and archive tests green",
+    "fidelity": "slots and hopper/queue behavior SOURCE_BACKED; recipes SOURCE_DERIVED; dust three-form bounded adaptation; plateCurved/blockDust/div72 not claimed",
+    "load": "each independent axis has base/delta/measured; pending is not filled with 0; T14 hard ceilings are not exceeded"
+  },
+  "generated_by": "python tools/build_t30_phase5_1_contract.py --write",
+  "historical_artifacts": {
+    "do_not_rewrite": [
+      "tools/phase5_portfolio_contract.json",
+      "tools/t27_card_topology.json",
+      "tools/t27_portfolio.json",
+      "tools/t27_readiness.json",
+      "tools/t28_readiness.json",
+      "tools/t29_readiness.json"
+    ],
+    "note": "T27–T29 Hopper=post_1_0 is a historical snapshot. Phase 5.1 appends a new pre-RC work set; it does not rewrite those artifacts as if T30 had already been planned."
+  },
+  "legacy_machine_policy": {
+    "existing_variant_row_count": 33,
+    "new_subsystem_id": "<material>_<kind>",
+    "no_automatic_kind_tier_completion": true,
+    "tier_1_bare_id": "frozen_legacy_baseline"
+  },
+  "opening": {
+    "historical_portfolio_status": "PHASE5_PORTFOLIO_CONTRACT",
+    "rc_number": null,
+    "report_status": "READY",
+    "t29_status": "T29_READY"
+  },
+  "owners": {
+    "T30": "pre-RC bounded logistics completion: 60 hopper rows, 120 hopper-family identities, steel_dust_funnel",
+    "T31": "board freeze and RC1 numbering"
+  },
+  "post_1_0_exclusions": [
+    "item_barrels",
+    "mass_storage",
+    "drawer",
+    "fluid_funnel",
+    "canner",
+    "boxinator",
+    "blockDust",
+    "dustDiv72",
+    "plateCurved_runtime",
+    "metalset_chest",
+    "metalset_safe",
+    "metalset_locker",
+    "metalset_scaffold",
+    "kind_times_tier_cartesian",
+    "GT6U",
+    "tracks_A_E",
+    "nuclear_fusion"
+  ],
+  "rc_policy": {
+    "f003_f005_remain_rc_recheck": true,
+    "mod_version_remains": "0.1.0-beta.1",
+    "rc_number": null,
+    "rc_numbering": "forbidden_until_T30_READY"
+  },
+  "recipe_adaptation": {
+    "dust_funnel": "vanilla hopper + iron plate/rod equivalent",
+    "fidelity": "SOURCE_DERIVED",
+    "hopper": "5 plate + 1 chest",
+    "omit_tool_catalysts": true,
+    "plate_curved_runtime": false,
+    "queue_hopper": "5 plate + 2 chest"
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "PHASE5_1_PRE_RC_LOGISTICS_CONTRACT",
+  "work_set": {
+    "current_active_t": "T30",
+    "maximum_active_t_cards": 1,
+    "next_t": "T31",
+    "t31_depends_on": "T30_READY"
+  }
+}

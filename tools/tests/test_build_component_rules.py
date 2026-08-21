@@ -77,7 +77,7 @@ class ComponentRuleBuilderTest(unittest.TestCase):
         self.assertEqual({"playable": 20, "skipped": 42},
                          extruder["classification_counts"])
         self.assertEqual(31, len(extruder["shapes"]))
-        self.assertEqual(56, extruder["prefix_count"])
+        self.assertEqual(57, extruder["prefix_count"])
         self.assertEqual(64, len(extruder["registration_gate_sha256"]))
         self.assertEqual(64, len(manifest["builder"]["source_sha256"]))
         self.assertEqual(

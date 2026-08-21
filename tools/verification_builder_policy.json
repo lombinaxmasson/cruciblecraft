@@ -43,7 +43,8 @@
       "proof_tier": "compact",
       "full_replay": {
         "args": [
-          "--check"
+          "--check",
+          "--reference-only"
         ],
         "required_paths": [
           "gt6_dump/gt6_recipe_dump/index.json"
@@ -71,11 +72,7 @@
       "full_replay": {
         "args": [
           "--check",
-          "--full-replay"
-        ],
-        "required_any_paths": [
-          "gt6_dump/gt6_recipe_dump/index.json",
-          "tools/gt6_recipe_normalized_reference.json"
+          "--reference-only"
         ]
       },
       "outputs": [
@@ -110,7 +107,7 @@
       "full_replay": {
         "args": [
           "--check",
-          "--full-replay"
+          "--reference-only"
         ],
         "required_paths": [
           "tools/gt6_recipe_normalized_reference.json"
@@ -143,7 +140,7 @@
       "full_replay": {
         "args": [
           "--check",
-          "--full-replay"
+          "--reference-only"
         ],
         "required_paths": [
           "gt6_dump/gt6_recipe_dump/index.json"
@@ -176,7 +173,7 @@
       "full_replay": {
         "args": [
           "--check",
-          "--full-replay"
+          "--reference-only"
         ],
         "required_paths": [
           "gt6_dump/gt6_recipe_dump/index.json"
@@ -197,7 +194,7 @@
       "full_replay": {
         "args": [
           "--check",
-          "--full-replay"
+          "--reference-only"
         ],
         "required_paths": [
           "gt6_dump/gt6_recipe_dump/index.json"
@@ -216,7 +213,7 @@
       "full_replay": {
         "args": [
           "--check",
-          "--full-replay"
+          "--reference-only"
         ],
         "required_paths": [
           "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json"
@@ -337,7 +334,7 @@
       "full_replay": {
         "args": [
           "--check",
-          "--full-replay"
+          "--reference-only"
         ],
         "required_paths": [
           "gt6_dump/gt6_recipe_dump/index.json"
@@ -356,7 +353,7 @@
       "full_replay": {
         "args": [
           "--check",
-          "--full-replay"
+          "--reference-only"
         ],
         "required_paths": [
           "gt6_dump/gt6_recipe_dump/index.json"
@@ -377,7 +374,7 @@
       "full_replay": {
         "args": [
           "--check",
-          "--full-replay"
+          "--reference-only"
         ],
         "required_paths": [
           "gt6_dump/gt6_recipe_dump/index.json"
@@ -716,7 +713,7 @@
       "full_replay": {
         "args": [
           "--check",
-          "--full-replay"
+          "--reference-only"
         ],
         "required_paths": []
       },
@@ -780,7 +777,7 @@
       "full_replay": {
         "args": [
           "--check",
-          "--full-replay"
+          "--reference-only"
         ],
         "required_paths": [
           "gt6_dump/gt6_recipe_dump/maps/gt.recipe.electrolyzer.json",
@@ -810,7 +807,7 @@
       "full_replay": {
         "args": [
           "--check",
-          "--full-replay"
+          "--reference-only"
         ],
         "required_paths": [
           "gt6_dump/gt6_recipe_dump/maps/gt.recipe.mixer.json",
@@ -834,7 +831,7 @@
       "full_replay": {
         "args": [
           "--check",
-          "--full-replay"
+          "--reference-only"
         ],
         "required_paths": [
           "gt6_dump/gt6_recipe_dump/maps/gt.recipe.electrolyzer.json",
@@ -864,7 +861,7 @@
       "full_replay": {
         "args": [
           "--check",
-          "--full-replay"
+          "--reference-only"
         ],
         "required_paths": [
           "gt6_dump/gt6_recipe_dump/maps/gt.recipe.mixer.json"
@@ -908,7 +905,7 @@
       "full_replay": {
         "args": [
           "--check",
-          "--full-replay"
+          "--reference-only"
         ],
         "required_paths": [
           "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json"
@@ -949,8 +946,7 @@
       "proof_tier": "compact",
       "full_replay": {
         "args": [
-          "--check",
-          "--full-replay"
+          "--check"
         ],
         "required_paths": [
           "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json",
@@ -971,8 +967,7 @@
       "proof_tier": "compact",
       "full_replay": {
         "args": [
-          "--check",
-          "--full-replay"
+          "--check"
         ],
         "required_paths": [
           "gt6_dump/gt6_recipe_dump/maps/gt.recipe.centrifuge.json",
@@ -1032,7 +1027,7 @@
       "full_replay": {
         "args": [
           "--check",
-          "--full-replay"
+          "--reference-only"
         ],
         "required_paths": [
           "gt6_dump/gt6_recipe_dump/maps/gt.recipe.bath.json",
@@ -1238,6 +1233,280 @@
       "proof_tier": "rederived",
       "outputs": [
         "t26_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t27_opening_snapshot",
+      "script": "tools/build_t27_opening_snapshot.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t27_opening_snapshot.json"
+      ]
+    },
+    {
+      "name": "build_t27_portfolio",
+      "script": "tools/build_t27_portfolio.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t27_portfolio.json",
+        "t27_portfolio/cover_kinds.json",
+        "t27_portfolio/deferred_open_items.json",
+        "t27_portfolio/energy_identities.json",
+        "t27_portfolio/itemgenerator_domains.json",
+        "t27_portfolio/machine_kinds.json",
+        "t27_portfolio/multiblock_kinds.json",
+        "t27_portfolio/prefixes.json",
+        "t27_portfolio/recipe_maps.json",
+        "t27_portfolio/tracks.json"
+      ]
+    },
+    {
+      "name": "build_t27_card_topology",
+      "script": "tools/build_t27_card_topology.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t27_card_topology.json"
+      ]
+    },
+    {
+      "name": "build_t27_readiness",
+      "script": "tools/build_t27_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t27_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t28_hot_ingot_source_evidence",
+      "script": "tools/build_t28_hot_ingot_source_evidence.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t28_hot_ingot_source_evidence.json"
+      ]
+    },
+    {
+      "name": "build_t28_load_projection",
+      "script": "tools/build_t28_load_projection.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t28_load_projection.json"
+      ]
+    },
+    {
+      "name": "build_t28_publication_delta",
+      "script": "tools/build_t28_publication_delta.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t28_publication_delta.json"
+      ]
+    },
+    {
+      "name": "build_t28_readiness",
+      "script": "tools/build_t28_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t28_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t29_crucible_source_evidence",
+      "script": "tools/build_t29_crucible_source_evidence.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t29_crucible_source_evidence.json"
+      ]
+    },
+    {
+      "name": "build_t29_load_projection",
+      "script": "tools/build_t29_load_projection.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t29_load_projection.json"
+      ]
+    },
+    {
+      "name": "build_t29_publication_delta",
+      "script": "tools/build_t29_publication_delta.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t29_publication_delta.json"
+      ]
+    },
+    {
+      "name": "build_t29_readiness",
+      "script": "tools/build_t29_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t29_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t30_hopper_source_evidence",
+      "script": "tools/build_t30_hopper_source_evidence.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t30_hopper_source_evidence.json",
+        "hopper_variants.json"
+      ]
+    },
+    {
+      "name": "build_t30_phase5_1_contract",
+      "script": "tools/build_t30_phase5_1_contract.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "phase5_1_pre_rc_logistics_contract.json"
+      ]
+    },
+    {
+      "name": "build_t30_art_asset_provenance",
+      "script": "tools/build_t30_art_asset_provenance.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t30_art_asset_provenance.json"
+      ]
+    },
+    {
+      "name": "build_t30_load_projection",
+      "script": "tools/build_t30_load_projection.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t30_load_projection.json"
+      ]
+    },
+    {
+      "name": "build_t30_publication_delta",
+      "script": "tools/build_t30_publication_delta.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t30_publication_delta.json"
+      ]
+    },
+    {
+      "name": "build_t30_readiness",
+      "script": "tools/build_t30_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t30_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t31_scale_recheck",
+      "script": "tools/build_t31_scale_recheck.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t31_scale_recheck.json"
+      ]
+    },
+    {
+      "name": "build_t31_compatibility_report",
+      "script": "tools/build_t31_compatibility_report.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t31_compatibility_report.json"
+      ]
+    },
+    {
+      "name": "build_t31_load_report",
+      "script": "tools/build_t31_load_report.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t31_load_report.json"
+      ]
+    },
+    {
+      "name": "build_t31_g0",
+      "script": "tools/build_t31_g0.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t31_g0.json"
+      ]
+    },
+    {
+      "name": "build_t31_release_manifest",
+      "script": "tools/build_t31_release_manifest.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t31_release_manifest.json"
+      ]
+    },
+    {
+      "name": "build_t31_readiness",
+      "script": "tools/build_t31_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t31_readiness.json"
       ]
     }
   ],

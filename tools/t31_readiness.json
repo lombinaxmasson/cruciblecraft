@@ -1,0 +1,71 @@
+{
+  "closure": {
+    "compatibility_complete": true,
+    "f003_closed": true,
+    "f005_closed": true,
+    "full_suites": true,
+    "packages_complete": true,
+    "release_blockers_zero": true,
+    "t30_ready_current": true,
+    "version_is_rc1": true
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T31 is the pre-RC freeze card. Status is derived. T31_READY cannot be hand-written. G0 passed, packages are derived, and R10 closure is attempted from current evidence."
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t31_readiness.py": "ab3949174565dc427003fd7150cab97e2bb8efc71b50cd9fd75063f1f526d3f5",
+      "tools/t30_readiness.json": "9b0b2fee61ca2a8aa70b57c8532c20c9071a2dc4cf110769a06bdf727445d2e9",
+      "tools/t31_common.py": "24c0f8231f055507f77a5297ee727deb6d696775695d843babb3b73452cfa5f7",
+      "tools/t31_compatibility_report.json": "e7b94c656d4123044ce86314374d16beb5701581f5f58db521d344f1ae535001",
+      "tools/t31_load_report.json": "a9aace9a4245d1165786b126bfcc322091be94b1b2ab677cdbba6c51ccbd9c18",
+      "tools/t31_rc_policy.json": "b3193c1e8fbf5603c588f6c3b46d319d6723cb329c5be19060916fb89c750db0",
+      "tools/t31_readiness_policy.json": "9500165890937812cfa5c1972c57928b9f92b57e00d2dbda9edffd6f2134e32c",
+      "tools/t31_release_manifest.json": "041e49cb8d32bb03d97d3c9413ef768c1ae76498ac2ced2612ac6e54a09265b2",
+      "tools/t31_scale_recheck.json": "41b46ac404992b34ce11aa526b1474ea31bf88a2d9097b3dc4dd98c4a4241d0d"
+    }
+  },
+  "fidelity": {
+    "content_delta_zero_policy": true,
+    "no_cross_machine_wall_clock_blocker": true,
+    "opening_version_until_g0": true,
+    "source_revision_pinned": true,
+    "t24_history_not_rewritten": true
+  },
+  "generated_by": "python tools/build_t31_readiness.py --write",
+  "load": {
+    "datapack_hard_ceiling_is_6600": true,
+    "eager_hard_ceiling_is_21000": true,
+    "pending_axes_not_zeroed": true,
+    "stress_measured": true,
+    "target_measured": true
+  },
+  "owned_inputs": {
+    "tools/build_t31_readiness.py": "ab3949174565dc427003fd7150cab97e2bb8efc71b50cd9fd75063f1f526d3f5",
+    "tools/t30_readiness.json": "9b0b2fee61ca2a8aa70b57c8532c20c9071a2dc4cf110769a06bdf727445d2e9",
+    "tools/t31_common.py": "24c0f8231f055507f77a5297ee727deb6d696775695d843babb3b73452cfa5f7",
+    "tools/t31_compatibility_report.json": "e7b94c656d4123044ce86314374d16beb5701581f5f58db521d344f1ae535001",
+    "tools/t31_load_report.json": "a9aace9a4245d1165786b126bfcc322091be94b1b2ab677cdbba6c51ccbd9c18",
+    "tools/t31_rc_policy.json": "b3193c1e8fbf5603c588f6c3b46d319d6723cb329c5be19060916fb89c750db0",
+    "tools/t31_readiness_policy.json": "9500165890937812cfa5c1972c57928b9f92b57e00d2dbda9edffd6f2134e32c",
+    "tools/t31_release_manifest.json": "041e49cb8d32bb03d97d3c9413ef768c1ae76498ac2ced2612ac6e54a09265b2",
+    "tools/t31_scale_recheck.json": "41b46ac404992b34ce11aa526b1474ea31bf88a2d9097b3dc4dd98c4a4241d0d"
+  },
+  "policy": "The status field is derived from evidence by build(). T31_READY cannot be hand-written.",
+  "runtime": {
+    "gametest_passing": true,
+    "gametest_total": 137,
+    "java_unit_tests_passing": true,
+    "mod_version": "0.1.0-rc.1",
+    "python_unit_tests_passing": true,
+    "rc_number": null,
+    "report_status": "READY",
+    "t30_status": "T30_READY"
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T31_READY",
+  "status_owner": "run_full_verification"
+}

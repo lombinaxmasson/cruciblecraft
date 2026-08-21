@@ -350,6 +350,16 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
                 f"{material_id}/{sorted(missing)}"
             )
         ore_source_forms[material_id] = set(required_ore_source_forms)
+    # 4.5 card F: the import's prefix activation (source-backed, 688
+    # materials per gt6_material_activation_policy.json) flags rock; the
+    # gate selects the rock form wherever the material's factual forms keep
+    # it (policy-driven exclude_prefixes drop the other ten).
+    rock_forms: dict[str, set[str]] = {}
+    for material_id, document in material_docs.items():
+        flags = set(document.get("generation_flags") or [])
+        if ("cruciblecraft:generates_rock" in flags
+                and "rock" in factual_forms[material_id]):
+            rock_forms[material_id] = {"rock"}
     acceptance_document = load(ACCEPTANCE_FORM_CORRECTIONS)
     acceptance_forms: dict[str, set[str]] = defaultdict(set)
     for correction in acceptance_document.get("corrections") or []:
@@ -497,6 +507,7 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             | electrical_wire_forms.get(material_id, set())
             | t8_pipe_forms.get(material_id, set())
             | t10_known_forms.get(material_id, set())
+            | rock_forms.get(material_id, set())
         )
         compatibility = ((
             pre_gate_forms.get(material_id, set()) - selected_forms
@@ -699,7 +710,7 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
 def check_or_write(path: Path, content: str, write: bool) -> bool:
     if write:
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(content, encoding="utf-8", newline="\n")
+        path.write_bytes(content.encode("utf-8"))
         return True
     return path.is_file() and path.read_text(encoding="utf-8") == content
 

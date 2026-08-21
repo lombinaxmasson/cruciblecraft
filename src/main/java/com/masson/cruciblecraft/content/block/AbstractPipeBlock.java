@@ -171,6 +171,20 @@ public abstract class AbstractPipeBlock extends Block
             BlockGetter level,
             BlockPos pos,
             CollisionContext context) {
+        return Gt6StyleConnections.interactionShape(
+                state, context, connectedShape(state));
+    }
+
+    @Override
+    protected VoxelShape getCollisionShape(
+            BlockState state,
+            BlockGetter level,
+            BlockPos pos,
+            CollisionContext context) {
+        return connectedShape(state);
+    }
+
+    private VoxelShape connectedShape(BlockState state) {
         int mask = 0;
         for (Direction direction : Direction.values()) {
             if (isConnected(state, direction)) {

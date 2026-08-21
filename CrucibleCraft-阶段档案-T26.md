@@ -1,7 +1,7 @@
 # CrucibleCraft 阶段档案 · T26
 
 > 阶段：T26 · 公开 Beta 门禁  
-> 状态：✅ `T26_READY`  
+> 状态：● 已关闭（`T26_READY`，2026-08-18 `--check-ready`）
 > 固定 GT6 revision：`3703e40308c8c030763fd6297dea8b210d2a77b1`  
 > 权威产物：`tools/t26_readiness.json` · 台账：`tools/t26_known_issues.json` · 本地化：`tools/t26_localization_ledger.json`  
 > 试玩包：`cruciblecraft-0.1.0-beta.1.jar` · 玩家指南：[docs/CrucibleCraft-玩家指南.md](docs/CrucibleCraft-玩家指南.md)
@@ -9,18 +9,19 @@
 ## 1. 关闭判据
 
 T26 是公开 Beta 门禁。前置工程（本地化分账、0.1.0-beta.1 打包、未来版本隔离
-GameTest）已在 OPEN 期完成。收尾把试玩 known-issue、O-15、anvil_bend 与
-crucible freeze、readiness 与一次绑定完整验证写成 `T26_READY`。本卡 publication
-delta 为 0/0/0：不新增配方或注册对象。
+GameTest）已在 OPEN 期完成。4.5 体验精修在绑定前迁入本树，不另开 active T。
+收尾把试玩 known-issue、O-15、anvil_bend 与 crucible freeze、readiness 与一次
+绑定完整验证写成 `T26_READY`。本卡 T26 阶段 publication delta 为 0/0/0；
+剪线钳配方记在 T26.5 基线（logical/eager +205）。
 
 ## 2. T26a–d · 已落地证据
 
 | 阶段 | 证据 |
 |---|---|
 | T26a 玩家路径 | 试玩观察写入 4.5 P0–P9；无一 `blocks_beta` |
-| T26b 服端/存档 | GameTest 120，含 `t26UnknownFutureProcessingVersionQuarantinedAndPreserved` |
+| T26b 服端/存档 | GameTest 121，含未来版本隔离与 4.5 剪线钳九宫格测试 |
 | T26c 发布包 | `mod_version=0.1.0-beta.1`；CHANGELOG / CREDITS / 玩家指南 |
-| T26d 本地化 | `en_us` 3,173 / `zh_cn` 874；材料 208 + 1,566 `post_1_0`；O-15 关闭 |
+| T26d 本地化 | `en_us` 3,183 / `zh_cn` 885；材料 208 + 1,566 `post_1_0`；O-15 关闭 |
 
 ## 3. T26e · freeze 与三轴
 
@@ -38,9 +39,9 @@ delta 为 0/0/0：不新增配方或注册对象。
 
 **Closure** — 台账完整，freeze 词汇合法，打包与未来版本隔离证据在。
 
-**Fidelity** — 零新注册；主链无未声明 PLACEHOLDER；4.5 项保持体验债。
+**Fidelity** — T26 阶段零新注册；主链无未声明 PLACEHOLDER；4.5 P1–P9 已随本包落地，台账仍记 `post_beta_polish`；P0 仍待首次进世界取证。
 
-**Load** — publication 18,882 / 16,657 / 2,225；headroom 2,118（沿用 T25 logical 口径）；F003/F005 的 SKIP 契约转交 T27 RC。21,000 轴的 eager/logical 拍板属于 T27。
+**Load** — T23 账本 18,882 / 16,657 / 2,225（T26 阶段 delta 0/0/0）；T26.5 剪线钳 +205 后运行时 19,087 / 16,862 / 2,225；headroom 2,118（沿用 T25 logical 口径）；F003/F005 的 SKIP 契约转交 T27 RC。21,000 轴的 eager/logical 拍板属于 T27。
 
 ## 4. 验证与交接
 
@@ -57,10 +58,22 @@ PYTHONUTF8=1 python tools/run_full_verification.py --check-ready
 ```
 
 `T26_READY` 绑定一次完整验证会话：报告 `status = READY` 且
-`t26_readiness_acceptance.status = "T26_READY"`。GameTest 119→120 需要双
-record 收敛 report-owned runtime。
+`t26_readiness_acceptance.status = "T26_READY"`。GameTest 119→121 与
+4.5 套件膨胀需要双 record 收敛 report-owned runtime。禁止
+`--write-tooling-snapshot` 强行写 acceptance。
 
-当前执行入口为 T27 portfolio freeze。4.5 不插卡、不占 active T。
+**2026-08-18 绑定事实（`--check-ready` 退出 0）：**
+
+| 项 | 状态 |
+|---|---|
+| 报告 | `status = READY`；session `20260817T204031.938332Z-c27e1677755d-03920af9` |
+| T26 | `t26_readiness_acceptance.status = T26_READY` |
+| JUnit / GameTest | **582** 全绿 / **121/121** |
+| datapack / publication | 3,243；T26 阶段 delta **0/0/0** |
+| known issues | 15，`blocks_beta = 0`；O-15 关闭 |
+| T27 | **已开卡（T27-1）**。契约与 opening snapshot 已写入；下一动作是七表分类，不是继续改 T26 |
+
+4.5 不插卡、不占 active T。P0 仍待首次进世界取证。
 
 **交给 T27**：
 

@@ -26,6 +26,7 @@ public enum MaterialCreativeTab {
     MECHANICAL_PARTS("mechanical_parts"),
     WIRES("wires"),
     CABLES("cables"),
+    PIPES("pipes"),
     MISC("misc");
 
     private final String registryName;
@@ -51,7 +52,8 @@ public enum MaterialCreativeTab {
                     "cruciblecraft:washed_crushed_ore",
                     "cruciblecraft:centrifuged_crushed_ore",
                     "cruciblecraft:tiny_centrifuged_crushed_ore",
-                    "cruciblecraft:purified_dust" -> ORE_PROCESSING;
+                    "cruciblecraft:purified_dust",
+                    "cruciblecraft:rock" -> ORE_PROCESSING;
             case "cruciblecraft:dust",
                     "cruciblecraft:small_dust",
                     "cruciblecraft:tiny_dust" -> DUSTS;
@@ -81,25 +83,27 @@ public enum MaterialCreativeTab {
                     "cruciblecraft:small_gear",
                     "cruciblecraft:rotor" -> MECHANICAL_PARTS;
             case "cruciblecraft:fine_wire",
-                    "cruciblecraft:wire",
                     "cruciblecraft:double_wire",
                     "cruciblecraft:quadruple_wire",
                     "cruciblecraft:octuple_wire",
                     "cruciblecraft:dodecuple_wire",
                     "cruciblecraft:hexadecuple_wire" -> WIRES;
-            case "cruciblecraft:cable",
+            // Placeable conductors share one page (wire + cable + multi-cable);
+            // pipes get their own page.
+            case "cruciblecraft:wire",
+                    "cruciblecraft:cable",
                     "cruciblecraft:double_cable",
                     "cruciblecraft:quadruple_cable",
                     "cruciblecraft:octuple_cable",
-                    "cruciblecraft:dodecuple_cable",
-                    "cruciblecraft:tiny_fluid_pipe",
+                    "cruciblecraft:dodecuple_cable" -> CABLES;
+            case "cruciblecraft:tiny_fluid_pipe",
                     "cruciblecraft:small_fluid_pipe",
                     "cruciblecraft:fluid_pipe",
                     "cruciblecraft:large_fluid_pipe",
                     "cruciblecraft:huge_fluid_pipe",
                     "cruciblecraft:item_pipe",
                     "cruciblecraft:large_item_pipe",
-                    "cruciblecraft:huge_item_pipe" -> CABLES;
+                    "cruciblecraft:huge_item_pipe" -> PIPES;
             default -> MISC;
         };
     }

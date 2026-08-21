@@ -1,0 +1,3196 @@
+{
+  "counts": {
+    "canonical": 96,
+    "missing": 0,
+    "out_of_scope": 0,
+    "post_1_0": 73,
+    "unclassified": 0,
+    "unexpected": 0,
+    "v1_required": 23
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t27_portfolio.py": "af2635234c6815ea6598982a61e096a01dfc415f9ba9e436dd7acad8dd966387",
+      "tools/t13_denominators/machine_kinds.json": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+      "tools/t16_machine_denominator.json": "d02b6efe9ed864d4a1e013307798c3e6ce856f99d47a45a159587a66d8442a0a",
+      "tools/t17_machine_denominator.json": "6a26e3f788bc4845307445449ee3400fae2aadff23f420da070c5ca1f3f2abd4",
+      "tools/t18_machine_energy_denominator.json": "58f26585f961c626e2eb57d82061adf6f24341c0be3954f1a4f1f16157c3fcf8",
+      "tools/t27_portfolio_policy/machine_kinds.json": "e5910de44a2b328ac6fc7c0946b06d46aacd3244138d92f0c11218ac77f52142"
+    }
+  },
+  "generated_by": "python tools/build_t27_portfolio.py",
+  "records": [
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17/T18 marks this kind PREIMPLEMENTED_REFERENCE with a live CC host.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "Batch preimplemented reference plus T13 canonical key. A related map on another energy identity is a different kind.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Reference host is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityAxle|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:rotational_axle",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "replacement_condition": "Not applicable: a pre-T16/T17/T18 reference already hosts this kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "cdf670cea2ddfaa5368c578114d4bf501c7d35cc3f5be5d7369882a95397a5a0",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachineElectric|recipe:RM.Autocrafter|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "13f0c7777a3c6e9deade70e68b5c27ed0f548d5b7a3874fe884f2cfdc60521fe",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachineElectric|recipe:RM.Boxinator|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "df8b7436e891b0a17ad245b612cb519f0063b1e11867a2aab7f354ff292eb84d",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachineElectric|recipe:RM.Bumblelyzer|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "b522a6f7746cfd3662a90adbb8b44c88ef489acf5c35819b22519f0164405b82",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachineElectric|recipe:RM.Canner|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "2a67bb17f57a816eda4cf2b82219666214d7ab1e5b8a2ece29fe6037091ce9fc",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17/T18 marks this kind PREIMPLEMENTED_REFERENCE with a live CC host.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "Batch preimplemented reference plus T13 canonical key. A related map on another energy identity is a different kind.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Reference host is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachineElectric|recipe:RM.Electrolyzer|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:electrolyzer",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "replacement_condition": "Not applicable: a pre-T16/T17/T18 reference already hosts this kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "471f0273d940e20c44f1f05b968f713fb0ef3b10e8d0da57a97b8aa1aba8346d",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachineElectric|recipe:RM.Injector|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "92d15b80fbf731dc69b069e18e88219d8c94e10620a1dad9f995f8ea064dd1de",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachineElectric|recipe:RM.Lightning|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "072f30a8b79a9335053b34668fbf822c3d38ae8d8b0c342297127672b9dba93f",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachineElectric|recipe:RM.Loom|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "97c5f19d023f0a9c5a5ee76bfd95c2f7ccd0165a62e19929a3a2dd5433b437eb",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "A CC block/map exists, but T16/T17 classified this canonical kind MAPPED_DEFERRED because the live host uses a different energy identity or was not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T16/T17 MAPPED_DEFERRED plus related_host descriptor. Machine kind, CC block and RecipeMap host remain three identities.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Related-host presence is not a load measurement for this kind.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachineElectric|recipe:RM.Mixer|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "related_host:cruciblecraft:mixer",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later card may adopt this energy-identity kind only after measuring it separately from the related_host block; the related host does not close this canonical key.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "b1850b16e8ee8236a3b4d68f4a90084a9d03e821161f6f74e322f8b31ce71b96",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachineElectric|recipe:RM.Plantalyzer|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "341da3f3e531ef3a68b060f45a50bd7a89457e82585dbbf9c46930e18b38a2a1",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachineElectric|recipe:RM.Printer|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "3bd01c3a623e014d70d6fcf6d593db8b2ca8ed2c158661e16bb9ab2cf4efd30b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachineElectric|recipe:RM.ScannerVisuals|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "a7990a9039b8684d5bc976e41a623c7562b2721b45cd254dc94f3b3e62317eaf",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "A CC block/map exists, but T16/T17 classified this canonical kind MAPPED_DEFERRED because the live host uses a different energy identity or was not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T16/T17 MAPPED_DEFERRED plus related_host descriptor. Machine kind, CC block and RecipeMap host remain three identities.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Related-host presence is not a load measurement for this kind.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachineElectric|recipe:RM.Sifting|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "related_host:cruciblecraft:sifter",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later card may adopt this energy-identity kind only after measuring it separately from the related_host block; the related host does not close this canonical key.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "ca38e65cb75bc26871e5fe5137785e038c9c294e66fb7d8afa7b914bd84f7377",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachineElectric|recipe:RM.Slicer|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "ba0ecf224f8c065b75bc5ccd5781648914e3a6fef71c73151bd467a62f2253be",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachineElectric|recipe:RM.Unboxinator|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "77d3f1cf2fbd7e278806eda24dad398391a7616deb80a4bc8f2ef9e8085a616f",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T22.5 registered_playable cruciblecraft:autoclave plus T13 T15-owned kind.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 RM.Autoclave kind plus T22.5 playability. Not a multiblock autoclave.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Autoclave is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Autoclave|accepts:TU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:autoclave",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T15 TU autoclave is a playable CC host. Kind-level closure is not map-row completion.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "replacement_condition": "Not applicable: T15/T22.5 already host a playable autoclave.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "4f52dc5c0197c545f0d81537c73a36854057ddf6e86936488bd93498f5f4a63f",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T22.5 registered_playable cruciblecraft:bath plus T13 T15-owned kind.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 RM.Bath kind plus T22.5 playability.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Bath is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Bath|accepts:TU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:bath",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T15 TU bath is a playable CC host.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "replacement_condition": "Not applicable: T15/T22.5 already host a playable bath.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "184362a4bb5ca8e395223f0ec0f7197f7106b5a22098dee8fe2166b5180fb06e",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.BurnMixer|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=true,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "f589b6a6d7f64acd61712b8f4d49e8c5c1559081f6fd5bbbe7b0e550194fe962",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.CatalyticCracking|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "e6477f3c0e302be58b9de5b16fc431ee5ea76b79b7203bcf58825a25765c3ae2",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16 marks this kind IMPLEMENTED_PRE_T16. Kind-level v1 obligation is the selected host, not row-level map completion.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T16 machine denominator plus T13 canonical key. RecipeMap leftover rows stay Track A.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Selected host already participates in the T26 READY publication; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Centrifuge|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:centrifuge",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "replacement_condition": "Not applicable: this canonical kind already has a selected or preimplemented CC host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "5b4e63a472f7a1c5d1753f8a5be7c24bced264bf09516b8cb73d5e51a76dbfe8",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.ClusterMill|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "19d62771ad1c83a7abe35b8c71168bbdde8c93f30a767b57bd16f38ef6c5c4a3",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 in_scope only means the kind sat in a T15-T18 energy batch. T27 does not treat that as a closed v1 machine.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 machine_kinds canonical key. A live RecipeMap or CC block may belong to a different energy identity.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Coagulator|accepts:TU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T15-owned kind, but gt.recipe.coagulator remains a deferred chemical pipeline. A T15 owner label is not a playable host.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x machine card measures this canonical kind separately from any related RecipeMap host or existing CC block; presence of a block is not closure.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "8b11dbf9004258a6ad893b3610e41534be300cf3bc9e44cd1f159b3af37d960e",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "A CC block/map exists, but T16/T17 classified this canonical kind MAPPED_DEFERRED because the live host uses a different energy identity or was not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T16/T17 MAPPED_DEFERRED plus related_host descriptor. Machine kind, CC block and RecipeMap host remain three identities.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Related-host presence is not a load measurement for this kind.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Compressor|accepts:KU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "related_host:cruciblecraft:compressor",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later card may adopt this energy-identity kind only after measuring it separately from the related_host block; the related host does not close this canonical key.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "3c67841966d2ed1dc284853731cd32121ce24ba6c1c207857c0ab63bab889a6b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "A CC block/map exists, but T16/T17 classified this canonical kind MAPPED_DEFERRED because the live host uses a different energy identity or was not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T16/T17 MAPPED_DEFERRED plus related_host descriptor. Machine kind, CC block and RecipeMap host remain three identities.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Related-host presence is not a load measurement for this kind.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Crusher|accepts:KU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "related_host:cruciblecraft:crusher",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later card may adopt this energy-identity kind only after measuring it separately from the related_host block; the related host does not close this canonical key.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "2cc73bb22b9737e5c50f8c19e93ad2b62bafb07af2d9a1fe0ff0d597cb420aca",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason machine kind. T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred machine kind plus T16-T18 energy-batch evidence.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Deferred machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.CryoMixer|accepts:CU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). The machine uses an energy identity outside the T16 RU/KU and T17 HU/EU batches.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card measures or excludes this energy/nuclear kind; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "fdb47dbafeabe1f3e25259150aae786d5076da7bafc66ce5e49515d44e1b21c1",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.CrystallisationCrucible|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "e433c1cfb664bb49561f33db8d90c463dd0314dd8ab7b49dc17f26500379aae3",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "A CC block/map exists, but T16/T17 classified this canonical kind MAPPED_DEFERRED because the live host uses a different energy identity or was not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T16/T17 MAPPED_DEFERRED plus related_host descriptor. Machine kind, CC block and RecipeMap host remain three identities.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Related-host presence is not a load measurement for this kind.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Cutter|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "related_host:cruciblecraft:cutter",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later card may adopt this energy-identity kind only after measuring it separately from the related_host block; the related host does not close this canonical key.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "d892af780529bd2019673cc612804f49d63a7ad6f68d4080f416805baf6cb0e7",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T17a implemented this Heat_T kind.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T17 machine denominator IMPLEMENTED_T17A.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T17a host is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Distillery|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:distillery",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "replacement_condition": "Not applicable: T17a selected this canonical kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "8420e32eb0db4c58be97c5936868fbad871f4b084e8ca6869f5cc61cf5cb0902",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T17a implemented this Heat_T kind.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T17 machine denominator IMPLEMENTED_T17A.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T17a host is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Drying|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:drying",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "replacement_condition": "Not applicable: T17a selected this canonical kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "cd17880aba69170c0bb054b808af30b1e8c6d57c5cf0cc543a31b31523c520cc",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "A CC block/map exists, but T16/T17 classified this canonical kind MAPPED_DEFERRED because the live host uses a different energy identity or was not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T16/T17 MAPPED_DEFERRED plus related_host descriptor. Machine kind, CC block and RecipeMap host remain three identities.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Related-host presence is not a load measurement for this kind.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Extruder|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "related_host:cruciblecraft:extruder",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later card may adopt this energy-identity kind only after measuring it separately from the related_host block; the related host does not close this canonical key.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "47e88fd585cc670fefb1527c3ae198a2613798eea858e1047ee25ae37e7126cb",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Fermenter|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "fef8bbc8a56e9559579e26b42316f2ecaa281525a70150aca926c73ab5654d85",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason machine kind. T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred machine kind plus T16-T18 energy-batch evidence.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Deferred machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Freezer|accepts:CU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). The machine uses an energy identity outside the T16 RU/KU and T17 HU/EU batches.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card measures or excludes this energy/nuclear kind; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "51e97c10d36ede87b2e63b8c84958af571ec7635ac840f4d4315fec295c49bfe",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Furnace|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "fa3f4a7a02362700c55da3f03acedcaba65992e59d50d51a52a24f870ec4b2e6",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T22.5 registered_playable cruciblecraft:generifier plus T13 T15-owned kind.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 RM.Generifier kind plus T22.5 playability.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Generifier is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Generifier|accepts:TU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:generifier",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T15 TU generifier is a playable CC host.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "replacement_condition": "Not applicable: T15/T22.5 already host a playable generifier.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "98135d846a9622fd4ffea647bdfd65880e60225ee6a6af73984b54cf870c800d",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Laminator|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "bf67527be2fa54594f2979447c5907af17dc75a9fdd954aee8987c1b763ece9c",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason machine kind. T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred machine kind plus T16-T18 energy-batch evidence.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Deferred machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.LaserEngraver|accepts:LU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). The machine uses an energy identity outside the T16 RU/KU and T17 HU/EU batches.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card measures or excludes this energy/nuclear kind; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "dbe7cf2f05ce9e2356018de8d3a60ee3e68c6eb296221aa6be282fed5a76a41d",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16a implemented this canonical kind. Existing block plus selected energy identity close the kind, not every source tier.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T16 machine denominator IMPLEMENTED_T16A.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T16a host is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Lathe|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:lathe",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "replacement_condition": "Not applicable: T16a selected this canonical kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "67e01b395e0b3a8ec363dce75e5e85f4a3d93411c81dec1f93a2bb65908d53c2",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Loom|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "8fb881c0c866ec93307912c07b837332dc57278a7c679609d575602533547a57",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason machine kind. T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred machine kind plus T16-T18 energy-batch evidence.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Deferred machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.MagneticSeparator|accepts:MU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). The machine uses an energy identity outside the T16 RU/KU and T17 HU/EU batches.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card measures or excludes this energy/nuclear kind; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "30b9db2afb3ee5cc13911bd36d2616430bd981c3587967a5d2c26e42508bc72c",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason machine kind. T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred machine kind plus T16-T18 energy-batch evidence.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Deferred machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Massfab|accepts:QU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "Matter fabricator machine kind is Track C, not a default industrial post-1.0 card. The fusion_reactor multiblock kind remains out_of_scope.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card measures or excludes this energy/nuclear kind; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "797696dd23441f3cf3f79417bedf73737fd1124a91937da94302b810da7932ae",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Melter|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "07ae8bbd47e3fe115bb34d135833fe475a2581f9b56cb499c85ecae4accd6774",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "A CC block/map exists, but T16/T17 classified this canonical kind MAPPED_DEFERRED because the live host uses a different energy identity or was not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T16/T17 MAPPED_DEFERRED plus related_host descriptor. Machine kind, CC block and RecipeMap host remain three identities.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Related-host presence is not a load measurement for this kind.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Mixer|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "related_host:cruciblecraft:mixer",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later card may adopt this energy-identity kind only after measuring it separately from the related_host block; the related host does not close this canonical key.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "4c5ec2f9444d0528fbc077133cb737aa00441bc734e94074177e993f00956ac6",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Nanofab|accepts:EU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "bab785ef51fe2811c4436d4875946fbeb14c17234f9aabc733704c30f8c31399",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason machine kind. T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred machine kind plus T16-T18 energy-batch evidence.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Deferred machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Polarizer|accepts:MU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). The machine uses an energy identity outside the T16 RU/KU and T17 HU/EU batches.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card measures or excludes this energy/nuclear kind; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "6b6fea98cc1dcd59b8daaf2ff84df53a7204517edd08bf32ec43b2a043e9ab79",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.PressureWasher|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "a5872a679a36c62cdca84c1f22acafd7d1411384ebd816eebff76121fa94da10",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16b implemented Press as the selected KU kind.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T16 machine denominator IMPLEMENTED_T16B.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T16b host is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Press|accepts:KU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:press",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "replacement_condition": "Not applicable: T16b selected this canonical kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "9c105624e087c04b1d5091f851eb3cc7fea354cf525d4248810cce3329db2626",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason machine kind. T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred machine kind plus T16-T18 energy-batch evidence.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Deferred machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Replicator|accepts:QU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=true,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "Replicator is Track C quantum/nuclear topology, not Track E.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card measures or excludes this energy/nuclear kind; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "dc17d70ec578e1e6070efb24bc80acf6f1dfa718205f5579c4f51ec5b72c89fa",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Roasting|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "1a7f1cc040a802a02cccfdee6b17ddcdf7ade1e931fb154b0727b7e2b448d683",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "A CC block/map exists, but T16/T17 classified this canonical kind MAPPED_DEFERRED because the live host uses a different energy identity or was not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T16/T17 MAPPED_DEFERRED plus related_host descriptor. Machine kind, CC block and RecipeMap host remain three identities.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Related-host presence is not a load measurement for this kind.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.RollBender|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "related_host:cruciblecraft:rollbender",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later card may adopt this energy-identity kind only after measuring it separately from the related_host block; the related host does not close this canonical key.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "f79a9aa1c2b56089428cfb494370262f67369de49d42b7d02b67396fa59a4deb",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.RollFormer|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "6d9f2bd0fb3704247813757ca9d0f7fcaf28ecda99a3eb07f044dd8d5dfe7fbe",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16a implemented this canonical kind. Existing block plus selected energy identity close the kind, not every source tier.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T16 machine denominator IMPLEMENTED_T16A.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T16a host is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.RollingMill|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:rollingmill",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "replacement_condition": "Not applicable: T16a selected this canonical kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "0729998bfd4bdfa078b3282af12842be55fca2f4ad822c59b67ea6637599cb1e",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason machine kind. T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred machine kind plus T16-T18 energy-batch evidence.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Deferred machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.ScannerMolecular|accepts:QU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "Molecular scanner is Track C quantum topology, not Track E.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card measures or excludes this energy/nuclear kind; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "6fbdb43985d1b9bb435421bd6641013a09a30a6422e8268efa04793751434f4b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Sharpening|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "5cb8a732b723ecc088c6df11caecf5638b71b6ce8e76e9ad21eed214aeed996d",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16a implemented this canonical kind. Existing block plus selected energy identity close the kind, not every source tier.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T16 machine denominator IMPLEMENTED_T16A.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T16a host is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Shredder|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:shredder",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "replacement_condition": "Not applicable: T16a selected this canonical kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "76bad5798eb30481262a82ecd1500471d080fcae3e46eddd273c39f0161b6683",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16 marks this kind IMPLEMENTED_PRE_T16. Kind-level v1 obligation is the selected host, not row-level map completion.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T16 machine denominator plus T13 canonical key. RecipeMap leftover rows stay Track A.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Selected host already participates in the T26 READY publication; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Sifting|accepts:KU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:sifter",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "replacement_condition": "Not applicable: this canonical kind already has a selected or preimplemented CC host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "faa257dc87e2d94ad8443231c445d5fccc71506f4b370c2e6dfce2f67f65f61c",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "A CC block/map exists, but T16/T17 classified this canonical kind MAPPED_DEFERRED because the live host uses a different energy identity or was not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T16/T17 MAPPED_DEFERRED plus related_host descriptor. Machine kind, CC block and RecipeMap host remain three identities.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Related-host presence is not a load measurement for this kind.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Sluice|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "related_host:cruciblecraft:sluice",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later card may adopt this energy-identity kind only after measuring it separately from the related_host block; the related host does not close this canonical key.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "6f2f338280fda13287a62cdee2d1a3193817504a23e97fa986efc670daa3c854",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T17a implemented this Heat_T kind.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T17 machine denominator IMPLEMENTED_T17A.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T17a host is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Smelter|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=true,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:smelter",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "replacement_condition": "Not applicable: T17a selected this canonical kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "e2b8b4c498e08e762d2c3bd9705b94d747b8b7ef22a30fdaa2d70f4a7c9c4a04",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Squeezer|accepts:KU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=true,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "ed687f754829110154c258b4799f785d325c20a434c60bdf34f25ced2a4ffaa5",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17 T13_ONLY_DEFERRED: no local map and not selected.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 canonical kind with no CC host in the selected batch.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Absent-family machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.SteamCracking|accepts:HU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card must add a local map, energy identity and acquisition together; this kind must not be merged into an unrelated live host.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "e9cc67e39e4efb4c63e7d37cb605bf82a8fbced2d6ced952d6ab7928564e6748",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason machine kind. T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred machine kind plus T16-T18 energy-batch evidence.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Deferred machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Welder|accepts:LU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "related_host:cruciblecraft:welder",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "The LU welder machine kind is T13 deferred. The playable cruciblecraft:welder hosts the v1 RecipeMap, not this LU canonical kind.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card measures or excludes this energy/nuclear kind; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "11dae332087dbcd9aa15d2dff68e6a09c3d2898211dbe0ad73ef11f51bdfec0c",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16a implemented this canonical kind. Existing block plus selected energy identity close the kind, not every source tier.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T16 machine denominator IMPLEMENTED_T16A.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T16a host is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBasicMachine|recipe:RM.Wiremill|accepts:RU|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:wiremill",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader Basic Machine canonical kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "replacement_condition": "Not applicable: T16a selected this canonical kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "1f09f1b3752ead329c94668b17418f5bebc23d41f3e6fd4c7b25c2e2c594a1b6",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBatteryBoxLarge|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "7a3c6867b8d502d48cbd8b550513109451fda2486310368fcbe9e7710a26e83d",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBatteryBox|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "bba3db50e1475ac9a87fa7b42ba33dc3916359a68d6e598183ce2ac2742ce37a",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 selected this energy machine kind and bound a converter profile.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator SELECTED_T18. An existing axle/gearbox is not a substitute for a different converter kind.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T18 converter is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityBoilerTank|NONE|accepts:HU|emits:STEAM|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:bronze_boiler",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "T27 RC candidate energy-machine recheck",
+      "replacement_condition": "Not applicable: T18 selected this converter/generator kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "36ef4eff104f5c6c0c4201646f272cefe631bb9bced569bd1ab857a6cab2c187",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityCoolerElectric|NONE|accepts:EU|emits:CU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "f8721763e0e6106dd8679b05756c523d6207be9755cd5e54272ea61505ea1d78",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason machine kind. T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred machine kind plus T16-T18 energy-batch evidence.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Deferred machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityCrystalChargerLarge|NONE|accepts:NONE|emits:LU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). The energy behavior is not selected by T15-T18.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card measures or excludes this energy/nuclear kind; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "68ff45ee9adaef7fcbe159f90d328a8137fa4d3ca884b4376856a5143ab735f9",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason machine kind. T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred machine kind plus T16-T18 energy-batch evidence.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Deferred machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityCrystalCharger|NONE|accepts:NONE|emits:LU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). The energy behavior is not selected by T15-T18.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card measures or excludes this energy/nuclear kind; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "d65348daed8abaf8696ad159bec3b032f2d3c0c715ffa9a589fb257d9e9d7c43",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 selected this energy machine kind and bound a converter profile.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator SELECTED_T18. An existing axle/gearbox is not a substitute for a different converter kind.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T18 converter is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityDynamoElectric|NONE|accepts:RU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:bronze_dynamo",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "T27 RC candidate energy-machine recheck",
+      "replacement_condition": "Not applicable: T18 selected this converter/generator kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "6c0f2cf5c6d102bae740cf96e6cb5d85a1536ecc07480c8e0ca9e9c31e4b18cb",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityEngineElectric|NONE|accepts:EU|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "35f9a5eb89a9c92aea04b374b3fcd95dc0194eeba471d2547a69cb86c4791799",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityEngineRotation|NONE|accepts:RU|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "851de8fca1131cb40ffba791f087dc74caff0b772effc05c14eb673562d04672",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 selected this energy machine kind and bound a converter profile.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator SELECTED_T18. An existing axle/gearbox is not a substitute for a different converter kind.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T18 converter is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityEngineSteam|NONE|accepts:STEAM|emits:KU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:bronze_steam_engine",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "T27 RC candidate energy-machine recheck",
+      "replacement_condition": "Not applicable: T18 selected this converter/generator kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "8e39421a36e99fa60de542acc62b1142da03ff2d8ac89cfdd02d9730d6ccb6cc",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17/T18 marks this kind PREIMPLEMENTED_REFERENCE with a live CC host.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "Batch preimplemented reference plus T13 canonical key. A related map on another energy identity is a different kind.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Reference host is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityGearBox|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:rotational_gearbox",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "replacement_condition": "Not applicable: a pre-T16/T17/T18 reference already hosts this kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "ee2a9c9e09ea432d2b58fe2d974f31f1b967c148dfa432c65b6d9a7778919ebf",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityGeneratorBrick|fuel:FM.Furnace|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "57908f4c46da5b33354ba304b65a33fbb411b4e8c008ca9b19eed403fb885f5a",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityGeneratorFluidBed|fuel:FM.FluidBed|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "1e19920271257fd3d58e171d0b69a46c556fa10803561735e13458682307b265",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 selected this energy machine kind and bound a converter profile.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator SELECTED_T18. An existing axle/gearbox is not a substitute for a different converter kind.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T18 converter is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityGeneratorGas|fuel:FM.Burn|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:bronze_gas_generator",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "T27 RC candidate energy-machine recheck",
+      "replacement_condition": "Not applicable: T18 selected this converter/generator kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "5af282a6ee960febffac0bf670db024a234027f3d4d9bb7d581a9fb47057cb19",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityGeneratorHotFluid|fuel:FM.Hot|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "165706a876ddc74a4553ef72ba2b8bab4609de229783646533f62ab82bdca0ed",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityGeneratorLiquid|fuel:FM.Burn|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "282443730a3c66d6a9abf2437a65628a41be401fc541a292e631924c7257afc4",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 selected this energy machine kind and bound a converter profile.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator SELECTED_T18. An existing axle/gearbox is not a substitute for a different converter kind.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T18 converter is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityGeneratorMetal|fuel:FM.Furnace|accepts:NONE|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:bronze_firebox",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "T27 RC candidate energy-machine recheck",
+      "replacement_condition": "Not applicable: T18 selected this converter/generator kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "f9bc1997dad7c930e3de5a5d99b186ca737a1ccf3a87631a174235f4509da8c3",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityHeaterElectric|NONE|accepts:EU|emits:HU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "913f921e65848f477740d900e13bd240f9b16fcc53520fa806de988fd8a0be52",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityLaserAbsorberElectric|NONE|accepts:LU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "a064dcb0b60e2ec0df48f12ba344fb85e245de807ed2759c5e927f51ea8c59c3",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityLaserElectric|NONE|accepts:EU|emits:LU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "1c353784b10d3a0939056a98f4aaf456be5ed285128866c78d1c164233759676",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityLongDistanceTransformer|NONE|accepts:EU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "aa7494d931d00553ccb3f7d731823993e3ff455c6e4f99af673dfea1e766f448",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityMagicFieldAbsorber|NONE|accepts:NONE|emits:CU+HU+KU+LU+QU+TU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "2afb2c7c75cf3acc2641332ec4eeab47f170c6116007c11dbd5fae8df177b615",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityMagnetElectric|NONE|accepts:EU|emits:MU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "4f8c79ba2e8f333777aca1f911dac550e43997778551b1220a06b1f36e89bb63",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T16/T17/T18 marks this kind PREIMPLEMENTED_REFERENCE with a live CC host.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "Batch preimplemented reference plus T13 canonical key. A related map on another energy identity is a different kind.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Reference host is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityMotorElectric|NONE|accepts:EU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:electric_motor",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "T27 RC candidate machine-kind recheck",
+      "replacement_condition": "Not applicable: a pre-T16/T17/T18 reference already hosts this kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "218328bdfc8bc0f306fd7d3902aa7253a57630930edc56d995d40a8527b78fd0",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 selected this energy machine kind and bound a converter profile.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator SELECTED_T18. An existing axle/gearbox is not a substitute for a different converter kind.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "T18 converter is on the T26 READY path; T27 adds no machines.",
+          "status": "measured",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityMotorLiquid|fuel:FM.Engine|accepts:NONE|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "cruciblecraft:bronze_fuel_engine",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "T27 RC candidate energy-machine recheck",
+      "replacement_condition": "Not applicable: T18 selected this converter/generator kind.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "a65c91385b2e4067a0e225dd6abf33e8b81bbc6b1de04e2e0f23e6454f43fce2",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason machine kind. T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred machine kind plus T16-T18 energy-batch evidence.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Deferred machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityQuantumEnergizerLaser|NONE|accepts:LU|emits:QU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "LU-to-QU energizer is Track C quantum/nuclear topology, not Track E.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card measures or excludes this energy/nuclear kind; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "c0bfa263140e358318f7a4969da6a696e131f2b7d6af021cb787818657d3cf1b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason machine kind. T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred machine kind plus T16-T18 energy-batch evidence.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Deferred machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityReactorCore1x1|NONE|accepts:NONE|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "Nuclear 1x1 reactor core is Track C physics, not a default post-1.0 industrial machine card and not Track E.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card measures or excludes this energy/nuclear kind; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "2a7acbc0474b53b50b0f246ccf911faf2415da538bad939b4cda2eb0119593c8",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason machine kind. T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred machine kind plus T16-T18 energy-batch evidence.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Deferred machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityReactorCore2x2|NONE|accepts:NONE|emits:NONE|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "Nuclear 2x2 reactor core is Track C physics, not a default post-1.0 industrial machine card and not Track E.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card measures or excludes this energy/nuclear kind; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "3d2120be8bfa7c43c275e60d40837c65e567579df256904b6f839f44b9b1c0d6",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntitySolarPanelElectric|NONE|accepts:NONE|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "65104263a56ae8cd5c2940454a2dd2bf903a1b7c5f3f88c42ae38f9c9adc5569",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityTransformerElectric|NONE|accepts:EU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "120ea58b17fdd2630f7513dbad7cd8eccdfde35d7dbfee8c9e2fb6c88fd3b21a",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityTransformerRotation|NONE|accepts:RU|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "c506276cc992dba4b905fe92ba8668278916394be071d59c3542ebca41b33258",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityTurbineSteam|NONE|accepts:STEAM|emits:RU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=true,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/machine_kinds",
+      "reason": "T13 in_scope; roadmap MISSING (none). Fixed-loader energy production, conversion or transport kind.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "a1a4318eca08c25d54b6d9214ed4ed335e286597d2548cdc9fc3175f7824bb59",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T18 DEFERRED_WITH_REASON energy machine kind.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T18 machine energy denominator deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unselected T18 kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityZPMDechargerEU|NONE|accepts:QU|emits:EU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "QU-to-EU ZPM decharger depends on the deferred quantum identity; Track C owns it, not Track E.",
+      "recheck_point": "post-1.0 energy-machine measurement",
+      "replacement_condition": "A later energy/storage/generation card measures this T18 kind; T27 does not implement converters.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "60873bb7dc800c314c1fb820b3fc71430286595b427e165559ddab551df00ee7",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "machine_kinds"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason machine kind. T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred machine kind plus T16-T18 energy-batch evidence.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Deferred machine-kind load cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MultiTileEntityZPMDechargerQU|NONE|accepts:QU|emits:QU|NBT_CHEAP_OVERCLOCKING=false,NBT_NO_CONSTANT_POWER=false,NBT_PARALLEL_DURATION=false,NBT_NEEDS_IGNITION=false,NBT_WASTE_ENERGY=false,NBT_LIMIT_CONSUMPTION=false,NBT_SPECIAL_IS_START_ENERGY=false",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "QU ZPM decharger is Track C quantum topology, not Track E.",
+      "recheck_point": "post-1.0 machine-kind measurement",
+      "replacement_condition": "A later 1.x card measures or excludes this energy/nuclear kind; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/machine_kinds.json",
+        "artifact_sha256": "48d41f2cb1863af4c510b4d1b2d7229f91dee50fb5c448306392baa014a5f7b2",
+        "record_sha256": "721ee9206a2a0957d6a1f91e6cf4373869332d4a8f01649826ac3c3f5fd6002c",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "machine_kinds"
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T27_TABLE_CLASSIFIED",
+  "table": "machine_kinds"
+}

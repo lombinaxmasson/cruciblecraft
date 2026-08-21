@@ -9,6 +9,7 @@ import java.util.Objects;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.block.AnvilBlock;
+import com.masson.cruciblecraft.content.block.RockBlock;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.BellowsBlock;
 import com.masson.cruciblecraft.content.block.BoilerBlock;
@@ -29,9 +30,12 @@ import com.masson.cruciblecraft.content.block.MaterialStorageBlock;
 import com.masson.cruciblecraft.content.block.LargeCentrifugeBlock;
 import com.masson.cruciblecraft.content.block.DistillationTowerBlock;
 import com.masson.cruciblecraft.content.block.LargeBoilerBlock;
+import com.masson.cruciblecraft.content.block.LargeCrucibleBlock;
 import com.masson.cruciblecraft.content.block.TankBlock;
 import com.masson.cruciblecraft.content.block.MultiblockPortBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
+import com.masson.cruciblecraft.content.block.HopperBlock;
+import com.masson.cruciblecraft.content.block.DustFunnelBlock;
 import com.masson.cruciblecraft.content.block.RotationalAxleBlock;
 import com.masson.cruciblecraft.content.block.RotationalGearboxBlock;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
@@ -42,6 +46,8 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
+import com.masson.cruciblecraft.logistics.hopper.HopperVariant;
+import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
 import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
 
 import net.minecraft.resources.ResourceLocation;
@@ -61,6 +67,8 @@ public final class ModBlocks {
             MATERIAL_ORE_BLOCKS = new LinkedHashMap<>();
     private static final Map<String, DeferredBlock<MaterialStorageBlock>>
             MATERIAL_STORAGE_BLOCKS = new LinkedHashMap<>();
+    private static final Map<String, DeferredBlock<RockBlock>>
+            ROCK_BLOCKS = new LinkedHashMap<>();
     private static final Map<
             ElectricalConductorCatalog.Key,
             DeferredBlock<CableBlock>> ELECTRICAL_CONDUCTOR_BLOCKS =
@@ -147,6 +155,10 @@ public final class ModBlocks {
             TANK_3X3X3 = BLOCKS.register(
                     "tank_3x3x3",
                     () -> new TankBlock(machineProperties()));
+    public static final DeferredBlock<LargeCrucibleBlock>
+            LARGE_CRUCIBLE = BLOCKS.register(
+                    "large_crucible",
+                    () -> new LargeCrucibleBlock(machineProperties()));
 
     public static final DeferredBlock<BellowsBlock> BELLOWS = BLOCKS.register(
             "bellows",
@@ -242,65 +254,45 @@ public final class ModBlocks {
     public static final DeferredBlock<CrusherBlock> BRONZE_CRUSHER = BLOCKS.register(
             "bronze_crusher",
             () -> new CrusherBlock(machineProperties()));
+    private static final Map<
+            ResourceLocation,
+            DeferredBlock<ProcessingMachineBlock>> TIERED_PROCESSING_BLOCKS =
+                    registerTieredProcessingBlocks();
+    private static final Map<ResourceLocation, DeferredBlock<HopperBlock>>
+            HOPPER_BLOCKS = registerHopperBlocks();
+    public static final DeferredBlock<DustFunnelBlock> STEEL_DUST_FUNNEL =
+            BLOCKS.register(
+                    "steel_dust_funnel",
+                    () -> new DustFunnelBlock(
+                            machineProperties().noOcclusion()));
     public static final DeferredBlock<ProcessingMachineBlock> SLUICE =
             processing("sluice", ModProcessingMachines.SLUICE);
     public static final DeferredBlock<ProcessingMachineBlock> BATH =
             processing("bath", ModProcessingMachines.BATH);
     public static final DeferredBlock<ProcessingMachineBlock> CENTRIFUGE =
-            processing(
-                    "centrifuge",
-                    ModMachineVariants.require(
-                            ResourceLocation.fromNamespaceAndPath(
-                                    CrucibleCraft.MODID, "centrifuge")));
+            tieredProcessing("centrifuge");
     public static final DeferredBlock<ProcessingMachineBlock>
-            STEEL_CENTRIFUGE = processing(
-                    "steel_centrifuge",
-                    ModMachineVariants.require(
-                            ResourceLocation.fromNamespaceAndPath(
-                                    CrucibleCraft.MODID,
-                                    "steel_centrifuge")));
+            STEEL_CENTRIFUGE = tieredProcessing("steel_centrifuge");
     public static final DeferredBlock<ProcessingMachineBlock>
-            TITANIUM_CENTRIFUGE = processing(
-                    "titanium_centrifuge",
-                    ModMachineVariants.require(
-                            ResourceLocation.fromNamespaceAndPath(
-                                    CrucibleCraft.MODID,
-                                    "titanium_centrifuge")));
+            TITANIUM_CENTRIFUGE = tieredProcessing("titanium_centrifuge");
     public static final DeferredBlock<ProcessingMachineBlock> SHREDDER =
-            processing("shredder", machineVariant("shredder"));
+            tieredProcessing("shredder");
     public static final DeferredBlock<ProcessingMachineBlock> STEEL_SHREDDER =
-            processing("steel_shredder", machineVariant("steel_shredder"));
+            tieredProcessing("steel_shredder");
     public static final DeferredBlock<ProcessingMachineBlock>
-            TITANIUM_SHREDDER = processing(
-                    "titanium_shredder",
-                    machineVariant("titanium_shredder"));
+            TITANIUM_SHREDDER = tieredProcessing("titanium_shredder");
     public static final DeferredBlock<ProcessingMachineBlock> SIFTER =
-            processing(
-                    "sifter",
-                    ModMachineVariants.require(
-                            ResourceLocation.fromNamespaceAndPath(
-                                    CrucibleCraft.MODID, "sifter")));
+            tieredProcessing("sifter");
     public static final DeferredBlock<ProcessingMachineBlock>
-            STEEL_SIFTER = processing(
-                    "steel_sifter",
-                    ModMachineVariants.require(
-                            ResourceLocation.fromNamespaceAndPath(
-                                    CrucibleCraft.MODID, "steel_sifter")));
+            STEEL_SIFTER = tieredProcessing("steel_sifter");
     public static final DeferredBlock<ProcessingMachineBlock>
-            TITANIUM_SIFTER = processing(
-                    "titanium_sifter",
-                    ModMachineVariants.require(
-                            ResourceLocation.fromNamespaceAndPath(
-                                    CrucibleCraft.MODID,
-                                    "titanium_sifter")));
+            TITANIUM_SIFTER = tieredProcessing("titanium_sifter");
     public static final DeferredBlock<ProcessingMachineBlock> SMELTER =
-            processing("smelter", machineVariant("smelter"));
+            tieredProcessing("smelter");
     public static final DeferredBlock<ProcessingMachineBlock> INVAR_SMELTER =
-            processing("invar_smelter", machineVariant("invar_smelter"));
+            tieredProcessing("invar_smelter");
     public static final DeferredBlock<ProcessingMachineBlock>
-            TITANIUM_SMELTER = processing(
-                    "titanium_smelter",
-                    machineVariant("titanium_smelter"));
+            TITANIUM_SMELTER = tieredProcessing("titanium_smelter");
     public static final DeferredBlock<ProcessingMachineBlock> MORTAR =
             processing("mortar", ModProcessingMachines.MORTAR);
     public static final DeferredBlock<ProcessingMachineBlock> EXTRUDER =
@@ -308,31 +300,25 @@ public final class ModBlocks {
     public static final DeferredBlock<ProcessingMachineBlock> CUTTER =
             processing("cutter", ModProcessingMachines.CUTTER);
     public static final DeferredBlock<ProcessingMachineBlock> LATHE =
-            processing("lathe", machineVariant("lathe"));
+            tieredProcessing("lathe");
     public static final DeferredBlock<ProcessingMachineBlock> STEEL_LATHE =
-            processing("steel_lathe", machineVariant("steel_lathe"));
+            tieredProcessing("steel_lathe");
     public static final DeferredBlock<ProcessingMachineBlock> TITANIUM_LATHE =
-            processing("titanium_lathe", machineVariant("titanium_lathe"));
+            tieredProcessing("titanium_lathe");
     public static final DeferredBlock<ProcessingMachineBlock> ROLLINGMILL =
-            processing("rollingmill", machineVariant("rollingmill"));
+            tieredProcessing("rollingmill");
     public static final DeferredBlock<ProcessingMachineBlock>
-            STEEL_ROLLINGMILL = processing(
-                    "steel_rollingmill",
-                    machineVariant("steel_rollingmill"));
+            STEEL_ROLLINGMILL = tieredProcessing("steel_rollingmill");
     public static final DeferredBlock<ProcessingMachineBlock>
-            TITANIUM_ROLLINGMILL = processing(
-                    "titanium_rollingmill",
-                    machineVariant("titanium_rollingmill"));
+            TITANIUM_ROLLINGMILL = tieredProcessing("titanium_rollingmill");
     public static final DeferredBlock<ProcessingMachineBlock> ROLLBENDER =
             processing("rollbender", ModProcessingMachines.ROLLBENDER);
     public static final DeferredBlock<ProcessingMachineBlock> WIREMILL =
-            processing("wiremill", machineVariant("wiremill"));
+            tieredProcessing("wiremill");
     public static final DeferredBlock<ProcessingMachineBlock> STEEL_WIREMILL =
-            processing("steel_wiremill", machineVariant("steel_wiremill"));
+            tieredProcessing("steel_wiremill");
     public static final DeferredBlock<ProcessingMachineBlock>
-            TITANIUM_WIREMILL = processing(
-                    "titanium_wiremill",
-                    machineVariant("titanium_wiremill"));
+            TITANIUM_WIREMILL = tieredProcessing("titanium_wiremill");
     public static final DeferredBlock<ProcessingMachineBlock> BENDER =
             processing("bender", ModProcessingMachines.BENDER);
     public static final DeferredBlock<ProcessingMachineBlock> ASSEMBLER =
@@ -340,53 +326,34 @@ public final class ModBlocks {
     public static final DeferredBlock<ProcessingMachineBlock> WELDER =
             processing("welder", ModProcessingMachines.WELDER);
     public static final DeferredBlock<ProcessingMachineBlock> PRESS =
-            processing("press", machineVariant("press"));
+            tieredProcessing("press");
     public static final DeferredBlock<ProcessingMachineBlock> STEEL_PRESS =
-            processing("steel_press", machineVariant("steel_press"));
+            tieredProcessing("steel_press");
     public static final DeferredBlock<ProcessingMachineBlock> TITANIUM_PRESS =
-            processing("titanium_press", machineVariant("titanium_press"));
+            tieredProcessing("titanium_press");
     public static final DeferredBlock<ProcessingMachineBlock> ELECTROLYZER =
-            processing(
-                    "electrolyzer",
-                    ModMachineVariants.require(
-                            ResourceLocation.fromNamespaceAndPath(
-                                    CrucibleCraft.MODID, "electrolyzer")));
+            tieredProcessing("electrolyzer");
     public static final DeferredBlock<ProcessingMachineBlock>
-            ALUMINIUM_ELECTROLYZER = processing(
-                    "aluminium_electrolyzer",
-                    ModMachineVariants.require(
-                            ResourceLocation.fromNamespaceAndPath(
-                                    CrucibleCraft.MODID,
-                                    "aluminium_electrolyzer")));
+            ALUMINIUM_ELECTROLYZER = tieredProcessing("aluminium_electrolyzer");
     public static final DeferredBlock<ProcessingMachineBlock>
-            STAINLESS_STEEL_ELECTROLYZER = processing(
-                    "stainless_steel_electrolyzer",
-                    ModMachineVariants.require(
-                            ResourceLocation.fromNamespaceAndPath(
-                                    CrucibleCraft.MODID,
-                                    "stainless_steel_electrolyzer")));
+            STAINLESS_STEEL_ELECTROLYZER =
+                    tieredProcessing("stainless_steel_electrolyzer");
     public static final DeferredBlock<ProcessingMachineBlock> MIXER =
             processing("mixer", ModProcessingMachines.MIXER);
     public static final DeferredBlock<ProcessingMachineBlock> DISTILLERY =
-            processing("distillery", machineVariant("distillery"));
+            tieredProcessing("distillery");
     public static final DeferredBlock<ProcessingMachineBlock>
-            INVAR_DISTILLERY = processing(
-                    "invar_distillery",
-                    machineVariant("invar_distillery"));
+            INVAR_DISTILLERY = tieredProcessing("invar_distillery");
     public static final DeferredBlock<ProcessingMachineBlock>
-            TITANIUM_DISTILLERY = processing(
-                    "titanium_distillery",
-                    machineVariant("titanium_distillery"));
+            TITANIUM_DISTILLERY = tieredProcessing("titanium_distillery");
     public static final DeferredBlock<ProcessingMachineBlock> AUTOCLAVE =
             processing("autoclave", ModProcessingMachines.AUTOCLAVE);
     public static final DeferredBlock<ProcessingMachineBlock> DRYING =
-            processing("drying", machineVariant("drying"));
+            tieredProcessing("drying");
     public static final DeferredBlock<ProcessingMachineBlock> INVAR_DRYING =
-            processing("invar_drying", machineVariant("invar_drying"));
+            tieredProcessing("invar_drying");
     public static final DeferredBlock<ProcessingMachineBlock>
-            TITANIUM_DRYING = processing(
-                    "titanium_drying",
-                    machineVariant("titanium_drying"));
+            TITANIUM_DRYING = tieredProcessing("titanium_drying");
     public static final DeferredBlock<ProcessingMachineBlock> COMPRESSOR =
             processing("compressor", ModProcessingMachines.COMPRESSOR);
     public static final DeferredBlock<ProcessingMachineBlock> GENERIFIER =
@@ -407,6 +374,7 @@ public final class ModBlocks {
     public static void registerMaterials(Collection<MaterialDefinition> definitions) {
         if (!MATERIAL_ORE_BLOCKS.isEmpty()
                 || !MATERIAL_STORAGE_BLOCKS.isEmpty()
+                || !ROCK_BLOCKS.isEmpty()
                 || !ELECTRICAL_CONDUCTOR_BLOCKS.isEmpty()
                 || !PIPE_BLOCKS.isEmpty()) {
             throw new IllegalStateException("Material blocks already registered");
@@ -483,6 +451,44 @@ public final class ModBlocks {
                         "Duplicate storage block for " + material.id());
             }
         }
+        com.masson.cruciblecraft.api.material.MaterialPrefix rockForm =
+                com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog
+                        .require("rock");
+        for (MaterialDefinition material : definitions) {
+            if (!MaterialCatalog.registeredForms(material).contains(rockForm)
+                    || material.formItems().containsKey(rockForm)) {
+                continue;
+            }
+            DeferredBlock<RockBlock> previous =
+                    ROCK_BLOCKS.put(
+                            material.id(),
+                            BLOCKS.register(
+                                    material.registryName(rockForm),
+                                    () -> new RockBlock(
+                                            material.id(),
+                                            rockProperties())));
+            if (previous != null) {
+                throw new IllegalStateException(
+                        "Duplicate rock block for " + material.id());
+            }
+        }
+    }
+
+    public static DeferredBlock<RockBlock> rockBlock(String materialId) {
+        DeferredBlock<RockBlock> block = ROCK_BLOCKS.get(materialId);
+        if (block == null) {
+            throw new IllegalArgumentException(
+                    "No rock block for material " + materialId);
+        }
+        return block;
+    }
+
+    public static boolean hasRockBlock(String materialId) {
+        return ROCK_BLOCKS.containsKey(materialId);
+    }
+
+    public static Collection<DeferredBlock<RockBlock>> rockBlocks() {
+        return Collections.unmodifiableCollection(ROCK_BLOCKS.values());
     }
 
     public static DeferredBlock<DropExperienceBlock> oreBlock(
@@ -642,6 +648,79 @@ public final class ModBlocks {
                                 .sound(SoundType.STONE)));
     }
 
+    private static Map<ResourceLocation, DeferredBlock<ProcessingMachineBlock>>
+            registerTieredProcessingBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<ProcessingMachineBlock>>
+                blocks = new LinkedHashMap<>();
+        for (MachineVariant variant : ModMachineVariants.ALL) {
+            DeferredBlock<ProcessingMachineBlock> block =
+                    processing(variant.id().getPath(), variant);
+            if (blocks.put(variant.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate tiered processing block " + variant.id());
+            }
+        }
+        if (blocks.size() != 33) {
+            throw new IllegalStateException(
+                    "Tiered processing registration drifted from 33 rows");
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    private static DeferredBlock<ProcessingMachineBlock> tieredProcessing(
+            String path) {
+        DeferredBlock<ProcessingMachineBlock> block =
+                TIERED_PROCESSING_BLOCKS.get(
+                        ResourceLocation.fromNamespaceAndPath(
+                                CrucibleCraft.MODID, path));
+        if (block == null) {
+            throw new IllegalStateException(
+                    "Missing catalog processing block " + path);
+        }
+        return block;
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<ProcessingMachineBlock>>
+            tieredProcessingBlocksById() {
+        return TIERED_PROCESSING_BLOCKS;
+    }
+
+    private static Map<ResourceLocation, DeferredBlock<HopperBlock>>
+            registerHopperBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<HopperBlock>> blocks =
+                new LinkedHashMap<>();
+        for (HopperVariant variant : HopperVariantCatalog.variants()) {
+            DeferredBlock<HopperBlock> block = BLOCKS.register(
+                    variant.id().getPath(),
+                    () -> new HopperBlock(
+                            variant, machineProperties().noOcclusion()));
+            if (blocks.put(variant.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate hopper block " + variant.id());
+            }
+        }
+        if (blocks.size() != 120) {
+            throw new IllegalStateException(
+                    "Hopper registration drifted from 120 variants");
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<HopperBlock>>
+            hopperBlocksById() {
+        return HOPPER_BLOCKS;
+    }
+
+    public static Collection<DeferredBlock<HopperBlock>> hopperBlocks() {
+        return HOPPER_BLOCKS.values();
+    }
+
+    public static Block[] hopperBlockArray() {
+        return HOPPER_BLOCKS.values().stream()
+                .map(DeferredBlock::get)
+                .toArray(Block[]::new);
+    }
+
     private static DeferredBlock<ProcessingMachineBlock> processing(
             String id,
             com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec spec) {
@@ -677,12 +756,6 @@ public final class ModBlocks {
                             + variant.id());
         }
         return block;
-    }
-
-    private static MachineVariant machineVariant(String path) {
-        return ModMachineVariants.require(
-                ResourceLocation.fromNamespaceAndPath(
-                        CrucibleCraft.MODID, path));
     }
 
     /**
@@ -777,6 +850,15 @@ public final class ModBlocks {
                 .strength(5.0F, 6.0F)
                 .requiresCorrectToolForDrops()
                 .sound(SoundType.METAL);
+    }
+
+    private static BlockBehaviour.Properties rockProperties() {
+        // GT6 rocks break by hand — the early-game cobblestone source.
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.STONE)
+                .strength(0.5F)
+                .sound(SoundType.STONE)
+                .noOcclusion();
     }
 
     public record OreBlockKey(String materialId, Host host) {

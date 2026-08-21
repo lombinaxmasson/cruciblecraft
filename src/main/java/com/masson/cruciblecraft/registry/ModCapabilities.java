@@ -82,6 +82,14 @@ public final class ModCapabilities {
                 (blockEntity, side) -> blockEntity.itemHandler(side));
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.HOPPER.get(),
+                (blockEntity, side) -> blockEntity.itemHandler(side));
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.DUST_FUNNEL.get(),
+                (blockEntity, side) -> blockEntity.itemHandler(side));
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.COKE_OVEN.get(),
                 (blockEntity, side) -> blockEntity.externalItems());
         event.registerBlockEntity(

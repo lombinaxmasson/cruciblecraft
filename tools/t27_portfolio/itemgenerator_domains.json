@@ -1,0 +1,833 @@
+{
+  "counts": {
+    "canonical": 25,
+    "missing": 0,
+    "out_of_scope": 6,
+    "post_1_0": 3,
+    "unclassified": 0,
+    "unexpected": 0,
+    "v1_required": 16
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t27_portfolio.py": "af2635234c6815ea6598982a61e096a01dfc415f9ba9e436dd7acad8dd966387",
+      "tools/t13_denominators/itemgenerator_domains.json": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+      "tools/t27_portfolio_policy/itemgenerator_domains.json": "0cbf0644d8ed9d0b2300b13dd9f72c8df2c4a4f501539eafe386848299f1979a"
+    }
+  },
+  "generated_by": "python tools/build_t27_portfolio.py",
+  "records": [
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 G10_peripheral out_of_scope domain.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Armor, plants, projectiles and similar G10 domains are excluded by the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded domains are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.ARMORS",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). Material-derived armor generation is a G10 peripheral domain outside T14-T19.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: G10 peripheral domains stay outside v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "604a7a6b9f6158e10f13002b4ba2ac14de0663a3da6c2163b20282fe8c23e6e2",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred domain; T27 does not treat generability as a v1 player-path requirement.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured generator domain cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.CONTAINERS",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/itemgenerator_domains",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Generic containers are broader than the current fluid/gas cell routes.",
+      "recheck_point": "post-1.0 itemgenerator measurement",
+      "replacement_condition": "A later 1.x generator card measures or excludes this domain; it is not a second copy of a prefix gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "a9a9a766f1324e17047090ff54a39cc474dd969392c2f069bc1c1dbe10334554",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 current_cc_16 domain is already a CC generator domain. Player-mainline necessity is not inferred from generability alone.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains row plus CC material item generator mapping.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Domain already participates in the T26 READY material registry; T27 adds no generated items.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.CONTAINERS_FLUID",
+      "cc_implementation": "runtime:material_item_generator/CONTAINERS_FLUID",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_itemgenerator_domains",
+      "reason": "T13 in_scope; roadmap MISSING (none). Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "recheck_point": "T27-2 P2 prefixes table",
+      "replacement_condition": "Not applicable: v1 domain membership is closed. Prefix-level gaps are owned on the prefixes table, not duplicated here.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "bb0c0531075f277adc0d310757285f0c43f3385f8ad9b63bd703ce055254d49a",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 current_cc_16 domain is already a CC generator domain. Player-mainline necessity is not inferred from generability alone.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains row plus CC material item generator mapping.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Domain already participates in the T26 READY material registry; T27 adds no generated items.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.CONTAINERS_GAS",
+      "cc_implementation": "runtime:material_item_generator/CONTAINERS_GAS",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_itemgenerator_domains",
+      "reason": "T13 in_scope; roadmap MISSING (none). Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "recheck_point": "T27-2 P2 prefixes table",
+      "replacement_condition": "Not applicable: v1 domain membership is closed. Prefix-level gaps are owned on the prefixes table, not duplicated here.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "c2742a6ce10b1647c4511ee4336f11811bb65062f5a680e058c20ee54f106115",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 current_cc_16 domain is already a CC generator domain. Player-mainline necessity is not inferred from generability alone.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains row plus CC material item generator mapping.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Domain already participates in the T26 READY material registry; T27 adds no generated items.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.DENSEPLATES",
+      "cc_implementation": "runtime:material_item_generator/DENSEPLATES",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_itemgenerator_domains",
+      "reason": "T13 in_scope; roadmap MISSING (none). Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "recheck_point": "T27-2 P2 prefixes table",
+      "replacement_condition": "Not applicable: v1 domain membership is closed. Prefix-level gaps are owned on the prefixes table, not duplicated here.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "0fd8385c05a508e76a30ac69fc7c58cd0b12ed22a9ca0ac2499b74e24821fdce",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 current_cc_16 domain is already a CC generator domain. Player-mainline necessity is not inferred from generability alone.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains row plus CC material item generator mapping.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Domain already participates in the T26 READY material registry; T27 adds no generated items.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.DUSTS",
+      "cc_implementation": "runtime:material_item_generator/DUSTS",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_itemgenerator_domains",
+      "reason": "T13 in_scope; roadmap MISSING (none). Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "recheck_point": "T27-2 P2 prefixes table",
+      "replacement_condition": "Not applicable: v1 domain membership is closed. Prefix-level gaps are owned on the prefixes table, not duplicated here.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "581892b2d2452f474039ca46d44dad7210add0981ce8f9159184f72734a5cd2d",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 G10_peripheral out_of_scope domain.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Armor, plants, projectiles and similar G10 domains are excluded by the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded domains are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.EMPTY",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). EMPTY is a source sentinel/material shortcut, not a standalone CrucibleCraft generated form.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: G10 peripheral domains stay outside v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "002402f5860a46199e781d78fce327523db47f6a0db6359cdfa7951e10661258",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 current_cc_16 domain is already a CC generator domain. Player-mainline necessity is not inferred from generability alone.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains row plus CC material item generator mapping.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Domain already participates in the T26 READY material registry; T27 adds no generated items.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.FOILS",
+      "cc_implementation": "runtime:material_item_generator/FOILS",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_itemgenerator_domains",
+      "reason": "T13 in_scope; roadmap MISSING (none). Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "recheck_point": "T27-2 P2 prefixes table",
+      "replacement_condition": "Not applicable: v1 domain membership is closed. Prefix-level gaps are owned on the prefixes table, not duplicated here.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "739f35da15780ebb9fdbd654f9f777c00ed45826aea47ab6341bfa32060d6a3b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 G10_peripheral out_of_scope domain.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Armor, plants, projectiles and similar G10 domains are excluded by the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded domains are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.GASES",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). Gas is represented by fluid state and container eligibility rather than a generated material item domain.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: G10 peripheral domains stay outside v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "b91ef2e334c7ecbea4f7b0693c403bb800f6a24b2e6ac8804b7387e60ab9ed3c",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 current_cc_16 domain is already a CC generator domain. Player-mainline necessity is not inferred from generability alone.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains row plus CC material item generator mapping.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Domain already participates in the T26 READY material registry; T27 adds no generated items.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.GEMS",
+      "cc_implementation": "runtime:material_item_generator/GEMS",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_itemgenerator_domains",
+      "reason": "T13 in_scope; roadmap MISSING (none). Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "recheck_point": "T27-2 P2 prefixes table",
+      "replacement_condition": "Not applicable: v1 domain membership is closed. Prefix-level gaps are owned on the prefixes table, not duplicated here.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "2a747227b1b8194b060cb91f68f58b3e21d945a82cffeb6ff7b499ff0e109d9b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 current_cc_16 domain is already a CC generator domain. Player-mainline necessity is not inferred from generability alone.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains row plus CC material item generator mapping.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Domain already participates in the T26 READY material registry; T27 adds no generated items.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.INGOTS",
+      "cc_implementation": "runtime:material_item_generator/INGOTS",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_itemgenerator_domains",
+      "reason": "T13 in_scope; roadmap MISSING (none). Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "recheck_point": "T27-2 P2 prefixes table",
+      "replacement_condition": "Not applicable: v1 domain membership is closed. Prefix-level gaps are owned on the prefixes table, not duplicated here.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "60158bbec9e40c6d21f96b33c4f96591e80c5c5fca06a0dda75d512aa5d66bdb",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 current_cc_16 domain is already a CC generator domain. Player-mainline necessity is not inferred from generability alone.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains row plus CC material item generator mapping.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Domain already participates in the T26 READY material registry; T27 adds no generated items.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.INGOTS_HOT",
+      "cc_implementation": "runtime:material_item_generator/INGOTS_HOT",
+      "dependencies": [
+        {
+          "id": "O-36",
+          "kind": "open_item_id"
+        }
+      ],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_itemgenerator_domains",
+      "reason": "Hot-ingot items already generate. GT6-equivalent cooling behavior is O-36, owned on the open-item ledger, not a second domain gap.",
+      "recheck_point": "T27-2 P2 prefixes table",
+      "replacement_condition": "Not applicable: v1 domain membership is closed. Prefix-level gaps are owned on the prefixes table, not duplicated here.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "81dce283c89848aabdaae753c402ade5bbe2c748805c9ee159a5bb94645bce58",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred domain; T27 does not treat generability as a v1 player-path requirement.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured generator domain cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.LENSES",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/itemgenerator_lenses",
+      "reason": "Industrial deferred domain, not a G10 peripheral. Prefix-level lens forms are consumers of this domain via dependency, not a duplicate v1 gap.",
+      "recheck_point": "post-1.0 itemgenerator measurement",
+      "replacement_condition": "A later 1.x generator card measures or excludes this domain; it is not a second copy of a prefix gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "6f2ef6de5171f40cea81a2b0a6541cc8e0b307bf3b3e3dd8cc3dbae2a577c561",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 G10_peripheral out_of_scope domain.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Armor, plants, projectiles and similar G10 domains are excluded by the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded domains are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.LIQUID",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). LIQUID is a material state tag and is not a standalone item-prefix publication domain.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: G10 peripheral domains stay outside v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "eb01a9bca467f7b62761f15fd4c66f5f6ae683837b448965b5ebd009f93c090f",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 current_cc_16 domain is already a CC generator domain. Player-mainline necessity is not inferred from generability alone.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains row plus CC material item generator mapping.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Domain already participates in the T26 READY material registry; T27 adds no generated items.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.MOLTEN",
+      "cc_implementation": "runtime:material_item_generator/MOLTEN",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_itemgenerator_domains",
+      "reason": "T13 in_scope; roadmap MISSING (none). Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "recheck_point": "T27-2 P2 prefixes table",
+      "replacement_condition": "Not applicable: v1 domain membership is closed. Prefix-level gaps are owned on the prefixes table, not duplicated here.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "ab35fed9a86ef20816a409a6cf2eb63dd780028a2e28ffa231a925520732c766",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 current_cc_16 domain is already a CC generator domain. Player-mainline necessity is not inferred from generability alone.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains row plus CC material item generator mapping.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Domain already participates in the T26 READY material registry; T27 adds no generated items.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.MULTIINGOTS",
+      "cc_implementation": "runtime:material_item_generator/MULTIINGOTS",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_itemgenerator_domains",
+      "reason": "T13 in_scope; roadmap MISSING (none). Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "recheck_point": "T27-2 P2 prefixes table",
+      "replacement_condition": "Not applicable: v1 domain membership is closed. Prefix-level gaps are owned on the prefixes table, not duplicated here.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "9d940b97f9eaf3e0d62c6cd5d3e88b89292fc8f53989fe5b0ccb964d0843a4ad",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 current_cc_16 domain is already a CC generator domain. Player-mainline necessity is not inferred from generability alone.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains row plus CC material item generator mapping.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Domain already participates in the T26 READY material registry; T27 adds no generated items.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.MULTIPLATES",
+      "cc_implementation": "runtime:material_item_generator/MULTIPLATES",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_itemgenerator_domains",
+      "reason": "T13 in_scope; roadmap MISSING (none). Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "recheck_point": "T27-2 P2 prefixes table",
+      "replacement_condition": "Not applicable: v1 domain membership is closed. Prefix-level gaps are owned on the prefixes table, not duplicated here.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "1809a4982a8441ab1bc5e6a06a13d867673c4e8b306ca83c061839d1c47478f9",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 current_cc_16 domain is already a CC generator domain. Player-mainline necessity is not inferred from generability alone.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains row plus CC material item generator mapping.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Domain already participates in the T26 READY material registry; T27 adds no generated items.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.ORES",
+      "cc_implementation": "runtime:material_item_generator/ORES",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_itemgenerator_domains",
+      "reason": "T13 in_scope; roadmap MISSING (none). Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "recheck_point": "T27-2 P2 prefixes table",
+      "replacement_condition": "Not applicable: v1 domain membership is closed. Prefix-level gaps are owned on the prefixes table, not duplicated here.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "53c05f0ddd0872c3d89a8216a833718bd3b35493367624c86a41103f4dc287ed",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 current_cc_16 domain is already a CC generator domain. Player-mainline necessity is not inferred from generability alone.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains row plus CC material item generator mapping.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Domain already participates in the T26 READY material registry; T27 adds no generated items.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.PARTS",
+      "cc_implementation": "runtime:material_item_generator/PARTS",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_itemgenerator_domains",
+      "reason": "T13 in_scope; roadmap MISSING (none). Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "recheck_point": "T27-2 P2 prefixes table",
+      "replacement_condition": "Not applicable: v1 domain membership is closed. Prefix-level gaps are owned on the prefixes table, not duplicated here.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "dab711911844d5b26f984c237a9450120ef2875799fe06260f56ccdf1de30663",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 G10_peripheral out_of_scope domain.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Armor, plants, projectiles and similar G10 domains are excluded by the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded domains are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.PLANTS",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). Plant drops are a G10 peripheral domain outside T14-T19.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: G10 peripheral domains stay outside v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "a6a36e96a1b060bd09099bb9bb082ecfb1ad2ef8bb9251f9a0dee41d49c4ebf7",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 current_cc_16 domain is already a CC generator domain. Player-mainline necessity is not inferred from generability alone.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains row plus CC material item generator mapping.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Domain already participates in the T26 READY material registry; T27 adds no generated items.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.PLATES",
+      "cc_implementation": "runtime:material_item_generator/PLATES",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_itemgenerator_domains",
+      "reason": "T13 in_scope; roadmap MISSING (none). Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "recheck_point": "T27-2 P2 prefixes table",
+      "replacement_condition": "Not applicable: v1 domain membership is closed. Prefix-level gaps are owned on the prefixes table, not duplicated here.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "166048a63fc94ceea20e6026adc18c8c411087f3af5c072d4f872fb843aa6c53",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 G10_peripheral out_of_scope domain.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Armor, plants, projectiles and similar G10 domains are excluded by the v1 product contract.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded domains are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.PROJECTILES",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). Projectile and ammunition forms are a G10 peripheral domain outside T14-T19.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: G10 peripheral domains stay outside v1.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "7ebe73ff9609397e60a2f9f4ad74f57582a0250d0bcbca902b0ae712298657a0",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred domain; T27 does not treat generability as a v1 player-path requirement.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured generator domain cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.RAILS",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/itemgenerator_domains",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). Rail forms have no current runtime prefix or selected third-stage consumer.",
+      "recheck_point": "post-1.0 itemgenerator measurement",
+      "replacement_condition": "A later 1.x generator card measures or excludes this domain; it is not a second copy of a prefix gap.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "a6df8138269f666fb3398e1289ae69ad33743f8ec1a2d1fa8c9d9aa48cf7fd0a",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 current_cc_16 domain is already a CC generator domain. Player-mainline necessity is not inferred from generability alone.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains row plus CC material item generator mapping.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Domain already participates in the T26 READY material registry; T27 adds no generated items.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.STICKS",
+      "cc_implementation": "runtime:material_item_generator/STICKS",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_itemgenerator_domains",
+      "reason": "T13 in_scope; roadmap MISSING (none). Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "recheck_point": "T27-2 P2 prefixes table",
+      "replacement_condition": "Not applicable: v1 domain membership is closed. Prefix-level gaps are owned on the prefixes table, not duplicated here.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "5ef4a9b7212aacf0f4f15f342163e62074fe59deab02eb03d415324b0544cf1d",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "itemgenerator_domains"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 current_cc_16 domain is already a CC generator domain. Player-mainline necessity is not inferred from generability alone.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 itemgenerator_domains row plus CC material item generator mapping.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Domain already participates in the T26 READY material registry; T27 adds no generated items.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "ITEMGENERATOR.WIRES",
+      "cc_implementation": "runtime:material_item_generator/WIRES",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_itemgenerator_domains",
+      "reason": "T13 in_scope; roadmap MISSING (none). Domain is part of the frozen second-stage 16/25 CrucibleCraft boundary.",
+      "recheck_point": "T27-2 P2 prefixes table",
+      "replacement_condition": "Not applicable: v1 domain membership is closed. Prefix-level gaps are owned on the prefixes table, not duplicated here.",
+      "source": {
+        "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+        "artifact_sha256": "e609bd8db3268d9b42f84d6075cf1248ccb342f4ab6d1729e8fbb11eac4f2dd0",
+        "record_sha256": "8d832a8faaa24880cf12045fd2b3a4d29fa5487073fdd8c0efb8933a2977ab75",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "itemgenerator_domains"
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T27_TABLE_CLASSIFIED",
+  "table": "itemgenerator_domains"
+}

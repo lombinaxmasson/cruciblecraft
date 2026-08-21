@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/t27_portfolio_identity.schema.json",
+  "title": "T27 portfolio identity record",
+  "description": "One canonical T13 identity after T27 reclassification. T13 classification and T27 disposition are separate fields.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "table",
+    "canonical_id",
+    "source",
+    "t13_classification",
+    "cc_implementation",
+    "disposition",
+    "reason",
+    "owner",
+    "dependencies",
+    "replacement_condition",
+    "recheck_point",
+    "axes"
+  ],
+  "properties": {
+    "table": {
+      "enum": [
+        "recipe_maps",
+        "prefixes",
+        "itemgenerator_domains",
+        "machine_kinds",
+        "energy_identities",
+        "cover_kinds",
+        "multiblock_kinds"
+      ]
+    },
+    "canonical_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "revision",
+        "artifact",
+        "artifact_sha256",
+        "record_sha256"
+      ],
+      "properties": {
+        "revision": {
+          "const": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+        },
+        "artifact": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifact_sha256": {
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "record_sha256": {
+          "type": "string",
+          "minLength": 64,
+          "maxLength": 64
+        }
+      }
+    },
+    "t13_classification": {
+      "enum": [
+        "in_scope",
+        "deferred_with_reason",
+        "out_of_scope"
+      ]
+    },
+    "cc_implementation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "disposition": {
+      "enum": [
+        "v1_required",
+        "post_1_0",
+        "out_of_scope"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "id"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "canonical_id",
+              "open_item_id",
+              "runtime_capability"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "replacement_condition": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recheck_point": {
+      "type": "string",
+      "minLength": 1
+    },
+    "axes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "closure",
+        "fidelity",
+        "load"
+      ],
+      "properties": {
+        "closure": {
+          "type": "object",
+          "required": [
+            "status",
+            "evidence"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "closed",
+                "incomplete",
+                "not_applicable"
+              ]
+            },
+            "evidence": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "fidelity": {
+          "type": "object",
+          "required": [
+            "status",
+            "evidence"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "source_backed",
+                "source_derived",
+                "design_policy"
+              ]
+            },
+            "evidence": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "load": {
+          "type": "object",
+          "required": [
+            "status",
+            "evidence"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "measured",
+                "projected",
+                "pending",
+                "not_applicable"
+              ]
+            },
+            "verdict": {
+              "type": "string"
+            },
+            "evidence": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    }
+  }
+}

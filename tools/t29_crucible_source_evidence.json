@@ -1,0 +1,293 @@
+{
+  "capacity": {
+    "cc_multiblock_ingot_units": 432,
+    "cc_single_block_ingot_units": 8,
+    "factors": [
+      16,
+      3,
+      3,
+      3
+    ],
+    "formula": "16*3*3*3*U",
+    "gt6_max_amount_line": 79,
+    "ingot_units": 432,
+    "note": "U is one ingot unit. Single-block MAX_INGOTS=8 stays; the multiblock does not shrink it to 'align'."
+  },
+  "cc_single_block": {
+    "air": "horizontal AIR",
+    "capacity_ingots": 8,
+    "heat": "HU from below",
+    "mold": "adjacent CeramicMoldBlock",
+    "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/CrucibleBlockEntity.java",
+    "process": [
+      "CompositionTank",
+      "ThermalComponent",
+      "SteelmakingController",
+      "cast()"
+    ]
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t29_crucible_source_evidence.py": "6111c98ba928f70a00852fb78d5d503e7605162e9d7ed9d1e52b33c9dc4016da"
+    }
+  },
+  "energy": {
+    "accepted_types": [
+      "KU",
+      "HU",
+      "CU",
+      "VIS_IGNIS"
+    ],
+    "heat_identity": "HU",
+    "heat_resistance_bonus": 1.1,
+    "kg_per_energy": 100,
+    "ku_to_air": {
+      "condition": "bottom-layer KU and WD.oxygen at controller (x, y+1, z)",
+      "fidelity": "SOURCE_DERIVED",
+      "line": 704,
+      "material": "MT.Air",
+      "note": "Wire into the existing AIR / steelmaking inlet if the port path exists; otherwise record a DESIGN_POLICY gap. Do not invent a new energy identity.",
+      "source_method": "doInject"
+    },
+    "scale_note": "GT6 is 1 HU / 100 kg → +1 K. CC reuses ThermalComponent / CrucibleThermalModel (DESIGN_POLICY) and does not rewrite physics."
+  },
+  "fidelity_layering": {
+    "capacity_432": "SOURCE_BACKED",
+    "heat_scale": "DESIGN_POLICY",
+    "ku_to_air": "SOURCE_DERIVED",
+    "layer_ports": "SOURCE_BACKED",
+    "mold_in_controller_ui": "DESIGN_POLICY",
+    "not_a_processing_host": true,
+    "steelmaking": "SOURCE_DERIVED",
+    "structure_27": "SOURCE_BACKED",
+    "wall_meta_collapse": "DESIGN_POLICY"
+  },
+  "generated_by": "python tools/build_t29_crucible_source_evidence.py --write",
+  "layers": [
+    {
+      "cc_port": "energy_input",
+      "energy": "HU",
+      "fidelity": "SOURCE_BACKED",
+      "gt6_mask": "ONLY_ENERGY_IN",
+      "y": 0
+    },
+    {
+      "cc_port": null,
+      "fidelity": "DESIGN_POLICY",
+      "gt6_mask": "ONLY_CRUCIBLE",
+      "note": "GT6 molds attach at the second wall layer. T23 froze CC molds in the controller UI (DESIGN_POLICY); this card does not reopen adjacent world molds.",
+      "y": 1
+    },
+    {
+      "cc_port": "item_fluid",
+      "fidelity": "SOURCE_BACKED",
+      "gt6_mask": "ONLY_ITEM_FLUID",
+      "y": 2
+    }
+  ],
+  "methods": {
+    "checkStructure2": {
+      "end_line": 131,
+      "signature": "public boolean checkStructure2(ChunkCoordinates aCoordinates",
+      "start_line": 112
+    },
+    "doInject": {
+      "end_line": 704,
+      "signature": "public long doInject(TagData aEnergyType, byte aSide, long aSize, long aAmount, boolean aDoInject)",
+      "start_line": 704
+    },
+    "fillMoldAtSide": {
+      "end_line": 556,
+      "signature": "public boolean fillMoldAtSide(ITileEntityMold aMold, byte aSide, byte aSideOfMold)",
+      "start_line": 547
+    }
+  },
+  "molds": {
+    "cc_policy": "controller inventory/UI slots",
+    "fidelity": "DESIGN_POLICY",
+    "gt6": "second wall layer, fillMoldAtSide, not a RecipeMap",
+    "gt6_line": 547
+  },
+  "schema_version": 1,
+  "source": {
+    "blob_sha256": "39acad7dc3a1e840a83f24cc6af750b7e64ac4a466b0c5902c928c5fd312b789",
+    "class": "gregtech.tileentity.multiblocks.MultiTileEntityCrucible",
+    "method": "checkStructure2",
+    "path": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrucible.java",
+    "repository": "https://github.com/GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+  },
+  "status": "T29_CRUCIBLE_SOURCE_EVIDENCE",
+  "structure": {
+    "air": 2,
+    "air_offsets": [
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        2,
+        0
+      ]
+    ],
+    "arithmetic": "1 controller + 8×3 walls + 2 AIR = 27",
+    "controller": [
+      0,
+      0,
+      0
+    ],
+    "controller_location": "bottom-center",
+    "open_top": true,
+    "positions": 27,
+    "rejected_counts": [
+      28,
+      26
+    ],
+    "second_loop_is_meta_alternate": true,
+    "second_loop_note": "The meta=4 loop is an alternate wall variant, not a second set of 24 walls.",
+    "wall_offsets": [
+      [
+        -1,
+        0,
+        -1
+      ],
+      [
+        -1,
+        0,
+        0
+      ],
+      [
+        -1,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        -1
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        -1
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        -1,
+        1,
+        -1
+      ],
+      [
+        -1,
+        1,
+        0
+      ],
+      [
+        -1,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        -1
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        -1
+      ],
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        -1,
+        2,
+        -1
+      ],
+      [
+        -1,
+        2,
+        0
+      ],
+      [
+        -1,
+        2,
+        1
+      ],
+      [
+        0,
+        2,
+        -1
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        1,
+        2,
+        -1
+      ],
+      [
+        1,
+        2,
+        0
+      ],
+      [
+        1,
+        2,
+        1
+      ]
+    ],
+    "walls": 24,
+    "walls_per_layer": 8
+  },
+  "t23_error": {
+    "artifact": "tools/t23_multiblock_policy.json",
+    "classification_artifact": "tools/t23_multiblock_behavior_classification.json",
+    "corrected_notes": "3x3x3 open-top: controller at bottom-center; 8 walls × 3 layers = 24 walls; 2 AIR above controller; total 27 positions. Layer0 ONLY_ENERGY_IN (HU), layer1 ONLY_CRUCIBLE (CC: mold slots in controller UI, DESIGN_POLICY), layer2 ONLY_ITEM_FLUID. Wall meta 0/4 both accepted in GT6; CC collapses to a fixed casing.",
+    "correction_positions": 27,
+    "current_notes": "3x3x3 open-top: controller at bottom-center; 8 walls × 3 layers = 24 walls; 2 AIR above controller; total 27 positions. Layer0 ONLY_ENERGY_IN (HU), layer1 ONLY_CRUCIBLE (CC: mold slots in controller UI, DESIGN_POLICY), layer2 ONLY_ITEM_FLUID. Wall meta 0/4 both accepted in GT6; CC collapses to a fixed casing.",
+    "current_positions": 27,
+    "erroneous_notes_fragment": "26 walls + 2 AIR",
+    "erroneous_positions": 28,
+    "reason": "T23 counted 26 walls + 2 AIR. checkStructure2 is 1 controller + 24 walls + 2 AIR. The meta=4 loop is not extra blocks.",
+    "status": "corrected"
+  },
+  "tooltips": {
+    "bottom_center_line": 140,
+    "energy_in_bottom_stuff_in_top": true,
+    "ku_air_tooltip": true,
+    "molds_second_layer": true
+  }
+}

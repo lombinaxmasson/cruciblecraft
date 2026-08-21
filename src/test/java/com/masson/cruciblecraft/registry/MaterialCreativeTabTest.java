@@ -29,7 +29,7 @@ class MaterialCreativeTabTest {
     @Test
     void allBuiltinPrefixesHaveOneSemanticTabAndUnknownPrefixesUseMisc() {
         var prefixes = MaterialPrefixCatalog.values();
-        assertEquals(56, prefixes.size());
+        assertEquals(57, prefixes.size());
 
         EnumMap<MaterialCreativeTab, Set<MaterialPrefix>> grouped =
                 new EnumMap<>(MaterialCreativeTab.class);
@@ -39,21 +39,22 @@ class MaterialCreativeTabTest {
         prefixes.forEach(prefix ->
                 grouped.get(MaterialCreativeTab.forPrefix(prefix)).add(prefix));
 
-        assertEquals(56, grouped.values().stream().mapToInt(Set::size).sum());
+        assertEquals(57, grouped.values().stream().mapToInt(Set::size).sum());
         assertEquals(
                 Set.copyOf(prefixes),
                 grouped.values().stream()
                         .flatMap(Set::stream)
                         .collect(Collectors.toUnmodifiableSet()));
         assertEquals(1, grouped.get(MaterialCreativeTab.ORES).size());
-        assertEquals(7, grouped.get(MaterialCreativeTab.ORE_PROCESSING).size());
+        assertEquals(8, grouped.get(MaterialCreativeTab.ORE_PROCESSING).size());
         assertEquals(3, grouped.get(MaterialCreativeTab.DUSTS).size());
         assertEquals(7, grouped.get(MaterialCreativeTab.METALS_GEMS).size());
         assertEquals(8, grouped.get(MaterialCreativeTab.PLATES).size());
         assertEquals(5, grouped.get(MaterialCreativeTab.PARTS).size());
         assertEquals(5, grouped.get(MaterialCreativeTab.MECHANICAL_PARTS).size());
-        assertEquals(7, grouped.get(MaterialCreativeTab.WIRES).size());
-        assertEquals(13, grouped.get(MaterialCreativeTab.CABLES).size());
+        assertEquals(6, grouped.get(MaterialCreativeTab.WIRES).size());
+        assertEquals(6, grouped.get(MaterialCreativeTab.CABLES).size());
+        assertEquals(8, grouped.get(MaterialCreativeTab.PIPES).size());
         assertEquals(0, grouped.get(MaterialCreativeTab.MISC).size());
         assertEquals(
                 MaterialCreativeTab.MISC,
@@ -115,14 +116,15 @@ class MaterialCreativeTabTest {
         assertEquals(
                 Map.ofEntries(
                         Map.entry(MaterialCreativeTab.ORES, 274),
-                        Map.entry(MaterialCreativeTab.ORE_PROCESSING, 2_810),
+                        Map.entry(MaterialCreativeTab.ORE_PROCESSING, 3_498),
                         Map.entry(MaterialCreativeTab.DUSTS, 2_682),
                         Map.entry(MaterialCreativeTab.METALS_GEMS, 2_260),
                         Map.entry(MaterialCreativeTab.PLATES, 2_333),
                         Map.entry(MaterialCreativeTab.PARTS, 3_248),
                         Map.entry(MaterialCreativeTab.MECHANICAL_PARTS, 1_890),
-                        Map.entry(MaterialCreativeTab.WIRES, 288),
-                        Map.entry(MaterialCreativeTab.CABLES, 400),
+                        Map.entry(MaterialCreativeTab.WIRES, 255),
+                        Map.entry(MaterialCreativeTab.CABLES, 151),
+                        Map.entry(MaterialCreativeTab.PIPES, 282),
                         Map.entry(MaterialCreativeTab.MISC, 0)),
                 counts);
         counts.forEach((tab, count) ->
@@ -188,7 +190,7 @@ class MaterialCreativeTabTest {
         for (MaterialCreativeTab ignored : MaterialCreativeTab.values()) {
             assertSame(first, cache.get(4L, planner));
         }
-        assertEquals(1, builds.get(), "ten tabs must share one plan for a revision");
+        assertEquals(1, builds.get(), "eleven tabs must share one plan for a revision");
 
         Map<MaterialCreativeTab, List<String>> reloaded = cache.get(5L, planner);
         assertEquals(2, builds.get());

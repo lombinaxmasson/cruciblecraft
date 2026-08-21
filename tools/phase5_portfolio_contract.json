@@ -1,0 +1,251 @@
+{
+  "schema_version": 1,
+  "status": "PHASE5_PORTFOLIO_CONTRACT",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "product_contract": {
+    "unchanged_from_phase4": true,
+    "v1": "CrucibleCraft v1.0 provides a complete and stably publishable GT6-style industrial mainline; it does not claim a complete GT6 or GT6U port."
+  },
+  "execution_policy": {
+    "maximum_active_t_cards": 1,
+    "current_active_t": "T27",
+    "next_t": null,
+    "t28_plus_card_count": null,
+    "tracks_are_not_parallel_licenses": true
+  },
+  "publication_delta": {
+    "eager": 0,
+    "lazy": 0,
+    "logical": 0
+  },
+  "tables": {
+    "cover_kinds": {
+      "artifact": "tools/t13_denominators/cover_kinds.json",
+      "canonical_count": 47,
+      "classification_field": "disposition",
+      "id_field": "canonical_id",
+      "rows_key": "canonical_kinds"
+    },
+    "energy_identities": {
+      "artifact": "tools/t13_denominators/energy_identities.json",
+      "canonical_count": 20,
+      "classification_field": "classification",
+      "id_field": "symbol",
+      "rows_key": "rows"
+    },
+    "itemgenerator_domains": {
+      "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+      "canonical_count": 25,
+      "classification_field": "classification",
+      "id_field": "canonical_id",
+      "rows_key": "records"
+    },
+    "machine_kinds": {
+      "artifact": "tools/t13_denominators/machine_kinds.json",
+      "canonical_count": 96,
+      "classification_field": "classification",
+      "id_field": "canonical_key",
+      "rows_key": "canonical_kinds"
+    },
+    "multiblock_kinds": {
+      "artifact": "tools/t13_denominators/multiblock_kinds.json",
+      "canonical_count": 30,
+      "classification_field": "disposition",
+      "id_field": "canonical_id",
+      "rows_key": "canonical_kinds"
+    },
+    "prefixes": {
+      "artifact": "tools/t13_denominators/prefixes.json",
+      "canonical_count": 452,
+      "classification_field": "classification",
+      "id_field": "canonical_id",
+      "rows_key": "records"
+    },
+    "recipe_maps": {
+      "artifact": "tools/t13_denominators/recipe_maps.json",
+      "canonical_count": 95,
+      "classification_field": "classification",
+      "id_field": "normalized_row_key",
+      "rows_key": "rows"
+    }
+  },
+  "dispositions": [
+    "v1_required",
+    "post_1_0",
+    "out_of_scope"
+  ],
+  "owner_rules": {
+    "exactly_one_owner_for_v1_and_post_1_0": true,
+    "identity_cannot_own_two_tracks": true,
+    "owner_key_must_resolve_to_one_generated_card_after_topology": true,
+    "t13_in_scope_does_not_auto_upgrade_to_v1_required": true,
+    "map_level_ported_is_not_row_level_completion": true
+  },
+  "tracks": {
+    "A": {
+      "initial_card": "A0",
+      "scope": "ordinary_optional long tail on already-hosted maps",
+      "started": false
+    },
+    "B": {
+      "initial_card": "B0",
+      "scope": "post-1.0 multiblock kinds and declarative controller measurement",
+      "started": false
+    },
+    "C": {
+      "initial_card": "C0",
+      "scope": "nuclear fission, fusion and plasma source/physics measurement",
+      "started": false
+    },
+    "D": {
+      "initial_card": "D0",
+      "scope": "GT6U provenance and denominator, not a GT6U content port",
+      "started": false
+    },
+    "E": {
+      "initial_card": "E0",
+      "scope": "64 deferred RecipeMaps secondary denominator and dependency graph",
+      "started": false
+    }
+  },
+  "load_axes": {
+    "authority": "tools/t14_load_budget_policy.json",
+    "eager_publication_rows": {
+      "hard_ceiling": 21000,
+      "soft_budget": 18000,
+      "unit": "rows"
+    },
+    "lazy_logical_rows": {
+      "hard_ceiling": 56000,
+      "soft_budget": 16000,
+      "unit": "rows"
+    },
+    "datapack_authored_entries": {
+      "hard_ceiling": 6600,
+      "soft_budget": 6000,
+      "unit": "entries"
+    },
+    "lazy_cache_ceiling_rows": {
+      "hard_ceiling": 4096,
+      "soft_budget": 1024,
+      "unit": "rows"
+    },
+    "sync_bytes": {
+      "hard_ceiling": 67108864,
+      "soft_budget": 16777216,
+      "unit": "bytes"
+    },
+    "server_reload_ms": {
+      "hard_ceiling": 10000,
+      "soft_budget": 5000,
+      "unit": "ms"
+    },
+    "server_index_ms": {
+      "hard_ceiling": 1000,
+      "soft_budget": 500,
+      "unit": "ms"
+    },
+    "client_reload_ms": {
+      "hard_ceiling": 10000,
+      "soft_budget": 5000,
+      "unit": "ms"
+    },
+    "client_index_ms": {
+      "hard_ceiling": 3000,
+      "soft_budget": 1000,
+      "unit": "ms"
+    },
+    "retained_memory_bytes": {
+      "hard_ceiling": 536870912,
+      "soft_budget": 134217728,
+      "unit": "bytes"
+    },
+    "allocation_bytes": {
+      "hard_ceiling": 536870912,
+      "soft_budget": 134217728,
+      "unit": "bytes"
+    },
+    "lookup_p95_ns": {
+      "hard_ceiling": 2000000,
+      "soft_budget": 1000000,
+      "unit": "ns"
+    },
+    "lookup_candidate_count": {
+      "hard_ceiling": 128,
+      "soft_budget": 64,
+      "unit": "candidates"
+    },
+    "independent_axes": true,
+    "pending_may_not_be_filled_with_zero": true,
+    "legacy_logical_21000_is_not_authoritative": true
+  },
+  "t28_plus_generation": {
+    "card_count": null,
+    "merge_rule": "same independently closable player path and same fidelity/load bounds",
+    "rc_numbering": "forbidden_until_generated_v1_cards_closed",
+    "selection": "disposition == v1_required AND closure != closed",
+    "sort": "topological layers, then table + canonical_id + owner_key",
+    "start_number": 28
+  },
+  "rc_policy": {
+    "allowed_while_v1_set_nonempty": false,
+    "f003_f005_recheck_on_rc_candidate": true,
+    "numbering_reserved_until_generated_v1_cards_close": true
+  },
+  "hotfix_gate": {
+    "full_record_required": true,
+    "no_unregistered_content": true,
+    "publication_delta_must_have_ledger": true
+  },
+  "frozen_open_items": {
+    "anvil_bend_big": {
+      "cc_implementation": "cruciblecraft:anvil_bend_big",
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/anvil_bend"
+    },
+    "anvil_bend_small": {
+      "cc_implementation": "cruciblecraft:anvil_bend_small",
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/anvil_bend"
+    },
+    "crucible": {
+      "canonical_id": "crucible",
+      "cc_implementation": "none",
+      "collision_forbidden": "cruciblecraft:crucible",
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/crucible",
+      "reserved_controller_id": "cruciblecraft:large_crucible",
+      "table": "multiblock_kinds"
+    },
+    "O-15": {
+      "disposition": "closed",
+      "owner": "T26"
+    },
+    "O-36": {
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/hot_ingot_cooling"
+    },
+    "O-41": {
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_a/unlockable_translation"
+    },
+    "T24-F003": {
+      "disposition": "non_blocking",
+      "owner": "T27 RC",
+      "recheck_point": "T27 RC candidate"
+    },
+    "T24-F005": {
+      "disposition": "non_blocking",
+      "owner": "T27 RC",
+      "recheck_point": "T27 RC candidate"
+    }
+  },
+  "non_claims": [
+    "T27 publishes GT logical, eager or lazy rows",
+    "T13 in_scope equals v1_required",
+    "map-level PORTED means every source row is ported",
+    "T28 or T29 card counts are known before topology generation",
+    "GT6U content is in v1.0",
+    "A0-E0 content cards are started in T27"
+  ]
+}

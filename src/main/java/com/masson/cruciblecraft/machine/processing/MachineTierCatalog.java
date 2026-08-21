@@ -30,6 +30,24 @@ public final class MachineTierCatalog {
         return CATALOG.entries();
     }
 
+    /** Actual existing rows for one kind. This is not a kind × tier matrix. */
+    public static List<Entry> variantsOf(ResourceLocation kindId) {
+        Objects.requireNonNull(kindId, "kindId");
+        return CATALOG.byKind().getOrDefault(kindId, List.of());
+    }
+
+    public static Entry require(ResourceLocation id) {
+        Entry entry = CATALOG.byId().get(id);
+        if (entry == null) {
+            throw new IllegalArgumentException("Unknown machine variant " + id);
+        }
+        return entry;
+    }
+
+    public static NamingPolicy namingPolicy() {
+        return CATALOG.namingPolicy();
+    }
+
     public static List<TierProfile> controllerTierBands() {
         return List.copyOf(CATALOG.controllerTierBands().values());
     }
@@ -72,11 +90,17 @@ public final class MachineTierCatalog {
                     || document.variants == null
                     || document.controllerProfiles == null
                     || document.source == null
+                    || document.namingPolicy == null
                     || !"3703e40308c8c030763fd6297dea8b210d2a77b1"
                             .equals(document.source.revision)
-                    || !document.source.complete()) {
+                    || !document.source.complete()
+                    || !document.namingPolicy.complete()) {
                 throw new IllegalStateException(
                         "Invalid machine tier catalog schema");
+            }
+            if (document.variants.size() != 33) {
+                throw new IllegalStateException(
+                        "Machine tier catalog must remain 33 source-backed rows");
             }
             List<Entry> entries = document.variants.stream()
                     .map(Row::toEntry)
@@ -160,8 +184,21 @@ public final class MachineTierCatalog {
                                 + " != "
                                 + runtimeProfiles);
             }
+            LinkedHashMap<ResourceLocation, Entry> byId = new LinkedHashMap<>();
+            for (Entry entry : entries) {
+                byId.put(entry.variantId(), entry);
+            }
+            Map<ResourceLocation, List<Entry>> byKind = entries.stream().collect(
+                    Collectors.groupingBy(
+                            Entry::kindId,
+                            LinkedHashMap::new,
+                            Collectors.toUnmodifiableList()));
             return new Catalog(
-                    List.copyOf(entries), Map.copyOf(controllerTierBands));
+                    List.copyOf(entries),
+                    Map.copyOf(controllerTierBands),
+                    Map.copyOf(byId),
+                    byKind,
+                    document.namingPolicy.toPolicy());
         } catch (IOException
                 | JsonIOException
                 | JsonSyntaxException exception) {
@@ -172,7 +209,25 @@ public final class MachineTierCatalog {
 
     private record Catalog(
             List<Entry> entries,
-            Map<ResourceLocation, TierProfile> controllerTierBands) {}
+            Map<ResourceLocation, TierProfile> controllerTierBands,
+            Map<ResourceLocation, Entry> byId,
+            Map<ResourceLocation, List<Entry>> byKind,
+            NamingPolicy namingPolicy) {}
+
+    public record NamingPolicy(
+            String tier1BareId,
+            String newSubsystemId,
+            boolean automaticKindTierCompletion) {
+        public NamingPolicy {
+            if (!"frozen_legacy_baseline".equals(tier1BareId)
+                    || !"<material>_<kind>".equals(newSubsystemId)
+                    || automaticKindTierCompletion) {
+                throw new IllegalStateException(
+                        "Machine naming policy must freeze legacy bare ids "
+                                + "and forbid kind × tier completion");
+            }
+        }
+    }
 
     public record Entry(
             ResourceLocation variantId,
@@ -231,10 +286,30 @@ public final class MachineTierCatalog {
 
     private static final class Document {
         private int schemaVersion;
+        private NamingPolicyRow namingPolicy;
         private Source source;
         private List<Row> variants;
         @SerializedName("controller_profiles")
         private List<ControllerProfileRow> controllerProfiles;
+    }
+
+    private static final class NamingPolicyRow {
+        private String tier1BareId;
+        private String newSubsystemId;
+        private Boolean automaticKindTierCompletion;
+
+        private boolean complete() {
+            return "frozen_legacy_baseline".equals(tier1BareId)
+                    && "<material>_<kind>".equals(newSubsystemId)
+                    && Boolean.FALSE.equals(automaticKindTierCompletion);
+        }
+
+        private NamingPolicy toPolicy() {
+            return new NamingPolicy(
+                    tier1BareId,
+                    newSubsystemId,
+                    automaticKindTierCompletion);
+        }
     }
 
     private static final class Source {

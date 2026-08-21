@@ -1,0 +1,670 @@
+{
+  "counts": {
+    "canonical": 20,
+    "missing": 0,
+    "out_of_scope": 8,
+    "post_1_0": 5,
+    "unclassified": 0,
+    "unexpected": 0,
+    "v1_required": 7
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t27_portfolio.py": "af2635234c6815ea6598982a61e096a01dfc415f9ba9e436dd7acad8dd966387",
+      "tools/t13_denominators/energy_identities.json": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+      "tools/t27_portfolio_policy/energy_identities.json": "1058b9e7fa02a0ef5b66cec175a9d5d80a021f464b83de8e1af6da18bdaeba2d"
+    }
+  },
+  "generated_by": "python tools/build_t27_portfolio.py",
+  "records": [
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 in_scope energy identity is consumed by current CC machines or T15-T18 runtimes.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 energy_identities row plus CC EnergyType or named runtime mapping. Map-level machine lists are not row-level completeness.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Identity is live on the T26 READY energy path; T27 adds no energy content.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "AIR",
+      "cc_implementation": "cruciblecraft:energy/AIR",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_energy",
+      "reason": "T13 in_scope; roadmap MISSING (none). Steam/air production and conversion remain distinct.",
+      "recheck_point": "T27 RC candidate energy path recheck",
+      "replacement_condition": "Not applicable: v1 energy identity is already on the published industrial mainline.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "b79666db884f5c2410e27aa476e91a4d0f81856a8bfd92a597bc891d49140aee",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason energy identity; T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 energy_identities deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured energy identity cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "CRYO",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/energy",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). No T15-T18 batch owns this GT6 energy identity.",
+      "recheck_point": "post-1.0 energy measurement card",
+      "replacement_condition": "A later 1.x energy card measures or excludes this identity; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "0ae9a7a60e98ae567835a8b138639389a6cc62613a24b0f9308df41e6cc3c2d6",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 in_scope energy identity is consumed by current CC machines or T15-T18 runtimes.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 energy_identities row plus CC EnergyType or named runtime mapping. Map-level machine lists are not row-level completeness.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Identity is live on the T26 READY energy path; T27 adds no energy content.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "ELECTRICITY",
+      "cc_implementation": "cruciblecraft:energy/ELECTRIC",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_energy",
+      "reason": "T13 in_scope; roadmap MISSING (none). HU/EU machine batches consume this identity.",
+      "recheck_point": "T27 RC candidate energy path recheck",
+      "replacement_condition": "Not applicable: v1 energy identity is already on the published industrial mainline.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "acf343d9627754178defefd4949f9a772849599fb70bf8dbce617893d0eef86c",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 in_scope energy identity is consumed by current CC machines or T15-T18 runtimes.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 energy_identities row plus CC EnergyType or named runtime mapping. Map-level machine lists are not row-level completeness.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Identity is live on the T26 READY energy path; T27 adds no energy content.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "HEAT",
+      "cc_implementation": "cruciblecraft:energy/HEAT",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_energy",
+      "reason": "T13 in_scope; roadmap MISSING (none). HU/EU machine batches consume this identity.",
+      "recheck_point": "T27 RC candidate energy path recheck",
+      "replacement_condition": "Not applicable: v1 energy identity is already on the published industrial mainline.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "75614a4274adebbdc1a13fedc524a3e58b6ec83e1cc3146019ea7451a6264d5a",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 in_scope energy identity is consumed by current CC machines or T15-T18 runtimes.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 energy_identities row plus CC EnergyType or named runtime mapping. Map-level machine lists are not row-level completeness.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Identity is live on the T26 READY energy path; T27 adds no energy content.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "KINETIC_PUSH",
+      "cc_implementation": "cruciblecraft:energy/KINETIC_PUSH",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_energy",
+      "reason": "T13 in_scope; roadmap MISSING (none). RU/KU machine and topology batches consume this identity.",
+      "recheck_point": "T27 RC candidate energy path recheck",
+      "replacement_condition": "Not applicable: v1 energy identity is already on the published industrial mainline.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "fb17abd20d315c63b605edff9c9ae89e22df265759c4ab0a47ad7eb90460141e",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 in_scope energy identity is consumed by current CC machines or T15-T18 runtimes.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 energy_identities row plus CC EnergyType or named runtime mapping. Map-level machine lists are not row-level completeness.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Identity is live on the T26 READY energy path; T27 adds no energy content.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "KINETIC_ROTATION",
+      "cc_implementation": "cruciblecraft:energy/KINETIC_ROTATION",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_energy",
+      "reason": "T13 in_scope; roadmap MISSING (none). RU/KU machine and topology batches consume this identity.",
+      "recheck_point": "T27 RC candidate energy path recheck",
+      "replacement_condition": "Not applicable: v1 energy identity is already on the published industrial mainline.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "23acb8eb5ed046f1911d39b1a0d6ae69b73811cb924f2507fba4fb4f51ae6a47",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason energy identity; T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 energy_identities deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured energy identity cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "LIGHT",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/energy",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). No T15-T18 batch owns this GT6 energy identity.",
+      "recheck_point": "post-1.0 energy measurement card",
+      "replacement_condition": "A later 1.x energy card measures or excludes this identity; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "0511af39c4c64439d00132b06fcf929d1fd83ec2de068855e91da76e81a8c175",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason energy identity; T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 energy_identities deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured energy identity cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "MAGNETIC",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/energy",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). No T15-T18 batch owns this GT6 energy identity.",
+      "recheck_point": "post-1.0 energy measurement card",
+      "replacement_condition": "A later 1.x energy card measures or excludes this identity; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "8b1c9ffcf5951310d9d579a0d4f7256154006567b1f361c6ade45ec9043d7bb5",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope energy identity.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Compatibility or magic energy tags are outside CrucibleCraft v1.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded energy identities are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "MINECRAFT_JOULES",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). External RF/MJ compatibility is absent from the pinned runtime.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: RF/MJ/VIS identities remain excluded by the v1 product contract.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "6325b7e096e7982fd7a1fbd7c4b9ac091746bc76c114be43b734e5f6fd11a6b9",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "Reactor-internal neutron topology is Track C. T27 does not implement nuclear content.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 deferred_with_reason NEUTRON row; T27 keeps it off the eight out-of-scope identities.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "C0 must measure nuclear topology; T27 does not fill 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "NEUTRON",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "reason": "NEUTRON is T13 deferred_with_reason reactor-internal topology, not an out-of-scope energy identity and not a Track E RecipeMap.",
+      "recheck_point": "Track C0 source/physics measurement",
+      "replacement_condition": "C0 source/physics measurement decides reactor-internal neutron topology; this is not one of the eight out-of-scope energy identities.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "53d0bebc671b09ba6038c422d352774bcb0c9c15d9363075f64845f045514197",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 deferred_with_reason energy identity; T27 keeps it post_1_0.",
+          "status": "incomplete"
+        },
+        "fidelity": {
+          "evidence": "T13 energy_identities deferred row.",
+          "status": "source_backed"
+        },
+        "load": {
+          "evidence": "Unmeasured energy identity cannot be filled with 0.",
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT"
+        }
+      },
+      "canonical_id": "QUANTUM",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/energy",
+      "reason": "T13 deferred_with_reason; roadmap MISSING (none). No T15-T18 batch owns this GT6 energy identity.",
+      "recheck_point": "post-1.0 energy measurement card",
+      "replacement_condition": "A later 1.x energy card measures or excludes this identity; T27 does not implement it.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "f2df3c8175ef8b2ac9ef5a1ba8780882eba7da0059eed13dc8ffd415d050085d",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "deferred_with_reason",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope energy identity.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Compatibility or magic energy tags are outside CrucibleCraft v1.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded energy identities are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "REDSTONE_FLUX",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). External RF/MJ compatibility is absent from the pinned runtime.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: RF/MJ/VIS identities remain excluded by the v1 product contract.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "df7856fcf7f0d17ccbc93fef4471f4576e84adaef12bbb5bacfc8cd436cf3b05",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 in_scope energy identity is consumed by current CC machines or T15-T18 runtimes.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 energy_identities row plus CC EnergyType or named runtime mapping. Map-level machine lists are not row-level completeness.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Identity is live on the T26 READY energy path; T27 adds no energy content.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "STEAM",
+      "cc_implementation": "runtime:t18_steam_boiler",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_energy",
+      "reason": "T13 in_scope; roadmap MISSING (none). Steam/air production and conversion remain distinct.",
+      "recheck_point": "T27 RC candidate energy path recheck",
+      "replacement_condition": "Not applicable: v1 energy identity is already on the published industrial mainline.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "d058e12a10d564a233bcea820072832b13f86d70d99d01d0ca4d748ca3ac314b",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 in_scope energy identity is consumed by current CC machines or T15-T18 runtimes.",
+          "status": "closed"
+        },
+        "fidelity": {
+          "evidence": "T13 energy_identities row plus CC EnergyType or named runtime mapping. Map-level machine lists are not row-level completeness.",
+          "status": "source_derived"
+        },
+        "load": {
+          "evidence": "Identity is live on the T26 READY energy path; T27 adds no energy content.",
+          "status": "measured"
+        }
+      },
+      "canonical_id": "TIME",
+      "cc_implementation": "runtime:t15_processing_duration",
+      "dependencies": [],
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_energy",
+      "reason": "T13 in_scope; roadmap MISSING (none). T12 fixed-utility residuals use TU explicitly.",
+      "recheck_point": "T27 RC candidate energy path recheck",
+      "replacement_condition": "Not applicable: v1 energy identity is already on the published industrial mainline.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "0301711284f7e102f357ee246ec99e4c194f6fdd1093e9dfa1de9d605d75c0a6",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "in_scope",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope energy identity.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Compatibility or magic energy tags are outside CrucibleCraft v1.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded energy identities are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "VIS_AER",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). Thaumcraft Vis compatibility is outside third-stage scope.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: RF/MJ/VIS identities remain excluded by the v1 product contract.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "10618087d59335dab91f4dbd0f12270e3525b9f6ed0ca62b94504c41b337f132",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope energy identity.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Compatibility or magic energy tags are outside CrucibleCraft v1.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded energy identities are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "VIS_AQUA",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). Thaumcraft Vis compatibility is outside third-stage scope.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: RF/MJ/VIS identities remain excluded by the v1 product contract.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "ea5c4ae42211d0568f14dfeaad1c9a35504d2bb0182fe3885bc8313a278f4a5c",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope energy identity.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Compatibility or magic energy tags are outside CrucibleCraft v1.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded energy identities are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "VIS_IGNIS",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). Thaumcraft Vis compatibility is outside third-stage scope.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: RF/MJ/VIS identities remain excluded by the v1 product contract.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "3edb572cd59476edfbcf94bab47fe3cb169595762fe3b05f2c46112aac1ebf6e",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope energy identity.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Compatibility or magic energy tags are outside CrucibleCraft v1.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded energy identities are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "VIS_ORDO",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). Thaumcraft Vis compatibility is outside third-stage scope.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: RF/MJ/VIS identities remain excluded by the v1 product contract.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "d47c99569552b3f131d529aaf36da1d78b22d2376450ebea4c675646e833b870",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope energy identity.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Compatibility or magic energy tags are outside CrucibleCraft v1.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded energy identities are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "VIS_PERDITIO",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). Thaumcraft Vis compatibility is outside third-stage scope.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: RF/MJ/VIS identities remain excluded by the v1 product contract.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "4e3858e9fd8b134e99f860604909b351a70916557d23eb4dcae6ccb34d25f389",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "energy_identities"
+    },
+    {
+      "axes": {
+        "closure": {
+          "evidence": "T13 out_of_scope energy identity.",
+          "status": "not_applicable"
+        },
+        "fidelity": {
+          "evidence": "Compatibility or magic energy tags are outside CrucibleCraft v1.",
+          "status": "design_policy"
+        },
+        "load": {
+          "evidence": "Excluded energy identities are not v1 load.",
+          "status": "not_applicable"
+        }
+      },
+      "canonical_id": "VIS_TERRA",
+      "cc_implementation": "none",
+      "dependencies": [],
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "reason": "T13 out_of_scope; roadmap MISSING (none). Thaumcraft Vis compatibility is outside third-stage scope.",
+      "recheck_point": "product-contract change only",
+      "replacement_condition": "Not applicable: RF/MJ/VIS identities remain excluded by the v1 product contract.",
+      "source": {
+        "artifact": "tools/t13_denominators/energy_identities.json",
+        "artifact_sha256": "9f2fdc513a29edeaeb44c03b60ae9830f76c9b0baea555809875b174076c40bb",
+        "record_sha256": "dc973a76b5bb09b1ed484d5aa10cae4e871caa9b2ff7322fa49abdfbf65fec32",
+        "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+      },
+      "t13_classification": "out_of_scope",
+      "table": "energy_identities"
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T27_TABLE_CLASSIFIED",
+  "table": "energy_identities"
+}

@@ -51,6 +51,7 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.DISTILLATION_TOWER.get());
                         output.accept(ModItems.LARGE_BOILER.get());
                         output.accept(ModItems.TANK_3X3X3.get());
+                        output.accept(ModItems.LARGE_CRUCIBLE.get());
                         output.accept(ModItems.RAW_CERAMIC_CRUCIBLE.get());
                         output.accept(ModItems.RAW_CERAMIC_MOLD.get());
                         output.accept(ModItems.RAW_INGOT_MOLD.get());
@@ -98,33 +99,24 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.BRONZE_CRUSHER.get());
                         output.accept(ModItems.SLUICE.get());
                         output.accept(ModItems.BATH.get());
-                        output.accept(ModItems.CENTRIFUGE.get());
-                        output.accept(ModItems.STEEL_CENTRIFUGE.get());
-                        output.accept(ModItems.TITANIUM_CENTRIFUGE.get());
-                        output.accept(ModItems.SHREDDER.get());
-                        output.accept(ModItems.SIFTER.get());
-                        output.accept(ModItems.STEEL_SIFTER.get());
-                        output.accept(ModItems.TITANIUM_SIFTER.get());
-                        output.accept(ModItems.SMELTER.get());
+                        // Every registered machine variant (33 = all tiers of
+                        // the 11 tiered kinds); no hand-written list to drift.
+                        ModMachineVariants.ALL.forEach(variant ->
+                                output.accept(ModBlocks
+                                        .configuredProcessingBlock(variant)
+                                        .asItem()));
+                        ModBlocks.hopperBlocks().forEach(block ->
+                                output.accept(block.get().asItem()));
+                        output.accept(ModItems.STEEL_DUST_FUNNEL.get());
                         output.accept(ModItems.MORTAR.get());
                         output.accept(ModItems.EXTRUDER.get());
                         output.accept(ModItems.CUTTER.get());
-                        output.accept(ModItems.LATHE.get());
-                        output.accept(ModItems.ROLLINGMILL.get());
                         output.accept(ModItems.ROLLBENDER.get());
-                        output.accept(ModItems.WIREMILL.get());
                         output.accept(ModItems.BENDER.get());
                         output.accept(ModItems.ASSEMBLER.get());
                         output.accept(ModItems.WELDER.get());
-                        output.accept(ModItems.PRESS.get());
-                        output.accept(ModItems.ELECTROLYZER.get());
-                        output.accept(ModItems.ALUMINIUM_ELECTROLYZER.get());
-                        output.accept(
-                                ModItems.STAINLESS_STEEL_ELECTROLYZER.get());
                         output.accept(ModItems.MIXER.get());
-                        output.accept(ModItems.DISTILLERY.get());
                         output.accept(ModItems.AUTOCLAVE.get());
-                        output.accept(ModItems.DRYING.get());
                         output.accept(ModItems.COMPRESSOR.get());
                         output.accept(ModItems.GENERIFIER.get());
                         output.accept(ModItems.FLUID_DEPOSIT_EXTRACTOR.get());
@@ -133,25 +125,27 @@ public final class ModCreativeTabs {
                         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                                 output.accept(ModItems.extruderShape(shape.id()).get()));
                         output.accept(ModItems.FLINT_KNIFE.get());
-                        ModItems.toolPatterns().forEach(pattern ->
-                                output.accept(pattern.get()));
-                        output.accept(ModItems.SMITHING_HAMMER.get().variant("bronze"));
-                        output.accept(ModItems.SMITHING_HAMMER.get().variant("iron"));
-                        output.accept(ModItems.SMITHING_HAMMER.get().variant("steel"));
-                        output.accept(ModItems.MATERIAL_FILE.get().variant("iron"));
-                        output.accept(ModItems.MATERIAL_PICKAXE.get().variant("iron"));
-                        output.accept(ModItems.MATERIAL_PICKAXE.get().variant("diamond"));
-                        output.accept(ModItems.MATERIAL_PICKAXE.get().variant("stone"));
-                        output.accept(ModItems.MATERIAL_SHOVEL.get().variant("iron"));
-                        output.accept(ModItems.MATERIAL_AXE.get().variant("iron"));
-                        output.accept(ModItems.MATERIAL_HOE.get().variant("iron"));
-                        output.accept(ModItems.MATERIAL_SWORD.get().variant("iron"));
-                        output.accept(ModItems.MATERIAL_CHISEL.get().variant("iron"));
-                        output.accept(ModItems.MATERIAL_SAW.get().variant("iron"));
-                        output.accept(ModItems.MATERIAL_SCREWDRIVER.get().variant("iron"));
-                        output.accept(ModItems.MATERIAL_WRENCH.get().variant("iron"));
+                        // Tool patterns and material-tool variants live in the
+                        // dedicated TOOLS tab; MAIN only keeps the bootstrap knife.
                     })
                     .build());
+
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TOOLS =
+            CREATIVE_MODE_TABS.register(
+                    "tools",
+                    () -> CreativeModeTab.builder()
+                            .title(Component.translatable(
+                                    "itemGroup.cruciblecraft.tools"))
+                            .icon(() -> ModItems.MATERIAL_WRENCH.get()
+                                    .variant("iron"))
+                            .displayItems((parameters, output) -> {
+                                ModItems.toolPatterns().forEach(pattern ->
+                                        output.accept(pattern.get()));
+                                com.masson.cruciblecraft.content.item
+                                        .ToolDisplayPlan.routedVariantStacks()
+                                        .forEach(output::accept);
+                            })
+                            .build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ORES =
             materialTab(
@@ -189,6 +183,58 @@ public final class ModCreativeTabs {
             materialTab(
                     MaterialCreativeTab.CABLES,
                     () -> ModItems.ASSEMBLER.get().getDefaultInstance());
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> FLUID_CELLS =
+            CREATIVE_MODE_TABS.register(
+                    "fluid_cells",
+                    () -> CreativeModeTab.builder()
+                            .title(Component.translatable(
+                                    "itemGroup.cruciblecraft.fluid_cells"))
+                            .icon(() -> ModItems.FLUID_CELL.get()
+                                    .getDefaultInstance())
+                            .displayItems((parameters, output) ->
+                                    com.masson.cruciblecraft.material
+                                            .CellContentGate.sortedEntries()
+                                            .forEach(entry -> {
+                                                net.minecraft.world.level.material
+                                                        .Fluid fluid =
+                                                        net.minecraft.core.registries
+                                                                .BuiltInRegistries.FLUID
+                                                                .get(entry.getKey());
+                                                if (fluid == net.minecraft.world.level.material
+                                                        .Fluids.EMPTY) {
+                                                    return;
+                                                }
+                                                boolean liquid =
+                                                        entry.getValue()
+                                                                == com.masson.cruciblecraft
+                                                                        .material
+                                                                        .CellContentGate.Kind
+                                                                        .FLUID;
+                                                ItemStack cell = new ItemStack(
+                                                        (liquid
+                                                                ? ModItems.FLUID_CELL
+                                                                : ModItems.GAS_CELL)
+                                                                .get());
+                                                cell.set(
+                                                        (liquid
+                                                                ? ModComponents
+                                                                        .FLUID_CELL_CONTENT
+                                                                : ModComponents
+                                                                        .GAS_CELL_CONTENT)
+                                                                .get(),
+                                                        net.neoforged.neoforge.fluids
+                                                                .SimpleFluidContent.copyOf(
+                                                                new net.neoforged.neoforge.fluids
+                                                                        .FluidStack(
+                                                                        fluid,
+                                                                        1_000)));
+                                                output.accept(cell);
+                                            }))
+                            .build());
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> PIPES =
+            materialTab(
+                    MaterialCreativeTab.PIPES,
+                    () -> ModItems.EXTRUDER.get().getDefaultInstance());
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MISC =
             materialTab(
                     MaterialCreativeTab.MISC,

@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "table": "itemgenerator_domains",
+  "status": "T27_TABLE_POLICY",
+  "review": "T27-2 P3. Domain identity is not a prefix identity. The 16 current CC domains are reviewed v1_required closed as generator domains, not as a promise that every prefix in the domain is a v1 item. Deferred domains stay post_1_0. G10 domains stay out_of_scope.",
+  "defaults": {
+    "in_scope": {
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_itemgenerator_domains",
+      "replacement_condition": "Not applicable: v1 domain membership is closed. Prefix-level gaps are owned on the prefixes table, not duplicated here.",
+      "recheck_point": "T27-2 P2 prefixes table",
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "T13 current_cc_16 domain is already a CC generator domain. Player-mainline necessity is not inferred from generability alone."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T13 itemgenerator_domains row plus CC material item generator mapping."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "Domain already participates in the T26 READY material registry; T27 adds no generated items."
+        }
+      }
+    },
+    "deferred_with_reason": {
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/itemgenerator_domains",
+      "cc_implementation": "none",
+      "replacement_condition": "A later 1.x generator card measures or excludes this domain; it is not a second copy of a prefix gap.",
+      "recheck_point": "post-1.0 itemgenerator measurement",
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "T13 deferred domain; T27 does not treat generability as a v1 player-path requirement."
+        },
+        "fidelity": {
+          "status": "source_backed",
+          "evidence": "T13 itemgenerator_domains deferred row."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "Unmeasured generator domain cannot be filled with 0."
+        }
+      }
+    },
+    "out_of_scope": {
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "cc_implementation": "none",
+      "replacement_condition": "Not applicable: G10 peripheral domains stay outside v1.",
+      "recheck_point": "product-contract change only",
+      "axes": {
+        "closure": {
+          "status": "not_applicable",
+          "evidence": "T13 G10_peripheral out_of_scope domain."
+        },
+        "fidelity": {
+          "status": "design_policy",
+          "evidence": "Armor, plants, projectiles and similar G10 domains are excluded by the v1 product contract."
+        },
+        "load": {
+          "status": "not_applicable",
+          "evidence": "Excluded domains are not v1 load."
+        }
+      }
+    }
+  },
+  "cc_implementations": {
+    "ITEMGENERATOR.CONTAINERS_FLUID": "runtime:material_item_generator/CONTAINERS_FLUID",
+    "ITEMGENERATOR.CONTAINERS_GAS": "runtime:material_item_generator/CONTAINERS_GAS",
+    "ITEMGENERATOR.DENSEPLATES": "runtime:material_item_generator/DENSEPLATES",
+    "ITEMGENERATOR.DUSTS": "runtime:material_item_generator/DUSTS",
+    "ITEMGENERATOR.FOILS": "runtime:material_item_generator/FOILS",
+    "ITEMGENERATOR.GEMS": "runtime:material_item_generator/GEMS",
+    "ITEMGENERATOR.INGOTS": "runtime:material_item_generator/INGOTS",
+    "ITEMGENERATOR.INGOTS_HOT": "runtime:material_item_generator/INGOTS_HOT",
+    "ITEMGENERATOR.MOLTEN": "runtime:material_item_generator/MOLTEN",
+    "ITEMGENERATOR.MULTIINGOTS": "runtime:material_item_generator/MULTIINGOTS",
+    "ITEMGENERATOR.MULTIPLATES": "runtime:material_item_generator/MULTIPLATES",
+    "ITEMGENERATOR.ORES": "runtime:material_item_generator/ORES",
+    "ITEMGENERATOR.PARTS": "runtime:material_item_generator/PARTS",
+    "ITEMGENERATOR.PLATES": "runtime:material_item_generator/PLATES",
+    "ITEMGENERATOR.STICKS": "runtime:material_item_generator/STICKS",
+    "ITEMGENERATOR.WIRES": "runtime:material_item_generator/WIRES"
+  },
+  "overrides": {
+    "ITEMGENERATOR.INGOTS_HOT": {
+      "dependencies": [
+        {
+          "kind": "open_item_id",
+          "id": "O-36"
+        }
+      ],
+      "reason": "Hot-ingot items already generate. GT6-equivalent cooling behavior is O-36, owned on the open-item ledger, not a second domain gap."
+    },
+    "ITEMGENERATOR.LENSES": {
+      "owner": "portfolio:post_1_0/itemgenerator_lenses",
+      "reason": "Industrial deferred domain, not a G10 peripheral. Prefix-level lens forms are consumers of this domain via dependency, not a duplicate v1 gap."
+    }
+  }
+}

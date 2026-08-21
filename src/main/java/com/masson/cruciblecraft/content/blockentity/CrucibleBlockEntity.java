@@ -9,64 +9,44 @@ import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
-import com.masson.cruciblecraft.content.mold.MoldCastingRules;
 import com.masson.cruciblecraft.api.unit.MaterialUnits;
-import com.masson.cruciblecraft.fluid.MoltenTransferMath;
-import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator;
-import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.FillPlan;
-import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
 import com.masson.cruciblecraft.energy.EnergyPackets;
-import com.masson.cruciblecraft.heat.CrucibleThermalModel;
-import com.masson.cruciblecraft.material.MaterialCatalog;
-import com.masson.cruciblecraft.material.def.MaterialDefinition;
-import com.masson.cruciblecraft.machine.MachineMaterialRules;
-import com.masson.cruciblecraft.machine.MachineMaterialRules.Device;
+import com.masson.cruciblecraft.fluid.CrucibleTransferCoordinator.InsertResult;
 import com.masson.cruciblecraft.machine.CheckpointDecisions;
 import com.masson.cruciblecraft.machine.component.CheckpointTracker;
-import com.masson.cruciblecraft.machine.component.CompositionTank;
-import com.masson.cruciblecraft.machine.component.MachineCasing;
+import com.masson.cruciblecraft.machine.component.CrucibleProcessCore;
 import com.masson.cruciblecraft.machine.component.SteelmakingController;
-import com.masson.cruciblecraft.machine.component.ThermalComponent;
-import com.masson.cruciblecraft.recipe.AlloyIndex.AlloyMatch;
-import com.masson.cruciblecraft.recipe.SteelmakingProcess;
-import com.masson.cruciblecraft.recipe.SteelmakingProcess.Batch;
+import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
-import com.masson.cruciblecraft.registry.ModFluids;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.world.level.Level;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
-    public static final int MAX_INGOTS = 8;
-    public static final float AMBIENT_TEMPERATURE = 20.0f;
-    public static final long HEAT_DISPLAY_CAPACITY = 64L;
-    private static final double CASING_VOLUME_CM3 = 800.0;
-    private static final double CM3_PER_UNIT = 0.15;
-    private final CompositionTank contents = new CompositionTank();
-    private final MachineCasing casing = new MachineCasing(Device.CRUCIBLE, CASING_VOLUME_CM3);
-    private final ThermalComponent thermal = new ThermalComponent(AMBIENT_TEMPERATURE);
-    private final SteelmakingController steelmaking = new SteelmakingController();
-    private final IFluidHandler externalFluids = new CrucibleFluidHandler();
+    public static final int MAX_INGOTS = CrucibleProcessCore.SINGLE_BLOCK_MAX_INGOTS;
+    public static final float AMBIENT_TEMPERATURE = CrucibleProcessCore.AMBIENT_TEMPERATURE;
+    public static final long HEAT_DISPLAY_CAPACITY = CrucibleProcessCore.HEAT_DISPLAY_CAPACITY;
+
+    private final CrucibleProcessCore process = CrucibleProcessCore.singleBlock();
     private final CheckpointTracker checkpoint = new CheckpointTracker();
     private boolean quarantineWarningLogged;
 
     public CrucibleBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.CRUCIBLE.get(), pos, blockState);
+        process.setOnMutation(this::markMutation);
     }
 
     @Override
@@ -75,13 +55,13 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
         if (!quarantineWarningLogged
                 && level != null
                 && !level.isClientSide
-                && casing.quarantined()) {
+                && process.casing().quarantined()) {
             quarantineWarningLogged = true;
             CrucibleCraft.LOGGER.warn(
                     "Quarantined crucible at {} {}: unsupported casing material {}",
                     level.dimension().location(),
                     worldPosition,
-                    casing.quarantinedMaterialId());
+                    process.casing().quarantinedMaterialId());
         }
     }
 
@@ -90,16 +70,16 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
             BlockPos pos,
             BlockState state,
             CrucibleBlockEntity crucible) {
-        if (crucible.casing.quarantined()) {
+        if (crucible.process.casing().quarantined()) {
             return;
         }
-        long incomingEnergy = crucible.thermal.takePendingHeat();
+        long incomingEnergy = crucible.process.thermal().takePendingHeat();
 
-        float previousTemperature = crucible.thermal.authoritativeTemperature();
-        long previousStoredEnergy = crucible.thermal.storedEnergy();
-        int previousCooldown = crucible.thermal.cooldownTicks();
-        long previousAir = crucible.steelmaking.storedAir();
-        int previousReactionTicks = crucible.steelmaking.reactionTicks();
+        float previousTemperature = crucible.process.thermal().authoritativeTemperature();
+        long previousStoredEnergy = crucible.process.thermal().storedEnergy();
+        int previousCooldown = crucible.process.thermal().cooldownTicks();
+        long previousAir = crucible.process.steelmaking().storedAir();
+        int previousReactionTicks = crucible.process.steelmaking().reactionTicks();
         boolean meltedDown = incomingEnergy == 0L && crucible.isThermallyQuiescent()
                 ? false
                 : crucible.advance(incomingEnergy, true);
@@ -109,11 +89,11 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
         }
         boolean processChanged = Float.compare(
                         previousTemperature,
-                        crucible.thermal.authoritativeTemperature()) != 0
-                || previousStoredEnergy != crucible.thermal.storedEnergy()
-                || previousCooldown != crucible.thermal.cooldownTicks()
-                || previousAir != crucible.steelmaking.storedAir()
-                || previousReactionTicks != crucible.steelmaking.reactionTicks();
+                        crucible.process.thermal().authoritativeTemperature()) != 0
+                || previousStoredEnergy != crucible.process.thermal().storedEnergy()
+                || previousCooldown != crucible.process.thermal().cooldownTicks()
+                || previousAir != crucible.process.steelmaking().storedAir()
+                || previousReactionTicks != crucible.process.steelmaking().reactionTicks();
         if (processChanged) {
             crucible.checkpoint.markDirty();
         }
@@ -137,38 +117,22 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
             BlockPos pos,
             BlockState state,
             CrucibleBlockEntity crucible) {
-        crucible.thermal.clientTick();
+        crucible.process.thermal().clientTick();
     }
 
     private boolean advance(long incomingEnergy, boolean authoritative) {
-        boolean unknownMaterials = hasUnknownMaterials();
-        if (authoritative && !unknownMaterials) {
-            boolean boiled = contents.removeBoiling(thermal.authoritativeTemperature());
-            if (boiled) {
-                markMutation();
-                emitBoilingEffects();
-            }
-            if (steelmaking.tick(contents, thermal.authoritativeTemperature()).immediateMutation()) {
-                markMutation();
-            }
+        CrucibleProcessCore.TickOutcome outcome = process.advance(incomingEnergy, authoritative);
+        if (outcome.boiled()) {
+            markMutation();
+            emitBoilingEffects();
+        } else if (outcome.mutated()) {
+            markMutation();
         }
-
-        thermal.advance(
-                unknownMaterials ? 0L : incomingEnergy,
-                totalWeightGrams());
-
-        if (thermal.authoritativeTemperature() > casingMaxTemperature()) {
-            if (authoritative) {
-                contents.clear();
-            }
-            return true;
-        }
-        return false;
+        return outcome.meltedDown();
     }
 
     private boolean isThermallyQuiescent() {
-        return thermal.isQuiescent()
-                && !steelmaking.hasState();
+        return process.isThermallyQuiescent();
     }
 
     private boolean isActiveProcess() {
@@ -214,17 +178,17 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
             long amount,
             Direction side,
             boolean simulate) {
-        if (casing.quarantined()
+        if (process.casing().quarantined()
                 || !handles(type, side)
                 || size == 0L
                 || amount <= 0L) {
             return 0L;
         }
         if (type == EnergyType.HEAT) {
-            if (hasUnknownMaterials()) {
+            if (process.hasUnknownMaterials()) {
                 return 0L;
             }
-            long accepted = thermal.queueHeat(size, amount, simulate);
+            long accepted = process.thermal().queueHeat(size, amount, simulate);
             if (!simulate && accepted > 0L) {
                 checkpoint.markDirty();
             }
@@ -233,21 +197,16 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
         if (level == null || !level.getBlockState(worldPosition.above()).isAir()) {
             return 0L;
         }
-        SteelmakingController.InjectionResult acceptance = steelmaking.previewInjection(
-                contents.composition(),
-                thermal.authoritativeTemperature());
+        SteelmakingController.InjectionResult acceptance = process.previewAirInjection();
         if (!acceptsAir(acceptance)) {
             return 0L;
         }
         long room = Math.max(
                 0L,
-                AirOutputModel.MAX_STORED_AIR - steelmaking.storedAir());
+                AirOutputModel.MAX_STORED_AIR - process.steelmaking().storedAir());
         long accepted = Math.min(amount, EnergyPackets.packetsForUnits(size, room));
         if (!simulate && accepted > 0L) {
-            steelmaking.insertAir(
-                    EnergyPackets.units(size, accepted),
-                    contents.composition(),
-                    thermal.authoritativeTemperature());
+            process.insertAir(EnergyPackets.units(size, accepted));
             checkpoint.markDirty();
         }
         return accepted;
@@ -256,8 +215,8 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
     @Override
     public long stored(EnergyType type) {
         return switch (type) {
-            case HEAT -> thermal.totalStoredHeat();
-            case AIR -> Math.max(0L, steelmaking.storedAir());
+            case HEAT -> process.thermal().totalStoredHeat();
+            case AIR -> Math.max(0L, process.steelmaking().storedAir());
             default -> 0L;
         };
     }
@@ -272,13 +231,10 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
     }
 
     public AirInjectionResult injectAir(long air) {
-        if (casing.quarantined()) {
+        if (process.casing().quarantined()) {
             return AirInjectionResult.INVALID_CHARGE;
         }
-        SteelmakingController.InjectionResult result = steelmaking.insertAir(
-                air,
-                contents.composition(),
-                thermal.authoritativeTemperature());
+        SteelmakingController.InjectionResult result = process.insertAir(air);
         if (acceptsAir(result)) {
             checkpoint.markDirty();
         }
@@ -301,69 +257,39 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
     }
 
     public InsertResult insert(MaterialUnits.Entry entry, float inputTemperature) {
-        if (casing.quarantined()) {
-            return InsertResult.INVALID_MATERIAL;
-        }
-        var plan = CrucibleTransferCoordinator.planInsertion(
-                entry,
-                totalUnits(),
-                maxUnits(),
-                casing.materialId());
-        if (plan.result() != InsertResult.SUCCESS) {
-            return plan.result();
-        }
-        applyAdditions(plan.additions(), inputTemperature, true);
-        return InsertResult.SUCCESS;
-    }
-
-    private void applyAdditions(
-            Map<String, Integer> additions,
-            float inputTemperature,
-            boolean immediatelyVisible) {
-        double existingWeight = totalWeightGrams();
-        double addedWeight = additions.entrySet().stream()
-                .mapToDouble(component -> unitWeightGrams(component.getKey(), component.getValue()))
-                .sum();
-        float safeInputTemperature =
-                Float.isFinite(inputTemperature) ? inputTemperature : AMBIENT_TEMPERATURE;
-        thermal.mixWith(safeInputTemperature, existingWeight, addedWeight);
-        contents.addAll(additions);
-        steelmaking.onCompositionChanged();
-        if (immediatelyVisible) {
+        InsertResult result = process.insert(entry, inputTemperature);
+        if (result == InsertResult.SUCCESS) {
             markVisibleMutation();
-        } else {
-            markMutation();
         }
+        return result;
     }
 
     public IFluidHandler externalFluids() {
-        return externalFluids;
+        return process.fluids();
     }
 
     public Optional<MaterialDefinition> castIngot() {
-        return cast(MaterialPrefixes.INGOT).map(CastTransfer::material);
+        Optional<MaterialDefinition> result = process.castIngot();
+        if (result.isPresent()) {
+            markVisibleMutation();
+        }
+        return result;
     }
 
     public Optional<CastTransfer> cast(MaterialPrefix form) {
-        Optional<CastCandidate> candidate = castCandidate(form);
-        if (candidate.isEmpty()
-                || thermal.authoritativeTemperature() < candidate.get().meltingPoint()) {
-            return Optional.empty();
+        Optional<CrucibleProcessCore.CastTransfer> result = process.cast(form);
+        if (result.isPresent()) {
+            markVisibleMutation();
         }
-        if (!contents.containsAtLeast(candidate.get().cost())) {
-            return Optional.empty();
-        }
-        contents.removeAll(candidate.get().cost());
-        markVisibleMutation();
-        return Optional.of(new CastTransfer(
-                candidate.get().material(),
-                form,
-                candidate.get().outputCount(),
-                thermal.authoritativeTemperature()));
+        return result.map(transfer -> new CastTransfer(
+                transfer.material(),
+                transfer.form(),
+                transfer.count(),
+                transfer.temperature()));
     }
 
     public float temperature() {
-        return thermal.temperature(level != null && level.isClientSide);
+        return process.temperature(level != null && level.isClientSide);
     }
 
     /** Display helper; temperature is already Celsius. */
@@ -372,42 +298,35 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
     }
 
     public boolean isMolten() {
-        if (contents.composition().isEmpty() || contents.unknownMaterials()) {
-            return false;
-        }
-        if (currentSteelmakingBatch().isPresent()) {
-            return temperature()
-                    >= MaterialCatalog.require(SteelmakingProcess.IRON).thermal().meltingPoint();
-        }
-        return temperature() >= contents.moltenThreshold();
+        return process.isMolten();
     }
 
     public float fillFraction() {
-        return Math.min(1.0f, totalUnits() / (float) maxUnits());
+        return process.fillFraction();
     }
 
     public Map<String, Integer> composition() {
-        return contents.composition();
+        return process.composition();
     }
 
     public int totalUnits() {
-        return contents.totalUnits();
+        return process.totalUnits();
     }
 
     public int moltenColor() {
-        return contents.moltenColor();
+        return process.moltenColor();
     }
 
     public long storedAir() {
-        return steelmaking.storedAir();
+        return process.storedAir();
     }
 
     public String casingMaterialId() {
-        return casing.materialId();
+        return process.casing().materialId();
     }
 
     public void setCasingMaterialId(String materialId) {
-        if (casing.setMaterialId(materialId)) {
+        if (process.casing().setMaterialId(materialId)) {
             setChanged();
             syncToClient();
             checkpoint.synced();
@@ -415,76 +334,31 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
     }
 
     public int casingTier() {
-        return casing.materialTier();
+        return process.casing().materialTier();
     }
 
     public int processingTier() {
-        return casing.processingTier();
+        return process.casing().processingTier();
     }
 
     public boolean casingMaterialQuarantined() {
-        return casing.quarantined();
+        return process.casing().quarantined();
     }
 
     public String quarantinedCasingMaterialId() {
-        return casing.quarantinedMaterialId();
+        return process.casing().quarantinedMaterialId();
     }
 
     public float casingMaxTemperature() {
-        return casing.maxTemperature();
+        return process.casingMaxTemperature();
     }
 
     public boolean steelmakingActive() {
-        return steelmaking.active();
-    }
-
-    private Optional<Batch> currentSteelmakingBatch() {
-        return steelmaking.currentBatch(contents.composition());
-    }
-
-    private Optional<CastCandidate> castCandidate(MaterialPrefix form) {
-        if (hasUnknownMaterials()) {
-            return Optional.empty();
-        }
-        Optional<AlloyMatch> alloy = contents.alloy();
-        if (alloy.isPresent()) {
-            if (!MaterialCatalog.isFormRegistered(alloy.get().result(), form)) {
-                return Optional.empty();
-            }
-            return MoldCastingRules.smallestBatch(alloy.get().costPerIngot(), form).map(batch -> new CastCandidate(
-                    alloy.get().result(),
-                    batch.cost(),
-                    batch.outputCount(),
-                    alloy.get().result().thermal().meltingPoint()));
-        }
-        if (contents.resolvedMaterial().isEmpty()) {
-            return Optional.empty();
-        }
-
-        MaterialDefinition material = contents.resolvedMaterial().orElseThrow();
-        if (!MaterialCatalog.isFormRegistered(material, form)) {
-            return Optional.empty();
-        }
-        return MoldCastingRules.smallestBatch(
-                        Map.of(material.id(), MaterialPrefixes.INGOT.units()),
-                        form)
-                .map(batch -> new CastCandidate(
-                        material,
-                        batch.cost(),
-                        batch.outputCount(),
-                        material.thermal().meltingPoint()));
+        return process.steelmakingActive();
     }
 
     public boolean hasUnknownMaterials() {
-        return contents.unknownMaterials();
-    }
-
-    private static double unitWeightGrams(String materialId, int units) {
-        return MaterialCatalog.require(materialId).thermal().density() * CM3_PER_UNIT * units;
-    }
-
-    private double totalWeightGrams() {
-        return casing.massGrams() + contents.contentsWeightGrams(CM3_PER_UNIT);
+        return process.hasUnknownMaterials();
     }
 
     @Override
@@ -515,69 +389,18 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
     }
 
     private void restoreState(CompoundTag tag, boolean clientUpdate) {
-        contents.clear();
-        if (tag.contains("composition", Tag.TAG_COMPOUND)) {
-            CompoundTag savedComposition = tag.getCompound("composition");
-            for (String material : savedComposition.getAllKeys()) {
-                int units = savedComposition.getInt(material);
-                if (units > 0) {
-                    contents.setUnits(material, units);
-                }
-            }
-        }
-        casing.restoreMaterialId(tag.contains("casing_material_id", Tag.TAG_STRING)
-                ? tag.getString("casing_material_id")
-                : MachineMaterialRules.DEFAULT_CRUCIBLE_MATERIAL);
-        int savedCooldownTicks = tag.contains("cooldown_ticks")
-                ? tag.getInt("cooldown_ticks")
-                : CrucibleThermalModel.HOT_BUFFER_TICKS;
-        thermal.restore(
-                tag.contains("temperature") ? tag.getFloat("temperature") : AMBIENT_TEMPERATURE,
-                tag.getLong("cached_energy_per_tick"),
-                tag.getLong("stored_energy"),
-                savedCooldownTicks,
-                clientUpdate);
-        steelmaking.restore(
-                tag.getLong("stored_air"),
-                tag.getInt("steel_batch_iron_units"),
-                tag.getInt("steel_reaction_ticks"));
+        process.restore(tag, clientUpdate);
     }
 
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        CompoundTag savedComposition = new CompoundTag();
-        contents.composition().forEach(savedComposition::putInt);
-        tag.put("composition", savedComposition);
-        tag.putString("casing_material_id", casing.persistedMaterialId());
-        tag.putFloat("temperature", thermal.authoritativeTemperature());
-        tag.putLong("cached_energy_per_tick", thermal.pendingHeat());
-        tag.putLong("stored_energy", thermal.storedEnergy());
-        tag.putInt("cooldown_ticks", thermal.cooldownTicks());
-        tag.putLong("stored_air", steelmaking.storedAir());
-        tag.putInt("steel_batch_iron_units", steelmaking.batchIronUnits());
-        tag.putInt("steel_reaction_ticks", steelmaking.reactionTicks());
+        process.save(tag);
     }
 
     @Override
     public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
-        return writeClientTag();
-    }
-
-    /**
-     * Client contract: renderer/Jade need composition, casing and temperature;
-     * steel_batch_iron_units keeps isMolten() correct during an active blow.
-     * Server-only heat buffers, air and reaction progress deliberately stay out.
-     */
-    private CompoundTag writeClientTag() {
-        CompoundTag tag = new CompoundTag();
-        CompoundTag savedComposition = new CompoundTag();
-        contents.composition().forEach(savedComposition::putInt);
-        tag.put("composition", savedComposition);
-        tag.putString("casing_material_id", casing.persistedMaterialId());
-        tag.putFloat("temperature", thermal.authoritativeTemperature());
-        tag.putInt("steel_batch_iron_units", steelmaking.batchIronUnits());
-        return tag;
+        return process.clientTag();
     }
 
     @Override
@@ -605,46 +428,6 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
         checkpoint.synced();
     }
 
-    private Optional<DrainCandidate> drainCandidate(int requested) {
-        if (requested <= 0 || !isMolten() || fluidTransferBlocked()) {
-            return Optional.empty();
-        }
-        Optional<MaterialDefinition> resolvedMaterial = contents.resolvedMaterial();
-        if (resolvedMaterial.isEmpty()
-                || ModFluids.molten(resolvedMaterial.get().id()).isEmpty()) {
-            return Optional.empty();
-        }
-        MaterialDefinition material = resolvedMaterial.get();
-        Map<String, Integer> ratio = MaterialCatalog.decompositionRatio(material);
-        return MoltenTransferMath.planDrain(contents.composition(), ratio, requested)
-                .map(plan -> new DrainCandidate(material, plan));
-    }
-
-    private boolean fluidTransferBlocked() {
-        return hasUnknownMaterials() || steelmaking.blocksFluidTransfer();
-    }
-
-    private FluidStack executeDrain(DrainCandidate candidate, IFluidHandler.FluidAction action) {
-        FluidStack result = new FluidStack(
-                ModFluids.molten(candidate.material().id()).orElseThrow().source().get(),
-                candidate.plan().amount());
-        if (action.execute()) {
-            contents.removeAll(candidate.plan().removals());
-            markMutation();
-        }
-        return result;
-    }
-
-    private record CastCandidate(
-            MaterialDefinition material,
-            Map<String, Integer> cost,
-            int outputCount,
-            double meltingPoint) {}
-
-    private record DrainCandidate(
-            MaterialDefinition material,
-            MoltenTransferMath.DrainPlan plan) {}
-
     public record CastTransfer(
             MaterialDefinition material,
             MaterialPrefix form,
@@ -660,90 +443,5 @@ public class CrucibleBlockEntity extends BlockEntity implements IEnergyHandler {
         CONTINUED,
         TOO_COLD,
         INVALID_CHARGE
-    }
-
-    private final class CrucibleFluidHandler implements IFluidHandler {
-        @Override
-        public int getTanks() {
-            return 1;
-        }
-
-        @Override
-        public FluidStack getFluidInTank(int tank) {
-            if (tank != 0) {
-                return FluidStack.EMPTY;
-            }
-            return drainCandidate(Integer.MAX_VALUE)
-                    .map(candidate -> new FluidStack(
-                            ModFluids.molten(candidate.material().id()).orElseThrow().source().get(),
-                            candidate.plan().amount()))
-                    .orElse(FluidStack.EMPTY);
-        }
-
-        @Override
-        public int getTankCapacity(int tank) {
-            return tank == 0 ? maxUnits() : 0;
-        }
-
-        @Override
-        public boolean isFluidValid(int tank, FluidStack stack) {
-            return tank == 0
-                    && !stack.isEmpty()
-                    && ModFluids.material(stack.getFluid()).isPresent();
-        }
-
-        @Override
-        public int fill(FluidStack resource, FluidAction action) {
-            if (casing.quarantined() || resource.isEmpty()) {
-                return 0;
-            }
-            Optional<MaterialDefinition> material = ModFluids.material(resource.getFluid());
-            if (material.isEmpty()) {
-                return 0;
-            }
-            Optional<FillPlan> plan = CrucibleTransferCoordinator.planFill(
-                    material.get(),
-                    resource.getAmount(),
-                    totalUnits(),
-                    maxUnits(),
-                    casing.materialId(),
-                    fluidTransferBlocked());
-            if (plan.isEmpty()) {
-                return 0;
-            }
-            if (action.execute()) {
-                applyAdditions(
-                        plan.get().additions(),
-                        plan.get().inputTemperature(),
-                        false);
-            }
-            return plan.get().accepted();
-        }
-
-        @Override
-        public FluidStack drain(FluidStack resource, FluidAction action) {
-            if (resource.isEmpty()) {
-                return FluidStack.EMPTY;
-            }
-            Optional<MaterialDefinition> requestedMaterial = ModFluids.material(resource.getFluid());
-            if (requestedMaterial.isEmpty()) {
-                return FluidStack.EMPTY;
-            }
-            return drainCandidate(resource.getAmount())
-                    .filter(candidate -> candidate.material().id().equals(requestedMaterial.get().id())
-                            && resource.getFluid() == ModFluids.molten(candidate.material().id())
-                                    .orElseThrow()
-                                    .source()
-                                    .get())
-                    .map(candidate -> executeDrain(candidate, action))
-                    .orElse(FluidStack.EMPTY);
-        }
-
-        @Override
-        public FluidStack drain(int maxDrain, FluidAction action) {
-            return drainCandidate(maxDrain)
-                    .map(candidate -> executeDrain(candidate, action))
-                    .orElse(FluidStack.EMPTY);
-        }
     }
 }

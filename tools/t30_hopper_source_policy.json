@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "status": "T30_HOPPER_SOURCE_POLICY",
+  "source": {
+    "repository": "GregTech6/gregtech6",
+    "repository_url": "https://github.com/GregTech6/gregtech6",
+    "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+    "tree_sha1": "a164302f62a326208fd2076de6fb7cdb0b4602ee",
+    "license": "LGPL-3.0-or-later",
+    "local_root": "gt6_code/gregtech6",
+    "files": {
+      "loader": {
+        "path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "git_blob_sha1": "cf80887c5e572ee0942f087d1c75238115ca5255",
+        "anchors": [
+          "private static void metalset(",
+          "aMat.getLocal()+\" Hopper\"",
+          "aMat.getLocal()+\" Queue Hopper\"",
+          "\"Dust Funnel\"",
+          "metalset(aRegistry, aMetal, aUtilMetal, aMachine, aWooden, MT.Pb",
+          "metalset(aRegistry, aMetal, aUtilMetal, aMachine, aWooden, ANY.W",
+          "metalset(aRegistry, aMetal, aUtilMetal, aMachine, aWooden, MT.Infinity"
+        ]
+      },
+      "materials": {
+        "path": "src/main/java/gregapi/data/MT.java",
+        "git_blob_sha1": "1681c2072f28ad2d31bc285aef1c6fd2a3bcef92",
+        "anchors": [
+          "public static class OREMATS"
+        ]
+      },
+      "any": {
+        "path": "src/main/java/gregapi/data/ANY.java",
+        "git_blob_sha1": "ff1d74471c17e092a2e997c003e11965900d2861",
+        "anchors": [
+          "W               = any(\"Any Tungsten\""
+        ]
+      },
+      "hopper": {
+        "path": "src/main/java/gregtech/tileentity/inventories/MultiTileEntityHopper.java",
+        "git_blob_sha1": "0d9b05ef29f401924d9b665050cd777b1bf12300",
+        "anchors": [
+          "public boolean mExactMode = F, mLock = F;",
+          "public byte mMode = 0, mCheck = 3;"
+        ]
+      },
+      "queue_hopper": {
+        "path": "src/main/java/gregtech/tileentity/inventories/MultiTileEntityQueueHopper.java",
+        "git_blob_sha1": "a6ee22e26c023d0dee8b4790f4f3fcabb8232cf9",
+        "anchors": [
+          "public byte mMode = 64, mCheck = 3;"
+        ]
+      },
+      "dust_funnel": {
+        "path": "src/main/java/gregtech/tileentity/tools/MultiTileEntityDustFunnel.java",
+        "git_blob_sha1": "87d97a241592dac2b7b9f1d1dfd2df7e7d2a23e8",
+        "anchors": [
+          "public static final OreDictPrefix[] DUST_TYPES = {OP.blockDust, OP.dust, OP.dustSmall, OP.dustTiny, OP.dustDiv72};"
+        ]
+      }
+    }
+  },
+  "expected": {
+    "row_count": 60,
+    "hopper_id_base": 8000,
+    "queue_id_base": 8200,
+    "hopper_slot_floor": 1,
+    "queue_slot_floor": 2,
+    "slot_distribution": {
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 6,
+      "5": 5,
+      "6": 6,
+      "7": 3,
+      "8": 3,
+      "9": 6,
+      "12": 3,
+      "14": 1,
+      "18": 4,
+      "27": 6,
+      "36": 11
+    }
+  },
+  "any_tokens": {
+    "ANY.W": {
+      "any_label": "Any Tungsten",
+      "representative_token": "MT.W",
+      "authority": "ANY.java W = any(\"Any Tungsten\"); T30 uses the tungsten source material as the metalset identity, not a string guess from the token."
+    }
+  },
+  "catalog": {
+    "path": "src/main/resources/data/cruciblecraft/hopper_variants.json",
+    "namespace": "cruciblecraft",
+    "kinds": [
+      "hopper",
+      "queue_hopper"
+    ],
+    "id_pattern": "<material>_<kind>",
+    "bare_ids_forbidden": [
+      "hopper",
+      "queue_hopper"
+    ],
+    "dust_funnel_id": "cruciblecraft:steel_dust_funnel",
+    "dust_funnel_material": "cruciblecraft:steel"
+  },
+  "recipe_adaptation": {
+    "fidelity": "SOURCE_DERIVED",
+    "omit_tool_catalysts": true,
+    "plate_curved_runtime": false,
+    "hopper": "5 plate + 1 chest",
+    "queue_hopper": "5 plate + 2 chest",
+    "dust_funnel": "vanilla hopper + iron plate/rod equivalent"
+  },
+  "dust_forms": [
+    "dust",
+    "small_dust",
+    "tiny_dust"
+  ],
+  "dust_units": {
+    "dust": 36,
+    "small_dust": 9,
+    "tiny_dust": 4
+  },
+  "post_1_0_exclusions": [
+    "item_barrels",
+    "mass_storage",
+    "drawer",
+    "fluid_funnel",
+    "canner",
+    "boxinator",
+    "blockDust",
+    "dustDiv72",
+    "plateCurved_runtime",
+    "metalset_chest",
+    "metalset_safe",
+    "metalset_locker",
+    "metalset_scaffold",
+    "kind_times_tier_cartesian",
+    "GT6U",
+    "tracks_A_E",
+    "nuclear_fusion"
+  ],
+  "legacy_machine_policy": {
+    "tier_1_bare_id": "frozen_legacy_baseline",
+    "new_subsystem_id": "<material>_<kind>",
+    "no_automatic_kind_tier_completion": true,
+    "existing_variant_row_count": 33
+  },
+  "execution": {
+    "current_active_t": "T30",
+    "next_t": "T31",
+    "t31_depends_on": "T30_READY",
+    "maximum_active_t_cards": 1,
+    "rc_numbering": "forbidden_until_T30_READY",
+    "mod_version_remains": "0.1.0-beta.1",
+    "historical_artifacts_do_not_rewrite": [
+      "tools/phase5_portfolio_contract.json",
+      "tools/t27_card_topology.json",
+      "tools/t27_portfolio.json",
+      "tools/t27_readiness.json",
+      "tools/t28_readiness.json",
+      "tools/t29_readiness.json"
+    ]
+  },
+  "opening": {
+    "t29_status": "T29_READY",
+    "report_status": "READY",
+    "rc_number": null
+  },
+  "owners": {
+    "T30": "pre-RC bounded logistics completion: 60 hopper rows, 120 hopper-family identities, steel_dust_funnel",
+    "T31": "board freeze and RC1 numbering"
+  }
+}

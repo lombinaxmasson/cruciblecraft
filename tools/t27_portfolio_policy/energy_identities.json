@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "table": "energy_identities",
+  "status": "T27_TABLE_POLICY",
+  "review": "T27-2 P5. Keeps T13 7 in / 5 deferred / 8 out. Hosted in_scope identities are reviewed v1_required closed. NEUTRON stays deferred_with_reason and owns Track C reactor-internal topology, not the eight out-of-scope identities. Nuclear/fusion/plasma is not a T27 implementation promise.",
+  "defaults": {
+    "in_scope": {
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_energy",
+      "replacement_condition": "Not applicable: v1 energy identity is already on the published industrial mainline.",
+      "recheck_point": "T27 RC candidate energy path recheck",
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "T13 in_scope energy identity is consumed by current CC machines or T15-T18 runtimes."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T13 energy_identities row plus CC EnergyType or named runtime mapping. Map-level machine lists are not row-level completeness."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "Identity is live on the T26 READY energy path; T27 adds no energy content."
+        }
+      }
+    },
+    "deferred_with_reason": {
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/energy",
+      "cc_implementation": "none",
+      "replacement_condition": "A later 1.x energy card measures or excludes this identity; T27 does not implement it.",
+      "recheck_point": "post-1.0 energy measurement card",
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "T13 deferred_with_reason energy identity; T27 keeps it post_1_0."
+        },
+        "fidelity": {
+          "status": "source_backed",
+          "evidence": "T13 energy_identities deferred row."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "Unmeasured energy identity cannot be filled with 0."
+        }
+      }
+    },
+    "out_of_scope": {
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "cc_implementation": "none",
+      "replacement_condition": "Not applicable: RF/MJ/VIS identities remain excluded by the v1 product contract.",
+      "recheck_point": "product-contract change only",
+      "axes": {
+        "closure": {
+          "status": "not_applicable",
+          "evidence": "T13 out_of_scope energy identity."
+        },
+        "fidelity": {
+          "status": "design_policy",
+          "evidence": "Compatibility or magic energy tags are outside CrucibleCraft v1."
+        },
+        "load": {
+          "status": "not_applicable",
+          "evidence": "Excluded energy identities are not v1 load."
+        }
+      }
+    }
+  },
+  "cc_implementations": {
+    "AIR": "cruciblecraft:energy/AIR",
+    "ELECTRICITY": "cruciblecraft:energy/ELECTRIC",
+    "HEAT": "cruciblecraft:energy/HEAT",
+    "KINETIC_PUSH": "cruciblecraft:energy/KINETIC_PUSH",
+    "KINETIC_ROTATION": "cruciblecraft:energy/KINETIC_ROTATION",
+    "STEAM": "runtime:t18_steam_boiler",
+    "TIME": "runtime:t15_processing_duration"
+  },
+  "overrides": {
+    "NEUTRON": {
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "replacement_condition": "C0 source/physics measurement decides reactor-internal neutron topology; this is not one of the eight out-of-scope energy identities.",
+      "recheck_point": "Track C0 source/physics measurement",
+      "reason": "NEUTRON is T13 deferred_with_reason reactor-internal topology, not an out-of-scope energy identity and not a Track E RecipeMap.",
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "Reactor-internal neutron topology is Track C. T27 does not implement nuclear content."
+        },
+        "fidelity": {
+          "status": "source_backed",
+          "evidence": "T13 deferred_with_reason NEUTRON row; T27 keeps it off the eight out-of-scope identities."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "C0 must measure nuclear topology; T27 does not fill 0."
+        }
+      }
+    }
+  }
+}

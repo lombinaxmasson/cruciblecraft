@@ -69,6 +69,20 @@ public final class ModMultiblockPlugins {
     public static final List<ResourceLocation> TANK_PLUGINS =
             List.of(STORAGE_HOST, SHARED_PORT_SUPPLY);
 
+    /** Fourth behavior family: bounded thermal/steelmaking host. Not a
+     * RecipeMap processing_host. Consumed by large_crucible. */
+    public static final ResourceLocation THERMAL_STEELMAKING_HOST =
+            ResourceLocation.fromNamespaceAndPath(
+                    "cruciblecraft", "thermal_steelmaking_host");
+
+    /** Plugin set persisted and resolved by the large crucible
+     * controller (thermal host, HU energy identity, shared ports). */
+    public static final List<ResourceLocation> LARGE_CRUCIBLE_PLUGINS =
+            List.of(
+                    THERMAL_STEELMAKING_HOST,
+                    HEAT_ENERGY_INPUT,
+                    SHARED_PORT_SUPPLY);
+
     public static void register() {
         MultiblockControllerPluginRegistry.register(plugin(PROCESSING_HOST));
         MultiblockControllerPluginRegistry.register(
@@ -79,6 +93,8 @@ public final class ModMultiblockPlugins {
                 plugin(STEAM_CONVERSION));
         MultiblockControllerPluginRegistry.register(
                 plugin(STORAGE_HOST));
+        MultiblockControllerPluginRegistry.register(
+                plugin(THERMAL_STEELMAKING_HOST));
     }
 
     private static MultiblockControllerPlugin plugin(

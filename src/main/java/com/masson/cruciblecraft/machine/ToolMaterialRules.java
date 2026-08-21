@@ -137,6 +137,15 @@ public final class ToolMaterialRules {
                 1,
                 Integer.MAX_VALUE,
                 BOUNCY_TAG,
+                STRETCHY_TAG),
+        // GT6 Loader_Tools.java:324 listener And(ANTIMATTER.NOT, Wood.NOT,
+        // BOUNCY.NOT, STRETCHY.NOT, typemin(2)) — no qualmin, COATED allowed.
+        WIRE_CUTTER(
+                "wire_cutter",
+                2L,
+                0,
+                Integer.MAX_VALUE,
+                BOUNCY_TAG,
                 STRETCHY_TAG);
 
         private final String serializedName;
@@ -181,7 +190,7 @@ public final class ToolMaterialRules {
                     || GENERIC_WOOD_ID.equals(materialId)
                     || !materialTags.contains(TOOL_DOMAIN_TAG)
                     || materialTags.contains(ANTIMATTER_TAG)
-                    || (this != WRENCH
+                    || ((this != WRENCH && this != WIRE_CUTTER)
                             && materialTags.contains(COATED_TAG))
                     || stats.types() < minTypes
                     || stats.quality() < minQuality

@@ -9,6 +9,7 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.menu.CokeOvenMenu;
 import com.masson.cruciblecraft.content.menu.CrusherMenu;
 import com.masson.cruciblecraft.content.menu.ConfiguredProcessingMachineMenu;
+import com.masson.cruciblecraft.content.menu.HopperMenu;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 
 import net.minecraft.core.registries.Registries;
@@ -26,6 +27,15 @@ public final class ModMenus {
             DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>>
             PROCESSING_MENUS = new IdentityHashMap<>();
 
+    public static final DeferredHolder<MenuType<?>, MenuType<HopperMenu>> HOPPER =
+            MENUS.register(
+                    "hopper",
+                    () -> IMenuTypeExtension.create(
+                            (containerId, inventory, data) ->
+                                    HopperMenu.client(
+                                            containerId,
+                                            inventory,
+                                            data.readBlockPos())));
     public static final DeferredHolder<MenuType<?>, MenuType<CokeOvenMenu>> COKE_OVEN =
             MENUS.register(
                     "coke_oven",

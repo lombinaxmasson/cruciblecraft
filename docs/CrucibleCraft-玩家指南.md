@@ -1,16 +1,17 @@
-# CrucibleCraft 玩家指南（0.1.0-beta.1）
+# CrucibleCraft 玩家指南（0.1.0-rc.1）
 
-> 本指南对应 Beta 候选 `0.1.0-beta.1`。安装、首玩路径、已知问题与支持范围。
+> 本指南对应 RC 候选 `0.1.0-rc.1`。这是预发布候选，不是正式 GA，也不是 `1.0.0`。
+> 安装、首玩路径、已知问题与支持范围。
 
 ## 1. 安装
 
-1. 安装 Minecraft 1.21.1 与 **NeoForge 21.1.243 或更高**；
-2. 把 `cruciblecraft-0.1.0-beta.1.jar` 放入 `.minecraft/mods/`；
-3. （可选）EMI `1.1.24+` 查看配方、Jade `15+` 查看方块信息；
-4. 启动游戏，确认模组列表中出现 CrucibleCraft 0.1.0-beta.1。
+1. 安装 Minecraft 1.21.1 与 **NeoForge 21.1.243 或更高**（Java 21）；
+2. 把 `cruciblecraft-0.1.0-rc.1.jar` 放入 `.minecraft/mods/`；
+3. （可选）EMI `1.1.24+` 查看配方、Jade `15+` 查看方块信息；缺 EMI / Jade / KubeJS 仍可启动；
+4. 启动游戏，确认模组列表中出现 CrucibleCraft 0.1.0-rc.1。
 
 **多人**：服务端安装同一 jar；客户端与服务端的材质定义必须一致
-（不一致会在连接阶段被明确拒绝并给出差异列表）。
+（不一致会在连接阶段被明确拒绝并给出差异列表）。Handshake `NETWORK_VERSION` 仍为 `"1"`。
 
 ## 2. 首玩路径（T26a 五节点）
 
@@ -50,6 +51,7 @@
 
 ## 3. 旧存档支持
 
+- **复制的 `0.1.0-beta.1` 世界可在本候选上加载**；不要用唯一玩家存档做升级试验；
 - **processing_version ≤ 3 的存档可加载**（含开发期存档）；
 - 旧 `tier_profile` 字段会被隔离（机器暂停、给出诊断、数据不丢）；
 - 未来更高版本写入的存档：加载、隔离、数据保留，升级回支持版本后
@@ -59,23 +61,29 @@
 
 ## 4. 已知问题（release disposition）
 
-试玩与 T25 台账均不阻断 Beta。体验项 owner 为 4.5（不占当前 active T）；规模 SKIP 转交 T27 RC。
+无 RC 阻断项。T24-F003 / T24-F005 已在 ≥16 GiB 环境实测关闭（target 250 管、
+stress 1000 管）；T24 当时的历史 SKIP 仍保留，不伪写成当时已测。4.5 体验项
+仍是 `post_beta_polish`，不阻断 RC。
 
-| 严重度 | 问题 | 规避方式 | 责任方 | disposition |
+| 严重度 | 问题 | 现状 / 规避 | 责任方 | disposition |
 |---|---|---|---|---|
-| medium | 第一次进世界可能卡住几分钟（配方展开已排除） | 等首次加载结束；取证后再改世界生成/配方管线 | 4.5 P0 | post_beta_polish |
-| low | 扳手整面开关，没有格雷 6 九宫格 | 点要改的那一面 | 4.5 P1 | post_beta_polish |
-| low | 没有剪线钳，电缆用扳手设置 | 继续用扳手 | 4.5 P2 | post_beta_polish |
-| low | 创造栏线/缆分页，EMI 未按形态折叠，工具/高档机器展示不全 | 用配方/搜索；物品本身已注册 | 4.5 P3/P5/P6/P7 | post_beta_polish |
-| low | 地表没有石子；创造栏几乎没有灌装流体 | 圆石走原版/矿处；流体走机器生产 | 4.5 P4/P9 | post_beta_polish |
-| low | 多数形态标签在 `cruciblecraft:` 而非 `c:` | 用现有 `cruciblecraft:` 标签 | 4.5 P8 | post_beta_polish |
-| low | route 发现上限（32,768 根管）未在真实规模下实测 | 无（代码强制上限，远大于常规规模） | T27 RC 复测 | non_blocking |
-| info | target/stress 规模墙钟/内存/网络未实测 | 无（不影响正确性门禁） | T27 RC 复测 | non_blocking |
+| medium | 第一次进世界可能卡住几分钟（配方展开已排除） | 等首次加载结束；已排除配方 epoch 主因 | 4.5 P0 | post_beta_polish |
+| low | 扳手/剪线钳九宫格 | 管道用扳手点九宫格；电缆/裸线用剪线钳 | 4.5 P1/P2 | post_beta_polish |
+| low | 创造栏线/缆/管分页、工具与高档机器展示 | 可放置线与缆同页，管单独成页；有配方的工具变体与已注册档位会进创造栏/EMI | 4.5 P3/P5/P6/P7 | post_beta_polish |
+| low | 地表石子与创造栏灌装流体 | 地表会刷 `rockGt` 石子；创造栏 cell 按已注册流体预填 | 4.5 P4/P9 | post_beta_polish |
+| low | 形态标签命名空间 | 粉族/缆/管等走 `c:` 标签，便于 EMI 折叠 | 4.5 P8 | post_beta_polish |
 
-## 5. 支持范围
+## 5. RC1 范围与支持范围
 
-- 支持：1.21.1 + NeoForge ≥ 21.1.243；单机与 dedicated server；
+本候选冻结 T30 Hopper / Queue Hopper / Dust Funnel 完成树：60 个材质 Hopper、
+60 个 Queue Hopper、一个 `steel_dust_funnel`（dust / small_dust / tiny_dust
+的 1 / 4 / 9 有界换算）。无新机器、方块、物品、材料或 RecipeMap。source-derived
+GT 配方与 bounded dust 保真度不变。
+
+- 支持：1.21.1 + NeoForge ≥ 21.1.243 + Java 21；单机与 dedicated server；
+- 可选依赖：缺 EMI / Jade / KubeJS 可启动；存在时客户端加载 EMI / Jade；
 - 不支持：G10、核裂变/聚变/等离子控制器、GT6U 内容、GT6 全量
   720,841 行配方移植（v1 只承诺工业主链）；
+- 本包是 RC，不是正式 GA，也不是 `1.0.0`；soak 只接 release blocker；
 - 反馈：https://github.com/icodestuljh/cruciblecraft/issues（附上
   版本号 + 复现步骤 + 存档/日志）。

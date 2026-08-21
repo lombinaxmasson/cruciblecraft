@@ -205,6 +205,57 @@ class MultiblockStructureDefinitionTest {
     }
 
     @Test
+    void largeCrucibleIsTwentySevenPositionsWithBottomCenterController() {
+        MultiblockStructureDefinition definition =
+                resourceDefinition("large_crucible");
+        assertEquals(1, definition.schemaVersion());
+        assertEquals(27, definition.structure().size());
+        assertEquals(8, definition.portCount(PortType.ENERGY_INPUT));
+        assertEquals(8, definition.portCount(PortType.ITEM_FLUID));
+        assertEquals(
+                1,
+                definition.structure().stream()
+                        .filter(element -> definition.predicate(element).kind()
+                                == PredicateKind.CONTROLLER)
+                        .count());
+        assertEquals(
+                2,
+                definition.structure().stream()
+                        .filter(element -> definition.predicate(element).kind()
+                                == PredicateKind.AIR)
+                        .count());
+        assertEquals(
+                Offset.ZERO,
+                definition.structure().stream()
+                        .filter(element -> definition.predicate(element).kind()
+                                == PredicateKind.CONTROLLER)
+                        .findFirst()
+                        .orElseThrow()
+                        .offset());
+        assertEquals(
+                "cruciblecraft:large_crucible",
+                definition.predicate(definition.structure().getFirst())
+                        .block()
+                        .orElseThrow()
+                        .toString());
+        java.util.Set<Offset> air = definition.structure().stream()
+                .filter(element -> definition.predicate(element).kind()
+                        == PredicateKind.AIR)
+                .map(Element::offset)
+                .collect(java.util.stream.Collectors.toSet());
+        assertEquals(
+                java.util.Set.of(new Offset(0, 1, 0), new Offset(0, 2, 0)),
+                air);
+        var source = definition.source().orElseThrow();
+        assertEquals(
+                "3703e40308c8c030763fd6297dea8b210d2a77b1",
+                source.revision());
+        assertEquals(
+                "gregtech.tileentity.multiblocks.MultiTileEntityCrucible",
+                source.className());
+    }
+
+    @Test
     void malformedTypedPortIsRejectedByTheCodec() {
         String malformed = """
                 {

@@ -1,0 +1,206 @@
+{
+  "cc_auto_conversion": {
+    "cooling_rule": {
+      "path": "src/main/resources/data/cruciblecraft/recipe/t10/cooling/hot_ingot_to_ingot.json",
+      "present": false
+    },
+    "present": false,
+    "retained_paths": [
+      "HotIngotProcessing.prepareOutputs",
+      "HotIngotProcessing.initializeIfMissing",
+      "MaterialContactHeat.damage",
+      "ItemHeat.clearIfCooled",
+      "MoldCastingRules.cool"
+    ],
+    "runtime_path": "HeatMaintenanceEvents.maintain -> HotIngotProcessing.initializeIfMissing + ItemHeat.clearIfCooled",
+    "status": "retired"
+  },
+  "conclusion": {
+    "gt6_generic_cooler_map": false,
+    "gt6_passive_ingotHot_to_ingot": false,
+    "product_decision": "strict_no_conversion",
+    "replacement_is_absence_of_conversion": true
+  },
+  "conversion_search": {
+    "by_classification": {
+      "heat_damage_assignment": 1,
+      "item_registration": 1,
+      "prefix_definition": 1,
+      "recipe_exclusion": 2
+    },
+    "cooler_map_hits": 0,
+    "files": [
+      "gt6_code/gregtech6/src/main/java/gregapi/data/OP.java",
+      "gt6_code/gregtech6/src/main/java/gregtech/loaders/a/Loader_Items.java",
+      "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Handlers.java"
+    ],
+    "hit_count": 5,
+    "hits": [
+      {
+        "classification": "prefix_definition",
+        "line": 166,
+        "path": "gt6_code/gregtech6/src/main/java/gregapi/data/OP.java",
+        "text": "ingotHot                    = create(\"ingotHot\"                     , \"Hot Ingots\"                      , \"Hot \"                            , \" Ingot\"                          ).setMaterialStats(U    )     .setCondition(new And(INGOTS_HOT, SMITHABLE, OreDictMaterialCondition.meltmin(800)))                        .add(              BURNABLE, TOOLTIP_ENCHANTS, TOOLTIP_MATERIAL, TD.Creative.HIDDEN).setMinStacksize( 4).aspects(TC.METALLUM, 1, TC.IGNIS, 1), // A hot Ingot."
+      },
+      {
+        "classification": "heat_damage_assignment",
+        "line": 578,
+        "path": "gt6_code/gregtech6/src/main/java/gregapi/data/OP.java",
+        "text": "ingotHot.mHeatDamage = 3.0F;"
+      },
+      {
+        "classification": "item_registration",
+        "line": 81,
+        "path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/a/Loader_Items.java",
+        "text": "tItem = new PrefixItem(MD.GT, \"gt.meta.ingotHot\"                    , OP.ingotHot                       );"
+      },
+      {
+        "classification": "recipe_exclusion",
+        "line": 655,
+        "path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Handlers.java",
+        "text": "ICondition tConditionP = new Nor(PREFIX_UNUSED, PLANT_DROP, IS_CONTAINER, DUST_BASED, ORE, ORE_PROCESSING_BASED, scrapGt, ingotHot);"
+      },
+      {
+        "classification": "recipe_exclusion",
+        "line": 731,
+        "path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/c/Loader_Recipes_Handlers.java",
+        "text": "tConditionP = new And(SIMPLIFIABLE, ingotHot.NOT);"
+      }
+    ],
+    "negative_conclusion": "Fixed-revision GT6 Java has no item-entity tick, player-inventory tick, unification, or recipe-map conversion from ingotHot to ingot. The only ingotHot recipe-map mentions exclude the prefix.",
+    "symbols": [
+      "ingotHot",
+      "OP.ingotHot",
+      "RM.Cooler",
+      "gt.recipe.cooler",
+      "RM.Freezer",
+      "gt.recipe.freezer"
+    ]
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t28_hot_ingot_source_evidence.py": "9979a0c8cdbddb7aeb5f4bacb48652f67edd2828331a822fc9089d0068048d02"
+    }
+  },
+  "freezer": {
+    "canonical_id": "gt.recipe.freezer",
+    "disposition": "post_1_0",
+    "dump": {
+      "examples": [
+        {
+          "inputs": [
+            "Hot Meteorite Ingot"
+          ],
+          "outputs": [
+            "Hot Frozen Iron Ingot"
+          ]
+        },
+        {
+          "inputs": [
+            "Hot Wrought Iron Ingot"
+          ],
+          "outputs": [
+            "Hot Frozen Iron Ingot"
+          ]
+        },
+        {
+          "inputs": [
+            "Hot Meteoric Iron Ingot"
+          ],
+          "outputs": [
+            "Hot Frozen Iron Ingot"
+          ]
+        }
+      ],
+      "material_transform_recipes": 7,
+      "path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.freezer.json",
+      "prefix_conversion_recipes": 0,
+      "present": true,
+      "recipe_count": 957,
+      "sha256": "bdc623a7e35712d6790b2bb2a455344970a3c6acac73e976d880898a2140c4bf"
+    },
+    "in_card_scope": false,
+    "java_hits": 29,
+    "java_ingotHot_hits": 0,
+    "reason": "Freezer is a material-transform map (for example iron family to FrozenIron), not a generic ingotHot → ingot cooler. T28 must not borrow it as a replacement.",
+    "t13_classification": "deferred_with_reason",
+    "t13_recipe_count": 957,
+    "t27_owner": "portfolio:track_e/deferred_recipe_maps"
+  },
+  "generated_by": "python tools/build_t28_hot_ingot_source_evidence.py --write",
+  "heat_damage": {
+    "application": [
+      {
+        "note": "Player inventory scan applies prefix+material heat damage; it does not replace the stack.",
+        "path": "gt6_code/gregtech6/src/main/java/gregapi/GT_API_Proxy.java",
+        "symbol": "UT.Entities.getHeatDamageFromItem"
+      }
+    ],
+    "prefix_assignment": {
+      "classification": "heat_damage_assignment",
+      "line": 578,
+      "path": "gt6_code/gregtech6/src/main/java/gregapi/data/OP.java",
+      "text": "ingotHot.mHeatDamage = 3.0F;"
+    },
+    "reader": {
+      "line": 2949,
+      "path": "gt6_code/gregtech6/src/main/java/gregapi/util/UT.java",
+      "text": "public static float getHeatDamageFromItem(ItemStack aStack) {"
+    },
+    "value": 3.0
+  },
+  "inputs": {
+    "cooling_rule": {
+      "path": "src/main/resources/data/cruciblecraft/recipe/t10/cooling/hot_ingot_to_ingot.json",
+      "present": false
+    },
+    "heat_maintenance_events": {
+      "path": "src/main/java/com/masson/cruciblecraft/heat/HeatMaintenanceEvents.java",
+      "sha256": "c19215867a0f54caf7d9d8ec72f840ceff27f4792ecf9a8910bf2bf1decc23e7"
+    },
+    "hot_ingot_processing": {
+      "path": "src/main/java/com/masson/cruciblecraft/heat/HotIngotProcessing.java",
+      "sha256": "5a9cba738e0809fd49d5ec739ca8a7dc296c42f025da9d5b8bf125c3a2e3f788"
+    },
+    "item_heat": {
+      "path": "src/main/java/com/masson/cruciblecraft/heat/ItemHeat.java",
+      "sha256": "51a312738dd08b4cb8277b990b5b95e42760cd25deb73c1302b13d6b6b275e49"
+    },
+    "material_contact_heat": {
+      "path": "src/main/java/com/masson/cruciblecraft/heat/MaterialContactHeat.java",
+      "sha256": "57f7edfccbf59dbc6a405d7a792358c4e0c0a790614f9f44544121c4963a3499"
+    },
+    "material_item_cooling": {
+      "path": "src/main/java/com/masson/cruciblecraft/heat/MaterialItemCooling.java",
+      "present": false
+    },
+    "mod_recipe_maps": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "sha256": "f26f2347d3ffc3d5b8d7631eeccdedef2fb0df963c37b9c2d14fcf467387f578"
+    }
+  },
+  "prefix_definition": {
+    "classification": "prefix_definition",
+    "line": 166,
+    "path": "gt6_code/gregtech6/src/main/java/gregapi/data/OP.java",
+    "text": "ingotHot                    = create(\"ingotHot\"                     , \"Hot Ingots\"                      , \"Hot \"                            , \" Ingot\"                          ).setMaterialStats(U    )     .setCondition(new And(INGOTS_HOT, SMITHABLE, OreDictMaterialCondition.meltmin(800)))                        .add(              BURNABLE, TOOLTIP_ENCHANTS, TOOLTIP_MATERIAL, TD.Creative.HIDDEN).setMinStacksize( 4).aspects(TC.METALLUM, 1, TC.IGNIS, 1), // A hot Ingot."
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_tree": {
+    "op_java": {
+      "path": "gt6_code/gregtech6/src/main/java/gregapi/data/OP.java",
+      "sha256": "da89c574a339cc8ffe49cf3dfead91838fc0751847c31f93cdce45705c66218e"
+    },
+    "rm_java": {
+      "path": "gt6_code/gregtech6/src/main/java/gregapi/data/RM.java",
+      "sha256": "7a10b29a135c8fc213e03e57e876d5b965b2bf904aba6c9c053089d70501ba02"
+    },
+    "root": "gt6_code/gregtech6/src/main/java",
+    "ut_java": {
+      "path": "gt6_code/gregtech6/src/main/java/gregapi/util/UT.java",
+      "sha256": "3896db5619d5761f69128eac3bdfb1ccfa175018100f2ab9145feb9005340040"
+    }
+  },
+  "status": "T28_HOT_INGOT_SOURCE_EVIDENCE"
+}

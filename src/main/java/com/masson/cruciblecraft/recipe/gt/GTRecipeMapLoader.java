@@ -440,6 +440,25 @@ public final class GTRecipeMapLoader {
                 == ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT
                 ? ModProcessingMachines.CLIENT_RECIPE_RELOAD_BUDGET_MS
                 : ModProcessingMachines.RECIPE_RELOAD_BUDGET_MS;
+        return evaluateT14OnlineBudgetGate(metrics, lookup, reloadBudget);
+    }
+
+    public static T14OnlineBudgetGate evaluateT14OnlineBudgetGate(
+            PublicationMetrics metrics,
+            T14LookupMetrics lookup,
+            long reloadBudget) {
+        return evaluateT14OnlineBudgetGate(
+                metrics,
+                lookup,
+                reloadBudget,
+                ModProcessingMachines.RECIPE_LOOKUP_P95_BUDGET_NS);
+    }
+
+    public static T14OnlineBudgetGate evaluateT14OnlineBudgetGate(
+            PublicationMetrics metrics,
+            T14LookupMetrics lookup,
+            long reloadBudget,
+            long lookupP95Budget) {
         long indexBudget = metrics.runtimeSide()
                 == ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT
                 ? ModProcessingMachines.CLIENT_RECIPE_INDEX_BUILD_BUDGET_MS
@@ -450,7 +469,7 @@ public final class GTRecipeMapLoader {
                 metrics.t14ExtruderSyncBytes()
                         <= ModProcessingMachines.RECIPE_SYNC_BUDGET_BYTES,
                 lookup.p95Nanos()
-                        <= ModProcessingMachines.RECIPE_LOOKUP_P95_BUDGET_NS,
+                        <= lookupP95Budget,
                 lookup.p95Candidates()
                                 <= ModProcessingMachines
                                         .RECIPE_LOOKUP_P95_CANDIDATE_BUDGET

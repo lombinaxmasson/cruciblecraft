@@ -70,6 +70,7 @@ public class ModItemModelProvider extends ItemModelProvider {
                 "handle_screwdriver",
                 "handle_screwdriver_overlay");
         tool("material_wrench", "wrench", "wrench_overlay");
+        tool("material_wire_cutter", "wire_cutter", "wire_cutter_overlay");
         ModBlocks.electricalConductorBlocks().forEach(holder -> {
             var conductor = holder.get().conductor();
             String specification = conductor.sourceSpecification();

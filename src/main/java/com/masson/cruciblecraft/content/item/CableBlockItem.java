@@ -83,7 +83,7 @@ public final class CableBlockItem extends BlockItem
                                 : "tooltip.cruciblecraft.electrical.bare")
                 .withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable(
-                        "tooltip.cruciblecraft.pipe.connect")
+                        "tooltip.cruciblecraft.cable.connect")
                 .withStyle(ChatFormatting.DARK_GRAY));
     }
 }

@@ -340,7 +340,6 @@
         "src/test/java/com/masson/cruciblecraft/machine/processing/MachineIdentityPolicyTest.java",
         "src/test/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineIdentityPersistenceTest.java",
         "CrucibleCraft-总体规划.md",
-        "CrucibleCraft-第三阶段总体规划.md",
         "CrucibleCraft-阶段档案-T13-T16.md",
         "README.md"
       ],
@@ -386,7 +385,6 @@
         "src/test/java/com/masson/cruciblecraft/machine/processing/MachineIdentityPolicyTest.java",
         "src/test/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineIdentityPersistenceTest.java",
         "CrucibleCraft-总体规划.md",
-        "CrucibleCraft-第三阶段总体规划.md",
         "CrucibleCraft-阶段档案-T17.md",
         "README.md"
       ],
@@ -473,7 +471,6 @@
         "src/test/java/com/masson/cruciblecraft/datagen/OreResourceTest.java",
         "src/test/java/com/masson/cruciblecraft/network/CoverConfigurationPayloadTest.java",
         "CrucibleCraft-总体规划.md",
-        "CrucibleCraft-第三阶段总体规划.md",
         "CrucibleCraft-阶段档案-T19.md",
         "README.md"
       ],
@@ -509,7 +506,7 @@
         "src/worldgen_*",
         "src/main/java/com/masson/cruciblecraft/worldgen/**",
         "src/test/java/com/masson/cruciblecraft/worldgen/**",
-        "CrucibleCraft-第四阶段总体规划.md",
+        "CrucibleCraft-总体规划.md",
         "CrucibleCraft-阶段档案-T20.md"
       ],
       "test_modules": [
@@ -545,7 +542,7 @@
         "src/main/resources/data/cruciblecraft/material_prefixes/**",
         "src/main/resources/data/cruciblecraft/material_registration_gate.json",
         "src/main/resources/data/cruciblecraft/worldgen_catalog/ore_veins.json",
-        "CrucibleCraft-第四阶段总体规划.md",
+        "CrucibleCraft-总体规划.md",
         "CrucibleCraft-阶段档案-T21.md"
       ],
       "test_modules": [
@@ -573,15 +570,299 @@
         "tools/verification_builder_policy.json",
         "tools/local_artifact_manifest.json",
         "tools/full_verification_report.json",
-        "CrucibleCraft-总体规划.md",
-        "CrucibleCraft-第二阶段总体规划.md",
-        "CrucibleCraft-第三阶段总体规划.md"
+        "CrucibleCraft-总体规划.md"
       ],
       "test_modules": [
         "test_full_verification_report",
         "test_python_test_workflow",
         "test_run_full_verification",
         "test_verification_session"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t27_opening_snapshot.py",
+        "tools/t27_common.py",
+        "tools/t27_opening_snapshot.json",
+        "tools/t27_opening_snapshot_policy.json",
+        "tools/t27_opening_snapshot.schema.json",
+        "tools/t27_portfolio_identity.schema.json",
+        "tools/phase5_portfolio_contract.json",
+        "tools/phase5_portfolio_contract.schema.json"
+      ],
+      "test_modules": [
+        "test_build_t27_opening_snapshot"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t27_portfolio.py",
+        "tools/t27_common.py",
+        "tools/t27_portfolio_policy/**",
+        "tools/t27_portfolio/**",
+        "tools/t27_portfolio.json"
+      ],
+      "test_modules": [
+        "test_build_t27_portfolio"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t27_card_topology.py",
+        "tools/t27_common.py",
+        "tools/t27_card_topology.json",
+        "tools/t27_portfolio.json",
+        "tools/phase5_portfolio_contract.json"
+      ],
+      "test_modules": [
+        "test_build_t27_card_topology"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t27_readiness.py",
+        "tools/t27_common.py",
+        "tools/t27_readiness.json",
+        "tools/t27_readiness_policy.json",
+        "tools/t27_portfolio.json",
+        "tools/t27_card_topology.json",
+        "tools/t27_opening_snapshot.json",
+        "tools/phase5_portfolio_contract.json"
+      ],
+      "test_modules": [
+        "test_build_t27_readiness"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t28_hot_ingot_source_evidence.py",
+        "tools/t28_hot_ingot_source_evidence.json",
+        "tools/t27_common.py",
+        "tools/t13_denominators/recipe_maps.json",
+        "tools/t27_portfolio/recipe_maps.json",
+        "src/main/resources/data/cruciblecraft/recipe/t10/cooling/hot_ingot_to_ingot.json",
+        "src/main/java/com/masson/cruciblecraft/heat/MaterialItemCooling.java",
+        "src/main/java/com/masson/cruciblecraft/heat/HeatMaintenanceEvents.java",
+        "src/main/java/com/masson/cruciblecraft/heat/HotIngotProcessing.java",
+        "src/main/java/com/masson/cruciblecraft/heat/ItemHeat.java",
+        "src/main/java/com/masson/cruciblecraft/heat/MaterialContactHeat.java",
+        "src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java"
+      ],
+      "test_modules": [
+        "test_build_t28_hot_ingot_source_evidence"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t28_load_projection.py",
+        "tools/t28_load_projection.json",
+        "tools/t28_hot_ingot_source_evidence.json",
+        "tools/t27_opening_snapshot.json",
+        "tools/t10_preflight_projection.json",
+        "tools/t14_load_budget_policy.json",
+        "tools/full_verification_report.json"
+      ],
+        "test_modules": [
+        "test_build_t28_load_projection"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t28_publication_delta.py",
+        "tools/t28_publication_delta.json",
+        "tools/t28_load_projection.json",
+        "tools/full_verification_report.json"
+      ],
+      "test_modules": [
+        "test_build_t28_publication_delta"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t28_readiness.py",
+        "tools/t28_readiness.json",
+        "tools/t28_readiness_policy.json",
+        "tools/t28_hot_ingot_source_evidence.json",
+        "tools/t28_load_projection.json",
+        "tools/t28_publication_delta.json",
+        "tools/t27_card_topology.json",
+        "tools/full_verification_report.json"
+      ],
+      "test_modules": [
+        "test_build_t28_readiness"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t30_hopper_source_evidence.py",
+        "tools/t30_hopper_source_policy.json",
+        "tools/t30_hopper_source_evidence.json",
+        "src/main/resources/data/cruciblecraft/hopper_variants.json",
+        "src/main/resources/data/cruciblecraft/schema/hopper_variants.schema.json",
+        "tools/t13_gt6_tree_manifest.json",
+        "tools/gt6_oredict_cross_reference.json",
+        "src/main/resources/data/cruciblecraft/material_registration_gate.json"
+      ],
+      "test_modules": [
+        "test_build_t30_hopper_source_evidence"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t30_phase5_1_contract.py",
+        "tools/phase5_1_pre_rc_logistics_contract.json",
+        "tools/t30_hopper_source_policy.json",
+        "tools/t29_readiness.json",
+        "tools/phase5_portfolio_contract.json",
+        "tools/full_verification_report.json"
+      ],
+      "test_modules": [
+        "test_build_t30_phase5_1_contract"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t30_load_projection.py",
+        "tools/t30_load_projection.json",
+        "tools/t30_hopper_source_evidence.json",
+        "tools/phase5_1_pre_rc_logistics_contract.json",
+        "tools/t29_publication_delta.json",
+        "tools/t29_load_projection.json",
+        "tools/t14_load_budget_policy.json",
+        "tools/t30_hopper_source_policy.json"
+      ],
+      "test_modules": [
+        "test_build_t30_load_projection"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t30_art_asset_provenance.py",
+        "tools/t30_art_asset_provenance.json",
+        "src/main/resources/data/cruciblecraft/schema/t30_art_asset_provenance.schema.json",
+        "src/main/resources/data/cruciblecraft/hopper_variants.json",
+        "src/main/resources/assets/cruciblecraft/models/block/hopper.json",
+        "src/main/resources/assets/cruciblecraft/models/block/hopper_side.json",
+        "src/main/resources/assets/cruciblecraft/models/block/queue_hopper.json",
+        "src/main/resources/assets/cruciblecraft/models/block/queue_hopper_side.json",
+        "src/main/resources/assets/cruciblecraft/models/block/dust_funnel.json"
+      ],
+      "test_modules": [
+        "test_build_t30_art_asset_provenance"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t30_publication_delta.py",
+        "tools/t30_publication_delta.json",
+        "tools/t30_load_projection.json",
+        "src/main/java/com/masson/cruciblecraft/content/block/HopperBlock.java",
+        "src/main/java/com/masson/cruciblecraft/content/block/DustFunnelBlock.java",
+        "src/generated/resources/data/cruciblecraft/recipe/hoppers"
+      ],
+      "test_modules": [
+        "test_build_t30_publication_delta"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t30_readiness.py",
+        "tools/t30_readiness.json",
+        "tools/t30_readiness_policy.json",
+        "tools/t30_hopper_source_evidence.json",
+        "tools/t30_load_projection.json",
+        "tools/t30_publication_delta.json",
+        "tools/phase5_1_pre_rc_logistics_contract.json",
+        "tools/t30_art_asset_provenance.json",
+        "src/main/resources/data/cruciblecraft/hopper_variants.json",
+        "tools/full_verification_report.json"
+      ],
+      "test_modules": [
+        "test_build_t30_readiness"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t31_scale_recheck.py",
+        "tools/t31_scale_recheck.json",
+        "tools/t31_rc_policy.json",
+        "tools/t31_common.py",
+        "tools/t24_workload_manifest.json",
+        "tools/t24_scale_evidence.json",
+        "tools/t26_known_issues.json"
+      ],
+      "test_modules": [
+        "test_build_t31_scale_recheck"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t31_compatibility_report.py",
+        "tools/t31_compatibility_report.json",
+        "tools/t31_rc_policy.json",
+        "src/main/java/com/masson/cruciblecraft/network/MaterialConfigurationHandshake.java"
+      ],
+      "test_modules": [
+        "test_build_t31_compatibility_report"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t31_load_report.py",
+        "tools/t31_load_report.json",
+        "tools/t31_scale_recheck.json",
+        "tools/t14_load_budget_policy.json",
+        "tools/t30_publication_delta.json",
+        "tools/t30_load_projection.json",
+        "tools/full_verification_report.json"
+      ],
+      "test_modules": [
+        "test_build_t31_load_report"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t31_g0.py",
+        "tools/t31_g0.json",
+        "tools/t31_scale_recheck.json",
+        "tools/t31_compatibility_report.json",
+        "tools/t31_compat_evidence.json",
+        "tools/t31_load_report.json",
+        "tools/t31_rc_policy.json",
+        "tools/t30_readiness.json",
+        "tools/t26_known_issues.json",
+        "tools/full_verification_report.json",
+        "gradle.properties"
+      ],
+      "test_modules": [
+        "test_build_t31_g0"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t31_release_manifest.py",
+        "tools/t31_release_manifest.json",
+        "gradle.properties"
+      ],
+      "test_modules": [
+        "test_build_t31_release_manifest"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t31_readiness.py",
+        "tools/t31_readiness.json",
+        "tools/t31_readiness_policy.json",
+        "tools/t31_rc_policy.json",
+        "tools/t31_scale_recheck.json",
+        "tools/t31_compatibility_report.json",
+        "tools/t31_load_report.json",
+        "tools/t31_release_manifest.json",
+        "tools/t30_readiness.json",
+        "tools/full_verification_report.json"
+      ],
+      "test_modules": [
+        "test_build_t31_readiness"
       ]
     },
     {

@@ -31,7 +31,8 @@ class MultiblockControllerPluginRegistryTest {
                         ModMultiblockPlugins.SHARED_PORT_SUPPLY,
                         ModMultiblockPlugins.HEAT_ENERGY_INPUT,
                         ModMultiblockPlugins.STEAM_CONVERSION,
-                        ModMultiblockPlugins.STORAGE_HOST),
+                        ModMultiblockPlugins.STORAGE_HOST,
+                        ModMultiblockPlugins.THERMAL_STEELMAKING_HOST),
                 MultiblockControllerPluginRegistry.whitelist().keySet());
     }
 

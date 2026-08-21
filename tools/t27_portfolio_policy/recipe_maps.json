@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "table": "recipe_maps",
+  "status": "T27_TABLE_POLICY",
+  "review": "T27-2 P1. T13 in_scope is not auto-upgraded: hosted maps are reviewed v1_required with map-level closure closed; leftover source rows are Track A, not v1 map gaps. Deferred maps stay post_1_0 on Track E except fusion/plasma which own Track C.",
+  "defaults": {
+    "in_scope": {
+      "disposition": "v1_required",
+      "owner": "portfolio:v1/closed_recipe_maps",
+      "replacement_condition": "Not applicable: v1 map-level obligation is closed. Leftover source rows are Track A ordinary_optional and must not be treated as a v1 map gap.",
+      "recheck_point": "Track A0 measurement card",
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "Reviewed T27 map-level v1 obligation is closed because a playable CC host already covers the published v1 subset. Remaining source rows are not a map-level v1 gap."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "gt6_map_roadmap.json map-level PORTED or BOUNDED_SUBSET_PORTED is input evidence, not row-level completion."
+        },
+        "load": {
+          "status": "measured",
+          "evidence": "Hosted map participates in the T26.5 current publication captured by tools/t27_opening_snapshot.json; leftover source rows stay pending on Track A."
+        }
+      }
+    },
+    "deferred_with_reason": {
+      "disposition": "post_1_0",
+      "owner": "portfolio:track_e/deferred_recipe_maps",
+      "replacement_condition": "E0 secondary denominator assigns this map a measurement-or-exclusion decision; it must not become a default v1 implementation card.",
+      "recheck_point": "Track E0 secondary denominator",
+      "cc_implementation": "none",
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "T13 deferred_with_reason; T27 keeps the map post_1_0 on Track E until E0 classifies it."
+        },
+        "fidelity": {
+          "status": "source_backed",
+          "evidence": "Fixed-revision T13 recipe_maps row plus gt6_map_roadmap.json DEFERRED status."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "No T27 map-level load projection; E0 must measure or exclude before any content card."
+        }
+      }
+    },
+    "out_of_scope": {
+      "disposition": "out_of_scope",
+      "owner": "product_contract",
+      "replacement_condition": "Not applicable: excluded by the v1 product contract. Re-entry requires an explicit product-contract change.",
+      "recheck_point": "product-contract change only",
+      "cc_implementation": "none",
+      "axes": {
+        "closure": {
+          "status": "not_applicable",
+          "evidence": "T13 and roadmap OUT_OF_SCOPE; T27 does not create a v1 or post-1.0 content obligation."
+        },
+        "fidelity": {
+          "status": "design_policy",
+          "evidence": "Explicit product-contract exclusion retained from T13/roadmap."
+        },
+        "load": {
+          "status": "not_applicable",
+          "evidence": "Excluded maps are not load-bearing for v1 or 1.x content cards."
+        }
+      }
+    }
+  },
+  "cc_implementations": {
+    "gt.recipe.anvil.bend.big": "cruciblecraft:bender",
+    "gt.recipe.anvil.bend.small": "cruciblecraft:bender",
+    "gt.recipe.assembler": "cruciblecraft:assembler",
+    "gt.recipe.autoclave": "cruciblecraft:autoclave",
+    "gt.recipe.bath": "cruciblecraft:bath",
+    "gt.recipe.centrifuge": "cruciblecraft:centrifuge",
+    "gt.recipe.cokeoven": "cruciblecraft:coke_oven",
+    "gt.recipe.compressor": "cruciblecraft:compressor",
+    "gt.recipe.crusher": "cruciblecraft:crusher",
+    "gt.recipe.cutter": "cruciblecraft:cutter",
+    "gt.recipe.distillery": "cruciblecraft:distillery",
+    "gt.recipe.drying": "cruciblecraft:drying",
+    "gt.recipe.electrolyzer": "cruciblecraft:electrolyzer",
+    "gt.recipe.extruder": "cruciblecraft:extruder",
+    "gt.recipe.fuels.burn": "runtime:t18_generator_gas_fm_burn_hu",
+    "gt.recipe.fuels.engine": "cruciblecraft:fuels_engine",
+    "gt.recipe.generifier": "cruciblecraft:generifier",
+    "gt.recipe.lathe": "cruciblecraft:lathe",
+    "gt.recipe.mixer": "cruciblecraft:mixer",
+    "gt.recipe.mortar": "cruciblecraft:mortar",
+    "gt.recipe.press": "cruciblecraft:press",
+    "gt.recipe.rollbender": "cruciblecraft:rollbender",
+    "gt.recipe.rollingmill": "cruciblecraft:rollingmill",
+    "gt.recipe.shredder": "cruciblecraft:shredder",
+    "gt.recipe.sifter": "cruciblecraft:sifter",
+    "gt.recipe.sluice": "cruciblecraft:sluice",
+    "gt.recipe.smelter": "cruciblecraft:smelter",
+    "gt.recipe.welder": "cruciblecraft:welder",
+    "gt.recipe.wiremill": "cruciblecraft:wiremill"
+  },
+  "overrides": {
+    "gt.recipe.anvil.bend.big": {
+      "reason": "GT6 gt.recipe.anvil.bend.big is already PORTED through the playable cruciblecraft:bender. The empty CC RecipeMap cruciblecraft:anvil_bend_big is a registered-zero-logical reserved slot, not this source map and not a v1 blocker.",
+      "dependencies": [
+        {
+          "kind": "open_item_id",
+          "id": "anvil_bend_big"
+        },
+        {
+          "kind": "runtime_capability",
+          "id": "cruciblecraft:bender"
+        }
+      ]
+    },
+    "gt.recipe.anvil.bend.small": {
+      "reason": "GT6 gt.recipe.anvil.bend.small is already PORTED through the playable cruciblecraft:bender. The empty CC RecipeMap cruciblecraft:anvil_bend_small is a registered-zero-logical reserved slot, not this source map and not a v1 blocker.",
+      "dependencies": [
+        {
+          "kind": "open_item_id",
+          "id": "anvil_bend_small"
+        },
+        {
+          "kind": "runtime_capability",
+          "id": "cruciblecraft:bender"
+        }
+      ]
+    },
+    "gt.recipe.fuels.gas": {
+      "cc_implementation": "none",
+      "reason": "GT6 FM.Gas rows remain unported after T18 moved Burning Gas Generator to FM.Burn/HU. cruciblecraft:fuels_gas is the T11 methane hydrocarbon map and must not be claimed as this GT6 identity."
+    },
+    "gt.recipe.fuels.plasma": {
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "replacement_condition": "C0 source/physics measurement decides whether this empty plasma fuel map is excluded or later owned by a 1.x physics card.",
+      "recheck_point": "Track C0 source/physics measurement",
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "Plasma fuel map is Track C, not Track E, and is not a v1 implementation gap."
+        },
+        "fidelity": {
+          "status": "source_backed",
+          "evidence": "T13 deferred empty pinned map; T27 assigns Track C because plasma is the nuclear/fusion/plasma axis."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "C0 must measure or exclude before any plasma content card."
+        }
+      }
+    },
+    "gt.recipe.fusionreactor": {
+      "owner": "portfolio:track_c/nuclear_fusion_plasma",
+      "replacement_condition": "C0 source/physics measurement decides whether this fusion map is excluded or later owned by a 1.x physics card.",
+      "recheck_point": "Track C0 source/physics measurement",
+      "axes": {
+        "closure": {
+          "status": "incomplete",
+          "evidence": "Fusion recipe map is Track C, not Track E, and is not a v1 implementation gap."
+        },
+        "fidelity": {
+          "status": "source_backed",
+          "evidence": "T13 deferred ENERGY_AND_FUEL_SYSTEM map; T27 assigns Track C because fusion is the nuclear/fusion/plasma axis."
+        },
+        "load": {
+          "status": "pending",
+          "verdict": "BLOCKED_PENDING_MEASUREMENT",
+          "evidence": "C0 must measure or exclude before any fusion content card."
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,11 @@
 {
   "$schema": "schema/machine_tiers.schema.json",
   "schemaVersion": 2,
+  "namingPolicy": {
+    "tier1BareId": "frozen_legacy_baseline",
+    "newSubsystemId": "<material>_<kind>",
+    "automaticKindTierCompletion": false
+  },
   "source": {
     "repository": "https://github.com/GregTech6/gregtech6",
     "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",

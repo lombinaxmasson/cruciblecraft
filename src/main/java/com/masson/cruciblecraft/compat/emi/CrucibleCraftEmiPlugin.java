@@ -77,6 +77,42 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         registerMoldCasting(registry);
         registerCrusherRecipes(registry);
         registerProcessingMachines(registry);
+        registerDisplayStacks(registry);
+    }
+
+    /** Item-list polish layers: routed tool variants join the index as
+     *  component stacks, and each material's dust / small_dust / tiny_dust
+     *  triple aliases so the 9 tiny = 4 small = 1 dust conversion search
+     *  reaches all three. Per-material only — never an "any ingot" merge. */
+    private static void registerDisplayStacks(EmiRegistry registry) {
+        com.masson.cruciblecraft.content.item.ToolDisplayPlan
+                .routedVariantStacks()
+                .forEach(stack -> registry.addEmiStack(EmiStack.of(stack)));
+
+        var materials = MaterialCatalog.startupValues();
+        Map<String, List<com.masson.cruciblecraft.api.material.MaterialPrefix>> forms =
+                new java.util.LinkedHashMap<>();
+        materials.forEach(material -> forms.put(
+                material.id(), MaterialCatalog.registeredForms(material)));
+        for (EmiDisplayPlan.DustFamily family :
+                EmiDisplayPlan.dustFamilies(materials, forms)) {
+            EmiStack dust = stackOf(family.dust());
+            EmiStack small = stackOf(family.smallDust());
+            EmiStack tiny = stackOf(family.tinyDust());
+            if (dust.isEmpty() || small.isEmpty() || tiny.isEmpty()) {
+                continue;
+            }
+            registry.addAlias(
+                    new dev.emi.emi.api.stack.ListEmiIngredient(
+                            List.of(dust, small, tiny), 1),
+                    dust.getItemStack().getHoverName());
+        }
+    }
+
+    private static EmiStack stackOf(String itemId) {
+        return EmiStack.of(net.minecraft.core.registries.BuiltInRegistries.ITEM
+                .getOptional(ResourceLocation.tryParse(itemId))
+                .orElse(net.minecraft.world.item.Items.AIR));
     }
 
     private static void registerAlloys(EmiRegistry registry) {

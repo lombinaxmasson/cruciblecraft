@@ -17,10 +17,13 @@ import com.masson.cruciblecraft.content.blockentity.FluidPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FluidDepositExtractorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.GasCloudBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.HopperBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.DustFunnelBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCentrifugeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DistillationTowerBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeBoilerBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LargeCrucibleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.TankBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.MultiblockPortBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.RotationalAxleBlockEntity;
@@ -109,6 +112,15 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     TankBlockEntity::new,
                                     ModBlocks.TANK_3X3X3.get())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LargeCrucibleBlockEntity>>
+                    LARGE_CRUCIBLE = BLOCK_ENTITIES.register(
+                            "large_crucible",
+                            () -> BlockEntityType.Builder.of(
+                                    LargeCrucibleBlockEntity::new,
+                                    ModBlocks.LARGE_CRUCIBLE.get())
                                     .build(null));
 
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BellowsBlockEntity>>
@@ -200,6 +212,24 @@ public final class ModBlockEntities {
                     () -> BlockEntityType.Builder.of(
                             ItemPipeBlockEntity::new,
                             ModBlocks.itemPipeBlockArray()).build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<HopperBlockEntity>>
+                    HOPPER = BLOCK_ENTITIES.register(
+                            "hopper",
+                            () -> BlockEntityType.Builder.of(
+                                    HopperBlockEntity::new,
+                                    ModBlocks.hopperBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<DustFunnelBlockEntity>>
+                    DUST_FUNNEL = BLOCK_ENTITIES.register(
+                            "steel_dust_funnel",
+                            () -> BlockEntityType.Builder.of(
+                                    DustFunnelBlockEntity::new,
+                                    ModBlocks.STEEL_DUST_FUNNEL.get())
+                                    .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,
             BlockEntityType<SubsurfaceFluidDepositBlockEntity>>

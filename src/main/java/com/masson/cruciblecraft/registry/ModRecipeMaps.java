@@ -26,7 +26,11 @@ public final class ModRecipeMaps {
     public static final RecipeMap SHREDDER = create("shredder");
     public static final RecipeMap SIFTER = create("sifter");
     public static final RecipeMap SMELTER = create("smelter");
-    /** Data-only passive transformations consumed outside a machine block. */
+    /**
+     * T10 leftover map. GT6 has no generic cooler and no passive
+     * {@code ingotHot → ingot} conversion. The map stays registered and empty
+     * so existing map-id contracts do not drift; it is not a cooling machine.
+     */
     public static final RecipeMap COOLING = create("cooling");
     public static final RecipeMap MORTAR = create("mortar");
     public static final RecipeMap EXTRUDER = create("extruder");

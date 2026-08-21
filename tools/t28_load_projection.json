@@ -1,0 +1,264 @@
+{
+  "cooling_expansion": {
+    "authority": "tools/t10_preflight_projection.json#route_projections.hot_ingot.materials",
+    "count": 321,
+    "cross_check": "tools/full_verification_report.json#rules.expanded_recipes_per_map.cruciblecraft:cooling",
+    "material_set_sha256": "72ce04d9d05809c63a888f2a643ee3b9e533bb46dcaf4e60c1f20c00a862acc6",
+    "rule_path": "src/main/resources/data/cruciblecraft/recipe/t10/cooling/hot_ingot_to_ingot.json",
+    "rule_present": false
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t28_load_projection.py": "dcc26048b1c68104abd84ede33dd3745e106a4491458bd93997158abc2283ec7",
+      "tools/t10_preflight_projection.json": "8ffe35fb483208e973ff324c5cf808c34160c15113df8ee29f99f5f7e728b096",
+      "tools/t27_opening_snapshot.json": "91cdbe33de4c56781e38dba507c90179e3ed7b7ea3342b8d8a15336a3fa5c9e3",
+      "tools/t28_hot_ingot_source_evidence.json": "05ff2a982fc34fdb9138a0991bafb66c12e5a92fec0742bf637ef020c796b201"
+    }
+  },
+  "freezer_in_card_scope": false,
+  "generated_by": "python tools/build_t28_load_projection.py --write",
+  "opening_publication": {
+    "eager": 16862,
+    "lazy": 2225,
+    "logical": 19087
+  },
+  "product_decision": "strict_no_conversion",
+  "publication_delta": {
+    "eager": -321,
+    "lazy": 0,
+    "logical": -321
+  },
+  "retirement": {
+    "cool_if_ready": "delete_class_and_call",
+    "cooling_map": "retain_empty",
+    "cooling_map_reason": "Keep cruciblecraft:cooling as an empty leftover map; EMI already enumerates configured processing machines, not this map. Do not turn it into a generic cooler.",
+    "cooling_rule": "delete",
+    "keep": [
+      "HotIngotProcessing.prepareOutputs",
+      "HotIngotProcessing.initializeIfMissing",
+      "MaterialContactHeat.damage",
+      "ItemHeat.clearIfCooled",
+      "MoldCastingRules.cool"
+    ],
+    "o36_replacement": {
+      "backpack_keeps_ingot_hot_id": true,
+      "contact_heat_from_prefix_and_material": true,
+      "cooling_rule_absent": true
+    }
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T28_LOAD_PROJECTION",
+  "t14_axes": {
+    "allocation_bytes": {
+      "axis": "allocation_bytes",
+      "base": null,
+      "delta": null,
+      "evidence": "T28 does not guess sync, lookup, reload, cache, or retained-memory deltas before R7 measurement",
+      "hard_ceiling": 536870912,
+      "kind": "unmeasured",
+      "projected": null,
+      "sign": null,
+      "status": "pending",
+      "upper_bound": null,
+      "verdict": "BLOCKED_PENDING_MEASUREMENT"
+    },
+    "client_index_ms": {
+      "axis": "client_index_ms",
+      "base": null,
+      "delta": null,
+      "evidence": "T28 does not guess sync, lookup, reload, cache, or retained-memory deltas before R7 measurement",
+      "hard_ceiling": 3000,
+      "kind": "unmeasured",
+      "projected": null,
+      "sign": null,
+      "status": "pending",
+      "upper_bound": null,
+      "verdict": "BLOCKED_PENDING_MEASUREMENT"
+    },
+    "client_reload_ms": {
+      "axis": "client_reload_ms",
+      "base": null,
+      "delta": null,
+      "evidence": "T28 does not guess sync, lookup, reload, cache, or retained-memory deltas before R7 measurement",
+      "hard_ceiling": 10000,
+      "kind": "unmeasured",
+      "projected": null,
+      "sign": null,
+      "status": "pending",
+      "upper_bound": null,
+      "verdict": "BLOCKED_PENDING_MEASUREMENT"
+    },
+    "datapack_authored_entries": {
+      "axis": "datapack_authored_entries",
+      "base": 3267,
+      "delta": -1,
+      "evidence": "One authored MaterialRule file will be deleted; confirm the T14 authored counter at R7 record",
+      "hard_ceiling": 6600,
+      "kind": "PROJECTED_FILE_DELETION",
+      "projected": 3266,
+      "sign": "negative",
+      "status": "projected",
+      "upper_bound": 3266,
+      "verdict": null
+    },
+    "eager_publication_rows": {
+      "axis": "eager_publication_rows",
+      "base": 16862,
+      "delta": -321,
+      "evidence": "Cooling rows are eager MaterialRule expansions, not Hybrid Extruder lazy",
+      "hard_ceiling": 21000,
+      "kind": "MEASURED_EXPANSION",
+      "projected": 16541,
+      "sign": "negative",
+      "status": "projected",
+      "upper_bound": 16541,
+      "verdict": null
+    },
+    "lazy_cache_ceiling_rows": {
+      "axis": "lazy_cache_ceiling_rows",
+      "base": null,
+      "delta": null,
+      "evidence": "T28 does not guess sync, lookup, reload, cache, or retained-memory deltas before R7 measurement",
+      "hard_ceiling": 4096,
+      "kind": "unmeasured",
+      "projected": null,
+      "sign": null,
+      "status": "pending",
+      "upper_bound": null,
+      "verdict": "BLOCKED_PENDING_MEASUREMENT"
+    },
+    "lazy_logical_rows": {
+      "axis": "lazy_logical_rows",
+      "base": 2225,
+      "delta": 0,
+      "evidence": "STATIC_INFERENCE: cruciblecraft:cooling is absent from the EMI processing-map enumeration and is not a Hybrid Extruder family",
+      "hard_ceiling": 56000,
+      "kind": "STATIC_INFERENCE",
+      "projected": 2225,
+      "sign": "zero",
+      "status": "projected",
+      "upper_bound": 2225,
+      "verdict": null
+    },
+    "logical_publication_rows": {
+      "axis": "logical_publication_rows",
+      "base": 19087,
+      "delta": -321,
+      "evidence": "T27 opening logical minus the measured cruciblecraft:cooling expansion",
+      "hard_ceiling": 21000,
+      "kind": "MEASURED_EXPANSION",
+      "projected": 18766,
+      "sign": "negative",
+      "status": "projected",
+      "upper_bound": 18766,
+      "verdict": null
+    },
+    "lookup_candidate_count": {
+      "axis": "lookup_candidate_count",
+      "base": null,
+      "delta": null,
+      "evidence": "T28 does not guess sync, lookup, reload, cache, or retained-memory deltas before R7 measurement",
+      "hard_ceiling": 128,
+      "kind": "unmeasured",
+      "projected": null,
+      "sign": null,
+      "status": "pending",
+      "upper_bound": null,
+      "verdict": "BLOCKED_PENDING_MEASUREMENT"
+    },
+    "lookup_p95_ns": {
+      "axis": "lookup_p95_ns",
+      "base": null,
+      "delta": null,
+      "evidence": "T28 does not guess sync, lookup, reload, cache, or retained-memory deltas before R7 measurement",
+      "hard_ceiling": 2000000,
+      "kind": "unmeasured",
+      "projected": null,
+      "sign": null,
+      "status": "pending",
+      "upper_bound": null,
+      "verdict": "BLOCKED_PENDING_MEASUREMENT"
+    },
+    "retained_memory_bytes": {
+      "axis": "retained_memory_bytes",
+      "base": null,
+      "delta": null,
+      "evidence": "T28 does not guess sync, lookup, reload, cache, or retained-memory deltas before R7 measurement",
+      "hard_ceiling": 536870912,
+      "kind": "unmeasured",
+      "projected": null,
+      "sign": null,
+      "status": "pending",
+      "upper_bound": null,
+      "verdict": "BLOCKED_PENDING_MEASUREMENT"
+    },
+    "server_index_ms": {
+      "axis": "server_index_ms",
+      "base": null,
+      "delta": null,
+      "evidence": "T28 does not guess sync, lookup, reload, cache, or retained-memory deltas before R7 measurement",
+      "hard_ceiling": 1000,
+      "kind": "unmeasured",
+      "projected": null,
+      "sign": null,
+      "status": "pending",
+      "upper_bound": null,
+      "verdict": "BLOCKED_PENDING_MEASUREMENT"
+    },
+    "server_reload_ms": {
+      "axis": "server_reload_ms",
+      "base": null,
+      "delta": null,
+      "evidence": "T28 does not guess sync, lookup, reload, cache, or retained-memory deltas before R7 measurement",
+      "hard_ceiling": 10000,
+      "kind": "unmeasured",
+      "projected": null,
+      "sign": null,
+      "status": "pending",
+      "upper_bound": null,
+      "verdict": "BLOCKED_PENDING_MEASUREMENT"
+    },
+    "sync_bytes": {
+      "axis": "sync_bytes",
+      "base": null,
+      "delta": null,
+      "evidence": "T28 does not guess sync, lookup, reload, cache, or retained-memory deltas before R7 measurement",
+      "hard_ceiling": 67108864,
+      "kind": "unmeasured",
+      "projected": null,
+      "sign": null,
+      "status": "pending",
+      "upper_bound": null,
+      "verdict": "BLOCKED_PENDING_MEASUREMENT"
+    }
+  },
+  "tests": {
+    "gametest": {
+      "axis": "gametest",
+      "base": null,
+      "delta": null,
+      "evidence": "R4 will rewrite hotIngotSmeltsHurtsAndKeepsIdentity; count is measured at R6b",
+      "hard_ceiling": null,
+      "kind": "unmeasured",
+      "projected": null,
+      "sign": null,
+      "status": "pending",
+      "upper_bound": null,
+      "verdict": "BLOCKED_PENDING_MEASUREMENT"
+    },
+    "junit": {
+      "axis": "junit",
+      "base": null,
+      "delta": null,
+      "evidence": "R4 will rewrite cooling assertions; count is measured at R6a",
+      "hard_ceiling": null,
+      "kind": "unmeasured",
+      "projected": null,
+      "sign": null,
+      "status": "pending",
+      "upper_bound": null,
+      "verdict": "BLOCKED_PENDING_MEASUREMENT"
+    }
+  }
+}

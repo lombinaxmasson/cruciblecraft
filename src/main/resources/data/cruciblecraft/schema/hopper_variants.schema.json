@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/hopper_variants.schema.json",
+  "title": "CrucibleCraft hopper source base rows",
+  "description": "Flat 60-row SOURCE_BACKED hopper catalog. Queue Hopper slots are derived as max(2, slots). This is not a kind × tier matrix.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source_revision",
+    "variants"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "source_revision": {
+      "const": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    "variants": {
+      "type": "array",
+      "minItems": 60,
+      "maxItems": 60,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "material",
+          "slots"
+        ],
+        "properties": {
+          "material": {
+            "type": "string",
+            "pattern": "^cruciblecraft:[a-z0-9_]+$"
+          },
+          "slots": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 36
+          }
+        }
+      }
+    }
+  }
+}

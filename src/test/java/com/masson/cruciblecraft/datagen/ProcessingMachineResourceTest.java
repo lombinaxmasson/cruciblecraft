@@ -138,9 +138,9 @@ class ProcessingMachineResourceTest {
         long missingMaterialNames = missing.stream()
                 .filter(key -> key.startsWith("material.cruciblecraft."))
                 .count();
-        assertEquals(3_174, english.size(), "current generated en_us key count");
-        assertEquals(876L, translated, "declared Chinese translation coverage");
-        assertEquals(2_298, missing.size(), "visible zh_cn localization debt");
+        assertEquals(3_316, english.size(), "current generated en_us key count");
+        assertEquals(946L, translated, "declared Chinese translation coverage");
+        assertEquals(2_370, missing.size(), "visible zh_cn localization debt");
         assertEquals(1_566L, missingMaterialNames,
                 "missing generated material-name translations");
         assertEquals(chinese.size(), translated,
@@ -191,7 +191,7 @@ class ProcessingMachineResourceTest {
                 }
             }
         }
-        assertEquals(21, rules, "all T4 route rules must be generated");
+        assertEquals(23, rules, "all T4 route rules must be generated");
         assertEquals(Set.of("stone", "wood"), materialIdentityLiterals,
                 "material.is literals must stay explicitly budgeted");
         assertTrue(foundWear, "T4 rules must retain WEAR catalysts");

@@ -89,5 +89,19 @@ public final class ModComponents {
                             .persistent(SimpleFluidContent.CODEC)
                             .networkSynchronized(SimpleFluidContent.STREAM_CODEC));
 
+    public static final DeferredHolder<
+            net.minecraft.core.component.DataComponentType<?>,
+            net.minecraft.core.component.DataComponentType<
+                    com.masson.cruciblecraft.logistics.hopper.DustAmountLedger.Snapshot>>
+                    DUST_FUNNEL = COMPONENTS.registerComponentType(
+                            "dust_funnel",
+                            builder -> builder
+                                    .persistent(
+                                            com.masson.cruciblecraft.logistics.hopper
+                                                    .DustAmountLedger.Snapshot.CODEC)
+                                    .networkSynchronized(
+                                            com.masson.cruciblecraft.logistics.hopper
+                                                    .DustAmountLedger.Snapshot.STREAM_CODEC));
+
     private ModComponents() {}
 }

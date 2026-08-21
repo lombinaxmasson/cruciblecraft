@@ -375,9 +375,12 @@ class OreResourceTest {
         // Keep the pre-T19 actual set distinct and derive the new total from
         // that set plus the exact 5-cover + 25-pipe generated acquisition set.
         assertEquals(30, t19RecipeSet.size());
-        assertEquals(877, generatedRecipeSet.size() - t19RecipeSet.size());
+        // 877 + wire cutter additions: tool pattern recipe + 2 T4 route rules.
+        // T30 adds 121 hopper-family acquisition recipes (60 hopper, 60 queue,
+        // 1 steel dust funnel).
+        assertEquals(1_001, generatedRecipeSet.size() - t19RecipeSet.size());
         assertEquals(
-                877 + t19RecipeSet.size(),
+                1_001 + t19RecipeSet.size(),
                 generatedRecipeSet.size());
         assertEquals(48, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
                 "data/cruciblecraft/recipe")));

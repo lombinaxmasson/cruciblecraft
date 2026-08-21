@@ -77,6 +77,7 @@ MAX_ROUNDS = 5
 WRITE_ARGV: dict[str, list[str]] = {
     # Builders whose argparse requires --write --full-replay together
     "build_t18_o37_identity_projection": ["--check"],  # no write flag; rebuild not supported
+    "build_t21_operand_reachability": ["--json"],
     "build_t20_worldgen_source": ["--write", "--full-replay"],
     "build_t21_chemical_axis": ["--write", "--full-replay"],
     "build_t21_source_denominator": ["--write", "--full-replay"],

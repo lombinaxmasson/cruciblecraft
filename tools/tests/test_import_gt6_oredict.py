@@ -182,7 +182,7 @@ class DumpSchemaTest(unittest.TestCase):
         self.assertEqual(468, first["normalized_prefixes"])
         self.assertNotIn("active_prefixes", first)
         self.assertEqual(0, first["newly_activated_prefixes"])
-        self.assertEqual(56, first["runtime_prefixes_total"])
+        self.assertEqual(57, first["runtime_prefixes_total"])
 
     @unittest.skipIf(
         os.environ.get("CRUCIBLECRAFT_CURRENTNESS_PRECHECKED") == "1",

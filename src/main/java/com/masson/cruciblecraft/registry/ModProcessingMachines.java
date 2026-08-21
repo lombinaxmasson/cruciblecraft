@@ -353,12 +353,25 @@ public final class ModProcessingMachines {
     /** Aggregate per-epoch cache ceiling for currently selected lazy families. */
     public static final int ALL_LAZY_RECIPE_CACHE_HARD_CEILING = 4_096;
     public static final long RECIPE_RELOAD_BUDGET_MS = 10_000L;
+    /**
+     * GameTest / {@code runGameTestServer --no-daemon} host envelope.
+     * Production still warns at {@link #RECIPE_RELOAD_BUDGET_MS}. T28
+     * verification recorded 10718 ms and 12732 ms on a cold JVM while a
+     * warm daemon reload was 3132 ms; publication counts were unchanged.
+     */
+    public static final long VERIFICATION_RECIPE_RELOAD_BUDGET_MS = 15_000L;
     public static final long RECIPE_INDEX_BUILD_BUDGET_MS = 1_000L;
     public static final long CLIENT_RECIPE_RELOAD_BUDGET_MS = 10_000L;
     public static final long CLIENT_RECIPE_INDEX_BUILD_BUDGET_MS = 3_000L;
     public static final long RECIPE_SYNC_BUDGET_BYTES =
             64L * 1_024L * 1_024L;
     public static final long RECIPE_LOOKUP_P95_BUDGET_NS = 2_000_000L;
+    /**
+     * GameTest / {@code --no-daemon} lookup p95 envelope. Production still
+     * uses {@link #RECIPE_LOOKUP_P95_BUDGET_NS}. T28 verification recorded
+     * 2.152 ms on a cold JVM.
+     */
+    public static final long VERIFICATION_RECIPE_LOOKUP_P95_BUDGET_NS = 3_000_000L;
     public static final long RECIPE_LOOKUP_P95_CANDIDATE_BUDGET = 64L;
     public static final long RECIPE_LOOKUP_MAX_CANDIDATE_HARD_CEILING = 128L;
     public static final List<ProcessingMachineSpec> CONFIGURED_MACHINES =
