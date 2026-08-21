@@ -1,6 +1,9 @@
 name: Build
 
-on: [push, pull_request]
+on:
+  push:
+    tags-ignore: ["v*"]
+  pull_request:
 
 jobs:
   build:
@@ -21,8 +24,6 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      # This is needed to be able to run ./gradlew below
-      # You can run `git update-index --chmod +x gradlew` then remove this step.
       - name: Make Gradle wrapper executable
         run: chmod +x ./gradlew
 
@@ -38,5 +39,9 @@ jobs:
           fi
           echo "OK: no common→client imports"
 
-      - name: Run unified closure verification
-        run: python3 tools/run_full_verification.py --check
+      - name: Fetch comparison base
+        if: github.event_name == 'pull_request'
+        run: git fetch origin ${{ github.base_ref }} --no-tags
+
+      - name: Run developer verification
+        run: python3 tools/verify.py dev

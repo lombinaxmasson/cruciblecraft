@@ -54,8 +54,8 @@ RESOURCE_TEST = (
 PYTHON_PROJECTION_TEST = (
     TOOLS / "tests/test_build_t20_worldgen_projection.py"
 )
-PROJECT_PLAN = ROOT / "CrucibleCraft-总体规划.md"
-T20_ARCHIVE = ROOT / "CrucibleCraft-阶段档案-T20.md"
+NARRATIVE_ARCHIVE = TOOLS / "contracts" / "narrative_archive.json"
+T20_ARCHIVE = NARRATIVE_ARCHIVE
 PHASE4_CONTRACT = TOOLS / "phase4_v1_planning_contract.json"
 STAGE_ORDER = ("T20a", "T20b", "T20c", "T20d", "T20e")
 
@@ -484,8 +484,7 @@ def build() -> dict[str, Any]:
                 relative(PYTHON_PROJECTION_TEST): sha256(
                     PYTHON_PROJECTION_TEST
                 ),
-                relative(PROJECT_PLAN): sha256(PROJECT_PLAN),
-                relative(T20_ARCHIVE): sha256(T20_ARCHIVE),
+                relative(NARRATIVE_ARCHIVE): sha256(NARRATIVE_ARCHIVE),
                 relative(PHASE4_CONTRACT): sha256(PHASE4_CONTRACT),
             },
             "source_replay_command": (

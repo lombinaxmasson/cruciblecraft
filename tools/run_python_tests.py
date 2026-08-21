@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TOOLS = ROOT / "tools"
 TEST_ROOT = TOOLS / "tests"
 POLICY = TOOLS / "python_test_policy.json"
+PROFILES = TOOLS / "verification_profiles.json"
 BUILDER_POLICY = TOOLS / "verification_builder_policy.json"
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -34,6 +35,7 @@ class Selection:
     changed_paths: tuple[str, ...] = ()
     escalated_to_closure: bool = False
     escalation_paths: tuple[str, ...] = ()
+    unmatched_paths: tuple[str, ...] = ()
 
 
 def load_policy(path: Path = POLICY) -> dict[str, Any]:
@@ -198,6 +200,29 @@ def git_changed_paths() -> tuple[str, ...]:
     return normalize_paths(paths)
 
 
+def is_documentation_path(policy: dict[str, Any], path: str) -> bool:
+    patterns = policy.get("documentation_path_patterns") or (
+        "*.md",
+        "docs/**",
+        ".plans/**",
+        "plans/**",
+    )
+    return any(fnmatch.fnmatchcase(path, pattern) for pattern in patterns)
+
+
+def profile_owns_path(path: str) -> bool:
+    if not PROFILES.is_file():
+        return False
+    document = json.loads(PROFILES.read_text(encoding="utf-8"))
+    for profile in document.get("profiles", {}).values():
+        if any(
+            fnmatch.fnmatchcase(path, pattern)
+            for pattern in profile.get("owned_paths", ())
+        ):
+            return True
+    return False
+
+
 def affected_modules_for_path(
     policy: dict[str, Any],
     path: str,
@@ -253,16 +278,23 @@ def select_cases(
     for path in normalized_paths:
         modules = affected_modules_for_path(policy, path)
         if modules is None:
-            unknown.append(path)
+            if is_documentation_path(policy, path):
+                selected_modules.update({
+                    "test_check_markdown_links",
+                    "test_verification_profiles",
+                })
+            elif profile_owns_path(path):
+                continue
+            else:
+                unknown.append(path)
         else:
             selected_modules.update(modules)
     if unknown:
         return Selection(
             suite,
-            tuple(cases),
+            (),
             normalized_paths,
-            escalated_to_closure=True,
-            escalation_paths=tuple(sorted(unknown)),
+            unmatched_paths=tuple(sorted(unknown)),
         )
     selected = tuple(
         case for case in cases if test_module(case) in selected_modules
@@ -389,6 +421,7 @@ def write_result(
         "success": success,
         "escalated_to_closure": selection.escalated_to_closure,
         "escalation_paths": list(selection.escalation_paths),
+        "unmatched_paths": list(selection.unmatched_paths),
         "source_replay_commands_skipped": source_replay_skipped,
     }
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -411,6 +444,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--failfast", action="store_true")
     parser.add_argument("--list", action="store_true")
     parser.add_argument("--result-json", type=Path)
+    parser.add_argument(
+        "--exclude-slow",
+        action="store_true",
+        help="Drop closure-only and source-replay tests from the selected set",
+    )
     args = parser.parse_args(argv)
     try:
         policy = load_policy()
@@ -426,6 +464,13 @@ def main(argv: list[str] | None = None) -> int:
             changed_paths=changed_paths,
         )
         selected = ordered_cases(selection, policy)
+        if args.exclude_slow:
+            selected = [
+                case
+                for case in selected
+                if not matches_any(case.id(), policy["closure_only_test_patterns"])
+                and not matches_any(case.id(), policy["source_replay_test_patterns"])
+            ]
         apply_prechecked_stage_skips(selected, policy)
         apply_source_replay_skips(selected, policy, suite)
     except (OSError, json.JSONDecodeError, PolicyError) as exc:
@@ -437,6 +482,13 @@ def main(argv: list[str] | None = None) -> int:
             "Affected selection escalated to closure for unknown paths: "
             + ", ".join(selection.escalation_paths)
         )
+    if selection.unmatched_paths:
+        print(
+            "Affected selection left unmatched paths; declare a profile in "
+            "tools/verification_profiles.json: "
+            + ", ".join(selection.unmatched_paths)
+        )
+        return 2
     print(
         f"Python suite {suite}: selected {len(selected)} / {len(cases)} tests"
     )
@@ -444,6 +496,9 @@ def main(argv: list[str] | None = None) -> int:
         print("\n".join(normalized_test_id(case) for case in selected))
         return 0
     if not selected and suite != "source-replay":
+        if args.exclude_slow:
+            print("Python test workflow selected no non-slow tests")
+            return 0
         print("Python test workflow selected no tests", file=sys.stderr)
         return 2
 

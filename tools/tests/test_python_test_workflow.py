@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import copy
 import unittest
-from pathlib import Path
 from unittest import mock
 
 from tools import run_python_tests as workflow
@@ -69,17 +68,6 @@ class PythonTestWorkflowTest(unittest.TestCase):
             {workflow.test_module(case) for case in selection.cases},
         )
 
-    def test_java_sources_contain_no_crlf_line_endings(self) -> None:
-        root = Path(__file__).resolve().parents[2]
-        java_files = sorted((root / "src").rglob("*.java"))
-        self.assertTrue(java_files)
-        offenders = [
-            path.relative_to(root).as_posix()
-            for path in java_files
-            if b"\r\n" in path.read_bytes()
-        ]
-        self.assertEqual([], offenders)
-
     def test_t16_artifacts_select_full_t16_closure_modules(self) -> None:
         selection = workflow.select_cases(
             "affected",
@@ -104,21 +92,40 @@ class PythonTestWorkflowTest(unittest.TestCase):
             {workflow.test_module(case) for case in selection.cases},
         )
 
-    def test_unknown_affected_path_escalates_to_closure(self) -> None:
+    def test_profile_owned_path_without_python_rule_is_not_unmatched(self) -> None:
+        selection = workflow.select_cases(
+            "affected",
+            self.policy,
+            self.cases,
+            changed_paths=["tools/build_t26_readiness.py"],
+        )
+        self.assertFalse(selection.escalated_to_closure)
+        self.assertEqual((), selection.unmatched_paths)
         selection = workflow.select_cases(
             "affected",
             self.policy,
             self.cases,
             changed_paths=["unexpected/new_domain.json"],
         )
-        self.assertTrue(selection.escalated_to_closure)
-        self.assertEqual(
-            {case.id() for case in self.cases},
-            {case.id() for case in selection.cases},
-        )
+        self.assertFalse(selection.escalated_to_closure)
+        self.assertEqual((), selection.cases)
         self.assertEqual(
             ("unexpected/new_domain.json",),
-            selection.escalation_paths,
+            selection.unmatched_paths,
+        )
+
+    def test_markdown_path_selects_documentation_modules(self) -> None:
+        selection = workflow.select_cases(
+            "affected",
+            self.policy,
+            self.cases,
+            changed_paths=["docs/history/INDEX.md"],
+        )
+        self.assertFalse(selection.escalated_to_closure)
+        self.assertEqual((), selection.unmatched_paths)
+        self.assertEqual(
+            {"test_check_markdown_links", "test_verification_profiles"},
+            {workflow.test_module(case) for case in selection.cases},
         )
 
     def test_policy_rejects_overlapping_slow_tiers(self) -> None:

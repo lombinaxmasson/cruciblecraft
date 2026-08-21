@@ -1,6 +1,15 @@
 {
   "schema_version": 1,
   "default_suite": "fast",
+  "documentation_path_patterns": [
+    "*.md",
+    "docs/**",
+    ".plans/**",
+    "plans/**",
+    "LICENSE",
+    "NOTICE",
+    "TEMPLATE_LICENSE.txt"
+  ],
   "closure_only_test_patterns": [
     "test_full_verification_report.*",
     "*.test_check_mode_is_immutable",
@@ -104,6 +113,15 @@
       ],
       "test_modules": [
         "test_python_test_workflow"
+      ]
+    },
+    {
+      "paths": [
+        "src/**/*.java",
+        "tools/tests/test_source_hygiene.py"
+      ],
+      "test_modules": [
+        "test_source_hygiene"
       ]
     },
     {
@@ -339,9 +357,7 @@
         "src/test/java/com/masson/cruciblecraft/datagen/T16MachineAcquisitionResourceTest.java",
         "src/test/java/com/masson/cruciblecraft/machine/processing/MachineIdentityPolicyTest.java",
         "src/test/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineIdentityPersistenceTest.java",
-        "CrucibleCraft-总体规划.md",
-        "CrucibleCraft-阶段档案-T13-T16.md",
-        "README.md"
+        "tools/contracts/narrative_archive.json"
       ],
       "test_modules": [
         "test_build_processing_machine_energy_audit",
@@ -384,9 +400,7 @@
         "src/test/java/com/masson/cruciblecraft/datagen/T17MachineAcquisitionResourceTest.java",
         "src/test/java/com/masson/cruciblecraft/machine/processing/MachineIdentityPolicyTest.java",
         "src/test/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineIdentityPersistenceTest.java",
-        "CrucibleCraft-总体规划.md",
-        "CrucibleCraft-阶段档案-T17.md",
-        "README.md"
+        "tools/contracts/narrative_archive.json"
       ],
       "test_modules": [
         "test_build_processing_machine_energy_audit",
@@ -470,9 +484,7 @@
         "src/main/resources/data/cruciblecraft/t19_publication_baseline.json",
         "src/test/java/com/masson/cruciblecraft/datagen/OreResourceTest.java",
         "src/test/java/com/masson/cruciblecraft/network/CoverConfigurationPayloadTest.java",
-        "CrucibleCraft-总体规划.md",
-        "CrucibleCraft-阶段档案-T19.md",
-        "README.md"
+        "tools/contracts/narrative_archive.json"
       ],
       "test_modules": [
         "test_build_t19_cover_acquisition",
@@ -506,8 +518,7 @@
         "src/worldgen_*",
         "src/main/java/com/masson/cruciblecraft/worldgen/**",
         "src/test/java/com/masson/cruciblecraft/worldgen/**",
-        "CrucibleCraft-总体规划.md",
-        "CrucibleCraft-阶段档案-T20.md"
+        "tools/contracts/narrative_archive.json"
       ],
       "test_modules": [
         "test_build_t20_worldgen_source",
@@ -542,8 +553,7 @@
         "src/main/resources/data/cruciblecraft/material_prefixes/**",
         "src/main/resources/data/cruciblecraft/material_registration_gate.json",
         "src/main/resources/data/cruciblecraft/worldgen_catalog/ore_veins.json",
-        "CrucibleCraft-总体规划.md",
-        "CrucibleCraft-阶段档案-T21.md"
+        "tools/contracts/narrative_archive.json"
       ],
       "test_modules": [
         "test_analyze_map_shape",
@@ -570,13 +580,20 @@
         "tools/verification_builder_policy.json",
         "tools/local_artifact_manifest.json",
         "tools/full_verification_report.json",
-        "CrucibleCraft-总体规划.md"
+        "tools/verify.py",
+        "tools/verification_profiles.json",
+        "tools/verification_profiles.schema.json",
+        "tools/contracts/**",
+        "tools/known_issues/**",
+        "tools/check_markdown_links.py"
       ],
       "test_modules": [
         "test_full_verification_report",
         "test_python_test_workflow",
         "test_run_full_verification",
-        "test_verification_session"
+        "test_verification_session",
+        "test_verification_profiles",
+        "test_check_markdown_links"
       ]
     },
     {

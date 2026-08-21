@@ -38,7 +38,8 @@ B2 = TOOLS / "t22_5_fluid_gap_disposition.json"
 C0 = TOOLS / "t22_5_machine_playability.json"
 C1 = TOOLS / "t22_5_denominator_recompute.json"
 LEDGER_1 = TOOLS / "t21_source_denominator.json"
-PROJECT_PLAN = ROOT / "CrucibleCraft-总体规划.md"
+NARRATIVE_ARCHIVE = TOOLS / "contracts" / "narrative_archive.json"
+PROJECT_PLAN = NARRATIVE_ARCHIVE
 MATERIALS_DIR = (
     ROOT / "src/main/resources/data/cruciblecraft/materials"
 )

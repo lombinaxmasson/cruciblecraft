@@ -418,7 +418,12 @@ def tooling_paths() -> list[Path]:
         BUILDER_POLICY,
         TOOLS / "verify_full_verification_report.py",
         TOOLS / "python_test_policy.json",
-        TOOLS / "README.md",
+        TOOLS / "verification_profiles.json",
+        TOOLS / "verification_profiles.schema.json",
+        TOOLS / "verify.py",
+        TOOLS / "check_markdown_links.py",
+        TOOLS / "contracts" / "narrative_archive.json",
+        TOOLS / "known_issues" / "verification-debt.json",
         TOOLS / "gt6_process_expectations.json",
         ROOT
         / "src/main/resources/data/cruciblecraft/material_registration_gate.json",
@@ -612,17 +617,6 @@ def tooling_paths() -> list[Path]:
     paths.extend(sorted((
         ROOT / "src/main/resources/data/cruciblecraft/material_prefixes"
     ).glob("*pipe.json")))
-    paths.extend((
-        ROOT / "README.md",
-        ROOT / "CrucibleCraft-总体规划.md",
-        ROOT / "T9-世界生成数据化实施计划.md",
-        ROOT / "CrucibleCraft-阶段档案-T13-T16.md",
-        ROOT / "CrucibleCraft-阶段档案-T17.md",
-        ROOT / "CrucibleCraft-阶段档案-T18.md",
-        ROOT / "CrucibleCraft-阶段档案-T19.md",
-        ROOT / "CrucibleCraft-阶段档案-T20.md",
-        ROOT / "CrucibleCraft-阶段档案-T21.md",
-    ))
     return paths
 
 

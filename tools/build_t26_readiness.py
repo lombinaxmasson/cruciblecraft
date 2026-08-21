@@ -58,7 +58,7 @@ GAMETEST_SOURCE = (
 GRADLE_PROPERTIES = ROOT / "gradle.properties"
 CHANGELOG = ROOT / "CHANGELOG.md"
 CREDITS = ROOT / "CREDITS.md"
-PLAYER_GUIDE = ROOT / "docs" / "CrucibleCraft-玩家指南.md"
+PLAYER_GUIDE = ROOT / "docs" / "current" / "player-guide.md"
 
 T26_FUTURE_VERSION_TEST = (
     "t26UnknownFutureProcessingVersionQuarantinedAndPreserved"

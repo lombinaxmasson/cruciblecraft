@@ -89,15 +89,6 @@ class FullVerificationReportTest(unittest.TestCase):
             snapshot["java_source_test_count"],
             document["tests"]["java_unit_tests"]["tests"],
         )
-        if document["status"] == "READY":
-            plan = (MODULE.ROOT / "CrucibleCraft-总体规划.md").read_text(
-                encoding="utf-8"
-            )
-            match = re.search(r"Java / Python 单测 \| (\d+) / (\d+)", plan)
-            self.assertIsNotNone(match)
-            planned_java, planned_python = map(int, match.groups())
-            self.assertEqual(snapshot["java_source_test_count"], planned_java)
-            self.assertLessEqual(planned_python, snapshot["python_test_count"])
         ore = document["ore_pipeline_acceptance"]
         self.assertEqual(2117, ore["concrete_recipes"])
         self.assertEqual(494, ore["concrete_recipes_by_map"]["crusher"])

@@ -47,7 +47,7 @@
         "item_registry": "6085dff1c4b3c0287a4652336e8dc639d437537f764de8efc5e0d90a5cab8f82",
         "junit_matrix": "3c4d9aad1a57b17c277cf4a736395ea2d51f116ef22c9e48cde2831be59f240f",
         "machine_tier_catalog": "004340c374bbe094acff6afbb559e1d394fa8b11d27f521ca736bf9929c3df78",
-        "python_test_policy": "0951cdcd8607dab48a6715fec42dc9e71419acd910b99ec072db1f50018ee6dc",
+        "python_test_policy": "bdf0d6ebb86d128dc7ed2159cf19d8d70599857178e2a5dda9a5ed7f34e9b12f",
         "source_expected": "589af11d09e7ec43186962dba1556b4ba3360c52ea5fd0d904c3817be034249f",
         "variant_registry": "1a5b295608e07bbf7920e1461bc9c6e7e2be40752cd9b57047264db22bf9868e"
       },
@@ -76,26 +76,26 @@
       },
       "T17d": {
         "t17d_full_builder": "a5ef9bfa1615f0d3d331caa5da215ba160e02cb529411b6b78c09107ea4f7535",
-        "t17d_full_report": "d2f859c8f7bf77874e376758e25cf6e7d4ef47378179aee4b783afd30c753417",
+        "t17d_full_report": "b8bb29d574dc8242f4fb46a9b0fc4484aa16c7e34d770f1ac510831c1f442247",
         "t17d_gametest_publication": "be2e740ecfdfaa66250f79a5888ed309ebb93ed16fa5a2ab7dbe9123c67c69d0",
-        "t17d_history_archive": "aff80c6240ea2b948115741c0ec249046760982edebec80272e1fd061c6de884",
+        "t17d_history_archive": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
         "t17d_load_projection_input": "5c5f81fd36f80135a39d0d666580f3408466da0227ca997844e64818108a5701",
         "t17d_load_projection_output": "b1535d3ad835e20100150c10db32d6c9bfa9e466ba8cf9bbae6e952ef0b0ad60",
         "t17d_load_python_test": "eac69a3b08ef27897a5c88a41ec87d8ca7a148de4d062baf02aeeb8a2aa2b137",
-        "t17d_overall_status": "f0a33781bc15e67170b8e6e6ed084d47f51bf5e523394f205f2f457c65bb36ff",
-        "t17d_project_readme": "f0a33781bc15e67170b8e6e6ed084d47f51bf5e523394f205f2f457c65bb36ff",
+        "t17d_overall_status": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
+        "t17d_project_readme": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
         "t17d_publication_baseline": "7acd05da0882583d1072e70ea8a40ef2031c6aa78bb2ac92da8ee272c8f0dbb6",
-        "t17d_python_affected_closure": "0951cdcd8607dab48a6715fec42dc9e71419acd910b99ec072db1f50018ee6dc",
+        "t17d_python_affected_closure": "bdf0d6ebb86d128dc7ed2159cf19d8d70599857178e2a5dda9a5ed7f34e9b12f",
         "t17d_readiness_builder": "4b8446c862f9af826a6cbf7ed92bc26e19be2f5cd1ff101d57ca18faedf92056",
         "t17d_readiness_python_test": "71f3b6828db56ed8209dbd8a5b100d91a3d20c9eb65373e574e66b885d56d4e2",
-        "t17d_third_phase_status": "f0a33781bc15e67170b8e6e6ed084d47f51bf5e523394f205f2f457c65bb36ff",
-        "t17d_tools_readme": "b8abe11b6600b79642c1c0ee8dc2b6243149fce797cbecdd7e552d3496f262ec"
+        "t17d_third_phase_status": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
+        "t17d_tools_readme": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752"
       }
     },
     "dependencies": {
       "T16": {
         "path": "tools/t16_readiness.json",
-        "sha256": "cc752c5484c3ab44acef9c3c1891c5f09d896b9399179c311bb78df883e5e230",
+        "sha256": "e40cb8371c558d3d361e6ecef14dbc57bece6aa251aab5262d26a8c8ce8629fe",
         "status": "T16_READY"
       },
       "acquisition": {
@@ -116,7 +116,7 @@
     },
     "owned_inputs": {
       "tools/build_t17_readiness.py": "4b8446c862f9af826a6cbf7ed92bc26e19be2f5cd1ff101d57ca18faedf92056",
-      "tools/t17_readiness_policy.json": "e97c9b83e1835f0cc0a0adabca065b10865313f1f19078b0d77959b3947e72dc"
+      "tools/t17_readiness_policy.json": "4cacd27502587075f29f8566a1c0eb616c21f7969ffe9a8797b550d116f77738"
     },
     "pending_report": {
       "evidence": "tools/full_verification_report.json",
@@ -347,7 +347,7 @@
         "test_build_t17_machine_denominator",
         "test_build_t17_readiness"
       ],
-      "sha256": "0951cdcd8607dab48a6715fec42dc9e71419acd910b99ec072db1f50018ee6dc",
+      "sha256": "bdf0d6ebb86d128dc7ed2159cf19d8d70599857178e2a5dda9a5ed7f34e9b12f",
       "stage": "T17a"
     },
     "source_expected": {
@@ -562,7 +562,7 @@
         "\"t17_readiness_acceptance\"",
         "\"tools/build_t17_readiness.py\", \"T17 readiness gate\""
       ],
-      "sha256": "d2f859c8f7bf77874e376758e25cf6e7d4ef47378179aee4b783afd30c753417",
+      "sha256": "b8bb29d574dc8242f4fb46a9b0fc4484aa16c7e34d770f1ac510831c1f442247",
       "stage": "T17d"
     },
     "t17d_gametest_publication": {
@@ -578,7 +578,7 @@
       "stage": "T17d"
     },
     "t17d_history_archive": {
-      "path": "CrucibleCraft-阶段档案-T17.md",
+      "path": "tools/contracts/narrative_archive.json",
       "required_tokens": [
         "T17 已关闭",
         "T17_READY",
@@ -586,7 +586,7 @@
         "deferred 24",
         "publication delta = 0"
       ],
-      "sha256": "aff80c6240ea2b948115741c0ec249046760982edebec80272e1fd061c6de884",
+      "sha256": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
       "stage": "T17d"
     },
     "t17d_load_projection_input": {
@@ -627,22 +627,22 @@
       "stage": "T17d"
     },
     "t17d_overall_status": {
-      "path": "CrucibleCraft-总体规划.md",
+      "path": "tools/contracts/narrative_archive.json",
       "required_tokens": [
         "T17_READY",
         "selected 3",
         "deferred 24"
       ],
-      "sha256": "f0a33781bc15e67170b8e6e6ed084d47f51bf5e523394f205f2f457c65bb36ff",
+      "sha256": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
       "stage": "T17d"
     },
     "t17d_project_readme": {
-      "path": "CrucibleCraft-总体规划.md",
+      "path": "tools/contracts/narrative_archive.json",
       "required_tokens": [
         "T17_READY",
         "T19 is now `T19_READY`"
       ],
-      "sha256": "f0a33781bc15e67170b8e6e6ed084d47f51bf5e523394f205f2f457c65bb36ff",
+      "sha256": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
       "stage": "T17d"
     },
     "t17d_publication_baseline": {
@@ -667,7 +667,7 @@
         "test_recipe_load_projection",
         "test_full_verification_report"
       ],
-      "sha256": "0951cdcd8607dab48a6715fec42dc9e71419acd910b99ec072db1f50018ee6dc",
+      "sha256": "bdf0d6ebb86d128dc7ed2159cf19d8d70599857178e2a5dda9a5ed7f34e9b12f",
       "stage": "T17d"
     },
     "t17d_readiness_builder": {
@@ -694,24 +694,24 @@
       "stage": "T17d"
     },
     "t17d_third_phase_status": {
-      "path": "CrucibleCraft-总体规划.md",
+      "path": "tools/contracts/narrative_archive.json",
       "required_tokens": [
         "T17_READY",
         "selected 3",
         "deferred 24",
         "publication delta = 0"
       ],
-      "sha256": "f0a33781bc15e67170b8e6e6ed084d47f51bf5e523394f205f2f457c65bb36ff",
+      "sha256": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
       "stage": "T17d"
     },
     "t17d_tools_readme": {
-      "path": "tools/README.md",
+      "path": "tools/contracts/narrative_archive.json",
       "required_tokens": [
         "T17 HU/EU readiness",
         "t17_load_projection.json",
         "T17_READY"
       ],
-      "sha256": "b8abe11b6600b79642c1c0ee8dc2b6243149fce797cbecdd7e552d3496f262ec",
+      "sha256": "0595e76071c437eb21e68bfc7a6c16e4aeb2df0bb66b48b76fc0d2ea20d7f752",
       "stage": "T17d"
     },
     "variant_registry": {

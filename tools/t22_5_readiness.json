@@ -4,7 +4,12 @@
     "pending": [],
     "reason": "T22.5 mapping, classification and denominator recompute gates are complete; repository-wide verification is bound separately by the full snapshot report."
   },
-  "completed_stages": [],
+  "completed_stages": [
+    "T22_5a",
+    "T22_5b",
+    "T22_5c",
+    "T22_5d"
+  ],
   "currentness": {
     "full_verification": {
       "evidence": "tools/full_verification_report.json",
@@ -12,8 +17,8 @@
       "status": "BOUND_TO_FULL_VERIFICATION_REPORT"
     },
     "owned_inputs": {
-      "tools/build_t22_5_readiness.py": "e8c2e8b079924833acb2075e553602c0d7c5a900e9d15977b4f88bda6fe2ae55",
-      "tools/t22_5_readiness_policy.json": "0f589c1833d6bb7fcec1053ab08a93322e0d986852701b21b47cee733e5a022a"
+      "tools/build_t22_5_readiness.py": "3497a7b5f81eae50c3cf8101985994290a119e56c66a055769e5ee421b64a783",
+      "tools/t22_5_readiness_policy.json": "e80549549c0c2a16ff48d22a1a17ba86c6a61fd847e5a3098fbafb92f7efcff5"
     }
   },
   "evidence": {
@@ -78,11 +83,12 @@
       "v1": 0
     },
     "c2_beta_wording": {
-      "wording_updated": false
+      "wording_updated": true
     }
   },
   "pending_stages": [],
   "policy": "The status field is derived from evidence by build(). Any mismatch between the committed value and a fresh build is detected by check().",
   "schema_version": 1,
+  "status": "T22_5_READY",
   "status_owner": "run_full_verification"
 }
