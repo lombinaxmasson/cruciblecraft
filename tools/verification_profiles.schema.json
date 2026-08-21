@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "verification_profiles.schema.json",
+  "title": "CrucibleCraft verification profiles",
+  "type": "object",
+  "required": ["schema_version", "status", "unmatched_policy", "profiles"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": 1 },
+    "status": { "type": "string" },
+    "unmatched_policy": { "enum": ["report"] },
+    "documentation_path_patterns": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "profiles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "owner",
+          "tier",
+          "datagen",
+          "gradle_tasks",
+          "python_modules",
+          "builders",
+          "gametest",
+          "owned_paths"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "owner": { "type": "string" },
+          "tier": { "enum": ["dev", "integration", "release"] },
+          "datagen": { "type": "boolean" },
+          "gradle_tasks": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "python_modules": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "builders": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "gametest": { "type": "boolean" },
+          "owned_paths": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

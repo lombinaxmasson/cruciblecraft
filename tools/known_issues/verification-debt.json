@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "status": "OPEN",
+  "owner": "T32",
+  "policy": "These rows are recorded debt. They must not be marked passing, skipped, or inherited as READY. Recheck only when the listed trigger is true.",
+  "issues": [
+    {
+      "id": "T32-VD-001",
+      "summary": "T5 chemical readiness source hashes drifted against the committed ledger",
+      "owner": "future content/recipe card",
+      "trigger": "tools/build_t5_chemical_readiness.py inputs or t5_chemical_readiness.json change",
+      "evidence": "python tools/run_python_tests.py --suite fast (2026-08-21)",
+      "status": "open"
+    },
+    {
+      "id": "T32-VD-002",
+      "summary": "T17–T31 readiness/currentness checks fail because historical receipts are bound to a live tooling snapshot",
+      "owner": "T32 then future player-release card",
+      "trigger": "Any change to builders, generated JSON, test counts, or markdown previously listed in tooling_paths()",
+      "evidence": "fast suite failures on test_build_t17_readiness through test_build_t31_* currentness tests (2026-08-21)",
+      "status": "open"
+    },
+    {
+      "id": "T32-VD-003",
+      "summary": "31 Java sources contain CRLF line endings",
+      "owner": "T32",
+      "trigger": "Any edit under src/**/*.java or running test_java_sources_contain_no_crlf_line_endings",
+      "evidence": "test_source_hygiene.SourceHygieneTest.test_java_sources_contain_no_crlf_line_endings",
+      "status": "closed",
+      "resolved_by": "T32 converted 31 Java sources from CRLF to LF"
+    },
+    {
+      "id": "T32-VD-004",
+      "summary": "Committed full_verification_report.json is a historical receipt, not a live currentness proof",
+      "owner": "future player-release card",
+      "trigger": "A player-facing release is opened and must rebind provenance",
+      "evidence": "tools/full_verification_report.json still hashes deleted phase-plan paths and narrative markdown",
+      "status": "open"
+    }
+  ]
+}

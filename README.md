@@ -3,17 +3,17 @@
 NeoForge 1.21.1 的 GT6 风格工业模组。当前仓库是一个**源码阶段留档**：
 `0.1.0-rc.1` 不是 `1.0.0`、不是 GA，也不表示面向玩家发行。
 
-玩家安装与玩法材料仍在 [玩家指南](docs/CrucibleCraft-玩家指南.md)，但它们不构成
+玩家安装与玩法材料仍在 [玩家指南](docs/current/player-guide.md)，但它们不构成
 本次源码留档的发行声明。
 
 ## 当前状态
 
 - T26–T31 的历史工程门禁有对应的 `_READY` 工件；详见
-  [阶段档案 T31](CrucibleCraft-阶段档案-T31.md) 与
-  [`tools/full_verification_report.json`](tools/full_verification_report.json)。
-- 下一条内容路线是：地表石子可达性闭环 → 开局对象表现层 → 一个小型配方长尾族。
-  它不进入 RC soak 或 GA；路线解释见
-  [总体规划](CrucibleCraft-总体规划.md)。
+  [阶段档案 T31](docs/history/stage-archives/CrucibleCraft-阶段档案-T31.md) 与
+  只读收据 [`tools/full_verification_report.json`](tools/full_verification_report.json)。
+- 当前卡是 T32 工程卫生与可验证性重构。其后内容路线是：地表石子可达性闭环 →
+  开局对象表现层 → 一个小型配方长尾族。它不进入 RC soak 或 GA；路线解释见
+  [总体规划](docs/current/roadmap.md)。
 - GT6 式石子开局和第一小时表现层仍未闭环；不要把历史 portfolio 的
   `v1_work_set = []` 解读为“模组已完整可玩”。
 
@@ -37,32 +37,29 @@ NeoForge 1.21.1 的 GT6 风格工业模组。当前仓库是一个**源码阶段
 
 ## 日常验证
 
-```powershell
-.\gradlew.bat test
-python tools/run_python_tests.py --suite fast
-python tools/run_python_tests.py --suite affected --path <changed-path>
-```
-
-修改 datagen 时连续运行两次 `.\gradlew.bat runData` 并比较生成树。封板才使用：
+改什么跑什么，见 [开发与验证指南](docs/current/verification.md)。最短入口：
 
 ```powershell
-$env:PYTHONUTF8 = "1"
-python tools/run_full_verification.py --check
-python tools/run_full_verification.py --record --new-session
+python tools/verify.py dev
+python tools/verify.py integration --profile worldgen
+python tools/verify.py archive-inspect
 ```
 
-`--check-ready` 校验的是已提交的历史 READY 快照，不适合作为内容开发时的
-日常通过条件。完整 builder/replay 说明见 [tools README](tools/README.md)。
+`dev` 只跑受影响的 Python/Java 测试和文档链接检查。内容卡闭合才使用
+`--profile`。玩家发行才使用 `release`。不要把 `--check-ready` 当作日常通过条件。
+
+完整 builder/replay 说明见 [tools README](tools/README.md)。
 
 ## 文档地图
 
-- [总体规划](CrucibleCraft-总体规划.md)：唯一总体规划、项目规则、当前路线。
-- [阶段档案](CrucibleCraft-阶段档案-T31.md)：阶段关闭证据；根目录的
-  `CrucibleCraft-阶段档案-T*.md` 保留全部历史档案。
-- [卡级计划](.plans/)：当前和近期 T 卡执行细节。
+- [总体规划](docs/current/roadmap.md)：唯一总体规划、项目规则、当前路线。
+- [开发与验证指南](docs/current/verification.md)：改 X 跑什么、何时升级。
+- [当前已知问题](docs/current/known-issues.md)：验证债务台账入口。
+- [文档索引](docs/README.md)：当前规范与历史档案入口。
+- [历史档案](docs/history/INDEX.md)：工作日志、阶段档案、关闭计划。
 - [工具链说明](tools/README.md)：生成器、来源重放与验证规则。
 - [来源与归属](CREDITS.md)、[第三方通知](NOTICE)、[变更记录](CHANGELOG.md)。
-- [玩家指南](docs/CrucibleCraft-玩家指南.md)：玩家向说明，不是源码状态权威。
+- [玩家指南](docs/current/player-guide.md)：玩家向说明，不是源码状态权威。
 
 ## 仓库布局
 
@@ -71,7 +68,9 @@ src/main/java/          运行时实现
 src/main/resources/     手写数据和资源
 src/*_generated/        受工具维护的已跟踪生成资源
 tools/                  构建器、来源投影和验证工具
-.plans/                 卡级执行计划
+docs/current/           当前路线与开发指南
+docs/history/           只读历史档案
+docs/decisions/         ADR 与仍有效的专题决策
 ```
 
 `4.5Fix/`、`build/`、`run*/`、本地 GT6/GTCEu dump 和 `src/src/` 重复树不属于

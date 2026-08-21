@@ -2,7 +2,25 @@
 
 ## Verification workflow
 
-The standard-library runner owns Python test selection:
+The layered entry point is:
+
+```text
+python tools/verify.py dev
+python tools/verify.py integration --profile <name>
+python tools/verify.py archive-inspect
+python tools/verify.py release
+```
+
+- `dev` maps changed paths onto profiles. Unmatched code paths are reported and
+  fail closed; they do not escalate to the 110-builder closure.
+- Pure Markdown or `docs/history/` edits only run link/index checks.
+- `integration --profile` runs that profile's builders, Python modules, and
+  declared Gradle tasks.
+- `archive-inspect` reads the historical `full_verification_report.json`
+  receipt. It is not a live currentness proof.
+- `release` is reserved for a future player-facing card.
+
+The standard-library runner still owns Python test selection:
 
 ```text
 python tools/run_python_tests.py --suite fast
@@ -12,13 +30,15 @@ python tools/run_python_tests.py --suite source-replay
 ```
 
 - `fast` excludes repository currentness and raw/cache replay tests.
-- `affected` uses `python_test_policy.json`; any unmatched path escalates the
-  whole run to `closure`.
+- `affected` uses `python_test_policy.json`; unmatched code paths are reported
+  instead of escalating to `closure`. Documentation paths select the docs
+  modules.
 - `closure` must equal unittest discovery exactly once and reports slow tests.
 - `source-replay` is explicit and reports unavailable raw/cache inputs as
   `SKIP`.
 
-The phase-closing entry point is:
+The historical phase-closing entry point remains available, but it is not the
+daily developer gate:
 
 ```text
 python tools/run_full_verification.py --check-ready
