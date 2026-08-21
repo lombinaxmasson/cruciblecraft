@@ -391,7 +391,8 @@ tasks.register('distBeta', Zip) {
     from('.') {
         include 'CHANGELOG.md'
         include 'CREDITS.md'
+        include 'NOTICE'
+        include 'LICENSE'
         include 'docs/**'
-        include 'TEMPLATE_LICENSE.txt'
     }
 }
