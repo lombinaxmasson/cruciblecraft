@@ -6,6 +6,7 @@ import copy
 import json
 import os
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from typing import Any
@@ -237,11 +238,10 @@ class OperandReachabilityContractTests(unittest.TestCase):
 
     def test_convention_tag_resolver_handles_dusts(self) -> None:
         gate = json.loads(
-            open(
+            (
                 TOOLS.parent
-                / "src/main/resources/data/cruciblecraft/material_registration_gate.json",
-                encoding="utf-8",
-            ).read()
+                / "src/main/resources/data/cruciblecraft/material_registration_gate.json"
+            ).read_text(encoding="utf-8")
         )
         mat_forms = reachability._material_forms(gate)
         items = reachability.resolve_convention_tag(
@@ -254,6 +254,82 @@ class OperandReachabilityContractTests(unittest.TestCase):
             "c:widgets/unknown_material_xyz", {}
         )
         self.assertEqual(items, [])
+
+    def test_c_rocks_resolves_via_surface_scatter_declaration(self) -> None:
+        gate = json.loads(
+            (
+                TOOLS.parent
+                / "src/main/resources/data/cruciblecraft"
+                / "material_registration_gate.json"
+            ).read_text(encoding="utf-8")
+        )
+        mat_forms = reachability._material_forms(gate)
+        declaration = reachability.parse_surface_scatter_declaration()
+        dynamic_tags = reachability._surface_scatter_dynamic_tags(
+            declaration,
+            {},
+        )
+        resolved = reachability.resolve_tag(
+            "c:rocks",
+            mat_forms,
+            {},
+            dynamic_tags,
+        )
+        self.assertIn("item:cruciblecraft:stone/rock", resolved)
+        self.assertGreater(len(resolved), 0)
+
+    def test_rock_pack_is_reachable(self) -> None:
+        closure = reachability.build()["closure"]
+        unreachable = {
+            entry["recipe"]
+            for entry in closure["unreachable_operand_recipes_all"]
+        }
+        self.assertNotIn(
+            "src/main/resources/data/cruciblecraft/recipe/rock_pack.json",
+            unreachable,
+        )
+        self.assertGreater(closure["seed_surface_rock_count"], 0)
+        self.assertEqual(
+            closure["surface_scatter"]["rock_tag"],
+            "c:rocks",
+        )
+
+    def test_missing_surface_scatter_declaration_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            missing = Path(tmpdir) / "surface_scatter.json"
+            with self.assertRaises(FileNotFoundError):
+                reachability.parse_surface_scatter_declaration(missing)
+
+    def test_malformed_surface_scatter_declaration_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            bad_path = Path(tmpdir) / "surface_scatter.json"
+            bad_path.write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "id": "surface_rock_scatter",
+                        "feature_type": "cruciblecraft:surface_rock_scatter",
+                        "config": {"rarity": 128, "rock_tag": "c:dusts"},
+                        "rock_tag_source": {"prefix": "rock"},
+                    }
+                ),
+                encoding="utf-8",
+            )
+            with self.assertRaises(ValueError) as ctx:
+                reachability.parse_surface_scatter_declaration(bad_path)
+            self.assertIn("rock_tag", str(ctx.exception))
+
+    def test_malformed_declaration_does_not_create_seeds(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            bad_path = Path(tmpdir) / "surface_scatter.json"
+            bad_path.write_text("{}", encoding="utf-8")
+            with self.assertRaises(ValueError):
+                reachability.parse_surface_scatter_declaration(bad_path)
+            seeds = reachability._surface_rock_seeds(
+                {"prefix": "rock", "rock_materials": ["stone"]},
+                {},
+            )
+            self.assertEqual(seeds, {"item:cruciblecraft:stone/rock"})
 
 
 if __name__ == "__main__":

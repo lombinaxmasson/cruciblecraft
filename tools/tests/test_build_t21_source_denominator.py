@@ -1,3 +1,4 @@
+import copy
 import sys
 import unittest
 from pathlib import Path
@@ -69,6 +70,24 @@ class T21SourceDenominatorTest(unittest.TestCase):
 
     def test_full_source_denominator_replay_matches_compact(self):
         self.assertEqual(self.document, builder.build())
+
+    def test_rebuild_preserves_semantic_document_fields(self):
+        candidate = builder.build()
+        self.assertEqual(
+            builder.semantic_document(self.document),
+            builder.semantic_document(candidate),
+        )
+
+    def test_metadata_rebase_guard_accepts_readiness_hash_refresh(self):
+        candidate = builder.build()
+        pre_repair = copy.deepcopy(self.document)
+        pre_repair["inputs"]["tools/t5_chemical_readiness.json"] = (
+            "2cc6c9fbaca4a4b41d1abe7bb1a5eb00ff6d6a572aaad86ac3597bd35b1a7062"
+        )
+        self.assertEqual(
+            [],
+            builder.verify_metadata_rebase(pre_repair, candidate),
+        )
 
 
 if __name__ == "__main__":

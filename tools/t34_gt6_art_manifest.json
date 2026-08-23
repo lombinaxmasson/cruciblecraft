@@ -1,0 +1,1320 @@
+{
+  "denominator_targets": [
+    "cruciblecraft:firebrick",
+    "cruciblecraft:raw_ceramic_crucible",
+    "cruciblecraft:crucible",
+    "cruciblecraft:anvil",
+    "cruciblecraft:raw_ceramic_mold",
+    "cruciblecraft:raw_ingot_mold",
+    "cruciblecraft:raw_plate_mold",
+    "cruciblecraft:raw_rod_mold",
+    "cruciblecraft:raw_bolt_mold",
+    "cruciblecraft:ingot_mold",
+    "cruciblecraft:plate_mold",
+    "cruciblecraft:rod_mold",
+    "cruciblecraft:bolt_mold",
+    "cruciblecraft:firebox",
+    "cruciblecraft:fuel_engine",
+    "cruciblecraft:burning_gas_generator",
+    "cruciblecraft:bronze_boiler",
+    "cruciblecraft:bronze_steam_engine",
+    "cruciblecraft:bronze_dynamo"
+  ],
+  "input_hashes": {
+    "gt6_code/gregtech6/src/main/java/gregapi/tileentity/multiblocks/MultiTileEntityMultiBlockPart.java": "1131b92b60da32b2a27401e90d2627785639b5d1ca55fd666482cd8ebdce7d3f",
+    "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java": "93414ed9510ff0465b062efbfe7775d256100425379a24d3857c437cef7ddc27",
+    "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityBoilerTank.java": "958738fcf2362ea5ccb030218021a4f03fb6fadc7a535b1f7a2c2fe6c56ab465",
+    "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityDynamoElectric.java": "edd2c5e17934dbeda925044c7cf295685fcdd41cd5866fda9b7affd68c28705e",
+    "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityEngineSteam.java": "c700ce5b285ddcecd034708615a5f25fbaa7bb1e5584e5a14c3f79d531ec14e6",
+    "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/generators/MultiTileEntityGeneratorBrick.java": "03a9536790c416c477923e30b83df3b4725052ce0faf626feead71ac839f9713",
+    "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/generators/MultiTileEntityGeneratorGas.java": "c90dfecffe5e2a4c1ac942b6c1591928b4f487ad028ef33fcb8ff2c7a368b2e7",
+    "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/generators/MultiTileEntityMotorLiquid.java": "14138928fb1b82a7691d1fd9c29292ce7edb23aa1325f146bcc388b1aa2a20a6",
+    "gt6_code/gregtech6/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrucible.java": "39acad7dc3a1e840a83f24cc6af750b7e64ac4a466b0c5902c928c5fd312b789",
+    "gt6_code/gregtech6/src/main/java/gregtech/tileentity/tools/MultiTileEntityAnvil.java": "609a290b5a83b1b2561bd92f3c2aaa543931c5955037e11cb446cd435d84498e",
+    "gt6_code/gregtech6/src/main/java/gregtech/tileentity/tools/MultiTileEntityMold.java": "7fd3a9b623cc22f4792207503708a07d85ce3836d54bacdd146d9f7c7cc62ccb",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/dynamos/electric_rotation/colored/back.png": "b94934858d010e0381fd5056dbc0ec00e964cad00c152944b2e6e0918991f977",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/dynamos/electric_rotation/colored/front.png": "db9560d38648fee70a0c8618e793d5c262cb269a408af0fdba99518343e4372e",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/dynamos/electric_rotation/colored/side.png": "db9560d38648fee70a0c8618e793d5c262cb269a408af0fdba99518343e4372e",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/dynamos/electric_rotation/overlay/back.png": "4da8c35319cd5b640d5d2363df857edcef1c58a26545a6f1a689f5d0b8d196cb",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/dynamos/electric_rotation/overlay/front.png": "48b6811ef825b2be50dcbda29ef5e2a3f707708a499a2d3796561ddb29770185",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/dynamos/electric_rotation/overlay/side.png": "6569a89537bc53d51e88c51edc435b8b8cf66d1bc2a040cec6b36d2c0074b736",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/dynamos/electric_rotation/overlay_active/back.png": "4da8c35319cd5b640d5d2363df857edcef1c58a26545a6f1a689f5d0b8d196cb",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/dynamos/electric_rotation/overlay_active/front.png": "c3325fa4e7a6d1e479212c6406fc28f4a78c227e8ffbe9d1f051e2ea36acbd56",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/dynamos/electric_rotation/overlay_active/side.png": "6569a89537bc53d51e88c51edc435b8b8cf66d1bc2a040cec6b36d2c0074b736",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/engines/kinetic_steam/colored/back.png": "9927d1c9d187485779681587e2c0d5cec7198bc29ccfc7e75691730e07a149b5",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/engines/kinetic_steam/colored/cage.png": "3d4a54bb213bbc6226b531e6a9042fe5b257f62f2d54431807320da438044fe9",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/engines/kinetic_steam/colored/engine.png": "60610dd08ddb67d2475639ae956b34035ca1d5ed6b89cb65f6f586b17b4d6325",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/engines/kinetic_steam/colored/engine_hull.png": "5f429b39eb1937c4221e9eeb0a9ae26bc809f8e53f6fc83d81b8dd8587281ebd",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/engines/kinetic_steam/colored/front.png": "33bcc0c562a18e2c773a9c6259b7751a7a21029befcc79b89c383de7d779495d",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/engines/kinetic_steam/colored/pipe.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/engines/kinetic_steam/colored/pipe_side.png": "effcbf04624a5de9c693912c061a6cb9737802d8d360d66c593800f558ad4e6c",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/engines/kinetic_steam/colored/side.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/engines/kinetic_steam/overlay/back.png": "8dd1d34cc36cd9ddccdc23f6f3be16be70d90337a290bc4a6da997f1f9c64236",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/engines/kinetic_steam/overlay/cage.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/engines/kinetic_steam/overlay/engine.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/engines/kinetic_steam/overlay/engine_hull.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/engines/kinetic_steam/overlay/front.png": "02fc1d92864f19600bd1abd5bd455bb2ea8932f340050c913a198736e1eca27d",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/engines/kinetic_steam/overlay/pipe.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/engines/kinetic_steam/overlay/pipe_side.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/engines/kinetic_steam/overlay/side.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/colored/back.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/colored/bottom.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/colored/front.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/colored/left.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/colored/right.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/colored/top.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/overlay/back.png": "64bb2b9d3eac7a9d2d99c91138172210a02ec026e05dfc2237901540ec12b2ee",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/overlay/bottom.png": "fb026fe33ee18607c32d3b0217a4aeff5bc9c33d6dd26389cc9392fc7fa81bc5",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/overlay/front.png": "2c35ccc4d4da9d713b67d1a4a3b9e930f3f5a7749fc39ddf2ebb77a3c7946ac8",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/overlay/left.png": "6b6d3ce23d2dd4c8a4d5e5efe489bc7f4f8bb65caa9bada14b2cae5a5f40ea39",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/overlay/right.png": "12a9bb5d2a7119c685961b8ec8f351d9812db256bbecfca87802c6e21b1f7cf7",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/overlay/top.png": "7322a1ad47fdc71e4e62fe3e9d364cad7bca02dadb2f70613bc0db9ce777c44a",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/overlay_active/back.png": "9cb35c36a9341c3a9f1c147b04093c46dd35910a62e7354af6fa45e934dcb415",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/overlay_active/bottom.png": "323286795816e11f7ed246231919463ce7344861930814d26e0bf207d6b80170",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/overlay_active/front.png": "9b34c0d7e6a2fbb9ee79d56a360103b20ab6f162e0316ecf4a41dd39c002d95e",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/overlay_active/front.png.mcmeta": "95f5ff49de6550ce4619e971492ba11a1304dc5a03e44e4dcd9239d001653eb8",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/overlay_active/left.png": "7da52e57dbd35fe662c46f26e57689794594ba2594877163708f367f9c2ae63b",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/overlay_active/right.png": "81e0e7b38f528a30c057f836b751fe498b4a0d3bb0d0135994b1c306fbc00a8b",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/overlay_active/top.png": "953aae92bc227b576726b2bd747d1c3a4a67acba9d63c6e5ae8ee285aba54a98",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_brick/overlay_active/top.png.mcmeta": "95f5ff49de6550ce4619e971492ba11a1304dc5a03e44e4dcd9239d001653eb8",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/colored/back.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/colored/bottom.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/colored/front.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/colored/left.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/colored/right.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/colored/top.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/overlay/back.png": "434ce0ef50b8063c864b0fc24e5cd9aea714e19f46088f1b184fa44406e36eed",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/overlay/bottom.png": "c31b3126efbd3713871016a191d3c7f1f19613e0bfd215e02627b627dbe871fe",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/overlay/front.png": "98ae239e76efe334d56ed66f9a893d3c35de6f893d51080e6d3ec7d692f10b9d",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/overlay/left.png": "92e9fdd5b720064549689c9cd71e266e81c80ac7e9893909d4c7d3cb4ea8aa33",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/overlay/right.png": "5fed48cacc86d24191b440b3c7bfb25a7295b3db1b28e8ca5008be3d96b7fd02",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/overlay/top.png": "1d116dec67f49dc22a130120f186fbbf7e9f963f4212629ea46a963a6f2feacb",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/overlay_active/back.png": "434ce0ef50b8063c864b0fc24e5cd9aea714e19f46088f1b184fa44406e36eed",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/overlay_active/bottom.png": "c31b3126efbd3713871016a191d3c7f1f19613e0bfd215e02627b627dbe871fe",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/overlay_active/front.png": "733fcf93adf9d969fe003e571dad7e770cad219748487ea865bbf4f952f58703",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/overlay_active/front.png.mcmeta": "7c0969e2ea29cb4e155bcea1f272c262fc3ea4ead0e9021b8b14d5c440e799f1",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/overlay_active/left.png": "524d08f1f6e0734d75625f03cd3f95dbbc7ad22a2a0f1cbb9deffdfa96ccaf59",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/overlay_active/right.png": "4ea3a2c4e299c221d3b7187e1c5428dbd1913e3c5dccc1d4a94219962e12b340",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/burning_gas/overlay_active/top.png": "b7b0e3f66530c15165ba8d44c2b05ef14986624987636a5c2caea818c670183a",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/motor_liquid/colored/back.png": "db9560d38648fee70a0c8618e793d5c262cb269a408af0fdba99518343e4372e",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/motor_liquid/colored/front.png": "b94934858d010e0381fd5056dbc0ec00e964cad00c152944b2e6e0918991f977",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/motor_liquid/colored/sides.png": "db9560d38648fee70a0c8618e793d5c262cb269a408af0fdba99518343e4372e",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/motor_liquid/overlay/back.png": "d7d7b4e63f3ae789badc895760bacdbc5c5a61332261dbc89e46cb37f1f898a1",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/motor_liquid/overlay/front.png": "e183538e5e6f6af6b4acf6fb3960d53d07b2b0ac370e73d9e46500a929b54463",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/motor_liquid/overlay/sides.png": "763844cd3e9003c46357a10cbb0bd30644efabfb224d07de689a147481720a4d",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/motor_liquid/overlay_active/back.png": "d7d7b4e63f3ae789badc895760bacdbc5c5a61332261dbc89e46cb37f1f898a1",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/motor_liquid/overlay_active/front.png": "e80333c7c21264823fa005235da55f7aabde38d6c50f922e51f5df51c446d569",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/motor_liquid/overlay_active/front.png.mcmeta": "6f0877c3a5817f182adc70d66966852b72e8677de36e0199eca34cd4c575dee4",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/motor_liquid/overlay_active/sides.png": "73664eddc0d2856f2b3cef642c52c0c80047a1f2f6486b4084fbfeef4e44420e",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/generators/motor_liquid/overlay_active/sides.png.mcmeta": "6ed2f1ecd4e5a590aad7d67002a823aee0c9b9db16b12210d45d232e64577472",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/multiblockparts/firebricks/0/colored/bottom.png": "b0a5a36bbc4a8f392f602efcc7e87e3761ee27097d35feae2045f6a1c535947f",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/multiblockparts/firebricks/0/colored/side.png": "b0a5a36bbc4a8f392f602efcc7e87e3761ee27097d35feae2045f6a1c535947f",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/multiblockparts/firebricks/0/colored/top.png": "b0a5a36bbc4a8f392f602efcc7e87e3761ee27097d35feae2045f6a1c535947f",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/multiblockparts/firebricks/0/overlay/bottom.png": "76186f462c1cfd28f9e7ab0c64ba7a2b9a6b22aa2c1c6f8b1783c3e4d1baf890",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/multiblockparts/firebricks/0/overlay/side.png": "62c306da0cb0c3d53d6a4a0714abf5506dcb903b3db0d3334a692057701079e1",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/multiblockparts/firebricks/0/overlay/top.png": "fad3e60b6b04b1c79c62c11a80bed045acfc092800aa47d1f5e8132106099237",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/tanks/boiler_steam/colored/bottom.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/tanks/boiler_steam/colored/side.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/tanks/boiler_steam/colored/top.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/tanks/boiler_steam/overlay/bottom.png": "02fc1d92864f19600bd1abd5bd455bb2ea8932f340050c913a198736e1eca27d",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/tanks/boiler_steam/overlay/side.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/machines/tanks/boiler_steam/overlay/top.png": "8dd1d34cc36cd9ddccdc23f6f3be16be70d90337a290bc4a6da997f1f9c64236",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/materialicons/ROUGH/blockSolid.png": "99fa529d58845f2d92c980c558058ed646a3753603e30f23914f7a9bed8f580b",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/materialicons/ROUGH/blockSolid_OVERLAY.png": "0940268eecf5efbfa5d2ead4e701af85aad1c77849d06850003add66e433b5d4",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/materialicons/ROUGH/molten.png": "a308af60c281c5684966bc739a96034a7a4d7ba2e06befdeb1587dc2d571e87e",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks/materialicons/ROUGH/molten.png.mcmeta": "84a0ef2a3eef33b8d2cde7a87b5156909a302b2acc30ded568dcc7a92c6fb9bd",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/items/gt.multiitem.randomtools/900.png": "d0e0b89abaf2561c094093d4cdf1dc6e1cdb7560a39410e136c7428c2993ab19",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/items/gt.multiitem.randomtools/902.png": "e14089e0f486e7da72b3f4df781335ff6519ad028ef3a1133c30afd0126d96f4",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/items/gt.multiitem.randomtools/904.png": "fcecf3675704e513ea2186895149b8cde3087173dc93201e3681c48671202562",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/items/gt.multiitem.randomtools/905.png": "a33c63fc23d045f98f3c346db2757fc2736f49d1e980e67cf8745269aa3f8080",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/items/gt.multiitem.randomtools/989.png": "f51bbdfd2df6518bb8481a8b7768fe79b2e2ab88d525a8430a47e4e112c5783c",
+    "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/items/gt.multiitem.randomtools/991.png": "742f060ae86074f81a83e9a37a49539377cff006ae115e0d3bde000af532d88c",
+    "src/generated/resources/assets/cruciblecraft/blockstates/anvil.json": "87ed4caffe6e908761400b28f3d39405692026421a2119944b8a97de778a0ab9",
+    "src/generated/resources/assets/cruciblecraft/blockstates/burning_gas_generator.json": "983c57e9ecdfbd3b5368ba80fc116cc18973d7268c0309cd192ef2699006684e",
+    "src/generated/resources/assets/cruciblecraft/blockstates/ceramic_mold.json": "61f2d4122941de0fa1dcf7768858c5f8daedef3a8c924f224aed0c5cb779887e",
+    "src/generated/resources/assets/cruciblecraft/blockstates/crucible.json": "c55a6078b01a17b99f8332cb5dce2a136852e8fa735fb281ad9b4be77225551b",
+    "src/generated/resources/assets/cruciblecraft/blockstates/firebox.json": "eabe935cceafc7706c4c12695eca9113b82e1fc9137ec158986d47c5d8e4d5f9",
+    "src/generated/resources/assets/cruciblecraft/blockstates/firebrick.json": "8e2ca462fbfa3497d4293db15ebe006584b4df921ddaf620d63e117ae553a73b",
+    "src/generated/resources/assets/cruciblecraft/blockstates/fuel_engine.json": "ccf13e6dcc45c74e25cb7ec45f7c07dc7aefc589028dd8649c1eb1f109c1fcfd",
+    "src/generated/resources/assets/cruciblecraft/models/item/anvil.json": "fd1f4b55a1b679d69b81d85d8a134f27685c691810603958910e99dfc67878c7",
+    "src/generated/resources/assets/cruciblecraft/models/item/bolt_mold.json": "5c14808c82a1d4736026689f8bcc314af8e295b17e3919e93c20942a045378b4",
+    "src/generated/resources/assets/cruciblecraft/models/item/burning_gas_generator.json": "786d9b3267ed5eea63fbb0c256ba5df9a83e176d3c1dfa0f55e39455911806f0",
+    "src/generated/resources/assets/cruciblecraft/models/item/crucible.json": "abf34851c479d890edcab3f68ab8530a3fe2f35418ba9630017e6fb781bb992c",
+    "src/generated/resources/assets/cruciblecraft/models/item/firebox.json": "bcce23dae776c484f5249e4af600ddb1626a85d1c6d904a3ece68adacf2c7489",
+    "src/generated/resources/assets/cruciblecraft/models/item/firebrick.json": "2ad030f0c91f47fc020c53170b59b76949d10ec73c549acccae3e21dd2eddf92",
+    "src/generated/resources/assets/cruciblecraft/models/item/fuel_engine.json": "826a2fc551e19747e767238414b3e18f380ee04633850820a5eab941c23c16d9",
+    "src/generated/resources/assets/cruciblecraft/models/item/ingot_mold.json": "5c14808c82a1d4736026689f8bcc314af8e295b17e3919e93c20942a045378b4",
+    "src/generated/resources/assets/cruciblecraft/models/item/plate_mold.json": "5c14808c82a1d4736026689f8bcc314af8e295b17e3919e93c20942a045378b4",
+    "src/generated/resources/assets/cruciblecraft/models/item/raw_bolt_mold.json": "930b5770952538e98534f3d49cc05590da679cf36718e236e077648fa22e8e2f",
+    "src/generated/resources/assets/cruciblecraft/models/item/raw_ceramic_crucible.json": "aaa807678fd4117c59431cf54ae89bd02fe460038d9696a2552fd9d2180f3404",
+    "src/generated/resources/assets/cruciblecraft/models/item/raw_ceramic_mold.json": "4c911331d98d310880dafdf1d914a0c6d63cdc241d333fca1d3992f78158a143",
+    "src/generated/resources/assets/cruciblecraft/models/item/raw_ingot_mold.json": "900f2d7169f8b5508fb59e056bf0f7d096da0f2380d595bd21323dfb9d925636",
+    "src/generated/resources/assets/cruciblecraft/models/item/raw_plate_mold.json": "ce94394cd9f655f2f71bcb316c46718c5bf9f4918154a542b828c7ce02853395",
+    "src/generated/resources/assets/cruciblecraft/models/item/raw_rod_mold.json": "0a0266f762ee05da8478217c7c684d24770fa08422d0cf6c8f28e6148d80de8b",
+    "src/generated/resources/assets/cruciblecraft/models/item/rod_mold.json": "5c14808c82a1d4736026689f8bcc314af8e295b17e3919e93c20942a045378b4",
+    "src/main/resources/assets/cruciblecraft/blockstates/bronze_boiler.json": "bf701dedfc2cb9fd081d312713e393862b6685807e373fd37d3f01608248575a",
+    "src/main/resources/assets/cruciblecraft/blockstates/bronze_dynamo.json": "23b79c66f060fc9389b8ed6f2d10afd29cb07351cfbefc7bb9a1a238fb3afac2",
+    "src/main/resources/assets/cruciblecraft/blockstates/bronze_steam_engine.json": "a960185ea4b6faf2b487264adb5d8d0848eee0d4ed5d5197877c9d652a8366dd",
+    "src/main/resources/assets/cruciblecraft/models/block/anvil.json": "49596e928347687e705b7615226a6123977c4543934ba13096bb3671acb8a9ad",
+    "src/main/resources/assets/cruciblecraft/models/block/bronze_boiler.json": "15cc4d622eccf3b865822ac1b98a96baab1fe480357c691c53ea5854ca697826",
+    "src/main/resources/assets/cruciblecraft/models/block/bronze_dynamo.json": "2aa24bae1915434a878fa71af2c7ab19d80a398fed7d7230ca560d6e4852136d",
+    "src/main/resources/assets/cruciblecraft/models/block/bronze_steam_engine.json": "65947e3007cb486a5ced6706ce79715a245a46bf1790ac648ee27ee89c9cbcb6",
+    "src/main/resources/assets/cruciblecraft/models/block/burning_gas_generator.json": "82a1a6e77b17cadf66857db25b4ea9b7b0f010c7996e85994fbfac051538d482",
+    "src/main/resources/assets/cruciblecraft/models/block/burning_gas_generator_active.json": "442c58ef691dc7acb17a399294e1f79eced453249293beafa277f64c22381cbe",
+    "src/main/resources/assets/cruciblecraft/models/block/ceramic_mold.json": "a2e9cdf80cedd78de1f613c5b4108eb430b16a18bae44607ccd8b0c7a80c8b41",
+    "src/main/resources/assets/cruciblecraft/models/block/ceramic_mold_filled.json": "7c3ba3b488fe3ffd21d0494bb27d4f7636738d840a0e450dcce12ae266edd816",
+    "src/main/resources/assets/cruciblecraft/models/block/crucible.json": "fa55a3412feaca434df49d1b8a33f480366efeeedec75b7b3d94355d59b05497",
+    "src/main/resources/assets/cruciblecraft/models/block/firebox_lit.json": "82058dedd995a2e38cdb011b35f874ad471a49df6434fbfd0738050715ade703",
+    "src/main/resources/assets/cruciblecraft/models/block/firebox_unlit.json": "3afd48578904bbedfc0854196f0d038df9b27339be7e840810215852b42fbc9c",
+    "src/main/resources/assets/cruciblecraft/models/block/firebrick_gt6.json": "7fb9e8df73eff4733261ce0c42f32c03f18a52350dc3e22bb67cba6f98a56bce",
+    "src/main/resources/assets/cruciblecraft/models/block/fuel_engine.json": "0438d885b18929f71ad4ce37e67132163dac21f3e1840310ddbd1b6aa535a072",
+    "src/main/resources/assets/cruciblecraft/models/block/fuel_engine_active.json": "229fd26922a7be6b112dc6cdf369127517393a92f8d29676ae537e995c71f66d",
+    "src/main/resources/assets/cruciblecraft/models/item/bronze_boiler.json": "a17632c80a5c4563bd1bae7cfb571642b70cda4ac2db5f02ee10fd4f4ef6d28b",
+    "src/main/resources/assets/cruciblecraft/models/item/bronze_dynamo.json": "7168b4a03d9b975c9389338c9deed6e7c933b1a3968f9bdec84a91fcb7ac3934",
+    "src/main/resources/assets/cruciblecraft/models/item/bronze_steam_engine.json": "ad44f1b4b015ba8b8903852c486c7a4610f9a7378ef4cea9c596bc3f829ffe1d",
+    "src/main/resources/assets/cruciblecraft/t34_gt6_art_manifest.json": "bb86eab1e100c1128b742fd4f4f8ff769727532a8bdea5b1cd724d961656b2ec",
+    "src/main/resources/assets/cruciblecraft/t34_gt6_energy_art_manifest.json": "60c5c63164586123f6b1c1ea6bb3df56998c827cfd91f7521d7f42897250c165",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_boiler/colored/bottom.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_boiler/colored/side.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_boiler/colored/top.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_boiler/overlay/bottom.png": "02fc1d92864f19600bd1abd5bd455bb2ea8932f340050c913a198736e1eca27d",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_boiler/overlay/side.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_boiler/overlay/top.png": "8dd1d34cc36cd9ddccdc23f6f3be16be70d90337a290bc4a6da997f1f9c64236",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/colored/back.png": "b94934858d010e0381fd5056dbc0ec00e964cad00c152944b2e6e0918991f977",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/colored/front.png": "db9560d38648fee70a0c8618e793d5c262cb269a408af0fdba99518343e4372e",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/colored/side.png": "db9560d38648fee70a0c8618e793d5c262cb269a408af0fdba99518343e4372e",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/overlay/back.png": "4da8c35319cd5b640d5d2363df857edcef1c58a26545a6f1a689f5d0b8d196cb",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/overlay/front.png": "48b6811ef825b2be50dcbda29ef5e2a3f707708a499a2d3796561ddb29770185",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/overlay/side.png": "6569a89537bc53d51e88c51edc435b8b8cf66d1bc2a040cec6b36d2c0074b736",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/overlay_active/back.png": "4da8c35319cd5b640d5d2363df857edcef1c58a26545a6f1a689f5d0b8d196cb",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/overlay_active/front.png": "c3325fa4e7a6d1e479212c6406fc28f4a78c227e8ffbe9d1f051e2ea36acbd56",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/overlay_active/side.png": "6569a89537bc53d51e88c51edc435b8b8cf66d1bc2a040cec6b36d2c0074b736",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/colored/back.png": "9927d1c9d187485779681587e2c0d5cec7198bc29ccfc7e75691730e07a149b5",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/colored/cage.png": "3d4a54bb213bbc6226b531e6a9042fe5b257f62f2d54431807320da438044fe9",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/colored/engine.png": "60610dd08ddb67d2475639ae956b34035ca1d5ed6b89cb65f6f586b17b4d6325",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/colored/engine_hull.png": "5f429b39eb1937c4221e9eeb0a9ae26bc809f8e53f6fc83d81b8dd8587281ebd",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/colored/front.png": "33bcc0c562a18e2c773a9c6259b7751a7a21029befcc79b89c383de7d779495d",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/colored/pipe.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/colored/pipe_side.png": "effcbf04624a5de9c693912c061a6cb9737802d8d360d66c593800f558ad4e6c",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/colored/side.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/overlay/back.png": "8dd1d34cc36cd9ddccdc23f6f3be16be70d90337a290bc4a6da997f1f9c64236",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/overlay/cage.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/overlay/engine.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/overlay/engine_hull.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/overlay/front.png": "02fc1d92864f19600bd1abd5bd455bb2ea8932f340050c913a198736e1eca27d",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/overlay/pipe.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/overlay/pipe_side.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/overlay/side.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/colored/back.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/colored/bottom.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/colored/front.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/colored/left.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/colored/right.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/colored/top.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay/back.png": "434ce0ef50b8063c864b0fc24e5cd9aea714e19f46088f1b184fa44406e36eed",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay/bottom.png": "c31b3126efbd3713871016a191d3c7f1f19613e0bfd215e02627b627dbe871fe",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay/front.png": "98ae239e76efe334d56ed66f9a893d3c35de6f893d51080e6d3ec7d692f10b9d",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay/left.png": "92e9fdd5b720064549689c9cd71e266e81c80ac7e9893909d4c7d3cb4ea8aa33",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay/right.png": "5fed48cacc86d24191b440b3c7bfb25a7295b3db1b28e8ca5008be3d96b7fd02",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay/top.png": "1d116dec67f49dc22a130120f186fbbf7e9f963f4212629ea46a963a6f2feacb",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay_active/back.png": "434ce0ef50b8063c864b0fc24e5cd9aea714e19f46088f1b184fa44406e36eed",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay_active/bottom.png": "c31b3126efbd3713871016a191d3c7f1f19613e0bfd215e02627b627dbe871fe",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay_active/front.png": "733fcf93adf9d969fe003e571dad7e770cad219748487ea865bbf4f952f58703",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay_active/front.png.mcmeta": "7c0969e2ea29cb4e155bcea1f272c262fc3ea4ead0e9021b8b14d5c440e799f1",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay_active/left.png": "524d08f1f6e0734d75625f03cd3f95dbbc7ad22a2a0f1cbb9deffdfa96ccaf59",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay_active/right.png": "4ea3a2c4e299c221d3b7187e1c5428dbd1913e3c5dccc1d4a94219962e12b340",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay_active/top.png": "b7b0e3f66530c15165ba8d44c2b05ef14986624987636a5c2caea818c670183a",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/colored/back.png": "db9560d38648fee70a0c8618e793d5c262cb269a408af0fdba99518343e4372e",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/colored/front.png": "b94934858d010e0381fd5056dbc0ec00e964cad00c152944b2e6e0918991f977",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/colored/sides.png": "db9560d38648fee70a0c8618e793d5c262cb269a408af0fdba99518343e4372e",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/overlay/back.png": "d7d7b4e63f3ae789badc895760bacdbc5c5a61332261dbc89e46cb37f1f898a1",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/overlay/front.png": "e183538e5e6f6af6b4acf6fb3960d53d07b2b0ac370e73d9e46500a929b54463",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/overlay/sides.png": "763844cd3e9003c46357a10cbb0bd30644efabfb224d07de689a147481720a4d",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/overlay_active/back.png": "d7d7b4e63f3ae789badc895760bacdbc5c5a61332261dbc89e46cb37f1f898a1",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/overlay_active/front.png": "e80333c7c21264823fa005235da55f7aabde38d6c50f922e51f5df51c446d569",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/overlay_active/front.png.mcmeta": "6f0877c3a5817f182adc70d66966852b72e8677de36e0199eca34cd4c575dee4",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/overlay_active/sides.png": "73664eddc0d2856f2b3cef642c52c0c80047a1f2f6486b4084fbfeef4e44420e",
+    "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/overlay_active/sides.png.mcmeta": "6ed2f1ecd4e5a590aad7d67002a823aee0c9b9db16b12210d45d232e64577472",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/colored_back.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/colored_bottom.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/colored_front.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/colored_left.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/colored_right.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/colored_top.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_active_back.png": "9cb35c36a9341c3a9f1c147b04093c46dd35910a62e7354af6fa45e934dcb415",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_active_bottom.png": "323286795816e11f7ed246231919463ce7344861930814d26e0bf207d6b80170",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_active_front.png": "9b34c0d7e6a2fbb9ee79d56a360103b20ab6f162e0316ecf4a41dd39c002d95e",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_active_front.png.mcmeta": "95f5ff49de6550ce4619e971492ba11a1304dc5a03e44e4dcd9239d001653eb8",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_active_left.png": "7da52e57dbd35fe662c46f26e57689794594ba2594877163708f367f9c2ae63b",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_active_right.png": "81e0e7b38f528a30c057f836b751fe498b4a0d3bb0d0135994b1c306fbc00a8b",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_active_top.png": "953aae92bc227b576726b2bd747d1c3a4a67acba9d63c6e5ae8ee285aba54a98",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_active_top.png.mcmeta": "95f5ff49de6550ce4619e971492ba11a1304dc5a03e44e4dcd9239d001653eb8",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_back.png": "64bb2b9d3eac7a9d2d99c91138172210a02ec026e05dfc2237901540ec12b2ee",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_bottom.png": "fb026fe33ee18607c32d3b0217a4aeff5bc9c33d6dd26389cc9392fc7fa81bc5",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_front.png": "2c35ccc4d4da9d713b67d1a4a3b9e930f3f5a7749fc39ddf2ebb77a3c7946ac8",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_left.png": "6b6d3ce23d2dd4c8a4d5e5efe489bc7f4f8bb65caa9bada14b2cae5a5f40ea39",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_right.png": "12a9bb5d2a7119c685961b8ec8f351d9812db256bbecfca87802c6e21b1f7cf7",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_top.png": "7322a1ad47fdc71e4e62fe3e9d364cad7bca02dadb2f70613bc0db9ce777c44a",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/colored_bottom.png": "b0a5a36bbc4a8f392f602efcc7e87e3761ee27097d35feae2045f6a1c535947f",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/colored_side.png": "b0a5a36bbc4a8f392f602efcc7e87e3761ee27097d35feae2045f6a1c535947f",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/colored_top.png": "b0a5a36bbc4a8f392f602efcc7e87e3761ee27097d35feae2045f6a1c535947f",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/overlay_bottom.png": "76186f462c1cfd28f9e7ab0c64ba7a2b9a6b22aa2c1c6f8b1783c3e4d1baf890",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/overlay_side.png": "62c306da0cb0c3d53d6a4a0714abf5506dcb903b3db0d3334a692057701079e1",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/overlay_top.png": "fad3e60b6b04b1c79c62c11a80bed045acfc092800aa47d1f5e8132106099237",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_block_solid.png": "99fa529d58845f2d92c980c558058ed646a3753603e30f23914f7a9bed8f580b",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_block_solid_overlay.png": "0940268eecf5efbfa5d2ead4e701af85aad1c77849d06850003add66e433b5d4",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_molten.png": "a308af60c281c5684966bc739a96034a7a4d7ba2e06befdeb1587dc2d571e87e",
+    "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_molten.png.mcmeta": "84a0ef2a3eef33b8d2cde7a87b5156909a302b2acc30ded568dcc7a92c6fb9bd",
+    "src/main/resources/assets/cruciblecraft/textures/item/t34_gt6/raw_bolt_mold.png": "fcecf3675704e513ea2186895149b8cde3087173dc93201e3681c48671202562",
+    "src/main/resources/assets/cruciblecraft/textures/item/t34_gt6/raw_ceramic_crucible.png": "f51bbdfd2df6518bb8481a8b7768fe79b2e2ab88d525a8430a47e4e112c5783c",
+    "src/main/resources/assets/cruciblecraft/textures/item/t34_gt6/raw_ceramic_mold.png": "742f060ae86074f81a83e9a37a49539377cff006ae115e0d3bde000af532d88c",
+    "src/main/resources/assets/cruciblecraft/textures/item/t34_gt6/raw_ingot_mold.png": "d0e0b89abaf2561c094093d4cdf1dc6e1cdb7560a39410e136c7428c2993ab19",
+    "src/main/resources/assets/cruciblecraft/textures/item/t34_gt6/raw_plate_mold.png": "e14089e0f486e7da72b3f4df781335ff6519ad028ef3a1133c30afd0126d96f4",
+    "src/main/resources/assets/cruciblecraft/textures/item/t34_gt6/raw_rod_mold.png": "a33c63fc23d045f98f3c346db2757fc2736f49d1e980e67cf8745269aa3f8080",
+    "tools/t34_gt6_art_policy.json": "77cbbe5ccb8fe9e6b063024a712fad3fdb3d3b891c68818ef4a241e667b32854"
+  },
+  "not_registered": [
+    {
+      "cc_runtime_status": "not_registered",
+      "id": "gt6:burning_box_solid",
+      "source_family": "burning_solid"
+    },
+    {
+      "cc_runtime_status": "not_registered",
+      "id": "gt6:burning_box_liquid",
+      "source_family": "burning_liquid"
+    },
+    {
+      "cc_runtime_status": "not_registered",
+      "id": "gt6:small_gas_generator",
+      "reason": "The selected CrucibleCraft runtime is the GT6 Burning Box Gas identity, not a standalone small gas generator."
+    }
+  ],
+  "policy": "tools/t34_gt6_art_policy.json",
+  "schema_version": 1,
+  "source_manifests": [
+    {
+      "path": "src/main/resources/assets/cruciblecraft/t34_gt6_art_manifest.json",
+      "present": true,
+      "required": true,
+      "role": "opening"
+    },
+    {
+      "path": "src/main/resources/assets/cruciblecraft/t34_gt6_energy_art_manifest.json",
+      "present": true,
+      "required": false,
+      "role": "energy"
+    }
+  ],
+  "status": "T34_GT6_ART_READY",
+  "targets": [
+    {
+      "gt6_runtime_id": null,
+      "id": "cruciblecraft:firebrick",
+      "runtime_family": null,
+      "runtime_id": "cruciblecraft:firebrick",
+      "runtime_kind": "block",
+      "source_family": "firebricks",
+      "tint_identity": "ceramic"
+    },
+    {
+      "gt6_runtime_id": null,
+      "id": "cruciblecraft:raw_ceramic_crucible",
+      "runtime_family": null,
+      "runtime_id": "cruciblecraft:raw_ceramic_crucible",
+      "runtime_kind": "item",
+      "source_family": "ceramic_crucible",
+      "tint_identity": "ceramic"
+    },
+    {
+      "gt6_runtime_id": null,
+      "id": "cruciblecraft:crucible",
+      "runtime_family": null,
+      "runtime_id": "cruciblecraft:crucible",
+      "runtime_kind": "block",
+      "source_family": "rough_materialicons",
+      "tint_identity": "ceramic"
+    },
+    {
+      "gt6_runtime_id": null,
+      "id": "cruciblecraft:anvil",
+      "runtime_family": null,
+      "runtime_id": "cruciblecraft:anvil",
+      "runtime_kind": "block",
+      "source_family": "rough_materialicons",
+      "tint_identity": "stone"
+    },
+    {
+      "gt6_runtime_id": null,
+      "id": "cruciblecraft:raw_ceramic_mold",
+      "runtime_family": null,
+      "runtime_id": "cruciblecraft:raw_ceramic_mold",
+      "runtime_kind": "item",
+      "source_family": "ceramic_mold",
+      "tint_identity": "ceramic"
+    },
+    {
+      "gt6_runtime_id": null,
+      "id": "cruciblecraft:raw_ingot_mold",
+      "runtime_family": null,
+      "runtime_id": "cruciblecraft:raw_ingot_mold",
+      "runtime_kind": "item",
+      "source_family": "ceramic_mold",
+      "tint_identity": "ceramic"
+    },
+    {
+      "gt6_runtime_id": null,
+      "id": "cruciblecraft:raw_plate_mold",
+      "runtime_family": null,
+      "runtime_id": "cruciblecraft:raw_plate_mold",
+      "runtime_kind": "item",
+      "source_family": "ceramic_mold",
+      "tint_identity": "ceramic"
+    },
+    {
+      "gt6_runtime_id": null,
+      "id": "cruciblecraft:raw_rod_mold",
+      "runtime_family": null,
+      "runtime_id": "cruciblecraft:raw_rod_mold",
+      "runtime_kind": "item",
+      "source_family": "ceramic_mold",
+      "tint_identity": "ceramic"
+    },
+    {
+      "gt6_runtime_id": null,
+      "id": "cruciblecraft:raw_bolt_mold",
+      "runtime_family": null,
+      "runtime_id": "cruciblecraft:raw_bolt_mold",
+      "runtime_kind": "item",
+      "source_family": "ceramic_mold",
+      "tint_identity": "ceramic"
+    },
+    {
+      "gt6_runtime_id": null,
+      "id": "cruciblecraft:ingot_mold",
+      "runtime_family": "cruciblecraft:ceramic_mold",
+      "runtime_id": "cruciblecraft:ingot_mold",
+      "runtime_kind": "block_item",
+      "source_family": "ceramic_mold",
+      "tint_identity": "ceramic"
+    },
+    {
+      "gt6_runtime_id": null,
+      "id": "cruciblecraft:plate_mold",
+      "runtime_family": "cruciblecraft:ceramic_mold",
+      "runtime_id": "cruciblecraft:plate_mold",
+      "runtime_kind": "block_item",
+      "source_family": "ceramic_mold",
+      "tint_identity": "ceramic"
+    },
+    {
+      "gt6_runtime_id": null,
+      "id": "cruciblecraft:rod_mold",
+      "runtime_family": "cruciblecraft:ceramic_mold",
+      "runtime_id": "cruciblecraft:rod_mold",
+      "runtime_kind": "block_item",
+      "source_family": "ceramic_mold",
+      "tint_identity": "ceramic"
+    },
+    {
+      "gt6_runtime_id": null,
+      "id": "cruciblecraft:bolt_mold",
+      "runtime_family": "cruciblecraft:ceramic_mold",
+      "runtime_id": "cruciblecraft:bolt_mold",
+      "runtime_kind": "block_item",
+      "source_family": "ceramic_mold",
+      "tint_identity": "ceramic"
+    },
+    {
+      "gt6_runtime_id": 1199,
+      "id": "cruciblecraft:firebox",
+      "runtime_family": null,
+      "runtime_id": "cruciblecraft:firebox",
+      "runtime_kind": "block",
+      "source_family": "burning_brick",
+      "tint_identity": "brick"
+    },
+    {
+      "gt6_runtime_id": 9147,
+      "id": "cruciblecraft:fuel_engine",
+      "runtime_family": null,
+      "runtime_id": "cruciblecraft:fuel_engine",
+      "runtime_kind": "block",
+      "source_family": "motor_liquid",
+      "tint_identity": "bronze"
+    },
+    {
+      "gt6_runtime_id": 1602,
+      "id": "cruciblecraft:burning_gas_generator",
+      "runtime_family": null,
+      "runtime_id": "cruciblecraft:burning_gas_generator",
+      "runtime_kind": "block",
+      "source_family": "burning_gas",
+      "tint_identity": "bronze"
+    },
+    {
+      "gt6_runtime_id": 1202,
+      "id": "cruciblecraft:bronze_boiler",
+      "runtime_family": null,
+      "runtime_id": "cruciblecraft:bronze_boiler",
+      "runtime_kind": "block",
+      "source_family": "boiler_steam",
+      "tint_identity": "bronze"
+    },
+    {
+      "gt6_runtime_id": 1302,
+      "id": "cruciblecraft:bronze_steam_engine",
+      "runtime_family": null,
+      "runtime_id": "cruciblecraft:bronze_steam_engine",
+      "runtime_kind": "block",
+      "source_family": "kinetic_steam",
+      "tint_identity": "bronze"
+    },
+    {
+      "gt6_runtime_id": 10111,
+      "id": "cruciblecraft:bronze_dynamo",
+      "runtime_family": null,
+      "runtime_id": "cruciblecraft:bronze_dynamo",
+      "runtime_kind": "block",
+      "source_family": "electric_rotation",
+      "tint_identity": "tin_alloy"
+    }
+  ],
+  "validated_artifacts": [
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/colored/back.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_dynamo/colored/back",
+      "sha256": "b94934858d010e0381fd5056dbc0ec00e964cad00c152944b2e6e0918991f977",
+      "source_path": "textures/blocks/machines/dynamos/electric_rotation/colored/back.png",
+      "targets": [
+        "cruciblecraft:bronze_dynamo"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/colored/front.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_dynamo/colored/front",
+      "sha256": "db9560d38648fee70a0c8618e793d5c262cb269a408af0fdba99518343e4372e",
+      "source_path": "textures/blocks/machines/dynamos/electric_rotation/colored/front.png",
+      "targets": [
+        "cruciblecraft:bronze_dynamo"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/colored/side.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_dynamo/colored/side",
+      "sha256": "db9560d38648fee70a0c8618e793d5c262cb269a408af0fdba99518343e4372e",
+      "source_path": "textures/blocks/machines/dynamos/electric_rotation/colored/side.png",
+      "targets": [
+        "cruciblecraft:bronze_dynamo"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/overlay/back.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_dynamo/overlay/back",
+      "sha256": "4da8c35319cd5b640d5d2363df857edcef1c58a26545a6f1a689f5d0b8d196cb",
+      "source_path": "textures/blocks/machines/dynamos/electric_rotation/overlay/back.png",
+      "targets": [
+        "cruciblecraft:bronze_dynamo"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/overlay/front.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_dynamo/overlay/front",
+      "sha256": "48b6811ef825b2be50dcbda29ef5e2a3f707708a499a2d3796561ddb29770185",
+      "source_path": "textures/blocks/machines/dynamos/electric_rotation/overlay/front.png",
+      "targets": [
+        "cruciblecraft:bronze_dynamo"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/overlay/side.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_dynamo/overlay/side",
+      "sha256": "6569a89537bc53d51e88c51edc435b8b8cf66d1bc2a040cec6b36d2c0074b736",
+      "source_path": "textures/blocks/machines/dynamos/electric_rotation/overlay/side.png",
+      "targets": [
+        "cruciblecraft:bronze_dynamo"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/overlay_active/back.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_dynamo/overlay_active/back",
+      "sha256": "4da8c35319cd5b640d5d2363df857edcef1c58a26545a6f1a689f5d0b8d196cb",
+      "source_path": "textures/blocks/machines/dynamos/electric_rotation/overlay_active/back.png",
+      "targets": [
+        "cruciblecraft:bronze_dynamo"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/overlay_active/front.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_dynamo/overlay_active/front",
+      "sha256": "c3325fa4e7a6d1e479212c6406fc28f4a78c227e8ffbe9d1f051e2ea36acbd56",
+      "source_path": "textures/blocks/machines/dynamos/electric_rotation/overlay_active/front.png",
+      "targets": [
+        "cruciblecraft:bronze_dynamo"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo/overlay_active/side.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_dynamo/overlay_active/side",
+      "sha256": "6569a89537bc53d51e88c51edc435b8b8cf66d1bc2a040cec6b36d2c0074b736",
+      "source_path": "textures/blocks/machines/dynamos/electric_rotation/overlay_active/side.png",
+      "targets": [
+        "cruciblecraft:bronze_dynamo"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/colored/back.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_steam_engine/colored/back",
+      "sha256": "9927d1c9d187485779681587e2c0d5cec7198bc29ccfc7e75691730e07a149b5",
+      "source_path": "textures/blocks/machines/engines/kinetic_steam/colored/back.png",
+      "targets": [
+        "cruciblecraft:bronze_steam_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/colored/cage.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_steam_engine/colored/cage",
+      "sha256": "3d4a54bb213bbc6226b531e6a9042fe5b257f62f2d54431807320da438044fe9",
+      "source_path": "textures/blocks/machines/engines/kinetic_steam/colored/cage.png",
+      "targets": [
+        "cruciblecraft:bronze_steam_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/colored/engine.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_steam_engine/colored/engine",
+      "sha256": "60610dd08ddb67d2475639ae956b34035ca1d5ed6b89cb65f6f586b17b4d6325",
+      "source_path": "textures/blocks/machines/engines/kinetic_steam/colored/engine.png",
+      "targets": [
+        "cruciblecraft:bronze_steam_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/colored/engine_hull.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_steam_engine/colored/engine_hull",
+      "sha256": "5f429b39eb1937c4221e9eeb0a9ae26bc809f8e53f6fc83d81b8dd8587281ebd",
+      "source_path": "textures/blocks/machines/engines/kinetic_steam/colored/engine_hull.png",
+      "targets": [
+        "cruciblecraft:bronze_steam_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/colored/front.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_steam_engine/colored/front",
+      "sha256": "33bcc0c562a18e2c773a9c6259b7751a7a21029befcc79b89c383de7d779495d",
+      "source_path": "textures/blocks/machines/engines/kinetic_steam/colored/front.png",
+      "targets": [
+        "cruciblecraft:bronze_steam_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/colored/pipe.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_steam_engine/colored/pipe",
+      "sha256": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+      "source_path": "textures/blocks/machines/engines/kinetic_steam/colored/pipe.png",
+      "targets": [
+        "cruciblecraft:bronze_steam_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/colored/pipe_side.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_steam_engine/colored/pipe_side",
+      "sha256": "effcbf04624a5de9c693912c061a6cb9737802d8d360d66c593800f558ad4e6c",
+      "source_path": "textures/blocks/machines/engines/kinetic_steam/colored/pipe_side.png",
+      "targets": [
+        "cruciblecraft:bronze_steam_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/colored/side.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_steam_engine/colored/side",
+      "sha256": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+      "source_path": "textures/blocks/machines/engines/kinetic_steam/colored/side.png",
+      "targets": [
+        "cruciblecraft:bronze_steam_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/overlay/back.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_steam_engine/overlay/back",
+      "sha256": "8dd1d34cc36cd9ddccdc23f6f3be16be70d90337a290bc4a6da997f1f9c64236",
+      "source_path": "textures/blocks/machines/engines/kinetic_steam/overlay/back.png",
+      "targets": [
+        "cruciblecraft:bronze_steam_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/overlay/cage.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_steam_engine/overlay/cage",
+      "sha256": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+      "source_path": "textures/blocks/machines/engines/kinetic_steam/overlay/cage.png",
+      "targets": [
+        "cruciblecraft:bronze_steam_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/overlay/engine.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_steam_engine/overlay/engine",
+      "sha256": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+      "source_path": "textures/blocks/machines/engines/kinetic_steam/overlay/engine.png",
+      "targets": [
+        "cruciblecraft:bronze_steam_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/overlay/engine_hull.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_steam_engine/overlay/engine_hull",
+      "sha256": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+      "source_path": "textures/blocks/machines/engines/kinetic_steam/overlay/engine_hull.png",
+      "targets": [
+        "cruciblecraft:bronze_steam_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/overlay/front.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_steam_engine/overlay/front",
+      "sha256": "02fc1d92864f19600bd1abd5bd455bb2ea8932f340050c913a198736e1eca27d",
+      "source_path": "textures/blocks/machines/engines/kinetic_steam/overlay/front.png",
+      "targets": [
+        "cruciblecraft:bronze_steam_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/overlay/pipe.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_steam_engine/overlay/pipe",
+      "sha256": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+      "source_path": "textures/blocks/machines/engines/kinetic_steam/overlay/pipe.png",
+      "targets": [
+        "cruciblecraft:bronze_steam_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/overlay/pipe_side.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_steam_engine/overlay/pipe_side",
+      "sha256": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+      "source_path": "textures/blocks/machines/engines/kinetic_steam/overlay/pipe_side.png",
+      "targets": [
+        "cruciblecraft:bronze_steam_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine/overlay/side.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_steam_engine/overlay/side",
+      "sha256": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+      "source_path": "textures/blocks/machines/engines/kinetic_steam/overlay/side.png",
+      "targets": [
+        "cruciblecraft:bronze_steam_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/colored_back.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/colored_back",
+      "sha256": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+      "source_path": "textures/blocks/machines/generators/burning_brick/colored/back.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/colored_bottom.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/colored_bottom",
+      "sha256": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+      "source_path": "textures/blocks/machines/generators/burning_brick/colored/bottom.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/colored_front.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/colored_front",
+      "sha256": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+      "source_path": "textures/blocks/machines/generators/burning_brick/colored/front.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/colored_left.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/colored_left",
+      "sha256": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+      "source_path": "textures/blocks/machines/generators/burning_brick/colored/left.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/colored_right.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/colored_right",
+      "sha256": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+      "source_path": "textures/blocks/machines/generators/burning_brick/colored/right.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/colored_top.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/colored_top",
+      "sha256": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+      "source_path": "textures/blocks/machines/generators/burning_brick/colored/top.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_back.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/overlay_back",
+      "sha256": "64bb2b9d3eac7a9d2d99c91138172210a02ec026e05dfc2237901540ec12b2ee",
+      "source_path": "textures/blocks/machines/generators/burning_brick/overlay/back.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_bottom.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/overlay_bottom",
+      "sha256": "fb026fe33ee18607c32d3b0217a4aeff5bc9c33d6dd26389cc9392fc7fa81bc5",
+      "source_path": "textures/blocks/machines/generators/burning_brick/overlay/bottom.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_front.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/overlay_front",
+      "sha256": "2c35ccc4d4da9d713b67d1a4a3b9e930f3f5a7749fc39ddf2ebb77a3c7946ac8",
+      "source_path": "textures/blocks/machines/generators/burning_brick/overlay/front.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_left.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/overlay_left",
+      "sha256": "6b6d3ce23d2dd4c8a4d5e5efe489bc7f4f8bb65caa9bada14b2cae5a5f40ea39",
+      "source_path": "textures/blocks/machines/generators/burning_brick/overlay/left.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_right.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/overlay_right",
+      "sha256": "12a9bb5d2a7119c685961b8ec8f351d9812db256bbecfca87802c6e21b1f7cf7",
+      "source_path": "textures/blocks/machines/generators/burning_brick/overlay/right.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_top.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/overlay_top",
+      "sha256": "7322a1ad47fdc71e4e62fe3e9d364cad7bca02dadb2f70613bc0db9ce777c44a",
+      "source_path": "textures/blocks/machines/generators/burning_brick/overlay/top.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_active_back.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/overlay_active_back",
+      "sha256": "9cb35c36a9341c3a9f1c147b04093c46dd35910a62e7354af6fa45e934dcb415",
+      "source_path": "textures/blocks/machines/generators/burning_brick/overlay_active/back.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_active_bottom.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/overlay_active_bottom",
+      "sha256": "323286795816e11f7ed246231919463ce7344861930814d26e0bf207d6b80170",
+      "source_path": "textures/blocks/machines/generators/burning_brick/overlay_active/bottom.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_active_front.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/overlay_active_front",
+      "sha256": "9b34c0d7e6a2fbb9ee79d56a360103b20ab6f162e0316ecf4a41dd39c002d95e",
+      "source_path": "textures/blocks/machines/generators/burning_brick/overlay_active/front.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_active_left.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/overlay_active_left",
+      "sha256": "7da52e57dbd35fe662c46f26e57689794594ba2594877163708f367f9c2ae63b",
+      "source_path": "textures/blocks/machines/generators/burning_brick/overlay_active/left.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_active_right.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/overlay_active_right",
+      "sha256": "81e0e7b38f528a30c057f836b751fe498b4a0d3bb0d0135994b1c306fbc00a8b",
+      "source_path": "textures/blocks/machines/generators/burning_brick/overlay_active/right.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox/overlay_active_top.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebox/overlay_active_top",
+      "sha256": "953aae92bc227b576726b2bd747d1c3a4a67acba9d63c6e5ae8ee285aba54a98",
+      "source_path": "textures/blocks/machines/generators/burning_brick/overlay_active/top.png",
+      "targets": [
+        "cruciblecraft:firebox"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/colored/back.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/colored/back",
+      "sha256": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+      "source_path": "textures/blocks/machines/generators/burning_gas/colored/back.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/colored/bottom.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/colored/bottom",
+      "sha256": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+      "source_path": "textures/blocks/machines/generators/burning_gas/colored/bottom.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/colored/front.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/colored/front",
+      "sha256": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+      "source_path": "textures/blocks/machines/generators/burning_gas/colored/front.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/colored/left.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/colored/left",
+      "sha256": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+      "source_path": "textures/blocks/machines/generators/burning_gas/colored/left.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/colored/right.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/colored/right",
+      "sha256": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+      "source_path": "textures/blocks/machines/generators/burning_gas/colored/right.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/colored/top.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/colored/top",
+      "sha256": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+      "source_path": "textures/blocks/machines/generators/burning_gas/colored/top.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay/back.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/overlay/back",
+      "sha256": "434ce0ef50b8063c864b0fc24e5cd9aea714e19f46088f1b184fa44406e36eed",
+      "source_path": "textures/blocks/machines/generators/burning_gas/overlay/back.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay/bottom.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/overlay/bottom",
+      "sha256": "c31b3126efbd3713871016a191d3c7f1f19613e0bfd215e02627b627dbe871fe",
+      "source_path": "textures/blocks/machines/generators/burning_gas/overlay/bottom.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay/front.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/overlay/front",
+      "sha256": "98ae239e76efe334d56ed66f9a893d3c35de6f893d51080e6d3ec7d692f10b9d",
+      "source_path": "textures/blocks/machines/generators/burning_gas/overlay/front.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay/left.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/overlay/left",
+      "sha256": "92e9fdd5b720064549689c9cd71e266e81c80ac7e9893909d4c7d3cb4ea8aa33",
+      "source_path": "textures/blocks/machines/generators/burning_gas/overlay/left.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay/right.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/overlay/right",
+      "sha256": "5fed48cacc86d24191b440b3c7bfb25a7295b3db1b28e8ca5008be3d96b7fd02",
+      "source_path": "textures/blocks/machines/generators/burning_gas/overlay/right.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay/top.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/overlay/top",
+      "sha256": "1d116dec67f49dc22a130120f186fbbf7e9f963f4212629ea46a963a6f2feacb",
+      "source_path": "textures/blocks/machines/generators/burning_gas/overlay/top.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay_active/back.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/overlay_active/back",
+      "sha256": "434ce0ef50b8063c864b0fc24e5cd9aea714e19f46088f1b184fa44406e36eed",
+      "source_path": "textures/blocks/machines/generators/burning_gas/overlay_active/back.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay_active/bottom.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/overlay_active/bottom",
+      "sha256": "c31b3126efbd3713871016a191d3c7f1f19613e0bfd215e02627b627dbe871fe",
+      "source_path": "textures/blocks/machines/generators/burning_gas/overlay_active/bottom.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay_active/front.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/overlay_active/front",
+      "sha256": "733fcf93adf9d969fe003e571dad7e770cad219748487ea865bbf4f952f58703",
+      "source_path": "textures/blocks/machines/generators/burning_gas/overlay_active/front.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay_active/left.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/overlay_active/left",
+      "sha256": "524d08f1f6e0734d75625f03cd3f95dbbc7ad22a2a0f1cbb9deffdfa96ccaf59",
+      "source_path": "textures/blocks/machines/generators/burning_gas/overlay_active/left.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay_active/right.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/overlay_active/right",
+      "sha256": "4ea3a2c4e299c221d3b7187e1c5428dbd1913e3c5dccc1d4a94219962e12b340",
+      "source_path": "textures/blocks/machines/generators/burning_gas/overlay_active/right.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator/overlay_active/top.png",
+      "cc_texture": "cruciblecraft:block/machine/burning_gas_generator/overlay_active/top",
+      "sha256": "b7b0e3f66530c15165ba8d44c2b05ef14986624987636a5c2caea818c670183a",
+      "source_path": "textures/blocks/machines/generators/burning_gas/overlay_active/top.png",
+      "targets": [
+        "cruciblecraft:burning_gas_generator"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/colored/back.png",
+      "cc_texture": "cruciblecraft:block/machine/fuel_engine/colored/back",
+      "sha256": "db9560d38648fee70a0c8618e793d5c262cb269a408af0fdba99518343e4372e",
+      "source_path": "textures/blocks/machines/generators/motor_liquid/colored/back.png",
+      "targets": [
+        "cruciblecraft:fuel_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/colored/front.png",
+      "cc_texture": "cruciblecraft:block/machine/fuel_engine/colored/front",
+      "sha256": "b94934858d010e0381fd5056dbc0ec00e964cad00c152944b2e6e0918991f977",
+      "source_path": "textures/blocks/machines/generators/motor_liquid/colored/front.png",
+      "targets": [
+        "cruciblecraft:fuel_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/colored/sides.png",
+      "cc_texture": "cruciblecraft:block/machine/fuel_engine/colored/sides",
+      "sha256": "db9560d38648fee70a0c8618e793d5c262cb269a408af0fdba99518343e4372e",
+      "source_path": "textures/blocks/machines/generators/motor_liquid/colored/sides.png",
+      "targets": [
+        "cruciblecraft:fuel_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/overlay/back.png",
+      "cc_texture": "cruciblecraft:block/machine/fuel_engine/overlay/back",
+      "sha256": "d7d7b4e63f3ae789badc895760bacdbc5c5a61332261dbc89e46cb37f1f898a1",
+      "source_path": "textures/blocks/machines/generators/motor_liquid/overlay/back.png",
+      "targets": [
+        "cruciblecraft:fuel_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/overlay/front.png",
+      "cc_texture": "cruciblecraft:block/machine/fuel_engine/overlay/front",
+      "sha256": "e183538e5e6f6af6b4acf6fb3960d53d07b2b0ac370e73d9e46500a929b54463",
+      "source_path": "textures/blocks/machines/generators/motor_liquid/overlay/front.png",
+      "targets": [
+        "cruciblecraft:fuel_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/overlay/sides.png",
+      "cc_texture": "cruciblecraft:block/machine/fuel_engine/overlay/sides",
+      "sha256": "763844cd3e9003c46357a10cbb0bd30644efabfb224d07de689a147481720a4d",
+      "source_path": "textures/blocks/machines/generators/motor_liquid/overlay/sides.png",
+      "targets": [
+        "cruciblecraft:fuel_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/overlay_active/back.png",
+      "cc_texture": "cruciblecraft:block/machine/fuel_engine/overlay_active/back",
+      "sha256": "d7d7b4e63f3ae789badc895760bacdbc5c5a61332261dbc89e46cb37f1f898a1",
+      "source_path": "textures/blocks/machines/generators/motor_liquid/overlay_active/back.png",
+      "targets": [
+        "cruciblecraft:fuel_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/overlay_active/front.png",
+      "cc_texture": "cruciblecraft:block/machine/fuel_engine/overlay_active/front",
+      "sha256": "e80333c7c21264823fa005235da55f7aabde38d6c50f922e51f5df51c446d569",
+      "source_path": "textures/blocks/machines/generators/motor_liquid/overlay_active/front.png",
+      "targets": [
+        "cruciblecraft:fuel_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine/overlay_active/sides.png",
+      "cc_texture": "cruciblecraft:block/machine/fuel_engine/overlay_active/sides",
+      "sha256": "73664eddc0d2856f2b3cef642c52c0c80047a1f2f6486b4084fbfeef4e44420e",
+      "source_path": "textures/blocks/machines/generators/motor_liquid/overlay_active/sides.png",
+      "targets": [
+        "cruciblecraft:fuel_engine"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/colored_bottom.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebrick/colored_bottom",
+      "sha256": "b0a5a36bbc4a8f392f602efcc7e87e3761ee27097d35feae2045f6a1c535947f",
+      "source_path": "textures/blocks/machines/multiblockparts/firebricks/0/colored/bottom.png",
+      "targets": [
+        "cruciblecraft:firebrick"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/colored_side.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebrick/colored_side",
+      "sha256": "b0a5a36bbc4a8f392f602efcc7e87e3761ee27097d35feae2045f6a1c535947f",
+      "source_path": "textures/blocks/machines/multiblockparts/firebricks/0/colored/side.png",
+      "targets": [
+        "cruciblecraft:firebrick"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/colored_top.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebrick/colored_top",
+      "sha256": "b0a5a36bbc4a8f392f602efcc7e87e3761ee27097d35feae2045f6a1c535947f",
+      "source_path": "textures/blocks/machines/multiblockparts/firebricks/0/colored/top.png",
+      "targets": [
+        "cruciblecraft:firebrick"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/overlay_bottom.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebrick/overlay_bottom",
+      "sha256": "76186f462c1cfd28f9e7ab0c64ba7a2b9a6b22aa2c1c6f8b1783c3e4d1baf890",
+      "source_path": "textures/blocks/machines/multiblockparts/firebricks/0/overlay/bottom.png",
+      "targets": [
+        "cruciblecraft:firebrick"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/overlay_side.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebrick/overlay_side",
+      "sha256": "62c306da0cb0c3d53d6a4a0714abf5506dcb903b3db0d3334a692057701079e1",
+      "source_path": "textures/blocks/machines/multiblockparts/firebricks/0/overlay/side.png",
+      "targets": [
+        "cruciblecraft:firebrick"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/overlay_top.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/firebrick/overlay_top",
+      "sha256": "fad3e60b6b04b1c79c62c11a80bed045acfc092800aa47d1f5e8132106099237",
+      "source_path": "textures/blocks/machines/multiblockparts/firebricks/0/overlay/top.png",
+      "targets": [
+        "cruciblecraft:firebrick"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_boiler/colored/bottom.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_boiler/colored/bottom",
+      "sha256": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+      "source_path": "textures/blocks/machines/tanks/boiler_steam/colored/bottom.png",
+      "targets": [
+        "cruciblecraft:bronze_boiler"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_boiler/colored/side.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_boiler/colored/side",
+      "sha256": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+      "source_path": "textures/blocks/machines/tanks/boiler_steam/colored/side.png",
+      "targets": [
+        "cruciblecraft:bronze_boiler"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_boiler/colored/top.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_boiler/colored/top",
+      "sha256": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+      "source_path": "textures/blocks/machines/tanks/boiler_steam/colored/top.png",
+      "targets": [
+        "cruciblecraft:bronze_boiler"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_boiler/overlay/bottom.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_boiler/overlay/bottom",
+      "sha256": "02fc1d92864f19600bd1abd5bd455bb2ea8932f340050c913a198736e1eca27d",
+      "source_path": "textures/blocks/machines/tanks/boiler_steam/overlay/bottom.png",
+      "targets": [
+        "cruciblecraft:bronze_boiler"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_boiler/overlay/side.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_boiler/overlay/side",
+      "sha256": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+      "source_path": "textures/blocks/machines/tanks/boiler_steam/overlay/side.png",
+      "targets": [
+        "cruciblecraft:bronze_boiler"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_boiler/overlay/top.png",
+      "cc_texture": "cruciblecraft:block/machine/bronze_boiler/overlay/top",
+      "sha256": "8dd1d34cc36cd9ddccdc23f6f3be16be70d90337a290bc4a6da997f1f9c64236",
+      "source_path": "textures/blocks/machines/tanks/boiler_steam/overlay/top.png",
+      "targets": [
+        "cruciblecraft:bronze_boiler"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_block_solid.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/materialicons/rough_block_solid",
+      "sha256": "99fa529d58845f2d92c980c558058ed646a3753603e30f23914f7a9bed8f580b",
+      "source_path": "textures/blocks/materialicons/ROUGH/blockSolid.png",
+      "targets": [
+        "cruciblecraft:crucible",
+        "cruciblecraft:anvil",
+        "cruciblecraft:ingot_mold",
+        "cruciblecraft:plate_mold",
+        "cruciblecraft:rod_mold",
+        "cruciblecraft:bolt_mold"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_block_solid_overlay.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/materialicons/rough_block_solid_overlay",
+      "sha256": "0940268eecf5efbfa5d2ead4e701af85aad1c77849d06850003add66e433b5d4",
+      "source_path": "textures/blocks/materialicons/ROUGH/blockSolid_OVERLAY.png",
+      "targets": [
+        "cruciblecraft:crucible",
+        "cruciblecraft:anvil",
+        "cruciblecraft:ingot_mold",
+        "cruciblecraft:plate_mold",
+        "cruciblecraft:rod_mold",
+        "cruciblecraft:bolt_mold"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_molten.png",
+      "cc_texture": "cruciblecraft:block/t34_gt6/materialicons/rough_molten",
+      "sha256": "a308af60c281c5684966bc739a96034a7a4d7ba2e06befdeb1587dc2d571e87e",
+      "source_path": "textures/blocks/materialicons/ROUGH/molten.png",
+      "targets": [
+        "cruciblecraft:crucible",
+        "cruciblecraft:anvil",
+        "cruciblecraft:ingot_mold",
+        "cruciblecraft:plate_mold",
+        "cruciblecraft:rod_mold",
+        "cruciblecraft:bolt_mold"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/item/t34_gt6/raw_ingot_mold.png",
+      "cc_texture": "cruciblecraft:item/t34_gt6/raw_ingot_mold",
+      "sha256": "d0e0b89abaf2561c094093d4cdf1dc6e1cdb7560a39410e136c7428c2993ab19",
+      "source_path": "textures/items/gt.multiitem.randomtools/900.png",
+      "targets": [
+        "cruciblecraft:raw_ingot_mold"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/item/t34_gt6/raw_plate_mold.png",
+      "cc_texture": "cruciblecraft:item/t34_gt6/raw_plate_mold",
+      "sha256": "e14089e0f486e7da72b3f4df781335ff6519ad028ef3a1133c30afd0126d96f4",
+      "source_path": "textures/items/gt.multiitem.randomtools/902.png",
+      "targets": [
+        "cruciblecraft:raw_plate_mold"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/item/t34_gt6/raw_bolt_mold.png",
+      "cc_texture": "cruciblecraft:item/t34_gt6/raw_bolt_mold",
+      "sha256": "fcecf3675704e513ea2186895149b8cde3087173dc93201e3681c48671202562",
+      "source_path": "textures/items/gt.multiitem.randomtools/904.png",
+      "targets": [
+        "cruciblecraft:raw_bolt_mold"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/item/t34_gt6/raw_rod_mold.png",
+      "cc_texture": "cruciblecraft:item/t34_gt6/raw_rod_mold",
+      "sha256": "a33c63fc23d045f98f3c346db2757fc2736f49d1e980e67cf8745269aa3f8080",
+      "source_path": "textures/items/gt.multiitem.randomtools/905.png",
+      "targets": [
+        "cruciblecraft:raw_rod_mold"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/item/t34_gt6/raw_ceramic_crucible.png",
+      "cc_texture": "cruciblecraft:item/t34_gt6/raw_ceramic_crucible",
+      "sha256": "f51bbdfd2df6518bb8481a8b7768fe79b2e2ab88d525a8430a47e4e112c5783c",
+      "source_path": "textures/items/gt.multiitem.randomtools/989.png",
+      "targets": [
+        "cruciblecraft:raw_ceramic_crucible"
+      ]
+    },
+    {
+      "cc_path": "src/main/resources/assets/cruciblecraft/textures/item/t34_gt6/raw_ceramic_mold.png",
+      "cc_texture": "cruciblecraft:item/t34_gt6/raw_ceramic_mold",
+      "sha256": "742f060ae86074f81a83e9a37a49539377cff006ae115e0d3bde000af532d88c",
+      "source_path": "textures/items/gt.multiitem.randomtools/991.png",
+      "targets": [
+        "cruciblecraft:raw_ceramic_mold"
+      ]
+    }
+  ],
+  "validation_errors": []
+}

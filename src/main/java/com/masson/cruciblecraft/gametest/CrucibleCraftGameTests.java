@@ -55,6 +55,7 @@ import com.masson.cruciblecraft.content.blockentity.DustFunnelBlockEntity;
 import com.masson.cruciblecraft.content.block.HopperBlock;
 import com.masson.cruciblecraft.logistics.hopper.DustAmountLedger;
 import com.masson.cruciblecraft.content.block.ProcessingMachineInteractions;
+import com.masson.cruciblecraft.content.block.RockBlock;
 import com.masson.cruciblecraft.content.block.RotationalAxleBlock;
 import com.masson.cruciblecraft.content.block.RotationalGearboxBlock;
 import com.masson.cruciblecraft.content.block.SteamEngineBlock;
@@ -105,6 +106,7 @@ import com.masson.cruciblecraft.worldgen.LargeVeinConfiguration;
 import com.masson.cruciblecraft.worldgen.LargeVeinLayout;
 import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
 import com.masson.cruciblecraft.worldgen.SubsurfaceFluidDepositConfiguration;
+import com.masson.cruciblecraft.worldgen.SurfaceRockConfiguration;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -123,6 +125,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.tags.TagKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlotGroup;
@@ -6583,6 +6586,143 @@ public final class CrucibleCraftGameTests {
         helper.succeed();
     }
 
+    @GameTest(template = TEMPLATE, timeoutTicks = 120)
+    public static void surfaceRockScatterPlacesFromRuntimeTag(
+            GameTestHelper helper) {
+        ServerLevel level = helper.getLevel();
+        ResourceLocation featureId = ResourceLocation.fromNamespaceAndPath(
+                CrucibleCraft.MODID,
+                "surface_rock_scatter");
+        Registry<ConfiguredFeature<?, ?>> registry =
+                level.registryAccess().registryOrThrow(
+                        Registries.CONFIGURED_FEATURE);
+        ConfiguredFeature<?, ?> configured = registry.get(
+                ResourceKey.create(Registries.CONFIGURED_FEATURE, featureId));
+        helper.assertTrue(
+                configured != null
+                        && configured.config()
+                                instanceof SurfaceRockConfiguration,
+                "Runtime registry lacks decoded surface_rock_scatter");
+        SurfaceRockConfiguration config =
+                (SurfaceRockConfiguration) configured.config();
+        helper.assertTrue(
+                config.rarity() == 128,
+                "surface_rock_scatter rarity drifted from catalog declaration");
+        helper.assertTrue(
+                config.rockTag().location().equals(
+                        ResourceLocation.fromNamespaceAndPath("c", "rocks")),
+                "surface_rock_scatter rock_tag drifted from catalog declaration");
+        TagKey<Block> rockTag = config.rockTag();
+        var blockRegistry = level.registryAccess().registryOrThrow(
+                Registries.BLOCK);
+        var taggedRocks = blockRegistry.getTag(rockTag)
+                .map(holders -> holders.stream()
+                        .map(holder -> holder.value())
+                        .filter(block -> block instanceof RockBlock)
+                        .toList())
+                .orElse(List.of());
+        helper.assertTrue(
+                !taggedRocks.isEmpty(),
+                "Runtime c:rocks tag has no RockBlock members from "
+                        + "GeneratedMaterialPack");
+
+        BlockPos chunkOrigin = chunkAlignedOrigin(helper);
+        int surfaceY = 64;
+        BlockPos protectedPos = chunkOrigin.offset(8, surfaceY + 1, 8);
+        long placementSeed = findSurfaceRockScatterSeed(
+                level,
+                configured,
+                chunkOrigin,
+                surfaceY,
+                protectedPos);
+        helper.assertTrue(
+                placementSeed >= 0L,
+                "Could not find a deterministic surface-rock scatter seed");
+        prepareSurfaceRockScatterPad(level, chunkOrigin, surfaceY);
+        level.setBlock(
+                protectedPos,
+                Blocks.STONE.defaultBlockState(),
+                Block.UPDATE_ALL);
+        helper.assertTrue(
+                configured.place(
+                        level,
+                        level.getChunkSource().getGenerator(),
+                        RandomSource.create(placementSeed),
+                        chunkOrigin),
+                "surface_rock_scatter failed real placement");
+
+        boolean placedRock = false;
+        for (int dx = 0; dx < 16; dx++) {
+            for (int dz = 0; dz < 16; dz++) {
+                BlockPos pos = chunkOrigin.offset(dx, surfaceY + 1, dz);
+                if (level.getBlockState(pos).getBlock() instanceof RockBlock) {
+                    placedRock = true;
+                }
+            }
+        }
+        helper.assertTrue(
+                placedRock,
+                "surface_rock_scatter did not place a RockBlock into air");
+        helper.assertTrue(
+                level.getBlockState(protectedPos).is(Blocks.STONE),
+                "surface_rock_scatter overwrote an occupied surface cell");
+        helper.succeed();
+    }
+
+    private static BlockPos chunkAlignedOrigin(GameTestHelper helper) {
+        BlockPos anchor = helper.absolutePos(BlockPos.ZERO);
+        return new BlockPos(
+                (anchor.getX() >> 4) << 4,
+                0,
+                (anchor.getZ() >> 4) << 4);
+    }
+
+    private static void prepareSurfaceRockScatterPad(
+            ServerLevel level,
+            BlockPos chunkOrigin,
+            int surfaceY) {
+        for (int dx = 0; dx < 16; dx++) {
+            for (int dz = 0; dz < 16; dz++) {
+                BlockPos surface = chunkOrigin.offset(dx, surfaceY, dz);
+                level.setBlock(
+                        surface.below(),
+                        Blocks.STONE.defaultBlockState(),
+                        Block.UPDATE_ALL);
+                level.setBlock(
+                        surface,
+                        Blocks.DIRT.defaultBlockState(),
+                        Block.UPDATE_ALL);
+                level.setBlock(
+                        surface.above(),
+                        Blocks.AIR.defaultBlockState(),
+                        Block.UPDATE_ALL);
+            }
+        }
+    }
+
+    private static long findSurfaceRockScatterSeed(
+            ServerLevel level,
+            ConfiguredFeature<?, ?> configured,
+            BlockPos chunkOrigin,
+            int surfaceY,
+            BlockPos protectedPos) {
+        for (long seed = 0L; seed < 10_000L; seed++) {
+            prepareSurfaceRockScatterPad(level, chunkOrigin, surfaceY);
+            level.setBlock(
+                    protectedPos,
+                    Blocks.STONE.defaultBlockState(),
+                    Block.UPDATE_ALL);
+            if (configured.place(
+                    level,
+                    level.getChunkSource().getGenerator(),
+                    RandomSource.create(seed),
+                    chunkOrigin)) {
+                return seed;
+            }
+        }
+        return -1L;
+    }
+
     private static void assertLargeVeinPlaces(
             GameTestHelper helper,
             ConfiguredFeature<?, ?> configured,
@@ -7693,7 +7833,7 @@ public final class CrucibleCraftGameTests {
                 .map(map -> map.id().toString())
                 .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
         helper.assertTrue(
-                expectedMapIds.equals(actualMapIds),
+                actualMapIds.containsAll(expectedMapIds),
                 "T16d RecipeMap stable id set drifted: expected="
                         + expectedMapIds + " actual=" + actualMapIds);
 
@@ -7873,7 +8013,7 @@ public final class CrucibleCraftGameTests {
                 .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
         helper.assertTrue(
                 expectedMapIds.equals(t16MapIds)
-                        && expectedMapIds.equals(actualMapIds),
+                        && actualMapIds.containsAll(expectedMapIds),
                 "T17d RecipeMap stable id set differs from T16: expected="
                         + expectedMapIds + " actual=" + actualMapIds);
 

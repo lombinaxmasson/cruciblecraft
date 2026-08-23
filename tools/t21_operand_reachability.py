@@ -53,6 +53,16 @@ ORE_VEINS = (
     ROOT
     / "src/main/resources/data/cruciblecraft/worldgen_catalog/ore_veins.json"
 )
+SURFACE_SCATTER = (
+    ROOT
+    / "src/main/resources/data/cruciblecraft/worldgen_catalog/surface_scatter.json"
+)
+ROCK_PREFIX_DEFINITION = (
+    ROOT
+    / "src/main/resources/data/cruciblecraft/material_prefixes/rock.json"
+)
+SURFACE_SCATTER_ROCK_TAG = "c:rocks"
+SURFACE_SCATTER_PREFIX = "rock"
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -61,6 +71,12 @@ ORE_VEINS = (
 
 def _load(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _require_mapping(value: Any, label: str) -> dict[str, Any]:
+    if not isinstance(value, dict):
+        raise ValueError(f"{label} must be an object")
+    return value
 
 
 def _stable(value: Any) -> str:
@@ -75,6 +91,13 @@ def _sha256(path: Path) -> str:
 
 def _relative(path: Path) -> str:
     return path.relative_to(ROOT).as_posix()
+
+
+def _display_path(path: Path) -> str:
+    try:
+        return _relative(path)
+    except ValueError:
+        return path.as_posix()
 
 
 # ---------------------------------------------------------------------------
@@ -231,6 +254,154 @@ def _material_form_items() -> dict[str, dict[str, str]]:
 
 
 # ---------------------------------------------------------------------------
+# T33 surface scatter S0 declaration
+# ---------------------------------------------------------------------------
+
+
+def parse_surface_scatter_declaration(
+    path: Path = SURFACE_SCATTER,
+    *,
+    gate_document: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Strict parser for the T33 surface-scatter worldgen S0 source."""
+    if not path.is_file():
+        raise FileNotFoundError(
+            f"T33 surface scatter declaration required: {_display_path(path)}"
+        )
+    document = _require_mapping(_load(path), _display_path(path))
+    if document.get("schema_version") != 1:
+        raise ValueError("surface_scatter.schema_version must be 1")
+    scatter_id = document.get("id")
+    if scatter_id != "surface_rock_scatter":
+        raise ValueError("surface_scatter.id must be surface_rock_scatter")
+    feature_type = document.get("feature_type")
+    if feature_type != "cruciblecraft:surface_rock_scatter":
+        raise ValueError(
+            "surface_scatter.feature_type must be "
+            "cruciblecraft:surface_rock_scatter"
+        )
+    config = _require_mapping(document.get("config"), "surface_scatter.config")
+    rock_tag = config.get("rock_tag")
+    if rock_tag != SURFACE_SCATTER_ROCK_TAG:
+        raise ValueError(
+            f"surface_scatter.config.rock_tag must be {SURFACE_SCATTER_ROCK_TAG}"
+        )
+    source = _require_mapping(
+        document.get("rock_tag_source"),
+        "surface_scatter.rock_tag_source",
+    )
+    prefix = source.get("prefix")
+    if prefix != SURFACE_SCATTER_PREFIX:
+        raise ValueError("surface_scatter.rock_tag_source.prefix must be rock")
+    generation_flag = source.get("generation_flag")
+    if generation_flag != "cruciblecraft:generates_rock":
+        raise ValueError(
+            "surface_scatter.rock_tag_source.generation_flag drifted"
+        )
+    tag_namespace = source.get("tag_namespace")
+    tag_directory = source.get("tag_directory")
+    if tag_namespace != "c" or tag_directory != "rocks":
+        raise ValueError(
+            "surface_scatter.rock_tag_source tag namespace/directory drifted"
+        )
+    runtime_pack = source.get("runtime_pack")
+    if runtime_pack != "GeneratedMaterialPack":
+        raise ValueError(
+            "surface_scatter.rock_tag_source.runtime_pack must be "
+            "GeneratedMaterialPack"
+        )
+    gate_path = source.get("material_gate")
+    prefix_path = source.get("prefix_definition")
+    expected_gate = MATERIAL_GATE.relative_to(ROOT).as_posix()
+    expected_prefix = ROCK_PREFIX_DEFINITION.relative_to(ROOT).as_posix()
+    if gate_path != expected_gate:
+        raise ValueError(
+            "surface_scatter.rock_tag_source.material_gate path drifted"
+        )
+    if prefix_path != expected_prefix:
+        raise ValueError(
+            "surface_scatter.rock_tag_source.prefix_definition path drifted"
+        )
+    prefix_document = _require_mapping(
+        _load(ROCK_PREFIX_DEFINITION),
+        _relative(ROCK_PREFIX_DEFINITION),
+    )
+    if (
+        prefix_document.get("tag_namespace") != tag_namespace
+        or prefix_document.get("tag_directory") != tag_directory
+        or prefix_document.get("generation_flag") != generation_flag
+    ):
+        raise ValueError(
+            "surface_scatter rock prefix definition does not match "
+            "rock_tag_source"
+        )
+    if gate_document is None:
+        gate_document = _require_mapping(
+            _load(MATERIAL_GATE),
+            _relative(MATERIAL_GATE),
+        )
+    mat_forms = _material_forms(gate_document)
+    rock_materials = sorted(
+        material_id
+        for material_id, forms in mat_forms.items()
+        if prefix in forms
+    )
+    if not rock_materials:
+        raise ValueError(
+            "surface_scatter material gate has no rock-form materials"
+        )
+    return {
+        "declaration_path": _display_path(path),
+        "id": scatter_id,
+        "feature_type": feature_type,
+        "rock_tag": rock_tag,
+        "prefix": prefix,
+        "generation_flag": generation_flag,
+        "runtime_pack": runtime_pack,
+        "material_gate_path": gate_path,
+        "prefix_definition_path": prefix_path,
+        "rock_materials": rock_materials,
+        "rock_material_count": len(rock_materials),
+    }
+
+
+def _surface_rock_item_identities(
+    declaration: dict[str, Any],
+    form_items: dict[str, dict[str, str]],
+) -> list[str]:
+    """Return concrete rock item identities permitted by the declaration."""
+    prefix = declaration["prefix"]
+    identities: list[str] = []
+    for material in declaration["rock_materials"]:
+        override = form_items.get(material, {}).get(prefix)
+        if override is not None:
+            identities.append(f"item:{override}")
+        else:
+            identities.append(f"item:cruciblecraft:{material}/{prefix}")
+    return identities
+
+
+def _surface_scatter_dynamic_tags(
+    declaration: dict[str, Any],
+    form_items: dict[str, dict[str, str]],
+) -> dict[str, set[str]]:
+    """Map runtime dynamic tags declared by surface scatter to concrete items."""
+    return {
+        declaration["rock_tag"]: set(
+            _surface_rock_item_identities(declaration, form_items)
+        ),
+    }
+
+
+def _surface_rock_seeds(
+    declaration: dict[str, Any],
+    form_items: dict[str, dict[str, str]],
+) -> set[str]:
+    """Return S0 seeds for worldgen-placed surface rocks."""
+    return set(_surface_rock_item_identities(declaration, form_items))
+
+
+# ---------------------------------------------------------------------------
 # Convention tag resolution
 # ---------------------------------------------------------------------------
 
@@ -338,6 +509,7 @@ def resolve_tag(
     tag_id: str,
     material_forms: dict[str, set[str]],
     static_tag_map: dict[str, set[str]],
+    dynamic_tag_map: dict[str, set[str]] | None = None,
 ) -> set[str]:
     """Return the set of concrete item identities that a tag can resolve to."""
     # 1. Static tag files
@@ -345,7 +517,13 @@ def resolve_tag(
     if static:
         return set(static)
 
-    # 2. Convention tags
+    # 2. T33 surface-scatter runtime tags (e.g. dynamic c:rocks)
+    if dynamic_tag_map:
+        dynamic = dynamic_tag_map.get(tag_id)
+        if dynamic:
+            return set(dynamic)
+
+    # 3. Convention tags
     resolved = resolve_convention_tag(tag_id, material_forms)
     if resolved:
         return set(resolved)
@@ -366,10 +544,14 @@ class ReachabilityGraph:
         material_forms: dict[str, set[str]],
         static_tag_map: dict[str, set[str]],
         form_items: dict[str, dict[str, str]] | None = None,
+        dynamic_tag_map: dict[str, set[str]] | None = None,
+        surface_scatter: dict[str, Any] | None = None,
     ) -> None:
         self.material_forms = material_forms
         self.static_tag_map = static_tag_map
         self.form_items = form_items or {}
+        self.dynamic_tag_map = dynamic_tag_map or {}
+        self.surface_scatter = surface_scatter
         # graph[input_id] = [(recipe_path, {output_id, ...}), ...]
         self.graph: dict[str, list[tuple[str, set[str]]]] = defaultdict(list)
         # recipe metadata
@@ -388,6 +570,7 @@ class ReachabilityGraph:
                     input_id.removeprefix("tag:"),
                     self.material_forms,
                     self.static_tag_map,
+                    self.dynamic_tag_map,
                 )
                 if resolved:
                     concrete.update(resolved)
@@ -554,7 +737,15 @@ def build_graph() -> ReachabilityGraph:
             tag_map[tag].update(items)
 
     form_items = _material_form_items()
-    graph = ReachabilityGraph(mat_forms, dict(tag_map), form_items)
+    surface_scatter = parse_surface_scatter_declaration()
+    dynamic_tag_map = _surface_scatter_dynamic_tags(surface_scatter, form_items)
+    graph = ReachabilityGraph(
+        mat_forms,
+        dict(tag_map),
+        form_items,
+        dynamic_tag_map,
+        surface_scatter,
+    )
 
     for path, recipe in iter_recipe_files():
         rel = _relative(path)
@@ -749,12 +940,19 @@ def _tag_seeds(tag_map: dict[str, set[str]]) -> set[str]:
 
 def compute_closure(graph: ReachabilityGraph) -> dict[str, Any]:
     """Iterative convergence to find all reachable identities."""
+    if graph.surface_scatter is None:
+        raise ValueError(
+            "T33 surface scatter declaration is required for reachability closure"
+        )
+    surface_scatter = graph.surface_scatter
     gate = _load(MATERIAL_GATE) if MATERIAL_GATE.is_file() else {}
     mat_forms = _material_forms(gate)
 
-    # Build seed set — only worldgen ore materials + vanilla survival
+    # Build seed set — worldgen ore materials, surface rocks, vanilla survival
+    surface_seeds = _surface_rock_seeds(surface_scatter, graph.form_items)
     seeds: set[str] = set()
     seeds.update(_ore_seeds(ORE_VEINS, mat_forms))
+    seeds.update(surface_seeds)
     seeds.update(_vanilla_survival_seeds())
 
     reachable: set[str] = set(seeds)
@@ -795,6 +993,7 @@ def compute_closure(graph: ReachabilityGraph) -> dict[str, Any]:
                         inp.removeprefix("tag:"),
                         mat_forms,
                         graph.static_tag_map,
+                        graph.dynamic_tag_map,
                     )
                     if resolved and any(
                         r in (reachable | new_found) for r in resolved
@@ -881,6 +1080,19 @@ def compute_closure(graph: ReachabilityGraph) -> dict[str, Any]:
     return {
         "seed_count": len(seeds),
         "seed_ore_materials": len(_worldgen_ore_materials(ORE_VEINS)),
+        "seed_surface_rock_materials": surface_scatter["rock_material_count"],
+        "seed_surface_rock_count": len(surface_seeds),
+        "surface_scatter": {
+            "declaration_path": surface_scatter["declaration_path"],
+            "rock_tag": surface_scatter["rock_tag"],
+            "prefix": surface_scatter["prefix"],
+            "runtime_pack": surface_scatter["runtime_pack"],
+            "material_gate_path": surface_scatter["material_gate_path"],
+            "rock_material_count": surface_scatter["rock_material_count"],
+            "dynamic_tag_members": len(
+                graph.dynamic_tag_map.get(surface_scatter["rock_tag"], set())
+            ),
+        },
         "rounds": round_info,
         "reachable_identity_count": len(reachable),
         "reachable_identities": sorted(reachable),

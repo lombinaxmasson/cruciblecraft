@@ -1,0 +1,294 @@
+{
+  "census_summary": {
+    "counts": {
+      "exclusion_expanded_rows": 1701,
+      "exclusion_families": 194,
+      "exclusion_source_sites": 763,
+      "identities_total": 8996,
+      "recipe_families": 5718,
+      "recipe_rows_accounted": 78682,
+      "runtime_ids_expected": 20553,
+      "runtime_ids_mapped": 20553,
+      "runtime_local_identities": 2319,
+      "t13_identities": 765,
+      "unscoped": 0
+    },
+    "generated_topology_card_count_before_census": null,
+    "portfolio_scope_counts": {
+      "candidate_1x": 781,
+      "in_scope_1x": 2524,
+      "out_of_scope": 202,
+      "post_1x": 5489
+    },
+    "publication_delta": {
+      "eager": 0,
+      "lazy": 0,
+      "logical": 0
+    },
+    "validators": {
+      "dependency_cycles": 0,
+      "dependency_errors": 0,
+      "duplicate_runtime_mapping": 0,
+      "orphan_runtime_targets": 0,
+      "owner_violations": 0,
+      "scope_errors": 0,
+      "source_publication_delta": 0,
+      "unclassified": 0,
+      "unmapped_runtime": 0,
+      "unscoped": 0
+    },
+    "work_set_mandatory_p0_p1": 59
+  },
+  "closure": {
+    "all_identities_have_portfolio_scope": true,
+    "census_dependency_errors_zero": true,
+    "census_inputs_publication_delta_zero": true,
+    "census_owner_violations_zero": true,
+    "census_publication_delta_zero": true,
+    "census_scope_errors_zero": true,
+    "census_status_aggregated": true,
+    "census_unclassified_zero": true,
+    "census_unscoped_zero": true,
+    "census_validators_zero": true,
+    "epoch_a_generated_cards_depend_on_t37": true,
+    "epoch_b_append_only_contract": true,
+    "exclusion_duplicate_family_membership_zero": true,
+    "exclusion_expanded_rows_1701": true,
+    "exclusion_source_sites_763": true,
+    "exclusion_unmapped_zero": true,
+    "fixed_nodes_not_renumbered": true,
+    "fixed_nodes_t36_t37": true,
+    "generated_card_count_matches_cards": true,
+    "generated_cards_consecutive_from_t38": true,
+    "generated_cards_not_started": true,
+    "load_baseline_publication_delta_zero": true,
+    "machine_track_conclusion_a": true,
+    "machine_track_current": true,
+    "machine_track_validators_zero": true,
+    "recipe_membership_duplicate_zero": true,
+    "recipe_membership_unassigned_zero": true,
+    "recipe_rows_accounted_78682": true,
+    "runtime_ids_expected_equals_mapped": true,
+    "runtime_registry_gate_fixture_hash_locked": true,
+    "storage_adjacent_families_scoped": true,
+    "storage_expanded_rows_624": true,
+    "storage_scope_current": true,
+    "storage_source_sites_28": true,
+    "t13_identities_765": true,
+    "t32_vd_001_closed": true,
+    "t37_pilot_not_in_generated_cards": true,
+    "topology_broken_dependencies_zero": true,
+    "topology_current": true,
+    "topology_cycles_zero": true,
+    "topology_epoch_t35r_a": true,
+    "topology_global_execution_gate_t37": true,
+    "topology_numbering_policy": true,
+    "topology_publication_delta_zero": true,
+    "topology_started_false": true,
+    "topology_validators_zero": true
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T35 closes the 1.x census baseline with zero publication delta, deferred F005 release remeasurement, and generated T38+ topology only."
+  },
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t35_readiness.py": "d5c7702fabc13c0269dbe449d5bf62f2b3b1f1d99e02c8b82359b3b4f109c166",
+      "tools/known_issues/verification-debt.json": "e911ad9bbffe29a08cbb56d0eada1b37d4f33c9ffd84b610716c710371d1457d",
+      "tools/t35_card_topology.json": "343394575e7b2a40ee7a070ccd04f4e1df85abc97d1b6a250b5e0c3cd013a7e9",
+      "tools/t35_census.json": "485a1a79bec4e51ec8b8c1c1f51d4c8f77766de48b148ab7efafa38edbb1ad88",
+      "tools/t35_census_inputs.json": "882022085d0a557a621dea08c7293af8796bfc225a143b993875db5d4769a0fb",
+      "tools/t35_census_policy.json": "0482afb37dd8aa3558071f9c3488d7e7d89e42cc53cd7e75b36553b1258af7e4",
+      "tools/t35_excluded_object_reclaim.json": "e9f697209038fe988e6a2bd4d17a8c832167893dbc3542625a1794ed9dd60363",
+      "tools/t35_load_baseline.json": "fbacf5da6dc04883088e0d92a7518e85855112597a8fdf7a3285e4babae65850",
+      "tools/t35_machine_track.json": "4549afc65b3234a82ae4c350c73b3e92a2e73e358cea19ab1bacdd894246f4f4",
+      "tools/t35_recipe_families.json": "48eac35b97d0b9d56d1ce8cc062b4344976607cb45466a030649d00a19992bb2",
+      "tools/t35_runtime_registry.json": "06fcba4c8f7b43ba8fbe04b0cf08befc091588ddafcb030ea09591b2aa3a675e",
+      "tools/t35_storage_scope.json": "0478cd1d2dc9794338ddf02e1c6432aef4fe95468132136388a0d180bb60a66d"
+    }
+  },
+  "fidelity": {
+    "f005_canonical_deferred_release_remeasurement": true,
+    "f005_historical_closed_preserved": true,
+    "f005_metrics_not_pass": true,
+    "generated_topology_card_count_before_census_null": true,
+    "historical_classification_preserved": true,
+    "inputs_policy_sha256_current": true,
+    "source_revision_pinned": true,
+    "t27_opening_superseded_not_averaged": true,
+    "topology_pipes_item_route_scales_distinct": true
+  },
+  "generated_by": "python tools/build_t35_readiness.py --write",
+  "load": {
+    "census_publication_delta_zero": true,
+    "hard_ceiling_mutation_forbidden": true,
+    "load_baseline_ready": true,
+    "logical_publication_diagnostic_only": true,
+    "p2_admission_blocked_pending_measurement": true,
+    "pending_load_not_zero_filled": true,
+    "publication_delta_zero": true,
+    "t14_axes_not_zero_filled": true,
+    "t14_axis_count_13": true
+  },
+  "machine_track_summary": {
+    "conclusions": {
+      "eu_voltage": "A",
+      "evidence": "machine_tiers.json variants == source.variant_rows == 33 registered rows; automaticKindTierCompletion=false; TU/TIME is absent from this catalog.",
+      "generated_eu_cards_required": false,
+      "generated_material_cards_required": false,
+      "generated_tu_cards_required": false,
+      "material_tier_matrix": "A",
+      "selected_unimplemented_rows": 0,
+      "t36_role": "lossless_catalog_refactor_plus_eu_voltage_semantic_migration",
+      "tu_processing": "A_empty_in_catalog"
+    },
+    "selected_matrix": {
+      "automatic_kind_tier_completion": false,
+      "energy_tracks": {
+        "EU": {
+          "energy": "ELECTRIC",
+          "rows": 3,
+          "semantics": "voltage_band_pilot",
+          "unimplemented_selected": 0,
+          "voltage_bands": [
+            "cruciblecraft:electric_tier_1",
+            "cruciblecraft:electric_tier_2",
+            "cruciblecraft:electric_tier_3"
+          ]
+        },
+        "HU": {
+          "energy": "HEAT",
+          "rows": 9,
+          "unimplemented_selected": 0
+        },
+        "KU": {
+          "energy": "KINETIC_PUSH",
+          "rows": 6,
+          "unimplemented_selected": 0
+        },
+        "RU": {
+          "energy": "KINETIC_ROTATION",
+          "rows": 15,
+          "unimplemented_selected": 0
+        },
+        "TU": {
+          "energy": "TIME",
+          "identity_classification": "in_scope",
+          "identity_disposition": "implemented",
+          "identity_scope": "in_scope_1x",
+          "note": "TIME/TU is an energy identity plus already-closed host kinds; it is not a material-tier matrix in machine_tiers.json.",
+          "rows_in_machine_tiers": 0
+        }
+      },
+      "kind_count": 11,
+      "kind_ids": [
+        "cruciblecraft:centrifuge",
+        "cruciblecraft:distillery",
+        "cruciblecraft:drying",
+        "cruciblecraft:electrolyzer",
+        "cruciblecraft:lathe",
+        "cruciblecraft:press",
+        "cruciblecraft:rollingmill",
+        "cruciblecraft:shredder",
+        "cruciblecraft:sifter",
+        "cruciblecraft:smelter",
+        "cruciblecraft:wiremill"
+      ],
+      "variant_count": 33
+    },
+    "validators": {
+      "cartesian_completion": 0,
+      "eu_material_tier_mix": 0,
+      "kind_count_11": 0,
+      "selected_unimplemented_rows": 0,
+      "source_row_mismatch": 0,
+      "tu_rows_in_catalog": 0,
+      "variant_count_33": 0
+    }
+  },
+  "owned_inputs": {
+    "tools/build_t35_readiness.py": "d5c7702fabc13c0269dbe449d5bf62f2b3b1f1d99e02c8b82359b3b4f109c166",
+    "tools/known_issues/verification-debt.json": "e911ad9bbffe29a08cbb56d0eada1b37d4f33c9ffd84b610716c710371d1457d",
+    "tools/t35_card_topology.json": "343394575e7b2a40ee7a070ccd04f4e1df85abc97d1b6a250b5e0c3cd013a7e9",
+    "tools/t35_census.json": "485a1a79bec4e51ec8b8c1c1f51d4c8f77766de48b148ab7efafa38edbb1ad88",
+    "tools/t35_census_inputs.json": "882022085d0a557a621dea08c7293af8796bfc225a143b993875db5d4769a0fb",
+    "tools/t35_census_policy.json": "0482afb37dd8aa3558071f9c3488d7e7d89e42cc53cd7e75b36553b1258af7e4",
+    "tools/t35_excluded_object_reclaim.json": "e9f697209038fe988e6a2bd4d17a8c832167893dbc3542625a1794ed9dd60363",
+    "tools/t35_load_baseline.json": "fbacf5da6dc04883088e0d92a7518e85855112597a8fdf7a3285e4babae65850",
+    "tools/t35_machine_track.json": "4549afc65b3234a82ae4c350c73b3e92a2e73e358cea19ab1bacdd894246f4f4",
+    "tools/t35_recipe_families.json": "48eac35b97d0b9d56d1ce8cc062b4344976607cb45466a030649d00a19992bb2",
+    "tools/t35_runtime_registry.json": "06fcba4c8f7b43ba8fbe04b0cf08befc091588ddafcb030ea09591b2aa3a675e",
+    "tools/t35_storage_scope.json": "0478cd1d2dc9794338ddf02e1c6432aef4fe95468132136388a0d180bb60a66d"
+  },
+  "policy": "The status field is derived from evidence by build(). T35_CENSUS_READY cannot be hand-written. This receipt does not claim full_verification_report, recipes profile, global release, or Java runtime registry GameTest execution.",
+  "runtime": {
+    "java_runtime_gate_schema_version": 1,
+    "manual_gametest_required": true,
+    "manual_runtime_registry_gate_required": false,
+    "note": "Bidirectional Java registry equality is implemented via T35CensusGameTests in namespace cruciblecraft_census with expected ids from the hash-locked gate fixture. Static readiness records wiring and fixture currentness only; runGameTestServer -Pt35Census is the runtime execution evidence for the census integration profile.",
+    "runtime_registry_gate_configured": true,
+    "runtime_registry_gate_fixture": "src/main/resources/census/t35_runtime_registry_gate.json",
+    "runtime_registry_gate_fixture_hash_locked": true,
+    "runtime_registry_gate_gametest_class": "com.masson.cruciblecraft.census.T35CensusGameTests",
+    "runtime_registry_gate_gradle_property": "-Pt35Census",
+    "runtime_registry_gate_implemented": true,
+    "runtime_registry_gate_namespace": "cruciblecraft_census"
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T35_CENSUS_READY",
+  "status_owner": "static_gates_only",
+  "storage_scope_summary": {
+    "families": {
+      "chest": "post_1x",
+      "fluid_container": "candidate_1x",
+      "hopper": "in_scope_1x",
+      "pump": "post_1x",
+      "safe": "post_1x",
+      "sorting": "post_1x",
+      "tank": "post_1x"
+    },
+    "status": "T35_STORAGE_SCOPE"
+  },
+  "topology_summary": {
+    "fixed_cards": [
+      "T36",
+      "T37"
+    ],
+    "generated_card_count": 9,
+    "generated_card_ids": [
+      "T38",
+      "T39",
+      "T40",
+      "T41",
+      "T42",
+      "T43",
+      "T44",
+      "T45",
+      "T46"
+    ],
+    "global_execution_gate": "T37",
+    "numbering_policy": "regenerate_once_then_append_only",
+    "publication_delta": {
+      "eager": 0,
+      "lazy": 0,
+      "logical": 0
+    },
+    "start_number": 38,
+    "topology_epoch": "T35R_A",
+    "validators": {
+      "broken_dependencies": 0,
+      "cycles": 0,
+      "duplicate_owner_resolution": 0,
+      "started_generated_cards": 0,
+      "t37_gate_bypass": 0,
+      "t37_pilot_in_generated_cards": 0
+    }
+  },
+  "verification_debt": {
+    "issue_id": "T32-VD-001",
+    "resolved_by": "T35 R1 removed .gitignore from the T5 semantic currentness contract and refreshed only protected downstream metadata receipts.",
+    "status": "closed"
+  }
+}

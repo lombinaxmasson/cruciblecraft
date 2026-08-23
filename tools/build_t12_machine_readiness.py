@@ -248,8 +248,11 @@ def current_processing_machine_ids() -> list[str]:
         r"([A-Z0-9_]+)\s*=\s*(.*?);",
         flags=re.DOTALL,
     )
+    t36_owned = {"ROASTER", "COAGULATOR"}
     result: list[str] = []
     for constant, expression in pattern.findall(source):
+        if constant in t36_owned:
+            continue
         helper = re.search(
             r"(?:mechanical|reusedT5|t3|t5)\s*\(\s*\"([^\"]+)\"",
             expression,

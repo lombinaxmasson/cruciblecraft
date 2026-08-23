@@ -1,3 +1,4 @@
+import copy
 import sys
 import unittest
 from pathlib import Path
@@ -62,6 +63,27 @@ class T21TemplateDenominatorTest(unittest.TestCase):
 
     def test_full_template_denominator_replay_matches_compact(self):
         self.assertEqual(self.document, builder.build())
+
+    def test_rebuild_preserves_semantic_document_fields(self):
+        candidate = builder.build()
+        self.assertEqual(
+            builder.semantic_document(self.document),
+            builder.semantic_document(candidate),
+        )
+
+    def test_metadata_rebase_guard_accepts_upstream_input_hash_refresh(self):
+        candidate = builder.build()
+        pre_repair = copy.deepcopy(self.document)
+        pre_repair["inputs"]["tools/t5_chemical_recipe_manifest.json"] = (
+            "c31b40f91de43f15a9e1a6ff64862fae683e28df04fc31015d6c77bb7555b383"
+        )
+        pre_repair["inputs"]["tools/t21_source_denominator.json"] = (
+            "0000000000000000000000000000000000000000000000000000000000000000"
+        )
+        self.assertEqual(
+            [],
+            builder.verify_metadata_rebase(pre_repair, candidate),
+        )
 
 
 if __name__ == "__main__":

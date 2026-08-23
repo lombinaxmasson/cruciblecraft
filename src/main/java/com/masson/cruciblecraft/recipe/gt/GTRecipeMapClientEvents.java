@@ -25,6 +25,9 @@ public final class GTRecipeMapClientEvents {
         if (GTRecipeReloadDecision.onClientRecipesUpdated(
                 manager,
                 integratedServer)) {
+            // Dedicated clients rebuild Extruder and compact family snapshots
+            // from the synced recipe manager. Integrated clients skip this
+            // path and reuse the server epoch.
             GTRecipeMapLoader.reload(
                     manager,
                     ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT);

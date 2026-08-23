@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "status": "T35_STORAGE_SCOPE",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "denominators": {
+    "storage": {
+      "source_sites": 28,
+      "expanded_rows": 624,
+      "counts_toward_storage_624": true
+    },
+    "mass_storage_logistics": {
+      "source_sites": 1,
+      "expanded_rows": 1,
+      "counts_toward_storage_624": false
+    }
+  },
+  "families": {
+    "bookshelf": {
+      "portfolio_scope": "in_scope_1x",
+      "disposition": "planned",
+      "portfolio_priority": "P1",
+      "owner": "portfolio:storage/bookshelf",
+      "epoch": "A"
+    },
+    "bottle_crate": {
+      "portfolio_scope": "in_scope_1x",
+      "disposition": "planned",
+      "portfolio_priority": "P1",
+      "owner": "portfolio:storage/bottle_crate",
+      "epoch": "A"
+    },
+    "drawer": {
+      "portfolio_scope": "in_scope_1x",
+      "disposition": "planned",
+      "portfolio_priority": "P1",
+      "owner": "portfolio:storage/drawer",
+      "epoch": "A"
+    },
+    "locker": {
+      "portfolio_scope": "in_scope_1x",
+      "disposition": "planned",
+      "portfolio_priority": "P1",
+      "owner": "portfolio:storage/locker",
+      "epoch": "A",
+      "folded_source_behaviors": [
+        {
+          "behavior_class": "MultiTileEntityLocker",
+          "source_id_expression": "7300+aID",
+          "role": "base",
+          "display_expression": "\"Locker (\" +aMat.getLocal()+\")\""
+        },
+        {
+          "behavior_class": "MultiTileEntityLockerCharging",
+          "source_id_expression": "7500+aID",
+          "role": "charging",
+          "display_expression": "\"Charging Locker (\" +aMat.getLocal()+\")\"",
+          "behavior_diff": "Adds item charging to locker inventory; retains locker storage lineage."
+        }
+      ]
+    },
+    "mass_storage_barrel": {
+      "portfolio_scope": "in_scope_1x",
+      "disposition": "planned",
+      "portfolio_priority": "P1",
+      "owner": "portfolio:storage/mass_storage_barrel",
+      "epoch": "A"
+    },
+    "mass_storage_box": {
+      "portfolio_scope": "in_scope_1x",
+      "disposition": "planned",
+      "portfolio_priority": "P1",
+      "owner": "portfolio:storage/mass_storage_box",
+      "epoch": "A"
+    },
+    "mass_storage_standard": {
+      "portfolio_scope": "in_scope_1x",
+      "disposition": "planned",
+      "portfolio_priority": "P1",
+      "owner": "portfolio:storage/mass_storage_standard",
+      "epoch": "A"
+    },
+    "storage_inserter": {
+      "portfolio_scope": "in_scope_1x",
+      "disposition": "planned",
+      "portfolio_priority": "P1",
+      "owner": "portfolio:storage/storage_inserter",
+      "epoch": "A"
+    },
+    "mass_storage_logistics": {
+      "portfolio_scope": "in_scope_1x",
+      "disposition": "planned",
+      "portfolio_priority": "P1",
+      "owner": "portfolio:storage/mass_storage_logistics",
+      "epoch": "A",
+      "counts_toward_storage_624": false
+    },
+    "hopper": {
+      "portfolio_scope": "in_scope_1x",
+      "disposition": "implemented",
+      "portfolio_priority": "P1",
+      "owner": "portfolio:exclusion/hopper",
+      "epoch": null,
+      "reason": "T30 already maps Hoppers 2/2 onto playable CC hopper runtime without duplicating source sites."
+    },
+    "chest": {
+      "portfolio_scope": "post_1x",
+      "disposition": "deferred",
+      "portfolio_priority": "P2",
+      "owner": "portfolio:exclusion/chest",
+      "subsequent_track": "post_1x/storage-adjacent",
+      "reason": "P1 storage cards are not equivalent to generic chests; 3/3 remains adjacent, not 1.x closure."
+    },
+    "safe": {
+      "portfolio_scope": "post_1x",
+      "disposition": "deferred",
+      "portfolio_priority": "P2",
+      "owner": "portfolio:exclusion/safe",
+      "subsequent_track": "post_1x/storage-adjacent",
+      "reason": "Safe is storage-adjacent, outside Storage 28/624, and not a 1.x close commitment."
+    },
+    "tank": {
+      "portfolio_scope": "post_1x",
+      "disposition": "deferred",
+      "portfolio_priority": "P2",
+      "owner": "portfolio:exclusion/tank",
+      "subsequent_track": "post_1x/multiblock-tanks",
+      "reason": "tank_3x3x3 is owned by the multiblock table; the 25 source tank rows are expansion, not a new 1.x storage identity."
+    },
+    "fluid_container": {
+      "portfolio_scope": "candidate_1x",
+      "disposition": "deferred",
+      "portfolio_priority": "P2",
+      "owner": "portfolio:exclusion/fluid_container",
+      "admission_criterion": "ADMITTED_UNDER_SOFT after T37 family-or-bundle measurement; generic cells do not auto-close 86 portable containers.",
+      "measurement_owner": "T37",
+      "recheck_epoch": "T37_closure",
+      "reason": "Portable-container family, not mixed into Storage 624."
+    },
+    "pump": {
+      "portfolio_scope": "post_1x",
+      "disposition": "deferred",
+      "portfolio_priority": "P2",
+      "owner": "portfolio:exclusion/pump",
+      "subsequent_track": "post_1x/logistics-adjacent",
+      "reason": "Rotational pumps 4/4 were cross-checked against the storage track and are not in Storage 28/624."
+    },
+    "sorting": {
+      "portfolio_scope": "post_1x",
+      "disposition": "deferred",
+      "portfolio_priority": "P2",
+      "owner": "portfolio:exclusion/sorting",
+      "subsequent_track": "post_1x/logistics-adjacent",
+      "reason": "Filters 4/4 were cross-checked against the storage track and are not in Storage 28/624."
+    }
+  }
+}

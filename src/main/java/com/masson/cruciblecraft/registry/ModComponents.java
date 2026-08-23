@@ -6,6 +6,8 @@ import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
 import com.masson.cruciblecraft.material.MaterialId;
 import com.masson.cruciblecraft.material.MissingMaterialComponent;
 
+import com.mojang.serialization.Codec;
+
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.neoforged.neoforge.fluids.SimpleFluidContent;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -88,6 +90,15 @@ public final class ModComponents {
                     builder -> builder
                             .persistent(SimpleFluidContent.CODEC)
                             .networkSynchronized(SimpleFluidContent.STREAM_CODEC));
+
+    public static final DeferredHolder<
+            net.minecraft.core.component.DataComponentType<?>,
+            net.minecraft.core.component.DataComponentType<Integer>> CIRCUIT_CONFIG =
+            COMPONENTS.registerComponentType(
+                    "circuit_config",
+                    builder -> builder
+                            .persistent(Codec.INT)
+                            .networkSynchronized(ByteBufCodecs.VAR_INT));
 
     public static final DeferredHolder<
             net.minecraft.core.component.DataComponentType<?>,

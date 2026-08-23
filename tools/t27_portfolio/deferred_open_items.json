@@ -1,17 +1,17 @@
 {
   "counts": {
     "duplicate_ownership": 0,
-    "known_issues": 15,
+    "known_issues": 14,
     "orphan": 0,
     "records": 21,
     "unclassified": 0
   },
   "currentness": {
     "owned_inputs": {
-      "tools/build_t27_portfolio.py": "af2635234c6815ea6598982a61e096a01dfc415f9ba9e436dd7acad8dd966387",
+      "tools/build_t27_portfolio.py": "4aec36b9c7f0792ee15298d2e9a988947a29b7b2277652da36ec8abe3407de2b",
       "tools/phase5_portfolio_contract.json": "ca9be41df6cb391c4076ab0acbf35950dca868b5569fb7ce03388ef0cfab2cc7",
       "tools/t26_known_issues.json": "87a7bb20e1d717cb8e739bb48c71974b9e6cad3d856f7af4fe3352a0eb7a3d0d",
-      "tools/t27_portfolio_policy/deferred_open_items.json": "0804c8b11f064e740e4a73f031a1a2659ea03776b5eb69467c747efd1cea5755"
+      "tools/t27_portfolio_policy/deferred_open_items.json": "6b866a82a1ffbb824f0f66756a4cd390bf3e698dd3cdbede494f4c9c1709cb49"
     }
   },
   "generated_by": "python tools/build_t27_portfolio.py --write-open-items",
@@ -139,28 +139,37 @@
     {
       "axes": {
         "closure": {
-          "evidence": "4.5 P0-P9 stay post_beta_polish and are not T27 or T28 content.",
-          "status": "not_applicable"
+          "evidence": "T33 GameTest src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java, worldgen catalog worldgen_catalog/surface_scatter.json, and readiness tools/t33_readiness.json close survival rock_pack reachability without a publication or GA claim.",
+          "status": "closed"
         },
         "fidelity": {
-          "evidence": "T26 known-issues ledger plus CrucibleCraft-4.5-体验精修规划.md.",
-          "status": "design_policy"
+          "evidence": "T33 derives the surface-scatter shape from GT6 OP.rockGt and WorldgenRocks; the CC rarity/contact policy remains explicit in src/main/java/com/masson/cruciblecraft/worldgen/SurfaceRockFeature.java.",
+          "status": "source_derived"
         },
         "load": {
-          "evidence": "Polish items are not v1 publication load.",
+          "evidence": "T33 surface-scatter closure is worldgen/reachability, not v1 publication load.",
           "status": "not_applicable"
         }
       },
-      "cc_implementation": "none",
+      "cc_implementation": "cruciblecraft:rock",
       "coverage": {},
-      "dependencies": [],
-      "disposition": "post_beta_polish",
+      "dependencies": [
+        {
+          "id": "rockGt",
+          "kind": "canonical_id"
+        },
+        {
+          "id": "tag:c:rocks",
+          "kind": "runtime_capability"
+        }
+      ],
+      "disposition": "closed",
       "id": "CC-4.5-P4",
-      "kind": "known_issue",
-      "owner": "4.5",
-      "reason": "Surface pebbles (rockGt) are not generated",
-      "recheck_point": "4.5 experience-polish backlog",
-      "replacement_condition": "Remain post_beta_polish with owner 4.5; do not insert an active T or a v1 content card.",
+      "kind": "closed_open_item",
+      "owner": "T33",
+      "reason": "T33 closed CC-4.5-P4. SurfaceRockFeature places tag:c:rocks in newly generated chunks; surface scatter is worldgen-catalog declared; rock_pack closes in S0 reachability. Scope excludes stone-layer replacement, vein indicator rocks and per-material balance.",
+      "recheck_point": "T33 RC candidate surface-scatter recheck",
+      "replacement_condition": "Not applicable: closed at T33 surface-scatter closure.",
       "source": {
         "artifact": "tools/t26_known_issues.json",
         "issue_id": "CC-4.5-P4"

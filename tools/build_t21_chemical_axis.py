@@ -585,6 +585,24 @@ def build_axis(
     }
 
 
+def semantic_axis(document: dict[str, Any]) -> dict[str, Any]:
+    result = copy.deepcopy(document)
+    result.pop("inputs", None)
+    return result
+
+
+def verify_metadata_rebase(
+    committed: dict[str, Any],
+    candidate: dict[str, Any],
+) -> list[str]:
+    errors: list[str] = []
+    if semantic_axis(committed) != semantic_axis(candidate):
+        errors.append(
+            "T21 chemical axis metadata rebase changed semantic fields"
+        )
+    return errors
+
+
 def check_outputs(
     axis: dict[str, Any],
     expansion: dict[str, Any],

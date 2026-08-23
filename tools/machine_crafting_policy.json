@@ -440,6 +440,20 @@
       "source_evidence": ["material_tier_arrays", "kinetic_compressor"],
       "blocking_components": ["OP.casingMachineDouble"],
       "replacement_prerequisites": ["Resolve KU-to-electric semantics and select or collapse the GT6 compressor tiers in T6.", "Implement the selected double machine casing.", "Verify quintuple plate, spring, rod, and source signature."]
+    },
+    "roaster": {
+      "classification": "tier_collapsed_pending_t6",
+      "reason": "GT6 Heat_T roasting is a four-tier HU host; CrucibleCraft now registers steel/invar/titanium/tungsten_carbide roasters. T36 projects the opening steel host with the T17 heat casing pattern; remaining Heat_T collapse is still T6 work.",
+      "source_evidence": ["material_tier_arrays", "heat_smelter"],
+      "blocking_components": ["OP.casingMachine"],
+      "replacement_prerequisites": ["Keep Roasting mapped to the live steel_roaster host.", "Do not treat the T5 configured id 'roaster' as a separate unregistered block.", "Verify Heat_T casing and plate operands for every selected tier."]
+    },
+    "coagulator": {
+      "classification": "missing_cc_component",
+      "reason": "The T36 TU coagulator opening host is registered, but the pinned GT6 coagulator/autoclave-class pattern still needs quadruple/small casings that CrucibleCraft does not expose.",
+      "source_evidence": ["fixed_autoclave"],
+      "blocking_components": ["OP.casingMachineQuadruple", "OP.casingSmall"],
+      "replacement_prerequisites": ["Define exact CrucibleCraft quadruple and small casing identities.", "Prove those components are survival-reachable.", "Project the pinned TU pattern only after both mappings exist."]
     }
   },
   "existing_bronze_resources": {

@@ -33,15 +33,22 @@ class T5RuntimeResourceTest {
     }
 
     @Test
-    void bronzeDynamoHasFixedRuntimeResources() {
-        for (String path : List.of(
+    void bronzeDynamoHasFixedRuntimeResources() throws Exception {
+        for (String path : java.util.List.of(
                 "assets/cruciblecraft/blockstates/bronze_dynamo.json",
                 "assets/cruciblecraft/models/block/bronze_dynamo.json",
+                "assets/cruciblecraft/models/block/bronze_dynamo_active.json",
                 "assets/cruciblecraft/models/item/bronze_dynamo.json",
                 "data/cruciblecraft/loot_table/blocks/bronze_dynamo.json",
                 "data/cruciblecraft/recipe/bronze_dynamo.json")) {
             assertResource(MAIN, path);
         }
+        var blockstate = com.google.gson.JsonParser.parseString(Files.readString(
+                MAIN.resolve("assets/cruciblecraft/blockstates/bronze_dynamo.json")))
+                .getAsJsonObject()
+                .getAsJsonObject("variants");
+        assertTrue(blockstate.toString().contains("lit=true"));
+        assertTrue(blockstate.toString().contains("bronze_dynamo_active"));
     }
 
     private static void assertResource(Path root, String path) {

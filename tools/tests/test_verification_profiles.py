@@ -115,3 +115,106 @@ class VerificationProfileTest(unittest.TestCase):
             "--path",
             "unexpected/new_domain.json",
         ]))
+
+    def test_census_profile_selects_t35_builder_and_json_paths(self) -> None:
+        t35_paths = [
+            "tools/build_t35_census.py",
+            "tools/build_t35_readiness.py",
+            "tools/t35_census_policy.json",
+            "tools/t35_readiness.json",
+        ]
+        classified = verify_entry.classify_paths(self.profiles, t35_paths)
+        self.assertEqual(["census"], classified["selected_profiles"])
+        self.assertEqual([], classified["unmatched_paths"])
+
+    def test_census_profile_selects_t35_test_modules_with_verification(
+        self,
+    ) -> None:
+        classified = verify_entry.classify_paths(
+            self.profiles,
+            ["tools/tests/test_build_t35_census.py"],
+        )
+        self.assertEqual(
+            ["census", "verification"],
+            classified["selected_profiles"],
+        )
+        self.assertEqual([], classified["unmatched_paths"])
+
+    def test_census_owned_paths_do_not_overlap_content_profiles(self) -> None:
+        census = self.profiles["profiles"]["census"]
+        content_profiles = {
+            "materials",
+            "recipes",
+            "worldgen",
+            "machines",
+            "logistics",
+            "presentation",
+            "archive",
+        }
+        exclusive_samples = [
+            "tools/build_t35_census_inputs.py",
+            "tools/t35_census.json",
+            "tools/t35_card_topology.json",
+            "tools/tests/test_build_t35_readiness.py",
+        ]
+        for path in exclusive_samples:
+            census_hits = any(
+                verify_entry.path_matches(path, pattern)
+                for pattern in census["owned_paths"]
+            )
+            other_hits = sorted(
+                name
+                for name, profile in self.profiles["profiles"].items()
+                if name not in {"census", "verification"}
+                and name in content_profiles
+                and any(
+                    verify_entry.path_matches(path, pattern)
+                    for pattern in profile["owned_paths"]
+                )
+            )
+            self.assertTrue(census_hits, f"{path} should match census")
+            self.assertEqual(
+                [],
+                other_hits,
+                f"{path} unexpectedly matched content profiles {other_hits}",
+            )
+
+    def test_census_profiles_split_compact_and_replay_builders(self) -> None:
+        census = self.profiles["profiles"]["census"]
+        self.assertEqual("T35", census["owner"])
+        self.assertEqual("integration", census["tier"])
+        self.assertFalse(census["datagen"])
+        self.assertTrue(census["gametest"])
+        expected_builders = {
+            "build_t35_census_inputs",
+            "build_t35_runtime_registry",
+            "build_t35_excluded_object_reclaim",
+            "build_t35_recipe_families_compact",
+            "build_t35_machine_track",
+            "build_t35_recipe_families",
+            "build_t35_load_baseline",
+            "build_t35_census",
+            "build_t35_card_topology",
+            "build_t35_readiness",
+        }
+        self.assertEqual(expected_builders, set(census["builders"]))
+        policy_builders = {
+            row["name"]
+            for row in self.builder_policy["builders"]
+            if row["name"] in expected_builders
+        }
+        self.assertEqual(expected_builders, policy_builders)
+        replay = self.profiles["profiles"]["census-replay"]
+        self.assertEqual(
+            {
+                "build_t36_census_delta",
+                "build_t36_readiness",
+                "build_t37_recipe_load_benchmark",
+                "build_t37_census_delta",
+                "build_t37_card_topology",
+                "build_t37_readiness",
+            },
+            set(replay["builders"]),
+        )
+        self.assertFalse(replay["gametest"])
+        self.assertEqual([], replay["gradle_tasks"])

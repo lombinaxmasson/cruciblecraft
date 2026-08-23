@@ -29,8 +29,11 @@ class DustFunnelResourceTest {
                 Path.of("src/main/resources/assets/cruciblecraft/models/block/dust_funnel.json")))
                 .getAsJsonObject();
         assertEquals(
-                "cruciblecraft:block/material/block",
-                model.getAsJsonObject("textures").get("colored").getAsString());
+                "cruciblecraft:block/dust_funnel/colored_sides",
+                model.getAsJsonObject("textures").get("sides").getAsString());
+        assertEquals(
+                "cruciblecraft:block/dust_funnel/colored_hole",
+                model.getAsJsonObject("textures").get("hole").getAsString());
         assertTrue(Files.isRegularFile(GENERATED.resolve(
                 "assets/cruciblecraft/blockstates/steel_dust_funnel.json")));
         assertTrue(Files.isRegularFile(GENERATED.resolve(

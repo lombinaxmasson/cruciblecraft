@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "status": "T35_CENSUS_POLICY",
+  "policy_name": "T35 1.x census foundation",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "publication_delta": {
+    "eager": 0,
+    "lazy": 0,
+    "logical": 0
+  },
+  "count_units": [
+    "source_site",
+    "expanded_registration",
+    "canonical_family",
+    "runtime_id",
+    "recipe_row",
+    "template_family"
+  ],
+  "dispositions": [
+    "deferred",
+    "implemented",
+    "out_of_scope",
+    "planned"
+  ],
+  "portfolio_priorities": [
+    "P0",
+    "P1",
+    "P2",
+    "P3"
+  ],
+  "portfolio_scopes": [
+    "in_scope_1x",
+    "candidate_1x",
+    "post_1x",
+    "out_of_scope"
+  ],
+  "axes": {
+    "closure_statuses": [
+      "closed",
+      "incomplete",
+      "not_applicable"
+    ],
+    "fidelity_statuses": [
+      "design_policy",
+      "source_backed",
+      "source_derived"
+    ],
+    "load_statuses": [
+      "measured",
+      "not_applicable",
+      "pending",
+      "projected"
+    ],
+    "pending_load_verdict": "BLOCKED_PENDING_MEASUREMENT"
+  },
+  "t14_authority": {
+    "policy": "tools/t14_load_budget_policy.json",
+    "axis_ids": [
+      "allocation_bytes",
+      "client_index_ms",
+      "client_reload_ms",
+      "datapack_authored_entries",
+      "eager_publication_rows",
+      "lazy_cache_ceiling_rows",
+      "lazy_logical_rows",
+      "lookup_candidate_count",
+      "lookup_p95_ns",
+      "retained_memory_bytes",
+      "server_index_ms",
+      "server_reload_ms",
+      "sync_bytes"
+    ],
+    "hard_ceiling_mutation": "forbidden"
+  },
+  "t13_seven_tables": {
+    "recipe_maps": {
+      "artifact": "tools/t13_denominators/recipe_maps.json",
+      "expected_canonical_count": 95
+    },
+    "prefixes": {
+      "artifact": "tools/t13_denominators/prefixes.json",
+      "expected_canonical_count": 452
+    },
+    "itemgenerator_domains": {
+      "artifact": "tools/t13_denominators/itemgenerator_domains.json",
+      "expected_canonical_count": 25
+    },
+    "machine_kinds": {
+      "artifact": "tools/t13_denominators/machine_kinds.json",
+      "expected_canonical_count": 96
+    },
+    "energy_identities": {
+      "artifact": "tools/t13_denominators/energy_identities.json",
+      "expected_canonical_count": 20
+    },
+    "cover_kinds": {
+      "artifact": "tools/t13_denominators/cover_kinds.json",
+      "expected_canonical_count": 47
+    },
+    "multiblock_kinds": {
+      "artifact": "tools/t13_denominators/multiblock_kinds.json",
+      "expected_canonical_count": 30
+    },
+    "expected_canonical_identities_total": 765
+  },
+  "exclusion_counts": {
+    "excluded_call_sites": 763,
+    "excluded_expanded_registrations": 1701,
+    "artifact": "tools/t13_denominators/machine_kinds.json",
+    "exclusions_key": "exclusions"
+  },
+  "storage_counts": {
+    "category": "Storage",
+    "expected_source_sites": 28,
+    "expected_expanded_registrations": 624,
+    "artifact": "tools/t13_denominators/machine_kinds.json",
+    "note": "mass_storage_logistics is Logistics cross-category and must not inflate Storage 624"
+  },
+  "t22_5_counts": {
+    "row_universe": 146841,
+    "ordinary_optional": 78682,
+    "classification_artifact": "tools/t22_5_row_classification.json"
+  },
+  "publication_opening": {
+    "authority_chain": "T30/T31 current planning chain",
+    "supersedes": "T27 opening snapshot for current 1.x planning",
+    "expected_logical": 18766,
+    "expected_eager": 16541,
+    "expected_lazy": 2225,
+    "projection_artifact": "tools/t30_load_projection.json"
+  },
+  "fixed_card_nodes": {
+    "T36": {
+      "id": "T36",
+      "title": "machine registration/tier matrix",
+      "generated_card": false
+    },
+    "T37": {
+      "id": "T37",
+      "title": "ordinary_optional pilot",
+      "generated_card": false
+    }
+  },
+  "generated_topology_card_count_before_census": null,
+  "historical_artifact_rules": {
+    "rewrite_forbidden": true,
+    "overlay_only": true,
+    "note": "T13/T22.5/T27/T31 historical artifacts keep historical semantics; T35 consumes current overlays only"
+  },
+  "input_domains": {
+    "roadmap": "docs/current/roadmap.md",
+    "verification_debt": "tools/known_issues/verification-debt.json",
+    "t13_manifest": "tools/t13_denominator_manifest.json",
+    "t13_tables_dir": "tools/t13_denominators/",
+    "t22_5": [
+      "tools/t22_5_row_classification.json",
+      "tools/t22_5_shape_analysis.json",
+      "tools/t22_5_machine_playability.json"
+    ],
+    "t14_policy": "tools/t14_load_budget_policy.json",
+    "t30_publication": "tools/t30_publication_delta.json",
+    "t31_load": [
+      "tools/t31_load_report.json",
+      "tools/t31_scale_recheck.json"
+    ],
+    "reachability": "tools/t21_operand_reachability.json",
+    "worldgen": "tools/worldgen_catalog_readiness.json",
+    "presentation": [
+      "tools/t34_gt6_art_manifest.json",
+      "tools/t34_presentation.json"
+    ],
+    "acquisition": [
+      "tools/t15_machine_acquisition.json",
+      "tools/t16_machine_acquisition.json",
+      "tools/t17_machine_acquisition.json",
+      "tools/t18_converter_acquisition.json",
+      "tools/t19_cover_acquisition.json",
+      "tools/t19_pipe_acquisition.json"
+    ],
+    "t34_art_manifest": "tools/t34_gt6_art_manifest.json",
+    "t35_storage_scope": "tools/t35_storage_scope.json",
+    "t35_machine_track": "tools/t35_machine_track.json"
+  },
+  "runtime_registry_policy": {
+    "namespace": "cruciblecraft",
+    "derivation": "static_expected_from_java_and_canonical_data_only",
+    "java_census_logic_in_production": "forbidden",
+    "java_runtime_gate_schema_version": 1,
+    "categories": [
+      "block_entity_types",
+      "blocks",
+      "configured_features",
+      "cover_behaviors",
+      "creative_tabs",
+      "fluid_types",
+      "fluids",
+      "items",
+      "menu_types",
+      "multiblock_plugins",
+      "multiblock_structures",
+      "placed_features",
+      "recipe_maps",
+      "recipe_serializers",
+      "recipe_types",
+      "worldgen_features"
+    ]
+  },
+  "owner_rules": {
+    "forbidden_tokens": [
+      "",
+      "TBD",
+      "deferred",
+      "todo",
+      "tbd",
+      "unassigned"
+    ],
+    "portfolio_priority_field": "portfolio_priority"
+  }
+}

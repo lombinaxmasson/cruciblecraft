@@ -89,10 +89,15 @@
       },
       "resources": {
         "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/firebox.json",
-        "block_model": "src/generated/resources/assets/cruciblecraft/models/block/firebox.json",
+        "block_model": "src/main/resources/assets/cruciblecraft/models/block/firebox_unlit.json",
         "item_model": "src/generated/resources/assets/cruciblecraft/models/item/firebox.json",
         "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/firebox.json"
-      }
+      },
+      "state_models": {
+        "cruciblecraft:block/firebox_lit": "src/main/resources/assets/cruciblecraft/models/block/firebox_lit.json",
+        "cruciblecraft:block/firebox_unlit": "src/main/resources/assets/cruciblecraft/models/block/firebox_unlit.json"
+      },
+      "item_model_parent": "cruciblecraft:block/firebox_unlit"
     },
     "cruciblecraft:bronze_fuel_engine": {
       "runtime_binding": "fuel_engine",
@@ -118,7 +123,7 @@
       },
       "resources": {
         "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/fuel_engine.json",
-        "block_model": "src/generated/resources/assets/cruciblecraft/models/block/fuel_engine.json",
+        "block_model": "src/main/resources/assets/cruciblecraft/models/block/fuel_engine.json",
         "item_model": "src/generated/resources/assets/cruciblecraft/models/item/fuel_engine.json",
         "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/fuel_engine.json"
       }
@@ -147,7 +152,7 @@
       },
       "resources": {
         "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/burning_gas_generator.json",
-        "block_model": "src/generated/resources/assets/cruciblecraft/models/block/burning_gas_generator.json",
+        "block_model": "src/main/resources/assets/cruciblecraft/models/block/burning_gas_generator.json",
         "item_model": "src/generated/resources/assets/cruciblecraft/models/item/burning_gas_generator.json",
         "loot": "src/generated/resources/data/cruciblecraft/loot_table/blocks/burning_gas_generator.json"
       }

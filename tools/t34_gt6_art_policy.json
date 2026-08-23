@@ -1,0 +1,600 @@
+{
+  "schema_version": 1,
+  "policy_name": "T34 GT6 runtime-to-art receipt",
+  "gt6_asset_root": "gt6_code/gregtech6/src/main/resources/assets/gregtech",
+  "source_manifests": [
+    {
+      "path": "src/main/resources/assets/cruciblecraft/t34_gt6_art_manifest.json",
+      "required": true,
+      "role": "opening"
+    },
+    {
+      "path": "src/main/resources/assets/cruciblecraft/t34_gt6_energy_art_manifest.json",
+      "required": false,
+      "role": "energy"
+    }
+  ],
+  "denominator_targets": [
+    "cruciblecraft:firebrick",
+    "cruciblecraft:raw_ceramic_crucible",
+    "cruciblecraft:crucible",
+    "cruciblecraft:anvil",
+    "cruciblecraft:raw_ceramic_mold",
+    "cruciblecraft:raw_ingot_mold",
+    "cruciblecraft:raw_plate_mold",
+    "cruciblecraft:raw_rod_mold",
+    "cruciblecraft:raw_bolt_mold",
+    "cruciblecraft:ingot_mold",
+    "cruciblecraft:plate_mold",
+    "cruciblecraft:rod_mold",
+    "cruciblecraft:bolt_mold",
+    "cruciblecraft:firebox",
+    "cruciblecraft:fuel_engine",
+    "cruciblecraft:burning_gas_generator",
+    "cruciblecraft:bronze_boiler",
+    "cruciblecraft:bronze_steam_engine",
+    "cruciblecraft:bronze_dynamo"
+  ],
+  "not_registered": [
+    {
+      "id": "gt6:burning_box_solid",
+      "source_family": "burning_solid",
+      "cc_runtime_status": "not_registered"
+    },
+    {
+      "id": "gt6:burning_box_liquid",
+      "source_family": "burning_liquid",
+      "cc_runtime_status": "not_registered"
+    },
+    {
+      "id": "gt6:small_gas_generator",
+      "cc_runtime_status": "not_registered",
+      "reason": "The selected CrucibleCraft runtime is the GT6 Burning Box Gas identity, not a standalone small gas generator."
+    }
+  ],
+  "targets": [
+    {
+      "id": "cruciblecraft:firebrick",
+      "runtime_id": "cruciblecraft:firebrick",
+      "runtime_kind": "block",
+      "tint_identity": "ceramic",
+      "source": {
+        "source_family": "firebricks",
+        "source_path_prefix": "textures/blocks/machines/multiblockparts/firebricks/0/",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregapi/tileentity/multiblocks/MultiTileEntityMultiBlockPart.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "18000"
+      },
+      "resources": {
+        "block_models": [
+          "src/main/resources/assets/cruciblecraft/models/block/firebrick_gt6.json"
+        ],
+        "item_model": "src/generated/resources/assets/cruciblecraft/models/item/firebrick.json",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/firebrick.json",
+        "state_contract": {
+          "required_models": [
+            "cruciblecraft:block/firebrick_gt6"
+          ]
+        }
+      },
+      "forbidden_source_families": [
+        "mold",
+        "ceramic_mold"
+      ]
+    },
+    {
+      "id": "cruciblecraft:raw_ceramic_crucible",
+      "runtime_id": "cruciblecraft:raw_ceramic_crucible",
+      "runtime_kind": "item",
+      "tint_identity": "ceramic",
+      "source": {
+        "source_family": "ceramic_crucible",
+        "source_path_prefix": "textures/items/gt.multiitem.randomtools/989.png",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrucible.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "MultiTileEntityCrucible.class"
+      },
+      "resources": {
+        "block_models": [],
+        "item_model": "src/generated/resources/assets/cruciblecraft/models/item/raw_ceramic_crucible.json",
+        "blockstate": null,
+        "state_contract": {
+          "mode": "item_only"
+        }
+      },
+      "forbidden_source_families": []
+    },
+    {
+      "id": "cruciblecraft:crucible",
+      "runtime_id": "cruciblecraft:crucible",
+      "runtime_kind": "block",
+      "tint_identity": "ceramic",
+      "source": {
+        "source_family": "rough_materialicons",
+        "source_path_prefix": "textures/blocks/materialicons/ROUGH/",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/multiblocks/MultiTileEntityCrucible.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "MultiTileEntityCrucible.class"
+      },
+      "resources": {
+        "block_models": [
+          "src/main/resources/assets/cruciblecraft/models/block/crucible.json"
+        ],
+        "item_model": "src/generated/resources/assets/cruciblecraft/models/item/crucible.json",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/crucible.json",
+        "state_contract": {
+          "required_models": [
+            "cruciblecraft:block/crucible"
+          ]
+        }
+      },
+      "forbidden_source_families": []
+    },
+    {
+      "id": "cruciblecraft:anvil",
+      "runtime_id": "cruciblecraft:anvil",
+      "runtime_kind": "block",
+      "tint_identity": "stone",
+      "source": {
+        "source_family": "rough_materialicons",
+        "source_path_prefix": "textures/blocks/materialicons/ROUGH/",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/tools/MultiTileEntityAnvil.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "MultiTileEntityAnvil.class"
+      },
+      "resources": {
+        "block_models": [
+          "src/main/resources/assets/cruciblecraft/models/block/anvil.json"
+        ],
+        "item_model": "src/generated/resources/assets/cruciblecraft/models/item/anvil.json",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/anvil.json",
+        "state_contract": {
+          "required_models": [
+            "cruciblecraft:block/anvil"
+          ],
+          "required_variant_keys": [
+            "facing=north",
+            "facing=east",
+            "facing=south",
+            "facing=west"
+          ]
+        }
+      },
+      "forbidden_source_families": []
+    },
+    {
+      "id": "cruciblecraft:raw_ceramic_mold",
+      "runtime_id": "cruciblecraft:raw_ceramic_mold",
+      "runtime_kind": "item",
+      "tint_identity": "ceramic",
+      "source": {
+        "source_family": "ceramic_mold",
+        "source_path_prefix": "textures/items/gt.multiitem.randomtools/991.png",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/tools/MultiTileEntityMold.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "MultiTileEntityMold.class"
+      },
+      "resources": {
+        "block_models": [],
+        "item_model": "src/generated/resources/assets/cruciblecraft/models/item/raw_ceramic_mold.json",
+        "blockstate": null,
+        "state_contract": {
+          "mode": "item_only"
+        }
+      },
+      "forbidden_source_families": []
+    },
+    {
+      "id": "cruciblecraft:raw_ingot_mold",
+      "runtime_id": "cruciblecraft:raw_ingot_mold",
+      "runtime_kind": "item",
+      "tint_identity": "ceramic",
+      "source": {
+        "source_family": "ceramic_mold",
+        "source_path_prefix": "textures/items/gt.multiitem.randomtools/900.png",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/tools/MultiTileEntityMold.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "MultiTileEntityMold.class"
+      },
+      "resources": {
+        "block_models": [],
+        "item_model": "src/generated/resources/assets/cruciblecraft/models/item/raw_ingot_mold.json",
+        "blockstate": null,
+        "state_contract": {
+          "mode": "item_only"
+        }
+      },
+      "forbidden_source_families": []
+    },
+    {
+      "id": "cruciblecraft:raw_plate_mold",
+      "runtime_id": "cruciblecraft:raw_plate_mold",
+      "runtime_kind": "item",
+      "tint_identity": "ceramic",
+      "source": {
+        "source_family": "ceramic_mold",
+        "source_path_prefix": "textures/items/gt.multiitem.randomtools/902.png",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/tools/MultiTileEntityMold.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "MultiTileEntityMold.class"
+      },
+      "resources": {
+        "block_models": [],
+        "item_model": "src/generated/resources/assets/cruciblecraft/models/item/raw_plate_mold.json",
+        "blockstate": null,
+        "state_contract": {
+          "mode": "item_only"
+        }
+      },
+      "forbidden_source_families": []
+    },
+    {
+      "id": "cruciblecraft:raw_rod_mold",
+      "runtime_id": "cruciblecraft:raw_rod_mold",
+      "runtime_kind": "item",
+      "tint_identity": "ceramic",
+      "source": {
+        "source_family": "ceramic_mold",
+        "source_path_prefix": "textures/items/gt.multiitem.randomtools/905.png",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/tools/MultiTileEntityMold.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "MultiTileEntityMold.class"
+      },
+      "resources": {
+        "block_models": [],
+        "item_model": "src/generated/resources/assets/cruciblecraft/models/item/raw_rod_mold.json",
+        "blockstate": null,
+        "state_contract": {
+          "mode": "item_only"
+        }
+      },
+      "forbidden_source_families": []
+    },
+    {
+      "id": "cruciblecraft:raw_bolt_mold",
+      "runtime_id": "cruciblecraft:raw_bolt_mold",
+      "runtime_kind": "item",
+      "tint_identity": "ceramic",
+      "source": {
+        "source_family": "ceramic_mold",
+        "source_path_prefix": "textures/items/gt.multiitem.randomtools/904.png",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/tools/MultiTileEntityMold.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "MultiTileEntityMold.class"
+      },
+      "resources": {
+        "block_models": [],
+        "item_model": "src/generated/resources/assets/cruciblecraft/models/item/raw_bolt_mold.json",
+        "blockstate": null,
+        "state_contract": {
+          "mode": "item_only"
+        }
+      },
+      "forbidden_source_families": []
+    },
+    {
+      "id": "cruciblecraft:ingot_mold",
+      "runtime_id": "cruciblecraft:ingot_mold",
+      "runtime_kind": "block_item",
+      "runtime_family": "cruciblecraft:ceramic_mold",
+      "tint_identity": "ceramic",
+      "source": {
+        "source_family": "ceramic_mold",
+        "source_path_prefix": "textures/blocks/materialicons/ROUGH/",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/tools/MultiTileEntityMold.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "MultiTileEntityMold.class"
+      },
+      "resources": {
+        "block_models": [
+          "src/main/resources/assets/cruciblecraft/models/block/ceramic_mold.json",
+          "src/main/resources/assets/cruciblecraft/models/block/ceramic_mold_filled.json"
+        ],
+        "item_model": "src/generated/resources/assets/cruciblecraft/models/item/ingot_mold.json",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/ceramic_mold.json",
+        "state_contract": {
+          "required_models": [
+            "cruciblecraft:block/ceramic_mold",
+            "cruciblecraft:block/ceramic_mold_filled"
+          ],
+          "required_variant_keys": [
+            "filled=false",
+            "filled=true"
+          ]
+        }
+      },
+      "forbidden_source_families": []
+    },
+    {
+      "id": "cruciblecraft:plate_mold",
+      "runtime_id": "cruciblecraft:plate_mold",
+      "runtime_kind": "block_item",
+      "runtime_family": "cruciblecraft:ceramic_mold",
+      "tint_identity": "ceramic",
+      "source": {
+        "source_family": "ceramic_mold",
+        "source_path_prefix": "textures/blocks/materialicons/ROUGH/",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/tools/MultiTileEntityMold.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "MultiTileEntityMold.class"
+      },
+      "resources": {
+        "block_models": [
+          "src/main/resources/assets/cruciblecraft/models/block/ceramic_mold.json",
+          "src/main/resources/assets/cruciblecraft/models/block/ceramic_mold_filled.json"
+        ],
+        "item_model": "src/generated/resources/assets/cruciblecraft/models/item/plate_mold.json",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/ceramic_mold.json",
+        "state_contract": {
+          "required_models": [
+            "cruciblecraft:block/ceramic_mold",
+            "cruciblecraft:block/ceramic_mold_filled"
+          ],
+          "required_variant_keys": [
+            "filled=false",
+            "filled=true"
+          ]
+        }
+      },
+      "forbidden_source_families": []
+    },
+    {
+      "id": "cruciblecraft:rod_mold",
+      "runtime_id": "cruciblecraft:rod_mold",
+      "runtime_kind": "block_item",
+      "runtime_family": "cruciblecraft:ceramic_mold",
+      "tint_identity": "ceramic",
+      "source": {
+        "source_family": "ceramic_mold",
+        "source_path_prefix": "textures/blocks/materialicons/ROUGH/",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/tools/MultiTileEntityMold.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "MultiTileEntityMold.class"
+      },
+      "resources": {
+        "block_models": [
+          "src/main/resources/assets/cruciblecraft/models/block/ceramic_mold.json",
+          "src/main/resources/assets/cruciblecraft/models/block/ceramic_mold_filled.json"
+        ],
+        "item_model": "src/generated/resources/assets/cruciblecraft/models/item/rod_mold.json",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/ceramic_mold.json",
+        "state_contract": {
+          "required_models": [
+            "cruciblecraft:block/ceramic_mold",
+            "cruciblecraft:block/ceramic_mold_filled"
+          ],
+          "required_variant_keys": [
+            "filled=false",
+            "filled=true"
+          ]
+        }
+      },
+      "forbidden_source_families": []
+    },
+    {
+      "id": "cruciblecraft:bolt_mold",
+      "runtime_id": "cruciblecraft:bolt_mold",
+      "runtime_kind": "block_item",
+      "runtime_family": "cruciblecraft:ceramic_mold",
+      "tint_identity": "ceramic",
+      "source": {
+        "source_family": "ceramic_mold",
+        "source_path_prefix": "textures/blocks/materialicons/ROUGH/",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/tools/MultiTileEntityMold.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "MultiTileEntityMold.class"
+      },
+      "resources": {
+        "block_models": [
+          "src/main/resources/assets/cruciblecraft/models/block/ceramic_mold.json",
+          "src/main/resources/assets/cruciblecraft/models/block/ceramic_mold_filled.json"
+        ],
+        "item_model": "src/generated/resources/assets/cruciblecraft/models/item/bolt_mold.json",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/ceramic_mold.json",
+        "state_contract": {
+          "required_models": [
+            "cruciblecraft:block/ceramic_mold",
+            "cruciblecraft:block/ceramic_mold_filled"
+          ],
+          "required_variant_keys": [
+            "filled=false",
+            "filled=true"
+          ]
+        }
+      },
+      "forbidden_source_families": []
+    },
+    {
+      "id": "cruciblecraft:firebox",
+      "runtime_id": "cruciblecraft:firebox",
+      "runtime_kind": "block",
+      "tint_identity": "brick",
+      "source": {
+        "gt6_runtime_id": 1199,
+        "gt6_identity": "Brick Burning Box (Solid)",
+        "source_family": "burning_brick",
+        "source_path_prefix": "textures/blocks/machines/generators/burning_brick/",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/generators/MultiTileEntityGeneratorBrick.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "1199"
+      },
+      "resources": {
+        "block_models": [
+          "src/main/resources/assets/cruciblecraft/models/block/firebox_unlit.json",
+          "src/main/resources/assets/cruciblecraft/models/block/firebox_lit.json"
+        ],
+        "item_model": "src/generated/resources/assets/cruciblecraft/models/item/firebox.json",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/firebox.json",
+        "state_contract": {
+          "required_models": [
+            "cruciblecraft:block/firebox_unlit",
+            "cruciblecraft:block/firebox_lit"
+          ],
+          "required_variant_keys": [
+            "facing=north,lit=false",
+            "facing=north,lit=true"
+          ]
+        }
+      },
+      "forbidden_source_families": [
+        "burning_solid"
+      ]
+    },
+    {
+      "id": "cruciblecraft:fuel_engine",
+      "runtime_id": "cruciblecraft:fuel_engine",
+      "runtime_kind": "block",
+      "tint_identity": "bronze",
+      "source": {
+        "gt6_runtime_id": 9147,
+        "gt6_identity": "Diesel Engine (Bronze)",
+        "source_family": "motor_liquid",
+        "source_path_prefix": "textures/blocks/machines/generators/motor_liquid/",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/generators/MultiTileEntityMotorLiquid.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "9147"
+      },
+      "resources": {
+        "block_models": [
+          "src/main/resources/assets/cruciblecraft/models/block/fuel_engine.json",
+          "src/main/resources/assets/cruciblecraft/models/block/fuel_engine_active.json"
+        ],
+        "item_model": "src/generated/resources/assets/cruciblecraft/models/item/fuel_engine.json",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/fuel_engine.json",
+        "state_contract": {
+          "required_models": [
+            "cruciblecraft:block/fuel_engine",
+            "cruciblecraft:block/fuel_engine_active"
+          ]
+        }
+      },
+      "forbidden_source_families": [
+        "burning_liquid",
+        "burning_solid",
+        "hot_fluid"
+      ]
+    },
+    {
+      "id": "cruciblecraft:burning_gas_generator",
+      "runtime_id": "cruciblecraft:burning_gas_generator",
+      "runtime_kind": "block",
+      "tint_identity": "bronze",
+      "source": {
+        "gt6_runtime_id": 1602,
+        "gt6_identity": "Burning Box Gas",
+        "gt6_registered_name": "Burning Box (Gas, Bronze)",
+        "source_family": "burning_gas",
+        "source_path_prefix": "textures/blocks/machines/generators/burning_gas/",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/generators/MultiTileEntityGeneratorGas.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "1602",
+        "standalone_small_gas_generator": "not_registered"
+      },
+      "resources": {
+        "block_models": [
+          "src/main/resources/assets/cruciblecraft/models/block/burning_gas_generator.json",
+          "src/main/resources/assets/cruciblecraft/models/block/burning_gas_generator_active.json"
+        ],
+        "item_model": "src/generated/resources/assets/cruciblecraft/models/item/burning_gas_generator.json",
+        "blockstate": "src/generated/resources/assets/cruciblecraft/blockstates/burning_gas_generator.json",
+        "state_contract": {
+          "required_models": [
+            "cruciblecraft:block/burning_gas_generator",
+            "cruciblecraft:block/burning_gas_generator_active"
+          ]
+        }
+      },
+      "forbidden_source_families": [
+        "burning_liquid",
+        "burning_solid",
+        "motor_liquid",
+        "hot_fluid"
+      ]
+    },
+    {
+      "id": "cruciblecraft:bronze_boiler",
+      "runtime_id": "cruciblecraft:bronze_boiler",
+      "runtime_kind": "block",
+      "tint_identity": "bronze",
+      "source": {
+        "gt6_runtime_id": 1202,
+        "gt6_identity": "Steam Boiler Tank (Bronze)",
+        "source_family": "boiler_steam",
+        "source_path_prefix": "textures/blocks/machines/tanks/boiler_steam/",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityBoilerTank.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "1202"
+      },
+      "resources": {
+        "block_models": [
+          "src/main/resources/assets/cruciblecraft/models/block/bronze_boiler.json"
+        ],
+        "item_model": "src/main/resources/assets/cruciblecraft/models/item/bronze_boiler.json",
+        "blockstate": "src/main/resources/assets/cruciblecraft/blockstates/bronze_boiler.json",
+        "state_contract": {
+          "required_models": [
+            "cruciblecraft:block/bronze_boiler"
+          ]
+        }
+      },
+      "forbidden_source_families": []
+    },
+    {
+      "id": "cruciblecraft:bronze_steam_engine",
+      "runtime_id": "cruciblecraft:bronze_steam_engine",
+      "runtime_kind": "block",
+      "tint_identity": "bronze",
+      "source": {
+        "gt6_runtime_id": 1302,
+        "gt6_identity": "Steam Engine (Bronze)",
+        "source_family": "kinetic_steam",
+        "source_path_prefix": "textures/blocks/machines/engines/kinetic_steam/",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityEngineSteam.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "1302"
+      },
+      "resources": {
+        "block_models": [
+          "src/main/resources/assets/cruciblecraft/models/block/bronze_steam_engine.json"
+        ],
+        "item_model": "src/main/resources/assets/cruciblecraft/models/item/bronze_steam_engine.json",
+        "blockstate": "src/main/resources/assets/cruciblecraft/blockstates/bronze_steam_engine.json",
+        "state_contract": {
+          "required_models": [
+            "cruciblecraft:block/bronze_steam_engine"
+          ]
+        }
+      },
+      "forbidden_source_families": []
+    },
+    {
+      "id": "cruciblecraft:bronze_dynamo",
+      "runtime_id": "cruciblecraft:bronze_dynamo",
+      "runtime_kind": "block",
+      "tint_identity": "tin_alloy",
+      "source": {
+        "gt6_runtime_id": 10111,
+        "gt6_identity": "Electric Dynamo (TinAlloy)",
+        "gt6_material": "TinAlloy",
+        "source_family": "electric_rotation",
+        "source_path_prefix": "textures/blocks/machines/dynamos/electric_rotation/",
+        "class_reference": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityDynamoElectric.java",
+        "loader_reference": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "loader_anchor": "10111"
+      },
+      "resources": {
+        "block_models": [
+          "src/main/resources/assets/cruciblecraft/models/block/bronze_dynamo.json"
+        ],
+        "item_model": "src/main/resources/assets/cruciblecraft/models/item/bronze_dynamo.json",
+        "blockstate": "src/main/resources/assets/cruciblecraft/blockstates/bronze_dynamo.json",
+        "state_contract": {
+          "required_models": [
+            "cruciblecraft:block/bronze_dynamo"
+          ]
+        }
+      },
+      "forbidden_source_families": []
+    }
+  ]
+}

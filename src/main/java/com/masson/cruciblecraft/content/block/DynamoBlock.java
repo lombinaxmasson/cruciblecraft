@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
 import org.jetbrains.annotations.Nullable;
@@ -22,10 +23,12 @@ import org.jetbrains.annotations.Nullable;
 /** Fixed bronze kinetic-to-electric converter. */
 public final class DynamoBlock extends Block implements EntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     public DynamoBlock(Properties properties) {
         super(properties);
-        registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
+        registerDefaultState(
+                stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false));
     }
 
     @Override public BlockState getStateForPlacement(BlockPlaceContext context) {
@@ -35,7 +38,7 @@ public final class DynamoBlock extends Block implements EntityBlock {
 
     @Override protected void createBlockStateDefinition(
             StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(FACING, LIT);
     }
 
     @Override public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {

@@ -19,6 +19,7 @@ public final class GTRecipeMapEvents {
     public static void serverStarted(ServerStartedEvent event) {
         RecipeManager manager = event.getServer().getRecipeManager();
         if (GTRecipeReloadDecision.onServerStarted(manager, lastTagsLoadedManager)) {
+            // Compact families are aggregated with Extruder inside the loader.
             GTRecipeMapLoader.reload(manager);
         }
         lastTagsLoadedManager = null;

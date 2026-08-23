@@ -113,6 +113,29 @@ class T21ChemicalAxisTest(unittest.TestCase):
         replay = builder.build_expected_full_replay(self.policy)
         self.assertEqual(self.expected, replay)
 
+    def test_rebuild_preserves_semantic_axis_fields(self):
+        expansion = builder.build_expansion(self.policy, self.expected)
+        candidate = builder.build_axis(self.policy, expansion)
+        self.assertEqual(
+            builder.semantic_axis(self.axis),
+            builder.semantic_axis(candidate),
+        )
+
+    def test_metadata_rebase_guard_accepts_t5_input_hash_refresh(self):
+        expansion = builder.build_expansion(self.policy, self.expected)
+        candidate = builder.build_axis(self.policy, expansion)
+        pre_repair = copy.deepcopy(self.axis)
+        pre_repair["inputs"]["tools/t5_chemical_readiness.json"] = (
+            "2cc6c9fbaca4a4b41d1abe7bb1a5eb00ff6d6a572aaad86ac3597bd35b1a7062"
+        )
+        pre_repair["inputs"]["tools/t5_chemical_recipe_manifest.json"] = (
+            "c31b40f91de43f15a9e1a6ff64862fae683e28df04fc31015d6c77bb7555b383"
+        )
+        self.assertEqual(
+            [],
+            builder.verify_metadata_rebase(pre_repair, candidate),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

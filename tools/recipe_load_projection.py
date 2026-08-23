@@ -23,7 +23,7 @@ POLICY_STATUSES = {
     "T14D_LOAD_BUDGET_POLICY_MEASURED",
 }
 STRATEGIES = ("immediate", "on_demand", "hybrid")
-DELIVERY_PHASES = ("T15", "T16", "T17", "T18", "T19", "T21")
+DELIVERY_PHASES = ("T15", "T16", "T17", "T18", "T19", "T21", "T37")
 PROJECTION_PHASES = ("T14",) + DELIVERY_PHASES
 COUNT_FIELDS = (
     "authored_entries",
@@ -139,6 +139,28 @@ def _validate_interval(value: Any, context: str) -> dict[str, int]:
     if lower > upper:
         raise ProjectionError(f"{context}: min exceeds max")
     return {"min": lower, "max": upper}
+
+
+def _interval_is_pending(value: Any) -> bool:
+    return isinstance(value, dict) and value.get("status") == PENDING
+
+
+def _validate_interval_or_pending(value: Any, context: str) -> dict[str, Any]:
+    if value is None:
+        return {"status": PENDING}
+    if not isinstance(value, dict):
+        raise ProjectionError(f"{context}: expected an interval or pending object")
+    status = value.get("status")
+    if status in {PENDING, "pending"}:
+        if "min" in value or "max" in value:
+            raise ProjectionError(
+                f"{context}: pending interval must omit min/max; do not zero-fill"
+            )
+        pending = {"status": PENDING}
+        if value.get("reason"):
+            pending["reason"] = value["reason"]
+        return pending
+    return _validate_interval(value, context)
 
 
 def _canonical_rows(t13: dict[str, Any]) -> dict[str, dict[str, Any]]:
@@ -368,11 +390,19 @@ def _validate_family(
         raise ProjectionError(
             f"{context}.measurement_intervals: expected an object"
         )
-    _exact_fields(measurements, INTERVAL_FIELDS, context)
+    extra = set(measurements) - set(INTERVAL_FIELDS)
+    if extra:
+        raise ProjectionError(
+            f"{context}.measurement_intervals: extra fields {sorted(extra)}"
+        )
     validated_intervals = {
-        field: _validate_interval(
-            measurements[field],
-            f"{context}.measurement_intervals.{field}",
+        field: (
+            _validate_interval_or_pending(
+                measurements[field],
+                f"{context}.measurement_intervals.{field}",
+            )
+            if field in measurements
+            else {"status": PENDING}
         )
         for field in INTERVAL_FIELDS
     }
@@ -442,7 +472,9 @@ def validate_input(
     ):
         raise ProjectionError("projection_id is not a stable lowercase id")
     if document["delivery_phase"] not in PROJECTION_PHASES:
-        raise ProjectionError("delivery_phase must be T14 through T21")
+        raise ProjectionError(
+            "delivery_phase must be a declared T14–T21 or T37 projection phase"
+        )
     families = document["families"]
     if not isinstance(families, list) or not families:
         raise ProjectionError("projection input must declare at least one family")
@@ -565,32 +597,26 @@ def _ratios(authored: int, logical: int, eager: int) -> dict[str, Any]:
 def _sum_intervals(
     families: list[dict[str, Any]],
     field: str,
-) -> dict[str, int]:
+) -> dict[str, Any]:
+    values = [family["measurement_intervals"][field] for family in families]
+    if any(_interval_is_pending(value) for value in values):
+        return {"status": PENDING}
     return {
-        "min": sum(
-            family["measurement_intervals"][field]["min"]
-            for family in families
-        ),
-        "max": sum(
-            family["measurement_intervals"][field]["max"]
-            for family in families
-        ),
+        "min": sum(value["min"] for value in values),
+        "max": sum(value["max"] for value in values),
     }
 
 
 def _max_intervals(
     families: list[dict[str, Any]],
     field: str,
-) -> dict[str, int]:
+) -> dict[str, Any]:
+    values = [family["measurement_intervals"][field] for family in families]
+    if any(_interval_is_pending(value) for value in values):
+        return {"status": PENDING}
     return {
-        "min": max(
-            family["measurement_intervals"][field]["min"]
-            for family in families
-        ),
-        "max": max(
-            family["measurement_intervals"][field]["max"]
-            for family in families
-        ),
+        "min": max(value["min"] for value in values),
+        "max": max(value["max"] for value in values),
     }
 
 
@@ -683,9 +709,20 @@ def evaluate_budgets(
     for metric in BUDGET_CONTRACT:
         spec = policy["budgets"][metric]
         actual = _budget_actual(ledger, metric)
-        comparison_value = actual["max"] if isinstance(actual, dict) else actual
         soft = spec["soft_budget"]
         hard = spec["hard_ceiling"]
+        if isinstance(actual, dict) and actual.get("status") == PENDING:
+            status = PENDING
+            pending.append(metric)
+            metrics[metric] = {
+                "actual": actual,
+                "comparison_value": PENDING,
+                "soft_budget": soft,
+                "hard_ceiling": hard,
+                "status": status,
+            }
+            continue
+        comparison_value = actual["max"] if isinstance(actual, dict) else actual
         if soft == PENDING:
             status = PENDING
             pending.append(metric)

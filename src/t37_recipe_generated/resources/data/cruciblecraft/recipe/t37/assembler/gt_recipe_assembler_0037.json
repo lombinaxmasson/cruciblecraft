@@ -1,0 +1,54 @@
+{
+  "family_id": "gt.recipe.assembler#0037",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 32,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        8,
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:jungle_planks"
+        },
+        {
+          "item": "minecraft:redstone"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:note_block"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "04a626e0bbd5b621ab177e575fd702518aac5da3fd8c68fe4b5fc6f74ad61fa2"
+        ],
+        "selected_source_recipe": "gt.recipe.assembler#0037",
+        "source_kind": "DESIGN_POLICY"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t37/72deda3772d90f99"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:assembler",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

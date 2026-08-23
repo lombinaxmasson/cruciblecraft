@@ -73,7 +73,7 @@ class T17ReadinessTest(unittest.TestCase):
         )
         self.assertEqual(25, audit["machine_specs"])
         self.assertEqual(0, audit["implicit_energy_arguments"])
-        self.assertEqual(8, audit["legacy_kinetic"])
+        self.assertEqual(4, audit["legacy_kinetic"])
         self.assertEqual(0, audit["new_legacy_kinetic"])
 
     def test_t17b_records_execution_tests_and_source_contracts(self):

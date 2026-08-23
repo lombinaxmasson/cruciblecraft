@@ -42,9 +42,13 @@ class T30ArtAssetProvenanceTest(unittest.TestCase):
         self.assertEqual(
             "cruciblecraft:block/hopper", families["hopper"]["shared_parent"]
         )
-        self.assertEqual(
-            "cruciblecraft:block/material/block_overlay",
-            families["queue_hopper"]["overlay_texture"],
-        )
+        self.assertIsNone(families["queue_hopper"]["overlay_texture"])
         self.assertIsNone(families["hopper"]["overlay_texture"])
-        self.assertEqual(0, families["dust_funnel"]["tintindex"])
+        self.assertEqual(
+            "cruciblecraft:block/dust_funnel/colored_hole",
+            families["dust_funnel"]["overlay_texture"],
+        )
+        self.assertEqual(
+            "cruciblecraft:block/hopper/colored_side",
+            families["hopper"]["shared_texture"],
+        )

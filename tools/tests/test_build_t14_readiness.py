@@ -1,3 +1,4 @@
+import copy
 import unittest
 
 from tools import build_t14_readiness as readiness
@@ -97,6 +98,26 @@ class T14ReadinessTest(unittest.TestCase):
     def test_relation_count_cannot_drift_from_ready_contract(self):
         compact = readiness.load(readiness.COMPACT)
         self.assertEqual(2_782, compact["logical_relation_count"])
+
+    def test_rebuild_preserves_semantic_fields(self):
+        committed = readiness.load(readiness.OUTPUT)
+        candidate = readiness.build()
+        self.assertEqual(
+            readiness.semantic_document(committed),
+            readiness.semantic_document(candidate),
+        )
+
+    def test_metadata_rebase_guard_accepts_source_contract_hash_refresh(self):
+        committed = readiness.load(readiness.OUTPUT)
+        candidate = readiness.build()
+        pre_repair = copy.deepcopy(committed)
+        pre_repair["source_contracts"]["game_test"]["sha256"] = (
+            "be2e740ecfdfaa66250f79a5888ed309ebb93ed16fa5a2ab7dbe9123c67c69d0"
+        )
+        self.assertEqual(
+            [],
+            readiness.verify_metadata_rebase(pre_repair, candidate),
+        )
 
 
 if __name__ == "__main__":

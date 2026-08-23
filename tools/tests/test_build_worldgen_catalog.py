@@ -19,6 +19,7 @@ class WorldgenCatalogBuilderTest(unittest.TestCase):
             cls.files,
             cls.readiness,
         ) = builder.build_documents()
+        cls.surface_scatter = builder.load_surface_scatter()
 
     def test_t2c_vein_ledger_is_bidirectionally_closed(self):
         expected = builder.closure_vein_materials()
@@ -153,6 +154,103 @@ class WorldgenCatalogBuilderTest(unittest.TestCase):
         ):
             with self.assertRaisesRegex(ValueError, "ledger mismatch"):
                 builder.load_closure_veins(capabilities)
+
+    def test_surface_scatter_declaration_matches_runtime_json(self):
+        self.assertEqual("surface_rock_scatter", self.surface_scatter["id"])
+        self.assertEqual(
+            builder.SURFACE_FEATURE_TYPE,
+            self.surface_scatter["feature_type"],
+        )
+        self.assertEqual(128, self.surface_scatter["rarity"])
+        self.assertEqual("c:rocks", self.surface_scatter["rock_tag"])
+        self.assertEqual(
+            "#minecraft:is_overworld",
+            self.surface_scatter["biomes"],
+        )
+        self.assertEqual(
+            builder.SURFACE_DECORATION_STEP,
+            self.surface_scatter["decoration_step"],
+        )
+        self.assertEqual("DESIGN_POLICY", self.surface_scatter["design_policy"])
+        self.assertEqual("check_only", self.surface_scatter["audit_mode"])
+        self.assertGreater(
+            self.readiness["surface_scatter_rock_tag_source"][
+                "rock_material_count"
+            ],
+            0,
+        )
+        configured = json.loads(
+            builder.CONFIGURED_SURFACE_RUNTIME.read_text(
+                encoding="utf-8"
+            )
+        )
+        placed = json.loads(
+            builder.PLACED_SURFACE_RUNTIME.read_text(encoding="utf-8")
+        )
+        modifier = json.loads(
+            builder.BIOME_MODIFIER_SURFACE_RUNTIME.read_text(
+                encoding="utf-8"
+            )
+        )
+        self.assertEqual(
+            {
+                "type": builder.SURFACE_FEATURE_TYPE,
+                "config": {
+                    "rarity": 128,
+                    "rock_tag": "c:rocks",
+                },
+            },
+            configured,
+        )
+        self.assertEqual(
+            {
+                "feature": "cruciblecraft:surface_rock_scatter",
+                "placement": [],
+            },
+            placed,
+        )
+        self.assertEqual(
+            {
+                "type": "neoforge:add_features",
+                "biomes": "#minecraft:is_overworld",
+                "features": ["cruciblecraft:surface_rock_scatter"],
+                "step": "top_layer_modification",
+            },
+            modifier,
+        )
+
+    def test_surface_scatter_runtime_drift_fails_closed(self):
+        configured = json.loads(
+            builder.CONFIGURED_SURFACE_RUNTIME.read_text(
+                encoding="utf-8"
+            )
+        )
+        configured["config"]["rarity"] = 127
+        with mock.patch.object(
+            builder,
+            "load",
+            side_effect=lambda path: (
+                configured
+                if path == builder.CONFIGURED_SURFACE_RUNTIME
+                else json.loads(path.read_text(encoding="utf-8"))
+            ),
+        ):
+            with self.assertRaisesRegex(
+                ValueError,
+                "configured_feature runtime JSON drifted",
+            ):
+                builder.load_surface_scatter()
+
+    def test_historical_t20_generated_counts_remain_pinned(self):
+        counts = self.readiness["counts"]
+        self.assertEqual(263, counts["catalog_generated_files"])
+        self.assertEqual(274, counts["all_worldgen_files"])
+        self.assertEqual(129, counts["closure_vein_classifications"])
+        self.assertIn(
+            "surface_scatter_declarations",
+            self.readiness["inputs"],
+        )
+        self.assertIn("surface_scatter", self.readiness)
 
 
 if __name__ == "__main__":

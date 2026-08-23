@@ -7,32 +7,32 @@
     "queue_hopper": 60,
     "total": 121
   },
-  "derivation_rule": "one shared geometry parent per visual family; tintable grayscale from existing CC block.png; tintindex 0; Queue/Dust Funnel overlay uses block_overlay without tint; Dust Funnel keeps a fixed steel tint at runtime; no <material>_hopper.png",
+  "derivation_rule": "one shared geometry parent per visual family; tintable GT6 hopper/queuehopper/dust_funnel colored top/side/bottom (dust funnel also composites the hole sheet); tintindex 0; GT6 overlay icons are empty and omitted; Dust Funnel keeps a fixed steel tint at runtime; no <material>_hopper.png",
   "families": [
     {
       "family": "hopper",
       "overlay_texture": null,
       "shared_parent": "cruciblecraft:block/hopper",
       "shared_side_parent": "cruciblecraft:block/hopper_side",
-      "shared_texture": "cruciblecraft:block/material/block",
+      "shared_texture": "cruciblecraft:block/hopper/colored_side",
       "source_model": "textures/gt6模型/MultiTileEntityHopper.json",
       "tintindex": 0
     },
     {
       "family": "queue_hopper",
-      "overlay_texture": "cruciblecraft:block/material/block_overlay",
+      "overlay_texture": null,
       "shared_parent": "cruciblecraft:block/queue_hopper",
       "shared_side_parent": "cruciblecraft:block/queue_hopper_side",
-      "shared_texture": "cruciblecraft:block/material/block",
+      "shared_texture": "cruciblecraft:block/queue_hopper/colored_side",
       "source_model": "textures/gt6模型/MultiTileEntityQueueHopper.json",
       "tintindex": 0
     },
     {
       "family": "dust_funnel",
-      "overlay_texture": "cruciblecraft:block/material/block_overlay",
+      "overlay_texture": "cruciblecraft:block/dust_funnel/colored_hole",
       "shared_parent": "cruciblecraft:block/dust_funnel",
       "shared_side_parent": null,
-      "shared_texture": "cruciblecraft:block/material/block",
+      "shared_texture": "cruciblecraft:block/dust_funnel/colored_sides",
       "source_model": "textures/gt6模型/MultiTileEntityDustFunnel.json",
       "tintindex": 0
     }

@@ -487,6 +487,13 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
             return Optional.of(new PowerPlan(
                     0L, 1L, () -> true));
         }
+        if (spec.energy().type() == EnergyType.TIME) {
+            long units = Math.max(1L, plan.nominalPower());
+            return Optional.of(new PowerPlan(
+                    units,
+                    units,
+                    () -> true));
+        }
         boolean legacy = variant.kind().overclockPolicy()
                 == com.masson.cruciblecraft.machine.processing
                         .MachineKindSpec.OverclockPolicy.LEGACY_TICKS;

@@ -1,3 +1,4 @@
+import copy
 import hashlib
 import importlib.util
 import json
@@ -306,6 +307,24 @@ class T5ChemicalRecipeProjectionTest(unittest.TestCase):
             set(),
             {row["material"] for row in dead_ends}
             & {row["material"] for row in self.manifest["generated"]},
+        )
+
+    def test_rebuild_preserves_semantic_manifest_fields(self):
+        candidate = MODULE.build(write=False)
+        self.assertEqual(
+            MODULE.semantic_manifest(self.manifest),
+            MODULE.semantic_manifest(candidate),
+        )
+
+    def test_metadata_rebase_guard_accepts_readiness_hash_refresh(self):
+        candidate = MODULE.build(write=False)
+        pre_repair = copy.deepcopy(self.manifest)
+        pre_repair["inputs"]["tools/t5_chemical_readiness.json"] = (
+            "2cc6c9fbaca4a4b41d1abe7bb1a5eb00ff6d6a572aaad86ac3597bd35b1a7062"
+        )
+        self.assertEqual(
+            [],
+            MODULE.verify_metadata_rebase(pre_repair, candidate),
         )
 
     def test_full_replay_generation_is_deterministic(self):

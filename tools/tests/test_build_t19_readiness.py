@@ -193,8 +193,8 @@ class T19ReadinessTest(unittest.TestCase):
         self.assertEqual(
             {
                 "english_keys": 3_316,
-                "chinese_translations": 946,
-                "visible_chinese_debt": 2_370,
+                "chinese_translations": 948,
+                "visible_chinese_debt": 2_368,
                 "missing_material_names": 1_566,
             },
             summary["localization"],

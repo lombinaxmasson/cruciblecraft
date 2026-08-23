@@ -35,6 +35,11 @@
 | [T29](stage-archives/CrucibleCraft-阶段档案-T29.md) | 阶段档案 | 关闭 |
 | [T30](stage-archives/CrucibleCraft-阶段档案-T30.md) | 阶段档案 | 关闭 |
 | [T31](stage-archives/CrucibleCraft-阶段档案-T31.md) | 阶段档案 | 关闭 |
+| [T33](stage-archives/CrucibleCraft-阶段档案-T33.md) | 阶段档案 | 关闭 |
+| [T34](stage-archives/CrucibleCraft-阶段档案-T34.md) | 阶段档案 | 关闭（GT6 重开） |
+| [T35](stage-archives/CrucibleCraft-阶段档案-T35.md) | 阶段档案 | 关闭（T35R 修复） |
+| [T36](stage-archives/CrucibleCraft-阶段档案-T36.md) | 阶段档案 | 关闭（`T36_READY`） |
+| [T37](stage-archives/CrucibleCraft-阶段档案-T37.md) | 阶段档案 | 关闭（`T37_READY`） |
 
 ## 工作日志
 
@@ -49,6 +54,11 @@
 | [T29 工作日志](work-logs/T29-工作日志.md) | 工作日志 | 关闭 |
 | [T30 工作日志](work-logs/T30-工作日志.md) | 工作日志 | 关闭 |
 | [T31 工作日志](work-logs/T31-工作日志.md) | 工作日志 | 关闭 |
+| [T33 工作日志](work-logs/T33-工作日志.md) | 工作日志 | 关闭 |
+| [T34 工作日志](work-logs/T34-工作日志.md) | 工作日志 | 关闭（GT6 重开） |
+| [T35 工作日志](work-logs/T35-工作日志.md) | 工作日志 | 关闭（T35R 修复） |
+| [T36 工作日志](work-logs/T36-工作日志.md) | 工作日志 | 关闭（`T36_READY`） |
+| [T37 工作日志](work-logs/T37-工作日志.md) | 工作日志 | 关闭（`T37_READY`） |
 | [T31 RC soak](work-logs/T31-RC-soak.md) | 发行实验 | 关闭，非玩家 GA |
 
 ## 决策与关闭计划
@@ -60,4 +70,10 @@
 | [GT6U 搬运差距](../decisions/CrucibleCraft-GT6U搬运差距分析.md) | 来源分析 | 仍有效 |
 | [T9 世界生成计划](closed-plans/T9-世界生成数据化实施计划.md) | 关闭计划 | T20 档案 |
 | [4.5 体验精修](closed-plans/CrucibleCraft-4.5-体验精修规划.md) | 关闭计划 | T26 档案 |
+| [T33 详细计划](card-plans/closed/T33详细计划.md) | 关闭计划 | T33 档案 |
+| [T34 详细计划](card-plans/closed/T34详细计划.md) | 已撤回关闭计划 | T34 重开条目 |
+| [T35 详细计划](card-plans/closed/T35详细计划.md)、[T35 修复计划](card-plans/closed/T35修复计划.md) | 关闭计划 | [T35 阶段档案](stage-archives/CrucibleCraft-阶段档案-T35.md) |
+| [T36 详细计划](card-plans/closed/T36详细计划.md) | 关闭计划 | [T36 阶段档案](stage-archives/CrucibleCraft-阶段档案-T36.md) |
+| [T37 详细计划](card-plans/closed/T37详细计划.md) | 关闭计划 | [T37 阶段档案](stage-archives/CrucibleCraft-阶段档案-T37.md) |
+| [T38 详细计划](card-plans/active/T38详细计划.md) | 当前 active 计划 | T38 Roaster wave |
 | [交接说明](handoffs/CrucibleCraft-交接说明.md) | 交接 | 以 README 为准 |

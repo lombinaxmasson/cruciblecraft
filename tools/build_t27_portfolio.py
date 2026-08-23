@@ -384,6 +384,20 @@ def _table_open_item_ids() -> set[str]:
     return found
 
 
+def _superseded_known_issue_ids(policy: dict[str, Any]) -> set[str]:
+    superseded: set[str] = set()
+    for item in policy.get("records") or []:
+        if item.get("kind") != "closed_open_item":
+            continue
+        source = item.get("source") or {}
+        if source.get("artifact") != "tools/t26_known_issues.json":
+            continue
+        ident = str(item.get("id") or "")
+        if ident:
+            superseded.add(ident)
+    return superseded
+
+
 def build_open_items() -> dict[str, Any]:
     policy_path = POLICY_DIR / f"{OPEN_ITEMS_NAME}.json"
     if not policy_path.is_file():
@@ -391,6 +405,7 @@ def build_open_items() -> dict[str, Any]:
     policy = common.load_json(policy_path)
     known = common.load_json(KNOWN_ISSUES)
     phase5 = common.load_json(PHASE5_CONTRACT)
+    superseded_known_issues = _superseded_known_issue_ids(policy)
     records: list[dict[str, Any]] = []
     for item in policy.get("records") or []:
         record = {
@@ -421,6 +436,8 @@ def build_open_items() -> dict[str, Any]:
     overrides = policy.get("known_issue_overrides") or {}
     for issue in known.get("issues") or []:
         ident = str(issue.get("id") or "")
+        if ident in superseded_known_issues:
+            continue
         disposition = str(issue.get("disposition") or "")
         if disposition not in defaults:
             raise ValueError(f"{ident} has no known-issue default for {disposition}")
@@ -504,6 +521,7 @@ def build_open_items() -> dict[str, Any]:
     if missing_refs:
         coverage_errors.append(f"orphan open item dependencies: {missing_refs}")
     known_ids = {str(issue.get("id") or "") for issue in known.get("issues") or []}
+    known_ids -= superseded_known_issues
     ledger_known = {item["id"] for item in records if item["kind"] == "known_issue"}
     coverage_errors.extend(
         common.set_equality_errors(known_ids, ledger_known, label="known_issues")

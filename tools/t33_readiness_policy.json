@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "status_policy": "The status field is derived by build() from the static closure, fidelity, and load gates below. check() recomputes and compares. T33_READY is never hand-written and does not claim runGameTestServer was executed.",
+  "dependencies": {
+    "worldgen_catalog_readiness": "tools/worldgen_catalog_readiness.json",
+    "t21_operand_reachability": "tools/t21_operand_reachability.json",
+    "t27_deferred_open_items": "tools/t27_portfolio/deferred_open_items.json",
+    "surface_scatter_declaration": "src/main/resources/data/cruciblecraft/worldgen_catalog/surface_scatter.json",
+    "gametest_source": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java"
+  },
+  "historical_t20_counts": {
+    "catalog_generated_files": 263,
+    "all_worldgen_files": 274,
+    "closure_vein_classifications": 129
+  },
+  "gametest_policy": {
+    "contract_method": "surfaceRockScatterPlacesFromRuntimeTag",
+    "gametest_contract_present": "Static source contract only; registry-resolved placement is declared in CrucibleCraftGameTests.java.",
+    "manual_gametest_required": "runGameTestServer evidence belongs in the T33 work log, not in this readiness artifact."
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T33 closes survival S0 for tag:c:rocks via catalog-declared surface scatter and reachability for rock_pack.json. T20 underground catalog denominators stay 263/274/129. T26 known-issues ledger stays frozen; CC-4.5-P4 is superseded only in the T27 portfolio."
+  },
+  "load_policy": {
+    "publication_delta_claim": false,
+    "note": "T33 adds no recipe-map, logical, eager, or lazy publication delta and does not regenerate T20 worldgen outputs."
+  }
+}

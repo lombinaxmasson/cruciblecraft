@@ -32,21 +32,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         dropSelf(ModBlocks.TANK_3X3X3.get());
         dropSelf(ModBlocks.LARGE_CRUCIBLE.get());
         dropSelf(ModBlocks.BELLOWS.get());
-        dropSelf(ModBlocks.SLUICE.get());
-        dropSelf(ModBlocks.BATH.get());
         ModMachineVariants.ALL.forEach(variant ->
                 dropSelf(ModBlocks.configuredProcessingBlock(variant)));
-        dropSelf(ModBlocks.MORTAR.get());
-        dropSelf(ModBlocks.EXTRUDER.get());
-        dropSelf(ModBlocks.CUTTER.get());
-        dropSelf(ModBlocks.ROLLBENDER.get());
-        dropSelf(ModBlocks.BENDER.get());
-        dropSelf(ModBlocks.ASSEMBLER.get());
-        dropSelf(ModBlocks.WELDER.get());
-        dropSelf(ModBlocks.MIXER.get());
-        dropSelf(ModBlocks.AUTOCLAVE.get());
-        dropSelf(ModBlocks.COMPRESSOR.get());
-        dropSelf(ModBlocks.GENERIFIER.get());
         dropSelf(ModBlocks.ELECTRIC_MOTOR.get());
         dropSelf(ModBlocks.ROTATIONAL_AXLE.get());
         dropSelf(ModBlocks.ROTATIONAL_GEARBOX.get());
@@ -78,19 +65,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 ModBlocks.TANK_3X3X3.get(),
                 ModBlocks.LARGE_CRUCIBLE.get(),
                 ModBlocks.BELLOWS.get(),
-                ModBlocks.SLUICE.get(),
-                ModBlocks.BATH.get(),
-                ModBlocks.MORTAR.get(),
-                ModBlocks.EXTRUDER.get(),
-                ModBlocks.CUTTER.get(),
-                ModBlocks.ROLLBENDER.get(),
-                ModBlocks.BENDER.get(),
-                ModBlocks.ASSEMBLER.get(),
-                ModBlocks.WELDER.get(),
-                ModBlocks.MIXER.get(),
-                ModBlocks.AUTOCLAVE.get(),
-                ModBlocks.COMPRESSOR.get(),
-                ModBlocks.GENERIFIER.get(),
                 ModBlocks.ELECTRIC_MOTOR.get(),
                 ModBlocks.ROTATIONAL_AXLE.get(),
                 ModBlocks.ROTATIONAL_GEARBOX.get(),

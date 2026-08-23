@@ -12,6 +12,10 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+try:
+    from tools import t36_common as t36
+except ModuleNotFoundError:
+    import t36_common as t36
 TOOLS = ROOT / "tools"
 BUILDER = Path(__file__).resolve()
 POLICY = TOOLS / "t16_machine_denominator_policy.json"
@@ -249,13 +253,11 @@ def validate_variant_source(
 
 def catalog_rows(document: dict[str, Any]) -> dict[str, dict[str, Any]]:
     if (
-        document.get("schemaVersion") != 2
+        document.get("schemaVersion") not in {2, 3}
         or document.get("source", {}).get("revision") != SOURCE_REVISION
     ):
         raise ValueError("machine tier catalog header drifted")
-    variants = document.get("variants")
-    if not isinstance(variants, list):
-        raise ValueError("machine tier catalog variants must be a list")
+    variants = t36.opening_variants(document)
     all_ids = [row["id"] for row in variants]
     if len(all_ids) != len(set(all_ids)):
         raise ValueError("machine tier catalog variant ids are duplicated")

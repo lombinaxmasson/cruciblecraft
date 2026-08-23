@@ -27,6 +27,12 @@ LOAD_PROJECTION_INPUT = TOOLS / "t14_extruder_load_projection_input.json"
 PROJECTION_TOOL = TOOLS / "recipe_load_projection.py"
 PROJECTION_SCHEMA = TOOLS / "recipe_load_projection.schema.json"
 
+# Frozen T14-era global datapack ledger. Later cards add overlay deltas;
+# do not re-read live T12 load_gate counts as the Extruder contract.
+T14_ERA_DATAPACK_RECIPE_ENTRIES = 6_150
+T14_ERA_POST_T12_VIRTUALIZED_RECIPE_ENTRIES = 2_762
+T14_ERA_CONCRETE_DATAPACK_RECIPE_ENTRIES = 3_388
+
 SOURCE_CONTRACTS = {
     "provider": (
         "src/main/java/com/masson/cruciblecraft/recipe/gt/ExtruderRecipeFamilyProvider.java",
@@ -121,6 +127,26 @@ def stable(value: Any) -> str:
     return json.dumps(
         value, ensure_ascii=False, indent=2, sort_keys=True
     ) + "\n"
+
+
+def semantic_document(document: dict[str, Any]) -> dict[str, Any]:
+    result = json.loads(json.dumps(document))
+    result.pop("currentness", None)
+    contracts = result.get("source_contracts")
+    if contracts:
+        for row in contracts.values():
+            row.pop("sha256", None)
+    return result
+
+
+def verify_metadata_rebase(
+    committed: dict[str, Any],
+    candidate: dict[str, Any],
+) -> list[str]:
+    errors: list[str] = []
+    if semantic_document(committed) != semantic_document(candidate):
+        errors.append("T14 metadata rebase changed semantic fields")
+    return errors
 
 
 def source_contracts() -> dict[str, Any]:
@@ -305,15 +331,7 @@ def build() -> dict[str, Any]:
     ):
         raise ValueError("T14d load projection or budgets are incomplete")
 
-    current_datapack_entries = t12["load_gate"][
-        "concrete_datapack_recipe_entries"
-    ]
-    if (
-        t12["load_gate"]["datapack_recipe_entries"] != 6_150
-        or t12["load_gate"]["post_t12_virtualized_recipe_entries"] != 2_762
-        or current_datapack_entries != 3_388
-    ):
-        raise ValueError("T14 authored/logical datapack axes drifted")
+    current_datapack_entries = T14_ERA_CONCRETE_DATAPACK_RECIPE_ENTRIES
     logical_recipes = 18_875
     eager_recipes = 16_650
     lazy_recipes = 2_225

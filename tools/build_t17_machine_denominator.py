@@ -12,6 +12,10 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+try:
+    from tools import t36_common as t36
+except ModuleNotFoundError:
+    import t36_common as t36
 TOOLS = ROOT / "tools"
 BUILDER = Path(__file__).resolve()
 POLICY = TOOLS / "t17_machine_denominator_policy.json"
@@ -353,12 +357,12 @@ def source_variants(
 
 def catalog_rows(document: dict[str, Any]) -> dict[str, dict[str, Any]]:
     if (
-        document.get("schemaVersion") != 2
+        document.get("schemaVersion") not in {2, 3}
         or document.get("source", {}).get("revision") != SOURCE_REVISION
     ):
         raise ValueError("machine tier catalog header drifted")
-    variants = document.get("variants")
-    if not isinstance(variants, list) or len(variants) != 33:
+    variants = t36.opening_variants(document)
+    if len(variants) != 33:
         raise ValueError("T17a machine tier catalog must contain 33 variants")
     result = {row["id"]: row for row in variants}
     if len(result) != len(variants):

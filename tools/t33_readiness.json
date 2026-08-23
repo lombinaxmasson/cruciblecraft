@@ -1,0 +1,99 @@
+{
+  "closure": {
+    "all_worldgen_files_274": true,
+    "audit_mode_check_only": true,
+    "catalog_generated_files_263": true,
+    "cc_4_5_p4_closed_open_item": true,
+    "cc_4_5_p4_closure_axis_closed": true,
+    "cc_4_5_p4_disposition_closed": true,
+    "cc_4_5_p4_owner_t33": true,
+    "closure_vein_classifications_129": true,
+    "declaration_design_policy": true,
+    "gametest_contract_present": true,
+    "rock_pack_not_unreachable": true,
+    "rock_tag_is_c_rocks": true,
+    "runtime_inputs_present": true,
+    "runtime_pack_is_generated_material_pack": true,
+    "s0_seeds_match_dynamic_tag_members": true,
+    "seed_surface_rock_nonzero": true,
+    "surface_scatter_rock_tag_c_rocks": true
+  },
+  "closure_policy": {
+    "final_closure_attempted": true,
+    "pending": [],
+    "reason": "T33 closes survival S0 for tag:c:rocks via catalog-declared surface scatter and reachability for rock_pack.json. T20 underground catalog denominators stay 263/274/129. T26 known-issues ledger stays frozen; CC-4.5-P4 is superseded only in the T27 portfolio."
+  },
+  "currentness": {
+    "owned_inputs": {
+      "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java": "3786861966629c3c6a006a107eaef972f67dfe614160f852e2e4a5fffc499410",
+      "src/main/java/com/masson/cruciblecraft/worldgen/SurfaceRockFeature.java": "10af1c6230c763aec7f82da3d1c9f5a29f0fdb9677954ae8922dce0c02cfed8b",
+      "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_surface_rocks.json": "d669e0ea7cfefbd915202024bcb3f4237fe3bab5d2c76c9924fd1fc71b5922c7",
+      "src/main/resources/data/cruciblecraft/worldgen/configured_feature/surface_rock_scatter.json": "c9292aa91b7c5175de8d80ca7f4aa258b612649ccde8957371254703a605249e",
+      "src/main/resources/data/cruciblecraft/worldgen/placed_feature/surface_rock_scatter.json": "c80f851b5dcea5848a86da53f14e430deb11fe9f970be9c909c4ed6d34929d76",
+      "src/main/resources/data/cruciblecraft/worldgen_catalog/surface_scatter.json": "b836cc6e880814e5da07618239defe3cbb6109df452e256cf4c2f27a008d897c",
+      "tools/build_t33_readiness.py": "05deb037b32ac408369f2db91213c961fc9ec6264d9ca7e1713b4fdab9a8d074",
+      "tools/t21_operand_reachability.json": "2930693540bd15af4b50f8715ee0ade786de6014a400ce8a5c91f26ea93f83e4",
+      "tools/t27_portfolio/deferred_open_items.json": "2b63f52aa1ac3602f316dd570dcf27eb547d9e114101809430b5f995d8b5c2b7",
+      "tools/t33_readiness_policy.json": "b4fcceed719ce309d7206cd02ebbbe7f09eb79729540456b6310ddb6ef2c7843",
+      "tools/worldgen_catalog_readiness.json": "b8c806e08d310685b4ee5f9829fd7195e288a999bf85547b3fc5bfcad3efac8e"
+    }
+  },
+  "fidelity": {
+    "design_policy_surface_scatter": true,
+    "explicit_provenance_pinned": true,
+    "independent_surface_feature": true,
+    "source_derived_and_design_policy_semantics": true,
+    "t20_fidelity_statuses_preserved": true,
+    "t20_non_claim_preserved": true
+  },
+  "gametest_policy": {
+    "contract_method": "surfaceRockScatterPlacesFromRuntimeTag",
+    "gametest_contract_present": "Static source contract only; registry-resolved placement is declared in CrucibleCraftGameTests.java.",
+    "manual_gametest_required": "runGameTestServer evidence belongs in the T33 work log, not in this readiness artifact."
+  },
+  "generated_by": "python tools/build_t33_readiness.py --write",
+  "load": {
+    "all_worldgen_files_unchanged": true,
+    "catalog_generated_files_unchanged": true,
+    "closure_vein_classifications_unchanged": true,
+    "no_publication_delta_claim": true,
+    "no_t20_generated_output_delta": true
+  },
+  "owned_inputs": {
+    "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java": "3786861966629c3c6a006a107eaef972f67dfe614160f852e2e4a5fffc499410",
+    "src/main/java/com/masson/cruciblecraft/worldgen/SurfaceRockFeature.java": "10af1c6230c763aec7f82da3d1c9f5a29f0fdb9677954ae8922dce0c02cfed8b",
+    "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_surface_rocks.json": "d669e0ea7cfefbd915202024bcb3f4237fe3bab5d2c76c9924fd1fc71b5922c7",
+    "src/main/resources/data/cruciblecraft/worldgen/configured_feature/surface_rock_scatter.json": "c9292aa91b7c5175de8d80ca7f4aa258b612649ccde8957371254703a605249e",
+    "src/main/resources/data/cruciblecraft/worldgen/placed_feature/surface_rock_scatter.json": "c80f851b5dcea5848a86da53f14e430deb11fe9f970be9c909c4ed6d34929d76",
+    "src/main/resources/data/cruciblecraft/worldgen_catalog/surface_scatter.json": "b836cc6e880814e5da07618239defe3cbb6109df452e256cf4c2f27a008d897c",
+    "tools/build_t33_readiness.py": "05deb037b32ac408369f2db91213c961fc9ec6264d9ca7e1713b4fdab9a8d074",
+    "tools/t21_operand_reachability.json": "2930693540bd15af4b50f8715ee0ade786de6014a400ce8a5c91f26ea93f83e4",
+    "tools/t27_portfolio/deferred_open_items.json": "2b63f52aa1ac3602f316dd570dcf27eb547d9e114101809430b5f995d8b5c2b7",
+    "tools/t33_readiness_policy.json": "b4fcceed719ce309d7206cd02ebbbe7f09eb79729540456b6310ddb6ef2c7843",
+    "tools/worldgen_catalog_readiness.json": "b8c806e08d310685b4ee5f9829fd7195e288a999bf85547b3fc5bfcad3efac8e"
+  },
+  "policy": "The status field is derived by build() from the static closure, fidelity, and load gates below. check() recomputes and compares. T33_READY is never hand-written and does not claim runGameTestServer was executed.",
+  "runtime": {
+    "gametest_contract_present": true,
+    "manual_gametest_required": true
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T33_READY",
+  "status_owner": "static_gates_only",
+  "surface_scatter_summary": {
+    "audit_mode": "check_only",
+    "configured_feature": "cruciblecraft:surface_rock_scatter",
+    "design_policy": "DESIGN_POLICY",
+    "dynamic_tag_members": 688,
+    "id": "surface_rock_scatter",
+    "placed_feature": "cruciblecraft:surface_rock_scatter",
+    "rock_tag": "c:rocks",
+    "seed_surface_rock_count": 688
+  },
+  "t20_counts": {
+    "all_worldgen_files": 274,
+    "catalog_generated_files": 263,
+    "closure_vein_classifications": 129
+  }
+}

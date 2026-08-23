@@ -22,6 +22,8 @@ import com.masson.cruciblecraft.recipe.rule.T4ToolRules;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
 import com.masson.cruciblecraft.registry.ModFluids;
+import com.masson.cruciblecraft.api.energy.EnergyType;
+import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 
@@ -372,6 +374,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 "titanium_drying");
         machineCrafting(output, ModItems.COMPRESSOR.get(), "compressor");
         machineCrafting(output, ModItems.GENERIFIER.get(), "generifier");
+        machineCrafting(output, ModItems.COAGULATOR.get(), "coagulator");
         machineCrafting(
                 output,
                 ModItems.FLUID_DEPOSIT_EXTRACTOR.get(),
@@ -382,6 +385,62 @@ public final class ModRecipeProvider extends RecipeProvider {
                 output,
                 ModItems.BURNING_GAS_GENERATOR.get(),
                 "burning_gas_generator");
+        java.util.Set<String> authored = java.util.Set.of(
+                "sluice",
+                "bath",
+                "centrifuge",
+                "steel_centrifuge",
+                "titanium_centrifuge",
+                "shredder",
+                "steel_shredder",
+                "titanium_shredder",
+                "sifter",
+                "steel_sifter",
+                "titanium_sifter",
+                "mortar",
+                "extruder",
+                "cutter",
+                "lathe",
+                "steel_lathe",
+                "titanium_lathe",
+                "rollingmill",
+                "steel_rollingmill",
+                "titanium_rollingmill",
+                "rollbender",
+                "wiremill",
+                "steel_wiremill",
+                "titanium_wiremill",
+                "bender",
+                "assembler",
+                "welder",
+                "press",
+                "steel_press",
+                "titanium_press",
+                "electrolyzer",
+                "aluminium_electrolyzer",
+                "stainless_steel_electrolyzer",
+                "mixer",
+                "distillery",
+                "invar_distillery",
+                "titanium_distillery",
+                "autoclave",
+                "drying",
+                "invar_drying",
+                "titanium_drying",
+                "smelter",
+                "invar_smelter",
+                "titanium_smelter",
+                "compressor",
+                "generifier",
+                "coagulator");
+        for (com.masson.cruciblecraft.machine.processing.MachineVariant variant
+                : com.masson.cruciblecraft.registry.ModMachineVariants.ALL) {
+            String path = variant.id().getPath();
+            if (authored.contains(path)) {
+                continue;
+            }
+            addSourceBackedMachineRecipe(output, variant, path);
+        }
         casingCrafting(
                 output,
                 ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
@@ -399,6 +458,21 @@ public final class ModRecipeProvider extends RecipeProvider {
                 true);
         casingCrafting(
                 output,
+                ModItems.TUNGSTENSTEEL_DOUBLE_MACHINE_CASING.get(),
+                "tungstensteel",
+                true);
+        casingCrafting(
+                output,
+                ModItems.INVAR_DOUBLE_MACHINE_CASING.get(),
+                "invar",
+                true);
+        casingCrafting(
+                output,
+                ModItems.TUNGSTEN_CARBIDE_DOUBLE_MACHINE_CASING.get(),
+                "tungsten_carbide",
+                true);
+        casingCrafting(
+                output,
                 ModItems.STEEL_GALVANIZED_MACHINE_CASING.get(),
                 "steel_galvanized",
                 false);
@@ -411,6 +485,16 @@ public final class ModRecipeProvider extends RecipeProvider {
                 output,
                 ModItems.STAINLESS_STEEL_MACHINE_CASING.get(),
                 "stainless_steel",
+                false);
+        casingCrafting(
+                output,
+                ModItems.CHROMIUM_MACHINE_CASING.get(),
+                "chromium",
+                false);
+        casingCrafting(
+                output,
+                ModItems.TITANIUM_MACHINE_CASING.get(),
+                "titanium",
                 false);
         ShapedRecipeBuilder.shaped(
                         RecipeCategory.MISC,
@@ -645,6 +729,150 @@ public final class ModRecipeProvider extends RecipeProvider {
                         id(definition.path()), new MaterialRuleRecipe(definition.rule()), null));
     }
 
+    private static void addSourceBackedMachineRecipe(
+            RecipeOutput output,
+            MachineVariant variant,
+            String path) {
+        Item result = ModItems.tieredProcessingItemsById()
+                .get(variant.id())
+                .get();
+        String kind = variant.kind().id().getPath();
+        if ("bronze_crusher".equals(kind)) {
+            kind = "crusher";
+        }
+        String material = variant.tierBand().materialId();
+        int colon = material.indexOf(':');
+        if (colon >= 0) {
+            material = material.substring(colon + 1);
+        }
+        Item casing = casingFor(material, variant.tierBand().energyType());
+        switch (kind) {
+            case "centrifuge", "mixer", "sluice" -> centrifugeCrafting(
+                    output, result, casing, material, path);
+            case "sifter" -> sifterCrafting(
+                    output, result, casing, material, path);
+            case "lathe", "rollingmill", "wiremill", "shredder", "press",
+                    "cutter", "rollbender" -> t16MachineCrafting(
+                    output, result, casing, material, kind, path);
+            case "distillery" -> t17HeatMachineCrafting(
+                    output,
+                    result,
+                    casing,
+                    material,
+                    distilleryWireMaterial(material),
+                    distilleryWirePrefix(material),
+                    "distillery",
+                    path);
+            case "drying", "smelter", "roaster", "extruder" -> t17HeatMachineCrafting(
+                    output,
+                    result,
+                    casing,
+                    material,
+                    null,
+                    null,
+                    kind,
+                    path);
+            case "electrolyzer" -> electrolyzerCrafting(
+                    output,
+                    result,
+                    casing,
+                    electrolyzerCableMaterial(material),
+                    path);
+            case "compressor" -> compressorCrafting(
+                    output, result, casing, material, path);
+            case "crusher" -> t16MachineCrafting(
+                    output, result, casing, material, "shredder", path);
+            default -> throw new IllegalStateException(
+                    "T36 variant " + path + " has no source-backed acquisition");
+        }
+    }
+
+    private static Item casingFor(String material, EnergyType energy) {
+        if (energy == EnergyType.ELECTRIC) {
+            return switch (material) {
+                case "steel_galvanized" ->
+                        ModItems.STEEL_GALVANIZED_MACHINE_CASING.get();
+                case "aluminium" -> ModItems.ALUMINIUM_MACHINE_CASING.get();
+                case "stainless_steel" ->
+                        ModItems.STAINLESS_STEEL_MACHINE_CASING.get();
+                case "chromium" -> ModItems.CHROMIUM_MACHINE_CASING.get();
+                case "titanium" -> ModItems.TITANIUM_MACHINE_CASING.get();
+                default -> throw new IllegalStateException(
+                        "No EU casing for " + material);
+            };
+        }
+        return switch (material) {
+            case "bronze" -> ModItems.BRONZE_DOUBLE_MACHINE_CASING.get();
+            case "steel" -> ModItems.STEEL_DOUBLE_MACHINE_CASING.get();
+            case "titanium" -> ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get();
+            case "tungstensteel" ->
+                    ModItems.TUNGSTENSTEEL_DOUBLE_MACHINE_CASING.get();
+            case "invar" -> ModItems.INVAR_DOUBLE_MACHINE_CASING.get();
+            case "tungsten_carbide" ->
+                    ModItems.TUNGSTEN_CARBIDE_DOUBLE_MACHINE_CASING.get();
+            default -> throw new IllegalStateException(
+                    "No kinetic/heat casing for " + material);
+        };
+    }
+
+    private static String electrolyzerCableMaterial(String casingMaterial) {
+        return switch (casingMaterial) {
+            case "steel_galvanized" -> "tin";
+            case "aluminium" -> "copper";
+            case "stainless_steel" -> "gold";
+            case "chromium" -> "aluminium";
+            case "titanium" -> "tungstensteel";
+            default -> throw new IllegalStateException(
+                    "No electrolyzer cable for " + casingMaterial);
+        };
+    }
+
+    private static String distilleryWireMaterial(String machineMaterial) {
+        return switch (machineMaterial) {
+            case "steel" -> "constantan";
+            case "invar" -> "kanthal";
+            case "titanium" -> "nichrome";
+            case "tungsten_carbide" -> "tungstensteel";
+            default -> throw new IllegalStateException(
+                    "No distillery wire for " + machineMaterial);
+        };
+    }
+
+    private static MaterialPrefix distilleryWirePrefix(String machineMaterial) {
+        return switch (machineMaterial) {
+            case "steel" -> MaterialPrefixes.DOUBLE_WIRE;
+            case "invar" -> MaterialPrefixes.QUADRUPLE_WIRE;
+            case "titanium", "tungsten_carbide" -> MaterialPrefixes.OCTUPLE_WIRE;
+            default -> throw new IllegalStateException(
+                    "No distillery wire prefix for " + machineMaterial);
+        };
+    }
+
+    private static void compressorCrafting(
+            RecipeOutput output,
+            Item result,
+            Item casing,
+            String material,
+            String id) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                .pattern("PSP")
+                .pattern("PCP")
+                .pattern(" R ")
+                .define(
+                        'P',
+                        materialItem(
+                                material, MaterialPrefixes.QUINTUPLE_PLATE))
+                .define(
+                        'S',
+                        materialItem(material, MaterialPrefixes.SPRING))
+                .define(
+                        'R',
+                        materialItem(material, MaterialPrefixes.ROD))
+                .define('C', casing)
+                .unlockedBy("has_casing", has(casing))
+                .save(output, id("machines/" + id));
+    }
+
     private static void centrifugeCrafting(
             RecipeOutput output,
             Item result,
@@ -805,7 +1033,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                             materialItem(
                                     material,
                                     MaterialPrefixes.SMALL_GEAR));
-            case "rollingmill" -> builder
+            case "rollingmill", "rollbender" -> builder
                     .pattern("G ")
                     .pattern("C ")
                     .pattern("G ");
@@ -817,7 +1045,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                             materialItem(
                                     material,
                                     MaterialPrefixes.SMALL_GEAR));
-            case "shredder" -> builder
+            case "shredder", "cutter" -> builder
                     .pattern("GDG")
                     .pattern(" C ")
                     .define(
@@ -895,6 +1123,20 @@ public final class ModRecipeProvider extends RecipeProvider {
                     .pattern("BCB")
                     .define('U', ModItems.CRUCIBLE.get())
                     .define('B', Items.BRICKS);
+            case "roaster" -> builder
+                    .pattern(" P ")
+                    .pattern("PMP")
+                    .pattern("BCB")
+                    .define('B', Items.BRICKS);
+            case "extruder" -> builder
+                    .pattern("PPP")
+                    .pattern("WMW")
+                    .pattern(" C ")
+                    .define(
+                            'W',
+                            materialItem(
+                                    machineMaterial,
+                                    MaterialPrefixes.ROD));
             default -> throw new IllegalArgumentException(
                     "Unsupported T17 heat machine kind " + kind);
         }

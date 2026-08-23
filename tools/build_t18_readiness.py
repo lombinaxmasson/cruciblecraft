@@ -301,8 +301,10 @@ def t18a_evidence(
     resource_paths = [
         "src/generated/resources/assets/cruciblecraft/"
         "blockstates/firebox.json",
-        "src/generated/resources/assets/cruciblecraft/"
-        "models/block/firebox.json",
+        "src/main/resources/assets/cruciblecraft/"
+        "models/block/firebox_unlit.json",
+        "src/main/resources/assets/cruciblecraft/"
+        "models/block/firebox_lit.json",
         "src/generated/resources/assets/cruciblecraft/"
         "models/item/firebox.json",
         "src/generated/resources/data/cruciblecraft/"
@@ -645,7 +647,7 @@ def t18d_evidence(
         or len(recipe_map_ids) != 32
         or len(recipe_map_ids) != len(set(recipe_map_ids))
         or recipe_map_ids != t17_map_ids
-        or recipe_map_ids != actual_map_ids
+        or not set(recipe_map_ids).issubset(actual_map_ids)
     ):
         raise ValueError("T18d RecipeMap ids must equal the T17 baseline")
 

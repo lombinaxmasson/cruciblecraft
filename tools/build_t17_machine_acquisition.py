@@ -12,6 +12,10 @@ try:
     from tools import build_t15_machine_acquisition as acquisition_support
 except ModuleNotFoundError:
     import build_t15_machine_acquisition as acquisition_support
+try:
+    from tools import t36_common as t36
+except ModuleNotFoundError:
+    import t36_common as t36
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -120,7 +124,7 @@ def selected_catalog_rows(
     policy: dict[str, Any],
     tiers: dict[str, Any],
 ) -> dict[str, dict[str, Any]]:
-    variants = tiers.get("variants")
+    variants = t36.opening_variants(tiers)
     if not isinstance(variants, list) or len(variants) != 33:
         raise ValueError("machine tier catalog must contain 33 variants")
     kinds = set(policy["selected_kinds"])

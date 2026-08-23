@@ -89,6 +89,20 @@ def validate_policy(policy: dict[str, Any]) -> None:
             or set(row.get("resources") or {}) != EXPECTED_RESOURCE_KINDS
         ):
             raise ValueError(f"{profile_id}: incomplete converter declaration")
+        state_models = row.get("state_models")
+        if state_models is not None and (
+            not isinstance(state_models, dict)
+            or not state_models
+            or any(
+                not str(model_id).startswith("cruciblecraft:block/")
+                or not str(path).endswith(".json")
+                for model_id, path in state_models.items()
+            )
+            or not str(row.get("item_model_parent") or "").startswith(
+                "cruciblecraft:block/"
+            )
+        ):
+            raise ValueError(f"{profile_id}: invalid state-model declaration")
         recipe = row.get("recipe") or {}
         if (
             not str(recipe.get("id") or "").startswith("cruciblecraft:")
@@ -476,10 +490,23 @@ def resource_closure(
         }
         documents = {kind: load(path) for kind, path in paths.items()}
         model_id = f"cruciblecraft:block/{spec['runtime_binding']}"
+        state_models = spec.get("state_models") or {model_id: spec["resources"]["block_model"]}
+        expected_model_ids = set(state_models)
         blockstate_text = json.dumps(documents["blockstate"], sort_keys=True)
-        if model_id not in blockstate_text:
+        if not expected_model_ids.issubset(
+            {
+                value
+                for value in re.findall(
+                    r'"model":\s*"([^"]+)"', blockstate_text
+                )
+            }
+        ):
             raise ValueError(f"{profile_id}: blockstate/model binding drifted")
-        if documents["item_model"] != {"parent": model_id}:
+        parent = documents["item_model"].get("parent")
+        if not str(parent or "").strip():
+            raise ValueError(f"{profile_id}: item model parent drifted")
+        expected_item_parent = spec.get("item_model_parent")
+        if expected_item_parent and parent != expected_item_parent:
             raise ValueError(f"{profile_id}: item model parent drifted")
         loot_names = set(re.findall(
             r'"name":\s*"([^"]+)"',
@@ -505,6 +532,13 @@ def resource_closure(
                     "loot": "loot",
                 }[kind]
             ].add(profile_id)
+        for state_model_path in state_models.values():
+            path = ROOT / state_model_path
+            if not path.is_file():
+                raise ValueError(
+                    f"{profile_id}: state model is missing: {state_model_path}"
+                )
+            hashes[relative(path)] = sha256(path)
         component_sets["blocks"].add(profile_id)
         component_sets["items"].add(profile_id)
         component_sets["block_tags"].add(profile_id)
@@ -516,6 +550,8 @@ def resource_closure(
             "languages": sorted(languages),
             "block_tag": policy["resource_contract"]["block_tag"]["id"],
             "paths": spec["resources"],
+            "state_models": state_models,
+            "item_model_parent": expected_item_parent,
         }
     expected = set(profile_rows)
     if any(values != expected for values in component_sets.values()):

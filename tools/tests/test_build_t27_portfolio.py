@@ -221,7 +221,7 @@ class T27OpenItemLedgerTest(unittest.TestCase):
         document = builder.build_open_items()
         self.assertEqual([], builder.check_open_items())
         by_id = {row["id"]: row for row in document["records"]}
-        self.assertEqual(15, document["counts"]["known_issues"])
+        self.assertEqual(14, document["counts"]["known_issues"])
         self.assertEqual(0, document["counts"]["orphan"])
         self.assertEqual("canonical_coverage", by_id["crucible"]["kind"])
         self.assertEqual("portfolio:v1/crucible", by_id["crucible"]["owner"])
@@ -235,6 +235,11 @@ class T27OpenItemLedgerTest(unittest.TestCase):
         self.assertEqual("portfolio:post_1_0/anvil_bend", by_id["anvil_bend_small"]["owner"])
         self.assertEqual("closed", by_id["O-15"]["disposition"])
         self.assertEqual("T26", by_id["O-15"]["owner"])
+        self.assertEqual("closed_open_item", by_id["CC-4.5-P4"]["kind"])
+        self.assertEqual("closed", by_id["CC-4.5-P4"]["disposition"])
+        self.assertEqual("T33", by_id["CC-4.5-P4"]["owner"])
+        self.assertEqual("closed", by_id["CC-4.5-P4"]["axes"]["closure"]["status"])
+        self.assertNotEqual("known_issue", by_id["CC-4.5-P4"]["kind"])
         self.assertEqual("T27 RC", by_id["T24-F003"]["owner"])
         self.assertEqual("T27 RC candidate", by_id["T24-F003"]["recheck_point"])
         self.assertEqual(

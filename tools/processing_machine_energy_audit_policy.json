@@ -18,12 +18,8 @@
   ],
   "allowed_legacy_kinetic_ids": [
     "assembler",
-    "bath",
     "bender",
-    "cutter",
-    "extruder",
     "mortar",
-    "rollbender",
     "welder"
   ],
   "machines": {
@@ -55,7 +51,7 @@
     },
     "BATH": {
       "id": "bath",
-      "expected_energy_type": "KINETIC",
+      "expected_energy_type": "TIME",
       "disposition": "FIXED_UTILITY",
       "ledger": {
         "path": "tools/t12_machine_policy.json",
@@ -133,7 +129,7 @@
     },
     "EXTRUDER": {
       "id": "extruder",
-      "expected_energy_type": "KINETIC",
+      "expected_energy_type": "HEAT",
       "disposition": "MAPPED_DEFERRED",
       "ledger": {
         "path": "tools/t17_machine_denominator_policy.json",
@@ -146,7 +142,7 @@
     },
     "CUTTER": {
       "id": "cutter",
-      "expected_energy_type": "KINETIC",
+      "expected_energy_type": "KINETIC_ROTATION",
       "disposition": "MAPPED_DEFERRED",
       "ledger": {
         "path": "tools/t16_machine_denominator_policy.json",
@@ -185,7 +181,7 @@
     },
     "ROLLBENDER": {
       "id": "rollbender",
-      "expected_energy_type": "KINETIC",
+      "expected_energy_type": "KINETIC_ROTATION",
       "disposition": "MAPPED_DEFERRED",
       "ledger": {
         "path": "tools/t16_machine_denominator_policy.json",
@@ -276,7 +272,7 @@
     },
     "MIXER": {
       "id": "mixer",
-      "expected_energy_type": "ELECTRIC",
+      "expected_energy_type": "KINETIC_ROTATION",
       "disposition": "MAPPED_DEFERRED",
       "ledger": {
         "path": "tools/t17_machine_denominator_policy.json",
@@ -302,7 +298,7 @@
     },
     "AUTOCLAVE": {
       "id": "autoclave",
-      "expected_energy_type": "ELECTRIC",
+      "expected_energy_type": "TIME",
       "disposition": "FIXED_UTILITY",
       "ledger": {
         "path": "tools/t12_machine_policy.json",
@@ -328,7 +324,7 @@
     },
     "COMPRESSOR": {
       "id": "compressor",
-      "expected_energy_type": "ELECTRIC",
+      "expected_energy_type": "KINETIC_PUSH",
       "disposition": "CROSS_OWNER_DEFERRED",
       "ledger": {
         "path": "tools/t17_machine_denominator_policy.json",
@@ -341,7 +337,7 @@
     },
     "GENERIFIER": {
       "id": "generifier",
-      "expected_energy_type": "ELECTRIC",
+      "expected_energy_type": "TIME",
       "disposition": "FIXED_UTILITY",
       "ledger": {
         "path": "tools/t12_machine_policy.json",

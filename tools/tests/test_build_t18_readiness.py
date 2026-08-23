@@ -111,7 +111,7 @@ class T18ReadinessTest(unittest.TestCase):
             ],
             evidence["steam_engine"]["source_evidence_paths"],
         )
-        self.assertEqual(5, len(evidence["resources"]))
+        self.assertEqual(6, len(evidence["resources"]))
         self.assertEqual(2, len(evidence["game_tests"]))
 
     def test_currentness_covers_every_completed_t18a_source(self):

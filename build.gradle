@@ -36,6 +36,8 @@ sourceSets.main.resources {
     srcDir('src/t11_hydrocarbon_generated/resources')
     // T22 petroleum processing rows from distillery + T21 denominator families.
     srcDir('src/t22_petroleum_generated/resources')
+    // T37 Assembler compact families from the frozen R0 source.
+    srcDir('src/t37_recipe_generated/resources')
 
     // Exclude common development only resources from finalized outputs
     exclude("**/*.bbmodel") // BlockBench project files
@@ -137,6 +139,18 @@ neoForge {
                 // Isolate the T31 harness from the daily 137-test grid.
                 systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_scale'
                 gameDirectory = project.file('run-t31-scale')
+            } else if (providers.gradleProperty('t35Census').isPresent()) {
+                // Isolate the T35 runtime registry gate from the daily grid.
+                systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_census'
+                gameDirectory = project.file('run-t35-census')
+            } else if (providers.gradleProperty('t36Machines').isPresent()) {
+                // Isolate the T36 machine runtime gate from the daily grid.
+                systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_t36'
+                gameDirectory = project.file('run-t36-machines')
+            } else if (providers.gradleProperty('t37Recipes').isPresent()) {
+                // Isolate the T37 compact-family player-path gate from the daily grid.
+                systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_t37'
+                gameDirectory = project.file('run-t37-recipes')
             } else {
                 systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
             }

@@ -28,6 +28,7 @@ import com.masson.cruciblecraft.content.item.MaterialSwordItem;
 import com.masson.cruciblecraft.content.item.MaterialWireCutterItem;
 import com.masson.cruciblecraft.content.item.MaterialWrenchItem;
 import com.masson.cruciblecraft.content.item.PortableFluidTankItem;
+import com.masson.cruciblecraft.content.item.ProgrammedCircuitItem;
 import com.masson.cruciblecraft.content.item.PipeBlockItem;
 import com.masson.cruciblecraft.content.item.PipeCoverItem;
 import com.masson.cruciblecraft.content.item.SmithingHammerItem;
@@ -127,6 +128,10 @@ public final class ModItems {
             ITEMS.registerSimpleItem("coal_coke", new Item.Properties());
     public static final DeferredItem<Item> MATCH =
             ITEMS.registerSimpleItem("match", new Item.Properties());
+    public static final DeferredItem<ProgrammedCircuitItem> PROGRAMMED_CIRCUIT =
+            ITEMS.register(
+                    "programmed_circuit",
+                    () -> new ProgrammedCircuitItem(new Item.Properties()));
     public static final DeferredItem<Item>
             BRONZE_DOUBLE_MACHINE_CASING =
                     ITEMS.registerSimpleItem(
@@ -156,6 +161,31 @@ public final class ModItems {
             STAINLESS_STEEL_MACHINE_CASING =
                     ITEMS.registerSimpleItem(
                             "stainless_steel_machine_casing",
+                            new Item.Properties());
+    public static final DeferredItem<Item>
+            CHROMIUM_MACHINE_CASING =
+                    ITEMS.registerSimpleItem(
+                            "chromium_machine_casing",
+                            new Item.Properties());
+    public static final DeferredItem<Item>
+            TITANIUM_MACHINE_CASING =
+                    ITEMS.registerSimpleItem(
+                            "titanium_machine_casing",
+                            new Item.Properties());
+    public static final DeferredItem<Item>
+            TUNGSTENSTEEL_DOUBLE_MACHINE_CASING =
+                    ITEMS.registerSimpleItem(
+                            "tungstensteel_double_machine_casing",
+                            new Item.Properties());
+    public static final DeferredItem<Item>
+            INVAR_DOUBLE_MACHINE_CASING =
+                    ITEMS.registerSimpleItem(
+                            "invar_double_machine_casing",
+                            new Item.Properties());
+    public static final DeferredItem<Item>
+            TUNGSTEN_CARBIDE_DOUBLE_MACHINE_CASING =
+                    ITEMS.registerSimpleItem(
+                            "tungsten_carbide_double_machine_casing",
                             new Item.Properties());
     public static final DeferredItem<BlockItem> BELLOWS =
             ITEMS.registerSimpleBlockItem("bellows", ModBlocks.BELLOWS);
@@ -253,14 +283,14 @@ public final class ModItems {
                     ModBlocks.ROTATIONAL_GEARBOX);
     public static final DeferredItem<BlockItem> BRONZE_CRUSHER =
             ITEMS.registerSimpleBlockItem("bronze_crusher", ModBlocks.BRONZE_CRUSHER);
-    public static final DeferredItem<BlockItem> SLUICE =
-            ITEMS.registerSimpleBlockItem("sluice", ModBlocks.SLUICE);
-    public static final DeferredItem<BlockItem> BATH =
-            ITEMS.registerSimpleBlockItem("bath", ModBlocks.BATH);
     private static final Map<
             net.minecraft.resources.ResourceLocation,
             DeferredItem<BlockItem>> TIERED_PROCESSING_ITEMS =
                     registerTieredProcessingItems();
+    public static final DeferredItem<BlockItem> SLUICE =
+            tieredProcessingItem("sluice");
+    public static final DeferredItem<BlockItem> BATH =
+            tieredProcessingItem("bath");
     private static final Map<
             net.minecraft.resources.ResourceLocation,
             DeferredItem<HopperBlockItem>> HOPPER_ITEMS =
@@ -293,11 +323,11 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> TITANIUM_SMELTER =
             tieredProcessingItem("titanium_smelter");
     public static final DeferredItem<BlockItem> MORTAR =
-            ITEMS.registerSimpleBlockItem("mortar", ModBlocks.MORTAR);
+            tieredProcessingItem("mortar");
     public static final DeferredItem<BlockItem> EXTRUDER =
-            ITEMS.registerSimpleBlockItem("extruder", ModBlocks.EXTRUDER);
+            tieredProcessingItem("extruder");
     public static final DeferredItem<BlockItem> CUTTER =
-            ITEMS.registerSimpleBlockItem("cutter", ModBlocks.CUTTER);
+            tieredProcessingItem("cutter");
     public static final DeferredItem<BlockItem> LATHE =
             tieredProcessingItem("lathe");
     public static final DeferredItem<BlockItem> STEEL_LATHE =
@@ -311,7 +341,7 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> TITANIUM_ROLLINGMILL =
             tieredProcessingItem("titanium_rollingmill");
     public static final DeferredItem<BlockItem> ROLLBENDER =
-            ITEMS.registerSimpleBlockItem("rollbender", ModBlocks.ROLLBENDER);
+            tieredProcessingItem("rollbender");
     public static final DeferredItem<BlockItem> WIREMILL =
             tieredProcessingItem("wiremill");
     public static final DeferredItem<BlockItem> STEEL_WIREMILL =
@@ -319,11 +349,11 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> TITANIUM_WIREMILL =
             tieredProcessingItem("titanium_wiremill");
     public static final DeferredItem<BlockItem> BENDER =
-            ITEMS.registerSimpleBlockItem("bender", ModBlocks.BENDER);
+            tieredProcessingItem("bender");
     public static final DeferredItem<BlockItem> ASSEMBLER =
-            ITEMS.registerSimpleBlockItem("assembler", ModBlocks.ASSEMBLER);
+            tieredProcessingItem("assembler");
     public static final DeferredItem<BlockItem> WELDER =
-            ITEMS.registerSimpleBlockItem("welder", ModBlocks.WELDER);
+            tieredProcessingItem("welder");
     public static final DeferredItem<BlockItem> PRESS =
             tieredProcessingItem("press");
     public static final DeferredItem<BlockItem> STEEL_PRESS =
@@ -338,7 +368,7 @@ public final class ModItems {
             STAINLESS_STEEL_ELECTROLYZER =
                     tieredProcessingItem("stainless_steel_electrolyzer");
     public static final DeferredItem<BlockItem> MIXER =
-            ITEMS.registerSimpleBlockItem("mixer", ModBlocks.MIXER);
+            tieredProcessingItem("mixer");
     public static final DeferredItem<BlockItem> DISTILLERY =
             tieredProcessingItem("distillery");
     public static final DeferredItem<BlockItem> INVAR_DISTILLERY =
@@ -346,7 +376,7 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> TITANIUM_DISTILLERY =
             tieredProcessingItem("titanium_distillery");
     public static final DeferredItem<BlockItem> AUTOCLAVE =
-            ITEMS.registerSimpleBlockItem("autoclave", ModBlocks.AUTOCLAVE);
+            tieredProcessingItem("autoclave");
     public static final DeferredItem<BlockItem> DRYING =
             tieredProcessingItem("drying");
     public static final DeferredItem<BlockItem> INVAR_DRYING =
@@ -354,9 +384,13 @@ public final class ModItems {
     public static final DeferredItem<BlockItem> TITANIUM_DRYING =
             tieredProcessingItem("titanium_drying");
     public static final DeferredItem<BlockItem> COMPRESSOR =
-            ITEMS.registerSimpleBlockItem("compressor", ModBlocks.COMPRESSOR);
+            tieredProcessingItem("compressor");
     public static final DeferredItem<BlockItem> GENERIFIER =
-            ITEMS.registerSimpleBlockItem("generifier", ModBlocks.GENERIFIER);
+            tieredProcessingItem("generifier");
+    public static final DeferredItem<BlockItem> COAGULATOR =
+            tieredProcessingItem("coagulator");
+    public static final DeferredItem<BlockItem> STEEL_ROASTER =
+            tieredProcessingItem("steel_roaster");
     public static final DeferredItem<BlockItem> FLUID_DEPOSIT_EXTRACTOR =
             ITEMS.registerSimpleBlockItem(
                     "fluid_deposit_extractor",
@@ -605,9 +639,9 @@ public final class ModItems {
                         "Duplicate tiered processing item " + variant.id());
             }
         }
-        if (items.size() != 33) {
+        if (items.size() != ModMachineVariants.ALL.size()) {
             throw new IllegalStateException(
-                    "Tiered processing item registration drifted from 33 rows");
+                    "Tiered processing item registration drifted from catalog rows");
         }
         return java.util.Collections.unmodifiableMap(items);
     }

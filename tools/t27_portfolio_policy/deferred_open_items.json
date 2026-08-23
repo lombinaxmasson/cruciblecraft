@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "status": "T27_OPEN_ITEM_POLICY",
-  "review": "T27-3. Canonical identities stay on the seven tables. This ledger owns cross-table open items and traces all 15 T26 known issues. crucible is coverage of multiblock_kinds, not a second owner. T28 closed O-36. T29 closed crucible. O-41 and anvil_bend stay post_1_0. O-15 stays closed. F003/F005 copy T26 RC contracts verbatim and do not block T27.",
+  "review": "T27-3. Canonical identities stay on the seven tables. This ledger owns cross-table open items and traces all 15 T26 known issues. crucible is coverage of multiblock_kinds, not a second owner. T28 closed O-36. T29 closed crucible. T33 closed CC-4.5-P4. O-41 and anvil_bend stay post_1_0. O-15 stays closed. F003/F005 copy T26 RC contracts verbatim and do not block T27.",
   "records": [
     {
       "id": "crucible",
@@ -75,6 +75,44 @@
         "load": {
           "status": "not_applicable",
           "evidence": "Closed localization item is not a T27 content gap."
+        }
+      }
+    },
+    {
+      "id": "CC-4.5-P4",
+      "kind": "closed_open_item",
+      "disposition": "closed",
+      "owner": "T33",
+      "cc_implementation": "cruciblecraft:rock",
+      "reason": "T33 closed CC-4.5-P4. SurfaceRockFeature places tag:c:rocks in newly generated chunks; surface scatter is worldgen-catalog declared; rock_pack closes in S0 reachability. Scope excludes stone-layer replacement, vein indicator rocks and per-material balance.",
+      "replacement_condition": "Not applicable: closed at T33 surface-scatter closure.",
+      "recheck_point": "T33 RC candidate surface-scatter recheck",
+      "dependencies": [
+        {
+          "kind": "canonical_id",
+          "id": "rockGt"
+        },
+        {
+          "kind": "runtime_capability",
+          "id": "tag:c:rocks"
+        }
+      ],
+      "source": {
+        "artifact": "tools/t26_known_issues.json",
+        "issue_id": "CC-4.5-P4"
+      },
+      "axes": {
+        "closure": {
+          "status": "closed",
+          "evidence": "T33 GameTest src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java, worldgen catalog worldgen_catalog/surface_scatter.json, and readiness tools/t33_readiness.json close survival rock_pack reachability without a publication or GA claim."
+        },
+        "fidelity": {
+          "status": "source_derived",
+          "evidence": "T33 derives the surface-scatter shape from GT6 OP.rockGt and WorldgenRocks; the CC rarity/contact policy remains explicit in src/main/java/com/masson/cruciblecraft/worldgen/SurfaceRockFeature.java."
+        },
+        "load": {
+          "status": "not_applicable",
+          "evidence": "T33 surface-scatter closure is worldgen/reachability, not v1 publication load."
         }
       }
     },

@@ -59,8 +59,9 @@ class T16MachineTierMatrixTest {
                 new HashMap<>();
         MachineTierCatalog.entries().forEach(
                 entry -> entries.put(entry.variantId(), entry));
-        assertEquals(33, entries.size());
-        assertEquals(33, ModMachineVariants.ALL.size());
+        assertTrue(entries.size() > 33);
+        assertTrue(ModMachineVariants.ALL.size() > 33);
+        assertEquals(15, ModMachineVariants.T16_SELECTED.size());
 
         JsonArray allRows = new JsonArray();
         expected.getAsJsonArray("preserved_pre_t16")
@@ -197,7 +198,9 @@ class T16MachineTierMatrixTest {
                 ModMachineVariants.SHREDDER.id());
         for (ResourceLocation kindId : selectedKinds) {
             List<MachineVariant> variants =
-                    ModMachineVariants.forKind(kindId);
+                    ModMachineVariants.T16_SELECTED.stream()
+                            .filter(variant -> variant.kind().id().equals(kindId))
+                            .toList();
             assertEquals(3, variants.size());
             variants.forEach(variant -> {
                 assertEquals(
@@ -255,7 +258,10 @@ class T16MachineTierMatrixTest {
 
         for (var selected : selectedKinds.entrySet()) {
             List<MachineVariant> variants =
-                    ModMachineVariants.forKind(selected.getKey());
+                    ModMachineVariants.T16_SELECTED.stream()
+                            .filter(variant -> variant.kind().id().equals(
+                                    selected.getKey()))
+                            .toList();
             assertEquals(3, variants.size(), selected.getKey().toString());
             for (int tierIndex = 0; tierIndex < variants.size(); tierIndex++) {
                 MachineVariant variant = variants.get(tierIndex);

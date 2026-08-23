@@ -21,29 +21,31 @@ class ProcessingMachineEnergyAuditTest {
     private static final Map<String, EnergyType> EXPECTED = Map.ofEntries(
             Map.entry("bronze_crusher", EnergyType.KINETIC_PUSH),
             Map.entry("sluice", EnergyType.KINETIC_ROTATION),
-            Map.entry("bath", EnergyType.KINETIC),
+            Map.entry("bath", EnergyType.TIME),
             Map.entry("centrifuge", EnergyType.KINETIC_ROTATION),
             Map.entry("shredder", EnergyType.KINETIC_ROTATION),
             Map.entry("sifter", EnergyType.KINETIC_PUSH),
             Map.entry("mortar", EnergyType.KINETIC),
             Map.entry("smelter", EnergyType.HEAT),
-            Map.entry("extruder", EnergyType.KINETIC),
-            Map.entry("cutter", EnergyType.KINETIC),
+            Map.entry("extruder", EnergyType.HEAT),
+            Map.entry("cutter", EnergyType.KINETIC_ROTATION),
             Map.entry("lathe", EnergyType.KINETIC_ROTATION),
             Map.entry("rollingmill", EnergyType.KINETIC_ROTATION),
-            Map.entry("rollbender", EnergyType.KINETIC),
+            Map.entry("rollbender", EnergyType.KINETIC_ROTATION),
             Map.entry("wiremill", EnergyType.KINETIC_ROTATION),
             Map.entry("bender", EnergyType.KINETIC),
             Map.entry("assembler", EnergyType.KINETIC),
             Map.entry("welder", EnergyType.KINETIC),
             Map.entry("press", EnergyType.KINETIC_PUSH),
             Map.entry("electrolyzer", EnergyType.ELECTRIC),
-            Map.entry("mixer", EnergyType.ELECTRIC),
+            Map.entry("mixer", EnergyType.KINETIC_ROTATION),
             Map.entry("distillery", EnergyType.HEAT),
-            Map.entry("autoclave", EnergyType.ELECTRIC),
+            Map.entry("autoclave", EnergyType.TIME),
             Map.entry("drying", EnergyType.HEAT),
-            Map.entry("compressor", EnergyType.ELECTRIC),
-            Map.entry("generifier", EnergyType.ELECTRIC));
+            Map.entry("compressor", EnergyType.KINETIC_PUSH),
+            Map.entry("generifier", EnergyType.TIME),
+            Map.entry("roaster", EnergyType.HEAT),
+            Map.entry("coagulator", EnergyType.TIME));
 
     @BeforeAll
     static void bootstrapMinecraft() {
@@ -53,19 +55,20 @@ class ProcessingMachineEnergyAuditTest {
     }
 
     @Test
-    void allTwentyFiveSpecsKeepTheirExplicitEnergyValues() {
+    void allConfiguredSpecsKeepTheirExplicitEnergyValues() {
         Map<String, EnergyType> actual = allSpecs().collect(
                 java.util.stream.Collectors.toUnmodifiableMap(
                         spec -> spec.id().getPath(),
                         spec -> spec.energy().type()));
-        assertEquals(25, actual.size());
+        assertEquals(EXPECTED.size(), actual.size());
         assertEquals(EXPECTED, actual);
-        assertEquals(EnergyType.KINETIC, actual.get("extruder"));
-        assertEquals(EnergyType.ELECTRIC, actual.get("compressor"));
+        assertEquals(EnergyType.HEAT, actual.get("extruder"));
+        assertEquals(EnergyType.KINETIC_PUSH, actual.get("compressor"));
+        assertEquals(EnergyType.TIME, actual.get("autoclave"));
     }
 
     @Test
-    void legacyKineticSetRemainsExactlyEightWithoutExpansion() {
+    void legacyKineticSetRemainsTheOpeningOnlyHosts() {
         Set<String> actual = allSpecs()
                 .filter(spec -> spec.energy().type() == EnergyType.KINETIC)
                 .map(spec -> spec.id().getPath())
@@ -73,12 +76,8 @@ class ProcessingMachineEnergyAuditTest {
         assertEquals(
                 Set.of(
                         "assembler",
-                        "bath",
                         "bender",
-                        "cutter",
-                        "extruder",
                         "mortar",
-                        "rollbender",
                         "welder"),
                 actual);
     }

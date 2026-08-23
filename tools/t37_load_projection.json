@@ -1,0 +1,295 @@
+{
+  "budget_evaluation": {
+    "hard_failures": [],
+    "metrics": {
+      "allocation_bytes": {
+        "actual": {
+          "max": 236336,
+          "min": 236168
+        },
+        "comparison_value": 236336,
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "status": "PASS"
+      },
+      "client_index_ms": {
+        "actual": {
+          "max": 1,
+          "min": 1
+        },
+        "comparison_value": 1,
+        "hard_ceiling": 3000,
+        "soft_budget": 1000,
+        "status": "PASS"
+      },
+      "client_reload_ms": {
+        "actual": {
+          "max": 1,
+          "min": 1
+        },
+        "comparison_value": 1,
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "status": "PASS"
+      },
+      "datapack_authored_entries": {
+        "actual": 50,
+        "comparison_value": 50,
+        "hard_ceiling": 6600,
+        "soft_budget": 6000,
+        "status": "PASS"
+      },
+      "eager_publication_rows": {
+        "actual": 14,
+        "comparison_value": 14,
+        "hard_ceiling": 21000,
+        "soft_budget": 18000,
+        "status": "PASS"
+      },
+      "lazy_cache_ceiling_rows": {
+        "actual": 8,
+        "comparison_value": 8,
+        "hard_ceiling": 4096,
+        "soft_budget": 1024,
+        "status": "PASS"
+      },
+      "lazy_logical_rows": {
+        "actual": 36,
+        "comparison_value": 36,
+        "hard_ceiling": 56000,
+        "soft_budget": 16000,
+        "status": "PASS"
+      },
+      "lookup_candidate_count": {
+        "actual": {
+          "max": 42,
+          "min": 42
+        },
+        "comparison_value": 42,
+        "hard_ceiling": 128,
+        "soft_budget": 64,
+        "status": "PASS"
+      },
+      "lookup_p95_ns": {
+        "actual": {
+          "max": 87368,
+          "min": 68362
+        },
+        "comparison_value": 87368,
+        "hard_ceiling": 2000000,
+        "soft_budget": 1000000,
+        "status": "PASS"
+      },
+      "retained_memory_bytes": {
+        "actual": {
+          "max": 5150,
+          "min": 5150
+        },
+        "comparison_value": 5150,
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "status": "PASS"
+      },
+      "server_index_ms": {
+        "actual": {
+          "max": 1,
+          "min": 1
+        },
+        "comparison_value": 1,
+        "hard_ceiling": 1000,
+        "soft_budget": 500,
+        "status": "PASS"
+      },
+      "server_reload_ms": {
+        "actual": {
+          "max": 1,
+          "min": 1
+        },
+        "comparison_value": 1,
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "status": "PASS"
+      },
+      "sync_bytes": {
+        "actual": 5150,
+        "comparison_value": 5150,
+        "hard_ceiling": 67108864,
+        "soft_budget": 16777216,
+        "status": "PASS"
+      }
+    },
+    "pending_measurements": [],
+    "soft_exceeded": [],
+    "status": "PASS"
+  },
+  "currentness": {
+    "budget_policy": "tools/t14_load_budget_policy.json",
+    "budget_policy_sha256": "d4e934d9753cd6d4bcac5867e9fb78b97d4191e1a5cb67042bb8886ee78d8e87",
+    "projection_schema": "tools/recipe_load_projection.schema.json",
+    "projection_schema_sha256": "51e97fc4a0cbffc000773fa1805d6223ea369d26ae46256381e344119e20c674",
+    "t13_canonical_rows": 95,
+    "t13_map_row_sha256": "e8a635d62d4c11b7995d64ec3c6cfe2a7038b24338bfb00920a614f442f9af99",
+    "t13_recipe_maps": "tools/t13_denominators/recipe_maps.json"
+  },
+  "delivery_phase": "T37",
+  "families": [
+    {
+      "authored_entries": 50,
+      "canonical_ids": [
+        "gt.recipe.assembler"
+      ],
+      "eager_publication_rows": 14,
+      "family": "t37/assembler-pilot",
+      "lazy_cache_ceiling_rows": 8,
+      "lazy_logical_rows": 36,
+      "logical_rows": 50,
+      "measurement_basis": {
+        "kind": "family_specific_measurement",
+        "measured_logical_rows": [
+          50
+        ],
+        "source": "T37 R4 1x=50 JUnit CompactRecipeFamilyT37MeasurementHarness. Production winner hybrid derived by tools/build_t37_recipe_load_benchmark.py (14 eager / 36 lazy / cache 8). Intervals are p50–p95 of the current hybrid candidate; ns timings convert with ceil-to-ms. Card-level cache 8 is not copied into per-family rows."
+      },
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 236336,
+          "min": 236168
+        },
+        "client_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "client_reload_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "lookup_candidate_count": {
+          "max": 42,
+          "min": 42
+        },
+        "lookup_p95_ns": {
+          "max": 87368,
+          "min": 68362
+        },
+        "retained_memory_bytes": {
+          "max": 5150,
+          "min": 5150
+        },
+        "server_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "server_reload_ms": {
+          "max": 1,
+          "min": 1
+        }
+      },
+      "publication_account": {
+        "domain": "gt_recipe_family",
+        "gt_authored_entries": 50,
+        "gt_logical_rows": 50,
+        "vanilla_datapack_entries": 0
+      },
+      "publication_domain": "gt_recipe_family",
+      "ratios": {
+        "authored_to_eager": {
+          "denominator": 50,
+          "formula": "eager_publication_rows / authored_entries",
+          "numerator": 14,
+          "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+          "value": 0.28
+        },
+        "authored_to_logical": {
+          "denominator": 50,
+          "formula": "logical_rows / authored_entries",
+          "numerator": 50,
+          "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+          "value": 1.0
+        }
+      },
+      "strategy": "hybrid",
+      "sync_bytes": 5150,
+      "t13_references": [
+        {
+          "canonical_id": "gt.recipe.assembler",
+          "classification": "in_scope",
+          "owner": "T15"
+        }
+      ],
+      "vanilla_datapack_entries": 0
+    }
+  ],
+  "ledger": {
+    "aggregation": {
+      "counts": "sum of explicit family counts",
+      "lookup": "maximum family interval bounds; one lookup is not additive",
+      "reload_index_memory": "sum of family interval bounds"
+    },
+    "counts": {
+      "datapack_authored_entries": 50,
+      "eager_publication_rows": 14,
+      "lazy_cache_ceiling_rows": 8,
+      "lazy_logical_rows": 36,
+      "logical_rows": 50,
+      "sync_bytes": 5150
+    },
+    "measurement_intervals": {
+      "allocation_bytes": {
+        "max": 236336,
+        "min": 236168
+      },
+      "client_index_ms": {
+        "max": 1,
+        "min": 1
+      },
+      "client_reload_ms": {
+        "max": 1,
+        "min": 1
+      },
+      "lookup_candidate_count": {
+        "max": 42,
+        "min": 42
+      },
+      "lookup_p95_ns": {
+        "max": 87368,
+        "min": 68362
+      },
+      "retained_memory_bytes": {
+        "max": 5150,
+        "min": 5150
+      },
+      "server_index_ms": {
+        "max": 1,
+        "min": 1
+      },
+      "server_reload_ms": {
+        "max": 1,
+        "min": 1
+      }
+    },
+    "publication_domains": {
+      "gt_authored_entries": 50,
+      "gt_logical_rows": 50,
+      "vanilla_datapack_entries": 0
+    },
+    "ratios": {
+      "authored_to_eager": {
+        "denominator": 50,
+        "formula": "eager_publication_rows / authored_entries",
+        "numerator": 14,
+        "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+        "value": 0.28
+      },
+      "authored_to_logical": {
+        "denominator": 50,
+        "formula": "logical_rows / authored_entries",
+        "numerator": 50,
+        "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+        "value": 1.0
+      }
+    }
+  },
+  "projection_id": "t37/assembler-pilot",
+  "schema_version": 2,
+  "status": "PASS"
+}

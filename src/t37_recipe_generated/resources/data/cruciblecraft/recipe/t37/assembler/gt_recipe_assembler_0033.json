@@ -1,0 +1,58 @@
+{
+  "family_id": "gt.recipe.assembler#0033",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 64,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        4,
+        0
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:jungle_planks"
+        },
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 4
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:crafting_table"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "f7ee70973898825851b3e6ddb885fc3584bc78d2c8550378d8c47c6e46d0f4ca"
+        ],
+        "selected_source_recipe": "gt.recipe.assembler#0033",
+        "source_kind": "DESIGN_POLICY"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t37/64c5ca47e7b5be7c"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:assembler",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

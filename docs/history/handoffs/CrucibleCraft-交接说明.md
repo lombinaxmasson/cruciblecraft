@@ -17,7 +17,7 @@
 | T20–T26 | `_READY`，阶段档案在仓库根目录 |
 | T27 | **已关闭**：portfolio freeze；opening **19087 / 16862 / 2225**；delta 0/0/0；拓扑 2 张（T28=O-36，T29=crucible），`started=false` |
 | T28 | **已关闭**：`--check-ready` 退出 0；报告 `READY`；`t28_readiness_acceptance.status = T28_READY`；O-36 replacement = 无被动转换 |
-| T29 | **下一张唯一 active T**。尚未写 Java / JSON / builder。入口：《[.plans/T29详细计划.md](.plans/T29详细计划.md)》 |
+| T29 | **下一张唯一 active T**。尚未写 Java / JSON / builder。入口：《[T29详细计划.md](../card-plans/closed/T29详细计划.md)》 |
 
 试玩包仍是 `cruciblecraft-0.1.0-beta.1.jar`。T28 细节：《[T28-工作日志.md](T28-工作日志.md)》·《[CrucibleCraft-阶段档案-T28.md](CrucibleCraft-阶段档案-T28.md)》。
 

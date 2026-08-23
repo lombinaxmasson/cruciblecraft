@@ -268,6 +268,24 @@ def build() -> dict[str, Any]:
     }
 
 
+def semantic_document(document: dict[str, Any]) -> dict[str, Any]:
+    result = dict(document)
+    result.pop("inputs", None)
+    return result
+
+
+def verify_metadata_rebase(
+    committed: dict[str, Any],
+    candidate: dict[str, Any],
+) -> list[str]:
+    errors: list[str] = []
+    if semantic_document(committed) != semantic_document(candidate):
+        errors.append(
+            "T21 source denominator metadata rebase changed semantic fields"
+        )
+    return errors
+
+
 def check(document: dict[str, Any] | None = None) -> list[str]:
     expected = stable(build() if document is None else document)
     if not OUTPUT.is_file():

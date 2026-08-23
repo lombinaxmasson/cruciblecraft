@@ -377,10 +377,11 @@ class OreResourceTest {
         assertEquals(30, t19RecipeSet.size());
         // 877 + wire cutter additions: tool pattern recipe + 2 T4 route rules.
         // T30 adds 121 hopper-family acquisition recipes (60 hopper, 60 queue,
-        // 1 steel dust funnel).
-        assertEquals(1_001, generatedRecipeSet.size() - t19RecipeSet.size());
+        // 1 steel dust funnel). T36 adds catalog-driven machine recipes plus
+        // five source-backed casings beyond the T15 six.
+        assertEquals(1_044, generatedRecipeSet.size() - t19RecipeSet.size());
         assertEquals(
-                1_001 + t19RecipeSet.size(),
+                1_044 + t19RecipeSet.size(),
                 generatedRecipeSet.size());
         assertEquals(48, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
                 "data/cruciblecraft/recipe")));

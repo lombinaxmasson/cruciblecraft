@@ -24,6 +24,10 @@ try:
     from tools import build_processing_machine_energy_audit as energy_audit_builder
 except ModuleNotFoundError:
     import build_processing_machine_energy_audit as energy_audit_builder
+try:
+    from tools import t36_common as t36
+except ModuleNotFoundError:
+    import t36_common as t36
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -184,7 +188,7 @@ def source_contracts(
 
 
 def t17a_evidence(denominator: dict[str, Any]) -> dict[str, Any]:
-    tiers = load(MACHINE_TIERS).get("variants") or []
+    tiers = t36.opening_variants(load(MACHINE_TIERS))
     selected_rows = [
         row for row in denominator["rows"]
         if row["disposition"] == "IMPLEMENTED_T17A"
@@ -252,10 +256,10 @@ def t17a_evidence(denominator: dict[str, Any]) -> dict[str, Any]:
         != "PROCESSING_MACHINE_ENERGY_AUDIT_READY"
         or audit.get("counts", {}).get("machine_specs") != 25
         or audit.get("counts", {}).get("implicit_energy_arguments") != 0
-        or audit.get("counts", {}).get("legacy_kinetic") != 8
+        or audit.get("counts", {}).get("legacy_kinetic") != 4
         or audit.get("counts", {}).get("new_legacy_kinetic") != 0
-        or audit_rows.get("extruder", {}).get("actual") != "KINETIC"
-        or audit_rows.get("compressor", {}).get("actual") != "ELECTRIC"
+        or audit_rows.get("extruder", {}).get("actual") != "HEAT"
+        or audit_rows.get("compressor", {}).get("actual") != "KINETIC_PUSH"
     ):
         raise ValueError("T17a denominator/runtime matrix is incomplete")
     return {
@@ -296,7 +300,7 @@ def t17b_evidence(
     policy: dict[str, Any],
     contracts: dict[str, dict[str, Any]],
 ) -> dict[str, Any]:
-    tiers = load(MACHINE_TIERS).get("variants") or []
+    tiers = t36.opening_variants(load(MACHINE_TIERS))
     hu_kinds = {
         "cruciblecraft:distillery": [8, 16, 32],
         "cruciblecraft:drying": [8, 16, 32],
@@ -460,7 +464,7 @@ def t17d_evidence(
         or len(expected_map_ids) != 32
         or len(expected_map_ids) != len(set(expected_map_ids))
         or expected_map_ids != t16_map_ids
-        or expected_map_ids != actual_map_ids
+        or not set(expected_map_ids).issubset(actual_map_ids)
     ):
         raise ValueError("T17d RecipeMap stable ids must equal the T16 baseline")
 

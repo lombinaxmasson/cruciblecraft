@@ -2,15 +2,17 @@
   "schema_version": 1,
   "status": "OPEN",
   "owner": "T32",
-  "policy": "These rows are recorded debt. They must not be marked passing, skipped, or inherited as READY. Recheck only when the listed trigger is true.",
+  "policy": "These rows are recorded debt. They must not be marked passing, skipped, or inherited as READY. An open debt in a profile outside a card's declared scope is not a bypass: it remains open and red for that profile while the card may close only its own passing profiles. Recheck only when the listed trigger is true.",
   "issues": [
     {
       "id": "T32-VD-001",
-      "summary": "T5 chemical readiness source hashes drifted against the committed ledger",
-      "owner": "future content/recipe card",
-      "trigger": "tools/build_t5_chemical_readiness.py inputs or t5_chemical_readiness.json change",
-      "evidence": "python tools/run_python_tests.py --suite fast (2026-08-21)",
-      "status": "open"
+      "summary": "T5 chemical readiness source hashes drifted against the committed ledger because an unrelated .gitignore hash is tracked",
+      "owner": "T35 recipe-debt preflight",
+      "trigger": "Open T35, or change a semantic T5 input, tools/build_t5_chemical_readiness.py, or t5_chemical_readiness.json after the repaired currentness contract is in place",
+      "evidence": "Closed 2026-08-22: full T5 readiness rebuild and downstream recipe-manifest rebase were semantic-equal except for declared source/currentness metadata; `python tools/build_t5_chemical_readiness.py --check --full-replay`, focused T5/T14/T21 tests, and `python tools/verify.py integration --profile recipes` all passed.",
+      "repair_rule": "Remove .gitignore from the T5 currentness contract. Permit a hash rebase only after a complete T5 rebuild proves that every field other than the explicitly declared source-hash metadata is identical. Then run strict recipes integration; only a passing result may close this row.",
+      "status": "closed",
+      "resolved_by": "T35 R1 removed .gitignore from the T5 semantic currentness contract and refreshed only protected downstream metadata receipts."
     },
     {
       "id": "T32-VD-002",

@@ -116,7 +116,7 @@ class T18ConverterAcquisitionTest(unittest.TestCase):
         self.assertEqual(1, len(currentness["concrete_recipes"]))
         self.assertEqual(2, len(currentness["producer_rules"]))
         self.assertGreaterEqual(len(currentness["tag_contracts"]), 3)
-        self.assertEqual(27, len(currentness["resources"]))
+        self.assertEqual(28, len(currentness["resources"]))
 
     def test_policy_mutations_fail_closed(self):
         original = builder.load(builder.POLICY)

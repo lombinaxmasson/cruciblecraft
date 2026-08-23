@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Build T30 Hopper-family ART_DERIVED provenance.
 
-Projects 121 block identities onto shared geometry parents and existing CC
-grayscale textures. Does not write per-material PNGs or 120 blockstates.
+Projects 121 block identities onto shared geometry parents and shared GT6
+hopper/queuehopper/dust_funnel colored textures. Does not write per-material
+PNGs or 120 blockstates.
 """
 from __future__ import annotations
 
@@ -28,7 +29,7 @@ CATALOG = (
     / "hopper_variants.json"
 )
 MODELS = ROOT / "src" / "main" / "resources" / "assets" / "cruciblecraft" / "models" / "block"
-TEXTURES = (
+BLOCK_TEXTURES = (
     ROOT
     / "src"
     / "main"
@@ -37,14 +38,28 @@ TEXTURES = (
     / "cruciblecraft"
     / "textures"
     / "block"
-    / "material"
 )
 OUTPUT = TOOLS / "t30_art_asset_provenance.json"
 BUILDER = Path(__file__).resolve()
 
-SHARED_TEXTURE = "cruciblecraft:block/material/block"
-OVERLAY_TEXTURE = "cruciblecraft:block/material/block_overlay"
 DUST_FUNNEL_ID = "cruciblecraft:steel_dust_funnel"
+
+HOPPER_TEXTURES = {
+    "bottom": "cruciblecraft:block/hopper/colored_bottom",
+    "top": "cruciblecraft:block/hopper/colored_top",
+    "side": "cruciblecraft:block/hopper/colored_side",
+}
+QUEUE_TEXTURES = {
+    "bottom": "cruciblecraft:block/queue_hopper/colored_bottom",
+    "top": "cruciblecraft:block/queue_hopper/colored_top",
+    "side": "cruciblecraft:block/queue_hopper/colored_side",
+}
+DUST_FUNNEL_TEXTURES = {
+    "bottom": "cruciblecraft:block/dust_funnel/colored_bottom",
+    "top": "cruciblecraft:block/dust_funnel/colored_top",
+    "sides": "cruciblecraft:block/dust_funnel/colored_sides",
+    "hole": "cruciblecraft:block/dust_funnel/colored_hole",
+}
 
 FAMILIES = (
     {
@@ -52,33 +67,55 @@ FAMILIES = (
         "source_model": "textures/gt6模型/MultiTileEntityHopper.json",
         "shared_parent": "cruciblecraft:block/hopper",
         "shared_side_parent": "cruciblecraft:block/hopper_side",
-        "shared_texture": SHARED_TEXTURE,
+        "shared_texture": HOPPER_TEXTURES["side"],
         "overlay_texture": None,
         "tintindex": 0,
         "model_files": ("hopper.json", "hopper_side.json"),
-        "requires_overlay": False,
+        "textures": HOPPER_TEXTURES,
+        "face_slots": ("#bottom", "#top", "#side"),
+        "requires_hole": False,
+        "pngs": (
+            "hopper/colored_bottom.png",
+            "hopper/colored_top.png",
+            "hopper/colored_side.png",
+        ),
     },
     {
         "family": "queue_hopper",
         "source_model": "textures/gt6模型/MultiTileEntityQueueHopper.json",
         "shared_parent": "cruciblecraft:block/queue_hopper",
         "shared_side_parent": "cruciblecraft:block/queue_hopper_side",
-        "shared_texture": SHARED_TEXTURE,
-        "overlay_texture": OVERLAY_TEXTURE,
+        "shared_texture": QUEUE_TEXTURES["side"],
+        "overlay_texture": None,
         "tintindex": 0,
         "model_files": ("queue_hopper.json", "queue_hopper_side.json"),
-        "requires_overlay": True,
+        "textures": QUEUE_TEXTURES,
+        "face_slots": ("#bottom", "#top", "#side"),
+        "requires_hole": False,
+        "pngs": (
+            "queue_hopper/colored_bottom.png",
+            "queue_hopper/colored_top.png",
+            "queue_hopper/colored_side.png",
+        ),
     },
     {
         "family": "dust_funnel",
         "source_model": "textures/gt6模型/MultiTileEntityDustFunnel.json",
         "shared_parent": "cruciblecraft:block/dust_funnel",
         "shared_side_parent": None,
-        "shared_texture": SHARED_TEXTURE,
-        "overlay_texture": OVERLAY_TEXTURE,
+        "shared_texture": DUST_FUNNEL_TEXTURES["sides"],
+        "overlay_texture": DUST_FUNNEL_TEXTURES["hole"],
         "tintindex": 0,
         "model_files": ("dust_funnel.json",),
-        "requires_overlay": True,
+        "textures": DUST_FUNNEL_TEXTURES,
+        "face_slots": ("#bottom", "#top", "#sides", "#hole"),
+        "requires_hole": True,
+        "pngs": (
+            "dust_funnel/colored_bottom.png",
+            "dust_funnel/colored_top.png",
+            "dust_funnel/colored_sides.png",
+            "dust_funnel/colored_hole.png",
+        ),
     },
 )
 
@@ -116,34 +153,29 @@ def _faces(model: dict[str, Any]) -> list[dict[str, Any]]:
     return faces
 
 
-def _validate_model(path: Path, *, requires_overlay: bool) -> None:
+def _validate_model(path: Path, family: dict[str, Any]) -> None:
     _require(path)
     model = json.loads(path.read_text(encoding="utf-8"))
     textures = model.get("textures") or {}
-    if textures.get("colored") != SHARED_TEXTURE:
-        raise ValueError(f"{common.relative(path)} colored texture drifted")
-    if textures.get("particle") not in ("#colored", SHARED_TEXTURE):
+    expected = family["textures"]
+    for key, value in expected.items():
+        if textures.get(key) != value:
+            raise ValueError(f"{common.relative(path)} {key} texture drifted")
+    particle = textures.get("particle")
+    if particle not in ("#side", "#sides"):
         raise ValueError(f"{common.relative(path)} particle texture is invalid")
     faces = _faces(model)
     if not faces:
         raise ValueError(f"{common.relative(path)} has no faces")
-    colored = [face for face in faces if face.get("texture") == "#colored"]
-    overlay = [face for face in faces if face.get("texture") == "#overlay"]
-    if not colored:
-        raise ValueError(f"{common.relative(path)} has no tintable faces")
-    if any(face.get("tintindex") != 0 for face in colored):
+    allowed = set(family["face_slots"])
+    if any(face.get("texture") not in allowed for face in faces):
+        raise ValueError(f"{common.relative(path)} uses a non-GT6 hopper face slot")
+    if any(face.get("tintindex") != 0 for face in faces):
         raise ValueError(f"{common.relative(path)} tintable faces must use tintindex 0")
-    if requires_overlay:
-        if textures.get("overlay") != OVERLAY_TEXTURE:
-            raise ValueError(f"{common.relative(path)} overlay texture drifted")
-        if not overlay:
-            raise ValueError(f"{common.relative(path)} is missing the untinted overlay")
-        if any("tintindex" in face for face in overlay):
-            raise ValueError(
-                f"{common.relative(path)} overlay faces must not be tinted"
-            )
-    elif overlay:
-        raise ValueError(f"{common.relative(path)} must not carry a queue overlay")
+    if family["requires_hole"] and not any(face.get("texture") == "#hole" for face in faces):
+        raise ValueError(f"{common.relative(path)} is missing the dust-funnel hole sheet")
+    if not family["requires_hole"] and any(face.get("texture") == "#hole" for face in faces):
+        raise ValueError(f"{common.relative(path)} must not carry a dust-funnel hole")
 
 
 def _projected_members(rows: list[dict[str, Any]]) -> list[str]:
@@ -168,15 +200,12 @@ def _projected_members(rows: list[dict[str, Any]]) -> list[str]:
 
 
 def build() -> dict[str, Any]:
-    _require(TEXTURES / "block.png")
-    _require(TEXTURES / "block_overlay.png")
     rows = _catalog_rows()
     for family in FAMILIES:
+        for png in family["pngs"]:
+            _require(BLOCK_TEXTURES / png)
         for name in family["model_files"]:
-            _validate_model(
-                MODELS / name,
-                requires_overlay=bool(family["requires_overlay"]),
-            )
+            _validate_model(MODELS / name, family)
     members = _projected_members(rows)
     per_material = list(
         (ROOT / "src" / "main" / "resources" / "assets" / "cruciblecraft" / "textures")
@@ -190,10 +219,11 @@ def build() -> dict[str, Any]:
         "classification": "ART_DERIVED",
         "source_revision": common.SOURCE_REVISION,
         "derivation_rule": (
-            "one shared geometry parent per visual family; tintable grayscale "
-            "from existing CC block.png; tintindex 0; Queue/Dust Funnel overlay "
-            "uses block_overlay without tint; Dust Funnel keeps a fixed steel "
-            "tint at runtime; no <material>_hopper.png"
+            "one shared geometry parent per visual family; tintable GT6 hopper/"
+            "queuehopper/dust_funnel colored top/side/bottom (dust funnel also "
+            "composites the hole sheet); tintindex 0; GT6 overlay icons are "
+            "empty and omitted; Dust Funnel keeps a fixed steel tint at "
+            "runtime; no <material>_hopper.png"
         ),
         "families": [
             {

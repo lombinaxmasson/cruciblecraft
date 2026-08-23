@@ -16,6 +16,10 @@ except ModuleNotFoundError:
     import build_t16_machine_denominator as denominator_builder
     import build_t16_machine_acquisition as acquisition_builder
     import recipe_load_projection
+try:
+    from tools import t36_common as t36
+except ModuleNotFoundError:
+    import t36_common as t36
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -166,8 +170,9 @@ def source_contracts(
 
 def t16a_evidence(denominator: dict[str, Any]) -> dict[str, Any]:
     machine_tiers = load(MACHINE_TIERS)
+    opening = t36.opening_variants(machine_tiers)
     variants = [
-        row for row in machine_tiers.get("variants") or []
+        row for row in opening
         if row.get("kind") not in POST_T16_CATALOG_KINDS
     ]
     selected = [
@@ -207,8 +212,9 @@ def t16a_evidence(denominator: dict[str, Any]) -> dict[str, Any]:
 
 def t16b_evidence(denominator: dict[str, Any]) -> dict[str, Any]:
     machine_tiers = load(MACHINE_TIERS)
+    opening = t36.opening_variants(machine_tiers)
     variants = [
-        row for row in machine_tiers.get("variants") or []
+        row for row in opening
         if row.get("kind") not in POST_T16_CATALOG_KINDS
     ]
     rows = denominator["rows"]
@@ -313,7 +319,7 @@ def t16d_evidence(
         expected_map_ids != sorted(expected_map_ids)
         or len(expected_map_ids) != 32
         or len(expected_map_ids) != len(set(expected_map_ids))
-        or expected_map_ids != actual_map_ids
+        or not set(expected_map_ids).issubset(actual_map_ids)
     ):
         raise ValueError("T16d RecipeMap stable id baseline drifted")
 

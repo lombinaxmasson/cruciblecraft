@@ -66,8 +66,21 @@ public final class CraftingCatalystPolicy {
                 && itemId.getPath().length() > TOOL_PATTERN_PREFIX.length();
     }
 
+    public static boolean isProgrammingCircuit(ItemStack stack) {
+        return !stack.isEmpty()
+                && isProgrammingCircuit(BuiltInRegistries.ITEM.getKey(stack.getItem()));
+    }
+
+    public static boolean isProgrammingCircuit(ResourceLocation itemId) {
+        return itemId != null
+                && CrucibleCraft.MODID.equals(itemId.getNamespace())
+                && "programmed_circuit".equals(itemId.getPath());
+    }
+
     public static boolean isCatalyst(ItemStack stack) {
-        return isWearCatalyst(stack) || isPreservedPattern(stack);
+        return isWearCatalyst(stack)
+                || isPreservedPattern(stack)
+                || isProgrammingCircuit(stack);
     }
 
     public static boolean acceptsMaterialSlot(ItemStack stack) {
@@ -91,7 +104,8 @@ public final class CraftingCatalystPolicy {
             case WEAR -> java.util.Arrays.stream(candidates)
                     .allMatch(CraftingCatalystPolicy::isWearCatalyst);
             case PRESERVE -> java.util.Arrays.stream(candidates)
-                    .allMatch(CraftingCatalystPolicy::isPreservedPattern);
+                    .allMatch(stack -> isPreservedPattern(stack)
+                            || isProgrammingCircuit(stack));
         };
     }
 }

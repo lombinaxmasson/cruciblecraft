@@ -46,8 +46,14 @@ class T15LargeCentrifugeProfileTest {
         // T15 originally closed with:
         // assertEquals(9, ModMachineVariants.ALL.size())
         // T16 and T17 extend that catalog without changing this profile.
-        assertEquals(33, MachineTierCatalog.entries().size());
-        assertEquals(33, ModMachineVariants.ALL.size());
+        assertTrue(MachineTierCatalog.entries().size() > 33);
+        assertTrue(ModMachineVariants.ALL.size() > 33);
+        assertEquals(
+                33,
+                MachineTierCatalog.entries().stream()
+                        .filter(entry ->
+                                ModMachineVariants.isOpening(entry.variantId()))
+                        .count());
         Set<String> t17Kinds = Set.of(
                 "cruciblecraft:distillery",
                 "cruciblecraft:drying",
@@ -55,8 +61,10 @@ class T15LargeCentrifugeProfileTest {
         assertEquals(
                 24,
                 MachineTierCatalog.entries().stream()
-                        .filter(entry -> !t17Kinds.contains(
-                                entry.kindId().toString()))
+                        .filter(entry ->
+                                ModMachineVariants.isOpening(entry.variantId())
+                                        && !t17Kinds.contains(
+                                                entry.kindId().toString()))
                         .count());
         assertEquals(2, MachineTierCatalog.controllerTierBands().size());
 

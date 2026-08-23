@@ -478,6 +478,44 @@ def build(
     )
 
 
+METADATA_KEYS = ("inputs", "proof", "output_hashes")
+READINESS_INPUT = "tools/t5_chemical_readiness.json"
+
+
+def semantic_manifest(document: dict[str, Any]) -> dict[str, Any]:
+    result = dict(document)
+    for key in METADATA_KEYS:
+        result.pop(key, None)
+    return result
+
+
+def verify_metadata_rebase(
+    committed: dict[str, Any],
+    candidate: dict[str, Any],
+) -> list[str]:
+    errors: list[str] = []
+    if semantic_manifest(committed) != semantic_manifest(candidate):
+        errors.append("T5 recipe metadata rebase changed semantic fields")
+    committed_inputs = committed.get("inputs") or {}
+    candidate_inputs = candidate.get("inputs") or {}
+    if set(committed_inputs) != set(candidate_inputs):
+        errors.append("T5 recipe inputs keys drifted during metadata rebase")
+    for key, value in committed_inputs.items():
+        if key == READINESS_INPUT:
+            continue
+        if candidate_inputs.get(key) != value:
+            errors.append(f"T5 recipe input hash drifted: {key}")
+    if (committed.get("proof") or {}) != (candidate.get("proof") or {}):
+        errors.append("T5 recipe proof drifted during metadata rebase")
+    if (committed.get("output_hashes") or {}) != (
+        candidate.get("output_hashes") or {}
+    ):
+        errors.append(
+            "T5 recipe output_hashes drifted during metadata rebase"
+        )
+    return errors
+
+
 def check() -> list[str]:
     planned: dict[Path, bytes] = {}
     build(write=False, planned_files=planned)

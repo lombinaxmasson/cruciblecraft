@@ -1,21 +1,21 @@
 {
+  "credit": "GT6 MultiTileEntityLargeTurbine empty-state ISBRH via tools/gt6_isbrh_to_json.py",
   "parent": "block/block",
   "textures": {
     "texture": "gregtech:blocks/materialicons/CERAMIC",
-    "molten": "gregtech:blocks/fluids/molten",
     "particle": "#texture"
   },
   "elements": [
     {
       "from": [
-        -0.016,
-        -15.984,
-        -15.984
+        0.0,
+        0.0,
+        0.0
       ],
       "to": [
-        16.016,
-        31.984,
-        31.984
+        16.0,
+        16.0,
+        16.0
       ],
       "faces": {
         "down": {
@@ -34,6 +34,23 @@
           "texture": "#texture"
         },
         "east": {
+          "texture": "#texture"
+        }
+      }
+    },
+    {
+      "from": [
+        -15.984,
+        -15.984,
+        -0.016
+      ],
+      "to": [
+        31.984,
+        31.984,
+        16.016
+      ],
+      "faces": {
+        "south": {
           "texture": "#texture"
         }
       }

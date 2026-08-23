@@ -87,23 +87,27 @@
   },
   "currentness": {
     "owned_inputs": {
-      "tools/build_t27_portfolio.py": "af2635234c6815ea6598982a61e096a01dfc415f9ba9e436dd7acad8dd966387",
+      "tools/build_t27_portfolio.py": "4aec36b9c7f0792ee15298d2e9a988947a29b7b2277652da36ec8abe3407de2b",
       "tools/phase5_portfolio_contract.json": "ca9be41df6cb391c4076ab0acbf35950dca868b5569fb7ce03388ef0cfab2cc7",
       "tools/t27_opening_snapshot.json": "91cdbe33de4c56781e38dba507c90179e3ed7b7ea3342b8d8a15336a3fa5c9e3",
-      "tools/t27_portfolio/cover_kinds.json": "c739d43370b6623e1bfc792f9651a981cb0f0ae8a15bdbba41ae7a93cfd08242",
-      "tools/t27_portfolio/deferred_open_items.json": "b4ff655f020089c13c694dc7e1c98d3c52850c16fee6dba67e273b6f4a975272",
-      "tools/t27_portfolio/energy_identities.json": "b9a404f29206c818866a043bb7b66a7ab106d3a0b3366b9f3030cee850c7af28",
-      "tools/t27_portfolio/itemgenerator_domains.json": "52df0504e75b239f937857080650d26b6d677423f3b9357f5bc010911db0d3c1",
-      "tools/t27_portfolio/machine_kinds.json": "a04b109efef3235cac738f1692824fbcd42d3fa97ede1b914751102603f93ec2",
-      "tools/t27_portfolio/multiblock_kinds.json": "fff2a8db21eefd16f2d4fa5b03a61ef5c63bba0d22c47f0df403294d25e4db74",
-      "tools/t27_portfolio/prefixes.json": "79f5f76e6de65fa386760c26ae71f29ea963f735ed4af1c99127d357bb762dd2",
-      "tools/t27_portfolio/recipe_maps.json": "2f9a57ef10278514ff5a21d34082011d724504781c222017339b466adcb20d1c",
-      "tools/t27_portfolio/tracks.json": "8563818b40a162c174e50412402c8c754f7520bfc1645c905625068ec1cce915"
+      "tools/t27_portfolio/cover_kinds.json": "82533621b8f3db4fc642d6b2f1355135f347485064c8a4f072c4ea39bb333bf6",
+      "tools/t27_portfolio/deferred_open_items.json": "2b63f52aa1ac3602f316dd570dcf27eb547d9e114101809430b5f995d8b5c2b7",
+      "tools/t27_portfolio/energy_identities.json": "a3ba43e2eebf9ee1f1068c5eab1c3e730675415557b1213a153cff96de61a1eb",
+      "tools/t27_portfolio/itemgenerator_domains.json": "f6e8c7d29d483c07cf23e598bdfe1b6a46dae4132266ad0253acc21f3ca9fa8e",
+      "tools/t27_portfolio/machine_kinds.json": "23908ebdfff78b3a5cc0d8b8f93b38deabbfb8b6d32a6e305ba33cbba00aea3e",
+      "tools/t27_portfolio/multiblock_kinds.json": "528b687a9c30993bf25b6796858f35caf5f5be3f29f031f329ec95cf9901d926",
+      "tools/t27_portfolio/prefixes.json": "3881251d82bbad747e98b8980c93f171f384630da54928a7f328c19d66997534",
+      "tools/t27_portfolio/recipe_maps.json": "e5f68b08defec438d76e25e4a31a7e19fc881b3b0180eeafbad7df352ec51b99",
+      "tools/t27_portfolio/tracks.json": "3083ca3b83febbda03fcfb367e9c9b64b815fa6a78cd36e7694185578db3ad7f"
     }
   },
   "dependency_graph": {
-    "edge_count": 8,
+    "edge_count": 9,
     "edges": [
+      {
+        "from": "deferred_open_items/CC-4.5-P4",
+        "to": "prefixes/rockGt"
+      },
       {
         "from": "deferred_open_items/crucible",
         "to": "deferred_open_items/O-36"
@@ -190,7 +194,6 @@
         "deferred_open_items/CC-4.5-P1",
         "deferred_open_items/CC-4.5-P2",
         "deferred_open_items/CC-4.5-P3",
-        "deferred_open_items/CC-4.5-P4",
         "deferred_open_items/CC-4.5-P5",
         "deferred_open_items/CC-4.5-P6",
         "deferred_open_items/CC-4.5-P7",
@@ -920,6 +923,7 @@
         "recipe_maps/unnamed"
       ],
       [
+        "deferred_open_items/CC-4.5-P4",
         "itemgenerator_domains/ITEMGENERATOR.INGOTS_HOT",
         "multiblock_kinds/crucible",
         "multiblock_kinds/cryo_distillation_tower",
@@ -17049,9 +17053,9 @@
     },
     {
       "canonical_id": "CC-4.5-P4",
-      "disposition": "post_beta_polish",
-      "kind": "known_issue",
-      "owner": "4.5",
+      "disposition": "closed",
+      "kind": "closed_open_item",
+      "owner": "T33",
       "source_artifact": "tools/t27_portfolio/deferred_open_items.json",
       "table": "deferred_open_items"
     },

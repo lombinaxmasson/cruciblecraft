@@ -15,13 +15,14 @@ import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
 
 import com.google.gson.JsonParser;
+import com.masson.cruciblecraft.registry.ModMachineVariants;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
 
 class ProcessingMachineResourceTest {
     private static final Path GENERATED = Path.of("src/generated/resources");
     private static final Path MAIN = Path.of("src/main/resources");
-    private static final List<String> MACHINES = ModProcessingMachines.CONFIGURED_MACHINES
-            .stream().map(spec -> spec.id().getPath()).toList();
+    private static final List<String> MACHINES = ModMachineVariants.ALL
+            .stream().map(variant -> variant.id().getPath()).toList();
 
     @Test
     void configuredMachinesHaveLootAndMiningTags() throws Exception {
@@ -122,6 +123,8 @@ class ProcessingMachineResourceTest {
                 "item.cruciblecraft.material_screwdriver",
                 "item.cruciblecraft.material_wrench",
                 "item.cruciblecraft.portable_fluid_tank",
+                "block.cruciblecraft.anvil",
+                "block.cruciblecraft.crucible",
                 "block.cruciblecraft.centrifuge",
                 "block.cruciblecraft.sifter",
                 "block.cruciblecraft.extruder",
@@ -138,9 +141,9 @@ class ProcessingMachineResourceTest {
         long missingMaterialNames = missing.stream()
                 .filter(key -> key.startsWith("material.cruciblecraft."))
                 .count();
-        assertEquals(3_316, english.size(), "current generated en_us key count");
-        assertEquals(946L, translated, "declared Chinese translation coverage");
-        assertEquals(2_370, missing.size(), "visible zh_cn localization debt");
+        assertEquals(3_364, english.size(), "current generated en_us key count");
+        assertEquals(1_004L, translated, "declared Chinese translation coverage");
+        assertEquals(2_360, missing.size(), "visible zh_cn localization debt");
         assertEquals(1_566L, missingMaterialNames,
                 "missing generated material-name translations");
         assertEquals(chinese.size(), translated,

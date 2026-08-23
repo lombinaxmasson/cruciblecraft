@@ -24,6 +24,24 @@ except ModuleNotFoundError:
 ROOT = Path(__file__).resolve().parents[1]
 BUILD = ROOT / "build" / "verification"
 BUILDER_POLICY = ROOT / "tools" / "verification_builder_policy.json"
+VERIFICATION_PROFILES = ROOT / "tools" / "verification_profiles.json"
+
+
+def profile_declared_builder_names(
+    path: Path = VERIFICATION_PROFILES,
+) -> frozenset[str]:
+    document = json.loads(path.read_text(encoding="utf-8"))
+    if document.get("schema_version") != 1:
+        raise ValueError("unsupported verification profile schema")
+    owned: set[str] = set()
+    for profile_name, profile in document["profiles"].items():
+        for name in profile["builders"]:
+            if name in owned:
+                raise ValueError(
+                    f"builder {name!r} is declared by multiple profiles"
+                )
+            owned.add(name)
+    return frozenset(owned)
 
 
 def load_builder_policy(path: Path = BUILDER_POLICY) -> dict[str, Any]:
@@ -36,12 +54,23 @@ def load_builder_policy(path: Path = BUILDER_POLICY) -> dict[str, Any]:
     builders = document.get("builders") or []
     names = [row.get("name") for row in builders]
     scripts = [row.get("script") for row in builders]
+    expected_names = profile_declared_builder_names()
+    policy_names = {
+        name for name in names if isinstance(name, str)
+    }
     if (
-        len(builders) != 110
+        not builders
         or len(names) != len(set(names))
         or len(scripts) != len(set(scripts))
+        or policy_names != expected_names
     ):
-        raise ValueError("verification builder policy must contain 110 unique builders")
+        missing = sorted(expected_names - policy_names)
+        extra = sorted(policy_names - expected_names)
+        raise ValueError(
+            "verification builder policy must declare exactly the builders "
+            "registered in verification profiles; "
+            f"missing={missing} extra={extra}"
+        )
     for row in builders:
         if (
             not isinstance(row.get("name"), str)

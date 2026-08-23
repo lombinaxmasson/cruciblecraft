@@ -27,10 +27,24 @@ MAP_ROADMAP = TOOLS / "gt6_map_roadmap.json"
 TEMPLATE_INDEX = TOOLS / "gt6_recipe_templates_index.json"
 TEMPLATE_REPORT = TOOLS / "gt6_recipe_templates_report.json"
 POLICY = TOOLS / "t5_chemical_policy.json"
-GITIGNORE = ROOT / ".gitignore"
 DUMP_INDEX = ROOT / "gt6_dump/gt6_recipe_dump/index.json"
 T13_RECIPE_MAPS = TOOLS / "t13_denominators/recipe_maps.json"
 OUTPUT = TOOLS / "t5_chemical_readiness.json"
+
+SOURCE_HASH_KEYS = (
+    "builder",
+    "gt6_recipe_dump_index",
+    "gt6_map_roadmap",
+    "gt6_ore_chain_closure",
+    "gt6_oredict_fluids_normalized",
+    "gt6_oredict_materials_normalized",
+    "gt6_recipe_templates_index",
+    "gt6_recipe_templates_report",
+    "material_catalog",
+    "material_index",
+    "material_registration_gate",
+    "policy",
+)
 
 
 def load(path: Path) -> Any:
@@ -48,6 +62,60 @@ def stable_json(value: Any) -> str:
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def source_hashes(
+    *,
+    dump_index_sha256: str | None = None,
+) -> dict[str, str]:
+    return {
+        "builder": sha256(Path(__file__).resolve()),
+        "gt6_recipe_dump_index": (
+            dump_index_sha256
+            if dump_index_sha256 is not None
+            else sha256(DUMP_INDEX)
+        ),
+        "gt6_map_roadmap": sha256(MAP_ROADMAP),
+        "gt6_ore_chain_closure": sha256(ORE_CLOSURE),
+        "gt6_oredict_fluids_normalized": sha256(NORMALIZED_FLUIDS),
+        "gt6_oredict_materials_normalized": sha256(NORMALIZED_MATERIALS),
+        "gt6_recipe_templates_index": sha256(TEMPLATE_INDEX),
+        "gt6_recipe_templates_report": sha256(TEMPLATE_REPORT),
+        "material_catalog": directory_sha256(MATERIAL_ROOT),
+        "material_index": sha256(MATERIAL_INDEX),
+        "material_registration_gate": sha256(REGISTRATION_GATE),
+        "policy": sha256(POLICY),
+    }
+
+
+def semantic_document(document: dict[str, Any]) -> dict[str, Any]:
+    result = dict(document)
+    result.pop("source_hashes", None)
+    return result
+
+
+def verify_metadata_rebase(
+    committed: dict[str, Any],
+    candidate: dict[str, Any],
+) -> list[str]:
+    errors: list[str] = []
+    if semantic_document(committed) != semantic_document(candidate):
+        errors.append("T5 metadata rebase changed semantic fields")
+    committed_hashes = committed.get("source_hashes") or {}
+    candidate_hashes = candidate.get("source_hashes") or {}
+    if "gitignore" in candidate_hashes:
+        errors.append("T5 source_hashes still tracks .gitignore")
+    if set(candidate_hashes) != set(SOURCE_HASH_KEYS):
+        errors.append("T5 source_hashes keys drifted from contract")
+    allowed_hash_changes = {"builder"}
+    for key in SOURCE_HASH_KEYS:
+        if key in allowed_hash_changes:
+            continue
+        if committed_hashes.get(key) != candidate_hashes.get(key):
+            errors.append(
+                f"T5 source_hashes.{key} changed during metadata rebase"
+            )
+    return errors
 
 
 def directory_sha256(root: Path) -> str:
@@ -889,23 +957,7 @@ def build() -> dict[str, Any]:
         "status": "SOURCE_REPLAY_VERIFIED",
         "delivery_boundary": policy["delivery_boundary"],
         "gt6_source": policy["gt6_source"],
-        "source_hashes": {
-            "builder": sha256(Path(__file__).resolve()),
-            "gitignore": sha256(GITIGNORE),
-            "gt6_recipe_dump_index": sha256(DUMP_INDEX),
-            "gt6_map_roadmap": sha256(MAP_ROADMAP),
-            "gt6_ore_chain_closure": sha256(ORE_CLOSURE),
-            "gt6_oredict_fluids_normalized": sha256(NORMALIZED_FLUIDS),
-            "gt6_oredict_materials_normalized": sha256(
-                NORMALIZED_MATERIALS
-            ),
-            "gt6_recipe_templates_index": sha256(TEMPLATE_INDEX),
-            "gt6_recipe_templates_report": sha256(TEMPLATE_REPORT),
-            "material_catalog": directory_sha256(MATERIAL_ROOT),
-            "material_index": sha256(MATERIAL_INDEX),
-            "material_registration_gate": sha256(REGISTRATION_GATE),
-            "policy": sha256(POLICY),
-        },
+        "source_hashes": source_hashes(),
         "loader_semantics": policy["loader_semantics"],
         "cruciblecraft_gate": policy["cruciblecraft_gate"],
         "counts": {
@@ -962,23 +1014,9 @@ def reference_only_check() -> list[str]:
             errors.append("T5 readiness artifact is not canonical JSON")
         t13 = load(T13_RECIPE_MAPS)
         receipt = t13["full_replay_receipt"]
-        expected_hashes = {
-            "builder": sha256(Path(__file__).resolve()),
-            "gitignore": sha256(GITIGNORE),
-            "gt6_recipe_dump_index": receipt["dump_index_sha256"],
-            "gt6_map_roadmap": sha256(MAP_ROADMAP),
-            "gt6_ore_chain_closure": sha256(ORE_CLOSURE),
-            "gt6_oredict_fluids_normalized": sha256(NORMALIZED_FLUIDS),
-            "gt6_oredict_materials_normalized": sha256(
-                NORMALIZED_MATERIALS
-            ),
-            "gt6_recipe_templates_index": sha256(TEMPLATE_INDEX),
-            "gt6_recipe_templates_report": sha256(TEMPLATE_REPORT),
-            "material_catalog": directory_sha256(MATERIAL_ROOT),
-            "material_index": sha256(MATERIAL_INDEX),
-            "material_registration_gate": sha256(REGISTRATION_GATE),
-            "policy": sha256(POLICY),
-        }
+        expected_hashes = source_hashes(
+            dump_index_sha256=receipt["dump_index_sha256"],
+        )
         if document.get("source_hashes") != expected_hashes:
             errors.append("T5 readiness source hashes drifted")
         map_hashes = {

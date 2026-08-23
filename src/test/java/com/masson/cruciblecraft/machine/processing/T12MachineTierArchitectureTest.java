@@ -36,11 +36,13 @@ class T12MachineTierArchitectureTest {
 
     @Test
     void bundledCatalogDeclaresEverySelectedKindAcrossThreeTiers() {
-        assertEquals(33, ModMachineVariants.ALL.size());
-        assertEquals(11, ModMachineVariants.KINDS.size());
-        for (var kind : ModMachineVariants.KINDS) {
+        assertTrue(ModMachineVariants.ALL.size() > 33);
+        assertEquals(27, ModMachineVariants.KINDS.size());
+        for (var kind : ModMachineVariants.T16_SELECTED_KINDS) {
             List<MachineVariant> variants =
-                    ModMachineVariants.forKind(kind.id());
+                    ModMachineVariants.T16_SELECTED.stream()
+                            .filter(variant -> variant.kind().id().equals(kind.id()))
+                            .toList();
             assertEquals(3, variants.size());
             variants.forEach(variant -> {
                 assertSame(kind.behavior().items(),
@@ -53,6 +55,17 @@ class T12MachineTierArchitectureTest {
                         variant.runtimeSpec().sidedIo());
                 assertSame(kind.behavior().ui(),
                         variant.runtimeSpec().ui());
+            });
+        }
+        for (var kind : ModMachineVariants.KINDS) {
+            List<MachineVariant> variants =
+                    ModMachineVariants.forKind(kind.id());
+            assertFalse(variants.isEmpty(), kind.id().toString());
+            variants.forEach(variant -> {
+                assertSame(kind.behavior().items(),
+                        variant.runtimeSpec().items());
+                assertSame(kind.behavior().fluids(),
+                        variant.runtimeSpec().fluids());
             });
         }
         assertEquals(

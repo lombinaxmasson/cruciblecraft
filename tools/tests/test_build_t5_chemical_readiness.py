@@ -1,3 +1,4 @@
+import copy
 import importlib.util
 import json
 import sys
@@ -312,26 +313,32 @@ class T5ChemicalReadinessTest(unittest.TestCase):
         self.assertEqual(set(coverage), set(replay["required_maps"]))
         self.assertEqual([], self.document["blockers"])
 
+    def test_rebuild_preserves_semantic_fields(self):
+        candidate = MODULE.build()
+        self.assertEqual(
+            MODULE.semantic_document(self.document),
+            MODULE.semantic_document(candidate),
+        )
+
+    def test_metadata_rebase_guard_accepts_gitignore_removal(self):
+        committed = copy.deepcopy(self.document)
+        candidate = MODULE.build()
+        pre_repair = copy.deepcopy(committed)
+        pre_repair["source_hashes"]["gitignore"] = (
+            "5f1239bc45c3fdce7db0ae81720a60e71733d9d27b5258fe843eb32b49c97578"
+        )
+        pre_repair["source_hashes"]["builder"] = (
+            "5859d3d78c6185f6657cb46e3169d7f8b9d8368eb9347b2266504b37ce2424bd"
+        )
+        self.assertEqual(
+            [],
+            MODULE.verify_metadata_rebase(pre_repair, candidate),
+        )
+
     def test_input_hashes_are_locked(self):
         source_hashes = self.document["source_hashes"]
-        self.assertEqual(
-            {
-                "builder",
-                "gitignore",
-                "gt6_map_roadmap",
-                "gt6_ore_chain_closure",
-                "gt6_oredict_fluids_normalized",
-                "gt6_oredict_materials_normalized",
-                "gt6_recipe_dump_index",
-                "gt6_recipe_templates_index",
-                "gt6_recipe_templates_report",
-                "material_catalog",
-                "material_index",
-                "material_registration_gate",
-                "policy",
-            },
-            set(source_hashes),
-        )
+        self.assertEqual(set(MODULE.SOURCE_HASH_KEYS), set(source_hashes))
+        self.assertNotIn("gitignore", source_hashes)
         self.assertTrue(all(
             len(value) == 64
             and set(value) <= set("0123456789abcdef")

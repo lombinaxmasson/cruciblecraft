@@ -163,25 +163,25 @@
       "required_tokens": [
         "test_all_25_specs_have_explicit_unchanged_energy_arguments",
         "test_default_energy_overloads_are_forbidden",
-        "test_exact_eight_legacy_kinetic_hosts_have_fixed_or_deferred_ledgers",
-        "test_compressor_is_explicit_electric_cross_owner_debt"
+        "test_exact_four_legacy_kinetic_hosts_have_fixed_or_deferred_ledgers",
+        "test_compressor_is_explicit_ku_cross_owner_debt"
       ]
     },
     "energy_audit_junit": {
       "stage": "T17a",
       "path": "src/test/java/com/masson/cruciblecraft/registry/ProcessingMachineEnergyAuditTest.java",
       "required_tokens": [
-        "allTwentyFiveSpecsKeepTheirExplicitEnergyValues",
-        "legacyKineticSetRemainsExactlyEightWithoutExpansion",
+        "allConfiguredSpecsKeepTheirExplicitEnergyValues",
+        "legacyKineticSetRemainsTheOpeningOnlyHosts",
         "EnergyType.KINETIC",
-        "EnergyType.ELECTRIC"
+        "EnergyType.TIME"
       ]
     },
     "machine_tier_catalog": {
       "stage": "T17a",
       "path": "src/main/resources/data/cruciblecraft/machine_tiers.json",
       "required_tokens": [
-        "\"schemaVersion\": 2",
+        "\"schemaVersion\": 3",
         "\"tierBand\": \"cruciblecraft:heat_tier_2\"",
         "\"cruciblecraft:invar_distillery\"",
         "\"cruciblecraft:titanium_drying\"",

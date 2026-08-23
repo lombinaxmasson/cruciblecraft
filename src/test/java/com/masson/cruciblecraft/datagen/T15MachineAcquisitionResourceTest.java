@@ -132,6 +132,7 @@ class T15MachineAcquisitionResourceTest {
                                 "sifter",
                                 "electrolyzer")
                                 .contains(variant.kind().id().getPath()))
+                        .filter(variant -> ModMachineVariants.isOpening(variant.id()))
                         .map(variant -> variant.id().toString())
                         .collect(Collectors.toSet()));
     }

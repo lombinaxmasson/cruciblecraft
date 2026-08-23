@@ -1,8 +1,8 @@
 {
+  "credit": "GT6 MultiTileEntityQueueHopper empty-state ISBRH via tools/gt6_isbrh_to_json.py",
   "parent": "block/block",
   "textures": {
     "texture": "gregtech:blocks/materialicons/CERAMIC",
-    "molten": "gregtech:blocks/fluids/molten",
     "particle": "#texture"
   },
   "elements": [
@@ -53,9 +53,6 @@
         "down": {
           "texture": "#texture"
         },
-        "up": {
-          "texture": "#texture"
-        },
         "north": {
           "texture": "#texture"
         },
@@ -73,13 +70,13 @@
     {
       "from": [
         6.0,
-        0.0,
-        6.0
+        4.0,
+        12.0
       ],
       "to": [
         10.0,
-        4.0,
-        10.0
+        8.0,
+        16.0
       ],
       "faces": {
         "down": {

@@ -5,9 +5,12 @@ import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.BellowsBlock;
 import com.masson.cruciblecraft.content.block.CableBlock;
 import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
+import com.masson.cruciblecraft.content.block.FireboxBlock;
+import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
 import com.masson.cruciblecraft.content.block.HopperBlock;
 import com.masson.cruciblecraft.logistics.hopper.HopperKind;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
+import com.masson.cruciblecraft.machine.processing.MachineTierCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
 
@@ -28,13 +31,29 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        var firebrickTexture = modLoc("block/firebrick");
+        var firebrick =
+                models().getExistingFile(modLoc("block/firebrick_gt6"));
         simpleBlockWithItem(
                 ModBlocks.FIREBRICK.get(),
-                models().cubeAll("firebrick", firebrickTexture));
-        simpleBlockWithItem(
-                ModBlocks.FIREBOX.get(),
-                models().cubeAll("firebox", firebrickTexture));
+                firebrick);
+        var fireboxUnlit =
+                models().getExistingFile(modLoc("block/firebox_unlit"));
+        var fireboxLit = models().getExistingFile(modLoc("block/firebox_lit"));
+        getVariantBuilder(ModBlocks.FIREBOX.get()).forAllStates(state -> {
+            int rotation = switch (state.getValue(FireboxBlock.FACING)) {
+                case SOUTH -> 180;
+                case WEST -> 270;
+                case EAST -> 90;
+                default -> 0;
+            };
+            return ConfiguredModel.builder()
+                    .modelFile(state.getValue(FireboxBlock.LIT)
+                            ? fireboxLit
+                            : fireboxUnlit)
+                    .rotationY(rotation)
+                    .build();
+        });
+        simpleBlockItem(ModBlocks.FIREBOX.get(), fireboxUnlit);
         simpleBlockWithItem(
                 ModBlocks.CRUCIBLE.get(),
                 models().getExistingFile(modLoc("block/crucible")));
@@ -67,23 +86,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 "tank_3x3x3", ModBlocks.TANK_3X3X3.get());
         configuredMachine(
                 "large_crucible", ModBlocks.LARGE_CRUCIBLE.get());
-        configuredMachine("sluice", ModBlocks.SLUICE.get());
-        configuredMachine("bath", ModBlocks.BATH.get());
         ModMachineVariants.ALL.forEach(variant ->
                 configuredMachine(
                         variant.id().getPath(),
                         ModBlocks.configuredProcessingBlock(variant)));
-        configuredMachine("mortar", ModBlocks.MORTAR.get());
-        configuredMachine("extruder", ModBlocks.EXTRUDER.get());
-        configuredMachine("cutter", ModBlocks.CUTTER.get());
-        configuredMachine("rollbender", ModBlocks.ROLLBENDER.get());
-        configuredMachine("bender", ModBlocks.BENDER.get());
-        configuredMachine("assembler", ModBlocks.ASSEMBLER.get());
-        configuredMachine("welder", ModBlocks.WELDER.get());
-        configuredMachine("mixer", ModBlocks.MIXER.get());
-        configuredMachine("autoclave", ModBlocks.AUTOCLAVE.get());
-        configuredMachine("compressor", ModBlocks.COMPRESSOR.get());
-        configuredMachine("generifier", ModBlocks.GENERIFIER.get());
         configuredMachine("electric_motor", ModBlocks.ELECTRIC_MOTOR.get());
         configuredMachine(
                 "rotational_gearbox",
@@ -98,8 +104,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 models().cubeAll(
                         "fluid_deposit_extractor",
                         modLoc("block/fluid_deposit_extractor")));
-        configuredMachine("fuel_engine", ModBlocks.FUEL_ENGINE.get());
-        configuredMachine(
+        configuredFuelGenerator("fuel_engine", ModBlocks.FUEL_ENGINE.get());
+        configuredFuelGenerator(
                 "burning_gas_generator",
                 ModBlocks.BURNING_GAS_GENERATOR.get());
         simpleBlock(
@@ -458,6 +464,28 @@ public class ModBlockStateProvider extends BlockStateProvider {
         element.end();
     }
 
+    private void configuredFuelGenerator(
+            String id, FuelGeneratorBlock block) {
+        ModelFile inactive = models().getExistingFile(modLoc("block/" + id));
+        ModelFile active = models().getExistingFile(
+                modLoc("block/" + id + "_active"));
+        getVariantBuilder(block).forAllStates(state -> {
+            int rotation = switch (state.getValue(FuelGeneratorBlock.FACING)) {
+                case SOUTH -> 180;
+                case WEST -> 270;
+                case EAST -> 90;
+                default -> 0;
+            };
+            return ConfiguredModel.builder()
+                    .modelFile(state.getValue(FuelGeneratorBlock.LIT)
+                            ? active
+                            : inactive)
+                    .rotationY(rotation)
+                    .build();
+        });
+        simpleBlockItem(block, inactive);
+    }
+
     private void configuredMachine(String id, net.minecraft.world.level.block.Block block) {
         String textureId = machineTextureId(id);
         String shaped = shapedMachineModel(textureId);
@@ -494,6 +522,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     /** Shared GT6 texture folders for tiered / aliased machine ids. */
     private static String machineTextureId(String id) {
+        String catalogProfile = MachineTierCatalog.textureProfile(id);
+        if (!catalogProfile.equals(id)) {
+            return catalogProfile;
+        }
         return switch (id) {
             case "steel_centrifuge", "titanium_centrifuge" -> "centrifuge";
             case "steel_sifter", "titanium_sifter" -> "sifter";
@@ -511,7 +543,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
             case "large_crucible" -> "coke_oven";
             case "drying", "invar_drying", "titanium_drying" -> "dryer";
             case "invar_smelter", "titanium_smelter" -> "smelter";
-            default -> id;
+            default -> MachineTierCatalog.textureProfile(id);
         };
     }
 
@@ -555,7 +587,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     "boiler",
                     "tank_3x3x3",
                     "mortar",
-                    "coke_oven" -> true;
+                    "coke_oven",
+                    "bronze_crusher" -> true;
             default -> false;
         };
     }
