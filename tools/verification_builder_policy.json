@@ -1289,7 +1289,30 @@
       ]
     },
     {
+      "name": "build_t33_readiness",
+      "script": "tools/build_t33_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t33_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t34_gt6_art_manifest",
+      "script": "tools/build_t34_gt6_art_manifest.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t34_gt6_art_manifest.json"
+      ]
+    },
+    {
       "name": "build_t28_hot_ingot_source_evidence",
+      "script": "tools/build_t28_hot_ingot_source_evidence.py",
       "script": "tools/build_t28_hot_ingot_source_evidence.py",
       "ordinary_args": [
         "--check"
@@ -1507,6 +1530,315 @@
       "proof_tier": "rederived",
       "outputs": [
         "t31_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t35_machine_track",
+      "script": "tools/build_t35_machine_track.py",
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
+      "proof_tier": "compact",
+      "full_replay": {
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "src/main/resources/data/cruciblecraft/machine_tiers.json",
+          "src/main/resources/data/cruciblecraft/schema/machine_tiers.schema.json",
+          "tools/t13_denominators/machine_kinds.json",
+          "tools/t13_denominators/energy_identities.json",
+          "tools/t18_machine_energy_denominator.json",
+          "src/main/java/com/masson/cruciblecraft/registry/ModMachineVariants.java",
+          "src/main/java/com/masson/cruciblecraft/machine/processing/MachineTierCatalog.java"
+        ]
+      },
+      "outputs": [
+        "t35_machine_track.json"
+      ]
+    },
+    {
+      "name": "build_t35_census_inputs",
+      "script": "tools/build_t35_census_inputs.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t35_census_inputs.json"
+      ]
+    },
+    {
+      "name": "build_t35_runtime_registry",
+      "script": "tools/build_t35_runtime_registry.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t35_runtime_registry.json",
+        "src/main/resources/census/t35_runtime_registry_gate.json"
+      ]
+    },
+    {
+      "name": "build_t35_excluded_object_reclaim",
+      "script": "tools/build_t35_excluded_object_reclaim.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t35_excluded_object_reclaim.json"
+      ]
+    },
+    {
+      "name": "build_t35_recipe_families",
+      "script": "tools/build_t35_recipe_families.py",
+      "ordinary_args": [
+        "--check",
+        "--reference-only"
+      ],
+      "proof_tier": "compact",
+      "full_replay": {
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.bath.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.assembler.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.compressor.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.centrifuge.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.autoclave.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.electrolyzer.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.drying.json",
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.roaster.json"
+        ]
+      },
+      "outputs": [
+        "t35_recipe_families.json"
+      ]
+    },
+    {
+      "name": "build_t35_recipe_families_compact",
+      "script": "tools/build_t35_recipe_families_compact.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "compact",
+      "outputs": [
+        "t35_recipe_families.json"
+      ]
+    },
+    {
+      "name": "build_t35_load_baseline",
+      "script": "tools/build_t35_load_baseline.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t35_load_baseline.json"
+      ]
+    },
+    {
+      "name": "build_t35_census",
+      "script": "tools/build_t35_census.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t35_census.json"
+      ]
+    },
+    {
+      "name": "build_t35_card_topology",
+      "script": "tools/build_t35_card_topology.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t35_card_topology.json"
+      ]
+    },
+    {
+      "name": "build_t35_readiness",
+      "script": "tools/build_t35_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t35_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t36_machine_target",
+      "script": "tools/build_t36_machine_target.py",
+      "ordinary_args": [
+        "--check",
+        "--full-replay"
+      ],
+      "proof_tier": "compact",
+      "outputs": [
+        "t36_machine_target.json"
+      ]
+    },
+    {
+      "name": "build_t36_machine_catalog",
+      "script": "tools/build_t36_machine_catalog.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "src/main/resources/data/cruciblecraft/machine_tiers.json"
+      ]
+    },
+    {
+      "name": "build_t36_census_delta",
+      "script": "tools/build_t36_census_delta.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t36_census_delta.json"
+      ]
+    },
+    {
+      "name": "build_t36_readiness",
+      "script": "tools/build_t36_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t36_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t37_assembler_source",
+      "script": "tools/build_t37_assembler_source.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "compact",
+      "full_replay": {
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.assembler.json"
+        ]
+      },
+      "outputs": [
+        "t37_assembler_source.json",
+        "t37_assembler_source_receipt.json"
+      ]
+    },
+    {
+      "name": "build_t37_assembler_recipes",
+      "script": "tools/build_t37_assembler_recipes.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t37_assembler_equivalence.json",
+        "t37_operand_runtime_map.json",
+        "t37_player_path.json"
+      ]
+    },
+    {
+      "name": "build_t37_recipe_load_benchmark",
+      "script": "tools/build_t37_recipe_load_benchmark.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t37_materialization_decision.json"
+      ]
+    },
+    {
+      "name": "build_t37_publication_delta",
+      "script": "tools/build_t37_publication_delta.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "proof_tier": "rederived",
+      "outputs": [
+        "t37_publication_delta.json"
+      ]
+    },
+    {
+      "name": "build_t37_census_delta",
+      "script": "tools/build_t37_census_delta.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t37_census_delta.json"
+      ]
+    },
+    {
+      "name": "build_t37_card_topology",
+      "script": "tools/build_t37_card_topology.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t37_card_topology.json"
+      ]
+    },
+    {
+      "name": "build_t37_readiness",
+      "script": "tools/build_t37_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t37_readiness.json"
       ]
     }
   ],

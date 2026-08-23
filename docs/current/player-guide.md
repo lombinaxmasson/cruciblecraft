@@ -70,7 +70,8 @@ stress 1000 管）；T24 当时的历史 SKIP 仍保留，不伪写成当时已�
 | medium | 第一次进世界可能卡住几分钟（配方展开已排除） | 等首次加载结束；已排除配方 epoch 主因 | 4.5 P0 | post_beta_polish |
 | low | 扳手/剪线钳九宫格 | 管道用扳手点九宫格；电缆/裸线用剪线钳 | 4.5 P1/P2 | post_beta_polish |
 | low | 创造栏线/缆/管分页、工具与高档机器展示 | 可放置线与缆同页，管单独成页；有配方的工具变体与已注册档位会进创造栏/EMI | 4.5 P3/P5/P6/P7 | post_beta_polish |
-| low | 地表石子与创造栏灌装流体 | 地表会刷 `rockGt` 石子；创造栏 cell 按已注册流体预填 | 4.5 P4/P9 | post_beta_polish |
+| low | 创造栏灌装流体 | 创造栏 cell 按已注册流体预填 | 4.5 P9 | post_beta_polish |
+| info | 地表石子 | 新生成的主世界地表会散布 runtime `c:rocks`；石子是开局配方链的 S0 来源 | T33 | closed |
 | low | 形态标签命名空间 | 粉族/缆/管等走 `c:` 标签，便于 EMI 折叠 | 4.5 P8 | post_beta_polish |
 
 ## 5. RC1 范围与支持范围

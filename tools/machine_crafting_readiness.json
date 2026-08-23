@@ -1491,20 +1491,141 @@
         "status": "pinned_gt6_java_identity",
         "tier_or_identity_summary": "GT6 defines four KU kinetic compressors; CrucibleCraft currently exposes one electric compressor."
       }
+    },
+    {
+      "blocking_components": [
+        {
+          "cc_identity": null,
+          "reason": "CrucibleCraft has no machine-casing material prefix or component item.",
+          "source_identity": "OP.casingMachine",
+          "status": "missing_cc_component"
+        }
+      ],
+      "cc_identity": {
+        "item": "cruciblecraft:steel_roaster",
+        "mod_items_field": "STEEL_ROASTER",
+        "processing_spec": "cruciblecraft:roaster"
+      },
+      "classification": "tier_collapsed_pending_t6",
+      "current_recipe": {
+        "kind": "t12_source_projected_machine_recipe",
+        "path": "src/generated/resources/data/cruciblecraft/recipe/machines/steel_roaster.json",
+        "source": {
+          "method": "t17HeatMachineCrafting",
+          "path": "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java"
+        }
+      },
+      "machine_id": "roaster",
+      "reason": "GT6 Heat_T roasting is a four-tier HU host; CrucibleCraft now registers steel/invar/titanium/tungsten_carbide roasters. T36 projects the opening steel host with the T17 heat casing pattern; remaining Heat_T collapse is still T6 work.",
+      "replacement_prerequisites": [
+        "Keep Roasting mapped to the live steel_roaster host.",
+        "Do not treat the T5 configured id 'roaster' as a separate unregistered block.",
+        "Verify Heat_T casing and plate operands for every selected tier."
+      ],
+      "scope": "configured_machine_placeholder",
+      "source_evidence": [
+        {
+          "anchor": "material_tier_arrays",
+          "git_blob_sha1": "1681c2072f28ad2d31bc285aef1c6fd2a3bcef92",
+          "kind": "gt6_java_anchor",
+          "lines": "3689-3691",
+          "path": "src/main/java/gregapi/data/MT.java",
+          "reason": "These arrays resolve the material identity hidden behind each indexed GT6 machine tier.",
+          "repository": "GregTech6/gregtech6",
+          "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+        },
+        {
+          "anchor": "heat_smelter",
+          "git_blob_sha1": "cf80887c5e572ee0942f087d1c75238115ca5255",
+          "kind": "gt6_java_anchor",
+          "lines": "1430-1434",
+          "path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+          "reason": "Pins the four GT6 heat-tier smelters and their tier-dependent crucible operand.",
+          "repository": "GregTech6/gregtech6",
+          "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+        }
+      ],
+      "source_identity": {
+        "anchor_ids": [
+          "material_tier_arrays",
+          "heat_smelter"
+        ],
+        "status": "pinned_gt6_java_identity",
+        "tier_or_identity_summary": "GT6 Heat_T roasting is a four-tier HU host; CrucibleCraft now registers steel/invar/titanium/tungsten_carbide roasters. T36 projects the opening steel host with the T17 heat casing pattern; remaining Heat_T collapse is still T6 work."
+      }
+    },
+    {
+      "blocking_components": [
+        {
+          "cc_identity": null,
+          "reason": "CrucibleCraft has no quadruple machine-casing component identity.",
+          "source_identity": "OP.casingMachineQuadruple",
+          "status": "missing_cc_component"
+        },
+        {
+          "cc_identity": null,
+          "reason": "CrucibleCraft has no small-casing component identity.",
+          "source_identity": "OP.casingSmall",
+          "status": "missing_cc_component"
+        }
+      ],
+      "cc_identity": {
+        "item": "cruciblecraft:coagulator",
+        "mod_items_field": "COAGULATOR",
+        "processing_spec": "cruciblecraft:coagulator"
+      },
+      "classification": "missing_cc_component",
+      "current_recipe": {
+        "kind": "generated_copper_furnace_placeholder",
+        "path": "src/generated/resources/data/cruciblecraft/recipe/machines/coagulator.json",
+        "source": {
+          "lines": "168-177",
+          "method": "machineCrafting",
+          "method_sha256": "35418ce58ea902cfa89d6b8b159f60e2363067e41b26d90524a53d53a5a8a7cc",
+          "path": "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java"
+        }
+      },
+      "machine_id": "coagulator",
+      "reason": "The T36 TU coagulator opening host is registered, but the pinned GT6 coagulator/autoclave-class pattern still needs quadruple/small casings that CrucibleCraft does not expose.",
+      "replacement_prerequisites": [
+        "Define exact CrucibleCraft quadruple and small casing identities.",
+        "Prove those components are survival-reachable.",
+        "Project the pinned TU pattern only after both mappings exist."
+      ],
+      "scope": "configured_machine_placeholder",
+      "source_evidence": [
+        {
+          "anchor": "fixed_autoclave",
+          "git_blob_sha1": "cf80887c5e572ee0942f087d1c75238115ca5255",
+          "kind": "gt6_java_anchor",
+          "lines": "1655",
+          "path": "src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+          "reason": "Pins the untiered stainless-steel TU Autoclave identity.",
+          "repository": "GregTech6/gregtech6",
+          "revision": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+        }
+      ],
+      "source_identity": {
+        "anchor_ids": [
+          "fixed_autoclave"
+        ],
+        "status": "pinned_gt6_java_identity",
+        "tier_or_identity_summary": "The T36 TU coagulator opening host is registered, but the pinned GT6 coagulator/autoclave-class pattern still needs quadruple/small casings that CrucibleCraft does not expose."
+      }
     }
   ],
   "counts": {
     "classifications": {
       "directly_projectable": 0,
       "existing_cc_recipe_retained": 7,
-      "missing_cc_component": 3,
+      "missing_cc_component": 4,
       "source_identity_unresolved": 2,
-      "tier_collapsed_pending_t6": 18
+      "tier_collapsed_pending_t6": 19
     },
-    "classified": 30,
-    "configured_machine_placeholders": 23,
+    "classified": 32,
+    "configured_machine_placeholders": 25,
     "existing_bronze_resources": 7,
-    "total_rows": 30,
+    "total_rows": 32,
     "unclassified": 0
   },
   "current_placeholder_template": {
@@ -1897,7 +2018,7 @@
   },
   "schema_version": 1,
   "source_hashes": {
-    "builder": "770a8c8af089d6d08a0b918418f323cc2bf82d42895be9677e74c182821311f8",
+    "builder": "41c044eb11997e44a51f4132e2dc00e15d8fda9acc81d8c11a3dd9580e3c7c4f",
     "existing_bronze_resources": {
       "src/main/resources/data/cruciblecraft/recipe/bronze_anvil.json": "5c69f9a2f2bf57e91e416f3e5c2344e261b205d101a374cafd0fd76845613ed8",
       "src/main/resources/data/cruciblecraft/recipe/bronze_boiler.json": "0a5ff1e68990b9d6b69a69318712e447e6aeaf9d4708c91aefda3ffe1fddcdb2",
@@ -1909,10 +2030,10 @@
     },
     "gt6_reference_metadata": "1b62ce423c6a6a62dcd3b3eaade997dbc7e7afc29931c6f9432f040a43e88164",
     "material_prefixes": "4ced880e636d9f7cbe635a08bbf51320368534dd4791f793296990793cb8a033",
-    "mod_items": "6085dff1c4b3c0287a4652336e8dc639d437537f764de8efc5e0d90a5cab8f82",
-    "mod_processing_machines": "372efe52cd2bd892890de515b488f13a814ec14a107e7b3ce46ea8008e585dfa",
-    "mod_recipe_provider": "94d459371dd0912b59d4ecf7b8b697b075796b66df7705d87df424a4e782de96",
-    "policy": "17f59f34292914845da1781651309de07d08f8cc43ea1eed1cc27a7e39027e5e"
+    "mod_items": "90453f4ddb6ea64e11c4cf35b56d890fca2b2766b49c3c8252652afc35c162ec",
+    "mod_processing_machines": "c9d1a100013b40ac3d33612f652c251abf39584a65275d4fe770d9afd4ab4a1f",
+    "mod_recipe_provider": "0fc95c81472e01da51d4689349fb6d498e07355bcf9efb15e24b610c30f54777",
+    "policy": "9eab38470746457f2496cee775c1db2a83ce7c89ee2a25412197063847855511"
   },
   "source_verification": {
     "mode": "committed_git_blob_pins_with_optional_local_replay",

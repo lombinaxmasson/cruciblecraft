@@ -1,0 +1,600 @@
+{
+  "authority": {
+    "forbidden_authorities": [
+      "tmp-baked"
+    ],
+    "raw_texture_root": "gt6_code/gregtech6/src/main/resources/assets/gregtech/textures/blocks"
+  },
+  "resources": [
+    {
+      "cc_binding": {
+        "models": [
+          "src/main/resources/assets/cruciblecraft/models/block/firebrick_gt6.json"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:firebrick",
+      "imports": [
+        {
+          "destination": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/colored_bottom.png",
+          "source": "machines/multiblockparts/firebricks/0/colored/bottom.png"
+        },
+        {
+          "destination": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/colored_side.png",
+          "source": "machines/multiblockparts/firebricks/0/colored/side.png"
+        },
+        {
+          "destination": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/colored_top.png",
+          "source": "machines/multiblockparts/firebricks/0/colored/top.png"
+        },
+        {
+          "destination": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/overlay_bottom.png",
+          "source": "machines/multiblockparts/firebricks/0/overlay/bottom.png"
+        },
+        {
+          "destination": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/overlay_side.png",
+          "source": "machines/multiblockparts/firebricks/0/overlay/side.png"
+        },
+        {
+          "destination": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebrick/overlay_top.png",
+          "source": "machines/multiblockparts/firebricks/0/overlay/top.png"
+        }
+      ],
+      "relationship": "GT6 firebricks source family; CC must use the imported multi-face texture set.",
+      "source_family": "firebricks"
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/main/resources/assets/cruciblecraft/models/block/anvil.json"
+        ],
+        "required_textures": [
+          "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_block_solid.png",
+          "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_block_solid_overlay.png"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:anvil",
+      "imports": [
+        {
+          "destination": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_block_solid.png",
+          "source": "materialicons/ROUGH/blockSolid.png"
+        },
+        {
+          "destination": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_block_solid_overlay.png",
+          "source": "materialicons/ROUGH/blockSolid_OVERLAY.png"
+        }
+      ],
+      "relationship": "GT6 MultiTileEntityAnvil geometry and ROUGH material layers, adapted to the current CC anvil runtime.",
+      "source_family": "anvil_rough"
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/generated/resources/assets/cruciblecraft/models/item/raw_ceramic_crucible.json"
+        ],
+        "required_textures": [
+          "src/main/resources/assets/cruciblecraft/textures/item/raw_ceramic_crucible.png"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:raw_ceramic_crucible",
+      "relationship": "CC-authored unfired item; no matching GT6 raw blocks texture is asserted."
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/main/resources/assets/cruciblecraft/models/block/crucible.json"
+        ],
+        "required_textures": [
+          "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_block_solid.png",
+          "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_block_solid_overlay.png"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:crucible",
+      "imports": [
+        {
+          "destination": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_block_solid.png",
+          "source": "materialicons/ROUGH/blockSolid.png"
+        },
+        {
+          "destination": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_block_solid_overlay.png",
+          "source": "materialicons/ROUGH/blockSolid_OVERLAY.png"
+        }
+      ],
+      "relationship": "GT6 MultiTileEntitySmeltery static geometry and ROUGH material layers; the dynamic molten-height pass is not claimed identical.",
+      "source_family": "smeltery_rough"
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/generated/resources/assets/cruciblecraft/models/item/raw_ceramic_mold.json"
+        ],
+        "required_textures": [
+          "src/main/resources/assets/cruciblecraft/textures/item/raw_ceramic_mold.png"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:raw_ceramic_mold",
+      "relationship": "CC-authored unshaped unfired mold item; no GT6 raw blocks texture is asserted."
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/generated/resources/assets/cruciblecraft/models/item/raw_ingot_mold.json"
+        ],
+        "required_textures": [
+          "src/main/resources/assets/cruciblecraft/textures/item/raw_ingot_mold.png"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:raw_ingot_mold",
+      "relationship": "CC-authored unfired ingot mold item; no GT6 raw blocks texture is asserted."
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/main/resources/assets/cruciblecraft/models/block/ceramic_mold.json",
+          "src/main/resources/assets/cruciblecraft/models/block/ceramic_mold_filled.json"
+        ],
+        "required_textures": [
+          "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_block_solid.png",
+          "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_molten.png",
+          "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_molten.png.mcmeta"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:ingot_mold",
+      "imports": [
+        {
+          "destination": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_block_solid.png",
+          "source": "materialicons/ROUGH/blockSolid.png"
+        },
+        {
+          "destination": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_molten.png",
+          "source": "materialicons/ROUGH/molten.png"
+        },
+        {
+          "destination": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_molten.png.mcmeta",
+          "source": "materialicons/ROUGH/molten.png.mcmeta"
+        }
+      ],
+      "relationship": "GT6 MultiTileEntityMold geometry and ROUGH material layers, including the deliberately un-tinted filled-mold molten surface.",
+      "source_family": "mold_rough"
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/generated/resources/assets/cruciblecraft/models/item/raw_plate_mold.json"
+        ],
+        "required_textures": [
+          "src/main/resources/assets/cruciblecraft/textures/item/raw_plate_mold.png"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:raw_plate_mold",
+      "relationship": "CC-authored unfired plate mold item; no GT6 raw blocks texture is asserted."
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/main/resources/assets/cruciblecraft/models/block/ceramic_mold.json"
+        ],
+        "required_textures": [
+          "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_block_solid.png"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:plate_mold",
+      "relationship": "GT6 MultiTileEntityMold geometry sharing the pinned fired-mold ROUGH material source.",
+      "source_family": "mold_rough"
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/generated/resources/assets/cruciblecraft/models/item/raw_rod_mold.json"
+        ],
+        "required_textures": [
+          "src/main/resources/assets/cruciblecraft/textures/item/raw_rod_mold.png"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:raw_rod_mold",
+      "relationship": "CC-authored unfired rod mold item; no GT6 raw blocks texture is asserted."
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/main/resources/assets/cruciblecraft/models/block/ceramic_mold.json"
+        ],
+        "required_textures": [
+          "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_block_solid.png"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:rod_mold",
+      "relationship": "GT6 MultiTileEntityMold geometry sharing the pinned fired-mold ROUGH material source.",
+      "source_family": "mold_rough"
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/generated/resources/assets/cruciblecraft/models/item/raw_bolt_mold.json"
+        ],
+        "required_textures": [
+          "src/main/resources/assets/cruciblecraft/textures/item/raw_bolt_mold.png"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:raw_bolt_mold",
+      "relationship": "CC-authored unfired bolt mold item; no GT6 raw blocks texture is asserted."
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/main/resources/assets/cruciblecraft/models/block/ceramic_mold.json"
+        ],
+        "required_textures": [
+          "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/materialicons/rough_block_solid.png"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:bolt_mold",
+      "relationship": "GT6 MultiTileEntityMold geometry sharing the pinned fired-mold ROUGH material source.",
+      "source_family": "mold_rough"
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/main/resources/assets/cruciblecraft/models/block/firebox_unlit.json",
+          "src/main/resources/assets/cruciblecraft/models/block/firebox_lit.json"
+        ]
+      },
+      "disposition": "registered",
+      "flatten_import_destinations": true,
+      "id": "cruciblecraft:firebox",
+      "import_destination_root": "src/main/resources/assets/cruciblecraft/textures/block/t34_gt6/firebox",
+      "relationship": "CC-authored solid-fuel firebox using GT6 burning_brick presentation assets; it is deliberately not GT6-identical to burning_solid in runtime identity or behavior.",
+      "source_family": "burning_brick"
+    },
+    {
+      "disposition": "source_reference",
+      "id": "gt6:burning_solid",
+      "relationship": "GT6 source family retained for evidence only; it is not bound to the CC firebox.",
+      "source_family": "burning_solid"
+    },
+    {
+      "disposition": "source_reference",
+      "id": "gt6:burning_liquid",
+      "relationship": "GT6 source family retained for future runtime-to-art mapping.",
+      "source_family": "burning_liquid"
+    },
+    {
+      "disposition": "source_reference",
+      "id": "gt6:burning_gas",
+      "relationship": "GT6 source family used by the registered CC Gas Burning Box.",
+      "source_family": "burning_gas"
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/main/resources/assets/cruciblecraft/models/block/fuel_engine.json",
+          "src/main/resources/assets/cruciblecraft/models/block/fuel_engine_active.json"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:fuel_engine",
+      "import_destination_root": "src/main/resources/assets/cruciblecraft/textures/block/machine/fuel_engine",
+      "relationship": "Registered CC fuel engine mapped to the GT6 Bronze Diesel Engine, MultiTileEntityMotorLiquid ID 9147.",
+      "source_family": "motor_liquid"
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/main/resources/assets/cruciblecraft/models/block/burning_gas_generator.json",
+          "src/main/resources/assets/cruciblecraft/models/block/burning_gas_generator_active.json"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:burning_gas_generator",
+      "import_destination_root": "src/main/resources/assets/cruciblecraft/textures/block/machine/burning_gas_generator",
+      "relationship": "Registered CC Gas Burning Box, mapped to GT6 MultiTileEntityGeneratorGas Bronze ID 1602; not a standalone gas generator.",
+      "source_family": "burning_gas"
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/main/resources/assets/cruciblecraft/models/block/bronze_boiler.json"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:bronze_boiler",
+      "import_destination_root": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_boiler",
+      "relationship": "GT6 MultiTileEntityBoilerTank Bronze ID 1202.",
+      "source_family": "boiler_steam"
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/main/resources/assets/cruciblecraft/models/block/bronze_steam_engine.json"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:bronze_steam_engine",
+      "import_destination_root": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_steam_engine",
+      "relationship": "GT6 MultiTileEntityEngineSteam Bronze ID 1302 using the separately pinned GT6 geometry source.",
+      "source_family": "kinetic_steam"
+    },
+    {
+      "cc_binding": {
+        "models": [
+          "src/main/resources/assets/cruciblecraft/models/block/bronze_dynamo.json",
+          "src/main/resources/assets/cruciblecraft/models/block/bronze_dynamo_active.json"
+        ]
+      },
+      "disposition": "registered",
+      "id": "cruciblecraft:bronze_dynamo",
+      "import_destination_root": "src/main/resources/assets/cruciblecraft/textures/block/machine/bronze_dynamo",
+      "relationship": "GT6 MultiTileEntityDynamoElectric TinAlloy ID 10111.",
+      "source_family": "electric_rotation"
+    },
+    {
+      "disposition": "not_registered",
+      "id": "cruciblecraft:small_gas_generator",
+      "relationship": "Standalone Small Gas Generator concept; no CC model, block, item, texture destination, or registration is permitted.",
+      "source_family": "burning_gas"
+    }
+  ],
+  "schema_version": 2,
+  "smeltery_rough": {
+    "raw_files": {},
+    "source_evidence": {}
+  },
+  "source_families": {
+    "anvil_rough": {
+      "raw_files": {
+        "materialicons/ROUGH/blockSolid.png": "99fa529d58845f2d92c980c558058ed646a3753603e30f23914f7a9bed8f580b",
+        "materialicons/ROUGH/blockSolid_OVERLAY.png": "0940268eecf5efbfa5d2ead4e701af85aad1c77849d06850003add66e433b5d4"
+      },
+      "source_evidence": {
+        "class_name": "MultiTileEntityAnvil",
+        "java_path": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/tools/MultiTileEntityAnvil.java",
+        "sha256": "609a290b5a83b1b2561bd92f3c2aaa543931c5955037e11cb446cd435d84498e"
+      }
+    },
+    "boiler_steam": {
+      "raw_files": {
+        "machines/tanks/boiler_steam/colored/bottom.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/tanks/boiler_steam/colored/side.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/tanks/boiler_steam/colored/top.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/tanks/boiler_steam/overlay/bottom.png": "02fc1d92864f19600bd1abd5bd455bb2ea8932f340050c913a198736e1eca27d",
+        "machines/tanks/boiler_steam/overlay/side.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+        "machines/tanks/boiler_steam/overlay/top.png": "8dd1d34cc36cd9ddccdc23f6f3be16be70d90337a290bc4a6da997f1f9c64236"
+      },
+      "source_evidence": {
+        "class_name": "MultiTileEntityBoilerTank",
+        "java_path": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityBoilerTank.java",
+        "sha256": "958738fcf2362ea5ccb030218021a4f03fb6fadc7a535b1f7a2c2fe6c56ab465"
+      }
+    },
+    "burning_brick": {
+      "raw_files": {
+        "machines/generators/burning_brick/colored/back.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_brick/colored/bottom.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_brick/colored/front.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_brick/colored/left.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_brick/colored/right.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_brick/colored/top.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_brick/overlay/back.png": "64bb2b9d3eac7a9d2d99c91138172210a02ec026e05dfc2237901540ec12b2ee",
+        "machines/generators/burning_brick/overlay/bottom.png": "fb026fe33ee18607c32d3b0217a4aeff5bc9c33d6dd26389cc9392fc7fa81bc5",
+        "machines/generators/burning_brick/overlay/front.png": "2c35ccc4d4da9d713b67d1a4a3b9e930f3f5a7749fc39ddf2ebb77a3c7946ac8",
+        "machines/generators/burning_brick/overlay/left.png": "6b6d3ce23d2dd4c8a4d5e5efe489bc7f4f8bb65caa9bada14b2cae5a5f40ea39",
+        "machines/generators/burning_brick/overlay/right.png": "12a9bb5d2a7119c685961b8ec8f351d9812db256bbecfca87802c6e21b1f7cf7",
+        "machines/generators/burning_brick/overlay/top.png": "7322a1ad47fdc71e4e62fe3e9d364cad7bca02dadb2f70613bc0db9ce777c44a",
+        "machines/generators/burning_brick/overlay_active/back.png": "9cb35c36a9341c3a9f1c147b04093c46dd35910a62e7354af6fa45e934dcb415",
+        "machines/generators/burning_brick/overlay_active/bottom.png": "323286795816e11f7ed246231919463ce7344861930814d26e0bf207d6b80170",
+        "machines/generators/burning_brick/overlay_active/front.png": "9b34c0d7e6a2fbb9ee79d56a360103b20ab6f162e0316ecf4a41dd39c002d95e",
+        "machines/generators/burning_brick/overlay_active/front.png.mcmeta": "95f5ff49de6550ce4619e971492ba11a1304dc5a03e44e4dcd9239d001653eb8",
+        "machines/generators/burning_brick/overlay_active/left.png": "7da52e57dbd35fe662c46f26e57689794594ba2594877163708f367f9c2ae63b",
+        "machines/generators/burning_brick/overlay_active/right.png": "81e0e7b38f528a30c057f836b751fe498b4a0d3bb0d0135994b1c306fbc00a8b",
+        "machines/generators/burning_brick/overlay_active/top.png": "953aae92bc227b576726b2bd747d1c3a4a67acba9d63c6e5ae8ee285aba54a98",
+        "machines/generators/burning_brick/overlay_active/top.png.mcmeta": "95f5ff49de6550ce4619e971492ba11a1304dc5a03e44e4dcd9239d001653eb8"
+      },
+      "source_evidence": {
+        "class_name": "MultiTileEntityGeneratorBrick",
+        "java_path": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/generators/MultiTileEntityGeneratorBrick.java",
+        "sha256": "03a9536790c416c477923e30b83df3b4725052ce0faf626feead71ac839f9713"
+      }
+    },
+    "burning_gas": {
+      "raw_files": {
+        "machines/generators/burning_gas/colored/back.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_gas/colored/bottom.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_gas/colored/front.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_gas/colored/left.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_gas/colored/right.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_gas/colored/top.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_gas/overlay/back.png": "434ce0ef50b8063c864b0fc24e5cd9aea714e19f46088f1b184fa44406e36eed",
+        "machines/generators/burning_gas/overlay/bottom.png": "c31b3126efbd3713871016a191d3c7f1f19613e0bfd215e02627b627dbe871fe",
+        "machines/generators/burning_gas/overlay/front.png": "98ae239e76efe334d56ed66f9a893d3c35de6f893d51080e6d3ec7d692f10b9d",
+        "machines/generators/burning_gas/overlay/left.png": "92e9fdd5b720064549689c9cd71e266e81c80ac7e9893909d4c7d3cb4ea8aa33",
+        "machines/generators/burning_gas/overlay/right.png": "5fed48cacc86d24191b440b3c7bfb25a7295b3db1b28e8ca5008be3d96b7fd02",
+        "machines/generators/burning_gas/overlay/top.png": "1d116dec67f49dc22a130120f186fbbf7e9f963f4212629ea46a963a6f2feacb",
+        "machines/generators/burning_gas/overlay_active/back.png": "434ce0ef50b8063c864b0fc24e5cd9aea714e19f46088f1b184fa44406e36eed",
+        "machines/generators/burning_gas/overlay_active/bottom.png": "c31b3126efbd3713871016a191d3c7f1f19613e0bfd215e02627b627dbe871fe",
+        "machines/generators/burning_gas/overlay_active/front.png": "733fcf93adf9d969fe003e571dad7e770cad219748487ea865bbf4f952f58703",
+        "machines/generators/burning_gas/overlay_active/front.png.mcmeta": "7c0969e2ea29cb4e155bcea1f272c262fc3ea4ead0e9021b8b14d5c440e799f1",
+        "machines/generators/burning_gas/overlay_active/left.png": "524d08f1f6e0734d75625f03cd3f95dbbc7ad22a2a0f1cbb9deffdfa96ccaf59",
+        "machines/generators/burning_gas/overlay_active/right.png": "4ea3a2c4e299c221d3b7187e1c5428dbd1913e3c5dccc1d4a94219962e12b340",
+        "machines/generators/burning_gas/overlay_active/top.png": "b7b0e3f66530c15165ba8d44c2b05ef14986624987636a5c2caea818c670183a"
+      },
+      "source_evidence": {
+        "class_name": "MultiTileEntityGeneratorGas",
+        "java_path": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/generators/MultiTileEntityGeneratorGas.java",
+        "sha256": "c90dfecffe5e2a4c1ac942b6c1591928b4f487ad028ef33fcb8ff2c7a368b2e7"
+      }
+    },
+    "burning_liquid": {
+      "raw_files": {
+        "machines/generators/burning_liquid/colored/back.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_liquid/colored/bottom.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_liquid/colored/front.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_liquid/colored/left.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_liquid/colored/right.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_liquid/colored/top.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_liquid/overlay/back.png": "434ce0ef50b8063c864b0fc24e5cd9aea714e19f46088f1b184fa44406e36eed",
+        "machines/generators/burning_liquid/overlay/bottom.png": "c31b3126efbd3713871016a191d3c7f1f19613e0bfd215e02627b627dbe871fe",
+        "machines/generators/burning_liquid/overlay/front.png": "f377baae1d12f7bff22c0cc3142b53412938a16b47e077c3133d59e61e9cf783",
+        "machines/generators/burning_liquid/overlay/left.png": "92e9fdd5b720064549689c9cd71e266e81c80ac7e9893909d4c7d3cb4ea8aa33",
+        "machines/generators/burning_liquid/overlay/right.png": "5fed48cacc86d24191b440b3c7bfb25a7295b3db1b28e8ca5008be3d96b7fd02",
+        "machines/generators/burning_liquid/overlay/top.png": "1d116dec67f49dc22a130120f186fbbf7e9f963f4212629ea46a963a6f2feacb",
+        "machines/generators/burning_liquid/overlay_active/back.png": "434ce0ef50b8063c864b0fc24e5cd9aea714e19f46088f1b184fa44406e36eed",
+        "machines/generators/burning_liquid/overlay_active/bottom.png": "c31b3126efbd3713871016a191d3c7f1f19613e0bfd215e02627b627dbe871fe",
+        "machines/generators/burning_liquid/overlay_active/front.png": "30f813c086f9350c544fe7c3270456925b4d3c0541641e8367564316d73a236d",
+        "machines/generators/burning_liquid/overlay_active/front.png.mcmeta": "95f5ff49de6550ce4619e971492ba11a1304dc5a03e44e4dcd9239d001653eb8",
+        "machines/generators/burning_liquid/overlay_active/left.png": "524d08f1f6e0734d75625f03cd3f95dbbc7ad22a2a0f1cbb9deffdfa96ccaf59",
+        "machines/generators/burning_liquid/overlay_active/right.png": "4ea3a2c4e299c221d3b7187e1c5428dbd1913e3c5dccc1d4a94219962e12b340",
+        "machines/generators/burning_liquid/overlay_active/top.png": "b7b0e3f66530c15165ba8d44c2b05ef14986624987636a5c2caea818c670183a"
+      },
+      "source_evidence": {
+        "class_name": "MultiTileEntityGeneratorLiquid",
+        "java_path": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/generators/MultiTileEntityGeneratorLiquid.java",
+        "sha256": "1e57e8d2b403eb49d29d10125c9beac0d208b616bba191b9a926d36fd38e6ee5"
+      }
+    },
+    "burning_solid": {
+      "raw_files": {
+        "machines/generators/burning_solid/colored/back.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_solid/colored/bottom.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_solid/colored/front.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_solid/colored/left.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_solid/colored/right.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_solid/colored/top.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/generators/burning_solid/overlay/back.png": "434ce0ef50b8063c864b0fc24e5cd9aea714e19f46088f1b184fa44406e36eed",
+        "machines/generators/burning_solid/overlay/bottom.png": "c31b3126efbd3713871016a191d3c7f1f19613e0bfd215e02627b627dbe871fe",
+        "machines/generators/burning_solid/overlay/front.png": "c503d69f90dbce00014b947af89b5f2f868c4b88cc1677e764be87718c9f4377",
+        "machines/generators/burning_solid/overlay/left.png": "92e9fdd5b720064549689c9cd71e266e81c80ac7e9893909d4c7d3cb4ea8aa33",
+        "machines/generators/burning_solid/overlay/right.png": "5fed48cacc86d24191b440b3c7bfb25a7295b3db1b28e8ca5008be3d96b7fd02",
+        "machines/generators/burning_solid/overlay/top.png": "1d116dec67f49dc22a130120f186fbbf7e9f963f4212629ea46a963a6f2feacb",
+        "machines/generators/burning_solid/overlay_active/back.png": "434ce0ef50b8063c864b0fc24e5cd9aea714e19f46088f1b184fa44406e36eed",
+        "machines/generators/burning_solid/overlay_active/bottom.png": "c31b3126efbd3713871016a191d3c7f1f19613e0bfd215e02627b627dbe871fe",
+        "machines/generators/burning_solid/overlay_active/front.png": "6ac6386f9046cec50c546b87abd0756501c3ee9faa297adc60ee1b8390062951",
+        "machines/generators/burning_solid/overlay_active/front.png.mcmeta": "95f5ff49de6550ce4619e971492ba11a1304dc5a03e44e4dcd9239d001653eb8",
+        "machines/generators/burning_solid/overlay_active/left.png": "524d08f1f6e0734d75625f03cd3f95dbbc7ad22a2a0f1cbb9deffdfa96ccaf59",
+        "machines/generators/burning_solid/overlay_active/right.png": "4ea3a2c4e299c221d3b7187e1c5428dbd1913e3c5dccc1d4a94219962e12b340",
+        "machines/generators/burning_solid/overlay_active/top.png": "b7b0e3f66530c15165ba8d44c2b05ef14986624987636a5c2caea818c670183a"
+      },
+      "source_evidence": {
+        "class_name": "MultiTileEntityGeneratorMetal",
+        "java_path": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/generators/MultiTileEntityGeneratorMetal.java",
+        "sha256": "315ea10fe070cb0d2009dd28cfdb0baf6e2de7e1c88c7d39e91f3c1b596f2ba0"
+      }
+    },
+    "electric_rotation": {
+      "raw_files": {
+        "machines/dynamos/electric_rotation/colored/back.png": "b94934858d010e0381fd5056dbc0ec00e964cad00c152944b2e6e0918991f977",
+        "machines/dynamos/electric_rotation/colored/front.png": "db9560d38648fee70a0c8618e793d5c262cb269a408af0fdba99518343e4372e",
+        "machines/dynamos/electric_rotation/colored/side.png": "db9560d38648fee70a0c8618e793d5c262cb269a408af0fdba99518343e4372e",
+        "machines/dynamos/electric_rotation/overlay/back.png": "4da8c35319cd5b640d5d2363df857edcef1c58a26545a6f1a689f5d0b8d196cb",
+        "machines/dynamos/electric_rotation/overlay/front.png": "48b6811ef825b2be50dcbda29ef5e2a3f707708a499a2d3796561ddb29770185",
+        "machines/dynamos/electric_rotation/overlay/side.png": "6569a89537bc53d51e88c51edc435b8b8cf66d1bc2a040cec6b36d2c0074b736",
+        "machines/dynamos/electric_rotation/overlay_active/back.png": "4da8c35319cd5b640d5d2363df857edcef1c58a26545a6f1a689f5d0b8d196cb",
+        "machines/dynamos/electric_rotation/overlay_active/front.png": "c3325fa4e7a6d1e479212c6406fc28f4a78c227e8ffbe9d1f051e2ea36acbd56",
+        "machines/dynamos/electric_rotation/overlay_active/side.png": "6569a89537bc53d51e88c51edc435b8b8cf66d1bc2a040cec6b36d2c0074b736"
+      },
+      "source_evidence": {
+        "class_name": "MultiTileEntityDynamoElectric",
+        "java_path": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityDynamoElectric.java",
+        "sha256": "edd2c5e17934dbeda925044c7cf295685fcdd41cd5866fda9b7affd68c28705e"
+      }
+    },
+    "firebricks": {
+      "raw_files": {
+        "machines/multiblockparts/firebricks/0/colored/bottom.png": "b0a5a36bbc4a8f392f602efcc7e87e3761ee27097d35feae2045f6a1c535947f",
+        "machines/multiblockparts/firebricks/0/colored/side.png": "b0a5a36bbc4a8f392f602efcc7e87e3761ee27097d35feae2045f6a1c535947f",
+        "machines/multiblockparts/firebricks/0/colored/top.png": "b0a5a36bbc4a8f392f602efcc7e87e3761ee27097d35feae2045f6a1c535947f",
+        "machines/multiblockparts/firebricks/0/overlay/bottom.png": "76186f462c1cfd28f9e7ab0c64ba7a2b9a6b22aa2c1c6f8b1783c3e4d1baf890",
+        "machines/multiblockparts/firebricks/0/overlay/side.png": "62c306da0cb0c3d53d6a4a0714abf5506dcb903b3db0d3334a692057701079e1",
+        "machines/multiblockparts/firebricks/0/overlay/top.png": "fad3e60b6b04b1c79c62c11a80bed045acfc092800aa47d1f5e8132106099237"
+      },
+      "source_evidence": {
+        "class_name": "Loader_MultiTileEntities",
+        "java_path": "gt6_code/gregtech6/src/main/java/gregtech/loaders/b/Loader_MultiTileEntities.java",
+        "sha256": "93414ed9510ff0465b062efbfe7775d256100425379a24d3857c437cef7ddc27"
+      }
+    },
+    "kinetic_steam": {
+      "raw_files": {
+        "machines/engines/kinetic_steam/colored/back.png": "9927d1c9d187485779681587e2c0d5cec7198bc29ccfc7e75691730e07a149b5",
+        "machines/engines/kinetic_steam/colored/cage.png": "3d4a54bb213bbc6226b531e6a9042fe5b257f62f2d54431807320da438044fe9",
+        "machines/engines/kinetic_steam/colored/engine.png": "60610dd08ddb67d2475639ae956b34035ca1d5ed6b89cb65f6f586b17b4d6325",
+        "machines/engines/kinetic_steam/colored/engine_hull.png": "5f429b39eb1937c4221e9eeb0a9ae26bc809f8e53f6fc83d81b8dd8587281ebd",
+        "machines/engines/kinetic_steam/colored/front.png": "33bcc0c562a18e2c773a9c6259b7751a7a21029befcc79b89c383de7d779495d",
+        "machines/engines/kinetic_steam/colored/pipe.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/engines/kinetic_steam/colored/pipe_side.png": "effcbf04624a5de9c693912c061a6cb9737802d8d360d66c593800f558ad4e6c",
+        "machines/engines/kinetic_steam/colored/side.png": "4f8004f09dc2ef5f20eca50efd1e691b2650b7b15e173fb95997619f79719332",
+        "machines/engines/kinetic_steam/overlay/back.png": "8dd1d34cc36cd9ddccdc23f6f3be16be70d90337a290bc4a6da997f1f9c64236",
+        "machines/engines/kinetic_steam/overlay/cage.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+        "machines/engines/kinetic_steam/overlay/engine.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+        "machines/engines/kinetic_steam/overlay/engine_hull.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+        "machines/engines/kinetic_steam/overlay/front.png": "02fc1d92864f19600bd1abd5bd455bb2ea8932f340050c913a198736e1eca27d",
+        "machines/engines/kinetic_steam/overlay/pipe.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+        "machines/engines/kinetic_steam/overlay/pipe_side.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f",
+        "machines/engines/kinetic_steam/overlay/side.png": "9530007bcf67b1bcd7246c12f3cc93d6c4794547b15038bcb45abb7418ac231f"
+      },
+      "source_evidence": {
+        "class_name": "MultiTileEntityEngineSteam",
+        "java_path": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/converters/MultiTileEntityEngineSteam.java",
+        "sha256": "c700ce5b285ddcecd034708615a5f25fbaa7bb1e5584e5a14c3f79d531ec14e6"
+      }
+    },
+    "mold_rough": {
+      "raw_files": {
+        "materialicons/ROUGH/blockSolid.png": "99fa529d58845f2d92c980c558058ed646a3753603e30f23914f7a9bed8f580b",
+        "materialicons/ROUGH/molten.png": "a308af60c281c5684966bc739a96034a7a4d7ba2e06befdeb1587dc2d571e87e",
+        "materialicons/ROUGH/molten.png.mcmeta": "84a0ef2a3eef33b8d2cde7a87b5156909a302b2acc30ded568dcc7a92c6fb9bd"
+      },
+      "source_evidence": {
+        "class_name": "MultiTileEntityMold",
+        "java_path": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/tools/MultiTileEntityMold.java",
+        "sha256": "7fd3a9b623cc22f4792207503708a07d85ce3836d54bacdd146d9f7c7cc62ccb"
+      }
+    },
+    "motor_liquid": {
+      "raw_files": {
+        "machines/generators/motor_liquid/colored/back.png": "db9560d38648fee70a0c8618e793d5c262cb269a408af0fdba99518343e4372e",
+        "machines/generators/motor_liquid/colored/front.png": "b94934858d010e0381fd5056dbc0ec00e964cad00c152944b2e6e0918991f977",
+        "machines/generators/motor_liquid/colored/sides.png": "db9560d38648fee70a0c8618e793d5c262cb269a408af0fdba99518343e4372e",
+        "machines/generators/motor_liquid/overlay/back.png": "d7d7b4e63f3ae789badc895760bacdbc5c5a61332261dbc89e46cb37f1f898a1",
+        "machines/generators/motor_liquid/overlay/front.png": "e183538e5e6f6af6b4acf6fb3960d53d07b2b0ac370e73d9e46500a929b54463",
+        "machines/generators/motor_liquid/overlay/sides.png": "763844cd3e9003c46357a10cbb0bd30644efabfb224d07de689a147481720a4d",
+        "machines/generators/motor_liquid/overlay_active/back.png": "d7d7b4e63f3ae789badc895760bacdbc5c5a61332261dbc89e46cb37f1f898a1",
+        "machines/generators/motor_liquid/overlay_active/front.png": "e80333c7c21264823fa005235da55f7aabde38d6c50f922e51f5df51c446d569",
+        "machines/generators/motor_liquid/overlay_active/front.png.mcmeta": "6f0877c3a5817f182adc70d66966852b72e8677de36e0199eca34cd4c575dee4",
+        "machines/generators/motor_liquid/overlay_active/sides.png": "73664eddc0d2856f2b3cef642c52c0c80047a1f2f6486b4084fbfeef4e44420e",
+        "machines/generators/motor_liquid/overlay_active/sides.png.mcmeta": "6ed2f1ecd4e5a590aad7d67002a823aee0c9b9db16b12210d45d232e64577472"
+      },
+      "source_evidence": {
+        "class_name": "MultiTileEntityMotorLiquid",
+        "java_path": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/energy/generators/MultiTileEntityMotorLiquid.java",
+        "sha256": "14138928fb1b82a7691d1fd9c29292ce7edb23aa1325f146bcc388b1aa2a20a6"
+      }
+    },
+    "smeltery_rough": {
+      "raw_files": {
+        "materialicons/ROUGH/blockSolid.png": "99fa529d58845f2d92c980c558058ed646a3753603e30f23914f7a9bed8f580b",
+        "materialicons/ROUGH/blockSolid_OVERLAY.png": "0940268eecf5efbfa5d2ead4e701af85aad1c77849d06850003add66e433b5d4"
+      },
+      "source_evidence": {
+        "class_name": "MultiTileEntitySmeltery",
+        "java_path": "gt6_code/gregtech6/src/main/java/gregtech/tileentity/tools/MultiTileEntitySmeltery.java",
+        "sha256": "bcff11f8b37a70e835ee319281e300d988431369b7cc9b3ae71bfe40fa604dc1"
+      }
+    }
+  },
+  "steam_geometry_evidence": {
+    "sha256": "f9197f527d8b2fe317991a17eeed414b92abc393cb34cd2064ca368defb1b470",
+    "source": "textures/gt6模型/MultiTileEntityEngineSteam.json"
+  }
+}

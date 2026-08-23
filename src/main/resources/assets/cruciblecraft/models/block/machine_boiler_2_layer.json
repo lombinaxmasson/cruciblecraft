@@ -1,0 +1,30 @@
+{
+  "parent": "block/block",
+  "render_type": "minecraft:cutout",
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "down": { "texture": "#bot_bottom", "cullface": "down", "tintindex": 0 },
+        "up": { "texture": "#bot_top", "cullface": "up", "tintindex": 0 },
+        "north": { "texture": "#bot_side", "cullface": "north", "tintindex": 0 },
+        "south": { "texture": "#bot_side", "cullface": "south", "tintindex": 0 },
+        "east": { "texture": "#bot_side", "cullface": "east", "tintindex": 0 },
+        "west": { "texture": "#bot_side", "cullface": "west", "tintindex": 0 }
+      }
+    },
+    {
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "down": { "texture": "#top_bottom", "cullface": "down" },
+        "up": { "texture": "#top_top", "cullface": "up" },
+        "north": { "texture": "#top_side", "cullface": "north" },
+        "south": { "texture": "#top_side", "cullface": "south" },
+        "east": { "texture": "#top_side", "cullface": "east" },
+        "west": { "texture": "#top_side", "cullface": "west" }
+      }
+    }
+  ]
+}

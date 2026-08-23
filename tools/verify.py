@@ -7,6 +7,7 @@ import json
 import os
 import subprocess
 import sys
+import time
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -98,14 +99,47 @@ def builder_rows_for_profile(
     ]
 
 
+def builder_args_for_profile(
+    profile_name: str,
+    row: dict[str, Any],
+) -> list[str] | None:
+    if not profile_name.endswith("-replay"):
+        return list(row["ordinary_args"])
+    full_replay = row.get("full_replay")
+    if not isinstance(full_replay, dict) or not full_replay.get("args"):
+        raise ValueError(
+            f"replay profile {profile_name!r} requires full_replay args "
+            f"for builder {row['name']!r}"
+        )
+    required = [
+        ROOT / path
+        for path in full_replay.get("required_paths") or []
+    ]
+    if required and any(not path.is_file() for path in required):
+        return None
+    return list(full_replay["args"])
+
+
 def gradle_command(task: str) -> list[str]:
     wrapper = "gradlew.bat" if os.name == "nt" else "./gradlew"
     return [str(ROOT / wrapper), task, "--no-daemon"]
 
 
-def run_command(name: str, command: list[str]) -> int:
+def run_command(
+    name: str,
+    command: list[str],
+    *,
+    timings: list[tuple[str, float]] | None = None,
+) -> int:
     print(f"[{name}] {subprocess.list2cmdline(command)}", flush=True)
-    completed = subprocess.run(command, cwd=ROOT, check=False)
+    started = time.perf_counter()
+    try:
+        completed = subprocess.run(command, cwd=ROOT, check=False)
+    finally:
+        wall_seconds = time.perf_counter() - started
+        if timings is not None:
+            timings.append((name, wall_seconds))
+        print(f"[{name}] wall-time: {wall_seconds:.3f}s", flush=True)
     if completed.returncode == 0:
         print(f"[{name}] PASS", flush=True)
     else:
@@ -244,35 +278,68 @@ def cmd_integration(args: argparse.Namespace) -> int:
     print(f"verify integration --profile {profile_name}")
     print(f"owner={profile['owner']} tier={profile['tier']}")
     builder_policy = load_json(BUILDER_POLICY)
-    for row in builder_rows_for_profile(profile_name, document, builder_policy):
-        command = [sys.executable, row["script"], *row["ordinary_args"]]
-        code = run_command(f"builder:{row['name']}", command)
-        if code != 0:
-            return code
-    for module in profile["python_modules"]:
-        code = run_command(
-            f"python:{module}",
-            [
+    timings: list[tuple[str, float]] = []
+    try:
+        for row in builder_rows_for_profile(profile_name, document, builder_policy):
+            argv = builder_args_for_profile(profile_name, row)
+            if argv is None:
+                print(
+                    f"[builder:{row['name']}] SKIP source replay "
+                    "(required input missing); compact pass is not a source pass",
+                    flush=True,
+                )
+                continue
+            command = [
                 sys.executable,
-                "tools/run_python_tests.py",
-                "--suite",
-                "affected",
-                "--path",
-                f"tools/tests/{module}.py",
-            ],
-        )
-        if code != 0:
-            return code
-    for task in profile["gradle_tasks"]:
-        code = run_command(f"gradle:{task}", gradle_command(task))
-        if code != 0:
-            return code
-    if profile["datagen"]:
-        print("datagen required: run .\\gradlew.bat runData twice and compare generated trees")
-    if profile["gametest"]:
-        print("GameTest required for this profile: .\\gradlew.bat runGameTestServer")
-    print("integration profile complete. Do not treat this as a player release.")
-    return 0
+                row["script"],
+                *argv,
+            ]
+            code = run_command(
+                f"builder:{row['name']}",
+                command,
+                timings=timings,
+            )
+            if code != 0:
+                return code
+        for module in profile["python_modules"]:
+            code = run_command(
+                f"python:{module}",
+                [
+                    sys.executable,
+                    "tools/run_python_tests.py",
+                    "--suite",
+                    "affected",
+                    "--path",
+                    f"tools/tests/{module}.py",
+                ],
+                timings=timings,
+            )
+            if code != 0:
+                return code
+        for task in profile["gradle_tasks"]:
+            code = run_command(
+                f"gradle:{task}",
+                gradle_command(task),
+                timings=timings,
+            )
+            if code != 0:
+                return code
+        if profile["datagen"]:
+            print("datagen required: run .\\gradlew.bat runData twice and compare generated trees")
+        if profile["gametest"]:
+            if "census" in profile.get("selected_profiles", [args.profile]):
+                print(
+                    "GameTest required for this profile: "
+                    ".\\gradlew.bat runGameTestServer -Pt35Census --no-daemon"
+                )
+            else:
+                print("GameTest required for this profile: .\\gradlew.bat runGameTestServer")
+        print("integration profile complete. Do not treat this as a player release.")
+        return 0
+    finally:
+        print("integration wall-time summary:")
+        for name, wall_seconds in timings:
+            print(f"  {name}: {wall_seconds:.3f}s")
 
 
 def cmd_release(args: argparse.Namespace) -> int:

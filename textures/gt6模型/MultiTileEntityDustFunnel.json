@@ -1,8 +1,8 @@
 {
+  "credit": "GT6 MultiTileEntityDustFunnel empty-state ISBRH via tools/gt6_isbrh_to_json.py",
   "parent": "block/block",
   "textures": {
     "texture": "gregtech:blocks/materialicons/CERAMIC",
-    "molten": "gregtech:blocks/fluids/molten",
     "particle": "#texture"
   },
   "elements": [
@@ -40,6 +40,35 @@
     },
     {
       "from": [
+        2.0,
+        0.0,
+        2.0
+      ],
+      "to": [
+        14.0,
+        8.0,
+        14.0
+      ],
+      "faces": {
+        "down": {
+          "texture": "#texture"
+        },
+        "north": {
+          "texture": "#texture"
+        },
+        "south": {
+          "texture": "#texture"
+        },
+        "west": {
+          "texture": "#texture"
+        },
+        "east": {
+          "texture": "#texture"
+        }
+      }
+    },
+    {
+      "from": [
         0.0,
         0.0,
         0.0
@@ -51,9 +80,6 @@
       ],
       "faces": {
         "down": {
-          "texture": "#texture"
-        },
-        "up": {
           "texture": "#texture"
         },
         "north": {
@@ -85,9 +111,6 @@
         "down": {
           "texture": "#texture"
         },
-        "up": {
-          "texture": "#texture"
-        },
         "north": {
           "texture": "#texture"
         },
@@ -117,9 +140,6 @@
         "down": {
           "texture": "#texture"
         },
-        "up": {
-          "texture": "#texture"
-        },
         "north": {
           "texture": "#texture"
         },
@@ -147,9 +167,6 @@
       ],
       "faces": {
         "down": {
-          "texture": "#texture"
-        },
-        "up": {
           "texture": "#texture"
         },
         "north": {

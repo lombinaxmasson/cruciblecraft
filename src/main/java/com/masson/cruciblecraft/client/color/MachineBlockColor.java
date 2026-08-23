@@ -63,14 +63,18 @@ public final class MachineBlockColor {
         var id = BuiltInRegistries.BLOCK.getKey(block);
         String materialId = "bronze";
         if (id != null && CrucibleCraft.MODID.equals(id.getNamespace())) {
-            materialId = casingMaterial(id.getPath());
+            materialId = casingMaterialId(id.getPath());
         }
         return MaterialLookup.byId(materialId)
                 .map(material -> 0xFF000000 | material.colorRgb())
                 .orElse(0xFFCD7F32);
     }
 
-    private static String casingMaterial(String path) {
+    /** GT6 loader casing material identity for the machine texture family. */
+    public static String casingMaterialId(String path) {
+        if ("bronze_dynamo".equals(path)) {
+            return "tin_alloy";
+        }
         if (path.startsWith("titanium_")) {
             return "titanium";
         }
@@ -90,6 +94,11 @@ public final class MachineBlockColor {
     }
 
     static String machineTextureId(String id) {
+        String profile = com.masson.cruciblecraft.machine.processing
+                .MachineTierCatalog.textureProfile(id);
+        if (!profile.equals(id)) {
+            return profile;
+        }
         return switch (id) {
             case "steel_centrifuge", "titanium_centrifuge" -> "centrifuge";
             case "steel_sifter", "titanium_sifter" -> "sifter";
@@ -106,7 +115,7 @@ public final class MachineBlockColor {
             case "large_crucible" -> "coke_oven";
             case "drying", "invar_drying", "titanium_drying" -> "dryer";
             case "invar_smelter", "titanium_smelter" -> "smelter";
-            default -> id;
+            default -> profile;
         };
     }
 

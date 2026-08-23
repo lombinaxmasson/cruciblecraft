@@ -43,7 +43,7 @@ class MachineCraftingReadinessTest(unittest.TestCase):
             row["machine_id"]
             for row in self.document["configured_machines"]
         ]
-        self.assertEqual(23, len(configured))
+        self.assertEqual(25, len(configured))
         self.assertEqual(
             [
                 machine_id
@@ -73,6 +73,7 @@ class MachineCraftingReadinessTest(unittest.TestCase):
             "distillery": "DISTILLERY",
             "drying": "DRYING",
             "smelter": "SMELTER",
+            "roaster": "STEEL_ROASTER",
         })
         for row in self.document["configured_machines"]:
             with self.subTest(identity=row["machine_id"]):
@@ -168,17 +169,17 @@ class MachineCraftingReadinessTest(unittest.TestCase):
     def test_exact_coverage_and_classification_counts_are_locked(self):
         self.assertEqual(
             {
-                "configured_machine_placeholders": 23,
+                "configured_machine_placeholders": 25,
                 "existing_bronze_resources": 7,
-                "total_rows": 30,
+                "total_rows": 32,
                 "classifications": {
                     "directly_projectable": 0,
                     "existing_cc_recipe_retained": 7,
-                    "missing_cc_component": 3,
+                    "missing_cc_component": 4,
                     "source_identity_unresolved": 2,
-                    "tier_collapsed_pending_t6": 18,
+                    "tier_collapsed_pending_t6": 19,
                 },
-                "classified": 30,
+                "classified": 32,
                 "unclassified": 0,
             },
             self.document["counts"],

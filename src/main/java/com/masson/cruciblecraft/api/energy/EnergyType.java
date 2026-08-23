@@ -19,5 +19,10 @@ public enum EnergyType {
     KINETIC_ROTATION,
     KINETIC_PUSH,
     AIR,
-    ELECTRIC
+    ELECTRIC,
+    /**
+     * GT6 TIME / TU identity used by Autoclave, Bath, Coagulator and
+     * Generifier. This is not a material-tier matrix.
+     */
+    TIME
 }

@@ -92,6 +92,10 @@ public final class ModMenus {
             COMPRESSOR = processing("compressor", ModProcessingMachines.COMPRESSOR);
     public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
             GENERIFIER = processing("generifier", ModProcessingMachines.GENERIFIER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            ROASTER = processing("roaster", ModProcessingMachines.ROASTER);
+    public static final DeferredHolder<MenuType<?>, MenuType<ConfiguredProcessingMachineMenu>>
+            COAGULATOR = processing("coagulator", ModProcessingMachines.COAGULATOR);
 
     static {
         validateProcessingMenuMapping(

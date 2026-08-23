@@ -15,7 +15,7 @@
       "type": "string"
     },
     "schemaVersion": {
-      "const": 2
+      "const": 3
     },
     "namingPolicy": {
       "type": "object",
@@ -37,6 +37,12 @@
         "automaticKindTierCompletion": {
           "const": false,
           "description": "The catalog is a flat list of source-backed rows. It does not synthesize missing kind × tier combinations."
+        },
+        "euVoltageId": {
+          "type": "string"
+        },
+        "tuHostId": {
+          "type": "string"
         }
       }
     },
@@ -86,8 +92,10 @@
           "enum": [
             "ELECTRIC",
             "HEAT",
+            "KINETIC",
             "KINETIC_PUSH",
-            "KINETIC_ROTATION"
+            "KINETIC_ROTATION",
+            "TIME"
           ]
         },
         "inputMinimum": {
@@ -181,7 +189,29 @@
             "inputMaximum": true,
             "energyCapacity": true,
             "parallel": true,
-            "efficiency": true
+            "efficiency": true,
+            "variantSemantics": {
+              "enum": [
+                "material",
+                "eu_voltage",
+                "tu_host"
+              ]
+            },
+            "resourceProfile": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "sharedModel": {
+                  "type": "string"
+                },
+                "textureProfile": {
+                  "type": "string"
+                },
+                "skipGenericRegistration": {
+                  "type": "boolean"
+                }
+              }
+            }
           }
         }
       ]

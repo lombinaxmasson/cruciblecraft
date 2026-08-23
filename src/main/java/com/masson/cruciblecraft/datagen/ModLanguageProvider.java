@@ -40,6 +40,8 @@ public class ModLanguageProvider extends LanguageProvider {
             ToolPatternCatalog.DEFINITIONS.forEach(pattern ->
                     addItem(ModItems.toolPattern(pattern.id()), pattern.chineseName()));
             addItem(ModItems.FLINT_KNIFE, "燧石刀");
+            addItem(ModItems.PROGRAMMED_CIRCUIT, "编程电路");
+            add("tooltip.cruciblecraft.circuit_config", "配置：%s");
             add("screen.cruciblecraft.processing.status.unsupported_version",
                     "存档版本不受支持（版本 %s）");
             add("screen.cruciblecraft.processing.status.material_quarantined",
@@ -121,6 +123,21 @@ public class ModLanguageProvider extends LanguageProvider {
             addItem(
                     ModItems.STAINLESS_STEEL_MACHINE_CASING,
                     "不锈钢机器外壳");
+            addItem(
+                    ModItems.CHROMIUM_MACHINE_CASING,
+                    "铬制机器外壳");
+            addItem(
+                    ModItems.TITANIUM_MACHINE_CASING,
+                    "钛制机器外壳");
+            addItem(
+                    ModItems.TUNGSTENSTEEL_DOUBLE_MACHINE_CASING,
+                    "钨钢双层机器外壳");
+            addItem(
+                    ModItems.INVAR_DOUBLE_MACHINE_CASING,
+                    "殷钢双层机器外壳");
+            addItem(
+                    ModItems.TUNGSTEN_CARBIDE_DOUBLE_MACHINE_CASING,
+                    "碳化钨双层机器外壳");
             add("tooltip.cruciblecraft.fluid_cell.empty",
                     "空流体单元（容量 %s mB）");
             add("tooltip.cruciblecraft.fluid_cell.contents",
@@ -142,6 +159,8 @@ public class ModLanguageProvider extends LanguageProvider {
             add("tooltip.cruciblecraft.portable_fluid_tank.contents",
                     "%s：%s/%s mB");
             addBlock(ModBlocks.FIREBOX, "固体燃料燃烧室");
+            addBlock(ModBlocks.CRUCIBLE, "坩埚");
+            addBlock(ModBlocks.ANVIL, "锻造砧");
             addBlock(ModBlocks.BRONZE_BOILER, "青铜锅炉");
             addBlock(ModBlocks.BRONZE_STEAM_ENGINE, "青铜蒸汽机");
             addBlock(ModBlocks.BRONZE_DYNAMO, "青铜发电机");
@@ -185,6 +204,7 @@ public class ModLanguageProvider extends LanguageProvider {
                             "block." + CrucibleCraft.MODID + "."
                                     + variant.id().getPath(),
                             t17MachineName(variant, true)));
+            addRemainingCatalogMachineNames(true);
             java.util.Map.ofEntries(
                     java.util.Map.entry("sluice", "溜槽"),
                     java.util.Map.entry("bath", "洗矿浴池"),
@@ -208,7 +228,9 @@ public class ModLanguageProvider extends LanguageProvider {
                     java.util.Map.entry("distillery", "蒸馏机"),
                     java.util.Map.entry("autoclave", "高压釜"),
                     java.util.Map.entry("drying", "干燥机"),
-                    java.util.Map.entry("compressor", "压缩机"))
+                    java.util.Map.entry("compressor", "压缩机"),
+                    java.util.Map.entry("roaster", "焙烧炉"),
+                    java.util.Map.entry("coagulator", "凝固机"))
                     .forEach((id, name) ->
                             add("emi.category.cruciblecraft." + id, name));
             java.util.Map.ofEntries(
@@ -227,6 +249,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("emi.cruciblecraft.processing.power.kinetic", "功率：%s KU/t");
             add("emi.cruciblecraft.processing.power.electric", "功率：%s EU/t");
             add("emi.cruciblecraft.processing.power.heat", "热功率：%s HU/t");
+            add("emi.cruciblecraft.processing.power.time", "工时：%s TU/t");
             add("device.cruciblecraft.anvil", "砧");
             add("device.cruciblecraft.crucible", "坩埚");
             add("device.cruciblecraft.hammer", "锤");
@@ -484,6 +507,8 @@ public class ModLanguageProvider extends LanguageProvider {
         addItem(ModItems.BOLT_MOLD, "Bolt Mold");
         addItem(ModItems.COAL_COKE, "Coal Coke");
         addItem(ModItems.MATCH, "Match");
+        addItem(ModItems.PROGRAMMED_CIRCUIT, "Programmed Circuit");
+        add("tooltip.cruciblecraft.circuit_config", "Configuration: %s");
         addBlock(ModBlocks.BELLOWS, "Bellows");
         addItem(ModItems.CREOSOTE_BUCKET, "Creosote Bucket");
         add("fluid_type.cruciblecraft.creosote", "Creosote");
@@ -510,6 +535,21 @@ public class ModLanguageProvider extends LanguageProvider {
         addItem(
                 ModItems.STAINLESS_STEEL_MACHINE_CASING,
                 "Stainless Steel Machine Casing");
+        addItem(
+                ModItems.CHROMIUM_MACHINE_CASING,
+                "Chromium Machine Casing");
+        addItem(
+                ModItems.TITANIUM_MACHINE_CASING,
+                "Titanium Machine Casing");
+        addItem(
+                ModItems.TUNGSTENSTEEL_DOUBLE_MACHINE_CASING,
+                "Tungstensteel Double Machine Casing");
+        addItem(
+                ModItems.INVAR_DOUBLE_MACHINE_CASING,
+                "Invar Double Machine Casing");
+        addItem(
+                ModItems.TUNGSTEN_CARBIDE_DOUBLE_MACHINE_CASING,
+                "Tungsten Carbide Double Machine Casing");
         add("tooltip.cruciblecraft.fluid_cell.empty",
                 "Empty fluid cell (capacity: %s mB)");
         add("tooltip.cruciblecraft.fluid_cell.contents",
@@ -556,6 +596,7 @@ public class ModLanguageProvider extends LanguageProvider {
                         "block." + CrucibleCraft.MODID + "."
                                 + variant.id().getPath(),
                         t17MachineName(variant, false)));
+        addRemainingCatalogMachineNames(false);
         addBlock(ModBlocks.ELECTROLYZER, "Electrolyzer");
         addBlock(
                 ModBlocks.ALUMINIUM_ELECTROLYZER,
@@ -726,6 +767,7 @@ public class ModLanguageProvider extends LanguageProvider {
         add("emi.cruciblecraft.processing.power.kinetic", "Power: %s KU/t");
         add("emi.cruciblecraft.processing.power.electric", "Power: %s EU/t");
         add("emi.cruciblecraft.processing.power.heat", "Heat: %s HU/t");
+        add("emi.cruciblecraft.processing.power.time", "Work time: %s TU/t");
 
         add("message.cruciblecraft.firebox_fueled", "Firebox fueled: %s HU stored (%s seconds remaining)");
         add("message.cruciblecraft.firebox_fuel_rejected", "The firebox cannot accept this fuel right now");
@@ -928,5 +970,130 @@ public class ModLanguageProvider extends LanguageProvider {
                     "Unsupported T17 machine kind " + kind);
         };
         return title(material) + " " + machineName;
+    }
+
+    private void addRemainingCatalogMachineNames(boolean chinese) {
+        java.util.Set<String> alreadyNamed = new java.util.HashSet<>();
+        alreadyNamed.add("centrifuge");
+        alreadyNamed.add("steel_centrifuge");
+        alreadyNamed.add("titanium_centrifuge");
+        alreadyNamed.add("sifter");
+        alreadyNamed.add("steel_sifter");
+        alreadyNamed.add("titanium_sifter");
+        alreadyNamed.add("electrolyzer");
+        alreadyNamed.add("aluminium_electrolyzer");
+        alreadyNamed.add("stainless_steel_electrolyzer");
+        alreadyNamed.add("mixer");
+        alreadyNamed.add("autoclave");
+        alreadyNamed.add("compressor");
+        alreadyNamed.add("generifier");
+        alreadyNamed.add("extruder");
+        if (!chinese) {
+            alreadyNamed.add("sluice");
+            alreadyNamed.add("bath");
+            alreadyNamed.add("mortar");
+            alreadyNamed.add("cutter");
+            alreadyNamed.add("rollbender");
+            alreadyNamed.add("bender");
+            alreadyNamed.add("assembler");
+            alreadyNamed.add("welder");
+            alreadyNamed.add("shredder");
+            alreadyNamed.add("press");
+            alreadyNamed.add("lathe");
+            alreadyNamed.add("rollingmill");
+            alreadyNamed.add("wiremill");
+            alreadyNamed.add("distillery");
+            alreadyNamed.add("drying");
+            alreadyNamed.add("smelter");
+        }
+        ModMachineVariants.T16_SELECTED.forEach(variant ->
+                alreadyNamed.add(variant.id().getPath()));
+        ModMachineVariants.T17_SELECTED.forEach(variant ->
+                alreadyNamed.add(variant.id().getPath()));
+        ModMachineVariants.ALL.forEach(variant -> {
+            String path = variant.id().getPath();
+            if (alreadyNamed.contains(path)
+                    || ModMachineVariants.isOpening(variant.id())) {
+                return;
+            }
+            add(
+                    "block." + CrucibleCraft.MODID + "." + path,
+                    catalogMachineName(variant, chinese));
+        });
+    }
+
+    private static String catalogMachineName(
+            com.masson.cruciblecraft.machine.processing.MachineVariant variant,
+            boolean chinese) {
+        String material = variant.tierBand().materialId()
+                .substring(
+                        variant.tierBand().materialId().indexOf(':') + 1);
+        String kind = variant.kind().id().getPath();
+        if ("bronze_crusher".equals(kind)) {
+            kind = "crusher";
+        }
+        if (chinese) {
+            return materialZh(material) + kindZh(kind);
+        }
+        return title(material) + " " + kindEn(kind);
+    }
+
+    private static String materialZh(String material) {
+        return switch (material) {
+            case "bronze" -> "青铜";
+            case "steel" -> "钢制";
+            case "titanium" -> "钛制";
+            case "aluminium" -> "铝制";
+            case "stainless_steel" -> "不锈钢";
+            case "invar" -> "殷钢";
+            case "tungstensteel" -> "钨钢";
+            case "tungsten_carbide" -> "碳化钨";
+            case "chromium" -> "铬制";
+            case "steel_galvanized" -> "镀锌钢";
+            default -> title(material);
+        };
+    }
+
+    private static String kindZh(String kind) {
+        return switch (kind) {
+            case "centrifuge" -> "离心机";
+            case "sifter" -> "筛选机";
+            case "electrolyzer" -> "电解机";
+            case "lathe" -> "车床";
+            case "rollingmill" -> "轧机";
+            case "wiremill" -> "线材轧机";
+            case "shredder" -> "粉碎机";
+            case "press" -> "压机";
+            case "distillery" -> "蒸馏机";
+            case "drying" -> "干燥机";
+            case "smelter" -> "熔炼炉";
+            case "assembler" -> "装配机";
+            case "autoclave" -> "高压釜";
+            case "bath" -> "洗矿浴池";
+            case "bender" -> "折弯机";
+            case "crusher" -> "破碎机";
+            case "coagulator" -> "凝固机";
+            case "compressor" -> "压缩机";
+            case "cutter" -> "切割机";
+            case "extruder" -> "挤压机";
+            case "generifier" -> "通化机";
+            case "mixer" -> "混合机";
+            case "mortar" -> "动力研钵";
+            case "roaster" -> "焙烧炉";
+            case "rollbender" -> "卷板机";
+            case "sluice" -> "溜槽";
+            case "welder" -> "焊机";
+            default -> title(kind);
+        };
+    }
+
+    private static String kindEn(String kind) {
+        return switch (kind) {
+            case "rollingmill" -> "Rolling Mill";
+            case "wiremill" -> "Wire Mill";
+            case "drying" -> "Drying Machine";
+            case "rollbender" -> "Roll Bender";
+            default -> title(kind);
+        };
     }
 }

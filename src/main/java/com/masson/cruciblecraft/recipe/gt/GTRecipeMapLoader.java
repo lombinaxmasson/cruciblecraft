@@ -73,6 +73,19 @@ public final class GTRecipeMapLoader {
             resolved.get(map).add(new ResolvedRecipe(holder.id(), entry.recipe(), false));
         }
 
+        List<CompactRecipeFamilySource> compactSources = new ArrayList<>();
+        for (RecipeHolder<CompactGTRecipeFamilyEntry> holder
+                : manager.getAllRecipesFor(ModRecipes.COMPACT_GT_RECIPE_FAMILY_TYPE.get())) {
+            CompactGTRecipeFamilyDefinition definition = holder.value().definition();
+            if (!knownMaps.containsKey(definition.targetMap())) {
+                throw recipeValidationError(
+                        holder.id(),
+                        "Unknown recipe map " + definition.targetMap());
+            }
+            compactSources.add(new CompactRecipeFamilySource(holder.id(), definition));
+        }
+        compactSources.sort(Comparator.comparing(source -> source.id().toString()));
+
         List<RecipeHolder<MaterialRuleRecipe>> declarative = manager
                 .getAllRecipesFor(ModRecipes.MATERIAL_RULE_TYPE.get()).stream()
                 .sorted(Comparator.comparing(holder -> holder.id().toString()))
@@ -131,12 +144,26 @@ public final class GTRecipeMapLoader {
                         formIndexes,
                         preparedEpoch,
                         runtimeSide);
+        Map<ResourceLocation, CompactRecipeFamilyProvider.Snapshot> compactByMap =
+                CompactRecipeFamilyProvider.prepareByTarget(
+                        compactSources,
+                        knownMaps,
+                        preparedEpoch,
+                        compactSide(runtimeSide),
+                        CompactRecipeFamilyProvider.t37ProductionPolicy(
+                                compactSources));
         LinkedHashMap<RecipeMap, List<RecipeMap.Entry>> candidates = new LinkedHashMap<>();
         Map<RecipeMap, List<RecipeMap.RecipeFamily>> families = new HashMap<>();
         for (RecipeMap map : ModRecipeMaps.ALL) {
-            families.put(map, map == ModRecipeMaps.EXTRUDER
-                    ? List.of(extruderFamily)
-                    : List.of());
+            List<RecipeMap.RecipeFamily> mapFamilies = new ArrayList<>();
+            if (map == ModRecipeMaps.EXTRUDER) {
+                mapFamilies.add(extruderFamily);
+            }
+            CompactRecipeFamilyProvider.Snapshot compact = compactByMap.get(map.id());
+            if (compact != null) {
+                mapFamilies.add(compact);
+            }
+            families.put(map, List.copyOf(mapFamilies));
         }
         for (RecipeMap map : ModRecipeMaps.ALL) {
             List<RecipeMap.Entry> ordered = resolved.get(map).stream()
@@ -211,10 +238,26 @@ public final class GTRecipeMapLoader {
                 t5ChemicalRecipes,
                 t5RecipesOnT3Maps,
                 allPublishedRecipes);
+        int compactFamilyAuthoredEntries = compactSources.size();
+        int compactFamilyLogicalRecipes = 0;
+        int compactFamilyEagerRecipes = 0;
+        int compactFamilyLazyRecipes = 0;
+        int compactFamilyCacheCeiling = 0;
+        int compactFamilyUnindexedRelations = 0;
+        long compactFamilySyncBytes = 0L;
+        for (CompactRecipeFamilyProvider.Snapshot compact : compactByMap.values()) {
+            compactFamilyLogicalRecipes += compact.logicalRecipeCount();
+            compactFamilyEagerRecipes += compact.eagerRecipeCount();
+            compactFamilyLazyRecipes += compact.lazyRecipeCount();
+            compactFamilyCacheCeiling += compact.cacheCeiling();
+            compactFamilyUnindexedRelations += compact.unindexedRelationCount();
+            compactFamilySyncBytes += compact.syncPayloadBytes();
+        }
+        String compactFamilyStableFingerprint = compactFingerprint(compactByMap);
         validateT14MaterializationBudgets(
                 eagerPublishedRecipes,
                 lazyLogicalRecipes,
-                extruderFamily.cacheCeiling());
+                extruderFamily.cacheCeiling() + compactFamilyCacheCeiling);
 
         long indexStarted = System.nanoTime();
         LinkedHashMap<RecipeMap, RecipeMap.Prepared> preparedByMap =
@@ -249,6 +292,14 @@ public final class GTRecipeMapLoader {
                 extruderFamily.syncPayloadBytes(),
                 extruderFamilySources.size(),
                 extruderFamily.stableFingerprint(),
+                compactFamilyAuthoredEntries,
+                compactFamilyLogicalRecipes,
+                compactFamilyEagerRecipes,
+                compactFamilyLazyRecipes,
+                compactFamilyCacheCeiling,
+                compactFamilyUnindexedRelations,
+                compactFamilySyncBytes,
+                compactFamilyStableFingerprint,
                 runtimeSide,
                 reloadNanos / 1_000_000L,
                 indexNanos / 1_000_000L);
@@ -414,6 +465,14 @@ public final class GTRecipeMapLoader {
             long t14ExtruderSyncBytes,
             int t14ExtruderAuthoredEntries,
             String t14ExtruderStableFingerprint,
+            int compactFamilyAuthoredEntries,
+            int compactFamilyLogicalRecipes,
+            int compactFamilyEagerRecipes,
+            int compactFamilyLazyRecipes,
+            int compactFamilyCacheCeiling,
+            int compactFamilyUnindexedRelations,
+            long compactFamilySyncBytes,
+            String compactFamilyStableFingerprint,
             ExtruderRecipeFamilyProvider.RuntimeSide runtimeSide,
             long reloadMillis,
             long indexMillis) {
@@ -421,7 +480,9 @@ public final class GTRecipeMapLoader {
             return new PublicationMetrics(
                     0, 0, 0, 0, 0, 0, 0, 0,
                     0, 0, 0, 0, 0, 0, 0, 0,
-                    "", ExtruderRecipeFamilyProvider.RuntimeSide.SERVER,
+                    "",
+                    0, 0, 0, 0, 0, 0, 0L, "",
+                    ExtruderRecipeFamilyProvider.RuntimeSide.SERVER,
                     0L, 0L);
         }
     }
@@ -653,6 +714,11 @@ public final class GTRecipeMapLoader {
                 && id.getPath().startsWith("t22/");
     }
 
+    static boolean isT36BootstrapRecipe(ResourceLocation id) {
+        return CrucibleCraft.MODID.equals(id.getNamespace())
+                && id.getPath().startsWith("t36/");
+    }
+
     private static boolean isT14CompactExtruder(RuleSource source) {
         return CrucibleCraft.MODID.equals(source.id().getNamespace())
                 && source.id().getPath().startsWith("extruder/compact/")
@@ -828,13 +894,16 @@ public final class GTRecipeMapLoader {
             boolean t11Chemical = isT11ChemicalRecipe(entry.id());
             boolean t21Chemical = isT21ChemicalRecipe(entry.id());
             boolean t22Petroleum = isT22PetroleumRecipe(entry.id());
+            boolean t36Bootstrap = isT36BootstrapRecipe(entry.id());
             if (t5Recipe && !t5Map) {
                 throw new IllegalArgumentException(
                         "T5 recipe " + entry.id() + " targets non-T5 map " + map.id());
             }
-            if (dedicatedT5Map && !t5Recipe && !t11Chemical && !t21Chemical && !t22Petroleum) {
+            if (dedicatedT5Map && !t5Recipe && !t11Chemical && !t21Chemical
+                    && !t22Petroleum && !t36Bootstrap) {
                 throw new IllegalArgumentException(
-                        "Dedicated T5 map " + map.id() + " requires recipe-id prefix t5/, t11/, t21/, or t22/: "
+                        "Dedicated T5 map " + map.id()
+                                + " requires recipe-id prefix t5/, t11/, t21/, t22/, or t36/: "
                                 + entry.id());
             }
             if (t11Chemical
@@ -966,6 +1035,46 @@ public final class GTRecipeMapLoader {
             String message) {
         return new IllegalArgumentException(
                 message + "; " + describeLogicalResource(recipeId));
+    }
+
+    private static CompactRecipeFamilyProvider.RuntimeSide compactSide(
+            ExtruderRecipeFamilyProvider.RuntimeSide side) {
+        return switch (side) {
+            case SERVER -> CompactRecipeFamilyProvider.RuntimeSide.SERVER;
+            case DEDICATED_CLIENT ->
+                    CompactRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT;
+            case INTEGRATED_CLIENT ->
+                    CompactRecipeFamilyProvider.RuntimeSide.INTEGRATED_CLIENT;
+        };
+    }
+
+    private static String compactFingerprint(
+            Map<ResourceLocation, CompactRecipeFamilyProvider.Snapshot> compactByMap) {
+        if (compactByMap.isEmpty()) {
+            return "";
+        }
+        List<CompactRecipeFamilyProvider.Snapshot> ordered =
+                compactByMap.values().stream()
+                        .sorted(Comparator.comparing(snapshot ->
+                                snapshot.mapId().toString()))
+                        .toList();
+        if (ordered.size() == 1) {
+            return ordered.getFirst().stableFingerprint();
+        }
+        StringBuilder joined = new StringBuilder();
+        for (CompactRecipeFamilyProvider.Snapshot snapshot : ordered) {
+            joined.append(snapshot.mapId())
+                    .append('=')
+                    .append(snapshot.stableFingerprint())
+                    .append('\n');
+        }
+        try {
+            var digest = java.security.MessageDigest.getInstance("SHA-256");
+            digest.update(joined.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            return java.util.HexFormat.of().formatHex(digest.digest());
+        } catch (java.security.NoSuchAlgorithmException exception) {
+            throw new IllegalStateException("SHA-256 is unavailable", exception);
+        }
     }
 
     private static String describeLogicalResource(ResourceLocation recipeId) {

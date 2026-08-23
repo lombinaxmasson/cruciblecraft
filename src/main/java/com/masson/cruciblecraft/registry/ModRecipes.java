@@ -1,6 +1,8 @@
 package com.masson.cruciblecraft.registry;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.recipe.gt.CompactGTRecipeFamilyEntry;
+import com.masson.cruciblecraft.recipe.gt.CompactGTRecipeFamilySerializer;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntrySerializer;
 import com.masson.cruciblecraft.recipe.rule.MaterialRuleRecipe;
@@ -38,6 +40,21 @@ public final class ModRecipes {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<MaterialRuleRecipe>>
             MATERIAL_RULE_SERIALIZER =
                     RECIPE_SERIALIZERS.register("material_rule", MaterialRuleSerializer::new);
+
+    public static final DeferredHolder<RecipeType<?>, RecipeType<CompactGTRecipeFamilyEntry>>
+            COMPACT_GT_RECIPE_FAMILY_TYPE =
+                    RECIPE_TYPES.register(
+                            "compact_gt_recipe_family",
+                            () -> RecipeType.<CompactGTRecipeFamilyEntry>simple(
+                                    ResourceLocation.fromNamespaceAndPath(
+                                            CrucibleCraft.MODID,
+                                            "compact_gt_recipe_family")));
+    public static final DeferredHolder<
+                    RecipeSerializer<?>, RecipeSerializer<CompactGTRecipeFamilyEntry>>
+            COMPACT_GT_RECIPE_FAMILY_SERIALIZER =
+                    RECIPE_SERIALIZERS.register(
+                            "compact_gt_recipe_family",
+                            CompactGTRecipeFamilySerializer::new);
 
     private ModRecipes() {}
 }

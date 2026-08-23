@@ -9,6 +9,7 @@ import java.util.Set;
 import com.masson.cruciblecraft.machine.processing.MachineKindSpec;
 import com.masson.cruciblecraft.machine.processing.MachineTierCatalog;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 
 import net.minecraft.resources.ResourceLocation;
 
@@ -16,41 +17,34 @@ import net.minecraft.resources.ResourceLocation;
  *  The public API is entries / variantsOf / require. There is no tierOf(kind, n)
  *  matrix completion. */
 public final class ModMachineVariants {
+    public static final List<MachineKindSpec> KINDS = kindsFromCatalog();
+    private static final Map<ResourceLocation, MachineKindSpec> KIND_BY_ID =
+            KINDS.stream().collect(
+                    java.util.stream.Collectors.toUnmodifiableMap(
+                            MachineKindSpec::id,
+                            value -> value));
     public static final MachineKindSpec CENTRIFUGE =
-            sourceKind(ModProcessingMachines.CENTRIFUGE);
+            requireKind(id("centrifuge"));
     public static final MachineKindSpec SIFTER =
-            sourceKind(ModProcessingMachines.SIFTER);
+            requireKind(id("sifter"));
     public static final MachineKindSpec ELECTROLYZER =
-            sourceKind(ModProcessingMachines.ELECTROLYZER);
+            requireKind(id("electrolyzer"));
     public static final MachineKindSpec LATHE =
-            sourceKind(ModProcessingMachines.LATHE);
+            requireKind(id("lathe"));
     public static final MachineKindSpec ROLLINGMILL =
-            sourceKind(ModProcessingMachines.ROLLINGMILL);
+            requireKind(id("rollingmill"));
     public static final MachineKindSpec WIREMILL =
-            sourceKind(ModProcessingMachines.WIREMILL);
+            requireKind(id("wiremill"));
     public static final MachineKindSpec SHREDDER =
-            sourceKind(ModProcessingMachines.SHREDDER);
+            requireKind(id("shredder"));
     public static final MachineKindSpec PRESS =
-            sourceKind(ModProcessingMachines.PRESS);
+            requireKind(id("press"));
     public static final MachineKindSpec DISTILLERY =
-            sourceKind(ModProcessingMachines.DISTILLERY);
+            requireKind(id("distillery"));
     public static final MachineKindSpec DRYING =
-            sourceKind(ModProcessingMachines.DRYING);
+            requireKind(id("drying"));
     public static final MachineKindSpec SMELTER =
-            sourceKind(ModProcessingMachines.SMELTER);
-    public static final List<MachineKindSpec> KINDS =
-            List.of(
-                    CENTRIFUGE,
-                    SIFTER,
-                    ELECTROLYZER,
-                    LATHE,
-                    ROLLINGMILL,
-                    WIREMILL,
-                    SHREDDER,
-                    PRESS,
-                    DISTILLERY,
-                    DRYING,
-                    SMELTER);
+            requireKind(id("smelter"));
     public static final List<MachineKindSpec> T16_SELECTED_KINDS =
             List.of(LATHE, ROLLINGMILL, WIREMILL, SHREDDER, PRESS);
     private static final Set<ResourceLocation> T16_SELECTED_KIND_IDS =
@@ -63,12 +57,42 @@ public final class ModMachineVariants {
             T17_SELECTED_KINDS.stream()
                     .map(MachineKindSpec::id)
                     .collect(java.util.stream.Collectors.toUnmodifiableSet());
+    private static final Set<ResourceLocation> OPENING_VARIANT_IDS =
+            java.util.Set.of(
+                    id("centrifuge"),
+                    id("steel_centrifuge"),
+                    id("titanium_centrifuge"),
+                    id("sifter"),
+                    id("steel_sifter"),
+                    id("titanium_sifter"),
+                    id("electrolyzer"),
+                    id("aluminium_electrolyzer"),
+                    id("stainless_steel_electrolyzer"),
+                    id("lathe"),
+                    id("steel_lathe"),
+                    id("titanium_lathe"),
+                    id("rollingmill"),
+                    id("steel_rollingmill"),
+                    id("titanium_rollingmill"),
+                    id("wiremill"),
+                    id("steel_wiremill"),
+                    id("titanium_wiremill"),
+                    id("shredder"),
+                    id("steel_shredder"),
+                    id("titanium_shredder"),
+                    id("press"),
+                    id("steel_press"),
+                    id("titanium_press"),
+                    id("distillery"),
+                    id("invar_distillery"),
+                    id("titanium_distillery"),
+                    id("drying"),
+                    id("invar_drying"),
+                    id("titanium_drying"),
+                    id("smelter"),
+                    id("invar_smelter"),
+                    id("titanium_smelter"));
 
-    private static final Map<ResourceLocation, MachineKindSpec> KIND_BY_ID =
-            KINDS.stream().collect(
-                    java.util.stream.Collectors.toUnmodifiableMap(
-                            MachineKindSpec::id,
-                            value -> value));
     public static final List<MachineVariant> ALL =
             MachineTierCatalog.entries().stream()
                     .map(entry -> new MachineVariant(
@@ -79,14 +103,22 @@ public final class ModMachineVariants {
     public static final List<MachineVariant> T16_SELECTED =
             ALL.stream()
                     .filter(variant ->
-                            T16_SELECTED_KIND_IDS.contains(variant.kind().id()))
+                            T16_SELECTED_KIND_IDS.contains(variant.kind().id())
+                                    && OPENING_VARIANT_IDS.contains(
+                                            variant.id()))
                     .toList();
     public static final List<MachineVariant> T17_SELECTED =
             ALL.stream()
                     .filter(variant ->
                             T17_SELECTED_KIND_IDS.contains(
-                                    variant.kind().id()))
+                                    variant.kind().id())
+                                    && OPENING_VARIANT_IDS.contains(
+                                            variant.id()))
                     .toList();
+
+    public static boolean isOpening(ResourceLocation id) {
+        return OPENING_VARIANT_IDS.contains(id);
+    }
     private static final Map<ResourceLocation, MachineVariant> BY_ID =
             indexById();
     private static final Map<ResourceLocation, List<MachineVariant>> BY_KIND =
@@ -114,6 +146,29 @@ public final class ModMachineVariants {
     /** Actual existing variants of one kind. Not a kind × tier completion. */
     public static List<MachineVariant> variantsOf(ResourceLocation kindId) {
         return forKind(kindId);
+    }
+
+    private static List<MachineKindSpec> kindsFromCatalog() {
+        LinkedHashMap<ResourceLocation, MachineKindSpec> kinds =
+                new LinkedHashMap<>();
+        for (MachineTierCatalog.Entry entry : MachineTierCatalog.entries()) {
+            kinds.computeIfAbsent(
+                    entry.kindId(),
+                    kindId -> sourceKind(behaviorOf(kindId)));
+        }
+        return List.copyOf(kinds.values());
+    }
+
+    private static ProcessingMachineSpec behaviorOf(ResourceLocation kindId) {
+        if (kindId.equals(ModProcessingMachines.CRUSHER.id())) {
+            return ModProcessingMachines.CRUSHER;
+        }
+        return ModProcessingMachines.require(kindId);
+    }
+
+    private static ResourceLocation id(String path) {
+        return ResourceLocation.fromNamespaceAndPath(
+                com.masson.cruciblecraft.CrucibleCraft.MODID, path);
     }
 
     private static MachineKindSpec sourceKind(

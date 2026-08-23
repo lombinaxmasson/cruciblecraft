@@ -13,7 +13,8 @@ class ModRecipesRegistrationTest {
     void registersOnlyActiveRecipeTypesAndSerializers() {
         Set<ResourceLocation> expected = Set.of(
                 id("gt_recipe"),
-                id("material_rule"));
+                id("material_rule"),
+                id("compact_gt_recipe_family"));
 
         assertEquals(expected, ModRecipes.RECIPE_TYPES.getEntries().stream()
                 .map(holder -> holder.getId())

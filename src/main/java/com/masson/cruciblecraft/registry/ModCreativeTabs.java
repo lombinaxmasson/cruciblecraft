@@ -64,6 +64,7 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.BOLT_MOLD.get());
                         output.accept(ModItems.COAL_COKE.get());
                         output.accept(ModItems.MATCH.get());
+                        output.accept(ModItems.PROGRAMMED_CIRCUIT.get());
                         output.accept(ModItems.BELLOWS.get());
                         output.accept(ModItems.CREOSOTE_BUCKET.get());
                         output.accept(ModItems.STEAM_BUCKET.get());
@@ -99,8 +100,8 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.BRONZE_CRUSHER.get());
                         output.accept(ModItems.SLUICE.get());
                         output.accept(ModItems.BATH.get());
-                        // Every registered machine variant (33 = all tiers of
-                        // the 11 tiered kinds); no hand-written list to drift.
+                        // Every registered machine variant from the T36 catalog
+                        // (opening 33 plus later material/EU/TU rows).
                         ModMachineVariants.ALL.forEach(variant ->
                                 output.accept(ModBlocks
                                         .configuredProcessingBlock(variant)

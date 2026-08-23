@@ -103,4 +103,53 @@ class WorldgenCatalogResourceTest {
         }
         assertEquals(Set.of("liquid", "gas"), states);
     }
+
+    @Test
+    void surfaceScatterReadinessDocumentsCheckOnlyDeclaration()
+            throws Exception {
+        var readiness = JsonParser.parseString(Files.readString(READINESS))
+                .getAsJsonObject();
+        var scatter = readiness.getAsJsonObject("surface_scatter");
+        assertEquals("surface_rock_scatter", scatter.get("id").getAsString());
+        assertEquals(
+                "cruciblecraft:surface_rock_scatter",
+                scatter.get("feature_type").getAsString());
+        assertEquals(128, scatter.get("rarity").getAsInt());
+        assertEquals("c:rocks", scatter.get("rock_tag").getAsString());
+        assertEquals(
+                "#minecraft:is_overworld",
+                scatter.get("biomes").getAsString());
+        assertEquals(
+                "top_layer_modification",
+                scatter.get("decoration_step").getAsString());
+        assertEquals("DESIGN_POLICY", scatter.get("design_policy").getAsString());
+        assertEquals("check_only", scatter.get("audit_mode").getAsString());
+        var rockSource = readiness.getAsJsonObject(
+                "surface_scatter_rock_tag_source");
+        assertEquals("rock", rockSource.get("prefix").getAsString());
+        assertEquals("c:rocks", rockSource.get("tag").getAsString());
+        assertEquals(
+                "GeneratedMaterialPack",
+                rockSource.get("runtime_pack").getAsString());
+        assertTrue(rockSource.get("rock_material_count").getAsInt() > 0);
+
+        var counts = readiness.getAsJsonObject("counts");
+        assertEquals(263, counts.get("catalog_generated_files").getAsInt());
+        assertEquals(274, counts.get("all_worldgen_files").getAsInt());
+        assertEquals(129, counts.get("closure_vein_classifications").getAsInt());
+
+        Path declaration = Path.of(
+                "src/main/resources/data/cruciblecraft/worldgen_catalog"
+                        + "/surface_scatter.json");
+        var document = JsonParser.parseString(Files.readString(declaration))
+                .getAsJsonObject();
+        assertEquals(
+                scatter.get("rarity").getAsInt(),
+                document.getAsJsonObject("config").get("rarity").getAsInt());
+        assertEquals(
+                scatter.get("rock_tag").getAsString(),
+                document.getAsJsonObject("config")
+                        .get("rock_tag")
+                        .getAsString());
+    }
 }

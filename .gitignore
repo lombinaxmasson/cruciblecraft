@@ -40,6 +40,9 @@ run-t31-compat-server/
 run-t31-compat-optional/
 run-t31-compat-client/
 run-t31-compat-client-optional/
+run-t35-census/
+run-t36-machines/
+run-t37-recipes/
 tools/t31_compat_samples/
 !**/src/**/run/
 **/src/generated/**/.cache/
@@ -54,6 +57,7 @@ gt6u_code/
 gtceu_code/
 gt6_dump/
 _zip_extract/
+tmp-baked_textures/
 logs/
 *.rar
 *.7z
@@ -63,5 +67,6 @@ tools/gt6_recipe_compare_report.json
 tools/gt6_recipe_normalized_reference.json
 tools/gt6_extruder_templates_v5.json
 tools/gt6_recipe_expectations_suggested.json
+tools/t37_assembler_source_review.json
 __pycache__/
 *.pyc

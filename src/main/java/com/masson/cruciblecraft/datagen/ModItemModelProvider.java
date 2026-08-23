@@ -16,24 +16,32 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        generatedCc("raw_ceramic_crucible");
-        generatedCc("raw_ceramic_mold");
-        generatedCc("raw_ingot_mold");
-        generatedCc("raw_plate_mold");
-        generatedCc("raw_rod_mold");
-        generatedCc("raw_bolt_mold");
+        generatedT34Gt6("raw_ceramic_crucible");
+        generatedT34Gt6("raw_ceramic_mold");
+        generatedT34Gt6("raw_ingot_mold");
+        generatedT34Gt6("raw_plate_mold");
+        generatedT34Gt6("raw_rod_mold");
+        generatedT34Gt6("raw_bolt_mold");
         withExistingParent("ingot_mold", modLoc("block/ceramic_mold"));
         withExistingParent("plate_mold", modLoc("block/ceramic_mold"));
         withExistingParent("rod_mold", modLoc("block/ceramic_mold"));
         withExistingParent("bolt_mold", modLoc("block/ceramic_mold"));
         generatedCc("coal_coke");
         generatedCc("match");
+        generatedCc("programmed_circuit");
         generatedCc("bronze_double_machine_casing");
         generatedCc("steel_double_machine_casing");
         generatedCc("titanium_double_machine_casing");
+        generatedMachineItem("fuel_engine", "front");
+        generatedMachineItem("burning_gas_generator", "front");
         generatedCc("steel_galvanized_machine_casing");
         generatedCc("aluminium_machine_casing");
         generatedCc("stainless_steel_machine_casing");
+        generatedCc("chromium_machine_casing");
+        generatedCc("titanium_machine_casing");
+        generatedCc("tungstensteel_double_machine_casing");
+        generatedCc("invar_double_machine_casing");
+        generatedCc("tungsten_carbide_double_machine_casing");
         generatedCc("creosote_bucket");
         generatedCc("steam_bucket");
         generatedCc("portable_fluid_tank");
@@ -95,6 +103,21 @@ public class ModItemModelProvider extends ItemModelProvider {
     private void generatedCc(String name) {
         withExistingParent(name, mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/" + name));
+    }
+
+    private void generatedT34Gt6(String name) {
+        withExistingParent(name, mcLoc("item/generated"))
+                .texture("layer0", modLoc("item/t34_gt6/" + name));
+    }
+
+    private void generatedMachineItem(String machine, String face) {
+        withExistingParent(machine, mcLoc("item/generated"))
+                .texture(
+                        "layer0",
+                        modLoc("block/machine/" + machine + "/colored/" + face))
+                .texture(
+                        "layer1",
+                        modLoc("block/machine/" + machine + "/overlay/" + face));
     }
 
     private void tool(String name, String... textureLayers) {

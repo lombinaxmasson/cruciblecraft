@@ -132,6 +132,7 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
                         >= generator.spec.outputPacketSize()) {
             generator.setStatus("energy_output_blocked");
         }
+        generator.updateLitState();
         generator.flushClientSync(level.getGameTime());
     }
 
@@ -424,6 +425,21 @@ public final class FuelGeneratorBlockEntity extends BlockEntity
         if (!status.equals(nextStatus)) {
             status = nextStatus;
             markTickMutation();
+        }
+    }
+
+    private void updateLitState() {
+        if (level == null || level.isClientSide) {
+            return;
+        }
+        BlockState state = getBlockState();
+        boolean lit = "running".equals(status);
+        if (state.hasProperty(FuelGeneratorBlock.LIT)
+                && state.getValue(FuelGeneratorBlock.LIT) != lit) {
+            level.setBlock(
+                    worldPosition,
+                    state.setValue(FuelGeneratorBlock.LIT, lit),
+                    Block.UPDATE_CLIENTS);
         }
     }
 

@@ -266,9 +266,9 @@ public final class ModBlocks {
                     () -> new DustFunnelBlock(
                             machineProperties().noOcclusion()));
     public static final DeferredBlock<ProcessingMachineBlock> SLUICE =
-            processing("sluice", ModProcessingMachines.SLUICE);
+            tieredProcessing("sluice");
     public static final DeferredBlock<ProcessingMachineBlock> BATH =
-            processing("bath", ModProcessingMachines.BATH);
+            tieredProcessing("bath");
     public static final DeferredBlock<ProcessingMachineBlock> CENTRIFUGE =
             tieredProcessing("centrifuge");
     public static final DeferredBlock<ProcessingMachineBlock>
@@ -294,11 +294,11 @@ public final class ModBlocks {
     public static final DeferredBlock<ProcessingMachineBlock>
             TITANIUM_SMELTER = tieredProcessing("titanium_smelter");
     public static final DeferredBlock<ProcessingMachineBlock> MORTAR =
-            processing("mortar", ModProcessingMachines.MORTAR);
+            tieredProcessing("mortar");
     public static final DeferredBlock<ProcessingMachineBlock> EXTRUDER =
-            processing("extruder", ModProcessingMachines.EXTRUDER);
+            tieredProcessing("extruder");
     public static final DeferredBlock<ProcessingMachineBlock> CUTTER =
-            processing("cutter", ModProcessingMachines.CUTTER);
+            tieredProcessing("cutter");
     public static final DeferredBlock<ProcessingMachineBlock> LATHE =
             tieredProcessing("lathe");
     public static final DeferredBlock<ProcessingMachineBlock> STEEL_LATHE =
@@ -312,7 +312,7 @@ public final class ModBlocks {
     public static final DeferredBlock<ProcessingMachineBlock>
             TITANIUM_ROLLINGMILL = tieredProcessing("titanium_rollingmill");
     public static final DeferredBlock<ProcessingMachineBlock> ROLLBENDER =
-            processing("rollbender", ModProcessingMachines.ROLLBENDER);
+            tieredProcessing("rollbender");
     public static final DeferredBlock<ProcessingMachineBlock> WIREMILL =
             tieredProcessing("wiremill");
     public static final DeferredBlock<ProcessingMachineBlock> STEEL_WIREMILL =
@@ -320,11 +320,11 @@ public final class ModBlocks {
     public static final DeferredBlock<ProcessingMachineBlock>
             TITANIUM_WIREMILL = tieredProcessing("titanium_wiremill");
     public static final DeferredBlock<ProcessingMachineBlock> BENDER =
-            processing("bender", ModProcessingMachines.BENDER);
+            tieredProcessing("bender");
     public static final DeferredBlock<ProcessingMachineBlock> ASSEMBLER =
-            processing("assembler", ModProcessingMachines.ASSEMBLER);
+            tieredProcessing("assembler");
     public static final DeferredBlock<ProcessingMachineBlock> WELDER =
-            processing("welder", ModProcessingMachines.WELDER);
+            tieredProcessing("welder");
     public static final DeferredBlock<ProcessingMachineBlock> PRESS =
             tieredProcessing("press");
     public static final DeferredBlock<ProcessingMachineBlock> STEEL_PRESS =
@@ -339,7 +339,7 @@ public final class ModBlocks {
             STAINLESS_STEEL_ELECTROLYZER =
                     tieredProcessing("stainless_steel_electrolyzer");
     public static final DeferredBlock<ProcessingMachineBlock> MIXER =
-            processing("mixer", ModProcessingMachines.MIXER);
+            tieredProcessing("mixer");
     public static final DeferredBlock<ProcessingMachineBlock> DISTILLERY =
             tieredProcessing("distillery");
     public static final DeferredBlock<ProcessingMachineBlock>
@@ -347,7 +347,7 @@ public final class ModBlocks {
     public static final DeferredBlock<ProcessingMachineBlock>
             TITANIUM_DISTILLERY = tieredProcessing("titanium_distillery");
     public static final DeferredBlock<ProcessingMachineBlock> AUTOCLAVE =
-            processing("autoclave", ModProcessingMachines.AUTOCLAVE);
+            tieredProcessing("autoclave");
     public static final DeferredBlock<ProcessingMachineBlock> DRYING =
             tieredProcessing("drying");
     public static final DeferredBlock<ProcessingMachineBlock> INVAR_DRYING =
@@ -355,9 +355,13 @@ public final class ModBlocks {
     public static final DeferredBlock<ProcessingMachineBlock>
             TITANIUM_DRYING = tieredProcessing("titanium_drying");
     public static final DeferredBlock<ProcessingMachineBlock> COMPRESSOR =
-            processing("compressor", ModProcessingMachines.COMPRESSOR);
+            tieredProcessing("compressor");
     public static final DeferredBlock<ProcessingMachineBlock> GENERIFIER =
-            processing("generifier", ModProcessingMachines.GENERIFIER);
+            tieredProcessing("generifier");
+    public static final DeferredBlock<ProcessingMachineBlock> COAGULATOR =
+            tieredProcessing("coagulator");
+    public static final DeferredBlock<ProcessingMachineBlock> STEEL_ROASTER =
+            tieredProcessing("steel_roaster");
     public static final DeferredBlock<FuelGeneratorBlock> FUEL_ENGINE =
             BLOCKS.register(
                     "fuel_engine",
@@ -660,9 +664,9 @@ public final class ModBlocks {
                         "Duplicate tiered processing block " + variant.id());
             }
         }
-        if (blocks.size() != 33) {
+        if (blocks.size() != ModMachineVariants.ALL.size()) {
             throw new IllegalStateException(
-                    "Tiered processing registration drifted from 33 rows");
+                    "Tiered processing registration drifted from catalog rows");
         }
         return java.util.Collections.unmodifiableMap(blocks);
     }
@@ -767,11 +771,12 @@ public final class ModBlocks {
     public static Block configuredProcessingBlock(
             com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec spec) {
         Objects.requireNonNull(spec, "spec");
-        if (!CONFIGURED_PROCESSING_BLOCKS.keySet().containsAll(
-                ModProcessingMachines.CONFIGURED_MACHINES.stream()
-                        .map(com.masson.cruciblecraft.machine.processing
-                                .ProcessingMachineSpec::id)
-                        .collect(java.util.stream.Collectors.toSet()))) {
+        boolean complete = ModProcessingMachines.CONFIGURED_MACHINES.stream()
+                .allMatch(machine ->
+                        CONFIGURED_PROCESSING_BLOCKS.containsKey(machine.id())
+                                || !ModMachineVariants.forKind(machine.id())
+                                        .isEmpty());
+        if (!complete) {
             throw new IllegalStateException(
                     "Configured processing block mapping is incomplete");
         }
@@ -779,6 +784,14 @@ public final class ModBlocks {
                 .anyMatch(candidate -> candidate == spec);
         DeferredBlock<ProcessingMachineBlock> holder =
                 CONFIGURED_PROCESSING_BLOCKS.get(spec.id());
+        if (holder == null) {
+            java.util.List<MachineVariant> variants =
+                    ModMachineVariants.forKind(spec.id());
+            if (!variants.isEmpty()) {
+                holder = CONFIGURED_PROCESSING_BLOCKS.get(
+                        variants.getFirst().id());
+            }
+        }
         if (!configured || holder == null) {
             throw new IllegalArgumentException(
                     "No configured processing block for " + spec.id());

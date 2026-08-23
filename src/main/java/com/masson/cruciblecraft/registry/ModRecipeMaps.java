@@ -50,6 +50,8 @@ public final class ModRecipeMaps {
     public static final RecipeMap DRYING = create("drying");
     public static final RecipeMap COMPRESSOR = create("compressor");
     public static final RecipeMap GENERIFIER = create("generifier");
+    public static final RecipeMap ROASTER = create("roaster");
+    public static final RecipeMap COAGULATOR = create("coagulator");
     public static final RecipeMap FUELS_ENGINE = create("fuels_engine");
     public static final RecipeMap FUELS_GAS = create("fuels_gas");
 
@@ -84,6 +86,8 @@ public final class ModRecipeMaps {
             DRYING,
             COMPRESSOR,
             GENERIFIER,
+            ROASTER,
+            COAGULATOR,
             FUELS_ENGINE,
             FUELS_GAS);
 

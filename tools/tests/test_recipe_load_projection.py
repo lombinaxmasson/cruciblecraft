@@ -615,6 +615,78 @@ class RecipeLoadProjectionTest(unittest.TestCase):
             ].values()
         ))
 
+    def test_delivery_phase_t37_is_accepted(self):
+        selected_input = projection.load(
+            projection.ROOT / "tools" / "t37_load_projection_input.json"
+        )
+        selected = projection.project(
+            selected_input,
+            t13=self.t13,
+            policy=self.policy,
+            schema=self.schema,
+        )
+        self.assertEqual("T37", selected["delivery_phase"])
+        self.assertEqual("t37/assembler-pilot", selected["projection_id"])
+        self.assertEqual(50, selected["ledger"]["counts"]["logical_rows"])
+        self.assertEqual(50, selected["families"][0]["authored_entries"])
+        self.assertIn(
+            50,
+            selected_input["families"][0]["measurement_basis"]["measured_logical_rows"],
+        )
+        self.assertEqual("hybrid", selected["families"][0]["strategy"])
+
+        unknown = copy.deepcopy(selected_input)
+        unknown["delivery_phase"] = "T99"
+        with self.assertRaises(projection.ProjectionError):
+            projection.validate_input(unknown, self.t13)
+
+    def test_pending_policy_metrics_are_not_zero_filled(self):
+        pending_policy = copy.deepcopy(self.policy)
+        pending_policy["status"] = "T14D_LOAD_BUDGET_POLICY_PENDING_T14C"
+        pending_axes = [
+            "lazy_cache_ceiling_rows",
+            "sync_bytes",
+            "server_reload_ms",
+            "server_index_ms",
+            "client_reload_ms",
+            "client_index_ms",
+            "retained_memory_bytes",
+            "allocation_bytes",
+            "lookup_p95_ns",
+            "lookup_candidate_count",
+        ]
+        for metric in pending_axes:
+            pending_policy["budgets"][metric]["soft_budget"] = projection.PENDING
+            pending_policy["budgets"][metric]["hard_ceiling"] = projection.PENDING
+        pending_policy["pending_measurements"] = sorted(pending_axes)
+
+        selected_input = projection.load(
+            projection.ROOT / "tools" / "t37_load_projection_input.json"
+        )
+        result = projection.project(
+            selected_input,
+            t13=self.t13,
+            policy=pending_policy,
+            schema=self.schema,
+        )
+        self.assertEqual("BLOCKED_PENDING_MEASUREMENT", result["status"])
+        for metric in pending_axes:
+            evaluation = result["budget_evaluation"]["metrics"][metric]
+            self.assertEqual(projection.PENDING, evaluation["status"])
+            self.assertEqual(projection.PENDING, evaluation["soft_budget"])
+            self.assertEqual(projection.PENDING, evaluation["hard_ceiling"])
+            self.assertNotEqual("PASS", evaluation["status"])
+        self.assertEqual(
+            [
+                metric
+                for metric in projection.BUDGET_CONTRACT
+                if metric in pending_axes
+            ],
+            result["budget_evaluation"]["pending_measurements"],
+        )
+        self.assertEqual(50, result["ledger"]["counts"]["logical_rows"])
+        self.assertEqual(14, result["ledger"]["counts"]["eager_publication_rows"])
+
 
 if __name__ == "__main__":
     unittest.main()

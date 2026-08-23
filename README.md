@@ -11,8 +11,14 @@ NeoForge 1.21.1 的 GT6 风格工业模组。当前仓库是一个**源码阶段
 - T26–T31 的历史工程门禁有对应的 `_READY` 工件；详见
   [阶段档案 T31](docs/history/stage-archives/CrucibleCraft-阶段档案-T31.md) 与
   只读收据 [`tools/full_verification_report.json`](tools/full_verification_report.json)。
-- 当前卡是 T32 工程卫生与可验证性重构。其后内容路线是：地表石子可达性闭环 →
-  开局对象表现层 → 一个小型配方长尾族。它不进入 RC soak 或 GA；路线解释见
+- T35 1.x census 与预算基线已闭卡：8,996 identities 都有 portfolio scope，runtime
+  expected/mapped 均为 20,553，且 `cruciblecraft_census` GameTest 1/1 通过。历史 T35
+  文件只读。
+- T36 把 1.x 机器目标冻成 85 行 / 27 kind（opening 33 稳定 id 保留），`machine_tiers.json`
+  schema v3 是唯一投影源；隔离 GameTest `cruciblecraft_t36` 8/8。旧未启动 T38–T46
+  storage-first 编号已撤销；新 topology 是 T37 校准 → recipe waves → storage。
+- T37 Assembler 50-family 校准已关闭，生产策略由实测派生为 hybrid（14 eager / 36 lazy /
+  cache 8）；T38 Roaster 29-family 固定波次是当前唯一 active 内容卡。路线解释见
   [总体规划](docs/current/roadmap.md)。
 - GT6 式石子开局和第一小时表现层仍未闭环；不要把历史 portfolio 的
   `v1_work_set = []` 解读为“模组已完整可玩”。

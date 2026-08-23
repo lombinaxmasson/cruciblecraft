@@ -42,6 +42,7 @@ public final class DynamoBlockEntity extends BlockEntity implements IEnergyHandl
         if (delivered == 0L && dynamo.energy.wasteBlockedInput()) {
             dynamo.markMutation();
         }
+        dynamo.updateLitState();
         long phase = CheckpointDecisions.phaseKey(pos.getX(), pos.getY(), pos.getZ());
         if (dynamo.checkpoint.shouldSync(false, level.getGameTime(), phase, 20)) {
             dynamo.syncToClient();
@@ -72,6 +73,7 @@ public final class DynamoBlockEntity extends BlockEntity implements IEnergyHandl
         long accepted = energy.insertKinetic(size, amount, simulate);
         if (!simulate && accepted > 0L) {
             markMutation();
+            updateLitState();
         }
         return accepted;
     }
@@ -112,6 +114,7 @@ public final class DynamoBlockEntity extends BlockEntity implements IEnergyHandl
             throw new IllegalStateException("Dynamo electric buffer changed after simulation");
         }
         markMutation();
+        updateLitState();
         return extracted;
     }
 
@@ -227,6 +230,21 @@ public final class DynamoBlockEntity extends BlockEntity implements IEnergyHandl
     private void markMutation() {
         setChanged();
         checkpoint.markSyncPending();
+    }
+
+    private void updateLitState() {
+        if (level == null || level.isClientSide) {
+            return;
+        }
+        BlockState state = getBlockState();
+        boolean lit = energy.kineticStored() > 0L;
+        if (state.hasProperty(DynamoBlock.LIT)
+                && state.getValue(DynamoBlock.LIT) != lit) {
+            level.setBlock(
+                    worldPosition,
+                    state.setValue(DynamoBlock.LIT, lit),
+                    Block.UPDATE_CLIENTS);
+        }
     }
 
     private void syncToClient() {

@@ -68,7 +68,7 @@ public final class ModProcessingMachines {
             reusedT5("bath", () -> ModRecipeMaps.BATH,
                     1, 4, 1, 1, 4_000, 8_000,
                     6, 6, 1, 3,
-                    EnergyType.KINETIC,
+                    EnergyType.TIME,
                     ProcessingMachineSpec.EnergyMode.BUFFERED);
     public static final ProcessingMachineSpec CENTRIFUGE =
             reusedT5("centrifuge", () -> ModRecipeMaps.CENTRIFUGE,
@@ -112,7 +112,7 @@ public final class ModProcessingMachines {
                     2,
                     false,
                     true,
-                    EnergyType.KINETIC,
+                    EnergyType.HEAT,
                     2, 2, 0, 0);
     public static final ProcessingMachineSpec CUTTER =
             t3(
@@ -121,7 +121,7 @@ public final class ModProcessingMachines {
                     1,
                     false,
                     false,
-                    EnergyType.KINETIC,
+                    EnergyType.KINETIC_ROTATION,
                     1, 3, 1, 0);
     public static final ProcessingMachineSpec LATHE =
             t3(
@@ -148,7 +148,7 @@ public final class ModProcessingMachines {
                     1,
                     false,
                     false,
-                    EnergyType.KINETIC,
+                    EnergyType.KINETIC_ROTATION,
                     1, 1, 0, 0);
     public static final ProcessingMachineSpec WIREMILL =
             t3(
@@ -207,7 +207,7 @@ public final class ModProcessingMachines {
             t5("mixer", () -> ModRecipeMaps.MIXER,
                     4, 1, 3, 2, 32_000, 32_000,
                     6, 1, 6, 2,
-                    EnergyType.ELECTRIC);
+                    EnergyType.KINETIC_ROTATION);
     public static final ProcessingMachineSpec DISTILLERY =
             reusedT5("distillery", () -> ModRecipeMaps.DISTILLERY,
                     2, 2, 2, 3, 8_000, 8_000,
@@ -218,7 +218,7 @@ public final class ModProcessingMachines {
             t5("autoclave", () -> ModRecipeMaps.AUTOCLAVE, 2, 3, 1, 1,
                     2_500_000, 16_000,
                     2, 3, 1, 1,
-                    EnergyType.ELECTRIC);
+                    EnergyType.TIME);
     public static final ProcessingMachineSpec DRYING =
             reusedT5("drying", () -> ModRecipeMaps.DRYING,
                     1, 1, 0, 1, 32_000, 32_000,
@@ -229,7 +229,7 @@ public final class ModProcessingMachines {
             t5("compressor", () -> ModRecipeMaps.COMPRESSOR, 1, 1, 0, 0,
                     32_000, 32_000,
                     1, 1, 0, 0,
-                    EnergyType.ELECTRIC);
+                    EnergyType.KINETIC_PUSH);
     public static final ProcessingMachineSpec GENERIFIER =
             new ProcessingMachineSpec(
                     id("generifier"),
@@ -243,7 +243,7 @@ public final class ModProcessingMachines {
                             List.of(new ProcessingMachineSpec.TankSpec(
                                     1, 8_000))),
                     new ProcessingMachineSpec.EnergySpec(
-                            EnergyType.ELECTRIC,
+                            EnergyType.TIME,
                             ProcessingMachineSpec.EnergyMode.ADJACENT,
                             0L,
                             1L),
@@ -272,15 +272,28 @@ public final class ModProcessingMachines {
                             1, 1, 1, 1,
                             0, 0, 1, 1,
                             PROCESSING_STATUSES));
+    public static final ProcessingMachineSpec ROASTER =
+            reusedT5("roaster", () -> ModRecipeMaps.ROASTER,
+                    1, 3, 1, 1, 8_000, 8_000,
+                    1, 3, 1, 1,
+                    EnergyType.HEAT,
+                    ProcessingMachineSpec.EnergyMode.ADJACENT);
+    public static final ProcessingMachineSpec COAGULATOR =
+            t5("coagulator", () -> ModRecipeMaps.COAGULATOR, 0, 1, 1, 0,
+                    16_000, 16_000,
+                    0, 1, 1, 0,
+                    EnergyType.TIME);
     public static final List<ProcessingMachineSpec> T11_PROCESSING_MACHINES =
             List.of(GENERIFIER);
     /** T5 can publish into reused maps as well as its new dedicated maps. */
     public static final List<ProcessingMachineSpec> T5_MACHINES = List.of(
             BATH, CENTRIFUGE, SMELTER, ASSEMBLER,
-            ELECTROLYZER, MIXER, DISTILLERY, AUTOCLAVE, DRYING, COMPRESSOR);
+            ELECTROLYZER, MIXER, DISTILLERY, AUTOCLAVE, DRYING, COMPRESSOR,
+            ROASTER, COAGULATOR);
     /** New T5 maps which intentionally have no pre-T5 recipe population. */
     public static final List<ProcessingMachineSpec> T5_DEDICATED_MACHINES = List.of(
-            ELECTROLYZER, MIXER, DISTILLERY, AUTOCLAVE, DRYING, COMPRESSOR);
+            ELECTROLYZER, MIXER, DISTILLERY, AUTOCLAVE, DRYING, COMPRESSOR,
+            ROASTER, COAGULATOR);
     /** Original T3 component envelope: 5,352 non-extruder + 4,648 extruder. */
     public static final int T3_COMPONENT_EXPANSION_BUDGET = 10_000;
     /** T4 tool rules are budgeted separately from the closed T3 content set. */
@@ -329,6 +342,8 @@ public final class ModProcessingMachines {
     public static final int T21_AUTHORED_MATERIAL_RULE_BUDGET = 8;
     /** T22 petroleum: 3 authored recipes (distillery, generifier, fuels_engine). */
     public static final int T22_AUTHORED_MATERIAL_RULE_BUDGET = 3;
+    /** T36 bounded bootstrap recipes (roaster coal dust, coagulator water). */
+    public static final int T36_AUTHORED_MATERIAL_RULE_BUDGET = 2;
     public static final Map<Integer, Integer> AUTHORED_MATERIAL_RULE_BUDGETS =
             Map.of(
                     7, T7_AUTHORED_MATERIAL_RULE_BUDGET,
@@ -337,7 +352,8 @@ public final class ModProcessingMachines {
                     11, T11_AUTHORED_MATERIAL_RULE_BUDGET,
                     12, T12_AUTHORED_MATERIAL_RULE_BUDGET,
                     21, T21_AUTHORED_MATERIAL_RULE_BUDGET,
-                    22, T22_AUTHORED_MATERIAL_RULE_BUDGET);
+                    22, T22_AUTHORED_MATERIAL_RULE_BUDGET,
+                    36, T36_AUTHORED_MATERIAL_RULE_BUDGET);
     /**
      * The verified post-T8 publication is 17,583 after adding the high-version
      * ore-block crusher ingress. The pinned T10 preflight projects 642

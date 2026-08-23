@@ -1,0 +1,477 @@
+{
+  "authorities": {
+    "budget_policy": "tools/t14_load_budget_policy.json",
+    "opening_publication": "tools/t30_publication_delta.json#opening_publication",
+    "performance_1x": "tools/full_verification_report.json#t14_load_acceptance.measurements.selected_1x",
+    "scale_current": "tools/t31_scale_recheck.json#current",
+    "workload_manifest": "tools/t24_workload_manifest.json"
+  },
+  "axes": {
+    "allocation_bytes": {
+      "aggregation": "sum_interval",
+      "canonical_id": "allocation_bytes",
+      "comparable_to": [],
+      "domain": "runtime_perf",
+      "evidence_pointer": "tools/full_verification_report.json#t14_load_acceptance.measurements.selected_1x.jfr_allocation_bytes_p50",
+      "hard_ceiling": 536870912,
+      "measurement_method": "selected_1x_jfr_allocation_bytes_p50",
+      "opening_base": 32,
+      "projected_delta": {
+        "max": 0,
+        "min": 0
+      },
+      "scale": "selected_1x",
+      "soft_budget": 134217728,
+      "unit": "bytes",
+      "verdict": "PASS",
+      "zero_filled": false
+    },
+    "client_index_ms": {
+      "aggregation": "sum_interval",
+      "canonical_id": "client_index_ms",
+      "comparable_to": [],
+      "domain": "runtime_perf",
+      "evidence_pointer": "tools/full_verification_report.json#t14_load_acceptance.measurements.selected_1x.dedicated_client_index_p95_ns / 1e6",
+      "hard_ceiling": 3000,
+      "measurement_method": "selected_1x_dedicated_client_index_p95_ns",
+      "opening_base": 1.0574,
+      "projected_delta": {
+        "max": 0,
+        "min": 0
+      },
+      "scale": "selected_1x",
+      "soft_budget": 1000,
+      "unit": "ms",
+      "verdict": "PASS",
+      "zero_filled": false
+    },
+    "client_reload_ms": {
+      "aggregation": "sum_interval",
+      "canonical_id": "client_reload_ms",
+      "comparable_to": [],
+      "domain": "runtime_perf",
+      "evidence_pointer": "tools/full_verification_report.json#t14_load_acceptance.measurements.selected_1x.dedicated_client_reexpansion_p95_ns / 1e6",
+      "hard_ceiling": 10000,
+      "measurement_method": "selected_1x_dedicated_client_reexpansion_p95_ns",
+      "opening_base": 1.872,
+      "projected_delta": {
+        "max": 0,
+        "min": 0
+      },
+      "scale": "selected_1x",
+      "soft_budget": 5000,
+      "unit": "ms",
+      "verdict": "PASS",
+      "zero_filled": false
+    },
+    "datapack_authored_entries": {
+      "aggregation": "sum",
+      "canonical_id": "datapack_authored_entries",
+      "comparable_to": [],
+      "domain": "recipe",
+      "evidence_pointer": "tools/t30_load_projection.json#t14_axes.datapack_authored_entries.projected",
+      "hard_ceiling": 6600,
+      "measurement_method": "t30_load_projection_upper_bound",
+      "opening_base": 3510,
+      "projected_delta": {
+        "max": 0,
+        "min": 0
+      },
+      "scale": "selected_1x",
+      "soft_budget": 6000,
+      "unit": "entries",
+      "verdict": "PASS",
+      "zero_filled": false
+    },
+    "eager_publication_rows": {
+      "aggregation": "sum",
+      "canonical_id": "eager_publication_rows",
+      "comparable_to": [
+        "lazy_logical_rows"
+      ],
+      "domain": "recipe",
+      "evidence_pointer": "tools/t30_publication_delta.json#opening_publication.eager",
+      "hard_ceiling": 21000,
+      "measurement_method": "t30_publication_opening",
+      "opening_base": 16541,
+      "projected_delta": {
+        "max": 0,
+        "min": 0
+      },
+      "scale": "selected_1x",
+      "soft_budget": 18000,
+      "unit": "rows",
+      "verdict": "PASS",
+      "zero_filled": false
+    },
+    "f005_release_scale": {
+      "aggregation": "max_of_samples",
+      "canonical_assessment": "DEFERRED_RELEASE_REMEASUREMENT",
+      "canonical_id": "f005_release_scale",
+      "comparable_to": [],
+      "domain": "scale_f005",
+      "evidence_pointer": "tools/t31_scale_recheck.json#f005",
+      "hard_ceiling": null,
+      "historical": {
+        "artifact": "tools/t31_scale_recheck.json",
+        "current_status": "CLOSED",
+        "historical_disposition": "non_blocking",
+        "historical_evidence_artifact": "tools/t24_scale_evidence.json#/measured_at_scale/stress",
+        "historical_owner": "T27 RC",
+        "measured": true,
+        "network_sync_measured": true,
+        "retained_memory_measured": true,
+        "wall_clock_measured": true,
+        "zero_filled": false
+      },
+      "measurement_method": "T31ScaleHarness.release_scale_probe",
+      "metrics": {
+        "network_sync_bytes": {
+          "aggregation": "max_of_samples",
+          "evidence_pointer": "tools/t31_scale_recheck.json#current.target/stress.network_sync_bytes",
+          "measurement_method": "T31ScaleHarness.network_sync_bytes",
+          "opening_base": {
+            "stress": 1056,
+            "target": 264
+          },
+          "scale": "target_stress",
+          "unit": "bytes",
+          "verdict": "DEFERRED_RELEASE_REMEASUREMENT",
+          "zero_filled": false
+        },
+        "retained_heap_delta_bytes": {
+          "aggregation": "max_of_samples",
+          "evidence_pointer": "tools/t31_scale_recheck.json#current.target/stress.retained_heap_after-before",
+          "measurement_method": "T31ScaleHarness.retained_heap_delta",
+          "opening_base": {
+            "stress": 13240,
+            "target": 14048
+          },
+          "scale": "target_stress",
+          "unit": "bytes",
+          "verdict": "DEFERRED_RELEASE_REMEASUREMENT",
+          "zero_filled": false
+        },
+        "tick_wall_clock_p95_nanos": {
+          "aggregation": "max_of_samples",
+          "evidence_pointer": "tools/t31_scale_recheck.json#current.target/stress.tick_wall_clock_p95_nanos",
+          "measurement_method": "T31ScaleHarness.tick_wall_clock_p95_nanos",
+          "opening_base": {
+            "stress": 2071600,
+            "target": 1204200
+          },
+          "scale": "target_stress",
+          "unit": "ns",
+          "verdict": "DEFERRED_RELEASE_REMEASUREMENT",
+          "zero_filled": false
+        }
+      },
+      "opening_base": null,
+      "owner": "future player release card",
+      "projected_delta": {
+        "max": 0,
+        "min": 0
+      },
+      "scale": "target_stress",
+      "soft_budget": null,
+      "unit": "mixed",
+      "verdict": "DEFERRED_RELEASE_REMEASUREMENT",
+      "zero_filled": false
+    },
+    "item_route_visited_max": {
+      "aggregation": "max_of_samples",
+      "canonical_id": "item_route_visited_max",
+      "comparable_to": [],
+      "domain": "scale_route",
+      "evidence_pointer": "tools/t31_scale_recheck.json#current.target/stress.visited_max",
+      "hard_ceiling": null,
+      "measurement_method": "ItemPipeNetworkTraversal.discover.visited_max",
+      "network_sync_bytes": {
+        "stress": 1056,
+        "target": 264
+      },
+      "opening_base": {
+        "stress": 1000,
+        "target": 250
+      },
+      "projected_delta": {
+        "max": 0,
+        "min": 0
+      },
+      "scale": "target_stress",
+      "soft_budget": null,
+      "unit": "visited_nodes",
+      "verdict": "DIAGNOSTIC_ONLY",
+      "zero_filled": false
+    },
+    "lazy_cache_ceiling_rows": {
+      "aggregation": "sum",
+      "canonical_id": "lazy_cache_ceiling_rows",
+      "comparable_to": [],
+      "domain": "recipe",
+      "evidence_pointer": "tools/full_verification_report.json#t14_load_acceptance.measurements.selected_1x.lookup_traces cache.ceiling",
+      "hard_ceiling": 4096,
+      "measurement_method": "selected_1x_lookup_trace_cache_ceiling",
+      "opening_base": 512,
+      "projected_delta": {
+        "max": 0,
+        "min": 0
+      },
+      "scale": "selected_1x",
+      "soft_budget": 1024,
+      "unit": "rows",
+      "verdict": "PASS",
+      "zero_filled": false
+    },
+    "lazy_logical_rows": {
+      "aggregation": "sum",
+      "canonical_id": "lazy_logical_rows",
+      "comparable_to": [
+        "eager_publication_rows"
+      ],
+      "domain": "recipe",
+      "evidence_pointer": "tools/t30_publication_delta.json#opening_publication.lazy",
+      "hard_ceiling": 56000,
+      "measurement_method": "t30_publication_opening",
+      "opening_base": 2225,
+      "projected_delta": {
+        "max": 0,
+        "min": 0
+      },
+      "scale": "selected_1x",
+      "soft_budget": 16000,
+      "unit": "rows",
+      "verdict": "PASS",
+      "zero_filled": false
+    },
+    "logical_publication_rows": {
+      "aggregation": "sum",
+      "canonical_id": "logical_publication_rows",
+      "comparable_to": [],
+      "diagnostic": true,
+      "domain": "recipe",
+      "evidence_pointer": "tools/t30_publication_delta.json#opening_publication.logical",
+      "hard_ceiling": null,
+      "measurement_method": "t30_publication_opening",
+      "note": "Diagnostic total; eager hard ceiling must not gate logical publication",
+      "opening_base": 18766,
+      "projected_delta": {
+        "max": 0,
+        "min": 0
+      },
+      "scale": "selected_1x",
+      "soft_budget": null,
+      "unit": "rows",
+      "verdict": "DIAGNOSTIC_ONLY",
+      "zero_filled": false
+    },
+    "lookup_candidate_count": {
+      "aggregation": "max_interval",
+      "canonical_id": "lookup_candidate_count",
+      "comparable_to": [],
+      "domain": "runtime_perf",
+      "evidence_pointer": "tools/full_verification_report.json#t14_load_acceptance.measurements.selected_1x.lookup_candidates_p95",
+      "hard_ceiling": 128,
+      "measurement_method": "selected_1x_lookup_candidates_p95",
+      "opening_base": 8,
+      "projected_delta": {
+        "max": 0,
+        "min": 0
+      },
+      "scale": "selected_1x",
+      "soft_budget": 64,
+      "unit": "candidates",
+      "verdict": "PASS",
+      "zero_filled": false
+    },
+    "lookup_p95_ns": {
+      "aggregation": "max_interval",
+      "canonical_id": "lookup_p95_ns",
+      "comparable_to": [],
+      "domain": "runtime_perf",
+      "evidence_pointer": "tools/full_verification_report.json#t14_load_acceptance.measurements.selected_1x.lookup_p95_ns",
+      "hard_ceiling": 2000000,
+      "measurement_method": "selected_1x_lookup_p95_ns",
+      "opening_base": 1543,
+      "projected_delta": {
+        "max": 0,
+        "min": 0
+      },
+      "scale": "selected_1x",
+      "soft_budget": 1000000,
+      "unit": "ns",
+      "verdict": "PASS",
+      "zero_filled": false
+    },
+    "retained_memory_bytes": {
+      "aggregation": "sum_interval",
+      "canonical_id": "retained_memory_bytes",
+      "comparable_to": [],
+      "domain": "runtime_perf",
+      "evidence_pointer": "tools/full_verification_report.json#t14_load_acceptance.measurements.selected_1x.retained_total_bytes_p50",
+      "hard_ceiling": 536870912,
+      "measurement_method": "selected_1x_retained_total_bytes_p50",
+      "opening_base": 2241752,
+      "projected_delta": {
+        "max": 0,
+        "min": 0
+      },
+      "scale": "selected_1x",
+      "soft_budget": 134217728,
+      "unit": "bytes",
+      "verdict": "PASS",
+      "zero_filled": false
+    },
+    "server_index_ms": {
+      "aggregation": "sum_interval",
+      "canonical_id": "server_index_ms",
+      "comparable_to": [],
+      "domain": "runtime_perf",
+      "evidence_pointer": "tools/full_verification_report.json#t14_load_acceptance.measurements.selected_1x.server_index_p95_ns / 1e6",
+      "hard_ceiling": 1000,
+      "measurement_method": "selected_1x_server_index_p95_ns",
+      "opening_base": 1.5307,
+      "projected_delta": {
+        "max": 0,
+        "min": 0
+      },
+      "scale": "selected_1x",
+      "soft_budget": 500,
+      "unit": "ms",
+      "verdict": "PASS",
+      "zero_filled": false
+    },
+    "server_reload_ms": {
+      "aggregation": "sum_interval",
+      "canonical_id": "server_reload_ms",
+      "comparable_to": [],
+      "domain": "runtime_perf",
+      "evidence_pointer": "tools/full_verification_report.json#t14_load_acceptance.measurements.selected_1x.server_reload_p95_ns / 1e6",
+      "hard_ceiling": 10000,
+      "measurement_method": "selected_1x_server_reload_p95_ns",
+      "opening_base": 2.8119,
+      "projected_delta": {
+        "max": 0,
+        "min": 0
+      },
+      "scale": "selected_1x",
+      "soft_budget": 5000,
+      "unit": "ms",
+      "verdict": "PASS",
+      "zero_filled": false
+    },
+    "sync_bytes": {
+      "aggregation": "sum",
+      "canonical_id": "sync_bytes",
+      "comparable_to": [],
+      "domain": "runtime_perf",
+      "evidence_pointer": "tools/full_verification_report.json#t14_load_acceptance.measurements.selected_1x.sync_bytes",
+      "hard_ceiling": 67108864,
+      "measurement_method": "selected_1x_sync_bytes",
+      "opening_base": 331124,
+      "projected_delta": {
+        "max": 0,
+        "min": 0
+      },
+      "scale": "selected_1x",
+      "soft_budget": 16777216,
+      "unit": "bytes",
+      "verdict": "PASS",
+      "zero_filled": false
+    },
+    "topology_pipes_total": {
+      "aggregation": "point",
+      "canonical_id": "topology_pipes_total",
+      "comparable_to": [],
+      "domain": "scale_topology",
+      "evidence_pointer": "tools/t24_workload_manifest.json#scenarios.target/stress.derived.pipes_total",
+      "hard_ceiling": null,
+      "measured": {
+        "stress": 2000,
+        "target": 500
+      },
+      "measurement_method": "T31ScaleHarness.identity.pipes_total",
+      "opening_base": {
+        "stress": 2000,
+        "target": 500
+      },
+      "projected_delta": {
+        "max": 0,
+        "min": 0
+      },
+      "scale": "target_stress",
+      "soft_budget": null,
+      "unit": "pipes",
+      "verdict": "DIAGNOSTIC_ONLY",
+      "zero_filled": false
+    }
+  },
+  "card": "T35",
+  "currentness": {
+    "owned_inputs": {
+      "tools/build_t35_load_baseline.py": "98c535dac09badfbc82cb537732e0ee40e4392cf737b75e13017f0abe9e0f858",
+      "tools/full_verification_report.json": "a01ae5eb4cba5a76af4ff37b9591979f3652cd33ed7698f728e8c50d3f48a8d5",
+      "tools/t14_load_budget_policy.json": "7e87ddb3b987f52fd8fd918a426bd6a2c640682fb89b52cb7b3cc5731c339270",
+      "tools/t24_workload_manifest.json": "d9e99fa684a957bd71c0a89f88691cad8fbd1d68a1837a5af9752a4e81ee23db",
+      "tools/t27_opening_snapshot.json": "91cdbe33de4c56781e38dba507c90179e3ed7b7ea3342b8d8a15336a3fa5c9e3",
+      "tools/t30_load_projection.json": "c9ee28c26b696bfa2ae4021e4fea2e9d5131ef85f9185b06682eef13afb765eb",
+      "tools/t30_publication_delta.json": "ab2a86805bbffc36cb630932993d17d12ff550962261862cd4c055b9395c76e0",
+      "tools/t31_load_report.json": "a9aace9a4245d1165786b126bfcc322091be94b1b2ab677cdbba6c51ccbd9c18",
+      "tools/t31_scale_recheck.json": "41b46ac404992b34ce11aa526b1474ea31bf88a2d9097b3dc4dd98c4a4241d0d"
+    }
+  },
+  "generated_by": "python tools/build_t35_load_baseline.py --write",
+  "opening_publication": {
+    "eager": 16541,
+    "lazy": 2225,
+    "logical": 18766
+  },
+  "owned_inputs": {
+    "tools/build_t35_load_baseline.py": "98c535dac09badfbc82cb537732e0ee40e4392cf737b75e13017f0abe9e0f858",
+    "tools/full_verification_report.json": "a01ae5eb4cba5a76af4ff37b9591979f3652cd33ed7698f728e8c50d3f48a8d5",
+    "tools/t14_load_budget_policy.json": "7e87ddb3b987f52fd8fd918a426bd6a2c640682fb89b52cb7b3cc5731c339270",
+    "tools/t24_workload_manifest.json": "d9e99fa684a957bd71c0a89f88691cad8fbd1d68a1837a5af9752a4e81ee23db",
+    "tools/t27_opening_snapshot.json": "91cdbe33de4c56781e38dba507c90179e3ed7b7ea3342b8d8a15336a3fa5c9e3",
+    "tools/t30_load_projection.json": "c9ee28c26b696bfa2ae4021e4fea2e9d5131ef85f9185b06682eef13afb765eb",
+    "tools/t30_publication_delta.json": "ab2a86805bbffc36cb630932993d17d12ff550962261862cd4c055b9395c76e0",
+    "tools/t31_load_report.json": "a9aace9a4245d1165786b126bfcc322091be94b1b2ab677cdbba6c51ccbd9c18",
+    "tools/t31_scale_recheck.json": "41b46ac404992b34ce11aa526b1474ea31bf88a2d9097b3dc4dd98c4a4241d0d"
+  },
+  "publication_delta": {
+    "eager": 0,
+    "lazy": 0,
+    "logical": 0
+  },
+  "schema_version": 1,
+  "status": "T35_LOAD_BASELINE_READY",
+  "status_owner": "build_t35_load_baseline",
+  "supersedes": [
+    {
+      "artifact": "tools/t27_opening_snapshot.json#publication.current",
+      "label": "T27 opening snapshot",
+      "note": "superseded historical snapshot for current 1.x planning; values are not averaged",
+      "opening": {
+        "eager": 16862,
+        "lazy": 2225,
+        "logical": 19087
+      },
+      "reason": "T30/T31 current planning publication opening is authoritative"
+    }
+  ],
+  "t14_axis_count": 13,
+  "t14_axis_ids": [
+    "datapack_authored_entries",
+    "eager_publication_rows",
+    "lazy_logical_rows",
+    "lazy_cache_ceiling_rows",
+    "sync_bytes",
+    "server_reload_ms",
+    "server_index_ms",
+    "client_reload_ms",
+    "client_index_ms",
+    "retained_memory_bytes",
+    "allocation_bytes",
+    "lookup_p95_ns",
+    "lookup_candidate_count"
+  ]
+}

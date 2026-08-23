@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "id": "surface_rock_scatter",
+  "feature_type": "cruciblecraft:surface_rock_scatter",
+  "config": {
+    "rarity": 128,
+    "rock_tag": "c:rocks"
+  },
+  "placed_feature": "cruciblecraft:surface_rock_scatter",
+  "biome_modifier": {
+    "id": "add_surface_rocks",
+    "type": "neoforge:add_features",
+    "biomes": "#minecraft:is_overworld",
+    "features": [
+      "cruciblecraft:surface_rock_scatter"
+    ],
+    "step": "top_layer_modification"
+  },
+  "provenance": "CrucibleCraft T33 GT6 WorldgenRocks surface scatter design policy",
+  "design_policy": "DESIGN_POLICY",
+  "rock_tag_source": {
+    "material_gate": "src/main/resources/data/cruciblecraft/material_registration_gate.json",
+    "prefix_definition": "src/main/resources/data/cruciblecraft/material_prefixes/rock.json",
+    "prefix": "rock",
+    "generation_flag": "cruciblecraft:generates_rock",
+    "tag_namespace": "c",
+    "tag_directory": "rocks",
+    "runtime_pack": "GeneratedMaterialPack"
+  }
+}

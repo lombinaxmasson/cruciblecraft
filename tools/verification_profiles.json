@@ -105,7 +105,13 @@
         "test_build_gt6_ore_chain",
         "test_build_component_rules",
         "test_build_t5_chemical_recipes",
-        "test_build_t21_readiness"
+        "test_build_t21_readiness",
+        "test_build_t37_assembler_source",
+        "test_build_t37_assembler_recipes",
+        "test_build_t37_recipe_load_benchmark",
+        "test_build_t37_census_delta",
+        "test_build_t37_card_topology",
+        "test_build_t37_readiness"
       ],
       "builders": [
         "compare_gt6_recipes",
@@ -127,13 +133,15 @@
         "build_t21_template_denominator",
         "build_t21_mixer_gunpowder",
         "build_t21_readiness",
-        "build_t21_operand_reachability",
         "build_t22_petroleum_denominator",
         "build_t22_family_capability",
         "build_t22_load_projection",
         "build_t22_b2_crude_oil",
         "build_t22_b3_batch_projection",
-        "build_t22_readiness"
+        "build_t22_readiness",
+        "build_t37_assembler_source",
+        "build_t37_assembler_recipes",
+        "build_t37_publication_delta"
       ],
       "gametest": false,
       "owned_paths": [
@@ -153,7 +161,19 @@
         "tools/t21_*.json",
         "tools/build_t22_*.py",
         "tools/t22_*.json",
-        "tools/gt6_mixer_templates.py"
+        "tools/gt6_mixer_templates.py",
+        "tools/t37_common.py",
+        "tools/build_t37_assembler_source.py",
+        "tools/build_t37_assembler_recipes.py",
+        "tools/build_t37_recipe_load_benchmark.py",
+        "tools/build_t37_publication_delta.py",
+        "tools/t37_*.json",
+        "tools/tests/test_build_t37_*.py",
+        "src/t37_recipe_generated/**",
+        "src/test/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilyGeneratedTest.java",
+        "src/test/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeFamilyProviderTest.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamily*.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeFamily*.java"
       ]
     },
     "worldgen": {
@@ -166,14 +186,18 @@
         "test_build_t20_worldgen_projection",
         "test_build_t20_readiness",
         "test_build_worldgen_catalog",
-        "test_build_gt6_veins"
+        "test_build_gt6_veins",
+        "test_build_t21_operand_reachability",
+        "test_build_t33_readiness"
       ],
       "builders": [
         "build_worldgen_catalog",
         "build_gt6_veins",
         "build_t20_worldgen_source",
         "build_t20_worldgen_projection",
-        "build_t20_readiness"
+        "build_t20_readiness",
+        "build_t21_operand_reachability",
+        "build_t33_readiness"
       ],
       "gametest": true,
       "owned_paths": [
@@ -183,10 +207,17 @@
         "src/worldgen_*/**",
         "src/main/java/com/masson/cruciblecraft/worldgen/**",
         "src/test/java/com/masson/cruciblecraft/worldgen/**",
+        "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
         "tools/build_t20_*.py",
         "tools/t20_*.json",
+        "tools/build_t33_*.py",
+        "tools/t33_*.json",
         "tools/build_worldgen_catalog.py",
-        "tools/build_gt6_veins.py"
+        "tools/worldgen_catalog_readiness.json",
+        "tools/build_gt6_veins.py",
+        "tools/t21_operand_reachability.py",
+        "tools/t21_operand_reachability.json"
       ]
     },
     "machines": {
@@ -198,7 +229,8 @@
         "test_build_t16_readiness",
         "test_build_t17_readiness",
         "test_build_t18_readiness",
-        "test_build_processing_machine_energy_audit"
+        "test_build_processing_machine_energy_audit",
+        "test_build_t36_machine_target"
       ],
       "builders": [
         "build_machine_crafting_readiness",
@@ -232,7 +264,9 @@
         "build_t29_crucible_source_evidence",
         "build_t29_load_projection",
         "build_t29_publication_delta",
-        "build_t29_readiness"
+        "build_t29_readiness",
+        "build_t36_machine_target",
+        "build_t36_machine_catalog"
       ],
       "gametest": true,
       "owned_paths": [
@@ -260,7 +294,12 @@
         "tools/build_t23_*.py",
         "tools/t23_*.json",
         "tools/build_t29_*.py",
-        "tools/t29_*.json"
+        "tools/t29_*.json",
+        "tools/build_t36_machine_target.py",
+        "tools/build_t36_machine_catalog.py",
+        "tools/t36_machine_target.json",
+        "tools/t36_common.py",
+        "tools/tests/test_build_t36_machine_target.py"
       ]
     },
     "logistics": {
@@ -300,23 +339,122 @@
       ]
     },
     "presentation": {
-      "owner": "T33",
+      "owner": "T34",
       "tier": "integration",
       "datagen": true,
       "gradle_tasks": ["test"],
       "python_modules": [
-        "test_build_t30_art_asset_provenance"
+        "test_build_t30_art_asset_provenance",
+        "test_build_t34_gt6_art_manifest"
       ],
       "builders": [
-        "build_t30_art_asset_provenance"
+        "build_t30_art_asset_provenance",
+        "build_t34_gt6_art_manifest"
       ],
       "gametest": false,
       "owned_paths": [
         "src/main/resources/assets/cruciblecraft/**",
         "src/generated/resources/assets/cruciblecraft/**",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java",
+        "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
         "src/main/java/com/masson/cruciblecraft/client/**",
         "tools/build_t30_art_asset_provenance.py",
-        "tools/t30_art_asset_provenance.json"
+        "tools/t30_art_asset_provenance.json",
+        "tools/build_t34_gt6_art_manifest.py",
+        "tools/t34_gt6_art_policy.json",
+        "tools/t34_gt6_art_manifest.json",
+        "tools/tests/test_build_t34_gt6_art_manifest.py",
+        "tools/t21_operand_reachability.json"
+      ]
+    },
+    "census": {
+      "owner": "T35",
+      "tier": "integration",
+      "datagen": false,
+      "gradle_tasks": ["test"],
+      "python_modules": [
+        "test_build_t35_census_inputs",
+        "test_build_t35_runtime_registry",
+        "test_build_t35_excluded_object_reclaim",
+        "test_build_t35_recipe_families_compact",
+        "test_build_t35_machine_track",
+        "test_build_t35_load_baseline",
+        "test_build_t35_census",
+        "test_build_t35_card_topology",
+        "test_build_t35_readiness",
+        "test_t35_concurrent_checks",
+        "test_t35r_pre_repair_freeze"
+      ],
+      "builders": [
+        "build_t35_census_inputs",
+        "build_t35_runtime_registry",
+        "build_t35_excluded_object_reclaim",
+        "build_t35_recipe_families_compact",
+        "build_t35_machine_track",
+        "build_t35_recipe_families",
+        "build_t35_load_baseline",
+        "build_t35_census",
+        "build_t35_card_topology",
+        "build_t35_readiness"
+      ],
+      "gametest": true,
+      "owned_paths": [
+        "tools/build_t35_*.py",
+        "tools/t35_*.json",
+        "tools/t35r_*.json",
+        "tools/tests/test_build_t35_*.py",
+        "tools/tests/test_t35_*.py",
+        "tools/tests/test_t35r_*.py",
+        "src/main/java/com/masson/cruciblecraft/census/**",
+        "src/main/resources/census/t35_runtime_registry_gate.json",
+        "src/test/java/com/masson/cruciblecraft/census/**"
+      ]
+    },
+    "census-replay": {
+      "owner": "T36",
+      "tier": "integration",
+      "datagen": false,
+      "gradle_tasks": [],
+      "python_modules": [
+        "test_build_t36_census_delta",
+        "test_build_t36_readiness",
+        "test_build_t37_recipe_load_benchmark",
+        "test_build_t37_census_delta",
+        "test_build_t37_card_topology",
+        "test_build_t37_readiness"
+      ],
+      "builders": [
+        "build_t36_census_delta",
+        "build_t36_readiness",
+        "build_t37_recipe_load_benchmark",
+        "build_t37_census_delta",
+        "build_t37_card_topology",
+        "build_t37_readiness"
+      ],
+      "gametest": false,
+      "owned_paths": [
+        "tools/build_t36_census_delta.py",
+        "tools/build_t36_readiness.py",
+        "tools/t36_census_delta.json",
+        "tools/t36_readiness.json",
+        "tools/t36_card_topology.json",
+        "tools/tests/test_build_t36_census_delta.py",
+        "tools/tests/test_build_t36_readiness.py",
+        "tools/t37_common.py",
+        "tools/build_t37_recipe_load_benchmark.py",
+        "tools/t37_materialization_policy.json",
+        "tools/t37_materialization_measurements.json",
+        "tools/t37_materialization_decision.json",
+        "tools/tests/test_build_t37_recipe_load_benchmark.py",
+        "tools/build_t37_census_delta.py",
+        "tools/build_t37_card_topology.py",
+        "tools/build_t37_readiness.py",
+        "tools/t37_census_delta.json",
+        "tools/t37_card_topology.json",
+        "tools/t37_readiness.json",
+        "tools/tests/test_build_t37_census_delta.py",
+        "tools/tests/test_build_t37_card_topology.py",
+        "tools/tests/test_build_t37_readiness.py"
       ]
     },
     "archive": {
@@ -363,6 +501,7 @@
       "gametest": false,
       "owned_paths": [
         "tools/full_verification_report.json",
+        "tools/phase5_portfolio_contract.json",
         "tools/t22_5_*.json",
         "tools/build_t22_5_*.py",
         "tools/t24_*.json",

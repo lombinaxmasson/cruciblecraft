@@ -10,7 +10,8 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
 
 public final class MachineMaterialRules {
     public static final String DEFAULT_CRUCIBLE_MATERIAL = "ceramic";
-    public static final String DEFAULT_ANVIL_MATERIAL = "iron";
+    /** The survival-crafted starter anvil is the GT6 Stone Anvil (meta 32025). */
+    public static final String DEFAULT_ANVIL_MATERIAL = "stone";
     public static final String DEFAULT_HAMMER_MATERIAL = "iron";
     public static final double CRUCIBLE_TEMPERATURE_FACTOR = 1.25;
     public static final double KELVIN_OFFSET = 273.15;

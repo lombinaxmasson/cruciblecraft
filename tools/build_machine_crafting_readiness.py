@@ -77,10 +77,20 @@ T17_SOURCE_PROJECTED_CONFIGURED_IDS = {
     "drying",
     "smelter",
 }
+T36_SOURCE_PROJECTED_CONFIGURED_IDS = {
+    "roaster",
+}
+T36_ITEM_FIELDS = {
+    "roaster": "STEEL_ROASTER",
+}
+T36_RECIPE_PATHS = {
+    "roaster": "steel_roaster",
+}
 SOURCE_PROJECTED_CONFIGURED_IDS = (
     T12_SOURCE_PROJECTED_CONFIGURED_IDS
     | T16_SOURCE_PROJECTED_CONFIGURED_IDS
     | T17_SOURCE_PROJECTED_CONFIGURED_IDS
+    | T36_SOURCE_PROJECTED_CONFIGURED_IDS
 )
 
 
@@ -405,6 +415,7 @@ def configured_rows(
                 | T17_SOURCE_PROJECTED_CONFIGURED_IDS
             )
         },
+        **T36_ITEM_FIELDS,
     })
     result = []
     for machine_id in machine_ids:
@@ -428,7 +439,7 @@ def configured_rows(
             "current_recipe": {
                 "path": (
                     GENERATED_MACHINE_RECIPE_ROOT
-                    / f"{machine_id}.json"
+                    / f"{T36_RECIPE_PATHS.get(machine_id, machine_id)}.json"
                 ).relative_to(ROOT).as_posix(),
                 "kind": (
                     "t12_source_projected_machine_recipe"
@@ -442,6 +453,7 @@ def configured_rows(
                             "t17HeatMachineCrafting"
                             if machine_id
                             in T17_SOURCE_PROJECTED_CONFIGURED_IDS
+                            | T36_SOURCE_PROJECTED_CONFIGURED_IDS
                             else "t16MachineCrafting"
                             if machine_id
                             in T16_SOURCE_PROJECTED_CONFIGURED_IDS

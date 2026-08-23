@@ -1,12 +1,8 @@
 {
   "allowed_legacy_kinetic_ids": [
     "assembler",
-    "bath",
     "bender",
-    "cutter",
-    "extruder",
     "mortar",
-    "rollbender",
     "welder"
   ],
   "counts": {
@@ -17,29 +13,30 @@
       "SOURCE_ALIGNED": 13
     },
     "energy_types": {
-      "ELECTRIC": 5,
-      "HEAT": 3,
-      "KINETIC": 8,
-      "KINETIC_PUSH": 3,
-      "KINETIC_ROTATION": 6
+      "ELECTRIC": 1,
+      "HEAT": 4,
+      "KINETIC": 4,
+      "KINETIC_PUSH": 4,
+      "KINETIC_ROTATION": 9,
+      "TIME": 3
     },
     "explicit_energy_arguments": 25,
     "implicit_energy_arguments": 0,
-    "legacy_kinetic": 8,
+    "legacy_kinetic": 4,
     "machine_specs": 25,
     "new_legacy_kinetic": 0
   },
   "currentness": {
     "ledgers": {
-      "tools/t12_closure_readiness.json": "d8762fad8e451c034856d78a900a86217176f88749ef031127aee42d637449df",
+      "tools/t12_closure_readiness.json": "fa39d39069bd7251998712c921d1bc19263132cec2a7f2ff6fd5d1994bd4d2d3",
       "tools/t12_machine_policy.json": "c33d281d301327a5344b69b187ac56b657ccae635d19036b2da79212ce3f7d29",
       "tools/t16_machine_denominator_policy.json": "25f7d595bb27fd6b282abfeb9dddc3fd70d64863efe936e149580c1ef78a7255",
       "tools/t17_machine_denominator_policy.json": "1451c472f01e9c31a718b6f02707588531531635d429c8e0c6bcec5250945993"
     },
     "owned_inputs": {
-      "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java": "372efe52cd2bd892890de515b488f13a814ec14a107e7b3ce46ea8008e585dfa",
-      "tools/build_processing_machine_energy_audit.py": "3342e6ae406faa7904305e4c8ebcb3067c446335dd858adf4893c4992b4e25e9",
-      "tools/processing_machine_energy_audit_policy.json": "421225f3a2413c51df21e335336d78a53c1321f44c71bc568276245111631d75"
+      "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java": "c9d1a100013b40ac3d33612f652c251abf39584a65275d4fe770d9afd4ab4a1f",
+      "tools/build_processing_machine_energy_audit.py": "8cc65f9c419b2ed74af478e6ed677bb9683d7187111d6b9f67f517486a30cd15",
+      "tools/processing_machine_energy_audit_policy.json": "716d22c48bf3ab9f966f0f8538febe42710e9fc6d2a33eb7a5607936e1ac4fa2"
     }
   },
   "default_overload_audit": {
@@ -89,9 +86,9 @@
       "reason": "The current Sluice host explicitly preserves its RU identity while tier selection remains deferred."
     },
     {
-      "actual": "KINETIC",
+      "actual": "TIME",
       "disposition": "FIXED_UTILITY",
-      "expected": "KINETIC",
+      "expected": "TIME",
       "id": "bath",
       "java_constant": "BATH",
       "ledger": {
@@ -179,9 +176,9 @@
       "reason": "Smelter is implemented with the source HU identity."
     },
     {
-      "actual": "KINETIC",
+      "actual": "HEAT",
       "disposition": "MAPPED_DEFERRED",
-      "expected": "KINETIC",
+      "expected": "HEAT",
       "id": "extruder",
       "java_constant": "EXTRUDER",
       "ledger": {
@@ -194,9 +191,9 @@
       "reason": "Extruder preserves the existing kinetic tool-host behavior while its source HU transition remains explicitly deferred."
     },
     {
-      "actual": "KINETIC",
+      "actual": "KINETIC_ROTATION",
       "disposition": "MAPPED_DEFERRED",
-      "expected": "KINETIC",
+      "expected": "KINETIC_ROTATION",
       "id": "cutter",
       "java_constant": "CUTTER",
       "ledger": {
@@ -239,9 +236,9 @@
       "reason": "Rolling Mill is implemented with the source RU identity."
     },
     {
-      "actual": "KINETIC",
+      "actual": "KINETIC_ROTATION",
       "disposition": "MAPPED_DEFERRED",
-      "expected": "KINETIC",
+      "expected": "KINETIC_ROTATION",
       "id": "rollbender",
       "java_constant": "ROLLBENDER",
       "ledger": {
@@ -344,9 +341,9 @@
       "reason": "Electrolyzer remains the preimplemented EU reference."
     },
     {
-      "actual": "ELECTRIC",
+      "actual": "KINETIC_ROTATION",
       "disposition": "MAPPED_DEFERRED",
-      "expected": "ELECTRIC",
+      "expected": "KINETIC_ROTATION",
       "id": "mixer",
       "java_constant": "MIXER",
       "ledger": {
@@ -374,9 +371,9 @@
       "reason": "Distillery is implemented with the source HU identity."
     },
     {
-      "actual": "ELECTRIC",
+      "actual": "TIME",
       "disposition": "FIXED_UTILITY",
-      "expected": "ELECTRIC",
+      "expected": "TIME",
       "id": "autoclave",
       "java_constant": "AUTOCLAVE",
       "ledger": {
@@ -404,9 +401,9 @@
       "reason": "Drying is implemented with the source HU identity."
     },
     {
-      "actual": "ELECTRIC",
+      "actual": "KINETIC_PUSH",
       "disposition": "CROSS_OWNER_DEFERRED",
-      "expected": "ELECTRIC",
+      "expected": "KINETIC_PUSH",
       "id": "compressor",
       "java_constant": "COMPRESSOR",
       "ledger": {
@@ -419,9 +416,9 @@
       "reason": "Compressor remains explicitly electric while its KU identity debt stays with the T16 owner."
     },
     {
-      "actual": "ELECTRIC",
+      "actual": "TIME",
       "disposition": "FIXED_UTILITY",
-      "expected": "ELECTRIC",
+      "expected": "TIME",
       "id": "generifier",
       "java_constant": "GENERIFIER",
       "ledger": {

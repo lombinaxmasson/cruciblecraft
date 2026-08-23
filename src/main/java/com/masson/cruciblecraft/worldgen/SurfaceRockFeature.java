@@ -55,7 +55,7 @@ public class SurfaceRockFeature extends Feature<SurfaceRockConfiguration> {
                 int x = origin.getX() + dx;
                 int z = origin.getZ() + dz;
                 int y = level.getHeight(
-                        Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, x, z);
+                        Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, x, z) - 1;
                 cursor.set(x, y, z);
                 BlockState contact = level.getBlockState(cursor);
                 if (!contact.is(BlockTags.DIRT) && !contact.is(BlockTags.SAND)) {

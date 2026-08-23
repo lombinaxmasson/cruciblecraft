@@ -48,6 +48,13 @@ public final class MachineTierCatalog {
         return CATALOG.namingPolicy();
     }
 
+    /** Catalog-declared texture folder; never inferred from filename coupling. */
+    public static String textureProfile(String variantPath) {
+        Objects.requireNonNull(variantPath, "variantPath");
+        String profile = CATALOG.textureProfiles().get(variantPath);
+        return profile == null || profile.isBlank() ? variantPath : profile;
+    }
+
     public static List<TierProfile> controllerTierBands() {
         return List.copyOf(CATALOG.controllerTierBands().values());
     }
@@ -86,7 +93,7 @@ public final class MachineTierCatalog {
                             stream, StandardCharsets.UTF_8),
                     Document.class);
             if (document == null
-                    || document.schemaVersion != 2
+                    || document.schemaVersion != 3
                     || document.variants == null
                     || document.controllerProfiles == null
                     || document.source == null
@@ -98,11 +105,11 @@ public final class MachineTierCatalog {
                 throw new IllegalStateException(
                         "Invalid machine tier catalog schema");
             }
-            if (document.variants.size() != 33) {
-                throw new IllegalStateException(
-                        "Machine tier catalog must remain 33 source-backed rows");
-            }
+            // Opening 33 ids remain in the T36 target overlay; current size is
+            // the frozen target, not a hard ceiling.
             List<Entry> entries = document.variants.stream()
+                    .filter(row -> row.resourceProfile == null
+                            || !row.resourceProfile.skipGenericRegistration)
                     .map(Row::toEntry)
                     .toList();
             Set<ResourceLocation> ids = new HashSet<>();
@@ -153,12 +160,19 @@ public final class MachineTierCatalog {
             Set<String> runtimeVariants = entries.stream()
                     .map(entry -> entry.variantId().toString())
                     .collect(java.util.stream.Collectors.toSet());
-            if (!sourcedVariants.equals(runtimeVariants)) {
+            Set<String> skippedVariants = document.variants.stream()
+                    .filter(row -> row.resourceProfile != null
+                            && row.resourceProfile.skipGenericRegistration)
+                    .map(row -> row.id)
+                    .collect(java.util.stream.Collectors.toSet());
+            Set<String> expectedSourced = new HashSet<>(runtimeVariants);
+            expectedSourced.addAll(skippedVariants);
+            if (!sourcedVariants.equals(expectedSourced)) {
                 throw new IllegalStateException(
                         "Machine tier source rows do not cover variants: "
                                 + sourcedVariants
                                 + " != "
-                                + runtimeVariants);
+                                + expectedSourced);
             }
             LinkedHashMap<ResourceLocation, TierProfile> controllerTierBands =
                     new LinkedHashMap<>();
@@ -193,12 +207,23 @@ public final class MachineTierCatalog {
                             Entry::kindId,
                             LinkedHashMap::new,
                             Collectors.toUnmodifiableList()));
+            LinkedHashMap<String, String> textureProfiles = new LinkedHashMap<>();
+            for (Row row : document.variants) {
+                ResourceLocation variantId = parse(row.id, "variant id");
+                String profile = row.resourceProfile == null
+                        || row.resourceProfile.textureProfile == null
+                        || row.resourceProfile.textureProfile.isBlank()
+                        ? variantId.getPath()
+                        : row.resourceProfile.textureProfile;
+                textureProfiles.put(variantId.getPath(), profile);
+            }
             return new Catalog(
                     List.copyOf(entries),
                     Map.copyOf(controllerTierBands),
                     Map.copyOf(byId),
                     byKind,
-                    document.namingPolicy.toPolicy());
+                    document.namingPolicy.toPolicy(),
+                    Map.copyOf(textureProfiles));
         } catch (IOException
                 | JsonIOException
                 | JsonSyntaxException exception) {
@@ -212,7 +237,8 @@ public final class MachineTierCatalog {
             Map<ResourceLocation, TierProfile> controllerTierBands,
             Map<ResourceLocation, Entry> byId,
             Map<ResourceLocation, List<Entry>> byKind,
-            NamingPolicy namingPolicy) {}
+            NamingPolicy namingPolicy,
+            Map<String, String> textureProfiles) {}
 
     public record NamingPolicy(
             String tier1BareId,
@@ -229,6 +255,16 @@ public final class MachineTierCatalog {
         }
     }
 
+    public record ResourceProfile(
+            String sharedModel,
+            String textureProfile,
+            boolean skipGenericRegistration) {
+        public ResourceProfile {
+            Objects.requireNonNull(sharedModel, "sharedModel");
+            Objects.requireNonNull(textureProfile, "textureProfile");
+        }
+    }
+
     public record Entry(
             ResourceLocation variantId,
             ResourceLocation kindId,
@@ -239,7 +275,8 @@ public final class MachineTierCatalog {
             String acquisitionBlocker,
             MachineKindSpec.OverclockPolicy overclockPolicy,
             boolean parallelDuration,
-            TierProfile tierBand) {
+            TierProfile tierBand,
+            ResourceProfile resourceProfile) {
         public Entry {
             Objects.requireNonNull(variantId, "variantId");
             Objects.requireNonNull(kindId, "kindId");
@@ -249,6 +286,7 @@ public final class MachineTierCatalog {
             }
             Objects.requireNonNull(overclockPolicy, "overclockPolicy");
             Objects.requireNonNull(tierBand, "tierBand");
+            Objects.requireNonNull(resourceProfile, "resourceProfile");
             if (tierBand.energyType() == EnergyType.HEAT
                     && (!nonBlank(sourceMaterial)
                             || materialRegistered
@@ -361,6 +399,22 @@ public final class MachineTierCatalog {
         }
     }
 
+    private static final class ResourceProfileRow {
+        private String sharedModel;
+        private String textureProfile;
+        private boolean skipGenericRegistration;
+
+        private ResourceProfile toProfile(String variantPath) {
+            String model = nonBlank(sharedModel)
+                    ? sharedModel
+                    : "processing_machine";
+            String texture = nonBlank(textureProfile)
+                    ? textureProfile
+                    : variantPath;
+            return new ResourceProfile(model, texture, skipGenericRegistration);
+        }
+    }
+
     private static final class Row {
         private String id;
         private String kind;
@@ -374,6 +428,7 @@ public final class MachineTierCatalog {
         private String acquisitionBlocker;
         private String overclock;
         private boolean parallelDuration;
+        private ResourceProfileRow resourceProfile;
         private long inputMinimum;
         private long inputNominal;
         private long inputMaximum;
@@ -393,6 +448,12 @@ public final class MachineTierCatalog {
                         "Unknown machine overclock policy " + overclock,
                         exception);
             }
+            ResourceProfile profile = resourceProfile == null
+                    ? new ResourceProfile(
+                            "processing_machine",
+                            variantId.getPath(),
+                            false)
+                    : resourceProfile.toProfile(variantId.getPath());
             return new Entry(
                     variantId,
                     kindId,
@@ -412,7 +473,8 @@ public final class MachineTierCatalog {
                             inputMaximum,
                             energyCapacity,
                             parallel,
-                            efficiency));
+                            efficiency),
+                    profile);
         }
     }
 

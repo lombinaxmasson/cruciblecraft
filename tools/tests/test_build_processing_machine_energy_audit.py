@@ -27,11 +27,12 @@ class ProcessingMachineEnergyAuditTest(unittest.TestCase):
         ))
         self.assertEqual(
             {
-                "ELECTRIC": 5,
-                "HEAT": 3,
-                "KINETIC": 8,
-                "KINETIC_PUSH": 3,
-                "KINETIC_ROTATION": 6,
+                "ELECTRIC": 1,
+                "HEAT": 4,
+                "KINETIC": 4,
+                "KINETIC_PUSH": 4,
+                "KINETIC_ROTATION": 9,
+                "TIME": 3,
             },
             counts["energy_types"],
         )
@@ -58,23 +59,19 @@ private static ProcessingMachineSpec mechanical(
         with self.assertRaisesRegex(ValueError, "overload policy failed"):
             builder.build(source=implicit)
 
-    def test_exact_eight_legacy_kinetic_hosts_have_fixed_or_deferred_ledgers(
+    def test_exact_four_legacy_kinetic_hosts_have_fixed_or_deferred_ledgers(
         self,
     ):
         expected = {
             "assembler",
-            "bath",
             "bender",
-            "cutter",
-            "extruder",
             "mortar",
-            "rollbender",
             "welder",
         }
         self.assertEqual(
             expected, set(self.document["allowed_legacy_kinetic_ids"])
         )
-        self.assertEqual(8, self.document["counts"]["legacy_kinetic"])
+        self.assertEqual(4, self.document["counts"]["legacy_kinetic"])
         self.assertEqual(0, self.document["counts"]["new_legacy_kinetic"])
         rows = {
             row["id"]: row for row in self.document["rows"]
@@ -85,21 +82,22 @@ private static ProcessingMachineSpec mechanical(
             row["disposition"] in {"FIXED_UTILITY", "MAPPED_DEFERRED"}
             for row in rows.values()
         ))
-        self.assertEqual(
-            "MAPPED_DEFERRED", rows["extruder"]["disposition"]
+        extruder = next(
+            row for row in self.document["rows"] if row["id"] == "extruder"
         )
+        self.assertEqual("HEAT", extruder["actual"])
         self.assertEqual(
             "tools/t17_machine_denominator_policy.json",
-            rows["extruder"]["ledger"]["path"],
+            extruder["ledger"]["path"],
         )
 
-    def test_compressor_is_explicit_electric_cross_owner_debt(self):
+    def test_compressor_is_explicit_ku_cross_owner_debt(self):
         compressor = next(
             row for row in self.document["rows"]
             if row["id"] == "compressor"
         )
-        self.assertEqual("ELECTRIC", compressor["actual"])
-        self.assertEqual("ELECTRIC", compressor["expected"])
+        self.assertEqual("KINETIC_PUSH", compressor["actual"])
+        self.assertEqual("KINETIC_PUSH", compressor["expected"])
         self.assertEqual(
             "CROSS_OWNER_DEFERRED", compressor["disposition"]
         )
@@ -118,11 +116,11 @@ private static ProcessingMachineSpec mechanical(
 
         source = builder.SOURCE.read_text(encoding="utf-8")
         changed = source.replace(
-            "4, 1, 3, 2, 32_000, 32_000,\n"
-            "                    6, 1, 6, 2,\n"
+            "2, 6, 2, 3, 16_000, 16_000,\n"
+            "                    2, 6, 2, 6,\n"
             "                    EnergyType.ELECTRIC);",
-            "4, 1, 3, 2, 32_000, 32_000,\n"
-            "                    6, 1, 6, 2,\n"
+            "2, 6, 2, 3, 16_000, 16_000,\n"
+            "                    2, 6, 2, 6,\n"
             "                    EnergyType.KINETIC);",
             1,
         )

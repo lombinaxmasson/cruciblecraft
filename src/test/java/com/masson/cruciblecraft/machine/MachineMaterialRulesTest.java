@@ -13,7 +13,7 @@ class MachineMaterialRulesTest {
     @Test
     void defaultsAreExplicitAndInvalidMaterialsFailLoudly() {
         assertEquals("ceramic", MachineMaterialRules.defaultMaterial(Device.CRUCIBLE));
-        assertEquals("iron", MachineMaterialRules.defaultMaterial(Device.ANVIL));
+        assertEquals("stone", MachineMaterialRules.defaultMaterial(Device.ANVIL));
         assertEquals("iron", MachineMaterialRules.defaultMaterial(Device.HAMMER));
         IllegalArgumentException failure = assertThrows(
                 IllegalArgumentException.class,
@@ -22,7 +22,7 @@ class MachineMaterialRulesTest {
         assertTrue(failure.getMessage().contains("invalid"));
 
         var external = MachineMaterialRules.resolveExternal(Device.ANVIL, "gold");
-        assertEquals("iron", external.effectiveMaterial());
+        assertEquals("stone", external.effectiveMaterial());
         assertEquals("gold", external.quarantinedMaterial().orElseThrow());
         assertTrue(external.quarantined());
     }

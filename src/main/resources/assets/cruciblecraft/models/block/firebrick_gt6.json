@@ -1,0 +1,155 @@
+{
+  "credit": "GregTech 6 ID 18000 MultiTileEntityMultiBlockPart firebricks; raw colored and overlay faces imported unchanged.",
+  "parent": "minecraft:block/block",
+  "textures": {
+    "colored_bottom": "cruciblecraft:block/t34_gt6/firebrick/colored_bottom",
+    "colored_side": "cruciblecraft:block/t34_gt6/firebrick/colored_side",
+    "colored_top": "cruciblecraft:block/t34_gt6/firebrick/colored_top",
+    "overlay_bottom": "cruciblecraft:block/t34_gt6/firebrick/overlay_bottom",
+    "overlay_side": "cruciblecraft:block/t34_gt6/firebrick/overlay_side",
+    "overlay_top": "cruciblecraft:block/t34_gt6/firebrick/overlay_top",
+    "particle": "#colored_side"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#colored_side",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#colored_side",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#colored_side",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#colored_side",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#colored_top",
+          "tintindex": 0
+        },
+        "down": {
+          "texture": "#colored_bottom",
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        -0.01
+      ],
+      "to": [
+        16,
+        16,
+        0
+      ],
+      "faces": {
+        "north": {
+          "texture": "#overlay_side"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        16
+      ],
+      "to": [
+        16,
+        16,
+        16.01
+      ],
+      "faces": {
+        "south": {
+          "texture": "#overlay_side"
+        }
+      }
+    },
+    {
+      "from": [
+        -0.01,
+        0,
+        0
+      ],
+      "to": [
+        0,
+        16,
+        16
+      ],
+      "faces": {
+        "west": {
+          "texture": "#overlay_side"
+        }
+      }
+    },
+    {
+      "from": [
+        16,
+        0,
+        0
+      ],
+      "to": [
+        16.01,
+        16,
+        16
+      ],
+      "faces": {
+        "east": {
+          "texture": "#overlay_side"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        16,
+        0
+      ],
+      "to": [
+        16,
+        16.01,
+        16
+      ],
+      "faces": {
+        "up": {
+          "texture": "#overlay_top"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        -0.01,
+        0
+      ],
+      "to": [
+        16,
+        0,
+        16
+      ],
+      "faces": {
+        "down": {
+          "texture": "#overlay_bottom"
+        }
+      }
+    }
+  ]
+}

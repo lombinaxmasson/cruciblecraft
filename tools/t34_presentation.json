@@ -1,0 +1,80 @@
+{
+  "input_hashes": {
+    "src/generated/resources/assets/cruciblecraft/blockstates/firebox.json": "c094c41a5b1031b3677c4d4f07bebdf1d4fba39a5441b5ccca512e4b3495b91f",
+    "src/generated/resources/assets/cruciblecraft/lang/zh_cn.json": "3e11de7055dbffc68a6b72ab80d1c86609d96051c04a02550549a6f55c245e31",
+    "src/generated/resources/assets/cruciblecraft/models/item/firebox.json": "bcce23dae776c484f5249e4af600ddb1626a85d1c6d904a3ece68adacf2c7489",
+    "src/generated/resources/data/cruciblecraft/recipe/machines/firebox.json": "f221023d145a5d82cccc6dc8123869a1fff5d145720ddda99c8255a81a91af06",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModBlockStateProvider.java": "bb95e2e8ef8fe18d9d67f665dd71195e483c2d826a08603c1af364c65f0970d5",
+    "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java": "a1ce8033084ae7509a14ea730f66968864dc85cc1f65a73d555a84d036c6d10b",
+    "src/main/resources/assets/cruciblecraft/models/block/anvil.json": "43fce1250d8cce93c089d33b3a94bfb95ac58140713c86663abe98e5818f77b9",
+    "src/main/resources/assets/cruciblecraft/models/block/crucible.json": "9825cb37962c9047705297d31f8976f67f3d1da17ec0a7d523f535be2c0a8ac5",
+    "src/main/resources/assets/cruciblecraft/models/block/firebox_lit.json": "4f347acf720981c3f1a06edf5b5076a216a50c6624382a956943f5af1b7fe8fb",
+    "src/main/resources/assets/cruciblecraft/models/block/firebox_unlit.json": "474a512db05b56d4eb9c9a22c219cd8c25f17194caabd3a6eb603619e983f741",
+    "src/main/resources/assets/cruciblecraft/textures/block/starting_device/anvil_mask.png": "e742a751c2e39c020ba11332d31af2a53e5e9d58920acb6f3774f6fb8a50aee7",
+    "src/main/resources/assets/cruciblecraft/textures/block/starting_device/crucible_mask.png": "924bae12713202143cabc94d1f5fe219c5e65491b38f6a2a60dcc6b4c6bc82a5",
+    "src/main/resources/assets/cruciblecraft/textures/block/starting_device/firebox_bottom.png": "1f4b8c7b4ca2699c41d69d2f70a2e6c1dad33e424351abf5af37dbabe3029b56",
+    "src/main/resources/assets/cruciblecraft/textures/block/starting_device/firebox_front.png": "211c291513b2cccd25f5feffd5c623402547b7b35824ca06b2bd729dbf5db7b2",
+    "src/main/resources/assets/cruciblecraft/textures/block/starting_device/firebox_front_lit.png": "2236eaf4d0002ff0d0ee4340c10e1e5de463e07916d2fc5850f5c3bf3b1108e1",
+    "src/main/resources/assets/cruciblecraft/textures/block/starting_device/firebox_grate.png": "2df9135d5e6600c6baf7f3ba2c1a925589571e92ec403cb30b5fac5a69bbb7ce",
+    "src/main/resources/assets/cruciblecraft/textures/block/starting_device/firebox_grate_lit.png": "d6d1ddf34a6d3489daa828e194ebcd6a13bfb2be30a245bbed740f283460dfd9",
+    "src/main/resources/assets/cruciblecraft/textures/block/starting_device/firebox_side.png": "99890fac3803ba6d2f8b52ee79be45d7519cd951babc125e8188bb20b4c93b86",
+    "src/main/resources/assets/cruciblecraft/textures/block/starting_device/firebox_top.png": "e3236c76999aee32234b5efaba534b3d0d82d11240192f4898679d22d0ce7822",
+    "src/main/resources/data/cruciblecraft/recipe/crucible_firing.json": "cbe4ad7271aa49f9dc5a0c62452b910e00c56792ebcb2f3af1ac05605eec6aa2",
+    "src/main/resources/data/cruciblecraft/recipe/firebrick.json": "a394892a817d205330b62b58a49e9cd6532e03bd98f5375a2af9b13cc9c0ef19",
+    "src/main/resources/data/cruciblecraft/recipe/raw_ceramic_crucible.json": "9ce8807407cdd27be8460d468c8e8f8b37eb585a4bfcd9cbb5bbb49aa64a2301",
+    "src/main/resources/data/cruciblecraft/recipe/stone_anvil.json": "4b7eb52654a8603e616c79f1cbf9c3f21e7499f4491a90f31a6f76fb2f66ddf7",
+    "tools/t21_operand_reachability.json": "2930693540bd15af4b50f8715ee0ade786de6014a400ce8a5c91f26ea93f83e4",
+    "tools/t34_presentation_policy.json": "82727f41f34f9b6109e26160bbcd894c13e92ed991c4fcc2219ffdd513d38831"
+  },
+  "load": {
+    "block_registration_delta": 0,
+    "item_registration_delta": 0,
+    "new_block_models": 2,
+    "new_texture_files": 9,
+    "recipe_publication_delta": 0
+  },
+  "presentation": {
+    "cruciblecraft:anvil": {
+      "classification": "ART_DERIVED",
+      "mask": "cruciblecraft:block/starting_device/anvil_mask",
+      "tintindex": 0
+    },
+    "cruciblecraft:crucible": {
+      "classification": "ART_DERIVED",
+      "mask": "cruciblecraft:block/starting_device/crucible_mask",
+      "tintindex": 0
+    },
+    "cruciblecraft:firebox": {
+      "classification": "ART_AUTHORED",
+      "lit_model": "cruciblecraft:block/firebox_lit",
+      "unlit_model": "cruciblecraft:block/firebox_unlit"
+    }
+  },
+  "schema_version": 1,
+  "scope": {
+    "members": [
+      {
+        "classification": "ART_DERIVED",
+        "id": "cruciblecraft:anvil",
+        "manual_route_stage": 1,
+        "route_target": "src/main/resources/data/cruciblecraft/recipe/stone_anvil.json"
+      },
+      {
+        "classification": "ART_DERIVED",
+        "id": "cruciblecraft:crucible",
+        "manual_route_stage": 2,
+        "route_target": "src/main/resources/data/cruciblecraft/recipe/crucible_firing.json"
+      },
+      {
+        "classification": "ART_AUTHORED",
+        "id": "cruciblecraft:firebox",
+        "manual_route_stage": 2,
+        "route_target": "src/generated/resources/data/cruciblecraft/recipe/machines/firebox.json"
+      }
+    ],
+    "name": "T33-seeded manual opening routes",
+    "seed_count": 6,
+    "stage_limit": 2
+  },
+  "status": "T34_PRESENTATION_READY"
+}

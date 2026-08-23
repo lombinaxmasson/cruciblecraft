@@ -27,6 +27,33 @@ FLUID_DECLARATIONS = (
     ROOT
     / "src/main/resources/data/cruciblecraft/worldgen_catalog/fluid_deposits.json"
 )
+SURFACE_SCATTER_DECLARATIONS = (
+    ROOT
+    / "src/main/resources/data/cruciblecraft/worldgen_catalog/surface_scatter.json"
+)
+CONFIGURED_SURFACE_RUNTIME = (
+    ROOT
+    / "src/main/resources/data/cruciblecraft/worldgen/configured_feature"
+    / "surface_rock_scatter.json"
+)
+PLACED_SURFACE_RUNTIME = (
+    ROOT
+    / "src/main/resources/data/cruciblecraft/worldgen/placed_feature"
+    / "surface_rock_scatter.json"
+)
+BIOME_MODIFIER_SURFACE_RUNTIME = (
+    ROOT
+    / "src/main/resources/data/cruciblecraft/neoforge/biome_modifier"
+    / "add_surface_rocks.json"
+)
+ROCK_PREFIX_DEFINITION = (
+    ROOT
+    / "src/main/resources/data/cruciblecraft/material_prefixes/rock.json"
+)
+MATERIAL_REGISTRATION_GATE = (
+    ROOT
+    / "src/main/resources/data/cruciblecraft/material_registration_gate.json"
+)
 T11_RUNTIME_POLICY = (
     ROOT
     / "src/main/resources/data/cruciblecraft"
@@ -44,6 +71,10 @@ READINESS = TOOLS / "worldgen_catalog_readiness.json"
 RESOURCE_PATH = re.compile(r"[a-z0-9_.-]+")
 RESOURCE_LOCATION = re.compile(r"([a-z0-9_.-]+):([a-z0-9_./-]+)")
 FLUID_FEATURE_TYPE = "cruciblecraft:subsurface_fluid_deposit"
+SURFACE_FEATURE_TYPE = "cruciblecraft:surface_rock_scatter"
+SURFACE_BIOME_MODIFIER_ID = "add_surface_rocks"
+SURFACE_DECORATION_STEP = "top_layer_modification"
+SURFACE_OVERWORLD_BIOMES = "#minecraft:is_overworld"
 
 
 def load(path: Path) -> Any:
@@ -352,6 +383,277 @@ def validate_fluid_deposit(
     }
 
 
+def _require_resource_location(value: Any, label: str) -> str:
+    if (
+        not isinstance(value, str)
+        or RESOURCE_LOCATION.fullmatch(value) is None
+    ):
+        raise ValueError(f"{label} must be a resource location")
+    return value
+
+
+def _configured_surface_from_declaration(
+    declaration: dict[str, Any],
+) -> dict[str, Any]:
+    config = require_mapping(declaration.get("config"), "surface_scatter.config")
+    return {
+        "type": declaration["feature_type"],
+        "config": {
+            "rarity": require_int(config, "rarity", 1, 1_000_000, "surface_scatter.config"),
+            "rock_tag": _require_resource_location(
+                config.get("rock_tag"),
+                "surface_scatter.config.rock_tag",
+            ),
+        },
+    }
+
+
+def _biome_modifier_from_declaration(
+    declaration: dict[str, Any],
+) -> dict[str, Any]:
+    modifier = require_mapping(
+        declaration.get("biome_modifier"),
+        "surface_scatter.biome_modifier",
+    )
+    modifier_id = modifier.get("id")
+    if (
+        not isinstance(modifier_id, str)
+        or RESOURCE_PATH.fullmatch(modifier_id) is None
+    ):
+        raise ValueError(
+            "surface_scatter.biome_modifier.id must be an unnamespaced resource path"
+        )
+    if modifier_id != SURFACE_BIOME_MODIFIER_ID:
+        raise ValueError(
+            "surface_scatter.biome_modifier.id must be add_surface_rocks"
+        )
+    modifier_type = modifier.get("type")
+    if modifier_type != "neoforge:add_features":
+        raise ValueError(
+            "surface_scatter.biome_modifier.type must be neoforge:add_features"
+        )
+    biomes = modifier.get("biomes")
+    if biomes != SURFACE_OVERWORLD_BIOMES:
+        raise ValueError(
+            "surface_scatter.biome_modifier.biomes must be #minecraft:is_overworld"
+        )
+    step = modifier.get("step")
+    if step != SURFACE_DECORATION_STEP:
+        raise ValueError(
+            "surface_scatter.biome_modifier.step must be top_layer_modification"
+        )
+    features = modifier.get("features")
+    if not isinstance(features, list) or len(features) != 1:
+        raise ValueError(
+            "surface_scatter.biome_modifier.features must be a single-entry array"
+        )
+    placed_feature = declaration.get("placed_feature")
+    if features[0] != placed_feature:
+        raise ValueError(
+            "surface_scatter.biome_modifier.features must match placed_feature"
+        )
+    return {
+        "type": modifier_type,
+        "biomes": biomes,
+        "features": features,
+        "step": step,
+    }
+
+
+def _placed_surface_from_declaration(
+    declaration: dict[str, Any],
+) -> dict[str, Any]:
+    placed_feature = _require_resource_location(
+        declaration.get("placed_feature"),
+        "surface_scatter.placed_feature",
+    )
+    scatter_id = declaration.get("id")
+    if (
+        not isinstance(scatter_id, str)
+        or RESOURCE_PATH.fullmatch(scatter_id) is None
+    ):
+        raise ValueError(
+            "surface_scatter.id must be an unnamespaced resource path"
+        )
+    expected = f"cruciblecraft:{scatter_id}"
+    if placed_feature != expected:
+        raise ValueError(
+            "surface_scatter.placed_feature must reference cruciblecraft:id"
+        )
+    return {
+        "feature": placed_feature,
+        "placement": [],
+    }
+
+
+def _cross_check_surface_runtime(
+    declaration: dict[str, Any],
+    *,
+    configured: dict[str, Any],
+    placed: dict[str, Any],
+    modifier: dict[str, Any],
+) -> None:
+    expected_configured = _configured_surface_from_declaration(declaration)
+    expected_placed = _placed_surface_from_declaration(declaration)
+    expected_modifier = _biome_modifier_from_declaration(declaration)
+    if configured != expected_configured:
+        raise ValueError(
+            "surface scatter configured_feature runtime JSON drifted from declaration"
+        )
+    if placed != expected_placed:
+        raise ValueError(
+            "surface scatter placed_feature runtime JSON drifted from declaration"
+        )
+    if modifier != expected_modifier:
+        raise ValueError(
+            "surface scatter biome_modifier runtime JSON drifted from declaration"
+        )
+    if declaration.get("feature_type") != configured.get("type"):
+        raise ValueError(
+            "surface scatter declaration feature_type must match configured type"
+        )
+    if declaration.get("placed_feature") != placed.get("feature"):
+        raise ValueError(
+            "surface scatter declaration placed_feature must match placed feature"
+        )
+
+
+def _validate_rock_tag_source(source: dict[str, Any]) -> dict[str, Any]:
+    prefix = source.get("prefix")
+    if prefix != "rock":
+        raise ValueError("surface_scatter.rock_tag_source.prefix must be rock")
+    generation_flag = source.get("generation_flag")
+    if generation_flag != "cruciblecraft:generates_rock":
+        raise ValueError(
+            "surface_scatter.rock_tag_source.generation_flag drifted"
+        )
+    tag_namespace = source.get("tag_namespace")
+    tag_directory = source.get("tag_directory")
+    if tag_namespace != "c" or tag_directory != "rocks":
+        raise ValueError(
+            "surface_scatter.rock_tag_source tag namespace/directory drifted"
+        )
+    runtime_pack = source.get("runtime_pack")
+    if runtime_pack != "GeneratedMaterialPack":
+        raise ValueError(
+            "surface_scatter.rock_tag_source.runtime_pack must be "
+            "GeneratedMaterialPack"
+        )
+    gate_path = source.get("material_gate")
+    prefix_path = source.get("prefix_definition")
+    if gate_path != str(
+        MATERIAL_REGISTRATION_GATE.relative_to(ROOT).as_posix()
+    ):
+        raise ValueError(
+            "surface_scatter.rock_tag_source.material_gate path drifted"
+        )
+    if prefix_path != str(
+        ROCK_PREFIX_DEFINITION.relative_to(ROOT).as_posix()
+    ):
+        raise ValueError(
+            "surface_scatter.rock_tag_source.prefix_definition path drifted"
+        )
+    prefix_document = require_mapping(
+        load(ROCK_PREFIX_DEFINITION),
+        str(ROCK_PREFIX_DEFINITION),
+    )
+    if (
+        prefix_document.get("tag_namespace") != tag_namespace
+        or prefix_document.get("tag_directory") != tag_directory
+        or prefix_document.get("generation_flag") != generation_flag
+    ):
+        raise ValueError(
+            "surface_scatter rock prefix definition does not match rock_tag_source"
+        )
+    gate_document = require_mapping(
+        load(MATERIAL_REGISTRATION_GATE),
+        str(MATERIAL_REGISTRATION_GATE),
+    )
+    materials = gate_document.get("materials")
+    if not isinstance(materials, dict):
+        raise ValueError("material registration gate materials must be an object")
+    rock_materials = sorted(
+        material_id
+        for material_id, forms in materials.items()
+        if isinstance(forms, list) and prefix in forms
+    )
+    if not rock_materials:
+        raise ValueError(
+            "material registration gate has no rock-form materials"
+        )
+    return {
+        "prefix": prefix,
+        "generation_flag": generation_flag,
+        "tag": f"{tag_namespace}:{tag_directory}",
+        "runtime_pack": runtime_pack,
+        "rock_material_count": len(rock_materials),
+    }
+
+
+def load_surface_scatter() -> dict[str, Any]:
+    document = require_mapping(
+        load(SURFACE_SCATTER_DECLARATIONS),
+        str(SURFACE_SCATTER_DECLARATIONS),
+    )
+    if document.get("schema_version") != 1:
+        raise ValueError("surface scatter schema_version must be 1")
+    scatter_id = document.get("id")
+    if scatter_id != "surface_rock_scatter":
+        raise ValueError("surface scatter id must be surface_rock_scatter")
+    feature_type = document.get("feature_type")
+    if feature_type != SURFACE_FEATURE_TYPE:
+        raise ValueError(
+            "surface scatter feature_type must be cruciblecraft:surface_rock_scatter"
+        )
+    provenance = document.get("provenance")
+    if not isinstance(provenance, str) or not provenance.strip():
+        raise ValueError("surface scatter provenance must be non-empty")
+    design_policy = document.get("design_policy")
+    if design_policy != "DESIGN_POLICY":
+        raise ValueError("surface scatter design_policy must be DESIGN_POLICY")
+    rock_tag_source = _validate_rock_tag_source(
+        require_mapping(
+            document.get("rock_tag_source"),
+            "surface_scatter.rock_tag_source",
+        )
+    )
+    configured_runtime = require_mapping(
+        load(CONFIGURED_SURFACE_RUNTIME),
+        str(CONFIGURED_SURFACE_RUNTIME),
+    )
+    placed_runtime = require_mapping(
+        load(PLACED_SURFACE_RUNTIME),
+        str(PLACED_SURFACE_RUNTIME),
+    )
+    modifier_runtime = require_mapping(
+        load(BIOME_MODIFIER_SURFACE_RUNTIME),
+        str(BIOME_MODIFIER_SURFACE_RUNTIME),
+    )
+    _cross_check_surface_runtime(
+        document,
+        configured=configured_runtime,
+        placed=placed_runtime,
+        modifier=modifier_runtime,
+    )
+    configured = _configured_surface_from_declaration(document)
+    modifier = _biome_modifier_from_declaration(document)
+    return {
+        "id": scatter_id,
+        "feature_type": feature_type,
+        "configured_feature": f"cruciblecraft:{scatter_id}",
+        "placed_feature": document["placed_feature"],
+        "biome_modifier_id": modifier["features"][0],
+        "biomes": modifier["biomes"],
+        "decoration_step": modifier["step"],
+        "rarity": configured["config"]["rarity"],
+        "rock_tag": configured["config"]["rock_tag"],
+        "provenance": provenance,
+        "design_policy": design_policy,
+        "rock_tag_source": rock_tag_source,
+        "audit_mode": "check_only",
+    }
+
+
 def load_fluid_deposits() -> list[dict[str, Any]]:
     document = require_mapping(
         load(FLUID_DECLARATIONS), str(FLUID_DECLARATIONS)
@@ -434,6 +736,7 @@ def build_documents() -> tuple[
     closure_veins = load_closure_veins(capabilities)
     geometry_policy = load_geometry_policy(closure_veins)
     deposits = load_fluid_deposits()
+    surface_scatter = load_surface_scatter()
     t2_veins = vein_builder.load_veins()
 
     t2_materials = {
@@ -562,6 +865,48 @@ def build_documents() -> tuple[
                 ),
                 "sha256": sha256(T11_NATURAL_GAS_MATERIAL),
             },
+            "surface_scatter_declarations": {
+                "path": (
+                    "src/main/resources/data/cruciblecraft/"
+                    "worldgen_catalog/surface_scatter.json"
+                ),
+                "sha256": sha256(SURFACE_SCATTER_DECLARATIONS),
+            },
+            "rock_prefix_definition": {
+                "path": (
+                    "src/main/resources/data/cruciblecraft/"
+                    "material_prefixes/rock.json"
+                ),
+                "sha256": sha256(ROCK_PREFIX_DEFINITION),
+            },
+            "material_registration_gate": {
+                "path": (
+                    "src/main/resources/data/cruciblecraft/"
+                    "material_registration_gate.json"
+                ),
+                "sha256": sha256(MATERIAL_REGISTRATION_GATE),
+            },
+            "configured_surface_runtime": {
+                "path": (
+                    "src/main/resources/data/cruciblecraft/worldgen/"
+                    "configured_feature/surface_rock_scatter.json"
+                ),
+                "sha256": sha256(CONFIGURED_SURFACE_RUNTIME),
+            },
+            "placed_surface_runtime": {
+                "path": (
+                    "src/main/resources/data/cruciblecraft/worldgen/"
+                    "placed_feature/surface_rock_scatter.json"
+                ),
+                "sha256": sha256(PLACED_SURFACE_RUNTIME),
+            },
+            "surface_biome_modifier_runtime": {
+                "path": (
+                    "src/main/resources/data/cruciblecraft/neoforge/"
+                    "biome_modifier/add_surface_rocks.json"
+                ),
+                "sha256": sha256(BIOME_MODIFIER_SURFACE_RUNTIME),
+            },
         },
         "counts": {
             "t2_vein_families": len(t2_veins),
@@ -621,6 +966,24 @@ def build_documents() -> tuple[
             }
             for deposit in deposits
         ],
+        "surface_scatter": {
+            key: surface_scatter[key]
+            for key in (
+                "id",
+                "feature_type",
+                "configured_feature",
+                "placed_feature",
+                "biome_modifier_id",
+                "biomes",
+                "decoration_step",
+                "rarity",
+                "rock_tag",
+                "provenance",
+                "design_policy",
+                "audit_mode",
+            )
+        },
+        "surface_scatter_rock_tag_source": surface_scatter["rock_tag_source"],
     }
     return closure_veins, deposits, files, readiness
 

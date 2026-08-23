@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.client.color.Gt6OpeningBlockColor;
 import com.masson.cruciblecraft.client.color.HopperBlockColor;
 import com.masson.cruciblecraft.client.color.MachineBlockColor;
 import com.masson.cruciblecraft.client.color.MaterialItemColor;
@@ -100,6 +101,11 @@ public class ClientSetup {
                 java.util.Arrays.stream(tintedMachines)
                         .map(net.minecraft.world.level.block.Block::asItem)
                         .toArray(Item[]::new));
+        event.register(
+                Gt6OpeningBlockColor::itemColor,
+                java.util.Arrays.stream(Gt6OpeningBlockColor.tintedBlocks())
+                        .map(net.minecraft.world.level.block.Block::asItem)
+                        .toArray(Item[]::new));
         event.register(MaterialOreColor::itemColor, MaterialOreColor.oreBlockItems());
         Block[] tintedHoppers = HopperBlockColor.tintedBlocks();
         event.register(
@@ -168,6 +174,9 @@ public class ClientSetup {
                 },
                 ModBlocks.ANVIL.get());
         event.register(MachineBlockColor::blockColor, MachineBlockColor.tintedBlocks());
+        event.register(
+                Gt6OpeningBlockColor::blockColor,
+                Gt6OpeningBlockColor.tintedBlocks());
         event.register(HopperBlockColor::blockColor, HopperBlockColor.tintedBlocks());
         event.register(MaterialOreColor::blockColor, MaterialOreColor.oreBlocks());
         event.register(

@@ -573,15 +573,21 @@ class ProcessingAdaptersTest {
         assertEquals(10, ModProcessingMachines.T3_MACHINES.size());
         for (ProcessingMachineSpec spec : ModProcessingMachines.T3_MACHINES) {
             assertEquals(spec.recipeMapId(), spec.requireRecipeMap().id());
-            EnergyType expectedEnergy = spec == ModProcessingMachines.PRESS
-                    ? EnergyType.KINETIC_PUSH
-                    : List.of(
-                                    ModProcessingMachines.LATHE,
-                                    ModProcessingMachines.ROLLINGMILL,
-                                    ModProcessingMachines.WIREMILL)
-                            .contains(spec)
-                                    ? EnergyType.KINETIC_ROTATION
-                                    : EnergyType.KINETIC;
+            EnergyType expectedEnergy;
+            if (spec == ModProcessingMachines.PRESS) {
+                expectedEnergy = EnergyType.KINETIC_PUSH;
+            } else if (spec == ModProcessingMachines.EXTRUDER) {
+                expectedEnergy = EnergyType.HEAT;
+            } else if (List.of(
+                    ModProcessingMachines.CUTTER,
+                    ModProcessingMachines.LATHE,
+                    ModProcessingMachines.ROLLINGMILL,
+                    ModProcessingMachines.ROLLBENDER,
+                    ModProcessingMachines.WIREMILL).contains(spec)) {
+                expectedEnergy = EnergyType.KINETIC_ROTATION;
+            } else {
+                expectedEnergy = EnergyType.KINETIC;
+            }
             assertEquals(expectedEnergy, spec.energy().type());
             assertEquals(ProcessingMachineSpec.EnergyMode.BUFFERED, spec.energy().mode());
             assertEquals(4_096L, spec.energy().capacity());

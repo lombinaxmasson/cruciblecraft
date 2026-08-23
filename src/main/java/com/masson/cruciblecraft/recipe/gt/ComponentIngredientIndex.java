@@ -23,7 +23,8 @@ import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 public final class ComponentIngredientIndex {
     private static final Set<ResourceLocation> INDEXABLE_COMPONENTS = Set.of(
             ModComponents.TOOL_MATERIAL.getId(),
-            ModComponents.MACHINE_MATERIAL.getId());
+            ModComponents.MACHINE_MATERIAL.getId(),
+            ModComponents.CIRCUIT_CONFIG.getId());
 
     private ComponentIngredientIndex() {}
 
@@ -52,8 +53,12 @@ public final class ComponentIngredientIndex {
             ResourceLocation componentId =
                     BuiltInRegistries.DATA_COMPONENT_TYPE.getKey(entry.getKey());
             if (!INDEXABLE_COMPONENTS.contains(componentId)
-                    || entry.getValue().isEmpty()
-                    || !(entry.getValue().orElseThrow() instanceof String value)) {
+                    || entry.getValue().isEmpty()) {
+                return Extraction.unsupported();
+            }
+            String value = indexableValue(
+                    componentId, entry.getValue().orElseThrow());
+            if (value == null) {
                 return Extraction.unsupported();
             }
             for (var item : componentIngredient.items()) {
@@ -76,12 +81,25 @@ public final class ComponentIngredientIndex {
         for (TypedDataComponent<?> component : stack.getComponents()) {
             ResourceLocation componentId =
                     BuiltInRegistries.DATA_COMPONENT_TYPE.getKey(component.type());
-            if (INDEXABLE_COMPONENTS.contains(componentId)
-                    && component.value() instanceof String value) {
-                keys.add(new Key(stack.getItem(), componentId, value));
+            if (INDEXABLE_COMPONENTS.contains(componentId)) {
+                String value = indexableValue(componentId, component.value());
+                if (value != null) {
+                    keys.add(new Key(stack.getItem(), componentId, value));
+                }
             }
         }
         return List.copyOf(keys);
+    }
+
+    private static String indexableValue(ResourceLocation componentId, Object value) {
+        if (value instanceof String string) {
+            return string;
+        }
+        if (value instanceof Integer integer
+                && componentId.equals(ModComponents.CIRCUIT_CONFIG.getId())) {
+            return Integer.toString(integer);
+        }
+        return null;
     }
 
     public static List<String> unsupportedIngredientTypes(GTRecipe recipe) {
