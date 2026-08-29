@@ -3551,8 +3551,8 @@
     {
       "name": "build_recipe_bulk",
       "script": "tools/build_recipe_bulk.py",
-      "ordinary_args": ["compile", "--check"],
-      "full_replay": {"args": ["compile", "--check"]},
+      "ordinary_args": ["compile", "--check", "--wave", "all"],
+      "full_replay": {"args": ["compile", "--check", "--wave", "all"]},
       "proof_tier": "rederived",
       "outputs": ["t45_analyze_report.json", "t45_compile_report.json"]
     },
@@ -3691,6 +3691,78 @@
       "full_replay": {"args": ["--check"]},
       "proof_tier": "rederived",
       "outputs": ["t45_materialization_decision.json"]
+    },
+    {
+      "name": "build_recipe_wave_production_baseline",
+      "script": "tools/build_recipe_wave_production_baseline.py",
+      "ordinary_args": ["--check"],
+      "full_replay": {"args": ["--check"]},
+      "proof_tier": "rederived",
+      "outputs": ["recipe_wave_production_baseline.json"]
+    },
+    {
+      "name": "build_global_build_identity_ledger",
+      "script": "tools/build_global_build_identity_ledger.py",
+      "ordinary_args": ["--check"],
+      "full_replay": {"args": ["--check"]},
+      "proof_tier": "rederived",
+      "outputs": ["global_build_identity_ledger.json"]
+    },
+    {
+      "name": "build_recipe_wave_shadow_parity",
+      "script": "tools/build_recipe_wave_shadow_parity.py",
+      "ordinary_args": ["--check"],
+      "full_replay": {"args": ["--check"]},
+      "proof_tier": "rederived",
+      "outputs": ["recipe_wave_shadow_parity.json"]
+    },
+    {
+      "name": "build_unified_import_shadow_readiness",
+      "script": "tools/build_unified_import_shadow_readiness.py",
+      "ordinary_args": ["--check"],
+      "full_replay": {"args": ["--check"]},
+      "proof_tier": "rederived",
+      "outputs": ["unified_import_shadow_readiness.json"]
+    },
+    {
+      "name": "build_compact_recipe_runtime_manifest",
+      "script": "tools/build_compact_recipe_runtime_manifest.py",
+      "ordinary_args": ["--check"],
+      "full_replay": {"args": ["--check"]},
+      "proof_tier": "rederived",
+      "outputs": ["compact_recipe_runtime_manifest.json"]
+    },
+    {
+      "name": "build_compact_publication_policies",
+      "script": "tools/build_compact_publication_policies.py",
+      "ordinary_args": ["--check"],
+      "full_replay": {"args": ["--check"]},
+      "proof_tier": "rederived",
+      "outputs": []
+    },
+    {
+      "name": "build_compact_dedup_rules",
+      "script": "tools/build_compact_dedup_rules.py",
+      "ordinary_args": ["--check"],
+      "full_replay": {"args": ["--check"]},
+      "proof_tier": "rederived",
+      "outputs": []
+    },
+    {
+      "name": "build_compact_recipe_manifest_cutover_readiness",
+      "script": "tools/build_compact_recipe_manifest_cutover_readiness.py",
+      "ordinary_args": ["--check"],
+      "full_replay": {"args": ["--check"]},
+      "proof_tier": "rederived",
+      "outputs": ["compact_recipe_manifest_cutover_readiness.json"]
+    },
+    {
+      "name": "build_recipe_compile_cutover_readiness",
+      "script": "tools/build_recipe_compile_cutover_readiness.py",
+      "ordinary_args": ["--check"],
+      "full_replay": {"args": ["--check"]},
+      "proof_tier": "rederived",
+      "outputs": ["unified_recipe_compile_readiness.json"]
     }
   ],
   "performance": {

@@ -17,6 +17,9 @@ from tools import t45_common as common
 from tools.recipe_bulk import analyze as analyze_mod
 from tools.recipe_bulk import compile as compile_mod
 from tools.recipe_bulk import replay as replay_mod
+from tools.recipe_bulk.waves import COMPILE_ORDER, recipe_wave
+
+WAVE_CHOICES = (*COMPILE_ORDER, "all")
 
 
 def _write_analyze() -> dict[str, Any]:
@@ -29,44 +32,82 @@ def _check_analyze() -> list[str]:
     return common.check_document(common.ANALYZE_REPORT, analyze_mod.analyze())
 
 
-def _write_compile() -> dict[str, Any]:
-    built = compile_mod.compile()
-    compile_mod.write_tree(built["planned"], common.GENERATED_ROOT)
-    compile_mod.write_tree(built["planned"], common.CATALOG_FIXTURE_ROOT)
-    t35.write_stable(common.COMPILE_REPORT, built["report"])
-    fixture_root = (
-        ROOT / "src/test/resources/t45_compiler_fixture/t43_replay.json"
-    )
-    t35.write_stable(fixture_root, replay_mod.replay_t43())
-    return built["report"]
+def _normalize_waves(wave: str | None) -> tuple[str, ...]:
+    if wave is None:
+        return ("T45",)
+    if wave == "all":
+        return COMPILE_ORDER
+    if wave not in COMPILE_ORDER:
+        raise ValueError(f"unsupported recipe wave {wave}")
+    return (wave,)
 
 
-def _check_compile() -> list[str]:
-    errors: list[str] = []
-    errors.extend(_check_analyze())
-    built = compile_mod.compile()
-    errors.extend(common.check_document(common.COMPILE_REPORT, built["report"]))
+def _write_compile(waves: tuple[str, ...]) -> dict[str, Any]:
+    last_report: dict[str, Any] = {}
+    for wave_id in waves:
+        spec = recipe_wave(wave_id)
+        built = compile_mod.compile_wave(wave_id)
+        compile_mod.write_tree(built["planned"], spec.generated_root, spec.generated_root)
+        if wave_id == "T45":
+            compile_mod.write_tree(
+                built["planned"],
+                common.CATALOG_FIXTURE_ROOT,
+                spec.generated_root,
+            )
+            t35.write_stable(common.COMPILE_REPORT, built["report"])
+            fixture_root = (
+                ROOT / "src/test/resources/t45_compiler_fixture/t43_replay.json"
+            )
+            t35.write_stable(fixture_root, replay_mod.replay_t43())
+            last_report = built["report"]
+        else:
+            last_report = built["report"]
+    return last_report
+
+
+def _check_wave_tree(wave_id: str) -> list[str]:
+    spec = recipe_wave(wave_id)
+    built = compile_mod.compile_wave(wave_id)
     generated = {
         str(path): json.loads(path.read_text(encoding="utf-8"))
-        for path in common.generated_family_files()
+        for path in spec.generated_root.rglob("gt_recipe_*.json")
+        if path.is_file()
     }
     expected = {str(path): doc for path, doc in built["planned"]}
     if generated != expected:
-        errors.append("T45 generated recipe tree drifted")
-    replay = replay_mod.replay_t43()
-    if not replay.get("ok"):
-        errors.append(
-            "T43 semantic replay failed: " + ",".join(replay.get("mismatches") or [])[:200]
-        )
-    fixture = ROOT / "src/test/resources/t45_compiler_fixture/t43_replay.json"
-    if fixture.is_file():
-        errors.extend(common.check_document(fixture, replay))
+        return [f"{wave_id} generated recipe tree drifted"]
+    return []
+
+
+def _check_compile(waves: tuple[str, ...]) -> list[str]:
+    errors: list[str] = []
+    if "T45" in waves:
+        errors.extend(_check_analyze())
+    for wave_id in waves:
+        errors.extend(_check_wave_tree(wave_id))
+    if "T45" in waves:
+        built = compile_mod.compile_wave("T45")
+        errors.extend(common.check_document(common.COMPILE_REPORT, built["report"]))
+        replay = replay_mod.replay_t43()
+        if not replay.get("ok"):
+            errors.append(
+                "T43 semantic replay failed: " + ",".join(replay.get("mismatches") or [])[:200]
+            )
+        fixture = ROOT / "src/test/resources/t45_compiler_fixture/t43_replay.json"
+        if fixture.is_file():
+            errors.extend(common.check_document(fixture, replay))
     return errors
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Recipe bulk compiler")
     parser.add_argument("command", choices=("analyze", "compile", "check"))
+    parser.add_argument(
+        "--wave",
+        choices=WAVE_CHOICES,
+        default=None,
+        help="T37–T45 or all. compile defaults to T45.",
+    )
     modes = parser.add_mutually_exclusive_group(required=True)
     modes.add_argument("--check", action="store_true")
     modes.add_argument("--write", action="store_true")
@@ -81,11 +122,12 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         errors = _check_analyze()
     else:
+        waves = _normalize_waves(args.wave)
         if args.write:
-            _write_compile()
-            print(f"Wrote {common.relative(common.COMPILE_REPORT)}")
+            _write_compile(waves)
+            print(f"Wrote recipe_bulk compile for {','.join(waves)}")
             return 0
-        errors = _check_compile()
+        errors = _check_compile(waves)
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1

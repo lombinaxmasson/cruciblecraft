@@ -13,8 +13,10 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
 
 /**
- * Datapack publication-group policy. Historical T37–T41 Java policies stay
- * as defaults; undeclared (target_map, publication_group) pairs fail closed.
+ * Datapack publication-group policy. Undeclared (target_map, publication_group)
+ * pairs fail closed. T37/T38 family JSON may still omit publication_group;
+ * {@link CompactGTRecipeFamilyDefinition#historicalPublicationGroup()} remains
+ * the decode fallback and does not own materialization policy.
  */
 public record CompactPublicationPolicyDefinition(
         ResourceLocation targetMap,

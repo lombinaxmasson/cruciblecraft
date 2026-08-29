@@ -1,19 +1,32 @@
 package com.masson.cruciblecraft.recipe.rule;
 
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import com.masson.cruciblecraft.api.material.MaterialPrefixes;
+import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.material.def.ThermalProperties;
+import com.masson.cruciblecraft.test.MinecraftTestBootstrap;
 import net.minecraft.resources.ResourceLocation;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MaterialRuleRuntimeMetadataTest {
+    @BeforeAll
+    static void ensureCatalog(@TempDir Path configDirectory) {
+        MinecraftTestBootstrap.bootstrap();
+        if (!MaterialCatalog.isBootstrapped()) {
+            MaterialCatalog.bootstrap(configDirectory);
+        }
+    }
+
     @Test
     void deterministicPriorityFallbackAndTuningSelection() {
         MaterialDefinition iron = new MaterialDefinition(

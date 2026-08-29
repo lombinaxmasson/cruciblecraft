@@ -1,12 +1,16 @@
 package com.masson.cruciblecraft.recipe.gt;
 
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
+import com.masson.cruciblecraft.test.MinecraftTestBootstrap;
 
 import net.minecraft.resources.ResourceLocation;
 
@@ -17,6 +21,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GTRecipeMapBudgetTest {
+    @BeforeAll
+    static void ensureCatalog(@TempDir Path configDirectory) {
+        MinecraftTestBootstrap.bootstrap();
+        if (!MaterialCatalog.isBootstrapped()) {
+            MaterialCatalog.bootstrap(configDirectory);
+        }
+    }
+
     @Test
     void publicationMetricsExcludeVerificationOnlyLookupAndInvalidHeapDelta() {
         assertEquals(

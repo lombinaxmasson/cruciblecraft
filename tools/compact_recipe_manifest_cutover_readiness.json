@@ -1,0 +1,19 @@
+{
+  "failed_gates": [],
+  "gates": {
+    "cutover_policies_current": true,
+    "dedup_rules_current": true,
+    "java_dedup_methods_removed": true,
+    "java_policy_methods_removed": true,
+    "owns_no_families": true,
+    "runtime_twelve_groups": true,
+    "shadow_ready": true,
+    "t43_membership_skip_removed": true,
+    "t43_membership_unified": true
+  },
+  "generated_by": "python tools/build_compact_recipe_manifest_cutover_readiness.py",
+  "note": "COMPACT_RECIPE_MANIFEST_CUTOVER_READY closes the Phase-2 runtime manifest cutover. Family JSON bytes stay frozen. T37/T38 historical publication_group decode remains. New recipe imports stay paused.",
+  "owns_families": 0,
+  "schema_version": 1,
+  "status": "COMPACT_RECIPE_MANIFEST_CUTOVER_READY"
+}

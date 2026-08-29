@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/global_build_identity_ledger.schema.json",
+  "title": "CrucibleCraft V1 global build-time identity ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "records",
+    "blockers"
+  ],
+  "properties": {
+    "blocker_count": { "type": "integer", "minimum": 0 },
+    "blockers": { "type": "array", "items": { "$ref": "#/$defs/record" } },
+    "counts": {
+      "type": "object",
+      "additionalProperties": { "type": "integer" }
+    },
+    "generated_by": { "type": "string" },
+    "identity_only_waves": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "note": { "type": "string" },
+    "record_count": { "type": "integer", "minimum": 0 },
+    "records": { "type": "array", "items": { "$ref": "#/$defs/record" } },
+    "schema_version": { "const": 1 },
+    "status": { "const": "GLOBAL_BUILD_IDENTITY_LEDGER_V1" }
+  },
+  "$defs": {
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authorities",
+        "disposition",
+        "mapping_class",
+        "source_key",
+        "target_identity",
+        "target_kind"
+      ],
+      "properties": {
+        "authorities": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "blocker_reason": { "type": ["string", "null"] },
+        "disposition": { "enum": ["proven", "blocker"] },
+        "evidence": { "type": "array", "items": { "type": "string" } },
+        "input_hashes": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "mapping_class": { "type": "string" },
+        "source_key": { "type": "string" },
+        "target_identity": { "type": ["string", "null"] },
+        "target_kind": { "type": "string" }
+      }
+    }
+  }
+}

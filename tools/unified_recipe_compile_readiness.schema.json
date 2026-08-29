@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/unified_recipe_compile_readiness.schema.json",
+  "title": "CrucibleCraft unified recipe compile-authority cutover readiness",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "owns_families", "gates", "failed_gates"],
+  "properties": {
+    "failed_gates": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": { "type": "boolean" }
+    },
+    "generated_by": { "type": "string" },
+    "identity_semantic_root_sha256": { "type": "string", "minLength": 64, "maxLength": 64 },
+    "note": { "type": "string" },
+    "owns_families": { "const": 0 },
+    "rebuilds_identical": { "type": "boolean" },
+    "schema_version": { "const": 1 },
+    "status": {
+      "enum": [
+        "UNIFIED_RECIPE_COMPILE_READY",
+        "UNIFIED_RECIPE_COMPILE_BLOCKED"
+      ]
+    },
+    "typed_identity_blocker_count": { "type": "integer" },
+    "wave_bindings": {
+      "type": "array",
+      "items": { "type": "object" }
+    }
+  }
+}

@@ -1,6 +1,8 @@
 package com.masson.cruciblecraft.registry;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.recipe.gt.CompactDedupRuleEntry;
+import com.masson.cruciblecraft.recipe.gt.CompactDedupRuleSerializer;
 import com.masson.cruciblecraft.recipe.gt.CompactGTRecipeFamilyEntry;
 import com.masson.cruciblecraft.recipe.gt.CompactGTRecipeFamilySerializer;
 import com.masson.cruciblecraft.recipe.gt.CompactPublicationPolicyEntry;
@@ -74,6 +76,23 @@ public final class ModRecipes {
                     RECIPE_SERIALIZERS.register(
                             "compact_publication_policy",
                             CompactPublicationPolicySerializer::new);
+
+    public static final DeferredHolder<
+                    RecipeType<?>, RecipeType<CompactDedupRuleEntry>>
+            COMPACT_DEDUP_RULE_TYPE =
+                    RECIPE_TYPES.register(
+                            "compact_dedup_rule",
+                            () -> RecipeType.<CompactDedupRuleEntry>simple(
+                                    ResourceLocation.fromNamespaceAndPath(
+                                            CrucibleCraft.MODID,
+                                            "compact_dedup_rule")));
+    public static final DeferredHolder<
+                    RecipeSerializer<?>,
+                    RecipeSerializer<CompactDedupRuleEntry>>
+            COMPACT_DEDUP_RULE_SERIALIZER =
+                    RECIPE_SERIALIZERS.register(
+                            "compact_dedup_rule",
+                            CompactDedupRuleSerializer::new);
 
     private ModRecipes() {}
 }

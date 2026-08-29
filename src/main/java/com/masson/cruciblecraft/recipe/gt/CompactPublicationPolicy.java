@@ -10,7 +10,9 @@ import java.util.Objects;
 
 /**
  * Merges historical Java compact policies with schema-validated datapack
- * manifests. Manifests must not collide with historical keys or each other.
+ * manifests. After the runtime-manifest cutover the historical map is empty
+ * and every live group must arrive as a datapack policy. Manifests must not
+ * collide with historical keys or each other.
  */
 public final class CompactPublicationPolicy {
     private CompactPublicationPolicy() {}
@@ -100,10 +102,6 @@ public final class CompactPublicationPolicy {
                             + liveRelations
                             + " != "
                             + relationCount);
-        }
-        if (definition.publicationGroup().equals(
-                CompactGTRecipeFamilyDefinition.T43_SMELTER_STONE_PUBLICATION_GROUP)) {
-            return;
         }
         String live = membershipRoot(sources);
         String expected = definition.membershipRootSha256().orElseThrow();

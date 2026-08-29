@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/compact_dedup_rule.schema.json",
+  "title": "CrucibleCraft compact dedup rule",
+  "description": "Datapack rule replacing Txx-specific compact/source row dedup. Unknown phase, match_mode, overlapping selectors, duplicate rule_id, or undeclared owner fail closed.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "rule_id",
+    "owner",
+    "phase",
+    "target_map",
+    "match_mode",
+    "winner_selector",
+    "victim_selector"
+  ],
+  "properties": {
+    "type": {
+      "const": "cruciblecraft:compact_dedup_rule"
+    },
+    "rule_id": {
+      "type": "string",
+      "pattern": "^cruciblecraft:[a-z0-9_/]+$"
+    },
+    "owner": {
+      "type": "string",
+      "pattern": "^T[0-9]+$"
+    },
+    "phase": {
+      "enum": ["pre_snapshot", "post_enumeration"]
+    },
+    "target_map": {
+      "type": "string",
+      "pattern": "^cruciblecraft:[a-z0-9_/]+$"
+    },
+    "match_mode": {
+      "enum": [
+        "logical_input_and_output_identity",
+        "input_and_output_signature"
+      ]
+    },
+    "require_output_match": {
+      "type": "boolean"
+    },
+    "winner_selector": { "$ref": "#/$defs/selector" },
+    "victim_selector": { "$ref": "#/$defs/selector" }
+  },
+  "$defs": {
+    "selector": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind"],
+      "properties": {
+        "kind": {
+          "enum": ["publication_group", "recipe_id_prefix"]
+        },
+        "publication_groups": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "prefixes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

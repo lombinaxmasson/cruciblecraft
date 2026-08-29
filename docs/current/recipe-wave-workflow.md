@@ -34,8 +34,9 @@ current execution gap 为 3,483。T43 Smelter stone bulk production lock 已达�
 `T43_READY`：407 complete families / 407 relations，closing gap 3,076。T44 Storage
 bundle 已达到 `T44_STORAGE_READY`（28/624 + logistics 1/1，`completion_delta=0`）。
 T45 Recipe Bulk Compiler + block-object 生产波已达到 `T45_READY`：379 complete
-families / 379 relations，closing current execution gap 为 2,697。T46 未签发，不预写
-host 或 family IDs。无 unique active 内容卡。Circuit 映射、
+families / 379 relations，closing current execution gap 为 2,697。统一导入第三阶段
+compile authority cutover 已关闭：`UNIFIED_RECIPE_COMPILE_READY`（`owns_families=0`）。
+T46 未签发，不预写 host 或 family IDs。无 unique active 内容卡。Circuit 映射、
 unique 残差族（空 `unique_kinds`）、autoclave/mixer circuit 槽都不是可关闭证明。
 `t42_gap_partition.json` 的 `partial_family_count: 0` 表示未从 gap 扣除 partial。
 新卡只写 `t{N}_required_forms.json`，由
@@ -88,9 +89,15 @@ T39 的 concrete proof 把 157-family / 250-row withdrawn catalog 留作 test fi
 
 ### 2.1 候选顺序
 
-1. host 已注册且可运行；
-2. 输入获得、供能、输出消费或明确终端用途可闭合；
-3. family 结构相似，能复用已验收的 exact-relation / parameterized runtime；
+统一导入第三阶段（Compile Authority Cutover）已关闭：
+`UNIFIED_RECIPE_COMPILE_READY`。`tools/build_recipe_bulk.py compile --wave all`
+是七个历史 recipe wave 的唯一 production family generate/check 入口。T46 仍未签发；
+Shadow 账本与 runtime compatibility manifest 必须保持 READY。恢复导入后按以下顺序选择，
+不再把“host 已可运行”放在 capability/dependency closure 之前：
+
+1. capability / dependency closure 可闭合（输入获得、供能、输出消费或明确终端用途）；
+2. family 结构相似，能复用已验收的 exact-relation / parameterized runtime；
+3. host 已注册且可运行；
 4. current T14 opening 下可形成有界、可实测 workload。
 
 T39 是 catalog/candidate/production-lock 三集合与 shard 架构启动卡。其 157/250

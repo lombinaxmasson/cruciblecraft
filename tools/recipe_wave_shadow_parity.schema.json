@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/recipe_wave_shadow_parity.schema.json",
+  "title": "CrucibleCraft recipe-wave shadow parity ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "ok",
+    "shadow_order",
+    "waves"
+  ],
+  "properties": {
+    "generated_by": { "type": "string" },
+    "ok": { "type": "boolean" },
+    "rebuilds_identical": { "type": "boolean" },
+    "schema_version": { "const": 1 },
+    "shadow_ir_root": { "type": "string" },
+    "shadow_order": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "status": { "const": "RECIPE_WAVE_SHADOW_PARITY" },
+    "waves": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["ok", "wave_id", "family_count", "file_count"],
+        "properties": {
+          "byte_identity": { "type": "boolean" },
+          "consume_collision_count": { "type": "integer" },
+          "family_count": { "type": "integer" },
+          "file_count": { "type": "integer" },
+          "mismatches": { "type": "array", "items": { "type": "string" } },
+          "ok": { "type": "boolean" },
+          "production_semantic_root_sha256": { "type": "string" },
+          "production_stable_id_sha256": { "type": "string" },
+          "relation_count": { "type": "integer" },
+          "relation_fingerprint_sha256": { "type": "string" },
+          "semantic_root_sha256": { "type": "string" },
+          "stable_id_sha256": { "type": "string" },
+          "wave_id": { "type": "string" }
+        }
+      }
+    }
+  }
+}

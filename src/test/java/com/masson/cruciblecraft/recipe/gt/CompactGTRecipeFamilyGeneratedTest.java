@@ -212,9 +212,10 @@ class CompactGTRecipeFamilyGeneratedTest {
                 CompactRecipeFamilyProvider.RuntimeSide.SERVER,
                 Map.of(
                         singletonKey,
-                        CompactRecipeFamilyProvider.t39SingletonPolicy(sources),
+                        CompactRecipeFamilyProvider.MaterializationPolicy.onDemand(19),
                         multiKey,
-                        CompactRecipeFamilyProvider.t39MultiPolicy(sources)));
+                        CompactRecipeFamilyProvider.MaterializationPolicy.hybrid(
+                                13, CompactRecipeFamilyProvider.EagerSelector.NONE)));
         assertEquals(19, snapshots.get(singletonKey).logicalRecipeCount());
         assertEquals(13, snapshots.get(multiKey).logicalRecipeCount());
         assertEquals(0, snapshots.get(singletonKey).eagerRecipeCount());
@@ -284,7 +285,7 @@ class CompactGTRecipeFamilyGeneratedTest {
                 sources,
                 11L,
                 CompactRecipeFamilyProvider.RuntimeSide.SERVER,
-                CompactRecipeFamilyProvider.t37ProductionPolicy(sources));
+                CompactHybridFixturePolicies.t37Selector(sources));
 
         assertEquals(50, immediate.logicalRecipeCount());
         assertEquals(50, immediate.eagerRecipeCount());
