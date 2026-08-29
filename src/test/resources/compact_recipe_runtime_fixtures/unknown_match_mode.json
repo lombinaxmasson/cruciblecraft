@@ -1,0 +1,17 @@
+[
+  {
+    "rule_id": "cruciblecraft:unknown_mode",
+    "owner": "T37",
+    "phase": "pre_snapshot",
+    "target_map": "cruciblecraft:assembler",
+    "match_mode": "by_family_id",
+    "winner_selector": {
+      "kind": "publication_group",
+      "publication_groups": ["cruciblecraft:t37_assembler"]
+    },
+    "victim_selector": {
+      "kind": "publication_group",
+      "publication_groups": ["cruciblecraft:t41_assembler_planks"]
+    }
+  }
+]

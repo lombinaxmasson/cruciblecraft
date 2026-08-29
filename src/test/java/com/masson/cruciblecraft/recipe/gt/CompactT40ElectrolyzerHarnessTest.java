@@ -67,9 +67,10 @@ class CompactT40ElectrolyzerHarnessTest {
                 CompactRecipeFamilyProvider.RuntimeSide.SERVER,
                 Map.of(
                         singletonKey,
-                        CompactRecipeFamilyProvider.t40SingletonPolicy(sources),
+                        CompactRecipeFamilyProvider.MaterializationPolicy.onDemand(11),
                         multiKey,
-                        CompactRecipeFamilyProvider.t40MultiPolicy(sources)));
+                        CompactRecipeFamilyProvider.MaterializationPolicy.hybrid(
+                                11, CompactRecipeFamilyProvider.EagerSelector.NONE)));
         assertEquals(11, snapshots.get(singletonKey).logicalRecipeCount());
         assertEquals(11, snapshots.get(multiKey).logicalRecipeCount());
         map.prepareRecipes(List.of(), List.copyOf(snapshots.values()), 1L).publish();
@@ -262,9 +263,10 @@ class CompactT40ElectrolyzerHarnessTest {
                 CompactRecipeFamilyProvider.RuntimeSide.SERVER,
                 Map.of(
                         singletonKey,
-                        CompactRecipeFamilyProvider.t40SingletonPolicy(sources),
+                        CompactRecipeFamilyProvider.MaterializationPolicy.onDemand(11),
                         multiKey,
-                        CompactRecipeFamilyProvider.t40MultiPolicy(sources)));
+                        CompactRecipeFamilyProvider.MaterializationPolicy.hybrid(
+                                11, CompactRecipeFamilyProvider.EagerSelector.NONE)));
         map.prepareRecipes(List.of(), List.copyOf(snapshots.values()), 1L).publish();
 
         List<CompactGTRecipeFamilyDefinition.Relation> singletonRelations =

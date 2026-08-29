@@ -549,10 +549,11 @@ def production_template_keys() -> list[str]:
     return [str(row["template_key"]) for row in production_families()]
 
 
+from tools.recipe_bulk.membership import membership_root
+
+
 def membership_root_sha256(family_ids: list[str], stable_ids: list[str]) -> str:
-    payload = "".join(f"{value}\n" for value in sorted(family_ids))
-    payload += "".join(f"{value}\n" for value in sorted(stable_ids))
-    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+    return membership_root(family_ids, stable_ids)
 
 
 def b0_identities() -> set[str]:

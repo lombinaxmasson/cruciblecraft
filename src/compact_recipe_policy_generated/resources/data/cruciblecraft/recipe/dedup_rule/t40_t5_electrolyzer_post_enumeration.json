@@ -1,0 +1,22 @@
+{
+  "match_mode": "input_and_output_signature",
+  "owner": "T40",
+  "phase": "post_enumeration",
+  "require_output_match": true,
+  "rule_id": "cruciblecraft:t40_t5_electrolyzer_post_enumeration",
+  "target_map": "cruciblecraft:electrolyzer",
+  "type": "cruciblecraft:compact_dedup_rule",
+  "victim_selector": {
+    "kind": "recipe_id_prefix",
+    "prefixes": [
+      "t5/"
+    ]
+  },
+  "winner_selector": {
+    "kind": "recipe_id_prefix",
+    "prefixes": [
+      "t40/",
+      "t40_player_path_support/"
+    ]
+  }
+}

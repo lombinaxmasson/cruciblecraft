@@ -16,6 +16,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import t40_common as common  # noqa: E402
+from tools.recipe_bulk.write_guard import assert_legacy_production_write_forbidden  # noqa: E402
 
 SOURCE = common.SOURCE
 OUTPUT_ROOT = common.GENERATED_ROOT
@@ -860,6 +861,8 @@ def overlay_required_forms_into_gate() -> None:
 
 
 def write(scope: str = "production") -> None:
+    if scope == "production":
+        assert_legacy_production_write_forbidden("T40")
     planned = planned_documents(scope)
     recipes, sidecars = split_planned(planned)
     output_root = (
@@ -910,8 +913,12 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         print("T40 Electrolyzer compact recipes match the frozen compact source.")
         return 0
-    for scope in scopes:
-        write(scope)
+    try:
+        for scope in scopes:
+            write(scope)
+    except Exception as error:
+        print(str(error), file=sys.stderr)
+        return 1
     if common.PRODUCTION_LOCK.is_file():
         production_families = common.production_family_count()
         production_relations = common.production_relation_count()

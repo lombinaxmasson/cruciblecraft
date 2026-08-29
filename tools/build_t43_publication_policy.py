@@ -13,6 +13,7 @@ if str(ROOT) not in sys.path:
 
 from tools import t35_common as t35  # noqa: E402
 from tools import t43_common as t43  # noqa: E402
+from tools.recipe_bulk.membership import membership_root  # noqa: E402
 
 OUTPUT = t43.PUBLICATION_POLICY_DATAPACK_FILE
 
@@ -26,10 +27,17 @@ def build() -> dict[str, Any]:
     winner = strategy["group_winners"]["stone"]
     if winner not in {"immediate", "on_demand", "hybrid"}:
         raise ValueError(f"unknown T43 stone winner: {winner}")
-    group = t35.load_json(t43.PUBLICATION_GROUP_MANIFEST)
-    membership = group.get("aggregate_root_sha256")
-    if not isinstance(membership, str) or len(membership) != 64:
-        raise ValueError("T43 publication-group membership root is missing")
+    families = [
+        json.loads(path.read_text(encoding="utf-8"))
+        for path in t43.generated_family_files()
+    ]
+    family_ids = [str(family["family_id"]) for family in families]
+    stable_ids = [
+        str(relation["stable_id"])
+        for family in families
+        for relation in family.get("relations") or []
+    ]
+    membership = membership_root(family_ids, stable_ids)
     partition = t43.partition_for_winner(winner, "stone")
     cache = int(partition["lazy_cache_ceiling_rows"] or 0)
     eager = (

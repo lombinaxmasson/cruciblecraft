@@ -9,7 +9,7 @@
     "families"
   ],
   "properties": {
-    "schema_version": { "const": 1 },
+    "archetype": { "type": "string" },
     "families": {
       "type": "array",
       "items": {
@@ -22,7 +22,18 @@
           "relations"
         ],
         "properties": {
+          "cardinality_proof": { "type": ["object", "null"] },
+          "family_kind": { "type": "string" },
+          "lock_row": { "type": ["object", "null"] },
+          "provenance": { "type": "object" },
+          "publication_group": { "type": ["string", "null"] },
+          "relative_path": { "type": "string" },
+          "relations": { "type": "array" },
+          "resolved_operands": { "type": "array" },
           "semantic_family_id": { "type": "string" },
+          "source_revision": { "type": "string" },
+          "source_rows": { "type": "array" },
+          "target_map": { "type": "string" },
           "template_kind": {
             "enum": [
               "exact_singleton",
@@ -30,12 +41,18 @@
               "finite_bindings",
               "keyed_join"
             ]
-          },
-          "source_rows": { "type": "array" },
-          "relations": { "type": "array" },
-          "cardinality_proof": { "type": ["object", "null"] }
+          }
         }
       }
-    }
+    },
+    "lock_path": { "type": ["string", "null"] },
+    "lock_sha256": { "type": ["string", "null"] },
+    "schema_version": { "const": 1 },
+    "source_path": { "type": "string" },
+    "source_revision": { "type": "string" },
+    "source_sha256": { "type": "string" },
+    "target_map": { "type": "string" },
+    "template_kind": { "type": "string" },
+    "wave_id": { "type": "string" }
   }
 }

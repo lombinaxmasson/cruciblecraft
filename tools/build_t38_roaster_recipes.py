@@ -15,6 +15,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import t38_common as common  # noqa: E402
+from tools.recipe_bulk.write_guard import assert_legacy_production_write_forbidden  # noqa: E402
 
 SOURCE = common.SOURCE
 OUTPUT_ROOT = common.GENERATED_ROOT
@@ -681,21 +682,7 @@ def check() -> list[str]:
 
 
 def write() -> None:
-    planned = planned_documents()
-    recipes, sidecars = split_planned(planned)
-    OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
-    for path in actual_recipe_files().values():
-        if path.name not in recipes:
-            path.unlink()
-    for name, content in recipes.items():
-        (OUTPUT_ROOT / name).write_text(content, encoding="utf-8", newline="\n")
-    for name, content in sidecars.items():
-        {
-            OPERAND_MAP.name: OPERAND_MAP,
-            PLAYER_PATH.name: PLAYER_PATH,
-            EQUIVALENCE.name: EQUIVALENCE,
-            REQUIRED_FORMS.name: REQUIRED_FORMS,
-        }[name].write_text(content, encoding="utf-8", newline="\n")
+    assert_legacy_production_write_forbidden("T38")
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -711,11 +698,11 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         print("T38 Roaster compact recipes match the frozen compact source.")
         return 0
-    write()
-    print(
-        f"Wrote {EXPECTED_FAMILY_COUNT} T38 Roaster compact families "
-        f"({EXPECTED_RELATION_COUNT} logical relations)."
-    )
+    try:
+        write()
+    except Exception as error:
+        print(str(error), file=sys.stderr)
+        return 1
     return 0
 
 

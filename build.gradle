@@ -60,6 +60,8 @@ sourceSets.main.resources {
     srcDir('src/t45_recipe_generated/resources')
     // T45 B1 worldgen support declaration; catalog fixture is excluded.
     srcDir('src/t45_support_generated/resources')
+    // Shared compact publication/dedup datapack resources (not family JSON).
+    srcDir('src/compact_recipe_policy_generated/resources')
 
     // Exclude common development only resources from finalized outputs
     exclude("**/*.bbmodel") // BlockBench project files

@@ -110,7 +110,10 @@ class T5PublicationBudgetTest {
                         id("t5/centrifuge/fluid_closure_glue_and_latex"),
                         shared),
                 new RecipeMap.Entry(id("t39/7b613367b7d4fc7a"), shared)));
-        GTRecipeMapLoader.dropEquivalentT5RowsSupersededByT39(complete);
+        CompactRecipeDeduplicator.applyPostEnumeration(
+                ModRecipeMaps.CENTRIFUGE.id(),
+                complete,
+                List.of(DedupRuleFixtures.t39T5PostEnumeration()));
         assertEquals(1, complete.size());
         assertEquals(id("t39/7b613367b7d4fc7a"), complete.get(0).id());
         assertDoesNotThrow(() -> GTRecipeMapLoader.validateNoShadows(
@@ -144,7 +147,10 @@ class T5PublicationBudgetTest {
                         id("t5/centrifuge/fluid_closure_glue_and_latex"),
                         t5Recipe),
                 new RecipeMap.Entry(id("t39/7b613367b7d4fc7a"), t39Recipe)));
-        GTRecipeMapLoader.dropEquivalentT5RowsSupersededByT39(complete);
+        CompactRecipeDeduplicator.applyPostEnumeration(
+                ModRecipeMaps.CENTRIFUGE.id(),
+                complete,
+                List.of(DedupRuleFixtures.t39T5PostEnumeration()));
         assertEquals(2, complete.size());
         assertThrows(IllegalArgumentException.class, () ->
                 GTRecipeMapLoader.validateNoShadows(ModRecipeMaps.CENTRIFUGE, complete));
@@ -167,7 +173,10 @@ class T5PublicationBudgetTest {
                         id("t5/electrolyzer/split_solution"),
                         shared),
                 new RecipeMap.Entry(id("t40/ae9f63194c927036"), shared)));
-        GTRecipeMapLoader.dropEquivalentT5RowsSupersededByT40(complete);
+        CompactRecipeDeduplicator.applyPostEnumeration(
+                ModRecipeMaps.ELECTROLYZER.id(),
+                complete,
+                List.of(DedupRuleFixtures.t40T5PostEnumeration()));
         assertEquals(1, complete.size());
         assertEquals(id("t40/ae9f63194c927036"), complete.get(0).id());
         assertDoesNotThrow(() -> GTRecipeMapLoader.validateNoShadows(
@@ -189,7 +198,10 @@ class T5PublicationBudgetTest {
         java.util.ArrayList<RecipeMap.Entry> complete = new java.util.ArrayList<>(List.of(
                 new RecipeMap.Entry(id("t37/a755393c9b55194f"), shared),
                 new RecipeMap.Entry(id("t41/08b1a5b9f5140687"), shared)));
-        GTRecipeMapLoader.dropEquivalentT41RowsAlreadyExpressedByT37(complete);
+        CompactRecipeDeduplicator.applyPostEnumeration(
+                ModRecipeMaps.ASSEMBLER.id(),
+                complete,
+                List.of(DedupRuleFixtures.t37T41PostEnumeration()));
         assertEquals(1, complete.size());
         assertEquals(id("t37/a755393c9b55194f"), complete.get(0).id());
         assertDoesNotThrow(() -> GTRecipeMapLoader.validateNoShadows(
@@ -236,8 +248,9 @@ class T5PublicationBudgetTest {
                         CompactGTRecipeFamilyDefinition
                                 .T41_ASSEMBLER_PLANKS2_PUBLICATION_GROUP));
         List<CompactRecipeFamilySource> kept =
-                GTRecipeMapLoader.dropT41AssemblerSourcesAlreadyExpressedByT37(
-                        List.of(t37, t41Dup, t41Unique));
+                CompactRecipeDeduplicator.applyPreSnapshot(
+                        List.of(t37, t41Dup, t41Unique),
+                        List.of(DedupRuleFixtures.t37T41PreSnapshot()));
         assertEquals(2, kept.size());
         assertEquals(
                 List.of(t37.id(), t41Unique.id()),
@@ -273,8 +286,9 @@ class T5PublicationBudgetTest {
                         CompactGTRecipeFamilyDefinition
                                 .T41_ASSEMBLER_PLANKS2_PUBLICATION_GROUP));
         List<CompactRecipeFamilySource> kept =
-                GTRecipeMapLoader.dropT41AssemblerSourcesAlreadyExpressedByT37(
-                        List.of(t37, t41Dup));
+                CompactRecipeDeduplicator.applyPreSnapshot(
+                        List.of(t37, t41Dup),
+                        List.of(DedupRuleFixtures.t37T41PreSnapshot()));
         assertEquals(List.of(t37.id()), kept.stream().map(CompactRecipeFamilySource::id).toList());
     }
 
@@ -305,7 +319,10 @@ class T5PublicationBudgetTest {
                         id("t5/electrolyzer/split_solution"),
                         t5Recipe),
                 new RecipeMap.Entry(id("t40/ae9f63194c927036"), t40Recipe)));
-        GTRecipeMapLoader.dropEquivalentT5RowsSupersededByT40(complete);
+        CompactRecipeDeduplicator.applyPostEnumeration(
+                ModRecipeMaps.ELECTROLYZER.id(),
+                complete,
+                List.of(DedupRuleFixtures.t40T5PostEnumeration()));
         assertEquals(2, complete.size());
         assertThrows(IllegalArgumentException.class, () ->
                 GTRecipeMapLoader.validateNoShadows(ModRecipeMaps.ELECTROLYZER, complete));

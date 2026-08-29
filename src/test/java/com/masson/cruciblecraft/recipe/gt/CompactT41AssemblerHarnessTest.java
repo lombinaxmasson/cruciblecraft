@@ -300,9 +300,11 @@ class CompactT41AssemblerHarnessTest {
                 ModRecipeMaps.ASSEMBLER.id(),
                 CompactGTRecipeFamilyDefinition.T41_ASSEMBLER_PLANKS2_PUBLICATION_GROUP);
         return Map.of(
-                planks, CompactRecipeFamilyProvider.t41PlanksPolicy(sources),
-                fireproof, CompactRecipeFamilyProvider.t41FireproofPolicy(sources),
-                planks2, CompactRecipeFamilyProvider.t41Planks2Policy(sources));
+                planks, CompactRecipeFamilyProvider.MaterializationPolicy.hybrid(
+                        16, CompactRecipeFamilyProvider.EagerSelector.NONE),
+                fireproof, CompactRecipeFamilyProvider.MaterializationPolicy.hybrid(
+                        16, CompactRecipeFamilyProvider.EagerSelector.NONE),
+                planks2, CompactRecipeFamilyProvider.MaterializationPolicy.onDemand(16));
     }
 
     private static void assertShardRouting(

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/recipe_wave_production_baseline.schema.json",
+  "title": "CrucibleCraft recipe-wave production baseline",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "waves",
+    "write_guard"
+  ],
+  "properties": {
+    "generated_by": { "type": "string" },
+    "note": { "type": "string" },
+    "schema_version": { "const": 1 },
+    "status": { "const": "RECIPE_WAVE_PRODUCTION_BASELINE" },
+    "waves": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "file_count",
+          "generated_root",
+          "generated_tree_sha256",
+          "stable_id_count",
+          "stable_id_sha256"
+        ],
+        "properties": {
+          "equivalence_generated_sha256": { "type": ["string", "null"] },
+          "equivalence_path": { "type": "string" },
+          "equivalence_sha256": { "type": ["string", "null"] },
+          "file_count": { "type": "integer", "minimum": 0 },
+          "generated_root": { "type": "string" },
+          "generated_tree_sha256": { "type": "string", "minLength": 64, "maxLength": 64 },
+          "runtime_expected_sha256": { "type": ["string", "null"] },
+          "stable_id_count": { "type": "integer", "minimum": 0 },
+          "stable_id_sha256": { "type": "string", "minLength": 64, "maxLength": 64 }
+        }
+      }
+    },
+    "write_guard": {
+      "type": "object",
+      "required": ["authority_manifest", "protected_generated_roots"],
+      "properties": {
+        "authority_manifest": { "type": "string" },
+        "protected_generated_roots": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

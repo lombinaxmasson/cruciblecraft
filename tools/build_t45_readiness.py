@@ -208,7 +208,7 @@ def _no_t45_java_whitelist() -> bool:
 def _centrifuge_whitelist_unchanged() -> bool:
     text = LOADER_JAVA.read_text(encoding="utf-8")
     return (
-        "Unsupported Centrifuge compact publication_group" in text
+        "Undeclared compact publication_group" in text
         and "t45_centrifuge" not in text
     )
 

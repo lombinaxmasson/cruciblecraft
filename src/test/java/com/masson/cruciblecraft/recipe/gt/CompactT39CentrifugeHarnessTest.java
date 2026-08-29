@@ -68,9 +68,10 @@ class CompactT39CentrifugeHarnessTest {
                 CompactRecipeFamilyProvider.RuntimeSide.SERVER,
                 Map.of(
                         singletonKey,
-                        CompactRecipeFamilyProvider.t39SingletonPolicy(sources),
+                        CompactRecipeFamilyProvider.MaterializationPolicy.onDemand(19),
                         multiKey,
-                        CompactRecipeFamilyProvider.t39MultiPolicy(sources)));
+                        CompactRecipeFamilyProvider.MaterializationPolicy.hybrid(
+                                13, CompactRecipeFamilyProvider.EagerSelector.NONE)));
         assertEquals(19, snapshots.get(singletonKey).logicalRecipeCount());
         assertEquals(13, snapshots.get(multiKey).logicalRecipeCount());
         map.prepareRecipes(List.of(), List.copyOf(snapshots.values()), 1L).publish();
@@ -263,9 +264,10 @@ class CompactT39CentrifugeHarnessTest {
                 CompactRecipeFamilyProvider.RuntimeSide.SERVER,
                 Map.of(
                         singletonKey,
-                        CompactRecipeFamilyProvider.t39SingletonPolicy(sources),
+                        CompactRecipeFamilyProvider.MaterializationPolicy.onDemand(19),
                         multiKey,
-                        CompactRecipeFamilyProvider.t39MultiPolicy(sources)));
+                        CompactRecipeFamilyProvider.MaterializationPolicy.hybrid(
+                                13, CompactRecipeFamilyProvider.EagerSelector.NONE)));
         map.prepareRecipes(List.of(), List.copyOf(snapshots.values()), 1L).publish();
 
         List<CompactGTRecipeFamilyDefinition.Relation> singletonRelations =

@@ -1,0 +1,39 @@
+{
+  "artifact": "tools/unified_recipe_compile_readiness.json",
+  "artifact_file_sha256": "8a98e30dfd1337ac51921337323204da3fc755f860c2bb86c016414d26990765",
+  "builder_sha256": "2d89e0e9ce6dc4a4de85acf9868421ba82779edcd86d38879f7ac42ed7be0503",
+  "dependency_semantic_roots": {
+    "tools/compact_recipe_manifest_cutover_readiness.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "dd2b7864e5239dce91201f4698091d3dbed7bc63b8d7e063324300e1ec31a9a5"
+    },
+    "tools/global_build_identity_ledger.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "9b740a42bc9aac7cc0c6dcdd800ea82aac5cbb179584e84aee20c7982bf5d68e"
+    },
+    "tools/recipe_wave_production_baseline.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "769fd8033f15b6cb2d9aff0d7a58711f383095876495cd5f72ecfd177a711865"
+    },
+    "tools/unified_import_shadow_readiness.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "034f50e9a4fc44b8ea8611eaf10714d76a8a4ddb77c7b6b5198e513eb0dc80ee"
+    }
+  },
+  "envelope_sha256": "728d0fd91e063917bc17fe5086a974fd2904d64718c92271807130df79247092",
+  "generated_by": "python tools/currentness.py",
+  "giant_body": false,
+  "schema_version": 2,
+  "semantic_projection_kind": "json_ledger",
+  "semantic_projection_version": 1,
+  "semantic_root_sha256": "091cad67740fe1cafa21b617d9e3a9afa362d6f65ec7faf2010d7402f3e5b68d",
+  "source_replay_receipt": {
+    "proof_tier": "compact",
+    "status": "unavailable"
+  },
+  "status": "CURRENTNESS_SIDECAR"
+}

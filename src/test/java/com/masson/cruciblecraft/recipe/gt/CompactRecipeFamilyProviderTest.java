@@ -151,11 +151,10 @@ class CompactRecipeFamilyProviderTest {
                 CompactRecipeFamilyProvider.RuntimeSide.SERVER,
                 Map.of(
                         assembler.id(),
-                        CompactRecipeFamilyProvider.t37ProductionPolicy(
-                                List.of(assemblerSource)),
+                        CompactRecipeFamilyProvider.MaterializationPolicy.hybrid(
+                                8, CompactRecipeFamilyProvider.EagerSelector.NONE),
                         roaster.id(),
-                        CompactRecipeFamilyProvider.t38ProductionPolicy(
-                                List.of(roasterSource))));
+                        CompactRecipeFamilyProvider.MaterializationPolicy.onDemand(16)));
 
         assertEquals(2, snapshots.size());
         assertTrue(snapshots.containsKey(assembler.id()));
@@ -312,13 +311,16 @@ class CompactRecipeFamilyProviderTest {
                 CompactRecipeFamilyProvider.RuntimeSide.SERVER,
                 Map.of(
                         t37Key,
-                        CompactRecipeFamilyProvider.t37ProductionPolicy(List.of(historical)),
+                        CompactRecipeFamilyProvider.MaterializationPolicy.hybrid(
+                                8, CompactRecipeFamilyProvider.EagerSelector.NONE),
                         planksKey,
-                        CompactRecipeFamilyProvider.t41PlanksPolicy(List.of(planks)),
+                        CompactRecipeFamilyProvider.MaterializationPolicy.hybrid(
+                                16, CompactRecipeFamilyProvider.EagerSelector.NONE),
                         fireproofKey,
-                        CompactRecipeFamilyProvider.t41FireproofPolicy(List.of(fireproof)),
+                        CompactRecipeFamilyProvider.MaterializationPolicy.hybrid(
+                                16, CompactRecipeFamilyProvider.EagerSelector.NONE),
                         planks2Key,
-                        CompactRecipeFamilyProvider.t41Planks2Policy(List.of(planks2))));
+                        CompactRecipeFamilyProvider.MaterializationPolicy.onDemand(16)));
 
         assertEquals(4, snapshots.size());
         assertEquals(
@@ -530,11 +532,9 @@ class CompactRecipeFamilyProviderTest {
                 CompactRecipeFamilyProvider.RuntimeSide.SERVER,
                 Map.of(
                         assembler.id(),
-                        CompactRecipeFamilyProvider.t37ProductionPolicy(
-                                assemblerSources),
+                        CompactHybridFixturePolicies.t37Selector(assemblerSources),
                         roaster.id(),
-                        CompactRecipeFamilyProvider.t38ProductionPolicy(
-                                List.of(roasterSource))));
+                        CompactRecipeFamilyProvider.MaterializationPolicy.onDemand(16)));
 
         var t37 = snapshots.get(assembler.id());
         assertEquals(11, t37.logicalRecipeCount());
@@ -933,7 +933,7 @@ class CompactRecipeFamilyProviderTest {
                             provenance(familyId))));
         }
         CompactRecipeFamilyProvider.MaterializationPolicy frozenT37Policy =
-                CompactRecipeFamilyProvider.t37ProductionPolicy(sources);
+                CompactHybridFixturePolicies.t37Selector(sources);
 
         var immediate = CompactRecipeFamilyProvider.prepare(
                 map,

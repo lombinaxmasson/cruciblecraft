@@ -1,0 +1,22 @@
+{
+  "match_mode": "input_and_output_signature",
+  "owner": "T39",
+  "phase": "post_enumeration",
+  "require_output_match": true,
+  "rule_id": "cruciblecraft:t39_t5_centrifuge_post_enumeration",
+  "target_map": "cruciblecraft:centrifuge",
+  "type": "cruciblecraft:compact_dedup_rule",
+  "victim_selector": {
+    "kind": "recipe_id_prefix",
+    "prefixes": [
+      "t5/"
+    ]
+  },
+  "winner_selector": {
+    "kind": "recipe_id_prefix",
+    "prefixes": [
+      "t39/",
+      "t39_player_path_support/"
+    ]
+  }
+}

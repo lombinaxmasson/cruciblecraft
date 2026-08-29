@@ -144,23 +144,11 @@ class T38RoasterRecipesTest(unittest.TestCase):
             {path: path.read_bytes() for path in sidecar_paths},
         )
 
-    def test_write_deletes_stale_t38_root_file(self) -> None:
-        tmp = Path(tempfile.mkdtemp(prefix="t38_recipes_"))
-        try:
-            stale = tmp / "stale_t38_recipe.json"
-            stale.write_text("{}\n", encoding="utf-8")
-            with mock.patch.multiple(
-                builder,
-                OUTPUT_ROOT=tmp,
-                OPERAND_MAP=tmp / builder.OPERAND_MAP.name,
-                PLAYER_PATH=tmp / builder.PLAYER_PATH.name,
-                EQUIVALENCE=tmp / builder.EQUIVALENCE.name,
-                REQUIRED_FORMS=tmp / builder.REQUIRED_FORMS.name,
-            ):
-                builder.write()
-            self.assertFalse(stale.exists())
-        finally:
-            shutil.rmtree(tmp, ignore_errors=True)
+    def test_write_is_forbidden_for_production_roots(self) -> None:
+        from tools.recipe_bulk.write_guard import ProductionWriteError
+
+        with self.assertRaises(ProductionWriteError):
+            builder.write()
 
 
 if __name__ == "__main__":

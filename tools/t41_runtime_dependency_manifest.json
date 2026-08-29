@@ -1,5 +1,5 @@
 {
-  "aggregate_root_sha256": "1183b41f944029dbe1def318f10e4027fc3dcbc7ff8cb17fb674e1114c0fbc0b",
+  "aggregate_root_sha256": "6430e7e29326a48f5b4fe6413223214cffae73ac77bf25ee84ef65df1193b593",
   "assembler_host": {
     "items": {
       "path": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
@@ -29,6 +29,22 @@
       "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/ComponentIngredientIndex.java",
       "sha256": "8b1e0fc3eb3148ea9cea71a16aca351e2de06bee468091e4b004cc2e4ebf2423"
     },
+    "dedup_rule_definition": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactDedupRuleDefinition.java",
+      "sha256": "9482a0b92aa0f88523aa843dfc45f918a097cdf881548573b154b95283e19a63"
+    },
+    "dedup_rule_schema": {
+      "path": "src/main/resources/data/cruciblecraft/schema/compact_dedup_rule.schema.json",
+      "sha256": "71eaca72e18bb5d807c1220fcfca9a1f25f7206b98f1af938f0746c234ca268c"
+    },
+    "dedup_rules": {
+      "path": "src/compact_recipe_policy_generated/resources",
+      "sha256": "e434505cdc709bd143fd4b7b5d99f78b2e3e420da12bfaa6898b959945c66bc5"
+    },
+    "deduplicator": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeDeduplicator.java",
+      "sha256": "f3da2b6bd7af9a262193999030f474a4a7039dda1955704b16e63957eae38909"
+    },
     "fireproof_component": {
       "path": "src/main/java/com/masson/cruciblecraft/registry/ModComponents.java",
       "sha256": "3a836e5dda4619e31e8cd3b01d03c7c6ee212b0a5cbe9fd1e07c5baea9f4d7b1"
@@ -39,15 +55,27 @@
     },
     "loader": {
       "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapLoader.java",
-      "sha256": "ef8d8888a9fb4598e8ff9a5a02b4fd64849cd9be1b5bf0127d6b09b220cf9b1b"
+      "sha256": "9bd27fa06d1da1b4b7a6b7b0713abd7a414b2c00b915f774b9e98be2e29b456f"
     },
     "provider": {
       "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeFamilyProvider.java",
-      "sha256": "8fbdb289663dbe0724ee7bbb013cf0c228cb3acdc270bd6348b94f854b0681ea"
+      "sha256": "0e622d17c2b14d4c1330de24bdc7bbf796c09912cea8f9e6e89577fa6320c0d4"
     },
     "publication_group_key": {
       "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/PublicationGroupKey.java",
       "sha256": "d667253794440ebda9437565bda38293294820333da635fb89f0e27c6f235b51"
+    },
+    "publication_policy": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactPublicationPolicy.java",
+      "sha256": "074b99fce4e2ce25e4c636d7f14e1af9e44288c83bb240d78d0760d22c09c19e"
+    },
+    "publication_policy_definition": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactPublicationPolicyDefinition.java",
+      "sha256": "a0212b400d574a9a0e9e572a66a194ba135619c93b4da2533e8720709348e5e8"
+    },
+    "publication_policy_schema": {
+      "path": "src/main/resources/data/cruciblecraft/schema/compact_publication_policy.schema.json",
+      "sha256": "7c4f9a640001b4c76afccf41e6f2c8f3668065b4507b52a8b1597621b6e2ced8"
     },
     "schema": {
       "path": "tools/compact_recipe_family_source.schema.json",
@@ -61,29 +89,29 @@
   "historical_groups": {
     "t37_assembler_generated": {
       "path": "src/t37_recipe_generated/resources",
-      "sha256": "a77bc5cb14983b0bdbbfd8e76c1710840b13c0b2c195096337a27876f1dee4cb"
+      "sha256": "616be57161cfe9d502e0456193fd49928da3e8da798e0c9cff08e7f71a71afe3"
     },
     "t37_policy": {
-      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeFamilyProvider.java",
-      "sha256": "8fbdb289663dbe0724ee7bbb013cf0c228cb3acdc270bd6348b94f854b0681ea"
+      "path": "src/t37_recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/t37_assembler.json",
+      "sha256": "986ef9784524c6b360390b66d2c2b00458e44f3c59817a85c9f19f4ae36f641d"
     },
     "t38_roaster_generated": {
       "path": "src/t38_recipe_generated/resources",
-      "sha256": "e510bf33d59bad2a550934682853edd6c02fdedf2a2ab16a929a067505701fcc"
+      "sha256": "83421542487e8247abc4f87a58053d15e1c20c9c4abef574d8f21c5d3b66e265"
     },
     "t39_centrifuge_generated": {
       "path": "src/t39_recipe_generated/resources",
-      "sha256": "04820d942c68f01286331024ba23d1e621f5f066ebbd9ed8ca4e27dde28c411e"
+      "sha256": "39ac0cde725fb8703612ae5ebf717e79f111a7fd9060f864ce8265fddf0c326c"
     },
     "t40_electrolyzer_generated": {
       "path": "src/t40_recipe_generated/resources",
-      "sha256": "9aa422d8210c840c4144e4b903b97784b69cfc024ba30db262eb0c2307eee400"
+      "sha256": "09f57d805f7b3f782de03e24ad398ab5511a040b6d4c2e02434d8602e30920ae"
     }
   },
   "isolation": {
     "build_gradle": {
       "path": "build.gradle",
-      "sha256": "601e63fc273f8c935c20f0ef3bc84785e6f5b4f8f6d4e4c6038ac87b3c25a0a4"
+      "sha256": "b12ea9d591f242996f77054865d40dbbd588c3f2ef2c0280934c6a3337cde966"
     },
     "gametest_java": {
       "path": "src/main/java/com/masson/cruciblecraft/gametest/T41RecipeGameTests.java",
@@ -91,7 +119,7 @@
     },
     "gitignore": {
       "path": ".gitignore",
-      "sha256": "2e1c6e15ffdf66bdbc915bebd22fe7bd160ec95ce1c1aceb6116d19ea35be1ed"
+      "sha256": "63cede1c2cc6a7db5cda7ab1103e8e6f2caaba5693c44ec6733e08b5fa5daaf0"
     }
   },
   "overlays": {
@@ -143,15 +171,15 @@
   "verification": {
     "builder_policy": {
       "path": "tools/verification_builder_policy.json",
-      "sha256": "b9c59bfbfbcbea1be9efab3f44cae26b98a9dab3df67972a888d010394bb6fb3"
+      "sha256": "4b18bbb3eb94149326aa8b47ad67517f90cbee04db6ae422ec05a5df2ab41568"
     },
     "profiles": {
       "path": "tools/verification_profiles.json",
-      "sha256": "831e077fddd1e6c600e0934ca20bd71242f9a64f14110eb6b5980969c310f9ca"
+      "sha256": "264efc1893ecc1500c58e20c160042534432d8e6f6342da0891223cf66263fc1"
     },
     "workflow": {
       "path": "docs/current/recipe-wave-workflow.md",
-      "sha256": "415ee53de90702fff9599dcedb953d5ca06fee9c08a9f891bfe0c254d1de299c"
+      "sha256": "aaf5a71f98dba528fc238fbfdd771ddaabf21f613b3196d85e45e366ecc155fc"
     }
   }
 }

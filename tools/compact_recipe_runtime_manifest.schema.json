@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/compact_recipe_runtime_manifest.schema.json",
+  "title": "CrucibleCraft compact recipe runtime compatibility manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "owns_families",
+    "group_count",
+    "groups",
+    "dedup_rules"
+  ],
+  "properties": {
+    "bindings": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "dedup_rules": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["rule_id", "owner", "phase", "target_map", "resource"],
+        "properties": {
+          "owner": { "type": "string" },
+          "phase": { "enum": ["pre_snapshot", "post_enumeration"] },
+          "resource": { "type": "string" },
+          "rule_id": { "type": "string" },
+          "target_map": { "type": "string" }
+        }
+      }
+    },
+    "generated_by": { "type": "string" },
+    "group_count": { "const": 12 },
+    "groups": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "required": [
+          "wave_id",
+          "target_map",
+          "publication_group",
+          "policy_type",
+          "cache_ceiling",
+          "eager_stable_ids",
+          "authored_family_count",
+          "authored_relation_count",
+          "effective_family_count",
+          "effective_relation_count",
+          "membership_root_sha256",
+          "policy_resource"
+        ],
+        "properties": {
+          "authored_family_count": { "type": "integer", "minimum": 0 },
+          "authored_relation_count": { "type": "integer", "minimum": 0 },
+          "cache_ceiling": { "type": "integer", "minimum": 0 },
+          "eager_stable_ids": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "effective_family_count": { "type": "integer", "minimum": 0 },
+          "effective_relation_count": { "type": "integer", "minimum": 0 },
+          "membership_root_sha256": {
+            "type": "string",
+            "minLength": 64,
+            "maxLength": 64
+          },
+          "policy_resource": { "type": "string" },
+          "policy_type": { "enum": ["immediate", "on_demand", "hybrid"] },
+          "publication_group": { "type": "string" },
+          "target_map": { "type": "string" },
+          "wave_id": { "type": "string" },
+          "winner": { "type": "string" }
+        }
+      }
+    },
+    "note": { "type": "string" },
+    "owns_families": { "const": 0 },
+    "schema_version": { "const": 1 },
+    "status": { "const": "COMPACT_RECIPE_RUNTIME_MANIFEST" },
+    "t37_eager_count": { "const": 14 },
+    "t37_lazy_count": { "const": 36 },
+    "t41_authored_relation_count": { "const": 292 },
+    "t41_live_relation_count": { "const": 242 }
+  }
+}

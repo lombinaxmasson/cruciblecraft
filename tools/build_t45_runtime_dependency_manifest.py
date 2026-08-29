@@ -12,6 +12,7 @@ if str(ROOT) not in sys.path:
 
 from tools import t35_common as t35
 from tools import t45_common as common
+from tools.recipe_bulk import runtime as runtime_mod
 
 JAVA_ROOT = ROOT / "src" / "main" / "java" / "com" / "masson" / "cruciblecraft"
 
@@ -65,6 +66,7 @@ def build() -> dict[str, Any]:
             JAVA_ROOT / "content" / "item" / "GtBlockObjectCatalog.java"
         ),
     }
+    compact_runtime.update(runtime_mod.compact_cutover_runtime_files(_file, _tree))
     hosts = {
         "processing_machines": _file(JAVA_ROOT / "registry" / "ModProcessingMachines.java"),
         "recipe_maps": _file(JAVA_ROOT / "registry" / "ModRecipeMaps.java"),

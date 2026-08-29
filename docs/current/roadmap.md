@@ -18,8 +18,9 @@
 > `T36_REPAIR_READY`（`owns_families=0`，不占用内容卡编号）。T44 Storage bundle 已达到
 > `T44_STORAGE_READY`：storage 28/624 与 logistics 1/1，recipe gap 仍为 3,076。T45 Recipe
 > Bulk Compiler + block-object 生产波已达到 `T45_READY`：379 complete families /
-> 379 relations，closing current execution gap 为 2,697。T46 未签发，不预写 host 或
-> family IDs。不进行玩家发行、RC soak 或 GA。
+> 379 relations，closing current execution gap 为 2,697。统一导入第三阶段
+> compile authority cutover 已达到 `UNIFIED_RECIPE_COMPILE_READY`（`owns_families=0`）。
+> T46 未签发，不预写 host 或 family IDs。不进行玩家发行、RC soak 或 GA。
 
 ## 1. 项目目标
 
@@ -273,6 +274,14 @@ nuclear source/physics census
 T42-Owner 已关闭，storage 不再等待 execution gap 清零才能串行签发；但它仍要求
 `T42_OWNER_READY && owner_partition_complete`，不能只因 deferred ledger 非空而放行。
 当前无 unique active 内容卡。T46 未签发，不预写 host 或 family IDs。
+统一导入第一阶段（Shadow Refactor）已关闭：`UNIFIED_IMPORT_SHADOW_READY`，
+`owns_families=0`。第二阶段 Runtime Manifest Cutover 已关闭：
+`COMPACT_RECIPE_MANIFEST_CUTOVER_READY`。T37–T45 的 publication 与
+跨卡 dedup 已迁到 datapack；family JSON 与 stable IDs 保持 byte-identical。第三阶段
+compile authority / emitter cutover 已关闭：`UNIFIED_RECIPE_COMPILE_READY`，
+`owns_families=0`。`tools/build_recipe_bulk.py` 是 T37–T45 production family 的唯一
+generate/check 入口；global identity ledger 是 fail-closed operand 解析权威。T46 未签发，
+不扣 2,697 gap，不生成新配方。后续可另开内容卡，但仍禁止并行 active 内容卡。
 [T36-Repair](../history/card-plans/closed/T36-Repair详细计划.md)
 已关闭（`T36_REPAIR_READY`；`owns_families=0`）。[T44](../history/card-plans/closed/T44详细计划.md)
 已关闭（`T44_STORAGE_READY`）：Storage 28/624 + logistics 1/1 不计 ordinary recipe
@@ -283,11 +292,13 @@ active 内容卡。P0–P3 只控制顺序，不再决定 `portfolio_scope`。
 T39 已按 production lock 规则关闭；T40 Electrolyzer、T41 Assembler bulk-singleton、T42
 partition、T42-Repair、T42-Owner、T43 Smelter stone bulk、T44 Storage bundle 与 T45
 block-object bulk 同样关闭。后续 bounded wave
-必须在前一张 closing artifact 上重新签发，按以下顺序选择：
+必须在前一张 closing artifact 上重新签发。统一导入第三阶段 compile-authority cutover
+已关闭：`UNIFIED_RECIPE_COMPILE_READY`。T46 仍未签发；后续 ordinary recipe wave 可另开
+内容卡。恢复导入后按以下顺序选择：
 
-1. 已有可运行 host；
-2. 输入获得、机器供能、输出消费或明确终端用途能闭合；
-3. family 结构相似，可复用已经验收的 exact-relation 或参数模板；
+1. capability / dependency closure 已闭合（输入获得、供能、输出消费或明确终端用途）；
+2. family 结构相似，可复用已经验收的 exact-relation 或参数模板；
+3. 已有可运行 host；
 4. 在 current T14 opening 下可形成有界、可实测的批次。
 
 T39 起不再把 50–200 source rows 当成 Card 上限。普通 recipe wave 的 production lock 默认

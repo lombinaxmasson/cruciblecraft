@@ -13,6 +13,7 @@ if str(ROOT) not in sys.path:
 
 from tools import t35_common as t35  # noqa: E402
 from tools import t40_common as common  # noqa: E402
+from tools.recipe_bulk import runtime as runtime_mod  # noqa: E402
 
 JAVA_ROOT = ROOT / "src" / "main" / "java" / "com" / "masson" / "cruciblecraft"
 TEST_JAVA_ROOT = ROOT / "src" / "test" / "java" / "com" / "masson" / "cruciblecraft"
@@ -54,6 +55,7 @@ def build() -> dict[str, Any]:
             JAVA_ROOT / "recipe" / "gt" / "CompactRecipeShardRouter.java"
         ),
     }
+    compact_runtime.update(runtime_mod.compact_cutover_runtime_files(_file, _tree))
     historical_groups = {
         "t37_assembler_generated": _tree(
             ROOT / "src" / "t37_recipe_generated" / "resources"
@@ -61,9 +63,7 @@ def build() -> dict[str, Any]:
         "t38_roaster_generated": _tree(
             ROOT / "src" / "t38_recipe_generated" / "resources"
         ),
-        "t37_policy": _file(
-            JAVA_ROOT / "recipe" / "gt" / "CompactRecipeFamilyProvider.java"
-        ),
+        "t37_policy": _file(runtime_mod.t37_policy_resource()),
     }
     electrolyzer_host = {
         "energy_placement": _file(

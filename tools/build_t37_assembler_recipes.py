@@ -22,6 +22,10 @@ OPERAND_MAP = ROOT / "tools/t37_operand_runtime_map.json"
 PLAYER_PATH = ROOT / "tools/t37_player_path.json"
 EQUIVALENCE = ROOT / "tools/t37_assembler_equivalence.json"
 
+from tools.recipe_bulk.write_guard import (
+    assert_legacy_production_write_forbidden,
+)
+
 EXPECTED_FAMILY_COUNT = 50
 EXPECTED_FAMILY_NUMBERS = range(2, 52)
 PLANK_ITEM = "gregtech:gt.block.planks"
@@ -601,23 +605,21 @@ def check() -> list[str]:
 
 
 def write() -> None:
-    planned = planned_documents()
-    recipes, sidecars = split_planned(planned)
-    OUTPUT_ROOT.mkdir(parents=True, exist_ok=True)
-    for path in actual_recipe_files().values():
-        if path.name not in recipes:
-            path.unlink()
-    for name, content in recipes.items():
-        (OUTPUT_ROOT / name).write_text(content, encoding="utf-8", newline="\n")
-    OPERAND_MAP.write_text(sidecars[OPERAND_MAP.name], encoding="utf-8", newline="\n")
-    PLAYER_PATH.write_text(sidecars[PLAYER_PATH.name], encoding="utf-8", newline="\n")
-    EQUIVALENCE.write_text(sidecars[EQUIVALENCE.name], encoding="utf-8", newline="\n")
+    assert_legacy_production_write_forbidden("T37")
 
 
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--write", action="store_true")
     args = parser.parse_args()
+    if args.write:
+        try:
+            write()
+        except Exception as error:
+            print(str(error), file=sys.stderr)
+            return 1
+        return 1
     if args.check:
         errors = check()
         if errors:
@@ -627,9 +629,12 @@ def main() -> int:
             return 1
         print("T37 assembler recipes match the frozen compact source.")
         return 0
-    write()
-    print(f"Wrote {EXPECTED_FAMILY_COUNT} T37 assembler compact families.")
-    return 0
+    print(
+        "T37 recipe builder is check-only. Write production families with "
+        "python tools/build_recipe_bulk.py compile --write --wave T37",
+        file=sys.stderr,
+    )
+    return 2
 
 
 if __name__ == "__main__":

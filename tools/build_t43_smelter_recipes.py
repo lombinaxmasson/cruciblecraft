@@ -14,6 +14,7 @@ if str(ROOT) not in sys.path:
 
 from tools import t35_common as t35  # noqa: E402
 from tools import t43_common as common  # noqa: E402
+from tools.recipe_bulk.write_guard import assert_legacy_production_write_forbidden  # noqa: E402
 
 SOURCE = common.SOURCE
 OUTPUT_ROOT = common.GENERATED_ROOT
@@ -326,16 +327,8 @@ def build() -> dict[str, Any]:
 
 
 def write() -> dict[str, Any]:
-    document = build()
-    write_tree(OUTPUT_ROOT, document["recipes"])
-    write_tree(FIXTURE_ROOT, document["fixture"])
-    for name, content in document["sidecars"].items():
-        {
-            PLAYER_PATH.name: PLAYER_PATH,
-            EQUIVALENCE.name: EQUIVALENCE,
-            REQUIRED_FORMS.name: REQUIRED_FORMS,
-        }[name].write_text(content, encoding="utf-8", newline="\n")
-    return document
+    assert_legacy_production_write_forbidden("T43")
+    return {}
 
 
 def main(argv: list[str] | None = None) -> int:

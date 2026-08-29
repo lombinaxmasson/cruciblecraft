@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/unified_import_shadow_readiness.schema.json",
+  "title": "CrucibleCraft unified import shadow readiness",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "owns_families",
+    "gates",
+    "failed_gates"
+  ],
+  "properties": {
+    "failed_gates": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "gates": {
+      "type": "object",
+      "additionalProperties": { "type": "boolean" }
+    },
+    "generated_by": { "type": "string" },
+    "identity_semantic_root_sha256": {
+      "type": "string",
+      "minLength": 64,
+      "maxLength": 64
+    },
+    "note": { "type": "string" },
+    "owns_families": { "const": 0 },
+    "rebuilds_identical": { "type": "boolean" },
+    "schema_version": { "const": 1 },
+    "status": {
+      "enum": [
+        "UNIFIED_IMPORT_SHADOW_READY",
+        "UNIFIED_IMPORT_SHADOW_BLOCKED"
+      ]
+    },
+    "typed_identity_blocker_count": { "type": "integer", "minimum": 0 },
+    "wave_bindings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["wave_id", "stable_id_sha256", "family_count", "relation_count"],
+        "properties": {
+          "byte_identity": { "type": "boolean" },
+          "family_count": { "type": "integer" },
+          "generated_tree_sha256": { "type": "string" },
+          "relation_count": { "type": "integer" },
+          "stable_id_sha256": { "type": "string" },
+          "wave_id": { "type": "string" }
+        }
+      }
+    }
+  }
+}
