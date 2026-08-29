@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/recipe_bulk_ir.schema.json",
+  "title": "CrucibleCraft recipe bulk IR",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "families"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "families": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "semantic_family_id",
+          "template_kind",
+          "source_rows",
+          "relations"
+        ],
+        "properties": {
+          "semantic_family_id": { "type": "string" },
+          "template_kind": {
+            "enum": [
+              "exact_singleton",
+              "exact_relation_set",
+              "finite_bindings",
+              "keyed_join"
+            ]
+          },
+          "source_rows": { "type": "array" },
+          "relations": { "type": "array" },
+          "cardinality_proof": { "type": ["object", "null"] }
+        }
+      }
+    }
+  }
+}

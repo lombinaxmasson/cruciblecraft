@@ -1,0 +1,50 @@
+{
+  "can_be_buffered": true,
+  "duration": 192,
+  "eut": 16,
+  "fluid_inputs": [
+    {
+      "amount": 7000,
+      "id": "cruciblecraft:sulfuric_acid"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 5000,
+      "id": "cruciblecraft:nitric_acid"
+    }
+  ],
+  "item_input_actions": [
+    {
+      "kind": "consume"
+    }
+  ],
+  "item_input_counts": [
+    5
+  ],
+  "item_inputs": [
+    {
+      "item": "cruciblecraft:potassium_nitrate/dust"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": 7,
+      "id": "cruciblecraft:potassium_bisulfate/dust"
+    }
+  ],
+  "map": "cruciblecraft:mixer",
+  "output_chances": [
+    10000
+  ],
+  "provenance": {
+    "claim_owner": "portfolio:track_a/t39_centrifuge",
+    "evidence_hashes": [
+      "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    ],
+    "selected_source_recipe": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.mixer.json#recipes[42300]",
+    "source_fingerprint": "dba8e616eba69d92a484ee7a77d8138c66fd267c1c6cfeb6bd927fa8a83e3eda",
+    "source_kind": "gt6_pinned_dump_projection"
+  },
+  "type": "cruciblecraft:gt_recipe"
+}

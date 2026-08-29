@@ -22,7 +22,9 @@ public final class ProcessingMachineEnergyPlacement {
                 || spec.recipeMapId().equals(
                         ModProcessingMachines.DRYING.recipeMapId())
                 || spec.recipeMapId().equals(
-                        ModProcessingMachines.SMELTER.recipeMapId());
+                        ModProcessingMachines.SMELTER.recipeMapId())
+                || spec.recipeMapId().equals(
+                        ModProcessingMachines.ROASTER.recipeMapId());
     }
 
     public record Connection(Direction providerOffset, Direction providerFace) {}

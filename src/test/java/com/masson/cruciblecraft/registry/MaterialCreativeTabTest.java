@@ -29,7 +29,7 @@ class MaterialCreativeTabTest {
     @Test
     void allBuiltinPrefixesHaveOneSemanticTabAndUnknownPrefixesUseMisc() {
         var prefixes = MaterialPrefixCatalog.values();
-        assertEquals(57, prefixes.size());
+        assertEquals(58, prefixes.size());
 
         EnumMap<MaterialCreativeTab, Set<MaterialPrefix>> grouped =
                 new EnumMap<>(MaterialCreativeTab.class);
@@ -39,7 +39,7 @@ class MaterialCreativeTabTest {
         prefixes.forEach(prefix ->
                 grouped.get(MaterialCreativeTab.forPrefix(prefix)).add(prefix));
 
-        assertEquals(57, grouped.values().stream().mapToInt(Set::size).sum());
+        assertEquals(58, grouped.values().stream().mapToInt(Set::size).sum());
         assertEquals(
                 Set.copyOf(prefixes),
                 grouped.values().stream()
@@ -47,7 +47,7 @@ class MaterialCreativeTabTest {
                         .collect(Collectors.toUnmodifiableSet()));
         assertEquals(1, grouped.get(MaterialCreativeTab.ORES).size());
         assertEquals(8, grouped.get(MaterialCreativeTab.ORE_PROCESSING).size());
-        assertEquals(3, grouped.get(MaterialCreativeTab.DUSTS).size());
+        assertEquals(4, grouped.get(MaterialCreativeTab.DUSTS).size());
         assertEquals(7, grouped.get(MaterialCreativeTab.METALS_GEMS).size());
         assertEquals(8, grouped.get(MaterialCreativeTab.PLATES).size());
         assertEquals(5, grouped.get(MaterialCreativeTab.PARTS).size());
@@ -115,10 +115,10 @@ class MaterialCreativeTabTest {
                         entry -> entry.getValue().size()));
         assertEquals(
                 Map.ofEntries(
-                        Map.entry(MaterialCreativeTab.ORES, 274),
-                        Map.entry(MaterialCreativeTab.ORE_PROCESSING, 3_498),
-                        Map.entry(MaterialCreativeTab.DUSTS, 2_682),
-                        Map.entry(MaterialCreativeTab.METALS_GEMS, 2_260),
+                        Map.entry(MaterialCreativeTab.ORES, 294),
+                        Map.entry(MaterialCreativeTab.ORE_PROCESSING, 3_499),
+                        Map.entry(MaterialCreativeTab.DUSTS, 2_694),
+                        Map.entry(MaterialCreativeTab.METALS_GEMS, 2_263),
                         Map.entry(MaterialCreativeTab.PLATES, 2_333),
                         Map.entry(MaterialCreativeTab.PARTS, 3_248),
                         Map.entry(MaterialCreativeTab.MECHANICAL_PARTS, 1_890),

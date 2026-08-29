@@ -13,6 +13,14 @@
 | `plans/` | [card-plans/closed](card-plans/closed/) | 关闭计划 |
 | `tools/full_verification_report.json` | 同路径，只读收据 | 历史 READY |
 
+## 当前 active 卡
+
+无。T45 Recipe Bulk Compiler + block-object 生产波已关闭（`T45_READY`，379 complete families，remaining gap 2697）。T46 未签发，不预分配 host 或 family IDs。无 active repair gate。
+
+## 已规划、未签发
+
+无。
+
 ## 阶段档案
 
 | 文档 | 类型 | 状态 |
@@ -40,6 +48,17 @@
 | [T35](stage-archives/CrucibleCraft-阶段档案-T35.md) | 阶段档案 | 关闭（T35R 修复） |
 | [T36](stage-archives/CrucibleCraft-阶段档案-T36.md) | 阶段档案 | 关闭（`T36_READY`） |
 | [T37](stage-archives/CrucibleCraft-阶段档案-T37.md) | 阶段档案 | 关闭（`T37_READY`） |
+| [T38](stage-archives/CrucibleCraft-阶段档案-T38.md) | 阶段档案 | 关闭（`T38_READY`） |
+| [T39](stage-archives/CrucibleCraft-阶段档案-T39.md) | 阶段档案 | 关闭（`T39_REPAIR_READY` / `T39_READY`） |
+| [T40](stage-archives/CrucibleCraft-阶段档案-T40.md) | 阶段档案 | 关闭（`T40_READY`） |
+| [T40-VR](stage-archives/CrucibleCraft-阶段档案-T40-VR.md) | 阶段档案 | 关闭（`T40_VR_READY`） |
+| [T41](stage-archives/CrucibleCraft-阶段档案-T41.md) | 阶段档案 | 关闭（`T41_READY`） |
+| [T42](stage-archives/CrucibleCraft-阶段档案-T42.md) | 阶段档案 | 关闭（`T42_PARTITION_READY`） |
+| [T42-Repair](stage-archives/CrucibleCraft-阶段档案-T42-Repair.md) | 阶段档案 | 关闭（`T42_REPAIR_READY`） |
+| [T43](stage-archives/CrucibleCraft-阶段档案-T43.md) | 阶段档案 | 关闭（`T43_READY`） |
+| [T36-Repair](stage-archives/CrucibleCraft-阶段档案-T36-Repair.md) | 阶段档案 | 关闭（`T36_REPAIR_READY`） |
+| [T44](stage-archives/CrucibleCraft-阶段档案-T44.md) | 阶段档案 | 关闭（`T44_STORAGE_READY`） |
+| [T45](stage-archives/CrucibleCraft-阶段档案-T45.md) | 阶段档案 | 关闭（`T45_READY`） |
 
 ## 工作日志
 
@@ -59,6 +78,17 @@
 | [T35 工作日志](work-logs/T35-工作日志.md) | 工作日志 | 关闭（T35R 修复） |
 | [T36 工作日志](work-logs/T36-工作日志.md) | 工作日志 | 关闭（`T36_READY`） |
 | [T37 工作日志](work-logs/T37-工作日志.md) | 工作日志 | 关闭（`T37_READY`） |
+| [T38 工作日志](work-logs/T38-工作日志.md) | 工作日志 | 关闭（`T38_READY`） |
+| [T39 工作日志](work-logs/T39-工作日志.md) | 工作日志 | 关闭（`T39_READY`） |
+| [T40 工作日志](work-logs/T40-工作日志.md) | 工作日志 | 关闭（`T40_READY`） |
+| [T40-VR 工作日志](work-logs/T40-VR-工作日志.md) | 工作日志 | 关闭（`T40_VR_READY`） |
+| [T41 工作日志](work-logs/T41-工作日志.md) | 工作日志 | 关闭（`T41_READY`） |
+| [T42 工作日志](work-logs/T42-工作日志.md) | 工作日志 | 关闭（`T42_PARTITION_READY`） |
+| [T42-Repair 工作日志](work-logs/T42-Repair-工作日志.md) | 工作日志 | 关闭（`T42_REPAIR_READY`） |
+| [T43 工作日志](work-logs/T43-工作日志.md) | 工作日志 | 关闭（`T43_READY`） |
+| [T36-Repair 工作日志](work-logs/T36-Repair-工作日志.md) | 工作日志 | 关闭（`T36_REPAIR_READY`） |
+| [T44 工作日志](work-logs/T44-工作日志.md) | 工作日志 | 关闭（`T44_STORAGE_READY`） |
+| [T45 工作日志](work-logs/T45-工作日志.md) | 工作日志 | 关闭（`T45_READY`） |
 | [T31 RC soak](work-logs/T31-RC-soak.md) | 发行实验 | 关闭，非玩家 GA |
 
 ## 决策与关闭计划
@@ -74,6 +104,17 @@
 | [T34 详细计划](card-plans/closed/T34详细计划.md) | 已撤回关闭计划 | T34 重开条目 |
 | [T35 详细计划](card-plans/closed/T35详细计划.md)、[T35 修复计划](card-plans/closed/T35修复计划.md) | 关闭计划 | [T35 阶段档案](stage-archives/CrucibleCraft-阶段档案-T35.md) |
 | [T36 详细计划](card-plans/closed/T36详细计划.md) | 关闭计划 | [T36 阶段档案](stage-archives/CrucibleCraft-阶段档案-T36.md) |
+| [T36-Repair 详细计划](card-plans/closed/T36-Repair详细计划.md) | 关闭内部 gate（`T36_REPAIR_READY`） | [T36-Repair 阶段档案](stage-archives/CrucibleCraft-阶段档案-T36-Repair.md)；不占用 T44 |
 | [T37 详细计划](card-plans/closed/T37详细计划.md) | 关闭计划 | [T37 阶段档案](stage-archives/CrucibleCraft-阶段档案-T37.md) |
-| [T38 详细计划](card-plans/active/T38详细计划.md) | 当前 active 计划 | T38 Roaster wave |
+| [T38 详细计划](card-plans/closed/T38详细计划.md) | 关闭计划 | [T38 阶段档案](stage-archives/CrucibleCraft-阶段档案-T38.md) |
+| [T39 详细计划](card-plans/closed/T39详细计划.md)、[T39-Repair 详细计划](card-plans/closed/T39-Repair详细计划.md) | 关闭计划 | [T39 阶段档案](stage-archives/CrucibleCraft-阶段档案-T39.md) |
+| [T40 详细计划](card-plans/closed/T40详细计划.md) | 关闭计划 | [T40 阶段档案](stage-archives/CrucibleCraft-阶段档案-T40.md) |
+| [T40-VR 详细计划](card-plans/closed/T40-VR详细计划.md) | 关闭计划 | [T40-VR 阶段档案](stage-archives/CrucibleCraft-阶段档案-T40-VR.md) |
+| [T41 详细计划](card-plans/closed/T41详细计划.md) | 关闭计划 | [T41 阶段档案](stage-archives/CrucibleCraft-阶段档案-T41.md) |
+| [T42 详细计划](card-plans/closed/T42详细计划.md) | 关闭计划 | [T42 阶段档案](stage-archives/CrucibleCraft-阶段档案-T42.md) |
+| [T42-Repair 详细计划](card-plans/closed/T42-Repair详细计划.md) | 关闭计划 | [T42-Repair 阶段档案](stage-archives/CrucibleCraft-阶段档案-T42-Repair.md) |
+| [T42-Owner 详细计划](card-plans/closed/T42-Owner详细计划.md) | 关闭内部 gate（`T42_OWNER_READY`） | [`tools/t42_owner_readiness.json`](../../tools/t42_owner_readiness.json)；current gap 3,483，`completion_delta=0` |
+| [T43 详细计划](card-plans/closed/T43详细计划.md) | 关闭计划 | [T43 阶段档案](stage-archives/CrucibleCraft-阶段档案-T43.md) |
+| [T44 详细计划](card-plans/closed/T44详细计划.md) | 关闭计划 | [T44 阶段档案](stage-archives/CrucibleCraft-阶段档案-T44.md) |
+| [T45 详细计划](card-plans/closed/T45详细计划.md) | 关闭计划 | [T45 阶段档案](stage-archives/CrucibleCraft-阶段档案-T45.md) |
 | [交接说明](handoffs/CrucibleCraft-交接说明.md) | 交接 | 以 README 为准 |

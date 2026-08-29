@@ -1763,7 +1763,9 @@ def build_outputs(dump_root: Path) -> ImportResult:
         ), "fluid_amount": value["amount"]})
 
     prefix_item_to_form = {
-        GT_PREFIX_ITEMS[source]: T0_PREFIXES[source] for source in T0_PREFIXES
+        GT_PREFIX_ITEMS[source]: T0_PREFIXES[source]
+        for source in T0_PREFIXES
+        if source in GT_PREFIX_ITEMS
     }
     prefix_item_to_form.update({
         f"gregtech:gt.meta.{source}": form

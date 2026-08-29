@@ -1,0 +1,221 @@
+{
+  "currentness": {
+    "builder_path": "tools/build_t45_recipe_load_benchmark.py",
+    "builder_sha256": "f5522aec01254e00325207bbc0bc3ba7a38cb36dea80c3a4285fab690837bb1e",
+    "measurement_sha256": "d1867434233d149ce23725aa33f00ff52205d320866c8c287026a7bcf7373fda",
+    "policy_path": "tools/t45_materialization_policy.json",
+    "policy_sha256": "e6ed76f6eab33d47a8e45762d3597125f045a6fac876cd75e260692b5758600d",
+    "production_lock_sha256": "c64576f8f14cf19d6a6f62dfc3995355318ecd34fb0537ab406fab741b99aaba"
+  },
+  "decision": {
+    "algorithm": {
+      "card_aggregate_required": true,
+      "composite_score_forbidden": true,
+      "gate_order": [],
+      "implementation_complexity_order": [
+        "immediate",
+        "on_demand",
+        "hybrid"
+      ],
+      "max_interval_soft_budget_does_not_eliminate": [
+        "lookup_candidate_count"
+      ],
+      "per_group_winners_required": true
+    },
+    "card_aggregate_winner": "hybrid",
+    "composite_score_used": false,
+    "diagnostic_5x_20x_used_for_1x": false,
+    "group_winners": {
+      "cruciblecraft:t45_drying_block": "on_demand",
+      "cruciblecraft:t45_smelter_block": "hybrid",
+      "drying": "on_demand",
+      "smelter": "hybrid"
+    },
+    "production_blockers": [],
+    "ranking_logical_rows": 379,
+    "ranking_scale": "1x",
+    "scenarios": {
+      "card": {
+        "eliminated": {},
+        "logical_rows": 379,
+        "production_winner": "hybrid",
+        "ranking": [
+          {
+            "candidate": "hybrid",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 2,
+            "lookup_p95_ns": 53931,
+            "reload_index_p95_ns": {
+              "client_index": 322500,
+              "client_reload": 16440900,
+              "server_index": 197000,
+              "server_reload": 11030200
+            },
+            "retained_memory_bytes": 37023,
+            "sync_bytes": 37023
+          },
+          {
+            "candidate": "on_demand",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 1,
+            "lookup_p95_ns": 44418,
+            "reload_index_p95_ns": {
+              "client_index": 458600,
+              "client_reload": 19896500,
+              "server_index": 238800,
+              "server_reload": 21719600
+            },
+            "retained_memory_bytes": 37023,
+            "sync_bytes": 37023
+          },
+          {
+            "candidate": "immediate",
+            "eager_margin": "tied",
+            "eager_publication_rows": 379,
+            "implementation_complexity": 0,
+            "lookup_p95_ns": 32393,
+            "reload_index_p95_ns": {
+              "client_index": 2069900,
+              "client_reload": 44295400,
+              "server_index": 1893200,
+              "server_reload": 41896100
+            },
+            "retained_memory_bytes": 37023,
+            "sync_bytes": 37023
+          }
+        ],
+        "scenario_id": "card",
+        "soft_budget_warnings": {},
+        "survivors": [
+          "immediate",
+          "on_demand",
+          "hybrid"
+        ]
+      },
+      "drying": {
+        "eliminated": {},
+        "logical_rows": 108,
+        "production_winner": "on_demand",
+        "ranking": [
+          {
+            "candidate": "on_demand",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 1,
+            "lookup_p95_ns": 114750,
+            "reload_index_p95_ns": {
+              "client_index": 130100,
+              "client_reload": 3168200,
+              "server_index": 191100,
+              "server_reload": 2173300
+            },
+            "retained_memory_bytes": 10736,
+            "sync_bytes": 10736
+          },
+          {
+            "candidate": "immediate",
+            "eager_margin": "tied",
+            "eager_publication_rows": 108,
+            "implementation_complexity": 0,
+            "lookup_p95_ns": 22343,
+            "reload_index_p95_ns": {
+              "client_index": 276000,
+              "client_reload": 2934200,
+              "server_index": 362100,
+              "server_reload": 2647800
+            },
+            "retained_memory_bytes": 10736,
+            "sync_bytes": 10736
+          },
+          {
+            "candidate": "hybrid",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 2,
+            "lookup_p95_ns": 105381,
+            "reload_index_p95_ns": {
+              "client_index": 192900,
+              "client_reload": 3445000,
+              "server_index": 287700,
+              "server_reload": 2817500
+            },
+            "retained_memory_bytes": 10736,
+            "sync_bytes": 10736
+          }
+        ],
+        "scenario_id": "drying",
+        "soft_budget_warnings": {},
+        "survivors": [
+          "immediate",
+          "on_demand",
+          "hybrid"
+        ]
+      },
+      "smelter": {
+        "eliminated": {},
+        "logical_rows": 271,
+        "production_winner": "hybrid",
+        "ranking": [
+          {
+            "candidate": "hybrid",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 2,
+            "lookup_p95_ns": 40087,
+            "reload_index_p95_ns": {
+              "client_index": 256300,
+              "client_reload": 5544000,
+              "server_index": 233800,
+              "server_reload": 5375000
+            },
+            "retained_memory_bytes": 26287,
+            "sync_bytes": 26287
+          },
+          {
+            "candidate": "on_demand",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 1,
+            "lookup_p95_ns": 233493,
+            "reload_index_p95_ns": {
+              "client_index": 463800,
+              "client_reload": 8833400,
+              "server_index": 294600,
+              "server_reload": 10084400
+            },
+            "retained_memory_bytes": 26287,
+            "sync_bytes": 26287
+          },
+          {
+            "candidate": "immediate",
+            "eager_margin": "tied",
+            "eager_publication_rows": 271,
+            "implementation_complexity": 0,
+            "lookup_p95_ns": 396975,
+            "reload_index_p95_ns": {
+              "client_index": 2346400,
+              "client_reload": 29303500,
+              "server_index": 5123000,
+              "server_reload": 30025200
+            },
+            "retained_memory_bytes": 26287,
+            "sync_bytes": 26287
+          }
+        ],
+        "scenario_id": "smelter",
+        "soft_budget_warnings": {},
+        "survivors": [
+          "immediate",
+          "on_demand",
+          "hybrid"
+        ]
+      }
+    },
+    "status": "PRODUCTION_WINNER_READY"
+  },
+  "measurement_status": "T45_MATERIALIZATION_MEASUREMENT_READY",
+  "schema_version": 1,
+  "status": "T45_MATERIALIZATION_DECISION_READY"
+}

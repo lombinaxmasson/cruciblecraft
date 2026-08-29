@@ -4,6 +4,7 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.energy.IEnergyHandler;
 import com.masson.cruciblecraft.content.item.PortableFluidTankItem;
 import com.masson.cruciblecraft.content.multiblock.MultiblockStructureDefinition.PortType;
+import com.masson.cruciblecraft.content.storage.ILogisticsStorage;
 
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -17,6 +18,11 @@ public final class ModCapabilities {
             BlockCapability.createSided(
                     ResourceLocation.fromNamespaceAndPath(CrucibleCraft.MODID, "energy"),
                     IEnergyHandler.class);
+    public static final BlockCapability<ILogisticsStorage, Direction> LOGISTICS_STORAGE =
+            BlockCapability.createSided(
+                    ResourceLocation.fromNamespaceAndPath(
+                            CrucibleCraft.MODID, "logistics_storage"),
+                    ILogisticsStorage.class);
     private ModCapabilities() {}
 
     public static void register(RegisterCapabilitiesEvent event) {
@@ -37,6 +43,10 @@ public final class ModCapabilities {
                 ModItems.GAS_CELL.get());
         event.registerBlockEntity(ENERGY, ModBlockEntities.FIREBOX.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.BELLOWS.get(), (blockEntity, side) -> blockEntity);
+        event.registerBlockEntity(
+                Capabilities.FluidHandler.BLOCK,
+                ModBlockEntities.BELLOWS.get(),
+                (blockEntity, side) -> blockEntity.fluids(side));
         event.registerBlockEntity(ENERGY, ModBlockEntities.CRUCIBLE.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.BOILER.get(), (blockEntity, side) -> blockEntity);
         event.registerBlockEntity(ENERGY, ModBlockEntities.STEAM_ENGINE.get(), (blockEntity, side) -> blockEntity);
@@ -84,6 +94,37 @@ public final class ModCapabilities {
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.HOPPER.get(),
                 (blockEntity, side) -> blockEntity.itemHandler(side));
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.BOOKSHELF.get(),
+                (blockEntity, side) -> blockEntity.itemHandler(side));
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.BOTTLE_CRATE.get(),
+                (blockEntity, side) -> blockEntity.itemHandler(side));
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.DRAWER.get(),
+                (blockEntity, side) -> blockEntity.itemHandler(side));
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.LOCKER.get(),
+                (blockEntity, side) -> blockEntity.itemHandler(side));
+        event.registerBlockEntity(
+                ENERGY,
+                ModBlockEntities.LOCKER.get(),
+                (blockEntity, side) -> blockEntity.handles(
+                        com.masson.cruciblecraft.api.energy.EnergyType.ELECTRIC, side)
+                        ? blockEntity
+                        : null);
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.MASS_STORAGE.get(),
+                (blockEntity, side) -> blockEntity.itemHandler(side));
+        event.registerBlockEntity(
+                LOGISTICS_STORAGE,
+                ModBlockEntities.MASS_STORAGE.get(),
+                (blockEntity, side) -> blockEntity.logisticsStorage());
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.DUST_FUNNEL.get(),

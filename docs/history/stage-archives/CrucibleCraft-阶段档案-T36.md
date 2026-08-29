@@ -23,7 +23,9 @@
 - `python tools/verify.py integration --profile census`：退出 0；T35 基础分母不变。
 - `.\gradlew.bat runGameTestServer -Pt36Machines --no-daemon`：隔离 `cruciblecraft_t36` required GameTest **8/8** 通过。
 
-本档案不把 T12 9→13 variants 历史债务写成已关闭，也不授权实现 T37 校准或批量 ordinary families。
+闭卡时本档案未把 T12 9→13 variants 历史债务写成已关闭。后续兼容修复已保留 T12 的
+9 行历史纵切，并证明其完整包含于 T36 的 13 行 catalog 观察中；这不把四个 T36 行追溯
+写入 T12 scope，也不授权实现 T37 校准或批量 ordinary families。
 
 ## 交接
 

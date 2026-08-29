@@ -1,0 +1,49 @@
+{
+  "artifact": "tools/t42_owner_readiness.json",
+  "artifact_file_sha256": "11d62fb49e77c28c04fd666272c01c0746fc0bb77f63e4b67c9d3684cc40fab3",
+  "builder_sha256": "3b8b29751c7420cf88d4c289d46519ecceac27576509097573cb1772c707767a",
+  "dependency_semantic_roots": {
+    "tools/t42_card_topology.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "68365b9da7f335ae50478f6f5876a048971ca4922b8d2a17f08b27f88df93d8b"
+    },
+    "tools/t42_owner_disposition_lock.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "6c6b7c344b6cfc2a64bad9b51f9733f1ef2e29a2a817308b6fc0b0f6c423a3b4"
+    },
+    "tools/t42_owner_gap_partition.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "e209654b8228038f926f514d2a42cb57084c4d36ea23bbf5e6f7d463e0b62212"
+    },
+    "tools/t42_owner_pre_freeze.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "e292b81f2a189472e1f05043329e8ea3670ce32d60d70b2c44d433e955b42d49"
+    },
+    "tools/t42_owner_recovery_evidence.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "c8a029252a7796b201e2cbd40f1297e7fb0ee349b9a5142e4117db56bb452fc5"
+    },
+    "tools/t42_owner_track_overlay.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "84119396881387cfb30383014e6c40158fd75667389cb858dcba1e53e1c37cba"
+    }
+  },
+  "envelope_sha256": "2c2af0753d641da2e5955cdcbed76e939987faed369f9e441d5898a269f4a8ca",
+  "generated_by": "python tools/currentness.py",
+  "giant_body": false,
+  "schema_version": 2,
+  "semantic_projection_kind": "json_ledger",
+  "semantic_projection_version": 1,
+  "semantic_root_sha256": "ee9ecb84162e654427ea7525ba9efc7ea97bb9335e01b6a4113e3ffc34a9719c",
+  "source_replay_receipt": {
+    "proof_tier": "compact",
+    "status": "unavailable"
+  },
+  "status": "CURRENTNESS_SIDECAR"
+}

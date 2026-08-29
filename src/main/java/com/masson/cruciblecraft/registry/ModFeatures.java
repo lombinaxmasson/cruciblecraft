@@ -1,6 +1,8 @@
 package com.masson.cruciblecraft.registry;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.worldgen.GtBlockObjectScatterFeature;
+import com.masson.cruciblecraft.worldgen.GtStoneScatterFeature;
 import com.masson.cruciblecraft.worldgen.LargeVeinFeature;
 import com.masson.cruciblecraft.worldgen.SubsurfaceFluidDepositFeature;
 import com.masson.cruciblecraft.worldgen.SurfaceRockFeature;
@@ -27,6 +29,16 @@ public final class ModFeatures {
                     FEATURES.register(
                             "surface_rock_scatter",
                             SurfaceRockFeature::new);
+    public static final DeferredHolder<Feature<?>, GtStoneScatterFeature>
+            GT_STONE_SCATTER =
+                    FEATURES.register(
+                            "gt_stone_scatter",
+                            GtStoneScatterFeature::new);
+    public static final DeferredHolder<Feature<?>, GtBlockObjectScatterFeature>
+            GT_BLOCK_OBJECT_SCATTER =
+                    FEATURES.register(
+                            "gt_block_object_scatter",
+                            GtBlockObjectScatterFeature::new);
 
     private ModFeatures() {}
 }

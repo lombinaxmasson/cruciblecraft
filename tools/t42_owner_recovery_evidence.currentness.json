@@ -1,0 +1,39 @@
+{
+  "artifact": "tools/t42_owner_recovery_evidence.json",
+  "artifact_file_sha256": "c8185eac885438f22c0470021cddea15c7dc91e716696d418e6607bb1b1d8262",
+  "builder_sha256": "835e7c8be37c5a511e5642503e5383161d494abdb9eb6ccc99839338beebefe9",
+  "dependency_semantic_roots": {
+    "tools/t42_blocker_overlay.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "40df6b295044095ffe312165df577489b3b6aa4f061332a470e5a3ac3f586c41"
+    },
+    "tools/t42_disposition_lock.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "829082e70dd3c7e81d2958afb1f8e919bfe7d53763ccddbaf64c4bab992b4b7a"
+    },
+    "tools/t42_family_operand_snapshot.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "c9aa39a4a43ef34c4e44ffff95102d7140f34e3590c2b1ca9130d06bd82191f2"
+    },
+    "tools/t42_owner_pre_freeze.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "e292b81f2a189472e1f05043329e8ea3670ce32d60d70b2c44d433e955b42d49"
+    }
+  },
+  "envelope_sha256": "65751aba00df0e8cd10bf23c9f79b84ce01cbc6787be3f6f41bdfaada0667842",
+  "generated_by": "python tools/currentness.py",
+  "giant_body": true,
+  "schema_version": 2,
+  "semantic_projection_kind": "json_ledger",
+  "semantic_projection_version": 1,
+  "semantic_root_sha256": "c8a029252a7796b201e2cbd40f1297e7fb0ee349b9a5142e4117db56bb452fc5",
+  "source_replay_receipt": {
+    "proof_tier": "compact",
+    "status": "unavailable"
+  },
+  "status": "CURRENTNESS_SIDECAR"
+}

@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/machine_acquisition.schema.json",
+  "title": "CrucibleCraft opening ids and sparse acquisition overrides",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source_revision", "opening_variant_ids"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schema_version": { "const": 1 },
+    "source_revision": {
+      "const": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    "opening_variant_ids": {
+      "type": "array",
+      "minItems": 33,
+      "maxItems": 33,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^cruciblecraft:[a-z0-9_]+$"
+      }
+    },
+    "overrides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^cruciblecraft:[a-z0-9_]+$"
+          },
+          "acquisition_template": {
+            "enum": [
+              "centrifuge",
+              "t16_kinetic",
+              "t17_heat",
+              "electrolyzer",
+              "compressor",
+              "sifter",
+              "machine_generic",
+              "none"
+            ]
+          },
+          "casing_item": {
+            "type": "string",
+            "pattern": "^cruciblecraft:[a-z0-9_]+$"
+          }
+        }
+      }
+    }
+  }
+}

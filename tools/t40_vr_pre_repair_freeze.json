@@ -1,0 +1,58 @@
+{
+  "artifact": "T40_VR_PRE_REPAIR_FREEZE",
+  "evidence_scope": "pre_repair",
+  "frozen_counts": {
+    "factual_ore_materials": 137,
+    "registered_ore_materials": 147,
+    "t38_acquisition_ore_delta": 10,
+    "t38_support_authored": 19,
+    "t38_support_eager": 15,
+    "t39_locked_support_routes": 34,
+    "t40_production_families": 13,
+    "t40_production_relations": 22,
+    "t40_remaining_ordinary_gap": 5597,
+    "t5_semantic_vein_ledger": 8
+  },
+  "generated_by": "python tools/build_t40_vr_pre_repair_freeze.py",
+  "immutable_lock_hashes": {
+    "tools/t39_production_lock.json": "b9034b2950a41b8905ef6668de793d04136432070cd238e577754148d7aa8600",
+    "tools/t40_production_lock.json": "26cca29698c34039cc8aa19ff8e584a0ec7a521165ec39e8dcece03cf75488e5"
+  },
+  "note": "Immutable lock hashes must keep matching live T39/T40 production locks. Other snapshot hashes record pre-repair currentness and may change during T40-VR without rewriting this freeze.",
+  "open_debt_ids": [
+    "T32-VD-002",
+    "T32-VD-004"
+  ],
+  "reference_kind": "freeze_reference",
+  "repair_prohibitions": [
+    "do_not_approve_resign_t39_or_t40_lock",
+    "do_not_change_family_gap_or_census_identity_to_pass_repair",
+    "do_not_disguise_open_upstream_debt_as_pass_skip_or_inherited_ready"
+  ],
+  "schema_version": 1,
+  "snapshot_hashes": {
+    "src/main/java/com/masson/cruciblecraft/material/MaterialRegistrationGate.java": "23166fe1e866155fc332b0b82b7dd0191ba5cad15e26ca2b2cec921fb6f9123b",
+    "src/main/resources/data/cruciblecraft/material_registration_gate.json": "cf21e2a50a344e5fcbf20f4a8342f2fc0fb27b8aa4fb5773e8c0d3fab3a9287c",
+    "tools/known_issues/verification-debt.json": "e911ad9bbffe29a08cbb56d0eada1b37d4f33c9ffd84b610716c710371d1457d",
+    "tools/t35_card_topology.json": "73da8f8be1440751b2ce2d3258e6f9ba5b50ffaefe3a6e48588ad1165e19a617",
+    "tools/t35_census.json": "c179b888f7abacfd0a34861d47e92653c1fbdbf386e598cb19b17f66915bbb36",
+    "tools/t35_readiness.json": "0cf5fe85b47c60e47342d5caf1e126ab8c6a72924f1a57c9040f9c4e28e74020",
+    "tools/t35_recipe_families.json": "7f4f5defdbf6da14e6dbd02ea61dfb58d65d0a04685f04b8235df6afe6c06475",
+    "tools/t35_runtime_registry.json": "06fcba4c8f7b43ba8fbe04b0cf08befc091588ddafcb030ea09591b2aa3a675e",
+    "tools/t38_gametest_receipt.json": "1d1fa235f006f334f4cee4d89aee11acd9a07aaa6fb96848484f6bc6dab2d90f",
+    "tools/t38_readiness.json": "3aa64d5a1c321011ea8488cdc4f9815e5fe2bff2709a92ccfbc8f7f8cb795b7c",
+    "tools/t39_gametest_receipt.json": "9e68b520afae86e5efa389dc0ffc4befa3a57fcdf6f22c271afa5e112cde0285",
+    "tools/t39_production_lock.json": "b9034b2950a41b8905ef6668de793d04136432070cd238e577754148d7aa8600",
+    "tools/t39_readiness.json": "29b3fdeb20fc9bf788011631dd813b01e255168908396bf07be5e8b51b267062",
+    "tools/t39_runtime_dependency_manifest.json": "eed6f02f69620bcd7f6263c00d7f8a721189ed28a7e756c8461b1036af2f3b74",
+    "tools/t40_gametest_receipt.json": "e602f5df2fe9b51e13841b4ddcfa7423dd173a6c51adfdde9f99016f37daaee8",
+    "tools/t40_production_lock.json": "26cca29698c34039cc8aa19ff8e584a0ec7a521165ec39e8dcece03cf75488e5",
+    "tools/t40_readiness.json": "22b7dd0f89e4e3852f0320a9da38861bbbb1d638ff8793a5f75778980a179d56",
+    "tools/t40_runtime_dependency_manifest.json": "e3a875353c97e1ee9ba43b70aaad008c9c86fb47341ffb94c0f736f13c598338",
+    "tools/verification_builder_policy.json": "23fe8dff50502a67135f6e16512b4863b18d41543fa9b98e8d0450b6abe0c6ff",
+    "tools/verification_profiles.json": "3bcd81616386498884582b228030100c33b105a92d87f209dc006ef5cce764bd"
+  },
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "statement": "This is a freeze reference, not post-repair evidence.",
+  "t41_not_issued": true
+}

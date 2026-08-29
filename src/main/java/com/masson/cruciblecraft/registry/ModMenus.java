@@ -10,6 +10,7 @@ import com.masson.cruciblecraft.content.menu.CokeOvenMenu;
 import com.masson.cruciblecraft.content.menu.CrusherMenu;
 import com.masson.cruciblecraft.content.menu.ConfiguredProcessingMachineMenu;
 import com.masson.cruciblecraft.content.menu.HopperMenu;
+import com.masson.cruciblecraft.content.menu.StorageMenu;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 
 import net.minecraft.core.registries.Registries;
@@ -36,6 +37,34 @@ public final class ModMenus {
                                             containerId,
                                             inventory,
                                             data.readBlockPos())));
+    public static final DeferredHolder<MenuType<?>, MenuType<StorageMenu>> BOOKSHELF =
+            MENUS.register(
+                    "bookshelf",
+                    () -> IMenuTypeExtension.create(
+                            (containerId, inventory, data) ->
+                                    StorageMenu.clientBookshelf(
+                                            containerId,
+                                            inventory,
+                                            data.readBlockPos())));
+    public static final DeferredHolder<MenuType<?>, MenuType<StorageMenu>> BOTTLE_CRATE =
+            MENUS.register(
+                    "bottle_crate",
+                    () -> IMenuTypeExtension.create(
+                            (containerId, inventory, data) ->
+                                    StorageMenu.clientCrate(
+                                            containerId,
+                                            inventory,
+                                            data.readBlockPos())));
+    public static final DeferredHolder<MenuType<?>, MenuType<StorageMenu>> DRAWER =
+            MENUS.register(
+                    "drawer",
+                    () -> IMenuTypeExtension.create(
+                            (containerId, inventory, data) ->
+                                    StorageMenu.clientDrawer(
+                                            containerId,
+                                            inventory,
+                                            data.readBlockPos(),
+                                            data.readVarInt())));
     public static final DeferredHolder<MenuType<?>, MenuType<CokeOvenMenu>> COKE_OVEN =
             MENUS.register(
                     "coke_oven",

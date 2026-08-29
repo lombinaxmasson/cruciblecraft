@@ -50,22 +50,15 @@ def file_sha256(path: Path) -> str:
 
 
 def atomic_write_json(path: Path, document: Mapping[str, Any]) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_name(f".{path.name}.{os.getpid()}.tmp")
-    try:
-        temporary.write_text(
-            json.dumps(
-                document,
-                indent=2,
-                ensure_ascii=False,
-                sort_keys=True,
-            ) + "\n",
-            encoding="utf-8",
-            newline="\n",
-        )
-        os.replace(temporary, path)
-    finally:
-        temporary.unlink(missing_ok=True)
+    from tools import atomic_io
+
+    payload = json.dumps(
+        document,
+        indent=2,
+        ensure_ascii=False,
+        sort_keys=True,
+    ) + "\n"
+    atomic_io.write_text(path, payload)
 
 
 def relative_path(path: Path) -> str:

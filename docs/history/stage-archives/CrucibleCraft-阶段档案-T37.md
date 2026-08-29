@@ -3,7 +3,7 @@
 > 阶段：T37 · ordinary_optional Assembler 校准与通用 compact family 底座
 > 状态：● 已关闭（`T37_READY`，2026-08-24）
 > 权威产物：[`tools/t37_readiness.json`](../../../tools/t37_readiness.json)
-> 闭卡 profile：T37 builders、`census-replay`、隔离 `cruciblecraft_t37` GameTest、`census`、`recipes`。`machines` 仍因 T12 9→13 variants 历史债务红灯，不冒充通过
+> 闭卡 profile：T37 builders、`census-replay`、隔离 `cruciblecraft_t37` GameTest、`census`、`recipes`。闭卡时 `machines` 因 T12 9→13 variants historical-currentness mismatch 红灯；后续兼容修复已解除该 T12 门，不追溯宣称 T37 当时的 machines profile 通过
 
 ## 闭卡判据
 
@@ -22,7 +22,7 @@
 - `.\gradlew.bat runGameTestServer -Pt37Recipes --no-daemon`：4/4 passed。
 - `census` profile：T15–T18 acquisition 与 `t35_census_inputs.json` 已由 builder 重建；`t35_census.json` 仅 inputs hash 过期，排除 currentness 后正文相等，已重签并重建 topology/readiness。未改写 T35 READY 正文。
 - `recipes` profile PASS。T14 Extruder 合同与 live T12 全局 datapack 计数解耦；compact `compare_gt6_recipes --check --reference-only` 通过；full GT6 replay 为 SKIP。
-- `machines` profile：`machine_crafting_readiness.json` 仅 source hash 过期，已重签。T12 `--check` 仍因 HEAD builder 期望 9 variants、live `machine_tiers` schema v3 为 13 而失败。这是 machines 轨历史债务，不是 recipes 阻塞。
+- `machines` profile：闭卡时 `machine_crafting_readiness.json` 已完成 source-hash 重签，但 T12 builder 错把 live T36 13-row catalog 当成 T12 9-row 纵切而失败。后续兼容修复改为验证 9 行历史纵切包含于 live catalog，未把 T36 的四个新增行追溯计入 T12；此处不宣称 T37 闭卡时 machines profile 曾通过。
 
 ## 交接
 

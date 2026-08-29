@@ -65,6 +65,7 @@ public final class MaterialPrefixes {
     public static final MaterialPrefix NUGGET = builtin("nugget");
     public static final MaterialPrefix GEM = builtin("gem");
     public static final MaterialPrefix TINY_DUST = builtin("tiny_dust");
+    public static final MaterialPrefix DUST_DIV72 = builtin("dust_div72");
 
     private MaterialPrefixes() {}
 

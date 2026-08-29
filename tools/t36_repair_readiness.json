@@ -1,0 +1,42 @@
+{
+  "completion_delta": 0,
+  "failed_gates": [],
+  "gates": {
+    "acquisition_snapshot_equal": true,
+    "completion_delta_zero": true,
+    "fixture_absent_from_production": true,
+    "inventory_blocking_zero": true,
+    "live_variant_count_85": true,
+    "overlay_device_iron_crucible": true,
+    "overlay_l1_lathe_invar": true,
+    "overlay_l2_iron_casing": true,
+    "preassigned_host_false": true,
+    "publication_delta_machine_shaped_only": true,
+    "r0_freeze_current": true,
+    "repair_owns_no_families": true,
+    "t36_ready_preserved": true,
+    "t43_closing_preserved": true,
+    "t44_unassigned": true,
+    "unique_active_content_card_null": true
+  },
+  "generated_by": "python tools/build_t36_repair_readiness.py",
+  "live_variant_count": 85,
+  "next_issue_id": "T44",
+  "note": "T36_REPAIR_READY proves L1/L2 machine-tier extensibility without Java second lists. It does not revoke T36_READY, expand the live 85 rows, occupy T44, or preassign Storage.",
+  "overlay_proofs": {
+    "fixture_absent_from_production": true,
+    "overlay_device_iron_crucible": true,
+    "overlay_l1_lathe_invar": true,
+    "overlay_l2_iron_casing": true
+  },
+  "owns_families": 0,
+  "preassigned_host": false,
+  "publication_delta": "machine_shaped_normalization_only",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T36_REPAIR_READY",
+  "t36_ready_preserved": true,
+  "t43_closing_gap": 3076,
+  "t44_not_issued": true,
+  "unique_active_content_card": null
+}

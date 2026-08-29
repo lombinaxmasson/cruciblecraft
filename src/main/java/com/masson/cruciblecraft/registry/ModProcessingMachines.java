@@ -274,7 +274,7 @@ public final class ModProcessingMachines {
                             PROCESSING_STATUSES));
     public static final ProcessingMachineSpec ROASTER =
             reusedT5("roaster", () -> ModRecipeMaps.ROASTER,
-                    1, 3, 1, 1, 8_000, 8_000,
+                    1, 3, 1, 1, 72_000, 72_000,
                     1, 3, 1, 1,
                     EnergyType.HEAT,
                     ProcessingMachineSpec.EnergyMode.ADJACENT);
@@ -752,9 +752,18 @@ public final class ModProcessingMachines {
                         fluidInputs,
                         fluidOutputs,
                         fluidInputCapacity,
-                        fluidOutputCapacity),
+                        fluidOutputCapacity,
+                        t5AllowsPreserveCatalyst(path)),
                 layout.buffering(),
                 layout.ui());
+    }
+
+    /**
+     * Mixer keeps the platinum catalyst; electrolyzer keeps GT6 programmed_circuit
+     * (count-0 PRESERVE). Other T5 hosts remain CONSUME-only.
+     */
+    private static boolean t5AllowsPreserveCatalyst(String path) {
+        return "mixer".equals(path) || "electrolyzer".equals(path);
     }
 
     private static ProcessingMachineSpec t5(
@@ -822,7 +831,8 @@ public final class ModProcessingMachines {
                         fluidInputs,
                         fluidOutputs,
                         fluidInputCapacity,
-                        fluidOutputCapacity),
+                        fluidOutputCapacity,
+                        t5AllowsPreserveCatalyst(path)),
                 ProcessingMachineSpec.BufferPolicy.PAUSE,
                 Gt6BasicMachineGui.ui(
                         gt6InItems,
@@ -836,6 +846,38 @@ public final class ModProcessingMachines {
                         PROCESSING_STATUSES));
     }
 
+    /**
+     * GT6 centrifuge GUI envelope used by steel/titanium/tungstensteel
+     * variants. Bronze {@link #CENTRIFUGE} stays on {@link #validateT5}.
+     */
+    public static Optional<String> validateT39CentrifugeEnvelope(GTRecipe recipe) {
+        if (recipe.itemInputs().size() > 1
+                || recipe.itemOutputs().size() > 6
+                || recipe.fluidInputs().size() > 1
+                || recipe.fluidOutputs().size() > 6) {
+            return Optional.of("t39_centrifuge_shape");
+        }
+        if (recipe.itemInputActions().stream()
+                .anyMatch(action -> action.kind() != ItemInputAction.Kind.CONSUME)) {
+            return Optional.of("t39_centrifuge_input_action");
+        }
+        if (recipe.eut() <= 0L || recipe.eut() > 4_096L) {
+            return Optional.of("t39_centrifuge_energy");
+        }
+        if (recipe.itemInputCounts().stream().anyMatch(count -> count < 0)
+                || recipe.itemOutputs().stream().anyMatch(
+                        stack -> stack.isEmpty() || stack.getCount() <= 0)
+                || recipe.outputChances().stream().anyMatch(
+                        chance -> chance <= 0 || chance > GTRecipe.GUARANTEED_CHANCE)
+                || recipe.fluidInputs().stream().anyMatch(
+                        stack -> stack.isEmpty() || stack.getAmount() > 100_000)
+                || recipe.fluidOutputs().stream().anyMatch(
+                        stack -> stack.isEmpty() || stack.getAmount() > 8_000)) {
+            return Optional.of("t39_centrifuge_amount");
+        }
+        return Optional.empty();
+    }
+
     private static Optional<String> validateT5(
             GTRecipe recipe,
             int itemInputs,
@@ -843,21 +885,21 @@ public final class ModProcessingMachines {
             int fluidInputs,
             int fluidOutputs,
             int fluidInputCapacity,
-            int fluidOutputCapacity) {
+            int fluidOutputCapacity,
+            boolean allowPreserveCatalyst) {
         if (recipe.itemInputs().size() > itemInputs
                 || recipe.itemOutputs().size() > itemOutputs
                 || recipe.fluidInputs().size() > fluidInputs
                 || recipe.fluidOutputs().size() > fluidOutputs) {
             return Optional.of("t5_recipe_shape");
         }
-        if (recipe.itemInputActions().stream()
-                .anyMatch(action -> action.kind() != ItemInputAction.Kind.CONSUME)) {
+        if (invalidT5InputActions(recipe, allowPreserveCatalyst)) {
             return Optional.of("t5_recipe_input_action");
         }
         if (recipe.eut() <= 0L || recipe.eut() > 1_024L) {
             return Optional.of("t5_recipe_energy");
         }
-        if (recipe.itemInputCounts().stream().anyMatch(count -> count <= 0 || count > 64)
+        if (recipe.itemInputCounts().stream().anyMatch(count -> count > 64)
                 || recipe.itemOutputs().stream().anyMatch(
                         stack -> stack.isEmpty() || stack.getCount() <= 0)
                 || recipe.outputChances().stream().anyMatch(
@@ -871,6 +913,25 @@ public final class ModProcessingMachines {
             return Optional.of("t5_recipe_amount");
         }
         return Optional.empty();
+    }
+
+    private static boolean invalidT5InputActions(
+            GTRecipe recipe,
+            boolean allowPreserveCatalyst) {
+        for (int index = 0; index < recipe.itemInputActions().size(); index++) {
+            ItemInputAction.Kind kind = recipe.itemInputActions().get(index).kind();
+            int count = recipe.itemInputCounts().get(index);
+            if (kind == ItemInputAction.Kind.CONSUME && count > 0) {
+                continue;
+            }
+            if (allowPreserveCatalyst
+                    && kind == ItemInputAction.Kind.PRESERVE
+                    && count == 0) {
+                continue;
+            }
+            return true;
+        }
+        return false;
     }
 
     private static ResourceLocation id(String path) {

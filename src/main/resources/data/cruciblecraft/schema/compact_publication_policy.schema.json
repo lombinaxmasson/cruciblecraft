@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/compact_publication_policy.schema.json",
+  "title": "CrucibleCraft compact publication policy",
+  "description": "Datapack policy for one compact (target_map, publication_group). Historical T37-T41 Java policies remain defaults. Undeclared groups fail closed.",
+  "type": "object",
+  "additionalProperties": false,
+    "required": [
+    "type",
+    "target_map",
+    "publication_group",
+    "policy_type",
+    "routing_schema_version",
+    "membership_root_sha256",
+    "family_count",
+    "relation_count"
+  ],
+  "properties": {
+    "type": {
+      "const": "cruciblecraft:compact_publication_policy"
+    },
+    "target_map": {
+      "type": "string",
+      "pattern": "^cruciblecraft:[a-z0-9_/]+$"
+    },
+    "publication_group": {
+      "type": "string",
+      "pattern": "^cruciblecraft:[a-z0-9_/]+$"
+    },
+    "policy_type": {
+      "enum": ["immediate", "on_demand", "hybrid"]
+    },
+    "cache_ceiling": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4096
+    },
+    "eager_stable_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "routing_schema_version": {
+      "const": "t39-shard-v1"
+    },
+    "membership_root_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "family_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "relation_count": {
+      "type": "integer",
+      "minimum": 0
+    }
+  }
+}

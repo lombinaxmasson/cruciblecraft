@@ -144,6 +144,35 @@ class RecipeLoadProjectionTest(unittest.TestCase):
                 schema=self.schema,
             )
 
+    def test_t38_reissues_deferred_roaster_without_rewriting_t13(self):
+        payload = document(copy.deepcopy(self.on_demand))
+        payload["families"][0]["family"] = "t38/roaster-wave"
+        payload["families"][0]["canonical_ids"] = ["gt.recipe.roaster"]
+        with self.assertRaises(projection.ProjectionError):
+            projection.project(
+                payload,
+                t13=self.t13,
+                policy=self.policy,
+                schema=self.schema,
+            )
+
+        payload["delivery_phase"] = "T38"
+        result = projection.project(
+            payload,
+            t13=self.t13,
+            policy=self.policy,
+            schema=self.schema,
+        )
+        reference = result["families"][0]["t13_references"][0]
+        self.assertEqual("gt.recipe.roaster", reference["canonical_id"])
+        self.assertEqual("in_scope", reference["classification"])
+        original = next(
+            row
+            for row in self.t13["rows"]
+            if row.get("normalized_row_key") == "gt.recipe.roaster"
+        )
+        self.assertEqual("deferred_with_reason", original["classification"])
+
     def test_each_strategy_keeps_eager_and_lazy_ledgers_separate(self):
         result = projection.project(
             document(

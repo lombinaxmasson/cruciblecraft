@@ -1,6 +1,9 @@
 package com.masson.cruciblecraft.machine.processing;
 
+import java.util.List;
 import java.util.Objects;
+
+import com.masson.cruciblecraft.registry.ModProcessingMachines;
 
 import net.minecraft.resources.ResourceLocation;
 
@@ -108,23 +111,73 @@ public final class MachineVariant {
         Objects.requireNonNull(kind, "kind");
         Objects.requireNonNull(tierBand, "tierBand");
         ProcessingMachineSpec base = kind.behavior();
+        ProcessingMachineSpec.EnergySpec energy = new ProcessingMachineSpec.EnergySpec(
+                tierBand.energyType(),
+                base.energy().mode(),
+                base.energy().mode()
+                                == ProcessingMachineSpec.EnergyMode.BUFFERED
+                        ? tierBand.energyCapacity()
+                        : 0L,
+                tierBand.inputMaximum());
+        if (usesT39CentrifugeEnvelope(id, kind)) {
+            return t39CentrifugeVariantSpec(id, base, energy);
+        }
         return new ProcessingMachineSpec(
                 id,
                 base.recipeMapId(),
                 base.recipeMap(),
                 base.items(),
                 base.fluids(),
-                new ProcessingMachineSpec.EnergySpec(
-                        tierBand.energyType(),
-                        base.energy().mode(),
-                        base.energy().mode()
-                                        == ProcessingMachineSpec.EnergyMode.BUFFERED
-                                ? tierBand.energyCapacity()
-                                : 0L,
-                        tierBand.inputMaximum()),
+                energy,
                 base.sidedIo(),
                 base.validator(),
                 base.buffering(),
                 base.ui());
+    }
+
+    /**
+     * Steel/titanium/tungstensteel single-block centrifuges execute the GT6
+     * 6-fluid-out / 100,000 mB envelope. Bronze {@code cruciblecraft:centrifuge}
+     * and the T15 large controller keep the T5 2-out / 4,000 mB host.
+     */
+    private static boolean usesT39CentrifugeEnvelope(
+            ResourceLocation id,
+            MachineKindSpec kind) {
+        return "centrifuge".equals(kind.id().getPath()) && !id.equals(kind.id());
+    }
+
+    private static ProcessingMachineSpec t39CentrifugeVariantSpec(
+            ResourceLocation id,
+            ProcessingMachineSpec base,
+            ProcessingMachineSpec.EnergySpec energy) {
+        int itemInputs = base.items().inputs().size();
+        int itemOutputs = base.items().outputs().size();
+        int fluidInputs = 1;
+        int fluidOutputs = 6;
+        List<ProcessingMachineSpec.TankSpec> inputTanks =
+                java.util.stream.IntStream.range(0, fluidInputs)
+                        .mapToObj(index -> new ProcessingMachineSpec.TankSpec(
+                                index, 100_000))
+                        .toList();
+        List<ProcessingMachineSpec.TankSpec> outputTanks =
+                java.util.stream.IntStream.range(
+                                fluidInputs, fluidInputs + fluidOutputs)
+                        .mapToObj(index -> new ProcessingMachineSpec.TankSpec(
+                                index, 8_000))
+                        .toList();
+        return new ProcessingMachineSpec(
+                id,
+                base.recipeMapId(),
+                base.recipeMap(),
+                base.items(),
+                new ProcessingMachineSpec.TankLayout(inputTanks, outputTanks),
+                energy,
+                base.sidedIo(),
+                ModProcessingMachines::validateT39CentrifugeEnvelope,
+                base.buffering(),
+                Gt6BasicMachineGui.ui(
+                        1, 6, 1, 6,
+                        itemInputs, itemOutputs, fluidInputs, fluidOutputs,
+                        base.ui().statuses()));
     }
 }

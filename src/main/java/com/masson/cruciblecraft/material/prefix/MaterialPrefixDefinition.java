@@ -141,7 +141,7 @@ public record MaterialPrefixDefinition(
                         value -> !value.matches("[a-z0-9_.-]+:[a-z0-9_./-]+"))) {
             throw new IllegalArgumentException("Generation flags and capabilities must be namespaced");
         }
-        if (aliases.stream().anyMatch(alias -> !alias.matches("[a-z0-9_.:/-]+"))) {
+        if (aliases.stream().anyMatch(alias -> !alias.matches("[A-Za-z0-9_.:/-]+"))) {
             throw new IllegalArgumentException("Invalid alias for prefix " + prefix.id());
         }
         if (aliases.stream().distinct().count() != aliases.size()) {

@@ -1,0 +1,147 @@
+{
+  "answers": {
+    "must_not_enter_t45_lock": true,
+    "ordinary_block_object_reusable": [
+      "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0114",
+      "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0115"
+    ],
+    "ordinary_block_object_reusable_count": 2,
+    "rows_depending_on_mte_bath_fluid_or_treatment": 1346
+  },
+  "bath_family_count": 1348,
+  "blocked_examples": [
+    {
+      "current_owner": "coordination/multi_axis",
+      "family_id": "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0000",
+      "missing_fluids": false,
+      "unique_kinds": [
+        "gt_prefix:arrowGtPlastic"
+      ],
+      "unique_objects": [
+        "gregtech:gt.meta.arrowGtPlastic@260",
+        "gregtech:gt.meta.arrowGtPlastic@790",
+        "gregtech:gt.meta.arrowGtPlastic@820",
+        "gregtech:gt.meta.arrowGtPlastic@8221"
+      ]
+    },
+    {
+      "current_owner": "coordination/multi_axis",
+      "family_id": "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0001",
+      "missing_fluids": false,
+      "unique_kinds": [
+        "gt_prefix:arrowGtWood"
+      ],
+      "unique_objects": [
+        "gregtech:gt.meta.arrowGtWood@260",
+        "gregtech:gt.meta.arrowGtWood@790",
+        "gregtech:gt.meta.arrowGtWood@820",
+        "gregtech:gt.meta.arrowGtWood@8221"
+      ]
+    },
+    {
+      "current_owner": "acquisition/b0",
+      "family_id": "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0002",
+      "missing_fluids": false,
+      "unique_kinds": [],
+      "unique_objects": []
+    },
+    {
+      "current_owner": "coordination/multi_axis",
+      "family_id": "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0006",
+      "missing_fluids": false,
+      "unique_kinds": [
+        "gt_prefix:casingSmall"
+      ],
+      "unique_objects": [
+        "gregtech:gt.meta.casingSmall@260",
+        "gregtech:gt.meta.casingSmall@790",
+        "gregtech:gt.meta.casingSmall@820",
+        "gregtech:gt.meta.casingSmall@8221"
+      ]
+    },
+    {
+      "current_owner": "coordination/multi_axis",
+      "family_id": "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0007",
+      "missing_fluids": false,
+      "unique_kinds": [
+        "gt_prefix:chain"
+      ],
+      "unique_objects": [
+        "gregtech:gt.meta.chain@260",
+        "gregtech:gt.meta.chain@790",
+        "gregtech:gt.meta.chain@820",
+        "gregtech:gt.meta.chain@8221"
+      ]
+    },
+    {
+      "current_owner": "acquisition/b0",
+      "family_id": "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0008",
+      "missing_fluids": false,
+      "unique_kinds": [],
+      "unique_objects": []
+    },
+    {
+      "current_owner": "acquisition/b0",
+      "family_id": "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0009",
+      "missing_fluids": false,
+      "unique_kinds": [],
+      "unique_objects": []
+    },
+    {
+      "current_owner": "acquisition/b0",
+      "family_id": "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0010",
+      "missing_fluids": false,
+      "unique_kinds": [],
+      "unique_objects": []
+    }
+  ],
+  "current_owner_counts": {
+    "acquisition/b0": 33,
+    "coordination/multi_axis": 402,
+    "identity_mapping/unmapped": 1,
+    "material_expression/fluid": 78,
+    "material_expression/form": 7,
+    "object_expression/gt_prefix:crushedPurifiedTiny": 1,
+    "object_expression/gt_prefix:ingotHot": 1,
+    "object_expression/multiitem": 19,
+    "recipe_wave/bath": 3,
+    "recycling/evidence_needed": 803
+  },
+  "fluid_missing_count": 1100,
+  "generated_by": "python tools/build_t45_bath_mte_audit.py",
+  "mte_kind_count": 803,
+  "note": "Read-only diagnostic. Bath families stay on their current owners. None may be rewritten into object_expression/block to clear this audit.",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T45_BATH_MTE_AUDIT",
+  "unique_kind_counts": {
+    "block": 236,
+    "gt_prefix:arrowGtPlastic": 1,
+    "gt_prefix:arrowGtWood": 1,
+    "gt_prefix:billet": 1,
+    "gt_prefix:casingSmall": 1,
+    "gt_prefix:chain": 1,
+    "gt_prefix:chunkGt": 1,
+    "gt_prefix:crushedPurifiedTiny": 13,
+    "gt_prefix:gemChipped": 1,
+    "gt_prefix:gemExquisite": 1,
+    "gt_prefix:gemFlawed": 1,
+    "gt_prefix:gemFlawless": 1,
+    "gt_prefix:gemLegendary": 1,
+    "gt_prefix:ingotDouble": 1,
+    "gt_prefix:ingotHot": 1,
+    "gt_prefix:ingotQuadruple": 1,
+    "gt_prefix:ingotQuintuple": 1,
+    "gt_prefix:ingotTriple": 1,
+    "gt_prefix:lens": 1,
+    "gt_prefix:minecartWheels": 1,
+    "gt_prefix:plateCurved": 1,
+    "gt_prefix:plateGemTiny": 1,
+    "gt_prefix:plateTiny": 1,
+    "gt_prefix:round": 1,
+    "gt_prefix:scrapGt": 1,
+    "mte": 803,
+    "multiitem": 60,
+    "tool_head": 36
+  }
+}

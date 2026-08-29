@@ -1,0 +1,21 @@
+{
+  "artifact": "T42_OWNER_PRE_FREEZE",
+  "base_artifact_hashes": {
+    "tools/t42_blocker_overlay.json": "fe024315269bf2b45e3eae2fcf1a04abb14e9ef83c0d5068b3dfe6a0bd4cd373",
+    "tools/t42_card_topology.json": "4ea6cb4a3f0434f5542166af9333cae09fc1edea1b24eed976defce4fc439bfe",
+    "tools/t42_disposition_lock.json": "6d24e089a75351f0080bcded9f76265e1388ebbcff82786c96fc368d74fd4f4b",
+    "tools/t42_gap_partition.json": "53608be4ce32c63e05d2a256b7f4cf884b6e310940042e74ddb7b1fc9ed58d67",
+    "tools/t42_repair_readiness.json": "9d7eb244b9b120e299c3f31ba1d86a133c59f1839a0c01eeec6fc0e18e235786"
+  },
+  "base_closing_execution_gap": 5300,
+  "evidence_scope": "post_t42_repair",
+  "generated_by": "python tools/build_t42_owner_pre_freeze.py",
+  "note": "Write-once freeze for the repaired T42 closing state. T42-Owner does not rewrite T42's historical bucket/lock artifacts; it adds an owner-track overlay over their retained 5,300-family gap.",
+  "owns_families": 0,
+  "publication_delta": 0,
+  "reference_kind": "owner_partition_input_freeze",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "t42_repair_status": "T42_REPAIR_READY",
+  "t43_not_issued": true
+}

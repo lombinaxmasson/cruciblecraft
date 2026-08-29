@@ -35,6 +35,23 @@ import com.masson.cruciblecraft.content.block.TankBlock;
 import com.masson.cruciblecraft.content.block.MultiblockPortBlock;
 import com.masson.cruciblecraft.content.block.ProcessingMachineBlock;
 import com.masson.cruciblecraft.content.block.HopperBlock;
+import com.masson.cruciblecraft.content.block.BookshelfBlock;
+import com.masson.cruciblecraft.content.block.BottleCrateBlock;
+import com.masson.cruciblecraft.content.block.DrawerBlock;
+import com.masson.cruciblecraft.content.block.LockerBlock;
+import com.masson.cruciblecraft.content.block.MassStorageBlock;
+import com.masson.cruciblecraft.content.block.StorageHostBlock;
+import com.masson.cruciblecraft.content.block.StorageInserterBlock;
+import com.masson.cruciblecraft.content.block.GtBlockObjectBaleBlock;
+import com.masson.cruciblecraft.content.block.GtBlockObjectBarsBlock;
+import com.masson.cruciblecraft.content.block.GtBlockObjectBlock;
+import com.masson.cruciblecraft.content.block.GtBlockObjectCFoamFreshBlock;
+import com.masson.cruciblecraft.content.block.GtBlockObjectLogBlock;
+import com.masson.cruciblecraft.content.block.GtBlockObjectRailBlock;
+import com.masson.cruciblecraft.content.block.GtBlockObjectSlabBlock;
+import com.masson.cruciblecraft.content.block.GtBlockObjectSpikeBlock;
+import com.masson.cruciblecraft.content.block.GtStoneBlock;
+import com.masson.cruciblecraft.content.block.GtStoneSlabBlock;
 import com.masson.cruciblecraft.content.block.DustFunnelBlock;
 import com.masson.cruciblecraft.content.block.RotationalAxleBlock;
 import com.masson.cruciblecraft.content.block.RotationalGearboxBlock;
@@ -46,14 +63,21 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
+import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariant;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
+import com.masson.cruciblecraft.content.storage.StorageBehaviorProfile;
+import com.masson.cruciblecraft.content.storage.StorageVariant;
+import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.worldgen.OreHostVariantCatalog.Host;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -260,6 +284,12 @@ public final class ModBlocks {
                     registerTieredProcessingBlocks();
     private static final Map<ResourceLocation, DeferredBlock<HopperBlock>>
             HOPPER_BLOCKS = registerHopperBlocks();
+    private static final Map<ResourceLocation, DeferredBlock<Block>>
+            GT_STONE_BLOCKS = registerGtStoneBlocks();
+    private static final Map<ResourceLocation, DeferredBlock<Block>>
+            GT_BLOCK_OBJECT_BLOCKS = registerGtBlockObjectBlocks();
+    private static final Map<ResourceLocation, DeferredBlock<? extends StorageHostBlock>>
+            STORAGE_BLOCKS = registerStorageBlocks();
     public static final DeferredBlock<DustFunnelBlock> STEEL_DUST_FUNNEL =
             BLOCKS.register(
                     "steel_dust_funnel",
@@ -719,9 +749,237 @@ public final class ModBlocks {
         return HOPPER_BLOCKS.values();
     }
 
+    private static Map<ResourceLocation, DeferredBlock<Block>>
+            registerGtStoneBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<Block>> blocks =
+                new LinkedHashMap<>();
+        for (GtStoneCatalog.Variant variant : GtStoneCatalog.variants()) {
+            DeferredBlock<Block> block = BLOCKS.register(
+                    variant.registryPath(),
+                    () -> variant.slab()
+                            ? new GtStoneSlabBlock(variant, gtStoneProperties())
+                            : new GtStoneBlock(variant, gtStoneProperties()));
+            if (blocks.put(variant.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate GT stone block " + variant.id());
+            }
+        }
+        if (blocks.size() != GtStoneCatalog.VARIANT_COUNT) {
+            throw new IllegalStateException(
+                    "GT stone registration drifted from "
+                            + GtStoneCatalog.VARIANT_COUNT
+                            + " variants");
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<Block>>
+            gtStoneBlocksById() {
+        return GT_STONE_BLOCKS;
+    }
+
+    public static Collection<DeferredBlock<Block>> gtStoneBlocks() {
+        return GT_STONE_BLOCKS.values();
+    }
+
+    private static Map<ResourceLocation, DeferredBlock<Block>>
+            registerGtBlockObjectBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<Block>> blocks =
+                new LinkedHashMap<>();
+        for (GtBlockObjectCatalog.Variant variant : GtBlockObjectCatalog.variants()) {
+            DeferredBlock<Block> block = BLOCKS.register(
+                    variant.registryPath(),
+                    () -> createGtBlockObject(variant));
+            if (blocks.put(variant.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate GT block-object block " + variant.id());
+            }
+        }
+        if (blocks.size() != GtBlockObjectCatalog.VARIANT_COUNT) {
+            throw new IllegalStateException(
+                    "GT block-object registration drifted from "
+                            + GtBlockObjectCatalog.VARIANT_COUNT
+                            + " variants");
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    private static Block createGtBlockObject(GtBlockObjectCatalog.Variant variant) {
+        if (variant.slab()) {
+            return new GtBlockObjectSlabBlock(variant, gtBlockObjectProperties(variant));
+        }
+        if (variant.log()) {
+            return new GtBlockObjectLogBlock(variant, gtBlockObjectLogProperties(variant));
+        }
+        if (variant.bars()) {
+            return new GtBlockObjectBarsBlock(
+                    variant,
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BARS));
+        }
+        if (variant.rail()) {
+            return new GtBlockObjectRailBlock(
+                    variant, BlockBehaviour.Properties.ofFullCopy(Blocks.RAIL));
+        }
+        if (variant.spike()) {
+            return new GtBlockObjectSpikeBlock(variant, gtBlockObjectSpikeProperties());
+        }
+        if (variant.bale()) {
+            return new GtBlockObjectBaleBlock(
+                    variant, BlockBehaviour.Properties.ofFullCopy(Blocks.HAY_BLOCK));
+        }
+        if (variant.cfoamFresh()) {
+            return new GtBlockObjectCFoamFreshBlock(
+                    variant, gtBlockObjectFreshCFoamProperties());
+        }
+        return new GtBlockObjectBlock(variant, gtBlockObjectProperties(variant));
+    }
+
+    private static BlockBehaviour.Properties gtBlockObjectProperties(
+            GtBlockObjectCatalog.Variant variant) {
+        if (variant.cfoam()) {
+            return BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.WOOL)
+                    .strength(0.8F)
+                    .sound(SoundType.WOOL);
+        }
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.STONE)
+                .strength(1.5F, 6.0F)
+                .requiresCorrectToolForDrops()
+                .sound(SoundType.STONE);
+    }
+
+    private static BlockBehaviour.Properties gtBlockObjectLogProperties(
+            GtBlockObjectCatalog.Variant variant) {
+        BlockBehaviour.Properties properties = BlockBehaviour.Properties.of()
+                .mapColor(MapColor.WOOD)
+                .strength(2.0F)
+                .sound(SoundType.WOOD);
+        if (!variant.fireproof()) {
+            properties = properties.ignitedByLava();
+        }
+        return properties;
+    }
+
+    private static BlockBehaviour.Properties gtBlockObjectSpikeProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.METAL)
+                .strength(5.0F, 6.0F)
+                .requiresCorrectToolForDrops()
+                .sound(SoundType.METAL);
+    }
+
+    private static BlockBehaviour.Properties gtBlockObjectFreshCFoamProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.WOOL)
+                .strength(0.3F)
+                .sound(SoundType.SLIME_BLOCK)
+                .noOcclusion()
+                .friction(0.8F);
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<Block>>
+            gtBlockObjectBlocksById() {
+        return GT_BLOCK_OBJECT_BLOCKS;
+    }
+
+    public static Collection<DeferredBlock<Block>> gtBlockObjectBlocks() {
+        return GT_BLOCK_OBJECT_BLOCKS.values();
+    }
+
+    private static BlockBehaviour.Properties gtStoneProperties() {
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.STONE)
+                .strength(1.5F, 6.0F)
+                .requiresCorrectToolForDrops()
+                .sound(SoundType.STONE);
+    }
+
     public static Block[] hopperBlockArray() {
         return HOPPER_BLOCKS.values().stream()
                 .map(DeferredBlock::get)
+                .toArray(Block[]::new);
+    }
+
+    private static Map<ResourceLocation, DeferredBlock<? extends StorageHostBlock>>
+            registerStorageBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<? extends StorageHostBlock>>
+                blocks = new LinkedHashMap<>();
+        for (StorageVariant variant : StorageVariantCatalog.variants()) {
+            DeferredBlock<? extends StorageHostBlock> block = BLOCKS.register(
+                    variant.path(),
+                    () -> createStorageBlock(variant));
+            if (blocks.put(variant.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate storage block " + variant.id());
+            }
+        }
+        if (blocks.size() != StorageVariantCatalog.TOTAL_COUNT) {
+            throw new IllegalStateException(
+                    "Storage registration drifted from "
+                            + StorageVariantCatalog.TOTAL_COUNT
+                            + " variants");
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
+    private static StorageHostBlock createStorageBlock(StorageVariant variant) {
+        BlockBehaviour.Properties properties = storageProperties(variant);
+        return switch (variant.behavior()) {
+            case BOOKSHELF -> new BookshelfBlock(variant, properties);
+            case BOTTLE_CRATE -> new BottleCrateBlock(variant, properties);
+            case DRAWER -> new DrawerBlock(variant, properties);
+            case LOCKER, LOCKER_CHARGING -> new LockerBlock(variant, properties);
+            case MASS_STORAGE, MASS_STORAGE_LOGISTICS ->
+                    new MassStorageBlock(variant, properties);
+            case STORAGE_INSERTER -> new StorageInserterBlock(variant, properties);
+        };
+    }
+
+    private static BlockBehaviour.Properties storageProperties(
+            StorageVariant variant) {
+        boolean wood = variant.plankIndex() != null
+                || "mass_storage_barrel".equals(variant.family())
+                || "mass_storage_box".equals(variant.family());
+        return BlockBehaviour.Properties.of()
+                .mapColor(wood ? MapColor.WOOD : MapColor.METAL)
+                .strength(wood ? 2.0F : 3.5F, wood ? 2.0F : 8.0F)
+                .requiresCorrectToolForDrops()
+                .sound(wood ? SoundType.WOOD : SoundType.METAL);
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<? extends StorageHostBlock>>
+            storageBlocksById() {
+        return STORAGE_BLOCKS;
+    }
+
+    public static Collection<DeferredBlock<? extends StorageHostBlock>>
+            variantStorageBlocks() {
+        return STORAGE_BLOCKS.values();
+    }
+
+    public static Block[] storageBlockArray(StorageBehaviorProfile profile) {
+        return StorageVariantCatalog.of(profile).stream()
+                .map(variant -> STORAGE_BLOCKS.get(variant.id()).get())
+                .toArray(Block[]::new);
+    }
+
+    public static Block[] lockerBlockArray() {
+        return java.util.stream.Stream.concat(
+                        StorageVariantCatalog.of(StorageBehaviorProfile.LOCKER).stream(),
+                        StorageVariantCatalog.of(
+                                StorageBehaviorProfile.LOCKER_CHARGING).stream())
+                .map(variant -> STORAGE_BLOCKS.get(variant.id()).get())
+                .toArray(Block[]::new);
+    }
+
+    public static Block[] massStorageBlockArray() {
+        return java.util.stream.Stream.concat(
+                        StorageVariantCatalog.of(
+                                StorageBehaviorProfile.MASS_STORAGE).stream(),
+                        StorageVariantCatalog.of(
+                                StorageBehaviorProfile.MASS_STORAGE_LOGISTICS).stream())
+                .map(variant -> STORAGE_BLOCKS.get(variant.id()).get())
                 .toArray(Block[]::new);
     }
 

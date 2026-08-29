@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.invalid/schema/material-form-authority.json",
+  "title": "Material form authority",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "sources",
+    "java_overlay_sections",
+    "typed_ore_denominators"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "status": { "const": "MATERIAL_FORM_AUTHORITY" },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "path",
+          "gate_section",
+          "owner",
+          "extra_factual_forms",
+          "required_factual_prereqs",
+          "java_runtime_visible"
+        ],
+        "properties": {
+          "id": { "type": "string" },
+          "path": { "type": "string" },
+          "gate_section": { "type": "string" },
+          "owner": { "type": "string" },
+          "field": { "type": "string" },
+          "extra_factual_forms": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "required_factual_prereqs": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          },
+          "java_runtime_visible": { "type": "boolean" },
+          "source_hash": { "type": "string" }
+        }
+      }
+    },
+    "java_overlay_sections": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "typed_ore_denominators": {
+      "type": "object",
+      "required": [
+        "factual_ore_materials",
+        "registered_ore_materials",
+        "t38_acquisition_ore_delta",
+        "t5_semantic_vein_ledger"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

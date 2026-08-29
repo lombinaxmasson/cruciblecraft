@@ -2,7 +2,9 @@ package com.masson.cruciblecraft.datagen;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
+import com.masson.cruciblecraft.content.item.GtWoodCatalog;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
+import com.masson.cruciblecraft.machine.processing.MachineCasingCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 
 import net.minecraft.data.PackOutput;
@@ -29,19 +31,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedCc("coal_coke");
         generatedCc("match");
         generatedCc("programmed_circuit");
-        generatedCc("bronze_double_machine_casing");
-        generatedCc("steel_double_machine_casing");
-        generatedCc("titanium_double_machine_casing");
         generatedMachineItem("fuel_engine", "front");
         generatedMachineItem("burning_gas_generator", "front");
-        generatedCc("steel_galvanized_machine_casing");
-        generatedCc("aluminium_machine_casing");
-        generatedCc("stainless_steel_machine_casing");
-        generatedCc("chromium_machine_casing");
-        generatedCc("titanium_machine_casing");
-        generatedCc("tungstensteel_double_machine_casing");
-        generatedCc("invar_double_machine_casing");
-        generatedCc("tungsten_carbide_double_machine_casing");
+        MachineCasingCatalog.casings().forEach(casing ->
+                generatedCc(casing.id().getPath()));
         generatedCc("creosote_bucket");
         generatedCc("steam_bucket");
         generatedCc("portable_fluid_tank");
@@ -58,6 +51,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedCc("unknown_material");
         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                 generatedCc(shape.registryPath()));
+        GtWoodCatalog.DEFINITIONS.forEach(wood ->
+                gtWood(wood.registryPath()));
         ToolPatternCatalog.DEFINITIONS.forEach(pattern ->
                 generatedCc(pattern.registryPath()));
         // layer0 = tinted metal head; later layers stay untinted (handles/overlays).
@@ -98,6 +93,11 @@ public class ModItemModelProvider extends ItemModelProvider {
                     pipe.registryName(),
                     modLoc("pipe/" + modelKey + "_item"));
         });
+    }
+
+    private void gtWood(String name) {
+        withExistingParent(name, mcLoc("item/generated"))
+                .texture("layer0", mcLoc("block/oak_planks"));
     }
 
     private void generatedCc(String name) {

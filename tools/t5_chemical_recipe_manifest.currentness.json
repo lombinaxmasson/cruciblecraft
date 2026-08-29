@@ -1,0 +1,39 @@
+{
+  "artifact": "tools/t5_chemical_recipe_manifest.json",
+  "artifact_file_sha256": "ec84a77a8bac3cd0443b2a7fbf2c964db6ed9a0c265c5e93742daa33a4dc2392",
+  "builder_sha256": "dd7ecc38e2cb9d092329f65c483a8320b75a19accf1e562e9d094018f09fc2ff",
+  "dependency_semantic_roots": {
+    "src/main/resources/data/cruciblecraft/material_registration_gate.json": {
+      "kind": "material_registration_gate",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "fba3b60e2a076810ec3b50f59b0153e2f1206da690420b715142f541a32ead26"
+    },
+    "src/t5_chemical_generated/resources/data/cruciblecraft/recipe/t5": {
+      "kind": "datapack_recipe_tree",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "9e6fac9c4639e299643b89228de85f102bf26e987dc4d8d5fd0515211b882452"
+    },
+    "tools/t5_chemical_readiness.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "e1ddd23b0123268c0e099ce97406188435a447c4d3befafbe4cff935549cedce"
+    },
+    "tools/t5_distillery_projection.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "b85695a5b8b6fb36cc67b1ee53c71f2f01dcae0a458a5075b2935d61229ff1f6"
+    }
+  },
+  "envelope_sha256": "564c84dac9b5fb08bb9ca722dc1d966d734cef49ba62c64a92238d7941f42b84",
+  "generated_by": "python tools/currentness.py",
+  "giant_body": false,
+  "schema_version": 2,
+  "semantic_projection_kind": "json_ledger",
+  "semantic_projection_version": 1,
+  "semantic_root_sha256": "430149ce6ad5298ec26e69d2ebb392635470db9d31c861e935cdb357e933b08a",
+  "source_replay_receipt": {
+    "proof_tier": "compact",
+    "status": "unavailable"
+  },
+  "status": "CURRENTNESS_SIDECAR"
+}

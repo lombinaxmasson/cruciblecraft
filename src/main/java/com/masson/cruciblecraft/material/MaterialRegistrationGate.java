@@ -3,10 +3,13 @@ package com.masson.cruciblecraft.material;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -19,6 +22,12 @@ import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 public final class MaterialRegistrationGate {
     private static final String RESOURCE =
             "/data/cruciblecraft/material_registration_gate.json";
+    /** Schema v1 fallback only. Schema v2 reads java_overlay_sections from the gate. */
+    private static final List<String> SCHEMA_V1_OVERLAY_SECTIONS = List.of(
+            "t38_source_backed_acquisition_forms",
+            "t38_required_forms",
+            "t39_required_forms",
+            "t40_required_forms");
 
     private MaterialRegistrationGate() {}
 
@@ -39,12 +48,14 @@ public final class MaterialRegistrationGate {
             throw new IllegalStateException(
                     "Failed to load committed material registration gate", exception);
         }
-        if (root.get("schema_version").getAsInt() != 1
+        int schemaVersion = root.get("schema_version").getAsInt();
+        if ((schemaVersion != 1 && schemaVersion != 2)
                 || !root.has("materials")
                 || !root.get("materials").isJsonObject()) {
             throw new IllegalStateException("Unsupported material registration gate schema");
         }
 
+        List<String> overlaySections = overlaySections(root, schemaVersion);
         LinkedHashMap<String, List<MaterialPrefix>> registered = new LinkedHashMap<>();
         for (Map.Entry<String, JsonElement> entry
                 : root.getAsJsonObject("materials").entrySet()) {
@@ -63,9 +74,12 @@ public final class MaterialRegistrationGate {
                         "Material registration gate contains duplicate forms for "
                                 + definition.id());
             }
-            if (!definition.forms().containsAll(forms)) {
+            Set<MaterialPrefix> allowed = new HashSet<>(definition.forms());
+            allowed.addAll(sourceBackedOverlayForms(root, definition.id(), overlaySections));
+            if (!allowed.containsAll(forms)) {
                 throw new IllegalStateException(
-                        "Material registration gate exceeds factual forms for "
+                        "Material registration gate exceeds factual or source-backed "
+                                + "forms for "
                                 + definition.id());
             }
             if (definition.metadataOnly() && !forms.isEmpty()) {
@@ -80,5 +94,42 @@ public final class MaterialRegistrationGate {
             registered.putIfAbsent(definition.id(), definition.forms());
         }
         return java.util.Collections.unmodifiableMap(registered);
+    }
+
+    private static List<String> overlaySections(JsonObject root, int schemaVersion) {
+        if (schemaVersion == 1) {
+            return SCHEMA_V1_OVERLAY_SECTIONS;
+        }
+        if (!root.has("java_overlay_sections")
+                || !root.get("java_overlay_sections").isJsonArray()) {
+            throw new IllegalStateException(
+                    "Material registration gate schema v2 is missing java_overlay_sections");
+        }
+        List<String> sections = new ArrayList<>();
+        root.getAsJsonArray("java_overlay_sections").forEach(element ->
+                sections.add(element.getAsString()));
+        if (sections.isEmpty()) {
+            throw new IllegalStateException(
+                    "Material registration gate schema v2 has empty java_overlay_sections");
+        }
+        return List.copyOf(sections);
+    }
+
+    private static Set<MaterialPrefix> sourceBackedOverlayForms(
+            JsonObject root, String materialId, List<String> overlaySections) {
+        Set<MaterialPrefix> overlay = new HashSet<>();
+        for (String section : overlaySections) {
+            if (!root.has(section) || !root.get(section).isJsonObject()) {
+                continue;
+            }
+            JsonObject formsByMaterial = root.getAsJsonObject(section);
+            if (!formsByMaterial.has(materialId)
+                    || !formsByMaterial.get(materialId).isJsonArray()) {
+                continue;
+            }
+            formsByMaterial.getAsJsonArray(materialId).forEach(element ->
+                    overlay.add(MaterialPrefixCatalog.require(element.getAsString())));
+        }
+        return overlay;
     }
 }

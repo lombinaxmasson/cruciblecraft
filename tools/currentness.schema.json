@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "currentness.schema.json",
+  "title": "CrucibleCraft currentness sidecar",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "artifact",
+    "semantic_projection_kind",
+    "semantic_projection_version",
+    "artifact_file_sha256",
+    "semantic_root_sha256",
+    "envelope_sha256",
+    "dependency_semantic_roots",
+    "source_replay_receipt"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": { "const": 2 },
+    "status": { "const": "CURRENTNESS_SIDECAR" },
+    "artifact": { "type": "string" },
+    "giant_body": { "type": "boolean" },
+    "semantic_projection_kind": {
+      "type": "string",
+      "enum": [
+        "material_registration_gate",
+        "json_ledger",
+        "datapack_recipe_tree"
+      ]
+    },
+    "semantic_projection_version": { "type": "integer", "const": 1 },
+    "artifact_file_sha256": { "type": "string", "minLength": 64, "maxLength": 64 },
+    "semantic_root_sha256": { "type": "string", "minLength": 64, "maxLength": 64 },
+    "builder_sha256": {
+      "type": ["string", "null"],
+      "minLength": 64,
+      "maxLength": 64
+    },
+    "envelope_sha256": { "type": "string", "minLength": 64, "maxLength": 64 },
+    "dependency_semantic_roots": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["kind", "semantic_projection_version", "semantic_root_sha256"],
+        "properties": {
+          "kind": { "type": "string" },
+          "semantic_projection_version": { "type": "string" },
+          "semantic_root_sha256": { "type": "string", "minLength": 64, "maxLength": 64 }
+        }
+      }
+    },
+    "source_replay_receipt": {
+      "type": "object",
+      "required": ["status", "proof_tier"],
+      "properties": {
+        "status": { "enum": ["unavailable", "bound", "stale"] },
+        "proof_tier": { "type": "string" }
+      }
+    },
+    "generated_by": { "type": "string" }
+  }
+}

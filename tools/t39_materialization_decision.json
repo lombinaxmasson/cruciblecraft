@@ -1,0 +1,246 @@
+{
+  "currentness": {
+    "builder_path": "tools/build_t39_recipe_load_benchmark.py",
+    "builder_sha256": "c5ca4623917acfb838851067314c1939c1f6749794d4013053edda57d56ee4a9",
+    "measurement_sha256": "340ca243f145060f7c8185608ed0a6fd625d4a0b02e7bde5d9447b0e61a019da",
+    "policy_path": "tools/t39_materialization_policy.json",
+    "policy_sha256": "c130112faf7fa1b7cec45332e5ef47a0129fbcb66ff64b8088e248b3ca7321c2",
+    "production_lock_sha256": "b9034b2950a41b8905ef6668de793d04136432070cd238e577754148d7aa8600"
+  },
+  "decision": {
+    "algorithm": {
+      "card_aggregate_required": true,
+      "composite_score_forbidden": true,
+      "correctness_gates": [
+        "field_equivalence",
+        "full_enumeration",
+        "client_consistency",
+        "player_execution"
+      ],
+      "diagnostic_5x_20x_must_not_fill_1x": true,
+      "eager_margin": "If every survivor is inside the cumulative eager soft budget, treat eager_margin as tied and continue.",
+      "gate_order": [
+        "correctness",
+        "hard_ceiling",
+        "cumulative_soft_budget"
+      ],
+      "hard_ceiling_fail_eliminates": true,
+      "implementation_complexity_order": [
+        "immediate",
+        "on_demand",
+        "hybrid"
+      ],
+      "max_interval_soft_budget_does_not_eliminate": [
+        "lookup_candidate_count"
+      ],
+      "max_interval_soft_note": "T14 lookup_candidate_count is max_interval across groups. The Extruder-calibrated soft 64 is recorded as SOFT_BUDGET_EXCEEDED and must not copy T37/T38 envelopes as a T39 veto. Hard ceiling 128 is not raised.",
+      "pending_axis_zero_fill_forbidden": true,
+      "per_group_winners_required": true,
+      "production_candidate_must_sit_inside_cumulative_soft_budget": true,
+      "production_guard": "Emit production winners only when 1x=32 logical rows are actually measured per group and card aggregate, every ranking axis used is PASS (not PENDING), and winners are derived by tools/build_t39_recipe_load_benchmark.py.",
+      "ranking_logical_rows": 32,
+      "ranking_order_after_all_gates_pass": [
+        "eager_margin",
+        "retained_memory",
+        "reload_index",
+        "lookup",
+        "sync",
+        "implementation_complexity"
+      ],
+      "ranking_scale": "1x"
+    },
+    "card_aggregate_winner": "on_demand",
+    "composite_score_used": false,
+    "diagnostic_5x_20x_used_for_1x": false,
+    "group_winners": {
+      "multi": "hybrid",
+      "singleton": "on_demand"
+    },
+    "production_blockers": [],
+    "ranking_logical_rows": 32,
+    "ranking_scale": "1x",
+    "scenarios": {
+      "card": {
+        "eliminated": {},
+        "logical_rows": 32,
+        "production_winner": "on_demand",
+        "ranking": [
+          {
+            "candidate": "on_demand",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 1,
+            "lookup_p95_ns": 34256,
+            "reload_index_p95_ns": {
+              "client_index": 30100,
+              "client_reload": 1139200,
+              "server_index": 36500,
+              "server_reload": 816000
+            },
+            "retained_memory_bytes": 3380,
+            "sync_bytes": 3380
+          },
+          {
+            "candidate": "immediate",
+            "eager_margin": "tied",
+            "eager_publication_rows": 32,
+            "implementation_complexity": 0,
+            "lookup_p95_ns": 50700,
+            "reload_index_p95_ns": {
+              "client_index": 120000,
+              "client_reload": 1141100,
+              "server_index": 285000,
+              "server_reload": 1338100
+            },
+            "retained_memory_bytes": 3380,
+            "sync_bytes": 3380
+          },
+          {
+            "candidate": "hybrid",
+            "eager_margin": "tied",
+            "eager_publication_rows": 5,
+            "implementation_complexity": 2,
+            "lookup_p95_ns": 62506,
+            "reload_index_p95_ns": {
+              "client_index": 88500,
+              "client_reload": 1402200,
+              "server_index": 99800,
+              "server_reload": 1498500
+            },
+            "retained_memory_bytes": 3380,
+            "sync_bytes": 3380
+          }
+        ],
+        "scenario_id": "card",
+        "soft_budget_warnings": {},
+        "survivors": [
+          "immediate",
+          "on_demand",
+          "hybrid"
+        ]
+      },
+      "multi": {
+        "eliminated": {},
+        "logical_rows": 13,
+        "production_winner": "hybrid",
+        "ranking": [
+          {
+            "candidate": "hybrid",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 2,
+            "lookup_p95_ns": 14543,
+            "reload_index_p95_ns": {
+              "client_index": 10200,
+              "client_reload": 104700,
+              "server_index": 11300,
+              "server_reload": 106500
+            },
+            "retained_memory_bytes": 1360,
+            "sync_bytes": 1360
+          },
+          {
+            "candidate": "on_demand",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 1,
+            "lookup_p95_ns": 16143,
+            "reload_index_p95_ns": {
+              "client_index": 21500,
+              "client_reload": 108400,
+              "server_index": 15200,
+              "server_reload": 121900
+            },
+            "retained_memory_bytes": 1360,
+            "sync_bytes": 1360
+          },
+          {
+            "candidate": "immediate",
+            "eager_margin": "tied",
+            "eager_publication_rows": 13,
+            "implementation_complexity": 0,
+            "lookup_p95_ns": 18143,
+            "reload_index_p95_ns": {
+              "client_index": 46300,
+              "client_reload": 149200,
+              "server_index": 78700,
+              "server_reload": 138800
+            },
+            "retained_memory_bytes": 1360,
+            "sync_bytes": 1360
+          }
+        ],
+        "scenario_id": "multi",
+        "soft_budget_warnings": {},
+        "survivors": [
+          "immediate",
+          "on_demand",
+          "hybrid"
+        ]
+      },
+      "singleton": {
+        "eliminated": {},
+        "logical_rows": 19,
+        "production_winner": "on_demand",
+        "ranking": [
+          {
+            "candidate": "on_demand",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 1,
+            "lookup_p95_ns": 39300,
+            "reload_index_p95_ns": {
+              "client_index": 39800,
+              "client_reload": 341300,
+              "server_index": 22100,
+              "server_reload": 331600
+            },
+            "retained_memory_bytes": 2020,
+            "sync_bytes": 2020
+          },
+          {
+            "candidate": "hybrid",
+            "eager_margin": "tied",
+            "eager_publication_rows": 5,
+            "implementation_complexity": 2,
+            "lookup_p95_ns": 44181,
+            "reload_index_p95_ns": {
+              "client_index": 43500,
+              "client_reload": 364500,
+              "server_index": 43500,
+              "server_reload": 391800
+            },
+            "retained_memory_bytes": 2020,
+            "sync_bytes": 2020
+          },
+          {
+            "candidate": "immediate",
+            "eager_margin": "tied",
+            "eager_publication_rows": 19,
+            "implementation_complexity": 0,
+            "lookup_p95_ns": 122650,
+            "reload_index_p95_ns": {
+              "client_index": 137200,
+              "client_reload": 1294800,
+              "server_index": 327000,
+              "server_reload": 1260600
+            },
+            "retained_memory_bytes": 2020,
+            "sync_bytes": 2020
+          }
+        ],
+        "scenario_id": "singleton",
+        "soft_budget_warnings": {},
+        "survivors": [
+          "immediate",
+          "on_demand",
+          "hybrid"
+        ]
+      }
+    },
+    "status": "PRODUCTION_WINNER_READY"
+  },
+  "measurement_status": "T39_MATERIALIZATION_MEASUREMENT_READY",
+  "schema_version": 1,
+  "status": "T39_MATERIALIZATION_DECISION_READY"
+}

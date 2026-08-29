@@ -184,7 +184,14 @@ class VerificationProfileTest(unittest.TestCase):
         self.assertEqual("T35", census["owner"])
         self.assertEqual("integration", census["tier"])
         self.assertFalse(census["datagen"])
-        self.assertTrue(census["gametest"])
+        self.assertEqual(
+            {
+                "receipt_check": False,
+                "run_isolated": False,
+                "manual_deferred": True,
+            },
+            census["gametest"],
+        )
         expected_builders = {
             "build_t35_census_inputs",
             "build_t35_runtime_registry",
@@ -196,6 +203,27 @@ class VerificationProfileTest(unittest.TestCase):
             "build_t35_census",
             "build_t35_card_topology",
             "build_t35_readiness",
+            "build_t38_census_delta",
+            "build_t38_card_topology",
+            "build_t38_readiness",
+            "build_t39_census_delta",
+            "build_t39_card_topology",
+            "build_t39_readiness",
+            "build_t40_census_delta",
+            "build_t40_card_topology",
+            "build_t40_readiness",
+            "build_t41_census_delta",
+            "build_t41_card_topology",
+            "build_t41_readiness",
+            "build_t43_census_delta",
+            "build_t43_card_topology",
+            "build_t43_readiness",
+            "build_t44_storage_census_delta",
+            "build_t44_card_topology",
+            "build_t44_storage_readiness",
+            "build_t45_census_delta",
+            "build_t45_card_topology",
+            "build_t45_readiness",
         }
         self.assertEqual(expected_builders, set(census["builders"]))
         policy_builders = {
@@ -213,8 +241,82 @@ class VerificationProfileTest(unittest.TestCase):
                 "build_t37_census_delta",
                 "build_t37_card_topology",
                 "build_t37_readiness",
+                "build_t38_recipe_load_benchmark",
+                "build_t39_recipe_load_benchmark",
+                "build_t40_recipe_load_benchmark",
+                "build_t41_recipe_load_benchmark",
+                "build_t42_census_delta",
+                "build_t42_card_topology",
+                "build_t42_readiness",
+                "build_t42_repair_readiness",
+                "build_t43_recipe_load_benchmark",
+                "build_t36_repair_pre_freeze",
+                "build_t36_repair_second_list_inventory",
+                "build_t36_repair_readiness",
+                "build_t44_storage_work_set",
+                "build_t44_storage_source",
+                "build_t44_storage_production_lock",
+                "build_t44_runtime_dependency_manifest",
+                "build_t44_storage_catalog",
+                "build_t44_storage_equivalence",
+                "build_t44_storage_player_path",
+                "build_t44_storage_publication_delta",
+                "build_t44_storage_load_measurements",
+                "build_t44_storage_load_projection",
+                "build_t44_storage_gametest_receipt",
+                "build_t45_recipe_load_benchmark",
             },
             set(replay["builders"]),
         )
-        self.assertFalse(replay["gametest"])
+        self.assertEqual(
+            {
+                "receipt_check": False,
+                "run_isolated": False,
+                "manual_deferred": False,
+            },
+            replay["gametest"],
+        )
         self.assertEqual([], replay["gradle_tasks"])
+
+    def test_closeout_json_keeps_recipes_gradle_and_receipts(self) -> None:
+        result = verify_entry.combine_closeout_results(
+            [
+                {
+                    "profile": "recipes",
+                    "status": "PASS",
+                    "failures": [],
+                    "gradle": {"tests": 717, "xml_present": True},
+                    "gametest": {"status": "PASS", "receipt_check": True},
+                    "timings": [{"name": "gradle:test", "seconds": 1.0}],
+                },
+                {
+                    "profile": "census",
+                    "status": "PASS",
+                    "failures": [],
+                    "gradle": {"tests": 717},
+                    "gametest": {"status": "DEFERRED"},
+                    "timings": [],
+                },
+                {
+                    "profile": "census-replay",
+                    "status": "PASS",
+                    "failures": [],
+                    "gradle": None,
+                    "gametest": {"status": "SKIP"},
+                    "timings": [],
+                },
+            ]
+        )
+        self.assertEqual("card-closeout", result["profile"])
+        self.assertEqual("PASS", result["status"])
+        self.assertEqual(717, result["gradle"]["tests"])
+        self.assertEqual("PASS", result["gametest"]["status"])
+        self.assertEqual(
+            "SKIP",
+            result["profiles"]["census-replay"]["gametest"]["status"],
+        )
+        self.assertTrue(verify_entry.RECEIPT_SCRIPTS["recipes"])
+        self.assertEqual(
+            (),
+            verify_entry.RECEIPT_SCRIPTS.get("card-diagnostic-T40", ()),
+        )

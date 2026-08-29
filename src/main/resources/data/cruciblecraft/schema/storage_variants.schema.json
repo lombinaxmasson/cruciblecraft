@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/storage_variants.schema.json",
+  "title": "CrucibleCraft T44 storage variants",
+  "description": "Catalog-driven Storage 28/624 plus independent mass_storage_logistics 1/1. This is not an ordinary recipe family list.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source_revision",
+    "storage_count",
+    "logistics_count",
+    "variants"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "source_revision": {
+      "const": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    "storage_count": { "const": 624 },
+    "logistics_count": { "const": 1 },
+    "variants": {
+      "type": "array",
+      "minItems": 625,
+      "maxItems": 625,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "runtime_id",
+          "source_site_id",
+          "source_legacy_id",
+          "family",
+          "expansion_key",
+          "behavior_profile",
+          "capacity_profile",
+          "inventory_profile",
+          "blockstate_profile",
+          "model_profile",
+          "loot_profile",
+          "visibility",
+          "acquisition_profile",
+          "counts_toward_storage_624",
+          "english",
+          "chinese",
+          "slots",
+          "capacity",
+          "plank_index",
+          "charging",
+          "logistics",
+          "representative_material",
+          "source_revision",
+          "source_path",
+          "source_hidden_reason"
+        ],
+        "properties": {
+          "runtime_id": {
+            "type": "string",
+            "pattern": "^cruciblecraft:[a-z0-9_]+$"
+          },
+          "source_site_id": { "type": "string" },
+          "source_legacy_id": { "type": "string" },
+          "family": { "type": "string" },
+          "expansion_key": { "type": "string" },
+          "behavior_profile": { "type": "string" },
+          "capacity_profile": { "type": "string" },
+          "inventory_profile": { "type": "string" },
+          "blockstate_profile": { "type": "string" },
+          "model_profile": { "type": "string" },
+          "loot_profile": { "type": "string" },
+          "visibility": {
+            "type": "string",
+            "enum": ["source_visible", "source_hidden"]
+          },
+          "acquisition_profile": { "type": "string" },
+          "counts_toward_storage_624": { "type": "boolean" },
+          "english": { "type": "string" },
+          "chinese": { "type": "string" },
+          "slots": { "type": "integer", "minimum": 0 },
+          "capacity": { "type": "integer", "minimum": 0 },
+          "plank_index": { "type": ["integer", "null"] },
+          "charging": { "type": "boolean" },
+          "logistics": { "type": "boolean" },
+          "representative_material": { "type": "string" },
+          "source_revision": { "type": "string" },
+          "source_path": { "type": "string" },
+          "source_hidden_reason": { "type": ["string", "null"] }
+        }
+      }
+    }
+  }
+}

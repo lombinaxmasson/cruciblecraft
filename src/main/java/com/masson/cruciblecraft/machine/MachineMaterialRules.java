@@ -1,47 +1,40 @@
 package com.masson.cruciblecraft.machine;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
 import java.util.Locale;
+import java.util.Optional;
 
+import com.masson.cruciblecraft.machine.processing.DeviceMaterialCatalog;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 
 public final class MachineMaterialRules {
-    public static final String DEFAULT_CRUCIBLE_MATERIAL = "ceramic";
+    public static final String DEFAULT_CRUCIBLE_MATERIAL =
+            DeviceMaterialCatalog.require(Device.CRUCIBLE).defaultMaterial();
     /** The survival-crafted starter anvil is the GT6 Stone Anvil (meta 32025). */
-    public static final String DEFAULT_ANVIL_MATERIAL = "stone";
-    public static final String DEFAULT_HAMMER_MATERIAL = "iron";
+    public static final String DEFAULT_ANVIL_MATERIAL =
+            DeviceMaterialCatalog.require(Device.ANVIL).defaultMaterial();
+    public static final String DEFAULT_HAMMER_MATERIAL =
+            DeviceMaterialCatalog.require(Device.HAMMER).defaultMaterial();
     public static final double CRUCIBLE_TEMPERATURE_FACTOR = 1.25;
     public static final double KELVIN_OFFSET = 273.15;
-    public static final long STONE_ANVIL_DURABILITY = 10_000L;
-    public static final long BRONZE_ANVIL_DURABILITY = 1_000_000L;
+    public static final long STONE_ANVIL_DURABILITY =
+            durability(Device.ANVIL, "stone");
+    public static final long BRONZE_ANVIL_DURABILITY =
+            durability(Device.ANVIL, "bronze");
     /*
      * Local legacy iron sits midway through the bronze -> steel progression.
      * GT6 has no directly equivalent iron value for this migrated block.
      */
-    public static final long IRON_ANVIL_DURABILITY = 5_000_000L;
-    public static final long STEEL_ANVIL_DURABILITY = 10_000_000L;
-    public static final int BRONZE_HAMMER_DURABILITY = 44_800;
-    public static final int IRON_HAMMER_DURABILITY = 48_000;
-    public static final int STEEL_HAMMER_DURABILITY = 51_200;
-
-    private static final Set<String> CRUCIBLE_MATERIALS = Set.of("ceramic", "bronze", "steel");
-    private static final Set<String> ANVIL_MATERIALS = Set.of("stone", "iron", "bronze", "steel");
-    private static final Set<String> HAMMER_MATERIALS = Set.of("iron", "bronze", "steel");
-
-    /*
-     * This is a device capability, not the casing material tier. Ceramic is
-     * intentionally capable of tier-2 charges to preserve the existing
-     * copper/bronze and iron/carbon steelmaking progression.
-     */
-    private static final Map<String, Integer> CRUCIBLE_PROCESSING_TIERS =
-            Map.of("ceramic", 2, "bronze", 2, "steel", 3);
-    private static final Map<String, Integer> ANVIL_PROCESSING_TIERS =
-            Map.of("stone", 0, "bronze", 1, "iron", 2, "steel", 3);
-    private static final Map<String, Integer> HAMMER_PROCESSING_TIERS =
-            Map.of("bronze", 1, "iron", 2, "steel", 3);
+    public static final long IRON_ANVIL_DURABILITY =
+            durability(Device.ANVIL, "iron");
+    public static final long STEEL_ANVIL_DURABILITY =
+            durability(Device.ANVIL, "steel");
+    public static final int BRONZE_HAMMER_DURABILITY =
+            (int) durability(Device.HAMMER, "bronze");
+    public static final int IRON_HAMMER_DURABILITY =
+            (int) durability(Device.HAMMER, "iron");
+    public static final int STEEL_HAMMER_DURABILITY =
+            (int) durability(Device.HAMMER, "steel");
 
     public enum Device {
         CRUCIBLE,
@@ -64,22 +57,14 @@ public final class MachineMaterialRules {
     }
 
     public static String defaultMaterial(Device device) {
-        return switch (device) {
-            case CRUCIBLE -> DEFAULT_CRUCIBLE_MATERIAL;
-            case ANVIL -> DEFAULT_ANVIL_MATERIAL;
-            case HAMMER -> DEFAULT_HAMMER_MATERIAL;
-        };
+        return DeviceMaterialCatalog.require(device).defaultMaterial();
     }
 
     public static boolean isAllowed(Device device, String materialId) {
         if (materialId == null) {
             return false;
         }
-        return switch (device) {
-            case CRUCIBLE -> CRUCIBLE_MATERIALS.contains(materialId);
-            case ANVIL -> ANVIL_MATERIALS.contains(materialId);
-            case HAMMER -> HAMMER_MATERIALS.contains(materialId);
-        };
+        return DeviceMaterialCatalog.require(device).isAllowed(materialId);
     }
 
     /**
@@ -89,11 +74,7 @@ public final class MachineMaterialRules {
      * {@link #resolveExternal(Device, String)} at those boundaries.
      */
     public static String requireAllowed(Device device, String materialId) {
-        if (!isAllowed(device, materialId)) {
-            throw new IllegalArgumentException(
-                    "Unsupported " + device.name().toLowerCase(Locale.ROOT)
-                            + " material: " + materialId);
-        }
+        DeviceMaterialCatalog.require(device).require(materialId);
         return materialId;
     }
 
@@ -121,20 +102,12 @@ public final class MachineMaterialRules {
     }
 
     public static long anvilMaxDurability(String materialId) {
-        return switch (requireAllowed(Device.ANVIL, materialId)) {
-            case "stone" -> STONE_ANVIL_DURABILITY;
-            case "bronze" -> BRONZE_ANVIL_DURABILITY;
-            case "steel" -> STEEL_ANVIL_DURABILITY;
-            default -> IRON_ANVIL_DURABILITY;
-        };
+        return durability(Device.ANVIL, requireAllowed(Device.ANVIL, materialId));
     }
 
     public static int hammerMaxDurability(String materialId) {
-        return switch (requireAllowed(Device.HAMMER, materialId)) {
-            case "bronze" -> BRONZE_HAMMER_DURABILITY;
-            case "steel" -> STEEL_HAMMER_DURABILITY;
-            default -> IRON_HAMMER_DURABILITY;
-        };
+        return (int) durability(
+                Device.HAMMER, requireAllowed(Device.HAMMER, materialId));
     }
 
     /**
@@ -152,25 +125,16 @@ public final class MachineMaterialRules {
     }
 
     public static int processingTier(Device device, String materialId) {
-        if (device == Device.HAMMER) {
-            Integer legacyTier = HAMMER_PROCESSING_TIERS.get(materialId);
-            if (legacyTier != null) {
-                return legacyTier;
-            }
-            if (ToolMaterialRules.isAllowed(
-                    ToolMaterialRules.ToolKind.SMITHING_HAMMER,
-                    materialId)) {
-                return Math.max(
-                        0,
-                        MaterialCatalog.require(materialId).tier());
-            }
+        if (device == Device.HAMMER
+                && !DeviceMaterialCatalog.require(device).isAllowed(materialId)
+                && ToolMaterialRules.isAllowed(
+                        ToolMaterialRules.ToolKind.SMITHING_HAMMER,
+                        materialId)) {
+            return Math.max(0, MaterialCatalog.require(materialId).tier());
         }
-        String safeMaterial = requireAllowed(device, materialId);
-        return switch (device) {
-            case CRUCIBLE -> CRUCIBLE_PROCESSING_TIERS.get(safeMaterial);
-            case ANVIL -> ANVIL_PROCESSING_TIERS.get(safeMaterial);
-            case HAMMER -> HAMMER_PROCESSING_TIERS.get(safeMaterial);
-        };
+        return DeviceMaterialCatalog.require(device)
+                .require(materialId)
+                .processingTier();
     }
 
     public static boolean canCrucibleProcess(String casingMaterialId, MaterialDefinition material) {
@@ -205,6 +169,16 @@ public final class MachineMaterialRules {
         }
         String safeMaterial = requireAllowed(Device.CRUCIBLE, casingMaterialId);
         return MaterialCatalog.require(safeMaterial).thermal().density() * volumeCm3;
+    }
+
+    private static long durability(Device device, String materialId) {
+        return DeviceMaterialCatalog.require(device)
+                .require(materialId)
+                .durability()
+                .orElseThrow(() -> new IllegalStateException(
+                        device.name().toLowerCase(Locale.ROOT)
+                                + " material " + materialId
+                                + " is missing durability"));
     }
 
     private MachineMaterialRules() {}

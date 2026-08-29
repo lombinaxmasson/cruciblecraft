@@ -24,7 +24,50 @@ public record CompactGTRecipeFamilyDefinition(
         ResourceLocation targetMap,
         String sourceRevision,
         List<Relation> relations,
-        Optional<ParameterizedSpec> parameterized) {
+        Optional<ParameterizedSpec> parameterized,
+        Optional<ResourceLocation> publicationGroup) {
+
+    private static final ResourceLocation ASSEMBLER_TARGET =
+            ResourceLocation.fromNamespaceAndPath("cruciblecraft", "assembler");
+    private static final ResourceLocation ROASTER_TARGET =
+            ResourceLocation.fromNamespaceAndPath("cruciblecraft", "roaster");
+
+    public static final ResourceLocation T37_ASSEMBLER_PUBLICATION_GROUP =
+            ResourceLocation.fromNamespaceAndPath(
+                    "cruciblecraft", "t37_assembler");
+    public static final ResourceLocation T38_ROASTER_PUBLICATION_GROUP =
+            ResourceLocation.fromNamespaceAndPath(
+                    "cruciblecraft", "t38_roaster");
+    public static final ResourceLocation T39_CENTRIFUGE_SINGLETON_PUBLICATION_GROUP =
+            ResourceLocation.fromNamespaceAndPath(
+                    "cruciblecraft", "t39_centrifuge_singleton");
+    public static final ResourceLocation T39_CENTRIFUGE_MULTI_PUBLICATION_GROUP =
+            ResourceLocation.fromNamespaceAndPath(
+                    "cruciblecraft", "t39_centrifuge_multi");
+    public static final ResourceLocation T40_ELECTROLYZER_SINGLETON_PUBLICATION_GROUP =
+            ResourceLocation.fromNamespaceAndPath(
+                    "cruciblecraft", "t40_electrolyzer_singleton");
+    public static final ResourceLocation T40_ELECTROLYZER_MULTI_PUBLICATION_GROUP =
+            ResourceLocation.fromNamespaceAndPath(
+                    "cruciblecraft", "t40_electrolyzer_multi");
+    public static final ResourceLocation T41_ASSEMBLER_PLANKS_PUBLICATION_GROUP =
+            ResourceLocation.fromNamespaceAndPath(
+                    "cruciblecraft", "t41_assembler_planks");
+    public static final ResourceLocation T41_ASSEMBLER_FIREPROOF_PUBLICATION_GROUP =
+            ResourceLocation.fromNamespaceAndPath(
+                    "cruciblecraft", "t41_assembler_fireproof");
+    public static final ResourceLocation T41_ASSEMBLER_PLANKS2_PUBLICATION_GROUP =
+            ResourceLocation.fromNamespaceAndPath(
+                    "cruciblecraft", "t41_assembler_planks2");
+    public static final ResourceLocation T43_SMELTER_STONE_PUBLICATION_GROUP =
+            ResourceLocation.fromNamespaceAndPath(
+                    "cruciblecraft", "t43_smelter_stone");
+    public static final ResourceLocation T45_SMELTER_BLOCK_PUBLICATION_GROUP =
+            ResourceLocation.fromNamespaceAndPath(
+                    "cruciblecraft", "t45_smelter_block");
+    public static final ResourceLocation T45_DRYING_BLOCK_PUBLICATION_GROUP =
+            ResourceLocation.fromNamespaceAndPath(
+                    "cruciblecraft", "t45_drying_block");
 
     public static final MapCodec<CompactGTRecipeFamilyDefinition> MAP_CODEC =
             RecordCodecBuilder.mapCodec(instance -> instance.group(
@@ -38,7 +81,9 @@ public record CompactGTRecipeFamilyDefinition(
                             .optionalFieldOf("relations", List.of())
                             .forGetter(CompactGTRecipeFamilyDefinition::relations),
                     ParameterizedSpec.CODEC.optionalFieldOf("parameterized")
-                            .forGetter(CompactGTRecipeFamilyDefinition::parameterized)
+                            .forGetter(CompactGTRecipeFamilyDefinition::parameterized),
+                    ResourceLocation.CODEC.optionalFieldOf("publication_group")
+                            .forGetter(CompactGTRecipeFamilyDefinition::publicationGroup)
             ).apply(instance, CompactGTRecipeFamilyDefinition::new));
     public static final Codec<CompactGTRecipeFamilyDefinition> CODEC = MAP_CODEC.codec();
 
@@ -48,6 +93,8 @@ public record CompactGTRecipeFamilyDefinition(
         Objects.requireNonNull(sourceRevision, "sourceRevision");
         relations = List.copyOf(Objects.requireNonNull(relations, "relations"));
         parameterized = Objects.requireNonNull(parameterized, "parameterized");
+        publicationGroup = Objects.requireNonNull(
+                publicationGroup, "publicationGroup");
         if (familyId.isBlank()) {
             throw new IllegalArgumentException("Compact family_id must not be blank");
         }
@@ -55,6 +102,12 @@ public record CompactGTRecipeFamilyDefinition(
             throw new IllegalArgumentException(
                     "Compact source_revision must not be blank");
         }
+        publicationGroup.ifPresent(group -> {
+            if (group.getNamespace().isBlank() || group.getPath().isBlank()) {
+                throw new IllegalArgumentException(
+                        "Compact publication_group must not be blank");
+            }
+        });
     }
 
     public CompactGTRecipeFamilyDefinition(
@@ -62,7 +115,63 @@ public record CompactGTRecipeFamilyDefinition(
             ResourceLocation targetMap,
             String sourceRevision,
             List<Relation> relations) {
-        this(familyId, targetMap, sourceRevision, relations, Optional.empty());
+        this(
+                familyId,
+                targetMap,
+                sourceRevision,
+                relations,
+                Optional.empty(),
+                Optional.empty());
+    }
+
+    public CompactGTRecipeFamilyDefinition(
+            String familyId,
+            ResourceLocation targetMap,
+            String sourceRevision,
+            List<Relation> relations,
+            Optional<ParameterizedSpec> parameterized) {
+        this(
+                familyId,
+                targetMap,
+                sourceRevision,
+                relations,
+                parameterized,
+                Optional.empty());
+    }
+
+    public CompactGTRecipeFamilyDefinition(
+            String familyId,
+            ResourceLocation targetMap,
+            String sourceRevision,
+            List<Relation> relations,
+            ResourceLocation publicationGroup) {
+        this(
+                familyId,
+                targetMap,
+                sourceRevision,
+                relations,
+                Optional.empty(),
+                Optional.of(Objects.requireNonNull(
+                        publicationGroup, "publicationGroup")));
+    }
+
+    public static ResourceLocation historicalPublicationGroup(
+            ResourceLocation targetMap) {
+        Objects.requireNonNull(targetMap, "targetMap");
+        if (ASSEMBLER_TARGET.equals(targetMap)) {
+            return T37_ASSEMBLER_PUBLICATION_GROUP;
+        }
+        if (ROASTER_TARGET.equals(targetMap)) {
+            return T38_ROASTER_PUBLICATION_GROUP;
+        }
+        throw new IllegalArgumentException(
+                "Compact target map " + targetMap
+                        + " must declare publication_group");
+    }
+
+    public ResourceLocation resolvedPublicationGroup() {
+        return publicationGroup.orElseGet(
+                () -> historicalPublicationGroup(targetMap));
     }
 
     /**

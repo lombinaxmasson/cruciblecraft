@@ -85,6 +85,156 @@ public final class GTRecipeMapLoader {
             compactSources.add(new CompactRecipeFamilySource(holder.id(), definition));
         }
         compactSources.sort(Comparator.comparing(source -> source.id().toString()));
+        compactSources = dropT41AssemblerSourcesAlreadyExpressedByT37(compactSources);
+        PublicationGroupKey assemblerGroup = new PublicationGroupKey(
+                ModRecipeMaps.ASSEMBLER.id(),
+                CompactGTRecipeFamilyDefinition
+                        .T37_ASSEMBLER_PUBLICATION_GROUP);
+        PublicationGroupKey assemblerPlanksGroup = new PublicationGroupKey(
+                ModRecipeMaps.ASSEMBLER.id(),
+                CompactGTRecipeFamilyDefinition
+                        .T41_ASSEMBLER_PLANKS_PUBLICATION_GROUP);
+        PublicationGroupKey assemblerFireproofGroup = new PublicationGroupKey(
+                ModRecipeMaps.ASSEMBLER.id(),
+                CompactGTRecipeFamilyDefinition
+                        .T41_ASSEMBLER_FIREPROOF_PUBLICATION_GROUP);
+        PublicationGroupKey assemblerPlanks2Group = new PublicationGroupKey(
+                ModRecipeMaps.ASSEMBLER.id(),
+                CompactGTRecipeFamilyDefinition
+                        .T41_ASSEMBLER_PLANKS2_PUBLICATION_GROUP);
+        PublicationGroupKey roasterGroup = new PublicationGroupKey(
+                ModRecipeMaps.ROASTER.id(),
+                CompactGTRecipeFamilyDefinition
+                        .T38_ROASTER_PUBLICATION_GROUP);
+        PublicationGroupKey centrifugeSingletonGroup = new PublicationGroupKey(
+                ModRecipeMaps.CENTRIFUGE.id(),
+                CompactGTRecipeFamilyDefinition
+                        .T39_CENTRIFUGE_SINGLETON_PUBLICATION_GROUP);
+        PublicationGroupKey centrifugeMultiGroup = new PublicationGroupKey(
+                ModRecipeMaps.CENTRIFUGE.id(),
+                CompactGTRecipeFamilyDefinition
+                        .T39_CENTRIFUGE_MULTI_PUBLICATION_GROUP);
+        PublicationGroupKey electrolyzerSingletonGroup = new PublicationGroupKey(
+                ModRecipeMaps.ELECTROLYZER.id(),
+                CompactGTRecipeFamilyDefinition
+                        .T40_ELECTROLYZER_SINGLETON_PUBLICATION_GROUP);
+        PublicationGroupKey electrolyzerMultiGroup = new PublicationGroupKey(
+                ModRecipeMaps.ELECTROLYZER.id(),
+                CompactGTRecipeFamilyDefinition
+                        .T40_ELECTROLYZER_MULTI_PUBLICATION_GROUP);
+        Map<PublicationGroupKey, List<CompactRecipeFamilySource>>
+                compactSourcesByGroup = new HashMap<>();
+        for (CompactRecipeFamilySource source : compactSources) {
+            PublicationGroupKey key = new PublicationGroupKey(
+                    source.definition().targetMap(),
+                    source.definition().resolvedPublicationGroup());
+            if (key.targetMap().equals(ModRecipeMaps.ASSEMBLER.id())
+                    && !key.equals(assemblerGroup)
+                    && !key.equals(assemblerPlanksGroup)
+                    && !key.equals(assemblerFireproofGroup)
+                    && !key.equals(assemblerPlanks2Group)) {
+                throw recipeValidationError(
+                        source.id(),
+                        "Unsupported Assembler compact publication_group "
+                                + key.publicationGroup());
+            }
+            if (key.targetMap().equals(ModRecipeMaps.CENTRIFUGE.id())
+                    && !key.equals(centrifugeSingletonGroup)
+                    && !key.equals(centrifugeMultiGroup)) {
+                throw recipeValidationError(
+                        source.id(),
+                        "Unsupported Centrifuge compact publication_group "
+                                + key.publicationGroup());
+            }
+            if (key.targetMap().equals(ModRecipeMaps.ELECTROLYZER.id())
+                    && !key.equals(electrolyzerSingletonGroup)
+                    && !key.equals(electrolyzerMultiGroup)) {
+                throw recipeValidationError(
+                        source.id(),
+                        "Unsupported Electrolyzer compact publication_group "
+                                + key.publicationGroup());
+            }
+            compactSourcesByGroup
+                    .computeIfAbsent(key, ignored -> new ArrayList<>())
+                    .add(source);
+        }
+        Map<PublicationGroupKey,
+                CompactRecipeFamilyProvider.MaterializationPolicy>
+                compactPolicies = new LinkedHashMap<>();
+        compactPolicies.put(
+                assemblerGroup,
+                CompactRecipeFamilyProvider.t37ProductionPolicy(
+                        compactSourcesByGroup.getOrDefault(
+                                assemblerGroup, List.of())));
+        compactPolicies.put(
+                assemblerPlanksGroup,
+                CompactRecipeFamilyProvider.t41PlanksPolicy(
+                        compactSourcesByGroup.getOrDefault(
+                                assemblerPlanksGroup, List.of())));
+        compactPolicies.put(
+                assemblerFireproofGroup,
+                CompactRecipeFamilyProvider.t41FireproofPolicy(
+                        compactSourcesByGroup.getOrDefault(
+                                assemblerFireproofGroup, List.of())));
+        compactPolicies.put(
+                assemblerPlanks2Group,
+                CompactRecipeFamilyProvider.t41Planks2Policy(
+                        compactSourcesByGroup.getOrDefault(
+                                assemblerPlanks2Group, List.of())));
+        compactPolicies.put(
+                roasterGroup,
+                CompactRecipeFamilyProvider.t38ProductionPolicy(
+                        compactSourcesByGroup.getOrDefault(
+                                roasterGroup, List.of())));
+        compactPolicies.put(
+                centrifugeSingletonGroup,
+                CompactRecipeFamilyProvider.t39SingletonPolicy(
+                        compactSourcesByGroup.getOrDefault(
+                                centrifugeSingletonGroup, List.of())));
+        compactPolicies.put(
+                centrifugeMultiGroup,
+                CompactRecipeFamilyProvider.t39MultiPolicy(
+                        compactSourcesByGroup.getOrDefault(
+                                centrifugeMultiGroup, List.of())));
+        compactPolicies.put(
+                electrolyzerSingletonGroup,
+                CompactRecipeFamilyProvider.t40SingletonPolicy(
+                        compactSourcesByGroup.getOrDefault(
+                                electrolyzerSingletonGroup, List.of())));
+        compactPolicies.put(
+                electrolyzerMultiGroup,
+                CompactRecipeFamilyProvider.t40MultiPolicy(
+                        compactSourcesByGroup.getOrDefault(
+                                electrolyzerMultiGroup, List.of())));
+        List<CompactPublicationPolicyEntry> publicationPolicies =
+                manager.getAllRecipesFor(
+                                ModRecipes.COMPACT_PUBLICATION_POLICY_TYPE.get())
+                        .stream()
+                        .sorted(Comparator.comparing(
+                                holder -> holder.id().toString()))
+                        .map(holder -> holder.value())
+                        .toList();
+        compactPolicies = CompactPublicationPolicy.merge(
+                compactPolicies, publicationPolicies);
+        for (CompactPublicationPolicyEntry entry : publicationPolicies) {
+            CompactPublicationPolicy.validateLiveSources(
+                    entry.definition(),
+                    compactSourcesByGroup.getOrDefault(
+                            entry.definition().key(), List.of()));
+        }
+        for (CompactRecipeFamilySource source : compactSources) {
+            PublicationGroupKey key = new PublicationGroupKey(
+                    source.definition().targetMap(),
+                    source.definition().resolvedPublicationGroup());
+            if (!compactPolicies.containsKey(key)) {
+                throw recipeValidationError(
+                        source.id(),
+                        "Undeclared compact publication_group "
+                                + key.publicationGroup()
+                                + " on target map "
+                                + key.targetMap());
+            }
+        }
 
         List<RecipeHolder<MaterialRuleRecipe>> declarative = manager
                 .getAllRecipesFor(ModRecipes.MATERIAL_RULE_TYPE.get()).stream()
@@ -144,14 +294,14 @@ public final class GTRecipeMapLoader {
                         formIndexes,
                         preparedEpoch,
                         runtimeSide);
-        Map<ResourceLocation, CompactRecipeFamilyProvider.Snapshot> compactByMap =
-                CompactRecipeFamilyProvider.prepareByTarget(
+        Map<PublicationGroupKey, CompactRecipeFamilyProvider.Snapshot>
+                compactByPublicationGroup =
+                CompactRecipeFamilyProvider.prepareByPublicationGroup(
                         compactSources,
                         knownMaps,
                         preparedEpoch,
                         compactSide(runtimeSide),
-                        CompactRecipeFamilyProvider.t37ProductionPolicy(
-                                compactSources));
+                        compactPolicies);
         LinkedHashMap<RecipeMap, List<RecipeMap.Entry>> candidates = new LinkedHashMap<>();
         Map<RecipeMap, List<RecipeMap.RecipeFamily>> families = new HashMap<>();
         for (RecipeMap map : ModRecipeMaps.ALL) {
@@ -159,10 +309,10 @@ public final class GTRecipeMapLoader {
             if (map == ModRecipeMaps.EXTRUDER) {
                 mapFamilies.add(extruderFamily);
             }
-            CompactRecipeFamilyProvider.Snapshot compact = compactByMap.get(map.id());
-            if (compact != null) {
-                mapFamilies.add(compact);
-            }
+            compactByPublicationGroup.entrySet().stream()
+                    .filter(entry -> entry.getKey().targetMap().equals(map.id()))
+                    .map(Map.Entry::getValue)
+                    .forEach(mapFamilies::add);
             families.put(map, List.copyOf(mapFamilies));
         }
         for (RecipeMap map : ModRecipeMaps.ALL) {
@@ -245,7 +395,8 @@ public final class GTRecipeMapLoader {
         int compactFamilyCacheCeiling = 0;
         int compactFamilyUnindexedRelations = 0;
         long compactFamilySyncBytes = 0L;
-        for (CompactRecipeFamilyProvider.Snapshot compact : compactByMap.values()) {
+        for (CompactRecipeFamilyProvider.Snapshot compact
+                : compactByPublicationGroup.values()) {
             compactFamilyLogicalRecipes += compact.logicalRecipeCount();
             compactFamilyEagerRecipes += compact.eagerRecipeCount();
             compactFamilyLazyRecipes += compact.lazyRecipeCount();
@@ -253,7 +404,8 @@ public final class GTRecipeMapLoader {
             compactFamilyUnindexedRelations += compact.unindexedRelationCount();
             compactFamilySyncBytes += compact.syncPayloadBytes();
         }
-        String compactFamilyStableFingerprint = compactFingerprint(compactByMap);
+        String compactFamilyStableFingerprint = compactFingerprint(
+                compactByPublicationGroup);
         validateT14MaterializationBudgets(
                 eagerPublishedRecipes,
                 lazyLogicalRecipes,
@@ -719,6 +871,40 @@ public final class GTRecipeMapLoader {
                 && id.getPath().startsWith("t36/");
     }
 
+    static boolean isT38CompactRecipe(ResourceLocation id) {
+        return CrucibleCraft.MODID.equals(id.getNamespace())
+                && (id.getPath().startsWith("t38/")
+                        || id.getPath().startsWith("t38_player_path_recovery/"));
+    }
+
+    static boolean isT39CompactRecipe(ResourceLocation id) {
+        return CrucibleCraft.MODID.equals(id.getNamespace())
+                && (id.getPath().startsWith("t39/")
+                        || id.getPath().startsWith("t39_player_path_support/"));
+    }
+
+    static boolean isT40CompactRecipe(ResourceLocation id) {
+        return CrucibleCraft.MODID.equals(id.getNamespace())
+                && (id.getPath().startsWith("t40/")
+                        || id.getPath().startsWith("t40_player_path_support/"));
+    }
+
+    static boolean isT41CompactRecipe(ResourceLocation id) {
+        return CrucibleCraft.MODID.equals(id.getNamespace())
+                && (id.getPath().startsWith("t41/")
+                        || id.getPath().startsWith("t41_player_path_support/"));
+    }
+
+    static boolean isT43CompactRecipe(ResourceLocation id) {
+        return CrucibleCraft.MODID.equals(id.getNamespace())
+                && id.getPath().startsWith("t43/");
+    }
+
+    static boolean isT45CompactRecipe(ResourceLocation id) {
+        return CrucibleCraft.MODID.equals(id.getNamespace())
+                && id.getPath().startsWith("t45/");
+    }
+
     private static boolean isT14CompactExtruder(RuleSource source) {
         return CrucibleCraft.MODID.equals(source.id().getNamespace())
                 && source.id().getPath().startsWith("extruder/compact/")
@@ -826,14 +1012,26 @@ public final class GTRecipeMapLoader {
                     recipeId,
                     "Unsupported anvil output shape for map " + map.id());
         }
-        for (var machine : ModProcessingMachines.allForRecipeMap(
-                map.id())) {
-            var invalid = machine.validator().validate(recipe);
+        // Bronze T5 stays T15-sized; T39 rows use the GT6 6-FO / 100k mB envelope.
+        if (map == ModRecipeMaps.CENTRIFUGE
+                && recipeId.getPath().startsWith("t39/")) {
+            var invalid = ModProcessingMachines.validateT39CentrifugeEnvelope(recipe);
             if (invalid.isPresent()) {
                 throw recipeValidationError(
                         recipeId,
-                        "Machine " + machine.id() + " rejected recipe for map "
+                        "T39 centrifuge envelope rejected recipe for map "
                                 + map.id() + " (" + invalid.get() + ")");
+            }
+        } else {
+            for (var machine : ModProcessingMachines.allForRecipeMap(
+                    map.id())) {
+                var invalid = machine.validator().validate(recipe);
+                if (invalid.isPresent()) {
+                    throw recipeValidationError(
+                            recipeId,
+                            "Machine " + machine.id() + " rejected recipe for map "
+                                    + map.id() + " (" + invalid.get() + ")");
+                }
             }
         }
         var generator = ModFuelGenerators.forRecipeMap(map.id());
@@ -895,15 +1093,24 @@ public final class GTRecipeMapLoader {
             boolean t21Chemical = isT21ChemicalRecipe(entry.id());
             boolean t22Petroleum = isT22PetroleumRecipe(entry.id());
             boolean t36Bootstrap = isT36BootstrapRecipe(entry.id());
+            boolean t38Compact = isT38CompactRecipe(entry.id());
+            boolean t39Compact = isT39CompactRecipe(entry.id());
+            boolean t40Compact = isT40CompactRecipe(entry.id());
+            boolean t41Compact = isT41CompactRecipe(entry.id());
+            boolean t43Compact = isT43CompactRecipe(entry.id());
+            boolean t45Compact = isT45CompactRecipe(entry.id());
             if (t5Recipe && !t5Map) {
                 throw new IllegalArgumentException(
                         "T5 recipe " + entry.id() + " targets non-T5 map " + map.id());
             }
             if (dedicatedT5Map && !t5Recipe && !t11Chemical && !t21Chemical
-                    && !t22Petroleum && !t36Bootstrap) {
+                    && !t22Petroleum && !t36Bootstrap && !t38Compact
+                    && !t39Compact && !t40Compact && !t41Compact
+                    && !t43Compact && !t45Compact) {
                 throw new IllegalArgumentException(
                         "Dedicated T5 map " + map.id()
-                                + " requires recipe-id prefix t5/, t11/, t21/, t22/, or t36/: "
+                                + " requires recipe-id prefix t5/, t11/, t21/, "
+                                + "t22/, t36/, t38/, t39/, t40/, t41/, t43/, or t45/: "
                                 + entry.id());
             }
             if (t11Chemical
@@ -984,6 +1191,9 @@ public final class GTRecipeMapLoader {
                                 + map.id() + ": " + unsupported);
             }
         }
+        dropEquivalentT5RowsSupersededByT39(complete);
+        dropEquivalentT5RowsSupersededByT40(complete);
+        dropEquivalentT41RowsAlreadyExpressedByT37(complete);
         validateUniqueRecipeIds(map, complete);
         validateT5RecipeProvenance(map, complete);
         validateNoShadows(map, complete);
@@ -991,6 +1201,165 @@ public final class GTRecipeMapLoader {
             RecipeMap.Prepared transientIndex = map.prepareRecipes(complete);
             validateNoUnindexed(Map.of(map, transientIndex));
         }
+    }
+
+    /**
+     * T37 already published the leftover vanilla plank crafts
+     * ({@code #0002–#0051}). Later T41 planks2 family ids that replay the
+     * same consume and output must not shadow those live identities.
+     */
+    static List<CompactRecipeFamilySource>
+            dropT41AssemblerSourcesAlreadyExpressedByT37(
+                    List<CompactRecipeFamilySource> sources) {
+        Map<String, String> t37Outputs = new HashMap<>();
+        for (CompactRecipeFamilySource source : sources) {
+            if (!isT37AssemblerSource(source)) {
+                continue;
+            }
+            for (CompactGTRecipeFamilyDefinition.Relation relation
+                    : source.definition().relations()) {
+                GTRecipe recipe = relation.materialize();
+                t37Outputs.put(logicalInputIdentity(recipe), recipeOutputIdentity(recipe));
+            }
+        }
+        if (t37Outputs.isEmpty()) {
+            return sources;
+        }
+        List<CompactRecipeFamilySource> kept = new ArrayList<>();
+        for (CompactRecipeFamilySource source : sources) {
+            if (!isT41AssemblerSource(source)) {
+                kept.add(source);
+                continue;
+            }
+            List<CompactGTRecipeFamilyDefinition.Relation> remaining =
+                    new ArrayList<>();
+            for (CompactGTRecipeFamilyDefinition.Relation relation
+                    : source.definition().relations()) {
+                GTRecipe recipe = relation.materialize();
+                String expected = t37Outputs.get(logicalInputIdentity(recipe));
+                if (expected == null
+                        || !expected.equals(recipeOutputIdentity(recipe))) {
+                    remaining.add(relation);
+                }
+            }
+            if (remaining.isEmpty()) {
+                continue;
+            }
+            if (remaining.size() == source.definition().relations().size()) {
+                kept.add(source);
+                continue;
+            }
+            CompactGTRecipeFamilyDefinition definition = source.definition();
+            kept.add(new CompactRecipeFamilySource(
+                    source.id(),
+                    new CompactGTRecipeFamilyDefinition(
+                            definition.familyId(),
+                            definition.targetMap(),
+                            definition.sourceRevision(),
+                            remaining,
+                            definition.parameterized(),
+                            definition.publicationGroup())));
+        }
+        return kept;
+    }
+
+    static void dropEquivalentT41RowsAlreadyExpressedByT37(List<RecipeMap.Entry> complete) {
+        Map<String, RecipeMap.Entry> t37ByInput = new HashMap<>();
+        for (RecipeMap.Entry entry : complete) {
+            if (isT37CompactRecipe(entry.id())) {
+                t37ByInput.put(logicalInputIdentity(entry.recipe()), entry);
+            }
+        }
+        if (t37ByInput.isEmpty()) {
+            return;
+        }
+        complete.removeIf(entry -> {
+            if (!isT41CompactRecipe(entry.id())) {
+                return false;
+            }
+            RecipeMap.Entry historical = t37ByInput.get(logicalInputIdentity(entry.recipe()));
+            return historical != null
+                    && recipeOutputIdentity(entry.recipe())
+                            .equals(recipeOutputIdentity(historical.recipe()));
+        });
+    }
+
+    static boolean isT37CompactRecipe(ResourceLocation id) {
+        return CrucibleCraft.MODID.equals(id.getNamespace())
+                && id.getPath().startsWith("t37/");
+    }
+
+    private static boolean isT37AssemblerSource(CompactRecipeFamilySource source) {
+        return source.definition().targetMap().equals(ModRecipeMaps.ASSEMBLER.id())
+                && source.definition().resolvedPublicationGroup().equals(
+                        CompactGTRecipeFamilyDefinition.T37_ASSEMBLER_PUBLICATION_GROUP);
+    }
+
+    private static boolean isT41AssemblerSource(CompactRecipeFamilySource source) {
+        ResourceLocation group = source.definition().resolvedPublicationGroup();
+        return source.definition().targetMap().equals(ModRecipeMaps.ASSEMBLER.id())
+                && (group.equals(CompactGTRecipeFamilyDefinition
+                        .T41_ASSEMBLER_PLANKS_PUBLICATION_GROUP)
+                        || group.equals(CompactGTRecipeFamilyDefinition
+                                .T41_ASSEMBLER_FIREPROOF_PUBLICATION_GROUP)
+                        || group.equals(CompactGTRecipeFamilyDefinition
+                                .T41_ASSEMBLER_PLANKS2_PUBLICATION_GROUP));
+    }
+
+    static String recipeOutputIdentity(GTRecipe recipe) {
+        return outputSignature(recipe) + "|" + recipe.duration() + "|" + recipe.eut();
+    }
+
+    /**
+     * T39 compact families are the host-complete centrifuge identity. A T5
+     * standalone row with the same input and output signatures is the same
+     * GT6 recipe already owned by T5 fluid closure; keep the compact row.
+     */
+    static void dropEquivalentT5RowsSupersededByT39(List<RecipeMap.Entry> complete) {
+        Map<String, RecipeMap.Entry> t39ByInput = new HashMap<>();
+        for (RecipeMap.Entry entry : complete) {
+            if (isT39CompactRecipe(entry.id())) {
+                t39ByInput.put(inputSignature(entry.recipe()), entry);
+            }
+        }
+        if (t39ByInput.isEmpty()) {
+            return;
+        }
+        complete.removeIf(entry -> {
+            if (!isT5ChemicalRecipe(entry.id())) {
+                return false;
+            }
+            RecipeMap.Entry compact = t39ByInput.get(inputSignature(entry.recipe()));
+            return compact != null
+                    && outputSignature(entry.recipe())
+                            .equals(outputSignature(compact.recipe()));
+        });
+    }
+
+    /**
+     * T40 compact families supersede a T5 electrolyzer row only when the full
+     * input and output signatures already match. Unproven T5 composition
+     * recipes stay published.
+     */
+    static void dropEquivalentT5RowsSupersededByT40(List<RecipeMap.Entry> complete) {
+        Map<String, RecipeMap.Entry> t40ByInput = new HashMap<>();
+        for (RecipeMap.Entry entry : complete) {
+            if (isT40CompactRecipe(entry.id())) {
+                t40ByInput.put(inputSignature(entry.recipe()), entry);
+            }
+        }
+        if (t40ByInput.isEmpty()) {
+            return;
+        }
+        complete.removeIf(entry -> {
+            if (!isT5ChemicalRecipe(entry.id())) {
+                return false;
+            }
+            RecipeMap.Entry compact = t40ByInput.get(inputSignature(entry.recipe()));
+            return compact != null
+                    && outputSignature(entry.recipe())
+                            .equals(outputSignature(compact.recipe()));
+        });
     }
 
     static void validateNoShadows(RecipeMap map, List<RecipeMap.Entry> entries) {
@@ -1049,21 +1418,24 @@ public final class GTRecipeMapLoader {
     }
 
     private static String compactFingerprint(
-            Map<ResourceLocation, CompactRecipeFamilyProvider.Snapshot> compactByMap) {
-        if (compactByMap.isEmpty()) {
+            Map<PublicationGroupKey, CompactRecipeFamilyProvider.Snapshot>
+                    compactByGroup) {
+        if (compactByGroup.isEmpty()) {
             return "";
         }
         List<CompactRecipeFamilyProvider.Snapshot> ordered =
-                compactByMap.values().stream()
-                        .sorted(Comparator.comparing(snapshot ->
-                                snapshot.mapId().toString()))
+                compactByGroup.values().stream()
+                        .sorted(Comparator
+                                .comparing((CompactRecipeFamilyProvider.Snapshot
+                                        snapshot) -> snapshot.mapId().toString())
+                                .thenComparing(snapshot ->
+                                        snapshot.publicationGroup().toString()))
                         .toList();
-        if (ordered.size() == 1) {
-            return ordered.getFirst().stableFingerprint();
-        }
         StringBuilder joined = new StringBuilder();
         for (CompactRecipeFamilyProvider.Snapshot snapshot : ordered) {
             joined.append(snapshot.mapId())
+                    .append('/')
+                    .append(snapshot.publicationGroup())
                     .append('=')
                     .append(snapshot.stableFingerprint())
                     .append('\n');
@@ -1082,7 +1454,36 @@ public final class GTRecipeMapLoader {
                 + logicalRecipeResourcePath(recipeId) + ")";
     }
 
-    private static String inputSignature(GTRecipe recipe) {
+    /**
+     * Stack-and-count consume identity used to recognize T37 leftover-vanilla
+     * assembler rows that T41 later regenerated. Unlike {@link #inputSignature},
+     * this ignores Ingredient instance toString, so independently materialized
+     * {@code neoforge:components} circuit stacks still match.
+     */
+    static String logicalInputIdentity(GTRecipe recipe) {
+        List<String> items = new ArrayList<>();
+        for (int index = 0; index < recipe.itemInputs().size(); index++) {
+            var ingredient = recipe.itemInputs().get(index);
+            String alternatives = java.util.Arrays.stream(ingredient.getItems())
+                    .filter(stack -> !stack.isEmpty())
+                    .map(GTRecipeMapLoader::stackIdentity)
+                    .sorted()
+                    .collect(java.util.stream.Collectors.joining("|"));
+            items.add(recipe.itemInputCounts().get(index)
+                    + ":" + recipe.itemInputActions().get(index)
+                    + "@" + alternatives);
+        }
+        items.sort(String::compareTo);
+        List<String> fluids = recipe.fluidInputs().stream()
+                .map(stack -> stack.getAmount()
+                        + "@" + BuiltInRegistries.FLUID.getKey(stack.getFluid())
+                        + "@" + stack.getComponentsPatch())
+                .sorted()
+                .toList();
+        return String.join(",", items) + "||" + String.join(",", fluids);
+    }
+
+    static String inputSignature(GTRecipe recipe) {
         List<String> items = new ArrayList<>();
         for (int index = 0; index < recipe.itemInputs().size(); index++) {
             var ingredient = recipe.itemInputs().get(index);
@@ -1102,6 +1503,22 @@ public final class GTRecipeMapLoader {
         }
         items.sort(String::compareTo);
         List<String> fluids = recipe.fluidInputs().stream()
+                .map(stack -> stack.getAmount()
+                        + "@" + BuiltInRegistries.FLUID.getKey(stack.getFluid())
+                        + "@" + stack.getComponentsPatch())
+                .sorted()
+                .toList();
+        return String.join(",", items) + "||" + String.join(",", fluids);
+    }
+
+    static String outputSignature(GTRecipe recipe) {
+        List<String> items = recipe.itemOutputs().stream()
+                .map(stack -> stack.getCount()
+                        + "@" + BuiltInRegistries.ITEM.getKey(stack.getItem())
+                        + "@" + stack.getComponentsPatch())
+                .sorted()
+                .toList();
+        List<String> fluids = recipe.fluidOutputs().stream()
                 .map(stack -> stack.getAmount()
                         + "@" + BuiltInRegistries.FLUID.getKey(stack.getFluid())
                         + "@" + stack.getComponentsPatch())

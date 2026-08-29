@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.machine.processing;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.HashSet;
@@ -25,6 +26,25 @@ public final class MachineTierCatalog {
             "/data/cruciblecraft/machine_tiers.json";
     private static final Gson GSON = new Gson();
     private static final Catalog CATALOG = loadBundled();
+
+    public static IsolatedCatalog loadIsolated(InputStream stream) {
+        Catalog catalog = parse(stream);
+        return new IsolatedCatalog(
+                catalog.entries(),
+                catalog.namingPolicy(),
+                catalog.byId());
+    }
+
+    public record IsolatedCatalog(
+            List<Entry> entries,
+            NamingPolicy namingPolicy,
+            Map<ResourceLocation, Entry> byId) {
+        public IsolatedCatalog {
+            entries = List.copyOf(entries);
+            Objects.requireNonNull(namingPolicy, "namingPolicy");
+            byId = Map.copyOf(byId);
+        }
+    }
 
     public static List<Entry> entries() {
         return CATALOG.entries();
@@ -88,6 +108,15 @@ public final class MachineTierCatalog {
                 throw new IllegalStateException(
                         "Missing bundled machine tier catalog " + RESOURCE);
             }
+            return parse(stream);
+        } catch (IOException exception) {
+            throw new IllegalStateException(
+                    "Could not load machine tier catalog", exception);
+        }
+    }
+
+    private static Catalog parse(InputStream stream) {
+        try {
             Document document = GSON.fromJson(
                     new InputStreamReader(
                             stream, StandardCharsets.UTF_8),
@@ -224,9 +253,7 @@ public final class MachineTierCatalog {
                     byKind,
                     document.namingPolicy.toPolicy(),
                     Map.copyOf(textureProfiles));
-        } catch (IOException
-                | JsonIOException
-                | JsonSyntaxException exception) {
+        } catch (JsonIOException | JsonSyntaxException exception) {
             throw new IllegalStateException(
                     "Could not load machine tier catalog", exception);
         }

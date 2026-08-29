@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/machine_casings.schema.json",
+  "title": "CrucibleCraft machine casing catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source_revision", "casings"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schema_version": { "const": 1 },
+    "source_revision": {
+      "const": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    "casings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "material",
+          "energy_family",
+          "doubled",
+          "creative_visible",
+          "lang_key_zh",
+          "lang_key_en"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^cruciblecraft:[a-z0-9_]+$"
+          },
+          "material": {
+            "type": "string",
+            "pattern": "^cruciblecraft:[a-z0-9_]+$"
+          },
+          "energy_family": {
+            "enum": ["kinetic_double", "eu_single"]
+          },
+          "doubled": { "type": "boolean" },
+          "creative_visible": { "type": "boolean" },
+          "lang_key_zh": { "type": "string", "minLength": 1 },
+          "lang_key_en": { "type": "string", "minLength": 1 },
+          "electrolyzer_cable_material": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "machine_material_extras": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "material",
+          "distillery_wire_material",
+          "distillery_wire_prefix"
+        ],
+        "properties": {
+          "material": {
+            "type": "string",
+            "pattern": "^cruciblecraft:[a-z0-9_]+$"
+          },
+          "distillery_wire_material": { "type": "string", "minLength": 1 },
+          "distillery_wire_prefix": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

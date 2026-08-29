@@ -1,0 +1,390 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/compact_recipe_family_source.schema.json",
+  "title": "Compact recipe-family source",
+  "description": "Stage-neutral compact source freeze for exact GT6 recipe-family rows.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "source_revision",
+    "generated_by",
+    "host",
+    "owner",
+    "source_map",
+    "target_map",
+    "work_set",
+    "assignment",
+    "relations",
+    "provenance_kinds"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "type": "string"
+    },
+    "source_revision": {
+      "type": "string",
+      "minLength": 40,
+      "maxLength": 40,
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "generated_by": {
+      "type": "string"
+    },
+    "host": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "source_map": {
+      "type": "string"
+    },
+    "target_map": {
+      "type": "string"
+    },
+    "work_set": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family_ids",
+        "template_keys",
+        "family_count",
+        "source_rows"
+      ],
+      "properties": {
+        "family_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "template_keys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "family_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_rows": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "assignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assigned",
+        "missing",
+        "extra",
+        "duplicate"
+      ],
+      "properties": {
+        "assigned": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "missing": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "extra": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "duplicate": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relation"
+      }
+    },
+    "provenance_kinds": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/provenance_kind"
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "provenance_kind": {
+      "enum": [
+        "SOURCE_BACKED",
+        "SOURCE_DERIVED",
+        "DESIGN_POLICY"
+      ]
+    },
+    "mapping_kind": {
+      "enum": [
+        "exact_runtime_id",
+        "registered_material_form",
+        "canonical_tag",
+        "source_derived_alias",
+        "blocked_unmapped"
+      ]
+    },
+    "item_action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "CONSUME",
+            "PRESERVE",
+            "WEAR"
+          ]
+        },
+        "damage": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "operand": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mapping",
+        "source"
+      ],
+      "properties": {
+        "mapping": {
+          "$ref": "#/$defs/mapping_kind"
+        },
+        "source": {
+          "type": "object"
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "runtime_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "material": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "form": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tag": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "alias": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reachable": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "slot_class": {
+          "type": "string"
+        }
+      }
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family_id",
+        "source_map",
+        "source_recipe_index",
+        "source_revision",
+        "source_row_sha256",
+        "stable_id",
+        "target_map",
+        "item_inputs",
+        "item_input_counts",
+        "item_input_actions",
+        "item_outputs",
+        "fluid_inputs",
+        "fluid_outputs",
+        "output_chances",
+        "duration",
+        "eut",
+        "special_value",
+        "can_be_buffered",
+        "shadow_order",
+        "provenance"
+      ],
+      "properties": {
+        "family_id": {
+          "type": "string"
+        },
+        "template_key": {
+          "type": "string"
+        },
+        "source_map": {
+          "type": "string"
+        },
+        "source_recipe_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "source_revision": {
+          "type": "string"
+        },
+        "source_row_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "stable_id": {
+          "type": "string"
+        },
+        "target_map": {
+          "type": "string"
+        },
+        "item_inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/operand"
+          }
+        },
+        "item_input_counts": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "item_input_actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/item_action"
+          }
+        },
+        "item_outputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/operand"
+          }
+        },
+        "fluid_inputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/operand"
+          }
+        },
+        "fluid_outputs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/operand"
+          }
+        },
+        "output_chances": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          }
+        },
+        "duration": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "eut": {
+          "type": "integer"
+        },
+        "special_value": {
+          "type": "integer"
+        },
+        "can_be_buffered": {
+          "type": "boolean"
+        },
+        "needs_empty_output": {
+          "type": "boolean"
+        },
+        "no_nbt_checks": {
+          "type": "boolean"
+        },
+        "shadow_order": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "slot_notes": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "unsupported_semantics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kinds",
+            "fields"
+          ],
+          "properties": {
+            "kinds": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/provenance_kind"
+              }
+            },
+            "fields": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/provenance_kind"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

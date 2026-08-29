@@ -16,6 +16,7 @@ TOOLS = ROOT / "tools"
 sys.path.insert(0, str(ROOT))
 
 from tools import build_gt6_material_form_gate as gate_builder  # noqa: E402
+from tools import material_form_authority as form_authority  # noqa: E402
 
 AUTHOR_ROOT = (
     ROOT / "src/main/resources/data/cruciblecraft/veins"
@@ -66,7 +67,9 @@ def stable_json(value: Any) -> str:
 def material_capabilities() -> dict[str, dict[str, set[str]]]:
     """Read independently-derived factual forms and the runtime registration gate."""
     documents, factual_forms = gate_builder.material_documents()
-    gate = load(REGISTRATION_GATE).get("materials") or {}
+    gate_document = load(REGISTRATION_GATE)
+    gate = gate_document.get("materials") or {}
+    overlay_forms = form_authority.overlay_forms_from_gate(gate_document)
     if set(documents) != set(gate):
         raise ValueError("material registration gate does not cover the factual catalog")
 
@@ -74,17 +77,25 @@ def material_capabilities() -> dict[str, dict[str, set[str]]]:
     for material_id in sorted(documents):
         registered = set(gate[material_id])
         factual = set(factual_forms[material_id])
+        acquisition_forms = overlay_forms.get(material_id, set())
         flags = set(documents[material_id].get("generation_flags") or [])
         t10_forms = set().union(*(
             forms
             for flag, forms in T10_FORM_FLAGS.items()
             if flag in flags
         )) if flags & set(T10_FORM_FLAGS) else set()
-        if not (registered - factual) <= T8_PIPE_FORMS | t10_forms:
+        if not (registered - factual) <= (
+            T8_PIPE_FORMS | t10_forms | acquisition_forms
+        ):
             raise ValueError(
-                "registration gate exceeds factual or source-backed T8/T10 "
+                "registration gate exceeds factual or source-backed T8/T10/T38/T39 "
                 f"forms for {material_id}"
             )
+        # T38's pinned GT6 large-vein facts are the factual source for their
+        # runtime ORE form; the material-level L3 plan intentionally did not
+        # claim that broader domain before this overlay existed.
+        if "ore" in acquisition_forms:
+            factual.add("ore")
         capabilities[material_id] = {
             "factual": factual,
             "registered": registered,

@@ -1,0 +1,134 @@
+{
+  "closure_scenarios": {
+    "fluid_blocked_relations": 15,
+    "rock_mortar_dust_all": 1,
+    "t39_required_forms_only": 1,
+    "vanilla_seeds_added": 0
+  },
+  "counts": {
+    "inputs_reachable": 15,
+    "relations": 32,
+    "relations_with_unreachable_inputs": 17,
+    "unique_unreachable_consume_ids": 2,
+    "unique_unreachable_fluid_input_ids": 15,
+    "unreachable_consume_mentions": 2,
+    "unreachable_fluid_mentions": 15
+  },
+  "fluid_input_ids": [
+    {
+      "count": 1,
+      "id": "cruciblecraft:aqua_regia",
+      "in_t21_closure": false
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:molten_blue_alloy",
+      "in_t21_closure": false
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:molten_signalum",
+      "in_t21_closure": false
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:molten_arsenic_bronze",
+      "in_t21_closure": false
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:molten_lumium",
+      "in_t21_closure": false
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:molten_sterling_silver",
+      "in_t21_closure": false
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:molten_soldering_alloy",
+      "in_t21_closure": false
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:molten_netherite",
+      "in_t21_closure": false
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:molten_invar",
+      "in_t21_closure": false
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:molten_rose_gold",
+      "in_t21_closure": false
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:molten_red_alloy",
+      "in_t21_closure": false
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:molten_electrotine_alloy",
+      "in_t21_closure": false
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:molten_desh",
+      "in_t21_closure": false
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:molten_black_bronze",
+      "in_t21_closure": false
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:molten_bismuth_bronze",
+      "in_t21_closure": false
+    }
+  ],
+  "notes": {
+    "recovery_builder_decision": "No bounded source-backed recovery set like T38 (5 pinned routes). Rock mortar projection alone needs 42 materials; 87 relations require molten-fluid chains.",
+    "t21_regeneration": "python tools/t21_operand_reachability.py --json would refresh closure after T39 required forms and upstream ore-processing routes exist; it does not seed mob drops or close molten-fluid gaps by itself.",
+    "vanilla_missing_reason": "T21 explicitly excludes mob drops from survival seeds; egg, honeycomb, magma_cream, feather, etc. are intentional gaps unless added to _vanilla_survival_seeds()."
+  },
+  "reachability_source": "tools/t21_operand_reachability.json#closure.reachable_identities",
+  "schema_version": 1,
+  "status": "T39_PLAYER_PATH_GAPS",
+  "taxonomy": {
+    "material_with_rock_seed": [
+      {
+        "count": 1,
+        "id": "cruciblecraft:cobalt/tiny_centrifuged_crushed_ore",
+        "in_t21_closure": false
+      },
+      {
+        "count": 1,
+        "id": "cruciblecraft:energium_red/dust",
+        "in_t21_closure": false
+      }
+    ]
+  },
+  "taxonomy_summary": {
+    "material_with_rock_seed": {
+      "mention_count": 2,
+      "unique_ids": 2
+    }
+  },
+  "top_consume_ids": [
+    {
+      "count": 1,
+      "id": "cruciblecraft:cobalt/tiny_centrifuged_crushed_ore",
+      "in_t21_closure": false
+    },
+    {
+      "count": 1,
+      "id": "cruciblecraft:energium_red/dust",
+      "in_t21_closure": false
+    }
+  ]
+}

@@ -4,9 +4,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 import com.masson.cruciblecraft.machine.processing.MachineKindSpec;
+import com.masson.cruciblecraft.machine.processing.MachineKindCatalog;
+import com.masson.cruciblecraft.machine.processing.MachineAcquisitionCatalog;
 import com.masson.cruciblecraft.machine.processing.MachineTierCatalog;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
@@ -46,52 +47,15 @@ public final class ModMachineVariants {
     public static final MachineKindSpec SMELTER =
             requireKind(id("smelter"));
     public static final List<MachineKindSpec> T16_SELECTED_KINDS =
-            List.of(LATHE, ROLLINGMILL, WIREMILL, SHREDDER, PRESS);
-    private static final Set<ResourceLocation> T16_SELECTED_KIND_IDS =
-            T16_SELECTED_KINDS.stream()
-                    .map(MachineKindSpec::id)
-                    .collect(java.util.stream.Collectors.toUnmodifiableSet());
+            KINDS.stream()
+                    .filter(kind -> "t16".equals(
+                            MachineKindCatalog.require(kind.id()).displayGroup()))
+                    .toList();
     public static final List<MachineKindSpec> T17_SELECTED_KINDS =
-            List.of(DISTILLERY, DRYING, SMELTER);
-    private static final Set<ResourceLocation> T17_SELECTED_KIND_IDS =
-            T17_SELECTED_KINDS.stream()
-                    .map(MachineKindSpec::id)
-                    .collect(java.util.stream.Collectors.toUnmodifiableSet());
-    private static final Set<ResourceLocation> OPENING_VARIANT_IDS =
-            java.util.Set.of(
-                    id("centrifuge"),
-                    id("steel_centrifuge"),
-                    id("titanium_centrifuge"),
-                    id("sifter"),
-                    id("steel_sifter"),
-                    id("titanium_sifter"),
-                    id("electrolyzer"),
-                    id("aluminium_electrolyzer"),
-                    id("stainless_steel_electrolyzer"),
-                    id("lathe"),
-                    id("steel_lathe"),
-                    id("titanium_lathe"),
-                    id("rollingmill"),
-                    id("steel_rollingmill"),
-                    id("titanium_rollingmill"),
-                    id("wiremill"),
-                    id("steel_wiremill"),
-                    id("titanium_wiremill"),
-                    id("shredder"),
-                    id("steel_shredder"),
-                    id("titanium_shredder"),
-                    id("press"),
-                    id("steel_press"),
-                    id("titanium_press"),
-                    id("distillery"),
-                    id("invar_distillery"),
-                    id("titanium_distillery"),
-                    id("drying"),
-                    id("invar_drying"),
-                    id("titanium_drying"),
-                    id("smelter"),
-                    id("invar_smelter"),
-                    id("titanium_smelter"));
+            KINDS.stream()
+                    .filter(kind -> "t17".equals(
+                            MachineKindCatalog.require(kind.id()).displayGroup()))
+                    .toList();
 
     public static final List<MachineVariant> ALL =
             MachineTierCatalog.entries().stream()
@@ -103,21 +67,22 @@ public final class ModMachineVariants {
     public static final List<MachineVariant> T16_SELECTED =
             ALL.stream()
                     .filter(variant ->
-                            T16_SELECTED_KIND_IDS.contains(variant.kind().id())
-                                    && OPENING_VARIANT_IDS.contains(
+                            "t16".equals(MachineKindCatalog.require(
+                                    variant.kind().id()).displayGroup())
+                                    && MachineAcquisitionCatalog.isOpening(
                                             variant.id()))
                     .toList();
     public static final List<MachineVariant> T17_SELECTED =
             ALL.stream()
                     .filter(variant ->
-                            T17_SELECTED_KIND_IDS.contains(
-                                    variant.kind().id())
-                                    && OPENING_VARIANT_IDS.contains(
+                            "t17".equals(MachineKindCatalog.require(
+                                    variant.kind().id()).displayGroup())
+                                    && MachineAcquisitionCatalog.isOpening(
                                             variant.id()))
                     .toList();
 
     public static boolean isOpening(ResourceLocation id) {
-        return OPENING_VARIANT_IDS.contains(id);
+        return MachineAcquisitionCatalog.isOpening(id);
     }
     private static final Map<ResourceLocation, MachineVariant> BY_ID =
             indexById();

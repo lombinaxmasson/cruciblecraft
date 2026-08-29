@@ -1,0 +1,150 @@
+{
+  "evidence": {
+    "census_status": "T40_CENSUS_DELTA_READY",
+    "equivalence": {
+      "current": true,
+      "file_count": 13,
+      "generated_files": 13,
+      "logical_ids": 22
+    },
+    "generated_file_count": 13,
+    "group_winners": {
+      "multi": "hybrid",
+      "singleton": "on_demand"
+    },
+    "load": {
+      "authored_closing": 3733,
+      "current": true,
+      "decision_recomputable": true,
+      "group_winners_present": true,
+      "hard_ceiling_raised": false,
+      "measurements_current": true,
+      "pending_zero_filled": false,
+      "winner_derived": true
+    },
+    "next_issue_id": "T41",
+    "player_path": {
+      "b0_inputs_reachable": 22,
+      "current": true,
+      "families": 13,
+      "inputs_reachable": 22,
+      "layered_status": "T40_LAYERED_PLAYER_PATH_READY",
+      "outputs_registered": 22,
+      "production_lock_sha256": "26cca29698c34039cc8aa19ff8e584a0ec7a521165ec39e8dcece03cf75488e5",
+      "relations": 22
+    },
+    "publication_status": "T40_PUBLICATION_DELTA_READY",
+    "remaining_recipe_gap": 5597,
+    "runtime": {
+      "current": true,
+      "java_tests_present": true,
+      "player_gametest_present": true
+    },
+    "source": {
+      "blockers": [],
+      "compact_current": true,
+      "dump_present": true,
+      "dump_skip": false,
+      "dump_verified": true,
+      "receipt_present": true,
+      "skip_is_not_pass": true
+    },
+    "t40_complete": true,
+    "topology_epoch": "T40_PRODUCTION_LOCK",
+    "unique_active_card": null
+  },
+  "failed_gates": [],
+  "gates": {
+    "candidate_is_non_authoritative": true,
+    "catalog_fixture_is_test_only": true,
+    "catalog_fixture_not_production_evidence": true,
+    "census_structural_validators_zero": true,
+    "decision_recomputable_from_measurements": true,
+    "equivalence_current": true,
+    "full_replay_dump_verified": true,
+    "full_replay_receipt_present": true,
+    "group_winners_derived": true,
+    "hard_ceiling_not_raised": true,
+    "identity_closeout_complete": true,
+    "load_measured": true,
+    "pending_not_zero_filled": true,
+    "phase_owner_audited": true,
+    "player_gametest_present": true,
+    "player_path_current": true,
+    "production_lock_current": true,
+    "remaining_gap_honest": true,
+    "remaining_ordinary_not_bulk_complete": true,
+    "runtime_java_tests_present": true,
+    "source_compact_current": true,
+    "t35_foundation_unchanged": true,
+    "t38_not_stolen": true,
+    "t38_ready": true,
+    "t39_not_stolen": true,
+    "t39_ready": true,
+    "topology_storage_after_recipes": true,
+    "topology_t36_complete": true,
+    "topology_t37_complete": true,
+    "topology_t38_complete": true,
+    "topology_t39_complete": true,
+    "topology_t40_complete": true,
+    "topology_t41_not_preassigned": true,
+    "topology_unique_active_honest": true,
+    "work_set_matches_production_lock": true
+  },
+  "generated_by": "python tools/build_t40_readiness.py",
+  "identity_closeout": {
+    "blockers": [],
+    "closure_closed": true,
+    "complete": true,
+    "disposition_implemented": true,
+    "fidelity_not_dropped": true,
+    "fidelity_retained": true,
+    "load_measured": true,
+    "opening": {
+      "closure": "incomplete",
+      "disposition": "planned",
+      "fidelity": "source_backed",
+      "load": "pending"
+    },
+    "opening_statuses_match_t40": true,
+    "owner_closing": true,
+    "partial_families": 0,
+    "required": {
+      "closure": "closed",
+      "disposition": "implemented",
+      "fidelity": "source_backed",
+      "load": "measured"
+    }
+  },
+  "note": "T40_READY is derived from source currentness, equivalence, runtime, player path, load, census and topology. The 61/151 catalog fixture is not production evidence. Missing lock-current source replay, layered player path, GameTest receipt, or measured decision keeps the card blocked. T41 is not issued from this card.",
+  "production_lock_sha256": "26cca29698c34039cc8aa19ff8e584a0ec7a521165ec39e8dcece03cf75488e5",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T40_READY",
+  "t35_history_readonly": true,
+  "t36_history_readonly": true,
+  "t37_history_readonly": true,
+  "t38_history_readonly": true,
+  "t39_history_readonly": true,
+  "t41_opening": {
+    "next_issue_id": "T41",
+    "preassigned_family_ids": false,
+    "preassigned_host": false,
+    "t14_closing": {
+      "allocation_bytes": 1127272,
+      "client_index_ms": 4,
+      "client_reload_ms": 5,
+      "datapack_authored_entries": 3733,
+      "eager_publication_rows": 16659,
+      "lazy_cache_ceiling_rows": 78,
+      "lazy_logical_rows": 2388,
+      "lookup_candidate_count": 73,
+      "lookup_p95_ns": 685725,
+      "retained_memory_bytes": 18655,
+      "server_index_ms": 4,
+      "server_reload_ms": 4,
+      "sync_bytes": 18655
+    },
+    "unique_active_after_t40_ready": true
+  }
+}
