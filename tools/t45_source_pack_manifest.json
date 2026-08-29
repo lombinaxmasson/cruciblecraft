@@ -1,0 +1,36 @@
+{
+  "catalog": {
+    "families": 379,
+    "relations": 379,
+    "selection_sha256": "086ae3899b89efca2d049bca40196720176f399e00d2beba4c7ea5173dbdc63d"
+  },
+  "files": {
+    "receipt": {
+      "path": "tools/t45_block_object_source_receipt.json"
+    },
+    "review": {
+      "path": "tools/t45_block_object_source_review.json"
+    },
+    "source": {
+      "path": "tools/t45_block_object_source.json",
+      "sha256": "b3ef945fbec48a1ee79a6b0e271d35f792b14bea160f0f539c0ea0e644b714c3"
+    },
+    "work_set": {
+      "path": "tools/t45_work_set.json"
+    }
+  },
+  "full_replay": {
+    "dump_present": true,
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "hosts": [
+    "cruciblecraft:drying",
+    "cruciblecraft:smelter"
+  ],
+  "owner": "portfolio:track_a/t45_block_object",
+  "review_status": "T45_BLOCK_OBJECT_SOURCE_REVIEW",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T45_SOURCE_PACK_FROZEN"
+}

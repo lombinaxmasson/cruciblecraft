@@ -2215,9 +2215,9 @@ public final class CrucibleCraftGameTests {
                         && CellContentGate.entries().size() == 110,
                 "T11 chemical-fluid or T10 cell allowlist registry is incomplete");
         helper.assertTrue(
-                MaterialPrefixCatalog.values().size() == 57
+                MaterialPrefixCatalog.values().size() == 58
                         && MaterialCatalog.startupValues().size()
-                                + MaterialPrefixCatalog.values().size() == 1_831
+                                + MaterialPrefixCatalog.values().size() == 1_832
                         && MaterialCatalog.startupValues().stream()
                                 .mapToInt(material ->
                                         MaterialCatalog.registeredForms(

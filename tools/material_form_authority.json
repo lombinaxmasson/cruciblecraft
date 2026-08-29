@@ -1,0 +1,96 @@
+{
+  "generated_by": "python tools/material_form_authority.py",
+  "java_overlay_sections": [
+    "t38_source_backed_acquisition_forms",
+    "t38_required_forms",
+    "t39_required_forms",
+    "t40_required_forms"
+  ],
+  "note": "Single overlay authority for Python gate/compare/veins/ore-chain and Java MaterialRegistrationGate. Card builders write t{N}_required_forms.json only.",
+  "schema_version": 1,
+  "semantic_root_sha256": "231d488fbdf17c6104b729418dfa6d1b218ba0b38cf4503d418e987733304363",
+  "sources": [
+    {
+      "extra_factual_forms": [
+        "ore"
+      ],
+      "field": "required_forms",
+      "gate_section": "t38_source_backed_acquisition_forms",
+      "id": "t38_source_backed_acquisition",
+      "java_runtime_visible": true,
+      "owner": "T38",
+      "path": "tools/t38_source_backed_acquisition.json",
+      "required_factual_prereqs": {},
+      "source_hash": "7499fd31b09a380cad9566d2157ef3923585357893d8a2ef298c79e5088956f6"
+    },
+    {
+      "extra_factual_forms": [
+        "dust_div72",
+        "small_dust"
+      ],
+      "field": "required_forms",
+      "gate_section": "t38_required_forms",
+      "id": "t38_compact_required_forms",
+      "java_runtime_visible": true,
+      "owner": "T38",
+      "path": "tools/t38_required_forms.json",
+      "required_factual_prereqs": {
+        "dust_div72": [
+          "dust"
+        ],
+        "small_dust": [
+          "dust"
+        ]
+      },
+      "source_hash": "4ac1f89746ea52dba7556f0be7351005e72035259ae4700bb4c8b08764d13228"
+    },
+    {
+      "extra_factual_forms": [
+        "dust_div72",
+        "nugget",
+        "small_dust",
+        "tiny_centrifuged_crushed_ore"
+      ],
+      "field": "required_forms",
+      "gate_section": "t39_required_forms",
+      "id": "t39_compact_required_forms",
+      "java_runtime_visible": true,
+      "owner": "T39",
+      "path": "tools/t39_required_forms.json",
+      "required_factual_prereqs": {
+        "dust_div72": [
+          "dust"
+        ],
+        "small_dust": [
+          "dust"
+        ]
+      },
+      "source_hash": "9d0d420dccdff1bfa8f3982d6a847af8996c2ad537a1582d5b6581a5c555d51c"
+    },
+    {
+      "extra_factual_forms": [
+        "small_dust"
+      ],
+      "field": "required_forms",
+      "gate_section": "t40_required_forms",
+      "id": "t40_compact_required_forms",
+      "java_runtime_visible": true,
+      "owner": "T40",
+      "path": "tools/t40_required_forms.json",
+      "required_factual_prereqs": {
+        "small_dust": [
+          "dust"
+        ]
+      },
+      "source_hash": "a9ac8e05cce63a82c2ec5fb0026a4f161f4127bc0bbf39c4e3268c18c9facd4f"
+    }
+  ],
+  "status": "MATERIAL_FORM_AUTHORITY",
+  "typed_ore_denominators": {
+    "factual_ore_materials": 137,
+    "registered_ore_materials": 147,
+    "t38_acquisition_ore_delta": 10,
+    "t5_semantic_vein_ledger": 8,
+    "worldgen_catalog": "independent catalog, not the T5 ledger"
+  }
+}

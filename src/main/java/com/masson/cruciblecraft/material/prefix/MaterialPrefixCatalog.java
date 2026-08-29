@@ -432,7 +432,11 @@ public final class MaterialPrefixCatalog {
                     definition.serializedPath(),
                     "prefix " + definition.prefix().id());
             for (String alias : definition.aliases()) {
-                if (alias.indexOf(':') < 0) {
+                // Aliases may preserve legacy OreDict spelling (for example,
+                // dustDiv72), but only lowercase resource paths can become
+                // saved-stack suffix migrations.
+                if (alias.indexOf(':') < 0
+                        && alias.matches("[a-z0-9][a-z0-9_./-]*")) {
                     addCurrentLegacySuffix(
                             output,
                             alias,

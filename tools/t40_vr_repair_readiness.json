@@ -1,0 +1,59 @@
+{
+  "failed_gates": [],
+  "frozen_counts": {
+    "factual_ore_materials": 137,
+    "registered_ore_materials": 147,
+    "t38_acquisition_ore_delta": 10,
+    "t38_support_authored": 19,
+    "t38_support_eager": 15,
+    "t39_locked_support_routes": 34,
+    "t40_production_families": 13,
+    "t40_production_relations": 22,
+    "t40_remaining_ordinary_gap": 5597,
+    "t5_semantic_vein_ledger": 8
+  },
+  "gap_delta": 0,
+  "gates": {
+    "frozen_counts_hold": true,
+    "open_debt_not_disguised": true,
+    "r0_freeze_current": true,
+    "r1_material_authority": true,
+    "r2_atomic_io": true,
+    "r3_currentness": true,
+    "r4_dag_receipts": true,
+    "r5_runner_cli": true,
+    "r6_cutover": true,
+    "repair_gap_delta_zero": true,
+    "repair_owns_no_families": true,
+    "t39_t40_locks_not_resigned": true,
+    "t41_not_issued": true
+  },
+  "generated_by": "python tools/build_t40_vr_repair_readiness.py",
+  "immutable_lock_hashes": {
+    "tools/t39_production_lock.json": "b9034b2950a41b8905ef6668de793d04136432070cd238e577754148d7aa8600",
+    "tools/t40_production_lock.json": "26cca29698c34039cc8aa19ff8e584a0ec7a521165ec39e8dcece03cf75488e5"
+  },
+  "live_counts": {
+    "factual_ore_materials": 137,
+    "registered_ore_materials": 147,
+    "t38_acquisition_ore_delta": 10,
+    "t38_support_authored": 19,
+    "t38_support_eager": 15,
+    "t39_locked_support_routes": 34,
+    "t40_production_families": 13,
+    "t40_production_relations": 22,
+    "t40_remaining_ordinary_gap": 5597,
+    "t5_semantic_vein_ledger": 8
+  },
+  "note": "T40-VR owns no families and changes no gap. READY proves verification and currentness infrastructure repair; it does not replace tools/t40_readiness.json or resign T39/T40 production locks.",
+  "open_debt_ids": [
+    "T32-VD-002",
+    "T32-VD-004"
+  ],
+  "owns_families": 0,
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T40_VR_READY",
+  "t39_production_lock_sha256": "b9034b2950a41b8905ef6668de793d04136432070cd238e577754148d7aa8600",
+  "t40_production_lock_sha256": "26cca29698c34039cc8aa19ff8e584a0ec7a521165ec39e8dcece03cf75488e5"
+}

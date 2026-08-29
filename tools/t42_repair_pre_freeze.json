@@ -1,0 +1,27 @@
+{
+  "artifact": "T42_REPAIR_PRE_FREEZE",
+  "evidence_scope": "pre_repair",
+  "generated_by": "python tools/build_t42_repair_pre_freeze.py",
+  "giant_artifact_hashes": {
+    "tools/t42_blocker_overlay.json": "23477e5ebdb16df778c3982d1db7b3939e2d8279334a9fa2cf3c73ca027bca7e",
+    "tools/t42_disposition_lock.json": "f92fff0ed054e5a777d8e5abc5e1e43850e390e22b54e126cbb9d1da3cb846c3",
+    "tools/t42_family_operand_snapshot.json": "217d1cf49923c9b0de3edfbabfb043e2fe56ebe502bbfeb5153186959e3e8dc6",
+    "tools/t42_gap_partition.json": "9b226808fc887d7c57361ed5cce70e03da6ce5c8491ec8949725dbb20ecfc897",
+    "tools/t42_runtime_expression_inventory.json": "4b48aa0f87fa291b270c0fac7ac1e7d0c398a15d7b22d2556df42f8b7fc8f2a9",
+    "tools/t42_vanilla_item_allowlist.json": "269f625fe7a987ea18154e7b73e0f68d65f4f272a8c07d4ac78fb8f1adfd2ece"
+  },
+  "note": "Write-once hash freeze of T42 giant artifacts before fidelity repair. This is not a second copy of the family operand snapshot. Live overlay/lock hashes may change during T42-Repair without rewriting this freeze.",
+  "opening_execution_gap": 5305,
+  "owns_families": 0,
+  "reference_kind": "freeze_reference",
+  "repair_prohibitions": [
+    "do_not_generate_recipes_forms_or_gametests",
+    "do_not_occupy_t43",
+    "do_not_scrape_dump_minecraft_ids_onto_allowlist",
+    "do_not_fold_armor_or_tool_head_into_prefix_item_to_form",
+    "do_not_treat_minecraft_prefix_as_121_proof"
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "t43_not_issued": true
+}

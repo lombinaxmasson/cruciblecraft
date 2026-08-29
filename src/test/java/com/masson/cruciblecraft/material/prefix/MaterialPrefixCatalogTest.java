@@ -190,7 +190,7 @@ class MaterialPrefixCatalogTest {
                         MaterialPrefixes.ROD,
                         MaterialPrefixes.SMALL_DUST),
                 List.copyOf(MaterialPrefixCatalog.values()).subList(0, 15));
-        assertEquals(57, MaterialPrefixCatalog.values().size());
+        assertEquals(58, MaterialPrefixCatalog.values().size());
         assertEquals(16, MaterialPrefixes.TINY_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.WASHED_CRUSHED_ORE.units());
         assertEquals(144, MaterialPrefixes.CENTRIFUGED_CRUSHED_ORE.units());
@@ -204,6 +204,7 @@ class MaterialPrefixCatalogTest {
         assertEquals("small_dusts", MaterialPrefixes.SMALL_DUST.tagDirectory());
         assertEquals(144, MaterialPrefixes.GEM.units());
         assertEquals(16, MaterialPrefixes.TINY_DUST.units());
+        assertEquals(2, MaterialPrefixes.DUST_DIV72.units());
         assertEquals("c", MaterialPrefixes.GEM.tagNamespace());
         assertEquals("storage_blocks", MaterialPrefixes.BLOCK.tagDirectory());
         assertEquals("c", MaterialPrefixes.BLOCK.tagNamespace());
@@ -212,6 +213,7 @@ class MaterialPrefixCatalogTest {
         assertEquals(MaterialPrefixes.CRUSHED_ORE, MaterialPrefixCatalog.require("crushed"));
         assertEquals(MaterialPrefixes.SMALL_DUST, MaterialPrefixCatalog.require("dustsmall"));
         assertEquals(MaterialPrefixes.TINY_DUST, MaterialPrefixCatalog.require("dusttiny"));
+        assertEquals(MaterialPrefixes.DUST_DIV72, MaterialPrefixCatalog.require("dustDiv72"));
         assertEquals(MaterialPrefixes.DOUBLE_INGOT, MaterialPrefixCatalog.require("ingotdouble"));
         assertEquals(MaterialPrefixes.TRIPLE_INGOT, MaterialPrefixCatalog.require("ingottriple"));
         assertEquals(MaterialPrefixes.INGOT_HOT, MaterialPrefixCatalog.require("ingothot"));
@@ -242,6 +244,7 @@ class MaterialPrefixCatalogTest {
                         MaterialPrefixes.WIRE,
                         MaterialPrefixes.SMALL_DUST,
                         MaterialPrefixes.TINY_DUST,
+                        MaterialPrefixes.DUST_DIV72,
                         MaterialPrefixes.CRUSHED_ORE,
                         MaterialPrefixes.FOIL,
                         MaterialPrefixes.GEAR,

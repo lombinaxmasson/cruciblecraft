@@ -1,0 +1,64 @@
+{
+  "family_id": "gt.recipe.electrolyzer#0058",
+  "publication_group": "cruciblecraft:t40_electrolyzer_singleton",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 4964,
+      "eut": 238,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        18
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:ceramic/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 5,
+          "id": "cruciblecraft:alumina/dust"
+        },
+        {
+          "count": 12,
+          "id": "cruciblecraft:silicon_dioxide/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "a0985c863f45799cdbd4ea1155b35542fa6baeb1f692f94bc60fecdd191d77e4"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#0058",
+        "source_kind": "DESIGN_POLICY"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t40_catalog/0f9d178b149d5f31"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:electrolyzer",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

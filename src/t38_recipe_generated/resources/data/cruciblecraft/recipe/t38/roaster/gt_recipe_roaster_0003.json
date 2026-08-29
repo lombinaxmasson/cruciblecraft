@@ -1,0 +1,92 @@
+{
+  "family_id": "gt.recipe.roaster#0003",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 2000,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 3000,
+          "id": "cruciblecraft:sulfur_dioxide"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:blaze_powder"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "ff8cd1e63c55cd97f31e74d1607b3e7b3ee69f4e37c6342b136be6684bd192fd"
+        ],
+        "selected_source_recipe": "gt.recipe.roaster#0003",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t38/9d062d722e80ea52"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 8000,
+          "id": "cruciblecraft:air"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 3000,
+          "id": "cruciblecraft:sulfur_dioxide"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:blaze_powder"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "5e76fb831f7ff2d2bb1ba0432ae12b3035933109eafdd8970af4f23019c01007"
+        ],
+        "selected_source_recipe": "gt.recipe.roaster#0003",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 1,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t38/820c11856673f378"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:roaster",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -7,12 +7,15 @@ import argparse
 import hashlib
 import json
 import re
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 from types import ModuleType
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 TOOLS = ROOT / "tools"
 SOURCE_MAP = (
     ROOT
@@ -610,22 +613,15 @@ def reference_only_check() -> list[str]:
             for row in t13["rows"]
             if row["name_internal"] == SOURCE_MAP_ID
         )
+        from tools import currentness
+
+        errors.extend(currentness.check_sidecar(LEDGER))
         source = ledger.get("source") or {}
         if (
-            source.get("builder_sha256") != digest(Path(__file__).resolve())
-            or source.get("sha256") != map_row["source_blob"]
+            source.get("sha256") != map_row["source_blob"]
             or source.get("recipe_count") != map_row["recipe_count"]
         ):
             errors.append("distillery source receipt drifted")
-        for relative, expected in (ledger.get("inputs") or {}).items():
-            path = ROOT / relative
-            actual = (
-                canonical_hash(load(path))
-                if path == T5_FLUID_GATE
-                else digest(path)
-            ) if path.is_file() else None
-            if actual != expected:
-                errors.append(f"distillery tracked input drifted: {relative}")
         rows = ledger.get("rows") or []
         generated = ledger.get("generated") or []
         counts = ledger.get("counts") or {}

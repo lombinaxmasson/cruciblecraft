@@ -23,8 +23,10 @@ from typing import Any
 
 try:
     from tools import gt6_l3_materials
+    from tools import material_form_authority as form_authority
 except ModuleNotFoundError:
     import gt6_l3_materials
+    import material_form_authority as form_authority
 
 ROOT = Path(__file__).resolve().parents[1]
 GT_MAPS = ROOT / "gt6_dump" / "gt6_recipe_dump" / "maps"
@@ -496,7 +498,11 @@ def resolve_t8_pipe_forms(material: dict[str, Any]) -> set[str]:
 def _load_cc_materials_cached() -> dict[str, dict[str, Any]]:
     materials: dict[str, dict[str, Any]] = {}
     index = json.loads((CC_MATERIALS / "index.json").read_text(encoding="utf-8"))
-    gate = json.loads(CC_REGISTRATION_GATE.read_text(encoding="utf-8"))["materials"]
+    gate_document = json.loads(CC_REGISTRATION_GATE.read_text(encoding="utf-8"))
+    gate = gate_document["materials"]
+    source_backed_overlay_forms = form_authority.overlay_forms_from_gate(
+        gate_document
+    )
     if len(index) != len(set(index)):
         raise ValueError("Material index contains duplicate files")
     for filename in index:
@@ -509,6 +515,7 @@ def _load_cc_materials_cached() -> dict[str, dict[str, Any]]:
         factual_forms = resolve_material_forms(data)
         source_backed_pipe_forms = resolve_t8_pipe_forms(data)
         source_backed_t10_forms = resolve_t10_known_forms(data)
+        source_backed_overlay = source_backed_overlay_forms.get(data["id"], set())
         if data["id"] not in gate:
             raise ValueError(f"Registration gate omits indexed material: {data['id']}")
         registered_forms = set(gate[data["id"]])
@@ -516,9 +523,10 @@ def _load_cc_materials_cached() -> dict[str, dict[str, Any]]:
             factual_forms
             | source_backed_pipe_forms
             | source_backed_t10_forms
+            | source_backed_overlay
         ):
             raise ValueError(
-                "Registration gate exceeds factual or source-backed T8/T10 "
+                "Registration gate exceeds factual or source-backed T8/T10/T38/T39 "
                 f"forms for {data['id']}"
             )
         data["_factual_forms"] = sorted(factual_forms)
@@ -3041,9 +3049,17 @@ def recipe_fingerprint(recipe: NormRecipe) -> str:
     )
 
 
+def _is_withdrawn_t39_recovery(path: Path) -> bool:
+    return path.relative_to(CC_HAND).as_posix().startswith(
+        "t39_player_path_recovery/"
+    )
+
+
 def hand_authored_recipe_snapshot() -> list[dict[str, Any]]:
     rows: list[dict[str, Any]] = []
     for path in sorted(CC_HAND.rglob("*.json")):
+        if _is_withdrawn_t39_recovery(path):
+            continue
         data = json.loads(path.read_text(encoding="utf-8"))
         relative_path = path.relative_to(CC_HAND).as_posix()
         rows.append(
@@ -3109,6 +3125,8 @@ def explicit_ingredient_items(value: Any) -> set[str]:
 def hand_recipe_edges() -> list[dict[str, Any]]:
     edges: list[dict[str, Any]] = []
     for path in sorted(CC_HAND.rglob("*.json")):
+        if _is_withdrawn_t39_recovery(path):
+            continue
         data = json.loads(path.read_text(encoding="utf-8"))
         inputs: set[str] = set()
         if isinstance(data.get("key"), dict):

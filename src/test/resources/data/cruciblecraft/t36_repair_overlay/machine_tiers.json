@@ -1,0 +1,32 @@
+{
+  "variants": [
+    {
+      "id": "cruciblecraft:invar_lathe",
+      "kind": "cruciblecraft:lathe",
+      "tierBand": "cruciblecraft:t36_repair_overlay_ru_invar",
+      "material": "cruciblecraft:invar",
+      "energy": "KINETIC_ROTATION",
+      "sourceId": 36001,
+      "sourceTier": 2,
+      "overclock": "STANDARD",
+      "parallelDuration": false,
+      "inputMinimum": 64,
+      "inputNominal": 128,
+      "inputMaximum": 256,
+      "energyCapacity": 256,
+      "parallel": 1,
+      "efficiency": 10000,
+      "variantSemantics": "material",
+      "resourceProfile": {
+        "sharedModel": "processing_machine",
+        "textureProfile": "lathe",
+        "skipGenericRegistration": false
+      }
+    }
+  ],
+  "source": {
+    "variant_rows": {
+      "cruciblecraft:invar_lathe": "t36_repair_overlay"
+    }
+  }
+}

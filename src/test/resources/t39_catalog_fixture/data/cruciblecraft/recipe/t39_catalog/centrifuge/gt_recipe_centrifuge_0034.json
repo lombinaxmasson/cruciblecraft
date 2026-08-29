@@ -1,0 +1,107 @@
+{
+  "family_id": "gt.recipe.centrifuge#0034",
+  "publication_group": "cruciblecraft:t39_centrifuge_multi",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 2304,
+      "eut": 256,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:carbon/centrifuged_crushed_ore"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:carbon/dust"
+        },
+        {
+          "count": 8,
+          "id": "cruciblecraft:carbon13/tiny_dust"
+        },
+        {
+          "count": 8,
+          "id": "cruciblecraft:carbon14/tiny_dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        1350,
+        1350
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "5c46338b9f2e1c5698b26fb41037b14fb45c5dab18f6317cea584ceea6230e49"
+        ],
+        "selected_source_recipe": "gt.recipe.centrifuge#0034",
+        "source_kind": "SOURCE_BACKED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t39_catalog/d506efe5fc8b559d"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 2304,
+      "eut": 256,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:beryllium/centrifuged_crushed_ore"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:beryllium/dust"
+        },
+        {
+          "count": 8,
+          "id": "cruciblecraft:beryllium7/tiny_dust"
+        },
+        {
+          "count": 8,
+          "id": "cruciblecraft:beryllium8/tiny_dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        1350,
+        1350
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "4ad93b2fbbbdfa5328025d9ce7cdf796ac60b2b828f5ca684f42884882db413c"
+        ],
+        "selected_source_recipe": "gt.recipe.centrifuge#0034",
+        "source_kind": "SOURCE_BACKED"
+      },
+      "shadow_order": 1,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t39_catalog/f87f4d6d53c4e201"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:centrifuge",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

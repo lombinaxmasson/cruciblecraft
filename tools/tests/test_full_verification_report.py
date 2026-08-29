@@ -246,9 +246,9 @@ class FullVerificationReportTest(unittest.TestCase):
             129, worldgen["counts"]["closure_configured_ore_features"]
         )
         self.assertEqual(
-            137, worldgen["counts"]["registered_ore_materials"]
+            147, worldgen["counts"]["registered_ore_materials"]
         )
-        self.assertEqual(274, worldgen["counts"]["registered_ore_blocks"])
+        self.assertEqual(294, worldgen["counts"]["registered_ore_blocks"])
         self.assertEqual(2, worldgen["counts"]["fluid_deposits"])
         self.assertEqual(
             "keep_two_hosts", worldgen["host_policy"]["decision"]

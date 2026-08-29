@@ -1,0 +1,59 @@
+{
+  "family_id": "gt.recipe.assembler#0181",
+  "publication_group": "cruciblecraft:t41_assembler_fireproof",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 32,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        8,
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:fireproof": 1
+          },
+          "items": "cruciblecraft:gt_wood/rotten_planks",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "minecraft:redstone"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:note_block"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "4706b96b121af0ce47d9fdcdcd39cdffdcaf852fe4baddc829f47ee3f16f1e1e"
+        ],
+        "selected_source_recipe": "gt.recipe.assembler#0181",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t41/d5c62a4d709b0b8a"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:assembler",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

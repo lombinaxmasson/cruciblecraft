@@ -6,11 +6,14 @@ import argparse
 import hashlib
 import json
 import math
+import sys
 from collections import Counter
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 TOOLS = ROOT / "tools"
 MATERIALS = (
     ROOT / "src/main/resources/data/cruciblecraft/materials"
@@ -812,8 +815,12 @@ def main() -> int:
     args = parser.parse_args()
     encoded = stable_json(build())
     if args.check:
-        if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != encoded:
-            raise SystemExit("T4 tool readiness ledger is stale")
+        from tools import currentness
+
+        errors = currentness.check_rebuilt(OUTPUT, json.loads(encoded))
+        if errors:
+            raise SystemExit("\n".join(errors))
+        print("T4 tool readiness ledger is current.")
         return 0
     OUTPUT.write_text(encoded, encoding="utf-8", newline="\n")
     print(f"wrote {OUTPUT.relative_to(ROOT)}")

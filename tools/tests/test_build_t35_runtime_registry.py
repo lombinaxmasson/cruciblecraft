@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import unittest
+from pathlib import Path
 from unittest import mock
 
 from tools import build_t35_runtime_registry as builder
@@ -10,6 +11,16 @@ from tools import t27_common as common
 
 def frozen() -> dict:
     return json.loads(builder.OUTPUT.read_text(encoding="utf-8"))
+
+
+def _frozen_worldgen_sample(directory: Path) -> Path:
+    files = sorted(path for path in directory.glob("*.json") if path.is_file())
+    if not files:
+        raise AssertionError(f"empty worldgen dir: {directory}")
+    preferred = directory / "surface_rock_scatter.json"
+    if preferred.is_file():
+        return preferred
+    return files[0]
 
 
 class T35RuntimeRegistryTest(unittest.TestCase):
@@ -147,12 +158,12 @@ class T35RuntimeRegistryTest(unittest.TestCase):
         document = frozen()
         hashes = document["currentness"]["source_hashes"]
         for directory in builder.DATA_SOURCES["configured_features_dirs"]:
-            sample = sorted(directory.glob("*.json"))[0]
+            sample = _frozen_worldgen_sample(directory)
             rel = common.relative(sample)
             self.assertIn(rel, hashes)
             self.assertEqual(common.sha256_file(sample), hashes[rel])
         for directory in builder.DATA_SOURCES["placed_features_dirs"]:
-            sample = sorted(directory.glob("*.json"))[0]
+            sample = _frozen_worldgen_sample(directory)
             rel = common.relative(sample)
             self.assertIn(rel, hashes)
             self.assertEqual(common.sha256_file(sample), hashes[rel])
@@ -199,14 +210,14 @@ class T35RuntimeRegistryTest(unittest.TestCase):
         self.assertEqual(expected, actual)
 
     def test_stale_output_is_detected(self) -> None:
-        original = builder.OUTPUT.read_bytes()
-        tampered = json.loads(original.decode("utf-8"))
+        from tools.tests.support import authority_sandbox
+
+        original = json.loads(builder.OUTPUT.read_bytes().decode("utf-8"))
+        tampered = dict(original)
         tampered["total_expected_ids"] += 1
-        builder.OUTPUT.write_bytes(common.stable_json(tampered).encode("utf-8"))
-        try:
+        with authority_sandbox.patch_builder_path(builder, "OUTPUT") as output:
+            output.write_bytes(common.stable_json(tampered).encode("utf-8"))
             errors = builder.check()
-        finally:
-            builder.OUTPUT.write_bytes(original)
         self.assertTrue(
             any("drifted" in error or "stale" in error for error in errors)
         )

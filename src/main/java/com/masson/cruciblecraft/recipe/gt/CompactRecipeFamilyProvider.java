@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,22 +14,18 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
-import java.util.TreeSet;
+import java.util.TreeMap;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.material.Fluid;
-import net.neoforged.neoforge.fluids.FluidStack;
 
 /**
- * Host-neutral compact family snapshot: epoch, candidate indexes,
+ * Host-neutral compact family snapshot: epoch, publication group, shards,
  * parameterized materialization, and a bounded lazy cache.
  *
  * <p>Core behavior is not gated on a specific RecipeMap id. Unknown target
- * maps fail closed in {@link #prepareByTarget(List, Map, long, RuntimeSide,
- * MaterializationPolicy)}.
+ * maps and targets without an explicit policy fail closed in
+ * {@link #prepareByPublicationGroup(List, Map, long, RuntimeSide, Map)}.
  */
 public final class CompactRecipeFamilyProvider {
     private CompactRecipeFamilyProvider() {}
@@ -36,6 +33,14 @@ public final class CompactRecipeFamilyProvider {
     public static String familyId(ResourceLocation mapId) {
         Objects.requireNonNull(mapId, "mapId");
         return "compact:" + mapId;
+    }
+
+    public static String familyId(
+            ResourceLocation mapId,
+            ResourceLocation publicationGroup) {
+        Objects.requireNonNull(mapId, "mapId");
+        Objects.requireNonNull(publicationGroup, "publicationGroup");
+        return "compact:" + mapId + "/" + publicationGroup;
     }
 
     public static Snapshot prepare(
@@ -56,25 +61,51 @@ public final class CompactRecipeFamilyProvider {
             throw new IllegalArgumentException(
                     "Compact family epoch must be positive");
         }
+        ResourceLocation publicationGroup = resolvePublicationGroup(
+                map.id(), sources);
         List<IndexedRelation> relations = collectRelations(map.id(), sources);
-        return new Snapshot(map.id(), epoch, side, policy, relations);
+        return new Snapshot(
+                map.id(),
+                publicationGroup,
+                epoch,
+                side,
+                policy,
+                relations);
     }
 
     /**
-     * Groups authored compact sources by {@code target_map}, fails closed on
-     * unknown maps, and builds one snapshot per populated map.
+     * Compatibility adapter for callers that still own one publication group
+     * per target map.
+     *
+     * <p>If a target contains more than one resolved group, the caller must
+     * move to {@link #prepareByPublicationGroup(List, Map, long, RuntimeSide,
+     * Map)} so no policy can be inherited across workloads.
      */
     public static Map<ResourceLocation, Snapshot> prepareByTarget(
             List<CompactRecipeFamilySource> sources,
             Map<ResourceLocation, RecipeMap> knownMaps,
             long epoch,
             RuntimeSide side,
-            MaterializationPolicy policy) {
+            Map<ResourceLocation, MaterializationPolicy> policies) {
         Objects.requireNonNull(sources, "sources");
         Objects.requireNonNull(knownMaps, "knownMaps");
-        LinkedHashMap<ResourceLocation, List<CompactRecipeFamilySource>> grouped =
-                new LinkedHashMap<>();
+        Objects.requireNonNull(policies, "policies");
+        for (var entry : policies.entrySet()) {
+            ResourceLocation target = Objects.requireNonNull(
+                    entry.getKey(), "compact policy target map");
+            Objects.requireNonNull(
+                    entry.getValue(), "compact materialization policy for " + target);
+            if (!knownMaps.containsKey(target)) {
+                throw new IllegalArgumentException(
+                        "Unknown compact family policy target map " + target);
+            }
+        }
+        TreeMap<ResourceLocation, List<CompactRecipeFamilySource>> grouped =
+                new TreeMap<>(Comparator.comparing(ResourceLocation::toString));
+        Map<ResourceLocation, Set<ResourceLocation>> groupsByTarget =
+                new HashMap<>();
         for (CompactRecipeFamilySource source : sources) {
+            Objects.requireNonNull(source, "source");
             ResourceLocation target = source.definition().targetMap();
             RecipeMap map = knownMaps.get(target);
             if (map == null) {
@@ -82,7 +113,25 @@ public final class CompactRecipeFamilyProvider {
                         "Unknown compact family target map " + target
                                 + " in source " + source.id());
             }
+            if (!policies.containsKey(target)) {
+                throw new IllegalArgumentException(
+                        "Missing compact materialization policy for target map "
+                                + target + " in source " + source.id());
+            }
+            ResourceLocation group =
+                    source.definition().resolvedPublicationGroup();
+            groupsByTarget.computeIfAbsent(target, ignored -> new HashSet<>())
+                    .add(group);
             grouped.computeIfAbsent(target, ignored -> new ArrayList<>()).add(source);
+        }
+        for (var entry : groupsByTarget.entrySet()) {
+            if (entry.getValue().size() > 1) {
+                throw new IllegalArgumentException(
+                        "Compact target map " + entry.getKey() + " contains "
+                                + entry.getValue().size()
+                                + " publication groups; use "
+                                + "prepareByPublicationGroup");
+            }
         }
         LinkedHashMap<ResourceLocation, Snapshot> snapshots = new LinkedHashMap<>();
         for (var entry : grouped.entrySet()) {
@@ -93,9 +142,89 @@ public final class CompactRecipeFamilyProvider {
                             entry.getValue(),
                             epoch,
                             side,
-                            policy));
+                            policies.get(entry.getKey())));
         }
-        return Map.copyOf(snapshots);
+        return Collections.unmodifiableMap(snapshots);
+    }
+
+    /**
+     * Builds one deterministic snapshot per populated target/group policy
+     * unit. Every source and policy is validated before any snapshot is
+     * returned.
+     */
+    public static Map<PublicationGroupKey, Snapshot> prepareByPublicationGroup(
+            List<CompactRecipeFamilySource> sources,
+            Map<ResourceLocation, RecipeMap> knownMaps,
+            long epoch,
+            RuntimeSide side,
+            Map<PublicationGroupKey, MaterializationPolicy> policies) {
+        Objects.requireNonNull(sources, "sources");
+        Objects.requireNonNull(knownMaps, "knownMaps");
+        Objects.requireNonNull(side, "side");
+        Objects.requireNonNull(policies, "policies");
+        if (side == RuntimeSide.INTEGRATED_CLIENT) {
+            throw new IllegalArgumentException(
+                    "Integrated clients must reuse the server compact family snapshot");
+        }
+        if (epoch <= 0L) {
+            throw new IllegalArgumentException(
+                    "Compact family epoch must be positive");
+        }
+        for (var entry : policies.entrySet()) {
+            PublicationGroupKey key = Objects.requireNonNull(
+                    entry.getKey(), "compact publication group policy key");
+            Objects.requireNonNull(
+                    entry.getValue(),
+                    "compact materialization policy for " + key);
+            if (!knownMaps.containsKey(key.targetMap())) {
+                throw new IllegalArgumentException(
+                        "Unknown compact family policy target map "
+                                + key.targetMap() + " for publication group "
+                                + key.publicationGroup());
+            }
+        }
+
+        TreeMap<PublicationGroupKey, List<CompactRecipeFamilySource>> grouped =
+                new TreeMap<>();
+        for (CompactRecipeFamilySource source : sources) {
+            Objects.requireNonNull(source, "source");
+            ResourceLocation target = source.definition().targetMap();
+            if (!knownMaps.containsKey(target)) {
+                throw new IllegalArgumentException(
+                        "Unknown compact family target map " + target
+                                + " in source " + source.id());
+            }
+            PublicationGroupKey key = new PublicationGroupKey(
+                    target,
+                    source.definition().resolvedPublicationGroup());
+            MaterializationPolicy policy = policies.get(key);
+            if (policy == null) {
+                throw new IllegalArgumentException(
+                        "Missing compact materialization policy for publication group "
+                                + key.publicationGroup() + " on target map "
+                                + key.targetMap() + " in source " + source.id());
+            }
+            grouped.computeIfAbsent(key, ignored -> new ArrayList<>()).add(source);
+        }
+        validateCrossGroupCollisions(grouped);
+
+        LinkedHashMap<PublicationGroupKey, Snapshot> snapshots =
+                new LinkedHashMap<>();
+        for (var entry : grouped.entrySet()) {
+            PublicationGroupKey key = entry.getKey();
+            Snapshot snapshot = prepare(
+                    knownMaps.get(key.targetMap()),
+                    entry.getValue(),
+                    epoch,
+                    side,
+                    policies.get(key));
+            if (!snapshot.publicationGroup().equals(key.publicationGroup())) {
+                throw new IllegalArgumentException(
+                        "Compact snapshot publication group drifted from " + key);
+            }
+            snapshots.put(key, snapshot);
+        }
+        return Collections.unmodifiableMap(snapshots);
     }
 
     /**
@@ -114,21 +243,99 @@ public final class CompactRecipeFamilyProvider {
                 familyIds.subList(0, Math.min(10, familyIds.size())));
         Set<ResourceLocation> eagerStableIds = new HashSet<>();
         for (CompactRecipeFamilySource source : sources) {
-            List<CompactGTRecipeFamilyDefinition.Relation> relations =
-                    source.definition().relations();
-            if (relations.isEmpty()) {
-                continue;
-            }
-            CompactGTRecipeFamilyDefinition.Relation relation = relations.get(0);
-            if (relation.duration() <= 16
-                    || firstTen.contains(source.definition().familyId())) {
-                eagerStableIds.add(relation.stableId());
+            for (CompactGTRecipeFamilyDefinition.Relation relation
+                    : source.definition().relations()) {
+                if (relation.duration() <= 16
+                        || firstTen.contains(source.definition().familyId())) {
+                    eagerStableIds.add(relation.stableId());
+                }
             }
         }
         return MaterializationPolicy.hybrid(
                 8,
                 (index, relation) -> eagerStableIds.contains(relation.stableId()));
     }
+
+    /**
+     * T38 production policy derived by {@code tools/build_t38_recipe_load_benchmark.py}
+     * from the frozen 73-row Roaster measurement. Winner is on-demand with
+     * cache ceiling 16; this is not T37's 14/36 hybrid or cache 8.
+     */
+    public static MaterializationPolicy t38ProductionPolicy(
+            List<CompactRecipeFamilySource> sources) {
+        Objects.requireNonNull(sources, "sources");
+        return MaterializationPolicy.onDemand(16);
+    }
+
+    /** T39 production-lock singleton winner: on-demand, cache 19. */
+    public static MaterializationPolicy t39SingletonPolicy(
+            List<CompactRecipeFamilySource> sources) {
+        Objects.requireNonNull(sources, "sources");
+        return MaterializationPolicy.onDemand(19);
+    }
+
+    /** T39 production-lock multi winner: hybrid with 0 eager rows, cache 13. */
+    public static MaterializationPolicy t39MultiPolicy(
+            List<CompactRecipeFamilySource> sources) {
+        Objects.requireNonNull(sources, "sources");
+        return MaterializationPolicy.hybrid(13, (index, relation) -> false);
+    }
+
+    /**
+     * T40 singleton winner: on-demand with cache 11. Independently ranked
+     * against immediate and hybrid; cache 11 is not T39's on-demand cache 19.
+     */
+    public static MaterializationPolicy t40SingletonPolicy(
+            List<CompactRecipeFamilySource> sources) {
+        Objects.requireNonNull(sources, "sources");
+        return MaterializationPolicy.onDemand(11);
+    }
+
+    /**
+     * T40 multi winner: hybrid with 0 eager rows and cache 11. This is not
+     * T39's hybrid cache-13 winner; the 0-eager selector is the T40 duration
+     * cutoff (1024 ticks) which selected no locked multi relations.
+     */
+    public static MaterializationPolicy t40MultiPolicy(
+            List<CompactRecipeFamilySource> sources) {
+        Objects.requireNonNull(sources, "sources");
+        return MaterializationPolicy.hybrid(11, (index, relation) -> false);
+    }
+
+    /**
+     * T41 planks winner: hybrid with 0 eager rows and cache 16. The
+     * duration_ticks_lte 0 boundary selected no locked planks relations;
+     * this is not T37's 14/36 hybrid or T40's cache-11 winners.
+     */
+    public static MaterializationPolicy t41PlanksPolicy(
+            List<CompactRecipeFamilySource> sources) {
+        Objects.requireNonNull(sources, "sources");
+        return MaterializationPolicy.hybrid(T41_GROUP_CACHE, T41_ZERO_EAGER);
+    }
+
+    /**
+     * T41 fireproof winner: hybrid with 0 eager rows and cache 16. Same
+     * zero-eager boundary as the planks group; independently ranked, not a
+     * copy of T40 cache 11.
+     */
+    public static MaterializationPolicy t41FireproofPolicy(
+            List<CompactRecipeFamilySource> sources) {
+        Objects.requireNonNull(sources, "sources");
+        return MaterializationPolicy.hybrid(T41_GROUP_CACHE, T41_ZERO_EAGER);
+    }
+
+    /**
+     * T41 planks2 winner: on-demand with cache 16. Independently ranked
+     * against immediate and hybrid; cache 16 is not T40's on-demand cache 11.
+     */
+    public static MaterializationPolicy t41Planks2Policy(
+            List<CompactRecipeFamilySource> sources) {
+        Objects.requireNonNull(sources, "sources");
+        return MaterializationPolicy.onDemand(T41_GROUP_CACHE);
+    }
+
+    private static final int T41_GROUP_CACHE = 16;
+    private static final EagerSelector T41_ZERO_EAGER = (index, relation) -> false;
 
     private static List<IndexedRelation> collectRelations(
             ResourceLocation mapId,
@@ -162,10 +369,7 @@ public final class CompactRecipeFamilyProvider {
             }
             for (CompactGTRecipeFamilyDefinition.Relation relation
                     : definition.relations()) {
-                relations.add(new IndexedRelation(
-                        source,
-                        relation,
-                        indexKeys(relation)));
+                relations.add(new IndexedRelation(source, relation));
             }
         }
         relations.sort(Comparator
@@ -183,47 +387,111 @@ public final class CompactRecipeFamilyProvider {
         return List.copyOf(relations);
     }
 
-    private static IndexKeys indexKeys(
-            CompactGTRecipeFamilyDefinition.Relation relation) {
-        Set<Item> items = new HashSet<>();
-        Set<ComponentIngredientIndex.Key> components = new HashSet<>();
-        Set<Fluid> fluids = new HashSet<>();
-        boolean unindexed = false;
-        for (Ingredient ingredient : relation.itemInputs()) {
-            if (ingredient.isSimple()) {
-                ItemStack[] stacks = ingredient.getItems();
-                if (stacks.length == 0) {
-                    unindexed = true;
-                    continue;
+    private static ResourceLocation resolvePublicationGroup(
+            ResourceLocation mapId,
+            List<CompactRecipeFamilySource> sources) {
+        if (sources.isEmpty()) {
+            return CompactGTRecipeFamilyDefinition.historicalPublicationGroup(
+                    mapId);
+        }
+        ResourceLocation resolved = null;
+        for (CompactRecipeFamilySource source : sources) {
+            Objects.requireNonNull(source, "source");
+            CompactGTRecipeFamilyDefinition definition = source.definition();
+            if (!definition.targetMap().equals(mapId)) {
+                throw new IllegalArgumentException(
+                        "Compact source " + source.id()
+                                + " targets " + definition.targetMap()
+                                + " instead of " + mapId);
+            }
+            ResourceLocation candidate =
+                    definition.resolvedPublicationGroup();
+            if (resolved == null) {
+                resolved = candidate;
+            } else if (!resolved.equals(candidate)) {
+                throw new IllegalArgumentException(
+                        "Compact snapshot for target " + mapId
+                                + " mixes publication groups " + resolved
+                                + " and " + candidate);
+            }
+        }
+        return Objects.requireNonNull(resolved, "resolved publication group");
+    }
+
+    private static void validateCrossGroupCollisions(
+            Map<PublicationGroupKey, List<CompactRecipeFamilySource>> grouped) {
+        Map<ResourceLocation, Map<ResourceLocation, PublicationGroupKey>>
+                authoredOwners = new HashMap<>();
+        Map<ResourceLocation, Map<ResourceLocation, PublicationGroupKey>>
+                stableOwners = new HashMap<>();
+                Map<ResourceLocation, Map<String, PublicationGroupKey>>
+                logicalOwners = new HashMap<>();
+        Map<ResourceLocation, Map<String, String>>
+                logicalOutputs = new HashMap<>();
+        for (var entry : grouped.entrySet()) {
+            PublicationGroupKey key = entry.getKey();
+            Map<ResourceLocation, PublicationGroupKey> targetAuthored =
+                    authoredOwners.computeIfAbsent(
+                            key.targetMap(), ignored -> new HashMap<>());
+            Map<ResourceLocation, PublicationGroupKey> targetStable =
+                    stableOwners.computeIfAbsent(
+                            key.targetMap(), ignored -> new HashMap<>());
+            Map<String, PublicationGroupKey> targetLogical =
+                    logicalOwners.computeIfAbsent(
+                            key.targetMap(), ignored -> new HashMap<>());
+            Map<String, String> targetOutputs =
+                    logicalOutputs.computeIfAbsent(
+                            key.targetMap(), ignored -> new HashMap<>());
+            for (CompactRecipeFamilySource source : entry.getValue()) {
+                PublicationGroupKey authoredPrevious =
+                        targetAuthored.putIfAbsent(source.id(), key);
+                if (authoredPrevious != null && !authoredPrevious.equals(key)) {
+                    throw new IllegalArgumentException(
+                            "Duplicate compact authored id " + source.id()
+                                    + " across publication groups "
+                                    + authoredPrevious.publicationGroup()
+                                    + " and " + key.publicationGroup()
+                                    + " on target " + key.targetMap());
                 }
-                for (ItemStack stack : stacks) {
-                    if (!stack.isEmpty()) {
-                        items.add(stack.getItem());
+                for (CompactGTRecipeFamilyDefinition.Relation relation
+                        : source.definition().relations()) {
+                    PublicationGroupKey stablePrevious =
+                            targetStable.putIfAbsent(relation.stableId(), key);
+                    if (stablePrevious != null && !stablePrevious.equals(key)) {
+                        throw new IllegalArgumentException(
+                                "Duplicate compact stable id "
+                                        + relation.stableId()
+                                        + " across publication groups "
+                                        + stablePrevious.publicationGroup()
+                                        + " and " + key.publicationGroup()
+                                        + " on target " + key.targetMap());
+                    }
+                    GTRecipe materialized = relation.materialize();
+                    String logicalIdentity = GTRecipeMapLoader.inputSignature(
+                            materialized);
+                    String outputIdentity = GTRecipeMapLoader.outputSignature(
+                            materialized)
+                            + "|" + materialized.duration()
+                            + "|" + materialized.eut();
+                    PublicationGroupKey logicalPrevious =
+                            targetLogical.putIfAbsent(logicalIdentity, key);
+                    if (logicalPrevious != null && !logicalPrevious.equals(key)) {
+                        String previousOutput = targetOutputs.get(logicalIdentity);
+                        if (previousOutput == null
+                                || !previousOutput.equals(outputIdentity)) {
+                            throw new IllegalArgumentException(
+                                    "Duplicate compact logical identity across "
+                                            + "publication groups "
+                                            + logicalPrevious.publicationGroup()
+                                            + " and " + key.publicationGroup()
+                                            + " on target " + key.targetMap());
+                        }
+                    } else {
+                        targetOutputs.put(logicalIdentity, outputIdentity);
                     }
                 }
-            } else {
-                ComponentIngredientIndex.Extraction extraction =
-                        ComponentIngredientIndex.extract(ingredient);
-                if (extraction.supported()) {
-                    components.addAll(extraction.keys());
-                } else {
-                    unindexed = true;
-                }
             }
         }
-        for (FluidStack stack : relation.fluidInputs()) {
-            if (!stack.isEmpty()) {
-                fluids.add(stack.getFluid());
-            }
-        }
-        if (items.isEmpty() && components.isEmpty() && fluids.isEmpty()) {
-            unindexed = true;
-        }
-        return new IndexKeys(
-                Set.copyOf(items),
-                Set.copyOf(components),
-                Set.copyOf(fluids),
-                unindexed);
     }
 
     public enum RuntimeSide {
@@ -294,6 +562,7 @@ public final class CompactRecipeFamilyProvider {
 
     public static final class Snapshot implements RecipeMap.RecipeFamily {
         private final ResourceLocation mapId;
+        private final ResourceLocation publicationGroup;
         private final long epoch;
         private final RuntimeSide side;
         private final MaterializationPolicy policy;
@@ -302,11 +571,8 @@ public final class CompactRecipeFamilyProvider {
         private final Map<ResourceLocation, IndexedRelation> byId;
         private final Map<ResourceLocation, RecipeMap.Entry> eagerById;
         private final List<RecipeMap.Entry> eagerEntries;
-        private final Map<Item, List<IndexedRelation>> lazyByItem;
-        private final Map<ComponentIngredientIndex.Key, List<IndexedRelation>>
-                lazyByComponent;
-        private final Map<Fluid, List<IndexedRelation>> lazyByFluid;
-        private final List<IndexedRelation> unindexedLazy;
+        private final Set<ResourceLocation> lazyIds;
+        private final CompactRecipeShardRouter shardRouter;
         private final int unindexedRelationCount;
         private final String stableFingerprint;
         private final long syncPayloadBytes;
@@ -314,29 +580,33 @@ public final class CompactRecipeFamilyProvider {
 
         private Snapshot(
                 ResourceLocation mapId,
+                ResourceLocation publicationGroup,
                 long epoch,
                 RuntimeSide side,
                 MaterializationPolicy policy,
                 List<IndexedRelation> relations) {
-            this.mapId = mapId;
+            this.mapId = Objects.requireNonNull(mapId, "mapId");
+            this.publicationGroup = Objects.requireNonNull(
+                    publicationGroup, "publicationGroup");
             this.epoch = epoch;
-            this.side = side;
-            this.policy = policy;
-            this.relations = relations;
-            this.recipeIds = relations.stream()
+            this.side = Objects.requireNonNull(side, "side");
+            this.policy = Objects.requireNonNull(policy, "policy");
+            this.relations = List.copyOf(relations);
+            this.recipeIds = this.relations.stream()
                     .map(value -> value.relation().stableId())
                     .toList();
+            this.shardRouter = new CompactRecipeShardRouter(
+                    mapId,
+                    publicationGroup,
+                    this.relations.stream()
+                            .map(IndexedRelation::relation)
+                            .toList());
             Map<ResourceLocation, IndexedRelation> mutableById = new HashMap<>();
             Map<ResourceLocation, RecipeMap.Entry> mutableEager = new HashMap<>();
             List<RecipeMap.Entry> orderedEager = new ArrayList<>();
-            Map<Item, List<IndexedRelation>> mutableByItem = new HashMap<>();
-            Map<ComponentIngredientIndex.Key, List<IndexedRelation>> mutableByComponent =
-                    new HashMap<>();
-            Map<Fluid, List<IndexedRelation>> mutableByFluid = new HashMap<>();
-            List<IndexedRelation> mutableUnindexed = new ArrayList<>();
-            int unindexedCount = 0;
-            for (int index = 0; index < relations.size(); index++) {
-                IndexedRelation indexed = relations.get(index);
+            Set<ResourceLocation> mutableLazyIds = new HashSet<>();
+            for (int index = 0; index < this.relations.size(); index++) {
+                IndexedRelation indexed = this.relations.get(index);
                 CompactGTRecipeFamilyDefinition.Relation relation = indexed.relation();
                 ResourceLocation id = relation.stableId();
                 mutableById.put(id, indexed);
@@ -346,33 +616,16 @@ public final class CompactRecipeFamilyProvider {
                     orderedEager.add(entry);
                     continue;
                 }
-                if (indexed.keys().unindexed()) {
-                    mutableUnindexed.add(indexed);
-                    unindexedCount++;
-                }
-                for (Item item : indexed.keys().items()) {
-                    mutableByItem.computeIfAbsent(item, ignored -> new ArrayList<>())
-                            .add(indexed);
-                }
-                for (ComponentIngredientIndex.Key key : indexed.keys().components()) {
-                    mutableByComponent.computeIfAbsent(key, ignored -> new ArrayList<>())
-                            .add(indexed);
-                }
-                for (Fluid fluid : indexed.keys().fluids()) {
-                    mutableByFluid.computeIfAbsent(fluid, ignored -> new ArrayList<>())
-                            .add(indexed);
-                }
+                mutableLazyIds.add(id);
             }
             this.byId = Map.copyOf(mutableById);
             this.eagerById = Map.copyOf(mutableEager);
             this.eagerEntries = List.copyOf(orderedEager);
-            this.lazyByItem = copyIndex(mutableByItem);
-            this.lazyByComponent = copyIndex(mutableByComponent);
-            this.lazyByFluid = copyIndex(mutableByFluid);
-            this.unindexedLazy = List.copyOf(mutableUnindexed);
-            this.unindexedRelationCount = unindexedCount;
-            this.stableFingerprint = fingerprint(mapId, relations);
-            this.syncPayloadBytes = payloadBytes(relations);
+            this.lazyIds = Set.copyOf(mutableLazyIds);
+            this.unindexedRelationCount = shardRouter.overflowCount();
+            this.stableFingerprint = fingerprint(
+                    mapId, publicationGroup, this.relations);
+            this.syncPayloadBytes = payloadBytes(this.relations);
             this.cache = new LinkedHashMap<>(16, 0.75F, true);
         }
 
@@ -382,6 +635,30 @@ public final class CompactRecipeFamilyProvider {
 
         public ResourceLocation mapId() {
             return mapId;
+        }
+
+        public ResourceLocation publicationGroup() {
+            return publicationGroup;
+        }
+
+        public CompactRecipeShardRouter shardRouter() {
+            return shardRouter;
+        }
+
+        public int shardCount() {
+            return shardRouter.shardCount();
+        }
+
+        public int overflowRelationCount() {
+            return shardRouter.overflowCount();
+        }
+
+        public Optional<String> shardId(ResourceLocation stableId) {
+            return shardRouter.shardId(stableId);
+        }
+
+        public Set<String> routedShardIds(GTRecipeQuery query) {
+            return shardRouter.routedShardIds(query);
         }
 
         public MaterializationPolicy policy() {
@@ -398,7 +675,10 @@ public final class CompactRecipeFamilyProvider {
 
         @Override
         public String familyId() {
-            return CompactRecipeFamilyProvider.familyId(mapId);
+            return usesHistoricalFamilyIdentity(mapId, publicationGroup)
+                    ? CompactRecipeFamilyProvider.familyId(mapId)
+                    : CompactRecipeFamilyProvider.familyId(
+                            mapId, publicationGroup);
         }
 
         @Override
@@ -484,39 +764,22 @@ public final class CompactRecipeFamilyProvider {
             if (stack.isEmpty()) {
                 return false;
             }
-            if (lazyByItem.containsKey(stack.getItem())) {
-                return true;
-            }
-            for (ComponentIngredientIndex.Key key : ComponentIngredientIndex.keys(stack)) {
-                if (lazyByComponent.containsKey(key)) {
-                    return true;
+            for (String shardId : shardRouter.candidateShardIds(stack)) {
+                for (ResourceLocation stableId
+                        : shardRouter.shardMembers(shardId)) {
+                    if (lazyIds.contains(stableId)) {
+                        return true;
+                    }
                 }
             }
-            return !unindexedLazy.isEmpty();
+            return false;
         }
 
-        private TreeSet<IndexedRelation> lazyCandidates(GTRecipeQuery query) {
-            TreeSet<IndexedRelation> candidates = new TreeSet<>(Comparator
-                    .comparingInt((IndexedRelation value) -> value.relation().shadowOrder())
-                    .thenComparing(value -> value.relation().stableId().toString()));
-            for (ItemStack stack : query.itemInputsView()) {
-                if (stack.isEmpty()) {
-                    continue;
-                }
-                candidates.addAll(lazyByItem.getOrDefault(stack.getItem(), List.of()));
-                for (ComponentIngredientIndex.Key key
-                        : ComponentIngredientIndex.keys(stack)) {
-                    candidates.addAll(lazyByComponent.getOrDefault(key, List.of()));
-                }
-            }
-            for (FluidStack stack : query.fluidInputsView()) {
-                if (!stack.isEmpty()) {
-                    candidates.addAll(
-                            lazyByFluid.getOrDefault(stack.getFluid(), List.of()));
-                }
-            }
-            candidates.addAll(unindexedLazy);
-            return candidates;
+        private List<IndexedRelation> lazyCandidates(GTRecipeQuery query) {
+            return shardRouter.routedCandidates(query).stream()
+                    .filter(relation -> lazyIds.contains(relation.stableId()))
+                    .map(relation -> byId.get(relation.stableId()))
+                    .toList();
         }
 
         private synchronized RecipeMap.Entry materializeCached(IndexedRelation indexed) {
@@ -545,20 +808,31 @@ public final class CompactRecipeFamilyProvider {
         }
     }
 
-    private static <K> Map<K, List<IndexedRelation>> copyIndex(
-            Map<K, List<IndexedRelation>> mutable) {
-        Map<K, List<IndexedRelation>> copy = new HashMap<>();
-        mutable.forEach((key, rows) -> copy.put(key, List.copyOf(rows)));
-        return Map.copyOf(copy);
+    private static boolean usesHistoricalFamilyIdentity(
+            ResourceLocation mapId,
+            ResourceLocation publicationGroup) {
+        try {
+            return CompactGTRecipeFamilyDefinition
+                    .historicalPublicationGroup(mapId)
+                    .equals(publicationGroup);
+        } catch (IllegalArgumentException ignored) {
+            return false;
+        }
     }
 
     private static String fingerprint(
             ResourceLocation mapId,
+            ResourceLocation publicationGroup,
             List<IndexedRelation> relations) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             digest.update(mapId.toString().getBytes(StandardCharsets.UTF_8));
             digest.update((byte) '\n');
+            if (!usesHistoricalFamilyIdentity(mapId, publicationGroup)) {
+                digest.update(publicationGroup.toString().getBytes(
+                        StandardCharsets.UTF_8));
+                digest.update((byte) '\n');
+            }
             for (IndexedRelation indexed : relations) {
                 CompactGTRecipeFamilyDefinition.Relation relation = indexed.relation();
                 CompactRecipeFamilySource source = indexed.source();
@@ -605,14 +879,7 @@ public final class CompactRecipeFamilyProvider {
         return Integer.BYTES + value.getBytes(StandardCharsets.UTF_8).length;
     }
 
-    private record IndexKeys(
-            Set<Item> items,
-            Set<ComponentIngredientIndex.Key> components,
-            Set<Fluid> fluids,
-            boolean unindexed) {}
-
     private record IndexedRelation(
             CompactRecipeFamilySource source,
-            CompactGTRecipeFamilyDefinition.Relation relation,
-            IndexKeys keys) {}
+            CompactGTRecipeFamilyDefinition.Relation relation) {}
 }

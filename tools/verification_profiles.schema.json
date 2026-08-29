@@ -3,15 +3,30 @@
   "$id": "verification_profiles.schema.json",
   "title": "CrucibleCraft verification profiles",
   "type": "object",
-  "required": ["schema_version", "status", "unmatched_policy", "profiles"],
+  "required": [
+    "schema_version",
+    "status",
+    "unmatched_policy",
+    "profiles"
+  ],
   "additionalProperties": false,
   "properties": {
-    "schema_version": { "const": 1 },
-    "status": { "type": "string" },
-    "unmatched_policy": { "enum": ["report"] },
+    "schema_version": {
+      "const": 1
+    },
+    "status": {
+      "type": "string"
+    },
+    "unmatched_policy": {
+      "enum": [
+        "report"
+      ]
+    },
     "documentation_path_patterns": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     },
     "profiles": {
       "type": "object",
@@ -29,25 +44,62 @@
         ],
         "additionalProperties": false,
         "properties": {
-          "owner": { "type": "string" },
-          "tier": { "enum": ["dev", "integration", "release"] },
-          "datagen": { "type": "boolean" },
+          "owner": {
+            "type": "string"
+          },
+          "tier": {
+            "enum": [
+              "dev",
+              "integration",
+              "release"
+            ]
+          },
+          "datagen": {
+            "type": "boolean"
+          },
           "gradle_tasks": {
             "type": "array",
-            "items": { "type": "string" }
+            "items": {
+              "type": "string"
+            }
           },
           "python_modules": {
             "type": "array",
-            "items": { "type": "string" }
+            "items": {
+              "type": "string"
+            }
           },
           "builders": {
             "type": "array",
-            "items": { "type": "string" }
+            "items": {
+              "type": "string"
+            }
           },
-          "gametest": { "type": "boolean" },
+          "gametest": {
+            "type": "object",
+            "required": [
+              "receipt_check",
+              "run_isolated",
+              "manual_deferred"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "receipt_check": {
+                "type": "boolean"
+              },
+              "run_isolated": {
+                "type": "boolean"
+              },
+              "manual_deferred": {
+                "type": "boolean"
+              }
+            }
+          },
           "owned_paths": {
             "type": "array",
-            "items": { "type": "string" }
+            "items": {
+              "type": "string"
+            }
           }
         }
       }

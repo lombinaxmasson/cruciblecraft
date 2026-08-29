@@ -1,0 +1,156 @@
+{
+  "currentness": {
+    "builder_path": "tools/build_t43_recipe_load_benchmark.py",
+    "builder_sha256": "743c20684311c384bb1867a23af184b6b170474d61ca35cbe15eff5a30cfd3ac",
+    "measurement_sha256": "4ec85c1f95597863f329ad8037bdb69a3abfc526038137fe17fb13a43ba08ab9",
+    "policy_path": "tools/t43_materialization_policy.json",
+    "policy_sha256": "dee4ce7781bdc666fda72d6e9501a7cc60e4af0217033559b241d5ee5d4be399",
+    "production_lock_sha256": "c6a63280ee036a9cad53fbbddc721480f2479d51598ef99e18d57495b48da484"
+  },
+  "decision": {
+    "algorithm": {
+      "card_aggregate_required": true,
+      "composite_score_forbidden": true,
+      "gate_order": [],
+      "implementation_complexity_order": [
+        "immediate",
+        "on_demand",
+        "hybrid"
+      ],
+      "per_group_winners_required": true
+    },
+    "card_aggregate_winner": "hybrid",
+    "composite_score_used": false,
+    "diagnostic_5x_20x_used_for_1x": false,
+    "group_winners": {
+      "stone": "hybrid"
+    },
+    "production_blockers": [],
+    "ranking_logical_rows": 407,
+    "ranking_scale": "1x",
+    "scenarios": {
+      "card": {
+        "eliminated": {},
+        "logical_rows": 407,
+        "production_winner": "hybrid",
+        "ranking": [
+          {
+            "candidate": "hybrid",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 2,
+            "lookup_p95_ns": 36406,
+            "reload_index_p95_ns": {
+              "client_index": 188000,
+              "client_reload": 4249200,
+              "server_index": 210100,
+              "server_reload": 4840100
+            },
+            "retained_memory_bytes": 39479,
+            "sync_bytes": 39479
+          },
+          {
+            "candidate": "on_demand",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 1,
+            "lookup_p95_ns": 55581,
+            "reload_index_p95_ns": {
+              "client_index": 145000,
+              "client_reload": 5913600,
+              "server_index": 241900,
+              "server_reload": 7230200
+            },
+            "retained_memory_bytes": 39479,
+            "sync_bytes": 39479
+          },
+          {
+            "candidate": "immediate",
+            "eager_margin": "tied",
+            "eager_publication_rows": 407,
+            "implementation_complexity": 0,
+            "lookup_p95_ns": 88431,
+            "reload_index_p95_ns": {
+              "client_index": 1321700,
+              "client_reload": 11539600,
+              "server_index": 1354900,
+              "server_reload": 13609400
+            },
+            "retained_memory_bytes": 39479,
+            "sync_bytes": 39479
+          }
+        ],
+        "scenario_id": "card",
+        "soft_budget_warnings": {},
+        "survivors": [
+          "immediate",
+          "on_demand",
+          "hybrid"
+        ]
+      },
+      "stone": {
+        "eliminated": {},
+        "logical_rows": 407,
+        "production_winner": "hybrid",
+        "ranking": [
+          {
+            "candidate": "hybrid",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 2,
+            "lookup_p95_ns": 36406,
+            "reload_index_p95_ns": {
+              "client_index": 188000,
+              "client_reload": 4249200,
+              "server_index": 210100,
+              "server_reload": 4840100
+            },
+            "retained_memory_bytes": 39479,
+            "sync_bytes": 39479
+          },
+          {
+            "candidate": "on_demand",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 1,
+            "lookup_p95_ns": 55581,
+            "reload_index_p95_ns": {
+              "client_index": 145000,
+              "client_reload": 5913600,
+              "server_index": 241900,
+              "server_reload": 7230200
+            },
+            "retained_memory_bytes": 39479,
+            "sync_bytes": 39479
+          },
+          {
+            "candidate": "immediate",
+            "eager_margin": "tied",
+            "eager_publication_rows": 407,
+            "implementation_complexity": 0,
+            "lookup_p95_ns": 88431,
+            "reload_index_p95_ns": {
+              "client_index": 1321700,
+              "client_reload": 11539600,
+              "server_index": 1354900,
+              "server_reload": 13609400
+            },
+            "retained_memory_bytes": 39479,
+            "sync_bytes": 39479
+          }
+        ],
+        "scenario_id": "stone",
+        "soft_budget_warnings": {},
+        "survivors": [
+          "immediate",
+          "on_demand",
+          "hybrid"
+        ]
+      }
+    },
+    "status": "PRODUCTION_WINNER_READY"
+  },
+  "measurement_status": "T43_MATERIALIZATION_MEASUREMENT_READY",
+  "schema_version": 1,
+  "status": "T43_MATERIALIZATION_DECISION_READY"
+}

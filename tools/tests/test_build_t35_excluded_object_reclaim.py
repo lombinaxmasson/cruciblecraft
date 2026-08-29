@@ -90,21 +90,21 @@ class T35ExcludedObjectReclaimTest(unittest.TestCase):
     def test_stale_input_is_detected(self) -> None:
         if not builder.OUTPUT.is_file():
             self.skipTest("artifact not yet generated")
+        from tools.tests.support import authority_sandbox
+
         original = builder.MACHINE_KINDS.read_text(encoding="utf-8")
         document = json.loads(original)
         mutated = copy.deepcopy(document)
         exclusions = mutated["exclusions"]
         exclusions[0] = copy.deepcopy(exclusions[0])
         exclusions[0]["multiplicity"] = int(exclusions[0]["multiplicity"]) + 1
-        builder.MACHINE_KINDS.write_text(
-            json.dumps(mutated, ensure_ascii=False, indent=2) + "\n",
-            encoding="utf-8",
-        )
-        try:
+        with authority_sandbox.patch_builder_path(builder, "MACHINE_KINDS") as kinds:
+            kinds.write_text(
+                json.dumps(mutated, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
             with self.assertRaises(ValueError):
                 builder.build()
-        finally:
-            builder.MACHINE_KINDS.write_text(original, encoding="utf-8")
 
 
 if __name__ == "__main__":

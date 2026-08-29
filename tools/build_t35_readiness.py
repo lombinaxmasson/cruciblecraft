@@ -10,7 +10,6 @@ implemented and hash-locked via the census gate fixture.
 """
 from __future__ import annotations
 
-import argparse
 import json
 import sys
 from pathlib import Path
@@ -38,7 +37,7 @@ VERIFICATION_DEBT = common.TOOLS / "known_issues" / "verification-debt.json"
 PUBLICATION_DELTA = t35.PUBLICATION_DELTA
 T32_VD_001 = "T32-VD-001"
 TOPOLOGY_START = topology_builder.START_NUMBER
-REPORT_OWNED = ("currentness", "runtime", "status")
+REPORT_OWNED = ("currentness", "runtime", "status", "owned_inputs", "generated_by")
 
 UPSTREAM: tuple[tuple[Path, Any], ...] = (
     (t35.INPUTS, census_inputs_builder),
@@ -537,13 +536,15 @@ def check() -> list[str]:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--write", action="store_true")
-    parser.add_argument("--check", action="store_true")
-    args = parser.parse_args(argv)
-    if bool(args.write) == bool(args.check):
-        parser.error("choose exactly one of --write or --check")
+    from tools import builder_cli
+    from tools import currentness
+
+    args = builder_cli.parse_managed(__doc__, argv)
     try:
+        if args.rebind_currentness_only:
+            currentness.rebind_sidecar(OUTPUT)
+            print(f"rebound currentness sidecar for {t35.relative(OUTPUT)}")
+            return 0
         if args.write:
             document = write()
             print(

@@ -13,13 +13,12 @@ import org.junit.jupiter.api.Test;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.masson.cruciblecraft.registry.ModComponents;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
 
 import net.minecraft.SharedConstants;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.Bootstrap;
 import net.minecraft.world.item.ItemStack;
@@ -189,12 +188,9 @@ class CompactT37AssemblerHarnessTest {
         List<ItemStack> stacks = new ArrayList<>();
         for (int index = 0; index < recipe.itemInputs().size(); index++) {
             ItemStack stack = sample(recipe, index);
-            if (recipe.itemInputActions().get(index).kind()
-                    == ItemInputAction.Kind.PRESERVE) {
+            if (stack.has(ModComponents.CIRCUIT_CONFIG.get())) {
                 hasCircuit = true;
-                stack.set(
-                        DataComponents.CUSTOM_NAME,
-                        Component.literal("circuit:wrong"));
+                stack.set(ModComponents.CIRCUIT_CONFIG.get(), 99);
             }
             stacks.add(stack);
         }

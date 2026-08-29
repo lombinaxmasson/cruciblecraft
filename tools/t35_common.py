@@ -2,8 +2,8 @@
 """Shared deterministic helpers and vocabulary for T35 census builders."""
 from __future__ import annotations
 
+import hashlib
 import json
-import os
 from pathlib import Path
 from typing import Any
 
@@ -83,11 +83,9 @@ def stable_json(value: Any) -> str:
 
 
 def write_stable(path: Path, document: Any) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    payload = stable_json(document).encode("utf-8")
-    tmp = path.with_name(path.name + ".tmp")
-    tmp.write_bytes(payload)
-    os.replace(tmp, path)
+    from tools import atomic_io
+
+    atomic_io.write_bytes(path, stable_json(document).encode("utf-8"))
 
 
 def first_json_diff(expected: Any, actual: Any, path: str = "$") -> str | None:
@@ -128,21 +126,114 @@ def first_json_diff(expected: Any, actual: Any, path: str = "$") -> str | None:
     return None
 
 
-def stale_error(path: Path, expected_text: str, actual_text: str) -> str:
-    rel = relative(path)
+CURRENTNESS_FIELD_NAMES = frozenset(
+    {
+        "currentness",
+        "owned_inputs",
+        "generated_by",
+        "generated_at",
+        "currentness_root_sha256",
+        "semantic_root_sha256",
+    }
+)
+
+
+def _strip_currentness(document: Any) -> Any:
+    if isinstance(document, dict):
+        return {
+            key: _strip_currentness(value)
+            for key, value in document.items()
+            if key not in CURRENTNESS_FIELD_NAMES
+        }
+    if isinstance(document, list):
+        return [_strip_currentness(item) for item in document]
+    return document
+
+
+def classify_stale(
+    path: Path,
+    expected_text: str,
+    actual_text: str,
+) -> tuple[str, str]:
+    try:
+        rel = relative(path)
+    except ValueError:
+        rel = path.as_posix()
+    if not path.is_file():
+        return "MISSING", f"{rel} is stale (missing)"
+    try:
+        actual_doc = json.loads(actual_text)
+    except json.JSONDecodeError as error:
+        size = path.stat().st_size
+        return (
+            "CORRUPT",
+            (
+                f"{rel} is stale "
+                f"(JSON line={error.lineno} column={error.colno} size={size})"
+            ),
+        )
     try:
         expected_doc = json.loads(expected_text)
-        actual_doc = json.loads(actual_text)
-        diff = first_json_diff(expected_doc, actual_doc)
     except json.JSONDecodeError:
-        diff = None
-    expected_hash = sha256_file(path) if path.is_file() else "missing"
-    if diff:
-        return f"{rel} is stale at {diff}"
-    return (
-        f"{rel} is stale "
-        f"(on_disk_sha256={expected_hash} rebuilt_len={len(expected_text)})"
+        rebuilt_hash = hashlib.sha256(expected_text.encode("utf-8")).hexdigest()
+        return (
+            "HASH_ONLY_DRIFT",
+            (
+                f"{rel} is stale "
+                f"(on_disk_sha256={sha256_file(path)} rebuilt_sha256={rebuilt_hash})"
+            ),
+        )
+    diff = first_json_diff(expected_doc, actual_doc)
+    semantic_diff = first_json_diff(
+        _strip_currentness(expected_doc),
+        _strip_currentness(actual_doc),
     )
+    rebuilt_hash = hashlib.sha256(expected_text.encode("utf-8")).hexdigest()
+    disk_hash = sha256_file(path)
+    if semantic_diff:
+        return (
+            "SEMANTIC_DRIFT",
+            f"{rel} is stale at {semantic_diff}",
+        )
+    if diff or disk_hash != rebuilt_hash:
+        return (
+            "HASH_ONLY_DRIFT",
+            (
+                f"{rel} is stale "
+                f"(on_disk_sha256={disk_hash} rebuilt_sha256={rebuilt_hash})"
+            ),
+        )
+    return "HASH_ONLY_DRIFT", f"{rel} is stale"
+
+
+def stale_error(path: Path, expected_text: str, actual_text: str) -> str:
+    classification, message = classify_stale(path, expected_text, actual_text)
+    return f"{classification}: {message}"
+
+
+def check_generated_document(path: Path, document: Any) -> list[str]:
+    """Compare a rebuilt document to disk, using a currentness sidecar for hash-only drift."""
+    if not path.is_file():
+        return [f"MISSING: {relative(path)} is stale (missing)"]
+    expected = stable_json(document)
+    actual = path.read_text(encoding="utf-8")
+    if actual == expected:
+        return _sidecar_check(path, required=False)
+    classification, message = classify_stale(path, expected, actual)
+    if classification == "HASH_ONLY_DRIFT":
+        sidecar_errors = _sidecar_check(path, required=True)
+        if sidecar_errors is not None:
+            return sidecar_errors
+    return [f"{classification}: {message}"]
+
+
+def _sidecar_check(path: Path, *, required: bool) -> list[str] | None:
+    from tools import currentness
+
+    sidecar = currentness.sidecar_path(path)
+    if not sidecar.is_file():
+        return [] if not required else None
+    return currentness.check_sidecar(path)
 
 
 def compact_check(module: Any) -> list[str]:

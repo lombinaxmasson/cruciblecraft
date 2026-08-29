@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/device_materials.schema.json",
+  "title": "CrucibleCraft crucible, anvil and hammer material catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source_revision", "devices"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schema_version": { "const": 1 },
+    "source_revision": {
+      "const": "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    },
+    "devices": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["crucible", "anvil", "hammer"],
+      "properties": {
+        "crucible": { "$ref": "#/$defs/device" },
+        "anvil": { "$ref": "#/$defs/device" },
+        "hammer": { "$ref": "#/$defs/device" }
+      }
+    }
+  },
+  "$defs": {
+    "device": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["default_material", "materials"],
+      "properties": {
+        "default_material": { "type": "string", "minLength": 1 },
+        "materials": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "material_id",
+              "processing_tier",
+              "creative_visible"
+            ],
+            "properties": {
+              "material_id": { "type": "string", "minLength": 1 },
+              "processing_tier": { "type": "integer", "minimum": 0 },
+              "durability": { "type": "integer", "minimum": 1 },
+              "creative_visible": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

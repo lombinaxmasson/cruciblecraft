@@ -503,6 +503,9 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     started = time.perf_counter()
+    from tools.tests.support import authority_sandbox
+
+    authority_sandbox.install_write_guard()
     runner = unittest.TextTestRunner(
         verbosity=2,
         failfast=args.failfast,

@@ -16,6 +16,7 @@ import com.masson.cruciblecraft.client.color.RockColor;
 import com.masson.cruciblecraft.client.render.AnvilRenderer;
 import com.masson.cruciblecraft.client.render.CrucibleRenderer;
 import com.masson.cruciblecraft.client.screen.HopperScreen;
+import com.masson.cruciblecraft.client.screen.StorageScreen;
 import com.masson.cruciblecraft.client.screen.ConfiguredProcessingMachineScreen;
 import com.masson.cruciblecraft.client.screen.CokeOvenScreen;
 import com.masson.cruciblecraft.client.screen.CrusherScreen;
@@ -196,6 +197,9 @@ public class ClientSetup {
     @SubscribeEvent
     static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(ModMenus.HOPPER.get(), HopperScreen::new);
+        event.register(ModMenus.BOOKSHELF.get(), StorageScreen::new);
+        event.register(ModMenus.BOTTLE_CRATE.get(), StorageScreen::new);
+        event.register(ModMenus.DRAWER.get(), StorageScreen::new);
         event.register(ModMenus.COKE_OVEN.get(), CokeOvenScreen::new);
         event.register(ModMenus.CRUSHER.get(), CrusherScreen::new);
         event.register(ModMenus.SLUICE.get(), ConfiguredProcessingMachineScreen::new);

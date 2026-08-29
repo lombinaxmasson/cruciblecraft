@@ -18,7 +18,10 @@ NeoForge 1.21.1 的 GT6 风格工业模组。当前仓库是一个**源码阶段
   schema v3 是唯一投影源；隔离 GameTest `cruciblecraft_t36` 8/8。旧未启动 T38–T46
   storage-first 编号已撤销；新 topology 是 T37 校准 → recipe waves → storage。
 - T37 Assembler 50-family 校准已关闭，生产策略由实测派生为 hybrid（14 eager / 36 lazy /
-  cache 8）；T38 Roaster 29-family 固定波次是当前唯一 active 内容卡。路线解释见
+  cache 8）。T38 Roaster 29-family 固定波次已关闭（`T38_READY`，compact on_demand 0/73/16；
+  T14 authored 3,664 / eager 16,626）；
+  T39 原 157/250 host-complete 签发已撤回为 test fixture；22-family / 32-relation
+  production lock 与 T39-Repair 已关闭（`T39_READY`），T40 尚未签发。路线解释见
   [总体规划](docs/current/roadmap.md)。
 - GT6 式石子开局和第一小时表现层仍未闭环；不要把历史 portfolio 的
   `v1_work_set = []` 解读为“模组已完整可玩”。

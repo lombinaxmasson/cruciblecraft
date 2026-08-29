@@ -11,6 +11,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.api.material.MaterialLookup;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeAcquisitionRecipeCatalog;
+import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperKind;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
 import com.masson.cruciblecraft.material.MaterialCatalog;
@@ -22,7 +23,6 @@ import com.masson.cruciblecraft.recipe.rule.T4ToolRules;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
 import com.masson.cruciblecraft.registry.ModFluids;
-import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.registry.ModItems;
 import com.masson.cruciblecraft.registry.ModRecipeMaps;
@@ -64,6 +64,7 @@ public final class ModRecipeProvider extends RecipeProvider {
         RecipeOutput recipesOnly = new AdvancementFreeRecipeOutput(output);
         addMachineRecipes(recipesOnly);
         addHopperRecipes(recipesOnly);
+        addStorageRecipes(recipesOnly);
         MaterialCatalog.startupValues().stream()
                 .sorted(Comparator.comparing(MaterialDefinition::id))
                 .forEach(material -> addDerivedOreRecipes(recipesOnly, material));
@@ -102,6 +103,76 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .save(output, id("hoppers/steel_dust_funnel"));
     }
 
+    private static void addStorageRecipes(RecipeOutput output) {
+        Item steelPlate = materialItem("steel", MaterialPrefixes.PLATE);
+        Item plasticPlate = materialItem("plastic", MaterialPrefixes.PLATE);
+        Item treatedRod = materialItem("wood_treated", MaterialPrefixes.ROD);
+        StorageVariantCatalog.sourceVisible().forEach(variant -> {
+            Item result = ModItems.storageItemsById().get(variant.id()).get();
+            String recipeId = "storage/" + variant.path();
+            switch (variant.acquisitionProfile()) {
+                case "steel_shaped" -> ShapedRecipeBuilder.shaped(
+                                RecipeCategory.MISC, result)
+                        .pattern("PPP")
+                        .pattern("PCP")
+                        .pattern("PPP")
+                        .define('P', steelPlate)
+                        .define('C', Items.CHEST)
+                        .unlockedBy("has_steel_plate", has(steelPlate))
+                        .save(output, id(recipeId));
+                case "oak_planks", "cheap_barrel" -> ShapedRecipeBuilder.shaped(
+                                RecipeCategory.MISC, result)
+                        .pattern("PPP")
+                        .pattern("PCP")
+                        .pattern("PPP")
+                        .define('P', Items.OAK_PLANKS)
+                        .define('C', Items.CHEST)
+                        .unlockedBy("has_oak_planks", has(Items.OAK_PLANKS))
+                        .save(output, id(recipeId));
+                case "treated_barrel" -> ShapedRecipeBuilder.shaped(
+                                RecipeCategory.MISC, result)
+                        .pattern("PPP")
+                        .pattern("PCP")
+                        .pattern("PPP")
+                        .define('P', treatedRod)
+                        .define('C', Items.CHEST)
+                        .unlockedBy("has_treated_rod", has(treatedRod))
+                        .save(output, id(recipeId));
+                case "plastic_box" -> ShapedRecipeBuilder.shaped(
+                                RecipeCategory.MISC, result)
+                        .pattern("PPP")
+                        .pattern("PCP")
+                        .pattern("PPP")
+                        .define('P', plasticPlate)
+                        .define('C', Items.CHEST)
+                        .unlockedBy("has_plastic_plate", has(plasticPlate))
+                        .save(output, id(recipeId));
+                case "charging_locker" -> ShapedRecipeBuilder.shaped(
+                                RecipeCategory.MISC, result)
+                        .pattern("PPP")
+                        .pattern("PCP")
+                        .pattern("PRP")
+                        .define('P', steelPlate)
+                        .define('C', Items.CHEST)
+                        .define('R', ModItems.PROGRAMMED_CIRCUIT.get())
+                        .unlockedBy("has_circuit", has(ModItems.PROGRAMMED_CIRCUIT.get()))
+                        .save(output, id(recipeId));
+                case "inserter" -> ShapedRecipeBuilder.shaped(
+                                RecipeCategory.MISC, result)
+                        .pattern(" P ")
+                        .pattern(" H ")
+                        .pattern(" P ")
+                        .define('P', steelPlate)
+                        .define('H', Items.HOPPER)
+                        .unlockedBy("has_hopper", has(Items.HOPPER))
+                        .save(output, id(recipeId));
+                default -> throw new IllegalStateException(
+                        "Visible storage row missing acquisition recipe: "
+                                + variant.id());
+            }
+        });
+    }
+
     private static void addMachineRecipes(RecipeOutput output) {
         ShapedRecipeBuilder.shaped(
                         RecipeCategory.MISC, ModItems.FIREBOX.get())
@@ -121,260 +192,10 @@ public final class ModRecipeProvider extends RecipeProvider {
                 output,
                 ModItems.ROTATIONAL_GEARBOX.get(),
                 "rotational_gearbox");
-        machineCrafting(output, ModItems.SLUICE.get(), "sluice");
-        machineCrafting(output, ModItems.BATH.get(), "bath");
-        centrifugeCrafting(
-                output,
-                ModItems.CENTRIFUGE.get(),
-                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
-                "bronze",
-                "centrifuge");
-        centrifugeCrafting(
-                output,
-                ModItems.STEEL_CENTRIFUGE.get(),
-                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
-                "steel",
-                "steel_centrifuge");
-        centrifugeCrafting(
-                output,
-                ModItems.TITANIUM_CENTRIFUGE.get(),
-                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
-                "titanium",
-                "titanium_centrifuge");
-        t16MachineCrafting(
-                output,
-                ModItems.SHREDDER.get(),
-                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
-                "bronze",
-                "shredder",
-                "shredder");
-        t16MachineCrafting(
-                output,
-                ModItems.STEEL_SHREDDER.get(),
-                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
-                "steel",
-                "shredder",
-                "steel_shredder");
-        t16MachineCrafting(
-                output,
-                ModItems.TITANIUM_SHREDDER.get(),
-                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
-                "titanium",
-                "shredder",
-                "titanium_shredder");
-        sifterCrafting(
-                output,
-                ModItems.SIFTER.get(),
-                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
-                "bronze",
-                "sifter");
-        sifterCrafting(
-                output,
-                ModItems.STEEL_SIFTER.get(),
-                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
-                "steel",
-                "steel_sifter");
-        sifterCrafting(
-                output,
-                ModItems.TITANIUM_SIFTER.get(),
-                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
-                "titanium",
-                "titanium_sifter");
-        t17HeatMachineCrafting(
-                output,
-                ModItems.SMELTER.get(),
-                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
-                "steel",
-                null,
-                null,
-                "smelter",
-                "smelter");
-        t17HeatMachineCrafting(
-                output,
-                ModItems.INVAR_SMELTER.get(),
-                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
-                "invar",
-                null,
-                null,
-                "smelter",
-                "invar_smelter");
-        t17HeatMachineCrafting(
-                output,
-                ModItems.TITANIUM_SMELTER.get(),
-                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
-                "titanium",
-                null,
-                null,
-                "smelter",
-                "titanium_smelter");
-        machineCrafting(output, ModItems.MORTAR.get(), "mortar");
-        machineCrafting(output, ModItems.EXTRUDER.get(), "extruder");
-        machineCrafting(output, ModItems.CUTTER.get(), "cutter");
-        t16MachineCrafting(
-                output,
-                ModItems.LATHE.get(),
-                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
-                "bronze",
-                "lathe",
-                "lathe");
-        t16MachineCrafting(
-                output,
-                ModItems.STEEL_LATHE.get(),
-                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
-                "steel",
-                "lathe",
-                "steel_lathe");
-        t16MachineCrafting(
-                output,
-                ModItems.TITANIUM_LATHE.get(),
-                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
-                "titanium",
-                "lathe",
-                "titanium_lathe");
-        t16MachineCrafting(
-                output,
-                ModItems.ROLLINGMILL.get(),
-                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
-                "bronze",
-                "rollingmill",
-                "rollingmill");
-        t16MachineCrafting(
-                output,
-                ModItems.STEEL_ROLLINGMILL.get(),
-                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
-                "steel",
-                "rollingmill",
-                "steel_rollingmill");
-        t16MachineCrafting(
-                output,
-                ModItems.TITANIUM_ROLLINGMILL.get(),
-                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
-                "titanium",
-                "rollingmill",
-                "titanium_rollingmill");
-        machineCrafting(output, ModItems.ROLLBENDER.get(), "rollbender");
-        t16MachineCrafting(
-                output,
-                ModItems.WIREMILL.get(),
-                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
-                "bronze",
-                "wiremill",
-                "wiremill");
-        t16MachineCrafting(
-                output,
-                ModItems.STEEL_WIREMILL.get(),
-                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
-                "steel",
-                "wiremill",
-                "steel_wiremill");
-        t16MachineCrafting(
-                output,
-                ModItems.TITANIUM_WIREMILL.get(),
-                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
-                "titanium",
-                "wiremill",
-                "titanium_wiremill");
-        machineCrafting(output, ModItems.BENDER.get(), "bender");
-        machineCrafting(output, ModItems.ASSEMBLER.get(), "assembler");
-        machineCrafting(output, ModItems.WELDER.get(), "welder");
-        t16MachineCrafting(
-                output,
-                ModItems.PRESS.get(),
-                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
-                "bronze",
-                "press",
-                "press");
-        t16MachineCrafting(
-                output,
-                ModItems.STEEL_PRESS.get(),
-                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
-                "steel",
-                "press",
-                "steel_press");
-        t16MachineCrafting(
-                output,
-                ModItems.TITANIUM_PRESS.get(),
-                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
-                "titanium",
-                "press",
-                "titanium_press");
-        electrolyzerCrafting(
-                output,
-                ModItems.ELECTROLYZER.get(),
-                ModItems.STEEL_GALVANIZED_MACHINE_CASING.get(),
-                "tin",
-                "electrolyzer");
-        electrolyzerCrafting(
-                output,
-                ModItems.ALUMINIUM_ELECTROLYZER.get(),
-                ModItems.ALUMINIUM_MACHINE_CASING.get(),
-                "copper",
-                "aluminium_electrolyzer");
-        electrolyzerCrafting(
-                output,
-                ModItems.STAINLESS_STEEL_ELECTROLYZER.get(),
-                ModItems.STAINLESS_STEEL_MACHINE_CASING.get(),
-                "gold",
-                "stainless_steel_electrolyzer");
-        machineCrafting(output, ModItems.MIXER.get(), "mixer");
-        t17HeatMachineCrafting(
-                output,
-                ModItems.DISTILLERY.get(),
-                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
-                "steel",
-                "constantan",
-                MaterialPrefixes.DOUBLE_WIRE,
-                "distillery",
-                "distillery");
-        t17HeatMachineCrafting(
-                output,
-                ModItems.INVAR_DISTILLERY.get(),
-                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
-                "invar",
-                "kanthal",
-                MaterialPrefixes.QUADRUPLE_WIRE,
-                "distillery",
-                "invar_distillery");
-        t17HeatMachineCrafting(
-                output,
-                ModItems.TITANIUM_DISTILLERY.get(),
-                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
-                "titanium",
-                "nichrome",
-                MaterialPrefixes.OCTUPLE_WIRE,
-                "distillery",
-                "titanium_distillery");
-        machineCrafting(output, ModItems.AUTOCLAVE.get(), "autoclave");
-        t17HeatMachineCrafting(
-                output,
-                ModItems.DRYING.get(),
-                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
-                "steel",
-                null,
-                null,
-                "drying",
-                "drying");
-        t17HeatMachineCrafting(
-                output,
-                ModItems.INVAR_DRYING.get(),
-                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
-                "invar",
-                null,
-                null,
-                "drying",
-                "invar_drying");
-        t17HeatMachineCrafting(
-                output,
-                ModItems.TITANIUM_DRYING.get(),
-                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
-                "titanium",
-                null,
-                null,
-                "drying",
-                "titanium_drying");
-        machineCrafting(output, ModItems.COMPRESSOR.get(), "compressor");
-        machineCrafting(output, ModItems.GENERIFIER.get(), "generifier");
-        machineCrafting(output, ModItems.COAGULATOR.get(), "coagulator");
+        for (MachineVariant variant
+                : com.masson.cruciblecraft.registry.ModMachineVariants.ALL) {
+            emitAcquisition(output, variant);
+        }
         machineCrafting(
                 output,
                 ModItems.FLUID_DEPOSIT_EXTRACTOR.get(),
@@ -385,117 +206,15 @@ public final class ModRecipeProvider extends RecipeProvider {
                 output,
                 ModItems.BURNING_GAS_GENERATOR.get(),
                 "burning_gas_generator");
-        java.util.Set<String> authored = java.util.Set.of(
-                "sluice",
-                "bath",
-                "centrifuge",
-                "steel_centrifuge",
-                "titanium_centrifuge",
-                "shredder",
-                "steel_shredder",
-                "titanium_shredder",
-                "sifter",
-                "steel_sifter",
-                "titanium_sifter",
-                "mortar",
-                "extruder",
-                "cutter",
-                "lathe",
-                "steel_lathe",
-                "titanium_lathe",
-                "rollingmill",
-                "steel_rollingmill",
-                "titanium_rollingmill",
-                "rollbender",
-                "wiremill",
-                "steel_wiremill",
-                "titanium_wiremill",
-                "bender",
-                "assembler",
-                "welder",
-                "press",
-                "steel_press",
-                "titanium_press",
-                "electrolyzer",
-                "aluminium_electrolyzer",
-                "stainless_steel_electrolyzer",
-                "mixer",
-                "distillery",
-                "invar_distillery",
-                "titanium_distillery",
-                "autoclave",
-                "drying",
-                "invar_drying",
-                "titanium_drying",
-                "smelter",
-                "invar_smelter",
-                "titanium_smelter",
-                "compressor",
-                "generifier",
-                "coagulator");
-        for (com.masson.cruciblecraft.machine.processing.MachineVariant variant
-                : com.masson.cruciblecraft.registry.ModMachineVariants.ALL) {
-            String path = variant.id().getPath();
-            if (authored.contains(path)) {
-                continue;
-            }
-            addSourceBackedMachineRecipe(output, variant, path);
+        for (com.masson.cruciblecraft.machine.processing.MachineCasingCatalog.Casing casing
+                : com.masson.cruciblecraft.machine.processing.MachineCasingCatalog.casings()) {
+            casingCrafting(
+                    output,
+                    ModItems.machineCasingsById().get(casing.id()).get(),
+                    com.masson.cruciblecraft.machine.processing.MachineCasingCatalog.materialPath(
+                            casing.materialId().toString()),
+                    casing.doubled());
         }
-        casingCrafting(
-                output,
-                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
-                "bronze",
-                true);
-        casingCrafting(
-                output,
-                ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
-                "steel",
-                true);
-        casingCrafting(
-                output,
-                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
-                "titanium",
-                true);
-        casingCrafting(
-                output,
-                ModItems.TUNGSTENSTEEL_DOUBLE_MACHINE_CASING.get(),
-                "tungstensteel",
-                true);
-        casingCrafting(
-                output,
-                ModItems.INVAR_DOUBLE_MACHINE_CASING.get(),
-                "invar",
-                true);
-        casingCrafting(
-                output,
-                ModItems.TUNGSTEN_CARBIDE_DOUBLE_MACHINE_CASING.get(),
-                "tungsten_carbide",
-                true);
-        casingCrafting(
-                output,
-                ModItems.STEEL_GALVANIZED_MACHINE_CASING.get(),
-                "steel_galvanized",
-                false);
-        casingCrafting(
-                output,
-                ModItems.ALUMINIUM_MACHINE_CASING.get(),
-                "aluminium",
-                false);
-        casingCrafting(
-                output,
-                ModItems.STAINLESS_STEEL_MACHINE_CASING.get(),
-                "stainless_steel",
-                false);
-        casingCrafting(
-                output,
-                ModItems.CHROMIUM_MACHINE_CASING.get(),
-                "chromium",
-                false);
-        casingCrafting(
-                output,
-                ModItems.TITANIUM_MACHINE_CASING.get(),
-                "titanium",
-                false);
         ShapedRecipeBuilder.shaped(
                         RecipeCategory.MISC,
                         ModItems.MULTIBLOCK_CASING.get(),
@@ -729,122 +448,59 @@ public final class ModRecipeProvider extends RecipeProvider {
                         id(definition.path()), new MaterialRuleRecipe(definition.rule()), null));
     }
 
-    private static void addSourceBackedMachineRecipe(
+    private static void emitAcquisition(
             RecipeOutput output,
-            MachineVariant variant,
-            String path) {
+            MachineVariant variant) {
+        var resolved = com.masson.cruciblecraft.machine.processing.MachineAcquisition.resolve(variant);
         Item result = ModItems.tieredProcessingItemsById()
                 .get(variant.id())
                 .get();
-        String kind = variant.kind().id().getPath();
-        if ("bronze_crusher".equals(kind)) {
-            kind = "crusher";
-        }
-        String material = variant.tierBand().materialId();
-        int colon = material.indexOf(':');
-        if (colon >= 0) {
-            material = material.substring(colon + 1);
-        }
-        Item casing = casingFor(material, variant.tierBand().energyType());
-        switch (kind) {
-            case "centrifuge", "mixer", "sluice" -> centrifugeCrafting(
+        String path = variant.id().getPath();
+        String material = resolved.materialPath();
+        Item casing = resolved.casingItem() == null
+                ? null
+                : ModItems.machineCasingsById().get(resolved.casingItem()).get();
+        switch (resolved.template()) {
+            case "machine_generic" -> machineCrafting(output, result, path);
+            case "centrifuge" -> centrifugeCrafting(
                     output, result, casing, material, path);
             case "sifter" -> sifterCrafting(
                     output, result, casing, material, path);
-            case "lathe", "rollingmill", "wiremill", "shredder", "press",
-                    "cutter", "rollbender" -> t16MachineCrafting(
-                    output, result, casing, material, kind, path);
-            case "distillery" -> t17HeatMachineCrafting(
+            case "t16_kinetic" -> t16MachineCrafting(
+                    output, result, casing, material, resolved.t16Kind(), path);
+            case "t17_heat" -> t17HeatMachineCrafting(
                     output,
                     result,
                     casing,
                     material,
-                    distilleryWireMaterial(material),
-                    distilleryWirePrefix(material),
-                    "distillery",
-                    path);
-            case "drying", "smelter", "roaster", "extruder" -> t17HeatMachineCrafting(
-                    output,
-                    result,
-                    casing,
-                    material,
-                    null,
-                    null,
-                    kind,
+                    resolved.distilleryWire() == null
+                            ? null
+                            : resolved.distilleryWire().wireMaterial(),
+                    resolved.distilleryWire() == null
+                            ? null
+                            : wirePrefix(resolved.distilleryWire().wirePrefix()),
+                    variant.kind().id().getPath(),
                     path);
             case "electrolyzer" -> electrolyzerCrafting(
                     output,
                     result,
                     casing,
-                    electrolyzerCableMaterial(material),
+                    resolved.electrolyzerCableMaterial(),
                     path);
             case "compressor" -> compressorCrafting(
                     output, result, casing, material, path);
-            case "crusher" -> t16MachineCrafting(
-                    output, result, casing, material, "shredder", path);
             default -> throw new IllegalStateException(
                     "T36 variant " + path + " has no source-backed acquisition");
         }
     }
 
-    private static Item casingFor(String material, EnergyType energy) {
-        if (energy == EnergyType.ELECTRIC) {
-            return switch (material) {
-                case "steel_galvanized" ->
-                        ModItems.STEEL_GALVANIZED_MACHINE_CASING.get();
-                case "aluminium" -> ModItems.ALUMINIUM_MACHINE_CASING.get();
-                case "stainless_steel" ->
-                        ModItems.STAINLESS_STEEL_MACHINE_CASING.get();
-                case "chromium" -> ModItems.CHROMIUM_MACHINE_CASING.get();
-                case "titanium" -> ModItems.TITANIUM_MACHINE_CASING.get();
-                default -> throw new IllegalStateException(
-                        "No EU casing for " + material);
-            };
-        }
-        return switch (material) {
-            case "bronze" -> ModItems.BRONZE_DOUBLE_MACHINE_CASING.get();
-            case "steel" -> ModItems.STEEL_DOUBLE_MACHINE_CASING.get();
-            case "titanium" -> ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get();
-            case "tungstensteel" ->
-                    ModItems.TUNGSTENSTEEL_DOUBLE_MACHINE_CASING.get();
-            case "invar" -> ModItems.INVAR_DOUBLE_MACHINE_CASING.get();
-            case "tungsten_carbide" ->
-                    ModItems.TUNGSTEN_CARBIDE_DOUBLE_MACHINE_CASING.get();
+    private static MaterialPrefix wirePrefix(String serialized) {
+        return switch (serialized) {
+            case "double_wire" -> MaterialPrefixes.DOUBLE_WIRE;
+            case "quadruple_wire" -> MaterialPrefixes.QUADRUPLE_WIRE;
+            case "octuple_wire" -> MaterialPrefixes.OCTUPLE_WIRE;
             default -> throw new IllegalStateException(
-                    "No kinetic/heat casing for " + material);
-        };
-    }
-
-    private static String electrolyzerCableMaterial(String casingMaterial) {
-        return switch (casingMaterial) {
-            case "steel_galvanized" -> "tin";
-            case "aluminium" -> "copper";
-            case "stainless_steel" -> "gold";
-            case "chromium" -> "aluminium";
-            case "titanium" -> "tungstensteel";
-            default -> throw new IllegalStateException(
-                    "No electrolyzer cable for " + casingMaterial);
-        };
-    }
-
-    private static String distilleryWireMaterial(String machineMaterial) {
-        return switch (machineMaterial) {
-            case "steel" -> "constantan";
-            case "invar" -> "kanthal";
-            case "titanium" -> "nichrome";
-            case "tungsten_carbide" -> "tungstensteel";
-            default -> throw new IllegalStateException(
-                    "No distillery wire for " + machineMaterial);
-        };
-    }
-
-    private static MaterialPrefix distilleryWirePrefix(String machineMaterial) {
-        return switch (machineMaterial) {
-            case "steel" -> MaterialPrefixes.DOUBLE_WIRE;
-            case "invar" -> MaterialPrefixes.QUADRUPLE_WIRE;
-            case "titanium", "tungsten_carbide" -> MaterialPrefixes.OCTUPLE_WIRE;
-            default -> throw new IllegalStateException(
-                    "No distillery wire prefix for " + machineMaterial);
+                    "Unknown distillery wire prefix " + serialized);
         };
     }
 

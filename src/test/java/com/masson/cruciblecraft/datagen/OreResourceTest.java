@@ -43,7 +43,7 @@ class OreResourceTest {
                 .filter(material ->
                         registered.get(material.id()).contains(MaterialPrefixes.ORE))
                 .toList();
-        assertEquals(137, oreMaterials.size());
+        assertEquals(147, oreMaterials.size());
         var serverFiles = GeneratedMaterialPack.planServerFiles(materials, registered);
         var clientFiles = GeneratedMaterialPack.planClientFiles(materials, registered);
 
@@ -209,17 +209,29 @@ class OreResourceTest {
                         })
                         .toList();
                 assertEquals(
-                        List.of(
+                        Set.of(
                                 generatedData.resolve(
                                         "cruciblecraft/tags/item/"
                                                 + "extruder_shapes.json"),
                                 generatedData.resolve(
+                                        "cruciblecraft/tags/block/"
+                                                + "gt_stones.json"),
+                                generatedData.resolve(
+                                        "cruciblecraft/tags/block/"
+                                                + "gt_block_objects.json"),
+                                generatedData.resolve(
                                         "minecraft/tags/block/mineable/"
                                                 + "pickaxe.json"),
                                 generatedData.resolve(
+                                        "minecraft/tags/block/mineable/"
+                                                + "axe.json"),
+                                generatedData.resolve(
                                         "minecraft/tags/block/"
-                                                + "needs_stone_tool.json")),
-                        snapshots,
+                                                + "needs_stone_tool.json"),
+                                generatedData.resolve(
+                                        "minecraft/tags/block/"
+                                                + "rails.json")),
+                        Set.copyOf(snapshots),
                         "only catalog-driven static item/block tags may ship "
                                 + "in generated data");
             }
@@ -378,10 +390,11 @@ class OreResourceTest {
         // 877 + wire cutter additions: tool pattern recipe + 2 T4 route rules.
         // T30 adds 121 hopper-family acquisition recipes (60 hopper, 60 queue,
         // 1 steel dust funnel). T36 adds catalog-driven machine recipes plus
-        // five source-backed casings beyond the T15 six.
-        assertEquals(1_044, generatedRecipeSet.size() - t19RecipeSet.size());
+        // five source-backed casings beyond the T15 six. T44 adds 18
+        // source-visible storage acquisition recipes.
+        assertEquals(1_062, generatedRecipeSet.size() - t19RecipeSet.size());
         assertEquals(
-                1_044 + t19RecipeSet.size(),
+                1_062 + t19RecipeSet.size(),
                 generatedRecipeSet.size());
         assertEquals(48, countRegularFiles(COMPONENT_RULE_RESOURCES.resolve(
                 "data/cruciblecraft/recipe")));

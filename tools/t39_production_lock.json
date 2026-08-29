@@ -1,0 +1,468 @@
+{
+  "candidate_snapshot": {
+    "path": "tools/t39_candidate_selection.json",
+    "selection_sha256": "9aee1c503956a88778e1075e03d8c281d2cea450f12d74b9273b2bb4aefda6e3",
+    "sha256": "8855228af135acb19c93620e459f77742ed03803a347b3eab6c5bb5258a590fc"
+  },
+  "catalog_fixture": {
+    "families": 157,
+    "relations": 250,
+    "selection_sha256": "3e125fd647b88b0b93e2840f1cf0681c7196a5e91a8b16a321fa9e0b1b4f2c19",
+    "status": "WITHDRAWN_TEST_FIXTURE"
+  },
+  "note": "This file is the production authority. Candidate selection is diagnostic; 157/250 is fixture-only. Rewriting an existing lock requires explicit --approve-resign.",
+  "phase_deferred": [
+    {
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0169",
+      "future_owner": "post_1x:nuclear",
+      "reason": "stateful_reactor_rod_not_registered",
+      "source_objects": [
+        {
+          "behavior_class": "MultiTileEntityReactorRodProduct",
+          "item": "gregtech:gt.multitileentity",
+          "meta": 9441
+        }
+      ],
+      "stable_ids": [
+        "cruciblecraft:t39/274c17e078d4e6fc"
+      ],
+      "template_key": "gt.recipe.centrifuge#0169"
+    },
+    {
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0176",
+      "future_owner": "post_1x:nuclear",
+      "reason": "stateful_reactor_rod_not_registered",
+      "source_objects": [
+        {
+          "behavior_class": "MultiTileEntityReactorRodDepleted",
+          "item": "gregtech:gt.multitileentity",
+          "meta": 9319
+        }
+      ],
+      "stable_ids": [
+        "cruciblecraft:t39/6e6b5982d83abad6"
+      ],
+      "template_key": "gt.recipe.centrifuge#0176"
+    },
+    {
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0180",
+      "future_owner": "post_1x:nuclear",
+      "reason": "stateful_reactor_rod_not_registered",
+      "source_objects": [
+        {
+          "behavior_class": "MultiTileEntityReactorRodDepleted",
+          "item": "gregtech:gt.multitileentity",
+          "meta": 9329
+        }
+      ],
+      "stable_ids": [
+        "cruciblecraft:t39/f38ae0bf2470f5e2"
+      ],
+      "template_key": "gt.recipe.centrifuge#0180"
+    },
+    {
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0185",
+      "future_owner": "post_1x:nuclear",
+      "reason": "stateful_reactor_rod_not_registered",
+      "source_objects": [
+        {
+          "behavior_class": "MultiTileEntityReactorRodDepleted",
+          "item": "gregtech:gt.multitileentity",
+          "meta": 9339
+        }
+      ],
+      "stable_ids": [
+        "cruciblecraft:t39/7150de9747a4d7d7"
+      ],
+      "template_key": "gt.recipe.centrifuge#0185"
+    },
+    {
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0188",
+      "future_owner": "post_1x:nuclear",
+      "reason": "stateful_reactor_rod_not_registered",
+      "source_objects": [
+        {
+          "behavior_class": "MultiTileEntityReactorRodDepleted",
+          "item": "gregtech:gt.multitileentity",
+          "meta": 9349
+        }
+      ],
+      "stable_ids": [
+        "cruciblecraft:t39/d630f8939f2b5296"
+      ],
+      "template_key": "gt.recipe.centrifuge#0188"
+    },
+    {
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0190",
+      "future_owner": "post_1x:nuclear",
+      "reason": "stateful_reactor_rod_not_registered",
+      "source_objects": [
+        {
+          "behavior_class": "MultiTileEntityReactorRodDepleted",
+          "item": "gregtech:gt.multitileentity",
+          "meta": 9360
+        }
+      ],
+      "stable_ids": [
+        "cruciblecraft:t39/e20c1e8d4f3dcaa5"
+      ],
+      "template_key": "gt.recipe.centrifuge#0190"
+    },
+    {
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0191",
+      "future_owner": "post_1x:nuclear",
+      "reason": "stateful_reactor_rod_not_registered",
+      "source_objects": [
+        {
+          "behavior_class": "MultiTileEntityReactorRodDepleted",
+          "item": "gregtech:gt.multitileentity",
+          "meta": 9361
+        }
+      ],
+      "stable_ids": [
+        "cruciblecraft:t39/2648b9da0fcbdab0"
+      ],
+      "template_key": "gt.recipe.centrifuge#0191"
+    }
+  ],
+  "production": {
+    "families": [
+      {
+        "expanded_count": 6,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0008",
+        "publication_group": "cruciblecraft:t39_centrifuge_multi",
+        "stable_ids": [
+          "cruciblecraft:t39/30be01c2bdf21e78",
+          "cruciblecraft:t39/495ae319e7116a2c",
+          "cruciblecraft:t39/a9314dfa7daeb760",
+          "cruciblecraft:t39/b0dedbe63373654a",
+          "cruciblecraft:t39/b88593939fbe36b2",
+          "cruciblecraft:t39/ceca9e9e9acabf1c"
+        ],
+        "template_key": "gt.recipe.centrifuge#0008"
+      },
+      {
+        "expanded_count": 5,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0011",
+        "publication_group": "cruciblecraft:t39_centrifuge_multi",
+        "stable_ids": [
+          "cruciblecraft:t39/3486eb8b50f3b4f5",
+          "cruciblecraft:t39/3ea9eb885e0d925d",
+          "cruciblecraft:t39/50c4ea15f0a74e31",
+          "cruciblecraft:t39/aa6d044df1135ab9",
+          "cruciblecraft:t39/da2d3c8f2320a7fd"
+        ],
+        "template_key": "gt.recipe.centrifuge#0011"
+      },
+      {
+        "expanded_count": 2,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0047",
+        "publication_group": "cruciblecraft:t39_centrifuge_multi",
+        "stable_ids": [
+          "cruciblecraft:t39/8a9664a51a0e3d02",
+          "cruciblecraft:t39/b8d92a189fddcaf3"
+        ],
+        "template_key": "gt.recipe.centrifuge#0047"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0055",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/75042e8f7b60678a"
+        ],
+        "template_key": "gt.recipe.centrifuge#0055"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0056",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/38ae2ecc2de4cfc4"
+        ],
+        "template_key": "gt.recipe.centrifuge#0056"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0057",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/416b061e3815041d"
+        ],
+        "template_key": "gt.recipe.centrifuge#0057"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0060",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/57dddd6c297ca78b"
+        ],
+        "template_key": "gt.recipe.centrifuge#0060"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0067",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/c78035a4bdea3162"
+        ],
+        "template_key": "gt.recipe.centrifuge#0067"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0068",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/c8ea0d7c48205b63"
+        ],
+        "template_key": "gt.recipe.centrifuge#0068"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0073",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/afe40bde6cb2d847"
+        ],
+        "template_key": "gt.recipe.centrifuge#0073"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0080",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/64220b5296f77335"
+        ],
+        "template_key": "gt.recipe.centrifuge#0080"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0112",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/0fc7ee3fbc68513e"
+        ],
+        "template_key": "gt.recipe.centrifuge#0112"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0113",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/7b613367b7d4fc7a"
+        ],
+        "template_key": "gt.recipe.centrifuge#0113"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0145",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/dd4738bd29d945c5"
+        ],
+        "template_key": "gt.recipe.centrifuge#0145"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0147",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/185249692915af8c"
+        ],
+        "template_key": "gt.recipe.centrifuge#0147"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0168",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/79c6102e65fea993"
+        ],
+        "template_key": "gt.recipe.centrifuge#0168"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0170",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/ed747232f87fab18"
+        ],
+        "template_key": "gt.recipe.centrifuge#0170"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0171",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/15cf9ab601f783d9"
+        ],
+        "template_key": "gt.recipe.centrifuge#0171"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0206",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/f6c61cf8b8de2480"
+        ],
+        "template_key": "gt.recipe.centrifuge#0206"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0215",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/f9baa12fb696fd5c"
+        ],
+        "template_key": "gt.recipe.centrifuge#0215"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0216",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/ba760b0362daf218"
+        ],
+        "template_key": "gt.recipe.centrifuge#0216"
+      },
+      {
+        "expanded_count": 1,
+        "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0217",
+        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "stable_ids": [
+          "cruciblecraft:t39/cc60383dafb2847e"
+        ],
+        "template_key": "gt.recipe.centrifuge#0217"
+      }
+    ],
+    "family_count": 22,
+    "family_ids": [
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0008",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0011",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0047",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0055",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0056",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0057",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0060",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0067",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0068",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0073",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0080",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0112",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0113",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0145",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0147",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0168",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0170",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0171",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0206",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0215",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0216",
+      "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0217"
+    ],
+    "relation_count": 32,
+    "selection_sha256": "9aee1c503956a88778e1075e03d8c281d2cea450f12d74b9273b2bb4aefda6e3",
+    "stable_ids": [
+      "cruciblecraft:t39/0fc7ee3fbc68513e",
+      "cruciblecraft:t39/15cf9ab601f783d9",
+      "cruciblecraft:t39/185249692915af8c",
+      "cruciblecraft:t39/30be01c2bdf21e78",
+      "cruciblecraft:t39/3486eb8b50f3b4f5",
+      "cruciblecraft:t39/38ae2ecc2de4cfc4",
+      "cruciblecraft:t39/3ea9eb885e0d925d",
+      "cruciblecraft:t39/416b061e3815041d",
+      "cruciblecraft:t39/495ae319e7116a2c",
+      "cruciblecraft:t39/50c4ea15f0a74e31",
+      "cruciblecraft:t39/57dddd6c297ca78b",
+      "cruciblecraft:t39/64220b5296f77335",
+      "cruciblecraft:t39/75042e8f7b60678a",
+      "cruciblecraft:t39/79c6102e65fea993",
+      "cruciblecraft:t39/7b613367b7d4fc7a",
+      "cruciblecraft:t39/8a9664a51a0e3d02",
+      "cruciblecraft:t39/a9314dfa7daeb760",
+      "cruciblecraft:t39/aa6d044df1135ab9",
+      "cruciblecraft:t39/afe40bde6cb2d847",
+      "cruciblecraft:t39/b0dedbe63373654a",
+      "cruciblecraft:t39/b88593939fbe36b2",
+      "cruciblecraft:t39/b8d92a189fddcaf3",
+      "cruciblecraft:t39/ba760b0362daf218",
+      "cruciblecraft:t39/c78035a4bdea3162",
+      "cruciblecraft:t39/c8ea0d7c48205b63",
+      "cruciblecraft:t39/cc60383dafb2847e",
+      "cruciblecraft:t39/ceca9e9e9acabf1c",
+      "cruciblecraft:t39/da2d3c8f2320a7fd",
+      "cruciblecraft:t39/dd4738bd29d945c5",
+      "cruciblecraft:t39/ed747232f87fab18",
+      "cruciblecraft:t39/f6c61cf8b8de2480",
+      "cruciblecraft:t39/f9baa12fb696fd5c"
+    ],
+    "template_keys": [
+      "gt.recipe.centrifuge#0008",
+      "gt.recipe.centrifuge#0011",
+      "gt.recipe.centrifuge#0047",
+      "gt.recipe.centrifuge#0055",
+      "gt.recipe.centrifuge#0056",
+      "gt.recipe.centrifuge#0057",
+      "gt.recipe.centrifuge#0060",
+      "gt.recipe.centrifuge#0067",
+      "gt.recipe.centrifuge#0068",
+      "gt.recipe.centrifuge#0073",
+      "gt.recipe.centrifuge#0080",
+      "gt.recipe.centrifuge#0112",
+      "gt.recipe.centrifuge#0113",
+      "gt.recipe.centrifuge#0145",
+      "gt.recipe.centrifuge#0147",
+      "gt.recipe.centrifuge#0168",
+      "gt.recipe.centrifuge#0170",
+      "gt.recipe.centrifuge#0171",
+      "gt.recipe.centrifuge#0206",
+      "gt.recipe.centrifuge#0215",
+      "gt.recipe.centrifuge#0216",
+      "gt.recipe.centrifuge#0217"
+    ]
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T39_PRODUCTION_LOCKED",
+  "support": {
+    "route_count": 34,
+    "route_keys": [
+      "gt.recipe.mixer#17793",
+      "gt.recipe.mixer#1916",
+      "gt.recipe.mixer#2678",
+      "gt.recipe.mixer#2941",
+      "gt.recipe.mixer#30119",
+      "gt.recipe.mixer#30385",
+      "gt.recipe.mixer#37280",
+      "gt.recipe.mixer#40376",
+      "gt.recipe.mixer#41152",
+      "gt.recipe.mixer#41492",
+      "gt.recipe.mixer#42300",
+      "gt.recipe.mixer#42654",
+      "gt.recipe.mixer#50262",
+      "gt.recipe.mixer#52442",
+      "gt.recipe.mixer#54867",
+      "gt.recipe.mixer#60054",
+      "gt.recipe.mixer#61844",
+      "gt.recipe.mixer#8689",
+      "gt.recipe.smelter#111",
+      "gt.recipe.smelter#1182",
+      "gt.recipe.smelter#13240",
+      "gt.recipe.smelter#1540",
+      "gt.recipe.smelter#1946",
+      "gt.recipe.smelter#242",
+      "gt.recipe.smelter#2616",
+      "gt.recipe.smelter#307",
+      "gt.recipe.smelter#4467",
+      "gt.recipe.smelter#485",
+      "gt.recipe.smelter#5387",
+      "gt.recipe.smelter#622",
+      "gt.recipe.smelter#670",
+      "gt.recipe.smelter#879",
+      "gt.recipe.smelter#891",
+      "gt.recipe.unboxinator#13944"
+    ],
+    "routes_sha256": "0d06098b9ee2cf9dc7f82aab80627da260db3bb310a99a21fd5a12f091909ad2"
+  }
+}

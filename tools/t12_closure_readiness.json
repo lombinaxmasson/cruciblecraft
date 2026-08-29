@@ -1,10 +1,11 @@
 {
   "currentness": {
     "dependencies": {
-      "tools/t12a_machine_readiness.json": "409d9b3031e31237f65c7a506502383be6c5589034bf6b7b59b2bde9d9b678cb"
+      "tools/t12a_machine_readiness.json": "e5e3845d18a31aeabfe7ad3c664b6356d274b3e737050eb74606a50433661690"
     },
     "owned_inputs": {
-      "tools/build_t12_closure_readiness.py": "0cf5504f96ca5b1c3cd767beb6afdcdedc1964e5f66624c310009c260e34d4ca",
+      "src/main/resources/data/cruciblecraft/machine_tiers.json": "a6f36da6f1fe8b7a21c7d9abe38f4eaeadf9da9a95c92ab5167d364c6ad30663",
+      "tools/build_t12_closure_readiness.py": "a1dc90487c5aab9fb51c5090e62a17432f1e2d93408b985e3236bbed3e04ce67",
       "tools/t12_machine_policy.json": "c33d281d301327a5344b69b187ac56b657ccae635d19036b2da79212ce3f7d29"
     },
     "pending_report": {
@@ -25,7 +26,7 @@
     "processing_machine_audit": {
       "explicit_energy_arguments": 25,
       "implicit_energy_arguments": 0,
-      "legacy_kinetic": 8,
+      "legacy_kinetic": 4,
       "machine_specs": 25,
       "new_legacy_kinetic": 0,
       "path": "tools/processing_machine_energy_audit.json",
@@ -39,21 +40,116 @@
   },
   "kind_tier": {
     "authored_material_rule_budget": 0,
+    "historical_vertical_slice": {
+      "rows": [
+        {
+          "id": "cruciblecraft:centrifuge",
+          "kind": "cruciblecraft:centrifuge",
+          "material": "cruciblecraft:bronze",
+          "source_tier": 1
+        },
+        {
+          "id": "cruciblecraft:steel_centrifuge",
+          "kind": "cruciblecraft:centrifuge",
+          "material": "cruciblecraft:steel",
+          "source_tier": 2
+        },
+        {
+          "id": "cruciblecraft:titanium_centrifuge",
+          "kind": "cruciblecraft:centrifuge",
+          "material": "cruciblecraft:titanium",
+          "source_tier": 3
+        },
+        {
+          "id": "cruciblecraft:sifter",
+          "kind": "cruciblecraft:sifter",
+          "material": "cruciblecraft:bronze",
+          "source_tier": 1
+        },
+        {
+          "id": "cruciblecraft:steel_sifter",
+          "kind": "cruciblecraft:sifter",
+          "material": "cruciblecraft:steel",
+          "source_tier": 2
+        },
+        {
+          "id": "cruciblecraft:titanium_sifter",
+          "kind": "cruciblecraft:sifter",
+          "material": "cruciblecraft:titanium",
+          "source_tier": 3
+        },
+        {
+          "id": "cruciblecraft:electrolyzer",
+          "kind": "cruciblecraft:electrolyzer",
+          "material": "cruciblecraft:steel_galvanized",
+          "source_tier": 1
+        },
+        {
+          "id": "cruciblecraft:aluminium_electrolyzer",
+          "kind": "cruciblecraft:electrolyzer",
+          "material": "cruciblecraft:aluminium",
+          "source_tier": 2
+        },
+        {
+          "id": "cruciblecraft:stainless_steel_electrolyzer",
+          "kind": "cruciblecraft:electrolyzer",
+          "material": "cruciblecraft:stainless_steel",
+          "source_tier": 3
+        }
+      ],
+      "variants": 9
+    },
     "kinds": {
       "cruciblecraft:centrifuge": 3,
       "cruciblecraft:electrolyzer": 3,
       "cruciblecraft:sifter": 3
     },
     "legacy_tier_identity_field": "tier_profile",
+    "live_catalog_observation": {
+      "additional_variants": [
+        {
+          "id": "cruciblecraft:chromium_electrolyzer",
+          "kind": "cruciblecraft:electrolyzer",
+          "material": "cruciblecraft:chromium",
+          "source_tier": 4
+        },
+        {
+          "id": "cruciblecraft:titanium_electrolyzer",
+          "kind": "cruciblecraft:electrolyzer",
+          "material": "cruciblecraft:titanium",
+          "source_tier": 5
+        },
+        {
+          "id": "cruciblecraft:tungstensteel_centrifuge",
+          "kind": "cruciblecraft:centrifuge",
+          "material": "cruciblecraft:tungstensteel",
+          "source_tier": 4
+        },
+        {
+          "id": "cruciblecraft:tungstensteel_sifter",
+          "kind": "cruciblecraft:sifter",
+          "material": "cruciblecraft:tungstensteel",
+          "source_tier": 4
+        }
+      ],
+      "included_in_t12_closure_claim": false,
+      "kinds": {
+        "cruciblecraft:centrifuge": 4,
+        "cruciblecraft:electrolyzer": 5,
+        "cruciblecraft:sifter": 4
+      },
+      "owner": "T36",
+      "variants": 13
+    },
     "publication_delta": 0,
     "state_schema_version": 3,
     "tier_identity_field": "tier_band",
     "variants": 9
   },
   "load_gate": {
-    "compression_ratio": 3.069106,
-    "concrete_datapack_recipe_entries": 3388,
-    "datapack_recipe_entries": 6150,
+    "compression_ratio": 3.04632,
+    "concrete_datapack_recipe_entries": 3434,
+    "datapack_recipe_entries": 6196,
     "datapack_recipe_entry_budget": 6600,
     "minimum_compression_ratio": 3.0,
     "post_t12_virtualized_recipe_entries": 2762,
@@ -118,7 +214,7 @@
         "KINETIC_ROTATION",
         "KINETIC_PUSH"
       ],
-      "sha256": "92b2146131a6d11a7770d2012e1a72a36ba206036b1893dc5c06e3c4a381236f"
+      "sha256": "88559a250a9e10ba895a9d9cd290d8098b9c8a587c62bdad1b6790c89b7a13ea"
     },
     "execution_plan": {
       "path": "src/main/java/com/masson/cruciblecraft/machine/processing/MachineExecutionPlan.java",
@@ -137,7 +233,7 @@
         "t12TierProfilesExposeDistinctFailureStates",
         "steamEnginePowersSifterThroughKu"
       ],
-      "sha256": "be2e740ecfdfaa66250f79a5888ed309ebb93ed16fa5a2ab7dbe9123c67c69d0"
+      "sha256": "b51223198d376180aec0d07b9eca039ddf558f73fc4db4e8b332cc3730fab34f"
     },
     "kind_tier": {
       "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineVariants.java",
@@ -148,19 +244,19 @@
         "SIFTER",
         "ELECTROLYZER"
       ],
-      "sha256": "1a5b295608e07bbf7920e1461bc9c6e7e2be40752cd9b57047264db22bf9868e"
+      "sha256": "534b71b5fad0dd949063ed42c78644ee841ebbadaaaa7dc7cb785aa252478890"
     },
     "machine_tier_data": {
       "path": "src/main/resources/data/cruciblecraft/machine_tiers.json",
       "required_tokens": [
-        "\"schemaVersion\": 2",
+        "\"schemaVersion\": 3",
         "\"source\"",
         "\"tierBand\"",
         "\"variant_rows\"",
         "MultiTileEntityBasicMachine.java:126-131,489-518,712-815",
         "defaults mEfficiency to 10000"
       ],
-      "sha256": "004340c374bbe094acff6afbb559e1d394fa8b11d27f521ca736bf9929c3df78"
+      "sha256": "a6f36da6f1fe8b7a21c7d9abe38f4eaeadf9da9a95c92ab5167d364c6ad30663"
     },
     "machine_tier_loader": {
       "path": "src/main/java/com/masson/cruciblecraft/machine/processing/MachineTierCatalog.java",
@@ -169,7 +265,7 @@
         "Machine tier source rows do not cover variants",
         "3703e40308c8c030763fd6297dea8b210d2a77b1"
       ],
-      "sha256": "3ec0ea03abbcbb0c9e52264f54f4c8560438cef94990fd6d650d8fc667f6ab21"
+      "sha256": "91e02b123173462a67c71e4a303cc3ee69b2c1d034bff43ec7d8260b8821ae83"
     },
     "machine_tier_schema": {
       "path": "src/main/resources/data/cruciblecraft/schema/machine_tiers.schema.json",
@@ -178,7 +274,7 @@
         "Complete machine variant identity",
         "Per-variant parallel limit"
       ],
-      "sha256": "f032f8c22afeeaed2652f2b5add1703c9352e11b98cdd949ab3e5779b7dd834f"
+      "sha256": "bc884f2937edcf3c1549c3221646fdf06280a349ceba1579855824ae381489f4"
     },
     "multiblock_validator": {
       "path": "src/main/java/com/masson/cruciblecraft/content/multiblock/MultiblockStructureValidator.java",
@@ -197,7 +293,7 @@
         "runtime.tickWork(",
         "workProgress"
       ],
-      "sha256": "fe2adaf007f57a30e870ba24e56d78272a5f40c83856d2d0169dd1c5c4a2643a"
+      "sha256": "6fe419b87edfae125dffdb73141269cb325c9753597a672b6a634fef417ef99b"
     },
     "ru_axle": {
       "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/RotationalAxleBlockEntity.java",
@@ -289,7 +385,7 @@
       "total": 25,
       "unclassified": 0
     },
-    "sha256": "409d9b3031e31237f65c7a506502383be6c5589034bf6b7b59b2bde9d9b678cb",
+    "sha256": "e5e3845d18a31aeabfe7ad3c664b6356d274b3e737050eb74606a50433661690",
     "status": "T12A_READY"
   }
 }

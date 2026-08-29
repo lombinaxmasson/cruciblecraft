@@ -1,0 +1,59 @@
+{
+  "family_id": "gt.recipe.assembler#0103",
+  "publication_group": "cruciblecraft:t41_assembler_planks",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 96,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        2,
+        0
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:gt_wood/coconut_planks"
+        },
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 6
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:oak_door"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "72b9c2ab787b451ed158c968de9d73b709d9fa04dc788158815337c9f14f4a09"
+        ],
+        "selected_source_recipe": "gt.recipe.assembler#0103",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t41/bb685a6ed58c3653"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:assembler",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

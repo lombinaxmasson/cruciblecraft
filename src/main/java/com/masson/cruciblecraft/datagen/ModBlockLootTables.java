@@ -3,6 +3,8 @@ package com.masson.cruciblecraft.datagen;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModMachineVariants;
 
@@ -10,6 +12,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
 
 public class ModBlockLootTables extends BlockLootSubProvider {
     public ModBlockLootTables(HolderLookup.Provider lookupProvider) {
@@ -45,7 +48,24 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         ModBlocks.pipeBlocks().forEach(
                 block -> dropSelf(block.get()));
         ModBlocks.hopperBlocks().forEach(block -> dropSelf(block.get()));
+        ModBlocks.variantStorageBlocks().forEach(block -> dropSelf(block.get()));
         dropSelf(ModBlocks.STEEL_DUST_FUNNEL.get());
+        for (GtStoneCatalog.Variant variant : GtStoneCatalog.variants()) {
+            Block block = ModBlocks.gtStoneBlocksById().get(variant.id()).get();
+            if (variant.slab()) {
+                add(block, createSlabItemTable((SlabBlock) block));
+            } else {
+                dropSelf(block);
+            }
+        }
+        for (GtBlockObjectCatalog.Variant variant : GtBlockObjectCatalog.variants()) {
+            Block block = ModBlocks.gtBlockObjectBlocksById().get(variant.id()).get();
+            if (variant.slab()) {
+                add(block, createSlabItemTable((SlabBlock) block));
+            } else {
+                dropSelf(block);
+            }
+        }
     }
 
     @Override
@@ -78,10 +98,19 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 Stream.concat(
                         ModBlocks.pipeBlocks().stream()
                                 .map(holder -> (Block) holder.get()),
-                        Stream.concat(
+                                Stream.concat(
                                 ModBlocks.hopperBlocks().stream()
                                         .map(holder -> (Block) holder.get()),
-                                Stream.of(ModBlocks.STEEL_DUST_FUNNEL.get()))))
+                                Stream.concat(
+                                        ModBlocks.variantStorageBlocks().stream()
+                                                .map(holder -> (Block) holder.get()),
+                                        Stream.concat(
+                                        Stream.of(ModBlocks.STEEL_DUST_FUNNEL.get()),
+                                        Stream.concat(
+                                        ModBlocks.gtStoneBlocks().stream()
+                                                .map(holder -> holder.get()),
+                                        ModBlocks.gtBlockObjectBlocks().stream()
+                                                .map(holder -> holder.get())))))))
                 .toList();
     }
 }

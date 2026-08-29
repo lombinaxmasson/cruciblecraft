@@ -8,6 +8,9 @@ import com.masson.cruciblecraft.content.block.CeramicMoldBlock;
 import com.masson.cruciblecraft.content.block.FireboxBlock;
 import com.masson.cruciblecraft.content.block.FuelGeneratorBlock;
 import com.masson.cruciblecraft.content.block.HopperBlock;
+import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.GtStoneCatalog;
+import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperKind;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
 import com.masson.cruciblecraft.machine.processing.MachineTierCatalog;
@@ -17,6 +20,10 @@ import com.masson.cruciblecraft.registry.ModMachineVariants;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.IronBarsBlock;
+import net.minecraft.world.level.block.RailBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.SlabBlock;
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
@@ -139,6 +146,61 @@ public class ModBlockStateProvider extends BlockStateProvider {
         registerConductors();
         registerPipes();
         registerHoppers();
+        registerStorage();
+        registerGtStones();
+        registerGtBlockObjects();
+    }
+
+    private void registerGtStones() {
+        for (GtStoneCatalog.Variant variant : GtStoneCatalog.variants()) {
+            var block = ModBlocks.gtStoneBlocksById().get(variant.id()).get();
+            ResourceLocation texture = variant.textureLocation();
+            if (variant.slab()) {
+                String path = variant.registryPath();
+                var doubleslab = models().cubeAll(path + "_double", texture);
+                var bottom = models().slab(path + "_bottom", texture, texture, texture);
+                var top = models().slabTop(path + "_top", texture, texture, texture);
+                slabBlock((SlabBlock) block, bottom, top, doubleslab);
+                itemModels().getBuilder(path).parent(bottom);
+            } else {
+                simpleBlockWithItem(
+                        block,
+                        models().cubeAll(variant.registryPath(), texture));
+            }
+        }
+    }
+
+    private void registerGtBlockObjects() {
+        for (GtBlockObjectCatalog.Variant variant : GtBlockObjectCatalog.variants()) {
+            var block = ModBlocks.gtBlockObjectBlocksById().get(variant.id()).get();
+            ResourceLocation texture = variant.textureLocation();
+            String path = variant.registryPath();
+            if (variant.slab()) {
+                var doubleslab = models().cubeAll(path + "_double", texture);
+                var bottom = models().slab(path + "_bottom", texture, texture, texture);
+                var top = models().slabTop(path + "_top", texture, texture, texture);
+                slabBlock((SlabBlock) block, bottom, top, doubleslab);
+                itemModels().getBuilder(path).parent(bottom);
+            } else if (variant.log() || variant.bale()) {
+                axisBlock((RotatedPillarBlock) block, texture, texture);
+                itemModels().getBuilder(path).parent(models().cubeColumn(path, texture, texture));
+            } else if (variant.bars()) {
+                paneBlockWithRenderType(
+                        (IronBarsBlock) block, texture, texture, "cutout");
+                itemModels().getBuilder(path).parent(
+                        models().getExistingFile(mcLoc("item/generated")))
+                        .texture("layer0", texture);
+            } else if (variant.rail()) {
+                ModelFile rail = models().getExistingFile(mcLoc("block/rail"));
+                getVariantBuilder(block).forAllStates(state ->
+                        ConfiguredModel.builder().modelFile(rail).build());
+                itemModels().getBuilder(path).parent(
+                        models().getExistingFile(mcLoc("item/generated")))
+                        .texture("layer0", texture);
+            } else {
+                simpleBlockWithItem(block, models().cubeAll(path, texture));
+            }
+        }
     }
 
     private void registerHoppers() {
@@ -174,6 +236,15 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(
                 ModBlocks.STEEL_DUST_FUNNEL.get(),
                 models().getExistingFile(modLoc("block/dust_funnel")));
+    }
+
+    private void registerStorage() {
+        StorageVariantCatalog.variants().forEach(variant -> {
+            var block = ModBlocks.storageBlocksById().get(variant.id()).get();
+            ModelFile model = models().getExistingFile(variant.behavior().model());
+            horizontalBlock(block, model);
+            simpleBlockItem(block, model);
+        });
     }
 
     private void registerConductors() {

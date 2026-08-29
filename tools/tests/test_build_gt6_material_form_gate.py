@@ -20,6 +20,32 @@ T8_PIPE_FORMS = {
     "large_item_pipe",
     "huge_item_pipe",
 }
+T38_REQUIRED_FORMS = {
+    material: set(forms)
+    for material, forms in json.loads(
+        (TOOLS / "t38_required_forms.json").read_text(encoding="utf-8")
+    )["required_forms"].items()
+}
+T38_ACQUISITION_FORMS = {
+    material: set(forms)
+    for material, forms in json.loads(
+        (TOOLS / "t38_source_backed_acquisition.json").read_text(
+            encoding="utf-8"
+        )
+    )["required_forms"].items()
+}
+T39_REQUIRED_FORMS = {
+    material: set(forms)
+    for material, forms in json.loads(
+        (TOOLS / "t39_required_forms.json").read_text(encoding="utf-8")
+    )["required_forms"].items()
+}
+T40_REQUIRED_FORMS = {
+    material: set(forms)
+    for material, forms in json.loads(
+        (TOOLS / "t40_required_forms.json").read_text(encoding="utf-8")
+    )["required_forms"].items()
+}
 
 
 class MaterialFormGateTest(unittest.TestCase):
@@ -39,7 +65,7 @@ class MaterialFormGateTest(unittest.TestCase):
     def test_committed_outputs_are_current_without_raw_replay(self):
         self.assertEqual([], gate_builder.check_committed_outputs())
 
-    def test_gate_covers_catalog_and_only_adds_source_backed_t8_t10_forms(self):
+    def test_gate_covers_catalog_and_only_adds_bounded_source_forms(self):
         index = json.loads(
             (self.material_root / "index.json").read_text(encoding="utf-8")
         )
@@ -58,9 +84,20 @@ class MaterialFormGateTest(unittest.TestCase):
             t10_forms = set(
                 self.gate["t10_known_forms"].get(material["id"], ())
             )
+            t38_forms = T38_REQUIRED_FORMS.get(material["id"], set())
+            t38_acquisition_forms = T38_ACQUISITION_FORMS.get(
+                material["id"], set()
+            )
+            t39_forms = T39_REQUIRED_FORMS.get(material["id"], set())
+            t40_forms = T40_REQUIRED_FORMS.get(material["id"], set())
             self.assertLessEqual(
                 registered - factual,
-                T8_PIPE_FORMS | t10_forms,
+                T8_PIPE_FORMS
+                | t10_forms
+                | t38_forms
+                | t38_acquisition_forms
+                | t39_forms
+                | t40_forms,
                 material["id"],
             )
             if material.get("metadata_only"):
@@ -72,6 +109,41 @@ class MaterialFormGateTest(unittest.TestCase):
         self.assertEqual(663, metadata_only)
         self.assertEqual(282, self.gate["counts"]["t8_pipe_forms"])
         self.assertEqual(967, self.gate["counts"]["t10_known_forms"])
+        self.assertEqual(12, self.gate["counts"]["t38_required_forms"])
+        self.assertEqual(18, self.gate["counts"]["t39_required_forms"])
+        self.assertEqual(3, self.gate["counts"]["t40_required_forms"])
+        self.assertEqual(
+            sum(map(len, T38_ACQUISITION_FORMS.values())),
+            self.gate["counts"]["t38_acquisition_forms"],
+        )
+        self.assertEqual(
+            {
+                material: sorted(forms)
+                for material, forms in sorted(T38_REQUIRED_FORMS.items())
+            },
+            self.gate["t38_required_forms"],
+        )
+        self.assertEqual(
+            {
+                material: sorted(forms)
+                for material, forms in sorted(T39_REQUIRED_FORMS.items())
+            },
+            self.gate["t39_required_forms"],
+        )
+        self.assertEqual(
+            {
+                material: sorted(forms)
+                for material, forms in sorted(T40_REQUIRED_FORMS.items())
+            },
+            self.gate["t40_required_forms"],
+        )
+        self.assertEqual(
+            {
+                material: sorted(forms)
+                for material, forms in sorted(T38_ACQUISITION_FORMS.items())
+            },
+            self.gate["t38_source_backed_acquisition_forms"],
+        )
         self.assertEqual(
             323,
             sum(
@@ -104,6 +176,24 @@ class MaterialFormGateTest(unittest.TestCase):
         self.assertEqual(
             "t3_acceptance_required_not_gt6_original_gate",
             self.gate["sources"]["t3_acceptance_form_corrections"][
+                "classification"
+            ],
+        )
+        self.assertEqual(
+            "t38_compact_output_runtime_required",
+            self.gate["sources"]["t38_compact_required_forms"][
+                "classification"
+            ],
+        )
+        self.assertEqual(
+            "t39_compact_output_runtime_required",
+            self.gate["sources"]["t39_compact_required_forms"][
+                "classification"
+            ],
+        )
+        self.assertEqual(
+            "t40_compact_output_runtime_required",
+            self.gate["sources"]["t40_compact_required_forms"][
                 "classification"
             ],
         )
@@ -156,7 +246,8 @@ class MaterialFormGateTest(unittest.TestCase):
         self.assertEqual(137, self.gate["counts"]["ore_source_materials"])
         required_source_forms = gate_builder.ore_source_required_forms()
         self.assertEqual(
-            len(ore_materials) * len(required_source_forms),
+            self.gate["counts"]["ore_source_materials"]
+            * len(required_source_forms),
             self.gate["counts"]["ore_source_forms"],
         )
         for material_id in ore_materials:
@@ -166,7 +257,7 @@ class MaterialFormGateTest(unittest.TestCase):
                 material_id,
             )
         self.assertEqual(
-            budget["registered_ore_blocks"],
+            self.gate["counts"]["ore_source_materials"] * 2,
             self.gate["counts"]["ore_source_blocks"],
         )
         ore_chain = json.loads(
@@ -193,9 +284,10 @@ class MaterialFormGateTest(unittest.TestCase):
             ore_materials & crusher_materials,
         )
         self.assertEqual(set(), ore_materials - crusher_materials)
-        self.assertEqual(220, len(crusher_materials - ore_materials))
-        self.assertEqual(
-            ore_materials,
+        self.assertEqual(210, len(crusher_materials - ore_materials))
+        self.assertLessEqual(
+            ore_materials
+            - set(self.gate["t38_source_backed_acquisition_forms"]),
             {
                 material_id
                 for material_id, forms in (

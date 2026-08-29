@@ -10,7 +10,9 @@ import java.util.Set;
 import com.masson.cruciblecraft.content.block.AbstractPipeBlock;
 import com.masson.cruciblecraft.content.block.ItemPipeBlock;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
+import com.masson.cruciblecraft.content.storage.ILogisticsStorage;
 import com.masson.cruciblecraft.logistics.pipe.PipeTransferDiagnostics;
+import com.masson.cruciblecraft.registry.ModCapabilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -117,12 +119,30 @@ public final class ItemPipeNetworkTraversal {
         com.masson.cruciblecraft.scale.ScaleInstrumentation
                 .recordRouteVisit(visited.size());
         routes.sort(
-                Comparator.comparingLong(Route::cost)
+                Comparator.<Route>comparingInt(
+                                route -> -logisticsRank(level, route, stack))
+                        .thenComparingLong(Route::cost)
                         .thenComparingLong(
                                 route -> route.endpoint().asLong())
                         .thenComparingInt(
                                 route -> route.side().ordinal()));
         return List.copyOf(routes);
+    }
+
+    private static int logisticsRank(Level level, Route route, ItemStack stack) {
+        ILogisticsStorage logistics = level.getCapability(
+                ModCapabilities.LOGISTICS_STORAGE,
+                route.endpoint(),
+                route.side());
+        if (logistics == null) {
+            return 0;
+        }
+        ItemStack filter = logistics.getLogisticsFilterItem();
+        if (!filter.isEmpty()
+                && !ItemStack.isSameItemSameComponents(filter, stack)) {
+            return -1;
+        }
+        return logistics.getLogisticsPriorityItem();
     }
 
     public record Route(

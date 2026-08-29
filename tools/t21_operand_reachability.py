@@ -2,9 +2,9 @@
 """Compute the operand reachability closure for all committed CrucibleCraft recipes.
 
 Approximations (by design — these are NOT bugs):
-  1. **Fluids are not modelled.**  A recipe whose only producer is a fluid-driven
-     machine is treated as unreachable unless the operand is also produced by a
-     non-fluid route.  This is deliberate: the tool models the *item* backbone.
+  1. **Fluid quantities and containers are not modelled.**  A typed fluid is
+     reachable only through a compact recipe whose complete item-and-fluid
+     input set is reachable; quantities and storage are outside this closure.
   2. **Mob drops are not modelled.**  Items only obtainable from entity loot
      tables are not seeded as survival sources.  Known exceptions (blaze rod,
      etc.) must be listed in the explicit survival-source manifest.
@@ -44,6 +44,14 @@ RESOURCE_ROOTS: tuple[Path, ...] = (
     ROOT / "src/t5_chemical_generated/resources",
     ROOT / "src/t11_hydrocarbon_generated/resources",
     ROOT / "src/t21_chemical_generated/resources",
+    ROOT / "src/t37_recipe_generated/resources",
+    ROOT / "src/t38_recipe_generated/resources",
+)
+# Current-card generated tree and T39 support stay out of the typed baseline.
+# T39 player-path overlay is applied by the T39 builders, not this scanner.
+EXCLUDED_RECIPE_PREFIXES: tuple[str, ...] = (
+    "data/cruciblecraft/recipe/t39/",
+    "data/cruciblecraft/recipe/t39_player_path_recovery/",
 )
 
 MATERIAL_GATE = (
@@ -52,6 +60,22 @@ MATERIAL_GATE = (
 ORE_VEINS = (
     ROOT
     / "src/main/resources/data/cruciblecraft/worldgen_catalog/ore_veins.json"
+)
+T38_SOURCE_BACKED_ACQUISITION = TOOLS / "t38_source_backed_acquisition.json"
+T38_PLAYER_PATH_RECOVERY = TOOLS / "t38_player_path_recovery.json"
+T38_PLAYER_PATH_RECOVERY_BUILDER = TOOLS / "build_t38_player_path_recovery.py"
+ORE_VEIN_SOURCES = (ORE_VEINS, T38_SOURCE_BACKED_ACQUISITION)
+FLUID_DEPOSITS = (
+    ROOT
+    / "src/main/resources/data/cruciblecraft/worldgen_catalog/fluid_deposits.json"
+)
+BELLOW_AIR_SOURCE = (
+    ROOT
+    / "src/main/java/com/masson/cruciblecraft/content/blockentity/"
+    / "BellowsBlockEntity.java"
+)
+CAPABILITIES_SOURCE = (
+    ROOT / "src/main/java/com/masson/cruciblecraft/registry/ModCapabilities.java"
 )
 SURFACE_SCATTER = (
     ROOT
@@ -124,6 +148,9 @@ def identity_from_ingredient(
         return f"item:{ingredient['item']}"
     if "id" in ingredient:
         return f"item:{ingredient['id']}"
+    items = ingredient.get("items")
+    if isinstance(items, str) and items:
+        return f"item:{items}"
     return None
 
 
@@ -138,6 +165,45 @@ def identity_from_output(
     if "item" in output:
         return f"item:{output['item']}"
     return None
+
+
+def identity_from_fluid(value: dict[str, Any]) -> str | None:
+    """Return a typed fluid identity from a compact recipe operand."""
+    fluid_id = value.get("id") or value.get("fluid")
+    if not isinstance(fluid_id, str) or not fluid_id:
+        return None
+    return f"fluid:{fluid_id}"
+
+
+def gt_operand_sets(document: dict[str, Any]) -> tuple[set[str], set[str]]:
+    """Collect typed item/fluid identities from a gt_recipe or compact relation.
+
+    Preserve/catalyst slots stay in the input set: the player must obtain them
+    even when count is 0.
+    """
+    input_set: set[str] = set()
+    for ing in document.get("item_inputs") or []:
+        if isinstance(ing, dict):
+            ident = identity_from_ingredient(ing)
+            if ident:
+                input_set.add(ident)
+    for fluid in document.get("fluid_inputs") or []:
+        if isinstance(fluid, dict):
+            ident = identity_from_fluid(fluid)
+            if ident:
+                input_set.add(ident)
+    output_set: set[str] = set()
+    for out in document.get("item_outputs") or []:
+        if isinstance(out, dict):
+            ident = identity_from_output(out)
+            if ident:
+                output_set.add(ident)
+    for fluid in document.get("fluid_outputs") or []:
+        if isinstance(fluid, dict):
+            ident = identity_from_fluid(fluid)
+            if ident:
+                output_set.add(ident)
+    return input_set, output_set
 
 
 def concrete_identity(
@@ -190,6 +256,8 @@ def iter_recipe_files() -> Iterable[tuple[Path, dict[str, Any]]]:
                     continue
                 path = Path(dirpath) / filename
                 key = path.relative_to(resource_root).as_posix()
+                if any(key.startswith(prefix) for prefix in EXCLUDED_RECIPE_PREFIXES):
+                    continue
                 if key in seen:
                     continue
                 seen.add(key)
@@ -790,23 +858,28 @@ def build_graph() -> ReachabilityGraph:
 
         # --- cruiciblecraft:gt_recipe ---
         if recipe_type == "cruciblecraft:gt_recipe":
-            inputs = recipe.get("item_inputs") or []
-            outputs = recipe.get("item_outputs") or []
-            input_set: set[str] = set()
-            for ing in inputs:
-                ident = identity_from_ingredient(ing)
-                if ident:
-                    input_set.add(ident)
-            output_set: set[str] = set()
-            for out in outputs:
-                ident = identity_from_output(out)
-                if ident:
-                    output_set.add(ident)
+            input_set, output_set = gt_operand_sets(recipe)
             if input_set and output_set:
                 graph.add_edge(
                     rel, input_set, output_set,
                     f"gt_recipe:{recipe.get('map', 'unknown')}",
                 )
+            continue
+
+        # --- compact family: one edge per logical relation ---
+        if recipe_type == "cruciblecraft:compact_gt_recipe_family":
+            target_map = recipe.get("target_map") or "unknown"
+            for index, relation in enumerate(recipe.get("relations") or []):
+                if not isinstance(relation, dict):
+                    continue
+                input_set, output_set = gt_operand_sets(relation)
+                if input_set and output_set:
+                    graph.add_edge(
+                        f"{rel}#relations[{index}]",
+                        input_set,
+                        output_set,
+                        f"gt_recipe:{target_map}",
+                    )
             continue
 
         # --- minecraft:crafting_shaped ---
@@ -861,10 +934,18 @@ def build_graph() -> ReachabilityGraph:
 # ---------------------------------------------------------------------------
 
 
-def _ore_seeds(ore_veins_path: Path, mat_forms: dict[str, set[str]]) -> set[str]:
+def _ore_seeds(
+    ore_veins_paths: Iterable[Path],
+    mat_forms: dict[str, set[str]],
+) -> set[str]:
     """Return all raw-ore item identities for worldgen ore materials."""
     seeds: set[str] = set()
-    for material in _worldgen_ore_materials(ore_veins_path):
+    materials = {
+        material
+        for ore_veins_path in ore_veins_paths
+        for material in _worldgen_ore_materials(ore_veins_path)
+    }
+    for material in materials:
         # raw_ore form is always available for worldgen ores
         seeds.add(f"item:cruciblecraft:{material}/raw_ore")
         # Also add crushed_ore and stone variants as available via mining
@@ -891,6 +972,22 @@ def _vanilla_survival_seeds() -> set[str]:
         "item:minecraft:stone",
         "item:minecraft:furnace",
         "item:minecraft:crafting_table",
+        # World blocks / plants (T39 centrifuge consume ids)
+        "item:minecraft:basalt",
+        "item:minecraft:brown_mushroom",
+        "item:minecraft:chorus_fruit",
+        "item:minecraft:cocoa_beans",
+        "item:minecraft:end_stone",
+        "item:minecraft:feather",
+        "item:minecraft:granite",
+        "item:minecraft:honey_block",
+        "item:minecraft:honeycomb",
+        "item:minecraft:magma_cream",
+        "item:minecraft:mud",
+        "item:minecraft:red_sand",
+        "item:minecraft:sandstone",
+        "item:minecraft:slime_block",
+        "item:minecraft:turtle_egg",
         # Vanilla-craftable logistics (iron/planks only): the multiblock
         # port recipes depend on these and were previously false
         # negatives in the closure.
@@ -911,8 +1008,10 @@ def _vanilla_survival_seeds() -> set[str]:
         "item:minecraft:redstone",
         "item:minecraft:lapis_lazuli",
         "item:minecraft:quartz",
+        # Explicit survival sources (mob drops / crafted intermediates)
         "item:minecraft:blaze_rod",
         "item:minecraft:blaze_powder",
+        "item:minecraft:egg",
         "item:minecraft:gunpowder",
         "item:minecraft:sand",
         "item:minecraft:glass",
@@ -922,6 +1021,7 @@ def _vanilla_survival_seeds() -> set[str]:
         "item:minecraft:slime_ball",
         "item:minecraft:water_bucket",
         "item:minecraft:lava_bucket",
+        "fluid:minecraft:lava",
         # Nether
         "item:minecraft:glowstone_dust",
         "item:minecraft:netherrack",
@@ -933,80 +1033,118 @@ def _vanilla_survival_seeds() -> set[str]:
     }
 
 
+def _ambient_fluid_seeds(
+    bellows_source: Path = BELLOW_AIR_SOURCE,
+    capabilities_source: Path = CAPABILITIES_SOURCE,
+) -> set[str]:
+    """Return only ambient fluids with an explicit survival extraction path.
+
+    A registered fluid is not a player-path seed.  Air qualifies because an
+    active bellows exposes the registered air gas through the standard fluid
+    capability, which can feed a fluid pipe or processing-machine tank.
+    """
+    bellows = bellows_source.read_text(encoding="utf-8")
+    capabilities = capabilities_source.read_text(encoding="utf-8")
+    required_bellows = (
+        'ModFluids.materialFluid("air")',
+        "class AirFluidHandler implements IFluidHandler",
+        "AirOutputModel.BELLOWS_AIR_PER_TICK",
+    )
+    required_capability = (
+        "Capabilities.FluidHandler.BLOCK",
+        "ModBlockEntities.BELLOWS.get()",
+        "blockEntity.fluids(side)",
+    )
+    if any(fragment not in bellows for fragment in required_bellows):
+        raise ValueError("ambient air has no bellows fluid extraction path")
+    if any(fragment not in capabilities for fragment in required_capability):
+        raise ValueError("ambient air fluid capability is not registered")
+    return {"fluid:cruciblecraft:air"}
+
+
+def _worldgen_fluid_seeds(path: Path = FLUID_DEPOSITS) -> set[str]:
+    """Return fluids supplied by validated subsurface worldgen deposits."""
+    document = _require_mapping(_load(path), _display_path(path))
+    deposits = document.get("deposits")
+    if document.get("schema_version") != 1 or not isinstance(deposits, list):
+        raise ValueError("worldgen fluid deposit declaration is invalid")
+    seeds: set[str] = set()
+    for index, deposit in enumerate(deposits):
+        if not isinstance(deposit, dict):
+            raise ValueError(f"fluid deposit {index} is not an object")
+        material = deposit.get("material")
+        if not isinstance(material, str) or not material.startswith(
+            "cruciblecraft:"
+        ):
+            raise ValueError(
+                f"fluid deposit {index} has no CrucibleCraft material fluid"
+            )
+        seeds.add(f"fluid:{material}")
+    return seeds
+
+
 def _tag_seeds(tag_map: dict[str, set[str]]) -> set[str]:
     """Any tag that has at least one seed member becomes itself a seed."""
     return set()
 
 
-def compute_closure(graph: ReachabilityGraph) -> dict[str, Any]:
-    """Iterative convergence to find all reachable identities."""
-    if graph.surface_scatter is None:
-        raise ValueError(
-            "T33 surface scatter declaration is required for reachability closure"
-        )
-    surface_scatter = graph.surface_scatter
-    gate = _load(MATERIAL_GATE) if MATERIAL_GATE.is_file() else {}
-    mat_forms = _material_forms(gate)
-
-    # Build seed set — worldgen ore materials, surface rocks, vanilla survival
-    surface_seeds = _surface_rock_seeds(surface_scatter, graph.form_items)
-    seeds: set[str] = set()
-    seeds.update(_ore_seeds(ORE_VEINS, mat_forms))
-    seeds.update(surface_seeds)
-    seeds.update(_vanilla_survival_seeds())
-
-    reachable: set[str] = set(seeds)
-
-    # Build complete recipe index (recipe_path → inputs, outputs)
-    # Tag inputs have already been expanded during graph building; any
-    # remaining tag:... entries are unresolvable tags.
+def _recipe_index(
+    graph: ReachabilityGraph,
+) -> tuple[dict[str, set[str]], dict[str, set[str]], dict[str, str]]:
+    """Invert the input-indexed graph into per-recipe operands and results."""
     recipe_inputs: dict[str, set[str]] = {}
     recipe_outputs: dict[str, set[str]] = {}
     recipe_source: dict[str, str] = {}
     for input_id in sorted(graph.graph):
-        entries = graph.graph[input_id]
-        for recipe_path, outputs in entries:
-            if recipe_path not in recipe_inputs:
-                recipe_inputs[recipe_path] = set()
-                recipe_outputs[recipe_path] = set()
-            recipe_inputs[recipe_path].add(input_id)
-            recipe_outputs[recipe_path].update(outputs)
+        for recipe_path, outputs in graph.graph[input_id]:
+            recipe_inputs.setdefault(recipe_path, set()).add(input_id)
+            recipe_outputs.setdefault(recipe_path, set()).update(outputs)
             recipe_source[recipe_path] = graph.recipe_source.get(
                 recipe_path, "unknown"
             )
+    return recipe_inputs, recipe_outputs, recipe_source
 
-    # Track convergence
+
+def _fixed_point_closure(
+    *,
+    recipe_inputs: dict[str, set[str]],
+    recipe_outputs: dict[str, set[str]],
+    material_forms: dict[str, set[str]],
+    static_tag_map: dict[str, set[str]],
+    dynamic_tag_map: dict[str, set[str]],
+    seeds: set[str],
+) -> tuple[set[str], list[dict[str, Any]]]:
+    """Return identities proven reachable from the supplied typed seed set.
+
+    Items, tags, and fluids share the same monotonic fixed-point closure.  A
+    fluid is therefore reachable only when a recipe's every typed input has
+    already been proven; a registered namespace alone has no effect here.
+    """
+    reachable = set(seeds)
     round_info: list[dict[str, Any]] = []
     max_rounds = 100
     for rnd in range(1, max_rounds + 1):
         new_found: set[str] = set()
-
+        available = reachable | new_found
         for recipe_path, inputs in recipe_inputs.items():
-            # Check each input: if it's a tag, try to resolve it via convention
             all_reachable = True
             for inp in inputs:
-                if inp in (reachable | new_found):
+                if inp in available:
                     continue
                 if inp.startswith("tag:"):
-                    # Try convention tag resolution
                     resolved = resolve_tag(
                         inp.removeprefix("tag:"),
-                        mat_forms,
-                        graph.static_tag_map,
-                        graph.dynamic_tag_map,
+                        material_forms,
+                        static_tag_map,
+                        dynamic_tag_map,
                     )
-                    if resolved and any(
-                        r in (reachable | new_found) for r in resolved
-                    ):
+                    if resolved and any(identity in available for identity in resolved):
                         continue
                 all_reachable = False
                 break
-
             if all_reachable:
-                for output_id in recipe_outputs[recipe_path]:
-                    if output_id not in reachable and output_id not in new_found:
-                        new_found.add(output_id)
-
+                new_found.update(recipe_outputs[recipe_path] - available)
+                available = reachable | new_found
         if not new_found:
             round_info.append({
                 "round": rnd,
@@ -1015,7 +1153,6 @@ def compute_closure(graph: ReachabilityGraph) -> dict[str, Any]:
                 "converged": True,
             })
             break
-
         reachable.update(new_found)
         round_info.append({
             "round": rnd,
@@ -1031,6 +1168,43 @@ def compute_closure(graph: ReachabilityGraph) -> dict[str, Any]:
             "converged": False,
             "warning": "Max rounds reached without convergence",
         })
+    return reachable, round_info
+
+
+def compute_closure(graph: ReachabilityGraph) -> dict[str, Any]:
+    """Iterative convergence to find all reachable identities."""
+    if graph.surface_scatter is None:
+        raise ValueError(
+            "T33 surface scatter declaration is required for reachability closure"
+        )
+    surface_scatter = graph.surface_scatter
+    gate = _load(MATERIAL_GATE) if MATERIAL_GATE.is_file() else {}
+    mat_forms = _material_forms(gate)
+
+    # Build seed set — worldgen ore materials, surface rocks, vanilla survival
+    surface_seeds = _surface_rock_seeds(surface_scatter, graph.form_items)
+    ambient_fluid_seeds = _ambient_fluid_seeds()
+    worldgen_fluid_seeds = _worldgen_fluid_seeds()
+    seeds: set[str] = set()
+    seeds.update(_ore_seeds(ORE_VEIN_SOURCES, mat_forms))
+    seeds.update(surface_seeds)
+    seeds.update(_vanilla_survival_seeds())
+    seeds.add("fluid:minecraft:lava")  # world lava
+    seeds.add("fluid:cruciblecraft:lava")  # GT6 lava-material / pahoehoe (T39 consume id)
+    seeds.update(ambient_fluid_seeds)
+    seeds.update(worldgen_fluid_seeds)
+
+    # Tag inputs have already been expanded during graph building; any
+    # remaining tag:... entries are unresolvable tags.
+    recipe_inputs, recipe_outputs, recipe_source = _recipe_index(graph)
+    reachable, round_info = _fixed_point_closure(
+        recipe_inputs=recipe_inputs,
+        recipe_outputs=recipe_outputs,
+        material_forms=mat_forms,
+        static_tag_map=graph.static_tag_map,
+        dynamic_tag_map=graph.dynamic_tag_map,
+        seeds=seeds,
+    )
 
     # After convergence, identify unreachable operands
     t21_unreachable: list[dict[str, Any]] = []
@@ -1076,12 +1250,33 @@ def compute_closure(graph: ReachabilityGraph) -> dict[str, Any]:
     # Sort for deterministic output
     t21_unreachable.sort(key=lambda e: e["recipe"])
     all_unreachable.sort(key=lambda e: e["recipe"])
+    oxygen_producers = sorted(
+        {
+            recipe_path
+            for recipe_path, outputs in recipe_outputs.items()
+            if "fluid:cruciblecraft:oxygen" in outputs
+            and recipe_inputs[recipe_path] <= reachable
+            and recipe_source.get(recipe_path)
+            == "gt_recipe:cruciblecraft:electrolyzer"
+        }
+    )
+    if not oxygen_producers:
+        raise ValueError(
+            "oxygen has no reachable T5 electrolyzer producer in typed closure"
+        )
 
     return {
         "seed_count": len(seeds),
-        "seed_ore_materials": len(_worldgen_ore_materials(ORE_VEINS)),
+        "seed_ore_materials": len({
+            material
+            for path in ORE_VEIN_SOURCES
+            for material in _worldgen_ore_materials(path)
+        }),
         "seed_surface_rock_materials": surface_scatter["rock_material_count"],
         "seed_surface_rock_count": len(surface_seeds),
+        "seed_fluid_identities": sorted(
+            ambient_fluid_seeds | worldgen_fluid_seeds
+        ),
         "surface_scatter": {
             "declaration_path": surface_scatter["declaration_path"],
             "rock_tag": surface_scatter["rock_tag"],
@@ -1096,6 +1291,7 @@ def compute_closure(graph: ReachabilityGraph) -> dict[str, Any]:
         "rounds": round_info,
         "reachable_identity_count": len(reachable),
         "reachable_identities": sorted(reachable),
+        "oxygen_producers": oxygen_producers,
         "recipe_count": graph.recipe_count,
         "material_rule_count": graph.material_rule_count,
         "material_rule_expanded": graph.material_rule_expanded,
@@ -1120,7 +1316,7 @@ def build() -> dict[str, Any]:
         "status_owner": "run_full_verification",
         "document": "T21 operand reachability closure",
         "approximations": [
-            "Fluids are not modelled — only item-based production chains.",
+            "Fluids use typed fixed-point closure; quantities and containers are not modelled.",
             "Mob drops are not modelled — only explicit survival sources.",
             "Unparseable condition blocks are treated as satisfied.",
         ],
@@ -1134,6 +1330,14 @@ def build() -> dict[str, Any]:
         "currentness": {
             "owned_inputs": {
                 _relative(BUILDER): _sha256(BUILDER),
+                _relative(BELLOW_AIR_SOURCE): _sha256(BELLOW_AIR_SOURCE),
+                _relative(CAPABILITIES_SOURCE): _sha256(CAPABILITIES_SOURCE),
+                _relative(T38_PLAYER_PATH_RECOVERY): _sha256(
+                    T38_PLAYER_PATH_RECOVERY
+                ),
+                _relative(T38_PLAYER_PATH_RECOVERY_BUILDER): _sha256(
+                    T38_PLAYER_PATH_RECOVERY_BUILDER
+                ),
             },
         },
     }

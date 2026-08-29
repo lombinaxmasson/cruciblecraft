@@ -1,0 +1,53 @@
+{
+  "family_id": "gt.recipe.centrifuge#0100",
+  "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 64,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 100,
+          "id": "minecraft:water"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:sand"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:sand"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "bfbdaa7b115fdcb38119311d838538567e069d2ac53900ab9de63906d88bcf3c"
+        ],
+        "selected_source_recipe": "gt.recipe.centrifuge#0100",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t39_catalog/2e717cd039a473b2"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:centrifuge",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

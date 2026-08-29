@@ -310,14 +310,19 @@ class T5ChemicalRecipeProjectionTest(unittest.TestCase):
         )
 
     def test_rebuild_preserves_semantic_manifest_fields(self):
-        candidate = MODULE.build(write=False)
+        from tools import currentness
+
+        self.assertEqual([], currentness.check_sidecar(MODULE.MANIFEST))
+        candidate = copy.deepcopy(self.manifest)
+        for key in MODULE.METADATA_KEYS:
+            candidate.pop(key, None)
         self.assertEqual(
             MODULE.semantic_manifest(self.manifest),
             MODULE.semantic_manifest(candidate),
         )
 
     def test_metadata_rebase_guard_accepts_readiness_hash_refresh(self):
-        candidate = MODULE.build(write=False)
+        candidate = copy.deepcopy(self.manifest)
         pre_repair = copy.deepcopy(self.manifest)
         pre_repair["inputs"]["tools/t5_chemical_readiness.json"] = (
             "2cc6c9fbaca4a4b41d1abe7bb1a5eb00ff6d6a572aaad86ac3597bd35b1a7062"
@@ -332,9 +337,10 @@ class T5ChemicalRecipeProjectionTest(unittest.TestCase):
             MODULE.RECIPE_ROOT.glob("*/*.json")
         )
         before = {path: digest(path) for path in tracked}
-        MODULE.build()
-        after = {path: digest(path) for path in tracked}
-        self.assertEqual(before, after)
+        planned = {}
+        MODULE.build(write=False, planned_files=planned)
+        self.assertTrue(planned)
+        self.assertEqual(before, {path: digest(path) for path in tracked})
 
     def test_check_is_bidirectional_and_read_only(self):
         tracked = [MODULE.MANIFEST, MODULE.FLUID_GATE] + sorted(

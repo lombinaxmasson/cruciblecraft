@@ -1,0 +1,44 @@
+{
+  "alias_item_ids": [
+    "minecraft:note_block",
+    "minecraft:oak_button",
+    "minecraft:oak_door",
+    "minecraft:oak_pressure_plate",
+    "minecraft:oak_trapdoor"
+  ],
+  "dump_alias_ids": [
+    "minecraft:noteblock",
+    "minecraft:trapdoor",
+    "minecraft:wooden_button",
+    "minecraft:wooden_door",
+    "minecraft:wooden_pressure_plate"
+  ],
+  "explicit_item_ids": [
+    "minecraft:oak_planks"
+  ],
+  "fluid_ids": [
+    "minecraft:water",
+    "minecraft:lava"
+  ],
+  "generated_by": "python tools/build_t42_runtime_expression_inventory.py",
+  "item_ids": [
+    "minecraft:note_block",
+    "minecraft:oak_button",
+    "minecraft:oak_door",
+    "minecraft:oak_planks",
+    "minecraft:oak_pressure_plate",
+    "minecraft:oak_trapdoor"
+  ],
+  "minecraft_prefix_is_not_proof": true,
+  "not_a_121_registry_scrape": true,
+  "note": "item_ids = T37/T41 alias live IDs plus explicit oak_planks. Dump keys such as minecraft:noteblock stay in dump_alias_ids and are remapped by vanilla_alias, not by this allowlist. Remaining dump has no oak_planks row.",
+  "provenance": "t37_t41_aliases_plus_explicit",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T42_VANILLA_ITEM_ALLOWLIST",
+  "t35_fluid_registry_contains_water_lava": {
+    "minecraft:lava": false,
+    "minecraft:water": false
+  },
+  "version": "minecraft-1.21.1"
+}

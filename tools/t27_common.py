@@ -104,12 +104,16 @@ def sha256_record(value: Any) -> str:
 
 
 def write_stable(path: Path, document: Any) -> None:
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_bytes(stable_json(document).encode("utf-8"))
+    from tools import atomic_io
+
+    atomic_io.write_bytes(path, stable_json(document).encode("utf-8"))
 
 
 def relative(path: Path) -> str:
-    return path.relative_to(ROOT).as_posix()
+    try:
+        return path.resolve().relative_to(ROOT.resolve()).as_posix()
+    except ValueError:
+        return path.as_posix()
 
 
 def t13_rows(table: str, document: dict[str, Any] | None = None) -> list[dict[str, Any]]:

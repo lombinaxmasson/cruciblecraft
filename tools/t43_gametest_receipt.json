@@ -1,0 +1,39 @@
+{
+  "behavior_root_sha256": "c1b64d9f8ede37cd3dddcb0d4f12fef0d6453e4678766080a1020a340e2d43d5",
+  "bound_artifacts": {
+    "gametest_java": "8727413d1dcadc85179c38e462dd186734497d39a540f0dd97d338656b211b22",
+    "material_registration_gate_java": "f8e8ba95965402c1ff67bc20de9e0ae9e3f9c92e849deb209e76e0ae6161f359",
+    "material_registration_gate_json": "fba3b60e2a076810ec3b50f59b0153e2f1206da690420b715142f541a32ead26",
+    "production_lock": "c6a63280ee036a9cad53fbbddc721480f2479d51598ef99e18d57495b48da484",
+    "publication_group_manifest": "6298157ec162576ea64f783ed90d19c92c9241e8c9006e854410fab1da8111e4",
+    "runtime_dependency_manifest": "5b22e313b5aaf95d337d1f77c7177db2150d73a25b66b7f0ab982f6680c517f6",
+    "shard_manifest": "5eeda10854e04b96a8d64e102d94f6a690ea0681bd0aa98253c55d98691fd169",
+    "t43_generated_recipes": "e93c972b71374b031913bd3336723a26be1f6f7f574afd2621f68b4e90133385",
+    "t43_locked_support": "faa0468d2d14ff6807a31a53ef99d73575cb12eb72a963aa934d62fb4484f8b0"
+  },
+  "command": ".\\gradlew.bat runGameTestServer -Pt43Recipes --no-daemon",
+  "currentness_root_sha256": "b198cdba0c8d148fc7a7d42996074c45d74c664f100c797921c25b0c91eed542",
+  "equivalence_root_sha256": "193e1a04a748a1f4d4289d227c412c46524204a224d837fe9bc8772dd69745b1",
+  "failed": 0,
+  "java_sha256": "8727413d1dcadc85179c38e462dd186734497d39a540f0dd97d338656b211b22",
+  "java_source": "src/main/java/com/masson/cruciblecraft/gametest/T43RecipeGameTests.java",
+  "log_fingerprint": "a301c21c92389abb8bde3044150e2ce310fa714bde7061d9924354bbbe846cbd",
+  "log_path": "tools/t43_gametest.log",
+  "namespace": "cruciblecraft_t43",
+  "note": "Source markers are not a pass. This receipt is the isolated -Pt43Recipes result bound to MaterialRegistrationGate, the T43 recipe resource trees, and the committed UTF-8 evidence log. The gitignored run-t43-recipes directory is not evidence. Injecting recipe inputs still does not prove a player path.",
+  "pass_marker": "All 6 required tests passed :)",
+  "passed": 6,
+  "required_tests": 6,
+  "schema_version": 3,
+  "semantic_tree_sha256": "a649accd8f49de3483d6fe92edcf185c3737028079f469547c649dd0f55b9299",
+  "skip_is_not_pass": true,
+  "status": "PASS",
+  "test_ids": [
+    "t43compactfamiliespublished",
+    "t43emiplanincludessmelterfamilies",
+    "t43lockedsupportpublished",
+    "t43noteblockfamilyexecutes",
+    "t43smelterexecutesrepresentative",
+    "t43stableidssurvivereload"
+  ]
+}

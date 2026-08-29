@@ -1,0 +1,57 @@
+{
+  "family_id": "gt.recipe.roaster#0023",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 512,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 1834,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 2000,
+          "id": "cruciblecraft:sulfur_dioxide"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:pyrite/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 60,
+          "id": "cruciblecraft:hematite/dust_div72"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "9995e42c7dff7de193996257e5f9762b51e618d1e378e7f0b40c42992ec5c276"
+        ],
+        "selected_source_recipe": "gt.recipe.roaster#0023",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t38/d66cce2f74f72549"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:roaster",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

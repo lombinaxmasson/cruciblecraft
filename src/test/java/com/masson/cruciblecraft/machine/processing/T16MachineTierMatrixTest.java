@@ -123,16 +123,34 @@ class T16MachineTierMatrixTest {
             assertSame(
                     variant.kind().behavior().items(),
                     variant.runtimeSpec().items());
-            assertSame(
-                    variant.kind().behavior().fluids(),
-                    variant.runtimeSpec().fluids());
-            assertSame(
-                    variant.kind().behavior().validator(),
-                    variant.runtimeSpec().validator());
+            if (isT39CentrifugeVariant(variant)) {
+                assertT39CentrifugeEnvelope(variant);
+            } else {
+                assertSame(
+                        variant.kind().behavior().fluids(),
+                        variant.runtimeSpec().fluids());
+                assertSame(
+                        variant.kind().behavior().validator(),
+                        variant.runtimeSpec().validator());
+            }
             assertSame(
                     variant,
                     ModBlocks.configuredProcessingVariant(id));
         }
+    }
+
+    private static boolean isT39CentrifugeVariant(MachineVariant variant) {
+        return variant.kind().id().getPath().equals("centrifuge")
+                && !variant.id().equals(variant.kind().id());
+    }
+
+    private static void assertT39CentrifugeEnvelope(MachineVariant variant) {
+        var fluids = variant.runtimeSpec().fluids();
+        assertEquals(1, fluids.inputs().size());
+        assertEquals(6, fluids.outputs().size());
+        assertEquals(100_000, fluids.inputs().getFirst().capacity());
+        assertTrue(fluids.outputs().stream()
+                .allMatch(tank -> tank.capacity() == 8_000));
     }
 
     @Test

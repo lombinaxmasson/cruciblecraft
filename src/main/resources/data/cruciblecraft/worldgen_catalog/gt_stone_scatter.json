@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "id": "gt_stone_scatter",
+  "feature_type": "cruciblecraft:gt_stone_scatter",
+  "config": {
+    "rarity": 128,
+    "rock_tag": "cruciblecraft:gt_stones"
+  },
+  "placed_feature": "cruciblecraft:gt_stone_scatter",
+  "biome_modifier": {
+    "id": "add_gt_stone_scatter",
+    "type": "neoforge:add_features",
+    "biomes": "#minecraft:is_overworld",
+    "features": [
+      "cruciblecraft:gt_stone_scatter"
+    ],
+    "step": "top_layer_modification"
+  },
+  "provenance": "CrucibleCraft T43 GT stone B1 acquisition; DESIGN_POLICY textures; empty-input worldgen drops",
+  "design_policy": "DESIGN_POLICY",
+  "audit_mode": "source_backed_catalog",
+  "catalog": "src/main/resources/data/cruciblecraft/gt_stone_catalog.json"
+}

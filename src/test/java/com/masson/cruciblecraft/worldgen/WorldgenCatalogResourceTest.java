@@ -27,8 +27,8 @@ class WorldgenCatalogResourceTest {
         assertEquals(129, counts.get("t20_profile_v2_veins").getAsInt());
         assertEquals(129, counts.get("closure_configured_ore_features").getAsInt());
         assertEquals(129, counts.get("closure_placed_ore_features").getAsInt());
-        assertEquals(137, counts.get("registered_ore_materials").getAsInt());
-        assertEquals(274, counts.get("registered_ore_blocks").getAsInt());
+        assertEquals(147, counts.get("registered_ore_materials").getAsInt());
+        assertEquals(294, counts.get("registered_ore_blocks").getAsInt());
         assertEquals(0, counts.get("unclassified").getAsInt());
 
         Set<String> ids = new HashSet<>();
@@ -134,8 +134,8 @@ class WorldgenCatalogResourceTest {
         assertTrue(rockSource.get("rock_material_count").getAsInt() > 0);
 
         var counts = readiness.getAsJsonObject("counts");
-        assertEquals(263, counts.get("catalog_generated_files").getAsInt());
-        assertEquals(274, counts.get("all_worldgen_files").getAsInt());
+        assertEquals(269, counts.get("catalog_generated_files").getAsInt());
+        assertEquals(280, counts.get("all_worldgen_files").getAsInt());
         assertEquals(129, counts.get("closure_vein_classifications").getAsInt());
 
         Path declaration = Path.of(

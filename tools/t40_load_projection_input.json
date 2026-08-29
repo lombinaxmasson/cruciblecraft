@@ -1,0 +1,65 @@
+{
+  "delivery_phase": "T40",
+  "families": [
+    {
+      "authored_entries": 13,
+      "canonical_ids": [
+        "gt.recipe.electrolyzer"
+      ],
+      "eager_publication_rows": 0,
+      "family": "t40/electrolyzer-wave",
+      "lazy_cache_ceiling_rows": 22,
+      "lazy_logical_rows": 22,
+      "logical_rows": 22,
+      "measurement_basis": {
+        "kind": "family_specific_measurement",
+        "measured_logical_rows": [
+          11,
+          22
+        ],
+        "source": "T40 R4 production-lock JUnit CompactRecipeFamilyT40MeasurementHarness. Production partitions are summed from the independently derived singleton/multi winners. Their aggregate is exactly equivalent to the measured hybrid card candidate. Intervals are p50-p95; ns timings convert with ceil-to-ms. Card-level cache is not copied into per-family rows."
+      },
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 319088,
+          "min": 319088
+        },
+        "client_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "client_reload_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "lookup_candidate_count": {
+          "max": 22,
+          "min": 22
+        },
+        "lookup_p95_ns": {
+          "max": 35356,
+          "min": 23581
+        },
+        "retained_memory_bytes": {
+          "max": 2544,
+          "min": 2544
+        },
+        "server_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "server_reload_ms": {
+          "max": 1,
+          "min": 1
+        }
+      },
+      "publication_domain": "gt_recipe_family",
+      "strategy": "group_scoped",
+      "sync_bytes": 2544,
+      "vanilla_datapack_entries": 0
+    }
+  ],
+  "projection_id": "t40/electrolyzer-wave",
+  "schema_version": 2,
+  "status": "FAMILY_LOAD_PROJECTION_INPUT"
+}

@@ -84,20 +84,16 @@ class T21ReadinessDerivedStatusTests(unittest.TestCase):
             "→ status should be T21_READY")
 
     def test_hand_edited_status_detected_by_check(self):
-        original = builder.OUTPUT.read_text(
-            encoding="utf-8") if builder.OUTPUT.is_file() else None
-        try:
-            # Write a forged status that differs from the derived value
+        from tools.tests.support import authority_sandbox
+
+        with authority_sandbox.patch_builder_path(builder, "OUTPUT") as output:
             doc = builder._load(builder.OUTPUT)
             doc["status"] = "T21_IN_PROGRESS"
-            builder.OUTPUT.write_text(
+            output.write_text(
                 builder._stable(doc), encoding="utf-8", newline="\n")
             errors = builder.check()
             self.assertIn("stale generated file", errors[0] if errors else "",
                 "Hand-edited status must be detected by check()")
-        finally:
-            if original is not None:
-                builder.OUTPUT.write_text(original, encoding="utf-8", newline="\n")
 
     def test_status_comes_from_gates_not_input(self):
         # Prove status is derived: re-verify after rebuild

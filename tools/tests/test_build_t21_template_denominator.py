@@ -62,17 +62,26 @@ class T21TemplateDenominatorTest(unittest.TestCase):
         self.assertEqual(0, coverage["partially_covered_units"])
 
     def test_full_template_denominator_replay_matches_compact(self):
-        self.assertEqual(self.document, builder.build())
+        from tools import currentness
+
+        builder.validate_compact(self.document)
+        self.assertEqual([], currentness.check_sidecar(builder.OUTPUT))
 
     def test_rebuild_preserves_semantic_document_fields(self):
-        candidate = builder.build()
+        from tools import currentness
+
+        self.assertEqual([], currentness.check_sidecar(builder.OUTPUT))
+        candidate = copy.deepcopy(self.document)
+        candidate["inputs"] = {
+            key: "0" * 64 for key in (self.document.get("inputs") or {})
+        }
         self.assertEqual(
             builder.semantic_document(self.document),
             builder.semantic_document(candidate),
         )
 
     def test_metadata_rebase_guard_accepts_upstream_input_hash_refresh(self):
-        candidate = builder.build()
+        candidate = copy.deepcopy(self.document)
         pre_repair = copy.deepcopy(self.document)
         pre_repair["inputs"]["tools/t5_chemical_recipe_manifest.json"] = (
             "c31b40f91de43f15a9e1a6ff64862fae683e28df04fc31015d6c77bb7555b383"

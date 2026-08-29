@@ -8,9 +8,14 @@ import java.util.function.Supplier;
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
+import com.masson.cruciblecraft.content.item.GtWoodCatalog;
+import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
 import com.masson.cruciblecraft.machine.MachineMaterialRules;
+import com.masson.cruciblecraft.machine.processing.DeviceMaterialCatalog;
+import com.masson.cruciblecraft.machine.processing.MachineCasingCatalog;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -36,13 +41,20 @@ public final class ModCreativeTabs {
                     .displayItems((parameters, output) -> {
                         output.accept(ModItems.FIREBRICK.get());
                         output.accept(ModItems.FIREBOX.get());
-                        output.accept(machineVariant(ModItems.CRUCIBLE.get(), "ceramic"));
-                        output.accept(machineVariant(ModItems.CRUCIBLE.get(), "bronze"));
-                        output.accept(machineVariant(ModItems.CRUCIBLE.get(), "steel"));
-                        output.accept(machineVariant(ModItems.ANVIL.get(), "stone"));
-                        output.accept(machineVariant(ModItems.ANVIL.get(), "iron"));
-                        output.accept(machineVariant(ModItems.ANVIL.get(), "bronze"));
-                        output.accept(machineVariant(ModItems.ANVIL.get(), "steel"));
+                        DeviceMaterialCatalog.require(
+                                        MachineMaterialRules.Device.CRUCIBLE)
+                                .creativeVisible()
+                                .forEach(material -> output.accept(
+                                        machineVariant(
+                                                ModItems.CRUCIBLE.get(),
+                                                material.materialId())));
+                        DeviceMaterialCatalog.require(
+                                        MachineMaterialRules.Device.ANVIL)
+                                .creativeVisible()
+                                .forEach(material -> output.accept(
+                                        machineVariant(
+                                                ModItems.ANVIL.get(),
+                                                material.materialId())));
                         output.accept(ModItems.COKE_OVEN.get());
                         output.accept(ModItems.MULTIBLOCK_CASING.get());
                         output.accept(ModItems.MULTIBLOCK_ITEM_FLUID_PORT.get());
@@ -79,18 +91,12 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.ROBOT_ARM_COVER.get());
                         output.accept(ModItems.PRESSURE_VALVE_COVER.get());
                         output.accept(ModItems.SELECTOR_MANUAL_COVER.get());
-                        output.accept(
-                                ModItems.BRONZE_DOUBLE_MACHINE_CASING.get());
-                        output.accept(
-                                ModItems.STEEL_DOUBLE_MACHINE_CASING.get());
-                        output.accept(
-                                ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get());
-                        output.accept(
-                                ModItems.STEEL_GALVANIZED_MACHINE_CASING.get());
-                        output.accept(
-                                ModItems.ALUMINIUM_MACHINE_CASING.get());
-                        output.accept(
-                                ModItems.STAINLESS_STEEL_MACHINE_CASING.get());
+                        MachineCasingCatalog.casings().stream()
+                                .filter(MachineCasingCatalog.Casing::creativeVisible)
+                                .forEach(casing -> output.accept(
+                                        ModItems.machineCasingsById()
+                                                .get(casing.id())
+                                                .get()));
                         output.accept(ModItems.BRONZE_BOILER.get());
                         output.accept(ModItems.BRONZE_STEAM_ENGINE.get());
                         output.accept(ModItems.BRONZE_DYNAMO.get());
@@ -108,6 +114,13 @@ public final class ModCreativeTabs {
                                         .asItem()));
                         ModBlocks.hopperBlocks().forEach(block ->
                                 output.accept(block.get().asItem()));
+                        com.masson.cruciblecraft.content.storage.StorageVariantCatalog
+                                .sourceVisible()
+                                .forEach(variant ->
+                                        output.accept(ModBlocks.storageBlocksById()
+                                                .get(variant.id())
+                                                .get()
+                                                .asItem()));
                         output.accept(ModItems.STEEL_DUST_FUNNEL.get());
                         output.accept(ModItems.MORTAR.get());
                         output.accept(ModItems.EXTRUDER.get());
@@ -125,6 +138,19 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.BURNING_GAS_GENERATOR.get());
                         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                                 output.accept(ModItems.extruderShape(shape.id()).get()));
+                        GtWoodCatalog.DEFINITIONS.forEach(wood -> {
+                            output.accept(ModItems.gtWood(wood.id()).get());
+                            output.accept(GtWoodCatalog.fireproofStack(
+                                    ModItems.gtWood(wood.id()).get()));
+                        });
+                        GtStoneCatalog.variants().forEach(stone ->
+                                output.accept(ModItems.gtStoneItemsById()
+                                        .get(stone.id())
+                                        .get()));
+                        GtBlockObjectCatalog.variants().forEach(block ->
+                                output.accept(ModItems.gtBlockObjectItemsById()
+                                        .get(block.id())
+                                        .get()));
                         output.accept(ModItems.FLINT_KNIFE.get());
                         // Tool patterns and material-tool variants live in the
                         // dedicated TOOLS tab; MAIN only keeps the bootstrap knife.

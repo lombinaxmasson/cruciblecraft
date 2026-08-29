@@ -182,7 +182,7 @@ class DumpSchemaTest(unittest.TestCase):
         self.assertEqual(468, first["normalized_prefixes"])
         self.assertNotIn("active_prefixes", first)
         self.assertEqual(0, first["newly_activated_prefixes"])
-        self.assertEqual(57, first["runtime_prefixes_total"])
+        self.assertEqual(58, first["runtime_prefixes_total"])
 
     @unittest.skipIf(
         os.environ.get("CRUCIBLECRAFT_CURRENTNESS_PRECHECKED") == "1",
@@ -431,11 +431,15 @@ class NormalizedDataTest(unittest.TestCase):
                 self.l3_document,
             )
             record = policy[runtime["id"]]
+            expected_forms = MODULE.gt6_l3_materials.close_implied_prefixes(
+                record["t0_forms"]
+            )
+            expected_forms.update(
+                forms & MODULE.gt6_l3_materials.POST_IMPORT_PREFIXES
+            )
             self.assertEqual(
                 forms,
-                MODULE.gt6_l3_materials.close_implied_prefixes(
-                    record["t0_forms"]
-                ),
+                expected_forms,
                 runtime["id"],
             )
             self.assertEqual(not forms, record["metadata_only"], runtime["id"])

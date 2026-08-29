@@ -11,6 +11,7 @@ import java.util.Optional;
 
 import com.masson.cruciblecraft.api.energy.EnergyType;
 import com.masson.cruciblecraft.content.menu.ConfiguredProcessingMachineMenu;
+import com.masson.cruciblecraft.machine.processing.ProcessingMachineEnergyPlacement;
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
@@ -117,6 +118,11 @@ class T5ProcessingMachineSpecTest {
         assertLayout(ModProcessingMachines.AUTOCLAVE, 2, 3, 1, 1, 2_500_000, 16_000);
         assertLayout(ModProcessingMachines.DRYING, 1, 1, 0, 1, 0, 32_000);
         assertLayout(ModProcessingMachines.COMPRESSOR, 1, 1, 0, 0, 0, 0);
+        assertLayout(ModProcessingMachines.ROASTER, 1, 3, 1, 1, 72_000, 72_000);
+        var roasterHeat = ProcessingMachineEnergyPlacement.connection(
+                ModProcessingMachines.ROASTER, Direction.EAST);
+        assertEquals(Direction.DOWN, roasterHeat.providerOffset());
+        assertEquals(Direction.UP, roasterHeat.providerFace());
 
         for (ProcessingMachineSpec spec : ModProcessingMachines.T5_DEDICATED_MACHINES) {
             EnergyType expectedEnergy = spec.energy().type();
@@ -160,6 +166,30 @@ class T5ProcessingMachineSpecTest {
                             : ProcessingMachineSpec.CapabilityAccess.INPUT,
                     spec.sidedIo().energy().resolve(Direction.NORTH, Direction.SOUTH));
             assertTrue(spec.validator().validate(maxLayoutRecipe(spec)).isEmpty());
+        }
+    }
+
+    @Test
+    void fourRoasterVariantsCoverTheSharedSixteenHuWindow() {
+        List<com.masson.cruciblecraft.machine.processing.MachineVariant> variants =
+                ModMachineVariants.variantsOf(ModProcessingMachines.ROASTER.id());
+        assertEquals(4, variants.size());
+        var steel = ModMachineVariants.require(
+                net.minecraft.resources.ResourceLocation.fromNamespaceAndPath(
+                        "cruciblecraft", "steel_roaster"));
+        assertEquals(16L, steel.tierBand().inputMinimum());
+        assertEquals(64L, steel.tierBand().inputMaximum());
+        assertTrue(16L >= steel.tierBand().inputMinimum()
+                && 16L <= steel.tierBand().inputMaximum());
+        for (var variant : variants) {
+            assertEquals(EnergyType.HEAT, variant.tierBand().energyType());
+            assertEquals(
+                    ProcessingMachineSpec.EnergyMode.ADJACENT,
+                    variant.runtimeSpec().energy().mode());
+            var placement = ProcessingMachineEnergyPlacement.connection(
+                    variant.runtimeSpec(), Direction.EAST);
+            assertEquals(Direction.DOWN, placement.providerOffset());
+            assertEquals(Direction.UP, placement.providerFace());
         }
     }
 
@@ -246,9 +276,12 @@ class T5ProcessingMachineSpecTest {
                 0L,
                 true,
                 Optional.empty());
-        assertEquals(
-                Optional.of("t5_recipe_input_action"),
-                ModProcessingMachines.ELECTROLYZER.validator().validate(catalyst));
+        assertTrue(
+                ModProcessingMachines.ELECTROLYZER.validator().validate(catalyst).isEmpty(),
+                "Electrolyzer must preserve the GT6 programmed_circuit catalyst");
+        assertTrue(
+                ModProcessingMachines.MIXER.validator().validate(catalyst).isEmpty(),
+                "Mixer must preserve the source-backed platinum catalyst");
 
         GTRecipe overvoltage = new GTRecipe(
                 List.of(Ingredient.of(Items.REDSTONE)),

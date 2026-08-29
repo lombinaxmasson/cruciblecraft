@@ -41,8 +41,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * 1x=50 T37 measurement harness. Writes
- * {@code tools/t37_materialization_measurements.json} for the Python
- * decision builder. Timings are nonparametric p50/p95 over 21 samples.
+ * {@code tools/t37_materialization_measurements.json} only when
+ * {@code -Dcruciblecraft.writeT37Measurements=true} so default
+ * {@code gradlew test} cannot clobber the frozen T37 decision inputs.
  */
 class CompactRecipeFamilyT37MeasurementHarness {
     private static final int PREPARE_WARMUP = 2;
@@ -131,12 +132,13 @@ class CompactRecipeFamilyT37MeasurementHarness {
                 .setPrettyPrinting()
                 .disableHtmlEscaping()
                 .create();
-        Files.createDirectories(OUTPUT.getParent());
-        Files.writeString(
-                OUTPUT,
-                gson.toJson(artifact(List.of(immediate, onDemand, hybrid))) + "\n",
-                StandardCharsets.UTF_8);
-        assertTrue(Files.size(OUTPUT) > 0L);
+        String encoded = gson.toJson(artifact(List.of(immediate, onDemand, hybrid))) + "\n";
+        assertTrue(encoded.length() > 1);
+        if (Boolean.getBoolean("cruciblecraft.writeT37Measurements")) {
+            Files.createDirectories(OUTPUT.getParent());
+            Files.writeString(OUTPUT, encoded, StandardCharsets.UTF_8);
+            assertTrue(Files.size(OUTPUT) > 0L);
+        }
     }
 
     private static CandidateMeasurement measureCandidate(

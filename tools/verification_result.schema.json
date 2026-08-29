@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "verification_result.schema.json",
+  "title": "CrucibleCraft verification result",
+  "type": "object",
+  "required": ["schema_version", "command", "status"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": { "const": 1 },
+    "command": { "type": "string" },
+    "profile": { "type": "string" },
+    "status": {
+      "enum": ["PASS", "FAIL", "DIAGNOSTIC", "DEFERRED", "SKIP"]
+    },
+    "failures": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "gradle": { "type": ["object", "null"] },
+    "gametest": { "type": "object" }
+  }
+}

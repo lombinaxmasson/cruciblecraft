@@ -1,0 +1,283 @@
+{
+  "completion_delta": 0,
+  "disposition_overlay": true,
+  "eager_delta": 0,
+  "generated_by": "python tools/build_t42_census_delta.py",
+  "generated_recipe_tree": false,
+  "generated_support_tree": false,
+  "hard_ceiling_raised": false,
+  "identity_closeout": {
+    "already_expressed_delta": 1,
+    "complete": true,
+    "completion_delta": 0,
+    "owns_families": 0,
+    "publication_delta": 0,
+    "reclassification_delta": 4
+  },
+  "note": "T42 records current execution disposition. It does not author recipes or raise the T14 hard ceiling.",
+  "owns_families": 0,
+  "publication_delta": 0,
+  "remaining_ordinary": {
+    "already_expressed_delta": 1,
+    "closing_execution_gap": 5300,
+    "deferred_ordinary_ledger_count": 4,
+    "opening_execution_gap": 5305,
+    "reclassification_delta": 4,
+    "remaining_ordinary_families": 5300,
+    "t35_files_rewritten": false,
+    "t37_files_rewritten": false,
+    "t38_files_rewritten": false,
+    "t39_files_rewritten": false,
+    "t40_files_rewritten": false,
+    "t41_files_rewritten": false
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T42_CENSUS_DELTA_READY",
+  "t14_load": {
+    "axes": [
+      {
+        "axis": "datapack_authored_entries",
+        "closing": 4058,
+        "delta": 0,
+        "evidence": "T42 is a partition card; T14 opening equals T41 closing with delta 0.",
+        "hard_ceiling": 6600,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 4058,
+        "pending": false
+      },
+      {
+        "axis": "eager_publication_rows",
+        "closing": 16659,
+        "delta": 0,
+        "evidence": "T42 is a partition card; T14 opening equals T41 closing with delta 0.",
+        "hard_ceiling": 21000,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 16659,
+        "pending": false
+      },
+      {
+        "axis": "lazy_logical_rows",
+        "closing": 2680,
+        "delta": 0,
+        "evidence": "T42 is a partition card; T14 opening equals T41 closing with delta 0.",
+        "hard_ceiling": 56000,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 2680,
+        "pending": false
+      },
+      {
+        "axis": "lazy_cache_ceiling_rows",
+        "closing": 126,
+        "delta": 0,
+        "evidence": "T42 is a partition card; T14 opening equals T41 closing with delta 0.",
+        "hard_ceiling": 4096,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 126,
+        "pending": false
+      },
+      {
+        "axis": "sync_bytes",
+        "closing": 48731,
+        "delta": 0,
+        "evidence": "T42 is a partition card; T14 opening equals T41 closing with delta 0.",
+        "hard_ceiling": 67108864,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 48731,
+        "pending": false
+      },
+      {
+        "axis": "server_reload_ms",
+        "closing": 16,
+        "delta": 0,
+        "evidence": "T42 is a partition card; T14 opening equals T41 closing with delta 0.",
+        "hard_ceiling": 10000,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 16,
+        "pending": false
+      },
+      {
+        "axis": "server_index_ms",
+        "closing": 5,
+        "delta": 0,
+        "evidence": "T42 is a partition card; T14 opening equals T41 closing with delta 0.",
+        "hard_ceiling": 1000,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 5,
+        "pending": false
+      },
+      {
+        "axis": "client_reload_ms",
+        "closing": 18,
+        "delta": 0,
+        "evidence": "T42 is a partition card; T14 opening equals T41 closing with delta 0.",
+        "hard_ceiling": 10000,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 18,
+        "pending": false
+      },
+      {
+        "axis": "client_index_ms",
+        "closing": 5,
+        "delta": 0,
+        "evidence": "T42 is a partition card; T14 opening equals T41 closing with delta 0.",
+        "hard_ceiling": 3000,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 5,
+        "pending": false
+      },
+      {
+        "axis": "retained_memory_bytes",
+        "closing": 48731,
+        "delta": 0,
+        "evidence": "T42 is a partition card; T14 opening equals T41 closing with delta 0.",
+        "hard_ceiling": 536870912,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 48731,
+        "pending": false
+      },
+      {
+        "axis": "allocation_bytes",
+        "closing": 5821944,
+        "delta": 0,
+        "evidence": "T42 is a partition card; T14 opening equals T41 closing with delta 0.",
+        "hard_ceiling": 536870912,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 5821944,
+        "pending": false
+      },
+      {
+        "axis": "lookup_p95_ns",
+        "closing": 685725,
+        "delta": 0,
+        "evidence": "T42 is a partition card; T14 opening equals T41 closing with delta 0.",
+        "hard_ceiling": 2000000,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 685725,
+        "pending": false
+      },
+      {
+        "axis": "lookup_candidate_count",
+        "closing": 73,
+        "delta": 0,
+        "evidence": "T42 is a partition card; T14 opening equals T41 closing with delta 0.",
+        "hard_ceiling": 128,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 73,
+        "pending": false
+      }
+    ],
+    "closing": {
+      "allocation_bytes": 5821944,
+      "client_index_ms": 5,
+      "client_reload_ms": 18,
+      "datapack_authored_entries": 4058,
+      "eager_publication_rows": 16659,
+      "lazy_cache_ceiling_rows": 126,
+      "lazy_logical_rows": 2680,
+      "lookup_candidate_count": 73,
+      "lookup_p95_ns": 685725,
+      "retained_memory_bytes": 48731,
+      "server_index_ms": 5,
+      "server_reload_ms": 16,
+      "sync_bytes": 48731
+    },
+    "delta": {
+      "allocation_bytes": {
+        "measured": true,
+        "pending": false,
+        "value": 0
+      },
+      "client_index_ms": {
+        "measured": true,
+        "pending": false,
+        "value": 0
+      },
+      "client_reload_ms": {
+        "measured": true,
+        "pending": false,
+        "value": 0
+      },
+      "datapack_authored_entries": {
+        "measured": true,
+        "pending": false,
+        "value": 0
+      },
+      "eager_publication_rows": {
+        "measured": true,
+        "pending": false,
+        "value": 0
+      },
+      "lazy_cache_ceiling_rows": {
+        "measured": true,
+        "pending": false,
+        "value": 0
+      },
+      "lazy_logical_rows": {
+        "measured": true,
+        "pending": false,
+        "value": 0
+      },
+      "lookup_candidate_count": {
+        "measured": true,
+        "pending": false,
+        "value": 0
+      },
+      "lookup_p95_ns": {
+        "measured": true,
+        "pending": false,
+        "value": 0
+      },
+      "retained_memory_bytes": {
+        "measured": true,
+        "pending": false,
+        "value": 0
+      },
+      "server_index_ms": {
+        "measured": true,
+        "pending": false,
+        "value": 0
+      },
+      "server_reload_ms": {
+        "measured": true,
+        "pending": false,
+        "value": 0
+      },
+      "sync_bytes": {
+        "measured": true,
+        "pending": false,
+        "value": 0
+      }
+    },
+    "hard_ceiling_raised": false,
+    "opening": {
+      "allocation_bytes": 5821944,
+      "client_index_ms": 5,
+      "client_reload_ms": 18,
+      "datapack_authored_entries": 4058,
+      "eager_publication_rows": 16659,
+      "lazy_cache_ceiling_rows": 126,
+      "lazy_logical_rows": 2680,
+      "lookup_candidate_count": 73,
+      "lookup_p95_ns": 685725,
+      "retained_memory_bytes": 48731,
+      "server_index_ms": 5,
+      "server_reload_ms": 16,
+      "sync_bytes": 48731
+    }
+  },
+  "t41_remaining_opening": 5305
+}

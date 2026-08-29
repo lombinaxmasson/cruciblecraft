@@ -47,14 +47,18 @@ class T12MachineTierArchitectureTest {
             variants.forEach(variant -> {
                 assertSame(kind.behavior().items(),
                         variant.runtimeSpec().items());
-                assertSame(kind.behavior().fluids(),
-                        variant.runtimeSpec().fluids());
-                assertSame(kind.behavior().validator(),
-                        variant.runtimeSpec().validator());
+                if (isT39CentrifugeVariant(variant)) {
+                    assertT39CentrifugeEnvelope(variant);
+                } else {
+                    assertSame(kind.behavior().fluids(),
+                            variant.runtimeSpec().fluids());
+                    assertSame(kind.behavior().validator(),
+                            variant.runtimeSpec().validator());
+                    assertSame(kind.behavior().ui(),
+                            variant.runtimeSpec().ui());
+                }
                 assertSame(kind.behavior().sidedIo(),
                         variant.runtimeSpec().sidedIo());
-                assertSame(kind.behavior().ui(),
-                        variant.runtimeSpec().ui());
             });
         }
         for (var kind : ModMachineVariants.KINDS) {
@@ -64,8 +68,12 @@ class T12MachineTierArchitectureTest {
             variants.forEach(variant -> {
                 assertSame(kind.behavior().items(),
                         variant.runtimeSpec().items());
-                assertSame(kind.behavior().fluids(),
-                        variant.runtimeSpec().fluids());
+                if (isT39CentrifugeVariant(variant)) {
+                    assertT39CentrifugeEnvelope(variant);
+                } else {
+                    assertSame(kind.behavior().fluids(),
+                            variant.runtimeSpec().fluids());
+                }
             });
         }
         assertEquals(
@@ -74,6 +82,20 @@ class T12MachineTierArchitectureTest {
                         .recipeMapId());
         assertFalse(ModMachineVariants.CENTRIFUGE.id().equals(
                 ModMultiblockControllers.LARGE_CENTRIFUGE_KIND.id()));
+    }
+
+    private static boolean isT39CentrifugeVariant(MachineVariant variant) {
+        return variant.kind().id().getPath().equals("centrifuge")
+                && !variant.id().equals(variant.kind().id());
+    }
+
+    private static void assertT39CentrifugeEnvelope(MachineVariant variant) {
+        var fluids = variant.runtimeSpec().fluids();
+        assertEquals(1, fluids.inputs().size());
+        assertEquals(6, fluids.outputs().size());
+        assertEquals(100_000, fluids.inputs().getFirst().capacity());
+        assertTrue(fluids.outputs().stream()
+                .allMatch(tank -> tank.capacity() == 8_000));
     }
 
     @Test

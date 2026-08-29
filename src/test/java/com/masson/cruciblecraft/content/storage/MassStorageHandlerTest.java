@@ -1,0 +1,61 @@
+package com.masson.cruciblecraft.content.storage;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
+import java.util.Map;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import net.minecraft.SharedConstants;
+import net.minecraft.server.Bootstrap;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.neoforged.fml.loading.LoadingModList;
+
+class MassStorageHandlerTest {
+    @BeforeAll
+    static void bootstrap() {
+        LoadingModList.of(List.of(), List.of(), List.of(), List.of(), Map.of());
+        SharedConstants.tryDetectVersion();
+        Bootstrap.bootStrap();
+    }
+
+    @Test
+    void locksTypeRejectsOverflowAndResetsFilterWhenEmpty() {
+        MassStorageHandler handler = new MassStorageHandler(10);
+        assertTrue(handler.insertAll(iron(8), false).isEmpty());
+        assertEquals(8, handler.stored());
+        assertEquals(4, handler.insertAll(gold(4), false).getCount());
+        ItemStack leftover = handler.insertAll(iron(4), false);
+        assertEquals(2, leftover.getCount());
+        assertEquals(10, handler.stored());
+        assertEquals(10, handler.extractItem(0, 64, false).getCount());
+        assertEquals(0, handler.stored());
+        assertTrue(handler.filter().isEmpty());
+        assertTrue(handler.insertAll(gold(3), false).isEmpty());
+        assertTrue(handler.sameType(gold(1)));
+        assertFalse(handler.sameType(iron(1)));
+    }
+
+    @Test
+    void booksAndBottlesMatchSourceFilters() {
+        assertTrue(StorageFilters.book(new ItemStack(Items.BOOK)));
+        assertTrue(StorageFilters.book(new ItemStack(Items.ENCHANTED_BOOK)));
+        assertFalse(StorageFilters.book(iron(1)));
+        assertTrue(StorageFilters.bottle(new ItemStack(Items.GLASS_BOTTLE)));
+        assertTrue(StorageFilters.bottle(new ItemStack(Items.POTION)));
+        assertFalse(StorageFilters.bottle(iron(1)));
+    }
+
+    private static ItemStack iron(int count) {
+        return new ItemStack(Items.IRON_INGOT, count);
+    }
+
+    private static ItemStack gold(int count) {
+        return new ItemStack(Items.GOLD_INGOT, count);
+    }
+}

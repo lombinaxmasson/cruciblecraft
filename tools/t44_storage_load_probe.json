@@ -1,0 +1,44 @@
+{
+  "catalog_expand": {
+    "block_entities_created": 0,
+    "max": 5866300.0,
+    "p50": 5180500.0,
+    "p95": 5866300.0,
+    "samples": 7,
+    "scenario": "catalog_expand",
+    "unit": "ns"
+  },
+  "gametest": {
+    "batch_seconds": 4.741,
+    "block_entities_created": 10,
+    "max": 4741000000.0,
+    "note": "10 BlockEntities placed across the isolated 10-test suite (inserter+logistics place two each). Chests are not scanned. Catalog-only expand is rejected.",
+    "p50": 648500000.0,
+    "p95": 4741000000.0,
+    "pass_marker": "All 10 required tests passed :)",
+    "samples": 4,
+    "scenario": "isolated_t44_storage_gametest",
+    "unit": "ns"
+  },
+  "generated_by": "T44 R3 load probe after JUnit + -Pt44Storage GameTest",
+  "hardware": {
+    "machine": "AMD64",
+    "note": "Windows 11 development workstation; JUnit StorageProfileBlockEntityTest + MassStorageHandlerTest timings; isolated runGameTestServer -Pt44Storage batch 4.741s",
+    "os": "windows",
+    "python": "3.12.9",
+    "release": "11"
+  },
+  "java": {
+    "block_entities_created": 7,
+    "inventory": {
+      "max": 75000000.0,
+      "p50": 2000000.0,
+      "p95": 75000000.0,
+      "samples": 5,
+      "scenario": "junit_storage_inventory_and_be",
+      "unit": "ns"
+    },
+    "note": "7 BlockEntity constructors in StorageProfileBlockEntityTest (bookshelf x2, locker x2, mass storage x3); inventory samples from that class plus MassStorageHandlerTest durations"
+  },
+  "schema_version": 1
+}

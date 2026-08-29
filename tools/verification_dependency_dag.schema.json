@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "verification_dependency_dag.schema.json",
+  "title": "CrucibleCraft verification dependency DAG",
+  "type": "object",
+  "required": ["schema_version", "status", "nodes"],
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": { "const": 1 },
+    "status": { "type": "string" },
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "outputs"],
+        "properties": {
+          "id": { "type": "string" },
+          "kind": { "type": "string" },
+          "builder": { "type": "string" },
+          "depends_on": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "outputs": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "modes": {
+            "type": "array",
+            "items": { "enum": ["check", "write", "rebind"] }
+          }
+        }
+      }
+    }
+  }
+}

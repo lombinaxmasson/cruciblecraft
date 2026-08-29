@@ -13,8 +13,13 @@ import com.masson.cruciblecraft.content.item.CableBlockItem;
 import com.masson.cruciblecraft.content.item.CellItem;
 import com.masson.cruciblecraft.content.item.CeramicMoldBlockItem;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
+import com.masson.cruciblecraft.content.item.GtWoodCatalog;
+import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.content.item.FlintKnifeItem;
 import com.masson.cruciblecraft.content.item.HopperBlockItem;
+import com.masson.cruciblecraft.content.storage.StorageVariant;
+import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.content.item.MaterialAxeItem;
 import com.masson.cruciblecraft.content.item.MaterialChiselItem;
 import com.masson.cruciblecraft.content.item.MaterialFileItem;
@@ -36,6 +41,7 @@ import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
 import com.masson.cruciblecraft.content.item.UnknownMaterialItem;
 import com.masson.cruciblecraft.machine.MachineMaterialRules.Device;
 import com.masson.cruciblecraft.content.mold.MoldShape;
+import com.masson.cruciblecraft.machine.processing.MachineCasingCatalog;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariant;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
@@ -60,6 +66,8 @@ public final class ModItems {
             ExtruderShapeCatalog.registerAll(ITEMS);
     public static final Map<String, DeferredItem<Item>> TOOL_PATTERNS =
             ToolPatternCatalog.registerAll(ITEMS);
+    public static final Map<String, DeferredItem<Item>> GT_WOODS =
+            GtWoodCatalog.registerAll(ITEMS);
     private static final Map<String, DeferredItem<? extends Item>>
             MATERIAL_ITEMS = new LinkedHashMap<>();
     private static final Map<ModBlocks.OreBlockKey, DeferredItem<BlockItem>>
@@ -132,61 +140,41 @@ public final class ModItems {
             ITEMS.register(
                     "programmed_circuit",
                     () -> new ProgrammedCircuitItem(new Item.Properties()));
+    private static final Map<ResourceLocation, DeferredItem<Item>> MACHINE_CASINGS =
+            registerMachineCasings();
     public static final DeferredItem<Item>
             BRONZE_DOUBLE_MACHINE_CASING =
-                    ITEMS.registerSimpleItem(
-                            "bronze_double_machine_casing",
-                            new Item.Properties());
+                    machineCasing("bronze_double_machine_casing");
     public static final DeferredItem<Item>
             STEEL_DOUBLE_MACHINE_CASING =
-                    ITEMS.registerSimpleItem(
-                            "steel_double_machine_casing",
-                            new Item.Properties());
+                    machineCasing("steel_double_machine_casing");
     public static final DeferredItem<Item>
             TITANIUM_DOUBLE_MACHINE_CASING =
-                    ITEMS.registerSimpleItem(
-                            "titanium_double_machine_casing",
-                            new Item.Properties());
+                    machineCasing("titanium_double_machine_casing");
     public static final DeferredItem<Item>
             STEEL_GALVANIZED_MACHINE_CASING =
-                    ITEMS.registerSimpleItem(
-                            "steel_galvanized_machine_casing",
-                            new Item.Properties());
+                    machineCasing("steel_galvanized_machine_casing");
     public static final DeferredItem<Item>
             ALUMINIUM_MACHINE_CASING =
-                    ITEMS.registerSimpleItem(
-                            "aluminium_machine_casing",
-                            new Item.Properties());
+                    machineCasing("aluminium_machine_casing");
     public static final DeferredItem<Item>
             STAINLESS_STEEL_MACHINE_CASING =
-                    ITEMS.registerSimpleItem(
-                            "stainless_steel_machine_casing",
-                            new Item.Properties());
+                    machineCasing("stainless_steel_machine_casing");
     public static final DeferredItem<Item>
             CHROMIUM_MACHINE_CASING =
-                    ITEMS.registerSimpleItem(
-                            "chromium_machine_casing",
-                            new Item.Properties());
+                    machineCasing("chromium_machine_casing");
     public static final DeferredItem<Item>
             TITANIUM_MACHINE_CASING =
-                    ITEMS.registerSimpleItem(
-                            "titanium_machine_casing",
-                            new Item.Properties());
+                    machineCasing("titanium_machine_casing");
     public static final DeferredItem<Item>
             TUNGSTENSTEEL_DOUBLE_MACHINE_CASING =
-                    ITEMS.registerSimpleItem(
-                            "tungstensteel_double_machine_casing",
-                            new Item.Properties());
+                    machineCasing("tungstensteel_double_machine_casing");
     public static final DeferredItem<Item>
             INVAR_DOUBLE_MACHINE_CASING =
-                    ITEMS.registerSimpleItem(
-                            "invar_double_machine_casing",
-                            new Item.Properties());
+                    machineCasing("invar_double_machine_casing");
     public static final DeferredItem<Item>
             TUNGSTEN_CARBIDE_DOUBLE_MACHINE_CASING =
-                    ITEMS.registerSimpleItem(
-                            "tungsten_carbide_double_machine_casing",
-                            new Item.Properties());
+                    machineCasing("tungsten_carbide_double_machine_casing");
     public static final DeferredItem<BlockItem> BELLOWS =
             ITEMS.registerSimpleBlockItem("bellows", ModBlocks.BELLOWS);
     public static final DeferredItem<BucketItem> CREOSOTE_BUCKET = ITEMS.register(
@@ -295,6 +283,18 @@ public final class ModItems {
             net.minecraft.resources.ResourceLocation,
             DeferredItem<HopperBlockItem>> HOPPER_ITEMS =
                     registerHopperItems();
+    private static final Map<
+            net.minecraft.resources.ResourceLocation,
+            DeferredItem<BlockItem>> STORAGE_ITEMS =
+                    registerStorageItems();
+    private static final Map<
+            net.minecraft.resources.ResourceLocation,
+            DeferredItem<BlockItem>> GT_STONE_ITEMS =
+                    registerGtStoneItems();
+    private static final Map<
+            net.minecraft.resources.ResourceLocation,
+            DeferredItem<BlockItem>> GT_BLOCK_OBJECT_ITEMS =
+                    registerGtBlockObjectItems();
     public static final DeferredItem<BlockItem> STEEL_DUST_FUNNEL =
             ITEMS.registerSimpleBlockItem(
                     "steel_dust_funnel", ModBlocks.STEEL_DUST_FUNNEL);
@@ -608,6 +608,18 @@ public final class ModItems {
         return TOOL_PATTERNS.values();
     }
 
+    public static DeferredItem<Item> gtWood(String id) {
+        DeferredItem<Item> item = GT_WOODS.get(id);
+        if (item == null) {
+            throw new IllegalArgumentException("No GT wood " + id);
+        }
+        return item;
+    }
+
+    public static Collection<DeferredItem<Item>> gtWoods() {
+        return GT_WOODS.values();
+    }
+
     public static DeferredItem<CeramicMoldBlockItem> moldItem(MoldShape shape) {
         return switch (shape) {
             case INGOT -> INGOT_MOLD;
@@ -675,6 +687,95 @@ public final class ModItems {
         return HOPPER_ITEMS;
     }
 
+    private static Map<ResourceLocation, DeferredItem<BlockItem>>
+            registerStorageItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<BlockItem>> items =
+                new LinkedHashMap<>();
+        for (com.masson.cruciblecraft.content.storage.StorageVariant variant
+                : com.masson.cruciblecraft.content.storage.StorageVariantCatalog.variants()) {
+            DeferredItem<BlockItem> item = ITEMS.registerSimpleBlockItem(
+                    variant.path(),
+                    ModBlocks.storageBlocksById().get(variant.id()));
+            if (items.put(variant.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate storage item " + variant.id());
+            }
+        }
+        if (items.size() != com.masson.cruciblecraft.content.storage
+                .StorageVariantCatalog.TOTAL_COUNT) {
+            throw new IllegalStateException(
+                    "Storage item registration drifted from catalog");
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    public static Map<ResourceLocation, DeferredItem<BlockItem>>
+            storageItemsById() {
+        return STORAGE_ITEMS;
+    }
+
+    private static Map<ResourceLocation, DeferredItem<BlockItem>>
+            registerGtStoneItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<BlockItem>> items =
+                new LinkedHashMap<>();
+        for (GtStoneCatalog.Variant variant : GtStoneCatalog.variants()) {
+            DeferredItem<BlockItem> item = ITEMS.registerSimpleBlockItem(
+                    variant.registryPath(),
+                    ModBlocks.gtStoneBlocksById().get(variant.id()));
+            if (items.put(variant.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate GT stone item " + variant.id());
+            }
+        }
+        if (items.size() != GtStoneCatalog.VARIANT_COUNT) {
+            throw new IllegalStateException(
+                    "GT stone item registration drifted from "
+                            + GtStoneCatalog.VARIANT_COUNT
+                            + " variants");
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    public static Map<ResourceLocation, DeferredItem<BlockItem>>
+            gtStoneItemsById() {
+        return GT_STONE_ITEMS;
+    }
+
+    public static Collection<DeferredItem<BlockItem>> gtStoneItems() {
+        return GT_STONE_ITEMS.values();
+    }
+
+    private static Map<ResourceLocation, DeferredItem<BlockItem>>
+            registerGtBlockObjectItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<BlockItem>> items =
+                new LinkedHashMap<>();
+        for (GtBlockObjectCatalog.Variant variant : GtBlockObjectCatalog.variants()) {
+            DeferredItem<BlockItem> item = ITEMS.registerSimpleBlockItem(
+                    variant.registryPath(),
+                    ModBlocks.gtBlockObjectBlocksById().get(variant.id()));
+            if (items.put(variant.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate GT block-object item " + variant.id());
+            }
+        }
+        if (items.size() != GtBlockObjectCatalog.VARIANT_COUNT) {
+            throw new IllegalStateException(
+                    "GT block-object item registration drifted from "
+                            + GtBlockObjectCatalog.VARIANT_COUNT
+                            + " variants");
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    public static Map<ResourceLocation, DeferredItem<BlockItem>>
+            gtBlockObjectItemsById() {
+        return GT_BLOCK_OBJECT_ITEMS;
+    }
+
+    public static Collection<DeferredItem<BlockItem>> gtBlockObjectItems() {
+        return GT_BLOCK_OBJECT_ITEMS.values();
+    }
+
     private static DeferredItem<BlockItem> tieredProcessingItem(String path) {
         DeferredItem<BlockItem> item = TIERED_PROCESSING_ITEMS.get(
                 ResourceLocation.fromNamespaceAndPath(
@@ -689,6 +790,34 @@ public final class ModItems {
     public static Map<ResourceLocation, DeferredItem<BlockItem>>
             tieredProcessingItemsById() {
         return TIERED_PROCESSING_ITEMS;
+    }
+
+    public static Map<ResourceLocation, DeferredItem<Item>> machineCasingsById() {
+        return MACHINE_CASINGS;
+    }
+
+    private static Map<ResourceLocation, DeferredItem<Item>> registerMachineCasings() {
+        LinkedHashMap<ResourceLocation, DeferredItem<Item>> items =
+                new LinkedHashMap<>();
+        for (MachineCasingCatalog.Casing casing : MachineCasingCatalog.casings()) {
+            DeferredItem<Item> item = ITEMS.registerSimpleItem(
+                    casing.id().getPath(), new Item.Properties());
+            if (items.put(casing.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate machine casing " + casing.id());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    private static DeferredItem<Item> machineCasing(String path) {
+        DeferredItem<Item> item = MACHINE_CASINGS.get(
+                ResourceLocation.fromNamespaceAndPath(
+                        CrucibleCraft.MODID, path));
+        if (item == null) {
+            throw new IllegalStateException("Missing machine casing " + path);
+        }
+        return item;
     }
 
     private static DeferredItem<BlockItem> registerOreItem(

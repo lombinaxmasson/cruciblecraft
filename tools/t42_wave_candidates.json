@@ -1,0 +1,48 @@
+{
+  "authoritative": false,
+  "buckets": {
+    "already_expressed": {
+      "family_count": 1,
+      "largest_family_id": "portfolio:track_a/cruciblecraft:mixer/sha256:7b9b3cac317ebf58c7fcd0437fd9a9262ecb1ff0264f779aef594560825a9acb",
+      "largest_relation_count": 1,
+      "row_count": 1
+    },
+    "combinatorial_unproven": {
+      "family_count": 4,
+      "largest_family_id": "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0000",
+      "largest_relation_count": 620,
+      "row_count": 1274
+    },
+    "current_closure_ready": {
+      "family_count": 28,
+      "largest_family_id": "portfolio:track_a/cruciblecraft:mixer/sha256:5a4794bce7643882ecc09a04af90e9a4889d2e2b1e56e54931a1a6fcb092787c",
+      "largest_relation_count": 10,
+      "row_count": 47
+    },
+    "needs_prefix_or_molten": {
+      "family_count": 292,
+      "largest_family_id": "portfolio:track_a/cruciblecraft:compressor/gt.recipe.compressor#0002",
+      "largest_relation_count": 297,
+      "row_count": 6887
+    },
+    "needs_unique_block_or_mte": {
+      "family_count": 4980,
+      "largest_family_id": "portfolio:track_a/cruciblecraft:bath/gt.recipe.bath#0000",
+      "largest_relation_count": 1116,
+      "row_count": 69997
+    }
+  },
+  "generated_by": "python tools/build_t42_blocker_overlay.py",
+  "note": "Sort-only. T43 should first inspect cruciblecraft:drying current_closure_ready; this is not a topology assignment. T35 drying host total is 152, not the ready-slice size. Programmed-circuit mapping is not expression proof; autoclave/mixer circuit slots stay needs_current_expression. Unique-bucket families with empty unique_kinds are residual, not independent objects.",
+  "priority_intent": {
+    "host": "cruciblecraft:drying",
+    "ready_family_count": 1,
+    "ready_family_ids": [
+      "portfolio:track_a/cruciblecraft:drying/gt.recipe.drying#0149"
+    ],
+    "t35_host_family_total": 152
+  },
+  "schema_version": 1,
+  "sort": "runnable_host,b0_closure,representation,relation_count,family_id",
+  "status": "T42_WAVE_CANDIDATES"
+}

@@ -1,0 +1,157 @@
+{
+  "aggregate_root_sha256": "1183b41f944029dbe1def318f10e4027fc3dcbc7ff8cb17fb674e1114c0fbc0b",
+  "assembler_host": {
+    "items": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModItems.java",
+      "sha256": "4682fd5a695b6d276096f9001d73c2013a9002722a1dbb59af541270d5c9c4df"
+    },
+    "processing_machines": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+      "sha256": "35d92f805424879cb6dd89ae9201e198a970ef96964d8af0b7579d8e7c0c6a3a"
+    },
+    "recipe_maps": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "sha256": "f6408d65eb64a1781e81e8f0eadc6f8db117133e4bcae26fbdfd00e7e01ae8fe"
+    }
+  },
+  "catalog_fixture": {
+    "path": "src/test/resources/t41_catalog_fixture/data/cruciblecraft/recipe/t41_catalog/assembler",
+    "purpose": "router/load fixture only",
+    "runtime_classpath": false,
+    "sha256": "58a7f405764dbed0d99fcca0a4062fc3aea499e98a86527ad7bda6978302f287"
+  },
+  "compact_runtime": {
+    "codec": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilyDefinition.java",
+      "sha256": "c3331a5f0d662b81965a02c880c7b66cfb9be657bd379f45c32e98c4337ac8da"
+    },
+    "component_index": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/ComponentIngredientIndex.java",
+      "sha256": "8b1e0fc3eb3148ea9cea71a16aca351e2de06bee468091e4b004cc2e4ebf2423"
+    },
+    "fireproof_component": {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModComponents.java",
+      "sha256": "3a836e5dda4619e31e8cd3b01d03c7c6ee212b0a5cbe9fd1e07c5baea9f4d7b1"
+    },
+    "gt_wood_catalog": {
+      "path": "src/main/java/com/masson/cruciblecraft/content/item/GtWoodCatalog.java",
+      "sha256": "6ffb8d201b997477a22e5df1bcc051335ffff013fc7c967cf233a0ce5187a314"
+    },
+    "loader": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapLoader.java",
+      "sha256": "ef8d8888a9fb4598e8ff9a5a02b4fd64849cd9be1b5bf0127d6b09b220cf9b1b"
+    },
+    "provider": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeFamilyProvider.java",
+      "sha256": "8fbdb289663dbe0724ee7bbb013cf0c228cb3acdc270bd6348b94f854b0681ea"
+    },
+    "publication_group_key": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/PublicationGroupKey.java",
+      "sha256": "d667253794440ebda9437565bda38293294820333da635fb89f0e27c6f235b51"
+    },
+    "schema": {
+      "path": "tools/compact_recipe_family_source.schema.json",
+      "sha256": "8457c6c942c99506fe861611eba7a679ae1b4b4d2071a42a1593aa1f1a46f2d1"
+    },
+    "shard_router": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeShardRouter.java",
+      "sha256": "67fba469163b506be0d309d6f03d51b40a69ad46523901d82a0ea26ae34cb514"
+    }
+  },
+  "historical_groups": {
+    "t37_assembler_generated": {
+      "path": "src/t37_recipe_generated/resources",
+      "sha256": "a77bc5cb14983b0bdbbfd8e76c1710840b13c0b2c195096337a27876f1dee4cb"
+    },
+    "t37_policy": {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeFamilyProvider.java",
+      "sha256": "8fbdb289663dbe0724ee7bbb013cf0c228cb3acdc270bd6348b94f854b0681ea"
+    },
+    "t38_roaster_generated": {
+      "path": "src/t38_recipe_generated/resources",
+      "sha256": "e510bf33d59bad2a550934682853edd6c02fdedf2a2ab16a929a067505701fcc"
+    },
+    "t39_centrifuge_generated": {
+      "path": "src/t39_recipe_generated/resources",
+      "sha256": "04820d942c68f01286331024ba23d1e621f5f066ebbd9ed8ca4e27dde28c411e"
+    },
+    "t40_electrolyzer_generated": {
+      "path": "src/t40_recipe_generated/resources",
+      "sha256": "9aa422d8210c840c4144e4b903b97784b69cfc024ba30db262eb0c2307eee400"
+    }
+  },
+  "isolation": {
+    "build_gradle": {
+      "path": "build.gradle",
+      "sha256": "601e63fc273f8c935c20f0ef3bc84785e6f5b4f8f6d4e4c6038ac87b3c25a0a4"
+    },
+    "gametest_java": {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/T41RecipeGameTests.java",
+      "sha256": "7ad5da552e07f2d3e93b541488dc3ebfd44beaae8dccc7d592333143e866c849"
+    },
+    "gitignore": {
+      "path": ".gitignore",
+      "sha256": "2e1c6e15ffdf66bdbc915bebd22fe7bd160ec95ce1c1aceb6116d19ea35be1ed"
+    }
+  },
+  "overlays": {
+    "candidate_selection": {
+      "path": "tools/t41_candidate_selection.json",
+      "sha256": "46784681f17c28cd7ac816da370b78c486a350c15a032549525f17340a912535"
+    },
+    "catalog_work_set": {
+      "path": "tools/t41_work_set.json",
+      "sha256": "3fda80dea0a98f8eae31f6919176ca5292e9b0e16d5e7a3ffb18832e77aa257b"
+    },
+    "layered_player_path": {
+      "path": "tools/t41_layered_player_path.json",
+      "sha256": "5bb5624cf192c58bad0c8bc788c270b137bc2f53ecc4e0ea8ee1a37500fe9739"
+    },
+    "operand_disposition": {
+      "path": "tools/t41_operand_disposition.json",
+      "sha256": "99db4a2d1d111512236010f19693bb6741d4150dc09a5b1e8674ac091aa44cd3"
+    },
+    "production_lock": {
+      "path": "tools/t41_production_lock.json",
+      "sha256": "ddfe50fabb0944dc2001f5b09b205c1ee82a6f55d5493733878e21b52eed8349"
+    },
+    "publication_group_manifest": {
+      "path": "tools/t41_publication_group_manifest.json",
+      "sha256": "eb438c6dc27ef84dabd0415b44f10a7ba6bdc4eee60f87a4b60fa4b079167745"
+    },
+    "shard_manifest": {
+      "path": "tools/t41_shard_manifest.json",
+      "sha256": "b7d3ef279c282415ceb97131c4b6bd452b19cabace4190101a25a1f5dbf06ba4"
+    },
+    "source": {
+      "path": "tools/t41_assembler_source.json",
+      "sha256": "b60eb7ad8d553518f3a07a84dc365e13a76b6ed828568d2bd2db901de0608a56"
+    }
+  },
+  "schema_version": 1,
+  "status": "T41_RUNTIME_DEPENDENCIES_BOUND",
+  "t41_trees": {
+    "generated_recipes": {
+      "path": "src/t41_recipe_generated/resources/data/cruciblecraft/recipe/t41/assembler",
+      "sha256": "f62f575c7b90c926f270da8211fdcaee98c3f017c723619ec40e1acdaab232ae"
+    },
+    "locked_support": {
+      "path": "src/t41_support_generated/resources/data/cruciblecraft/recipe/t41_player_path_support",
+      "sha256": "dca3fa12a5748221b9ebcab54f133694fe51b1b9e307a397e8e8dac3f08ac13f"
+    }
+  },
+  "verification": {
+    "builder_policy": {
+      "path": "tools/verification_builder_policy.json",
+      "sha256": "b9c59bfbfbcbea1be9efab3f44cae26b98a9dab3df67972a888d010394bb6fb3"
+    },
+    "profiles": {
+      "path": "tools/verification_profiles.json",
+      "sha256": "831e077fddd1e6c600e0934ca20bd71242f9a64f14110eb6b5980969c310f9ca"
+    },
+    "workflow": {
+      "path": "docs/current/recipe-wave-workflow.md",
+      "sha256": "415ee53de90702fff9599dcedb953d5ca06fee9c08a9f891bfe0c254d1de299c"
+    }
+  }
+}

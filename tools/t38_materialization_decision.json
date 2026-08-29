@@ -1,0 +1,124 @@
+{
+  "currentness": {
+    "builder_path": "tools/build_t38_recipe_load_benchmark.py",
+    "builder_sha256": "c74c557bbe446b48070da79be47e0add67a9e714ebdb20a8a1591682eda0f860",
+    "measurement_sha256": "d5110981d8c03475e3e789356a81fd73238d1431a948f16ed890f23dbf34646c",
+    "policy_path": "tools/t38_materialization_policy.json",
+    "policy_sha256": "1bfdab74bbd9ad94ba52b68a63fce405fb3ea4a8f95a42acaaf1194a59666ad4"
+  },
+  "decision": {
+    "algorithm": {
+      "composite_score_forbidden": true,
+      "correctness_gates": [
+        "field_equivalence",
+        "full_enumeration",
+        "client_consistency",
+        "player_execution"
+      ],
+      "diagnostic_5x_20x_must_not_fill_1x": true,
+      "eager_margin": "If every survivor is inside the cumulative eager soft budget, treat eager_margin as tied and continue. Do not rank remaining hard-ceiling headroom as a score that prefers on_demand solely because it publishes zero eager rows.",
+      "gate_order": [
+        "correctness",
+        "hard_ceiling",
+        "cumulative_soft_budget"
+      ],
+      "hard_ceiling_fail_eliminates": true,
+      "implementation_complexity_order": [
+        "immediate",
+        "on_demand",
+        "hybrid"
+      ],
+      "max_interval_soft_budget_does_not_eliminate": [
+        "lookup_candidate_count"
+      ],
+      "max_interval_soft_note": "T14 lookup_candidate_count is max_interval. Roaster oxygen-sharing yields 73 candidates, under hard 128. The Extruder-calibrated soft 64 is recorded as SOFT_BUDGET_EXCEEDED and must not copy T37's item-only envelope as a T38 veto. Hard ceiling 128 is not raised.",
+      "pending_axis_zero_fill_forbidden": true,
+      "production_candidate_must_sit_inside_cumulative_soft_budget": true,
+      "production_guard": "Emit a production winner only when 1x=73 logical rows are actually measured, every ranking axis used for the winner is PASS (not PENDING), and the winner is derived by tools/build_t38_recipe_load_benchmark.py. Hand-filled production_winner is invalid.",
+      "ranking_logical_rows": 73,
+      "ranking_order_after_all_gates_pass": [
+        "eager_margin",
+        "retained_memory",
+        "reload_index",
+        "lookup",
+        "sync",
+        "implementation_complexity"
+      ],
+      "ranking_scale": "1x"
+    },
+    "composite_score_used": false,
+    "diagnostic_5x_20x_used_for_1x": false,
+    "eliminated": {},
+    "production_blockers": [],
+    "production_winner": "on_demand",
+    "ranking": [
+      {
+        "candidate": "on_demand",
+        "eager_margin": "tied",
+        "eager_publication_rows": 0,
+        "implementation_complexity": 1,
+        "lookup_p95_ns": 685725,
+        "reload_index_p95_ns": {
+          "client_index": 41900,
+          "client_reload": 926000,
+          "server_index": 41100,
+          "server_reload": 738400
+        },
+        "retained_memory_bytes": 7581,
+        "sync_bytes": 7581
+      },
+      {
+        "candidate": "hybrid",
+        "eager_margin": "tied",
+        "eager_publication_rows": 38,
+        "implementation_complexity": 2,
+        "lookup_p95_ns": 417493,
+        "reload_index_p95_ns": {
+          "client_index": 140500,
+          "client_reload": 1959900,
+          "server_index": 181900,
+          "server_reload": 1407100
+        },
+        "retained_memory_bytes": 7581,
+        "sync_bytes": 7581
+      },
+      {
+        "candidate": "immediate",
+        "eager_margin": "tied",
+        "eager_publication_rows": 73,
+        "implementation_complexity": 0,
+        "lookup_p95_ns": 574406,
+        "reload_index_p95_ns": {
+          "client_index": 219200,
+          "client_reload": 1583000,
+          "server_index": 249400,
+          "server_reload": 1777600
+        },
+        "retained_memory_bytes": 7581,
+        "sync_bytes": 7581
+      }
+    ],
+    "ranking_logical_rows": 73,
+    "ranking_scale": "1x",
+    "soft_budget_warnings": {
+      "hybrid": [
+        "soft_budget:lookup_candidate_count:73>64"
+      ],
+      "immediate": [
+        "soft_budget:lookup_candidate_count:73>64"
+      ],
+      "on_demand": [
+        "soft_budget:lookup_candidate_count:73>64"
+      ]
+    },
+    "status": "PRODUCTION_WINNER_READY",
+    "survivors": [
+      "immediate",
+      "on_demand",
+      "hybrid"
+    ]
+  },
+  "measurement_status": "T38_MATERIALIZATION_MEASUREMENT_READY",
+  "schema_version": 1,
+  "status": "T38_MATERIALIZATION_DECISION_READY"
+}

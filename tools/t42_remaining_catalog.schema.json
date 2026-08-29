@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.invalid/schema/t42-remaining-catalog.json",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "family_count",
+    "families",
+    "opening_execution_gap"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "status": { "const": "T42_REMAINING_CATALOG" },
+    "family_count": { "const": 5305 }
+  },
+  "additionalProperties": true
+}

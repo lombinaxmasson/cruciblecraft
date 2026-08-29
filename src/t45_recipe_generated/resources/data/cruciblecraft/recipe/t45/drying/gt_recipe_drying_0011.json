@@ -1,0 +1,53 @@
+{
+  "family_id": "gt.recipe.drying#0011",
+  "publication_group": "cruciblecraft:t45_drying_block",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 360,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 180,
+          "id": "cruciblecraft:water_distilled"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:gt_block/bale_crop_m0"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:gt_block/bale_grass_m1"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "fffe62ab735f85957ea53ba73570a08577fd2862c605bfb03fd325599e2a3b01"
+        ],
+        "selected_source_recipe": "gt.recipe.drying#0011",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t45/3a46d95e70c3a896"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:drying",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

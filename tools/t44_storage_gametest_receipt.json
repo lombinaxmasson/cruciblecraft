@@ -1,0 +1,35 @@
+{
+  "bound_artifacts": {
+    "bundled_catalog": "065a586dae404569b775619631517491bf8606b3ebf5e242f409a9a24ebdc728",
+    "equivalence": "86fd30381a559579af5eb5f9333e1410527c3eb08cfffcbe1449b66083f09c62",
+    "gametest_java": "4f9ae92a114c4223f4b36a7f08da262fcf4090aff896766ac738535eb179bfc9",
+    "production_lock": "6349a69996435808e1cce0395c816d468222db9bcc76c2e85b0649ba49e7fadb"
+  },
+  "command": ".\\gradlew.bat runGameTestServer -Pt44Storage --no-daemon",
+  "failed": 0,
+  "generated_by": "python tools/build_t44_storage_gametest_receipt.py",
+  "java_sha256": "4f9ae92a114c4223f4b36a7f08da262fcf4090aff896766ac738535eb179bfc9",
+  "java_source": "src/main/java/com/masson/cruciblecraft/gametest/T44StorageGameTests.java",
+  "log_fingerprint": "62362acac9e8c65d7a6f83f0820cdb0d834f45f3c6283d783bd399514937c528",
+  "log_path": "tools/t44_gametest.log",
+  "namespace": "cruciblecraft_t44",
+  "note": "Source markers are not a pass. This receipt is the isolated -Pt44Storage result bound to the production lock, bundled catalog, and committed UTF-8 evidence log. The gitignored run-t44-storage directory is not evidence. Creative injection is not a player path.",
+  "pass_marker": "All 10 required tests passed :)",
+  "passed": 10,
+  "required_tests": 10,
+  "schema_version": 1,
+  "skip_is_not_pass": true,
+  "status": "PASS",
+  "test_ids": [
+    "bookshelfacceptsbooksandrejectsingots",
+    "bottlecraterejectsnonbottles",
+    "breakingdropsselfandcontents",
+    "catalogmatchesliveregistry",
+    "charginglockeracceptselectricandrejectsheat",
+    "inserterscansmassstoragenotchests",
+    "lockerswapsarmoronfrontface",
+    "logisticsexposescapabilitystandarddoesnot",
+    "massstorageoverflowandreload",
+    "t36machinerowsstayeightyfive"
+  ]
+}

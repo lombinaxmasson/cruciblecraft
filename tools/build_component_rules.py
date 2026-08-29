@@ -16,6 +16,8 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 SOURCE_DIR = ROOT / "tools" / "component_rule_sources"
 SOURCE_FILES = (
     "acceptance_form_corrections.json",
@@ -539,7 +541,7 @@ def _validate_acceptance_corrections(
     rule_ids = {rule["id"] for rule in rules}
     gate = _read_json(registration_gate_path)
     gate_materials = gate.get("materials")
-    if gate.get("schema_version") != 1 or not isinstance(gate_materials, dict):
+    if gate.get("schema_version") not in (1, 2) or not isinstance(gate_materials, dict):
         raise SourceError(f"{registration_gate_path}: invalid material registration gate")
     identities: list[tuple[str, tuple[str, ...]]] = []
     for index, correction in enumerate(corrections):
@@ -708,7 +710,7 @@ def _validate_extruder_source(
     selector_policy = _read_json(selector_policy_path)
     registration_gate = _read_json(registration_gate_path)
     registered_forms = registration_gate.get("materials")
-    if registration_gate.get("schema_version") != 1 or not isinstance(registered_forms, dict):
+    if registration_gate.get("schema_version") not in (1, 2) or not isinstance(registered_forms, dict):
         raise SourceError(f"{registration_gate_path}: invalid material registration gate")
     material_tags = {
         document["id"]: set(
@@ -718,9 +720,9 @@ def _validate_extruder_source(
         if path.name != "index.json"
         for document in [_read_json(path)]
     }
-    if len(allowed_prefixes) != 57:
+    if len(allowed_prefixes) != 58:
         raise SourceError(
-            f"component_rules.json: expected 57 registered prefixes, "
+            f"component_rules.json: expected 58 registered prefixes, "
             f"got {len(allowed_prefixes)}"
         )
     if (
@@ -1539,8 +1541,28 @@ def check_bundle(
             errors.append(f"generated recipe content drift: {relative}")
     if not manifest_path.is_file():
         errors.append(f"missing manifest: {manifest_path}")
-    elif manifest_path.read_bytes() != bundle.manifest:
-        errors.append(f"manifest content drift: {manifest_path}")
+    else:
+        from tools import currentness
+
+        rebuilt_manifest = json.loads(bundle.manifest.decode("utf-8"))
+        if currentness.target_row(manifest_path) is not None:
+            errors.extend(
+                currentness.check_rebuilt(manifest_path, rebuilt_manifest)
+            )
+        else:
+            try:
+                disk = json.loads(
+                    manifest_path.read_text(encoding="utf-8")
+                )
+            except (OSError, ValueError, json.JSONDecodeError):
+                errors.append(f"manifest content drift: {manifest_path}")
+            else:
+                if currentness.semantic_root_sha256(
+                    disk
+                ) != currentness.semantic_root_sha256(rebuilt_manifest):
+                    errors.append(
+                        f"manifest content drift: {manifest_path}"
+                    )
     if not tag_output.is_file():
         errors.append(f"missing generated tag: {tag_output}")
     elif tag_output.read_bytes() != bundle.any_rubber_tag:
@@ -1557,7 +1579,14 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="validate sources and require generated files to be byte-exact",
     )
+    parser.add_argument(
+        "--write",
+        action="store_true",
+        help="write generated component MaterialRule recipes",
+    )
     args = parser.parse_args(argv)
+    if args.check == args.write:
+        parser.error("choose exactly one of --check or --write")
     try:
         bundle = build_bundle()
         if args.check:

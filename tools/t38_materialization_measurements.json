@@ -1,0 +1,306 @@
+{
+  "schema_version": 1,
+  "status": "T38_MATERIALIZATION_MEASUREMENT_READY",
+  "production_winner_claimed": false,
+  "protocol": {
+    "p50_p95_invented": false,
+    "sample_count": 21,
+    "diagnostic_scales_not_for_production": [
+      "5x",
+      "20x"
+    ],
+    "id": "t38_materialization_73_row_v1",
+    "single_wall_clock_sample_forbidden": true,
+    "ranking_scale": "1x"
+  },
+  "input": {
+    "kind": "t38_73_relation_rows",
+    "logical_rows": 73,
+    "measured_logical_rows": [
+      73
+    ],
+    "generated_datapack_present": true,
+    "harness": "CompactRecipeFamilyT38MeasurementHarness 1x=73 JUnit samples; retained_memory uses snapshot.syncPayloadBytes (T38-added compact payload), not a naive JVM heap delta. player_execution evidenced by CompactGTRecipeFamilyGeneratedTest and T38 roaster equivalence artifacts. T37 assembler policy remains loaded in-repo but is not co-measured here."
+  },
+  "t37_opening": {
+    "source": "tools/t37_census_delta.json#t14_load.closing",
+    "datapack_authored_entries": 3616,
+    "eager_publication_rows": 16611,
+    "lazy_logical_rows": 2261,
+    "lazy_cache_ceiling_rows": 8,
+    "sync_bytes": 5150,
+    "server_reload_ms": 1,
+    "server_index_ms": 1,
+    "client_reload_ms": 1,
+    "client_index_ms": 1,
+    "retained_memory_bytes": 5150,
+    "allocation_bytes": 236168,
+    "lookup_p95_ns": 87368,
+    "lookup_candidate_count": 42,
+    "pending_runtime_axes": []
+  },
+  "family_work_set": {
+    "family_count": 29,
+    "authored_entries_per_family": 1,
+    "logical_rows_per_family": "variable_1_to_38",
+    "strategy": "undecided_pending_derived_winner",
+    "card_level_runtime_costs": "recorded once; never copied 73 times or averaged into per-family measurements"
+  },
+  "scenarios": [
+    {
+      "scale": "1x",
+      "logical_rows": 73,
+      "production_scale": true,
+      "candidates": [
+        {
+          "candidate": "immediate",
+          "eager_publication_rows": 73,
+          "lazy_logical_rows": 0,
+          "lazy_cache_ceiling_rows": 0,
+          "status": "PASS",
+          "gates": {
+            "field_equivalence": true,
+            "full_enumeration": true,
+            "client_consistency": true,
+            "player_execution": true,
+            "all_pass": true
+          },
+          "server": {
+            "status": "PASS",
+            "reload": {
+              "p50_ns": 1260600,
+              "p95_ns": 1777600,
+              "sample_count": 21
+            },
+            "index": {
+              "p50_ns": 161300,
+              "p95_ns": 249400,
+              "sample_count": 21
+            }
+          },
+          "dedicated_client": {
+            "status": "PASS",
+            "reload": {
+              "p50_ns": 1294400,
+              "p95_ns": 1583000,
+              "sample_count": 21
+            },
+            "index": {
+              "p50_ns": 159000,
+              "p95_ns": 219200,
+              "sample_count": 21
+            }
+          },
+          "integrated_client": {
+            "independent_reexpansion": false,
+            "status": "PASS",
+            "reason": "integrated-client reuse is a skip-and-share contract, not a second wall-clock sample; CompactRecipeFamilyProvider.prepare(INTEGRATED_CLIENT) throws"
+          },
+          "enumeration": {
+            "status": "PASS",
+            "p50_ns": 16500,
+            "p95_ns": 21200,
+            "sample_count": 21,
+            "reason": "complete enumeration; cache did not grow"
+          },
+          "lookup": {
+            "status": "PASS",
+            "p50_ns": 259500,
+            "p95_ns": 574406,
+            "sample_count": 21,
+            "reason": "RecipeMap.findMatch over generated consume items",
+            "candidates_p95": 73
+          },
+          "sync": {
+            "bytes": 7581,
+            "status": "PASS",
+            "reason": "snapshot.syncPayloadBytes(); a count, not a timing"
+          },
+          "retained_memory": {
+            "status": "PASS",
+            "p50_bytes": 7581,
+            "p95_bytes": 7581,
+            "naive_heap_delta_used": false,
+            "reason": "T38-added compact snapshot payload (syncPayloadBytes); not a naive JVM heap delta"
+          },
+          "allocation": {
+            "p50_bytes": 364496,
+            "p95_bytes": 364496,
+            "status": "PASS",
+            "reason": "ThreadMXBean.getThreadAllocatedBytes around prepare"
+          }
+        },
+        {
+          "candidate": "on_demand",
+          "eager_publication_rows": 0,
+          "lazy_logical_rows": 73,
+          "lazy_cache_ceiling_rows": 16,
+          "status": "PASS",
+          "gates": {
+            "field_equivalence": true,
+            "full_enumeration": true,
+            "client_consistency": true,
+            "player_execution": true,
+            "all_pass": true
+          },
+          "server": {
+            "status": "PASS",
+            "reload": {
+              "p50_ns": 530400,
+              "p95_ns": 738400,
+              "sample_count": 21
+            },
+            "index": {
+              "p50_ns": 22700,
+              "p95_ns": 41100,
+              "sample_count": 21
+            }
+          },
+          "dedicated_client": {
+            "status": "PASS",
+            "reload": {
+              "p50_ns": 528000,
+              "p95_ns": 926000,
+              "sample_count": 21
+            },
+            "index": {
+              "p50_ns": 22100,
+              "p95_ns": 41900,
+              "sample_count": 21
+            }
+          },
+          "integrated_client": {
+            "independent_reexpansion": false,
+            "status": "PASS",
+            "reason": "integrated-client reuse is a skip-and-share contract, not a second wall-clock sample; CompactRecipeFamilyProvider.prepare(INTEGRATED_CLIENT) throws"
+          },
+          "enumeration": {
+            "status": "PASS",
+            "p50_ns": 652600,
+            "p95_ns": 747400,
+            "sample_count": 21,
+            "reason": "complete enumeration; cache did not grow"
+          },
+          "lookup": {
+            "status": "PASS",
+            "p50_ns": 514062,
+            "p95_ns": 685725,
+            "sample_count": 21,
+            "reason": "RecipeMap.findMatch over generated consume items",
+            "candidates_p95": 73
+          },
+          "sync": {
+            "bytes": 7581,
+            "status": "PASS",
+            "reason": "snapshot.syncPayloadBytes(); a count, not a timing"
+          },
+          "retained_memory": {
+            "status": "PASS",
+            "p50_bytes": 7581,
+            "p95_bytes": 7581,
+            "naive_heap_delta_used": false,
+            "reason": "T38-added compact snapshot payload (syncPayloadBytes); not a naive JVM heap delta"
+          },
+          "allocation": {
+            "p50_bytes": 236984,
+            "p95_bytes": 236984,
+            "status": "PASS",
+            "reason": "ThreadMXBean.getThreadAllocatedBytes around prepare"
+          }
+        },
+        {
+          "candidate": "hybrid",
+          "eager_publication_rows": 38,
+          "lazy_logical_rows": 35,
+          "lazy_cache_ceiling_rows": 16,
+          "status": "PASS",
+          "gates": {
+            "field_equivalence": true,
+            "full_enumeration": true,
+            "client_consistency": true,
+            "player_execution": true,
+            "all_pass": true
+          },
+          "server": {
+            "status": "PASS",
+            "reload": {
+              "p50_ns": 1004200,
+              "p95_ns": 1407100,
+              "sample_count": 21
+            },
+            "index": {
+              "p50_ns": 114900,
+              "p95_ns": 181900,
+              "sample_count": 21
+            }
+          },
+          "dedicated_client": {
+            "status": "PASS",
+            "reload": {
+              "p50_ns": 970800,
+              "p95_ns": 1959900,
+              "sample_count": 21
+            },
+            "index": {
+              "p50_ns": 107100,
+              "p95_ns": 140500,
+              "sample_count": 21
+            }
+          },
+          "integrated_client": {
+            "independent_reexpansion": false,
+            "status": "PASS",
+            "reason": "integrated-client reuse is a skip-and-share contract, not a second wall-clock sample; CompactRecipeFamilyProvider.prepare(INTEGRATED_CLIENT) throws"
+          },
+          "enumeration": {
+            "status": "PASS",
+            "p50_ns": 338800,
+            "p95_ns": 500700,
+            "sample_count": 21,
+            "reason": "complete enumeration; cache did not grow"
+          },
+          "lookup": {
+            "status": "PASS",
+            "p50_ns": 217900,
+            "p95_ns": 417493,
+            "sample_count": 21,
+            "reason": "RecipeMap.findMatch over generated consume items",
+            "candidates_p95": 73
+          },
+          "sync": {
+            "bytes": 7581,
+            "status": "PASS",
+            "reason": "snapshot.syncPayloadBytes(); a count, not a timing"
+          },
+          "retained_memory": {
+            "status": "PASS",
+            "p50_bytes": 7581,
+            "p95_bytes": 7581,
+            "naive_heap_delta_used": false,
+            "reason": "T38-added compact snapshot payload (syncPayloadBytes); not a naive JVM heap delta"
+          },
+          "allocation": {
+            "p50_bytes": 301976,
+            "p95_bytes": 301976,
+            "status": "PASS",
+            "reason": "ThreadMXBean.getThreadAllocatedBytes around prepare"
+          }
+        }
+      ]
+    }
+  ],
+  "diagnostic_scales": {
+    "20x": {
+      "logical_rows": 1460,
+      "production_use": "forbidden",
+      "status": "PENDING_MEASUREMENT",
+      "note": "Diagnostic only. Must not copy Extruder 20x=55640 or fill 1x unmeasured fields."
+    },
+    "5x": {
+      "logical_rows": 365,
+      "production_use": "forbidden",
+      "status": "PENDING_MEASUREMENT",
+      "note": "Diagnostic only. Must not fill 1x unmeasured fields."
+    }
+  }
+}

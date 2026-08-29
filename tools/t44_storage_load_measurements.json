@@ -1,0 +1,68 @@
+{
+  "block_entities_created": 17,
+  "generated_by": "python tools/build_t44_storage_load_measurements.py",
+  "hard_ceiling_raised": false,
+  "hardware": {
+    "machine": "AMD64",
+    "note": "Windows 11 development workstation; JUnit StorageProfileBlockEntityTest + MassStorageHandlerTest timings; isolated runGameTestServer -Pt44Storage batch 4.741s",
+    "os": "windows",
+    "python": "3.12.9",
+    "release": "11"
+  },
+  "note": "Measurements include created BlockEntities and inserter scan. Zero-fill and screenshot-only evidence are rejected.",
+  "scenarios": {
+    "card_only": {
+      "block_entities_created": 7,
+      "catalog_expand": {
+        "block_entities_created": 0,
+        "max": 5866300.0,
+        "p50": 5180500.0,
+        "p95": 5866300.0,
+        "samples": 7,
+        "scenario": "catalog_expand",
+        "unit": "ns"
+      },
+      "java_inventory": {
+        "max": 75000000.0,
+        "p50": 2000000.0,
+        "p95": 75000000.0,
+        "samples": 5,
+        "scenario": "junit_storage_inventory_and_be",
+        "unit": "ns"
+      }
+    },
+    "integrated_current": {
+      "block_entities_created": 10,
+      "gametest": {
+        "batch_seconds": 4.741,
+        "block_entities_created": 10,
+        "max": 4741000000.0,
+        "note": "10 BlockEntities placed across the isolated 10-test suite (inserter+logistics place two each). Chests are not scanned. Catalog-only expand is rejected.",
+        "p50": 648500000.0,
+        "p95": 4741000000.0,
+        "pass_marker": "All 10 required tests passed :)",
+        "samples": 4,
+        "scenario": "isolated_t44_storage_gametest",
+        "unit": "ns"
+      }
+    }
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T44_STORAGE_LOAD_MEASURED",
+  "t14_hard": {
+    "allocation_bytes": 536870912,
+    "client_index_ms": 3000,
+    "client_reload_ms": 10000,
+    "datapack_authored_entries": 6600,
+    "eager_publication_rows": 21000,
+    "lazy_cache_ceiling_rows": 4096,
+    "lazy_logical_rows": 56000,
+    "lookup_candidate_count": 128,
+    "lookup_p95_ns": 2000000,
+    "retained_memory_bytes": 536870912,
+    "server_index_ms": 1000,
+    "server_reload_ms": 10000,
+    "sync_bytes": 67108864
+  }
+}

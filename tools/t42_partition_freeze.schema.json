@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.invalid/schema/t42-partition-freeze.json",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "source_revision",
+    "opening_execution_gap",
+    "semantic_roots",
+    "owns_families"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "status": { "const": "T42_PARTITION_FREEZE" },
+    "source_revision": { "type": "string" },
+    "owns_families": { "const": 0 }
+  },
+  "additionalProperties": true
+}

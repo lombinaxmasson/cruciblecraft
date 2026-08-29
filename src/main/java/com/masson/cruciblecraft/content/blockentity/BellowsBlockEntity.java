@@ -7,6 +7,7 @@ import com.masson.cruciblecraft.content.block.BellowsBlock;
 import com.masson.cruciblecraft.energy.EnergyEmitter;
 import com.masson.cruciblecraft.energy.PerTickEnergyBudget;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
+import com.masson.cruciblecraft.registry.ModFluids;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -16,6 +17,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
 
 public final class BellowsBlockEntity extends BlockEntity implements IEnergyHandler {
     private long activeUntil = Long.MIN_VALUE;
@@ -110,6 +114,18 @@ public final class BellowsBlockEntity extends BlockEntity implements IEnergyHand
                 effectiveSimulation);
     }
 
+    /**
+     * Exposes the mechanical air emitted by an active bellows as the registered
+     * air gas, so it can be piped into recipes that explicitly consume air.
+     * The shared per-tick budget prevents simultaneous energy and fluid pulls
+     * from duplicating a stroke's output.
+     */
+    public IFluidHandler fluids(Direction side) {
+        return side != null && handles(EnergyType.AIR, side)
+                ? new AirFluidHandler(side)
+                : null;
+    }
+
     private long gameTime() {
         if (level == null) {
             outputBudget.reset();
@@ -122,6 +138,92 @@ public final class BellowsBlockEntity extends BlockEntity implements IEnergyHand
         if (activeUntil == Long.MIN_VALUE && level != null) {
             activeUntil = level.getGameTime() + loadedRemainingTicks;
             loadedRemainingTicks = 0;
+        }
+    }
+
+    private final class AirFluidHandler implements IFluidHandler {
+        private final Direction side;
+
+        private AirFluidHandler(Direction side) {
+            this.side = side;
+        }
+
+        @Override
+        public int getTanks() {
+            return 1;
+        }
+
+        @Override
+        public FluidStack getFluidInTank(int tank) {
+            if (tank != 0) {
+                return FluidStack.EMPTY;
+            }
+            return airStack(available());
+        }
+
+        @Override
+        public int getTankCapacity(int tank) {
+            return tank == 0
+                    ? Math.toIntExact(AirOutputModel.BELLOWS_AIR_PER_TICK)
+                    : 0;
+        }
+
+        @Override
+        public boolean isFluidValid(int tank, FluidStack stack) {
+            return false;
+        }
+
+        @Override
+        public int fill(FluidStack resource, FluidAction action) {
+            return 0;
+        }
+
+        @Override
+        public FluidStack drain(FluidStack resource, FluidAction action) {
+            Fluid air = air();
+            if (air == null || resource.isEmpty() || resource.getFluid() != air) {
+                return FluidStack.EMPTY;
+            }
+            return airStack(drainAmount(resource.getAmount(), action));
+        }
+
+        @Override
+        public FluidStack drain(int maxDrain, FluidAction action) {
+            return airStack(drainAmount(maxDrain, action));
+        }
+
+        private int available() {
+            if (!handles(EnergyType.AIR, side) || !isActive()) {
+                return 0;
+            }
+            return (int) outputBudget.claim(
+                    gameTime(),
+                    AirOutputModel.BELLOWS_AIR_PER_TICK,
+                    AirOutputModel.BELLOWS_AIR_PER_TICK,
+                    true);
+        }
+
+        private int drainAmount(int requested, FluidAction action) {
+            if (requested <= 0) {
+                return 0;
+            }
+            return (int) extract(
+                    EnergyType.AIR,
+                    1L,
+                    requested,
+                    side,
+                    action == FluidAction.SIMULATE);
+        }
+
+        private FluidStack airStack(int amount) {
+            Fluid air = air();
+            return air == null || amount <= 0
+                    ? FluidStack.EMPTY
+                    : new FluidStack(air, amount);
+        }
+
+        private Fluid air() {
+            return ModFluids.materialFluid("air").orElse(null);
         }
     }
 

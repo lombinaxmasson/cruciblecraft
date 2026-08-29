@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from collections import Counter, defaultdict, deque
 from pathlib import Path
 from typing import Any
@@ -18,6 +19,8 @@ except ModuleNotFoundError:
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 TOOLS = ROOT / "tools"
 POLICY = TOOLS / "t21_template_denominator_policy.json"
 OUTPUT = TOOLS / "t21_template_denominator.json"
@@ -530,9 +533,9 @@ def build() -> dict[str, Any]:
 
 
 def semantic_document(document: dict[str, Any]) -> dict[str, Any]:
-    result = dict(document)
-    result.pop("inputs", None)
-    return result
+    from tools import semantic_projection as projection
+
+    return projection.ledger_projection(document)["semantic_body"]
 
 
 def verify_metadata_rebase(
@@ -559,29 +562,26 @@ def validate_compact(document: dict[str, Any]) -> None:
         != document["counts"]["denominator_units"]
     ):
         raise ValueError("T21 compact template denominator drifted")
-    expected_inputs = {
-        "tools/t21_template_denominator_policy.json": sha256(POLICY),
-        "tools/gt6_mixer_templates_index.json": sha256(
-            mixer_templates.INDEX_OUTPUT
-        ),
-        "tools/gt6_mixer_templates_membership.json": sha256(
-            mixer_templates.MEMBERSHIP_OUTPUT
-        ),
-        "tools/t5_chemical_recipe_manifest.json": sha256(T5_MANIFEST),
-        "tools/t21_source_denominator.json": sha256(ROW_DIAGNOSTIC),
-    }
-    if document.get("inputs") != expected_inputs:
-        raise ValueError("T21 template denominator input hashes drifted")
+    from tools import currentness
+
+    errors = currentness.check_sidecar(OUTPUT)
+    if errors:
+        raise ValueError("; ".join(errors))
 
 
 def check(document: dict[str, Any] | None = None) -> list[str]:
     if not OUTPUT.is_file():
         return [f"missing {OUTPUT.relative_to(ROOT).as_posix()}"]
+    from tools import currentness
+
     committed = load(OUTPUT)
-    validate_compact(committed)
-    if document is not None and committed != document:
-        return [f"stale {OUTPUT.relative_to(ROOT).as_posix()}"]
-    return []
+    try:
+        validate_compact(committed)
+    except ValueError as error:
+        return [str(error)]
+    if document is None:
+        return currentness.check_sidecar(OUTPUT)
+    return currentness.check_rebuilt(OUTPUT, document)
 
 
 def main() -> int:

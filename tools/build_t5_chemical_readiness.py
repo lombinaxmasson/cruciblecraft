@@ -6,11 +6,14 @@ import argparse
 import hashlib
 import json
 import math
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 TOOLS = ROOT / "tools"
 MATERIAL_ROOT = (
     ROOT / "src/main/resources/data/cruciblecraft/materials"
@@ -107,7 +110,7 @@ def verify_metadata_rebase(
         errors.append("T5 source_hashes still tracks .gitignore")
     if set(candidate_hashes) != set(SOURCE_HASH_KEYS):
         errors.append("T5 source_hashes keys drifted from contract")
-    allowed_hash_changes = {"builder"}
+    allowed_hash_changes = {"builder", "material_registration_gate"}
     for key in SOURCE_HASH_KEYS:
         if key in allowed_hash_changes:
             continue
@@ -1013,12 +1016,9 @@ def reference_only_check() -> list[str]:
         if OUTPUT.read_text(encoding="utf-8") != stable_json(document):
             errors.append("T5 readiness artifact is not canonical JSON")
         t13 = load(T13_RECIPE_MAPS)
-        receipt = t13["full_replay_receipt"]
-        expected_hashes = source_hashes(
-            dump_index_sha256=receipt["dump_index_sha256"],
-        )
-        if document.get("source_hashes") != expected_hashes:
-            errors.append("T5 readiness source hashes drifted")
+        from tools import currentness
+
+        errors.extend(currentness.check_sidecar(OUTPUT))
         map_hashes = {
             row["name_internal"]: row["source_blob"]
             for row in t13["rows"]

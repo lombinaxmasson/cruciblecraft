@@ -1,0 +1,59 @@
+{
+  "family_id": "gt.recipe.assembler#0314",
+  "publication_group": "cruciblecraft:t41_assembler_planks2",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 128,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        8,
+        0
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:birch_planks"
+        },
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 8
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:chest"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "a98de4d0cfb76631ea3c4865effb6a227dbab53eaf9a08a810da4c9a8cfa1a6f"
+        ],
+        "selected_source_recipe": "gt.recipe.assembler#0314",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t41/e3f8393c9a89eb59"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:assembler",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

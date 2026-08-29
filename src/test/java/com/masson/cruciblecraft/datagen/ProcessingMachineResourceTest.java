@@ -141,9 +141,9 @@ class ProcessingMachineResourceTest {
         long missingMaterialNames = missing.stream()
                 .filter(key -> key.startsWith("material.cruciblecraft."))
                 .count();
-        assertEquals(3_364, english.size(), "current generated en_us key count");
-        assertEquals(1_004L, translated, "declared Chinese translation coverage");
-        assertEquals(2_360, missing.size(), "visible zh_cn localization debt");
+        assertEquals(4_801, english.size(), "current generated en_us key count");
+        assertEquals(2_426L, translated, "declared Chinese translation coverage");
+        assertEquals(2_375, missing.size(), "visible zh_cn localization debt");
         assertEquals(1_566L, missingMaterialNames,
                 "missing generated material-name translations");
         assertEquals(chinese.size(), translated,

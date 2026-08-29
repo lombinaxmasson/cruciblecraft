@@ -15,6 +15,8 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 POLICY = ROOT / "tools" / "t14_extruder_policy.json"
 SOURCE = ROOT / "tools" / "component_rule_sources" / "extruder_shapes.json"
 INDEX = ROOT / "tools" / "gt6_extruder_templates_index_v5.json"
@@ -612,16 +614,26 @@ def write_bundle(bundle: ArtifactBundle) -> None:
 
 def check_bundle(bundle: ArtifactBundle) -> list[str]:
     errors: list[str] = []
+    from tools import currentness
+
     for path, expected in (
         (EXPECTED, bundle.expected),
         (COMPACT, bundle.compact),
-        (READINESS, bundle.readiness),
         (LEGACY_REPLAY, bundle.legacy_replay),
     ):
         if not path.is_file():
             errors.append(f"missing T14a artifact: {path.relative_to(ROOT)}")
         elif path.read_bytes() != expected:
             errors.append(f"T14a artifact drift: {path.relative_to(ROOT)}")
+    if not READINESS.is_file():
+        errors.append(f"missing T14a artifact: {READINESS.relative_to(ROOT)}")
+    else:
+        errors.extend(
+            currentness.check_rebuilt(
+                READINESS,
+                json.loads(bundle.readiness.decode("utf-8")),
+            )
+        )
     return errors
 
 

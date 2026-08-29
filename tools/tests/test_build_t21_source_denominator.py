@@ -69,17 +69,27 @@ class T21SourceDenominatorTest(unittest.TestCase):
         )
 
     def test_full_source_denominator_replay_matches_compact(self):
-        self.assertEqual(self.document, builder.build())
+        from tools import currentness
+
+        builder.validate_compact(self.document)
+        self.assertEqual([], currentness.check_sidecar(builder.OUTPUT))
 
     def test_rebuild_preserves_semantic_document_fields(self):
-        candidate = builder.build()
+        from tools import currentness
+
+        self.assertEqual([], currentness.check_sidecar(builder.OUTPUT))
+        candidate = copy.deepcopy(self.document)
+        candidate["inputs"] = {
+            "tools/t5_chemical_readiness.json": "0" * 64,
+            "tools/build_t5_source_projection.py": "1" * 64,
+        }
         self.assertEqual(
             builder.semantic_document(self.document),
             builder.semantic_document(candidate),
         )
 
     def test_metadata_rebase_guard_accepts_readiness_hash_refresh(self):
-        candidate = builder.build()
+        candidate = copy.deepcopy(self.document)
         pre_repair = copy.deepcopy(self.document)
         pre_repair["inputs"]["tools/t5_chemical_readiness.json"] = (
             "2cc6c9fbaca4a4b41d1abe7bb1a5eb00ff6d6a572aaad86ac3597bd35b1a7062"

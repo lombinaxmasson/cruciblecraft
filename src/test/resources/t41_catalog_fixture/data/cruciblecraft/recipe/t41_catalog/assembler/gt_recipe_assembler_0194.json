@@ -1,0 +1,63 @@
+{
+  "family_id": "gt.recipe.assembler#0194",
+  "publication_group": "cruciblecraft:t41_assembler_fireproof",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 48,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:fireproof": 1
+          },
+          "items": "cruciblecraft:gt_wood/frozen_planks",
+          "type": "neoforge:components"
+        },
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 3
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:oak_trapdoor"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "d5667b0babafe65e44a32aa4fb05367879ae988d61230a6dd275ac22c8837c5d"
+        ],
+        "selected_source_recipe": "gt.recipe.assembler#0194",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t41/05ed9b0584b5bd5e"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:assembler",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

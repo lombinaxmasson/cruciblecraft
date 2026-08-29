@@ -1,0 +1,63 @@
+{
+  "family_id": "gt.recipe.centrifuge#0146",
+  "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 3504,
+      "eut": 168,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        12
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:komatiite/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:peridot/dust"
+        },
+        {
+          "count": 2,
+          "id": "cruciblecraft:magnesium_carbonate/dust"
+        },
+        {
+          "count": 6,
+          "id": "cruciblecraft:flint/dust"
+        },
+        {
+          "count": 3,
+          "id": "cruciblecraft:dark_ashes/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000,
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "e848847cac9f462a214005c402ea04e55477a6d5286a8dfe12e82c9c589419ef"
+        ],
+        "selected_source_recipe": "gt.recipe.centrifuge#0146",
+        "source_kind": "SOURCE_BACKED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t39_catalog/b5eae3ebb0da2c8e"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:centrifuge",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

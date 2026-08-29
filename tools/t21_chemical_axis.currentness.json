@@ -1,0 +1,29 @@
+{
+  "artifact": "tools/t21_chemical_axis.json",
+  "artifact_file_sha256": "847684f2170b20c1ba818e13cc9ae6834dcbfa8d3829c8cd4e748325454429d7",
+  "builder_sha256": "a2d9c37dab69cbb683edd399d960dd731d871dde1b6ab7d8a61e0f59bff10128",
+  "dependency_semantic_roots": {
+    "tools/t5_chemical_readiness.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "e1ddd23b0123268c0e099ce97406188435a447c4d3befafbe4cff935549cedce"
+    },
+    "tools/t5_chemical_recipe_manifest.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "430149ce6ad5298ec26e69d2ebb392635470db9d31c861e935cdb357e933b08a"
+    }
+  },
+  "envelope_sha256": "5bb32a786c9f8da66e87f0f1934836bbc42b0fae82ce47ad10327a2ffa2a97ea",
+  "generated_by": "python tools/currentness.py",
+  "giant_body": false,
+  "schema_version": 2,
+  "semantic_projection_kind": "json_ledger",
+  "semantic_projection_version": 1,
+  "semantic_root_sha256": "715670a2be5e05e54a5ffd4f20da9cb7f34bd06a6bfb6cf576c4b3d27118404a",
+  "source_replay_receipt": {
+    "proof_tier": "compact",
+    "status": "unavailable"
+  },
+  "status": "CURRENTNESS_SIDECAR"
+}

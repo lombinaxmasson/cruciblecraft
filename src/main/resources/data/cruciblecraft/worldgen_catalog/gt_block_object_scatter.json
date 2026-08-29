@@ -1,0 +1,18 @@
+{
+  "kind": "scatter",
+  "id": "gt_block_object_scatter",
+  "feature_type": "cruciblecraft:gt_block_object_scatter",
+  "config": {
+    "rarity": 128,
+    "rock_tag": "cruciblecraft:gt_block_objects"
+  },
+  "placed_feature": "cruciblecraft:gt_block_object_scatter",
+  "biome_modifier": {
+    "id": "add_gt_block_object_scatter",
+    "biomes": "#minecraft:is_overworld",
+    "step": "top_layer_modification",
+    "features": [
+      "cruciblecraft:gt_block_object_scatter"
+    ]
+  }
+}

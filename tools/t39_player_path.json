@@ -1,0 +1,705 @@
+{
+  "alias_fail_closed_relations": 0,
+  "families": 22,
+  "frozen_review_unmodified": true,
+  "inputs_reachable": 15,
+  "note": "Namespace or fluid whitelist is not player reachability. Inputs are checked against the current typed T21 identity closure. Unproven source_derived_alias hosted/state collapses are fail-closed even when the aliased vanilla/CC id is in T21. The frozen T39 source remains the immutable recipe evidence.",
+  "outputs_registered": 32,
+  "reachability_source": "tools/t21_operand_reachability.json#closure.reachable_identities",
+  "relations": 32,
+  "relations_with_unreachable_inputs": 17,
+  "rows": [
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [
+        "minecraft:magma_cream"
+      ],
+      "fluid_input_ids": [],
+      "fluid_inputs_reachable": true,
+      "fluid_output_ids": [
+        "cruciblecraft:glue"
+      ],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": true,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "minecraft:blaze_powder"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/0fc7ee3fbc68513e",
+      "template_key": "gt.recipe.centrifuge#0112",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [
+        "cruciblecraft:cobalt/tiny_centrifuged_crushed_ore"
+      ],
+      "fluid_input_ids": [],
+      "fluid_inputs_reachable": true,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": false,
+      "item_inputs_reachable": false,
+      "output_ids": [
+        "cruciblecraft:cobalt/tiny_dust",
+        "cruciblecraft:cobalt60/tiny_dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/15cf9ab601f783d9",
+      "template_key": "gt.recipe.centrifuge#0171",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [],
+      "fluid_input_ids": [
+        "cruciblecraft:aqua_regia"
+      ],
+      "fluid_inputs_reachable": false,
+      "fluid_output_ids": [
+        "cruciblecraft:nitric_acid",
+        "cruciblecraft:hydrochloric_acid"
+      ],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": false,
+      "item_inputs_reachable": true,
+      "output_ids": [],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/185249692915af8c",
+      "template_key": "gt.recipe.centrifuge#0147",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [
+        "cruciblecraft:blue_sapphire/dust"
+      ],
+      "fluid_input_ids": [],
+      "fluid_inputs_reachable": true,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": true,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:alumina/dust",
+        "cruciblecraft:iron/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/30be01c2bdf21e78",
+      "template_key": "gt.recipe.centrifuge#0008",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [],
+      "fluid_input_ids": [
+        "cruciblecraft:molten_blue_alloy"
+      ],
+      "fluid_inputs_reachable": false,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": false,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:silver/dust",
+        "cruciblecraft:nikolite/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/3486eb8b50f3b4f5",
+      "template_key": "gt.recipe.centrifuge#0011",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [],
+      "fluid_input_ids": [
+        "cruciblecraft:molten_signalum"
+      ],
+      "fluid_inputs_reachable": false,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": false,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:copper/dust",
+        "cruciblecraft:silver/dust",
+        "cruciblecraft:red_alloy/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/38ae2ecc2de4cfc4",
+      "template_key": "gt.recipe.centrifuge#0056",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [],
+      "fluid_input_ids": [
+        "cruciblecraft:molten_arsenic_bronze"
+      ],
+      "fluid_inputs_reachable": false,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": false,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:arsenic/dust",
+        "cruciblecraft:bronze/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/3ea9eb885e0d925d",
+      "template_key": "gt.recipe.centrifuge#0011",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [],
+      "fluid_input_ids": [
+        "cruciblecraft:molten_lumium"
+      ],
+      "fluid_inputs_reachable": false,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": false,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:tin/dust",
+        "cruciblecraft:silver/dust",
+        "minecraft:glowstone_dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/416b061e3815041d",
+      "template_key": "gt.recipe.centrifuge#0057",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [
+        "cruciblecraft:yellow_sapphire/dust"
+      ],
+      "fluid_input_ids": [],
+      "fluid_inputs_reachable": true,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": true,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:alumina/dust",
+        "cruciblecraft:rutile/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/495ae319e7116a2c",
+      "template_key": "gt.recipe.centrifuge#0008",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [],
+      "fluid_input_ids": [
+        "cruciblecraft:molten_sterling_silver"
+      ],
+      "fluid_inputs_reachable": false,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": false,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:copper/dust",
+        "cruciblecraft:silver/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/50c4ea15f0a74e31",
+      "template_key": "gt.recipe.centrifuge#0011",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [
+        "cruciblecraft:energium_red/dust"
+      ],
+      "fluid_input_ids": [],
+      "fluid_inputs_reachable": true,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": false,
+      "item_inputs_reachable": false,
+      "output_ids": [
+        "cruciblecraft:sapphire/dust",
+        "minecraft:redstone"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/57dddd6c297ca78b",
+      "template_key": "gt.recipe.centrifuge#0060",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [],
+      "fluid_input_ids": [
+        "cruciblecraft:molten_soldering_alloy"
+      ],
+      "fluid_inputs_reachable": false,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": false,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:tin/dust",
+        "cruciblecraft:antimony/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/64220b5296f77335",
+      "template_key": "gt.recipe.centrifuge#0080",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [],
+      "fluid_input_ids": [
+        "cruciblecraft:molten_netherite"
+      ],
+      "fluid_inputs_reachable": false,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": false,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:gold/dust",
+        "cruciblecraft:ancient_debris/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/75042e8f7b60678a",
+      "template_key": "gt.recipe.centrifuge#0055",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [],
+      "fluid_input_ids": [
+        "cruciblecraft:molten_invar"
+      ],
+      "fluid_inputs_reachable": false,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": false,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:iron/dust",
+        "cruciblecraft:nickel/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/79c6102e65fea993",
+      "template_key": "gt.recipe.centrifuge#0168",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [
+        "minecraft:slime_ball"
+      ],
+      "fluid_input_ids": [],
+      "fluid_inputs_reachable": true,
+      "fluid_output_ids": [
+        "cruciblecraft:latex",
+        "cruciblecraft:glue"
+      ],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": true,
+      "item_inputs_reachable": true,
+      "output_ids": [],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/7b613367b7d4fc7a",
+      "template_key": "gt.recipe.centrifuge#0113",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [
+        "cruciblecraft:powellite/dust"
+      ],
+      "fluid_input_ids": [],
+      "fluid_inputs_reachable": true,
+      "fluid_output_ids": [
+        "cruciblecraft:oxygen"
+      ],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": true,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:calcium/dust",
+        "cruciblecraft:molybdenum/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/8a9664a51a0e3d02",
+      "template_key": "gt.recipe.centrifuge#0047",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [
+        "cruciblecraft:purple_sapphire/dust"
+      ],
+      "fluid_input_ids": [],
+      "fluid_inputs_reachable": true,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": true,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:alumina/dust",
+        "cruciblecraft:vanadium/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/a9314dfa7daeb760",
+      "template_key": "gt.recipe.centrifuge#0008",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [],
+      "fluid_input_ids": [
+        "cruciblecraft:molten_rose_gold"
+      ],
+      "fluid_inputs_reachable": false,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": false,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:copper/dust",
+        "cruciblecraft:gold/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/aa6d044df1135ab9",
+      "template_key": "gt.recipe.centrifuge#0011",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [
+        "minecraft:glowstone_dust"
+      ],
+      "fluid_input_ids": [],
+      "fluid_inputs_reachable": true,
+      "fluid_output_ids": [
+        "cruciblecraft:helium"
+      ],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": true,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:phosphorite/dust",
+        "cruciblecraft:gold/dust",
+        "cruciblecraft:silicon_dioxide/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/afe40bde6cb2d847",
+      "template_key": "gt.recipe.centrifuge#0073",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [
+        "cruciblecraft:orange_sapphire/dust"
+      ],
+      "fluid_input_ids": [],
+      "fluid_inputs_reachable": true,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": true,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:alumina/dust",
+        "cruciblecraft:copper/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/b0dedbe63373654a",
+      "template_key": "gt.recipe.centrifuge#0008",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [
+        "cruciblecraft:ruby/dust"
+      ],
+      "fluid_input_ids": [],
+      "fluid_inputs_reachable": true,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": true,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:alumina/dust",
+        "cruciblecraft:chromium/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/b88593939fbe36b2",
+      "template_key": "gt.recipe.centrifuge#0008",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [
+        "cruciblecraft:wulfenite/dust"
+      ],
+      "fluid_input_ids": [],
+      "fluid_inputs_reachable": true,
+      "fluid_output_ids": [
+        "cruciblecraft:oxygen"
+      ],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": true,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:lead/dust",
+        "cruciblecraft:molybdenum/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/b8d92a189fddcaf3",
+      "template_key": "gt.recipe.centrifuge#0047",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [],
+      "fluid_input_ids": [
+        "cruciblecraft:molten_red_alloy"
+      ],
+      "fluid_inputs_reachable": false,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": false,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:copper/dust",
+        "minecraft:redstone"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/ba760b0362daf218",
+      "template_key": "gt.recipe.centrifuge#0216",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [],
+      "fluid_input_ids": [
+        "cruciblecraft:molten_electrotine_alloy"
+      ],
+      "fluid_inputs_reachable": false,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": false,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:iron/dust",
+        "cruciblecraft:nikolite/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/c78035a4bdea3162",
+      "template_key": "gt.recipe.centrifuge#0067",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [],
+      "fluid_input_ids": [
+        "cruciblecraft:molten_desh"
+      ],
+      "fluid_inputs_reachable": false,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": false,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:boron/dust",
+        "cruciblecraft:lanthanium/dust",
+        "cruciblecraft:neodymium/dust",
+        "cruciblecraft:niobium/dust",
+        "cruciblecraft:cobalt/dust",
+        "cruciblecraft:cerium/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/c8ea0d7c48205b63",
+      "template_key": "gt.recipe.centrifuge#0068",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [],
+      "fluid_input_ids": [
+        "cruciblecraft:molten_black_bronze"
+      ],
+      "fluid_inputs_reachable": false,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": false,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:copper/dust",
+        "cruciblecraft:electrum/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/cc60383dafb2847e",
+      "template_key": "gt.recipe.centrifuge#0217",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [
+        "cruciblecraft:green_sapphire/dust"
+      ],
+      "fluid_input_ids": [],
+      "fluid_inputs_reachable": true,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": true,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:alumina/dust",
+        "cruciblecraft:magnesium/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/ceca9e9e9acabf1c",
+      "template_key": "gt.recipe.centrifuge#0008",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [],
+      "fluid_input_ids": [
+        "cruciblecraft:molten_bismuth_bronze"
+      ],
+      "fluid_inputs_reachable": false,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": false,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:bismuth/dust",
+        "cruciblecraft:brass/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/da2d3c8f2320a7fd",
+      "template_key": "gt.recipe.centrifuge#0011",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [],
+      "fluid_input_ids": [
+        "cruciblecraft:glue"
+      ],
+      "fluid_inputs_reachable": true,
+      "fluid_output_ids": [
+        "cruciblecraft:latex",
+        "cruciblecraft:glue"
+      ],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": true,
+      "item_inputs_reachable": true,
+      "output_ids": [],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/dd4738bd29d945c5",
+      "template_key": "gt.recipe.centrifuge#0145",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [
+        "cruciblecraft:cobalt/centrifuged_crushed_ore"
+      ],
+      "fluid_input_ids": [],
+      "fluid_inputs_reachable": true,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": true,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:cobalt/dust",
+        "cruciblecraft:cobalt60/tiny_dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/ed747232f87fab18",
+      "template_key": "gt.recipe.centrifuge#0170",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [],
+      "fluid_input_ids": [
+        "minecraft:lava"
+      ],
+      "fluid_inputs_reachable": true,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": true,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:basalt/tiny_dust",
+        "cruciblecraft:copper/nugget",
+        "cruciblecraft:tin/nugget",
+        "cruciblecraft:lead/nugget",
+        "minecraft:gold_nugget",
+        "cruciblecraft:silver/nugget"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/f6c61cf8b8de2480",
+      "template_key": "gt.recipe.centrifuge#0206",
+      "unproven_lossy_aliases": []
+    },
+    {
+      "alias_fail_closed": false,
+      "consume_ids": [
+        "cruciblecraft:sapphire/dust"
+      ],
+      "fluid_input_ids": [],
+      "fluid_inputs_reachable": true,
+      "fluid_output_ids": [],
+      "fluid_outputs_registered": true,
+      "inputs_reachable": true,
+      "item_inputs_reachable": true,
+      "output_ids": [
+        "cruciblecraft:alumina/dust"
+      ],
+      "outputs_registered": true,
+      "preserve_ids": [],
+      "stable_id": "cruciblecraft:t39/f9baa12fb696fd5c",
+      "template_key": "gt.recipe.centrifuge#0215",
+      "unproven_lossy_aliases": []
+    }
+  ],
+  "unreachable_fluid_input_occurrences": 15,
+  "unreachable_inputs": 17,
+  "unreachable_item_input_occurrences": 2
+}

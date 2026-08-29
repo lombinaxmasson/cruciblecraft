@@ -6,12 +6,15 @@ import argparse
 import copy
 import hashlib
 import json
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 TOOLS = ROOT / "tools"
 POLICY = TOOLS / "t21_chemical_axis_policy.json"
 T5_READINESS = TOOLS / "t5_chemical_readiness.json"
@@ -609,9 +612,11 @@ def check_outputs(
     expected: dict[str, Any],
     replay_expected: dict[str, Any] | None,
 ) -> list[str]:
+    from tools import currentness
+
     errors = []
+    errors.extend(currentness.check_rebuilt(AXIS_OUTPUT, axis))
     documents = (
-        (AXIS_OUTPUT, axis),
         (EXPANSION_OUTPUT, expansion),
     )
     for path, document in documents:

@@ -2954,18 +2954,18 @@ def validate_report_document(
         or worldgen_counts["t20_profile_v2_veins"] != 129
         or worldgen_counts["closure_configured_ore_features"] != 129
         or worldgen_counts["closure_placed_ore_features"] != 129
-        or worldgen_counts["registered_ore_materials"] != 137
+        or worldgen_counts["registered_ore_materials"] != 147
         or worldgen_counts["ore_host_types"] != 2
-        or worldgen_counts["registered_ore_blocks"] != 274
+        or worldgen_counts["registered_ore_blocks"] != 294
         or worldgen_counts["fluid_deposits"] != 2
-        or worldgen_counts["catalog_generated_files"] != 263
-        or worldgen_counts["all_worldgen_files"] != 274
+        or worldgen_counts["catalog_generated_files"] != 269
+        or worldgen_counts["all_worldgen_files"] != 280
         or worldgen_counts["unclassified"] != 0
         or expected_worldgen_acceptance["host_policy"]["decision"]
         != "keep_two_hosts"
         or expected_worldgen_acceptance["host_policy"][
             "additional_blocks_per_new_host"
-        ] != 137
+        ] != 147
         or expected_worldgen_acceptance["geometry_policy"]["status"]
         != "T20_CLASSIFIED"
         or expected_worldgen_acceptance["geometry_policy"]["open_item"] is not None

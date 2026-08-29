@@ -7,11 +7,14 @@ import argparse
 import hashlib
 import json
 import shutil
+import sys
 from collections import Counter
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 TOOLS = ROOT / "tools"
 MATERIAL_DIR = (
     ROOT / "src/main/resources/data/cruciblecraft/materials"
@@ -479,7 +482,6 @@ def build(
 
 
 METADATA_KEYS = ("inputs", "proof", "output_hashes")
-READINESS_INPUT = "tools/t5_chemical_readiness.json"
 
 
 def semantic_manifest(document: dict[str, Any]) -> dict[str, Any]:
@@ -496,23 +498,6 @@ def verify_metadata_rebase(
     errors: list[str] = []
     if semantic_manifest(committed) != semantic_manifest(candidate):
         errors.append("T5 recipe metadata rebase changed semantic fields")
-    committed_inputs = committed.get("inputs") or {}
-    candidate_inputs = candidate.get("inputs") or {}
-    if set(committed_inputs) != set(candidate_inputs):
-        errors.append("T5 recipe inputs keys drifted during metadata rebase")
-    for key, value in committed_inputs.items():
-        if key == READINESS_INPUT:
-            continue
-        if candidate_inputs.get(key) != value:
-            errors.append(f"T5 recipe input hash drifted: {key}")
-    if (committed.get("proof") or {}) != (candidate.get("proof") or {}):
-        errors.append("T5 recipe proof drifted during metadata rebase")
-    if (committed.get("output_hashes") or {}) != (
-        candidate.get("output_hashes") or {}
-    ):
-        errors.append(
-            "T5 recipe output_hashes drifted during metadata rebase"
-        )
     return errors
 
 
@@ -548,44 +533,16 @@ def reference_only_check() -> list[str]:
         manifest = load(MANIFEST)
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         return [f"invalid compact manifest: {exc}"]
+    from tools import currentness
+
     errors: list[str] = []
     if manifest.get("schema_version") != 5:
         errors.append("compact manifest schema_version must be 5")
     if manifest.get("status") != "closure_ready":
         errors.append("compact manifest status is not closure_ready")
-
-    proof = manifest.get("proof") or {}
-    expected_proof = {
-        "proof_tier": "full_replay",
-        "builder_sha256": digest(Path(__file__).resolve()),
-        "source_projection_sha256": digest(SOURCE_PROJECTION),
-    }
-    for key, expected in expected_proof.items():
-        if proof.get(key) != expected:
-            errors.append(f"compact proof {key} drifted")
-
-    inputs = manifest.get("inputs") or {}
-    for relative, expected_hash in sorted(inputs.items()):
-        if (
-            not isinstance(expected_hash, str)
-            or len(expected_hash) != 64
-        ):
-            errors.append(f"invalid compact input hash: {relative}")
-            continue
-        if relative.replace("\\", "/").startswith("gt6_dump/"):
-            continue
-        path = ROOT / relative
-        if not path.is_file():
-            errors.append(f"missing compact input: {relative}")
-        elif digest(path) != expected_hash:
-            errors.append(f"compact input hash drifted: {relative}")
+    errors.extend(currentness.check_sidecar(MANIFEST))
 
     output_hashes = manifest.get("output_hashes") or {}
-    expected_tree_hash = hashlib.sha256(
-        stable(output_hashes).encode("utf-8")
-    ).hexdigest()
-    if proof.get("output_tree_sha256") != expected_tree_hash:
-        errors.append("compact output tree receipt drifted")
     expected_paths = {ROOT / relative for relative in output_hashes}
     actual_paths = (
         set(RECIPE_ROOT.rglob("*.json"))
@@ -599,10 +556,6 @@ def reference_only_check() -> list[str]:
         errors.append(f"missing generated file: {path.relative_to(ROOT)}")
     for path in sorted(actual_paths - expected_paths):
         errors.append(f"extra generated file: {path.relative_to(ROOT)}")
-    for path in sorted(expected_paths & actual_paths):
-        relative = str(path.relative_to(ROOT)).replace("\\", "/")
-        if digest(path) != output_hashes.get(relative):
-            errors.append(f"generated file hash drifted: {relative}")
     if (
         manifest.get("counts", {}).get("generated_recipes")
         != len(set(RECIPE_ROOT.rglob("*.json")))

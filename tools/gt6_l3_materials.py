@@ -52,7 +52,10 @@ POST_IMPORT_T10A_PREFIXES = {
     "triple_ingot",
     "ingot_hot",
 }
-POST_IMPORT_PREFIXES = POST_IMPORT_T8_PREFIXES | POST_IMPORT_T10A_PREFIXES
+POST_IMPORT_T38_PREFIXES = {"dust_div72"}
+POST_IMPORT_PREFIXES = (
+    POST_IMPORT_T8_PREFIXES | POST_IMPORT_T10A_PREFIXES | POST_IMPORT_T38_PREFIXES
+)
 
 
 @lru_cache(maxsize=1)
@@ -129,6 +132,25 @@ def close_implied_prefixes(prefixes: Iterable[str]) -> set[str]:
             raise ValueError(f"unknown canonical prefix in closure: {prefix}")
         selected.update(closures[prefix])
     return selected
+
+
+@lru_cache(maxsize=1)
+def catalog_generation_flags() -> dict[str, str]:
+    """Return generation flags for the complete runtime prefix catalog."""
+    result: dict[str, str] = {}
+    filenames = json.loads(
+        (PREFIX_DIRECTORY / "index.json").read_text(encoding="utf-8")
+    )
+    for filename in filenames:
+        definition = json.loads(
+            (PREFIX_DIRECTORY / filename).read_text(encoding="utf-8")
+        )
+        prefix = definition["serialized_path"]
+        flag = definition["generation_flag"]
+        previous = result.setdefault(prefix, flag)
+        if previous != flag:
+            raise ValueError(f"prefix generation flag drifted for {prefix}")
+    return result
 
 
 def _stable_hash(value: Any) -> str:
@@ -226,7 +248,7 @@ def build_document(
     sources_by_cc: dict[str, list[str]] = defaultdict(list)
     for mapping in PREFIX_MAPPINGS:
         cc_prefix = mapping["cc_prefix"]
-        if cc_prefix is None:
+        if cc_prefix is None or cc_prefix in POST_IMPORT_PREFIXES:
             continue
         gt_prefix = mapping["gt_prefix"]
         if gt_prefix not in source_domains:
@@ -377,10 +399,20 @@ def resolve_material_forms(
     document: dict[str, Any],
 ) -> set[str]:
     flags = set(structure.get("generation_flags") or [])
+    prefix_flags = {
+        prefix: plan["generation_flag"]
+        for prefix, plan in document["prefixes"].items()
+    }
+    for prefix, flag in catalog_generation_flags().items():
+        previous = prefix_flags.setdefault(prefix, flag)
+        if previous != flag:
+            raise ValueError(
+                f"L3 prefix generation flag differs from catalog: {prefix}"
+            )
     resolved = {
         prefix
-        for prefix, plan in document["prefixes"].items()
-        if plan["generation_flag"] in flags
+        for prefix, flag in prefix_flags.items()
+        if flag in flags
     }
     resolved.update(structure.get("include_prefixes") or [])
     resolved = close_implied_prefixes(resolved)

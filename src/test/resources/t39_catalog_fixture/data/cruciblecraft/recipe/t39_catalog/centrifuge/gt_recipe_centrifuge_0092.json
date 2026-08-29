@@ -1,0 +1,53 @@
+{
+  "family_id": "gt.recipe.centrifuge#0092",
+  "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 64,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 1000,
+          "id": "minecraft:water"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:honeycomb"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:wax_bee/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "808402bfbe11e4d411749cf0f2a2520110f1d994f4b4d99e1fa06aa8d7acf6c6"
+        ],
+        "selected_source_recipe": "gt.recipe.centrifuge#0092",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t39_catalog/d9235de1a53b61e0"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:centrifuge",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

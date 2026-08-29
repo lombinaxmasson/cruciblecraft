@@ -1,0 +1,115 @@
+{
+  "family_id": "gt.recipe.electrolyzer#0037",
+  "publication_group": "cruciblecraft:t40_electrolyzer_multi",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 876,
+      "eut": 42,
+      "fluid_inputs": [
+        {
+          "amount": 3000,
+          "id": "cruciblecraft:carbon_dioxide"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 2000,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:carbon/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "4dc2894a198c89612c148f27d4fdb7c47feb92cca54471fa62a8d88710a698ed"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#0037",
+        "source_kind": "DESIGN_POLICY"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t40_catalog/3b167234409c3370"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 876,
+      "eut": 42,
+      "fluid_inputs": [
+        {
+          "amount": 432,
+          "id": "cruciblecraft:molten_ferrous_chloride"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 2000,
+          "id": "cruciblecraft:chlorine"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:iron/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "6d1fb129371cf8782a81a50fcbb2d9c6ad67ab517834709802bef89d74901e9e"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#0037",
+        "source_kind": "DESIGN_POLICY"
+      },
+      "shadow_order": 1,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t40_catalog/a475d50cb932d154"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:electrolyzer",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

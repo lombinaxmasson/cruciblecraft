@@ -1,0 +1,29 @@
+{
+  "artifact": "tools/t21_template_denominator.json",
+  "artifact_file_sha256": "883c43c51fade1846eead57d55650403ae4415853f151c6bad77262cd6ab6dd9",
+  "builder_sha256": "3844db8def27271c2d004fd2d750f032a36977ba235a15e2396ec2d5423fce77",
+  "dependency_semantic_roots": {
+    "tools/t21_source_denominator.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "f33b7e189c06c02dea944d2ee57a3d9453b616958eff93c0a43c932639c22efe"
+    },
+    "tools/t5_chemical_recipe_manifest.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "430149ce6ad5298ec26e69d2ebb392635470db9d31c861e935cdb357e933b08a"
+    }
+  },
+  "envelope_sha256": "32d592d8dea18785373076610a2ab1b97c15f0f33473dd392658ce84f6f608df",
+  "generated_by": "python tools/currentness.py",
+  "giant_body": false,
+  "schema_version": 2,
+  "semantic_projection_kind": "json_ledger",
+  "semantic_projection_version": 1,
+  "semantic_root_sha256": "12c380262aa7408c23f877cb39abbf157f1ab1e941e0fdf80bce15c35559c4f8",
+  "source_replay_receipt": {
+    "proof_tier": "compact",
+    "status": "unavailable"
+  },
+  "status": "CURRENTNESS_SIDECAR"
+}

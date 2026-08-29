@@ -1,0 +1,41 @@
+{
+  "behavior_root_sha256": "e8c80cebd5d50f49272d8adedf2971e7b5646bc006063572469a0f9fda108e7b",
+  "bound_artifacts": {
+    "gametest_java": "7ad5da552e07f2d3e93b541488dc3ebfd44beaae8dccc7d592333143e866c849",
+    "material_registration_gate_java": "f8e8ba95965402c1ff67bc20de9e0ae9e3f9c92e849deb209e76e0ae6161f359",
+    "material_registration_gate_json": "fba3b60e2a076810ec3b50f59b0153e2f1206da690420b715142f541a32ead26",
+    "production_lock": "ddfe50fabb0944dc2001f5b09b205c1ee82a6f55d5493733878e21b52eed8349",
+    "publication_group_manifest": "eb438c6dc27ef84dabd0415b44f10a7ba6bdc4eee60f87a4b60fa4b079167745",
+    "runtime_dependency_manifest": "b9d848b60581cb7ed0e5c91043731730e588e800135b337c185ae35acedbf0cd",
+    "shard_manifest": "b7d3ef279c282415ceb97131c4b6bd452b19cabace4190101a25a1f5dbf06ba4",
+    "t41_generated_recipes": "f62f575c7b90c926f270da8211fdcaee98c3f017c723619ec40e1acdaab232ae",
+    "t41_locked_support": "dca3fa12a5748221b9ebcab54f133694fe51b1b9e307a397e8e8dac3f08ac13f"
+  },
+  "command": ".\\gradlew.bat runGameTestServer -Pt41Recipes --no-daemon",
+  "currentness_root_sha256": "9900c81a9393803e1394f0b3b0317aa6d7bd7bfa6c5575fd9d62205217f4783d",
+  "equivalence_root_sha256": "03e5092f906d63a9dfbcec68ddf4f853d0534639ce4c8d76352068316da93929",
+  "failed": 0,
+  "java_sha256": "7ad5da552e07f2d3e93b541488dc3ebfd44beaae8dccc7d592333143e866c849",
+  "java_source": "src/main/java/com/masson/cruciblecraft/gametest/T41RecipeGameTests.java",
+  "log_fingerprint": "6930fd5b2e06da367c8167f73ecb7e759685bf25f9dba14079c15e4d196bba22",
+  "log_path": "tools/t41_gametest.log",
+  "namespace": "cruciblecraft_t41",
+  "note": "Source markers are not a pass. This receipt is the isolated -Pt41Recipes result bound to MaterialRegistrationGate, the T41 recipe resource trees, and the committed UTF-8 evidence log. The gitignored run-t41-recipes directory is not evidence. Injecting recipe inputs still does not prove a player path.",
+  "pass_marker": "All 8 required tests passed :)",
+  "passed": 8,
+  "required_tests": 8,
+  "schema_version": 3,
+  "semantic_tree_sha256": "69a5dc3a07b0aa9ecd723b487d7a3845e4c1b2cb237f6f7853767f515e4a8435",
+  "skip_is_not_pass": true,
+  "status": "PASS",
+  "test_ids": [
+    "t41assemblerexecutesrepresentative",
+    "t41compactfamiliespublished",
+    "t41emiplanincludesassemblerfamilies",
+    "t41fireprooffamilyexecutes",
+    "t41planksfamilyexecutes",
+    "t41rejectsnonmatchinginputs",
+    "t41stableidssurvivereload",
+    "t41t37compactfamiliesremain"
+  ]
+}

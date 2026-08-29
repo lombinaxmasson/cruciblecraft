@@ -14,7 +14,8 @@ class ModRecipesRegistrationTest {
         Set<ResourceLocation> expected = Set.of(
                 id("gt_recipe"),
                 id("material_rule"),
-                id("compact_gt_recipe_family"));
+                id("compact_gt_recipe_family"),
+                id("compact_publication_policy"));
 
         assertEquals(expected, ModRecipes.RECIPE_TYPES.getEntries().stream()
                 .map(holder -> holder.getId())

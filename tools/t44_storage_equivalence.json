@@ -1,0 +1,111 @@
+{
+  "fidelity": "source_backed",
+  "generated_by": "python tools/build_t44_storage_equivalence.py",
+  "logistics_registrations": 1,
+  "profiles": [
+    {
+      "behavior_profile": "bookshelf",
+      "negative": [
+        "non-book items are rejected",
+        "breaking without loot keep_contents drops contents as items"
+      ],
+      "positive": [
+        "book, written_book, writable_book, enchanted_book insert",
+        "enchant power grows with occupied valid slots",
+        "contents persist across save/reload"
+      ],
+      "runtime_host": "BookshelfBlockEntity",
+      "source_class": "MultiTileEntityBookShelf"
+    },
+    {
+      "behavior_profile": "bottle_crate",
+      "negative": [
+        "non-bottle items are rejected"
+      ],
+      "positive": [
+        "glass bottle and potion insert into 9 slots"
+      ],
+      "runtime_host": "BottleCrateBlockEntity",
+      "source_class": "MultiTileEntityBottleCrate"
+    },
+    {
+      "behavior_profile": "drawer",
+      "negative": [
+        "compartment index outside 0..3 is rejected"
+      ],
+      "positive": [
+        "four compartments of 36 slots (144 total)",
+        "horizontal facing is stored on the blockstate"
+      ],
+      "runtime_host": "DrawerBlockEntity",
+      "source_class": "MultiTileEntityDrawerQuad"
+    },
+    {
+      "behavior_profile": "locker",
+      "negative": [
+        "non-front faces do not swap armor"
+      ],
+      "positive": [
+        "front-face use swaps FEET/LEGS/CHEST/HEAD with four slots"
+      ],
+      "runtime_host": "LockerBlockEntity",
+      "source_class": "MultiTileEntityLocker"
+    },
+    {
+      "behavior_profile": "locker_charging",
+      "negative": [
+        "HEAT/KINETIC insert is rejected"
+      ],
+      "positive": [
+        "retains locker swap lineage",
+        "EnergyType.ELECTRIC insert charges slotted items with electric_charge"
+      ],
+      "runtime_host": "LockerBlockEntity",
+      "source_class": "MultiTileEntityLockerCharging"
+    },
+    {
+      "behavior_profile": "mass_storage",
+      "negative": [
+        "mismatched item type is rejected",
+        "insert beyond capacity is overflow-rejected"
+      ],
+      "positive": [
+        "single item type lock",
+        "capacity from source NBT_CAPACITY",
+        "filter retained until emptied and reset"
+      ],
+      "runtime_host": "MassStorageBlockEntity",
+      "source_class": "MultiTileEntityMassStorage"
+    },
+    {
+      "behavior_profile": "mass_storage_logistics",
+      "negative": [
+        "standard mass storage does not expose ILogisticsStorage"
+      ],
+      "positive": [
+        "same bulk store as standard",
+        "exposes ILogisticsStorage with semi-filtered item priority"
+      ],
+      "runtime_host": "MassStorageBlockEntity",
+      "source_class": "MultiTileEntityMassStorageLogistics"
+    },
+    {
+      "behavior_profile": "storage_inserter",
+      "negative": [
+        "does not tick-transfer",
+        "does not scan chests or hoppers"
+      ],
+      "positive": [
+        "player use scans downward columns then 50-radius horizontal mass storage",
+        "inserts matching player items into scanned mass storage"
+      ],
+      "runtime_host": "StorageInserterBlockEntity",
+      "source_class": "MultiTileEntityStorageInserter"
+    }
+  ],
+  "registration_count": 625,
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T44_STORAGE_EQUIVALENCE_READY",
+  "storage_registrations": 624
+}

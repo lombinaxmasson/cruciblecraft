@@ -20,7 +20,11 @@
       "owner": "T32 then future player-release card",
       "trigger": "Any change to builders, generated JSON, test counts, or markdown previously listed in tooling_paths()",
       "evidence": "fast suite failures on test_build_t17_readiness through test_build_t31_* currentness tests (2026-08-21)",
-      "status": "open"
+      "status": "open",
+      "scope": "external",
+      "detect": "python -m unittest tools.tests.test_build_t17_readiness tools.tests.test_full_verification_report",
+      "blocks_profiles": ["archive", "verification"],
+      "repair_rule": "Rebind T17–T31 historical receipts only on a player-release card. T40-VR --debt-aware may annotate this row as scope-external; it must not convert required profile failures into PASS."
     },
     {
       "id": "T32-VD-003",
@@ -37,7 +41,11 @@
       "owner": "future player-release card",
       "trigger": "A player-facing release is opened and must rebind provenance",
       "evidence": "tools/full_verification_report.json still hashes deleted phase-plan paths and narrative markdown",
-      "status": "open"
+      "status": "open",
+      "scope": "external",
+      "detect": "python tools/verify.py archive-inspect",
+      "blocks_profiles": ["archive"],
+      "repair_rule": "Rebuild provenance on a player-release card. T40-VR must keep this row open; --debt-aware cannot treat archive FAIL as PASS."
     }
   ]
 }

@@ -50,6 +50,22 @@ T16_RECIPE_PATHS = {
     "data/cruciblecraft/recipe/machines/steel_press.json",
     "data/cruciblecraft/recipe/machines/titanium_press.json",
 }
+T12_VERTICAL_SLICE_ORDER = (
+    "centrifuge",
+    "sifter",
+    "electrolyzer",
+)
+T12_RUNTIME_ENERGY = {
+    "RU": "KINETIC_ROTATION",
+    "KU": "KINETIC_PUSH",
+    "EU": "ELECTRIC",
+}
+T36_T12_KIND_ADDITIONS = {
+    "cruciblecraft:tungstensteel_centrifuge",
+    "cruciblecraft:tungstensteel_sifter",
+    "cruciblecraft:chromium_electrolyzer",
+    "cruciblecraft:titanium_electrolyzer",
+}
 SOURCE_CONTRACTS = {
     "energy_types": (
         "src/main/java/com/masson/cruciblecraft/api/energy/EnergyType.java",
@@ -75,7 +91,7 @@ SOURCE_CONTRACTS = {
     "machine_tier_data": (
         "src/main/resources/data/cruciblecraft/machine_tiers.json",
         (
-            "\"schemaVersion\": 2",
+            "\"schemaVersion\": 3",
             "\"source\"",
             "\"tierBand\"",
             "\"variant_rows\"",
@@ -204,30 +220,158 @@ def source_contracts() -> dict[str, Any]:
     return result
 
 
+def historical_vertical_slice(policy: dict[str, Any]) -> list[dict[str, Any]]:
+    vertical = policy.get("vertical_slice") or {}
+    machine_order = vertical.get("machine_order")
+    if machine_order != list(T12_VERTICAL_SLICE_ORDER):
+        raise ValueError(
+            "T12 historical vertical-slice order drifted: "
+            f"{machine_order!r}"
+        )
+
+    machines = vertical.get("machines") or {}
+    result: list[dict[str, Any]] = []
+    for machine in T12_VERTICAL_SLICE_ORDER:
+        definition = machines.get(machine) or {}
+        energy_identity = definition.get("energy_identity")
+        runtime_energy = T12_RUNTIME_ENERGY.get(energy_identity)
+        tiers = definition.get("tiers")
+        if runtime_energy is None or not isinstance(tiers, list) or len(tiers) != 3:
+            raise ValueError(
+                f"T12 historical vertical-slice definition drifted for {machine}"
+            )
+        for tier in tiers:
+            source_tier = tier.get("source_tier")
+            material = tier.get("material")
+            nominal_input = tier.get("nominal_input")
+            parallel = tier.get("parallel")
+            if (
+                not isinstance(source_tier, int)
+                or not isinstance(material, str)
+                or not isinstance(nominal_input, int)
+                or not isinstance(parallel, int)
+            ):
+                raise ValueError(
+                    f"T12 historical tier is incomplete for {machine}: {tier!r}"
+                )
+            result.append({
+                "kind": f"cruciblecraft:{machine}",
+                "source_tier": source_tier,
+                "material": f"cruciblecraft:{material}",
+                "energy": runtime_energy,
+                "input_nominal": nominal_input,
+                "parallel": parallel,
+                "parallel_duration": bool(definition.get("parallel_duration")),
+                "efficiency": definition.get("efficiency"),
+            })
+
+    if len(result) != 9:
+        raise ValueError(f"T12 historical variant count drifted: {len(result)}")
+    if len({
+        (row["kind"], row["source_tier"], row["material"])
+        for row in result
+    }) != len(result):
+        raise ValueError("T12 historical vertical slice contains duplicate rows")
+    return result
+
+
+def observe_live_catalog(
+    tiers: dict[str, Any],
+    historical_rows: list[dict[str, Any]],
+) -> tuple[list[dict[str, Any]], dict[str, int], list[dict[str, Any]]]:
+    historical_kinds = {row["kind"] for row in historical_rows}
+    live_rows = [
+        row
+        for row in tiers.get("variants", [])
+        if row.get("kind") in historical_kinds
+    ]
+    keyed: dict[tuple[str, int, str], list[dict[str, Any]]] = {}
+    for row in live_rows:
+        key = (
+            row.get("kind"),
+            row.get("sourceTier"),
+            row.get("material"),
+        )
+        keyed.setdefault(key, []).append(row)
+
+    selected_ids: set[str] = set()
+    historical_observation: list[dict[str, Any]] = []
+    for expected in historical_rows:
+        key = (
+            expected["kind"],
+            expected["source_tier"],
+            expected["material"],
+        )
+        matches = keyed.get(key, [])
+        if len(matches) != 1:
+            raise ValueError(
+                "T12 historical catalog containment failed for "
+                f"{key}: matches={len(matches)}"
+            )
+        row = matches[0]
+        semantic_fields = {
+            "energy": expected["energy"],
+            "inputNominal": expected["input_nominal"],
+            "parallel": expected["parallel"],
+            "parallelDuration": expected["parallel_duration"],
+            "efficiency": expected["efficiency"],
+        }
+        drift = {
+            field: {"expected": expected_value, "actual": row.get(field)}
+            for field, expected_value in semantic_fields.items()
+            if row.get(field) != expected_value
+        }
+        if drift:
+            raise ValueError(
+                f"T12 historical catalog semantics drifted for {row.get('id')}: "
+                f"{drift}"
+            )
+        variant_id = row.get("id")
+        if not isinstance(variant_id, str):
+            raise ValueError(f"T12 historical catalog row lacks id: {row!r}")
+        selected_ids.add(variant_id)
+        historical_observation.append({
+            "id": variant_id,
+            "kind": expected["kind"],
+            "source_tier": expected["source_tier"],
+            "material": expected["material"],
+        })
+
+    additions = [
+        row for row in live_rows if row.get("id") not in selected_ids
+    ]
+    addition_ids = {row.get("id") for row in additions}
+    if addition_ids != T36_T12_KIND_ADDITIONS:
+        raise ValueError(
+            "T12 live catalog additions require an explicit owner review: "
+            f"{sorted(addition_ids)}"
+        )
+    by_kind: dict[str, int] = {}
+    for row in live_rows:
+        kind = row["kind"]
+        by_kind[kind] = by_kind.get(kind, 0) + 1
+    additions.sort(key=lambda row: str(row["id"]))
+    return historical_observation, by_kind, additions
+
+
 def build() -> dict[str, Any]:
     t12a = load(T12A)
     if t12a["status"] != "T12A_READY":
         raise ValueError(
             "T12 closure requires immutable historical T12A_READY evidence"
         )
+    policy = load(MACHINE_POLICY)
+    historical_slice = historical_vertical_slice(policy)
     tiers = load(MACHINE_TIERS)
-    t12_kinds = {
-        "cruciblecraft:centrifuge",
-        "cruciblecraft:sifter",
-        "cruciblecraft:electrolyzer",
-    }
-    variants = [
-        row
-        for row in tiers.get("variants", [])
-        if row.get("kind") in t12_kinds
-    ]
-    if len(variants) != 9:
-        raise ValueError(f"T12 variant count drifted: {len(variants)}")
+    historical_observation, live_by_kind, t36_additions = observe_live_catalog(
+        tiers,
+        historical_slice,
+    )
     by_kind: dict[str, int] = {}
-    for variant in variants:
+    for variant in historical_slice:
         by_kind[variant["kind"]] = by_kind.get(variant["kind"], 0) + 1
     if sorted(by_kind.values()) != [3, 3, 3]:
-        raise ValueError(f"T12 tier shape drifted: {by_kind}")
+        raise ValueError(f"T12 historical tier shape drifted: {by_kind}")
 
     structure_paths = sorted(STRUCTURES.glob("*.json"))
     structure_ids = [path.stem for path in structure_paths]
@@ -266,7 +410,7 @@ def build() -> dict[str, Any]:
         != "PROCESSING_MACHINE_ENERGY_AUDIT_READY"
         or audit_counts.get("machine_specs") != 25
         or audit_counts.get("implicit_energy_arguments") != 0
-        or audit_counts.get("legacy_kinetic") != 8
+        or audit_counts.get("legacy_kinetic") != 4
         or audit_counts.get("new_legacy_kinetic") != 0
     ):
         raise ValueError("T12 processing-machine energy audit is incomplete")
@@ -297,8 +441,27 @@ def build() -> dict[str, Any]:
             "non_spec_kinds": t12a["non_spec_kind_ledger"]["counts"],
         },
         "kind_tier": {
-            "variants": len(variants),
+            "variants": len(historical_slice),
             "kinds": by_kind,
+            "historical_vertical_slice": {
+                "variants": len(historical_slice),
+                "rows": historical_observation,
+            },
+            "live_catalog_observation": {
+                "owner": "T36",
+                "variants": sum(live_by_kind.values()),
+                "kinds": live_by_kind,
+                "included_in_t12_closure_claim": False,
+                "additional_variants": [
+                    {
+                        "id": row["id"],
+                        "kind": row["kind"],
+                        "source_tier": row["sourceTier"],
+                        "material": row["material"],
+                    }
+                    for row in t36_additions
+                ],
+            },
             "publication_delta": 0,
             "authored_material_rule_budget": 0,
             "state_schema_version": 3,
@@ -388,6 +551,7 @@ def build() -> dict[str, Any]:
                 BUILDER.relative_to(ROOT).as_posix(): digest(BUILDER),
                 MACHINE_POLICY.relative_to(ROOT).as_posix():
                     digest(MACHINE_POLICY),
+                MACHINE_TIERS.relative_to(ROOT).as_posix(): digest(MACHINE_TIERS),
             },
             "dependencies": {
                 T12A.relative_to(ROOT).as_posix(): digest(T12A),

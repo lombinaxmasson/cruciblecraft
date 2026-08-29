@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
@@ -16,6 +17,8 @@ except ModuleNotFoundError:
 
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 TOOLS = ROOT / "tools"
 T5_READINESS = TOOLS / "t5_chemical_readiness.json"
 OUTPUT = TOOLS / "t21_source_denominator.json"
@@ -269,9 +272,9 @@ def build() -> dict[str, Any]:
 
 
 def semantic_document(document: dict[str, Any]) -> dict[str, Any]:
-    result = dict(document)
-    result.pop("inputs", None)
-    return result
+    from tools import semantic_projection as projection
+
+    return projection.ledger_projection(document)["semantic_body"]
 
 
 def verify_metadata_rebase(
@@ -287,12 +290,18 @@ def verify_metadata_rebase(
 
 
 def check(document: dict[str, Any] | None = None) -> list[str]:
-    expected = stable(build() if document is None else document)
     if not OUTPUT.is_file():
         return [f"missing {OUTPUT.relative_to(ROOT).as_posix()}"]
-    if OUTPUT.read_text(encoding="utf-8") != expected:
-        return [f"stale {OUTPUT.relative_to(ROOT).as_posix()}"]
-    return []
+    from tools import currentness
+
+    committed = load(OUTPUT)
+    try:
+        validate_compact(committed)
+    except ValueError as error:
+        return [str(error)]
+    if document is None:
+        return currentness.check_sidecar(OUTPUT)
+    return currentness.check_rebuilt(OUTPUT, document)
 
 
 def validate_compact(document: dict[str, Any]) -> None:
@@ -311,15 +320,11 @@ def validate_compact(document: dict[str, Any]) -> None:
         or len(document.get("rows") or []) != 45_353
     ):
         raise ValueError("T21 compact source denominator drifted")
-    inputs = document.get("inputs") or {}
-    expected_inputs = {
-        "tools/t5_chemical_readiness.json": sha256(T5_READINESS),
-        "tools/build_t5_source_projection.py": sha256(
-            Path(source_projection.__file__).resolve()
-        ),
-    }
-    if inputs != expected_inputs:
-        raise ValueError("T21 compact denominator input hashes drifted")
+    from tools import currentness
+
+    errors = currentness.check_sidecar(OUTPUT)
+    if errors:
+        raise ValueError("; ".join(errors))
 
 
 def main() -> int:

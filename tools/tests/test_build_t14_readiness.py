@@ -7,9 +7,11 @@ from tools import build_t14_readiness as readiness
 class T14ReadinessTest(unittest.TestCase):
     def test_committed_readiness_is_current(self):
         document = readiness.build()
+        from tools import currentness
+
         self.assertEqual(
-            readiness.stable(document),
-            readiness.OUTPUT.read_text(encoding="utf-8"),
+            [],
+            currentness.check_rebuilt(readiness.OUTPUT, document),
         )
         self.assertIn(
             "tools/t12_closure_readiness.json",

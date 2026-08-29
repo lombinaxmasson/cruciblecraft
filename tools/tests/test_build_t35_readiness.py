@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import unittest
+from pathlib import Path
 from unittest import mock
 
 from tools import build_t35_readiness as builder
@@ -87,31 +88,47 @@ class T35ReadinessTest(unittest.TestCase):
     def test_mutating_evidence_hash_fails_closed(self) -> None:
         if not builder.OUTPUT.is_file():
             self.skipTest("artifact not yet generated")
-        real = t35.sha256_file
+        from tools import currentness
+        from tools import semantic_projection as projection
+
+        real = projection.sha256_file
 
         def override(path):
-            if path == builder.BUILDER:
+            if Path(path).resolve() == builder.BUILDER:
                 return "0" * 64
             return real(path)
 
         with mock.patch.object(t35, "sha256_file", side_effect=override):
             errors = builder.check()
-        self.assertTrue(any("stale" in error for error in errors))
+        self.assertEqual(
+            [],
+            errors,
+            "builder-hash-only drift is sidecar HASH_ONLY, not compact semantic stale",
+        )
+        with mock.patch.object(projection, "sha256_file", side_effect=override):
+            hash_only = currentness.check_sidecar(
+                builder.OUTPUT,
+                include_hash_only=True,
+            )
+        self.assertTrue(
+            any("HASH_ONLY_DRIFT" in error for error in hash_only),
+            hash_only,
+        )
 
     def test_handwritten_status_fails_check(self) -> None:
         if not builder.OUTPUT.is_file():
             self.skipTest("artifact not yet generated")
+        from tools.tests.support import authority_sandbox
+
         on_disk = json.loads(builder.OUTPUT.read_text(encoding="utf-8"))
         on_disk["status"] = "HAND_WRITTEN_READY"
-        builder.OUTPUT.write_text(
-            common.stable_json(on_disk) + "\n",
-            encoding="utf-8",
-        )
-        try:
+        with authority_sandbox.patch_builder_path(builder, "OUTPUT") as output:
+            output.write_text(
+                common.stable_json(on_disk) + "\n",
+                encoding="utf-8",
+            )
             errors = builder.check()
             self.assertTrue(any("hand-written" in error for error in errors))
-        finally:
-            builder.write()
 
     def test_open_recipe_debt_blocks_build(self) -> None:
         debt = common.load_json(builder.VERIFICATION_DEBT)

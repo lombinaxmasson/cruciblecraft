@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.invalid/schema/t42-source-pack-manifest.json",
+  "type": "object",
+  "required": ["schema_version", "status", "source_revision"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "status": { "const": "T42_SOURCE_PACK_FROZEN" }
+  },
+  "additionalProperties": true
+}

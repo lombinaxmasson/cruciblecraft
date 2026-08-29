@@ -1,0 +1,164 @@
+{
+  "layers": {
+    "b0": {
+      "excludes_t40_production": true,
+      "excludes_t40_support": true,
+      "identity_count": 3093,
+      "source": "tools/t21_operand_reachability.json"
+    },
+    "b1": {
+      "identity_count": 3093,
+      "route_count": 0,
+      "source": "B0 + locked support"
+    },
+    "b2": {
+      "identity_count": 3096,
+      "relation_count": 22,
+      "source": "B1 + locked T40 production"
+    }
+  },
+  "production_lock_sha256": "26cca29698c34039cc8aa19ff8e584a0ec7a521165ec39e8dcece03cf75488e5",
+  "production_relations": [
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/017407f573c48727"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/046c998e856a5939"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/19356503a4ffc08d"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/1965020ec171697a"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/19c99c7224175994"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/21faa0f17d809f76"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/2f499ae08f5e477d"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/327c5c8ecfde09fa"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/3cb0f9487a1bfda8"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/45432d0adbf3220d"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/460f43f01caee9e0"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/49042d3406ecf413"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/56e3a554957c796c"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/5a802ee62557fd9d"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/64eba682a7e702d8"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/6e5417f82cafd6bd"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/6ecd22b84c66ab40"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/ae366e6364678309"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/ae9f63194c927036"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/b40e86ac2408c6d0"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/c8f5c9fc8ecabb23"
+    },
+    {
+      "inputs_reachable_in_b1": true,
+      "missing_inputs": [],
+      "outputs_registered": true,
+      "stable_id": "cruciblecraft:t40/d028f4034724555b"
+    }
+  ],
+  "schema_version": 1,
+  "status": "T40_LAYERED_PLAYER_PATH_READY",
+  "support_routes": [],
+  "validators": {
+    "production_inputs_reachable_in_b1": true,
+    "production_outputs_registered": true,
+    "support_inputs_reachable_before_route": true,
+    "target_does_not_self_justify_inputs": true
+  }
+}

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import copy
 import hashlib
 import json
 import re
@@ -22,9 +23,19 @@ POLICY_STATUSES = {
     "T14D_LOAD_BUDGET_POLICY_PENDING_T14C",
     "T14D_LOAD_BUDGET_POLICY_MEASURED",
 }
-STRATEGIES = ("immediate", "on_demand", "hybrid")
-DELIVERY_PHASES = ("T15", "T16", "T17", "T18", "T19", "T21", "T37")
+STRATEGIES = ("immediate", "on_demand", "hybrid", "group_scoped")
+DELIVERY_PHASES = (
+    "T15", "T16", "T17", "T18", "T19", "T21",
+    "T37", "T38", "T39", "T40", "T41", "T43", "T45",
+)
 PROJECTION_PHASES = ("T14",) + DELIVERY_PHASES
+# T13 still classifies these maps deferred_with_reason. Later cards reissued
+# the live host without rewriting the historical T13 denominator.
+REISSUED_IN_SCOPE_CANONICAL_IDS = {
+    "T38": frozenset({"gt.recipe.roaster"}),
+    "T39": frozenset({"gt.recipe.centrifuge"}),
+    "T40": frozenset({"gt.recipe.electrolyzer"}),
+}
 COUNT_FIELDS = (
     "authored_entries",
     "logical_rows",
@@ -161,6 +172,29 @@ def _validate_interval_or_pending(value: Any, context: str) -> dict[str, Any]:
             pending["reason"] = value["reason"]
         return pending
     return _validate_interval(value, context)
+
+
+def overlay_reissued_t13(
+    t13: dict[str, Any],
+    delivery_phase: Any,
+) -> dict[str, Any]:
+    reissued = REISSUED_IN_SCOPE_CANONICAL_IDS.get(delivery_phase)
+    if not reissued:
+        return t13
+    patched = copy.deepcopy(t13)
+    seen: set[str] = set()
+    for row in patched.get("rows") or []:
+        key = row.get("normalized_row_key")
+        if key in reissued:
+            row["classification"] = "in_scope"
+            seen.add(key)
+    missing = sorted(reissued - seen)
+    if missing:
+        raise ProjectionError(
+            f"{delivery_phase} T13 overlay is missing canonical ids: "
+            + ", ".join(missing)
+        )
+    return patched
 
 
 def _canonical_rows(t13: dict[str, Any]) -> dict[str, dict[str, Any]]:
@@ -473,7 +507,7 @@ def validate_input(
         raise ProjectionError("projection_id is not a stable lowercase id")
     if document["delivery_phase"] not in PROJECTION_PHASES:
         raise ProjectionError(
-            "delivery_phase must be a declared T14–T21 or T37 projection phase"
+            "delivery_phase must be a declared T14–T21 or T37–T45 projection phase"
         )
     families = document["families"]
     if not isinstance(families, list) or not families:
@@ -771,6 +805,7 @@ def project(
     schema: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     t13 = load(T13_RECIPE_MAPS) if t13 is None else t13
+    t13 = overlay_reissued_t13(t13, document.get("delivery_phase"))
     policy = load(POLICY) if policy is None else policy
     schema = load(SCHEMA) if schema is None else schema
     validate_schema(schema)

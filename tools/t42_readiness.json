@@ -1,0 +1,92 @@
+{
+  "failed_gates": [],
+  "gates": [
+    {
+      "gate": "owns_families_zero",
+      "ok": true
+    },
+    {
+      "gate": "publication_delta_zero",
+      "ok": true
+    },
+    {
+      "gate": "completion_delta_zero",
+      "ok": true
+    },
+    {
+      "gate": "opening_5305",
+      "ok": true
+    },
+    {
+      "gate": "remaining_catalog_5305",
+      "ok": true
+    },
+    {
+      "gate": "snapshot_present",
+      "ok": true
+    },
+    {
+      "gate": "runtime_inventory_present",
+      "ok": true
+    },
+    {
+      "gate": "b0_baseline_present",
+      "ok": true
+    },
+    {
+      "gate": "overlay_primary_buckets",
+      "ok": true
+    },
+    {
+      "gate": "partial_family_count_zero",
+      "ok": true
+    },
+    {
+      "gate": "partial_not_already_expressed",
+      "ok": true
+    },
+    {
+      "gate": "partials_retained_in_gap",
+      "ok": true
+    },
+    {
+      "gate": "lock_append_only",
+      "ok": true
+    },
+    {
+      "gate": "deferred_have_owner",
+      "ok": true
+    },
+    {
+      "gate": "t14_hard_ceiling_unraised",
+      "ok": true
+    },
+    {
+      "gate": "no_recipe_tree",
+      "ok": true
+    },
+    {
+      "gate": "next_issue_t43",
+      "ok": true
+    },
+    {
+      "gate": "t43_unassigned",
+      "ok": true
+    },
+    {
+      "gate": "unique_active_content_card_null",
+      "ok": true
+    },
+    {
+      "gate": "java_identity_inventory_tests",
+      "ok": true
+    }
+  ],
+  "generated_by": "python tools/build_t42_readiness.py",
+  "note": "T42_PARTITION_READY requires failed_gates=[]. T43 is not issued from this card.",
+  "owns_families": 0,
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T42_PARTITION_READY",
+  "t43_not_issued": true
+}

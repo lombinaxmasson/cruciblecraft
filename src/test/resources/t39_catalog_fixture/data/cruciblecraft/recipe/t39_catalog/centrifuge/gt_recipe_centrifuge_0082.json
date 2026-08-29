@@ -1,0 +1,53 @@
+{
+  "family_id": "gt.recipe.centrifuge#0082",
+  "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 256,
+      "eut": 1536,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:flerovium/tiny_centrifuged_crushed_ore"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:flerovium/tiny_dust"
+        },
+        {
+          "count": 8,
+          "id": "cruciblecraft:flerovium298/tiny_dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        300
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "5f8bdccb9a4d083545b33036b37979dac333e9d2037fd4a4cdbd40f52297faa6"
+        ],
+        "selected_source_recipe": "gt.recipe.centrifuge#0082",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t39_catalog/690c37e455769f83"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:centrifuge",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

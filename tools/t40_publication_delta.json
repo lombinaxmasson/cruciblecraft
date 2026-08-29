@@ -1,0 +1,259 @@
+{
+  "authored_compact_family_entries": 13,
+  "authored_datapack_entries": 13,
+  "authored_support_entries": 0,
+  "card_level_shared_costs": {
+    "averaged_into_family_rows": false,
+    "copied_per_family": false,
+    "evidence": "tools/t40_materialization_decision.json#decision.card_aggregate_winner",
+    "lazy_cache_ceiling_rows": 22,
+    "note": "Shared provider/cache costs are card-level. Per-group cache ceilings are summed once at card level and are not copied across the locked family ledgers.",
+    "pending": false,
+    "publication_groups": {
+      "multi": {
+        "family_count": 2,
+        "logical_rows": 11,
+        "partition": {
+          "eager_publication_rows": 0,
+          "lazy_cache_ceiling_rows": 11,
+          "lazy_logical_rows": 11
+        },
+        "publication_group": "cruciblecraft:t40_electrolyzer_multi",
+        "strategy": {
+          "id": "hybrid",
+          "publication_group": "cruciblecraft:t40_electrolyzer_multi",
+          "reason": "Derived by tools/build_t40_recipe_load_benchmark.py",
+          "status": "derived",
+          "verdict": null
+        }
+      },
+      "singleton": {
+        "family_count": 11,
+        "logical_rows": 11,
+        "partition": {
+          "eager_publication_rows": 0,
+          "lazy_cache_ceiling_rows": 11,
+          "lazy_logical_rows": 11
+        },
+        "publication_group": "cruciblecraft:t40_electrolyzer_singleton",
+        "strategy": {
+          "id": "on_demand",
+          "publication_group": "cruciblecraft:t40_electrolyzer_singleton",
+          "reason": "Derived by tools/build_t40_recipe_load_benchmark.py",
+          "status": "derived",
+          "verdict": null
+        }
+      }
+    },
+    "recorded_once": true
+  },
+  "eager": 0,
+  "families": [
+    {
+      "authored_entries": 1,
+      "authored_path": "src/t40_recipe_generated/resources/data/cruciblecraft/recipe/t40/electrolyzer/gt_recipe_electrolyzer_0002.json",
+      "eager_publication_rows": 0,
+      "family_id": "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0002",
+      "lazy_logical_rows": 4,
+      "logical_rows": 4,
+      "measurement_pointer": "tools/t40_materialization_decision.json",
+      "publication_group": "cruciblecraft:t40_electrolyzer_multi",
+      "source_rows": 4,
+      "strategy": "hybrid",
+      "template_key": "gt.recipe.electrolyzer#0002"
+    },
+    {
+      "authored_entries": 1,
+      "authored_path": "src/t40_recipe_generated/resources/data/cruciblecraft/recipe/t40/electrolyzer/gt_recipe_electrolyzer_0005.json",
+      "eager_publication_rows": 0,
+      "family_id": "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0005",
+      "lazy_logical_rows": 7,
+      "logical_rows": 7,
+      "measurement_pointer": "tools/t40_materialization_decision.json",
+      "publication_group": "cruciblecraft:t40_electrolyzer_multi",
+      "source_rows": 7,
+      "strategy": "hybrid",
+      "template_key": "gt.recipe.electrolyzer#0005"
+    },
+    {
+      "authored_entries": 1,
+      "authored_path": "src/t40_recipe_generated/resources/data/cruciblecraft/recipe/t40/electrolyzer/gt_recipe_electrolyzer_0031.json",
+      "eager_publication_rows": 0,
+      "family_id": "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0031",
+      "lazy_logical_rows": 1,
+      "logical_rows": 1,
+      "measurement_pointer": "tools/t40_materialization_decision.json",
+      "publication_group": "cruciblecraft:t40_electrolyzer_singleton",
+      "source_rows": 1,
+      "strategy": "on_demand",
+      "template_key": "gt.recipe.electrolyzer#0031"
+    },
+    {
+      "authored_entries": 1,
+      "authored_path": "src/t40_recipe_generated/resources/data/cruciblecraft/recipe/t40/electrolyzer/gt_recipe_electrolyzer_0041.json",
+      "eager_publication_rows": 0,
+      "family_id": "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0041",
+      "lazy_logical_rows": 1,
+      "logical_rows": 1,
+      "measurement_pointer": "tools/t40_materialization_decision.json",
+      "publication_group": "cruciblecraft:t40_electrolyzer_singleton",
+      "source_rows": 1,
+      "strategy": "on_demand",
+      "template_key": "gt.recipe.electrolyzer#0041"
+    },
+    {
+      "authored_entries": 1,
+      "authored_path": "src/t40_recipe_generated/resources/data/cruciblecraft/recipe/t40/electrolyzer/gt_recipe_electrolyzer_0053.json",
+      "eager_publication_rows": 0,
+      "family_id": "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0053",
+      "lazy_logical_rows": 1,
+      "logical_rows": 1,
+      "measurement_pointer": "tools/t40_materialization_decision.json",
+      "publication_group": "cruciblecraft:t40_electrolyzer_singleton",
+      "source_rows": 1,
+      "strategy": "on_demand",
+      "template_key": "gt.recipe.electrolyzer#0053"
+    },
+    {
+      "authored_entries": 1,
+      "authored_path": "src/t40_recipe_generated/resources/data/cruciblecraft/recipe/t40/electrolyzer/gt_recipe_electrolyzer_0056.json",
+      "eager_publication_rows": 0,
+      "family_id": "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0056",
+      "lazy_logical_rows": 1,
+      "logical_rows": 1,
+      "measurement_pointer": "tools/t40_materialization_decision.json",
+      "publication_group": "cruciblecraft:t40_electrolyzer_singleton",
+      "source_rows": 1,
+      "strategy": "on_demand",
+      "template_key": "gt.recipe.electrolyzer#0056"
+    },
+    {
+      "authored_entries": 1,
+      "authored_path": "src/t40_recipe_generated/resources/data/cruciblecraft/recipe/t40/electrolyzer/gt_recipe_electrolyzer_0060.json",
+      "eager_publication_rows": 0,
+      "family_id": "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0060",
+      "lazy_logical_rows": 1,
+      "logical_rows": 1,
+      "measurement_pointer": "tools/t40_materialization_decision.json",
+      "publication_group": "cruciblecraft:t40_electrolyzer_singleton",
+      "source_rows": 1,
+      "strategy": "on_demand",
+      "template_key": "gt.recipe.electrolyzer#0060"
+    },
+    {
+      "authored_entries": 1,
+      "authored_path": "src/t40_recipe_generated/resources/data/cruciblecraft/recipe/t40/electrolyzer/gt_recipe_electrolyzer_0067.json",
+      "eager_publication_rows": 0,
+      "family_id": "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0067",
+      "lazy_logical_rows": 1,
+      "logical_rows": 1,
+      "measurement_pointer": "tools/t40_materialization_decision.json",
+      "publication_group": "cruciblecraft:t40_electrolyzer_singleton",
+      "source_rows": 1,
+      "strategy": "on_demand",
+      "template_key": "gt.recipe.electrolyzer#0067"
+    },
+    {
+      "authored_entries": 1,
+      "authored_path": "src/t40_recipe_generated/resources/data/cruciblecraft/recipe/t40/electrolyzer/gt_recipe_electrolyzer_0079.json",
+      "eager_publication_rows": 0,
+      "family_id": "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0079",
+      "lazy_logical_rows": 1,
+      "logical_rows": 1,
+      "measurement_pointer": "tools/t40_materialization_decision.json",
+      "publication_group": "cruciblecraft:t40_electrolyzer_singleton",
+      "source_rows": 1,
+      "strategy": "on_demand",
+      "template_key": "gt.recipe.electrolyzer#0079"
+    },
+    {
+      "authored_entries": 1,
+      "authored_path": "src/t40_recipe_generated/resources/data/cruciblecraft/recipe/t40/electrolyzer/gt_recipe_electrolyzer_0090.json",
+      "eager_publication_rows": 0,
+      "family_id": "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0090",
+      "lazy_logical_rows": 1,
+      "logical_rows": 1,
+      "measurement_pointer": "tools/t40_materialization_decision.json",
+      "publication_group": "cruciblecraft:t40_electrolyzer_singleton",
+      "source_rows": 1,
+      "strategy": "on_demand",
+      "template_key": "gt.recipe.electrolyzer#0090"
+    },
+    {
+      "authored_entries": 1,
+      "authored_path": "src/t40_recipe_generated/resources/data/cruciblecraft/recipe/t40/electrolyzer/gt_recipe_electrolyzer_0098.json",
+      "eager_publication_rows": 0,
+      "family_id": "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0098",
+      "lazy_logical_rows": 1,
+      "logical_rows": 1,
+      "measurement_pointer": "tools/t40_materialization_decision.json",
+      "publication_group": "cruciblecraft:t40_electrolyzer_singleton",
+      "source_rows": 1,
+      "strategy": "on_demand",
+      "template_key": "gt.recipe.electrolyzer#0098"
+    },
+    {
+      "authored_entries": 1,
+      "authored_path": "src/t40_recipe_generated/resources/data/cruciblecraft/recipe/t40/electrolyzer/gt_recipe_electrolyzer_0101.json",
+      "eager_publication_rows": 0,
+      "family_id": "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0101",
+      "lazy_logical_rows": 1,
+      "logical_rows": 1,
+      "measurement_pointer": "tools/t40_materialization_decision.json",
+      "publication_group": "cruciblecraft:t40_electrolyzer_singleton",
+      "source_rows": 1,
+      "strategy": "on_demand",
+      "template_key": "gt.recipe.electrolyzer#0101"
+    },
+    {
+      "authored_entries": 1,
+      "authored_path": "src/t40_recipe_generated/resources/data/cruciblecraft/recipe/t40/electrolyzer/gt_recipe_electrolyzer_0103.json",
+      "eager_publication_rows": 0,
+      "family_id": "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0103",
+      "lazy_logical_rows": 1,
+      "logical_rows": 1,
+      "measurement_pointer": "tools/t40_materialization_decision.json",
+      "publication_group": "cruciblecraft:t40_electrolyzer_singleton",
+      "source_rows": 1,
+      "strategy": "on_demand",
+      "template_key": "gt.recipe.electrolyzer#0103"
+    }
+  ],
+  "family_count": 13,
+  "generated_by": "python tools/build_t40_publication_delta.py",
+  "generated_file_count": 13,
+  "group_winners": {
+    "multi": "hybrid",
+    "singleton": "on_demand"
+  },
+  "host": "cruciblecraft:electrolyzer",
+  "lazy": 22,
+  "logical": 22,
+  "measured_card_aggregate_winner": "hybrid",
+  "note": "Authored compact entries and logical rows match the production lock. Card authored datapack entries also include support recovery recipes counted from the recovery tree. Eager/lazy/cache for singleton and multi groups follow derived per-group production winners; a blocked winner is recorded as pending strategy, not silent zeros.",
+  "owner": "portfolio:track_a/t40_electrolyzer",
+  "production_lock_sha256": "26cca29698c34039cc8aa19ff8e584a0ec7a521165ec39e8dcece03cf75488e5",
+  "production_winner": "group_scoped",
+  "production_winner_pending": false,
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T40_PUBLICATION_DELTA_READY",
+  "support_recipes": {
+    "authored": 0,
+    "crafting": [],
+    "crafting_count": 0,
+    "eager": 0,
+    "gt_recovery": [],
+    "gt_recovery_count": 0,
+    "note": "T40 player-path support recipes are counted from src/t40_support_generated/resources. GT recovery routes are immediate eager; shapeless packing is vanilla authored only."
+  },
+  "validators": {
+    "authored_matches_lock": 0,
+    "cache_not_copied_per_family": 0,
+    "family_ledger_matches_lock": 0,
+    "group_winners_not_t37_t38_partitions": 0,
+    "logical_matches_lock": 0,
+    "pending_strategy_not_zero_filled": 0,
+    "support_present": 0
+  }
+}

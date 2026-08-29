@@ -1,0 +1,280 @@
+{
+  "schema_version": 1,
+  "status": "T38_MATERIALIZATION_CANDIDATE_POLICY",
+  "scope": {
+    "card": "T38",
+    "host": "cruciblecraft:roaster",
+    "work_set": "gt.recipe.roaster#0000,#0001,#0003-#0029",
+    "family_count": 29,
+    "authored_entries_per_family": 1,
+    "production_logical_rows": 73,
+    "benchmark_only": false,
+    "production_switch_allowed": true,
+    "production_target": "cruciblecraft:roaster",
+    "does_not_modify": [
+      "Extruder HOT_MODULO",
+      "Extruder CACHE_CEILING=512",
+      "T14 20x ranking ratios",
+      "T35/T36/T37 historical READY artifacts",
+      "T37 14/36 hybrid partition or cache 8"
+    ]
+  },
+  "t38_opening": {
+    "source": "tools/t37_census_delta.json#t14_load.closing",
+    "datapack_authored_entries": {
+      "closing": 3616,
+      "hard_ceiling": 6600,
+      "measured": true,
+      "pending": false
+    },
+    "eager_publication_rows": {
+      "closing": 16611,
+      "hard_ceiling": 21000,
+      "measured": true,
+      "pending": false
+    },
+    "lazy_logical_rows": {
+      "closing": 2261,
+      "hard_ceiling": 56000,
+      "measured": true,
+      "pending": false
+    },
+    "lazy_cache_ceiling_rows": {
+      "closing": 8,
+      "hard_ceiling": 4096,
+      "measured": true,
+      "pending": false,
+      "note": "T37 card-level closing; T38 candidate cache ceiling is declared separately"
+    },
+    "sync_bytes": {
+      "closing": 5150,
+      "hard_ceiling": 67108864,
+      "measured": true,
+      "pending": false
+    },
+    "server_reload_ms": {
+      "closing": 1,
+      "hard_ceiling": 10000,
+      "measured": true,
+      "pending": false
+    },
+    "server_index_ms": {
+      "closing": 1,
+      "hard_ceiling": 1000,
+      "measured": true,
+      "pending": false
+    },
+    "client_reload_ms": {
+      "closing": 1,
+      "hard_ceiling": 10000,
+      "measured": true,
+      "pending": false
+    },
+    "client_index_ms": {
+      "closing": 1,
+      "hard_ceiling": 3000,
+      "measured": true,
+      "pending": false
+    },
+    "retained_memory_bytes": {
+      "closing": 5150,
+      "hard_ceiling": 536870912,
+      "measured": true,
+      "pending": false
+    },
+    "allocation_bytes": {
+      "closing": 236168,
+      "hard_ceiling": 536870912,
+      "measured": true,
+      "pending": false
+    },
+    "lookup_p95_ns": {
+      "closing": 87368,
+      "hard_ceiling": 2000000,
+      "measured": true,
+      "pending": false
+    },
+    "lookup_candidate_count": {
+      "closing": 42,
+      "hard_ceiling": 128,
+      "measured": true,
+      "pending": false
+    },
+    "pending_runtime_axes": [],
+    "pending_runtime_axes_zero_fill": false,
+    "lazy_cache_ceiling_rows_historical_opening": {
+      "value": 512,
+      "note": "T14 Extruder family fact only; T38 declared ceiling must be measured"
+    }
+  },
+  "scales": [
+    {
+      "id": "1x",
+      "logical_rows": 73,
+      "purpose": "production candidate comparison denominator; actual T38 work set"
+    },
+    {
+      "id": "5x",
+      "logical_rows": 365,
+      "purpose": "diagnostic pressure only; must not fill 1x unmeasured fields"
+    },
+    {
+      "id": "20x",
+      "logical_rows": 1460,
+      "purpose": "diagnostic pressure only; must not fill 1x unmeasured fields or copy Extruder 55640"
+    }
+  ],
+  "candidate_contract": {
+    "candidates": [
+      "immediate",
+      "on_demand",
+      "hybrid"
+    ],
+    "cache_policies": {
+      "immediate": "fully eager; lookup cache disabled; cache ceiling 0",
+      "on_demand": "all lazy; bounded cache ceiling 16",
+      "hybrid": "eager selector frozen below; bounded cache ceiling 16"
+    },
+    "client_gate": {
+      "server": "prepare CompactRecipeFamilyProvider snapshot on the server side",
+      "dedicated_client": "re-expand from the synchronized compact relation payload",
+      "integrated_client": "skip re-expansion and reuse the server snapshot; not a second wall-clock sample"
+    },
+    "enumeration": "complete epoch-bound view of every logical recipe; must not pre-warm or grow past the cache ceiling",
+    "lookup": "indexed candidate then stable-id selection; p50/p95 from sample intervals, never one wall-clock reading"
+  },
+  "hybrid_boundary": {
+    "declared_before_measurement": true,
+    "hot_modulo": null,
+    "forbidden_extruder_hot_modulo": 5,
+    "eager_selector": {
+      "duration_ticks_lte": 16
+    },
+    "cache_ceiling": 16,
+    "declared_eager_count": 38,
+    "declared_lazy_count": 35,
+    "eager_stable_ids": [
+      "cruciblecraft:t38/13ea434c49b30a95",
+      "cruciblecraft:t38/17d482a6b9510535",
+      "cruciblecraft:t38/1cf970eb95757130",
+      "cruciblecraft:t38/1e69f2bf8c02db82",
+      "cruciblecraft:t38/2a1e8d2880fbba20",
+      "cruciblecraft:t38/38c292273aa02ea6",
+      "cruciblecraft:t38/45445261953fd878",
+      "cruciblecraft:t38/6036978f1ba40bc4",
+      "cruciblecraft:t38/62672ca3f89a05b6",
+      "cruciblecraft:t38/640cccb5a362da8b",
+      "cruciblecraft:t38/642d4cb007f2284a",
+      "cruciblecraft:t38/64ec87da91ad56ad",
+      "cruciblecraft:t38/697a48135bd5debb",
+      "cruciblecraft:t38/69c6d13fdf692186",
+      "cruciblecraft:t38/6ef304d0c717d2b1",
+      "cruciblecraft:t38/764802c672bfca90",
+      "cruciblecraft:t38/7945fd5da75a9138",
+      "cruciblecraft:t38/7d40295605d9cf0b",
+      "cruciblecraft:t38/820c11856673f378",
+      "cruciblecraft:t38/83c62c287192e81c",
+      "cruciblecraft:t38/85b1a92abba5771a",
+      "cruciblecraft:t38/967997971401da87",
+      "cruciblecraft:t38/9d062d722e80ea52",
+      "cruciblecraft:t38/a1624b6bf5c15cef",
+      "cruciblecraft:t38/a4a1c04891ea1f21",
+      "cruciblecraft:t38/a87c39d8094bf091",
+      "cruciblecraft:t38/ac7b76b1c28a027f",
+      "cruciblecraft:t38/adcb7824378fdbcf",
+      "cruciblecraft:t38/b2207c804186484a",
+      "cruciblecraft:t38/b772fdd0f25633cb",
+      "cruciblecraft:t38/c9a7477deb169e3e",
+      "cruciblecraft:t38/ca101cc5baa6e066",
+      "cruciblecraft:t38/dda0852a34602265",
+      "cruciblecraft:t38/e4b471cd6bb21573",
+      "cruciblecraft:t38/eb55f99ab88b97ca",
+      "cruciblecraft:t38/f5c3051010068ab0",
+      "cruciblecraft:t38/f9418d6763d422e5",
+      "cruciblecraft:t38/fc53664db5534eb3"
+    ],
+    "justification": "T38 Roaster source has 73 relations across 29 families with duration histogram {16:38,128:5,144:2,512:28}; all eut=16 so eut_gte cannot partition. duration_ticks_lte 16 selects every short tick relation by stable_id (38 eager / 35 lazy), not T37's 14/36 family-id union. Cache ceiling 16 is one quarter of the 73-row work set, wide enough for the #0000 fan-out without copying T37 cache 8 or Extruder 512."
+  },
+  "workload": {
+    "production_scale": "1x",
+    "reload_warmup_iterations": 2,
+    "reload_samples": 7,
+    "lookup_warmup_operations": 32,
+    "lookup_samples": 21,
+    "lookup_operations_per_sample": 16,
+    "enumeration_warmup_iterations": 1,
+    "enumeration_samples": 5,
+    "timing_error_bar": "nonparametric_95_percent_median_order_statistic",
+    "retained_error_bar": "sample_min_max",
+    "single_wall_clock_sample_forbidden": true
+  },
+  "hard_limits_1x": {
+    "datapack_authored_entries": 6600,
+    "eager_publication_rows": 21000,
+    "lazy_logical_rows": 56000,
+    "lazy_cache_ceiling_rows": 4096,
+    "sync_bytes": 67108864,
+    "server_reload_ms": 10000,
+    "server_index_ms": 1000,
+    "client_reload_ms": 10000,
+    "client_index_ms": 3000,
+    "retained_memory_bytes": 536870912,
+    "allocation_bytes": 536870912,
+    "lookup_p95_ns": 2000000,
+    "lookup_candidate_count": 128
+  },
+  "soft_budgets_1x": {
+    "datapack_authored_entries": 6000,
+    "eager_publication_rows": 18000,
+    "lazy_logical_rows": 16000,
+    "lazy_cache_ceiling_rows": 1024,
+    "sync_bytes": 16777216,
+    "server_reload_ms": 5000,
+    "server_index_ms": 500,
+    "client_reload_ms": 5000,
+    "client_index_ms": 1000,
+    "retained_memory_bytes": 134217728,
+    "allocation_bytes": 134217728,
+    "lookup_p95_ns": 1000000,
+    "lookup_candidate_count": 64
+  },
+  "winner_algorithm": {
+    "gate_order": [
+      "correctness",
+      "hard_ceiling",
+      "cumulative_soft_budget"
+    ],
+    "correctness_gates": [
+      "field_equivalence",
+      "full_enumeration",
+      "client_consistency",
+      "player_execution"
+    ],
+    "hard_ceiling_fail_eliminates": true,
+    "production_candidate_must_sit_inside_cumulative_soft_budget": true,
+    "max_interval_soft_budget_does_not_eliminate": [
+      "lookup_candidate_count"
+    ],
+    "max_interval_soft_note": "T14 lookup_candidate_count is max_interval. Roaster oxygen-sharing yields 73 candidates, under hard 128. The Extruder-calibrated soft 64 is recorded as SOFT_BUDGET_EXCEEDED and must not copy T37's item-only envelope as a T38 veto. Hard ceiling 128 is not raised.",
+    "composite_score_forbidden": true,
+    "ranking_scale": "1x",
+    "ranking_logical_rows": 73,
+    "ranking_order_after_all_gates_pass": [
+      "eager_margin",
+      "retained_memory",
+      "reload_index",
+      "lookup",
+      "sync",
+      "implementation_complexity"
+    ],
+    "eager_margin": "If every survivor is inside the cumulative eager soft budget, treat eager_margin as tied and continue. Do not rank remaining hard-ceiling headroom as a score that prefers on_demand solely because it publishes zero eager rows.",
+    "implementation_complexity_order": [
+      "immediate",
+      "on_demand",
+      "hybrid"
+    ],
+    "pending_axis_zero_fill_forbidden": true,
+    "diagnostic_5x_20x_must_not_fill_1x": true,
+    "production_guard": "Emit a production winner only when 1x=73 logical rows are actually measured, every ranking axis used for the winner is PASS (not PENDING), and the winner is derived by tools/build_t38_recipe_load_benchmark.py. Hand-filled production_winner is invalid."
+  }
+}

@@ -56,7 +56,8 @@ public enum MaterialCreativeTab {
                     "cruciblecraft:rock" -> ORE_PROCESSING;
             case "cruciblecraft:dust",
                     "cruciblecraft:small_dust",
-                    "cruciblecraft:tiny_dust" -> DUSTS;
+                    "cruciblecraft:tiny_dust",
+                    "cruciblecraft:dust_div72" -> DUSTS;
             case "cruciblecraft:block",
                     "cruciblecraft:ingot",
                     "cruciblecraft:double_ingot",

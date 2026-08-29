@@ -1,0 +1,59 @@
+{
+  "family_id": "gt.recipe.electrolyzer#0043",
+  "publication_group": "cruciblecraft:t40_electrolyzer_singleton",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 2336,
+      "eut": 112,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:lonsdaleite/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 8,
+          "id": "cruciblecraft:carbon/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "fb81659a861865e235611172ae0851be05908c5e0760e6ad272088c7389a2430"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#0043",
+        "source_kind": "DESIGN_POLICY"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t40_catalog/3b87856d04f44f3b"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:electrolyzer",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

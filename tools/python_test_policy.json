@@ -534,6 +534,8 @@
       "paths": [
         "tools/build_t20_*.py",
         "tools/t20_*.json",
+        "tools/build_t38_source_backed_acquisition.py",
+        "tools/t38_source_backed_acquisition.json",
         "src/main/resources/data/cruciblecraft/worldgen_catalog/**",
         "src/worldgen_*",
         "src/main/java/com/masson/cruciblecraft/worldgen/**",
@@ -544,6 +546,7 @@
         "test_build_t20_worldgen_source",
         "test_build_t20_worldgen_projection",
         "test_build_t20_readiness",
+        "test_build_t38_source_backed_acquisition",
         "test_build_worldgen_catalog",
         "test_build_gt6_veins",
         "test_full_verification_report",
@@ -616,7 +619,12 @@
         "tools/verification_profiles.schema.json",
         "tools/contracts/**",
         "tools/known_issues/**",
-        "tools/check_markdown_links.py"
+        "tools/check_markdown_links.py",
+        "tools/currentness.py",
+        "tools/currentness.schema.json",
+        "tools/semantic_projection.py",
+        "tools/semantic_projection.schema.json",
+        "tools/rebind_currentness.py"
       ],
       "test_modules": [
         "test_full_verification_report",
@@ -624,7 +632,10 @@
         "test_run_full_verification",
         "test_verification_session",
         "test_verification_profiles",
-        "test_check_markdown_links"
+        "test_check_markdown_links",
+        "test_currentness",
+        "test_rebind_currentness",
+        "test_semantic_projection"
       ]
     },
     {
@@ -1061,6 +1072,227 @@
         "test_build_t37_card_topology",
         "test_build_t37_readiness",
         "test_verification_profiles"
+      ]
+    },
+    {
+      "paths": [
+        "tools/t38_common.py",
+        "tools/build_t38_gametest_receipt.py",
+        "tools/t38_gametest_receipt.json",
+        "src/main/java/com/masson/cruciblecraft/gametest/T38RecipeGameTests.java",
+        "tools/build_t38_publication_delta.py",
+        "tools/build_t38_load_projection.py",
+        "tools/build_t38_census_delta.py",
+        "tools/build_t38_card_topology.py",
+        "tools/build_t38_readiness.py",
+        "tools/t38_publication_delta.json",
+        "tools/t38_load_projection_input.json",
+        "tools/t38_load_projection.json",
+        "tools/t38_census_delta.json",
+        "tools/t38_card_topology.json",
+        "tools/t38_readiness.json",
+        "tools/verification_profiles.json",
+        "tools/verification_builder_policy.json"
+      ],
+      "test_modules": [
+        "test_build_t38_publication_delta",
+        "test_build_t38_load_projection",
+        "test_build_t38_census_delta",
+        "test_build_t38_card_topology",
+        "test_build_t38_readiness",
+        "test_build_t38_gametest_receipt",
+        "test_verification_profiles"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t38_recipe_load_benchmark.py",
+        "tools/t38_materialization_policy.json",
+        "tools/t38_materialization_measurements.json",
+        "tools/t38_materialization_decision.json",
+        "tools/recipe_load_projection.py",
+        "tools/recipe_load_projection.schema.json"
+      ],
+      "test_modules": [
+        "test_build_t38_recipe_load_benchmark",
+        "test_recipe_load_projection"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t38_player_path_recovery.py",
+        "tools/build_t38_roaster_source.py",
+        "tools/build_t38_roaster_recipes.py",
+        "tools/build_t38_gametest_receipt.py",
+        "tools/t38_roaster_source.json",
+        "tools/t38_roaster_source_receipt.json",
+        "tools/t38_roaster_source_review.json",
+        "tools/t38_roaster_equivalence.json",
+        "tools/t38_required_forms.json",
+        "tools/t38_player_path.json",
+        "tools/t38_player_path_recovery.json",
+        "tools/t38_gametest_receipt.json",
+        "tools/t38_operand_runtime_map.json",
+        "src/main/resources/data/cruciblecraft/recipe/t38_player_path_recovery/**",
+        "src/t38_recipe_generated/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/T38RecipeGameTests.java"
+      ],
+      "test_modules": [
+        "test_build_t38_roaster_source",
+        "test_build_t38_roaster_recipes",
+        "test_build_t38_player_path_recovery",
+        "test_build_t38_gametest_receipt"
+      ]
+    },
+    {
+      "paths": [
+        "tools/t43_common.py",
+        "tools/build_t43_census_delta.py",
+        "tools/build_t43_card_topology.py",
+        "tools/build_t43_readiness.py",
+        "tools/t43_census_delta.json",
+        "tools/t43_card_topology.json",
+        "tools/t43_readiness.json",
+        "tools/verification_profiles.json",
+        "tools/verification_builder_policy.json"
+      ],
+      "test_modules": [
+        "test_build_t43_census_delta",
+        "test_build_t43_card_topology",
+        "test_build_t43_readiness",
+        "test_verification_profiles"
+      ]
+    },
+    {
+      "paths": [
+        "tools/t45_common.py",
+        "tools/build_t45_census_delta.py",
+        "tools/build_t45_card_topology.py",
+        "tools/build_t45_readiness.py",
+        "tools/t45_census_delta.json",
+        "tools/t45_card_topology.json",
+        "tools/t45_readiness.json",
+        "tools/verification_profiles.json",
+        "tools/verification_builder_policy.json"
+      ],
+      "test_modules": [
+        "test_build_t45_census_delta",
+        "test_build_t45_card_topology",
+        "test_build_t45_readiness",
+        "test_verification_profiles"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t43_recipe_load_benchmark.py",
+        "tools/t43_materialization_policy.json",
+        "tools/t43_materialization_measurements.json",
+        "tools/t43_materialization_decision.json",
+        "tools/t43_load_projection_input.json",
+        "tools/t43_load_projection.json"
+      ],
+      "test_modules": [
+        "test_build_t43_recipe_load_benchmark"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t45_recipe_load_benchmark.py",
+        "tools/t45_materialization_policy.json",
+        "tools/t45_materialization_measurements.json",
+        "tools/t45_materialization_decision.json",
+        "tools/t45_load_projection_input.json",
+        "tools/t45_load_projection.json"
+      ],
+      "test_modules": [
+        "test_build_t45_recipe_load_benchmark"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t43_work_set.py",
+        "tools/build_t43_stone_catalog.py",
+        "tools/build_t43_smelter_source.py",
+        "tools/build_t43_candidate_selection.py",
+        "tools/build_t43_production_lock.py",
+        "tools/build_t43_operand_runtime_map.py",
+        "tools/build_t43_smelter_recipes.py",
+        "tools/build_t43_player_path_support.py",
+        "tools/build_t43_layered_player_path.py",
+        "tools/build_t43_publication_group_manifest.py",
+        "tools/build_t43_shard_manifest.py",
+        "tools/build_t43_runtime_dependency_manifest.py",
+        "tools/build_t43_gametest_receipt.py",
+        "tools/build_t43_publication_delta.py",
+        "tools/build_t43_load_projection.py",
+        "tools/build_t43_publication_policy.py",
+        "tools/t43_*.json",
+        "tools/tests/test_build_t43_*.py",
+        "src/t43_recipe_generated/**",
+        "src/t43_support_generated/**",
+        "src/test/resources/t43_catalog_fixture/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/T43RecipeGameTests.java"
+      ],
+      "test_modules": [
+        "test_build_t43_work_set",
+        "test_build_t43_stone_catalog",
+        "test_build_t43_production_lock",
+        "test_build_t43_gametest_receipt"
+      ]
+    },
+    {
+      "paths": [
+        "tools/build_t45_work_set.py",
+        "tools/build_t45_block_object_catalog.py",
+        "tools/build_t45_block_object_source.py",
+        "tools/build_t45_bath_mte_audit.py",
+        "tools/build_t45_candidate_selection.py",
+        "tools/build_t45_production_lock.py",
+        "tools/build_t45_operand_runtime_map.py",
+        "tools/build_t45_recipe_compile_spec.py",
+        "tools/build_recipe_bulk.py",
+        "tools/recipe_bulk/**",
+        "tools/recipe_bulk_ir.schema.json",
+        "tools/build_t45_player_path_support.py",
+        "tools/build_t45_layered_player_path.py",
+        "tools/build_t45_publication_group_manifest.py",
+        "tools/build_t45_shard_manifest.py",
+        "tools/build_t45_runtime_dependency_manifest.py",
+        "tools/build_t45_gametest_receipt.py",
+        "tools/build_t45_publication_delta.py",
+        "tools/build_t45_load_projection.py",
+        "tools/build_t45_publication_policy.py",
+        "tools/t45_*.json",
+        "tools/tests/test_build_t45_*.py",
+        "tools/tests/test_recipe_bulk.py",
+        "src/t45_recipe_generated/**",
+        "src/t45_support_generated/**",
+        "src/test/resources/t45_compiler_fixture/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/T45RecipeGameTests.java"
+      ],
+      "test_modules": [
+        "test_build_t45_work_set",
+        "test_build_t45_production_lock",
+        "test_build_t45_gametest_receipt",
+        "test_recipe_bulk"
+      ]
+    },
+    {
+      "paths": [
+        "tools/t44_common.py",
+        "tools/build_t44_*.py",
+        "tools/t44_*.json",
+        "tools/tests/test_build_t44_storage.py",
+        "src/main/java/com/masson/cruciblecraft/content/storage/**",
+        "src/main/java/com/masson/cruciblecraft/gametest/T44StorageGameTests.java",
+        "src/main/resources/data/cruciblecraft/storage_variants.json",
+        "src/main/resources/data/cruciblecraft/schema/storage_variants.schema.json",
+        "src/test/java/com/masson/cruciblecraft/content/storage/**",
+        "src/test/java/com/masson/cruciblecraft/content/blockentity/StorageProfileBlockEntityTest.java",
+        "src/test/java/com/masson/cruciblecraft/datagen/StorageAcquisitionResourceTest.java"
+      ],
+      "test_modules": [
+        "test_build_t44_storage"
       ]
     },
     {

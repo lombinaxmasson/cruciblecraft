@@ -1,0 +1,79 @@
+{
+  "$schema": "schema/device_materials.schema.json",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "devices": {
+    "crucible": {
+      "default_material": "ceramic",
+      "materials": [
+        {
+          "material_id": "ceramic",
+          "processing_tier": 2,
+          "creative_visible": true
+        },
+        {
+          "material_id": "bronze",
+          "processing_tier": 2,
+          "creative_visible": true
+        },
+        {
+          "material_id": "steel",
+          "processing_tier": 3,
+          "creative_visible": true
+        }
+      ]
+    },
+    "anvil": {
+      "default_material": "stone",
+      "materials": [
+        {
+          "material_id": "stone",
+          "processing_tier": 0,
+          "durability": 10000,
+          "creative_visible": true
+        },
+        {
+          "material_id": "bronze",
+          "processing_tier": 1,
+          "durability": 1000000,
+          "creative_visible": true
+        },
+        {
+          "material_id": "iron",
+          "processing_tier": 2,
+          "durability": 5000000,
+          "creative_visible": true
+        },
+        {
+          "material_id": "steel",
+          "processing_tier": 3,
+          "durability": 10000000,
+          "creative_visible": true
+        }
+      ]
+    },
+    "hammer": {
+      "default_material": "iron",
+      "materials": [
+        {
+          "material_id": "bronze",
+          "processing_tier": 1,
+          "durability": 44800,
+          "creative_visible": false
+        },
+        {
+          "material_id": "iron",
+          "processing_tier": 2,
+          "durability": 48000,
+          "creative_visible": false
+        },
+        {
+          "material_id": "steel",
+          "processing_tier": 3,
+          "durability": 51200,
+          "creative_visible": false
+        }
+      ]
+    }
+  }
+}

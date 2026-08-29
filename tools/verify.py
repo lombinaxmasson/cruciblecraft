@@ -8,6 +8,7 @@ import os
 import subprocess
 import sys
 import time
+import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -17,6 +18,18 @@ PROFILES = TOOLS / "verification_profiles.json"
 BUILDER_POLICY = TOOLS / "verification_builder_policy.json"
 REPORT = TOOLS / "full_verification_report.json"
 DEBT = TOOLS / "known_issues" / "verification-debt.json"
+TEST_RESULTS = ROOT / "build" / "test-results" / "test"
+CLOSEOUT_PROFILES = ("recipes", "census", "census-replay")
+RECEIPT_SCRIPTS = {
+    "recipes": (
+        "tools/build_t38_gametest_receipt.py",
+        "tools/build_t39_gametest_receipt.py",
+        "tools/build_t40_gametest_receipt.py",
+        "tools/build_t41_gametest_receipt.py",
+        "tools/build_t43_gametest_receipt.py",
+        "tools/build_t45_gametest_receipt.py",
+    ),
+}
 
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -120,9 +133,98 @@ def builder_args_for_profile(
     return list(full_replay["args"])
 
 
-def gradle_command(task: str) -> list[str]:
+def gradle_command(task: str, *, rerun: bool = True) -> list[str]:
     wrapper = "gradlew.bat" if os.name == "nt" else "./gradlew"
-    return [str(ROOT / wrapper), task, "--no-daemon"]
+    command = [str(ROOT / wrapper), task, "--no-daemon"]
+    if rerun:
+        command.append("--rerun-tasks")
+    return command
+
+
+def parse_gradle_test_xml(results_dir: Path = TEST_RESULTS) -> dict[str, Any]:
+    if not results_dir.is_dir():
+        return {
+            "xml_present": False,
+            "tests": 0,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0,
+            "rerun_tasks": True,
+        }
+    tests = failures = errors = skipped = 0
+    xml_present = False
+    for path in sorted(results_dir.glob("TEST-*.xml")):
+        xml_present = True
+        root = ET.parse(path).getroot()
+        tests += int(root.attrib.get("tests") or 0)
+        failures += int(root.attrib.get("failures") or 0)
+        errors += int(root.attrib.get("errors") or 0)
+        skipped += int(root.attrib.get("skipped") or 0)
+    return {
+        "xml_present": xml_present,
+        "tests": tests,
+        "failures": failures,
+        "errors": errors,
+        "skipped": skipped,
+        "rerun_tasks": True,
+    }
+
+
+def gradle_full_suite_errors(summary: dict[str, Any]) -> list[str]:
+    errors: list[str] = []
+    if not summary.get("xml_present"):
+        errors.append("Gradle TEST-*.xml is missing; filtered or UP-TO-DATE run is not a full-suite PASS")
+    if int(summary.get("tests") or 0) < 1:
+        errors.append("Gradle test count is insufficient for a full-suite PASS")
+    if int(summary.get("failures") or 0) or int(summary.get("errors") or 0):
+        errors.append("Gradle test XML records failures or errors")
+    if summary.get("rerun_tasks") is not True:
+        errors.append("Gradle full suite must set rerun_tasks=true")
+    return errors
+
+
+def gametest_spec(profile: dict[str, Any]) -> dict[str, Any]:
+    raw = profile.get("gametest")
+    if isinstance(raw, bool):
+        return {
+            "receipt_check": False,
+            "run_isolated": False,
+            "manual_deferred": bool(raw),
+        }
+    if not isinstance(raw, dict):
+        raise ValueError("profile gametest must be an object")
+    return {
+        "receipt_check": bool(raw.get("receipt_check")),
+        "run_isolated": bool(raw.get("run_isolated")),
+        "manual_deferred": bool(raw.get("manual_deferred")),
+    }
+
+
+def debt_rows(*, debt_aware: bool, profile_name: str) -> tuple[list[dict[str, Any]], list[str]]:
+    if not DEBT.is_file():
+        return [], []
+    document = load_json(DEBT)
+    open_rows = [
+        row for row in document.get("issues") or [] if row.get("status") == "open"
+    ]
+    notes: list[str] = []
+    if not debt_aware:
+        return open_rows, notes
+    for row in open_rows:
+        blocks = row.get("blocks_profiles") or []
+        scope = row.get("scope") or "external"
+        if profile_name in blocks:
+            continue
+        if scope == "external" or profile_name not in (blocks or []):
+            notes.append(str(row.get("id") or ""))
+    return open_rows, notes
+
+
+def write_result_json(path: Path, document: dict[str, Any]) -> None:
+    from tools import atomic_io
+
+    payload = json.dumps(document, indent=2, sort_keys=True) + "\n"
+    atomic_io.write_text(path, payload)
 
 
 def run_command(
@@ -264,21 +366,28 @@ def cmd_dev(args: argparse.Namespace) -> int:
     return 0
 
 
-def cmd_integration(args: argparse.Namespace) -> int:
-    document = load_profiles()
-    profile_name = args.profile
-    if profile_name not in document["profiles"]:
-        print(
-            f"unknown profile {profile_name!r}; available: "
-            + ", ".join(sorted(document["profiles"])),
-            file=sys.stderr,
-        )
-        return 2
+def _record(failures: list[str], report_all: bool, message: str) -> int:
+    print(message, file=sys.stderr, flush=True)
+    failures.append(message)
+    return 0 if report_all else 1
+
+
+def run_profile_steps(
+    profile_name: str,
+    args: argparse.Namespace,
+    *,
+    document: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    document = document if document is not None else load_profiles()
     profile = document["profiles"][profile_name]
-    print(f"verify integration --profile {profile_name}")
-    print(f"owner={profile['owner']} tier={profile['tier']}")
     builder_policy = load_json(BUILDER_POLICY)
     timings: list[tuple[str, float]] = []
+    failures: list[str] = []
+    gradle_summary: dict[str, Any] | None = None
+    gametest_result: dict[str, Any] = {"status": "SKIP"}
+    report_all = bool(getattr(args, "report_all", False))
+    print(f"verify integration --profile {profile_name}")
+    print(f"owner={profile['owner']} tier={profile['tier']}")
     try:
         for row in builder_rows_for_profile(profile_name, document, builder_policy):
             argv = builder_args_for_profile(profile_name, row)
@@ -289,18 +398,14 @@ def cmd_integration(args: argparse.Namespace) -> int:
                     flush=True,
                 )
                 continue
-            command = [
-                sys.executable,
-                row["script"],
-                *argv,
-            ]
             code = run_command(
                 f"builder:{row['name']}",
-                command,
+                [sys.executable, row["script"], *argv],
                 timings=timings,
             )
             if code != 0:
-                return code
+                if _record(failures, report_all, f"builder:{row['name']} failed"):
+                    return _result(profile_name, failures, timings, gradle_summary, gametest_result)
         for module in profile["python_modules"]:
             code = run_command(
                 f"python:{module}",
@@ -315,31 +420,216 @@ def cmd_integration(args: argparse.Namespace) -> int:
                 timings=timings,
             )
             if code != 0:
-                return code
+                if _record(failures, report_all, f"python:{module} failed"):
+                    return _result(profile_name, failures, timings, gradle_summary, gametest_result)
         for task in profile["gradle_tasks"]:
             code = run_command(
                 f"gradle:{task}",
-                gradle_command(task),
+                gradle_command(task, rerun=True),
                 timings=timings,
             )
-            if code != 0:
-                return code
+            if task == "test":
+                gradle_summary = parse_gradle_test_xml()
+                gradle_summary["exit_code"] = code
+                for error in gradle_full_suite_errors(gradle_summary):
+                    if _record(failures, report_all, error):
+                        return _result(profile_name, failures, timings, gradle_summary, gametest_result)
+            elif code != 0:
+                if _record(failures, report_all, f"gradle:{task} failed"):
+                    return _result(profile_name, failures, timings, gradle_summary, gametest_result)
         if profile["datagen"]:
             print("datagen required: run .\\gradlew.bat runData twice and compare generated trees")
-        if profile["gametest"]:
-            if "census" in profile.get("selected_profiles", [args.profile]):
-                print(
-                    "GameTest required for this profile: "
-                    ".\\gradlew.bat runGameTestServer -Pt35Census --no-daemon"
-                )
+        spec = gametest_spec(profile)
+        if spec["receipt_check"]:
+            scripts = RECEIPT_SCRIPTS.get(profile_name, ())
+            if not scripts:
+                # Alias profiles (card-closeout) expand elsewhere; diagnostic
+                # must not report a receipt PASS without running --check.
+                gametest_result = {"status": "SKIP", "receipt_check": True}
             else:
-                print("GameTest required for this profile: .\\gradlew.bat runGameTestServer")
-        print("integration profile complete. Do not treat this as a player release.")
-        return 0
+                gametest_result = {"status": "PASS", "receipt_check": True}
+                for script in scripts:
+                    code = run_command(
+                        f"gametest-receipt:{script}",
+                        [sys.executable, script, "--check"],
+                        timings=timings,
+                    )
+                    if code != 0:
+                        gametest_result["status"] = "FAIL"
+                        if _record(failures, report_all, f"gametest receipt failed: {script}"):
+                            return _result(profile_name, failures, timings, gradle_summary, gametest_result)
+        elif spec["run_isolated"]:
+            gametest_result = {"status": "FAIL", "run_isolated": True}
+            if _record(failures, report_all, "isolated GameTest requested but not executed by verify.py"):
+                return _result(profile_name, failures, timings, gradle_summary, gametest_result)
+        elif spec["manual_deferred"]:
+            gametest_result = {"status": "DEFERRED", "manual_deferred": True}
+            print("GameTest status: DEFERRED (manual_deferred; not a PASS)")
+        else:
+            gametest_result = {"status": "SKIP"}
+        open_debt, scoped = debt_rows(
+            debt_aware=bool(getattr(args, "debt_aware", False)),
+            profile_name=profile_name,
+        )
+        if scoped:
+            print("debt-aware external notes: " + ", ".join(scoped))
+        if open_debt and not getattr(args, "debt_aware", False):
+            print("open verification debt: " + ", ".join(row.get("id") or "?" for row in open_debt))
+        return _result(profile_name, failures, timings, gradle_summary, gametest_result)
     finally:
         print("integration wall-time summary:")
         for name, wall_seconds in timings:
             print(f"  {name}: {wall_seconds:.3f}s")
+
+
+def diagnostic_report() -> dict[str, Any]:
+    """Structured stale/debt report. Never upgrades required failures to PASS."""
+    from tools import currentness
+    from tools import run_verification_dag as dag
+
+    open_debt, _notes = debt_rows(debt_aware=False, profile_name="card-diagnostic-T40")
+    sidecars: list[dict[str, Any]] = []
+    for row in currentness.TARGETS:
+        artifact = ROOT / row["artifact"]
+        if not artifact.is_file():
+            sidecars.append(
+                {
+                    "artifact": row["artifact"],
+                    "scope": row["scope"],
+                    "compact": ["MISSING"],
+                    "hash_only": [],
+                }
+            )
+            continue
+        compact = currentness.check_sidecar(artifact, include_hash_only=False)
+        hash_only = [
+            error
+            for error in currentness.check_sidecar(artifact, include_hash_only=True)
+            if error not in compact
+        ]
+        sidecars.append(
+            {
+                "artifact": row["artifact"],
+                "scope": row["scope"],
+                "compact": compact,
+                "hash_only": hash_only,
+            }
+        )
+    return {
+        "open_debt": [str(row.get("id") or "?") for row in open_debt],
+        "dag": dag.plan(),
+        "sidecars": sidecars,
+    }
+
+
+def combine_closeout_results(subresults: list[dict[str, Any]]) -> dict[str, Any]:
+    """Keep recipes Gradle/GameTest evidence; do not let census-replay overwrite it."""
+    failures: list[str] = []
+    timings: list[dict[str, Any]] = []
+    by_name: dict[str, Any] = {}
+    for row in subresults:
+        failures.extend(row.get("failures") or [])
+        timings.extend(row.get("timings") or [])
+        by_name[str(row.get("profile"))] = {
+            "status": row.get("status"),
+            "failures": list(row.get("failures") or []),
+            "gradle": row.get("gradle"),
+            "gametest": row.get("gametest"),
+        }
+    recipes = by_name.get("recipes") or {}
+    return {
+        "schema_version": 1,
+        "command": "integration",
+        "profile": "card-closeout",
+        "status": "FAIL" if failures else "PASS",
+        "failures": failures,
+        "profiles": by_name,
+        "gradle": recipes.get("gradle"),
+        "gametest": recipes.get("gametest") or {"status": "SKIP"},
+        "timings": timings,
+    }
+
+
+def _result(
+    profile_name: str,
+    failures: list[str],
+    timings: list[tuple[str, float]],
+    gradle_summary: dict[str, Any] | None,
+    gametest_result: dict[str, Any],
+) -> dict[str, Any]:
+    diagnostic = profile_name == "card-diagnostic-T40"
+    if failures:
+        status = "FAIL"
+    elif diagnostic:
+        status = "DIAGNOSTIC"
+    else:
+        status = "PASS"
+    if profile_name != "card-diagnostic-T40" and not failures:
+        print("integration profile complete. Do not treat this as a player release.")
+    elif diagnostic and not failures:
+        print("card-diagnostic-T40 complete. This is not a closeout PASS.")
+    result = {
+        "schema_version": 1,
+        "command": "integration",
+        "profile": profile_name,
+        "status": status,
+        "failures": failures,
+        "gradle": gradle_summary,
+        "gametest": gametest_result,
+        "timings": [{"name": name, "seconds": seconds} for name, seconds in timings],
+    }
+    if diagnostic:
+        report = diagnostic_report()
+        result["diagnostic"] = report
+        print(
+            "diagnostic open debt: "
+            + (", ".join(report["open_debt"]) or "(none)")
+        )
+        stale = (report.get("dag") or {}).get("stale") or []
+        print(f"diagnostic DAG stale nodes: {len(stale)}")
+    return result
+
+
+def cmd_integration(args: argparse.Namespace) -> int:
+    document = load_profiles()
+    names = list(CLOSEOUT_PROFILES) if args.profile == "card-closeout" else [args.profile]
+    subresults: list[dict[str, Any]] = []
+    for name in names:
+        if name not in document["profiles"]:
+            print(
+                f"unknown profile {name!r}; available: "
+                + ", ".join(sorted(document["profiles"])),
+                file=sys.stderr,
+            )
+            return 2
+        last = run_profile_steps(name, args, document=document)
+        subresults.append(last)
+        if last["status"] == "FAIL" and not getattr(args, "report_all", False):
+            break
+    if args.profile == "card-closeout":
+        result = combine_closeout_results(subresults)
+    else:
+        result = subresults[-1] if subresults else {
+            "schema_version": 1,
+            "command": "integration",
+            "profile": args.profile,
+            "status": "FAIL",
+            "failures": ["no profile ran"],
+        }
+    if getattr(args, "json_path", None):
+        write_result_json(Path(args.json_path), result)
+    return 0 if result["status"] in {"PASS", "DIAGNOSTIC"} else 1
+
+
+def cmd_currentness(args: argparse.Namespace) -> int:
+    command = [sys.executable, "tools/rebind_currentness.py", f"--{args.mode}", "--scope", args.scope]
+    code = run_command("currentness:rebind", command)
+    dag_mode = "--plan" if args.mode == "plan" else "--check"
+    dag_code = run_command(
+        "currentness:dag",
+        [sys.executable, "tools/run_verification_dag.py", dag_mode],
+    )
+    return code or dag_code
 
 
 def cmd_release(args: argparse.Namespace) -> int:
@@ -393,7 +683,18 @@ def main(argv: list[str] | None = None) -> int:
         help="Run one explicit profile before closing a content card",
     )
     integration.add_argument("--profile", required=True)
+    integration.add_argument("--report-all", action="store_true")
+    integration.add_argument("--json", dest="json_path", type=Path)
+    integration.add_argument("--debt-aware", action="store_true")
     integration.set_defaults(func=cmd_integration)
+
+    currentness = sub.add_parser(
+        "currentness",
+        help="Plan or check DAG/currentness sidecars without a full profile run",
+    )
+    currentness.add_argument("--mode", choices=("plan", "check", "write"), default="plan")
+    currentness.add_argument("--scope", choices=("t35", "card-closeout", "recipes", "all"), default="all")
+    currentness.set_defaults(func=cmd_currentness)
 
     release = sub.add_parser(
         "release",

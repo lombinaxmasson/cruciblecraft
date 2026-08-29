@@ -1,0 +1,35 @@
+{
+  "catalog": {
+    "families": 294,
+    "relations": 1531,
+    "selection_sha256": "e36fe2d88257660075f03d4a89d7d2a68ec8dfe0cbc9dcb2927a049a3988d3d2"
+  },
+  "files": {
+    "receipt": {
+      "path": "tools/t41_assembler_source_receipt.json"
+    },
+    "review": {
+      "path": "tools/t41_assembler_source_review.json"
+    },
+    "source": {
+      "path": "tools/t41_assembler_source.json",
+      "sha256": "b60eb7ad8d553518f3a07a84dc365e13a76b6ed828568d2bd2db901de0608a56"
+    },
+    "work_set": {
+      "path": "tools/t41_work_set.json",
+      "sha256": "3fda80dea0a98f8eae31f6919176ca5292e9b0e16d5e7a3ffb18832e77aa257b"
+    }
+  },
+  "full_replay": {
+    "dump_present": true,
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "host": "cruciblecraft:assembler",
+  "note": "294/1531 is catalog source, not the production lock. A missing GT6 dump is a closed failure, never a skipped PASS.",
+  "owner": "portfolio:track_a/t41_assembler",
+  "review_status": "T41_ASSEMBLER_SOURCE_FROZEN",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T41_SOURCE_PACK_FROZEN"
+}

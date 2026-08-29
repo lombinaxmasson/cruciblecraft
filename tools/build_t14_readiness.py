@@ -6,10 +6,13 @@ import argparse
 import hashlib
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 TOOLS = ROOT / "tools"
 BUILDER = Path(__file__).resolve()
 OUTPUT = TOOLS / "t14_readiness.json"
@@ -469,11 +472,11 @@ def main() -> int:
         document = build()
         encoded = stable(document)
         if args.check:
-            if (
-                not OUTPUT.is_file()
-                or OUTPUT.read_text(encoding="utf-8") != encoded
-            ):
-                raise ValueError("T14 readiness is stale")
+            from tools import currentness
+
+            errors = currentness.check_rebuilt(OUTPUT, document)
+            if errors:
+                raise ValueError("; ".join(errors))
         else:
             OUTPUT.write_bytes(encoded.encode("utf-8"))
     except (OSError, ValueError, KeyError, json.JSONDecodeError) as error:

@@ -22,24 +22,35 @@ class WorldgenCatalogBuilderTest(unittest.TestCase):
         cls.surface_scatter = builder.load_surface_scatter()
 
     def test_t2c_vein_ledger_is_bidirectionally_closed(self):
-        expected = builder.closure_vein_materials()
         actual = {
             entry["material"]
             for vein in self.veins
             for layer in builder.vein_builder.LAYERS
             for entry in vein[layer]
         }
+        t38_document = json.loads(
+            builder.T38_ACQUISITION.read_text(encoding="utf-8")
+        )
+        t38_materials = {
+            entry["material"]
+            for vein in t38_document["veins"]
+            for layer in builder.vein_builder.LAYERS
+            for entry in vein[layer]
+        }
+        expected = builder.closure_vein_materials() - (
+            t38_materials - actual
+        )
         self.assertEqual(129, len(expected))
         self.assertEqual(expected, actual)
         self.assertEqual(0, self.readiness["counts"]["unclassified"])
 
     def test_registered_ore_domain_remains_two_host_and_fully_covered(self):
         counts = self.readiness["counts"]
-        self.assertEqual(137, counts["registered_ore_materials"])
+        self.assertEqual(147, counts["registered_ore_materials"])
         self.assertEqual(2, counts["ore_host_types"])
-        self.assertEqual(274, counts["registered_ore_blocks"])
+        self.assertEqual(294, counts["registered_ore_blocks"])
         self.assertEqual(
-            137,
+            147,
             len(self.readiness["all_worldgen_ore_materials"]),
         )
         self.assertEqual(
@@ -60,15 +71,15 @@ class WorldgenCatalogBuilderTest(unittest.TestCase):
             for path in self.files
             if "/worldgen/placed_feature/" in path
         }
-        self.assertEqual(131, len(configured))
-        self.assertEqual(131, len(placed))
-        self.assertEqual(263, len(self.files))
-        self.assertEqual(274, self.readiness["counts"]["all_worldgen_files"])
+        self.assertEqual(134, len(configured))
+        self.assertEqual(134, len(placed))
+        self.assertEqual(269, len(self.files))
+        self.assertEqual(280, self.readiness["counts"]["all_worldgen_files"])
         modifier = json.loads(self.files[
             "data/cruciblecraft/neoforge/biome_modifier/"
             "add_worldgen_catalog.json"
         ])
-        self.assertEqual(131, len(modifier["features"]))
+        self.assertEqual(134, len(modifier["features"]))
 
     def test_fluid_deposits_are_source_state_qualified_and_finite(self):
         self.assertEqual(
@@ -241,11 +252,13 @@ class WorldgenCatalogBuilderTest(unittest.TestCase):
             ):
                 builder.load_surface_scatter()
 
-    def test_historical_t20_generated_counts_remain_pinned(self):
+    def test_t20_core_counts_and_t38_additive_counts_are_current(self):
         counts = self.readiness["counts"]
-        self.assertEqual(263, counts["catalog_generated_files"])
-        self.assertEqual(274, counts["all_worldgen_files"])
+        self.assertEqual(269, counts["catalog_generated_files"])
+        self.assertEqual(280, counts["all_worldgen_files"])
         self.assertEqual(129, counts["closure_vein_classifications"])
+        self.assertEqual(3, counts["t38_player_path_source_backed_veins"])
+        self.assertEqual(4, counts["t38_player_path_materials"])
         self.assertIn(
             "surface_scatter_declarations",
             self.readiness["inputs"],

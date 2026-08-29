@@ -1,0 +1,59 @@
+{
+  "family_id": "gt.recipe.assembler#0270",
+  "publication_group": "cruciblecraft:t41_assembler_fireproof",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 64,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        8,
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:fireproof": 1
+          },
+          "items": "cruciblecraft:gt_wood/wood_planks",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "minecraft:diamond"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:jukebox"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "42260fb08551fccc7795b1e6e6b8574181a0a0f25b16eda1bf42e41ae1897c79"
+        ],
+        "selected_source_recipe": "gt.recipe.assembler#0270",
+        "source_kind": "SOURCE_BACKED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t41/287ff5a8e45a7da3"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:assembler",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

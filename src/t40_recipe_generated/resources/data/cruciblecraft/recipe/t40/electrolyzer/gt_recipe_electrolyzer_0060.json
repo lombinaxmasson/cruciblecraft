@@ -1,0 +1,73 @@
+{
+  "family_id": "gt.recipe.electrolyzer#0060",
+  "publication_group": "cruciblecraft:t40_electrolyzer_singleton",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 1752,
+      "eut": 252,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 2000,
+          "id": "minecraft:water"
+        },
+        {
+          "amount": 1000,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        6
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:asbestos/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:magnesium/dust"
+        },
+        {
+          "count": 2,
+          "id": "cruciblecraft:silicon_dioxide/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "8df67f3bd3a3e7263c7e503ffecc145f94fa296f7f9b17b41fa34938fca8bb63"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#0060",
+        "source_kind": "DESIGN_POLICY"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t40/d028f4034724555b"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:electrolyzer",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

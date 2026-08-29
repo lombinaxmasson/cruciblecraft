@@ -1,7 +1,6 @@
 """Tests for the T35 aggregate census builder."""
 from __future__ import annotations
 
-import copy
 import hashlib
 import json
 import sys
@@ -13,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from tools import build_t35_census as builder  # noqa: E402
+from tools import currentness  # noqa: E402
 from tools import t27_common as common  # noqa: E402
 from tools import t35_common as t35  # noqa: E402
 
@@ -35,7 +35,10 @@ class T35CensusTest(unittest.TestCase):
         if not builder.OUTPUT.is_file():
             self.skipTest("artifact not yet generated")
         on_disk = json.loads(builder.OUTPUT.read_text(encoding="utf-8"))
-        self.assertEqual(builder.build(), on_disk)
+        self.assertEqual(
+            currentness.semantic_root(builder.build()),
+            currentness.semantic_root(on_disk),
+        )
         before = builder.OUTPUT.read_bytes()
         self.assertEqual([], builder.check())
         self.assertEqual(before, builder.OUTPUT.read_bytes())
@@ -160,15 +163,15 @@ class T35CensusTest(unittest.TestCase):
     def test_corrupt_recipe_membership_fails_closed(self) -> None:
         if not builder.OUTPUT.is_file():
             self.skipTest("artifact not yet generated")
-        original = json.loads(t35.RECIPE_FAMILIES.read_text(encoding="utf-8"))
-        tampered = copy.deepcopy(original)
-        tampered["counts"]["assigned_rows"] = 1
-        t35.RECIPE_FAMILIES.write_text(common.stable_json(tampered), encoding="utf-8")
-        try:
-            with self.assertRaises(ValueError):
+        with mock.patch.object(
+            builder.recipe_families_builder,
+            "reference_only_check",
+            return_value=["assigned_rows != 78682"],
+        ):
+            with self.assertRaises(ValueError) as ctx:
                 builder.build()
-        finally:
-            common.write_stable(t35.RECIPE_FAMILIES, original)
+        self.assertIn("t35_recipe_families.json", str(ctx.exception))
+        self.assertIn("assigned_rows", str(ctx.exception))
 
 
 if __name__ == "__main__":

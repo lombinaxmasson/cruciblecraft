@@ -13,6 +13,8 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 TOOLS = ROOT / "tools"
 DUMP_ROOT = ROOT / "gt6_dump/gt6_recipe_dump"
 MAP_ROOT = DUMP_ROOT / "maps"
@@ -1113,8 +1115,9 @@ def build(
     if write:
         if RECIPE_ROOT.exists():
             shutil.rmtree(RECIPE_ROOT)
+        from tools import atomic_io
+
         for path, content in sorted(planned.items()):
-            path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_bytes(content)
+            atomic_io.write_bytes(path, content)
     return manifest
 

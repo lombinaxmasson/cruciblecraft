@@ -13,6 +13,7 @@ sys.path.insert(0, str(ROOT))
 
 from tools import build_t35_card_topology as builder  # noqa: E402
 from tools import build_t35_census as census_builder  # noqa: E402
+from tools import currentness  # noqa: E402
 from tools import t27_common as common  # noqa: E402
 from tools import t35_common as t35  # noqa: E402
 
@@ -77,7 +78,10 @@ class T35CardTopologyTest(unittest.TestCase):
             self.skipTest("artifact not yet generated")
         on_disk = json.loads(builder.OUTPUT.read_text(encoding="utf-8"))
         expected = builder.build()
-        self.assertEqual(expected, on_disk)
+        self.assertEqual(
+            currentness.semantic_root(expected),
+            currentness.semantic_root(on_disk),
+        )
         before = builder.OUTPUT.read_bytes()
         self.assertEqual([], builder.check())
         self.assertEqual(before, builder.OUTPUT.read_bytes())

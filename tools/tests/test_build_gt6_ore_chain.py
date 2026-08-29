@@ -151,18 +151,18 @@ class OreChainBuilderTest(unittest.TestCase):
             for row in self.index["recipes"]
             if row["family"] == builder.ORE_BLOCK_ROUTE_FAMILY
         }
-        self.assertEqual(137, len(ore_materials))
+        self.assertEqual(147, len(ore_materials))
         self.assertEqual(357, len(raw_rows))
         self.assertEqual(ore_materials, set(ore_rows))
         self.assertEqual(ore_materials, ore_materials & set(raw_rows))
         self.assertEqual(set(), ore_materials - set(raw_rows))
-        self.assertEqual(220, len(set(raw_rows) - ore_materials))
+        self.assertEqual(210, len(set(raw_rows) - ore_materials))
         self.assertEqual(
-            137,
+            147,
             self.index["counts"]["high_version_ore_block_recipes"],
         )
-        self.assertEqual(494, self.index["counts"]["recipes_by_map"]["crusher"])
-        self.assertEqual(2117, self.index["counts"]["recipes"])
+        self.assertEqual(504, self.index["counts"]["recipes_by_map"]["crusher"])
+        self.assertEqual(2127, self.index["counts"]["recipes"])
         self.assertTrue(all(
             row.get("input_substituted") is True
             for row in raw_rows.values()
@@ -437,19 +437,28 @@ class OreChainBuilderTest(unittest.TestCase):
 
     def test_t2_coverage_debts_are_committed_as_ledger(self):
         ledger = self.index["coverage_ledger"]
+        base_materials = {
+            "copper",
+            "gold",
+            "iron",
+            "lead",
+            "nickel",
+            "tin",
+            "tungsten",
+            "zinc",
+        }
+        t38_acquisition = builder.load(builder.T38_ACQUISITION)
+        t38_materials = {
+            entry["material"]
+            for vein in t38_acquisition["veins"]
+            for layer in ("top", "bottom", "between", "spread")
+            for entry in vein[layer]
+        }
         self.assertEqual(
-            {
-                "copper",
-                "gold",
-                "iron",
-                "lead",
-                "nickel",
-                "tin",
-                "tungsten",
-                "zinc",
-            },
+            base_materials,
             set(ledger["worldgen_ore_materials"]),
         )
+        self.assertTrue(t38_materials - base_materials)
         self.assertTrue(ledger["crusher_without_worldgen"])
         self.assertTrue(ledger["sifter_dust_without_smelter"])
         self.assertTrue(ledger["incomplete_routes_from_crusher"])

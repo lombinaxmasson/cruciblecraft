@@ -1,0 +1,297 @@
+{
+  "budget_evaluation": {
+    "hard_failures": [],
+    "metrics": {
+      "allocation_bytes": {
+        "actual": {
+          "max": 236984,
+          "min": 236984
+        },
+        "comparison_value": 236984,
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "status": "PASS"
+      },
+      "client_index_ms": {
+        "actual": {
+          "max": 1,
+          "min": 1
+        },
+        "comparison_value": 1,
+        "hard_ceiling": 3000,
+        "soft_budget": 1000,
+        "status": "PASS"
+      },
+      "client_reload_ms": {
+        "actual": {
+          "max": 1,
+          "min": 1
+        },
+        "comparison_value": 1,
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "status": "PASS"
+      },
+      "datapack_authored_entries": {
+        "actual": 29,
+        "comparison_value": 29,
+        "hard_ceiling": 6600,
+        "soft_budget": 6000,
+        "status": "PASS"
+      },
+      "eager_publication_rows": {
+        "actual": 0,
+        "comparison_value": 0,
+        "hard_ceiling": 21000,
+        "soft_budget": 18000,
+        "status": "PASS"
+      },
+      "lazy_cache_ceiling_rows": {
+        "actual": 16,
+        "comparison_value": 16,
+        "hard_ceiling": 4096,
+        "soft_budget": 1024,
+        "status": "PASS"
+      },
+      "lazy_logical_rows": {
+        "actual": 73,
+        "comparison_value": 73,
+        "hard_ceiling": 56000,
+        "soft_budget": 16000,
+        "status": "PASS"
+      },
+      "lookup_candidate_count": {
+        "actual": {
+          "max": 73,
+          "min": 73
+        },
+        "comparison_value": 73,
+        "hard_ceiling": 128,
+        "soft_budget": 64,
+        "status": "SOFT_BUDGET_EXCEEDED"
+      },
+      "lookup_p95_ns": {
+        "actual": {
+          "max": 685725,
+          "min": 514062
+        },
+        "comparison_value": 685725,
+        "hard_ceiling": 2000000,
+        "soft_budget": 1000000,
+        "status": "PASS"
+      },
+      "retained_memory_bytes": {
+        "actual": {
+          "max": 7581,
+          "min": 7581
+        },
+        "comparison_value": 7581,
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "status": "PASS"
+      },
+      "server_index_ms": {
+        "actual": {
+          "max": 1,
+          "min": 1
+        },
+        "comparison_value": 1,
+        "hard_ceiling": 1000,
+        "soft_budget": 500,
+        "status": "PASS"
+      },
+      "server_reload_ms": {
+        "actual": {
+          "max": 1,
+          "min": 1
+        },
+        "comparison_value": 1,
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "status": "PASS"
+      },
+      "sync_bytes": {
+        "actual": 7581,
+        "comparison_value": 7581,
+        "hard_ceiling": 67108864,
+        "soft_budget": 16777216,
+        "status": "PASS"
+      }
+    },
+    "pending_measurements": [],
+    "soft_exceeded": [
+      "lookup_candidate_count"
+    ],
+    "status": "SOFT_BUDGET_EXCEEDED"
+  },
+  "currentness": {
+    "budget_policy": "tools/t14_load_budget_policy.json",
+    "budget_policy_sha256": "d4e934d9753cd6d4bcac5867e9fb78b97d4191e1a5cb67042bb8886ee78d8e87",
+    "projection_schema": "tools/recipe_load_projection.schema.json",
+    "projection_schema_sha256": "51e97fc4a0cbffc000773fa1805d6223ea369d26ae46256381e344119e20c674",
+    "t13_canonical_rows": 95,
+    "t13_map_row_sha256": "e8a635d62d4c11b7995d64ec3c6cfe2a7038b24338bfb00920a614f442f9af99",
+    "t13_recipe_maps": "tools/t13_denominators/recipe_maps.json"
+  },
+  "delivery_phase": "T38",
+  "families": [
+    {
+      "authored_entries": 29,
+      "canonical_ids": [
+        "gt.recipe.roaster"
+      ],
+      "eager_publication_rows": 0,
+      "family": "t38/roaster-wave",
+      "lazy_cache_ceiling_rows": 16,
+      "lazy_logical_rows": 73,
+      "logical_rows": 73,
+      "measurement_basis": {
+        "kind": "family_specific_measurement",
+        "measured_logical_rows": [
+          73
+        ],
+        "source": "T38 R4 1x=73 JUnit CompactRecipeFamilyT38MeasurementHarness. Production winner on_demand derived by tools/build_t38_recipe_load_benchmark.py (0 eager / 73 lazy / cache 16). Intervals are p50–p95 of the current on_demand candidate; ns timings convert with ceil-to-ms. Card-level cache 16 is not copied into per-family rows."
+      },
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 236984,
+          "min": 236984
+        },
+        "client_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "client_reload_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "lookup_candidate_count": {
+          "max": 73,
+          "min": 73
+        },
+        "lookup_p95_ns": {
+          "max": 685725,
+          "min": 514062
+        },
+        "retained_memory_bytes": {
+          "max": 7581,
+          "min": 7581
+        },
+        "server_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "server_reload_ms": {
+          "max": 1,
+          "min": 1
+        }
+      },
+      "publication_account": {
+        "domain": "gt_recipe_family",
+        "gt_authored_entries": 29,
+        "gt_logical_rows": 73,
+        "vanilla_datapack_entries": 0
+      },
+      "publication_domain": "gt_recipe_family",
+      "ratios": {
+        "authored_to_eager": {
+          "denominator": 29,
+          "formula": "eager_publication_rows / authored_entries",
+          "numerator": 0,
+          "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+          "value": 0.0
+        },
+        "authored_to_logical": {
+          "denominator": 29,
+          "formula": "logical_rows / authored_entries",
+          "numerator": 73,
+          "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+          "value": 2.5172413793103448
+        }
+      },
+      "strategy": "on_demand",
+      "sync_bytes": 7581,
+      "t13_references": [
+        {
+          "canonical_id": "gt.recipe.roaster",
+          "classification": "in_scope",
+          "owner": "POST_T19"
+        }
+      ],
+      "vanilla_datapack_entries": 0
+    }
+  ],
+  "ledger": {
+    "aggregation": {
+      "counts": "sum of explicit family counts",
+      "lookup": "maximum family interval bounds; one lookup is not additive",
+      "reload_index_memory": "sum of family interval bounds"
+    },
+    "counts": {
+      "datapack_authored_entries": 29,
+      "eager_publication_rows": 0,
+      "lazy_cache_ceiling_rows": 16,
+      "lazy_logical_rows": 73,
+      "logical_rows": 73,
+      "sync_bytes": 7581
+    },
+    "measurement_intervals": {
+      "allocation_bytes": {
+        "max": 236984,
+        "min": 236984
+      },
+      "client_index_ms": {
+        "max": 1,
+        "min": 1
+      },
+      "client_reload_ms": {
+        "max": 1,
+        "min": 1
+      },
+      "lookup_candidate_count": {
+        "max": 73,
+        "min": 73
+      },
+      "lookup_p95_ns": {
+        "max": 685725,
+        "min": 514062
+      },
+      "retained_memory_bytes": {
+        "max": 7581,
+        "min": 7581
+      },
+      "server_index_ms": {
+        "max": 1,
+        "min": 1
+      },
+      "server_reload_ms": {
+        "max": 1,
+        "min": 1
+      }
+    },
+    "publication_domains": {
+      "gt_authored_entries": 29,
+      "gt_logical_rows": 73,
+      "vanilla_datapack_entries": 0
+    },
+    "ratios": {
+      "authored_to_eager": {
+        "denominator": 29,
+        "formula": "eager_publication_rows / authored_entries",
+        "numerator": 0,
+        "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+        "value": 0.0
+      },
+      "authored_to_logical": {
+        "denominator": 29,
+        "formula": "logical_rows / authored_entries",
+        "numerator": 73,
+        "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+        "value": 2.5172413793103448
+      }
+    }
+  },
+  "projection_id": "t38/roaster-wave",
+  "schema_version": 2,
+  "status": "SOFT_BUDGET_EXCEEDED"
+}

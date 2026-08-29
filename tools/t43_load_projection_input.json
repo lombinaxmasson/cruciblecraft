@@ -1,0 +1,64 @@
+{
+  "delivery_phase": "T43",
+  "families": [
+    {
+      "authored_entries": 408,
+      "canonical_ids": [
+        "gt.recipe.smelter"
+      ],
+      "eager_publication_rows": 0,
+      "family": "t43/smelter-stone-wave",
+      "lazy_cache_ceiling_rows": 24,
+      "lazy_logical_rows": 407,
+      "logical_rows": 407,
+      "measurement_basis": {
+        "kind": "family_specific_measurement",
+        "measured_logical_rows": [
+          407
+        ],
+        "source": "T43 R3 production-lock JUnit CompactRecipeFamilyT43MeasurementHarness. The stone group partition equals the measured card candidate. Intervals are p50-p95; ns timings convert with ceil-to-ms. Card-level cache is not copied into per-family rows."
+      },
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 2511856,
+          "min": 2511856
+        },
+        "client_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "client_reload_ms": {
+          "max": 5,
+          "min": 4
+        },
+        "lookup_candidate_count": {
+          "max": 1,
+          "min": 1
+        },
+        "lookup_p95_ns": {
+          "max": 36406,
+          "min": 29862
+        },
+        "retained_memory_bytes": {
+          "max": 39479,
+          "min": 39479
+        },
+        "server_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "server_reload_ms": {
+          "max": 5,
+          "min": 4
+        }
+      },
+      "publication_domain": "gt_recipe_family",
+      "strategy": "group_scoped",
+      "sync_bytes": 39479,
+      "vanilla_datapack_entries": 0
+    }
+  ],
+  "projection_id": "t43/smelter-stone-wave",
+  "schema_version": 2,
+  "status": "FAMILY_LOAD_PROJECTION_INPUT"
+}

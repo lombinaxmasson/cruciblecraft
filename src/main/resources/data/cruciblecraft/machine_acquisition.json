@@ -1,0 +1,78 @@
+{
+  "$schema": "schema/machine_acquisition.schema.json",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "opening_variant_ids": [
+    "cruciblecraft:aluminium_electrolyzer",
+    "cruciblecraft:centrifuge",
+    "cruciblecraft:distillery",
+    "cruciblecraft:drying",
+    "cruciblecraft:electrolyzer",
+    "cruciblecraft:invar_distillery",
+    "cruciblecraft:invar_drying",
+    "cruciblecraft:invar_smelter",
+    "cruciblecraft:lathe",
+    "cruciblecraft:press",
+    "cruciblecraft:rollingmill",
+    "cruciblecraft:shredder",
+    "cruciblecraft:sifter",
+    "cruciblecraft:smelter",
+    "cruciblecraft:stainless_steel_electrolyzer",
+    "cruciblecraft:steel_centrifuge",
+    "cruciblecraft:steel_lathe",
+    "cruciblecraft:steel_press",
+    "cruciblecraft:steel_rollingmill",
+    "cruciblecraft:steel_shredder",
+    "cruciblecraft:steel_sifter",
+    "cruciblecraft:steel_wiremill",
+    "cruciblecraft:titanium_centrifuge",
+    "cruciblecraft:titanium_distillery",
+    "cruciblecraft:titanium_drying",
+    "cruciblecraft:titanium_lathe",
+    "cruciblecraft:titanium_press",
+    "cruciblecraft:titanium_rollingmill",
+    "cruciblecraft:titanium_shredder",
+    "cruciblecraft:titanium_sifter",
+    "cruciblecraft:titanium_smelter",
+    "cruciblecraft:titanium_wiremill",
+    "cruciblecraft:wiremill"
+  ],
+  "overrides": [
+    {
+      "id": "cruciblecraft:mixer",
+      "acquisition_template": "machine_generic"
+    },
+    {
+      "id": "cruciblecraft:sluice",
+      "acquisition_template": "machine_generic"
+    },
+    {
+      "id": "cruciblecraft:compressor",
+      "acquisition_template": "machine_generic"
+    },
+    {
+      "id": "cruciblecraft:cutter",
+      "acquisition_template": "machine_generic"
+    },
+    {
+      "id": "cruciblecraft:extruder",
+      "acquisition_template": "machine_generic"
+    },
+    {
+      "id": "cruciblecraft:rollbender",
+      "acquisition_template": "machine_generic"
+    },
+    {
+      "id": "cruciblecraft:invar_smelter",
+      "casing_item": "cruciblecraft:steel_double_machine_casing"
+    },
+    {
+      "id": "cruciblecraft:invar_drying",
+      "casing_item": "cruciblecraft:steel_double_machine_casing"
+    },
+    {
+      "id": "cruciblecraft:invar_distillery",
+      "casing_item": "cruciblecraft:steel_double_machine_casing"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.invalid/schema/t42-owner-disposition-lock.json",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "append_only",
+    "opening_execution_gap",
+    "family_count",
+    "owns_families"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "status": { "const": "T42_OWNER_DISPOSITION_LOCKED" },
+    "append_only": { "const": true },
+    "opening_execution_gap": { "const": 5300 },
+    "family_count": { "const": 5300 },
+    "owns_families": { "const": 0 }
+  },
+  "additionalProperties": true
+}

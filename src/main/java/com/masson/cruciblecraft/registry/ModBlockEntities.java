@@ -18,6 +18,12 @@ import com.masson.cruciblecraft.content.blockentity.FluidDepositExtractorBlockEn
 import com.masson.cruciblecraft.content.blockentity.FuelGeneratorBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.GasCloudBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.HopperBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.BookshelfBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.BottleCrateBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.DrawerBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.LockerBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.MassStorageBlockEntity;
+import com.masson.cruciblecraft.content.blockentity.StorageInserterBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.DustFunnelBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.ItemPipeBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.LargeCentrifugeBlockEntity;
@@ -30,6 +36,8 @@ import com.masson.cruciblecraft.content.blockentity.RotationalAxleBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.RotationalGearboxBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SteamEngineBlockEntity;
 import com.masson.cruciblecraft.content.blockentity.SubsurfaceFluidDepositBlockEntity;
+
+import com.masson.cruciblecraft.content.storage.StorageBehaviorProfile;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -220,6 +228,64 @@ public final class ModBlockEntities {
                             () -> BlockEntityType.Builder.of(
                                     HopperBlockEntity::new,
                                     ModBlocks.hopperBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<BookshelfBlockEntity>>
+                    BOOKSHELF = BLOCK_ENTITIES.register(
+                            "bookshelf",
+                            () -> BlockEntityType.Builder.of(
+                                    BookshelfBlockEntity::new,
+                                    ModBlocks.storageBlockArray(
+                                            StorageBehaviorProfile.BOOKSHELF))
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<BottleCrateBlockEntity>>
+                    BOTTLE_CRATE = BLOCK_ENTITIES.register(
+                            "bottle_crate",
+                            () -> BlockEntityType.Builder.of(
+                                    BottleCrateBlockEntity::new,
+                                    ModBlocks.storageBlockArray(
+                                            StorageBehaviorProfile.BOTTLE_CRATE))
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<DrawerBlockEntity>>
+                    DRAWER = BLOCK_ENTITIES.register(
+                            "drawer",
+                            () -> BlockEntityType.Builder.of(
+                                    DrawerBlockEntity::new,
+                                    ModBlocks.storageBlockArray(
+                                            StorageBehaviorProfile.DRAWER))
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<LockerBlockEntity>>
+                    LOCKER = BLOCK_ENTITIES.register(
+                            "locker",
+                            () -> BlockEntityType.Builder.of(
+                                    LockerBlockEntity::new,
+                                    ModBlocks.lockerBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<MassStorageBlockEntity>>
+                    MASS_STORAGE = BLOCK_ENTITIES.register(
+                            "mass_storage",
+                            () -> BlockEntityType.Builder.of(
+                                    MassStorageBlockEntity::new,
+                                    ModBlocks.massStorageBlockArray())
+                                    .build(null));
+    public static final DeferredHolder<
+            BlockEntityType<?>,
+            BlockEntityType<StorageInserterBlockEntity>>
+                    STORAGE_INSERTER = BLOCK_ENTITIES.register(
+                            "storage_inserter",
+                            () -> BlockEntityType.Builder.of(
+                                    StorageInserterBlockEntity::new,
+                                    ModBlocks.storageBlockArray(
+                                            StorageBehaviorProfile.STORAGE_INSERTER))
                                     .build(null));
     public static final DeferredHolder<
             BlockEntityType<?>,

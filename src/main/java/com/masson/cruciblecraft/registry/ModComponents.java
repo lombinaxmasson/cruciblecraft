@@ -102,6 +102,15 @@ public final class ModComponents {
 
     public static final DeferredHolder<
             net.minecraft.core.component.DataComponentType<?>,
+            net.minecraft.core.component.DataComponentType<Integer>> FIREPROOF =
+            COMPONENTS.registerComponentType(
+                    "fireproof",
+                    builder -> builder
+                            .persistent(Codec.INT)
+                            .networkSynchronized(ByteBufCodecs.VAR_INT));
+
+    public static final DeferredHolder<
+            net.minecraft.core.component.DataComponentType<?>,
             net.minecraft.core.component.DataComponentType<
                     com.masson.cruciblecraft.logistics.hopper.DustAmountLedger.Snapshot>>
                     DUST_FUNNEL = COMPONENTS.registerComponentType(
@@ -113,6 +122,15 @@ public final class ModComponents {
                                     .networkSynchronized(
                                             com.masson.cruciblecraft.logistics.hopper
                                                     .DustAmountLedger.Snapshot.STREAM_CODEC));
+
+    public static final DeferredHolder<
+            net.minecraft.core.component.DataComponentType<?>,
+            net.minecraft.core.component.DataComponentType<Long>> ELECTRIC_CHARGE =
+            COMPONENTS.registerComponentType(
+                    "electric_charge",
+                    builder -> builder
+                            .persistent(Codec.LONG)
+                            .networkSynchronized(ByteBufCodecs.VAR_LONG));
 
     private ModComponents() {}
 }

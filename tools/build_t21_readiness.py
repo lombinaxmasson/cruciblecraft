@@ -46,7 +46,10 @@ def _sha256(path: Path) -> str:
 
 
 def _relative(path: Path) -> str:
-    return path.relative_to(ROOT).as_posix()
+    try:
+        return path.resolve().relative_to(ROOT.resolve()).as_posix()
+    except ValueError:
+        return path.as_posix()
 
 
 # ---------------------------------------------------------------------------

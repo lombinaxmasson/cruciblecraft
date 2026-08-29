@@ -574,14 +574,7 @@ def write() -> dict[str, Any]:
 
 
 def check() -> list[str]:
-    errors: list[str] = []
-    if not OUTPUT.is_file():
-        return [f"missing generated file: {t35.relative(OUTPUT)}"]
-    expected = common.stable_json(build())
-    actual = OUTPUT.read_text(encoding="utf-8")
-    if actual != expected:
-        errors.append(t35.stale_error(OUTPUT, expected, actual))
-    return errors
+    return t35.check_generated_document(OUTPUT, build())
 
 
 def main(argv: list[str] | None = None) -> int:

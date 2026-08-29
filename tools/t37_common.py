@@ -126,13 +126,7 @@ def parse_write_check(description: str, argv: list[str] | None) -> argparse.Name
 
 
 def check_document(path: Path, document: dict[str, Any]) -> list[str]:
-    if not path.is_file():
-        return [f"missing generated file: {relative(path)}"]
-    expected = t35.stable_json(document)
-    actual = path.read_text(encoding="utf-8")
-    if actual != expected:
-        return [t35.stale_error(path, expected, actual)]
-    return []
+    return t35.check_generated_document(path, document)
 
 
 def t38_frozen_wave() -> dict[str, Any]:

@@ -8,10 +8,11 @@ runs each builder in its *write* mode, so a change to a shared input can be
 propagated down the whole currentness chain in one command instead of being
 rediscovered one artifact at a time by the full verification run.
 
-Write-mode argv is detected from each builder's own argparse flags:
+Write-mode argv comes from policy ``write_args`` or an explicit ``--write`` flag:
 
-  * declares ``--write``            -> run with ``--write``
-  * declares only ``--check``       -> run with no flags (writes by default)
+  * policy ``write_args``           -> run those argv
+  * script declares ``--write``     -> run with ``--write``
+  * neither present                 -> skip (no implicit no-flag write)
   * listed in ``SKIP``              -> never rebuilt here (see notes below)
 
 Before the main chain, ``pre_chain_builders`` from the policy runs first:
@@ -103,8 +104,10 @@ def pre_pass() -> list[tuple[str, list[str]]]:
     ]
 
 
-def detect_write_argv(script: Path) -> list[str] | None:
-    """Return write-mode argv for a builder, or None if it cannot be decided."""
+def detect_write_argv(script: Path, row: dict | None = None) -> list[str] | None:
+    """Return write-mode argv from policy, never by guessing no-flag writes."""
+    if isinstance(row, dict) and row.get("write_args"):
+        return list(row["write_args"])
     try:
         source = script.read_text(encoding="utf-8", errors="ignore")
     except OSError:
@@ -112,8 +115,6 @@ def detect_write_argv(script: Path) -> list[str] | None:
     flags = set(FLAG_RE.findall(source))
     if "--write" in flags:
         return ["--write"]
-    if "--check" in flags:
-        return []
     return None
 
 
@@ -137,9 +138,9 @@ def load_plan() -> list[dict]:
         elif name in WRITE_ARGV:
             entry["write_argv"] = WRITE_ARGV[name]
         else:
-            argv = detect_write_argv(script)
+            argv = detect_write_argv(script, row)
             if argv is None:
-                entry["status"] = "skip: write mode undetected — add to WRITE_ARGV"
+                entry["status"] = "skip: write_args missing from policy"
             else:
                 entry["write_argv"] = argv
         plan.append(entry)

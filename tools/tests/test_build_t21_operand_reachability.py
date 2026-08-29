@@ -255,6 +255,68 @@ class OperandReachabilityContractTests(unittest.TestCase):
         )
         self.assertEqual(items, [])
 
+    def test_typed_fluid_producer_closes_oxygen_consumer(self) -> None:
+        """A fluid output enables its dependent recipe only after production."""
+        graph = reachability.ReachabilityGraph({}, {})
+        graph.add_edge(
+            "source/electrolyzer.json",
+            {"item:cruciblecraft:reachable_feed/dust"},
+            {"fluid:cruciblecraft:oxygen"},
+            "gt_recipe:cruciblecraft:electrolyzer",
+        )
+        graph.add_edge(
+            "source/oxygen_consumer.json",
+            {"fluid:cruciblecraft:oxygen"},
+            {"item:cruciblecraft:oxidized/dust"},
+            "gt_recipe:cruciblecraft:roaster",
+        )
+        inputs, outputs, _sources = reachability._recipe_index(graph)
+        reachable, _rounds = reachability._fixed_point_closure(
+            recipe_inputs=inputs,
+            recipe_outputs=outputs,
+            material_forms={},
+            static_tag_map={},
+            dynamic_tag_map={},
+            seeds={"item:cruciblecraft:reachable_feed/dust"},
+        )
+        self.assertIn("fluid:cruciblecraft:oxygen", reachable)
+        self.assertIn("item:cruciblecraft:oxidized/dust", reachable)
+
+    def test_registered_fluid_name_is_not_a_reachability_seed(self) -> None:
+        """An unproduced CrucibleCraft fluid cannot unlock a player path."""
+        graph = reachability.ReachabilityGraph({}, {})
+        graph.add_edge(
+            "source/unproven_fluid_consumer.json",
+            {"fluid:cruciblecraft:registered_but_unproven"},
+            {"item:cruciblecraft:must_remain_unreachable/dust"},
+            "gt_recipe:cruciblecraft:roaster",
+        )
+        inputs, outputs, _sources = reachability._recipe_index(graph)
+        reachable, _rounds = reachability._fixed_point_closure(
+            recipe_inputs=inputs,
+            recipe_outputs=outputs,
+            material_forms={},
+            static_tag_map={},
+            dynamic_tag_map={},
+            seeds={"item:minecraft:stone"},
+        )
+        self.assertNotIn(
+            "fluid:cruciblecraft:registered_but_unproven",
+            reachable,
+        )
+        self.assertNotIn(
+            "item:cruciblecraft:must_remain_unreachable/dust",
+            reachable,
+        )
+
+    def test_closure_proves_oxygen_through_reachable_electrolyzer(self) -> None:
+        closure = reachability.build()["closure"]
+        self.assertIn(
+            "fluid:cruciblecraft:oxygen",
+            closure["reachable_identities"],
+        )
+        self.assertGreater(len(closure["oxygen_producers"]), 0)
+
     def test_c_rocks_resolves_via_surface_scatter_declaration(self) -> None:
         gate = json.loads(
             (
@@ -330,6 +392,42 @@ class OperandReachabilityContractTests(unittest.TestCase):
                 {},
             )
             self.assertEqual(seeds, {"item:cruciblecraft:stone/rock"})
+
+    def test_compact_family_relations_are_parsed(self) -> None:
+        inputs, outputs = reachability.gt_operand_sets(
+            {
+                "item_inputs": [
+                    {"item": "minecraft:oak_planks"},
+                    {
+                        "items": "cruciblecraft:programmed_circuit",
+                        "type": "neoforge:components",
+                    },
+                ],
+                "item_outputs": [{"id": "minecraft:oak_button"}],
+                "fluid_inputs": [],
+                "fluid_outputs": [],
+            }
+        )
+        self.assertEqual(
+            {"item:minecraft:oak_planks", "item:cruciblecraft:programmed_circuit"},
+            inputs,
+        )
+        self.assertEqual({"item:minecraft:oak_button"}, outputs)
+
+    def test_t39_support_and_generated_paths_are_excluded(self) -> None:
+        self.assertTrue(
+            any(
+                prefix.startswith("data/cruciblecraft/recipe/t39")
+                for prefix in reachability.EXCLUDED_RECIPE_PREFIXES
+            )
+        )
+        compact_roots = {
+            path.as_posix()
+            for path in reachability.RESOURCE_ROOTS
+        }
+        self.assertTrue(any("t37_recipe_generated" in root for root in compact_roots))
+        self.assertTrue(any("t38_recipe_generated" in root for root in compact_roots))
+        self.assertFalse(any("t39_recipe_generated" in root for root in compact_roots))
 
 
 if __name__ == "__main__":

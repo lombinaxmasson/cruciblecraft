@@ -1,0 +1,44 @@
+{
+  "artifact": "tools/t42_owner_pre_freeze.json",
+  "artifact_file_sha256": "863438676e84f2f356abd651eed0ba66aab7b407854e61bd8c50118487061b32",
+  "builder_sha256": "09fcbe6ff89d79b58b5935fa24f2e6608311e837d66632ae4fbbd40841747cbc",
+  "dependency_semantic_roots": {
+    "tools/t42_blocker_overlay.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "40df6b295044095ffe312165df577489b3b6aa4f061332a470e5a3ac3f586c41"
+    },
+    "tools/t42_card_topology.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "68365b9da7f335ae50478f6f5876a048971ca4922b8d2a17f08b27f88df93d8b"
+    },
+    "tools/t42_disposition_lock.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "829082e70dd3c7e81d2958afb1f8e919bfe7d53763ccddbaf64c4bab992b4b7a"
+    },
+    "tools/t42_gap_partition.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "4cea93d3bb96b53c0e2b0a1545adbcc850c7771ed9064143e704b6ea0bd88d22"
+    },
+    "tools/t42_repair_readiness.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "ab8254230c5344428467fe04faf4204726d8359a28bb50de4fe8b558d6e469c7"
+    }
+  },
+  "envelope_sha256": "9494266f190b36c2eabd1e6cabe96ba7394e965766cf0552c2b5ec4690f7fbd1",
+  "generated_by": "python tools/currentness.py",
+  "giant_body": false,
+  "schema_version": 2,
+  "semantic_projection_kind": "json_ledger",
+  "semantic_projection_version": 1,
+  "semantic_root_sha256": "e292b81f2a189472e1f05043329e8ea3670ce32d60d70b2c44d433e955b42d49",
+  "source_replay_receipt": {
+    "proof_tier": "compact",
+    "status": "unavailable"
+  },
+  "status": "CURRENTNESS_SIDECAR"
+}

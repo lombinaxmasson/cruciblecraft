@@ -1,0 +1,34 @@
+{
+  "artifact": "tools/component_rule_manifest.json",
+  "artifact_file_sha256": "8b441ee2cdfce953b424537c164a1388d22ac3607e6b8b74545a0eb45d88f956",
+  "builder_sha256": "7b9a7b751e05a87391f70834141b5f99ff41934d93f9408dc8fb1650c2663a1f",
+  "dependency_semantic_roots": {
+    "src/component_rule_generated/resources/data/cruciblecraft/recipe": {
+      "kind": "datapack_recipe_tree",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "0395201cc70fb537526034aed9a071413a0224295bea6df265c8cd8f277b244d"
+    },
+    "src/main/resources/data/cruciblecraft/material_registration_gate.json": {
+      "kind": "material_registration_gate",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "fba3b60e2a076810ec3b50f59b0153e2f1206da690420b715142f541a32ead26"
+    },
+    "tools/t14_extruder_readiness.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "526b16002ca017ebcf6fc656411c96e8713e538351e7e019436492c098f2d90d"
+    }
+  },
+  "envelope_sha256": "52d203a4b528bec662291ef176a23546b1422dd458dfea2cd1c588b9b9c8dce7",
+  "generated_by": "python tools/currentness.py",
+  "giant_body": false,
+  "schema_version": 2,
+  "semantic_projection_kind": "json_ledger",
+  "semantic_projection_version": 1,
+  "semantic_root_sha256": "e53c2bbc8e8e9dae1ce8a062324e3346bd2e8719a4ff30102455bb5b322db4b2",
+  "source_replay_receipt": {
+    "proof_tier": "compact",
+    "status": "unavailable"
+  },
+  "status": "CURRENTNESS_SIDECAR"
+}

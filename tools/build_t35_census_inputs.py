@@ -707,14 +707,9 @@ def build() -> dict[str, Any]:
 
 
 def check() -> list[str]:
-    errors: list[str] = []
-    if not OUTPUT.is_file():
-        return [f"missing generated file: {common.relative(OUTPUT)}"]
-    expected = common.stable_json(build())
-    actual = OUTPUT.read_text(encoding="utf-8")
-    if actual != expected:
-        errors.append(f"{common.relative(OUTPUT)} is stale")
-    return errors
+    from tools import t35_common as t35
+
+    return t35.check_generated_document(OUTPUT, build())
 
 
 def write() -> dict[str, Any]:

@@ -4,6 +4,7 @@ import java.util.Comparator;
 import java.util.concurrent.CompletableFuture;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.registry.ModBlockTags;
 import com.masson.cruciblecraft.registry.ModBlocks;
 
 import net.minecraft.core.HolderLookup;
@@ -66,7 +67,42 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
             pickaxe.add(block.getKey());
             stone.add(block.getKey());
         });
+        var axe = tag(BlockTags.MINEABLE_WITH_AXE);
+        ModBlocks.variantStorageBlocks().forEach(block -> {
+            var variant = block.get().variant();
+            boolean wood = variant.plankIndex() != null
+                    || "mass_storage_barrel".equals(variant.family())
+                    || "mass_storage_box".equals(variant.family());
+            if (wood) {
+                axe.add(block.getKey());
+            } else {
+                pickaxe.add(block.getKey());
+                stone.add(block.getKey());
+            }
+        });
         pickaxe.add(ModBlocks.STEEL_DUST_FUNNEL.getKey());
         stone.add(ModBlocks.STEEL_DUST_FUNNEL.getKey());
+        var gtStones = tag(ModBlockTags.GT_STONES);
+        ModBlocks.gtStoneBlocks().forEach(block -> {
+            pickaxe.add(block.getKey());
+            stone.add(block.getKey());
+            gtStones.add(block.getKey());
+        });
+        var gtBlockObjects = tag(ModBlockTags.GT_BLOCK_OBJECTS);
+        var rails = tag(BlockTags.RAILS);
+        ModBlocks.gtBlockObjectBlocks().forEach(holder -> {
+            var variant = com.masson.cruciblecraft.content.item.GtBlockObjectCatalog
+                    .require(holder.getId());
+            gtBlockObjects.add(holder.getKey());
+            if (variant.log() || variant.bale()) {
+                axe.add(holder.getKey());
+            } else if (!variant.rail()) {
+                pickaxe.add(holder.getKey());
+                stone.add(holder.getKey());
+            }
+            if (variant.rail()) {
+                rails.add(holder.getKey());
+            }
+        });
     }
 }

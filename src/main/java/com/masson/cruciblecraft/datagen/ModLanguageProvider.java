@@ -5,11 +5,17 @@ import java.util.Optional;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
+import com.masson.cruciblecraft.content.item.GtWoodCatalog;
+import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.content.item.ToolPatternCatalog;
+import com.masson.cruciblecraft.content.storage.StorageVariantCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.MaterialZhNames;
 import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
+import com.masson.cruciblecraft.machine.processing.MachineCasingCatalog;
+import com.masson.cruciblecraft.machine.processing.MachineKindCatalog;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModFluids;
 import com.masson.cruciblecraft.registry.ModItems;
@@ -37,6 +43,17 @@ public class ModLanguageProvider extends LanguageProvider {
         if (chinese) {
             ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                     addItem(ModItems.extruderShape(shape.id()), shape.chineseName()));
+            GtWoodCatalog.DEFINITIONS.forEach(wood ->
+                    addItem(ModItems.gtWood(wood.id()), wood.chineseName()));
+            GtStoneCatalog.variants().forEach(stone ->
+                    addBlock(
+                            ModBlocks.gtStoneBlocksById().get(stone.id()),
+                            stone.chineseName()));
+            GtBlockObjectCatalog.variants().forEach(block ->
+                    addBlock(
+                            ModBlocks.gtBlockObjectBlocksById().get(block.id()),
+                            block.chineseName()));
+            add("tooltip.cruciblecraft.fireproof", "防火");
             ToolPatternCatalog.DEFINITIONS.forEach(pattern ->
                     addItem(ModItems.toolPattern(pattern.id()), pattern.chineseName()));
             addItem(ModItems.FLINT_KNIFE, "燧石刀");
@@ -105,39 +122,6 @@ public class ModLanguageProvider extends LanguageProvider {
             addItem(ModItems.PORTABLE_FLUID_TANK, "便携流体罐");
             addItem(ModItems.FLUID_CELL, "通用流体单元");
             addItem(ModItems.GAS_CELL, "通用气体单元");
-            addItem(
-                    ModItems.BRONZE_DOUBLE_MACHINE_CASING,
-                    "青铜双层机器外壳");
-            addItem(
-                    ModItems.STEEL_DOUBLE_MACHINE_CASING,
-                    "钢双层机器外壳");
-            addItem(
-                    ModItems.TITANIUM_DOUBLE_MACHINE_CASING,
-                    "钛双层机器外壳");
-            addItem(
-                    ModItems.STEEL_GALVANIZED_MACHINE_CASING,
-                    "镀锌钢机器外壳");
-            addItem(
-                    ModItems.ALUMINIUM_MACHINE_CASING,
-                    "铝机器外壳");
-            addItem(
-                    ModItems.STAINLESS_STEEL_MACHINE_CASING,
-                    "不锈钢机器外壳");
-            addItem(
-                    ModItems.CHROMIUM_MACHINE_CASING,
-                    "铬制机器外壳");
-            addItem(
-                    ModItems.TITANIUM_MACHINE_CASING,
-                    "钛制机器外壳");
-            addItem(
-                    ModItems.TUNGSTENSTEEL_DOUBLE_MACHINE_CASING,
-                    "钨钢双层机器外壳");
-            addItem(
-                    ModItems.INVAR_DOUBLE_MACHINE_CASING,
-                    "殷钢双层机器外壳");
-            addItem(
-                    ModItems.TUNGSTEN_CARBIDE_DOUBLE_MACHINE_CASING,
-                    "碳化钨双层机器外壳");
             add("tooltip.cruciblecraft.fluid_cell.empty",
                     "空流体单元（容量 %s mB）");
             add("tooltip.cruciblecraft.fluid_cell.contents",
@@ -172,73 +156,24 @@ public class ModLanguageProvider extends LanguageProvider {
             addBlock(ModBlocks.LARGE_BOILER, "大型锅炉");
             addBlock(ModBlocks.TANK_3X3X3, "3x3x3 储罐");
             addBlock(ModBlocks.LARGE_CRUCIBLE, "大型坩埚");
-            addBlock(ModBlocks.CENTRIFUGE, "离心机");
-            addBlock(ModBlocks.SIFTER, "筛选机");
-            addBlock(ModBlocks.EXTRUDER, "挤压机");
-            addBlock(ModBlocks.ELECTROLYZER, "电解机");
-            addBlock(ModBlocks.ALUMINIUM_ELECTROLYZER, "铝制电解机");
-            addBlock(
-                    ModBlocks.STAINLESS_STEEL_ELECTROLYZER,
-                    "不锈钢电解机");
-            addBlock(ModBlocks.STEEL_CENTRIFUGE, "钢制离心机");
-            addBlock(ModBlocks.TITANIUM_CENTRIFUGE, "钛制离心机");
-            addBlock(ModBlocks.STEEL_SIFTER, "钢制筛选机");
-            addBlock(ModBlocks.TITANIUM_SIFTER, "钛制筛选机");
-            addBlock(ModBlocks.MIXER, "混合机");
-            addBlock(ModBlocks.AUTOCLAVE, "高压釜");
-            addBlock(ModBlocks.COMPRESSOR, "压缩机");
-            addBlock(ModBlocks.GENERIFIER, "通化机");
+            addBlock(ModBlocks.BRONZE_CRUSHER, "青铜破碎机");
+            addCatalogMachineNames();
             addBlock(ModBlocks.FLUID_DEPOSIT_EXTRACTOR, "流体矿床抽取机");
             addBlock(ModBlocks.FUEL_ENGINE, "燃油发动机");
             addBlock(ModBlocks.BURNING_GAS_GENERATOR, "燃气发电机");
             addBlock(ModBlocks.ELECTRIC_MOTOR, "电动机");
             addBlock(ModBlocks.ROTATIONAL_AXLE, "旋转传动轴");
             addBlock(ModBlocks.ROTATIONAL_GEARBOX, "旋转齿轮箱");
-            ModMachineVariants.T16_SELECTED.forEach(variant ->
-                    add(
-                            "block." + CrucibleCraft.MODID + "."
-                                    + variant.id().getPath(),
-                            t16MachineName(variant, true)));
-            ModMachineVariants.T17_SELECTED.forEach(variant ->
-                    add(
-                            "block." + CrucibleCraft.MODID + "."
-                                    + variant.id().getPath(),
-                            t17MachineName(variant, true)));
-            addRemainingCatalogMachineNames(true);
-            java.util.Map.ofEntries(
-                    java.util.Map.entry("sluice", "溜槽"),
-                    java.util.Map.entry("bath", "洗矿浴池"),
-                    java.util.Map.entry("centrifuge", "离心机"),
-                    java.util.Map.entry("shredder", "粉碎机"),
-                    java.util.Map.entry("sifter", "筛选机"),
-                    java.util.Map.entry("smelter", "熔炼炉"),
-                    java.util.Map.entry("mortar", "动力研钵"),
-                    java.util.Map.entry("extruder", "挤压机"),
-                    java.util.Map.entry("cutter", "切割机"),
-                    java.util.Map.entry("lathe", "车床"),
-                    java.util.Map.entry("rollingmill", "轧机"),
-                    java.util.Map.entry("rollbender", "卷板机"),
-                    java.util.Map.entry("wiremill", "线材轧机"),
-                    java.util.Map.entry("bender", "折弯机"),
-                    java.util.Map.entry("assembler", "装配机"),
-                    java.util.Map.entry("welder", "焊机"),
-                    java.util.Map.entry("press", "压机"),
-                    java.util.Map.entry("electrolyzer", "电解机"),
-                    java.util.Map.entry("mixer", "混合机"),
-                    java.util.Map.entry("distillery", "蒸馏机"),
-                    java.util.Map.entry("autoclave", "高压釜"),
-                    java.util.Map.entry("drying", "干燥机"),
-                    java.util.Map.entry("compressor", "压缩机"),
-                    java.util.Map.entry("roaster", "焙烧炉"),
-                    java.util.Map.entry("coagulator", "凝固机"))
-                    .forEach((id, name) ->
-                            add("emi.category.cruciblecraft." + id, name));
-            java.util.Map.ofEntries(
-                    java.util.Map.entry("generifier", "通化机"),
-                    java.util.Map.entry("fuels_engine", "燃油发电"),
-                    java.util.Map.entry("fuels_gas", "燃气发电"))
-                    .forEach((id, name) ->
-                            add("emi.category.cruciblecraft." + id, name));
+            MachineKindCatalog.kinds().forEach(kind -> {
+                if ("bronze_crusher".equals(kind.id().getPath())) {
+                    return;
+                }
+                add(
+                        "emi.category.cruciblecraft." + kind.id().getPath(),
+                        kind.langZh());
+            });
+            add("emi.category.cruciblecraft.fuels_engine", "燃油发电");
+            add("emi.category.cruciblecraft.fuels_gas", "燃气发电");
             add("emi.cruciblecraft.processing.preserved", "保留，不消耗");
             add("emi.cruciblecraft.anvil.hits", "%s · %s 次击打");
             add("emi.cruciblecraft.anvil.hits_with_chance", "%s · %s 次击打 · %s%%");
@@ -399,6 +334,7 @@ public class ModLanguageProvider extends LanguageProvider {
             add("emi.category.cruciblecraft.crusher", "破碎机");
             add("emi.category.cruciblecraft.mold_casting", "陶瓷模具铸造");
             addHopperTranslations(true);
+            addStorageTranslations(true);
             // v1 关键路径材料名域：表内材料按表生成，表外显式 post_1_0
             // （不写 zh 键，回退 en_us，禁止英文冒充）。
             MaterialCatalog.startupValues().forEach(material ->
@@ -509,6 +445,17 @@ public class ModLanguageProvider extends LanguageProvider {
         addItem(ModItems.MATCH, "Match");
         addItem(ModItems.PROGRAMMED_CIRCUIT, "Programmed Circuit");
         add("tooltip.cruciblecraft.circuit_config", "Configuration: %s");
+        GtWoodCatalog.DEFINITIONS.forEach(wood ->
+                addItem(ModItems.gtWood(wood.id()), wood.englishName()));
+        GtStoneCatalog.variants().forEach(stone ->
+                addBlock(
+                        ModBlocks.gtStoneBlocksById().get(stone.id()),
+                        stone.englishName()));
+        GtBlockObjectCatalog.variants().forEach(block ->
+                addBlock(
+                        ModBlocks.gtBlockObjectBlocksById().get(block.id()),
+                        block.englishName()));
+        add("tooltip.cruciblecraft.fireproof", "Fireproof");
         addBlock(ModBlocks.BELLOWS, "Bellows");
         addItem(ModItems.CREOSOTE_BUCKET, "Creosote Bucket");
         add("fluid_type.cruciblecraft.creosote", "Creosote");
@@ -517,39 +464,6 @@ public class ModLanguageProvider extends LanguageProvider {
         addItem(ModItems.PORTABLE_FLUID_TANK, "Portable Fluid Tank");
         addItem(ModItems.FLUID_CELL, "Universal Fluid Cell");
         addItem(ModItems.GAS_CELL, "Universal Gas Cell");
-        addItem(
-                ModItems.BRONZE_DOUBLE_MACHINE_CASING,
-                "Bronze Double Machine Casing");
-        addItem(
-                ModItems.STEEL_DOUBLE_MACHINE_CASING,
-                "Steel Double Machine Casing");
-        addItem(
-                ModItems.TITANIUM_DOUBLE_MACHINE_CASING,
-                "Titanium Double Machine Casing");
-        addItem(
-                ModItems.STEEL_GALVANIZED_MACHINE_CASING,
-                "Galvanized Steel Machine Casing");
-        addItem(
-                ModItems.ALUMINIUM_MACHINE_CASING,
-                "Aluminium Machine Casing");
-        addItem(
-                ModItems.STAINLESS_STEEL_MACHINE_CASING,
-                "Stainless Steel Machine Casing");
-        addItem(
-                ModItems.CHROMIUM_MACHINE_CASING,
-                "Chromium Machine Casing");
-        addItem(
-                ModItems.TITANIUM_MACHINE_CASING,
-                "Titanium Machine Casing");
-        addItem(
-                ModItems.TUNGSTENSTEEL_DOUBLE_MACHINE_CASING,
-                "Tungstensteel Double Machine Casing");
-        addItem(
-                ModItems.INVAR_DOUBLE_MACHINE_CASING,
-                "Invar Double Machine Casing");
-        addItem(
-                ModItems.TUNGSTEN_CARBIDE_DOUBLE_MACHINE_CASING,
-                "Tungsten Carbide Double Machine Casing");
         add("tooltip.cruciblecraft.fluid_cell.empty",
                 "Empty fluid cell (capacity: %s mB)");
         add("tooltip.cruciblecraft.fluid_cell.contents",
@@ -569,45 +483,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addBlock(ModBlocks.ROTATIONAL_AXLE, "Rotational Axle");
         addBlock(ModBlocks.ROTATIONAL_GEARBOX, "Rotational Gearbox");
         addBlock(ModBlocks.BRONZE_CRUSHER, "Bronze Crusher");
-        addBlock(ModBlocks.SLUICE, "Sluice");
-        addBlock(ModBlocks.BATH, "Ore Washing Bath");
-        addBlock(ModBlocks.CENTRIFUGE, "Centrifuge");
-        addBlock(ModBlocks.STEEL_CENTRIFUGE, "Steel Centrifuge");
-        addBlock(
-                ModBlocks.TITANIUM_CENTRIFUGE,
-                "Titanium Centrifuge");
-        addBlock(ModBlocks.SIFTER, "Sifter");
-        addBlock(ModBlocks.STEEL_SIFTER, "Steel Sifter");
-        addBlock(ModBlocks.TITANIUM_SIFTER, "Titanium Sifter");
-        addBlock(ModBlocks.MORTAR, "Powered Mortar");
-        addBlock(ModBlocks.EXTRUDER, "Extruder");
-        addBlock(ModBlocks.CUTTER, "Cutter");
-        addBlock(ModBlocks.ROLLBENDER, "Roll Bender");
-        addBlock(ModBlocks.BENDER, "Bender");
-        addBlock(ModBlocks.ASSEMBLER, "Assembler");
-        addBlock(ModBlocks.WELDER, "Welder");
-        ModMachineVariants.T16_SELECTED.forEach(variant ->
-                add(
-                        "block." + CrucibleCraft.MODID + "."
-                                + variant.id().getPath(),
-                        t16MachineName(variant, false)));
-        ModMachineVariants.T17_SELECTED.forEach(variant ->
-                add(
-                        "block." + CrucibleCraft.MODID + "."
-                                + variant.id().getPath(),
-                        t17MachineName(variant, false)));
-        addRemainingCatalogMachineNames(false);
-        addBlock(ModBlocks.ELECTROLYZER, "Electrolyzer");
-        addBlock(
-                ModBlocks.ALUMINIUM_ELECTROLYZER,
-                "Aluminium Electrolyzer");
-        addBlock(
-                ModBlocks.STAINLESS_STEEL_ELECTROLYZER,
-                "Stainless Steel Electrolyzer");
-        addBlock(ModBlocks.MIXER, "Mixer");
-        addBlock(ModBlocks.AUTOCLAVE, "Autoclave");
-        addBlock(ModBlocks.COMPRESSOR, "Compressor");
-        addBlock(ModBlocks.GENERIFIER, "Generifier");
+        addCatalogMachineNames();
         addBlock(ModBlocks.FLUID_DEPOSIT_EXTRACTOR, "Fluid Deposit Extractor");
         addBlock(ModBlocks.FUEL_ENGINE, "Fuel Engine");
         addBlock(ModBlocks.BURNING_GAS_GENERATOR, "Burning Gas Generator");
@@ -850,6 +726,23 @@ public class ModLanguageProvider extends LanguageProvider {
         add("cruciblecraft.configuration.section.cruciblecraft.client.toml.title", "Client");
         add("cruciblecraft.configuration.temperatureUnit", "Temperature Unit");
         addHopperTranslations(false);
+        addStorageTranslations(false);
+    }
+
+    private void addStorageTranslations(boolean chinese) {
+        StorageVariantCatalog.variants().forEach(variant -> {
+            String key = "block." + CrucibleCraft.MODID + "." + variant.path();
+            add(key, chinese ? variant.chinese() : variant.english());
+        });
+        if (chinese) {
+            add("container.cruciblecraft.bookshelf", "书架");
+            add("container.cruciblecraft.bottle_crate", "瓶箱");
+            add("container.cruciblecraft.drawer", "分区抽屉");
+        } else {
+            add("container.cruciblecraft.bookshelf", "Bookshelf");
+            add("container.cruciblecraft.bottle_crate", "Bottle Crate");
+            add("container.cruciblecraft.drawer", "Compartment Drawer");
+        }
     }
 
     private void addHopperTranslations(boolean chinese) {
@@ -900,200 +793,35 @@ public class ModLanguageProvider extends LanguageProvider {
         return spaced.substring(0, 1).toUpperCase(Locale.ROOT) + spaced.substring(1);
     }
 
-    private static String t16MachineName(
-            com.masson.cruciblecraft.machine.processing.MachineVariant variant,
-            boolean chinese) {
-        String material = variant.tierBand().materialId()
-                .substring(
-                        variant.tierBand().materialId().indexOf(':') + 1);
-        String kind = variant.kind().id().getPath();
+    private void addCatalogMachineNames() {
+        ModMachineVariants.ALL.forEach(variant ->
+                add(
+                        "block." + CrucibleCraft.MODID + "."
+                                + variant.id().getPath(),
+                        catalogMachineName(variant)));
+        MachineCasingCatalog.casings().forEach(casing ->
+                add(
+                        "item." + CrucibleCraft.MODID + "."
+                                + casing.id().getPath(),
+                        chinese ? casing.langZh() : casing.langEn()));
+    }
+
+    private String catalogMachineName(
+            com.masson.cruciblecraft.machine.processing.MachineVariant variant) {
+        MachineKindCatalog.Kind kind = MachineKindCatalog.require(
+                variant.kind().id());
+        String kindName = chinese ? kind.langZh() : kind.langEn();
+        boolean bareOpening = variant.id().getPath().equals(kind.id().getPath())
+                && !"t16".equals(kind.displayGroup())
+                && !"t17".equals(kind.displayGroup());
+        if (bareOpening) {
+            return kindName;
+        }
+        MachineKindCatalog.MaterialLang material = MachineKindCatalog.materialLang(
+                variant.tierBand().materialId());
         if (chinese) {
-            String tierName = switch (material) {
-                case "bronze" -> "青铜";
-                case "steel" -> "钢制";
-                case "titanium" -> "钛制";
-                default -> throw new IllegalArgumentException(
-                        "Unsupported T16 material " + material);
-            };
-            String machineName = switch (kind) {
-                case "lathe" -> "车床";
-                case "rollingmill" -> "轧机";
-                case "wiremill" -> "线材轧机";
-                case "shredder" -> "粉碎机";
-                case "press" -> "压机";
-                default -> throw new IllegalArgumentException(
-                        "Unsupported T16 machine kind " + kind);
-            };
-            return tierName + machineName;
+            return material.zh() + kindName;
         }
-        String machineName = switch (kind) {
-            case "lathe" -> "Lathe";
-            case "rollingmill" -> "Rolling Mill";
-            case "wiremill" -> "Wire Mill";
-            case "shredder" -> "Shredder";
-            case "press" -> "Press";
-            default -> throw new IllegalArgumentException(
-                    "Unsupported T16 machine kind " + kind);
-        };
-        return title(material) + " " + machineName;
-    }
-
-    private static String t17MachineName(
-            com.masson.cruciblecraft.machine.processing.MachineVariant variant,
-            boolean chinese) {
-        String material = variant.tierBand().materialId()
-                .substring(
-                        variant.tierBand().materialId().indexOf(':') + 1);
-        String kind = variant.kind().id().getPath();
-        if (chinese) {
-            String tierName = switch (material) {
-                case "steel" -> "钢制";
-                case "invar" -> "殷钢";
-                case "titanium" -> "钛制";
-                default -> throw new IllegalArgumentException(
-                        "Unsupported T17 material " + material);
-            };
-            String machineName = switch (kind) {
-                case "distillery" -> "蒸馏机";
-                case "drying" -> "干燥机";
-                case "smelter" -> "熔炼炉";
-                default -> throw new IllegalArgumentException(
-                        "Unsupported T17 machine kind " + kind);
-            };
-            return tierName + machineName;
-        }
-        String machineName = switch (kind) {
-            case "distillery" -> "Distillery";
-            case "drying" -> "Drying Machine";
-            case "smelter" -> "Smelter";
-            default -> throw new IllegalArgumentException(
-                    "Unsupported T17 machine kind " + kind);
-        };
-        return title(material) + " " + machineName;
-    }
-
-    private void addRemainingCatalogMachineNames(boolean chinese) {
-        java.util.Set<String> alreadyNamed = new java.util.HashSet<>();
-        alreadyNamed.add("centrifuge");
-        alreadyNamed.add("steel_centrifuge");
-        alreadyNamed.add("titanium_centrifuge");
-        alreadyNamed.add("sifter");
-        alreadyNamed.add("steel_sifter");
-        alreadyNamed.add("titanium_sifter");
-        alreadyNamed.add("electrolyzer");
-        alreadyNamed.add("aluminium_electrolyzer");
-        alreadyNamed.add("stainless_steel_electrolyzer");
-        alreadyNamed.add("mixer");
-        alreadyNamed.add("autoclave");
-        alreadyNamed.add("compressor");
-        alreadyNamed.add("generifier");
-        alreadyNamed.add("extruder");
-        if (!chinese) {
-            alreadyNamed.add("sluice");
-            alreadyNamed.add("bath");
-            alreadyNamed.add("mortar");
-            alreadyNamed.add("cutter");
-            alreadyNamed.add("rollbender");
-            alreadyNamed.add("bender");
-            alreadyNamed.add("assembler");
-            alreadyNamed.add("welder");
-            alreadyNamed.add("shredder");
-            alreadyNamed.add("press");
-            alreadyNamed.add("lathe");
-            alreadyNamed.add("rollingmill");
-            alreadyNamed.add("wiremill");
-            alreadyNamed.add("distillery");
-            alreadyNamed.add("drying");
-            alreadyNamed.add("smelter");
-        }
-        ModMachineVariants.T16_SELECTED.forEach(variant ->
-                alreadyNamed.add(variant.id().getPath()));
-        ModMachineVariants.T17_SELECTED.forEach(variant ->
-                alreadyNamed.add(variant.id().getPath()));
-        ModMachineVariants.ALL.forEach(variant -> {
-            String path = variant.id().getPath();
-            if (alreadyNamed.contains(path)
-                    || ModMachineVariants.isOpening(variant.id())) {
-                return;
-            }
-            add(
-                    "block." + CrucibleCraft.MODID + "." + path,
-                    catalogMachineName(variant, chinese));
-        });
-    }
-
-    private static String catalogMachineName(
-            com.masson.cruciblecraft.machine.processing.MachineVariant variant,
-            boolean chinese) {
-        String material = variant.tierBand().materialId()
-                .substring(
-                        variant.tierBand().materialId().indexOf(':') + 1);
-        String kind = variant.kind().id().getPath();
-        if ("bronze_crusher".equals(kind)) {
-            kind = "crusher";
-        }
-        if (chinese) {
-            return materialZh(material) + kindZh(kind);
-        }
-        return title(material) + " " + kindEn(kind);
-    }
-
-    private static String materialZh(String material) {
-        return switch (material) {
-            case "bronze" -> "青铜";
-            case "steel" -> "钢制";
-            case "titanium" -> "钛制";
-            case "aluminium" -> "铝制";
-            case "stainless_steel" -> "不锈钢";
-            case "invar" -> "殷钢";
-            case "tungstensteel" -> "钨钢";
-            case "tungsten_carbide" -> "碳化钨";
-            case "chromium" -> "铬制";
-            case "steel_galvanized" -> "镀锌钢";
-            default -> title(material);
-        };
-    }
-
-    private static String kindZh(String kind) {
-        return switch (kind) {
-            case "centrifuge" -> "离心机";
-            case "sifter" -> "筛选机";
-            case "electrolyzer" -> "电解机";
-            case "lathe" -> "车床";
-            case "rollingmill" -> "轧机";
-            case "wiremill" -> "线材轧机";
-            case "shredder" -> "粉碎机";
-            case "press" -> "压机";
-            case "distillery" -> "蒸馏机";
-            case "drying" -> "干燥机";
-            case "smelter" -> "熔炼炉";
-            case "assembler" -> "装配机";
-            case "autoclave" -> "高压釜";
-            case "bath" -> "洗矿浴池";
-            case "bender" -> "折弯机";
-            case "crusher" -> "破碎机";
-            case "coagulator" -> "凝固机";
-            case "compressor" -> "压缩机";
-            case "cutter" -> "切割机";
-            case "extruder" -> "挤压机";
-            case "generifier" -> "通化机";
-            case "mixer" -> "混合机";
-            case "mortar" -> "动力研钵";
-            case "roaster" -> "焙烧炉";
-            case "rollbender" -> "卷板机";
-            case "sluice" -> "溜槽";
-            case "welder" -> "焊机";
-            default -> title(kind);
-        };
-    }
-
-    private static String kindEn(String kind) {
-        return switch (kind) {
-            case "rollingmill" -> "Rolling Mill";
-            case "wiremill" -> "Wire Mill";
-            case "drying" -> "Drying Machine";
-            case "rollbender" -> "Roll Bender";
-            default -> title(kind);
-        };
+        return material.en() + " " + kindName;
     }
 }

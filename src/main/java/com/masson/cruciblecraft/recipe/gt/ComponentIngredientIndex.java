@@ -24,7 +24,8 @@ public final class ComponentIngredientIndex {
     private static final Set<ResourceLocation> INDEXABLE_COMPONENTS = Set.of(
             ModComponents.TOOL_MATERIAL.getId(),
             ModComponents.MACHINE_MATERIAL.getId(),
-            ModComponents.CIRCUIT_CONFIG.getId());
+            ModComponents.CIRCUIT_CONFIG.getId(),
+            ModComponents.FIREPROOF.getId());
 
     private ComponentIngredientIndex() {}
 
@@ -96,7 +97,8 @@ public final class ComponentIngredientIndex {
             return string;
         }
         if (value instanceof Integer integer
-                && componentId.equals(ModComponents.CIRCUIT_CONFIG.getId())) {
+                && (componentId.equals(ModComponents.CIRCUIT_CONFIG.getId())
+                        || componentId.equals(ModComponents.FIREPROOF.getId()))) {
             return Integer.toString(integer);
         }
         return null;

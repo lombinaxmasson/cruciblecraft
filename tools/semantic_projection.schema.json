@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "semantic_projection.schema.json",
+  "title": "CrucibleCraft semantic projection",
+  "type": "object",
+  "required": ["kind", "semantic_projection_version"],
+  "properties": {
+    "kind": {
+      "type": "string",
+      "enum": [
+        "material_registration_gate",
+        "json_ledger",
+        "datapack_recipe_tree"
+      ]
+    },
+    "semantic_projection_version": { "type": "integer", "const": 1 }
+  }
+}
