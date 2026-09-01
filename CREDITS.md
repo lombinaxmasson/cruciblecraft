@@ -27,6 +27,8 @@ replay，逐文件来源指针与 sha 钉见 `tools/` 下的来源政策产物�
 - **资产说明**：GT6 默认资产按上游 `LICENSE.assets` 为 CC0 1.0；GregTech
   logo 与其衍生资产按上游 `LICENSE.logos` 为 CC-BY-NC-4.0。本项目不使用
   GregTech logo。
+- **砧几何**：`assets/cruciblecraft/models/block/anvil.json` 来自 GT6
+  MultiTileEntityAnvil 空态 ISBRH（ID 32025），不是 TerraFirmaCraft。
 
 ### GregTech Modern
 
@@ -36,12 +38,6 @@ replay，逐文件来源指针与 sha 钉见 `tools/` 下的来源政策产物�
 - **使用方式**：**仅命名与几何参考**（FluidPipeType.java /
   ItemPipeType.java 逐文件 sha256 见 `tools/gt6_pipe_source.json`）。
   T8 材质资格与管道统计以 GT6 直接注册为准。
-
-### TerraFirmaCraft
-
-- **使用方式**：`assets/cruciblecraft/models/block/anvil.json` 的砧几何改编自
-  TerraFirmaCraft 砧模型；原模型内的 credit 保留在该文件。其余许可与来源边界
-  见 `NOTICE`。
 
 ## 模板与第三方依赖
 
