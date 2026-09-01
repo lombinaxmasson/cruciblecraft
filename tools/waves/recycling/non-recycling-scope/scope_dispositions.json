@@ -1,0 +1,45 @@
+{
+  "dispositions": [
+    {
+      "allowed_dispositions": [
+        "proven_equivalent",
+        "phase_deferred",
+        "post_1x_scope",
+        "unsupported"
+      ],
+      "cohort": "centrifuge_execution_envelope",
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0010",
+      "future_owner": "post_1.x/centrifuge_execution_envelope",
+      "host": "cruciblecraft:centrifuge",
+      "opening_future_owner": "later:execution_envelope/gt6_panel",
+      "reason": "Family exceeds centrifuge envelope 1/6/1/6 with 64000 mB tanks. Expanding the envelope here would change product semantics; a higher tier or panel belongs in post-1.x.",
+      "recheck_condition": "independent post-1.x scope; not 1.x joint exit",
+      "template_key": "gt.recipe.centrifuge#0010"
+    },
+    {
+      "allowed_dispositions": [
+        "proven_equivalent",
+        "phase_deferred",
+        "post_1x_scope",
+        "unsupported"
+      ],
+      "cohort": "centrifuge_cross_mod",
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0207",
+      "future_owner": "post_1.x/cross_mod_pahoehoe",
+      "host": "cruciblecraft:centrifuge",
+      "opening_future_owner": "later:cross_mod",
+      "reason": "Source depends on ic2pahoehoelava. Plan forbids remapping that IC2 fluid to vanilla lava. In-mod pahoehoe identity is out of 1.x scope.",
+      "recheck_condition": "independent post-1.x scope; not 1.x joint exit",
+      "template_key": "gt.recipe.centrifuge#0207"
+    }
+  ],
+  "generated_by": "python tools/build_deferred_scope_child.py",
+  "owns_families": 2,
+  "padding_forbidden": true,
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "POST_1X_SCOPE",
+  "wave_slug": "recycling/non-recycling-scope"
+}

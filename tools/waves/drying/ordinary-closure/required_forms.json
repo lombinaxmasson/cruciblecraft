@@ -1,0 +1,124 @@
+{
+  "counts": {
+    "new_prefix_forms": 10,
+    "required_form_pairs": 39,
+    "required_materials": 29
+  },
+  "generated_by": "python tools/build_ordinary_wave.py",
+  "new_prefix_forms": [
+    "centrifuged_crushed_ore",
+    "dust",
+    "gem",
+    "gem_chipped",
+    "gem_flawed",
+    "small_dust",
+    "tiny_centrifuged_crushed_ore",
+    "tiny_dust",
+    "tiny_washed_crushed_ore",
+    "washed_crushed_ore"
+  ],
+  "note": "Card builder writes required forms only. material_registration_gate.json is produced by tools/build_gt6_material_form_gate.py.",
+  "required_forms": {
+    "biotite": [
+      "centrifuged_crushed_ore",
+      "tiny_centrifuged_crushed_ore",
+      "tiny_washed_crushed_ore",
+      "washed_crushed_ore"
+    ],
+    "black": [
+      "tiny_dust"
+    ],
+    "blue": [
+      "tiny_dust"
+    ],
+    "brown": [
+      "tiny_dust"
+    ],
+    "ceramic": [
+      "dust"
+    ],
+    "clay": [
+      "dust"
+    ],
+    "cyan": [
+      "tiny_dust"
+    ],
+    "ferric_oxyhydroxide": [
+      "dust"
+    ],
+    "gray": [
+      "tiny_dust"
+    ],
+    "green": [
+      "tiny_dust"
+    ],
+    "hematite": [
+      "dust"
+    ],
+    "ice": [
+      "dust",
+      "gem",
+      "gem_chipped",
+      "gem_flawed",
+      "small_dust",
+      "tiny_dust"
+    ],
+    "light_blue": [
+      "tiny_dust"
+    ],
+    "light_gray": [
+      "tiny_dust"
+    ],
+    "lime": [
+      "tiny_dust"
+    ],
+    "magenta": [
+      "tiny_dust"
+    ],
+    "orange": [
+      "tiny_dust"
+    ],
+    "pink": [
+      "tiny_dust"
+    ],
+    "purple": [
+      "tiny_dust"
+    ],
+    "red": [
+      "tiny_dust"
+    ],
+    "salt": [
+      "small_dust"
+    ],
+    "snow": [
+      "dust",
+      "small_dust",
+      "tiny_dust"
+    ],
+    "sodium_carbonate": [
+      "dust"
+    ],
+    "sylvite": [
+      "small_dust"
+    ],
+    "trona": [
+      "dust"
+    ],
+    "tungsten_trioxide": [
+      "dust"
+    ],
+    "tungstic_acid": [
+      "dust"
+    ],
+    "white": [
+      "tiny_dust"
+    ],
+    "yellow": [
+      "tiny_dust"
+    ]
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "SEMANTIC_REQUIRED_FORMS",
+  "wave_slug": "drying/ordinary-closure"
+}

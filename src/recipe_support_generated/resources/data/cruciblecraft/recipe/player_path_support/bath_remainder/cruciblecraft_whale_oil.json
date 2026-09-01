@@ -1,0 +1,43 @@
+{
+  "can_be_buffered": true,
+  "duration": 16,
+  "eut": 0,
+  "fluid_inputs": [
+    {
+      "amount": 16,
+      "id": "minecraft:water"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 144,
+      "id": "cruciblecraft:whale_oil"
+    }
+  ],
+  "item_input_actions": [
+    {
+      "kind": "consume"
+    }
+  ],
+  "item_input_counts": [
+    1
+  ],
+  "item_inputs": [
+    {
+      "item": "minecraft:coal"
+    }
+  ],
+  "item_outputs": [],
+  "map": "cruciblecraft:bath",
+  "output_chances": [],
+  "provenance": {
+    "evidence_hashes": [
+      "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    ],
+    "note": "DESIGN_POLICY: whale oil overlay from B0 coal + water.",
+    "selected_source_recipe": "player_path_support/bath_remainder/cruciblecraft_whale_oil",
+    "source_kind": "t47_b1_design_policy"
+  },
+  "special_value": 0,
+  "type": "cruciblecraft:gt_recipe"
+}

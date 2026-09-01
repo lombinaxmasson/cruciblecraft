@@ -1,0 +1,59 @@
+{
+  "eager_publication_rows": 1240,
+  "generated_by": "python tools/build_ordinary_wave.py",
+  "group_winners": {
+    "cruciblecraft:compressor/ordinary_closure/acquisition": "immediate",
+    "cruciblecraft:compressor/ordinary_closure/material_form": "immediate",
+    "cruciblecraft:compressor/ordinary_closure/multiitem": "immediate",
+    "cruciblecraft:compressor/ordinary_closure/singleton": "on_demand"
+  },
+  "groups": [
+    {
+      "family_count": 4,
+      "membership_root_sha256": "3dd67082526a6f3aa55615aff34b13b358f0af06491583ea16e36a54ce39a9e2",
+      "publication_group": "cruciblecraft:compressor/ordinary_closure/acquisition",
+      "relation_count": 26,
+      "target_map": "cruciblecraft:compressor",
+      "winner": "immediate"
+    },
+    {
+      "family_count": 7,
+      "membership_root_sha256": "43c8e8b2b97f45be37c0ebaf7f53477d9acd83efb4b803d70144b3a9d052208e",
+      "publication_group": "cruciblecraft:compressor/ordinary_closure/material_form",
+      "relation_count": 1206,
+      "target_map": "cruciblecraft:compressor",
+      "winner": "immediate"
+    },
+    {
+      "family_count": 1,
+      "membership_root_sha256": "e9f6ced3d8ad5c0fd47769eb0f1def6694487b5bf359293bf409f41e651872b5",
+      "publication_group": "cruciblecraft:compressor/ordinary_closure/multiitem",
+      "relation_count": 8,
+      "target_map": "cruciblecraft:compressor",
+      "winner": "immediate"
+    },
+    {
+      "family_count": 44,
+      "membership_root_sha256": "dc8c74258f83d2e74b9ca7f5433af34cd4f5a38fee9fe382504d12c7e044e7f4",
+      "publication_group": "cruciblecraft:compressor/ordinary_closure/singleton",
+      "relation_count": 44,
+      "target_map": "cruciblecraft:compressor",
+      "winner": "on_demand"
+    }
+  ],
+  "lazy_logical_rows": 44,
+  "opening_eager": 20647,
+  "opening_lazy": 53571,
+  "schema_version": 1,
+  "static_envelope": {
+    "eager_hard": 41000,
+    "eager_verified_opening": 20647,
+    "eager_with_opening": 21887,
+    "lazy_hard": 56000,
+    "lazy_with_opening": 53615,
+    "note": "Count is UNVERIFIED_SCALE telemetry, not a runtime throw. 41000 is a temporary Smelter+Mixer compatibility watermark. Mixer opening is Smelter closing, not T49 opening.",
+    "temporary_compatibility_ceiling": 41000
+  },
+  "status": "PUBLICATION_READY",
+  "wave_slug": "compressor/ordinary-closure"
+}

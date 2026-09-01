@@ -55,6 +55,12 @@ BEHAVIOR_BOUND_KEYS = frozenset(
         "t40_locked_support",
         "t41_generated_recipes",
         "t41_locked_support",
+        "t46_generated_recipes",
+        "t46_locked_support",
+        "t47_generated_recipes",
+        "t47_locked_support",
+        "t48_generated_recipes",
+        "t48_locked_support",
     }
 )
 

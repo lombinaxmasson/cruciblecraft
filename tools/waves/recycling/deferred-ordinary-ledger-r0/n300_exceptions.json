@@ -1,0 +1,45 @@
+{
+  "exceptions": [
+    {
+      "child": "recycling/deferred-ordinary-ledger-r0",
+      "exception_kind": "infrastructure_ledger_enumeration",
+      "owns_families": 0,
+      "padding_forbidden": true,
+      "reason": "infrastructure: enumerate and partition the deferred ledger"
+    },
+    {
+      "child": "recycling/smelter-mte-identity",
+      "exception_kind": "infrastructure_identity_catalog",
+      "owns_families": 0,
+      "padding_forbidden": true,
+      "reason": "infrastructure: holdable Smelter MTE identity and acquisition"
+    },
+    {
+      "child": "smelter/deferred-recycling-edge",
+      "exception_kind": "independent_evidence_incomplete_cohort",
+      "owns_families": 2,
+      "padding_forbidden": true,
+      "reason": "independent evidence-incomplete cohort; not the 1817 builder"
+    },
+    {
+      "child": "autoclave/deferred-recycling",
+      "exception_kind": "different_host_operand_shape",
+      "owns_families": 24,
+      "padding_forbidden": true,
+      "reason": "different host and operand shape from Smelter MTE recovery"
+    },
+    {
+      "child": "recycling/non-recycling-scope",
+      "exception_kind": "envelope_and_cross_mod_scope",
+      "owns_families": 2,
+      "padding_forbidden": true,
+      "reason": "centrifuge envelope / cross-mod; not a recycling production lock"
+    }
+  ],
+  "generated_by": "python tools/build_deferred_ordinary_ledger_r0.py",
+  "padding_forbidden": true,
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "N300_EXCEPTIONS",
+  "wave_slug": "recycling/deferred-ordinary-ledger-r0"
+}

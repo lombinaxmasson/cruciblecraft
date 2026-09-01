@@ -1,0 +1,26 @@
+{
+  "failed_gates": [],
+  "gates": {
+    "history_freeze_current": true,
+    "identity_composition_legal": true,
+    "policy_override_bounded": true,
+    "runtime_composition_legal": true,
+    "t46_runtime_group_current": true,
+    "t47_identity_delta_current": true,
+    "t47_runtime_group_current": true,
+    "v1_global_authorities_byte_identical": true
+  },
+  "generated_by": "python tools/build_forward_recipe_authority_v2_readiness.py",
+  "hashes": {
+    "identity_v2": "6b2f7d395c74f68ecf84244a113b28fba38de6c9752be7f50b12c2ee21805adb",
+    "policy_v2": "30a07ad20ca443d9108665157b351471ffeb45d71fdd3d4b7d75076a11cb2c35",
+    "runtime_v2": "821e4a6ef8d4246811ec6411d81f634bf9552ded68e5a53b9c64757bc8bd376f",
+    "v1_identity": "e41786488021e8128ef1a5ad652407ca984af31d128f4a9db525aa2ffb5a7ddc",
+    "v1_policy": "7e87ddb3b987f52fd8fd918a426bd6a2c640682fb89b52cb7b3cc5731c339270",
+    "v1_runtime": "ec2bd908c92a2e3e2bd4223a2192df3f33430e548a89d5442f0bede70ef55eb4"
+  },
+  "note": "Forward-v2 readiness proves the frozen v1 base is unchanged, the authored override is bounded, and delta composition is legal. It does not rewrite closed v1 READY documents.",
+  "owns_families": 0,
+  "schema_version": 1,
+  "status": "FORWARD_RECIPE_AUTHORITY_V2_READY"
+}

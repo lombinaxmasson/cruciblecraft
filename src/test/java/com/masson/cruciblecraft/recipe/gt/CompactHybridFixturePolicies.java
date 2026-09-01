@@ -9,7 +9,7 @@ import net.minecraft.resources.ResourceLocation;
 final class CompactHybridFixturePolicies {
     private CompactHybridFixturePolicies() {}
 
-    static CompactRecipeFamilyProvider.MaterializationPolicy t37Selector(
+    static CompactRecipeFamilyProvider.MaterializationPolicy assemblerCompactSelector(
             List<CompactRecipeFamilySource> sources) {
         List<String> familyIds = sources.stream()
                 .map(source -> source.definition().familyId())

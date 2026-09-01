@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/global_build_identity_ledger.v2.schema.json",
+  "title": "CrucibleCraft forward-v2 global build-time identity ledger",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "v1_base",
+    "records",
+    "blockers",
+    "composition"
+  ],
+  "properties": {
+    "blocker_count": { "type": "integer" },
+    "blockers": { "type": "array" },
+    "composition": { "type": "object" },
+    "counts": { "type": "object" },
+    "generated_by": { "type": "string" },
+    "note": { "type": "string" },
+    "record_count": { "type": "integer" },
+    "records": { "type": "array" },
+    "schema_version": { "const": 2 },
+    "status": { "const": "GLOBAL_BUILD_IDENTITY_LEDGER_V2" },
+    "v1_base": { "type": "object" }
+  }
+}

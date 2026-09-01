@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/t14_load_budget_policy.v2.schema.json",
+  "title": "CrucibleCraft forward-v2 T14 load budget policy",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "v1_base",
+    "budgets"
+  ],
+  "properties": {
+    "budgets": { "type": "object" },
+    "composition": { "type": "object" },
+    "generated_by": { "type": "string" },
+    "note": { "type": "string" },
+    "pending_measurements": { "type": "array" },
+    "pending_token": { "type": "string" },
+    "ratio_input_allowed": { "const": false },
+    "schema_version": { "const": 2 },
+    "scope": { "type": "object" },
+    "status": { "const": "FORWARD_LOAD_BUDGET_POLICY_V2" },
+    "v1_base": {
+      "type": "object",
+      "required": ["path", "file_sha256"],
+      "properties": {
+        "file_sha256": { "type": "string", "minLength": 64, "maxLength": 64 },
+        "path": { "type": "string" },
+        "status": { "type": "string" }
+      }
+    }
+  }
+}

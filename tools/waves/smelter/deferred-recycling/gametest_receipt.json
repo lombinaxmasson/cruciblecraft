@@ -1,0 +1,23 @@
+{
+  "command": ".\\gradlew.bat runGameTestServer -PwaveRecipes=smelter/deferred-recycling --no-daemon",
+  "failed": 0,
+  "java_source": "src/main/java/com/masson/cruciblecraft/gametest/SmelterDeferredRecyclingGameTests.java",
+  "log_path": "tools/waves/smelter/deferred-recycling/gametest.log",
+  "namespace": "cruciblecraft_wave_smelter_deferred_recycling",
+  "note": "Isolated -PwaveRecipes result. Skip is not pass.",
+  "passed": 7,
+  "required_tests": 7,
+  "schema_version": 1,
+  "skip_is_not_pass": true,
+  "status": "PASS",
+  "test_ids": [
+    "smelterdeferreddurationeutandconservation",
+    "smelterdeferredemiplanincludesfamilies",
+    "smelterdeferredfamiliespublished",
+    "smelterdeferredgroupsexecute",
+    "smelterdeferredgroupspublished",
+    "smelterdeferredreleaseperformancegates",
+    "smelterdeferredstableidssurvivereload"
+  ],
+  "wave_slug": "smelter/deferred-recycling"
+}

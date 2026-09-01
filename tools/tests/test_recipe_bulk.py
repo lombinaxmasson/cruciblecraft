@@ -132,6 +132,15 @@ class RecipeBulkCompilerTest(unittest.TestCase):
             COMPILE_ORDER,
         )
 
+    def test_forward_compile_order_appends_t46(self) -> None:
+        from tools.recipe_bulk.waves import FORWARD_COMPILE_ORDER
+
+        self.assertEqual(COMPILE_ORDER + ("T46", "T47", "T48", "T49"), FORWARD_COMPILE_ORDER)
+        self.assertEqual("lock_relation_set", WAVES["T46"].archetype)
+        self.assertEqual("exact_relation_set", WAVES["T46"].template_kind)
+        self.assertEqual("lock_relation_set", WAVES["T47"].archetype)
+        self.assertEqual("exact_relation_set", WAVES["T47"].template_kind)
+
     def test_exact_singleton_rejects_multi_relation(self) -> None:
         with self.assertRaises(ValueError):
             expand_family(

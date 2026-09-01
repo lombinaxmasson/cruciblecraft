@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 
 /**
  * Datapack publication-group policy. Undeclared (target_map, publication_group)
- * pairs fail closed. T37/T38 family JSON may still omit publication_group;
+ * pairs fail closed. Compact family JSON may still omit publication_group;
  * {@link CompactGTRecipeFamilyDefinition#historicalPublicationGroup()} remains
  * the decode fallback and does not own materialization policy.
  */
@@ -29,7 +29,7 @@ public record CompactPublicationPolicyDefinition(
         Optional<Integer> familyCount,
         Optional<Integer> relationCount) {
 
-    public static final String ROUTING_SCHEMA_VERSION = "t39-shard-v1";
+    public static final String ROUTING_SCHEMA_VERSION = "compact-shard-v1";
 
     public static final MapCodec<CompactPublicationPolicyDefinition> MAP_CODEC =
             RecordCodecBuilder.mapCodec(instance -> instance.group(

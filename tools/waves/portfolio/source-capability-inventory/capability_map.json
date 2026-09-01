@@ -1,0 +1,1136 @@
+{
+  "generated_by": "python tools/source_capability_map.py",
+  "row_count": 113,
+  "rows": [
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "src/main/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalog.java + data/cruciblecraft/material_prefixes/",
+      "correspondence_class": "equivalent",
+      "growth_blocker": "none",
+      "gt6_anchor": "gregapi/oredict",
+      "gt6_domain": "oredict",
+      "inherited_from_seed": true,
+      "recheck_condition": "Prefix catalog is startup-only; datapacks cannot add rows at runtime."
+    },
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "compact exact / exact_multi + per-wave Python builders",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.* ordinary rows",
+      "gt6_domain": "loader",
+      "inherited_from_seed": true,
+      "recheck_condition": "Import path exists; no generic dump-to-arbitrary-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "machine_tiers.json -> MachineTierCatalog -> ModMachineVariants -> registerTieredProcessingBlocks",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "none",
+      "gt6_anchor": "Loader_MultiTileEntities.java selected processing variants",
+      "gt6_domain": "tileentity",
+      "inherited_from_seed": true,
+      "recheck_condition": "Explicit catalog rows register. automaticKindTierCompletion=false is not no_generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "data/cruciblecraft/worldgen_catalog/ore_veins.json + T20 129 identities",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "none",
+      "gt6_anchor": "T20 ore vein / fluid deposit identities",
+      "gt6_domain": "worldgen",
+      "inherited_from_seed": true,
+      "recheck_condition": "Does not claim GT6-complete worldgen."
+    },
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "independent pipe/cable/hopper runtime + partial catalog",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "none",
+      "gt6_anchor": "GT6 pipes / cables / hopper",
+      "gt6_domain": "cover",
+      "inherited_from_seed": true,
+      "recheck_condition": "1.x logistics main chain. Full GT6 cover net is a later seed row."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "storage_variants.json + T44 624+1 lock",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "none",
+      "gt6_anchor": "Storage MTE 28 source sites",
+      "gt6_domain": "tileentity",
+      "inherited_from_seed": true,
+      "recheck_condition": "Recovered exclusion-table subset. Do not reopen storage behavior."
+    },
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "BathMteIdentityCatalog + SmelterMteIdentityCatalog",
+      "correspondence_class": "identity_only",
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "Bath / Smelter MTE holdable identity",
+      "gt6_domain": "tileentity",
+      "inherited_from_seed": true,
+      "recheck_condition": "Identity is not a behavior generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "add an explicit machine_tiers.json row; registerTieredProcessingBlocks walks the catalog",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "none",
+      "gt6_anchor": "new tier for an existing kind",
+      "gt6_domain": "tileentity",
+      "inherited_from_seed": true,
+      "recheck_condition": "Not a missing generator. Cartesian kind x material completion stays false."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "ModProcessingMachines slot/tank/GUI Java spec",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "hardcoded_spec",
+      "gt6_anchor": "new processing kind / envelope",
+      "gt6_domain": "tileentity",
+      "inherited_from_seed": true,
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "CompactRecipeFamilyProvider parameterized() fail-closed",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "fail_closed_runtime",
+      "gt6_anchor": "ParameterizedSpec",
+      "gt6_domain": "loader",
+      "inherited_from_seed": true,
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "tools/build_ordinary_wave.py and specialized copies such as build_smelter_deferred_recycling.py",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "per-wave recipe builders",
+      "gt6_domain": "loader",
+      "inherited_from_seed": true,
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "still referenced by loader and tests; closeout reports UNVERIFIED_SCALE",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "count_ceiling",
+      "gt6_anchor": "ALL_PUBLISHED_RECIPE_BUDGET / lazy 56k / cache 4096 / shard 128",
+      "gt6_domain": "loader",
+      "inherited_from_seed": true,
+      "recheck_condition": "Successor count_ceiling row. 1.x exit interpretation A does not raise the Java constants."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "filter / shutter / pump / conveyor / retriever / robot_arm / pressure_valve / selector",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "cover_definitions.json selected covers",
+      "gt6_domain": "cover",
+      "inherited_from_seed": true,
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "EnergyConverterCatalog bronze firebox/boiler/steam_engine/dynamo/fuel_engine/gas_generator",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "selected energy conversion chain",
+      "gt6_domain": "tileentity",
+      "inherited_from_seed": true,
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "T13c exclusion tables without 1.x owner",
+      "gt6_domain": "tileentity",
+      "inherited_from_seed": true,
+      "recheck_condition": "Panels 348 / Sensors 21 / Portals 19 / Batteries 37 / Reactors 46 never entered the 1.x denominator. Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "GT6 Vanilla replace loaders",
+      "gt6_domain": "loader",
+      "inherited_from_seed": true,
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "GT6 full cover / logistics-net remainder",
+      "gt6_domain": "cover",
+      "inherited_from_seed": true,
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "crops / food / bees",
+      "gt6_domain": "worldgen",
+      "inherited_from_seed": true,
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "energy remainder (batteries, transformers, reactors)",
+      "gt6_domain": "tileentity",
+      "inherited_from_seed": true,
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "non-ore worldgen (trees, dungeons, item scatter remainder)",
+      "gt6_domain": "worldgen",
+      "inherited_from_seed": true,
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "building blocks",
+      "gt6_domain": "tileentity",
+      "inherited_from_seed": true,
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "misc systems (Display CPU and remaining unowned GT6 domains)",
+      "gt6_domain": "tileentity",
+      "inherited_from_seed": true,
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "src/main/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalog.java",
+      "correspondence_class": "equivalent",
+      "growth_blocker": "none",
+      "gt6_anchor": "gregapi/oredict startup catalog boundary",
+      "gt6_domain": "oredict",
+      "recheck_condition": "Startup-only catalog. Datapacks cannot add prefix rows after bootstrap. Not a missing generator."
+    },
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "data/cruciblecraft/material_prefixes/ (88 bundled prefix JSON files via index.json)",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "none",
+      "gt6_anchor": "gt6_dump/gt6_recipe_dump/oredict",
+      "gt6_domain": "oredict",
+      "recheck_condition": "CC ships a startup prefix catalog. Dump oredict is the source concept, not a missing-line census."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:coke_oven via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.cokeoven",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:coke_oven has dump map(s) gt.recipe.cokeoven. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:crusher via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.crusher",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:crusher has dump map(s) gt.recipe.crusher. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:anvil via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.anvil",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:anvil has dump map(s) gt.recipe.anvil. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:anvil_bend_small via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.anvil.bend.small",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:anvil_bend_small has dump map(s) gt.recipe.anvil.bend.small. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:anvil_bend_big via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.anvil.bend.big",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:anvil_bend_big has dump map(s) gt.recipe.anvil.bend.big. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:sluice via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.sluice",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:sluice has dump map(s) gt.recipe.sluice. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:bath via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.bath",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:bath has dump map(s) gt.recipe.bath. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:centrifuge via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.centrifuge",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:centrifuge has dump map(s) gt.recipe.centrifuge. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:shredder via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.shredder",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:shredder has dump map(s) gt.recipe.shredder. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:sifter via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.sifter",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:sifter has dump map(s) gt.recipe.sifter. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:smelter via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.smelter",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:smelter has dump map(s) gt.recipe.smelter. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:cooling via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "identity_only",
+      "dump_present": false,
+      "growth_blocker": "none",
+      "gt6_anchor": "gt.recipe.cooling",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:cooling is registered; pinned dump has no gt.recipe.cooling."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:mortar via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.mortar",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:mortar has dump map(s) gt.recipe.mortar. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:extruder via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.extruder",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:extruder has dump map(s) gt.recipe.extruder. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:cutter via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.cutter",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:cutter has dump map(s) gt.recipe.cutter. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:lathe via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.lathe",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:lathe has dump map(s) gt.recipe.lathe. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:rollingmill via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.rollingmill",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:rollingmill has dump map(s) gt.recipe.rollingmill. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:rollbender via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.rollbender",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:rollbender has dump map(s) gt.recipe.rollbender. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:wiremill via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.wiremill",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:wiremill has dump map(s) gt.recipe.wiremill. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:bender via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.anvil.bend.small + gt.recipe.anvil.bend.big",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:bender has dump map(s) gt.recipe.anvil.bend.small,gt.recipe.anvil.bend.big. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:assembler via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.assembler",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:assembler has dump map(s) gt.recipe.assembler. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:welder via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.welder",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:welder has dump map(s) gt.recipe.welder. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:press via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.press",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:press has dump map(s) gt.recipe.press. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:electrolyzer via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.electrolyzer",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:electrolyzer has dump map(s) gt.recipe.electrolyzer. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:mixer via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.mixer",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:mixer has dump map(s) gt.recipe.mixer. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:distillery via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.distillery",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:distillery has dump map(s) gt.recipe.distillery. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:autoclave via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.autoclave",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:autoclave has dump map(s) gt.recipe.autoclave. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:drying via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.drying",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:drying has dump map(s) gt.recipe.drying. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:compressor via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.compressor",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:compressor has dump map(s) gt.recipe.compressor. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:generifier via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.generifier",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:generifier has dump map(s) gt.recipe.generifier. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:roaster via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.roaster",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:roaster has dump map(s) gt.recipe.roaster. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:coagulator via src/main/java/com/masson/cruciblecraft/registry/ModRecipeMaps.java",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.coagulator",
+      "gt6_domain": "loader",
+      "recheck_condition": "CC map cruciblecraft:coagulator has dump map(s) gt.recipe.coagulator. Presence is not a generic dump-to-map generator."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none; see tools/t27_portfolio/recipe_maps.json",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gt6_dump/gt6_recipe_dump/index.json GT6-only remainder maps",
+      "gt6_domain": "loader",
+      "recheck_condition": "One remainder pointer covering 60 dump maps without a CC processing RecipeMap. Not a recipe census.",
+      "remainder_count": 60
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "data/cruciblecraft/machine_tiers.json (85 explicit variant rows)",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "none",
+      "gt6_anchor": "Loader_MultiTileEntities.java selected processing variants",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Explicit catalog rows are datapack-addable. automaticKindTierCompletion=false is not no_generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "add an explicit machine_tiers.json row; MachineTierCatalog walks the catalog",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "none",
+      "gt6_anchor": "new tier for an existing kind",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Cartesian kind x material completion stays false. An explicit row is not a missing generator."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java ProcessingMachineSpec / CONFIGURED_MACHINES",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "hardcoded_spec",
+      "gt6_anchor": "new processing kind / envelope",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "New kind envelopes remain Java specs. Do not open ParameterizedSpec or automaticKindTierCompletion here."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "data/cruciblecraft/cover_definitions.json cruciblecraft:filter",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "GT6 cover kind corresponding to cruciblecraft:filter",
+      "gt6_domain": "cover",
+      "recheck_condition": "Selected cover. Remainder logistics/controller/redstone/detector stay none."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "data/cruciblecraft/cover_definitions.json cruciblecraft:shutter",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "GT6 cover kind corresponding to cruciblecraft:shutter",
+      "gt6_domain": "cover",
+      "recheck_condition": "Selected cover. Remainder logistics/controller/redstone/detector stay none."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "data/cruciblecraft/cover_definitions.json cruciblecraft:pump",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "GT6 cover kind corresponding to cruciblecraft:pump",
+      "gt6_domain": "cover",
+      "recheck_condition": "Selected cover. Remainder logistics/controller/redstone/detector stay none."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "data/cruciblecraft/cover_definitions.json cruciblecraft:conveyor",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "GT6 cover kind corresponding to cruciblecraft:conveyor",
+      "gt6_domain": "cover",
+      "recheck_condition": "Selected cover. Remainder logistics/controller/redstone/detector stay none."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "data/cruciblecraft/cover_definitions.json cruciblecraft:retriever_item",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "GT6 cover kind corresponding to cruciblecraft:retriever_item",
+      "gt6_domain": "cover",
+      "recheck_condition": "Selected cover. Remainder logistics/controller/redstone/detector stay none."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "data/cruciblecraft/cover_definitions.json cruciblecraft:robot_arm",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "GT6 cover kind corresponding to cruciblecraft:robot_arm",
+      "gt6_domain": "cover",
+      "recheck_condition": "Selected cover. Remainder logistics/controller/redstone/detector stay none."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "data/cruciblecraft/cover_definitions.json cruciblecraft:pressure_valve",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "GT6 cover kind corresponding to cruciblecraft:pressure_valve",
+      "gt6_domain": "cover",
+      "recheck_condition": "Selected cover. Remainder logistics/controller/redstone/detector stay none."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "data/cruciblecraft/cover_definitions.json cruciblecraft:selector_manual",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "GT6 cover kind corresponding to cruciblecraft:selector_manual",
+      "gt6_domain": "cover",
+      "recheck_condition": "Selected cover. Remainder logistics/controller/redstone/detector stay none."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "data/cruciblecraft/cover_definitions.json cruciblecraft:conveyor_fast",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "GT6 conveyor (fast variant)",
+      "gt6_domain": "cover",
+      "recheck_condition": "Extra selected cover definition on the conveyor behavior. Not a full logistics net."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "GT6 controller covers (controller_*) in tools/t13_cover_multiblock_policy.json",
+      "gt6_domain": "cover",
+      "recheck_condition": "Selected covers exist. This remainder is not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "GT6 detector covers (detector_running_*) in tools/t13_cover_multiblock_policy.json",
+      "gt6_domain": "cover",
+      "recheck_condition": "Selected covers exist. This remainder is not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "GT6 logistics covers (logistics_*) in tools/t13_cover_multiblock_policy.json",
+      "gt6_domain": "cover",
+      "recheck_condition": "Selected covers exist. This remainder is not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "GT6 redstone covers (controller_redstone / controller_auto_redstone) in tools/t13_cover_multiblock_policy.json",
+      "gt6_domain": "cover",
+      "recheck_condition": "Selected covers exist. This remainder is not a forever ban."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java + energy_converters.json cruciblecraft:bronze_firebox",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "Loader_MultiTileEntities.java selected energy conversion chain",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Selected bronze conversion profile. Batteries/transformers/reactors stay none."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java + energy_converters.json cruciblecraft:bronze_boiler",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "Loader_MultiTileEntities.java selected energy conversion chain",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Selected bronze conversion profile. Batteries/transformers/reactors stay none."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java + energy_converters.json cruciblecraft:bronze_steam_engine",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "Loader_MultiTileEntities.java selected energy conversion chain",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Selected bronze conversion profile. Batteries/transformers/reactors stay none."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java + energy_converters.json cruciblecraft:bronze_dynamo",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "Loader_MultiTileEntities.java selected energy conversion chain",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Selected bronze conversion profile. Batteries/transformers/reactors stay none."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java + energy_converters.json cruciblecraft:bronze_fuel_engine",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "Loader_MultiTileEntities.java selected energy conversion chain",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Selected bronze conversion profile. Batteries/transformers/reactors stay none."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java + energy_converters.json cruciblecraft:bronze_gas_generator",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "Loader_MultiTileEntities.java selected energy conversion chain",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Selected bronze conversion profile. Batteries/transformers/reactors stay none."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:fuels_engine via ModRecipeMaps",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "gt.recipe.fuels.engine",
+      "gt6_domain": "loader",
+      "recheck_condition": "Fuel map on the selected energy chain, not a processing RecipeMap in the 32."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "cruciblecraft:fuels_gas via ModRecipeMaps",
+      "correspondence_class": "selected_subset",
+      "dump_present": true,
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "gt.recipe.fuels.gas",
+      "gt6_domain": "loader",
+      "recheck_condition": "Fuel map on the selected energy chain, not a processing RecipeMap in the 32."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "GT6 batteries",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Energy remainder. Source pointer: tools/t35_excluded_object_reclaim.json Batteries. Not next_major unless growth-order assigns it."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "GT6 transformers",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Energy remainder. Source pointer: Loader_MultiTileEntities.java transformer variants. Not next_major unless growth-order assigns it."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "GT6 reactors",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Energy remainder. Source pointer: tools/t35_excluded_object_reclaim.json Reactors. Not next_major unless growth-order assigns it."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "data/cruciblecraft/worldgen_catalog/ore_veins.json (T20 129 identities)",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "none",
+      "gt6_anchor": "GT6 ore vein identities",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Selected ore-vein catalog. Does not claim GT6-complete worldgen."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "data/cruciblecraft/worldgen_catalog/fluid_deposits.json",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "none",
+      "gt6_anchor": "GT6 fluid springs / oil and gas deposits",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Selected oil/gas deposits. Dump fluid springs remain a larger source set."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "data/cruciblecraft/worldgen_catalog/surface_scatter.json (surface_rock_scatter)",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "none",
+      "gt6_anchor": "GT6 WorldgenRocks / surface scatter",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Selected pebble/surface scatter. Not GT6-complete worldgen."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gt6_dump/gt6_recipe_dump/worldgen/other_features.json WorldgenTree*",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Non-ore worldgen trees. Anchor points at the pinned dump feature list."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gt6_dump/gt6_recipe_dump/worldgen/other_features.json WorldgenDungeonGT",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Non-ore worldgen dungeons. Anchor points at the pinned dump feature list."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gt6_dump/gt6_recipe_dump/worldgen/other_features.json WorldgenPlanetRocks / moon.rocks / mars.rocks",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Non-ore worldgen planets. Anchor points at the pinned dump feature list."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gt6_dump/gt6_recipe_dump/worldgen/other_features.json WorldgenCenterBiomes / center.*",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Non-ore worldgen center. Anchor points at the pinned dump feature list."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gregtech.loaders.c.Loader_Recipes_Vanilla",
+      "gt6_domain": "loader",
+      "recheck_condition": "Vanilla replace loader. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gregtech.loaders.c.Loader_Recipes_Replace + gregtech.asm.transformers.minecraft.Replacements",
+      "gt6_domain": "loader",
+      "recheck_condition": "Vanilla replacement transformer. CC mechanism is none."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "GT6 crops / plants (dump worldgen plant.* + gt.recipe.squeezer)",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Crops/food/bees remain none. Anchor is the GT6 plant/crop source, not 'later'."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "GT6 food maps (gt.recipe.juicer / gt.recipe.fermenter)",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Food processing maps are none in CC."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gt.recipe.bumblequeen / gt.recipe.bumblelyzer + WorldgenHives",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Bee/hive source maps and worldgen hives. CC mechanism is none."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "identity_only",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "GT6 building-block item/block identities",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Building-block identity without CC behavior."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "GT6 building-block behaviors (hardness, multiblock parts, decorative machines)",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Building-block behavior is none. Identity-only is a different row."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "T13c exclusion Panels",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "tools/t35_excluded_object_reclaim.json Panels expanded_multiplicity=348. Never entered the 1.x denominator."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "T13c exclusion Sensors",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "tools/t35_excluded_object_reclaim.json Sensors expanded_multiplicity=21. Never entered the 1.x denominator."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "T13c exclusion Portals",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "tools/t35_excluded_object_reclaim.json Portals expanded_multiplicity=19. Never entered the 1.x denominator."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "T13c exclusion Batteries",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "tools/t35_excluded_object_reclaim.json Batteries expanded_multiplicity=37. Never entered the 1.x denominator."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "T13c exclusion Reactors",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "tools/t35_excluded_object_reclaim.json Reactors expanded_multiplicity=46. Never entered the 1.x denominator."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "accounted_by": [
+        "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0000",
+        "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0001"
+      ],
+      "cc_mechanism": "none",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.assembler combinatorial remainder",
+      "gt6_domain": "loader",
+      "recheck_condition": "later:assembler_combinatorial expressed_by t41. Must appear in growth-order."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "accounted_by": [
+        "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0000",
+        "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0001"
+      ],
+      "cc_mechanism": "none",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.electrolyzer combinatorial remainder",
+      "gt6_domain": "loader",
+      "recheck_condition": "later:electrolyzer_combinatorial expressed_by t40. Must appear in growth-order."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "accounted_by": [
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0169",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0176",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0180",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0185",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0188",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0190",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0191"
+      ],
+      "cc_mechanism": "none",
+      "correspondence_class": "post_1x",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gt.recipe.centrifuge nuclear remainder",
+      "gt6_domain": "loader",
+      "recheck_condition": "post_1x:nuclear expressed_by t39. Independent unless growth-order assigns nuclear next."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "accounted_by": [
+        "portfolio:track_a/cruciblecraft:smelter/gt.recipe.smelter#1829",
+        "portfolio:track_a/cruciblecraft:smelter/gt.recipe.smelter#1884"
+      ],
+      "cc_mechanism": "none",
+      "correspondence_class": "post_1x",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gt.recipe.smelter recovery edge",
+      "gt6_domain": "loader",
+      "recheck_condition": "post-1.x smelter recovery edge. Still independent."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "accounted_by": [
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0032",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0033",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0034",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0035",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0036",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0037",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0040",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0041",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0042",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0043",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0044",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0045",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0046",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0047",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0048",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0049",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0050",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0051",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0052",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0053",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0054",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0055",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0058",
+        "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0059"
+      ],
+      "cc_mechanism": "none",
+      "correspondence_class": "post_1x",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gt.recipe.autoclave ordinary processing remainder",
+      "gt6_domain": "loader",
+      "recheck_condition": "post-1.x ordinary autoclave processing. Still independent."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "accounted_by": [
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0010",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0207"
+      ],
+      "cc_mechanism": "none",
+      "correspondence_class": "post_1x",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gt.recipe.centrifuge#0010 execution envelope + gt.recipe.centrifuge#0207 pahoehoe",
+      "gt6_domain": "loader",
+      "recheck_condition": "recycling/non-recycling-scope. Still independent."
+    },
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java (still referenced; load interpretation A does not raise the constant)",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "count_ceiling",
+      "gt6_anchor": "ALL_PUBLISHED_RECIPE_BUDGET = 21000",
+      "gt6_domain": "loader",
+      "recheck_condition": "Count telemetry is not a hard top. This row only registers the live code point."
+    },
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java (still referenced; load interpretation A does not raise the constant)",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "count_ceiling",
+      "gt6_anchor": "ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING = 56000",
+      "gt6_domain": "loader",
+      "recheck_condition": "Count telemetry is not a hard top. This row only registers the live code point."
+    },
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java (still referenced; load interpretation A does not raise the constant)",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "count_ceiling",
+      "gt6_anchor": "ALL_LAZY_RECIPE_CACHE_HARD_CEILING = 4096",
+      "gt6_domain": "loader",
+      "recheck_condition": "Count telemetry is not a hard top. This row only registers the live code point."
+    },
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java + src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeShardRouter.java (still referenced; load interpretation A does not raise the constant)",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "count_ceiling",
+      "gt6_anchor": "RECIPE_LOOKUP_MAX_CANDIDATE_HARD_CEILING / HARD_SHARD_CEILING = 128",
+      "gt6_domain": "loader",
+      "recheck_condition": "Count telemetry is not a hard top. This row only registers the live code point."
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "CAPABILITY_MAP_READY",
+  "wave_slug": "portfolio/source-capability-inventory"
+}

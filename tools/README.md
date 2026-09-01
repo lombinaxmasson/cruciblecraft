@@ -1,4 +1,21 @@
-# GT6 recipe regression
+# Tools
+
+Live content uses semantic paths (`tool/assembler/`, `mortar/`, `pipe/`,
+`ingot_form/`, wave slugs). Daily verification is `python tools/verify.py`.
+
+`build_t*.py`, `t16_*.json`, and other T-numbered files in this folder are
+**closed-card ledgers**. They keep milestone filenames so historical `--check`
+receipts stay stable. Do not start new tools, machines, or waves from those
+scripts; they are not the current authoring API. Bound runtime ids such as
+`t14_extruder`, `t11_materials/`, and `t16_publication_baseline.json` stay
+until a dedicated migration. Leftover inventory and resume order:
+`docs/current/semantic-naming.md`.
+
+The rest of this file is the historical GT6 regression and closed-card
+runbook. Use it to replay a closed ledger, not to choose the next content
+path.
+
+## GT6 recipe regression
 
 ## Verification workflow
 
@@ -954,7 +971,7 @@ does not shrink existing history.
 
 ## T2 ore-chain verification
 
-`T2ChainIntegrationTest` expands the production `T2ChainRules` against the
+`MaterialChainIntegrationTest` expands the production `MaterialChainRules` against the
 imported runtime material index and verifies every configured map, water input,
 ordered byproducts, the 6×16-unit anvil yield, and raw-ore-to-ingot
 reachability. `CrucibleCraftGameTests` runs the production block-world suite on
@@ -967,7 +984,7 @@ machines resolving and advancing real loaded recipes.
 
 ## T3 component-data verification
 
-`T3ComponentDataTest` validates the normalized GT6 prefix amount and
+`ComponentRuleDataTest` validates the normalized GT6 prefix amount and
 registered-material evidence for every activated component prefix, expands the
 committed compact rules through the production projector, and checks exact
 target ratios, atomic multi-input shapes, duplicate signatures, and all ten

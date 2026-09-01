@@ -11,9 +11,9 @@ import com.masson.cruciblecraft.registry.ModRecipeMaps;
 import net.minecraft.world.item.ItemStack;
 
 /**
- * EMI-free projection of the tool variants that have a live T4 assembler
+ * EMI-free projection of the tool variants that have a live assembler
  * route: {@code ToolMaterialRules.isAllowed} intersected with the expanded
- * {@code t4/assembler/<tool>/<route>/<material>} entries — the same filter
+ * {@code tool/assembler/<tool>/<route>/<material>} entries — the same filter
  * the GameTest pins. Materials without a route stay out of the creative tab
  * and EMI by design; no "uncraftable" marking is invented.
  *
@@ -28,7 +28,7 @@ public final class ToolDisplayPlan {
 
     public static List<String> routedMaterials(
             Collection<String> assemblerEntryPaths, String tool) {
-        String prefix = "t4/assembler/" + tool + "/";
+        String prefix = "tool/assembler/" + tool + "/";
         return assemblerEntryPaths.stream()
                 .filter(path -> path.startsWith(prefix))
                 .map(path -> path.substring(path.lastIndexOf('/') + 1))

@@ -15,14 +15,14 @@ import net.minecraft.resources.ResourceLocation;
  */
 public final class ModMultiblockPlugins {
     /** Shared processing host gated by the JSON structure. Consumed by
-     * large_centrifuge (existing) and distillation_tower (T23 C1) — the
+     * large_centrifuge (existing) and distillation_tower — the
      * two real consumers justify the shared behavior. */
     public static final ResourceLocation PROCESSING_HOST =
             ResourceLocation.fromNamespaceAndPath(
                     "cruciblecraft", "processing_host");
 
     /** Matcher supply is one item and one fluid per shared host, never
-     * counted per physical port block (T15e rule). Consumed by every
+     * counted per physical port block. Consumed by every
      * multi-port structure controller. */
     public static final ResourceLocation SHARED_PORT_SUPPLY =
             ResourceLocation.fromNamespaceAndPath(

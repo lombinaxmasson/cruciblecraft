@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/compact_recipe_runtime_manifest.v2.schema.json",
+  "title": "CrucibleCraft forward-v2 compact recipe runtime manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "v1_base",
+    "group_count",
+    "groups",
+    "composition"
+  ],
+  "properties": {
+    "bindings": { "type": "object" },
+    "composition": {
+      "type": "object",
+      "required": ["base_group_count", "composed_group_count"],
+      "properties": {
+        "base_group_count": { "const": 12 },
+        "composed_group_count": { "type": "integer", "minimum": 12 },
+        "conflict_check": { "type": "string" },
+        "consumed_deltas": { "type": "array" },
+        "historical_membership_roots_unchanged": { "type": "boolean" },
+        "semantic_root_sha256": { "type": "string" },
+        "v1_file_sha256": { "type": "string" },
+        "v1_semantic_root_sha256": { "type": "string" }
+      }
+    },
+    "dedup_rules": { "type": "array" },
+    "generated_by": { "type": "string" },
+    "group_count": { "type": "integer", "minimum": 12 },
+    "groups": { "type": "array", "minItems": 12 },
+    "note": { "type": "string" },
+    "owns_families": { "type": "integer" },
+    "schema_version": { "const": 2 },
+    "status": { "const": "COMPACT_RECIPE_RUNTIME_MANIFEST_V2" },
+    "v1_base": { "type": "object" }
+  }
+}

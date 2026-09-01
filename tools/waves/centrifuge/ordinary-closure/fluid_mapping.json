@@ -1,0 +1,22 @@
+{
+  "counts": {
+    "mapped": 1
+  },
+  "generated_by": "python tools/build_ordinary_wave.py",
+  "mapping": [
+    {
+      "b0_reachability": "needs_b1_support",
+      "cc_fluid_id": "cruciblecraft:potion_damage",
+      "english_name": "potion damage",
+      "mapping_evidence": "native 1.x fluid with explicit CC identity; not a name-similarity alias",
+      "registration_state": "semantic_fluid_catalog",
+      "semantic_category": "source_backed_fluid",
+      "source_fluid": "potion.damage"
+    }
+  ],
+  "note": "Explicit source-backed fluids for ordinary-closure waves. Cross-mod fluids are reclassified, not aliased.",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "SEMANTIC_FLUID_MAPPING",
+  "wave_slug": "centrifuge/ordinary-closure"
+}

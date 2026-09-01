@@ -11,7 +11,7 @@ import com.masson.cruciblecraft.machine.generation.FuelGeneratorSpec;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 
-/** Registry-owned T11 fuel-generator configurations. */
+/** Registry-owned fuel-generator configurations. */
 public final class ModFuelGenerators {
     public static final FuelGeneratorSpec FUEL_ENGINE =
             new FuelGeneratorSpec(

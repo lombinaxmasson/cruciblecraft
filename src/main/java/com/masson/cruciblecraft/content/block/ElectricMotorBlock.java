@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
 import org.jetbrains.annotations.Nullable;
 
-/** Pinned T1 EU-to-RU motor used by the first rotational network slice. */
+/** Pinned EU-to-RU motor used by the first rotational network slice. */
 public final class ElectricMotorBlock extends Block implements EntityBlock {
     public static final DirectionProperty FACING =
             BlockStateProperties.HORIZONTAL_FACING;

@@ -1,0 +1,53 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "conditions": [
+    "(material.tag(\"PROPERTIES.HAS_TOOL_STATS\") && material.tool.types >= 2) && (!material.tag(\"ATOMIC.ANTIMATTER\")) && (!material.is(\"wood\")) && (!material.tag(\"COMPOUNDS.COATED\")) && (!material.tag(\"PROPERTIES.BOUNCY\")) && (!material.tag(\"PROPERTIES.STRETCHY\"))",
+    "(has_registered(plate) && has_registered(rod))"
+  ],
+  "duration": "200",
+  "eut": "32",
+  "item_inputs": [
+    {
+      "count": "2",
+      "prefix": "cruciblecraft:plate"
+    },
+    {
+      "prefix": "cruciblecraft:rod"
+    },
+    {
+      "count": "0",
+      "input_action": {
+        "damage": 1,
+        "kind": "wear"
+      },
+      "item": "cruciblecraft:material_file",
+      "string_components": {
+        "cruciblecraft:tool_material": "iron"
+      }
+    },
+    {
+      "count": "0",
+      "input_action": {
+        "damage": 1,
+        "kind": "wear"
+      },
+      "item": "cruciblecraft:smithing_hammer"
+    },
+    {
+      "count": "0",
+      "input_action": {
+        "kind": "preserve"
+      },
+      "item": "cruciblecraft:tool_pattern_saw"
+    }
+  ],
+  "item_outputs": [
+    {
+      "item": "cruciblecraft:material_saw",
+      "string_components": {
+        "cruciblecraft:tool_material": "$material"
+      }
+    }
+  ],
+  "target": "cruciblecraft:assembler"
+}

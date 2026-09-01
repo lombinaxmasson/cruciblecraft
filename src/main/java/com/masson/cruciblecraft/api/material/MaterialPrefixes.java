@@ -10,6 +10,8 @@ public final class MaterialPrefixes {
     public static final MaterialPrefix CRUSHED_ORE = builtin("crushed_ore");
     public static final MaterialPrefix TINY_CRUSHED_ORE = builtin("tiny_crushed_ore");
     public static final MaterialPrefix WASHED_CRUSHED_ORE = builtin("washed_crushed_ore");
+    public static final MaterialPrefix TINY_WASHED_CRUSHED_ORE =
+            builtin("tiny_washed_crushed_ore");
     public static final MaterialPrefix CENTRIFUGED_CRUSHED_ORE =
             builtin("centrifuged_crushed_ore");
     public static final MaterialPrefix PURIFIED_DUST = builtin("purified_dust");

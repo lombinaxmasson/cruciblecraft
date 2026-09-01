@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "closeout_seal.schema.json",
+  "title": "CrucibleCraft closed-card closeout seal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "card_id",
+    "sealed_at_wave",
+    "complete_family_count",
+    "relation_count",
+    "reclassification_delta",
+    "remaining_recipe_gap",
+    "production_lock_sha256",
+    "gametest_status",
+    "hashes"
+  ],
+  "properties": {
+    "schema_version": { "type": "integer", "enum": [1, 2] },
+    "status": { "const": "SEALED" },
+    "card_id": { "type": "string" },
+    "sealed_at_wave": { "type": "string" },
+    "source_revision": { "type": "string" },
+    "generated_by": { "type": "string" },
+    "complete_family_count": { "type": "integer" },
+    "relation_count": { "type": "integer" },
+    "reclassification_delta": { "type": "integer" },
+    "remaining_recipe_gap": { "type": "integer" },
+    "production_lock_sha256": { "type": ["string", "null"] },
+    "gametest_status": { "enum": ["PASS", "NONE"] },
+    "receipt_sha256": { "type": ["string", "null"] },
+    "composed_identity_ledger_v2_sha256": { "type": ["string", "null"] },
+    "composed_runtime_manifest_v2_sha256": { "type": ["string", "null"] },
+    "hashes": {
+      "type": "object",
+      "required": ["census", "topology", "readiness"],
+      "additionalProperties": { "type": ["string", "null"] },
+      "properties": {
+        "census": { "type": "string" },
+        "topology": { "type": "string" },
+        "readiness": { "type": "string" },
+        "receipt": { "type": ["string", "null"] },
+        "gametest_java": { "type": ["string", "null"] },
+        "gametest_log": { "type": ["string", "null"] },
+        "generated_recipes": { "type": ["string", "null"] },
+        "locked_support": { "type": ["string", "null"] },
+        "publication_group_manifest": { "type": ["string", "null"] },
+        "shard_manifest": { "type": ["string", "null"] },
+        "runtime_dependency_manifest": { "type": ["string", "null"] },
+        "production_lock": { "type": ["string", "null"] }
+      }
+    },
+    "note": { "type": "string" },
+    "supersedes_sha256": { "type": "string" },
+    "repair_wave": { "type": "string" }
+  }
+}

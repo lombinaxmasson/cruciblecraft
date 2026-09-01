@@ -1,0 +1,22 @@
+{
+  "command": ".\\gradlew.bat runGameTestServer -PwaveRecipes=electrolyzer/ordinary-closure --no-daemon",
+  "failed": 0,
+  "java_source": "src/main/java/com/masson/cruciblecraft/gametest/ElectrolyzerOrdinaryClosureGameTests.java",
+  "log_path": "tools/waves/electrolyzer/ordinary-closure/gametest.log",
+  "namespace": "cruciblecraft_wave_electrolyzer_ordinary_closure",
+  "note": "Isolated -PwaveRecipes result. Skip is not pass.",
+  "passed": 6,
+  "required_tests": 6,
+  "schema_version": 1,
+  "skip_is_not_pass": true,
+  "status": "PASS",
+  "test_ids": [
+    "electrolyzerdurationeutandconservation",
+    "electrolyzeremiplanincludesfamilies",
+    "electrolyzerordinaryfamiliespublished",
+    "electrolyzerordinarygroupsexecute",
+    "electrolyzerreleaseperformancegates",
+    "electrolyzerstableidssurvivereload"
+  ],
+  "wave_slug": "electrolyzer/ordinary-closure"
+}

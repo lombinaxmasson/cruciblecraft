@@ -14,7 +14,12 @@ import com.masson.cruciblecraft.content.item.CellItem;
 import com.masson.cruciblecraft.content.item.CeramicMoldBlockItem;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.content.item.GtWoodCatalog;
+import com.masson.cruciblecraft.content.item.BathMteIdentityCatalog;
+import com.masson.cruciblecraft.content.item.SmelterMteIdentityCatalog;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.BathIdentityCatalog;
+import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.content.item.FlintKnifeItem;
 import com.masson.cruciblecraft.content.item.HopperBlockItem;
@@ -142,6 +147,14 @@ public final class ModItems {
                     () -> new ProgrammedCircuitItem(new Item.Properties()));
     private static final Map<ResourceLocation, DeferredItem<Item>> MACHINE_CASINGS =
             registerMachineCasings();
+    private static final Map<ResourceLocation, DeferredItem<Item>> BATH_MTE_ITEMS =
+            registerBathMteItems();
+    private static final Map<ResourceLocation, DeferredItem<Item>> SMELTER_MTE_ITEMS =
+            registerSmelterMteItems();
+    private static final Map<ResourceLocation, DeferredItem<Item>> BATH_IDENTITY_ITEMS =
+            registerBathIdentityItems();
+    private static final Map<ResourceLocation, DeferredItem<Item>> SEMANTIC_IDENTITY_ITEMS =
+            registerSemanticIdentityItems();
     public static final DeferredItem<Item>
             BRONZE_DOUBLE_MACHINE_CASING =
                     machineCasing("bronze_double_machine_casing");
@@ -295,6 +308,10 @@ public final class ModItems {
             net.minecraft.resources.ResourceLocation,
             DeferredItem<BlockItem>> GT_BLOCK_OBJECT_ITEMS =
                     registerGtBlockObjectItems();
+    private static final Map<
+            net.minecraft.resources.ResourceLocation,
+            DeferredItem<BlockItem>> BATH_REMAINDER_BLOCK_OBJECT_ITEMS =
+                    registerBathRemainderBlockObjectItems();
     public static final DeferredItem<BlockItem> STEEL_DUST_FUNNEL =
             ITEMS.registerSimpleBlockItem(
                     "steel_dust_funnel", ModBlocks.STEEL_DUST_FUNNEL);
@@ -767,6 +784,28 @@ public final class ModItems {
         return java.util.Collections.unmodifiableMap(items);
     }
 
+    private static Map<ResourceLocation, DeferredItem<BlockItem>>
+            registerBathRemainderBlockObjectItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<BlockItem>> items =
+                new LinkedHashMap<>();
+        for (GtBlockObjectCatalog.Variant variant : BathRemainderBlockObjectCatalog.variants()) {
+            DeferredItem<BlockItem> item = ITEMS.registerSimpleBlockItem(
+                    variant.registryPath(),
+                    ModBlocks.bathRemainderBlockObjectBlocksById().get(variant.id()));
+            if (items.put(variant.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate bath remainder block-object item " + variant.id());
+            }
+        }
+        if (items.size() != BathRemainderBlockObjectCatalog.VARIANT_COUNT) {
+            throw new IllegalStateException(
+                    "Bath remainder block-object item registration drifted from "
+                            + BathRemainderBlockObjectCatalog.VARIANT_COUNT
+                            + " variants");
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
     public static Map<ResourceLocation, DeferredItem<BlockItem>>
             gtBlockObjectItemsById() {
         return GT_BLOCK_OBJECT_ITEMS;
@@ -774,6 +813,15 @@ public final class ModItems {
 
     public static Collection<DeferredItem<BlockItem>> gtBlockObjectItems() {
         return GT_BLOCK_OBJECT_ITEMS.values();
+    }
+
+    public static Map<ResourceLocation, DeferredItem<BlockItem>>
+            bathRemainderBlockObjectItemsById() {
+        return BATH_REMAINDER_BLOCK_OBJECT_ITEMS;
+    }
+
+    public static Collection<DeferredItem<BlockItem>> bathRemainderBlockObjectItems() {
+        return BATH_REMAINDER_BLOCK_OBJECT_ITEMS.values();
     }
 
     private static DeferredItem<BlockItem> tieredProcessingItem(String path) {
@@ -796,6 +844,22 @@ public final class ModItems {
         return MACHINE_CASINGS;
     }
 
+    public static Map<ResourceLocation, DeferredItem<Item>> bathMteItemsById() {
+        return BATH_MTE_ITEMS;
+    }
+
+    public static Map<ResourceLocation, DeferredItem<Item>> smelterMteItemsById() {
+        return SMELTER_MTE_ITEMS;
+    }
+
+    public static Map<ResourceLocation, DeferredItem<Item>> bathIdentityItemsById() {
+        return BATH_IDENTITY_ITEMS;
+    }
+
+    public static Map<ResourceLocation, DeferredItem<Item>> semanticIdentityItemsById() {
+        return SEMANTIC_IDENTITY_ITEMS;
+    }
+
     private static Map<ResourceLocation, DeferredItem<Item>> registerMachineCasings() {
         LinkedHashMap<ResourceLocation, DeferredItem<Item>> items =
                 new LinkedHashMap<>();
@@ -806,6 +870,72 @@ public final class ModItems {
                 throw new IllegalStateException(
                         "Duplicate machine casing " + casing.id());
             }
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    private static Map<ResourceLocation, DeferredItem<Item>> registerBathMteItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<Item>> items =
+                new LinkedHashMap<>();
+        for (BathMteIdentityCatalog.Identity identity : BathMteIdentityCatalog.newItems()) {
+            DeferredItem<Item> item = ITEMS.registerSimpleItem(
+                    identity.registryPath(), new Item.Properties());
+            if (items.put(identity.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate Bath MTE item " + identity.id());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    private static Map<ResourceLocation, DeferredItem<Item>> registerSmelterMteItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<Item>> items =
+                new LinkedHashMap<>();
+        for (SmelterMteIdentityCatalog.Identity identity : SmelterMteIdentityCatalog.newItems()) {
+            DeferredItem<Item> item = ITEMS.registerSimpleItem(
+                    identity.registryPath(), new Item.Properties());
+            if (items.put(identity.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate Smelter MTE item " + identity.id());
+            }
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    private static Map<ResourceLocation, DeferredItem<Item>> registerBathIdentityItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<Item>> items =
+                new LinkedHashMap<>();
+        for (BathIdentityCatalog.Identity identity : BathIdentityCatalog.identities()) {
+            DeferredItem<Item> item = ITEMS.registerSimpleItem(
+                    identity.registryPath(), new Item.Properties());
+            if (items.put(identity.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate bath identity item " + identity.id());
+            }
+        }
+        if (items.size() != BathIdentityCatalog.VARIANT_COUNT) {
+            throw new IllegalStateException(
+                    "Bath identity item registration drifted from "
+                            + BathIdentityCatalog.VARIANT_COUNT);
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
+    private static Map<ResourceLocation, DeferredItem<Item>> registerSemanticIdentityItems() {
+        LinkedHashMap<ResourceLocation, DeferredItem<Item>> items =
+                new LinkedHashMap<>();
+        for (SemanticObjectCatalog.Identity identity : SemanticObjectCatalog.identities()) {
+            DeferredItem<Item> item = ITEMS.registerSimpleItem(
+                    identity.registryPath(), new Item.Properties());
+            if (items.put(identity.id(), item) != null) {
+                throw new IllegalStateException(
+                        "Duplicate semantic identity item " + identity.id());
+            }
+        }
+        if (items.size() != SemanticObjectCatalog.VARIANT_COUNT) {
+            throw new IllegalStateException(
+                    "Semantic identity item registration drifted from "
+                            + SemanticObjectCatalog.VARIANT_COUNT);
         }
         return java.util.Collections.unmodifiableMap(items);
     }

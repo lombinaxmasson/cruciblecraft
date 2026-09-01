@@ -16,7 +16,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
-/** T1 electric motor: 32 EU input work produces one 16 RU packet. */
+/** Electric motor: 32 EU input work produces one 16 RU packet. */
 public final class ElectricMotorBlockEntity extends BlockEntity
         implements IEnergyHandler {
     public static final long INPUT_NOMINAL = 32L;

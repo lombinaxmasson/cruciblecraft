@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Optional T31 scale counters. Default off: ordinary runtime does not
+ * Optional scale counters. Default off: ordinary runtime does not
  * allocate sample lists or change scheduling or caches. Each discovery
  * call records its own visited size; the recorder never accumulates
  * across calls into a single overflowing counter.

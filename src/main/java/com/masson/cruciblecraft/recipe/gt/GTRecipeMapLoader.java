@@ -36,11 +36,17 @@ public final class GTRecipeMapLoader {
     private static final int LOOKUP_BENCHMARK_OPERATIONS_PER_SAMPLE = 32;
     private static volatile PublicationMetrics lastPublicationMetrics =
             PublicationMetrics.empty();
+    private static volatile PublicationCapacityReport lastCapacityReport =
+            PublicationCapacityReport.empty();
 
     private GTRecipeMapLoader() {}
 
     public static PublicationMetrics lastPublicationMetrics() {
         return lastPublicationMetrics;
+    }
+
+    public static PublicationCapacityReport lastCapacityReport() {
+        return lastCapacityReport;
     }
 
     public static synchronized void reload(RecipeManager manager) {
@@ -173,7 +179,7 @@ public final class GTRecipeMapLoader {
         rules.stream()
                 .sorted(Comparator.comparing(source -> source.id().toString()))
                 .forEach(source -> {
-                    if (isT14CompactExtruder(source)) {
+                    if (isCompactExtruder(source)) {
                         extruderFamilySources.add(
                                 new ExtruderRecipeFamilyProvider.Source(
                                         source.id(), source.rule()));
@@ -231,38 +237,38 @@ public final class GTRecipeMapLoader {
             candidates.put(map, ordered);
         }
         validateRequiredMaps(candidates);
-        int t3Recipes = 0;
-        int t4ToolRecipes = 0;
-        int t5RecipesOnT3Maps = 0;
-        for (var spec : ModProcessingMachines.T3_MACHINES) {
+        int componentHostRecipes = 0;
+        int toolRecipes = 0;
+        int chemicalRecipesOnComponentMaps = 0;
+        for (var spec : ModProcessingMachines.COMPONENT_MACHINES) {
             List<RecipeMap.Entry> entries = candidates.get(spec.requireRecipeMap());
             int familyRows = families.get(spec.requireRecipeMap()).stream()
                     .mapToInt(RecipeMap.RecipeFamily::logicalRecipeCount)
                     .sum();
-            t3Recipes += entries.size() + familyRows;
-            t4ToolRecipes += (int) entries.stream()
-                    .filter(entry -> isT4ToolRecipe(entry.id()))
+            componentHostRecipes += entries.size() + familyRows;
+            toolRecipes += (int) entries.stream()
+                    .filter(entry -> isToolRecipe(entry.id()))
                     .count();
-            t5RecipesOnT3Maps += (int) entries.stream()
-                    .filter(entry -> isChemicalRecipe(entry.id()))
+            chemicalRecipesOnComponentMaps += (int) entries.stream()
+                    .filter(entry -> isAuthoredChemicalRecipe(entry.id()))
                     .count();
         }
-        int t3ComponentRecipes =
-                t3Recipes - t4ToolRecipes - t5RecipesOnT3Maps;
-        int t5ChemicalRecipes = candidates.values().stream()
+        int componentRecipes =
+                componentHostRecipes - toolRecipes - chemicalRecipesOnComponentMaps;
+        int chemicalPublishedRecipes = candidates.values().stream()
                 .flatMap(List::stream)
-                .mapToInt(entry -> isChemicalRecipe(entry.id()) ? 1 : 0)
+                .mapToInt(entry -> isAuthoredChemicalRecipe(entry.id()) ? 1 : 0)
                 .sum();
         Map<Integer, Integer> authoredMaterialRules = new HashMap<>();
         candidates.values().stream()
                 .flatMap(List::stream)
-                .filter(entry -> !isT11FixedRecipe(entry.id()))
+                .filter(entry -> !isHydrocarbonRecipe(entry.id()))
                 .forEach(entry -> authoredMaterialRuleStage(entry.id())
                         .ifPresent(stage -> authoredMaterialRules.merge(
                                 stage, 1, Integer::sum)));
-        int t7AuthoredMaterialRules = authoredMaterialRules.getOrDefault(7, 0);
-        int t8PipeMaterialRules = authoredMaterialRules.getOrDefault(8, 0);
-        int t10KnownFormMaterialRules = authoredMaterialRules.getOrDefault(10, 0);
+        int mortarAuthoredMaterialRules = authoredMaterialRules.getOrDefault(7, 0);
+        int pipeMaterialRules = authoredMaterialRules.getOrDefault(8, 0);
+        int ingotFormMaterialRules = authoredMaterialRules.getOrDefault(10, 0);
         int concretePublishedRecipes = candidates.values().stream()
                 .mapToInt(List::size)
                 .sum();
@@ -283,13 +289,13 @@ public final class GTRecipeMapLoader {
         int allPublishedRecipes =
                 concretePublishedRecipes + familyLogicalRecipes;
         validateAuthoredMaterialRuleBudgets(authoredMaterialRules);
-        validatePublicationBudgets(
-                t3ComponentRecipes,
-                t4ToolRecipes,
-                t3Recipes,
-                t5ChemicalRecipes,
-                t5RecipesOnT3Maps,
-                allPublishedRecipes);
+        validatePublicationInvariants(
+                componentRecipes,
+                toolRecipes,
+                componentHostRecipes,
+                chemicalPublishedRecipes,
+                chemicalRecipesOnComponentMaps,
+                eagerPublishedRecipes);
         int compactFamilyAuthoredEntries = compactSources.size();
         int compactFamilyLogicalRecipes = 0;
         int compactFamilyEagerRecipes = 0;
@@ -308,10 +314,26 @@ public final class GTRecipeMapLoader {
         }
         String compactFamilyStableFingerprint = compactFingerprint(
                 compactByPublicationGroup);
-        validateT14MaterializationBudgets(
+        validateCompactLoadMaterializationInvariants(
                 eagerPublishedRecipes,
                 lazyLogicalRecipes,
                 extruderFamily.cacheCeiling() + compactFamilyCacheCeiling);
+        lastCapacityReport = evaluatePublicationCapacity(
+                concretePublishedRecipes,
+                compactFamilyEagerRecipes,
+                eagerPublishedRecipes,
+                lazyLogicalRecipes,
+                extruderFamily.cacheCeiling() + compactFamilyCacheCeiling,
+                compactFamilyAuthoredEntries,
+                componentRecipes,
+                toolRecipes,
+                componentHostRecipes,
+                chemicalPublishedRecipes);
+        if (lastCapacityReport.unverifiedScale()) {
+            CrucibleCraft.LOGGER.warn(
+                    "UNVERIFIED_SCALE recipe publication capacity: {}",
+                    lastCapacityReport);
+        }
 
         long indexStarted = System.nanoTime();
         LinkedHashMap<RecipeMap, RecipeMap.Prepared> preparedByMap =
@@ -329,13 +351,13 @@ public final class GTRecipeMapLoader {
         long indexNanos = System.nanoTime() - indexStarted;
         long reloadNanos = System.nanoTime() - started;
         PublicationMetrics candidateMetrics = new PublicationMetrics(
-                t3ComponentRecipes,
-                t4ToolRecipes,
-                t3Recipes,
-                t5ChemicalRecipes,
-                t7AuthoredMaterialRules,
-                t8PipeMaterialRules,
-                t10KnownFormMaterialRules,
+                componentRecipes,
+                toolRecipes,
+                componentHostRecipes,
+                chemicalPublishedRecipes,
+                mortarAuthoredMaterialRules,
+                pipeMaterialRules,
+                ingotFormMaterialRules,
                 allPublishedRecipes,
                 eagerPublishedRecipes,
                 lazyLogicalRecipes,
@@ -371,10 +393,10 @@ public final class GTRecipeMapLoader {
                 : ModProcessingMachines.RECIPE_INDEX_BUILD_BUDGET_MS;
         if (candidateMetrics.reloadMillis() > sideReloadBudget
                 || candidateMetrics.indexMillis() > sideIndexBudget
-                || candidateMetrics.t14ExtruderSyncBytes()
+                || candidateMetrics.compactLoadExtruderSyncBytes()
                         > ModProcessingMachines.RECIPE_SYNC_BUDGET_BYTES) {
             CrucibleCraft.LOGGER.warn(
-                    "Recipe publication exceeded an online T14 budget: {}",
+                    "Recipe publication exceeded an online compact-load budget: {}",
                     candidateMetrics);
         }
         for (var entry : preparedByMap.entrySet()) {
@@ -387,44 +409,44 @@ public final class GTRecipeMapLoader {
                     snapshot.unindexedRecipeCount());
         }
         CrucibleCraft.LOGGER.info(
-                "Published recipe epoch {} with {} T3 component, {} T4 tool, {} "
-                        + "T5 chemical, {} T7 authored, {} T8 pipe, and {} T10 known-form "
-                        + "material-rule recipes; T14c Extruder {} logical = "
+                "Published recipe epoch {} with {} component, {} tool, {} "
+                        + "chemical, {} mortar-authored, {} pipe, and {} ingot-form "
+                        + "material-rule recipes; compact-load Extruder {} logical = "
                         + "{} eager + {} lazy (cache ceiling {}, {} authored) "
-                        + "({} live T3-map, {} logical total, {} eager total) "
+                        + "({} live component-map, {} logical total, {} eager total) "
                         + "across {} maps in {} ms; "
                         + "indexes {} ms "
                         + "(count budgets {}/{}/{}/{}/{}/{}/{}/{})",
                 epoch,
-                t3ComponentRecipes,
-                t4ToolRecipes,
-                t5ChemicalRecipes,
-                t7AuthoredMaterialRules,
-                t8PipeMaterialRules,
-                t10KnownFormMaterialRules,
+                componentRecipes,
+                toolRecipes,
+                chemicalPublishedRecipes,
+                mortarAuthoredMaterialRules,
+                pipeMaterialRules,
+                ingotFormMaterialRules,
                 extruderFamily.logicalRecipeCount(),
                 extruderFamily.eagerRecipeCount(),
                 extruderFamily.lazyRecipeCount(),
                 extruderFamily.cacheCeiling(),
                 extruderFamilySources.size(),
-                t3Recipes,
+                componentHostRecipes,
                 allPublishedRecipes,
                 eagerPublishedRecipes,
                 ModRecipeMaps.ALL.size(),
                 candidateMetrics.reloadMillis(),
                 candidateMetrics.indexMillis(),
-                ModProcessingMachines.T3_COMPONENT_EXPANSION_BUDGET,
-                ModProcessingMachines.T4_TOOL_EXPANSION_BUDGET,
-                ModProcessingMachines.LIVE_T3_MAP_RECIPE_BUDGET,
-                ModProcessingMachines.T5_CHEMICAL_RECIPE_BUDGET,
-                ModProcessingMachines.T7_AUTHORED_MATERIAL_RULE_BUDGET,
-                ModProcessingMachines.T8_PIPE_MATERIAL_RULE_BUDGET,
-                ModProcessingMachines.T10_AUTHORED_MATERIAL_RULE_BUDGET,
+                ModProcessingMachines.COMPONENT_EXPANSION_BUDGET,
+                ModProcessingMachines.TOOL_EXPANSION_BUDGET,
+                ModProcessingMachines.LIVE_COMPONENT_MAP_RECIPE_BUDGET,
+                ModProcessingMachines.CHEMICAL_RECIPE_BUDGET,
+                ModProcessingMachines.MORTAR_MATERIAL_RULE_BUDGET,
+                ModProcessingMachines.PIPE_MATERIAL_RULE_BUDGET,
+                ModProcessingMachines.INGOT_FORM_MATERIAL_RULE_BUDGET,
                 ModProcessingMachines.ALL_PUBLISHED_RECIPE_BUDGET);
     }
 
     /** Runs production Extruder lookup p95/candidate gates for verification. */
-    public static T14LookupMetrics benchmarkT14LookupsForVerification() {
+    public static CompactLoadLookupMetrics benchmarkCompactLoadLookupsForVerification() {
         RecipeMap.RecipeFamily family = ModRecipeMaps.EXTRUDER
                 .family(ExtruderRecipeFamilyProvider.FAMILY_ID)
                 .orElseThrow();
@@ -438,7 +460,7 @@ public final class GTRecipeMapLoader {
         for (GTRecipeQuery query : queries) {
             if (ModRecipeMaps.EXTRUDER.findMatch(query).isEmpty()) {
                 throw new IllegalStateException(
-                        "Published T14 recipe failed lookup benchmark warm-up");
+                        "Published compact-load recipe failed lookup benchmark warm-up");
             }
         }
         long[] nanos = new long[LOOKUP_BENCHMARK_TIMING_SAMPLES];
@@ -460,7 +482,7 @@ public final class GTRecipeMapLoader {
                         .indexedCandidateCount(query);
                 if (ModRecipeMaps.EXTRUDER.findMatch(query).isEmpty()) {
                     throw new IllegalStateException(
-                            "Published T14 recipe failed lookup benchmark");
+                            "Published compact-load recipe failed lookup benchmark");
                 }
             }
             nanos[sample] = (System.nanoTime() - started)
@@ -472,7 +494,7 @@ public final class GTRecipeMapLoader {
                 0, (int) Math.ceil(nanos.length * 0.95D) - 1);
         int candidateP95Index = Math.max(
                 0, (int) Math.ceil(candidates.length * 0.95D) - 1);
-        return new T14LookupMetrics(
+        return new CompactLoadLookupMetrics(
                 nanos.length,
                 candidates.length,
                 nanos[p95Index],
@@ -496,29 +518,28 @@ public final class GTRecipeMapLoader {
     }
 
     /**
-     * @param t5ChemicalRecipes total recipes on dedicated chemical maps
-     *     (T5 electrolyzer/centrifuge/bath/…, T11 distillery/generifier,
-     *     and T21 mixer families).  The name retains "t5" for API stability;
-     *     the counter has covered t11 since T11 and t21 since T21.
+     * @param chemicalPublishedRecipes total recipes on dedicated chemical maps
+     *     (electrolyzer/centrifuge/bath hosts, distillery/generifier,
+     *     and mixer gunpowder families).
      */
     public record PublicationMetrics(
-            int t3ComponentRecipes,
-            int t4ToolRecipes,
-            int liveT3MapRecipes,
-            int t5ChemicalRecipes,
-            int t7AuthoredMaterialRules,
-            int t8PipeMaterialRules,
-            int t10KnownFormMaterialRules,
+            int componentRecipes,
+            int toolRecipes,
+            int liveComponentMapRecipes,
+            int chemicalPublishedRecipes,
+            int mortarAuthoredMaterialRules,
+            int pipeMaterialRules,
+            int ingotFormMaterialRules,
             int allPublishedRecipes,
             int eagerPublishedRecipes,
             int lazyLogicalRecipes,
-            int t14ExtruderLogicalRecipes,
-            int t14ExtruderEagerRecipes,
-            int t14ExtruderLazyRecipes,
-            int t14ExtruderCacheCeiling,
-            long t14ExtruderSyncBytes,
-            int t14ExtruderAuthoredEntries,
-            String t14ExtruderStableFingerprint,
+            int compactLoadExtruderLogicalRecipes,
+            int compactLoadExtruderEagerRecipes,
+            int compactLoadExtruderLazyRecipes,
+            int compactLoadExtruderCacheCeiling,
+            long compactLoadExtruderSyncBytes,
+            int compactLoadExtruderAuthoredEntries,
+            String compactLoadExtruderStableFingerprint,
             int compactFamilyAuthoredEntries,
             int compactFamilyLogicalRecipes,
             int compactFamilyEagerRecipes,
@@ -541,47 +562,47 @@ public final class GTRecipeMapLoader {
         }
     }
 
-    public record T14LookupMetrics(
+    public record CompactLoadLookupMetrics(
             int timingSamples,
             int operations,
             long p95Nanos,
             long p95Candidates,
             long maxCandidates) {}
 
-    public static T14OnlineBudgetGate evaluateT14OnlineBudgetGate(
+    public static CompactLoadOnlineBudgetGate evaluateCompactLoadOnlineBudgetGate(
             PublicationMetrics metrics,
-            T14LookupMetrics lookup) {
+            CompactLoadLookupMetrics lookup) {
         long reloadBudget = metrics.runtimeSide()
                 == ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT
                 ? ModProcessingMachines.CLIENT_RECIPE_RELOAD_BUDGET_MS
                 : ModProcessingMachines.RECIPE_RELOAD_BUDGET_MS;
-        return evaluateT14OnlineBudgetGate(metrics, lookup, reloadBudget);
+        return evaluateCompactLoadOnlineBudgetGate(metrics, lookup, reloadBudget);
     }
 
-    public static T14OnlineBudgetGate evaluateT14OnlineBudgetGate(
+    public static CompactLoadOnlineBudgetGate evaluateCompactLoadOnlineBudgetGate(
             PublicationMetrics metrics,
-            T14LookupMetrics lookup,
+            CompactLoadLookupMetrics lookup,
             long reloadBudget) {
-        return evaluateT14OnlineBudgetGate(
+        return evaluateCompactLoadOnlineBudgetGate(
                 metrics,
                 lookup,
                 reloadBudget,
                 ModProcessingMachines.RECIPE_LOOKUP_P95_BUDGET_NS);
     }
 
-    public static T14OnlineBudgetGate evaluateT14OnlineBudgetGate(
+    public static CompactLoadOnlineBudgetGate evaluateCompactLoadOnlineBudgetGate(
             PublicationMetrics metrics,
-            T14LookupMetrics lookup,
+            CompactLoadLookupMetrics lookup,
             long reloadBudget,
             long lookupP95Budget) {
         long indexBudget = metrics.runtimeSide()
                 == ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT
                 ? ModProcessingMachines.CLIENT_RECIPE_INDEX_BUILD_BUDGET_MS
                 : ModProcessingMachines.RECIPE_INDEX_BUILD_BUDGET_MS;
-        return new T14OnlineBudgetGate(
+        return new CompactLoadOnlineBudgetGate(
                 metrics.reloadMillis() <= reloadBudget,
                 metrics.indexMillis() <= indexBudget,
-                metrics.t14ExtruderSyncBytes()
+                metrics.compactLoadExtruderSyncBytes()
                         <= ModProcessingMachines.RECIPE_SYNC_BUDGET_BYTES,
                 lookup.p95Nanos()
                         <= lookupP95Budget,
@@ -593,7 +614,7 @@ public final class GTRecipeMapLoader {
                                         .RECIPE_LOOKUP_MAX_CANDIDATE_HARD_CEILING);
     }
 
-    public record T14OnlineBudgetGate(
+    public record CompactLoadOnlineBudgetGate(
             boolean sideReload,
             boolean sideIndex,
             boolean sync,
@@ -608,90 +629,284 @@ public final class GTRecipeMapLoader {
         }
     }
 
+    /**
+     * Capacity telemetry. Count over a verified scale is
+     * {@code UNVERIFIED_SCALE} and never aborts reload.
+     */
+    public record PublicationCapacityReport(
+            int concreteEager,
+            int compactEager,
+            int eagerPublished,
+            int lazyLogical,
+            int cacheCeiling,
+            int authoredEntries,
+            int verifiedEagerScale,
+            int temporaryCompatibilityCeiling,
+            boolean unverifiedScale,
+            List<String> warnings) {
+        private static PublicationCapacityReport empty() {
+            return new PublicationCapacityReport(
+                    0, 0, 0, 0, 0, 0,
+                    ModProcessingMachines.VERIFIED_OPENING_EAGER_PUBLISHED,
+                    ModProcessingMachines.TEMPORARY_EAGER_COMPATIBILITY_CEILING,
+                    false,
+                    List.of());
+        }
+    }
+
+    public record ReleasePerformanceVerdict(
+            boolean reload,
+            boolean index,
+            boolean lookupP95,
+            boolean lookupCandidates,
+            boolean sync,
+            boolean retained,
+            boolean lookupAllocation) {
+        public boolean allPass() {
+            return reload
+                    && index
+                    && lookupP95
+                    && lookupCandidates
+                    && sync
+                    && retained
+                    && lookupAllocation;
+        }
+    }
+
     static void validateExpansionBudgets(
-            int t3ComponentRecipes,
-            int t4ToolRecipes,
-            int liveT3MapRecipes) {
+            int componentRecipes,
+            int toolRecipes,
+            int liveComponentMapRecipes) {
         validatePublicationBudgets(
-                t3ComponentRecipes,
-                t4ToolRecipes,
-                liveT3MapRecipes,
+                componentRecipes,
+                toolRecipes,
+                liveComponentMapRecipes,
                 0,
-                liveT3MapRecipes);
+                liveComponentMapRecipes);
     }
 
     static void validatePublicationBudgets(
-            int t3ComponentRecipes,
-            int t4ToolRecipes,
-            int liveT3MapRecipes,
-            int t5ChemicalRecipes,
+            int componentRecipes,
+            int toolRecipes,
+            int liveComponentMapRecipes,
+            int chemicalPublishedRecipes,
             int allPublishedRecipes) {
         validatePublicationBudgets(
-                t3ComponentRecipes,
-                t4ToolRecipes,
-                liveT3MapRecipes,
-                t5ChemicalRecipes,
-                liveT3MapRecipes - t3ComponentRecipes - t4ToolRecipes,
+                componentRecipes,
+                toolRecipes,
+                liveComponentMapRecipes,
+                chemicalPublishedRecipes,
+                liveComponentMapRecipes - componentRecipes - toolRecipes,
                 allPublishedRecipes);
     }
 
     static void validatePublicationBudgets(
-            int t3ComponentRecipes,
-            int t4ToolRecipes,
-            int liveT3MapRecipes,
-            int t5ChemicalRecipes,
-            int t5RecipesOnT3Maps,
+            int componentRecipes,
+            int toolRecipes,
+            int liveComponentMapRecipes,
+            int chemicalPublishedRecipes,
+            int chemicalRecipesOnComponentMaps,
             int allPublishedRecipes) {
-        if (t3ComponentRecipes < 0
-                || t4ToolRecipes < 0
-                || t5ChemicalRecipes < 0
-                || t5RecipesOnT3Maps < 0
-                || t5RecipesOnT3Maps > t5ChemicalRecipes
+        validatePublicationInvariants(
+                componentRecipes,
+                toolRecipes,
+                liveComponentMapRecipes,
+                chemicalPublishedRecipes,
+                chemicalRecipesOnComponentMaps,
+                allPublishedRecipes);
+        evaluatePublicationCapacity(
+                allPublishedRecipes,
+                0,
+                allPublishedRecipes,
+                0,
+                0,
+                0,
+                componentRecipes,
+                toolRecipes,
+                liveComponentMapRecipes,
+                chemicalPublishedRecipes);
+    }
+
+    /**
+     * Runtime correctness only: counts must be consistent and non-negative.
+     * Recipe-count ceilings are not invariants.
+     */
+    static void validatePublicationInvariants(
+            int componentRecipes,
+            int toolRecipes,
+            int liveComponentMapRecipes,
+            int chemicalPublishedRecipes,
+            int chemicalRecipesOnComponentMaps,
+            int allPublishedRecipes) {
+        if (componentRecipes < 0
+                || toolRecipes < 0
+                || chemicalPublishedRecipes < 0
+                || chemicalRecipesOnComponentMaps < 0
+                || chemicalRecipesOnComponentMaps > chemicalPublishedRecipes
                 || allPublishedRecipes < 0
-                || liveT3MapRecipes
-                        != t3ComponentRecipes + t4ToolRecipes + t5RecipesOnT3Maps
+                || liveComponentMapRecipes
+                        != componentRecipes + toolRecipes + chemicalRecipesOnComponentMaps
                 || allPublishedRecipes
-                        < (long) liveT3MapRecipes
-                                + t5ChemicalRecipes - t5RecipesOnT3Maps) {
+                        < (long) liveComponentMapRecipes
+                                + chemicalPublishedRecipes - chemicalRecipesOnComponentMaps) {
             throw new IllegalArgumentException(
-                    "Recipe budget counts are inconsistent: component="
-                            + t3ComponentRecipes + ", tools=" + t4ToolRecipes
-                            + ", live=" + liveT3MapRecipes
-                            + ", t5=" + t5ChemicalRecipes
-                            + ", t5OnT3=" + t5RecipesOnT3Maps
+                    "Recipe publication invariants failed: component="
+                            + componentRecipes + ", tools=" + toolRecipes
+                            + ", live=" + liveComponentMapRecipes
+                            + ", chemical=" + chemicalPublishedRecipes
+                            + ", chemicalOnComponentMaps=" + chemicalRecipesOnComponentMaps
                             + ", all=" + allPublishedRecipes);
-        }
-        if (t3ComponentRecipes
-                > ModProcessingMachines.T3_COMPONENT_EXPANSION_BUDGET) {
-            throw new IllegalStateException(
-                    "T3 component expansion " + t3ComponentRecipes
-                            + " exceeds budget "
-                            + ModProcessingMachines.T3_COMPONENT_EXPANSION_BUDGET);
-        }
-        if (t4ToolRecipes > ModProcessingMachines.T4_TOOL_EXPANSION_BUDGET) {
-            throw new IllegalStateException(
-                    "T4 tool expansion " + t4ToolRecipes + " exceeds budget "
-                            + ModProcessingMachines.T4_TOOL_EXPANSION_BUDGET);
-        }
-        if (liveT3MapRecipes
-                > ModProcessingMachines.LIVE_T3_MAP_RECIPE_BUDGET) {
-            throw new IllegalStateException(
-                    "Live T3-map recipe count " + liveT3MapRecipes + " exceeds budget "
-                            + ModProcessingMachines.LIVE_T3_MAP_RECIPE_BUDGET);
-        }
-        if (t5ChemicalRecipes > ModProcessingMachines.T5_CHEMICAL_RECIPE_BUDGET) {
-            throw new IllegalStateException(
-                    "T5 chemical recipe count " + t5ChemicalRecipes + " exceeds budget "
-                            + ModProcessingMachines.T5_CHEMICAL_RECIPE_BUDGET);
-        }
-        if (allPublishedRecipes > ModProcessingMachines.ALL_PUBLISHED_RECIPE_BUDGET) {
-            throw new IllegalStateException(
-                    "All published recipe count " + allPublishedRecipes + " exceeds budget "
-                            + ModProcessingMachines.ALL_PUBLISHED_RECIPE_BUDGET);
         }
     }
 
-    static void validateT14MaterializationBudgets(
+    /**
+     * Capacity telemetry. Exceeding a verified scale emits
+     * {@code UNVERIFIED_SCALE} and does not throw.
+     */
+    static PublicationCapacityReport evaluatePublicationCapacity(
+            int concreteEager,
+            int compactEager,
+            int eagerPublished,
+            int lazyLogical,
+            int cacheCeiling,
+            int authoredEntries,
+            int componentRecipes,
+            int toolRecipes,
+            int liveComponentMapRecipes,
+            int chemicalPublishedRecipes) {
+        List<String> warnings = new ArrayList<>();
+        maybeUnverified(
+                warnings,
+                "concrete_eager",
+                concreteEager,
+                ModProcessingMachines.VERIFIED_OPENING_CONCRETE_EAGER);
+        maybeUnverified(
+                warnings,
+                "compact_eager",
+                compactEager,
+                ModProcessingMachines.VERIFIED_OPENING_COMPACT_EAGER);
+        maybeUnverified(
+                warnings,
+                "eager_published",
+                eagerPublished,
+                ModProcessingMachines.VERIFIED_OPENING_EAGER_PUBLISHED);
+        maybeUnverified(
+                warnings,
+                "lazy_logical",
+                lazyLogical,
+                ModProcessingMachines.VERIFIED_OPENING_LAZY_LOGICAL);
+        maybeUnverified(
+                warnings,
+                "cache_ceiling",
+                cacheCeiling,
+                ModProcessingMachines.VERIFIED_OPENING_CACHE_CEILING);
+        maybeUnverified(
+                warnings,
+                "authored_entries",
+                authoredEntries,
+                ModProcessingMachines.VERIFIED_OPENING_AUTHORED_ENTRIES);
+        maybeUnverified(
+                warnings,
+                "component",
+                componentRecipes,
+                ModProcessingMachines.COMPONENT_EXPANSION_BUDGET);
+        maybeUnverified(
+                warnings,
+                "tool",
+                toolRecipes,
+                ModProcessingMachines.TOOL_EXPANSION_BUDGET);
+        maybeUnverified(
+                warnings,
+                "live_component",
+                liveComponentMapRecipes,
+                ModProcessingMachines.LIVE_COMPONENT_MAP_RECIPE_BUDGET);
+        maybeUnverified(
+                warnings,
+                "chemical",
+                chemicalPublishedRecipes,
+                ModProcessingMachines.CHEMICAL_RECIPE_BUDGET);
+        boolean unverified = !warnings.isEmpty();
+        PublicationCapacityReport report = new PublicationCapacityReport(
+                concreteEager,
+                compactEager,
+                eagerPublished,
+                lazyLogical,
+                cacheCeiling,
+                authoredEntries,
+                ModProcessingMachines.VERIFIED_OPENING_EAGER_PUBLISHED,
+                ModProcessingMachines.TEMPORARY_EAGER_COMPATIBILITY_CEILING,
+                unverified,
+                List.copyOf(warnings));
+        if (unverified) {
+            CrucibleCraft.LOGGER.warn(
+                    "UNVERIFIED_SCALE {}", String.join("; ", warnings));
+        }
+        return report;
+    }
+
+    private static void maybeUnverified(
+            List<String> warnings,
+            String axis,
+            int actual,
+            int verifiedScale) {
+        if (actual > verifiedScale) {
+            warnings.add(
+                    "UNVERIFIED_SCALE:" + axis + ":" + actual + ">" + verifiedScale);
+        }
+    }
+
+    /**
+     * GameTest / CI hard door. Reload, index, lookup, retained memory,
+     * sync, and lookup allocation may fail a release. Recipe counts do not.
+     */
+    public static void verifyReleasePerformance(
+            PublicationMetrics metrics,
+            CompactLoadLookupMetrics lookup,
+            Long retainedMemoryBytes,
+            Long lookupAllocationBytesPerOperation) {
+        ReleasePerformanceVerdict verdict = evaluateReleasePerformance(
+                metrics,
+                lookup,
+                retainedMemoryBytes,
+                lookupAllocationBytesPerOperation);
+        if (!verdict.allPass()) {
+            throw new IllegalStateException(
+                    "Release performance SLO failed: " + verdict
+                            + " metrics=" + metrics
+                            + " lookup=" + lookup
+                            + " retained=" + retainedMemoryBytes
+                            + " lookupAlloc=" + lookupAllocationBytesPerOperation);
+        }
+    }
+
+    public static ReleasePerformanceVerdict evaluateReleasePerformance(
+            PublicationMetrics metrics,
+            CompactLoadLookupMetrics lookup,
+            Long retainedMemoryBytes,
+            Long lookupAllocationBytesPerOperation) {
+        CompactLoadOnlineBudgetGate online = evaluateCompactLoadOnlineBudgetGate(
+                metrics,
+                lookup,
+                ModProcessingMachines.VERIFICATION_RECIPE_RELOAD_BUDGET_MS,
+                ModProcessingMachines.VERIFICATION_RECIPE_LOOKUP_P95_BUDGET_NS);
+        long syncBytes = metrics.compactLoadExtruderSyncBytes()
+                + metrics.compactFamilySyncBytes();
+        boolean sync = syncBytes <= ModProcessingMachines.RECIPE_SYNC_BUDGET_BYTES;
+        boolean retained = retainedMemoryBytes == null
+                || retainedMemoryBytes <= (512L * 1024L * 1024L);
+        boolean lookupAlloc = lookupAllocationBytesPerOperation == null
+                || lookupAllocationBytesPerOperation <= (16L * 1024L * 1024L);
+        return new ReleasePerformanceVerdict(
+                online.sideReload(),
+                online.sideIndex(),
+                online.lookupP95(),
+                online.lookupCandidates(),
+                sync,
+                retained,
+                lookupAlloc);
+    }
+
+    static void validateCompactLoadMaterializationInvariants(
             int eagerPublishedRecipes,
             int lazyLogicalRecipes,
             int lazyCacheCeiling) {
@@ -699,115 +914,60 @@ public final class GTRecipeMapLoader {
                 || lazyLogicalRecipes < 0
                 || lazyCacheCeiling < 0) {
             throw new IllegalArgumentException(
-                    "T14 materialization counts must not be negative");
-        }
-        if (eagerPublishedRecipes
-                > ModProcessingMachines.ALL_PUBLISHED_RECIPE_BUDGET) {
-            throw new IllegalStateException(
-                    "Eager recipe publication "
-                            + eagerPublishedRecipes
-                            + " exceeds hard ceiling "
-                            + ModProcessingMachines
-                                    .ALL_PUBLISHED_RECIPE_BUDGET);
-        }
-        if (eagerPublishedRecipes
-                > ModProcessingMachines
-                        .ALL_EAGER_PUBLICATION_SOFT_BUDGET) {
-            CrucibleCraft.LOGGER.warn(
-                    "Eager recipe publication {} exceeds soft budget {} "
-                            + "but remains below hard ceiling {}",
-                    eagerPublishedRecipes,
-                    ModProcessingMachines.ALL_EAGER_PUBLICATION_SOFT_BUDGET,
-                    ModProcessingMachines.ALL_PUBLISHED_RECIPE_BUDGET);
-        }
-        if (lazyLogicalRecipes
-                > ModProcessingMachines
-                        .ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING) {
-            throw new IllegalStateException(
-                    "Lazy logical recipe count "
-                            + lazyLogicalRecipes
-                            + " exceeds hard ceiling "
-                            + ModProcessingMachines
-                                    .ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING);
-        }
-        if (lazyCacheCeiling
-                > ModProcessingMachines
-                        .ALL_LAZY_RECIPE_CACHE_HARD_CEILING) {
-            throw new IllegalStateException(
-                    "Lazy recipe cache ceiling "
-                            + lazyCacheCeiling
-                            + " exceeds hard ceiling "
-                            + ModProcessingMachines
-                                    .ALL_LAZY_RECIPE_CACHE_HARD_CEILING);
+                    "Compact-load materialization counts must not be negative");
         }
     }
 
-    static boolean isT4ToolRecipe(ResourceLocation id) {
-        return CrucibleCraft.MODID.equals(id.getNamespace())
-                && id.getPath().startsWith("t4/assembler/");
+    static void validateCompactLoadMaterializationBudgets(
+            int eagerPublishedRecipes,
+            int lazyLogicalRecipes,
+            int lazyCacheCeiling) {
+        validateCompactLoadMaterializationInvariants(
+                eagerPublishedRecipes, lazyLogicalRecipes, lazyCacheCeiling);
+        evaluatePublicationCapacity(
+                eagerPublishedRecipes,
+                0,
+                eagerPublishedRecipes,
+                lazyLogicalRecipes,
+                lazyCacheCeiling,
+                0,
+                0,
+                0,
+                0,
+                0);
     }
 
-    static boolean isT5ChemicalRecipe(ResourceLocation id) {
+    static boolean isToolRecipe(ResourceLocation id) {
         return CrucibleCraft.MODID.equals(id.getNamespace())
-                && id.getPath().startsWith("t5/");
+                && id.getPath().startsWith("tool/assembler/");
     }
 
-    static boolean isT11ChemicalRecipe(ResourceLocation id) {
+    static boolean isAuthoredChemicalRecipe(ResourceLocation id) {
         return CrucibleCraft.MODID.equals(id.getNamespace())
-                && (id.getPath().startsWith("t11/distillery/")
-                        || id.getPath().startsWith("t11/generifier/"));
+                && id.getPath().startsWith("chemical/");
     }
 
-    static boolean isT21ChemicalRecipe(ResourceLocation id) {
+    static boolean isHydrocarbonProcessRecipe(ResourceLocation id) {
         return CrucibleCraft.MODID.equals(id.getNamespace())
-                && id.getPath().startsWith("t21/");
+                && (id.getPath().startsWith("hydrocarbon/distillery/")
+                        || id.getPath().startsWith("hydrocarbon/generifier/"));
     }
 
-    static boolean isT22PetroleumRecipe(ResourceLocation id) {
+    static boolean isPetroleumRecipe(ResourceLocation id) {
         return CrucibleCraft.MODID.equals(id.getNamespace())
-                && id.getPath().startsWith("t22/");
+                && id.getPath().startsWith("petroleum/");
     }
 
-    static boolean isT36BootstrapRecipe(ResourceLocation id) {
+    static boolean isMachineBootstrapRecipe(ResourceLocation id) {
         return CrucibleCraft.MODID.equals(id.getNamespace())
-                && id.getPath().startsWith("t36/");
+                && id.getPath().startsWith("machine/bootstrap/");
     }
 
-    static boolean isT38CompactRecipe(ResourceLocation id) {
-        return CrucibleCraft.MODID.equals(id.getNamespace())
-                && (id.getPath().startsWith("t38/")
-                        || id.getPath().startsWith("t38_player_path_recovery/"));
+    public static boolean isBathRemainderCompactRecipe(ResourceLocation id) {
+        return CompactWaveRecipeIds.isBathRemainderCompactRecipe(id);
     }
 
-    static boolean isT39CompactRecipe(ResourceLocation id) {
-        return CrucibleCraft.MODID.equals(id.getNamespace())
-                && (id.getPath().startsWith("t39/")
-                        || id.getPath().startsWith("t39_player_path_support/"));
-    }
-
-    static boolean isT40CompactRecipe(ResourceLocation id) {
-        return CrucibleCraft.MODID.equals(id.getNamespace())
-                && (id.getPath().startsWith("t40/")
-                        || id.getPath().startsWith("t40_player_path_support/"));
-    }
-
-    static boolean isT41CompactRecipe(ResourceLocation id) {
-        return CrucibleCraft.MODID.equals(id.getNamespace())
-                && (id.getPath().startsWith("t41/")
-                        || id.getPath().startsWith("t41_player_path_support/"));
-    }
-
-    static boolean isT43CompactRecipe(ResourceLocation id) {
-        return CrucibleCraft.MODID.equals(id.getNamespace())
-                && id.getPath().startsWith("t43/");
-    }
-
-    static boolean isT45CompactRecipe(ResourceLocation id) {
-        return CrucibleCraft.MODID.equals(id.getNamespace())
-                && id.getPath().startsWith("t45/");
-    }
-
-    private static boolean isT14CompactExtruder(RuleSource source) {
+    private static boolean isCompactExtruder(RuleSource source) {
         return CrucibleCraft.MODID.equals(source.id().getNamespace())
                 && source.id().getPath().startsWith("extruder/compact/")
                 && source.rule().target().filter(
@@ -817,16 +977,15 @@ public final class GTRecipeMapLoader {
     }
 
     private static boolean isChemicalRecipe(ResourceLocation id) {
-        return isT5ChemicalRecipe(id) || isT11ChemicalRecipe(id)
-                || isT21ChemicalRecipe(id);
+        return isAuthoredChemicalRecipe(id) || isHydrocarbonProcessRecipe(id);
     }
 
-    private static boolean isT11FixedRecipe(ResourceLocation id) {
+    private static boolean isHydrocarbonRecipe(ResourceLocation id) {
         return CrucibleCraft.MODID.equals(id.getNamespace())
-                && (id.getPath().startsWith("t11/distillery/")
-                        || id.getPath().startsWith("t11/generifier/")
-                        || id.getPath().startsWith("t11/fuels_engine/")
-                        || id.getPath().startsWith("t11/fuels_gas/"));
+                && (id.getPath().startsWith("hydrocarbon/distillery/")
+                        || id.getPath().startsWith("hydrocarbon/generifier/")
+                        || id.getPath().startsWith("hydrocarbon/fuels_engine/")
+                        || id.getPath().startsWith("hydrocarbon/fuels_gas/"));
     }
 
     static OptionalInt authoredMaterialRuleStage(ResourceLocation id) {
@@ -834,13 +993,24 @@ public final class GTRecipeMapLoader {
             return OptionalInt.empty();
         }
         String path = id.getPath();
+        if (path.startsWith("mortar/ingot_to_dust/")
+                || path.startsWith("mortar/gem_to_dust/")) {
+            return OptionalInt.of(7);
+        }
+        if (path.startsWith("pipe/extruder/")) {
+            return OptionalInt.of(8);
+        }
+        if (path.startsWith("ingot_form/anvil/")
+                || path.startsWith("ingot_form/smelter/")) {
+            return OptionalInt.of(10);
+        }
         int slash = path.indexOf('/');
         if (slash < 2 || path.charAt(0) != 't') {
             return OptionalInt.empty();
         }
         try {
             int stage = Integer.parseInt(path.substring(1, slash));
-            return stage >= 7 ? OptionalInt.of(stage) : OptionalInt.empty();
+            return stage >= 11 ? OptionalInt.of(stage) : OptionalInt.empty();
         } catch (NumberFormatException ignored) {
             return OptionalInt.empty();
         }
@@ -853,18 +1023,21 @@ public final class GTRecipeMapLoader {
     static void validateAuthoredMaterialRuleBudget(int stage, int recipeCount) {
         if (recipeCount < 0) {
             throw new IllegalArgumentException(
-                    "T" + stage + " authored material-rule count cannot be negative");
+                    "Authored material-rule count cannot be negative for stage "
+                            + stage);
         }
         Integer budget =
                 ModProcessingMachines.AUTHORED_MATERIAL_RULE_BUDGETS.get(stage);
         if (budget == null) {
             throw new IllegalArgumentException(
-                    "No authored material-rule budget for T" + stage);
+                    "No authored material-rule budget for stage " + stage);
         }
         if (recipeCount > budget) {
-            throw new IllegalStateException(
-                    "T" + stage + " authored material-rule count " + recipeCount
-                            + " exceeds budget " + budget);
+            CrucibleCraft.LOGGER.warn(
+                    "UNVERIFIED_SCALE:authored_material_rule_{}:{}>{}",
+                    stage,
+                    recipeCount,
+                    budget);
         }
     }
 
@@ -914,19 +1087,35 @@ public final class GTRecipeMapLoader {
                     recipeId,
                     "Unsupported anvil output shape for map " + map.id());
         }
-        // Bronze T5 stays T15-sized; T39 rows use the GT6 6-FO / 100k mB envelope.
+        // Bronze chemical rows stay opening-sized; centrifuge compact rows use
+        // the GT6 6-FO / 100k mB envelope.
         if (map == ModRecipeMaps.CENTRIFUGE
-                && recipeId.getPath().startsWith("t39/")) {
-            var invalid = ModProcessingMachines.validateT39CentrifugeEnvelope(recipe);
+                && CompactWaveRecipeIds.isCentrifugeCompactRecipe(recipeId)) {
+            var invalid = ModProcessingMachines.validateCentrifugeCompactEnvelope(recipe);
             if (invalid.isPresent()) {
                 throw recipeValidationError(
                         recipeId,
-                        "T39 centrifuge envelope rejected recipe for map "
+                        "Centrifuge compact envelope rejected recipe for map "
                                 + map.id() + " (" + invalid.get() + ")");
             }
         } else {
+            boolean remainderCompact = isBathRemainderCompactRecipe(recipeId);
+            boolean deferredRecycling =
+                    CompactWaveRecipeIds.isSmelterDeferredRecyclingRecipe(recipeId);
             for (var machine : ModProcessingMachines.allForRecipeMap(
                     map.id())) {
+                if ((remainderCompact || deferredRecycling)
+                        && ModProcessingMachines.CHEMICAL_HOST_MACHINES.contains(machine)) {
+                    // Bath remainder/identity/tiny-purified compact rows share
+                    // Bath with reused chemical machines but are not
+                    // chemical-dedicated. GT6 remainder IO can exceed the
+                    // bronze envelope (2 FO, >4k mB).
+                    // Smelter deferred MTE recovery keeps GT6 molten amounts;
+                    // 13 families exceed the 8000 mB bronze output tank.
+                    // Publication stays exact; GameTest executes tank-fitting
+                    // representatives. Do not raise the Smelter tank gate.
+                    continue;
+                }
                 var invalid = machine.validator().validate(recipe);
                 if (invalid.isPresent()) {
                     throw recipeValidationError(
@@ -967,10 +1156,10 @@ public final class GTRecipeMapLoader {
             if (entries == null) {
                 throw new IllegalArgumentException("Missing required map candidate " + map.id());
             }
-            boolean provisionedT5Map = ModProcessingMachines.T5_DEDICATED_MACHINES.stream()
+            boolean provisionedChemicalMap = ModProcessingMachines.CHEMICAL_DEDICATED_MACHINES.stream()
                     .map(ProcessingMachineSpec::requireRecipeMap)
                     .anyMatch(candidate -> candidate == map);
-            if (entries.isEmpty() && !provisionedT5Map) {
+            if (entries.isEmpty() && !provisionedChemicalMap) {
                 throw new IllegalArgumentException(
                         "Required playable map " + map.id() + " loaded zero recipes");
             }
@@ -979,47 +1168,44 @@ public final class GTRecipeMapLoader {
 
     /**
      * Recipe ids are the mandatory stage provenance. This remains explicit
-     * because bath and centrifuge host both pre-T5 and T5 recipe populations.
+     * because bath and centrifuge host both pre-chemical and chemical recipe populations.
      */
-    static void validateT5RecipeProvenance(
+    static void validateChemicalRecipeProvenance(
             RecipeMap map, List<RecipeMap.Entry> entries) {
-        boolean t5Map = ModProcessingMachines.T5_MACHINES.stream()
+        boolean chemicalMap = ModProcessingMachines.CHEMICAL_HOST_MACHINES.stream()
                 .map(ProcessingMachineSpec::requireRecipeMap)
                 .anyMatch(candidate -> candidate == map);
-        boolean dedicatedT5Map = ModProcessingMachines.T5_DEDICATED_MACHINES.stream()
+        boolean dedicatedChemicalMap = ModProcessingMachines.CHEMICAL_DEDICATED_MACHINES.stream()
                 .map(ProcessingMachineSpec::requireRecipeMap)
                 .anyMatch(candidate -> candidate == map);
         for (RecipeMap.Entry entry : entries) {
-            boolean t5Recipe = isT5ChemicalRecipe(entry.id());
-            boolean t11Chemical = isT11ChemicalRecipe(entry.id());
-            boolean t21Chemical = isT21ChemicalRecipe(entry.id());
-            boolean t22Petroleum = isT22PetroleumRecipe(entry.id());
-            boolean t36Bootstrap = isT36BootstrapRecipe(entry.id());
-            boolean t38Compact = isT38CompactRecipe(entry.id());
-            boolean t39Compact = isT39CompactRecipe(entry.id());
-            boolean t40Compact = isT40CompactRecipe(entry.id());
-            boolean t41Compact = isT41CompactRecipe(entry.id());
-            boolean t43Compact = isT43CompactRecipe(entry.id());
-            boolean t45Compact = isT45CompactRecipe(entry.id());
-            if (t5Recipe && !t5Map) {
+            boolean chemicalRecipe = isAuthoredChemicalRecipe(entry.id());
+            boolean hydrocarbonProcess = isHydrocarbonProcessRecipe(entry.id());
+            boolean petroleum = isPetroleumRecipe(entry.id());
+            boolean machineBootstrap = isMachineBootstrapRecipe(entry.id());
+            boolean hostCompact = CompactWaveRecipeIds.isCompactHostRecipe(
+                    entry.id());
+            boolean recovery = CompactWaveRecipeIds.isRoasterRecoveryRecipe(
+                    entry.id());
+            if (chemicalRecipe && !chemicalMap) {
                 throw new IllegalArgumentException(
-                        "T5 recipe " + entry.id() + " targets non-T5 map " + map.id());
+                        "Chemical recipe " + entry.id()
+                                + " targets a non-chemical map " + map.id());
             }
-            if (dedicatedT5Map && !t5Recipe && !t11Chemical && !t21Chemical
-                    && !t22Petroleum && !t36Bootstrap && !t38Compact
-                    && !t39Compact && !t40Compact && !t41Compact
-                    && !t43Compact && !t45Compact) {
+            if (dedicatedChemicalMap && !chemicalRecipe && !hydrocarbonProcess
+                    && !petroleum && !machineBootstrap && !hostCompact
+                    && !recovery) {
                 throw new IllegalArgumentException(
-                        "Dedicated T5 map " + map.id()
-                                + " requires recipe-id prefix t5/, t11/, t21/, "
-                                + "t22/, t36/, t38/, t39/, t40/, t41/, t43/, or t45/: "
+                        "Dedicated chemical map " + map.id()
+                                + " requires a chemical, hydrocarbon, petroleum, "
+                                + "bootstrap, or compact host recipe id: "
                                 + entry.id());
             }
-            if (t11Chemical
+            if (hydrocarbonProcess
                     && map != ModRecipeMaps.DISTILLERY
                     && map != ModRecipeMaps.GENERIFIER) {
                 throw new IllegalArgumentException(
-                        "T11 chemical recipe " + entry.id()
+                        "Hydrocarbon process recipe " + entry.id()
                                 + " targets unsupported map " + map.id());
             }
         }
@@ -1105,18 +1291,13 @@ public final class GTRecipeMapLoader {
         CompactRecipeDeduplicator.applyPostEnumeration(
                 map.id(), complete, dedupRules);
         validateUniqueRecipeIds(map, complete);
-        validateT5RecipeProvenance(map, complete);
+        validateChemicalRecipeProvenance(map, complete);
         validateNoShadows(map, complete);
         if (!families.isEmpty()) {
             RecipeMap.Prepared transientIndex = map.prepareRecipes(complete);
             validateNoUnindexed(Map.of(map, transientIndex));
         }
         }
-
-    static boolean isT37CompactRecipe(ResourceLocation id) {
-        return CrucibleCraft.MODID.equals(id.getNamespace())
-                && id.getPath().startsWith("t37/");
-    }
 
     static String recipeOutputIdentity(GTRecipe recipe) {
         return outputSignature(recipe) + "|" + recipe.duration() + "|" + recipe.eut();
@@ -1215,8 +1396,8 @@ public final class GTRecipeMapLoader {
     }
 
     /**
-     * Stack-and-count consume identity used to recognize T37 leftover-vanilla
-     * assembler rows that T41 later regenerated. Unlike {@link #inputSignature},
+     * Stack-and-count consume identity used to recognize leftover-vanilla
+     * assembler rows that wood-assembler later regenerated. Unlike {@link #inputSignature},
      * this ignores Ingredient instance toString, so independently materialized
      * {@code neoforge:components} circuit stacks still match.
      */

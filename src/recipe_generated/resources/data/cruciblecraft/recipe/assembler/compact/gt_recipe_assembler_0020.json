@@ -1,0 +1,59 @@
+{
+  "family_id": "gt.recipe.assembler#0020",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:birch_planks"
+        },
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 1
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:oak_button"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "bacd6f4e67b1348b95eb8a7beacfb13f599a2d4c859b2b01d20af25bdfbacda6"
+        ],
+        "selected_source_recipe": "gt.recipe.assembler#0020",
+        "source_kind": "DESIGN_POLICY"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:assembler/compact/a4d99efc0a52e1bf"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:assembler",
+  "type": "cruciblecraft:compact_gt_recipe_family",
+  "publication_group": "cruciblecraft:assembler/compact"
+}

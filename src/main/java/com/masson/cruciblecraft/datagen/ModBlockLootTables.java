@@ -66,6 +66,14 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                 dropSelf(block);
             }
         }
+        for (GtBlockObjectCatalog.Variant variant : com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog.variants()) {
+            Block block = ModBlocks.bathRemainderBlockObjectBlocksById().get(variant.id()).get();
+            if (variant.slab()) {
+                add(block, createSlabItemTable((SlabBlock) block));
+            } else {
+                dropSelf(block);
+            }
+        }
     }
 
     @Override
@@ -109,8 +117,11 @@ public class ModBlockLootTables extends BlockLootSubProvider {
                                         Stream.concat(
                                         ModBlocks.gtStoneBlocks().stream()
                                                 .map(holder -> holder.get()),
+                                        Stream.concat(
                                         ModBlocks.gtBlockObjectBlocks().stream()
-                                                .map(holder -> holder.get())))))))
+                                                .map(holder -> holder.get()),
+                                        ModBlocks.bathRemainderBlockObjectBlocks().stream()
+                                                .map(holder -> holder.get()))))))))
                 .toList();
     }
 }

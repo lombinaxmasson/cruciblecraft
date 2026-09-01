@@ -31,8 +31,8 @@
           "acquisition_template": {
             "enum": [
               "centrifuge",
-              "t16_kinetic",
-              "t17_heat",
+              "kinetic",
+              "heat",
               "electrolyzer",
               "compressor",
               "sifter",
@@ -42,7 +42,7 @@
           },
           "lang_key_zh": { "type": "string", "minLength": 1 },
           "lang_key_en": { "type": "string", "minLength": 1 },
-          "display_group": { "enum": ["t16", "t17"] }
+          "display_group": { "enum": ["kinetic", "heat"] }
         }
       }
     },

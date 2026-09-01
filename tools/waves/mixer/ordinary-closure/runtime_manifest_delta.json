@@ -1,0 +1,64 @@
+{
+  "dedup_rules": [
+    {
+      "owner": "mixer/ordinary-closure",
+      "phase": "post_enumeration",
+      "resource": "src/recipe_generated/resources/data/cruciblecraft/recipe/dedup_rule/mixer_ordinary_closure_t39_support_post_enumeration.json",
+      "rule_id": "cruciblecraft:mixer_ordinary_closure_t39_support_post_enumeration",
+      "target_map": "cruciblecraft:mixer"
+    }
+  ],
+  "generated_by": "python tools/build_ordinary_wave.py",
+  "groups": [
+    {
+      "authored_family_count": 240,
+      "authored_relation_count": 4577,
+      "cache_ceiling": 0,
+      "eager_stable_ids": [],
+      "effective_family_count": 240,
+      "effective_relation_count": 4577,
+      "membership_root_sha256": "91a089f8be8033418e14336b0170fd1d7c60b08f552461bf994567dae747c8cd",
+      "policy_resource": "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/mixer_ordinary_closure_construction_foam_matrix.json",
+      "policy_type": "immediate",
+      "publication_group": "cruciblecraft:mixer/ordinary_closure/construction_foam_matrix",
+      "target_map": "cruciblecraft:mixer",
+      "wave_slug": "mixer/ordinary-closure",
+      "winner": "immediate"
+    },
+    {
+      "authored_family_count": 233,
+      "authored_relation_count": 2410,
+      "cache_ceiling": 128,
+      "eager_stable_ids": [],
+      "effective_family_count": 233,
+      "effective_relation_count": 2410,
+      "membership_root_sha256": "88dec26a8bef9ccb31e4df47212e8bcd59667373b98d6f52341c7ccd9c1c58ae",
+      "policy_resource": "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/mixer_ordinary_closure_material_matrix.json",
+      "policy_type": "on_demand",
+      "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
+      "target_map": "cruciblecraft:mixer",
+      "wave_slug": "mixer/ordinary-closure",
+      "winner": "on_demand"
+    },
+    {
+      "authored_family_count": 175,
+      "authored_relation_count": 175,
+      "cache_ceiling": 128,
+      "eager_stable_ids": [],
+      "effective_family_count": 175,
+      "effective_relation_count": 175,
+      "membership_root_sha256": "2f0e40d0ab54f57df1652241406aa08c7781afd12508fae108efc6e086d8c8f7",
+      "policy_resource": "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/mixer_ordinary_closure_opaque.json",
+      "policy_type": "on_demand",
+      "publication_group": "cruciblecraft:mixer/ordinary_closure/opaque",
+      "target_map": "cruciblecraft:mixer",
+      "wave_slug": "mixer/ordinary-closure",
+      "winner": "on_demand"
+    }
+  ],
+  "note": "Semantic runtime group delta. Frozen v2 groups stay unchanged; no T50 publication groups.",
+  "order": "mixer/ordinary-closure",
+  "schema_version": 1,
+  "status": "MIXER_ORDINARY-CLOSURE_RUNTIME_MANIFEST_DELTA",
+  "wave_slug": "mixer/ordinary-closure"
+}

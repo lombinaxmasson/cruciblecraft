@@ -18,12 +18,12 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        generatedT34Gt6("raw_ceramic_crucible");
-        generatedT34Gt6("raw_ceramic_mold");
-        generatedT34Gt6("raw_ingot_mold");
-        generatedT34Gt6("raw_plate_mold");
-        generatedT34Gt6("raw_rod_mold");
-        generatedT34Gt6("raw_bolt_mold");
+        generatedImportedGt6("raw_ceramic_crucible");
+        generatedImportedGt6("raw_ceramic_mold");
+        generatedImportedGt6("raw_ingot_mold");
+        generatedImportedGt6("raw_plate_mold");
+        generatedImportedGt6("raw_rod_mold");
+        generatedImportedGt6("raw_bolt_mold");
         withExistingParent("ingot_mold", modLoc("block/ceramic_mold"));
         withExistingParent("plate_mold", modLoc("block/ceramic_mold"));
         withExistingParent("rod_mold", modLoc("block/ceramic_mold"));
@@ -105,7 +105,7 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .texture("layer0", modLoc("item/" + name));
     }
 
-    private void generatedT34Gt6(String name) {
+    private void generatedImportedGt6(String name) {
         withExistingParent(name, mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/t34_gt6/" + name));
     }

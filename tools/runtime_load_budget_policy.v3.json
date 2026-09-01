@@ -1,0 +1,148 @@
+{
+  "budgets": {
+    "client_index_ms": {
+      "aggregation": "sum_interval",
+      "hard_ceiling": 3000,
+      "soft_budget": 1000,
+      "source": "T49 integrated dedicated-client index p95 remains under the predeclared 3 s hard gate.",
+      "unit": "ms",
+      "workload": "opening_19_group_dedicated_client"
+    },
+    "client_reload_ms": {
+      "aggregation": "sum_interval",
+      "hard_ceiling": 10000,
+      "soft_budget": 5000,
+      "source": "T49 integrated dedicated-client reload p95 remains under the 10 s hard gate.",
+      "unit": "ms",
+      "workload": "opening_19_group_dedicated_client"
+    },
+    "datapack_authored_entries": {
+      "aggregation": "sum",
+      "hard_ceiling": 6600,
+      "readiness_verdict": "REPORT_ONLY",
+      "soft_budget": 6000,
+      "source": "Authored entries stay counted and REPORT_ONLY.",
+      "unit": "entries",
+      "workload": "opening_19_group_authored_tree"
+    },
+    "eager_publication_rows": {
+      "aggregation": "sum",
+      "hard_ceiling": 21000,
+      "readiness_verdict": "UNVERIFIED_SCALE",
+      "soft_budget": 18000,
+      "source": "Opening eager is 16966 concrete + 14 compact = 16980. Count overage is UNVERIFIED_SCALE, not a runtime or closeout crash. Temporary compatibility watermark is 41000.",
+      "unit": "rows",
+      "workload": "opening_19_group_plus_future_waves"
+    },
+    "lazy_cache_ceiling_rows": {
+      "aggregation": "sum",
+      "hard_ceiling": 4096,
+      "readiness_verdict": "UNVERIFIED_SCALE",
+      "soft_budget": 1024,
+      "source": "Cache ceiling is capacity telemetry. Overage is UNVERIFIED_SCALE.",
+      "unit": "rows",
+      "workload": "opening_19_group_cache_envelope"
+    },
+    "lazy_logical_rows": {
+      "aggregation": "sum",
+      "hard_ceiling": 56000,
+      "readiness_verdict": "UNVERIFIED_SCALE",
+      "soft_budget": 16000,
+      "source": "Lazy logical count is capacity telemetry. Overage is UNVERIFIED_SCALE.",
+      "unit": "rows",
+      "workload": "opening_19_group_plus_future_waves"
+    },
+    "lookup_allocation_bytes_per_operation": {
+      "aggregation": "max_interval",
+      "hard_ceiling": 16777216,
+      "soft_budget": 1048576,
+      "source": "Lookup-only JFR window after publication. Opening T14 lookup-only observed zero allocation events; measured zero is not a zero-fill. 16 MiB/operation remains a blocking hard gate.",
+      "unit": "bytes_per_operation",
+      "workload": "lookup_only_20x_stable_epoch"
+    },
+    "lookup_candidate_count": {
+      "aggregation": "max_interval",
+      "hard_ceiling": 128,
+      "soft_budget": 64,
+      "source": "Existing 64/128 candidate gates are retained.",
+      "unit": "candidates",
+      "workload": "opening_19_group_lookup"
+    },
+    "lookup_p95_ns": {
+      "aggregation": "max_interval",
+      "hard_ceiling": 2000000,
+      "soft_budget": 1000000,
+      "source": "Existing 1 ms/2 ms lookup p95 gates are retained.",
+      "unit": "ns",
+      "workload": "opening_19_group_lookup"
+    },
+    "reload_transient_allocation_bytes": {
+      "aggregation": "sum_interval",
+      "hard_ceiling": 1610612736,
+      "soft_budget": 1342177280,
+      "source": "Split from mixed allocation_bytes. Opening 19-group hybrid reload p95 is 687226880 bytes. 80k synthetic scale (80000/50666) plus margin freezes 1610612736 bytes. Frozen v2 allocation_bytes=512 MiB is unchanged.",
+      "unit": "bytes",
+      "workload": "reload_window_opening_and_80k_synthetic"
+    },
+    "retained_memory_bytes": {
+      "aggregation": "sum_interval",
+      "hard_ceiling": 536870912,
+      "soft_budget": 134217728,
+      "source": "Retained memory stays 128/512 MiB blocking gates.",
+      "unit": "bytes",
+      "workload": "controlled_gc_after_stable_epoch"
+    },
+    "server_index_ms": {
+      "aggregation": "sum_interval",
+      "hard_ceiling": 1000,
+      "soft_budget": 500,
+      "source": "Existing 1 s server index hard gate is retained.",
+      "unit": "ms",
+      "workload": "opening_19_group_server"
+    },
+    "server_reload_ms": {
+      "aggregation": "sum_interval",
+      "hard_ceiling": 10000,
+      "soft_budget": 5000,
+      "source": "Existing 10 s server reload hard gate is retained.",
+      "unit": "ms",
+      "workload": "opening_19_group_server"
+    },
+    "sync_bytes": {
+      "aggregation": "sum",
+      "hard_ceiling": 67108864,
+      "soft_budget": 16777216,
+      "source": "Existing 64 MiB sync hard gate is retained.",
+      "unit": "bytes",
+      "workload": "opening_19_group_sync_payload"
+    }
+  },
+  "composition": {
+    "conflict_check": "pass",
+    "v2_file_sha256": "30a07ad20ca443d9108665157b351471ffeb45d71fdd3d4b7d75076a11cb2c35",
+    "v2_status": "FORWARD_LOAD_BUDGET_POLICY_V2"
+  },
+  "generated_by": "python tools/build_runtime_load_allocation_split.py",
+  "note": "Forward-v3 load budget policy. Mixed allocation_bytes is split into reload_transient_allocation_bytes and lookup_allocation_bytes_per_operation. v2 512 MiB lookup hard gate is not raised and not made REPORT_ONLY.",
+  "pending_measurements": [],
+  "pending_token": "PENDING_MEASUREMENT",
+  "ratio_input_allowed": false,
+  "schema_version": 3,
+  "scope": {
+    "authored_entries_verdict": "REPORT_ONLY",
+    "hard_ceiling_behavior": "Projection fails closed when a non-authored axis exceeds a hard ceiling, is pending, is missing events, or is zero-filled without measurement.",
+    "legacy_mixed_allocation_bytes": "frozen in tools/t14_load_budget_policy.v2.json",
+    "pending_behavior": "Unmeasured dimensions remain BLOCKED_PENDING_MEASUREMENT.",
+    "split": {
+      "lookup_allocation_bytes_per_operation": "lookup window only",
+      "reload_transient_allocation_bytes": "reload window only"
+    }
+  },
+  "status": "FORWARD_LOAD_BUDGET_POLICY_V3",
+  "v2_base": {
+    "file_sha256": "30a07ad20ca443d9108665157b351471ffeb45d71fdd3d4b7d75076a11cb2c35",
+    "path": "tools/t14_load_budget_policy.v2.json",
+    "status": "FORWARD_LOAD_BUDGET_POLICY_V2"
+  },
+  "wave_slug": "runtime-load/allocation-split"
+}

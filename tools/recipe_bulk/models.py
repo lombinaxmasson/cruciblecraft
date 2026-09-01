@@ -20,7 +20,7 @@ PublicationPolicy = Literal[
     "expanded_count",
     "relation",
 ]
-PathLayout = Literal["flat", "host_nested"]
+PathLayout = Literal["flat", "host_nested", "cohort_nested"]
 CompileAuthority = Literal["recipe_bulk"]
 RelationSort = Literal["template_key", "source_recipe_index_then_stable_id"]
 StableIdPolicy = Literal["source", "hex_suffix", "lock"]
@@ -60,6 +60,12 @@ class WaveSpec:
     expected_family_count: int | None = None
     expected_relation_count: int | None = None
     identity_only: bool = False
+    wave_slug: str | None = None
+    cohort: str | None = None
+    representation: str | None = None
+    depends_on_slugs: tuple[str, ...] = ()
+    path_prefix: str | None = None
+    dry_run_without_lock: bool = False
 
 
 @dataclass

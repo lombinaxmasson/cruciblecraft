@@ -1,0 +1,59 @@
+{
+  "eager_publication_rows": 52,
+  "generated_by": "python tools/build_ordinary_wave.py",
+  "group_winners": {
+    "cruciblecraft:drying/ordinary_closure/acquisition": "immediate",
+    "cruciblecraft:drying/ordinary_closure/gt_prefix": "on_demand",
+    "cruciblecraft:drying/ordinary_closure/multiitem": "immediate",
+    "cruciblecraft:drying/ordinary_closure/singleton": "on_demand"
+  },
+  "groups": [
+    {
+      "family_count": 8,
+      "membership_root_sha256": "fb3411bbab5135e035d6e0b8b559491784adcd0c8e6dd71a9a4c937f5682fc14",
+      "publication_group": "cruciblecraft:drying/ordinary_closure/acquisition",
+      "relation_count": 19,
+      "target_map": "cruciblecraft:drying",
+      "winner": "immediate"
+    },
+    {
+      "family_count": 2,
+      "membership_root_sha256": "6e139842373c56875343097b2697d9f217d101ba948fe7191a27d27f5e1f4cb4",
+      "publication_group": "cruciblecraft:drying/ordinary_closure/gt_prefix",
+      "relation_count": 2,
+      "target_map": "cruciblecraft:drying",
+      "winner": "on_demand"
+    },
+    {
+      "family_count": 3,
+      "membership_root_sha256": "178f49751d78df76e9f66ce197206cbb5f3d0844232e361cbd475c9eb164140a",
+      "publication_group": "cruciblecraft:drying/ordinary_closure/multiitem",
+      "relation_count": 33,
+      "target_map": "cruciblecraft:drying",
+      "winner": "immediate"
+    },
+    {
+      "family_count": 31,
+      "membership_root_sha256": "d51f48bd05c9f44f63a73a8e3646cf86c56d3ac01f17c4ead0f692f7e775ffe5",
+      "publication_group": "cruciblecraft:drying/ordinary_closure/singleton",
+      "relation_count": 31,
+      "target_map": "cruciblecraft:drying",
+      "winner": "on_demand"
+    }
+  ],
+  "lazy_logical_rows": 33,
+  "opening_eager": 20036,
+  "opening_lazy": 53447,
+  "schema_version": 1,
+  "static_envelope": {
+    "eager_hard": 41000,
+    "eager_verified_opening": 20036,
+    "eager_with_opening": 20088,
+    "lazy_hard": 56000,
+    "lazy_with_opening": 53480,
+    "note": "Count is UNVERIFIED_SCALE telemetry, not a runtime throw. 41000 is a temporary Smelter+Mixer compatibility watermark. Mixer opening is Smelter closing, not T49 opening.",
+    "temporary_compatibility_ceiling": 41000
+  },
+  "status": "PUBLICATION_READY",
+  "wave_slug": "drying/ordinary-closure"
+}

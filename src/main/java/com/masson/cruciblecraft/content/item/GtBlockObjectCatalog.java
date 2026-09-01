@@ -59,7 +59,7 @@ public final class GtBlockObjectCatalog {
             if (document == null
                     || document.schemaVersion != 1
                     || !SOURCE_REVISION.equals(document.sourceRevision)
-                    || !"T45_BLOCK_OBJECT_CATALOG".equals(document.status)
+                    || !"BLOCK_OBJECT_CATALOG".equals(document.status)
                     || document.identities == null
                     || document.identities.size() != VARIANT_COUNT
                     || document.variantCount != VARIANT_COUNT) {

@@ -1,0 +1,46 @@
+{
+  "family_id": "gt.recipe.smelter#1360",
+  "publication_group": "cruciblecraft:smelter/deferred_recycling/lead",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 120,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 72,
+          "id": "cruciblecraft:molten_lead"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:lead/wire"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "f2a8e34e8855b3ca0898fcfd10d638e2308cb996c52402b182c344fbfc844488"
+        ],
+        "selected_source_recipe": "gt.recipe.smelter#1360",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:smelter/deferred_recycling/12ef3127237fe1cc"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

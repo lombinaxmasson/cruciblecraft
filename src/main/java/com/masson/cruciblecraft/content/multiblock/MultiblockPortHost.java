@@ -13,7 +13,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
  * controllers implement it by delegating to their spec; conversion and
  * storage controllers (large boiler, tank) implement it directly.
  * Supply is one item/fluid view per shared host regardless of how many
- * physical port blocks bridge it (T15e rule).
+ * physical port blocks bridge it.
  */
 public interface MultiblockPortHost extends IEnergyHandler {
     ItemStackHandler inventory();

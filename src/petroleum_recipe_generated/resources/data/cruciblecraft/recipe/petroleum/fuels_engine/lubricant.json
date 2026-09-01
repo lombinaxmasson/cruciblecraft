@@ -1,0 +1,24 @@
+{
+  "can_be_buffered": true,
+  "duration": 32,
+  "eut": -4,
+  "fluid_inputs": [
+    {
+      "amount": 50,
+      "id": "cruciblecraft:lubricant"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 5,
+      "id": "cruciblecraft:carbon_dioxide"
+    }
+  ],
+  "map": "cruciblecraft:fuels_engine",
+  "provenance": {
+    "evidence_hashes": [],
+    "source_kind": "DESIGN_POLICY",
+    "design_rationale": "Lubricant is a combustible petroleum fraction (similar to heavy fuel oil). GT6 reserves lubricant for cutter/CNC machine cooling (6,599 recipes), but CC's CUTTER is a T16-deferred machine on deprecated KINETIC and cannot serve as a v1 consumer. This DESIGN_POLICY recipe provides a real consumer on an accepted machine (fuels_engine, T18): burning lubricant as low-grade fuel at reduced efficiency (4 KU/t, 50mB). The carbon_dioxide output is minimal (5mB) and represents combustion exhaust. Not a void consumer — lubricant is converted to kinetic energy. Post-1.0 cutter/CNC machines will provide the primary GT6-parity consumer."
+  },
+  "type": "cruciblecraft:gt_recipe"
+}

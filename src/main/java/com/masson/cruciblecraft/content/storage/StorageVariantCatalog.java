@@ -16,7 +16,7 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import net.minecraft.resources.ResourceLocation;
 
 /**
- * Bundled T44 storage catalog. 624 storage rows plus 1 logistics row.
+ * Bundled storage catalog. 624 storage rows plus 1 logistics row.
  * There is no second Java variant list.
  */
 public final class StorageVariantCatalog {

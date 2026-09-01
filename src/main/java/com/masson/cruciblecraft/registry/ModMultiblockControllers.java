@@ -33,7 +33,7 @@ public final class ModMultiblockControllers {
                     .withVariant(() -> LARGE_CENTRIFUGE_VARIANT);
 
     /**
-     * T23 host spec for the distillation tower controller: port-fed heat
+     * Distillation-tower host spec: port-fed heat
      * buffer (the GT6 tower base layer is nine heat transmitters), same
      * distillery layout and recipes (DESIGN_POLICY: CC collapses GT6
      * RM.DistillationTower and RM.Distillery into one map for v1). The

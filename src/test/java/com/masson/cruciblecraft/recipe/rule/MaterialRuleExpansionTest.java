@@ -698,7 +698,7 @@ class MaterialRuleExpansionTest {
                 .withImportedMetadata(metadata(List.of(), Map.of(
                         "smelting", new GT6MaterialMetadata.MaterialAmount(
                                 "ingot_target", 3, "Target", 4_504_500L, Optional.of(1L)))));
-        MaterialRule smelter = T2ChainRules.ALL.stream()
+        MaterialRule smelter = MaterialChainRules.ALL.stream()
                 .filter(definition -> definition.path().startsWith("smelter/"))
                 .findFirst().orElseThrow().rule();
         var plans = MaterialRuleExpansion.expandFactualPlans(
@@ -716,7 +716,7 @@ class MaterialRuleExpansionTest {
 
     @Test
     void crusherTurnsAnyMaterialWithIngotAndDustFormsIntoDust() {
-        MaterialRule crusher = T2ChainRules.ALL.stream()
+        MaterialRule crusher = MaterialChainRules.ALL.stream()
                 .filter(definition -> definition.path().equals("crusher/ingot_to_dust"))
                 .findFirst().orElseThrow().rule();
         var plans = MaterialRuleExpansion.expandFactualPlans(

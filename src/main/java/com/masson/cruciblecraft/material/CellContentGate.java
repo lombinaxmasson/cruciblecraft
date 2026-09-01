@@ -17,11 +17,11 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.material.Fluid;
 
-/** Closed T10 projection of fluid identities accepted by each generic cell. */
+/** Closed projection of fluid identities accepted by each generic cell. */
 public final class CellContentGate {
     private static final List<String> RESOURCES = List.of(
-            "/data/cruciblecraft/t10_cell_content_gate.json",
-            "/data/cruciblecraft/t11_cell_content_gate.json");
+            "/data/cruciblecraft/cell_content_gate.json",
+            "/data/cruciblecraft/hydrocarbon_cell_content_gate.json");
     private static final Map<ResourceLocation, Kind> ENTRIES = load();
 
     private CellContentGate() {}

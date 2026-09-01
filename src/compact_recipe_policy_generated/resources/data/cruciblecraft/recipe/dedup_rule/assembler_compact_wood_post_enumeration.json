@@ -1,0 +1,22 @@
+{
+  "match_mode": "logical_input_and_output_identity",
+  "owner": "assembler/compact",
+  "phase": "post_enumeration",
+  "require_output_match": true,
+  "rule_id": "cruciblecraft:assembler/compact_wood_post_enumeration",
+  "target_map": "cruciblecraft:assembler",
+  "type": "cruciblecraft:compact_dedup_rule",
+  "victim_selector": {
+    "kind": "recipe_id_prefix",
+    "prefixes": [
+      "assembler/wood/",
+      "player_path_support/assembler_wood/"
+    ]
+  },
+  "winner_selector": {
+    "kind": "recipe_id_prefix",
+    "prefixes": [
+      "assembler/compact/"
+    ]
+  }
+}

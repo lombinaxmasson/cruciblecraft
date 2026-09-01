@@ -134,7 +134,7 @@ public final class MachineKindCatalog {
         }
 
         public boolean usesMaterialPrefix() {
-            return "t16".equals(displayGroup) || "t17".equals(displayGroup);
+            return "kinetic".equals(displayGroup) || "heat".equals(displayGroup);
         }
     }
 

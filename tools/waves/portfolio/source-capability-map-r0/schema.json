@@ -1,0 +1,62 @@
+{
+  "allowed_1x_dispositions": [
+    "in_1x_closed",
+    "in_1x_selected",
+    "not_in_1x"
+  ],
+  "allowed_correspondence_classes": [
+    "equivalent",
+    "selected_subset",
+    "identity_only",
+    "capability_missing",
+    "post_1x",
+    "out_of_scope_historical"
+  ],
+  "allowed_growth_blockers": [
+    "none",
+    "no_generator",
+    "hardcoded_spec",
+    "count_ceiling",
+    "no_owner",
+    "fail_closed_runtime",
+    "selected_only"
+  ],
+  "allowed_gt6_domains": [
+    "cover",
+    "loader",
+    "oredict",
+    "tileentity",
+    "worldgen"
+  ],
+  "allowed_leftover_dispositions": [
+    "phase_deferred",
+    "post_1x_scope"
+  ],
+  "allowed_leftover_portfolio_scopes": [
+    "candidate_1x",
+    "post_1x"
+  ],
+  "frozen": true,
+  "generated_by": "python tools/build_source_capability_map_r0.py",
+  "leftover_fields": [
+    "disposition",
+    "family_id",
+    "owner",
+    "portfolio_scope",
+    "source_artifact",
+    "template_key"
+  ],
+  "row_fields": [
+    "1x_disposition",
+    "cc_mechanism",
+    "correspondence_class",
+    "growth_blocker",
+    "gt6_anchor",
+    "gt6_domain",
+    "recheck_condition"
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "SCHEMA_FROZEN",
+  "wave_slug": "portfolio/source-capability-map-r0"
+}

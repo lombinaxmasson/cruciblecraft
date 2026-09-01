@@ -55,8 +55,8 @@ class GTRecipeFingerprintTest {
     void generatedFluidClosureRecipeDecodesWithAlignedItemInputs()
             throws Exception {
         String source = Files.readString(Path.of(
-                "src/t5_chemical_generated/resources/data/cruciblecraft/recipe/"
-                        + "t5/centrifuge/fluid_closure_glue_and_latex.json"))
+                "src/chemical_recipe_generated/resources/data/cruciblecraft/recipe/"
+                        + "chemical/centrifuge/fluid_closure_glue_and_latex.json"))
                 .replace("cruciblecraft:latex", "minecraft:water")
                 .replace("cruciblecraft:glue", "minecraft:water");
         var json = JsonParser.parseString(source);

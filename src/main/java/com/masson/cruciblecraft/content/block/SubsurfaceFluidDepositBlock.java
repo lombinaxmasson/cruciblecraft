@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 /**
  * Hidden reserve marker rendered as its stone or deepslate host.
  *
- * <p>No item is registered for this block. T11 extraction equipment will read
+ * <p>No item is registered for this block. Extraction equipment reads
  * the persistent block entity instead of mining the marker.</p>
  */
 public final class SubsurfaceFluidDepositBlock extends Block

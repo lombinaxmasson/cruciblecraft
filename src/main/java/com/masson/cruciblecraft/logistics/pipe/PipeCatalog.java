@@ -15,7 +15,7 @@ import com.masson.cruciblecraft.material.def.GT6MaterialMetadata.ItemPipePropert
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 
 /**
- * Startup-frozen material/form mapping for source-backed T8 pipes.
+ * Startup-frozen material/form mapping for source-backed pipes.
  *
  * <p>Fluid and item properties intentionally remain separate even when a
  * material supplies both media. They have different transfer and failure
@@ -69,7 +69,7 @@ public final class PipeCatalog {
                                         + material.id())));
         if (entries.size() > MAX_RUNTIME_BLOCKS) {
             throw new IllegalStateException(
-                    "T8 pipe block budget exceeded: " + entries.size());
+                    "Pipe block budget exceeded: " + entries.size());
         }
         for (String material : List.of("copper", "tin", "iron")) {
             boolean fluid = entries.keySet().stream().anyMatch(
@@ -80,7 +80,7 @@ public final class PipeCatalog {
                             && key.kind() == Kind.ITEM);
             if (!fluid || !item) {
                 throw new IllegalStateException(
-                        "T8 acceptance material lacks both pipe domains: "
+                        "Acceptance material lacks both pipe domains: "
                                 + material);
             }
         }

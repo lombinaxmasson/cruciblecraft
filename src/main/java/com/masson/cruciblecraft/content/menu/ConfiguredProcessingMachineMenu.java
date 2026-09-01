@@ -12,7 +12,7 @@ import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.fluids.FluidStack;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
-/** Concrete menu used by every configured T2/T3 processing machine. */
+/** Concrete menu used by every configured processing machine. */
 public final class ConfiguredProcessingMachineMenu extends ProcessingMachineMenu {
     public static final int STATUS_DATA_INDEX = 0;
     public static final int STATUS_ARGUMENT_DATA_INDEX = 1;

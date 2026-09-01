@@ -1,0 +1,123 @@
+{
+  "family_id": "gt.recipe.electrolyzer#0020",
+  "publication_group": "cruciblecraft:electrolyzer/ordinary_closure/multiitem",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 19,
+      "eut": 64,
+      "fluid_inputs": [
+        {
+          "amount": 1700,
+          "id": "cruciblecraft:vitriol_of_clay"
+        },
+        {
+          "amount": 900,
+          "id": "minecraft:water"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 2100,
+          "id": "cruciblecraft:sulfuric_acid"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 1
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 2,
+          "id": "cruciblecraft:alumina/small_dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "a462680c10753c3acbc5870be9c2916a9d9fd77054ed8ba9c9110120a650adde"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#0020",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:electrolyzer/ordinary_closure/cc7a483026e049e9"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 19,
+      "eut": 64,
+      "fluid_inputs": [
+        {
+          "amount": 1700,
+          "id": "cruciblecraft:vitriol_of_clay"
+        },
+        {
+          "amount": 900,
+          "id": "cruciblecraft:water_distilled"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 2100,
+          "id": "cruciblecraft:sulfuric_acid"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 1
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 2,
+          "id": "cruciblecraft:alumina/small_dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "76878c127b71a81293b5e69a880290c94195eaeb878feea876ffe1b0b8c27f2b"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#0020",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 1,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:electrolyzer/ordinary_closure/8b66cb56cfb11936"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:electrolyzer",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

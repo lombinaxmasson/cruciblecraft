@@ -43,6 +43,8 @@ T39_SOURCE = TOOLS / "t39_centrifuge_source.json"
 T39_REQUIRED_FORMS = TOOLS / "t39_required_forms.json"
 T40_SOURCE = TOOLS / "t40_electrolyzer_source.json"
 T40_REQUIRED_FORMS = TOOLS / "t40_required_forms.json"
+T47_SOURCE = TOOLS / "t47_bath_source.json"
+T48_REQUIRED_FORMS = TOOLS / "t48_required_forms.json"
 T13_RECIPE_MAPS = TOOLS / "t13_denominators" / "recipe_maps.json"
 OREDICT_MANIFEST = TOOLS / "gt6_oredict_import_manifest.json"
 L3_MATERIALS = TOOLS / "gt6_l3_materials.py"
@@ -113,6 +115,8 @@ def tracked_input_hashes() -> dict[str, str]:
         T39_REQUIRED_FORMS,
         T40_SOURCE,
         T40_REQUIRED_FORMS,
+        T47_SOURCE,
+        T48_REQUIRED_FORMS,
     )
     result = {
         path.relative_to(ROOT).as_posix(): sha256(path)
@@ -654,9 +658,73 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
                 f"T40 required form exceeds factual or bounded post-import "
                 f"forms: {material_id}/{sorted(forms)}"
             )
+    t48_document = load(T48_REQUIRED_FORMS)
+    if t48_document.get("status") != "T48_REQUIRED_FORMS_FROZEN":
+        raise ValueError("T48 required-form source is not frozen")
+    t48_source = t48_document.get("source") or {}
+    if (
+            t48_source.get("path") != "tools/t47_bath_source.json"
+            or t48_source.get("sha256") != sha256(T47_SOURCE)
+    ):
+        raise ValueError("T48 required forms do not bind the T47 compact source scan")
+    t48_required_forms: dict[str, set[str]] = {
+        material_id: set(forms)
+        for material_id, forms in (t48_document.get("required_forms") or {}).items()
+    }
+    t48_authority = form_authority.source_by_id("t48_compact_required_forms")
+    bounded_t48_forms = set(t48_authority.get("extra_factual_forms") or [])
+    for material_id, forms in t48_required_forms.items():
+        unsupported = (
+            forms - factual_forms.get(material_id, set()) - bounded_t48_forms
+        )
+        if material_id not in factual_forms or unsupported:
+            raise ValueError(
+                f"T48 required form exceeds factual or bounded post-import "
+                f"forms: {material_id}/{sorted(forms)}"
+            )
+    semantic_required_forms: dict[str, set[str]] = defaultdict(set)
+    semantic_sections: dict[str, dict[str, list[str]]] = {}
+    semantic_source_meta: dict[str, dict[str, Any]] = {}
+    for source in form_authority.load_authority().get("sources") or []:
+        source_id = str(source.get("id") or "")
+        semantic_wave = str(source.get("path") or "").replace("\\", "/").startswith(
+            "tools/waves/"
+        )
+        if not semantic_wave and not source_id.endswith("_ordinary_required_forms"):
+            continue
+        source_path = ROOT / str(source["path"])
+        if not source_path.is_file():
+            continue
+        semantic_document = load(source_path)
+        forms_map = {
+            str(material_id): set(forms)
+            for material_id, forms in (semantic_document.get("required_forms") or {}).items()
+        }
+        extra = set(source.get("extra_factual_forms") or [])
+        for material_id, forms in forms_map.items():
+            unsupported = forms - factual_forms.get(material_id, set()) - extra
+            if material_id not in factual_forms or unsupported:
+                raise ValueError(
+                    f"{source_id} required form exceeds factual or bounded post-import "
+                    f"forms: {material_id}/{sorted(unsupported or forms)}"
+                )
+            semantic_required_forms[material_id].update(forms)
+        section = str(source["gate_section"])
+        semantic_sections[section] = {
+            material: sorted(forms) for material, forms in sorted(forms_map.items())
+        }
+        semantic_source_meta[section] = {
+            "classification": "semantic_ordinary_runtime_required",
+            "field": "required_forms",
+            "path": str(source["path"]),
+            "sha256": sha256(source_path),
+        }
     compatibility_forms: dict[str, list[str]] = {}
     gated_forms: dict[str, list[str]] = {}
     for material_id in sorted(material_docs):
+        if material_docs[material_id].get("metadata_only"):
+            gated_forms[material_id] = []
+            continue
         factual = factual_forms[material_id]
         recipe_selected = recipe_forms.get(material_id, set())
         ore_chain_selected = ore_chain_forms.get(material_id, set())
@@ -675,6 +743,8 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             | t38_acquisition_forms.get(material_id, set())
             | t39_required_forms.get(material_id, set())
             | t40_required_forms.get(material_id, set())
+            | t48_required_forms.get(material_id, set())
+            | semantic_required_forms.get(material_id, set())
             | rock_forms.get(material_id, set())
         )
         compatibility = ((
@@ -850,6 +920,15 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
                 "source_sha256": sha256(T40_SOURCE),
                 "classification": "t40_compact_output_runtime_required",
             },
+            "t48_compact_required_forms": {
+                "path": "tools/t48_required_forms.json",
+                "field": "required_forms",
+                "sha256": sha256(T48_REQUIRED_FORMS),
+                "source_path": "tools/t47_bath_source.json",
+                "source_sha256": sha256(T47_SOURCE),
+                "classification": "t48_compact_output_runtime_required",
+            },
+            **semantic_source_meta,
         },
         "policy": (
             "recipe-projected forms plus factual ore-source closure registrations and "
@@ -892,6 +971,7 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             ),
             "t39_required_forms": sum(map(len, t39_required_forms.values())),
             "t40_required_forms": sum(map(len, t40_required_forms.values())),
+            "t48_required_forms": sum(map(len, t48_required_forms.values())),
             "compatibility_forms": sum(map(len, compatibility_forms.values())),
             "registered_forms": sum(map(len, gated_forms.values())),
         },
@@ -932,6 +1012,11 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any]]:
             material: sorted(forms)
             for material, forms in sorted(t40_required_forms.items())
         },
+        "t48_required_forms": {
+            material: sorted(forms)
+            for material, forms in sorted(t48_required_forms.items())
+        },
+        **semantic_sections,
         "materials": gated_forms,
     }
     return operand_document, gate_document
@@ -1006,6 +1091,7 @@ def check_committed_outputs() -> list[str]:
             "t38_source_backed_acquisition_forms": sha256(T38_ACQUISITION),
             "t39_compact_required_forms": sha256(T39_REQUIRED_FORMS),
             "t40_compact_required_forms": sha256(T40_REQUIRED_FORMS),
+            "t48_compact_required_forms": sha256(T48_REQUIRED_FORMS),
         }
         for name, expected in expected_source_hashes.items():
             if (sources.get(name) or {}).get("sha256") != expected:
@@ -1042,6 +1128,12 @@ def check_committed_outputs() -> list[str]:
                 or t40_source.get("source_sha256") != sha256(T40_SOURCE)
         ):
             errors.append("material gate T40 required forms drifted")
+        t48_source = sources.get("t48_compact_required_forms") or {}
+        if (
+                t48_source.get("source_path") != "tools/t47_bath_source.json"
+                or t48_source.get("source_sha256") != sha256(T47_SOURCE)
+        ):
+            errors.append("material gate T48 required forms drifted")
 
         operand_counts = operands.get("counts") or {}
         if (

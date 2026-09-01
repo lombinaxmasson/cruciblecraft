@@ -9,6 +9,9 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.api.material.MaterialPrefix;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.content.item.GtWoodCatalog;
+import com.masson.cruciblecraft.content.item.BathMteIdentityCatalog;
+import com.masson.cruciblecraft.content.item.BathIdentityCatalog;
+import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.material.MaterialCatalog;
@@ -106,7 +109,7 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.BRONZE_CRUSHER.get());
                         output.accept(ModItems.SLUICE.get());
                         output.accept(ModItems.BATH.get());
-                        // Every registered machine variant from the T36 catalog
+                        // Every registered machine variant from the tier catalog
                         // (opening 33 plus later material/EU/TU rows).
                         ModMachineVariants.ALL.forEach(variant ->
                                 output.accept(ModBlocks
@@ -150,6 +153,24 @@ public final class ModCreativeTabs {
                         GtBlockObjectCatalog.variants().forEach(block ->
                                 output.accept(ModItems.gtBlockObjectItemsById()
                                         .get(block.id())
+                                        .get()));
+                        com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog.variants().forEach(block ->
+                                output.accept(ModItems.bathRemainderBlockObjectItemsById()
+                                        .get(block.id())
+                                        .get()));
+                        ModItems.bathMteItemsById().values().forEach(item ->
+                                output.accept(item.get()));
+                        BathMteIdentityCatalog.newItems().forEach(identity ->
+                                output.accept(ModItems.bathMteItemsById()
+                                        .get(identity.id())
+                                        .get()));
+                        BathIdentityCatalog.identities().forEach(identity ->
+                                output.accept(ModItems.bathIdentityItemsById()
+                                        .get(identity.id())
+                                        .get()));
+                        SemanticObjectCatalog.identities().forEach(identity ->
+                                output.accept(ModItems.semanticIdentityItemsById()
+                                        .get(identity.id())
                                         .get()));
                         output.accept(ModItems.FLINT_KNIFE.get());
                         // Tool patterns and material-tool variants live in the

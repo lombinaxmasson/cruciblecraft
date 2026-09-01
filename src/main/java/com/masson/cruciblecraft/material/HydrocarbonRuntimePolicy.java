@@ -11,10 +11,10 @@ import com.google.gson.JsonParser;
 
 import net.minecraft.resources.ResourceLocation;
 
-/** Strict runtime view of the authored T11 spring and gas-hazard policy. */
+/** Strict runtime view of the authored hydrocarbon spring and gas-hazard policy. */
 public final class HydrocarbonRuntimePolicy {
     private static final String RESOURCE =
-            "/data/cruciblecraft/t11_hydrocarbon_runtime_policy.json";
+            "/data/cruciblecraft/hydrocarbon_runtime_policy.json";
     private static final Snapshot SNAPSHOT = load();
 
     private HydrocarbonRuntimePolicy() {}
@@ -23,7 +23,7 @@ public final class HydrocarbonRuntimePolicy {
         Production production = SNAPSHOT.production().get(material);
         if (production == null) {
             throw new IllegalArgumentException(
-                    "No T11 production policy for " + material);
+                    "No hydrocarbon production policy for " + material);
         }
         return production;
     }
@@ -50,18 +50,18 @@ public final class HydrocarbonRuntimePolicy {
                 HydrocarbonRuntimePolicy.class.getResourceAsStream(RESOURCE)) {
             if (stream == null) {
                 throw new IllegalStateException(
-                        "Missing T11 hydrocarbon runtime policy");
+                        "Missing hydrocarbon runtime policy");
             }
             root = JsonParser.parseReader(new InputStreamReader(
                     stream, StandardCharsets.UTF_8)).getAsJsonObject();
         } catch (IOException | RuntimeException exception) {
             throw new IllegalStateException(
-                    "Failed to load T11 hydrocarbon runtime policy", exception);
+                    "Failed to load hydrocarbon runtime policy", exception);
         }
         if (integer(root, "schema_version") != 1
                 || !"DESIGN_POLICY".equals(string(root, "status"))) {
             throw new IllegalStateException(
-                    "Unsupported T11 hydrocarbon runtime policy");
+                    "Unsupported hydrocarbon runtime policy");
         }
         JsonObject depletion = object(root, "depletion");
         if (!"non_depleting".equals(string(depletion, "mode"))
@@ -69,7 +69,7 @@ public final class HydrocarbonRuntimePolicy {
                 || !"migration_and_diagnostics_only".equals(
                         string(depletion, "legacy_reserve_role"))) {
             throw new IllegalStateException(
-                    "T11 initial production must remain non-depleting");
+                    "hydrocarbon initial production must remain non-depleting");
         }
 
         LinkedHashMap<ResourceLocation, ResourceLocation> migrations =
@@ -87,7 +87,7 @@ public final class HydrocarbonRuntimePolicy {
             String state = string(value, "state");
             if (!state.equals("liquid") && !state.equals("gas")) {
                 throw new IllegalStateException(
-                        "Unsupported T11 production state " + state);
+                        "Unsupported hydrocarbon production state " + state);
             }
             Production selected = new Production(
                     positive(value, "amount_mb"),
@@ -98,7 +98,7 @@ public final class HydrocarbonRuntimePolicy {
             if (selected.accumulationCapMb() < selected.amountMb()
                     || selected.ventOverflow() != selected.gas()) {
                 throw new IllegalStateException(
-                        "Invalid T11 production policy for " + material);
+                        "Invalid hydrocarbon production policy for " + material);
             }
             production.put(material, selected);
         });
@@ -113,7 +113,7 @@ public final class HydrocarbonRuntimePolicy {
                 positive(cloud, "maximum_emitted_mb"));
         if (cloudPolicy.parcelMb() > cloudPolicy.maximumEmittedMb()) {
             throw new IllegalStateException(
-                    "T11 gas cloud parcel exceeds its bounded emission");
+                    "hydrocarbon gas cloud parcel exceeds its bounded emission");
         }
 
         LinkedHashMap<ResourceLocation, Boolean> flammable =
@@ -129,7 +129,7 @@ public final class HydrocarbonRuntimePolicy {
         if (production.isEmpty() || flammable.values().stream().noneMatch(
                 Boolean::booleanValue)) {
             throw new IllegalStateException(
-                    "T11 runtime policy has no production or live flammable gas");
+                    "hydrocarbon runtime policy has no production or live flammable gas");
         }
         object(root, "source_policy");
         return new Snapshot(
@@ -142,7 +142,7 @@ public final class HydrocarbonRuntimePolicy {
     private static JsonObject object(JsonObject value, String field) {
         if (!value.has(field) || !value.get(field).isJsonObject()) {
             throw new IllegalStateException(
-                    "T11 runtime policy is missing object " + field);
+                    "hydrocarbon runtime policy is missing object " + field);
         }
         return value.getAsJsonObject(field);
     }
@@ -150,7 +150,7 @@ public final class HydrocarbonRuntimePolicy {
     private static String string(JsonObject value, String field) {
         if (!value.has(field) || !value.get(field).isJsonPrimitive()) {
             throw new IllegalStateException(
-                    "T11 runtime policy is missing string " + field);
+                    "hydrocarbon runtime policy is missing string " + field);
         }
         return value.get(field).getAsString();
     }
@@ -158,7 +158,7 @@ public final class HydrocarbonRuntimePolicy {
     private static boolean bool(JsonObject value, String field) {
         if (!value.has(field) || !value.get(field).isJsonPrimitive()) {
             throw new IllegalStateException(
-                    "T11 runtime policy is missing boolean " + field);
+                    "hydrocarbon runtime policy is missing boolean " + field);
         }
         return value.get(field).getAsBoolean();
     }
@@ -166,7 +166,7 @@ public final class HydrocarbonRuntimePolicy {
     private static int integer(JsonObject value, String field) {
         if (!value.has(field) || !value.get(field).isJsonPrimitive()) {
             throw new IllegalStateException(
-                    "T11 runtime policy is missing integer " + field);
+                    "hydrocarbon runtime policy is missing integer " + field);
         }
         return value.get(field).getAsInt();
     }
@@ -175,7 +175,7 @@ public final class HydrocarbonRuntimePolicy {
         int result = integer(value, field);
         if (result <= 0) {
             throw new IllegalStateException(
-                    "T11 runtime policy " + field + " must be positive");
+                    "hydrocarbon runtime policy " + field + " must be positive");
         }
         return result;
     }
@@ -184,7 +184,7 @@ public final class HydrocarbonRuntimePolicy {
         ResourceLocation id = ResourceLocation.tryParse(value);
         if (id == null) {
             throw new IllegalStateException(
-                    "Invalid T11 resource location " + value);
+                    "Invalid hydrocarbon resource location " + value);
         }
         return id;
     }

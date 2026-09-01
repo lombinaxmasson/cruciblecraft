@@ -1,0 +1,55 @@
+{
+  "family_id": "gt.recipe.assembler#0127",
+  "publication_group": "cruciblecraft:assembler/planks",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 32,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        8,
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:gt_wood/compressed_wood_planks"
+        },
+        {
+          "item": "minecraft:redstone"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:note_block"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "459cb4dce55370e5a5c0a3648a1ad94160575d659d112b284b4df052e630e6a9"
+        ],
+        "selected_source_recipe": "gt.recipe.assembler#0127",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:assembler/wood/47d996c6a452f6c0"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:assembler",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

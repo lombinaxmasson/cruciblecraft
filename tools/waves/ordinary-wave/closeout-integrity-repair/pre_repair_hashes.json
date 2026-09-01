@@ -1,0 +1,30 @@
+{
+  "affected_waves": [
+    "smelter/ordinary-closure",
+    "mixer/ordinary-closure"
+  ],
+  "generated_by": "python tools/build_ordinary_closeout_integrity.py",
+  "generated_tree_sha256": {
+    "mixer/ordinary-closure": "ffdd2e5f3f67eca0652c91b4b555d6aba566784cbaffc2da544d5defd268b808",
+    "smelter/ordinary-closure": "0988c9e41fd6f771df33e8322310dd32df1f1eca46a06568563c045eee505fef"
+  },
+  "production_lock_sha256": {
+    "mixer/ordinary-closure": "52ff944e3ed4668d1c295d662f7d13f33a30e9cff9ba47869992cef4001defdd",
+    "smelter/ordinary-closure": "9e402fc0185f580b5f93a8bab25a048b48b5a1be42c6ece82fe050043ddab485"
+  },
+  "schema_version": 1,
+  "seals": {
+    "mixer/ordinary-closure": {
+      "path": "tools/waves/mixer/ordinary-closure/closeout_seal.json",
+      "pre_repair_copy": "tools/waves/ordinary-wave/closeout-integrity-repair/pre_repair_mixer_ordinary-closure_closeout_seal.json",
+      "sha256": "1b44aa40d2ef07ab991a9223a43c1a0b31a6884a61d73b48f0535887a03953f8"
+    },
+    "smelter/ordinary-closure": {
+      "path": "tools/waves/smelter/ordinary-closure/closeout_seal.json",
+      "pre_repair_copy": "tools/waves/ordinary-wave/closeout-integrity-repair/pre_repair_smelter_ordinary-closure_closeout_seal.json",
+      "sha256": "a48206a6ed0e0c27ef7d52f511f20f5feafafec3855791a05bd3d2175718e870"
+    }
+  },
+  "status": "PRE_REPAIR_SNAPSHOT",
+  "wave_slug": "ordinary-wave/closeout-integrity-repair"
+}

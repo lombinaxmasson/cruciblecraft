@@ -1,0 +1,43 @@
+{
+  "behavior_root_sha256": "8ef7a019981f966698c1858b056b1e229def21005cf2b027c04a8cbfaf9d4794",
+  "bound_artifacts": {
+    "gametest_java": "04b6f49d0da60cd42f7bf442f781e162cff8229459eb7a841eb60edfa3b64b27",
+    "material_registration_gate_java": "f8e8ba95965402c1ff67bc20de9e0ae9e3f9c92e849deb209e76e0ae6161f359",
+    "material_registration_gate_json": "fba3b60e2a076810ec3b50f59b0153e2f1206da690420b715142f541a32ead26",
+    "production_lock": "884643b2ba569e4eb96c9fcfe63caeebc61be6bb2df3334f85d3cf13490614db",
+    "publication_group_manifest": "ef2ddcc04dba2210b82ed02efbc003c06ceada2ba958cf7c1a544bd33bbeb1d8",
+    "runtime_dependency_manifest": "46f7c22122a60fa3de6f0d6a33d4166fc71ab9dc9a8476da79274727bd6720d3",
+    "shard_manifest": "a76129b7d08f83c346c76cf1f2a4e46f4b5ff1fa1a4a32bda139806103387d06",
+    "t47_generated_recipes": "a5b6f3644c0bd7e0995e1a584bc6b1a0ea9ff02a24da3feafb8061b5d16c241b",
+    "t47_locked_support": "518e98c8f23eb74dc2c8a42729f81cae2be96d352e40e505fb89b0fbd0498a1e"
+  },
+  "command": ".\\gradlew.bat runGameTestServer -Pt47Recipes --no-daemon",
+  "currentness_root_sha256": "31350283597f24bef4252a534912fa8a136bd1a9004eec27d5eaf8ae357d5edd",
+  "equivalence_root_sha256": "5e5d2ee68e15e4457a417204866aaac76ee4fb9db7b8ddd2178c617b52fed165",
+  "failed": 0,
+  "java_sha256": "04b6f49d0da60cd42f7bf442f781e162cff8229459eb7a841eb60edfa3b64b27",
+  "java_source": "src/main/java/com/masson/cruciblecraft/gametest/T47RecipeGameTests.java",
+  "log_fingerprint": "02eea84b21a53b4029d5a0d92d093302149610d0a8e5cdd10c7a8df7c5730452",
+  "log_path": "tools/t47_gametest.log",
+  "namespace": "cruciblecraft_t47",
+  "note": "Source markers are not a pass. This receipt is the isolated -Pt47Recipes result bound to the T47 production lock, recipe and support trees, and the committed UTF-8 evidence log. Composed identity/runtime v2 is a close-time snapshot, not a live pin.",
+  "pass_marker": "All 10 required tests passed :)",
+  "passed": 10,
+  "required_tests": 10,
+  "schema_version": 3,
+  "semantic_tree_sha256": "fadca96e57f864a3e6db6a8d6a030852d022396f620e3634415e82fc6abda01d",
+  "skip_is_not_pass": true,
+  "status": "PASS",
+  "test_ids": [
+    "b1supportreachable",
+    "bathexactexecution",
+    "bathexactmultiexecution",
+    "consumepreservecatalyst",
+    "emiplanincludest47",
+    "lockedcounts",
+    "reloadrootsstable",
+    "shardhardgate",
+    "t46groupunchanged",
+    "wrongidentityrejected"
+  ]
+}

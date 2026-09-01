@@ -1,0 +1,87 @@
+{
+  "blocker_count": 156,
+  "composition": {
+    "conflict_check": "pass",
+    "consumed_deltas": [
+      {
+        "file_sha256": "a66aa18fbdb7b94711ed07fc0085cddd552ce298db565eba400ab415b8a83dd6",
+        "order": "smelter/ordinary-closure",
+        "path": "tools/waves/smelter/ordinary-closure/identity_ledger_delta.json",
+        "wave_slug": "smelter/ordinary-closure"
+      },
+      {
+        "file_sha256": "6be11a62e35bbf49d70b78ee640e51305ddb7e167b670107dab1a7a85a460029",
+        "order": "mixer/ordinary-closure",
+        "path": "tools/waves/mixer/ordinary-closure/identity_ledger_delta.json",
+        "wave_slug": "mixer/ordinary-closure"
+      },
+      {
+        "file_sha256": "fb08275a01f331540ff7d401d895e7f0a7eb1d5229da6e4ef366d529550e6ee1",
+        "order": "drying/ordinary-closure",
+        "path": "tools/waves/drying/ordinary-closure/identity_ledger_delta.json",
+        "wave_slug": "drying/ordinary-closure"
+      },
+      {
+        "file_sha256": "2bda0d070493636c3818b170ca05ad769f21bd83b93d76164863331b016c2031",
+        "order": "electrolyzer/ordinary-closure",
+        "path": "tools/waves/electrolyzer/ordinary-closure/identity_ledger_delta.json",
+        "wave_slug": "electrolyzer/ordinary-closure"
+      },
+      {
+        "file_sha256": "46f4a1ed6f8bb24f0481863172676693bbfd6507999c336725d3a7850d50038e",
+        "order": "centrifuge/ordinary-closure",
+        "path": "tools/waves/centrifuge/ordinary-closure/identity_ledger_delta.json",
+        "wave_slug": "centrifuge/ordinary-closure"
+      },
+      {
+        "file_sha256": "4d01807a5085a36965d957f9fa7687cb25977fbe9ce04e32381871cc86d7dab6",
+        "order": "autoclave/ordinary-closure",
+        "path": "tools/waves/autoclave/ordinary-closure/identity_ledger_delta.json",
+        "wave_slug": "autoclave/ordinary-closure"
+      },
+      {
+        "file_sha256": "015d0aa54b9ff99266a5e485f2c2b4510b62ee192584e59b0f5ccdd7b843763c",
+        "order": "compressor/ordinary-closure",
+        "path": "tools/waves/compressor/ordinary-closure/identity_ledger_delta.json",
+        "wave_slug": "compressor/ordinary-closure"
+      },
+      {
+        "file_sha256": "89f5c2f09bdac62202c1e6bcbde315220831cb60e59c2f1ad44dde0e198bbd51",
+        "order": "smelter/deferred-recycling",
+        "path": "tools/waves/smelter/deferred-recycling/identity_ledger_delta.json",
+        "wave_slug": "smelter/deferred-recycling"
+      }
+    ],
+    "logical_identities_equal_v2": false,
+    "semantic_alias_root_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "semantic_root_sha256": "d13b4abaf785740040072ff09dad3651986c31fcd22d120cc73f2057c5037d01",
+    "v2_file_sha256": "6b2f7d395c74f68ecf84244a113b28fba38de6c9752be7f50b12c2ee21805adb",
+    "v2_logical_identity_root_sha256": "bb6d194959fa8675ca06520835d0628039d8de2cf107fc1a19200ef5dadfe11b"
+  },
+  "counts": {
+    "block_object": 365,
+    "canonical_tag": 625,
+    "component_circuit": 28,
+    "exact_item": 21623,
+    "fluid": 122,
+    "material_form": 13081,
+    "proven_source_derived_alias": 2657,
+    "stateful_identity": 7,
+    "stone_object": 406,
+    "storage_identity": 625,
+    "unbound_tag": 12,
+    "unproven_alias": 86,
+    "unproven_lossy_alias": 51
+  },
+  "generated_by": "python tools/build_global_build_identity_ledger_v3.py",
+  "note": "Forward-v3 identity ledger. Frozen v2 file hash plus semantic alias root plus ordered slug deltas. Does not rewrite v2.",
+  "record_count": 39532,
+  "schema_version": 3,
+  "status": "GLOBAL_BUILD_IDENTITY_LEDGER_V3",
+  "v2_base": {
+    "file_sha256": "6b2f7d395c74f68ecf84244a113b28fba38de6c9752be7f50b12c2ee21805adb",
+    "path": "tools/global_build_identity_ledger.v2.json",
+    "semantic_root_sha256": "bb6d194959fa8675ca06520835d0628039d8de2cf107fc1a19200ef5dadfe11b",
+    "status": "GLOBAL_BUILD_IDENTITY_LEDGER_V2"
+  }
+}

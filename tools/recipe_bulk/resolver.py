@@ -128,8 +128,38 @@ def resolve_operand(
         store = index
         if store is None:
             store = identity_mod.index_ledger(ledger)
+        existing = _existing_runtime(operand)
+        semantic = "/" in str(wave_id)
         hit = identity_mod.lookup_first(wave_id, operand, index=store)
+        if semantic and existing and (
+            hit is None or (hit is not None and hit[0] == "blocker")
+        ):
+            return {
+                "class": "exact_runtime",
+                "disposition": "proven_equivalent",
+                "evidence": "already_mapped_runtime",
+                "registration_authority": "cruciblecraft",
+                "route_key": existing,
+                "runtime_id": existing,
+                "components": None,
+                "source_key": None,
+                "source_kind": None,
+                "target_identity": existing,
+            }
         if hit is None:
+            if existing:
+                return {
+                    "class": "exact_runtime",
+                    "disposition": "proven_equivalent",
+                    "evidence": "already_mapped_runtime",
+                    "registration_authority": "cruciblecraft",
+                    "route_key": existing,
+                    "runtime_id": existing,
+                    "components": None,
+                    "source_key": None,
+                    "source_kind": None,
+                    "target_identity": existing,
+                }
             if require_proven:
                 raise ResolutionError(
                     f"{wave_id} missing identity for {identity_mod.candidate_keys(wave_id, operand)}"

@@ -15,11 +15,14 @@
 
 ## 当前 active 卡
 
-无。T45 Recipe Bulk Compiler + block-object 生产波已关闭（`T45_READY`，379 complete families，remaining gap 2697）。T46 未签发，不预分配 host 或 family IDs。无 active repair gate。
-
-## 已规划、未签发
-
-无。
+[通用 Source Pack 导入器](card-plans/active/通用Source-Pack导入器详细计划.md)
+（slug `portfolio/generic-recipe-generator`）已签发，尚未实现。它是
+`owns_families = 0` 的机制 program，不签 production lock，不发布配方，也不把
+四条 combinatorial family 记成完成。R0 artifact 尚未生成，所以上一
+[源能力对照图](card-plans/closed/源能力对照图详细计划.md) closing 的
+`unique_active_wave = null` / `next_unassigned = true` 仍是当前机器可读事实。
+1.x joint exit 已 `ONE_X_JOINT_EXIT_READY`。不自动启动核能。语义命名不占用
+内容卡，见 [semantic-naming.md](../current/semantic-naming.md)。
 
 ## 阶段档案
 
@@ -59,6 +62,15 @@
 | [T36-Repair](stage-archives/CrucibleCraft-阶段档案-T36-Repair.md) | 阶段档案 | 关闭（`T36_REPAIR_READY`） |
 | [T44](stage-archives/CrucibleCraft-阶段档案-T44.md) | 阶段档案 | 关闭（`T44_STORAGE_READY`） |
 | [T45](stage-archives/CrucibleCraft-阶段档案-T45.md) | 阶段档案 | 关闭（`T45_READY`） |
+| [T46](stage-archives/CrucibleCraft-阶段档案-T46.md) | 阶段档案 | 关闭（`T46_READY`） |
+| [T47](stage-archives/CrucibleCraft-阶段档案-T47.md) | 阶段档案 | 关闭（`T47_READY`） |
+| [T47-VR](stage-archives/CrucibleCraft-阶段档案-T47-VR.md) | 阶段档案 | 关闭（`T47_VR_READY`） |
+| [T48](stage-archives/CrucibleCraft-阶段档案-T48.md) | 阶段档案 | 关闭（`T48_READY`） |
+| [T49](stage-archives/CrucibleCraft-阶段档案-T49.md) | 阶段档案 | 关闭（`T49_READY`） |
+| [Ordinary 尾账收口](stage-archives/CrucibleCraft-阶段档案-Ordinary尾账收口.md) | 阶段档案 | 关闭（`ORDINARY_REMAINDER_CLOSURE_READY`） |
+| [回收运行时与 Deferred 账本收口](stage-archives/CrucibleCraft-阶段档案-回收运行时与Deferred账本收口.md) | 阶段档案 | 关闭（`DEFERRED_ORDINARY_RUNTIME_READY`） |
+| [1.x 联合退出门](stage-archives/CrucibleCraft-阶段档案-1.x联合退出门.md) | 阶段档案 | 关闭（`ONE_X_JOINT_EXIT_READY`） |
+| [源能力对照图](stage-archives/CrucibleCraft-阶段档案-源能力对照图.md) | 阶段档案 | 关闭（`SOURCE_CAPABILITY_MAP_READY`） |
 
 ## 工作日志
 
@@ -89,6 +101,15 @@
 | [T36-Repair 工作日志](work-logs/T36-Repair-工作日志.md) | 工作日志 | 关闭（`T36_REPAIR_READY`） |
 | [T44 工作日志](work-logs/T44-工作日志.md) | 工作日志 | 关闭（`T44_STORAGE_READY`） |
 | [T45 工作日志](work-logs/T45-工作日志.md) | 工作日志 | 关闭（`T45_READY`） |
+| [T46 工作日志](work-logs/T46-工作日志.md) | 工作日志 | 关闭（`T46_READY`） |
+| [T47 工作日志](work-logs/T47-工作日志.md) | 工作日志 | 关闭（`T47_READY`） |
+| [T47-VR 工作日志](work-logs/T47-VR-工作日志.md) | 工作日志 | 关闭（`T47_VR_READY`） |
+| [T48 工作日志](work-logs/T48-工作日志.md) | 工作日志 | 关闭（`T48_READY`） |
+| [T49 工作日志](work-logs/T49-工作日志.md) | 工作日志 | 关闭（`T49_READY`） |
+| [Ordinary 尾账收口 工作日志](work-logs/Ordinary尾账收口-工作日志.md) | 工作日志 | 关闭（`ORDINARY_REMAINDER_CLOSURE_READY`） |
+| [回收运行时与 Deferred 账本收口 工作日志](work-logs/回收运行时与Deferred账本收口-工作日志.md) | 工作日志 | 关闭（`DEFERRED_ORDINARY_RUNTIME_READY`） |
+| [1.x 联合退出门 工作日志](work-logs/1.x联合退出门-工作日志.md) | 工作日志 | 关闭（`ONE_X_JOINT_EXIT_READY`） |
+| [源能力对照图 工作日志](work-logs/源能力对照图-工作日志.md) | 工作日志 | 关闭（`SOURCE_CAPABILITY_MAP_READY`） |
 | [T31 RC soak](work-logs/T31-RC-soak.md) | 发行实验 | 关闭，非玩家 GA |
 
 ## 决策与关闭计划
@@ -117,4 +138,14 @@
 | [T43 详细计划](card-plans/closed/T43详细计划.md) | 关闭计划 | [T43 阶段档案](stage-archives/CrucibleCraft-阶段档案-T43.md) |
 | [T44 详细计划](card-plans/closed/T44详细计划.md) | 关闭计划 | [T44 阶段档案](stage-archives/CrucibleCraft-阶段档案-T44.md) |
 | [T45 详细计划](card-plans/closed/T45详细计划.md) | 关闭计划 | [T45 阶段档案](stage-archives/CrucibleCraft-阶段档案-T45.md) |
+| [T46 详细计划](card-plans/closed/T46详细计划.md) | 关闭计划 | [T46 阶段档案](stage-archives/CrucibleCraft-阶段档案-T46.md) |
+| [T47 详细计划](card-plans/closed/T47详细计划.md) | 关闭计划 | [T47 阶段档案](stage-archives/CrucibleCraft-阶段档案-T47.md) |
+| [T47-VR 详细计划](card-plans/closed/T47-VR详细计划.md) | 关闭计划 | [T47-VR 阶段档案](stage-archives/CrucibleCraft-阶段档案-T47-VR.md) |
+| [T48 详细计划](card-plans/closed/T48详细计划.md) | 关闭计划 | [T48 阶段档案](stage-archives/CrucibleCraft-阶段档案-T48.md) |
+| [T49 详细计划](card-plans/closed/T49详细计划.md) | 关闭计划 | [T49 阶段档案](stage-archives/CrucibleCraft-阶段档案-T49.md) |
+| [Smelter / Mixer 收口与语义命名迁移](card-plans/closed/Smelter-Mixer收口与语义命名迁移详细计划.md) | 关闭计划（slug `recipe-portfolio/semantic-closure`） | 配方主体已产出；命名残留见 [semantic-naming.md](../current/semantic-naming.md) |
+| [Ordinary 尾账收口与封板修复](card-plans/closed/Ordinary尾账收口与封板修复详细计划.md) | 关闭计划（slug `recipe-portfolio/ordinary-remainder-closure`） | execution gap = 0；后继已签发 `recycling/deferred-ordinary-runtime` |
+| [回收运行时与 Deferred 账本收口](card-plans/closed/回收运行时与Deferred账本收口详细计划.md) | 关闭计划（slug `recycling/deferred-ordinary-runtime`） | 1,817 complete + 28 post-1.x；deferred ledger = 0；后继已关闭 `portfolio/one-x-joint-exit` |
+| [1.x 联合退出门](card-plans/closed/1.x联合退出门详细计划.md) | 关闭计划（slug `portfolio/one-x-joint-exit`） | 六条 GREEN；load 口径 A；后继已关闭 `portfolio/source-capability-map` |
+| [源能力对照图](card-plans/closed/源能力对照图详细计划.md) | 关闭计划（slug `portfolio/source-capability-map`） | 113 行对照；leftover 39；后继已签发 `portfolio/generic-recipe-generator` |
 | [交接说明](handoffs/CrucibleCraft-交接说明.md) | 交接 | 以 README 为准 |

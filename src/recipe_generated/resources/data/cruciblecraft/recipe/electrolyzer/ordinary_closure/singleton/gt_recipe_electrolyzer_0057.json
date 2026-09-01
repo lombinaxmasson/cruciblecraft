@@ -1,0 +1,67 @@
+{
+  "family_id": "gt.recipe.electrolyzer#0057",
+  "publication_group": "cruciblecraft:electrolyzer/ordinary_closure/singleton",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 4672,
+      "eut": 224,
+      "fluid_inputs": [
+        {
+          "amount": 1440,
+          "id": "cruciblecraft:molten_ender_pearl"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 5000,
+          "id": "cruciblecraft:nitrogen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:beryllium/dust"
+        },
+        {
+          "count": 4,
+          "id": "cruciblecraft:potassium/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "b1efa634a822f48fed4fdabff9353aa092baf6d18985cc46fff7e75a7fdbdfdc"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#0057",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:electrolyzer/ordinary_closure/7368ba958301325d"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:electrolyzer",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

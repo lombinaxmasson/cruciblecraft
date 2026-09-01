@@ -1,0 +1,59 @@
+{
+  "family_id": "gt.recipe.assembler#0011",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 16,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:spruce_planks"
+        },
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 1
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:oak_button"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "32dc073804118da51dfb330899c24ee3823c493360e23142d997319e076ac9c8"
+        ],
+        "selected_source_recipe": "gt.recipe.assembler#0011",
+        "source_kind": "DESIGN_POLICY"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:assembler/compact/e689ae56a29aee05"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:assembler",
+  "type": "cruciblecraft:compact_gt_recipe_family",
+  "publication_group": "cruciblecraft:assembler/compact"
+}

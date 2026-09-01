@@ -1,0 +1,62 @@
+{
+  "family_id": "gt.recipe.electrolyzer#0098",
+  "publication_group": "cruciblecraft:electrolyzer/singleton",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 1460,
+      "eut": 70,
+      "fluid_inputs": [
+        {
+          "amount": 5000,
+          "id": "cruciblecraft:methane"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 4000,
+          "id": "cruciblecraft:hydrogen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:carbon/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "938b834c0c3a0d32b4f207d8c29a8c57530aad4c7ed92d15d4b7021b77205879"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#0098",
+        "source_kind": "DESIGN_POLICY"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:electrolyzer/compact/45432d0adbf3220d"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:electrolyzer",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

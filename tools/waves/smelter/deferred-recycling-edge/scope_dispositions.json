@@ -1,0 +1,45 @@
+{
+  "dispositions": [
+    {
+      "allowed_dispositions": [
+        "proven_equivalent",
+        "phase_deferred",
+        "post_1x_scope",
+        "unsupported"
+      ],
+      "cohort": "smelter_recovery_edge",
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:smelter/gt.recipe.smelter#1829",
+      "future_owner": "post_1.x/smelter_recovery_edge",
+      "host": "cruciblecraft:smelter",
+      "opening_future_owner": "later:recycling",
+      "reason": "Mortar meta 32075 recovers molten.alumina. alumina.json sets molten_fluid=false, so 1.x must not alias it to aluminium. The meta is outside the 1817 Smelter MTE identity catalog.",
+      "recheck_condition": "independent post-1.x scope; not 1.x joint exit",
+      "template_key": "gt.recipe.smelter#1829"
+    },
+    {
+      "allowed_dispositions": [
+        "proven_equivalent",
+        "phase_deferred",
+        "post_1x_scope",
+        "unsupported"
+      ],
+      "cohort": "smelter_recovery_edge",
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:smelter/gt.recipe.smelter#1884",
+      "future_owner": "post_1.x/smelter_recovery_edge",
+      "host": "cruciblecraft:smelter",
+      "opening_future_owner": "later:recycling",
+      "reason": "Miniature nether portal meta 32766 recovers vanilla lava. Plan forbids mapping lava to an arbitrary molten metal. runtime_registered=false and the meta is outside the 1817 identity catalog.",
+      "recheck_condition": "independent post-1.x scope; not 1.x joint exit",
+      "template_key": "gt.recipe.smelter#1884"
+    }
+  ],
+  "generated_by": "python tools/build_deferred_scope_child.py",
+  "owns_families": 2,
+  "padding_forbidden": true,
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "POST_1X_SCOPE",
+  "wave_slug": "smelter/deferred-recycling-edge"
+}

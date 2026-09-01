@@ -14,7 +14,7 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import net.minecraft.resources.ResourceLocation;
 
 /**
- * T19c's bounded vanilla-crafting projection for the five nonmetal fluid-pipe
+ * Bounded vanilla-crafting projection for the five nonmetal fluid-pipe
  * materials. GT6's five Wood rows stay source-derived; the other twenty rows
  * are explicit CrucibleCraft design policy.
  */
@@ -40,7 +40,7 @@ public final class PipeAcquisitionRecipeCatalog {
                         && spec.output().equals(output))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(
-                        "No T19c pipe acquisition recipe for "
+                        "No pipe acquisition recipe for "
                                 + materialId + "/" + output.serializedName()));
     }
 
@@ -81,7 +81,7 @@ public final class PipeAcquisitionRecipeCatalog {
                         .distinct()
                         .count() != 25) {
             throw new IllegalStateException(
-                    "T19c pipe acquisition catalog must contain 25 unique rows");
+                    "Pipe acquisition catalog must contain 25 unique rows");
         }
         return List.copyOf(recipes);
     }

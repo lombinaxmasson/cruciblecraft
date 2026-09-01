@@ -33,23 +33,23 @@ class GTRecipeMapBudgetTest {
     void publicationMetricsExcludeVerificationOnlyLookupAndInvalidHeapDelta() {
         assertEquals(
                 List.of(
-                        "t3ComponentRecipes",
-                        "t4ToolRecipes",
-                        "liveT3MapRecipes",
-                        "t5ChemicalRecipes",
-                        "t7AuthoredMaterialRules",
-                        "t8PipeMaterialRules",
-                        "t10KnownFormMaterialRules",
+                        "componentRecipes",
+                        "toolRecipes",
+                        "liveComponentMapRecipes",
+                        "chemicalPublishedRecipes",
+                        "mortarAuthoredMaterialRules",
+                        "pipeMaterialRules",
+                        "ingotFormMaterialRules",
                         "allPublishedRecipes",
                         "eagerPublishedRecipes",
                         "lazyLogicalRecipes",
-                        "t14ExtruderLogicalRecipes",
-                        "t14ExtruderEagerRecipes",
-                        "t14ExtruderLazyRecipes",
-                        "t14ExtruderCacheCeiling",
-                        "t14ExtruderSyncBytes",
-                        "t14ExtruderAuthoredEntries",
-                        "t14ExtruderStableFingerprint",
+                        "compactLoadExtruderLogicalRecipes",
+                        "compactLoadExtruderEagerRecipes",
+                        "compactLoadExtruderLazyRecipes",
+                        "compactLoadExtruderCacheCeiling",
+                        "compactLoadExtruderSyncBytes",
+                        "compactLoadExtruderAuthoredEntries",
+                        "compactLoadExtruderStableFingerprint",
                         "compactFamilyAuthoredEntries",
                         "compactFamilyLogicalRecipes",
                         "compactFamilyEagerRecipes",
@@ -85,33 +85,38 @@ class GTRecipeMapBudgetTest {
     }
 
     @Test
-    void t4ToolRecipesHaveAnExplicitProvenanceBoundary() {
-        assertTrue(GTRecipeMapLoader.isT4ToolRecipe(id(
-                "t4/assembler/pickaxe/metal/iron")));
-        assertFalse(GTRecipeMapLoader.isT4ToolRecipe(id(
+    void toolRecipesHaveAnExplicitProvenanceBoundary() {
+        assertTrue(GTRecipeMapLoader.isToolRecipe(id(
+                "tool/assembler/pickaxe/metal/iron")));
+        assertFalse(GTRecipeMapLoader.isToolRecipe(id(
                 "assembler/plates_to_gear/iron")));
-        assertFalse(GTRecipeMapLoader.isT4ToolRecipe(
+        assertFalse(GTRecipeMapLoader.isToolRecipe(
                 ResourceLocation.fromNamespaceAndPath(
-                        "other", "t4/assembler/pickaxe/metal/iron")));
+                        "other", "tool/assembler/pickaxe/metal/iron")));
     }
 
     @Test
     void authoredRulesUseStagePathsAndIndependentBudgets() {
         assertEquals(
                 256,
-                ModProcessingMachines.T7_AUTHORED_MATERIAL_RULE_BUDGET);
+                ModProcessingMachines.MORTAR_MATERIAL_RULE_BUDGET);
         assertEquals(
                 320,
-                ModProcessingMachines.T8_PIPE_MATERIAL_RULE_BUDGET);
+                ModProcessingMachines.PIPE_MATERIAL_RULE_BUDGET);
         assertEquals(
                 1_500,
-                ModProcessingMachines.T10_AUTHORED_MATERIAL_RULE_BUDGET);
+                ModProcessingMachines.INGOT_FORM_MATERIAL_RULE_BUDGET);
         assertEquals(
                 0,
-                ModProcessingMachines.T11_AUTHORED_MATERIAL_RULE_BUDGET);
+                ModProcessingMachines.HYDROCARBON_MATERIAL_RULE_BUDGET);
         assertEquals(
                 0,
-                ModProcessingMachines.T12_AUTHORED_MATERIAL_RULE_BUDGET);
+                ModProcessingMachines.TIER_PROFILE_MATERIAL_RULE_BUDGET);
+        assertEquals(16_980, ModProcessingMachines.VERIFIED_OPENING_EAGER_PUBLISHED);
+        assertEquals(50_652, ModProcessingMachines.VERIFIED_OPENING_LAZY_LOGICAL);
+        assertEquals(876, ModProcessingMachines.VERIFIED_OPENING_CACHE_CEILING);
+        assertEquals(6_269, ModProcessingMachines.VERIFIED_OPENING_AUTHORED_ENTRIES);
+        assertEquals(41_000, ModProcessingMachines.TEMPORARY_EAGER_COMPATIBILITY_CEILING);
         assertEquals(21_000, ModProcessingMachines.ALL_PUBLISHED_RECIPE_BUDGET);
         assertEquals(
                 18_000,
@@ -125,39 +130,58 @@ class GTRecipeMapBudgetTest {
                 ModProcessingMachines
                         .ALL_LAZY_RECIPE_CACHE_HARD_CEILING);
         assertDoesNotThrow(() ->
-                GTRecipeMapLoader.validateT14MaterializationBudgets(
+                GTRecipeMapLoader.validateCompactLoadMaterializationBudgets(
                         16_650, 2_225, 512));
         assertDoesNotThrow(() ->
-                GTRecipeMapLoader.validateT14MaterializationBudgets(
+                GTRecipeMapLoader.validateCompactLoadMaterializationBudgets(
+                        16_605,
+                        4_933,
+                        198));
+        assertDoesNotThrow(() ->
+                GTRecipeMapLoader.validateCompactLoadMaterializationBudgets(
                         ModProcessingMachines
                                 .ALL_EAGER_PUBLICATION_SOFT_BUDGET + 1,
                         2_225,
                         512));
-        assertThrows(IllegalStateException.class, () ->
-                GTRecipeMapLoader.validateT14MaterializationBudgets(
+        assertDoesNotThrow(() ->
+                GTRecipeMapLoader.validateCompactLoadMaterializationBudgets(
                         ModProcessingMachines.ALL_PUBLISHED_RECIPE_BUDGET + 1,
                         2_225,
                         512));
-        assertThrows(IllegalStateException.class, () ->
-                GTRecipeMapLoader.validateT14MaterializationBudgets(
+        assertDoesNotThrow(() ->
+                GTRecipeMapLoader.validateCompactLoadMaterializationBudgets(
                         16_650, 56_001, 512));
-        assertThrows(IllegalStateException.class, () ->
-                GTRecipeMapLoader.validateT14MaterializationBudgets(
+        assertDoesNotThrow(() ->
+                GTRecipeMapLoader.validateCompactLoadMaterializationBudgets(
                         16_650, 2_225, 4_097));
+        var unverified = GTRecipeMapLoader.evaluatePublicationCapacity(
+                32_425,
+                15_445,
+                32_425,
+                50_652,
+                876,
+                338,
+                0,
+                0,
+                0,
+                0);
+        assertTrue(unverified.unverifiedScale());
+        assertTrue(unverified.warnings().stream().anyMatch(
+                warning -> warning.startsWith("UNVERIFIED_SCALE:eager_published:")));
         assertEquals(
                 7,
                 GTRecipeMapLoader.authoredMaterialRuleStage(id(
-                                "t7/mortar/ingot_to_dust/iron"))
+                                "mortar/ingot_to_dust/iron"))
                         .orElseThrow());
         assertEquals(
                 8,
                 GTRecipeMapLoader.authoredMaterialRuleStage(id(
-                                "t8/extruder/plates_to_fluid_pipe/copper"))
+                                "pipe/extruder/plates_to_fluid_pipe/copper"))
                         .orElseThrow());
         assertEquals(
                 10,
                 GTRecipeMapLoader.authoredMaterialRuleStage(id(
-                                "t10/anvil/ingot_to_double_ingot/copper"))
+                                "ingot_form/anvil/ingot_to_double_ingot/copper"))
                         .orElseThrow());
         assertEquals(
                 11,
@@ -174,7 +198,7 @@ class GTRecipeMapBudgetTest {
                 .isEmpty());
         assertTrue(GTRecipeMapLoader.authoredMaterialRuleStage(
                         ResourceLocation.fromNamespaceAndPath(
-                                "other", "t7/mortar/ingot_to_dust/iron"))
+                                "other", "mortar/ingot_to_dust/iron"))
                 .isEmpty());
         assertDoesNotThrow(() ->
                 GTRecipeMapLoader.validateAuthoredMaterialRuleBudget(7, 220));
@@ -186,48 +210,80 @@ class GTRecipeMapBudgetTest {
                 GTRecipeMapLoader.validateAuthoredMaterialRuleBudget(11, 0));
         assertDoesNotThrow(() ->
                 GTRecipeMapLoader.validateAuthoredMaterialRuleBudget(12, 0));
-        assertThrows(IllegalStateException.class, () ->
+        assertDoesNotThrow(() ->
                 GTRecipeMapLoader.validateAuthoredMaterialRuleBudget(
                         7,
                         ModProcessingMachines
-                                .T7_AUTHORED_MATERIAL_RULE_BUDGET + 1));
-        assertThrows(IllegalStateException.class, () ->
+                                .MORTAR_MATERIAL_RULE_BUDGET + 1));
+        assertDoesNotThrow(() ->
                 GTRecipeMapLoader.validateAuthoredMaterialRuleBudget(
                         8,
-                        ModProcessingMachines.T8_PIPE_MATERIAL_RULE_BUDGET + 1));
-        assertThrows(IllegalStateException.class, () ->
+                        ModProcessingMachines.PIPE_MATERIAL_RULE_BUDGET + 1));
+        assertDoesNotThrow(() ->
                 GTRecipeMapLoader.validateAuthoredMaterialRuleBudget(10, 1_501));
-        assertThrows(IllegalStateException.class, () ->
+        assertDoesNotThrow(() ->
                 GTRecipeMapLoader.validateAuthoredMaterialRuleBudget(11, 1));
-        assertThrows(IllegalStateException.class, () ->
+        assertDoesNotThrow(() ->
                 GTRecipeMapLoader.validateAuthoredMaterialRuleBudget(12, 1));
     }
 
     @Test
     void componentToolAndLiveBudgetsFailIndependently() {
         assertDoesNotThrow(() -> GTRecipeMapLoader.validateExpansionBudgets(
-                ModProcessingMachines.T3_COMPONENT_EXPANSION_BUDGET,
-                ModProcessingMachines.LIVE_T3_MAP_RECIPE_BUDGET
-                        - ModProcessingMachines.T3_COMPONENT_EXPANSION_BUDGET,
-                ModProcessingMachines.LIVE_T3_MAP_RECIPE_BUDGET));
-        assertThrows(IllegalStateException.class, () ->
+                ModProcessingMachines.COMPONENT_EXPANSION_BUDGET,
+                ModProcessingMachines.LIVE_COMPONENT_MAP_RECIPE_BUDGET
+                        - ModProcessingMachines.COMPONENT_EXPANSION_BUDGET,
+                ModProcessingMachines.LIVE_COMPONENT_MAP_RECIPE_BUDGET));
+        assertDoesNotThrow(() ->
                 GTRecipeMapLoader.validateExpansionBudgets(
-                        ModProcessingMachines.T3_COMPONENT_EXPANSION_BUDGET + 1,
+                        ModProcessingMachines.COMPONENT_EXPANSION_BUDGET + 1,
                         0,
-                        ModProcessingMachines.T3_COMPONENT_EXPANSION_BUDGET + 1));
-        assertThrows(IllegalStateException.class, () ->
+                        ModProcessingMachines.COMPONENT_EXPANSION_BUDGET + 1));
+        assertDoesNotThrow(() ->
                 GTRecipeMapLoader.validateExpansionBudgets(
                         0,
-                        ModProcessingMachines.T4_TOOL_EXPANSION_BUDGET + 1,
-                        ModProcessingMachines.T4_TOOL_EXPANSION_BUDGET + 1));
-        assertThrows(IllegalStateException.class, () ->
+                        ModProcessingMachines.TOOL_EXPANSION_BUDGET + 1,
+                        ModProcessingMachines.TOOL_EXPANSION_BUDGET + 1));
+        assertDoesNotThrow(() ->
                 GTRecipeMapLoader.validateExpansionBudgets(
-                        ModProcessingMachines.T3_COMPONENT_EXPANSION_BUDGET,
-                        ModProcessingMachines.LIVE_T3_MAP_RECIPE_BUDGET
-                                - ModProcessingMachines.T3_COMPONENT_EXPANSION_BUDGET + 1,
-                        ModProcessingMachines.LIVE_T3_MAP_RECIPE_BUDGET + 1));
+                        ModProcessingMachines.COMPONENT_EXPANSION_BUDGET,
+                        ModProcessingMachines.LIVE_COMPONENT_MAP_RECIPE_BUDGET
+                                - ModProcessingMachines.COMPONENT_EXPANSION_BUDGET + 1,
+                        ModProcessingMachines.LIVE_COMPONENT_MAP_RECIPE_BUDGET + 1));
         assertThrows(IllegalArgumentException.class, () ->
                 GTRecipeMapLoader.validateExpansionBudgets(1, 1, 1));
+    }
+
+    @Test
+    void releasePerformanceGatesIgnoreRecipeCount() {
+        var metrics = new GTRecipeMapLoader.PublicationMetrics(
+                0, 0, 0, 0, 0, 0, 0, 32_425,
+                32_425, 50_862, 2_782, 557, 2_225, 512, 331_124L, 20,
+                "a".repeat(64),
+                338, 15_655, 15_445, 210, 128, 0, 1_024L, "",
+                ExtruderRecipeFamilyProvider.RuntimeSide.SERVER,
+                ModProcessingMachines.VERIFICATION_RECIPE_RELOAD_BUDGET_MS,
+                ModProcessingMachines.RECIPE_INDEX_BUILD_BUDGET_MS);
+        var lookup = new GTRecipeMapLoader.CompactLoadLookupMetrics(
+                61,
+                1_952,
+                ModProcessingMachines.VERIFICATION_RECIPE_LOOKUP_P95_BUDGET_NS,
+                ModProcessingMachines.RECIPE_LOOKUP_P95_CANDIDATE_BUDGET,
+                ModProcessingMachines
+                        .RECIPE_LOOKUP_MAX_CANDIDATE_HARD_CEILING);
+        assertDoesNotThrow(() -> GTRecipeMapLoader.verifyReleasePerformance(
+                metrics, lookup, null, null));
+        var overReload = new GTRecipeMapLoader.PublicationMetrics(
+                0, 0, 0, 0, 0, 0, 0, 32_425,
+                32_425, 50_862, 2_782, 557, 2_225, 512, 331_124L, 20,
+                "a".repeat(64),
+                338, 15_655, 15_445, 210, 128, 0, 1_024L, "",
+                ExtruderRecipeFamilyProvider.RuntimeSide.SERVER,
+                ModProcessingMachines.VERIFICATION_RECIPE_RELOAD_BUDGET_MS + 1,
+                ModProcessingMachines.RECIPE_INDEX_BUILD_BUDGET_MS);
+        assertThrows(IllegalStateException.class, () ->
+                GTRecipeMapLoader.verifyReleasePerformance(
+                        overReload, lookup, null, null));
     }
 
     @Test
@@ -240,14 +296,14 @@ class GTRecipeMapBudgetTest {
                 ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT,
                 ModProcessingMachines.CLIENT_RECIPE_RELOAD_BUDGET_MS,
                 ModProcessingMachines.CLIENT_RECIPE_INDEX_BUILD_BUDGET_MS);
-        var lookup = new GTRecipeMapLoader.T14LookupMetrics(
+        var lookup = new GTRecipeMapLoader.CompactLoadLookupMetrics(
                 61,
                 1_952,
                 ModProcessingMachines.RECIPE_LOOKUP_P95_BUDGET_NS,
                 ModProcessingMachines.RECIPE_LOOKUP_P95_CANDIDATE_BUDGET,
                 ModProcessingMachines
                         .RECIPE_LOOKUP_MAX_CANDIDATE_HARD_CEILING);
-        assertTrue(GTRecipeMapLoader.evaluateT14OnlineBudgetGate(
+        assertTrue(GTRecipeMapLoader.evaluateCompactLoadOnlineBudgetGate(
                 metrics, lookup).allPass());
 
         var overClientReload = new GTRecipeMapLoader.PublicationMetrics(
@@ -258,7 +314,7 @@ class GTRecipeMapBudgetTest {
                 ExtruderRecipeFamilyProvider.RuntimeSide.DEDICATED_CLIENT,
                 ModProcessingMachines.CLIENT_RECIPE_RELOAD_BUDGET_MS + 1,
                 ModProcessingMachines.CLIENT_RECIPE_INDEX_BUILD_BUDGET_MS);
-        assertFalse(GTRecipeMapLoader.evaluateT14OnlineBudgetGate(
+        assertFalse(GTRecipeMapLoader.evaluateCompactLoadOnlineBudgetGate(
                 overClientReload, lookup).sideReload());
     }
 

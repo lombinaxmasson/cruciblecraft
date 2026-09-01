@@ -3002,8 +3002,14 @@
     {
       "name": "build_t42_partition_freeze",
       "script": "tools/build_t42_partition_freeze.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
       "outputs": [
         "t42_partition_freeze.json",
@@ -3014,16 +3020,31 @@
     {
       "name": "build_t42_family_operand_snapshot",
       "script": "tools/build_t42_family_operand_snapshot.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check", "--full-replay"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check",
+          "--full-replay"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t42_family_operand_snapshot.json"]
+      "outputs": [
+        "t42_family_operand_snapshot.json"
+      ]
     },
     {
       "name": "build_t42_runtime_expression_inventory",
       "script": "tools/build_t42_runtime_expression_inventory.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
       "outputs": [
         "t42_runtime_expression_inventory.json",
@@ -3033,16 +3054,30 @@
     {
       "name": "build_t42_reachability_baseline",
       "script": "tools/build_t42_reachability_baseline.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t42_reachability_baseline.json"]
+      "outputs": [
+        "t42_reachability_baseline.json"
+      ]
     },
     {
       "name": "build_t42_blocker_overlay",
       "script": "tools/build_t42_blocker_overlay.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
       "outputs": [
         "t42_blocker_overlay.json",
@@ -3053,72 +3088,142 @@
     {
       "name": "build_t42_disposition_lock",
       "script": "tools/build_t42_disposition_lock.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t42_disposition_lock.json"]
+      "outputs": [
+        "t42_disposition_lock.json"
+      ]
     },
     {
       "name": "build_t42_gap_partition",
       "script": "tools/build_t42_gap_partition.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t42_gap_partition.json"]
+      "outputs": [
+        "t42_gap_partition.json"
+      ]
     },
     {
       "name": "build_t42_census_delta",
       "script": "tools/build_t42_census_delta.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t42_census_delta.json"]
+      "outputs": [
+        "t42_census_delta.json"
+      ]
     },
     {
       "name": "build_t42_card_topology",
       "script": "tools/build_t42_card_topology.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t42_card_topology.json"]
+      "outputs": [
+        "t42_card_topology.json"
+      ]
     },
     {
       "name": "build_t42_readiness",
       "script": "tools/build_t42_readiness.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t42_readiness.json"]
+      "outputs": [
+        "t42_readiness.json"
+      ]
     },
     {
       "name": "build_t42_repair_pre_freeze",
       "script": "tools/build_t42_repair_pre_freeze.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t42_repair_pre_freeze.json"]
+      "outputs": [
+        "t42_repair_pre_freeze.json"
+      ]
     },
     {
       "name": "build_t42_repair_readiness",
       "script": "tools/build_t42_repair_readiness.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t42_repair_readiness.json"]
+      "outputs": [
+        "t42_repair_readiness.json"
+      ]
     },
     {
       "name": "build_t42_owner_pre_freeze",
       "script": "tools/build_t42_owner_pre_freeze.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t42_owner_pre_freeze.json"]
+      "outputs": [
+        "t42_owner_pre_freeze.json"
+      ]
     },
     {
       "name": "build_t42_owner_track_overlay",
       "script": "tools/build_t42_owner_track_overlay.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
       "outputs": [
         "t42_owner_track_overlay.json",
@@ -3128,51 +3233,101 @@
     {
       "name": "build_t42_owner_disposition_lock",
       "script": "tools/build_t42_owner_disposition_lock.py",
-      "ordinary_args": ["--check"],
-      "write_args": ["--write", "--approve-initial-lock"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "write_args": [
+        "--write",
+        "--approve-initial-lock"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t42_owner_disposition_lock.json"]
+      "outputs": [
+        "t42_owner_disposition_lock.json"
+      ]
     },
     {
       "name": "build_t42_owner_gap_partition",
       "script": "tools/build_t42_owner_gap_partition.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t42_owner_gap_partition.json"]
+      "outputs": [
+        "t42_owner_gap_partition.json"
+      ]
     },
     {
       "name": "build_t42_owner_readiness",
       "script": "tools/build_t42_owner_readiness.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t42_owner_readiness.json"]
+      "outputs": [
+        "t42_owner_readiness.json"
+      ]
     },
     {
       "name": "build_t43_work_set",
       "script": "tools/build_t43_work_set.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t43_work_set.json"]
+      "outputs": [
+        "t43_work_set.json"
+      ]
     },
     {
       "name": "build_t43_stone_catalog",
       "script": "tools/build_t43_stone_catalog.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t43_stone_catalog.json"]
+      "outputs": [
+        "t43_stone_catalog.json"
+      ]
     },
     {
       "name": "build_t43_smelter_source",
       "script": "tools/build_t43_smelter_source.py",
-      "ordinary_args": ["--check"],
+      "ordinary_args": [
+        "--check"
+      ],
       "full_replay": {
-        "args": ["--check", "--full-replay"],
-        "required_paths": ["gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json"]
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json"
+        ]
       },
       "proof_tier": "compact",
       "outputs": [
@@ -3184,32 +3339,62 @@
     {
       "name": "build_t43_candidate_selection",
       "script": "tools/build_t43_candidate_selection.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t43_candidate_selection.json"]
+      "outputs": [
+        "t43_candidate_selection.json"
+      ]
     },
     {
       "name": "build_t43_production_lock",
       "script": "tools/build_t43_production_lock.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "compact",
-      "outputs": ["t43_production_lock.json"]
+      "outputs": [
+        "t43_production_lock.json"
+      ]
     },
     {
       "name": "build_t43_operand_runtime_map",
       "script": "tools/build_t43_operand_runtime_map.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t43_operand_runtime_map.json"]
+      "outputs": [
+        "t43_operand_runtime_map.json"
+      ]
     },
     {
       "name": "build_t43_smelter_recipes",
       "script": "tools/build_t43_smelter_recipes.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
       "outputs": [
         "t43_player_path.json",
@@ -3220,146 +3405,288 @@
     {
       "name": "build_t43_player_path_support",
       "script": "tools/build_t43_player_path_support.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t43_player_path_support.json"]
+      "outputs": [
+        "t43_player_path_support.json"
+      ]
     },
     {
       "name": "build_t43_layered_player_path",
       "script": "tools/build_t43_layered_player_path.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t43_layered_player_path.json"]
+      "outputs": [
+        "t43_layered_player_path.json"
+      ]
     },
     {
       "name": "build_t43_publication_group_manifest",
       "script": "tools/build_t43_publication_group_manifest.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t43_publication_group_manifest.json"]
+      "outputs": [
+        "t43_publication_group_manifest.json"
+      ]
     },
     {
       "name": "build_t43_shard_manifest",
       "script": "tools/build_t43_shard_manifest.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t43_shard_manifest.json"]
+      "outputs": [
+        "t43_shard_manifest.json"
+      ]
     },
     {
       "name": "build_t43_runtime_dependency_manifest",
       "script": "tools/build_t43_runtime_dependency_manifest.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t43_runtime_dependency_manifest.json"]
+      "outputs": [
+        "t43_runtime_dependency_manifest.json"
+      ]
     },
     {
       "name": "build_t43_gametest_receipt",
       "script": "tools/build_t43_gametest_receipt.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t43_gametest_receipt.json"]
+      "outputs": [
+        "t43_gametest_receipt.json"
+      ]
     },
     {
       "name": "build_t43_publication_delta",
       "script": "tools/build_t43_publication_delta.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t43_publication_delta.json"]
+      "outputs": [
+        "t43_publication_delta.json"
+      ]
     },
     {
       "name": "build_t43_load_projection",
       "script": "tools/build_t43_load_projection.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t43_load_projection_input.json", "t43_load_projection.json"]
+      "outputs": [
+        "t43_load_projection_input.json",
+        "t43_load_projection.json"
+      ]
     },
     {
       "name": "build_t43_publication_policy",
       "script": "tools/build_t43_publication_policy.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
       "outputs": []
     },
     {
       "name": "build_t43_census_delta",
       "script": "tools/build_t43_census_delta.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t43_census_delta.json"]
+      "outputs": [
+        "t43_census_delta.json"
+      ]
     },
     {
       "name": "build_t43_card_topology",
       "script": "tools/build_t43_card_topology.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t43_card_topology.json"]
+      "outputs": [
+        "t43_card_topology.json"
+      ]
     },
     {
       "name": "build_t43_readiness",
       "script": "tools/build_t43_readiness.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t43_readiness.json"]
+      "outputs": [
+        "t43_readiness.json"
+      ]
     },
     {
       "name": "build_t43_recipe_load_benchmark",
       "script": "tools/build_t43_recipe_load_benchmark.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t43_materialization_decision.json"]
+      "outputs": [
+        "t43_materialization_decision.json"
+      ]
     },
     {
       "name": "build_t36_repair_pre_freeze",
       "script": "tools/build_t36_repair_pre_freeze.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t36_repair_pre_freeze.json"]
+      "outputs": [
+        "t36_repair_pre_freeze.json"
+      ]
     },
     {
       "name": "build_t36_repair_second_list_inventory",
       "script": "tools/build_t36_repair_second_list_inventory.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t36_repair_second_list_inventory.json"]
+      "outputs": [
+        "t36_repair_second_list_inventory.json"
+      ]
     },
     {
       "name": "build_t36_repair_readiness",
       "script": "tools/build_t36_repair_readiness.py",
-      "ordinary_args": ["--check"],
-      "full_replay": { "args": ["--check"] },
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t36_repair_readiness.json"]
+      "outputs": [
+        "t36_repair_readiness.json"
+      ]
     },
     {
       "name": "build_t44_storage_work_set",
       "script": "tools/build_t44_storage_work_set.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t44_storage_work_set.json"]
+      "outputs": [
+        "t44_storage_work_set.json"
+      ]
     },
     {
       "name": "build_t44_storage_source",
       "script": "tools/build_t44_storage_source.py",
-      "ordinary_args": ["--check"],
+      "ordinary_args": [
+        "--check"
+      ],
       "full_replay": {
-        "args": ["--check", "--full-replay"],
-        "required_paths": ["gt6_referencable_port_code/gregtech6_w"]
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
+        "required_paths": [
+          "gt6_referencable_port_code/gregtech6_w"
+        ]
       },
       "proof_tier": "compact",
       "outputs": [
@@ -3371,121 +3698,238 @@
     {
       "name": "build_t44_storage_production_lock",
       "script": "tools/build_t44_storage_production_lock.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t44_storage_production_lock.json"]
+      "outputs": [
+        "t44_storage_production_lock.json"
+      ]
     },
     {
       "name": "build_t44_runtime_dependency_manifest",
       "script": "tools/build_t44_runtime_dependency_manifest.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t44_runtime_dependency_manifest.json"]
+      "outputs": [
+        "t44_runtime_dependency_manifest.json"
+      ]
     },
     {
       "name": "build_t44_storage_catalog",
       "script": "tools/build_t44_storage_catalog.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t44_storage_catalog.json"]
+      "outputs": [
+        "t44_storage_catalog.json"
+      ]
     },
     {
       "name": "build_t44_storage_equivalence",
       "script": "tools/build_t44_storage_equivalence.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t44_storage_equivalence.json"]
+      "outputs": [
+        "t44_storage_equivalence.json"
+      ]
     },
     {
       "name": "build_t44_storage_player_path",
       "script": "tools/build_t44_storage_player_path.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t44_storage_player_path.json"]
+      "outputs": [
+        "t44_storage_player_path.json"
+      ]
     },
     {
       "name": "build_t44_storage_publication_delta",
       "script": "tools/build_t44_storage_publication_delta.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t44_storage_publication_delta.json"]
+      "outputs": [
+        "t44_storage_publication_delta.json"
+      ]
     },
     {
       "name": "build_t44_storage_load_measurements",
       "script": "tools/build_t44_storage_load_measurements.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t44_storage_load_measurements.json"]
+      "outputs": [
+        "t44_storage_load_measurements.json"
+      ]
     },
     {
       "name": "build_t44_storage_load_projection",
       "script": "tools/build_t44_storage_load_projection.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t44_storage_load_projection.json"]
+      "outputs": [
+        "t44_storage_load_projection.json"
+      ]
     },
     {
       "name": "build_t44_storage_gametest_receipt",
       "script": "tools/build_t44_storage_gametest_receipt.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t44_storage_gametest_receipt.json"]
+      "outputs": [
+        "t44_storage_gametest_receipt.json"
+      ]
     },
     {
       "name": "build_t44_storage_census_delta",
       "script": "tools/build_t44_storage_census_delta.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t44_storage_census_delta.json"]
+      "outputs": [
+        "t44_storage_census_delta.json"
+      ]
     },
     {
       "name": "build_t44_card_topology",
       "script": "tools/build_t44_card_topology.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t44_card_topology.json"]
+      "outputs": [
+        "t44_card_topology.json"
+      ]
     },
     {
       "name": "build_t44_storage_readiness",
       "script": "tools/build_t44_storage_readiness.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t44_readiness.json"]
+      "outputs": [
+        "t44_readiness.json"
+      ]
     },
     {
       "name": "build_t45_work_set",
       "script": "tools/build_t45_work_set.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_work_set.json"]
+      "outputs": [
+        "t45_work_set.json"
+      ]
     },
     {
       "name": "build_t45_block_object_catalog",
       "script": "tools/build_t45_block_object_catalog.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_block_object_catalog.json"]
+      "outputs": [
+        "t45_block_object_catalog.json"
+      ]
     },
     {
       "name": "build_t45_block_object_source",
       "script": "tools/build_t45_block_object_source.py",
-      "ordinary_args": ["--check"],
+      "ordinary_args": [
+        "--check"
+      ],
       "full_replay": {
-        "args": ["--check", "--full-replay"],
+        "args": [
+          "--check",
+          "--full-replay"
+        ],
         "required_paths": [
           "gt6_dump/gt6_recipe_dump/maps/gt.recipe.smelter.json",
           "gt6_dump/gt6_recipe_dump/maps/gt.recipe.drying.json",
@@ -3503,266 +3947,1615 @@
     {
       "name": "build_t45_bath_mte_audit",
       "script": "tools/build_t45_bath_mte_audit.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_bath_mte_audit.json"]
+      "outputs": [
+        "t45_bath_mte_audit.json"
+      ]
     },
     {
       "name": "build_t45_candidate_selection",
       "script": "tools/build_t45_candidate_selection.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_candidate_selection.json"]
+      "outputs": [
+        "t45_candidate_selection.json"
+      ]
     },
     {
       "name": "build_t45_object_expression_evidence",
       "script": "tools/build_t45_object_expression_evidence.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_object_expression_evidence.json"]
+      "outputs": [
+        "t45_object_expression_evidence.json"
+      ]
     },
     {
       "name": "build_t45_production_lock",
       "script": "tools/build_t45_production_lock.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "compact",
-      "outputs": ["t45_production_lock.json"]
+      "outputs": [
+        "t45_production_lock.json"
+      ]
     },
     {
       "name": "build_t45_operand_runtime_map",
       "script": "tools/build_t45_operand_runtime_map.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_operand_runtime_map.json"]
+      "outputs": [
+        "t45_operand_runtime_map.json"
+      ]
     },
     {
       "name": "build_t45_recipe_compile_spec",
       "script": "tools/build_t45_recipe_compile_spec.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_recipe_compile_spec.json"]
+      "outputs": [
+        "t45_recipe_compile_spec.json"
+      ]
     },
     {
       "name": "build_recipe_bulk",
       "script": "tools/build_recipe_bulk.py",
-      "ordinary_args": ["compile", "--check", "--wave", "all"],
-      "full_replay": {"args": ["compile", "--check", "--wave", "all"]},
+      "ordinary_args": [
+        "compile",
+        "--check",
+        "--wave",
+        "all"
+      ],
+      "full_replay": {
+        "args": [
+          "compile",
+          "--check",
+          "--wave",
+          "all"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_analyze_report.json", "t45_compile_report.json"]
+      "outputs": [
+        "t45_analyze_report.json",
+        "t45_compile_report.json"
+      ]
     },
     {
       "name": "build_t45_player_path_support",
       "script": "tools/build_t45_player_path_support.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_player_path_support.json"]
+      "outputs": [
+        "t45_player_path_support.json"
+      ]
     },
     {
       "name": "build_t45_required_forms",
       "script": "tools/build_t45_required_forms.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_required_forms.json"]
+      "outputs": [
+        "t45_required_forms.json"
+      ]
     },
     {
       "name": "build_t45_player_path",
       "script": "tools/build_t45_player_path.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_player_path.json"]
+      "outputs": [
+        "t45_player_path.json"
+      ]
     },
     {
       "name": "build_t45_equivalence",
       "script": "tools/build_t45_equivalence.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_equivalence.json"]
+      "outputs": [
+        "t45_equivalence.json"
+      ]
     },
     {
       "name": "build_t45_layered_player_path",
       "script": "tools/build_t45_layered_player_path.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_layered_player_path.json"]
+      "outputs": [
+        "t45_layered_player_path.json"
+      ]
     },
     {
       "name": "build_t45_publication_group_manifest",
       "script": "tools/build_t45_publication_group_manifest.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_publication_group_manifest.json"]
+      "outputs": [
+        "t45_publication_group_manifest.json"
+      ]
     },
     {
       "name": "build_t45_shard_manifest",
       "script": "tools/build_t45_shard_manifest.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_shard_manifest.json"]
+      "outputs": [
+        "t45_shard_manifest.json"
+      ]
     },
     {
       "name": "build_t45_runtime_dependency_manifest",
       "script": "tools/build_t45_runtime_dependency_manifest.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_runtime_dependency_manifest.json"]
+      "outputs": [
+        "t45_runtime_dependency_manifest.json"
+      ]
     },
     {
       "name": "build_t45_gametest_receipt",
       "script": "tools/build_t45_gametest_receipt.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_gametest_receipt.json"]
+      "outputs": [
+        "t45_gametest_receipt.json"
+      ]
     },
     {
       "name": "build_t45_publication_delta",
       "script": "tools/build_t45_publication_delta.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_publication_delta.json"]
+      "outputs": [
+        "t45_publication_delta.json"
+      ]
     },
     {
       "name": "build_t45_load_projection",
       "script": "tools/build_t45_load_projection.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_load_projection_input.json", "t45_load_projection.json"]
+      "outputs": [
+        "t45_load_projection_input.json",
+        "t45_load_projection.json"
+      ]
     },
     {
       "name": "build_t45_publication_policy",
       "script": "tools/build_t45_publication_policy.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
       "outputs": []
     },
     {
       "name": "build_t45_materialization_policy",
       "script": "tools/build_t45_materialization_policy.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_materialization_policy.json"]
+      "outputs": [
+        "t45_materialization_policy.json"
+      ]
     },
     {
       "name": "build_t45_census_delta",
       "script": "tools/build_t45_census_delta.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_census_delta.json"]
+      "outputs": [
+        "t45_census_delta.json"
+      ]
     },
     {
       "name": "build_t45_card_topology",
       "script": "tools/build_t45_card_topology.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_card_topology.json"]
+      "outputs": [
+        "t45_card_topology.json"
+      ]
     },
     {
       "name": "build_t45_readiness",
       "script": "tools/build_t45_readiness.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_readiness.json"]
+      "outputs": [
+        "t45_readiness.json"
+      ]
     },
     {
       "name": "build_t45_recipe_load_benchmark",
       "script": "tools/build_t45_recipe_load_benchmark.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["t45_materialization_decision.json"]
+      "outputs": [
+        "t45_materialization_decision.json"
+      ]
+    },
+    {
+      "name": "build_t46_history_freeze",
+      "script": "tools/build_t46_history_freeze.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_history_freeze_manifest.json"
+      ]
+    },
+    {
+      "name": "build_t14_load_budget_policy_v2",
+      "script": "tools/build_t14_load_budget_policy_v2.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t14_load_budget_policy.v2.json"
+      ]
+    },
+    {
+      "name": "build_t46_identity_ledger_delta",
+      "script": "tools/build_t46_identity_ledger_delta.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_identity_ledger_delta.json"
+      ]
+    },
+    {
+      "name": "build_global_build_identity_ledger_v2",
+      "script": "tools/build_global_build_identity_ledger_v2.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "global_build_identity_ledger.v2.json"
+      ]
+    },
+    {
+      "name": "build_t46_work_set",
+      "script": "tools/build_t46_work_set.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_work_set.json"
+      ]
+    },
+    {
+      "name": "build_t46_bath_source",
+      "script": "tools/build_t46_bath_source.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_bath_source.json",
+        "t46_bath_source_receipt.json"
+      ]
+    },
+    {
+      "name": "build_t46_candidate_selection",
+      "script": "tools/build_t46_candidate_selection.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_bath_candidate_selection.json"
+      ]
+    },
+    {
+      "name": "build_t46_bath_mte_identity_catalog",
+      "script": "tools/build_t46_bath_mte_identity_catalog.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_bath_mte_identity_catalog.json"
+      ]
+    },
+    {
+      "name": "build_t46_bath_fluid_mapping",
+      "script": "tools/build_t46_bath_fluid_mapping.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_bath_fluid_mapping.json"
+      ]
+    },
+    {
+      "name": "build_t46_bath_recycling_disposition",
+      "script": "tools/build_t46_bath_recycling_disposition.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_bath_recycling_disposition.json"
+      ]
+    },
+    {
+      "name": "build_t46_operand_runtime_map",
+      "script": "tools/build_t46_operand_runtime_map.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_operand_runtime_map.json"
+      ]
+    },
+    {
+      "name": "build_t46_required_forms",
+      "script": "tools/build_t46_required_forms.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_required_forms.json"
+      ]
+    },
+    {
+      "name": "build_t46_recipe_compile_spec",
+      "script": "tools/build_t46_recipe_compile_spec.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_recipe_compile_spec.json"
+      ]
+    },
+    {
+      "name": "build_t46_player_path_support",
+      "script": "tools/build_t46_player_path_support.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_player_path_support.json"
+      ]
+    },
+    {
+      "name": "build_t46_production_lock",
+      "script": "tools/build_t46_production_lock.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_production_lock.json"
+      ]
+    },
+    {
+      "name": "build_t46_player_path",
+      "script": "tools/build_t46_player_path.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_player_path.json"
+      ]
+    },
+    {
+      "name": "build_t46_equivalence",
+      "script": "tools/build_t46_equivalence.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_equivalence.json"
+      ]
+    },
+    {
+      "name": "build_t46_layered_player_path",
+      "script": "tools/build_t46_layered_player_path.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_layered_player_path.json"
+      ]
+    },
+    {
+      "name": "build_t46_publication_group_manifest",
+      "script": "tools/build_t46_publication_group_manifest.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_publication_group_manifest.json"
+      ]
+    },
+    {
+      "name": "build_t46_shard_manifest",
+      "script": "tools/build_t46_shard_manifest.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_shard_manifest.json"
+      ]
+    },
+    {
+      "name": "build_t46_runtime_dependency_manifest",
+      "script": "tools/build_t46_runtime_dependency_manifest.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_runtime_dependency_manifest.json"
+      ]
+    },
+    {
+      "name": "build_t46_gametest_receipt",
+      "script": "tools/build_t46_gametest_receipt.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_gametest_receipt.json"
+      ]
+    },
+    {
+      "name": "build_t46_publication_delta",
+      "script": "tools/build_t46_publication_delta.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_publication_delta.json"
+      ]
+    },
+    {
+      "name": "build_t46_load_projection",
+      "script": "tools/build_t46_load_projection.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_load_projection.json",
+        "t46_load_projection_input.json"
+      ]
+    },
+    {
+      "name": "build_t46_publication_policy",
+      "script": "tools/build_t46_publication_policy.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": []
+    },
+    {
+      "name": "build_t46_materialization_policy",
+      "script": "tools/build_t46_materialization_policy.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_materialization_policy.json"
+      ]
+    },
+    {
+      "name": "build_t46_runtime_manifest_delta",
+      "script": "tools/build_t46_runtime_manifest_delta.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_runtime_manifest_delta.json"
+      ]
+    },
+    {
+      "name": "build_compact_recipe_runtime_manifest_v2",
+      "script": "tools/build_compact_recipe_runtime_manifest_v2.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "compact_recipe_runtime_manifest.v2.json"
+      ]
+    },
+    {
+      "name": "build_forward_recipe_authority_v2_readiness",
+      "script": "tools/build_forward_recipe_authority_v2_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "forward_recipe_authority_v2_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t46_census_delta",
+      "script": "tools/build_t46_census_delta.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_census_delta.json"
+      ]
+    },
+    {
+      "name": "build_t46_card_topology",
+      "script": "tools/build_t46_card_topology.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_card_topology.json"
+      ]
+    },
+    {
+      "name": "build_t46_readiness",
+      "script": "tools/build_t46_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t46_recipe_load_benchmark",
+      "script": "tools/build_t46_recipe_load_benchmark.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t46_materialization_decision.json"
+      ]
+    },
+    {
+      "name": "build_t47_identity_ledger_delta",
+      "script": "tools/build_t47_identity_ledger_delta.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_identity_ledger_delta.json"
+      ]
+    },
+    {
+      "name": "build_t47_work_set",
+      "script": "tools/build_t47_work_set.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_work_set.json"
+      ]
+    },
+    {
+      "name": "build_t47_bath_source",
+      "script": "tools/build_t47_bath_source.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_bath_source.json",
+        "t47_bath_source_receipt.json"
+      ]
+    },
+    {
+      "name": "build_t47_candidate_selection",
+      "script": "tools/build_t47_candidate_selection.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_bath_candidate_selection.json"
+      ]
+    },
+    {
+      "name": "build_t47_identity_catalog",
+      "script": "tools/build_t47_identity_catalog.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_identity_catalog.json"
+      ]
+    },
+    {
+      "name": "build_t47_bath_fluid_mapping",
+      "script": "tools/build_t47_bath_fluid_mapping.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_bath_fluid_mapping.json"
+      ]
+    },
+    {
+      "name": "build_t47_bath_recycling_disposition",
+      "script": "tools/build_t47_bath_recycling_disposition.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_bath_recycling_disposition.json"
+      ]
+    },
+    {
+      "name": "build_t47_operand_runtime_map",
+      "script": "tools/build_t47_operand_runtime_map.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_operand_runtime_map.json"
+      ]
+    },
+    {
+      "name": "build_t47_required_forms",
+      "script": "tools/build_t47_required_forms.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_required_forms.json"
+      ]
+    },
+    {
+      "name": "build_t47_recipe_compile_spec",
+      "script": "tools/build_t47_recipe_compile_spec.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_recipe_compile_spec.json"
+      ]
+    },
+    {
+      "name": "build_t47_player_path_support",
+      "script": "tools/build_t47_player_path_support.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_player_path_support.json"
+      ]
+    },
+    {
+      "name": "build_t47_production_lock",
+      "script": "tools/build_t47_production_lock.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_production_lock.json"
+      ]
+    },
+    {
+      "name": "build_t47_player_path",
+      "script": "tools/build_t47_player_path.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_player_path.json"
+      ]
+    },
+    {
+      "name": "build_t47_equivalence",
+      "script": "tools/build_t47_equivalence.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_equivalence.json"
+      ]
+    },
+    {
+      "name": "build_t47_layered_player_path",
+      "script": "tools/build_t47_layered_player_path.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_layered_player_path.json"
+      ]
+    },
+    {
+      "name": "build_t47_publication_group_manifest",
+      "script": "tools/build_t47_publication_group_manifest.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_publication_group_manifest.json"
+      ]
+    },
+    {
+      "name": "build_t47_shard_manifest",
+      "script": "tools/build_t47_shard_manifest.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_shard_manifest.json"
+      ]
+    },
+    {
+      "name": "build_t47_runtime_dependency_manifest",
+      "script": "tools/build_t47_runtime_dependency_manifest.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_runtime_dependency_manifest.json"
+      ]
+    },
+    {
+      "name": "build_t47_gametest_receipt",
+      "script": "tools/build_t47_gametest_receipt.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_gametest_receipt.json"
+      ]
+    },
+    {
+      "name": "build_t47_publication_delta",
+      "script": "tools/build_t47_publication_delta.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_publication_delta.json"
+      ]
+    },
+    {
+      "name": "build_t47_load_projection",
+      "script": "tools/build_t47_load_projection.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_load_projection.json"
+      ]
+    },
+    {
+      "name": "build_t47_publication_policy",
+      "script": "tools/build_t47_publication_policy.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": []
+    },
+    {
+      "name": "build_t47_materialization_policy",
+      "script": "tools/build_t47_materialization_policy.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_materialization_policy.json"
+      ]
+    },
+    {
+      "name": "build_t47_runtime_manifest_delta",
+      "script": "tools/build_t47_runtime_manifest_delta.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_runtime_manifest_delta.json"
+      ]
+    },
+    {
+      "name": "build_t47_census_delta",
+      "script": "tools/build_t47_census_delta.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_census_delta.json"
+      ]
+    },
+    {
+      "name": "build_t47_card_topology",
+      "script": "tools/build_t47_card_topology.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_card_topology.json"
+      ]
+    },
+    {
+      "name": "build_t47_readiness",
+      "script": "tools/build_t47_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_readiness.json"
+      ]
+    },
+    {
+      "name": "build_t47_recipe_load_benchmark",
+      "script": "tools/build_t47_recipe_load_benchmark.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_materialization_decision.json"
+      ]
     },
     {
       "name": "build_recipe_wave_production_baseline",
       "script": "tools/build_recipe_wave_production_baseline.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["recipe_wave_production_baseline.json"]
+      "outputs": [
+        "recipe_wave_production_baseline.json"
+      ]
     },
     {
       "name": "build_global_build_identity_ledger",
       "script": "tools/build_global_build_identity_ledger.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["global_build_identity_ledger.json"]
+      "outputs": [
+        "global_build_identity_ledger.json"
+      ]
     },
     {
       "name": "build_recipe_wave_shadow_parity",
       "script": "tools/build_recipe_wave_shadow_parity.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["recipe_wave_shadow_parity.json"]
+      "outputs": [
+        "recipe_wave_shadow_parity.json"
+      ]
     },
     {
       "name": "build_unified_import_shadow_readiness",
       "script": "tools/build_unified_import_shadow_readiness.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["unified_import_shadow_readiness.json"]
+      "outputs": [
+        "unified_import_shadow_readiness.json"
+      ]
     },
     {
       "name": "build_compact_recipe_runtime_manifest",
       "script": "tools/build_compact_recipe_runtime_manifest.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["compact_recipe_runtime_manifest.json"]
+      "outputs": [
+        "compact_recipe_runtime_manifest.json"
+      ]
     },
     {
       "name": "build_compact_publication_policies",
       "script": "tools/build_compact_publication_policies.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
       "outputs": []
     },
     {
       "name": "build_compact_dedup_rules",
       "script": "tools/build_compact_dedup_rules.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
       "outputs": []
     },
     {
       "name": "build_compact_recipe_manifest_cutover_readiness",
       "script": "tools/build_compact_recipe_manifest_cutover_readiness.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["compact_recipe_manifest_cutover_readiness.json"]
+      "outputs": [
+        "compact_recipe_manifest_cutover_readiness.json"
+      ]
     },
     {
       "name": "build_recipe_compile_cutover_readiness",
       "script": "tools/build_recipe_compile_cutover_readiness.py",
-      "ordinary_args": ["--check"],
-      "full_replay": {"args": ["--check"]},
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
       "proof_tier": "rederived",
-      "outputs": ["unified_recipe_compile_readiness.json"]
+      "outputs": [
+        "unified_recipe_compile_readiness.json"
+      ]
+    },
+    {
+      "name": "closeout_seal",
+      "script": "tools/closeout_seal.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t38_closeout_seal.json",
+        "t39_closeout_seal.json",
+        "t40_closeout_seal.json",
+        "t41_closeout_seal.json",
+        "t43_closeout_seal.json",
+        "t44_closeout_seal.json",
+        "t45_closeout_seal.json",
+        "t46_closeout_seal.json",
+        "t47_closeout_seal.json"
+      ]
+    },
+    {
+      "name": "build_t47_vr_pre_repair_freeze",
+      "script": "tools/build_t47_vr_pre_repair_freeze.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_vr_pre_repair_freeze.json"
+      ]
+    },
+    {
+      "name": "build_t47_vr_repair_readiness",
+      "script": "tools/build_t47_vr_repair_readiness.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "t47_vr_repair_readiness.json"
+      ]
+    },
+    {
+      "name": "build_ordinary_closeout_integrity",
+      "script": "tools/build_ordinary_closeout_integrity.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "waves/ordinary-wave/closeout-integrity-repair/readiness.json",
+        "waves/ordinary-wave/closeout-integrity-repair/pre_repair_hashes.json"
+      ]
+    },
+    {
+      "name": "build_ordinary_remainder_foundation",
+      "script": "tools/build_ordinary_remainder_foundation.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "waves/ordinary-remainder/operand-foundation/readiness.json",
+        "waves/ordinary-remainder/operand-foundation/r0.json"
+      ]
+    },
+    {
+      "name": "build_ordinary_remainder_closure",
+      "script": "tools/build_ordinary_remainder_closure.py",
+      "ordinary_args": [
+        "--check"
+      ],
+      "full_replay": {
+        "args": [
+          "--check"
+        ]
+      },
+      "proof_tier": "rederived",
+      "outputs": [
+        "waves/recipe-portfolio/ordinary-remainder-closure/readiness.json",
+        "waves/recipe-portfolio/ordinary-remainder-closure/deferred_ledger.json",
+        "waves/recipe-portfolio/ordinary-remainder-closure/gap_replay.json"
+      ]
     }
   ],
   "performance": {

@@ -23,7 +23,7 @@ ROOT = t35.ROOT
 TOOLS = t35.TOOLS
 POLICY_TYPE = "cruciblecraft:compact_publication_policy"
 DEDUP_TYPE = "cruciblecraft:compact_dedup_rule"
-ROUTING_SCHEMA_VERSION = "t39-shard-v1"
+ROUTING_SCHEMA_VERSION = "compact-shard-v1"
 STATUS = "COMPACT_RECIPE_RUNTIME_MANIFEST"
 EXPECTED_GROUP_COUNT = 12
 T37_EAGER_COUNT = 14
@@ -31,8 +31,8 @@ T37_LAZY_COUNT = 36
 T41_AUTHORED_RELATIONS = 292
 T41_LIVE_RELATIONS = 242
 HISTORICAL_GROUPS = {
-    "cruciblecraft:assembler": "cruciblecraft:t37_assembler",
-    "cruciblecraft:roaster": "cruciblecraft:t38_roaster",
+    "cruciblecraft:assembler": "cruciblecraft:assembler/compact",
+    "cruciblecraft:roaster": "cruciblecraft:roaster/compact",
 }
 FAMILY_LOADERS = {
     "T37": t37.generated_family_files,
@@ -49,7 +49,7 @@ GROUP_SPECS: tuple[dict[str, Any], ...] = (
     {
         "wave_id": "T37",
         "target_map": "cruciblecraft:assembler",
-        "publication_group": "cruciblecraft:t37_assembler",
+        "publication_group": "cruciblecraft:assembler/compact",
         "policy_type": "hybrid",
         "cache_ceiling": 8,
         "eager_mode": "t37_hybrid_selector",
@@ -61,7 +61,7 @@ GROUP_SPECS: tuple[dict[str, Any], ...] = (
     {
         "wave_id": "T38",
         "target_map": "cruciblecraft:roaster",
-        "publication_group": "cruciblecraft:t38_roaster",
+        "publication_group": "cruciblecraft:roaster/compact",
         "policy_type": "on_demand",
         "cache_ceiling": 16,
         "eager_mode": "empty",
@@ -73,7 +73,7 @@ GROUP_SPECS: tuple[dict[str, Any], ...] = (
     {
         "wave_id": "T39",
         "target_map": "cruciblecraft:centrifuge",
-        "publication_group": "cruciblecraft:t39_centrifuge_singleton",
+        "publication_group": "cruciblecraft:centrifuge/singleton",
         "policy_type": "on_demand",
         "cache_ceiling": 19,
         "eager_mode": "empty",
@@ -85,7 +85,7 @@ GROUP_SPECS: tuple[dict[str, Any], ...] = (
     {
         "wave_id": "T39",
         "target_map": "cruciblecraft:centrifuge",
-        "publication_group": "cruciblecraft:t39_centrifuge_multi",
+        "publication_group": "cruciblecraft:centrifuge/multi",
         "policy_type": "hybrid",
         "cache_ceiling": 13,
         "eager_mode": "empty",
@@ -97,7 +97,7 @@ GROUP_SPECS: tuple[dict[str, Any], ...] = (
     {
         "wave_id": "T40",
         "target_map": "cruciblecraft:electrolyzer",
-        "publication_group": "cruciblecraft:t40_electrolyzer_singleton",
+        "publication_group": "cruciblecraft:electrolyzer/singleton",
         "policy_type": "on_demand",
         "cache_ceiling": 11,
         "eager_mode": "empty",
@@ -109,7 +109,7 @@ GROUP_SPECS: tuple[dict[str, Any], ...] = (
     {
         "wave_id": "T40",
         "target_map": "cruciblecraft:electrolyzer",
-        "publication_group": "cruciblecraft:t40_electrolyzer_multi",
+        "publication_group": "cruciblecraft:electrolyzer/multi",
         "policy_type": "hybrid",
         "cache_ceiling": 11,
         "eager_mode": "empty",
@@ -121,7 +121,7 @@ GROUP_SPECS: tuple[dict[str, Any], ...] = (
     {
         "wave_id": "T41",
         "target_map": "cruciblecraft:assembler",
-        "publication_group": "cruciblecraft:t41_assembler_planks",
+        "publication_group": "cruciblecraft:assembler/planks",
         "policy_type": "hybrid",
         "cache_ceiling": 16,
         "eager_mode": "empty",
@@ -133,7 +133,7 @@ GROUP_SPECS: tuple[dict[str, Any], ...] = (
     {
         "wave_id": "T41",
         "target_map": "cruciblecraft:assembler",
-        "publication_group": "cruciblecraft:t41_assembler_fireproof",
+        "publication_group": "cruciblecraft:assembler/fireproof",
         "policy_type": "hybrid",
         "cache_ceiling": 16,
         "eager_mode": "empty",
@@ -145,7 +145,7 @@ GROUP_SPECS: tuple[dict[str, Any], ...] = (
     {
         "wave_id": "T41",
         "target_map": "cruciblecraft:assembler",
-        "publication_group": "cruciblecraft:t41_assembler_planks2",
+        "publication_group": "cruciblecraft:assembler/planks2",
         "policy_type": "on_demand",
         "cache_ceiling": 16,
         "eager_mode": "empty",
@@ -157,7 +157,7 @@ GROUP_SPECS: tuple[dict[str, Any], ...] = (
     {
         "wave_id": "T43",
         "target_map": "cruciblecraft:smelter",
-        "publication_group": "cruciblecraft:t43_smelter_stone",
+        "publication_group": "cruciblecraft:smelter/stone",
         "policy_type": "hybrid",
         "cache_ceiling": 24,
         "eager_mode": "t43_hybrid",
@@ -169,7 +169,7 @@ GROUP_SPECS: tuple[dict[str, Any], ...] = (
     {
         "wave_id": "T45",
         "target_map": "cruciblecraft:smelter",
-        "publication_group": "cruciblecraft:t45_smelter_block",
+        "publication_group": "cruciblecraft:smelter/block",
         "policy_type": "hybrid",
         "cache_ceiling": 24,
         "eager_mode": "empty",
@@ -181,7 +181,7 @@ GROUP_SPECS: tuple[dict[str, Any], ...] = (
     {
         "wave_id": "T45",
         "target_map": "cruciblecraft:drying",
-        "publication_group": "cruciblecraft:t45_drying_block",
+        "publication_group": "cruciblecraft:drying/block",
         "policy_type": "on_demand",
         "cache_ceiling": 24,
         "eager_mode": "empty",
@@ -442,14 +442,14 @@ def dedup_rules() -> list[dict[str, Any]]:
             "require_output_match": True,
             "winner_selector": {
                 "kind": "publication_group",
-                "publication_groups": ["cruciblecraft:t37_assembler"],
+                "publication_groups": ["cruciblecraft:assembler/compact"],
             },
             "victim_selector": {
                 "kind": "publication_group",
                 "publication_groups": [
-                    "cruciblecraft:t41_assembler_planks",
-                    "cruciblecraft:t41_assembler_fireproof",
-                    "cruciblecraft:t41_assembler_planks2",
+                    "cruciblecraft:assembler/planks",
+                    "cruciblecraft:assembler/fireproof",
+                    "cruciblecraft:assembler/planks2",
                 ],
             },
         },
@@ -463,11 +463,11 @@ def dedup_rules() -> list[dict[str, Any]]:
             "require_output_match": True,
             "winner_selector": {
                 "kind": "recipe_id_prefix",
-                "prefixes": ["t37/"],
+                "prefixes": ["assembler/compact/"],
             },
             "victim_selector": {
                 "kind": "recipe_id_prefix",
-                "prefixes": ["t41/", "t41_player_path_support/"],
+                "prefixes": ["assembler/wood/", "player_path_support/assembler_wood/"],
             },
         },
         {
@@ -480,7 +480,7 @@ def dedup_rules() -> list[dict[str, Any]]:
             "require_output_match": True,
             "winner_selector": {
                 "kind": "recipe_id_prefix",
-                "prefixes": ["t39/", "t39_player_path_support/"],
+                "prefixes": ["centrifuge/compact/", "player_path_support/centrifuge/"],
             },
             "victim_selector": {
                 "kind": "recipe_id_prefix",
@@ -497,7 +497,7 @@ def dedup_rules() -> list[dict[str, Any]]:
             "require_output_match": True,
             "winner_selector": {
                 "kind": "recipe_id_prefix",
-                "prefixes": ["t40/", "t40_player_path_support/"],
+                "prefixes": ["electrolyzer/compact/", "player_path_support/electrolyzer/"],
             },
             "victim_selector": {
                 "kind": "recipe_id_prefix",

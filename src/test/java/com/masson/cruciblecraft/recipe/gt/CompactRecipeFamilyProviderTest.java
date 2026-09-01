@@ -53,7 +53,7 @@ class CompactRecipeFamilyProviderTest {
         CompactGTRecipeFamilyDefinition original = assemblerFamily(
                 "gt.recipe.assembler#0002",
                 List.of(itemRelation(
-                        "t37/assembler_row",
+                        "assembler/compact/assembler_row",
                         Ingredient.of(Items.IRON_INGOT),
                         new ItemStack(Items.IRON_NUGGET),
                         0)));
@@ -77,8 +77,7 @@ class CompactRecipeFamilyProviderTest {
         assertTrue(decoded.parameterized().isEmpty());
         assertTrue(decoded.publicationGroup().isEmpty());
         assertEquals(
-                CompactGTRecipeFamilyDefinition
-                        .T37_ASSEMBLER_PUBLICATION_GROUP,
+                CompactPublicationGroups.ASSEMBLER_COMPACT,
                 decoded.resolvedPublicationGroup());
     }
 
@@ -92,7 +91,7 @@ class CompactRecipeFamilyProviderTest {
                         id("missing_map"),
                         "3703e40308c8c030763fd6297dea8b210d2a77b1",
                         List.of(itemRelation(
-                                "t37/missing",
+                                "assembler/compact/missing",
                                 Ingredient.of(Items.IRON_INGOT),
                                 new ItemStack(Items.IRON_NUGGET),
                                 0))));
@@ -119,7 +118,7 @@ class CompactRecipeFamilyProviderTest {
                 assemblerFamily(
                         "gt.recipe.assembler#0002",
                         List.of(itemRelation(
-                                "t37/assembler_iron",
+                                "assembler/compact/assembler_iron",
                                 Ingredient.of(Items.IRON_INGOT),
                                 new ItemStack(Items.IRON_NUGGET),
                                 0))));
@@ -131,12 +130,12 @@ class CompactRecipeFamilyProviderTest {
                         "3703e40308c8c030763fd6297dea8b210d2a77b1",
                         List.of(
                                 fluidRelation(
-                                        "t38/roaster_water",
+                                        "roaster/compact/roaster_water",
                                         new FluidStack(Fluids.WATER, 250),
                                         new ItemStack(Items.GLASS_BOTTLE),
                                         0),
                                 itemRelation(
-                                        "t38/roaster_iron",
+                                        "roaster/compact/roaster_iron",
                                         Ingredient.of(Items.IRON_INGOT),
                                         new ItemStack(Items.IRON_NUGGET),
                                         1))));
@@ -169,7 +168,7 @@ class CompactRecipeFamilyProviderTest {
                 snapshots.get(assembler.id()).familyId(),
                 snapshots.get(roaster.id()).familyId());
         assertEquals(
-                id("t37/assembler_iron"),
+                id("assembler/compact/assembler_iron"),
                 snapshots.get(assembler.id()).recipeIds().getFirst());
         assertEquals(
                 CompactRecipeFamilyProvider.MaterializationStrategy.HYBRID,
@@ -183,23 +182,21 @@ class CompactRecipeFamilyProviderTest {
         assertEquals(0, snapshots.get(roaster.id()).eagerRecipeCount());
         assertEquals(2, snapshots.get(roaster.id()).lazyRecipeCount());
         assertEquals(
-                id("t38/roaster_water"),
+                id("roaster/compact/roaster_water"),
                 snapshots.get(roaster.id()).recipeIds().getFirst());
     }
 
     @Test
     void centrifugePublicationGroupsUseDistinctPoliciesAndFamilyIds() {
         RecipeMap centrifuge = ModRecipeMaps.CENTRIFUGE;
-        ResourceLocation singletonGroup = CompactGTRecipeFamilyDefinition
-                .T39_CENTRIFUGE_SINGLETON_PUBLICATION_GROUP;
-        ResourceLocation multiGroup = CompactGTRecipeFamilyDefinition
-                .T39_CENTRIFUGE_MULTI_PUBLICATION_GROUP;
+        ResourceLocation singletonGroup = CompactPublicationGroups.CENTRIFUGE_SINGLETON;
+        ResourceLocation multiGroup = CompactPublicationGroups.CENTRIFUGE_MULTI;
         CompactRecipeFamilySource singleton = source(
                 centrifuge,
                 singletonGroup,
                 "gt.recipe.centrifuge#0001",
                 itemRelation(
-                        "t39/centrifuge_singleton",
+                        "centrifuge/compact/centrifuge_singleton",
                         Ingredient.of(Items.IRON_INGOT),
                         new ItemStack(Items.IRON_NUGGET),
                         0));
@@ -208,7 +205,7 @@ class CompactRecipeFamilyProviderTest {
                 multiGroup,
                 "gt.recipe.centrifuge#0002",
                 itemRelation(
-                        "t39/centrifuge_multi",
+                        "centrifuge/compact/centrifuge_multi",
                         Ingredient.of(Items.GOLD_INGOT),
                         new ItemStack(Items.GOLD_NUGGET),
                         1));
@@ -254,55 +251,55 @@ class CompactRecipeFamilyProviderTest {
     }
 
     @Test
-    void assemblerT41GroupsKeepT37HistoricalIdentity() {
+    void assemblerWoodGroupsKeepAssemblerHistoricalIdentity() {
         RecipeMap assembler = ModRecipeMaps.ASSEMBLER;
         CompactRecipeFamilySource historical = source(
                 assembler,
                 "gt.recipe.assembler#0002",
                 itemRelation(
-                        "t37/historical_oak",
+                        "assembler/compact/historical_oak",
                         Ingredient.of(Items.OAK_PLANKS),
                         new ItemStack(Items.OAK_BUTTON),
                         0));
         CompactRecipeFamilySource planks = source(
                 assembler,
-                CompactGTRecipeFamilyDefinition.T41_ASSEMBLER_PLANKS_PUBLICATION_GROUP,
+                CompactPublicationGroups.ASSEMBLER_PLANKS,
                 "gt.recipe.assembler#0052",
                 itemRelation(
-                        "t41/planks_row",
+                        "assembler/wood/planks_row",
                         Ingredient.of(Items.SPRUCE_PLANKS),
                         new ItemStack(Items.SPRUCE_BUTTON),
                         1));
         CompactRecipeFamilySource fireproof = source(
                 assembler,
-                CompactGTRecipeFamilyDefinition.T41_ASSEMBLER_FIREPROOF_PUBLICATION_GROUP,
+                CompactPublicationGroups.ASSEMBLER_FIREPROOF,
                 "gt.recipe.assembler#0137",
                 itemRelation(
-                        "t41/fireproof_row",
+                        "assembler/wood/fireproof_row",
                         Ingredient.of(Items.BIRCH_PLANKS),
                         new ItemStack(Items.BIRCH_BUTTON),
                         2));
         CompactRecipeFamilySource planks2 = source(
                 assembler,
-                CompactGTRecipeFamilyDefinition.T41_ASSEMBLER_PLANKS2_PUBLICATION_GROUP,
+                CompactPublicationGroups.ASSEMBLER_PLANKS2,
                 "gt.recipe.assembler#0218",
                 itemRelation(
-                        "t41/planks2_row",
+                        "assembler/wood/planks2_row",
                         Ingredient.of(Items.JUNGLE_PLANKS),
                         new ItemStack(Items.JUNGLE_BUTTON),
                         3));
-        PublicationGroupKey t37Key = new PublicationGroupKey(
+        PublicationGroupKey assemblerCompactKey = new PublicationGroupKey(
                 assembler.id(),
-                CompactGTRecipeFamilyDefinition.T37_ASSEMBLER_PUBLICATION_GROUP);
+                CompactPublicationGroups.ASSEMBLER_COMPACT);
         PublicationGroupKey planksKey = new PublicationGroupKey(
                 assembler.id(),
-                CompactGTRecipeFamilyDefinition.T41_ASSEMBLER_PLANKS_PUBLICATION_GROUP);
+                CompactPublicationGroups.ASSEMBLER_PLANKS);
         PublicationGroupKey fireproofKey = new PublicationGroupKey(
                 assembler.id(),
-                CompactGTRecipeFamilyDefinition.T41_ASSEMBLER_FIREPROOF_PUBLICATION_GROUP);
+                CompactPublicationGroups.ASSEMBLER_FIREPROOF);
         PublicationGroupKey planks2Key = new PublicationGroupKey(
                 assembler.id(),
-                CompactGTRecipeFamilyDefinition.T41_ASSEMBLER_PLANKS2_PUBLICATION_GROUP);
+                CompactPublicationGroups.ASSEMBLER_PLANKS2);
 
         var snapshots = CompactRecipeFamilyProvider.prepareByPublicationGroup(
                 List.of(historical, planks, fireproof, planks2),
@@ -310,7 +307,7 @@ class CompactRecipeFamilyProviderTest {
                 41L,
                 CompactRecipeFamilyProvider.RuntimeSide.SERVER,
                 Map.of(
-                        t37Key,
+                        assemblerCompactKey,
                         CompactRecipeFamilyProvider.MaterializationPolicy.hybrid(
                                 8, CompactRecipeFamilyProvider.EagerSelector.NONE),
                         planksKey,
@@ -325,13 +322,13 @@ class CompactRecipeFamilyProviderTest {
         assertEquals(4, snapshots.size());
         assertEquals(
                 CompactRecipeFamilyProvider.familyId(assembler.id()),
-                snapshots.get(t37Key).familyId());
+                snapshots.get(assemblerCompactKey).familyId());
         assertEquals(
                 CompactRecipeFamilyProvider.familyId(
                         assembler.id(),
-                        CompactGTRecipeFamilyDefinition.T41_ASSEMBLER_PLANKS_PUBLICATION_GROUP),
+                        CompactPublicationGroups.ASSEMBLER_PLANKS),
                 snapshots.get(planksKey).familyId());
-        assertEquals(1, snapshots.get(t37Key).logicalRecipeCount());
+        assertEquals(1, snapshots.get(assemblerCompactKey).logicalRecipeCount());
         assertEquals(1, snapshots.get(planksKey).logicalRecipeCount());
         assertEquals(1, snapshots.get(fireproofKey).logicalRecipeCount());
         assertEquals(1, snapshots.get(planks2Key).logicalRecipeCount());
@@ -350,21 +347,20 @@ class CompactRecipeFamilyProviderTest {
         assertEquals(0, snapshots.get(planksKey).eagerRecipeCount());
         assertEquals(0, snapshots.get(fireproofKey).eagerRecipeCount());
         assertNotEquals(
-                snapshots.get(t37Key).familyId(),
+                snapshots.get(assemblerCompactKey).familyId(),
                 snapshots.get(planksKey).familyId());
     }
 
     @Test
     void missingPublicationGroupPolicyFailsClosed() {
         RecipeMap centrifuge = ModRecipeMaps.CENTRIFUGE;
-        ResourceLocation singletonGroup = CompactGTRecipeFamilyDefinition
-                .T39_CENTRIFUGE_SINGLETON_PUBLICATION_GROUP;
+        ResourceLocation singletonGroup = CompactPublicationGroups.CENTRIFUGE_SINGLETON;
         CompactRecipeFamilySource source = source(
                 centrifuge,
                 singletonGroup,
                 "gt.recipe.centrifuge#0003",
                 itemRelation(
-                        "t39/missing_group_policy",
+                        "centrifuge/compact/missing_group_policy",
                         Ingredient.of(Items.IRON_INGOT),
                         new ItemStack(Items.IRON_NUGGET),
                         0));
@@ -393,7 +389,7 @@ class CompactRecipeFamilyProviderTest {
                         centrifuge.id(),
                         "3703e40308c8c030763fd6297dea8b210d2a77b1",
                         List.of(itemRelation(
-                                "t39/missing_group",
+                                "centrifuge/compact/missing_group",
                                 Ingredient.of(Items.IRON_INGOT),
                                 new ItemStack(Items.IRON_NUGGET),
                                 0))));
@@ -414,16 +410,14 @@ class CompactRecipeFamilyProviderTest {
     @Test
     void duplicateStableIdAcrossPublicationGroupsFailsClosed() {
         RecipeMap centrifuge = ModRecipeMaps.CENTRIFUGE;
-        ResourceLocation singletonGroup = CompactGTRecipeFamilyDefinition
-                .T39_CENTRIFUGE_SINGLETON_PUBLICATION_GROUP;
-        ResourceLocation multiGroup = CompactGTRecipeFamilyDefinition
-                .T39_CENTRIFUGE_MULTI_PUBLICATION_GROUP;
+        ResourceLocation singletonGroup = CompactPublicationGroups.CENTRIFUGE_SINGLETON;
+        ResourceLocation multiGroup = CompactPublicationGroups.CENTRIFUGE_MULTI;
         CompactRecipeFamilySource singleton = source(
                 centrifuge,
                 singletonGroup,
                 "gt.recipe.centrifuge#0005",
                 itemRelation(
-                        "t39/duplicate_across_groups",
+                        "centrifuge/compact/duplicate_across_groups",
                         Ingredient.of(Items.IRON_INGOT),
                         new ItemStack(Items.IRON_NUGGET),
                         0));
@@ -432,7 +426,7 @@ class CompactRecipeFamilyProviderTest {
                 multiGroup,
                 "gt.recipe.centrifuge#0006",
                 itemRelation(
-                        "t39/duplicate_across_groups",
+                        "centrifuge/compact/duplicate_across_groups",
                         Ingredient.of(Items.GOLD_INGOT),
                         new ItemStack(Items.GOLD_NUGGET),
                         1));
@@ -467,7 +461,7 @@ class CompactRecipeFamilyProviderTest {
                 roaster,
                 "gt.recipe.roaster#0002",
                 itemRelation(
-                        "t38/missing_policy",
+                        "roaster/compact/missing_policy",
                         Ingredient.of(Items.IRON_INGOT),
                         new ItemStack(Items.IRON_NUGGET),
                         0));
@@ -500,7 +494,7 @@ class CompactRecipeFamilyProviderTest {
     }
 
     @Test
-    void t37FirstTenUsesAssemblerSourcesOnly() {
+    void assemblerCompactFirstTenUsesAssemblerSourcesOnly() {
         RecipeMap assembler = ModRecipeMaps.ASSEMBLER;
         RecipeMap roaster = ModRecipeMaps.ROASTER;
         List<CompactRecipeFamilySource> assemblerSources = new ArrayList<>();
@@ -509,7 +503,7 @@ class CompactRecipeFamilyProviderTest {
                     assembler,
                     "gt.recipe.assembler#%04d".formatted(number),
                     itemRelation(
-                            "t37/assembler_boundary_" + number,
+                            "assembler/compact/assembler_boundary_" + number,
                             Ingredient.of(Items.IRON_INGOT),
                             new ItemStack(Items.IRON_NUGGET),
                             number - 1)));
@@ -518,7 +512,7 @@ class CompactRecipeFamilyProviderTest {
                 roaster,
                 "aaa.roaster#0001",
                 itemRelation(
-                        "t38/roaster_boundary",
+                        "roaster/compact/roaster_boundary",
                         Ingredient.of(Items.GOLD_INGOT),
                         new ItemStack(Items.GOLD_NUGGET),
                         0));
@@ -532,18 +526,18 @@ class CompactRecipeFamilyProviderTest {
                 CompactRecipeFamilyProvider.RuntimeSide.SERVER,
                 Map.of(
                         assembler.id(),
-                        CompactHybridFixturePolicies.t37Selector(assemblerSources),
+                        CompactHybridFixturePolicies.assemblerCompactSelector(assemblerSources),
                         roaster.id(),
                         CompactRecipeFamilyProvider.MaterializationPolicy.onDemand(16)));
 
-        var t37 = snapshots.get(assembler.id());
-        assertEquals(11, t37.logicalRecipeCount());
-        assertEquals(10, t37.eagerRecipeCount());
-        assertEquals(1, t37.lazyRecipeCount());
-        assertEquals(8, t37.cacheCeiling());
+        var assemblerCompact = snapshots.get(assembler.id());
+        assertEquals(11, assemblerCompact.logicalRecipeCount());
+        assertEquals(10, assemblerCompact.eagerRecipeCount());
+        assertEquals(1, assemblerCompact.lazyRecipeCount());
+        assertEquals(8, assemblerCompact.cacheCeiling());
         assertEquals(
-                id("t37/assembler_boundary_11"),
-                t37.recipeIds().getLast());
+                id("assembler/compact/assembler_boundary_11"),
+                assemblerCompact.recipeIds().getLast());
     }
 
     @Test
@@ -567,7 +561,7 @@ class CompactRecipeFamilyProviderTest {
                         map,
                         "coexist.family#0001",
                         itemRelation(
-                                "t37/coexist_iron",
+                                "assembler/compact/coexist_iron",
                                 Ingredient.of(Items.IRON_INGOT),
                                 new ItemStack(Items.IRON_NUGGET),
                                 0))),
@@ -581,7 +575,7 @@ class CompactRecipeFamilyProviderTest {
                         .orElseThrow()
                         .id());
         assertEquals(
-                id("t37/coexist_iron"),
+                id("assembler/compact/coexist_iron"),
                 map.findMatch(GTRecipeQuery.items(new ItemStack(Items.IRON_INGOT)))
                         .orElseThrow()
                         .id());
@@ -597,7 +591,7 @@ class CompactRecipeFamilyProviderTest {
                         map,
                         "epoch.family#0001",
                         itemRelation(
-                                "t37/epoch_a",
+                                "assembler/compact/epoch_a",
                                 Ingredient.of(Items.IRON_INGOT),
                                 new ItemStack(Items.IRON_NUGGET),
                                 0))),
@@ -613,7 +607,7 @@ class CompactRecipeFamilyProviderTest {
                         map,
                         "epoch.family#0001",
                         itemRelation(
-                                "t37/epoch_b",
+                                "assembler/compact/epoch_b",
                                 Ingredient.of(Items.GOLD_INGOT),
                                 new ItemStack(Items.GOLD_NUGGET),
                                 0))),
@@ -622,9 +616,9 @@ class CompactRecipeFamilyProviderTest {
         map.prepareRecipes(List.of(), List.of(second), 2L).publish();
         assertThrows(IllegalStateException.class, stale::size);
         assertEquals(
-                id("t37/epoch_b"),
-                map.entry(id("t37/epoch_b")).orElseThrow().id());
-        assertFalse(map.entry(id("t37/epoch_a")).isPresent());
+                id("assembler/compact/epoch_b"),
+                map.entry(id("assembler/compact/epoch_b")).orElseThrow().id());
+        assertFalse(map.entry(id("assembler/compact/epoch_a")).isPresent());
     }
 
     @Test
@@ -636,17 +630,17 @@ class CompactRecipeFamilyProviderTest {
                         map,
                         "enum.family#0001",
                         itemRelation(
-                                "t37/enum_a",
+                                "assembler/compact/enum_a",
                                 Ingredient.of(Items.IRON_INGOT),
                                 new ItemStack(Items.IRON_NUGGET),
                                 0),
                         itemRelation(
-                                "t37/enum_b",
+                                "assembler/compact/enum_b",
                                 Ingredient.of(Items.GOLD_INGOT),
                                 new ItemStack(Items.GOLD_NUGGET),
                                 1),
                         itemRelation(
-                                "t37/enum_c",
+                                "assembler/compact/enum_c",
                                 Ingredient.of(Items.COPPER_INGOT),
                                 new ItemStack(Items.COPPER_BLOCK),
                                 2))),
@@ -670,7 +664,7 @@ class CompactRecipeFamilyProviderTest {
                 map,
                 "strategy.family#0001",
                 itemRelation(
-                        "t37/strategy_row",
+                        "assembler/compact/strategy_row",
                         Ingredient.of(Items.IRON_INGOT),
                         new ItemStack(Items.IRON_NUGGET),
                         0)));
@@ -694,7 +688,7 @@ class CompactRecipeFamilyProviderTest {
                 CompactRecipeFamilyProvider.MaterializationPolicy.hybrid(
                         4, (index, relation) -> index == 0));
 
-        ResourceLocation stableId = id("t37/strategy_row");
+        ResourceLocation stableId = id("assembler/compact/strategy_row");
         GTRecipe expected = immediate.entry(stableId).orElseThrow().recipe();
         assertSameRecipe(expected, onDemand.entry(stableId).orElseThrow().recipe());
         assertSameRecipe(expected, hybrid.entry(stableId).orElseThrow().recipe());
@@ -727,7 +721,7 @@ class CompactRecipeFamilyProviderTest {
         named.set(DataComponents.CUSTOM_NAME, Component.literal("catalyst"));
         CompactGTRecipeFamilyDefinition.Relation wearAndChance =
                 new CompactGTRecipeFamilyDefinition.Relation(
-                        id("t37/coverage_multi"),
+                        id("assembler/compact/coverage_multi"),
                         List.of(
                                 Ingredient.of(Items.IRON_INGOT),
                                 Ingredient.of(Items.IRON_PICKAXE),
@@ -756,13 +750,13 @@ class CompactRecipeFamilyProviderTest {
                 List.of(source(map, "coverage.family#0001", wearAndChance)),
                 CompactRecipeFamilyProvider.MaterializationPolicy.onDemand(2));
 
-        RecipeMap.Entry byId = snapshot.entry(id("t37/coverage_multi")).orElseThrow();
+        RecipeMap.Entry byId = snapshot.entry(id("assembler/compact/coverage_multi")).orElseThrow();
         assertEquals(2, byId.recipe().itemOutputs().size());
         assertEquals(2500, byId.recipe().outputChances().get(1));
         assertEquals(ItemInputAction.Kind.WEAR, byId.recipe().itemInputActions().get(1).kind());
         assertEquals(1, snapshot.unindexedRelationCount());
-        RecipeMap.Entry byIdAgain = snapshot.entry(id("t37/coverage_multi")).orElseThrow();
-        assertEquals(id("t37/coverage_multi"), byIdAgain.id());
+        RecipeMap.Entry byIdAgain = snapshot.entry(id("assembler/compact/coverage_multi")).orElseThrow();
+        assertEquals(id("assembler/compact/coverage_multi"), byIdAgain.id());
         assertEquals(0, snapshot.cacheSize());
         snapshot.findLazy(new GTRecipeQuery(
                 List.of(
@@ -806,7 +800,7 @@ class CompactRecipeFamilyProviderTest {
                 map,
                 "duplicate.authored#0001",
                 itemRelation(
-                        "t38/duplicate_authored_first",
+                        "roaster/compact/duplicate_authored_first",
                         Ingredient.of(Items.IRON_INGOT),
                         new ItemStack(Items.IRON_NUGGET),
                         0));
@@ -817,7 +811,7 @@ class CompactRecipeFamilyProviderTest {
                         map.id(),
                         "3703e40308c8c030763fd6297dea8b210d2a77b1",
                         List.of(itemRelation(
-                                "t38/duplicate_authored_second",
+                                "roaster/compact/duplicate_authored_second",
                                 Ingredient.of(Items.GOLD_INGOT),
                                 new ItemStack(Items.GOLD_NUGGET),
                                 1)),
@@ -834,7 +828,7 @@ class CompactRecipeFamilyProviderTest {
                 map,
                 "duplicate.stable#0002",
                 itemRelation(
-                        "t38/duplicate_stable",
+                        "roaster/compact/duplicate_stable",
                         Ingredient.of(Items.GOLD_INGOT),
                         new ItemStack(Items.GOLD_NUGGET),
                         1));
@@ -842,7 +836,7 @@ class CompactRecipeFamilyProviderTest {
                 map,
                 "duplicate.stable#0001",
                 itemRelation(
-                        "t38/duplicate_stable",
+                        "roaster/compact/duplicate_stable",
                         Ingredient.of(Items.IRON_INGOT),
                         new ItemStack(Items.IRON_NUGGET),
                         0));
@@ -864,7 +858,7 @@ class CompactRecipeFamilyProviderTest {
                   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
                   "relations": [
                     {
-                      "stable_id": "cruciblecraft:t37/contract_row",
+                      "stable_id": "cruciblecraft:assembler/compact/contract_row",
                       "item_inputs": [{"item": "minecraft:iron_ingot"}],
                       "item_input_counts": [1],
                       "item_input_actions": [{"kind": "consume"}],
@@ -895,8 +889,7 @@ class CompactRecipeFamilyProviderTest {
         assertEquals(ModRecipeMaps.ASSEMBLER.id(), decoded.targetMap());
         assertTrue(decoded.publicationGroup().isEmpty());
         assertEquals(
-                CompactGTRecipeFamilyDefinition
-                        .T37_ASSEMBLER_PUBLICATION_GROUP,
+                CompactPublicationGroups.ASSEMBLER_COMPACT,
                 decoded.resolvedPublicationGroup());
         assertEquals(32, decoded.relations().getFirst().duration());
         assertEquals(16L, decoded.relations().getFirst().eut());
@@ -906,10 +899,10 @@ class CompactRecipeFamilyProviderTest {
     }
 
     @Test
-    void fiftySingletonRowsMaterializeUnderFrozenT37Policies() {
+    void fiftySingletonRowsMaterializeUnderFrozenAssemblerCompactPolicies() {
         int[] durations = {16, 32, 96, 48, 64, 64, 128, 64, 32};
         List<CompactRecipeFamilySource> sources = new ArrayList<>();
-        RecipeMap map = new RecipeMap(id("t37_workload"));
+        RecipeMap map = new RecipeMap(id("assembler_compact_workload"));
         for (int number = 2; number <= 51; number++) {
             String familyId = "gt.recipe.assembler#%04d".formatted(number);
             int duration = durations[(number - 2) % durations.length];
@@ -917,7 +910,7 @@ class CompactRecipeFamilyProviderTest {
                     map,
                     familyId,
                     new CompactGTRecipeFamilyDefinition.Relation(
-                            id("t37/row_" + number),
+                            id("assembler/compact/row_" + number),
                             List.of(Ingredient.of(Items.IRON_INGOT)),
                             List.of(1),
                             List.of(ItemInputAction.CONSUME),
@@ -932,8 +925,8 @@ class CompactRecipeFamilyProviderTest {
                             number - 2,
                             provenance(familyId))));
         }
-        CompactRecipeFamilyProvider.MaterializationPolicy frozenT37Policy =
-                CompactHybridFixturePolicies.t37Selector(sources);
+        CompactRecipeFamilyProvider.MaterializationPolicy frozenAssemblerCompactPolicy =
+                CompactHybridFixturePolicies.assemblerCompactSelector(sources);
 
         var immediate = CompactRecipeFamilyProvider.prepare(
                 map,
@@ -952,7 +945,7 @@ class CompactRecipeFamilyProviderTest {
                 sources,
                 7L,
                 CompactRecipeFamilyProvider.RuntimeSide.SERVER,
-                frozenT37Policy);
+                frozenAssemblerCompactPolicy);
 
         assertEquals(50, immediate.logicalRecipeCount());
         assertEquals(50, immediate.eagerRecipeCount());

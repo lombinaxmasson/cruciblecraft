@@ -1,0 +1,29 @@
+{
+  "children": [
+    {
+      "child": "portfolio/census-disposition-replay",
+      "decision": "MUST_REPLAY",
+      "reason": "t42_owner_readiness is not current census proof."
+    },
+    {
+      "child": "portfolio/energy-matrix-replay",
+      "decision": "MUST_REPLAY",
+      "reason": "machine_tiers.json grew from 33 selected rows to the live catalog."
+    },
+    {
+      "child": "portfolio/storage-currentness-replay",
+      "decision": "ALREADY_CURRENT",
+      "reason": "T44 catalog/lock/sidecar currentness holds."
+    },
+    {
+      "child": "portfolio/load-ceiling-interpretation",
+      "decision": "MUST_REPLAY",
+      "reason": "Interpretation A must be a machine-readable policy, not the last wave seal."
+    }
+  ],
+  "generated_by": "python tools/build_one_x_exit_r0.py",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "REPLAY_NEEDED_READY",
+  "wave_slug": "portfolio/one-x-exit-r0"
+}

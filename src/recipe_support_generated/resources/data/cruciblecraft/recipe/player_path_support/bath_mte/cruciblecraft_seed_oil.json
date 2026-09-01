@@ -1,0 +1,43 @@
+{
+  "can_be_buffered": true,
+  "duration": 16,
+  "eut": 0,
+  "fluid_inputs": [
+    {
+      "amount": 72,
+      "id": "minecraft:water"
+    }
+  ],
+  "fluid_outputs": [
+    {
+      "amount": 144,
+      "id": "cruciblecraft:seed_oil"
+    }
+  ],
+  "item_input_actions": [
+    {
+      "kind": "consume"
+    }
+  ],
+  "item_input_counts": [
+    2
+  ],
+  "item_inputs": [
+    {
+      "item": "minecraft:wheat_seeds"
+    }
+  ],
+  "item_outputs": [],
+  "map": "cruciblecraft:bath",
+  "output_chances": [],
+  "provenance": {
+    "evidence_hashes": [
+      "3703e40308c8c030763fd6297dea8b210d2a77b1"
+    ],
+    "note": "SOURCE_DERIVED: wheat seeds are the legal B0 seed crop.",
+    "selected_source_recipe": "player_path_support/bath_mte/cruciblecraft_seed_oil",
+    "source_kind": "t46_b1_design_policy"
+  },
+  "special_value": 0,
+  "type": "cruciblecraft:gt_recipe"
+}

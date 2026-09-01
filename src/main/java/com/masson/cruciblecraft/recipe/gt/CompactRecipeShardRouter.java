@@ -39,7 +39,7 @@ import net.neoforged.neoforge.fluids.FluidStack;
  * unrelated shards are never scanned.
  */
 public final class CompactRecipeShardRouter {
-    public static final String ROUTING_SCHEMA_VERSION = "t39-shard-v1";
+    public static final String ROUTING_SCHEMA_VERSION = "compact-shard-v1";
     public static final int HARD_SHARD_CEILING = 128;
     private static final int MAX_QUERY_KEYS = 64;
     private static final String PAIR_SEPARATOR = "\0";

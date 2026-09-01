@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/forward_recipe_authority_v2_readiness.schema.json",
+  "title": "CrucibleCraft forward-v2 recipe authority readiness",
+  "type": "object",
+  "required": ["schema_version", "status", "gates", "failed_gates"],
+  "properties": {
+    "failed_gates": { "type": "array", "items": { "type": "string" } },
+    "gates": { "type": "object" },
+    "generated_by": { "type": "string" },
+    "hashes": { "type": "object" },
+    "note": { "type": "string" },
+    "owns_families": { "const": 0 },
+    "schema_version": { "const": 1 },
+    "status": {
+      "enum": [
+        "FORWARD_RECIPE_AUTHORITY_V2_READY",
+        "FORWARD_RECIPE_AUTHORITY_V2_BLOCKED"
+      ]
+    }
+  }
+}

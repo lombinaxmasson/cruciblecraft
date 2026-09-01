@@ -1,0 +1,26 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "conditions": [
+    "material.tag(\"PROCESSING.EXTRUDABLE\")",
+    "has_registered(plate) && has_registered(huge_fluid_pipe) && fluid_pipe_recipe(huge_fluid_pipe) == 1"
+  ],
+  "duration": "256",
+  "eut": "32",
+  "item_inputs": [
+    {
+      "count": "12",
+      "prefix": "cruciblecraft:plate"
+    },
+    {
+      "count": "0",
+      "item": "cruciblecraft:extruder_shape_huge_pipe"
+    }
+  ],
+  "item_outputs": [
+    {
+      "count": "1",
+      "prefix": "cruciblecraft:huge_fluid_pipe"
+    }
+  ],
+  "target": "cruciblecraft:extruder"
+}

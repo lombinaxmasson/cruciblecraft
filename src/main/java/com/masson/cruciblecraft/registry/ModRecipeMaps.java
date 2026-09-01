@@ -27,7 +27,7 @@ public final class ModRecipeMaps {
     public static final RecipeMap SIFTER = create("sifter");
     public static final RecipeMap SMELTER = create("smelter");
     /**
-     * T10 leftover map. GT6 has no generic cooler and no passive
+     * Reserved leftover map. GT6 has no generic cooler and no passive
      * {@code ingotHot → ingot} conversion. The map stays registered and empty
      * so existing map-id contracts do not drift; it is not a cooling machine.
      */

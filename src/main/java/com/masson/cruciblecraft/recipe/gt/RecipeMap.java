@@ -112,6 +112,10 @@ public final class RecipeMap {
                 .findFirst();
     }
 
+    public List<RecipeFamily> families() {
+        return index.families();
+    }
+
     /**
      * Atomically replaces datapack recipes and rebuilds all input indexes.
      * Callers must supply a stable priority order, normally sorted by recipe id.

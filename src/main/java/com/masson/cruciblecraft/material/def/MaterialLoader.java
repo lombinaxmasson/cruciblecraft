@@ -31,7 +31,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class MaterialLoader {
     private static final String RESOURCE_ROOT = "/data/cruciblecraft/materials/";
-    private static final String T11_RESOURCE_ROOT =
+    private static final String HYDROCARBON_MATERIAL_ROOT =
             "/data/cruciblecraft/t11_materials/";
     private static final Logger LOGGER = LoggerFactory.getLogger(MaterialLoader.class);
 
@@ -70,7 +70,7 @@ public final class MaterialLoader {
 
     private static void loadBundled(Map<String, MaterialDefinition> output) {
         for (String root : List.of(
-                RESOURCE_ROOT, T11_RESOURCE_ROOT)) {
+                RESOURCE_ROOT, HYDROCARBON_MATERIAL_ROOT)) {
             try (Reader reader = resourceReader(root, "index.json")) {
                 JsonArray index = JsonParser.parseReader(
                         reader).getAsJsonArray();

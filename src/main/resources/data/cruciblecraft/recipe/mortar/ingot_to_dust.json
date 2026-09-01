@@ -1,0 +1,20 @@
+{
+  "type": "cruciblecraft:material_rule",
+  "conditions": [
+    "material.tag(\"PROCESSING.MORTAR_GRINDABLE\")",
+    "has_registered(ingot) && has_registered(dust)"
+  ],
+  "duration": "120",
+  "eut": "12",
+  "item_inputs": [
+    {
+      "prefix": "cruciblecraft:ingot"
+    }
+  ],
+  "item_outputs": [
+    {
+      "prefix": "cruciblecraft:dust"
+    }
+  ],
+  "target": "cruciblecraft:mortar"
+}

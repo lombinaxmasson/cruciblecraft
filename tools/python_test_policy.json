@@ -247,7 +247,7 @@
         "tools/build_t10_*.py",
         "tools/apply_t10_*.py",
         "tools/t10_*.json",
-        "src/main/resources/data/cruciblecraft/recipe/t10/**"
+        "src/main/resources/data/cruciblecraft/recipe/ingot_form/**"
       ],
       "test_modules": [
         "test_build_t10_preflight_projection",
@@ -366,9 +366,9 @@
         "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
         "src/main/resources/data/cruciblecraft/t16_publication_baseline.json",
         "src/generated/resources/data/cruciblecraft/recipe/machines/**",
-        "src/test/resources/t16_machine_tier_expected.json",
-        "src/test/java/com/masson/cruciblecraft/machine/processing/T16MachineTierMatrixTest.java",
-        "src/test/java/com/masson/cruciblecraft/datagen/T16MachineAcquisitionResourceTest.java",
+        "src/test/resources/kinetic_machine_tier_expected.json",
+        "src/test/java/com/masson/cruciblecraft/machine/processing/KineticMachineTierMatrixTest.java",
+        "src/test/java/com/masson/cruciblecraft/datagen/KineticMachineAcquisitionResourceTest.java",
         "src/test/java/com/masson/cruciblecraft/machine/processing/MachineIdentityPolicyTest.java",
         "src/test/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineIdentityPersistenceTest.java",
         "tools/contracts/narrative_archive.json"
@@ -409,9 +409,9 @@
         "src/main/java/com/masson/cruciblecraft/datagen/ModBlockTagProvider.java",
         "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
         "src/generated/resources/data/cruciblecraft/recipe/machines/**",
-        "src/test/resources/t17_machine_tier_expected.json",
-        "src/test/java/com/masson/cruciblecraft/machine/processing/T17MachineTierMatrixTest.java",
-        "src/test/java/com/masson/cruciblecraft/datagen/T17MachineAcquisitionResourceTest.java",
+        "src/test/resources/heat_machine_tier_expected.json",
+        "src/test/java/com/masson/cruciblecraft/machine/processing/HeatMachineTierMatrixTest.java",
+        "src/test/java/com/masson/cruciblecraft/datagen/HeatMachineAcquisitionResourceTest.java",
         "src/test/java/com/masson/cruciblecraft/machine/processing/MachineIdentityPolicyTest.java",
         "src/test/java/com/masson/cruciblecraft/content/blockentity/ProcessingMachineIdentityPersistenceTest.java",
         "tools/contracts/narrative_archive.json"
@@ -699,7 +699,7 @@
         "tools/t27_common.py",
         "tools/t13_denominators/recipe_maps.json",
         "tools/t27_portfolio/recipe_maps.json",
-        "src/main/resources/data/cruciblecraft/recipe/t10/cooling/hot_ingot_to_ingot.json",
+        "src/main/resources/data/cruciblecraft/recipe/ingot_form/cooling/hot_ingot_to_ingot.json",
         "src/main/java/com/masson/cruciblecraft/heat/MaterialItemCooling.java",
         "src/main/java/com/masson/cruciblecraft/heat/HeatMaintenanceEvents.java",
         "src/main/java/com/masson/cruciblecraft/heat/HotIngotProcessing.java",
@@ -1281,6 +1281,10 @@
       "paths": [
         "tools/recipe_bulk/**",
         "tools/recipe_bulk_ir.schema.json",
+        "tools/build_ordinary_wave.py",
+        "tools/build_ordinary_closeout_integrity.py",
+        "tools/wave_closeout.py",
+        "tools/tests/test_ordinary_wave_readiness.py",
         "tools/build_recipe_wave_production_baseline.py",
         "tools/build_global_build_identity_ledger.py",
         "tools/build_recipe_wave_shadow_parity.py",
@@ -1316,6 +1320,7 @@
       ],
       "test_modules": [
         "test_recipe_bulk",
+        "test_ordinary_wave_readiness",
         "test_recipe_wave_production_baseline",
         "test_build_global_build_identity_ledger",
         "test_recipe_wave_shadow_parity",
@@ -1375,6 +1380,22 @@
         "test_build_t22_5_readiness",
         "test_full_verification_report",
         "test_run_full_verification"
+      ]
+    },
+    {
+      "paths": [
+        "tools/portfolio_one_x.py",
+        "tools/build_one_x_exit_r0.py",
+        "tools/build_census_disposition_replay.py",
+        "tools/build_energy_matrix_replay.py",
+        "tools/build_storage_currentness_replay.py",
+        "tools/build_load_ceiling_interpretation.py",
+        "tools/build_one_x_joint_exit.py",
+        "tools/tests/test_one_x_joint_exit.py",
+        "tools/waves/portfolio/**"
+      ],
+      "test_modules": [
+        "test_one_x_joint_exit"
       ]
     }
   ],

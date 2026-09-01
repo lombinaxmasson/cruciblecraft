@@ -1,0 +1,29 @@
+{
+  "generated_by": "python tools/build_source_capability_map_r0.py",
+  "refs": [
+    {
+      "path": "src/main/java/com/masson/cruciblecraft/registry/ModProcessingMachines.java",
+      "role": "deprecated ALL_PUBLISHED_RECIPE_BUDGET definition"
+    },
+    {
+      "path": "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapLoader.java",
+      "role": "publication capacity telemetry; count overage is UNVERIFIED_SCALE"
+    },
+    {
+      "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
+      "role": "historical GameTest still asserts the 21000 constant"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapBudgetTest.java",
+      "role": "unit test pins the constant; overage must not throw"
+    },
+    {
+      "path": "src/test/java/com/masson/cruciblecraft/recipe/gt/ChemicalPublicationBudgetTest.java",
+      "role": "unit test pins the constant; overage must not throw"
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "COUNT_CEILING_REFS_READY",
+  "wave_slug": "portfolio/source-capability-map-r0"
+}

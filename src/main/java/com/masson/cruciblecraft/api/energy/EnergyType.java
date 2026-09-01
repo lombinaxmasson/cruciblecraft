@@ -11,7 +11,7 @@ public enum EnergyType {
     HEAT,
     /**
      * Folded compatibility identity still used by machine kinds explicitly
-     * classified as fixed/deferred in the T12 25+12 boundary ledger. New
+     * classified as fixed/deferred in the kinetic-kind boundary ledger. New
      * source-classified machines must use KINETIC_ROTATION or KINETIC_PUSH.
      */
     @Deprecated

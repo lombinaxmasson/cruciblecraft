@@ -17,9 +17,18 @@ from tools import t45_common as common
 from tools.recipe_bulk import analyze as analyze_mod
 from tools.recipe_bulk import compile as compile_mod
 from tools.recipe_bulk import replay as replay_mod
-from tools.recipe_bulk.waves import COMPILE_ORDER, recipe_wave
+from tools.recipe_bulk.waves import (
+    COMPILE_ORDER,
+    FORWARD_COMPILE_ORDER,
+    SEMANTIC_COMPILE_ORDER,
+    recipe_wave,
+)
+from tools.recipe_bulk.slugs import SCHEMA_SEMANTIC, WaveSlugError, parse_wave_token
 
-WAVE_CHOICES = (*COMPILE_ORDER, "all")
+WAVE_CHOICES = (*FORWARD_COMPILE_ORDER, *SEMANTIC_COMPILE_ORDER, "all")
+AUTHORITY_HISTORICAL = "historical-v1"
+AUTHORITY_FORWARD = "forward-v2"
+AUTHORITY_SEMANTIC = "semantic-v3"
 
 
 def _write_analyze() -> dict[str, Any]:
@@ -32,13 +41,39 @@ def _check_analyze() -> list[str]:
     return common.check_document(common.ANALYZE_REPORT, analyze_mod.analyze())
 
 
-def _normalize_waves(wave: str | None) -> tuple[str, ...]:
+def _normalize_waves(
+    wave: str | None,
+    authority: str | None,
+) -> tuple[str, ...]:
+    resolved = authority
+    if wave is not None and "/" in wave:
+        parsed = parse_wave_token(wave, schema=SCHEMA_SEMANTIC)
+        if resolved not in (None, AUTHORITY_SEMANTIC):
+            raise ValueError(f"{wave} cannot compile under {resolved}")
+        return (parsed.compile_key(),)
+    if wave is not None and str(wave).upper() == "T50":
+        raise WaveSlugError(
+            "semantic schema rejects milestone token 'T50'; "
+            "use a host/cohort slug and do not issue T50"
+        )
+    if wave in {"T46", "T47", "T48", "T49"}:
+        if resolved == AUTHORITY_HISTORICAL:
+            raise ValueError(f"{wave} cannot compile under historical-v1")
+        if resolved == AUTHORITY_SEMANTIC:
+            raise WaveSlugError(f"semantic schema rejects legacy token {wave!r}")
+        resolved = AUTHORITY_FORWARD
+    if resolved is None:
+        resolved = AUTHORITY_HISTORICAL
     if wave is None:
-        return ("T45",)
+        # Default forward-v2 wave stays T46 so historical/default flows are unchanged.
+        return ("T46",) if resolved == AUTHORITY_FORWARD else ("T45",)
     if wave == "all":
-        return COMPILE_ORDER
-    if wave not in COMPILE_ORDER:
-        raise ValueError(f"unsupported recipe wave {wave}")
+        if resolved == AUTHORITY_SEMANTIC:
+            return SEMANTIC_COMPILE_ORDER
+        return FORWARD_COMPILE_ORDER if resolved == AUTHORITY_FORWARD else COMPILE_ORDER
+    allowed = FORWARD_COMPILE_ORDER if resolved == AUTHORITY_FORWARD else COMPILE_ORDER
+    if wave not in allowed:
+        raise ValueError(f"unsupported recipe wave {wave} for {resolved}")
     return (wave,)
 
 
@@ -47,7 +82,12 @@ def _write_compile(waves: tuple[str, ...]) -> dict[str, Any]:
     for wave_id in waves:
         spec = recipe_wave(wave_id)
         built = compile_mod.compile_wave(wave_id)
-        compile_mod.write_tree(built["planned"], spec.generated_root, spec.generated_root)
+        compile_mod.write_tree(
+            built["planned"],
+            spec.generated_root,
+            spec.generated_root,
+            path_prefix=spec.path_prefix,
+        )
         if wave_id == "T45":
             compile_mod.write_tree(
                 built["planned"],
@@ -60,6 +100,23 @@ def _write_compile(waves: tuple[str, ...]) -> dict[str, Any]:
             )
             t35.write_stable(fixture_root, replay_mod.replay_t43())
             last_report = built["report"]
+        elif wave_id == "T46":
+            from tools import t46_common as t46
+
+            t35.write_stable(t46.COMPILE_REPORT, built["report"])
+            last_report = built["report"]
+        elif wave_id == "T47":
+            from tools import t47_common as t47
+
+            t35.write_stable(t47.COMPILE_REPORT, built["report"])
+            last_report = built["report"]
+        elif wave_id == "T48":
+            from tools import t48_common as t48
+
+            t35.write_stable(t48.COMPILE_REPORT, built["report"])
+            last_report = built["report"]
+        elif "/" in wave_id:
+            last_report = built["report"]
         else:
             last_report = built["report"]
     return last_report
@@ -68,11 +125,22 @@ def _write_compile(waves: tuple[str, ...]) -> dict[str, Any]:
 def _check_wave_tree(wave_id: str) -> list[str]:
     spec = recipe_wave(wave_id)
     built = compile_mod.compile_wave(wave_id)
+    if not spec.generated_root.exists():
+        if not built["planned"]:
+            return []
+        return [f"{wave_id} generated recipe tree missing"]
     generated = {
         str(path): json.loads(path.read_text(encoding="utf-8"))
         for path in spec.generated_root.rglob("gt_recipe_*.json")
         if path.is_file()
     }
+    if spec.path_prefix:
+        marker = "/" + spec.path_prefix.replace("\\", "/").strip("/") + "/"
+        generated = {
+            path: doc
+            for path, doc in generated.items()
+            if marker in path.replace("\\", "/")
+        }
     expected = {str(path): doc for path, doc in built["planned"]}
     if generated != expected:
         return [f"{wave_id} generated recipe tree drifted"]
@@ -104,9 +172,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("command", choices=("analyze", "compile", "check"))
     parser.add_argument(
         "--wave",
-        choices=WAVE_CHOICES,
         default=None,
-        help="T37–T45 or all. compile defaults to T45.",
+        help="T37–T49, semantic slug such as smelter/ordinary-closure, or all.",
+    )
+    parser.add_argument(
+        "--authority",
+        choices=(AUTHORITY_HISTORICAL, AUTHORITY_FORWARD, AUTHORITY_SEMANTIC),
+        default=None,
+        help="historical-v1 compiles T37–T45. forward-v2 compiles T37–T49. semantic-v3 compiles slug waves.",
     )
     modes = parser.add_mutually_exclusive_group(required=True)
     modes.add_argument("--check", action="store_true")
@@ -115,19 +188,23 @@ def main(argv: list[str] | None = None) -> int:
     command = args.command
     if command == "check":
         command = "compile"
-    if command == "analyze":
-        if args.write:
-            _write_analyze()
-            print(f"Wrote {common.relative(common.ANALYZE_REPORT)}")
-            return 0
-        errors = _check_analyze()
-    else:
-        waves = _normalize_waves(args.wave)
-        if args.write:
-            _write_compile(waves)
-            print(f"Wrote recipe_bulk compile for {','.join(waves)}")
-            return 0
-        errors = _check_compile(waves)
+    try:
+        if command == "analyze":
+            if args.write:
+                _write_analyze()
+                print(f"Wrote {common.relative(common.ANALYZE_REPORT)}")
+                return 0
+            errors = _check_analyze()
+        else:
+            waves = _normalize_waves(args.wave, args.authority)
+            if args.write:
+                _write_compile(waves)
+                print(f"Wrote recipe_bulk compile for {','.join(waves)}")
+                return 0
+            errors = _check_compile(waves)
+    except (WaveSlugError, ValueError, KeyError) as error:
+        print(str(error), file=sys.stderr)
+        return 1
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1

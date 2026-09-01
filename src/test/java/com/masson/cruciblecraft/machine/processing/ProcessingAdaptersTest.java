@@ -16,7 +16,7 @@ import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.ItemInputAction;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModProcessingMachines;
-import com.masson.cruciblecraft.recipe.rule.T2ChainRules;
+import com.masson.cruciblecraft.recipe.rule.MaterialChainRules;
 import com.masson.cruciblecraft.content.block.ProcessingMachineInteractions;
 import com.masson.cruciblecraft.content.menu.ProcessingMenuRanges;
 import com.masson.cruciblecraft.content.menu.ConfiguredProcessingMachineMenu;
@@ -538,8 +538,8 @@ class ProcessingAdaptersTest {
 
     @Test
     void everyT2MachineSpecFitsWorstRuleAndExposesConfiguredCapabilities() {
-        assertEquals(7, ModProcessingMachines.T2_MACHINES.size());
-        for (ProcessingMachineSpec spec : ModProcessingMachines.T2_MACHINES) {
+        assertEquals(7, ModProcessingMachines.PRIMARY_MACHINES.size());
+        for (ProcessingMachineSpec spec : ModProcessingMachines.PRIMARY_MACHINES) {
             assertEquals(spec.recipeMapId(), spec.requireRecipeMap().id());
             assertEquals(1, spec.items().inputs().size());
             assertTrue(spec.items().outputs().size() >= 3);
@@ -561,7 +561,7 @@ class ProcessingAdaptersTest {
                 ModProcessingMachines.SMELTER, Direction.NORTH);
         assertEquals(Direction.DOWN, placement.providerOffset());
         assertEquals(Direction.UP, placement.providerFace());
-        var smelterRule = T2ChainRules.ALL.stream()
+        var smelterRule = MaterialChainRules.ALL.stream()
                 .filter(definition -> definition.path().startsWith("smelter/"))
                 .findFirst().orElseThrow().rule();
         assertTrue(smelterRule.duration().startsWith("800 * ("));
@@ -569,9 +569,9 @@ class ProcessingAdaptersTest {
     }
 
     @Test
-    void everyT3MachineSpecUsesSharedKuPlacementAndExactLayouts() {
-        assertEquals(10, ModProcessingMachines.T3_MACHINES.size());
-        for (ProcessingMachineSpec spec : ModProcessingMachines.T3_MACHINES) {
+    void everyComponentMachineSpecUsesSharedKuPlacementAndExactLayouts() {
+        assertEquals(10, ModProcessingMachines.COMPONENT_MACHINES.size());
+        for (ProcessingMachineSpec spec : ModProcessingMachines.COMPONENT_MACHINES) {
             assertEquals(spec.recipeMapId(), spec.requireRecipeMap().id());
             EnergyType expectedEnergy;
             if (spec == ModProcessingMachines.PRESS) {

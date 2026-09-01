@@ -1,0 +1,16 @@
+{
+  "generated_by": "python tools/build_ordinary_closeout_integrity.py",
+  "mixes": {
+    "mixer": {
+      "artifact": "tools/waves/ordinary-wave/closeout-integrity-repair/mixer_integrated_measurements.json",
+      "groups": "historical compact + Smelter + Mixer"
+    },
+    "smelter": {
+      "artifact": "tools/waves/ordinary-wave/closeout-integrity-repair/smelter_integrated_measurements.json",
+      "groups": "historical compact + Smelter"
+    }
+  },
+  "schema_version": 1,
+  "status": "MEASUREMENT_MANIFEST",
+  "wave_slug": "ordinary-wave/closeout-integrity-repair"
+}

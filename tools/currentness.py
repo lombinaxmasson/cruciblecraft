@@ -79,7 +79,7 @@ TARGETS: tuple[dict[str, Any], ...] = (
             "tools/t5_distillery_projection.json",
         ],
         "recipe_roots": [
-            "src/t5_chemical_generated/resources/data/cruciblecraft/recipe/t5",
+            "src/chemical_recipe_generated/resources/data/cruciblecraft/recipe/chemical",
         ],
     },
     {
@@ -92,7 +92,7 @@ TARGETS: tuple[dict[str, Any], ...] = (
             "src/main/resources/data/cruciblecraft/material_registration_gate.json",
         ],
         "recipe_roots": [
-            "src/t5_chemical_generated/resources/data/cruciblecraft/recipe/t5/distillery",
+            "src/chemical_recipe_generated/resources/data/cruciblecraft/recipe/chemical/distillery",
         ],
     },
     {
@@ -683,6 +683,40 @@ TARGETS: tuple[dict[str, Any], ...] = (
         "kind": projection.KIND_LEDGER,
         "builder": "tools/build_compact_recipe_runtime_manifest.py",
         "dependencies": [],
+        "recipe_roots": [],
+    },
+    {
+        "artifact": "tools/global_build_identity_ledger.v2.json",
+        "sidecar": "tools/global_build_identity_ledger.v2.currentness.json",
+        "scope": "verification",
+        "kind": projection.KIND_LEDGER,
+        "builder": "tools/build_global_build_identity_ledger_v2.py",
+        "dependencies": [
+            "tools/global_build_identity_ledger.json",
+        ],
+        "recipe_roots": [],
+    },
+    {
+        "artifact": "tools/compact_recipe_runtime_manifest.v2.json",
+        "sidecar": "tools/compact_recipe_runtime_manifest.v2.currentness.json",
+        "scope": "verification",
+        "kind": projection.KIND_LEDGER,
+        "builder": "tools/build_compact_recipe_runtime_manifest_v2.py",
+        "dependencies": [
+            "tools/compact_recipe_runtime_manifest.json",
+        ],
+        "recipe_roots": [],
+    },
+    {
+        "artifact": "tools/forward_recipe_authority_v2_readiness.json",
+        "sidecar": "tools/forward_recipe_authority_v2_readiness.currentness.json",
+        "scope": "verification",
+        "kind": projection.KIND_LEDGER,
+        "builder": "tools/build_forward_recipe_authority_v2_readiness.py",
+        "dependencies": [
+            "tools/global_build_identity_ledger.v2.json",
+            "tools/compact_recipe_runtime_manifest.v2.json",
+        ],
         "recipe_roots": [],
     },
     {

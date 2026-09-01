@@ -11,7 +11,7 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.Tiers;
 
 /**
- * Runtime projection of the checked-in T4 tool policy.
+ * Runtime projection of the checked-in tool policy.
  *
  * <p>The authoritative source is GregTech6 revision
  * {@value #GT6_SOURCE_REVISION}: prefix gates come from {@code OP.java}

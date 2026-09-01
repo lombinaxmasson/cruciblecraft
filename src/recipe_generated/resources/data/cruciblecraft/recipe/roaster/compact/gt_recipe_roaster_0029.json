@@ -1,0 +1,58 @@
+{
+  "family_id": "gt.recipe.roaster#0029",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 512,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 1334,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 2000,
+          "id": "cruciblecraft:sulfur_dioxide"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:molybdenite/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 3,
+          "id": "cruciblecraft:molybdenum/tiny_dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "6e32b2941e7364fea7e3ce7077cf585f30141939388b843e5dd1d446011838aa"
+        ],
+        "selected_source_recipe": "gt.recipe.roaster#0029",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:roaster/compact/35469887269e8e7f"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:roaster",
+  "type": "cruciblecraft:compact_gt_recipe_family",
+  "publication_group": "cruciblecraft:roaster/compact"
+}

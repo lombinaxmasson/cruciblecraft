@@ -1,0 +1,68 @@
+{
+  "conditions": [
+    {
+      "closed_by": "portfolio/census-disposition-replay",
+      "color": "GREEN",
+      "condition": "census_disposition_owner",
+      "evidence": [
+        "tools/t35_recipe_families.json",
+        "tools/waves/recycling/deferred-ordinary-runtime/gap_replay.json"
+      ],
+      "note": "t42_owner_readiness 3483 is a historical snapshot, not current proof."
+    },
+    {
+      "closed_by": "portfolio/energy-matrix-replay",
+      "color": "GREEN",
+      "condition": "energy_matrix_selected_projection",
+      "evidence": [
+        "tools/t35_machine_track.json",
+        "src/main/resources/data/cruciblecraft/machine_tiers.json"
+      ],
+      "note": "Live catalog grew past the selected 33. Replay lossless projection."
+    },
+    {
+      "color": "GREEN",
+      "condition": "current_recipe_execution_gap",
+      "evidence": [
+        "tools/waves/recycling/deferred-ordinary-runtime/gap_replay.json"
+      ],
+      "note": "Recycling program already proved execution_gap=0."
+    },
+    {
+      "color": "GREEN",
+      "condition": "deferred_ledger_or_independent_scope",
+      "evidence": [
+        "tools/waves/recycling/deferred-ordinary-runtime/deferred_ledger.json"
+      ],
+      "note": "28 independent post-1.x decisions; R0 only replays they were not lost."
+    },
+    {
+      "closed_by": "portfolio/storage-currentness-replay",
+      "color": "GREEN",
+      "condition": "storage_28_624_logistics_1_1",
+      "evidence": [
+        "tools/t44_readiness.json",
+        "tools/t44_storage_production_lock.json",
+        "src/main/resources/data/cruciblecraft/storage_variants.json"
+      ],
+      "note": "T44 currentness sidecar/seal current."
+    },
+    {
+      "closed_by": "portfolio/load-ceiling-interpretation",
+      "color": "GREEN",
+      "condition": "load_ceiling_interpretation",
+      "evidence": [
+        "tools/waves/smelter/deferred-recycling/load_projection.json",
+        "tools/waves/smelter/deferred-recycling/smelter_deferred_recycling_integrated_measurements.json"
+      ],
+      "interpretation": "A",
+      "note": "Count telemetry is not a 1.x exit hard ceiling. Load child must write interpretation A."
+    }
+  ],
+  "generated_by": "python tools/build_one_x_joint_exit.py",
+  "interpretation": "A",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "EXIT_CONDITION_LEDGER_READY",
+  "wave_slug": "portfolio/one-x-joint-exit"
+}

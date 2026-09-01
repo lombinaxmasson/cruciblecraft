@@ -1,0 +1,32 @@
+{
+  "card_id": "autoclave/deferred-recycling",
+  "complete_family_count": 0,
+  "composed_identity_ledger_v2_sha256": "6b2f7d395c74f68ecf84244a113b28fba38de6c9752be7f50b12c2ee21805adb",
+  "composed_runtime_manifest_v2_sha256": "821e4a6ef8d4246811ec6411d81f634bf9552ded68e5a53b9c64757bc8bd376f",
+  "gametest_status": "NONE",
+  "generated_by": "python tools/build_deferred_scope_child.py --write",
+  "hashes": {
+    "census": "4699d30f9ed47e0a59daad2e261fcef46c853354201b93b860b86ecadd4e01c4",
+    "gametest_java": null,
+    "gametest_log": null,
+    "generated_recipes": null,
+    "locked_support": null,
+    "production_lock": null,
+    "publication_group_manifest": null,
+    "readiness": "ae2ab0e40938399c4716d104cc1074c30521f00401586c02535c2152d8552543",
+    "receipt": null,
+    "runtime_dependency_manifest": null,
+    "shard_manifest": null,
+    "topology": "e82966716933a73a603073718e17c6c155fc72a8ca5424a0adeaf7a8a76bcfce"
+  },
+  "note": "Owns R0-corrected autoclave 24. Ordinary processing, not Smelter MTE recovery. Independent post-1.x scope; deferred recycling decrements because the hanging later:recycling label is closed.",
+  "production_lock_sha256": null,
+  "receipt_sha256": null,
+  "reclassification_delta": 0,
+  "relation_count": 0,
+  "remaining_recipe_gap": 0,
+  "schema_version": 1,
+  "sealed_at_wave": "autoclave/deferred-recycling",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "SEALED"
+}

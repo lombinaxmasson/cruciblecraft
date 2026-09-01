@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import copy
+import tempfile
 import unittest
+from pathlib import Path
 from unittest import mock
 
 from tools import run_python_tests as workflow
@@ -68,6 +70,26 @@ class PythonTestWorkflowTest(unittest.TestCase):
             {workflow.test_module(case) for case in selection.cases},
         )
 
+    def test_modules_suite_does_not_expand_t46_affected_glob(self) -> None:
+        selection = workflow.select_cases(
+            "modules",
+            self.policy,
+            self.cases,
+            modules=["test_build_t46_work_set"],
+        )
+        selected_modules = {workflow.test_module(case) for case in selection.cases}
+        self.assertEqual({"test_build_t46_work_set"}, selected_modules)
+        self.assertTrue(selection.cases)
+        self.assertNotIn("test_build_t46_production_lock", selected_modules)
+        with self.assertRaises(workflow.PolicyError) as ctx:
+            workflow.select_cases(
+                "modules",
+                self.policy,
+                self.cases,
+                modules=[],
+            )
+        self.assertIn("at least one --module", str(ctx.exception))
+
     def test_t16_artifacts_select_full_t16_closure_modules(self) -> None:
         selection = workflow.select_cases(
             "affected",
@@ -126,6 +148,34 @@ class PythonTestWorkflowTest(unittest.TestCase):
         self.assertEqual(
             {"test_check_markdown_links", "test_verification_profiles"},
             {workflow.test_module(case) for case in selection.cases},
+        )
+
+    def test_path_file_and_explicit_paths_are_merged(self) -> None:
+        with tempfile.NamedTemporaryFile(
+            mode="w",
+            encoding="utf-8",
+            suffix=".txt",
+            delete=False,
+        ) as handle:
+            handle.write("# comment\n")
+            handle.write("src/t46_recipe_generated/example.json\n")
+            handle.write("tools/t46_readiness.json\n")
+            path_file = Path(handle.name)
+        try:
+            paths = workflow.resolve_suite_paths(
+                suite="affected",
+                path_args=["tools/t46_census_delta.json"],
+                path_file=path_file,
+            )
+        finally:
+            path_file.unlink(missing_ok=True)
+        self.assertEqual(
+            (
+                "src/t46_recipe_generated/example.json",
+                "tools/t46_census_delta.json",
+                "tools/t46_readiness.json",
+            ),
+            paths,
         )
 
     def test_policy_rejects_overlapping_slow_tiers(self) -> None:

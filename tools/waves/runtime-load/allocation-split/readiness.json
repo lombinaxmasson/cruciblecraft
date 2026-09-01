@@ -1,0 +1,35 @@
+{
+  "allocation_split_complete": true,
+  "evidence": {
+    "calibration": "tools/waves/runtime-load/allocation-split/calibration.json",
+    "no_pending_axis": true,
+    "opening_19_group": "tools/t49_integrated_measurements.json",
+    "policy_v3": "tools/runtime_load_budget_policy.v3.json",
+    "recipe_candidates_in_calibration": false,
+    "v2_policy_unchanged": "30a07ad20ca443d9108665157b351471ffeb45d71fdd3d4b7d75076a11cb2c35",
+    "workload_manifest": "tools/waves/runtime-load/allocation-split/workload_manifest.json"
+  },
+  "generated_by": "python tools/build_runtime_load_allocation_split.py",
+  "opening_remeasured": {
+    "client_index_ms": 8,
+    "client_reload_ms": 429,
+    "datapack_authored_entries": 6269,
+    "eager_publication_rows": 14,
+    "hybrid_reload_p95_bytes": 687226880,
+    "lazy_cache_ceiling_rows": 876,
+    "lazy_logical_rows": 50652,
+    "lookup_allocation_bytes_per_operation": 0,
+    "lookup_candidate_count": 10,
+    "lookup_p95_ns": 214887,
+    "reload_transient_allocation_bytes": 687226880,
+    "retained_memory_bytes": 5021175,
+    "server_index_ms": 7,
+    "server_reload_ms": 459,
+    "sync_bytes": 5021175
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "RUNTIME_LOAD_ALLOCATION_SPLIT_READY",
+  "unique_active_wave": "smelter/ordinary-closure",
+  "wave_slug": "runtime-load/allocation-split"
+}

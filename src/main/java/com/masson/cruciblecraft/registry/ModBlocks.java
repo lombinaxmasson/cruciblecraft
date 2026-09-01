@@ -64,6 +64,7 @@ import com.masson.cruciblecraft.energy.cable.ElectricalConductorCatalog;
 import com.masson.cruciblecraft.logistics.pipe.PipeCatalog;
 import com.masson.cruciblecraft.machine.processing.MachineVariant;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariant;
 import com.masson.cruciblecraft.logistics.hopper.HopperVariantCatalog;
@@ -288,6 +289,8 @@ public final class ModBlocks {
             GT_STONE_BLOCKS = registerGtStoneBlocks();
     private static final Map<ResourceLocation, DeferredBlock<Block>>
             GT_BLOCK_OBJECT_BLOCKS = registerGtBlockObjectBlocks();
+    private static final Map<ResourceLocation, DeferredBlock<Block>>
+            BATH_REMAINDER_BLOCK_OBJECT_BLOCKS = registerBathRemainderBlockObjectBlocks();
     private static final Map<ResourceLocation, DeferredBlock<? extends StorageHostBlock>>
             STORAGE_BLOCKS = registerStorageBlocks();
     public static final DeferredBlock<DustFunnelBlock> STEEL_DUST_FUNNEL =
@@ -804,6 +807,28 @@ public final class ModBlocks {
         return java.util.Collections.unmodifiableMap(blocks);
     }
 
+    private static Map<ResourceLocation, DeferredBlock<Block>>
+            registerBathRemainderBlockObjectBlocks() {
+        LinkedHashMap<ResourceLocation, DeferredBlock<Block>> blocks =
+                new LinkedHashMap<>();
+        for (GtBlockObjectCatalog.Variant variant : BathRemainderBlockObjectCatalog.variants()) {
+            DeferredBlock<Block> block = BLOCKS.register(
+                    variant.registryPath(),
+                    () -> createGtBlockObject(variant));
+            if (blocks.put(variant.id(), block) != null) {
+                throw new IllegalStateException(
+                        "Duplicate bath remainder block-object block " + variant.id());
+            }
+        }
+        if (blocks.size() != BathRemainderBlockObjectCatalog.VARIANT_COUNT) {
+            throw new IllegalStateException(
+                    "Bath remainder block-object registration drifted from "
+                            + BathRemainderBlockObjectCatalog.VARIANT_COUNT
+                            + " variants");
+        }
+        return java.util.Collections.unmodifiableMap(blocks);
+    }
+
     private static Block createGtBlockObject(GtBlockObjectCatalog.Variant variant) {
         if (variant.slab()) {
             return new GtBlockObjectSlabBlock(variant, gtBlockObjectProperties(variant));
@@ -885,6 +910,15 @@ public final class ModBlocks {
 
     public static Collection<DeferredBlock<Block>> gtBlockObjectBlocks() {
         return GT_BLOCK_OBJECT_BLOCKS.values();
+    }
+
+    public static Map<ResourceLocation, DeferredBlock<Block>>
+            bathRemainderBlockObjectBlocksById() {
+        return BATH_REMAINDER_BLOCK_OBJECT_BLOCKS;
+    }
+
+    public static Collection<DeferredBlock<Block>> bathRemainderBlockObjectBlocks() {
+        return BATH_REMAINDER_BLOCK_OBJECT_BLOCKS.values();
     }
 
     private static BlockBehaviour.Properties gtStoneProperties() {

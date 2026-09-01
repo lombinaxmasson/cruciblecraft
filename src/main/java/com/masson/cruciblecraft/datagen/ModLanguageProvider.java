@@ -4,6 +4,9 @@ import java.util.Locale;
 import java.util.Optional;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.content.item.BathMteFluidCatalog;
+import com.masson.cruciblecraft.content.item.BathMteIdentityCatalog;
+import com.masson.cruciblecraft.content.item.SmelterMteIdentityCatalog;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
 import com.masson.cruciblecraft.content.item.GtWoodCatalog;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
@@ -52,6 +55,10 @@ public class ModLanguageProvider extends LanguageProvider {
             GtBlockObjectCatalog.variants().forEach(block ->
                     addBlock(
                             ModBlocks.gtBlockObjectBlocksById().get(block.id()),
+                            block.chineseName()));
+            com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog.variants().forEach(block ->
+                    addBlock(
+                            ModBlocks.bathRemainderBlockObjectBlocksById().get(block.id()),
                             block.chineseName()));
             add("tooltip.cruciblecraft.fireproof", "防火");
             ToolPatternCatalog.DEFINITIONS.forEach(pattern ->
@@ -455,6 +462,10 @@ public class ModLanguageProvider extends LanguageProvider {
                 addBlock(
                         ModBlocks.gtBlockObjectBlocksById().get(block.id()),
                         block.englishName()));
+        com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog.variants().forEach(block ->
+                addBlock(
+                        ModBlocks.bathRemainderBlockObjectBlocksById().get(block.id()),
+                        block.englishName()));
         add("tooltip.cruciblecraft.fireproof", "Fireproof");
         addBlock(ModBlocks.BELLOWS, "Bellows");
         addItem(ModItems.CREOSOTE_BUCKET, "Creosote Bucket");
@@ -804,6 +815,41 @@ public class ModLanguageProvider extends LanguageProvider {
                         "item." + CrucibleCraft.MODID + "."
                                 + casing.id().getPath(),
                         chinese ? casing.langZh() : casing.langEn()));
+        BathMteIdentityCatalog.newItems().forEach(identity ->
+                add(
+                        "item." + CrucibleCraft.MODID + "."
+                                + identity.registryPath().replace('/', '.'),
+                        chinese ? identity.chineseName() : identity.englishName()));
+        SmelterMteIdentityCatalog.newItems().forEach(identity ->
+                add(
+                        "item." + CrucibleCraft.MODID + "."
+                                + identity.registryPath().replace('/', '.'),
+                        chinese ? identity.chineseName() : identity.englishName()));
+        com.masson.cruciblecraft.content.item.BathIdentityCatalog.identities().forEach(identity ->
+                add(
+                        "item." + CrucibleCraft.MODID + "."
+                                + identity.registryPath().replace('/', '.'),
+                        chinese ? identity.chineseName() : identity.englishName()));
+        com.masson.cruciblecraft.content.item.SemanticObjectCatalog.identities().forEach(identity ->
+                add(
+                        "item." + CrucibleCraft.MODID + "."
+                                + identity.registryPath().replace('/', '.'),
+                        chinese ? identity.chineseName() : identity.englishName()));
+        BathMteFluidCatalog.fluids().forEach(fluid -> {
+            String path = fluid.id().getPath().replace('/', '.');
+            add("fluid." + CrucibleCraft.MODID + "." + path, fluid.englishName());
+            add("fluid_type." + CrucibleCraft.MODID + "." + path, fluid.englishName());
+        });
+        com.masson.cruciblecraft.content.item.BathRemainderFluidCatalog.fluids().forEach(fluid -> {
+            String path = fluid.id().getPath().replace('/', '.');
+            add("fluid." + CrucibleCraft.MODID + "." + path, fluid.englishName());
+            add("fluid_type." + CrucibleCraft.MODID + "." + path, fluid.englishName());
+        });
+        com.masson.cruciblecraft.content.item.SemanticFluidCatalog.fluids().forEach(fluid -> {
+            String path = fluid.id().getPath().replace('/', '.');
+            add("fluid." + CrucibleCraft.MODID + "." + path, fluid.englishName());
+            add("fluid_type." + CrucibleCraft.MODID + "." + path, fluid.englishName());
+        });
     }
 
     private String catalogMachineName(
@@ -812,8 +858,8 @@ public class ModLanguageProvider extends LanguageProvider {
                 variant.kind().id());
         String kindName = chinese ? kind.langZh() : kind.langEn();
         boolean bareOpening = variant.id().getPath().equals(kind.id().getPath())
-                && !"t16".equals(kind.displayGroup())
-                && !"t17".equals(kind.displayGroup());
+                && !"kinetic".equals(kind.displayGroup())
+                && !"heat".equals(kind.displayGroup());
         if (bareOpening) {
             return kindName;
         }

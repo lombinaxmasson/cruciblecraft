@@ -33,6 +33,7 @@ import com.masson.cruciblecraft.machine.processing.SidedItemHandler;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeCache;
+import com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader;
 import com.masson.cruciblecraft.recipe.gt.RecipeMap;
 import com.masson.cruciblecraft.registry.ModMachineIdentities;
 
@@ -202,7 +203,10 @@ public abstract class ProcessingMachineBlockEntity extends BlockEntity
 
         RecipeMap.Match match = found.get();
         GTRecipe recipe = match.recipe();
-        Optional<String> invalid = spec.validator().validate(recipe);
+        Optional<String> invalid =
+                GTRecipeMapLoader.isBathRemainderCompactRecipe(match.id())
+                        ? Optional.empty()
+                        : spec.validator().validate(recipe);
         beforeRuntimeSelect(match);
         Optional<MachineExecutionPlan> singlePlan =
                 MachineExecutionPlan.create(

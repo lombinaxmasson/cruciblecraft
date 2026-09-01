@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import net.minecraft.resources.ResourceLocation;
 
-/** Legacy T8 ids retained only as a definition migration adapter. */
+/** Legacy pipe-cover ids retained only as a definition migration adapter. */
 public enum PipeCoverType {
     FILTER("filter", "filter"),
     ONE_WAY_VALVE("one_way_valve", "shutter"),

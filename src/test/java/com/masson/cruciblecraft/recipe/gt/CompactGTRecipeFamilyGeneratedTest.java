@@ -72,7 +72,7 @@ class CompactGTRecipeFamilyGeneratedTest {
                   "source_revision": "t38-test",
                   "relations": [
                     {
-                      "stable_id": "cruciblecraft:t38/roaster_water",
+                      "stable_id": "cruciblecraft:roaster/compact/roaster_water",
                       "item_inputs": [{"item": "minecraft:iron_ingot"}],
                       "item_input_counts": [1],
                       "item_input_actions": [{"kind": "consume"}],
@@ -92,7 +92,7 @@ class CompactGTRecipeFamilyGeneratedTest {
                       }
                     },
                     {
-                      "stable_id": "cruciblecraft:t38/roaster_second",
+                      "stable_id": "cruciblecraft:roaster/compact/roaster_second",
                       "item_inputs": [{"item": "minecraft:gold_ingot"}],
                       "item_input_counts": [2],
                       "item_input_actions": [{"kind": "consume"}],
@@ -117,29 +117,29 @@ class CompactGTRecipeFamilyGeneratedTest {
 
         CompactRecipeFamilySource source =
                 CompactGTRecipeFamilyGeneratedSupport.sourceFromGenerated(
-                        CompactGTRecipeFamilyGeneratedSupport.t38GeneratedRoot(),
+                        CompactGTRecipeFamilyGeneratedSupport.roasterGeneratedRoot(),
                         document,
                         registries);
 
-        assertEquals(id("t38/roaster/gt_recipe_roaster_0001"), source.id());
+        assertEquals(id("roaster/compact/gt_recipe_roaster_0001"), source.id());
         assertEquals(2, source.definition().relations().size());
         var first = source.definition().relations().getFirst();
-        assertEquals(id("t38/roaster_water"), first.stableId());
+        assertEquals(id("roaster/compact/roaster_water"), first.stableId());
         assertEquals(Fluids.WATER, first.fluidInputs().getFirst().getFluid());
         assertEquals(250, first.fluidInputs().getFirst().getAmount());
         assertEquals(Fluids.LAVA, first.fluidOutputs().getFirst().getFluid());
         assertEquals(25, first.fluidOutputs().getFirst().getAmount());
         assertEquals(
-                id("t38/roaster_second"),
+                id("roaster/compact/roaster_second"),
                 source.definition().relations().get(1).stableId());
     }
 
     @Test
     void generatedRoasterFamiliesDecodeAllRelationsWhenPresent() throws IOException {
-        Path root = CompactGTRecipeFamilyGeneratedSupport.t38GeneratedRoot();
+        Path root = CompactGTRecipeFamilyGeneratedSupport.roasterGeneratedRoot();
         Assumptions.assumeTrue(
                 Files.isDirectory(root),
-                () -> "T38 generated files are not available at " + root);
+                () -> "roaster-compact generated files are not available at " + root);
         List<JsonObject> documents =
                 CompactGTRecipeFamilyGeneratedSupport.loadGeneratedFamilies(root);
         assertEquals(29, documents.size());
@@ -149,7 +149,7 @@ class CompactGTRecipeFamilyGeneratedTest {
                 .toList();
         Set<ResourceLocation> stableIds = new HashSet<>();
         for (CompactRecipeFamilySource source : sources) {
-            assertTrue(source.id().getPath().startsWith("t38/roaster/"));
+            assertTrue(source.id().getPath().startsWith("roaster/compact/"));
             for (CompactGTRecipeFamilyDefinition.Relation relation
                     : source.definition().relations()) {
                 assertTrue(stableIds.add(relation.stableId()), relation.stableId()::toString);
@@ -160,10 +160,10 @@ class CompactGTRecipeFamilyGeneratedTest {
 
     @Test
     void productionCentrifugeFamiliesDecodeLockedRelationsWhenPresent() throws IOException {
-        Path root = CompactGTRecipeFamilyGeneratedSupport.t39GeneratedRoot();
+        Path root = CompactGTRecipeFamilyGeneratedSupport.centrifugeGeneratedRoot();
         Assumptions.assumeTrue(
                 Files.isDirectory(root),
-                () -> "T39 generated files are not available at " + root);
+                () -> "centrifuge-compact generated files are not available at " + root);
         List<JsonObject> documents =
                 CompactGTRecipeFamilyGeneratedSupport.loadGeneratedFamilies(root);
         assertEquals(22, documents.size());
@@ -175,18 +175,16 @@ class CompactGTRecipeFamilyGeneratedTest {
         int singletonCount = 0;
         int multiCount = 0;
         for (CompactRecipeFamilySource source : sources) {
-            assertTrue(source.id().getPath().startsWith("t39/centrifuge/"));
+            assertTrue(source.id().getPath().startsWith("centrifuge/compact/"));
             ResourceLocation group = source.definition().resolvedPublicationGroup();
-            if (group.equals(CompactGTRecipeFamilyDefinition
-                    .T39_CENTRIFUGE_SINGLETON_PUBLICATION_GROUP)) {
+            if (group.equals(CompactPublicationGroups.CENTRIFUGE_SINGLETON)) {
                 singletonCount++;
                 assertEquals(1, source.definition().relations().size());
-            } else if (group.equals(CompactGTRecipeFamilyDefinition
-                    .T39_CENTRIFUGE_MULTI_PUBLICATION_GROUP)) {
+            } else if (group.equals(CompactPublicationGroups.CENTRIFUGE_MULTI)) {
                 multiCount++;
                 assertTrue(source.definition().relations().size() > 1);
             } else {
-                throw new AssertionError("unexpected T39 publication group " + group);
+                throw new AssertionError("unexpected centrifuge-compact publication group " + group);
             }
             for (CompactGTRecipeFamilyDefinition.Relation relation
                     : source.definition().relations()) {
@@ -199,12 +197,10 @@ class CompactGTRecipeFamilyGeneratedTest {
 
         PublicationGroupKey singletonKey = new PublicationGroupKey(
                 ModRecipeMaps.CENTRIFUGE.id(),
-                CompactGTRecipeFamilyDefinition
-                        .T39_CENTRIFUGE_SINGLETON_PUBLICATION_GROUP);
+                CompactPublicationGroups.CENTRIFUGE_SINGLETON);
         PublicationGroupKey multiKey = new PublicationGroupKey(
                 ModRecipeMaps.CENTRIFUGE.id(),
-                CompactGTRecipeFamilyDefinition
-                        .T39_CENTRIFUGE_MULTI_PUBLICATION_GROUP);
+                CompactPublicationGroups.CENTRIFUGE_MULTI);
         var snapshots = CompactRecipeFamilyProvider.prepareByPublicationGroup(
                 sources,
                 Map.of(ModRecipeMaps.CENTRIFUGE.id(), ModRecipeMaps.CENTRIFUGE),
@@ -224,7 +220,7 @@ class CompactGTRecipeFamilyGeneratedTest {
 
     @Test
     void withdrawnCatalogFixtureStillProvesRouterCapacity() throws IOException {
-        Path root = CompactGTRecipeFamilyGeneratedSupport.t39CatalogFixtureRoot();
+        Path root = CompactGTRecipeFamilyGeneratedSupport.centrifugeCatalogFixtureRoot();
         List<JsonObject> documents =
                 CompactGTRecipeFamilyGeneratedSupport.loadGeneratedFamilies(root);
         assertEquals(157, documents.size());
@@ -235,9 +231,8 @@ class CompactGTRecipeFamilyGeneratedTest {
         List<CompactGTRecipeFamilyDefinition.Relation> singleton = new ArrayList<>();
         List<CompactGTRecipeFamilyDefinition.Relation> multi = new ArrayList<>();
         for (CompactRecipeFamilySource source : sources) {
-            if (source.definition().resolvedPublicationGroup().equals(
-                    CompactGTRecipeFamilyDefinition
-                            .T39_CENTRIFUGE_SINGLETON_PUBLICATION_GROUP)) {
+            if (source.definition().resolvedPublicationGroup().getPath()
+                    .contains("singleton")) {
                 singleton.addAll(source.definition().relations());
             } else {
                 multi.addAll(source.definition().relations());
@@ -247,12 +242,11 @@ class CompactGTRecipeFamilyGeneratedTest {
         assertEquals(127, multi.size());
         CompactRecipeShardRouter singletonRouter = new CompactRecipeShardRouter(
                 ModRecipeMaps.CENTRIFUGE.id(),
-                CompactGTRecipeFamilyDefinition
-                        .T39_CENTRIFUGE_SINGLETON_PUBLICATION_GROUP,
+                CompactPublicationGroups.CENTRIFUGE_SINGLETON,
                 singleton);
         CompactRecipeShardRouter multiRouter = new CompactRecipeShardRouter(
                 ModRecipeMaps.CENTRIFUGE.id(),
-                CompactGTRecipeFamilyDefinition.T39_CENTRIFUGE_MULTI_PUBLICATION_GROUP,
+                CompactPublicationGroups.CENTRIFUGE_MULTI,
                 multi);
         assertTrue(singletonRouter.shardCount() > 0);
         assertTrue(multiRouter.shardCount() > 0);
@@ -285,7 +279,7 @@ class CompactGTRecipeFamilyGeneratedTest {
                 sources,
                 11L,
                 CompactRecipeFamilyProvider.RuntimeSide.SERVER,
-                CompactHybridFixturePolicies.t37Selector(sources));
+                CompactHybridFixturePolicies.assemblerCompactSelector(sources));
 
         assertEquals(50, immediate.logicalRecipeCount());
         assertEquals(50, immediate.eagerRecipeCount());
@@ -307,7 +301,7 @@ class CompactGTRecipeFamilyGeneratedTest {
 
     static List<JsonObject> loadGeneratedFamilies() throws IOException {
         Path root = CompactGTRecipeFamilyGeneratedSupport.generatedRoot();
-        assertTrue(Files.isDirectory(root), () -> "missing generated T37 root " + root);
+        assertTrue(Files.isDirectory(root), () -> "missing generated assembler-compact root " + root);
         return CompactGTRecipeFamilyGeneratedSupport.loadGeneratedFamilies();
     }
 

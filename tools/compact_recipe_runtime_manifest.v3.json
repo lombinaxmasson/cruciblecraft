@@ -1,0 +1,74 @@
+{
+  "composition": {
+    "base_group_count": 19,
+    "composed_group_count": 128,
+    "conflict_check": "pass",
+    "consumed_deltas": [
+      {
+        "file_sha256": "b98c53ba84b2a97e339e7c6e289dc358f3eeda29924506ee2afc99c59c958960",
+        "order": "smelter/ordinary-closure",
+        "path": "tools/waves/smelter/ordinary-closure/runtime_manifest_delta.json",
+        "wave_slug": "smelter/ordinary-closure"
+      },
+      {
+        "file_sha256": "bf754505f1ccb075e92e77dd954c8fac6b24e46dc5e0b01ab6c6860b0273cb6c",
+        "order": "mixer/ordinary-closure",
+        "path": "tools/waves/mixer/ordinary-closure/runtime_manifest_delta.json",
+        "wave_slug": "mixer/ordinary-closure"
+      },
+      {
+        "file_sha256": "33d86d920a29160bfb391838e77839193a345a4d7eb17d87e2010562c3cdd9fc",
+        "order": "drying/ordinary-closure",
+        "path": "tools/waves/drying/ordinary-closure/runtime_manifest_delta.json",
+        "wave_slug": "drying/ordinary-closure"
+      },
+      {
+        "file_sha256": "152c7cb57456ede542dd65aa9f7d545f93a03ed398a5f1496b2c6a823d953cb1",
+        "order": "electrolyzer/ordinary-closure",
+        "path": "tools/waves/electrolyzer/ordinary-closure/runtime_manifest_delta.json",
+        "wave_slug": "electrolyzer/ordinary-closure"
+      },
+      {
+        "file_sha256": "3f4b5e25188e63153565a0aaba0ad51b220e55a5eea28a2a3e0236069aff46bb",
+        "order": "centrifuge/ordinary-closure",
+        "path": "tools/waves/centrifuge/ordinary-closure/runtime_manifest_delta.json",
+        "wave_slug": "centrifuge/ordinary-closure"
+      },
+      {
+        "file_sha256": "de1e68aac4284da2a00dda8571f11742eec04a99cd83cba6d1821cfb8fcbdf78",
+        "order": "autoclave/ordinary-closure",
+        "path": "tools/waves/autoclave/ordinary-closure/runtime_manifest_delta.json",
+        "wave_slug": "autoclave/ordinary-closure"
+      },
+      {
+        "file_sha256": "34700a869973aed385242797d4d6d1ef6aa7ba6cc6e80cf13de789e0b39eb5c5",
+        "order": "compressor/ordinary-closure",
+        "path": "tools/waves/compressor/ordinary-closure/runtime_manifest_delta.json",
+        "wave_slug": "compressor/ordinary-closure"
+      },
+      {
+        "file_sha256": "f45bfcc9b38027ff9d0dc3ba8d2b9fca4e6f335cbf5832d47f5e28a0e851361c",
+        "order": "smelter/deferred-recycling",
+        "path": "tools/waves/smelter/deferred-recycling/runtime_manifest_delta.json",
+        "wave_slug": "smelter/deferred-recycling"
+      }
+    ],
+    "logical_identities_equal_v2": false,
+    "semantic_alias_root_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "semantic_root_sha256": "d35654aae415627b899b4abb761bacc6e32818fc6cfe5cd4c5714918ed3fe359",
+    "v2_file_sha256": "821e4a6ef8d4246811ec6411d81f634bf9552ded68e5a53b9c64757bc8bd376f",
+    "v2_logical_identity_root_sha256": "97147d2a3e95853f0074116f0c84b56c448dfcfc7c0a10c07a92361ff6f7290f"
+  },
+  "generated_by": "python tools/build_compact_recipe_runtime_manifest_v3.py",
+  "group_count": 128,
+  "note": "Forward-v3 runtime manifest. Frozen v2 file hash plus semantic alias root plus ordered slug deltas. Does not rewrite v2.",
+  "owns_families": 0,
+  "schema_version": 3,
+  "status": "COMPACT_RECIPE_RUNTIME_MANIFEST_V3",
+  "v2_base": {
+    "file_sha256": "821e4a6ef8d4246811ec6411d81f634bf9552ded68e5a53b9c64757bc8bd376f",
+    "group_count": 19,
+    "path": "tools/compact_recipe_runtime_manifest.v2.json",
+    "status": "COMPACT_RECIPE_RUNTIME_MANIFEST_V2"
+  }
+}
