@@ -13,13 +13,13 @@ import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.CrucibleCraft;
 
 /**
- * zh_cn name table for the v1 critical path (T26d).
+ * zh_cn name table for the v1 critical path.
  *
  * <p>Loaded once from the bundled {@code data/cruciblecraft/material_zh_cn.json}
  * and shared by the datagen language provider and the runtime generated
  * material pack. Materials (or prefix/pipe/conductor forms) absent from the
  * table are explicitly {@code post_1_0}: no Chinese key is ever emitted for
- * them, the en_us name is shown, and the T26 localization ledger records them
+ * them, the en_us name is shown, and the localization ledger records them
  * as post_1_0. English-copy fake translations are forbidden by policy.
  */
 public final class MaterialZhNames {

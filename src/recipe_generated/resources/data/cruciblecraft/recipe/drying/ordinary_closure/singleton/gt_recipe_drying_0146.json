@@ -1,0 +1,53 @@
+{
+  "family_id": "gt.recipe.drying#0146",
+  "publication_group": "cruciblecraft:drying/ordinary_closure/singleton",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 40,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 20,
+          "id": "cruciblecraft:water_distilled"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:wheat"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:gt_multiitem/multiitem_food_m12001"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "163486aebc628ba496d1216c89c0c4a8d652e6ff1e10910077b466a9dd73ec9f"
+        ],
+        "selected_source_recipe": "gt.recipe.drying#0146",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:drying/ordinary_closure/be1518f66bfb1983"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:drying",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

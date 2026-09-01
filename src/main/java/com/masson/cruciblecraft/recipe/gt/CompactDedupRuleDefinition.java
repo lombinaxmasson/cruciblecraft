@@ -61,9 +61,9 @@ public record CompactDedupRuleDefinition(
         Objects.requireNonNull(matchMode, "matchMode");
         Objects.requireNonNull(winnerSelector, "winnerSelector");
         Objects.requireNonNull(victimSelector, "victimSelector");
-        if (!owner.matches("T[0-9]+")) {
+        if (!isDeclaredOwner(owner)) {
             throw new IllegalArgumentException(
-                    "Undeclared compact dedup owner on " + ruleId);
+                    "Undeclared compact dedup owner on " + ruleId + ": " + owner);
         }
         if (!PHASE_PRE_SNAPSHOT.equals(phase)
                 && !PHASE_POST_ENUMERATION.equals(phase)) {
@@ -83,6 +83,19 @@ public record CompactDedupRuleDefinition(
                     "Compact dedup selector overlap on " + ruleId + ": "
                             + overlap);
         }
+    }
+
+    public static boolean isDeclaredOwner(String owner) {
+        if (owner == null || owner.isBlank()) {
+            return false;
+        }
+        if (owner.length() >= 2
+                && (owner.charAt(0) == 'T' || owner.charAt(0) == 't')
+                && Character.isDigit(owner.charAt(1))) {
+            return false;
+        }
+        return owner.matches(
+                "[a-z][a-z0-9_]*(?:-[a-z0-9_]+)*/[a-z][a-z0-9_]*(?:-[a-z0-9_]+)*");
     }
 
     public record Selector(

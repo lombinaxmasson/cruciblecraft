@@ -1,0 +1,26 @@
+{
+  "match_mode": "logical_input_and_output_identity",
+  "owner": "electrolyzer/ordinary-closure",
+  "phase": "post_enumeration",
+  "require_output_match": false,
+  "rule_id": "cruciblecraft:electrolyzer_ordinary_closure_t39_support_post_enumeration",
+  "target_map": "cruciblecraft:electrolyzer",
+  "type": "cruciblecraft:compact_dedup_rule",
+  "victim_selector": {
+    "kind": "recipe_id_prefix",
+    "prefixes": [
+      "t39_player_path_support/",
+      "player_path_support/",
+      "electrolyzer/compact/",
+      "player_path_support/electrolyzer/",
+      "t5/",
+      "chemical/electrolyzer/"
+    ]
+  },
+  "winner_selector": {
+    "kind": "recipe_id_prefix",
+    "prefixes": [
+      "electrolyzer/ordinary_closure/"
+    ]
+  }
+}

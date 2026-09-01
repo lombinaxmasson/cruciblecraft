@@ -52,6 +52,7 @@ public enum MaterialCreativeTab {
                     "cruciblecraft:washed_crushed_ore",
                     "cruciblecraft:centrifuged_crushed_ore",
                     "cruciblecraft:tiny_centrifuged_crushed_ore",
+                    "cruciblecraft:tiny_washed_crushed_ore",
                     "cruciblecraft:purified_dust",
                     "cruciblecraft:rock" -> ORE_PROCESSING;
             case "cruciblecraft:dust",
@@ -64,9 +65,19 @@ public enum MaterialCreativeTab {
                     "cruciblecraft:triple_ingot",
                     "cruciblecraft:ingot_hot",
                     "cruciblecraft:nugget",
-                    "cruciblecraft:gem" -> METALS_GEMS;
+                    "cruciblecraft:gem",
+                    "cruciblecraft:gem_exquisite",
+                    "cruciblecraft:gem_flawless",
+                    "cruciblecraft:gem_flawed",
+                    "cruciblecraft:gem_chipped",
+                    "cruciblecraft:gem_legendary",
+                    "cruciblecraft:quadruple_ingot",
+                    "cruciblecraft:quintuple_ingot" -> METALS_GEMS;
             case "cruciblecraft:plate",
                     "cruciblecraft:plate_gem",
+                    "cruciblecraft:curved_plate",
+                    "cruciblecraft:tiny_plate",
+                    "cruciblecraft:tiny_plate_gem",
                     "cruciblecraft:foil",
                     "cruciblecraft:double_plate",
                     "cruciblecraft:triple_plate",

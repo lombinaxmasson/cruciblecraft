@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 /**
  * Persistent subsurface spring.
  *
- * <p>The T9 reserve remains migration/diagnostic data. T11 production uses an
+ * <p>The reserved amount remains migration/diagnostic data. Production uses an
  * independent non-depleting, rate-stable accumulator.
  */
 public final class SubsurfaceFluidDepositBlockEntity extends BlockEntity {
@@ -58,7 +58,7 @@ public final class SubsurfaceFluidDepositBlockEntity extends BlockEntity {
                 || accumulationCapMb != policy.accumulationCapMb()
                 || ventOverflow != policy.ventOverflow()) {
             throw new IllegalArgumentException(
-                    "Fluid deposit production does not match T11 runtime policy");
+                    "Fluid deposit production does not match hydrocarbon runtime policy");
         }
         if (this.material != null) {
             if (!this.material.equals(migrated)

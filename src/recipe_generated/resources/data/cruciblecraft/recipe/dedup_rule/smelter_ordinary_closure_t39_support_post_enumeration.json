@@ -1,0 +1,21 @@
+{
+  "match_mode": "logical_input_and_output_identity",
+  "owner": "smelter/ordinary-closure",
+  "phase": "post_enumeration",
+  "require_output_match": false,
+  "rule_id": "cruciblecraft:smelter_ordinary_closure_t39_support_post_enumeration",
+  "target_map": "cruciblecraft:smelter",
+  "type": "cruciblecraft:compact_dedup_rule",
+  "victim_selector": {
+    "kind": "recipe_id_prefix",
+    "prefixes": [
+      "player_path_support/centrifuge/"
+    ]
+  },
+  "winner_selector": {
+    "kind": "recipe_id_prefix",
+    "prefixes": [
+      "smelter/ordinary_closure/"
+    ]
+  }
+}

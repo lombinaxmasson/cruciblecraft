@@ -39,9 +39,9 @@ class StorageVariantCatalogTest {
                 StorageVariantCatalog.SOURCE_REVISION,
                 "3703e40308c8c030763fd6297dea8b210d2a77b1");
         assertTrue(java.nio.file.Files.isRegularFile(java.nio.file.Path.of(
-                "src/main/resources/data/cruciblecraft_t44/structure/empty.nbt")));
+                "src/main/resources/data/cruciblecraft_wave_storage/structure/empty.nbt")));
         assertTrue(java.nio.file.Files.isRegularFile(java.nio.file.Path.of(
-                "src/main/resources/data/cruciblecraft_t44/gametest/structure/empty.nbt")));
+                "src/main/resources/data/cruciblecraft_wave_storage/gametest/structure/empty.nbt")));
     }
 
     @Test

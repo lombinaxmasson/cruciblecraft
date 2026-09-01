@@ -60,7 +60,7 @@ public final class GtStoneCatalog {
             if (document == null
                     || document.schemaVersion != 1
                     || !SOURCE_REVISION.equals(document.sourceRevision)
-                    || !"T43_STONE_CATALOG".equals(document.status)
+                    || !"STONE_CATALOG".equals(document.status)
                     || document.identities == null
                     || document.identities.size() != IDENTITY_COUNT
                     || document.variantCount != VARIANT_COUNT) {

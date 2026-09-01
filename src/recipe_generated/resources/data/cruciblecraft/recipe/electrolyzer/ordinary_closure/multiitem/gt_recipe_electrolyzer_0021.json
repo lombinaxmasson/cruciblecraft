@@ -1,0 +1,131 @@
+{
+  "family_id": "gt.recipe.electrolyzer#0021",
+  "publication_group": "cruciblecraft:electrolyzer/ordinary_closure/multiitem",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 48,
+      "eut": 64,
+      "fluid_inputs": [
+        {
+          "amount": 3000,
+          "id": "cruciblecraft:martian_vitriol"
+        },
+        {
+          "amount": 1500,
+          "id": "minecraft:water"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 3500,
+          "id": "cruciblecraft:sulfuric_acid"
+        },
+        {
+          "amount": 500,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 1
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 3,
+          "id": "cruciblecraft:meteoric_iron/tiny_dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "8e787a8a97acd75cd72197819e8677151630ec6a87811f79331d8d50230354aa"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#0021",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:electrolyzer/ordinary_closure/a8243b88daf04bcd"
+    },
+    {
+      "can_be_buffered": true,
+      "duration": 48,
+      "eut": 64,
+      "fluid_inputs": [
+        {
+          "amount": 3000,
+          "id": "cruciblecraft:martian_vitriol"
+        },
+        {
+          "amount": 1500,
+          "id": "cruciblecraft:water_distilled"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 3500,
+          "id": "cruciblecraft:sulfuric_acid"
+        },
+        {
+          "amount": 500,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 1
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 3,
+          "id": "cruciblecraft:meteoric_iron/tiny_dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "973443259ef526194d8620cd4772f5d87c21c14b49962ae8bac103074b1d9dff"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#0021",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 1,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:electrolyzer/ordinary_closure/d59bf65f58f1d85d"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:electrolyzer",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

@@ -48,7 +48,11 @@ ALLOWED_CLASSIFICATIONS = {
     "source_identity_unresolved",
     "existing_cc_recipe_retained",
 }
-CONFIGURED_LIST_NAMES = ("T2_MACHINES", "T3_MACHINES", "T5_MACHINES")
+CONFIGURED_LIST_NAMES = ("PRIMARY_MACHINES", "COMPONENT_MACHINES", "CHEMICAL_HOST_MACHINES")
+GENERATED_MACHINE_RECIPES = (
+    ROOT
+    / "src/generated/resources/data/cruciblecraft/recipe/machines"
+)
 T11_MACHINE_IDS = {
     "generifier",
     "fluid_deposit_extractor",
@@ -157,20 +161,43 @@ def configured_machine_ids() -> list[str]:
 
 
 def placeholder_machine_ids() -> list[str]:
+    found = {recipe_id for _, recipe_id in placeholder_machines()}
     return [
-        recipe_id
-        for _, recipe_id in placeholder_machines()
-        if recipe_id not in T11_MACHINE_IDS | T12_MACHINE_IDS
+        machine_id
+        for machine_id in configured_machine_ids()
+        if machine_id in found
+        and machine_id not in T11_MACHINE_IDS | T12_MACHINE_IDS
     ]
 
 
 def placeholder_machines() -> list[tuple[str, str]]:
     source = RECIPE_PROVIDER.read_text(encoding="utf-8")
-    return re.findall(
+    rows = re.findall(
         r"machineCrafting\s*\(\s*output\s*,\s*ModItems\.([A-Z0-9_]+)"
         r"\.get\(\)\s*,\s*\"([^\"]+)\"\s*\)",
         source,
     )
+    found = {recipe_id for _, recipe_id in rows}
+    for machine_id in sorted(generated_copper_furnace_ids() - found):
+        rows.append((machine_id.upper(), machine_id))
+    return rows
+
+
+def generated_copper_furnace_ids() -> set[str]:
+    ids: set[str] = set()
+    if not GENERATED_MACHINE_RECIPES.is_dir():
+        return ids
+    for path in sorted(GENERATED_MACHINE_RECIPES.glob("*.json")):
+        document = json.loads(path.read_text(encoding="utf-8"))
+        if document.get("pattern") != ["CCC", "CFC", "CCC"]:
+            continue
+        result = document.get("result")
+        if not isinstance(result, dict):
+            continue
+        item_id = result.get("id")
+        if isinstance(item_id, str) and item_id.startswith("cruciblecraft:"):
+            ids.add(item_id.partition(":")[2])
+    return ids
 
 
 def machine_item_registrations() -> dict[str, str]:
@@ -549,10 +576,12 @@ def build(source_root: Path | None = None) -> dict[str, Any]:
 
     machine_ids = configured_machine_ids()
     placeholders = placeholder_machines()
+    found_ids = {recipe_id for _, recipe_id in placeholders}
     placeholder_ids = [
-        recipe_id
-        for _, recipe_id in placeholders
-        if recipe_id not in T11_MACHINE_IDS | T12_MACHINE_IDS
+        machine_id
+        for machine_id in machine_ids
+        if machine_id in found_ids
+        and machine_id not in T11_MACHINE_IDS | T12_MACHINE_IDS
     ]
     t11_placeholder_ids = {
         recipe_id
@@ -575,9 +604,10 @@ def build(source_root: Path | None = None) -> dict[str, Any]:
             f"{sorted(t12_placeholder_ids)}"
         )
     placeholders = [
-        row
-        for row in placeholders
-        if row[1] not in T11_MACHINE_IDS | T12_MACHINE_IDS
+        next(row for row in placeholders if row[1] == machine_id)
+        for machine_id in machine_ids
+        if machine_id in found_ids
+        and machine_id not in T11_MACHINE_IDS | T12_MACHINE_IDS
     ]
     placeholder_expected = [
         machine_id

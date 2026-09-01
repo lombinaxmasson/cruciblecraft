@@ -1,0 +1,141 @@
+{
+  "currentness": {
+    "builder_path": "tools/build_t46_recipe_load_benchmark.py",
+    "builder_sha256": "4204401f1819bf78f9ac975c11a01b946748bb8239f3566ef3381e2f26c52296",
+    "load_budget_policy_v2_sha256": "30a07ad20ca443d9108665157b351471ffeb45d71fdd3d4b7d75076a11cb2c35",
+    "measurement_sha256": "b1132e00f49f138c175e6eba9c522831f18d0d63dae07d7c4effe0a218d97772",
+    "policy_path": "tools/t46_materialization_policy.json",
+    "policy_sha256": "d7a31001918bbdf93736c22890a0767f1f7c5f75e05171b452a390ae2e009452",
+    "production_lock_sha256": "454a49b25ff329dbb053b9195841fe9bb51dcbc311fd293f990b354218a762f4"
+  },
+  "decision": {
+    "algorithm": {
+      "card_aggregate_required": true,
+      "composite_score_forbidden": true,
+      "gate_order": [],
+      "implementation_complexity_order": [
+        "immediate",
+        "on_demand",
+        "hybrid"
+      ],
+      "per_group_winners_required": true
+    },
+    "card_aggregate_winner": "hybrid",
+    "composite_score_used": false,
+    "diagnostic_5x_20x_used_for_1x": false,
+    "group_winners": {
+      "bath_mte": "hybrid"
+    },
+    "production_blockers": [],
+    "ranking_logical_rows": 1517,
+    "ranking_scale": "1x",
+    "scenarios": {
+      "bath_mte": {
+        "eliminated": {
+          "immediate": [
+            "soft_budget:eager_publication_rows:18176>18000"
+          ]
+        },
+        "logical_rows": 1517,
+        "production_winner": "hybrid",
+        "ranking": [
+          {
+            "candidate": "hybrid",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 2,
+            "lookup_p95_ns": 8093,
+            "reload_index_p95_ns": {
+              "client_index": 317200,
+              "client_reload": 10397000,
+              "server_index": 173800,
+              "server_reload": 9080100
+            },
+            "retained_memory_bytes": 148666,
+            "sync_bytes": 148666
+          },
+          {
+            "candidate": "on_demand",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 1,
+            "lookup_p95_ns": 28375,
+            "reload_index_p95_ns": {
+              "client_index": 198300,
+              "client_reload": 10125000,
+              "server_index": 231500,
+              "server_reload": 11114200
+            },
+            "retained_memory_bytes": 148666,
+            "sync_bytes": 148666
+          }
+        ],
+        "scenario_id": "bath_mte",
+        "soft_budget_warnings": {
+          "immediate": [
+            "soft_budget:lookup_candidate_count:77>64"
+          ]
+        },
+        "survivors": [
+          "on_demand",
+          "hybrid"
+        ]
+      },
+      "card": {
+        "eliminated": {
+          "immediate": [
+            "soft_budget:eager_publication_rows:18176>18000"
+          ]
+        },
+        "logical_rows": 1517,
+        "production_winner": "hybrid",
+        "ranking": [
+          {
+            "candidate": "hybrid",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 2,
+            "lookup_p95_ns": 8093,
+            "reload_index_p95_ns": {
+              "client_index": 317200,
+              "client_reload": 10397000,
+              "server_index": 173800,
+              "server_reload": 9080100
+            },
+            "retained_memory_bytes": 148666,
+            "sync_bytes": 148666
+          },
+          {
+            "candidate": "on_demand",
+            "eager_margin": "tied",
+            "eager_publication_rows": 0,
+            "implementation_complexity": 1,
+            "lookup_p95_ns": 28375,
+            "reload_index_p95_ns": {
+              "client_index": 198300,
+              "client_reload": 10125000,
+              "server_index": 231500,
+              "server_reload": 11114200
+            },
+            "retained_memory_bytes": 148666,
+            "sync_bytes": 148666
+          }
+        ],
+        "scenario_id": "card",
+        "soft_budget_warnings": {
+          "immediate": [
+            "soft_budget:lookup_candidate_count:77>64"
+          ]
+        },
+        "survivors": [
+          "on_demand",
+          "hybrid"
+        ]
+      }
+    },
+    "status": "PRODUCTION_WINNER_READY"
+  },
+  "measurement_status": "T46_MATERIALIZATION_MEASUREMENT_READY",
+  "schema_version": 1,
+  "status": "T46_MATERIALIZATION_DECISION_READY"
+}

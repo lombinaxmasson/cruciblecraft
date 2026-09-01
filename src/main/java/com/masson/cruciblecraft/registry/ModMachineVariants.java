@@ -14,7 +14,7 @@ import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
 
 import net.minecraft.resources.ResourceLocation;
 
-/** Registry-time projection of the bundled T12/T16 machine-tier catalog.
+/** Registry-time projection of the bundled machine-tier catalog.
  *  The public API is entries / variantsOf / require. There is no tierOf(kind, n)
  *  matrix completion. */
 public final class ModMachineVariants {
@@ -46,14 +46,14 @@ public final class ModMachineVariants {
             requireKind(id("drying"));
     public static final MachineKindSpec SMELTER =
             requireKind(id("smelter"));
-    public static final List<MachineKindSpec> T16_SELECTED_KINDS =
+    public static final List<MachineKindSpec> SELECTED_KINETIC_KINDS =
             KINDS.stream()
-                    .filter(kind -> "t16".equals(
+                    .filter(kind -> "kinetic".equals(
                             MachineKindCatalog.require(kind.id()).displayGroup()))
                     .toList();
-    public static final List<MachineKindSpec> T17_SELECTED_KINDS =
+    public static final List<MachineKindSpec> SELECTED_HEAT_KINDS =
             KINDS.stream()
-                    .filter(kind -> "t17".equals(
+                    .filter(kind -> "heat".equals(
                             MachineKindCatalog.require(kind.id()).displayGroup()))
                     .toList();
 
@@ -64,18 +64,18 @@ public final class ModMachineVariants {
                             requireKind(entry.kindId()),
                             entry.tierBand()))
                     .toList();
-    public static final List<MachineVariant> T16_SELECTED =
+    public static final List<MachineVariant> SELECTED_KINETIC_VARIANTS =
             ALL.stream()
                     .filter(variant ->
-                            "t16".equals(MachineKindCatalog.require(
+                            "kinetic".equals(MachineKindCatalog.require(
                                     variant.kind().id()).displayGroup())
                                     && MachineAcquisitionCatalog.isOpening(
                                             variant.id()))
                     .toList();
-    public static final List<MachineVariant> T17_SELECTED =
+    public static final List<MachineVariant> SELECTED_HEAT_VARIANTS =
             ALL.stream()
                     .filter(variant ->
-                            "t17".equals(MachineKindCatalog.require(
+                            "heat".equals(MachineKindCatalog.require(
                                     variant.kind().id()).displayGroup())
                                     && MachineAcquisitionCatalog.isOpening(
                                             variant.id()))

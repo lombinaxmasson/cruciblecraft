@@ -1,0 +1,450 @@
+{
+  "schema_version": 1,
+  "status": "SEMANTIC_ID_MAP",
+  "note": "Historical TXX runtime IDs to semantic host/cohort IDs. Active source loads this map; it must not embed the old literals. Frozen v2 files stay byte-identical.",
+  "routing_schema": {
+    "old": ["t39-shard-v1", "t40-shard-v1"],
+    "new": "compact-shard-v1"
+  },
+  "envelope": {
+    "old": "t5_bronze",
+    "new": "bronze"
+  },
+  "publication_groups": {
+    "cruciblecraft:t37_assembler": "cruciblecraft:assembler/compact",
+    "cruciblecraft:t38_roaster": "cruciblecraft:roaster/compact",
+    "cruciblecraft:t39_centrifuge_singleton": "cruciblecraft:centrifuge/singleton",
+    "cruciblecraft:t39_centrifuge_multi": "cruciblecraft:centrifuge/multi",
+    "cruciblecraft:t40_electrolyzer_singleton": "cruciblecraft:electrolyzer/singleton",
+    "cruciblecraft:t40_electrolyzer_multi": "cruciblecraft:electrolyzer/multi",
+    "cruciblecraft:t41_assembler_planks": "cruciblecraft:assembler/planks",
+    "cruciblecraft:t41_assembler_fireproof": "cruciblecraft:assembler/fireproof",
+    "cruciblecraft:t41_assembler_planks2": "cruciblecraft:assembler/planks2",
+    "cruciblecraft:t43_smelter_stone": "cruciblecraft:smelter/stone",
+    "cruciblecraft:t45_smelter_block": "cruciblecraft:smelter/block",
+    "cruciblecraft:t45_drying_block": "cruciblecraft:drying/block",
+    "cruciblecraft:t46_bath_mte": "cruciblecraft:bath/mte",
+    "cruciblecraft:t47_bath_exact": "cruciblecraft:bath/remainder/exact",
+    "cruciblecraft:t47_bath_exact_multi": "cruciblecraft:bath/remainder/exact_multi",
+    "cruciblecraft:t48_bath_exact": "cruciblecraft:bath/identity/exact",
+    "cruciblecraft:t48_bath_exact_multi": "cruciblecraft:bath/identity/exact_multi",
+    "cruciblecraft:t48_bath_tool_head": "cruciblecraft:bath/identity/tool_head",
+    "cruciblecraft:t49_bath_exact_multi": "cruciblecraft:bath/tiny_purified/exact_multi"
+  },
+  "stable_id_prefixes": [
+    {
+      "old": "cruciblecraft:t37/",
+      "new": "cruciblecraft:assembler/compact/"
+    },
+    {
+      "old": "cruciblecraft:t38/",
+      "new": "cruciblecraft:roaster/compact/"
+    },
+    {
+      "old": "cruciblecraft:t39/",
+      "new": "cruciblecraft:centrifuge/compact/"
+    },
+    {
+      "old": "cruciblecraft:t40/",
+      "new": "cruciblecraft:electrolyzer/compact/"
+    },
+    {
+      "old": "cruciblecraft:t41/",
+      "new": "cruciblecraft:assembler/wood/"
+    },
+    {
+      "old": "cruciblecraft:t43/",
+      "new": "cruciblecraft:smelter/stone/"
+    },
+    {
+      "old": "cruciblecraft:t45/",
+      "new": "cruciblecraft:smelter/block/",
+      "path_contains": "/t45/smelter/"
+    },
+    {
+      "old": "cruciblecraft:t45/",
+      "new": "cruciblecraft:drying/block/",
+      "path_contains": "/t45/drying/"
+    },
+    {
+      "old": "cruciblecraft:t46/",
+      "new": "cruciblecraft:bath/mte/"
+    },
+    {
+      "old": "cruciblecraft:t47/",
+      "new": "cruciblecraft:bath/remainder/"
+    },
+    {
+      "old": "cruciblecraft:t48/",
+      "new": "cruciblecraft:bath/identity/"
+    },
+    {
+      "old": "cruciblecraft:t49/",
+      "new": "cruciblecraft:bath/tiny_purified/"
+    },
+    {
+      "old": "cruciblecraft:t5/",
+      "new": "cruciblecraft:chemical/"
+    },
+    {
+      "old": "cruciblecraft:t11/",
+      "new": "cruciblecraft:hydrocarbon/"
+    },
+    {
+      "old": "cruciblecraft:t21/",
+      "new": "cruciblecraft:chemical/"
+    },
+    {
+      "old": "cruciblecraft:t22/",
+      "new": "cruciblecraft:petroleum/"
+    },
+    {
+      "old": "cruciblecraft:t36/",
+      "new": "cruciblecraft:machine/bootstrap/"
+    },
+    {
+      "old": "cruciblecraft:t4/",
+      "new": "cruciblecraft:tool/"
+    },
+    {
+      "old": "cruciblecraft:t7/mortar/",
+      "new": "cruciblecraft:mortar/"
+    },
+    {
+      "old": "cruciblecraft:t8/extruder/",
+      "new": "cruciblecraft:pipe/extruder/"
+    },
+    {
+      "old": "cruciblecraft:t10/anvil/",
+      "new": "cruciblecraft:ingot_form/anvil/"
+    },
+    {
+      "old": "cruciblecraft:t10/smelter/",
+      "new": "cruciblecraft:ingot_form/smelter/"
+    }
+  ],
+  "recipe_path_prefixes": [
+    {
+      "old": "t37/assembler/",
+      "new": "assembler/compact/"
+    },
+    {
+      "old": "t38/roaster/",
+      "new": "roaster/compact/"
+    },
+    {
+      "old": "t39/centrifuge/",
+      "new": "centrifuge/compact/"
+    },
+    {
+      "old": "t40/electrolyzer/",
+      "new": "electrolyzer/compact/"
+    },
+    {
+      "old": "t41/assembler/",
+      "new": "assembler/wood/"
+    },
+    {
+      "old": "t43/smelter/",
+      "new": "smelter/stone/"
+    },
+    {
+      "old": "t45/smelter/",
+      "new": "smelter/block/"
+    },
+    {
+      "old": "t45/drying/",
+      "new": "drying/block/"
+    },
+    {
+      "old": "t46/bath/",
+      "new": "bath/mte/"
+    },
+    {
+      "old": "t47/bath/",
+      "new": "bath/remainder/"
+    },
+    {
+      "old": "t48/bath/",
+      "new": "bath/identity/"
+    },
+    {
+      "old": "t49/bath/",
+      "new": "bath/tiny_purified/"
+    },
+    {
+      "old": "t5/",
+      "new": "chemical/"
+    },
+    {
+      "old": "t11/",
+      "new": "hydrocarbon/"
+    },
+    {
+      "old": "t21/",
+      "new": "chemical/"
+    },
+    {
+      "old": "t22/",
+      "new": "petroleum/"
+    },
+    {
+      "old": "t36/",
+      "new": "machine/bootstrap/"
+    },
+    {
+      "old": "t4/assembler/",
+      "new": "tool/assembler/"
+    },
+    {
+      "old": "t7/mortar/",
+      "new": "mortar/"
+    },
+    {
+      "old": "t8/extruder/",
+      "new": "pipe/extruder/"
+    },
+    {
+      "old": "t10/anvil/",
+      "new": "ingot_form/anvil/"
+    },
+    {
+      "old": "t10/smelter/",
+      "new": "ingot_form/smelter/"
+    }
+  ],
+  "recipe_id_prefixes": [
+    {
+      "old": "t37/",
+      "new": "assembler/compact/"
+    },
+    {
+      "old": "t38/",
+      "new": "roaster/compact/"
+    },
+    {
+      "old": "t39/",
+      "new": "centrifuge/compact/"
+    },
+    {
+      "old": "t40/",
+      "new": "electrolyzer/compact/"
+    },
+    {
+      "old": "t41/",
+      "new": "assembler/wood/"
+    },
+    {
+      "old": "t43/",
+      "new": "smelter/stone/"
+    },
+    {
+      "old": "t45/",
+      "new": "smelter/block/"
+    },
+    {
+      "old": "t46/",
+      "new": "bath/mte/"
+    },
+    {
+      "old": "t47/",
+      "new": "bath/remainder/"
+    },
+    {
+      "old": "t48/",
+      "new": "bath/identity/"
+    },
+    {
+      "old": "t49/",
+      "new": "bath/tiny_purified/"
+    },
+    {
+      "old": "t5/",
+      "new": "chemical/"
+    },
+    {
+      "old": "t11/",
+      "new": "hydrocarbon/"
+    },
+    {
+      "old": "t21/",
+      "new": "chemical/"
+    },
+    {
+      "old": "t22/",
+      "new": "petroleum/"
+    },
+    {
+      "old": "t36/",
+      "new": "machine/bootstrap/"
+    },
+    {
+      "old": "t4/assembler/",
+      "new": "tool/assembler/"
+    },
+    {
+      "old": "t7/mortar/",
+      "new": "mortar/"
+    },
+    {
+      "old": "t8/extruder/",
+      "new": "pipe/extruder/"
+    },
+    {
+      "old": "t10/anvil/",
+      "new": "ingot_form/anvil/"
+    },
+    {
+      "old": "t10/smelter/",
+      "new": "ingot_form/smelter/"
+    }
+  ],
+  "inferred_publication_groups": {
+    "assembler/compact": "cruciblecraft:assembler/compact",
+    "roaster/compact": "cruciblecraft:roaster/compact"
+  },
+  "java_publication_group_constants": {
+    "T37_ASSEMBLER_PUBLICATION_GROUP": "ASSEMBLER_COMPACT",
+    "T38_ROASTER_PUBLICATION_GROUP": "ROASTER_COMPACT",
+    "T39_CENTRIFUGE_SINGLETON_PUBLICATION_GROUP": "CENTRIFUGE_SINGLETON",
+    "T39_CENTRIFUGE_MULTI_PUBLICATION_GROUP": "CENTRIFUGE_MULTI",
+    "T40_ELECTROLYZER_SINGLETON_PUBLICATION_GROUP": "ELECTROLYZER_SINGLETON",
+    "T40_ELECTROLYZER_MULTI_PUBLICATION_GROUP": "ELECTROLYZER_MULTI",
+    "T41_ASSEMBLER_PLANKS_PUBLICATION_GROUP": "ASSEMBLER_PLANKS",
+    "T41_ASSEMBLER_FIREPROOF_PUBLICATION_GROUP": "ASSEMBLER_FIREPROOF",
+    "T41_ASSEMBLER_PLANKS2_PUBLICATION_GROUP": "ASSEMBLER_PLANKS2",
+    "T43_SMELTER_STONE_PUBLICATION_GROUP": "SMELTER_STONE",
+    "T45_SMELTER_BLOCK_PUBLICATION_GROUP": "SMELTER_BLOCK",
+    "T45_DRYING_BLOCK_PUBLICATION_GROUP": "DRYING_BLOCK",
+    "T47_BATH_EXACT_PUBLICATION_GROUP": "BATH_REMAINDER_EXACT",
+    "T47_BATH_EXACT_MULTI_PUBLICATION_GROUP": "BATH_REMAINDER_EXACT_MULTI",
+    "T48_BATH_EXACT_PUBLICATION_GROUP": "BATH_IDENTITY_EXACT",
+    "T48_BATH_EXACT_MULTI_PUBLICATION_GROUP": "BATH_IDENTITY_EXACT_MULTI",
+    "T48_BATH_TOOL_HEAD_PUBLICATION_GROUP": "BATH_IDENTITY_TOOL_HEAD",
+    "T49_BATH_EXACT_MULTI_PUBLICATION_GROUP": "BATH_TINY_PURIFIED_EXACT_MULTI"
+  },
+  "dedup_owners": {
+    "T37": "assembler/compact",
+    "T39": "centrifuge/compact",
+    "T40": "electrolyzer/compact"
+  },
+  "support_path_prefixes": [
+    {
+      "old": "t38_player_path_recovery/",
+      "new": "player_path_recovery/roaster/"
+    },
+    {
+      "old": "t39_player_path_support/",
+      "new": "player_path_support/centrifuge/"
+    },
+    {
+      "old": "t40_player_path_support/",
+      "new": "player_path_support/electrolyzer/"
+    },
+    {
+      "old": "t41_player_path_support/",
+      "new": "player_path_support/assembler_wood/"
+    },
+    {
+      "old": "t43_player_path_support/",
+      "new": "player_path_support/smelter_stone/"
+    },
+    {
+      "old": "t45_player_path_support/",
+      "new": "player_path_support/block_object/"
+    },
+    {
+      "old": "t46_player_path_support/",
+      "new": "player_path_support/bath_mte/"
+    },
+    {
+      "old": "t47_player_path_support/",
+      "new": "player_path_support/bath_remainder/"
+    },
+    {
+      "old": "t48_player_path_support/",
+      "new": "player_path_support/bath_identity/"
+    },
+    {
+      "old": "t49_player_path_support/",
+      "new": "player_path_support/bath_tiny_purified/"
+    }
+  ],
+  "policy_filenames": {
+    "t37_assembler.json": "assembler_compact.json",
+    "t38_roaster.json": "roaster_compact.json",
+    "t39_centrifuge_singleton.json": "centrifuge_singleton.json",
+    "t39_centrifuge_multi.json": "centrifuge_multi.json",
+    "t40_electrolyzer_singleton.json": "electrolyzer_singleton.json",
+    "t40_electrolyzer_multi.json": "electrolyzer_multi.json",
+    "t41_assembler_planks.json": "assembler_planks.json",
+    "t41_assembler_fireproof.json": "assembler_fireproof.json",
+    "t41_assembler_planks2.json": "assembler_planks2.json",
+    "t43_smelter_stone.json": "smelter_stone.json",
+    "t45_smelter_block.json": "smelter_block.json",
+    "t45_drying_block.json": "drying_block.json",
+    "t46_bath_mte.json": "bath_mte.json",
+    "t47_bath_exact.json": "bath_remainder_exact.json",
+    "t47_bath_exact_multi.json": "bath_remainder_exact_multi.json",
+    "t48_bath_exact.json": "bath_identity_exact.json",
+    "t48_bath_exact_multi.json": "bath_identity_exact_multi.json",
+    "t48_bath_tool_head.json": "bath_identity_tool_head.json",
+    "t49_bath_exact_multi.json": "bath_tiny_purified_exact_multi.json"
+  },
+  "dedup_rule_ids": {
+    "cruciblecraft:t37_t41_assembler_pre_snapshot": "cruciblecraft:assembler/compact_wood_pre_snapshot",
+    "cruciblecraft:t37_t41_assembler_post_enumeration": "cruciblecraft:assembler/compact_wood_post_enumeration",
+    "cruciblecraft:t39_t5_centrifuge_post_enumeration": "cruciblecraft:centrifuge/chemical_post_enumeration",
+    "cruciblecraft:t40_t5_electrolyzer_post_enumeration": "cruciblecraft:electrolyzer/chemical_post_enumeration",
+    "cruciblecraft:mixer_ordinary_closure_t39_support_post_enumeration": "cruciblecraft:mixer/ordinary_closure/centrifuge_support_post_enumeration"
+  },
+  "dedup_filenames": {
+    "t37_t41_assembler_pre_snapshot.json": "assembler_compact_wood_pre_snapshot.json",
+    "t37_t41_assembler_post_enumeration.json": "assembler_compact_wood_post_enumeration.json",
+    "t39_t5_centrifuge_post_enumeration.json": "centrifuge_chemical_post_enumeration.json",
+    "t40_t5_electrolyzer_post_enumeration.json": "electrolyzer_chemical_post_enumeration.json",
+    "mixer_ordinary_closure_t39_support_post_enumeration.json": "mixer_ordinary_closure_centrifuge_support_post_enumeration.json"
+  },
+  "policy_resource_roots": {
+    "src/t37_recipe_generated/": "src/recipe_generated/",
+    "src/t38_recipe_generated/": "src/recipe_generated/",
+    "src/t39_recipe_generated/": "src/recipe_generated/",
+    "src/t40_recipe_generated/": "src/recipe_generated/",
+    "src/t41_recipe_generated/": "src/recipe_generated/",
+    "src/t43_recipe_generated/": "src/recipe_generated/",
+    "src/t45_recipe_generated/": "src/recipe_generated/",
+    "src/t46_recipe_generated/": "src/recipe_generated/",
+    "src/t47_recipe_generated/": "src/recipe_generated/",
+    "src/t48_recipe_generated/": "src/recipe_generated/",
+    "src/t49_recipe_generated/": "src/recipe_generated/",
+    "src/t5_chemical_generated/": "src/chemical_recipe_generated/",
+    "src/t11_hydrocarbon_generated/": "src/hydrocarbon_recipe_generated/",
+    "src/t21_chemical_generated/": "src/chemical_recipe_generated/",
+    "src/t22_petroleum_generated/": "src/petroleum_recipe_generated/"
+  },
+  "live_generated_roots": [
+    "src/t37_recipe_generated",
+    "src/t38_recipe_generated",
+    "src/t39_recipe_generated",
+    "src/t39_support_generated",
+    "src/t40_recipe_generated",
+    "src/t40_support_generated",
+    "src/t41_recipe_generated",
+    "src/t41_support_generated",
+    "src/t43_recipe_generated",
+    "src/t43_support_generated",
+    "src/t45_recipe_generated",
+    "src/t45_support_generated",
+    "src/t46_recipe_generated",
+    "src/t46_support_generated",
+    "src/t47_recipe_generated",
+    "src/t47_support_generated",
+    "src/t48_recipe_generated",
+    "src/t48_support_generated",
+    "src/t49_recipe_generated",
+    "src/t49_support_generated",
+    "src/chemical_recipe_generated",
+    "src/hydrocarbon_recipe_generated",
+    "src/petroleum_recipe_generated"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "family_id": "sha256:5ce14027d266281b4ed6efceff20fa3d1db3cff3d146ef8a7f4bc5425db2742f",
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/opaque",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 128,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 2000,
+          "id": "cruciblecraft:hydrochloric_acid"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 4000,
+          "id": "cruciblecraft:saltwater"
+        },
+        {
+          "amount": 3000,
+          "id": "cruciblecraft:carbon_dioxide"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        6
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:sodium_hydrogencarbonate/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:salt/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "3dfffd7625ea6ec8dcb5f327bd773175580925c70d13ea467830b4cbfc0d8eb6"
+        ],
+        "selected_source_recipe": "sha256:5ce14027d266281b4ed6efceff20fa3d1db3cff3d146ef8a7f4bc5425db2742f",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:mixer/ordinary_closure/618818875dbca403"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:mixer",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

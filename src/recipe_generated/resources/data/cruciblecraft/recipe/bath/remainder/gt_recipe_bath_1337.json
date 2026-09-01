@@ -1,0 +1,73 @@
+{
+  "family_id": "gt.recipe.bath#1337",
+  "publication_group": "cruciblecraft:bath/remainder/exact",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 512,
+      "eut": 0,
+      "fluid_inputs": [
+        {
+          "amount": 12000,
+          "id": "cruciblecraft:hydrochloric_acid"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 9000,
+          "id": "minecraft:water"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:red_sand"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 2,
+          "id": "cruciblecraft:ferric_chloride/dust"
+        },
+        {
+          "count": 2,
+          "id": "cruciblecraft:ferric_chloride/dust"
+        },
+        {
+          "count": 2,
+          "id": "cruciblecraft:ferric_chloride/dust"
+        },
+        {
+          "count": 2,
+          "id": "cruciblecraft:ferric_chloride/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000,
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "de7de1ac651a306e137ff57b516f342c5188c053c10bcb5bf3a57021b042d2bf"
+        ],
+        "selected_source_recipe": "gt.recipe.bath#1337",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:bath/remainder/2117c394746ed456"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:bath",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

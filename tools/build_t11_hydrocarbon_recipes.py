@@ -17,24 +17,24 @@ sys.path.insert(0, str(ROOT))
 from tools import build_t11_preflight_projection as preflight
 
 
-OUTPUT_ROOT = ROOT / "src/t11_hydrocarbon_generated/resources"
+OUTPUT_ROOT = ROOT / "src/hydrocarbon_recipe_generated/resources"
 MANIFEST = ROOT / "tools/t11_hydrocarbon_recipe_manifest.json"
 ROUTES = {
     "crude_oil_distillation": (
         "distillery",
-        "t11/distillery/crude_oil_to_fuel_and_lubricant",
+        "hydrocarbon/distillery/crude_oil_to_fuel_and_lubricant",
     ),
     "natural_gas_to_methane": (
         "generifier",
-        "t11/generifier/natural_gas_to_methane",
+        "hydrocarbon/generifier/natural_gas_to_methane",
     ),
     "fuel_oil_engine": (
         "fuels_engine",
-        "t11/fuels_engine/fuel_oil",
+        "hydrocarbon/fuels_engine/fuel_oil",
     ),
     "methane_gas_fuel": (
         "fuels_gas",
-        "t11/fuels_gas/methane",
+        "hydrocarbon/fuels_gas/methane",
     ),
 }
 

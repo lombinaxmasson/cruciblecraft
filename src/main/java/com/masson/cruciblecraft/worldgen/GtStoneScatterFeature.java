@@ -14,9 +14,9 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 /**
- * Bounded overworld scatter of catalog GT stone blocks. Placement is the T33
+ * Bounded overworld scatter of catalog GT stone blocks. Placement is the
  * surface-rock shape; the tag is {@code cruciblecraft:gt_stones}, not
- * {@code c:rocks}. Empty-input worldgen drops are the T43 B1 acquisition.
+ * {@code c:rocks}. Empty-input worldgen drops are the stone acquisition path.
  */
 public class GtStoneScatterFeature extends Feature<SurfaceRockConfiguration> {
     public GtStoneScatterFeature() {

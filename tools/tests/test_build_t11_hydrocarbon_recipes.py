@@ -33,14 +33,14 @@ class T11HydrocarbonRecipeBuilderTest(unittest.TestCase):
             for relative, path in builder.actual_files().items()
         }
         engine = documents[
-            "data/cruciblecraft/recipe/t11/"
+            "data/cruciblecraft/recipe/hydrocarbon/"
             "fuels_engine/fuel_oil.json"
         ]
         gas = documents[
-            "data/cruciblecraft/recipe/t11/fuels_gas/methane.json"
+            "data/cruciblecraft/recipe/hydrocarbon/fuels_gas/methane.json"
         ]
         distillery = documents[
-            "data/cruciblecraft/recipe/t11/distillery/"
+            "data/cruciblecraft/recipe/hydrocarbon/distillery/"
             "crude_oil_to_fuel_and_lubricant.json"
         ]
         self.assertEqual(-64, engine["eut"])

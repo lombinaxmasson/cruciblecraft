@@ -224,8 +224,15 @@ class VerificationProfileTest(unittest.TestCase):
             "build_t45_census_delta",
             "build_t45_card_topology",
             "build_t45_readiness",
+            "build_t46_census_delta",
+            "build_t46_card_topology",
+            "build_t46_readiness",
+            "build_t47_census_delta",
+            "build_t47_card_topology",
+            "build_t47_readiness",
         }
         self.assertEqual(expected_builders, set(census["builders"]))
+        self.assertEqual([], census["gradle_tasks"])
         policy_builders = {
             row["name"]
             for row in self.builder_policy["builders"]
@@ -265,6 +272,8 @@ class VerificationProfileTest(unittest.TestCase):
                 "build_t44_storage_load_projection",
                 "build_t44_storage_gametest_receipt",
                 "build_t45_recipe_load_benchmark",
+                "build_t46_recipe_load_benchmark",
+                "build_t47_recipe_load_benchmark",
             },
             set(replay["builders"]),
         )
@@ -277,6 +286,31 @@ class VerificationProfileTest(unittest.TestCase):
             replay["gametest"],
         )
         self.assertEqual([], replay["gradle_tasks"])
+
+    def test_card_closeout_only_recipes_pays_gradle(self) -> None:
+        recipes = self.profiles["profiles"]["recipes"]
+        census = self.profiles["profiles"]["census"]
+        seals = self.profiles["profiles"]["closeout-seals"]
+        self.assertEqual(["test"], recipes["gradle_tasks"])
+        self.assertEqual([], census["gradle_tasks"])
+        self.assertEqual([], seals["gradle_tasks"])
+        self.assertEqual(
+            ("recipes", "census", "closeout-seals"),
+            verify_entry.CLOSEOUT_PROFILES,
+        )
+        self.assertEqual(
+            {
+                "closeout_seal",
+                "build_t47_vr_pre_repair_freeze",
+                "build_t47_vr_repair_readiness",
+            },
+            set(seals["builders"]),
+        )
+        self.assertIn("test_closeout_seal", seals["python_modules"])
+        gradle = verify_entry.gradle_command("test")
+        self.assertIn("--max-workers=1", gradle)
+        self.assertIn("--no-daemon", gradle)
+        self.assertIn("--rerun-tasks", gradle)
 
     def test_closeout_json_keeps_recipes_gradle_and_receipts(self) -> None:
         result = verify_entry.combine_closeout_results(
@@ -298,7 +332,7 @@ class VerificationProfileTest(unittest.TestCase):
                     "timings": [],
                 },
                 {
-                    "profile": "census-replay",
+                    "profile": "closeout-seals",
                     "status": "PASS",
                     "failures": [],
                     "gradle": None,
@@ -313,9 +347,17 @@ class VerificationProfileTest(unittest.TestCase):
         self.assertEqual("PASS", result["gametest"]["status"])
         self.assertEqual(
             "SKIP",
-            result["profiles"]["census-replay"]["gametest"]["status"],
+            result["profiles"]["closeout-seals"]["gametest"]["status"],
         )
         self.assertTrue(verify_entry.RECEIPT_SCRIPTS["recipes"])
+        self.assertIn(
+            "tools/build_t46_gametest_receipt.py",
+            verify_entry.RECEIPT_SCRIPTS["recipes"],
+        )
+        self.assertIn(
+            "tools/build_t47_gametest_receipt.py",
+            verify_entry.RECEIPT_SCRIPTS["recipes"],
+        )
         self.assertEqual(
             (),
             verify_entry.RECEIPT_SCRIPTS.get("card-diagnostic-T40", ()),

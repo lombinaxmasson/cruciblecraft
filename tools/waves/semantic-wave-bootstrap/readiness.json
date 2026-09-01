@@ -1,0 +1,57 @@
+{
+  "dry_run": {
+    "mixer/ordinary-closure": {
+      "family_count": 0,
+      "relation_count": 0,
+      "report_sha256": "66744bdd9e75ff865c8920fb0b59176a26cf11b013b724c0dbb2234dcefe29bd"
+    },
+    "smelter/ordinary-closure": {
+      "family_count": 0,
+      "relation_count": 0,
+      "report_sha256": "195de388f1204b3ffd36106d0ee6d102cd1a904168b4fafdd46b5508c2c4cc5c"
+    }
+  },
+  "evidence": {
+    "legacy_closeout_seals": "python tools/closeout_seal.py --check",
+    "slug_rejects_t50": true,
+    "unique_active_wave": "runtime-load/allocation-split",
+    "v2_identity_ledger": {
+      "path": "tools/global_build_identity_ledger.v2.json",
+      "sha256": "6b2f7d395c74f68ecf84244a113b28fba38de6c9752be7f50b12c2ee21805adb"
+    },
+    "v2_runtime_manifest": {
+      "path": "tools/compact_recipe_runtime_manifest.v2.json",
+      "sha256": "821e4a6ef8d4246811ec6411d81f634bf9552ded68e5a53b9c64757bc8bd376f"
+    },
+    "v3_identity_logical_equals_v2": true,
+    "v3_runtime_logical_equals_v2": true
+  },
+  "generated_by": "python tools/build_semantic_wave_bootstrap.py",
+  "opening": {
+    "allocation_bytes": 687226880,
+    "authored_entries": 6269,
+    "client_reload_ms": 429,
+    "compact_production_groups": 19,
+    "current_execution_gap": 1349,
+    "eager_publication_rows": 14,
+    "integrated_allocation_bytes": 687226880,
+    "lazy_cache_ceiling_rows": 876,
+    "lazy_logical_rows": 50652,
+    "lookup_candidates_p95": 10,
+    "lookup_p95_ns": 214887,
+    "retained_memory_bytes": 5021175,
+    "server_reload_ms": 459,
+    "sync_bytes": 5021175
+  },
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "SEMANTIC_WAVE_BOOTSTRAP_READY",
+  "t50_issued": false,
+  "unique_active_wave": "runtime-load/allocation-split",
+  "v2_byte_identical": {
+    "identity_ledger": "6b2f7d395c74f68ecf84244a113b28fba38de6c9752be7f50b12c2ee21805adb",
+    "runtime_manifest": "821e4a6ef8d4246811ec6411d81f634bf9552ded68e5a53b9c64757bc8bd376f"
+  },
+  "v3_empty_composition_equals_v2": true,
+  "wave_slug": "semantic-wave-bootstrap"
+}

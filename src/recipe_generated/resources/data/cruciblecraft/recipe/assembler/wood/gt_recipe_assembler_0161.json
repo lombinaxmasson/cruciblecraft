@@ -1,0 +1,63 @@
+{
+  "family_id": "gt.recipe.assembler#0161",
+  "publication_group": "cruciblecraft:assembler/fireproof",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 128,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        8,
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:fireproof": 1
+          },
+          "items": "cruciblecraft:gt_wood/crate",
+          "type": "neoforge:components"
+        },
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 8
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:chest"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "e012c9b0e54f7d2971529a3cd78924b9437f247aa95e7371362d2697994f254f"
+        ],
+        "selected_source_recipe": "gt.recipe.assembler#0161",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:assembler/wood/6e88ef2bd9e6e83b"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:assembler",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

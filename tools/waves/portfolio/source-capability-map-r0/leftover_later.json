@@ -1,0 +1,336 @@
+{
+  "counts": {
+    "by_owner": {
+      "later:assembler_combinatorial": 2,
+      "later:electrolyzer_combinatorial": 2,
+      "post_1.x/centrifuge_execution_envelope": 1,
+      "post_1.x/cross_mod_pahoehoe": 1,
+      "post_1.x/ordinary_autoclave_processing": 24,
+      "post_1.x/smelter_recovery_edge": 2,
+      "post_1x:nuclear": 7
+    },
+    "phase_deferred": 11,
+    "post_1x_scope": 28,
+    "total": 39
+  },
+  "generated_by": "python tools/build_source_capability_map_r0.py",
+  "hanging_unaccounted": [],
+  "rows": [
+    {
+      "disposition": "phase_deferred",
+      "family_id": "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0000",
+      "owner": "later:assembler_combinatorial",
+      "portfolio_scope": "candidate_1x",
+      "source_artifact": "tools/waves/portfolio/census-disposition-replay/disposition_ledger.json",
+      "template_key": "gt.recipe.assembler#0000"
+    },
+    {
+      "disposition": "phase_deferred",
+      "family_id": "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0001",
+      "owner": "later:assembler_combinatorial",
+      "portfolio_scope": "candidate_1x",
+      "source_artifact": "tools/waves/portfolio/census-disposition-replay/disposition_ledger.json",
+      "template_key": "gt.recipe.assembler#0001"
+    },
+    {
+      "disposition": "phase_deferred",
+      "family_id": "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0000",
+      "owner": "later:electrolyzer_combinatorial",
+      "portfolio_scope": "candidate_1x",
+      "source_artifact": "tools/waves/portfolio/census-disposition-replay/disposition_ledger.json",
+      "template_key": "gt.recipe.electrolyzer#0000"
+    },
+    {
+      "disposition": "phase_deferred",
+      "family_id": "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0001",
+      "owner": "later:electrolyzer_combinatorial",
+      "portfolio_scope": "candidate_1x",
+      "source_artifact": "tools/waves/portfolio/census-disposition-replay/disposition_ledger.json",
+      "template_key": "gt.recipe.electrolyzer#0001"
+    },
+    {
+      "disposition": "phase_deferred",
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0169",
+      "owner": "post_1x:nuclear",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/census-disposition-replay/disposition_ledger.json",
+      "template_key": "gt.recipe.centrifuge#0169"
+    },
+    {
+      "disposition": "phase_deferred",
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0176",
+      "owner": "post_1x:nuclear",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/census-disposition-replay/disposition_ledger.json",
+      "template_key": "gt.recipe.centrifuge#0176"
+    },
+    {
+      "disposition": "phase_deferred",
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0180",
+      "owner": "post_1x:nuclear",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/census-disposition-replay/disposition_ledger.json",
+      "template_key": "gt.recipe.centrifuge#0180"
+    },
+    {
+      "disposition": "phase_deferred",
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0185",
+      "owner": "post_1x:nuclear",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/census-disposition-replay/disposition_ledger.json",
+      "template_key": "gt.recipe.centrifuge#0185"
+    },
+    {
+      "disposition": "phase_deferred",
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0188",
+      "owner": "post_1x:nuclear",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/census-disposition-replay/disposition_ledger.json",
+      "template_key": "gt.recipe.centrifuge#0188"
+    },
+    {
+      "disposition": "phase_deferred",
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0190",
+      "owner": "post_1x:nuclear",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/census-disposition-replay/disposition_ledger.json",
+      "template_key": "gt.recipe.centrifuge#0190"
+    },
+    {
+      "disposition": "phase_deferred",
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0191",
+      "owner": "post_1x:nuclear",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/census-disposition-replay/disposition_ledger.json",
+      "template_key": "gt.recipe.centrifuge#0191"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0010",
+      "owner": "post_1.x/centrifuge_execution_envelope",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.centrifuge#0010"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0207",
+      "owner": "post_1.x/cross_mod_pahoehoe",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.centrifuge#0207"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0032",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0032"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0033",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0033"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0034",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0034"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0035",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0035"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0036",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0036"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0037",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0037"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0040",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0040"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0041",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0041"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0042",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0042"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0043",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0043"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0044",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0044"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0045",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0045"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0046",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0046"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0047",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0047"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0048",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0048"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0049",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0049"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0050",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0050"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0051",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0051"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0052",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0052"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0053",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0053"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0054",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0054"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0055",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0055"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0058",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0058"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0059",
+      "owner": "post_1.x/ordinary_autoclave_processing",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.autoclave#0059"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:smelter/gt.recipe.smelter#1829",
+      "owner": "post_1.x/smelter_recovery_edge",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.smelter#1829"
+    },
+    {
+      "disposition": "post_1x_scope",
+      "family_id": "portfolio:track_a/cruciblecraft:smelter/gt.recipe.smelter#1884",
+      "owner": "post_1.x/smelter_recovery_edge",
+      "portfolio_scope": "post_1x",
+      "source_artifact": "tools/waves/portfolio/one-x-exit-r0/post_1x_scope_replay.json",
+      "template_key": "gt.recipe.smelter#1884"
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "LEFTOVER_LATER_READY",
+  "wave_slug": "portfolio/source-capability-map-r0"
+}

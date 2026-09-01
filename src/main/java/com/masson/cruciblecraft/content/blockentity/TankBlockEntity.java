@@ -32,7 +32,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 /**
  * Bulk 3x3x3 fluid storage: a storage controller with no recipe
  * transaction and no energy. All twenty-five wall cells are bidirectional
- * ports bridging the single host tank (T15e: one fluid supply, never
+ * ports bridging the single host tank (one fluid supply, never
  * twenty-five). Capacity is DESIGN_POLICY (256,000 mB).
  */
 public final class TankBlockEntity extends BlockEntity

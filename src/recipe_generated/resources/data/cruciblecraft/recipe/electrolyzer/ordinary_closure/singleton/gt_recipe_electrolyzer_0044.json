@@ -1,0 +1,69 @@
+{
+  "family_id": "gt.recipe.electrolyzer#0044",
+  "publication_group": "cruciblecraft:electrolyzer/ordinary_closure/singleton",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 1168,
+      "eut": 112,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 2000,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        4
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:ferrite/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:lithium/dust"
+        },
+        {
+          "count": 1,
+          "id": "cruciblecraft:iron/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "7662e8bc93c30d9413aed6c9002074882ee8661e3104368a123b9b9f154863cf"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#0044",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:electrolyzer/ordinary_closure/5d321f1f838f31be"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:electrolyzer",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

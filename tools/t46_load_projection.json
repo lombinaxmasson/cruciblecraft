@@ -1,0 +1,301 @@
+{
+  "budget_evaluation": {
+    "hard_failures": [],
+    "metrics": {
+      "allocation_bytes": {
+        "actual": {
+          "max": 40221840,
+          "min": 40221840
+        },
+        "comparison_value": 40221840,
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "status": "PASS"
+      },
+      "client_index_ms": {
+        "actual": {
+          "max": 1,
+          "min": 1
+        },
+        "comparison_value": 1,
+        "hard_ceiling": 3000,
+        "soft_budget": 1000,
+        "status": "PASS"
+      },
+      "client_reload_ms": {
+        "actual": {
+          "max": 31,
+          "min": 24
+        },
+        "comparison_value": 31,
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "status": "PASS"
+      },
+      "datapack_authored_entries": {
+        "actual": 841,
+        "comparison_value": 841,
+        "hard_ceiling": 6600,
+        "soft_budget": 6000,
+        "status": "PASS"
+      },
+      "eager_publication_rows": {
+        "actual": 0,
+        "comparison_value": 0,
+        "hard_ceiling": 21000,
+        "soft_budget": 18000,
+        "status": "PASS"
+      },
+      "lazy_cache_ceiling_rows": {
+        "actual": 24,
+        "comparison_value": 24,
+        "hard_ceiling": 4096,
+        "soft_budget": 1024,
+        "status": "PASS"
+      },
+      "lazy_logical_rows": {
+        "actual": 1517,
+        "comparison_value": 1517,
+        "hard_ceiling": 56000,
+        "soft_budget": 16000,
+        "status": "PASS"
+      },
+      "lookup_candidate_count": {
+        "actual": {
+          "max": 10,
+          "min": 10
+        },
+        "comparison_value": 10,
+        "hard_ceiling": 128,
+        "soft_budget": 64,
+        "status": "PASS"
+      },
+      "lookup_p95_ns": {
+        "actual": {
+          "max": 74437,
+          "min": 41237
+        },
+        "comparison_value": 74437,
+        "hard_ceiling": 2000000,
+        "soft_budget": 1000000,
+        "status": "PASS"
+      },
+      "retained_memory_bytes": {
+        "actual": {
+          "max": 273899,
+          "min": 273899
+        },
+        "comparison_value": 273899,
+        "hard_ceiling": 536870912,
+        "soft_budget": 134217728,
+        "status": "PASS"
+      },
+      "server_index_ms": {
+        "actual": {
+          "max": 1,
+          "min": 1
+        },
+        "comparison_value": 1,
+        "hard_ceiling": 1000,
+        "soft_budget": 500,
+        "status": "PASS"
+      },
+      "server_reload_ms": {
+        "actual": {
+          "max": 30,
+          "min": 25
+        },
+        "comparison_value": 30,
+        "hard_ceiling": 10000,
+        "soft_budget": 5000,
+        "status": "PASS"
+      },
+      "sync_bytes": {
+        "actual": 273899,
+        "comparison_value": 273899,
+        "hard_ceiling": 67108864,
+        "soft_budget": 16777216,
+        "status": "PASS"
+      }
+    },
+    "pending_measurements": [],
+    "soft_exceeded": [],
+    "status": "PASS"
+  },
+  "currentness": {
+    "budget_policy": "tools/t14_load_budget_policy.v2.json",
+    "budget_policy_file_sha256": "30a07ad20ca443d9108665157b351471ffeb45d71fdd3d4b7d75076a11cb2c35",
+    "budget_policy_sha256": "7656980164350b4960c803c863ab0e7cc280a03b223ef4ef3ad7ba45001970c3",
+    "integrated_measurements": "tools/t46_integrated_measurements.json",
+    "load_budget_policy_v2_sha256": "30a07ad20ca443d9108665157b351471ffeb45d71fdd3d4b7d75076a11cb2c35",
+    "projection_schema": "tools/recipe_load_projection.schema.json",
+    "projection_schema_sha256": "51e97fc4a0cbffc000773fa1805d6223ea369d26ae46256381e344119e20c674",
+    "t13_canonical_rows": 95,
+    "t13_map_row_sha256": "e8a635d62d4c11b7995d64ec3c6cfe2a7038b24338bfb00920a614f442f9af99",
+    "t13_recipe_maps": "tools/t13_denominators/recipe_maps.json"
+  },
+  "delivery_phase": "T46",
+  "families": [
+    {
+      "authored_entries": 841,
+      "canonical_ids": [
+        "gt.recipe.bath"
+      ],
+      "eager_publication_rows": 0,
+      "family": "t46/bath-mte-wave",
+      "lazy_cache_ceiling_rows": 24,
+      "lazy_logical_rows": 1517,
+      "logical_rows": 1517,
+      "measurement_basis": {
+        "kind": "family_specific_measurement",
+        "measured_logical_rows": [
+          1517
+        ],
+        "source": "T46 R3 integrated T37-T46 co-load CompactRecipeFamilyT46IntegratedMeasurementHarness. Card partition remains the measured 1517-row T46 group. Runtime intervals are the 13-group integrated snapshot, not T45 opening plus T46 card arithmetic."
+      },
+      "measurement_intervals": {
+        "allocation_bytes": {
+          "max": 40221840,
+          "min": 40221840
+        },
+        "client_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "client_reload_ms": {
+          "max": 31,
+          "min": 24
+        },
+        "lookup_candidate_count": {
+          "max": 10,
+          "min": 10
+        },
+        "lookup_p95_ns": {
+          "max": 74437,
+          "min": 41237
+        },
+        "retained_memory_bytes": {
+          "max": 273899,
+          "min": 273899
+        },
+        "server_index_ms": {
+          "max": 1,
+          "min": 1
+        },
+        "server_reload_ms": {
+          "max": 30,
+          "min": 25
+        }
+      },
+      "publication_account": {
+        "domain": "gt_recipe_family",
+        "gt_authored_entries": 841,
+        "gt_logical_rows": 1517,
+        "vanilla_datapack_entries": 0
+      },
+      "publication_domain": "gt_recipe_family",
+      "ratios": {
+        "authored_to_eager": {
+          "denominator": 841,
+          "formula": "eager_publication_rows / authored_entries",
+          "numerator": 0,
+          "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+          "value": 0.0
+        },
+        "authored_to_logical": {
+          "denominator": 841,
+          "formula": "logical_rows / authored_entries",
+          "numerator": 1517,
+          "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+          "value": 1.8038049940546967
+        }
+      },
+      "strategy": "group_scoped",
+      "sync_bytes": 273899,
+      "t13_references": [
+        {
+          "canonical_id": "gt.recipe.bath",
+          "classification": "in_scope",
+          "owner": "T15"
+        }
+      ],
+      "vanilla_datapack_entries": 0
+    }
+  ],
+  "family_count": 841,
+  "ledger": {
+    "aggregation": {
+      "counts": "sum of explicit family counts",
+      "lookup": "maximum family interval bounds; one lookup is not additive",
+      "reload_index_memory": "sum of family interval bounds"
+    },
+    "counts": {
+      "datapack_authored_entries": 841,
+      "eager_publication_rows": 0,
+      "lazy_cache_ceiling_rows": 24,
+      "lazy_logical_rows": 1517,
+      "logical_rows": 1517,
+      "sync_bytes": 273899
+    },
+    "measurement_intervals": {
+      "allocation_bytes": {
+        "max": 40221840,
+        "min": 40221840
+      },
+      "client_index_ms": {
+        "max": 1,
+        "min": 1
+      },
+      "client_reload_ms": {
+        "max": 31,
+        "min": 24
+      },
+      "lookup_candidate_count": {
+        "max": 10,
+        "min": 10
+      },
+      "lookup_p95_ns": {
+        "max": 74437,
+        "min": 41237
+      },
+      "retained_memory_bytes": {
+        "max": 273899,
+        "min": 273899
+      },
+      "server_index_ms": {
+        "max": 1,
+        "min": 1
+      },
+      "server_reload_ms": {
+        "max": 30,
+        "min": 25
+      }
+    },
+    "publication_domains": {
+      "gt_authored_entries": 841,
+      "gt_logical_rows": 1517,
+      "vanilla_datapack_entries": 0
+    },
+    "ratios": {
+      "authored_to_eager": {
+        "denominator": 841,
+        "formula": "eager_publication_rows / authored_entries",
+        "numerator": 0,
+        "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+        "value": 0.0
+      },
+      "authored_to_logical": {
+        "denominator": 841,
+        "formula": "logical_rows / authored_entries",
+        "numerator": 1517,
+        "status": "MEASURED_FROM_EXPLICIT_COUNTS",
+        "value": 1.8038049940546967
+      }
+    }
+  },
+  "logical": 1517,
+  "production_lock_sha256": "454a49b25ff329dbb053b9195841fe9bb51dcbc311fd293f990b354218a762f4",
+  "projection_id": "t46/bath-mte-wave",
+  "schema_version": 2,
+  "status": "PASS"
+}

@@ -1,0 +1,68 @@
+{
+  "family_id": "gt.recipe.centrifuge#0106",
+  "publication_group": "cruciblecraft:centrifuge/ordinary_closure/singleton",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 64,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 50,
+          "id": "cruciblecraft:potion_damage"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:gt_multiitem/multiitem_food_m30105"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:bone_meal"
+        },
+        {
+          "count": 1,
+          "id": "minecraft:bone"
+        },
+        {
+          "count": 1,
+          "id": "minecraft:rotten_flesh"
+        },
+        {
+          "count": 1,
+          "id": "minecraft:spider_eye"
+        }
+      ],
+      "output_chances": [
+        10000,
+        500,
+        500,
+        250
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "2e4d63b221ce38283346c68daa06db9fab2cbc9fcaa7facd8a71d9de209c3320"
+        ],
+        "selected_source_recipe": "gt.recipe.centrifuge#0106",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:centrifuge/ordinary_closure/098a47814412746f"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:centrifuge",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

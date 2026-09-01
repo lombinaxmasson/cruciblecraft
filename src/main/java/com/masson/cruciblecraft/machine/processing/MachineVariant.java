@@ -119,8 +119,8 @@ public final class MachineVariant {
                         ? tierBand.energyCapacity()
                         : 0L,
                 tierBand.inputMaximum());
-        if (usesT39CentrifugeEnvelope(id, kind)) {
-            return t39CentrifugeVariantSpec(id, base, energy);
+        if (usesCentrifugeCompactEnvelope(id, kind)) {
+            return centrifugeCompactVariantSpec(id, base, energy);
         }
         return new ProcessingMachineSpec(
                 id,
@@ -138,15 +138,15 @@ public final class MachineVariant {
     /**
      * Steel/titanium/tungstensteel single-block centrifuges execute the GT6
      * 6-fluid-out / 100,000 mB envelope. Bronze {@code cruciblecraft:centrifuge}
-     * and the T15 large controller keep the T5 2-out / 4,000 mB host.
+     * and the large centrifuge controller keep the opening 2-out / 4,000 mB host.
      */
-    private static boolean usesT39CentrifugeEnvelope(
+    private static boolean usesCentrifugeCompactEnvelope(
             ResourceLocation id,
             MachineKindSpec kind) {
         return "centrifuge".equals(kind.id().getPath()) && !id.equals(kind.id());
     }
 
-    private static ProcessingMachineSpec t39CentrifugeVariantSpec(
+    private static ProcessingMachineSpec centrifugeCompactVariantSpec(
             ResourceLocation id,
             ProcessingMachineSpec base,
             ProcessingMachineSpec.EnergySpec energy) {
@@ -173,7 +173,7 @@ public final class MachineVariant {
                 new ProcessingMachineSpec.TankLayout(inputTanks, outputTanks),
                 energy,
                 base.sidedIo(),
-                ModProcessingMachines::validateT39CentrifugeEnvelope,
+                ModProcessingMachines::validateCentrifugeCompactEnvelope,
                 base.buffering(),
                 Gt6BasicMachineGui.ui(
                         1, 6, 1, 6,

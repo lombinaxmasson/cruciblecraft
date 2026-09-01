@@ -1,0 +1,109 @@
+{
+  "generated_by": "python tools/build_source_capability_growth_order.py",
+  "later_star_disposition": {
+    "later:assembler_combinatorial": {
+      "disposition": "merge_into_next_major",
+      "families": [
+        "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0000",
+        "portfolio:track_a/cruciblecraft:assembler/gt.recipe.assembler#0001"
+      ],
+      "target": "portfolio/generic-recipe-generator"
+    },
+    "later:electrolyzer_combinatorial": {
+      "disposition": "merge_into_next_major",
+      "families": [
+        "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0000",
+        "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0001"
+      ],
+      "target": "portfolio/generic-recipe-generator"
+    },
+    "post_1x:nuclear": {
+      "disposition": "remain_independent_not_next_major",
+      "families": [
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0169",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0176",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0180",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0185",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0188",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0190",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0191"
+      ],
+      "nuclear_started": false
+    },
+    "post_1x_recycling_scope": {
+      "count": 28,
+      "disposition": "remain_independent_not_next_major",
+      "owners": {
+        "post_1.x/centrifuge_execution_envelope": [
+          "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0010"
+        ],
+        "post_1.x/cross_mod_pahoehoe": [
+          "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0207"
+        ],
+        "post_1.x/ordinary_autoclave_processing": [
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0032",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0033",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0034",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0035",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0036",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0037",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0040",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0041",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0042",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0043",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0044",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0045",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0046",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0047",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0048",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0049",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0050",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0051",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0052",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0053",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0054",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0055",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0058",
+          "portfolio:track_a/cruciblecraft:autoclave/gt.recipe.autoclave#0059"
+        ],
+        "post_1.x/smelter_recovery_edge": [
+          "portfolio:track_a/cruciblecraft:smelter/gt.recipe.smelter#1829",
+          "portfolio:track_a/cruciblecraft:smelter/gt.recipe.smelter#1884"
+        ]
+      }
+    }
+  },
+  "next_major": "portfolio/generic-recipe-generator",
+  "nuclear_started": false,
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "GROWTH_ORDER_READY",
+  "tracks": [
+    {
+      "does_not_implement": "nuclear, vanilla replace, crops/food/bees, cover net, new GT6 domains, production lock",
+      "owns": "generic dump-to-arbitrary-map generator replacing per-wave builders; later:assembler_combinatorial and later:electrolyzer_combinatorial",
+      "slug": "portfolio/generic-recipe-generator"
+    },
+    {
+      "does_not_implement": "recipe content, nuclear, vanilla replace",
+      "owns": "count-ceiling interpretation follow-through and ProcessingMachineSpec datafication",
+      "slug": "portfolio/count-ceiling-kind-envelope"
+    },
+    {
+      "does_not_implement": "new RecipeMaps, nuclear, vanilla replace",
+      "owns": "bounded logistics cover net and T13c exclusion reclaim on existing mechanisms",
+      "slug": "portfolio/existing-mechanism-bounded-domains"
+    },
+    {
+      "does_not_implement": "growth generator, nuclear unless separately assigned",
+      "owns": "vanilla replace, non-ore worldgen, crops/food/bees",
+      "slug": "portfolio/large-content-branches"
+    },
+    {
+      "does_not_implement": "anything until assigned next_major",
+      "owns": "post_1x:nuclear centrifuge families and Track C",
+      "slug": "portfolio/nuclear"
+    }
+  ],
+  "wave_slug": "portfolio/source-capability-growth-order"
+}

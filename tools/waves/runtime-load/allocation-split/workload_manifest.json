@@ -1,0 +1,47 @@
+{
+  "aggregation": {
+    "lookup_allocation_bytes_per_operation": "p95_of_window_divided_by_operations",
+    "reload_transient_allocation_bytes": "p95_of_window",
+    "retained_memory_bytes": "controlled_gc_histogram"
+  },
+  "gc": "controlled full GC before retained sampling",
+  "generated_by": "python tools/build_runtime_load_allocation_split.py",
+  "heap": "userdev GameTest / dedicated client as recorded by T49 integrated",
+  "jfr_events": [
+    "jdk.ObjectAllocationInNewTLAB",
+    "jdk.ObjectAllocationOutsideTLAB"
+  ],
+  "jvm": "same as T49 integrated measurement harness",
+  "lookup_only_20x": {
+    "evidence": "tools/t14_load_budget_policy.v2.json allocation_bytes source (lookup-only)",
+    "operations": 20,
+    "recipe_candidates_included": false,
+    "window": "lookup"
+  },
+  "measurement_windows": {
+    "lookup": "stable epoch after publication; enumeration excluded",
+    "reload": "explicit reload/publish window only",
+    "retained": "after controlled GC"
+  },
+  "opening_19_group": {
+    "client_repetitions": 5,
+    "evidence": "tools/t49_integrated_measurements.json",
+    "group_count": 19,
+    "hybrid_allocation_p95_bytes": 687226880,
+    "logical_rows": 50666,
+    "recipe_candidates_included": false,
+    "server_repetitions": 5,
+    "source": "T49 19-group integrated production mix; p50/p95 already aggregated"
+  },
+  "schema_version": 1,
+  "synthetic_reload_80k": {
+    "covers_worst_case_rows": 73500,
+    "logical_rows": 80000,
+    "opening_logical_rows": 50666,
+    "recipe_candidates_included": false,
+    "scale_from_opening": 1.578968,
+    "window": "reload"
+  },
+  "warmup": "harness warmup excluded from p95 windows",
+  "wave_slug": "runtime-load/allocation-split"
+}

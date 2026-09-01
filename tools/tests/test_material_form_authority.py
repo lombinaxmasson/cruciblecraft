@@ -24,6 +24,7 @@ class MaterialFormAuthorityTest(unittest.TestCase):
                 "t38_required_forms",
                 "t39_required_forms",
                 "t40_required_forms",
+                "t48_required_forms",
             ],
             authority.java_overlay_sections(self.document),
         )

@@ -44,10 +44,10 @@
         "huExecutionMatrixCoversThreeKindsThreeTiersAndCheapParallelDuration",
         "smelterParallelThousandBoundaryRejectsOverflowAndCompactsOutputs",
         "electrolyzerReferenceCoversThreeBufferedElectricTierEndpoints",
-        "t17FailureStatesRemainObservableInTheSharedRuntime"
+        "heatFailureStatesRemainObservableInTheSharedRuntime"
       ],
       "game_tests": [
-        "t17bFireboxesRunAllThreeHuMachineKinds",
+        "fireboxesRunAllThreeHuMachineKinds",
         "t17bHigherTierHuUsesControlledAdjacentHandlers",
         "t17bElectrolyzerCableEndpointsRespectEveryTierWindow",
         "dynamoFeedsElectrolyzerThroughThreeCables",
@@ -68,14 +68,14 @@
       "status": "COMPLETE",
       "acceptance": "Provide models, real English and Chinese names, loot, tags, nine reachable HU crafting recipes, three preimplemented Electrolyzer references and current-only fail-closed identities for all selected T17 variants.",
       "junit_tests": [
-        "independentNineRecipeSetIsBidirectionalWithT17SelectedVariants",
+        "independentNineRecipeSetIsBidirectionalWithSelectedHeatVariants",
         "selectedModelsLanguagesLootAndTagsUseRealNamesAndTextures",
         "kindTierMaterialAndEnergyMismatchesAllQuarantine",
         "currentIdentityReloadResumesAndPreservesState",
         "variantProjectionDoesNotMutateAnyGtRecipeRow"
       ],
       "game_tests": [
-        "t17SelectedHuRecipesExecuteFromLiveRecipeManager"
+        "selectedHuRecipesExecuteFromLiveRecipeManager"
       ],
       "source_contracts": [
         "t17c_acquisition_builder",
@@ -210,8 +210,8 @@
         "DISTILLERY",
         "DRYING",
         "SMELTER",
-        "T17_SELECTED_KINDS",
-        "T17_SELECTED"
+        "SELECTED_HEAT_KINDS",
+        "SELECTED_HEAT_VARIANTS"
       ]
     },
     "behavior_carriers": {
@@ -250,7 +250,7 @@
     },
     "source_expected": {
       "stage": "T17a",
-      "path": "src/test/resources/t17_machine_tier_expected.json",
+      "path": "src/test/resources/heat_machine_tier_expected.json",
       "required_tokens": [
         "\"schema_version\": 2",
         "\"tier_band\"",
@@ -263,7 +263,7 @@
     },
     "junit_matrix": {
       "stage": "T17a",
-      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/T17MachineTierMatrixTest.java",
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/HeatMachineTierMatrixTest.java",
       "required_tokens": [
         "independentHeatExpectedMatchesCatalogAndRuntimeVariants",
         "tierOneBindingsAndSixHighTierBlocksAndItemsAreExact",
@@ -286,7 +286,7 @@
       "stage": "T17b",
       "path": "src/main/java/com/masson/cruciblecraft/machine/processing/ProcessingMachineEnergyPlacement.java",
       "required_tokens": [
-        "isT17HeatMachine",
+        "isHeatMachine",
         "ModProcessingMachines.DISTILLERY",
         "ModProcessingMachines.DRYING",
         "ModProcessingMachines.SMELTER",
@@ -316,19 +316,19 @@
     },
     "t17b_junit_matrix": {
       "stage": "T17b",
-      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/T17MachineTierMatrixTest.java",
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/HeatMachineTierMatrixTest.java",
       "required_tokens": [
         "huExecutionMatrixCoversThreeKindsThreeTiersAndCheapParallelDuration",
         "smelterParallelThousandBoundaryRejectsOverflowAndCompactsOutputs",
         "electrolyzerReferenceCoversThreeBufferedElectricTierEndpoints",
-        "t17FailureStatesRemainObservableInTheSharedRuntime"
+        "heatFailureStatesRemainObservableInTheSharedRuntime"
       ]
     },
     "t17b_gametest": {
       "stage": "T17b",
       "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
       "required_tokens": [
-        "t17bFireboxesRunAllThreeHuMachineKinds",
+        "fireboxesRunAllThreeHuMachineKinds",
         "t17bHigherTierHuUsesControlledAdjacentHandlers",
         "t17bElectrolyzerCableEndpointsRespectEveryTierWindow",
         "dynamoFeedsElectrolyzerThroughThreeCables",
@@ -393,8 +393,8 @@
       "stage": "T17c",
       "path": "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
       "required_tokens": [
-        "ModMachineVariants.T17_SELECTED",
-        "t17MachineName",
+        "ModMachineVariants.SELECTED_HEAT_VARIANTS",
+        "catalogMachineName",
         "殷钢",
         "Drying Machine"
       ]
@@ -403,7 +403,7 @@
       "stage": "T17c",
       "path": "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
       "required_tokens": [
-        "t17HeatMachineCrafting",
+        "heatMachineCrafting",
         "INVAR_DISTILLERY",
         "TITANIUM_DRYING",
         "INVAR_SMELTER",
@@ -439,11 +439,11 @@
     },
     "t17c_resource_junit": {
       "stage": "T17c",
-      "path": "src/test/java/com/masson/cruciblecraft/datagen/T17MachineAcquisitionResourceTest.java",
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/HeatMachineAcquisitionResourceTest.java",
       "required_tokens": [
-        "independentNineRecipeSetIsBidirectionalWithT17SelectedVariants",
+        "independentNineRecipeSetIsBidirectionalWithSelectedHeatVariants",
         "selectedModelsLanguagesLootAndTagsUseRealNamesAndTextures",
-        "ModMachineVariants.T17_SELECTED"
+        "ModMachineVariants.SELECTED_HEAT_VARIANTS"
       ]
     },
     "t17c_persistence_junit": {
@@ -459,8 +459,8 @@
       "stage": "T17c",
       "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
       "required_tokens": [
-        "t17SelectedHuRecipesExecuteFromLiveRecipeManager",
-        "t17MachineCraftingCases",
+        "selectedHuRecipesExecuteFromLiveRecipeManager",
+        "heatMachineCraftingCases",
         "Live RecipeManager did not match",
         "assembled"
       ]
@@ -517,7 +517,7 @@
       "stage": "T17d",
       "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
       "required_tokens": [
-        "t17dRecipePublicationMatchesT16Baseline",
+        "recipePublicationMatchesPriorBaseline",
         "expectedMapIds.equals(t16MapIds)",
         "expectedEmiIds.equals(t16EmiIds)",
         "expectedEnumeration.equals(actualEnumeration)",
@@ -638,14 +638,14 @@
     "gametest": {
       "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
       "tests": [
-        "t17bFireboxesRunAllThreeHuMachineKinds",
+        "fireboxesRunAllThreeHuMachineKinds",
         "t17bHigherTierHuUsesControlledAdjacentHandlers",
         "t17bElectrolyzerCableEndpointsRespectEveryTierWindow",
         "dynamoFeedsElectrolyzerThroughThreeCables",
         "t17bFailureStatesExposeWrongEnergyUnderpoweredAndLimits",
         "blockedElectrolyzerOutputPreservesInput",
-        "t17SelectedHuRecipesExecuteFromLiveRecipeManager",
-        "t17dRecipePublicationMatchesT16Baseline"
+        "selectedHuRecipesExecuteFromLiveRecipeManager",
+        "recipePublicationMatchesPriorBaseline"
       ]
     }
   }

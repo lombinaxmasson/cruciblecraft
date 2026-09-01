@@ -16,11 +16,11 @@ class ToolDisplayPlanTest {
     @Test
     void routedMaterialsFilterSortsAndDeduplicates() {
         List<String> paths = List.of(
-                "t4/assembler/wrench/metal/iron",
-                "t4/assembler/wrench/gem/amber",
-                "t4/assembler/wrench/metal/copper",
-                "t4/assembler/wrench/metal/iron",
-                "t4/assembler/screwdriver/rod/iron",
+                "tool/assembler/wrench/metal/iron",
+                "tool/assembler/wrench/gem/amber",
+                "tool/assembler/wrench/metal/copper",
+                "tool/assembler/wrench/metal/iron",
+                "tool/assembler/screwdriver/rod/iron",
                 "other/thing");
         assertEquals(
                 List.of("amber", "copper", "iron"),
@@ -39,9 +39,9 @@ class ToolDisplayPlanTest {
                 List.of(),
                 ToolDisplayPlan.routedMaterials(
                         List.of(
-                                "t4/assemblerx/wrench/metal/iron",
-                                "t4/assembler/wrench",
-                                "t5/chemical/anything"),
+                                "tool/assemblerx/wrench/metal/iron",
+                                "tool/assembler/wrench",
+                                "chemical/chemical/anything"),
                         "wrench"));
     }
 }

@@ -43,9 +43,9 @@ RESOURCE_ROOTS: tuple[Path, ...] = (
     ROOT / "src/generated/resources",
     ROOT / "src/ore_chain_generated/resources",
     ROOT / "src/component_rule_generated/resources",
-    ROOT / "src/t5_chemical_generated/resources",
-    ROOT / "src/t11_hydrocarbon_generated/resources",
-    ROOT / "src/t21_chemical_generated/resources",
+    ROOT / "src/chemical_recipe_generated/resources",
+    ROOT / "src/hydrocarbon_recipe_generated/resources",
+    ROOT / "src/chemical_recipe_generated/resources",
     ROOT / "src/t39_support_generated/resources",
 )
 

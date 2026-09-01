@@ -1,0 +1,68 @@
+{
+  "eager_publication_rows": 157,
+  "generated_by": "python tools/build_ordinary_wave.py",
+  "group_winners": {
+    "cruciblecraft:centrifuge/ordinary_closure/acquisition": "immediate",
+    "cruciblecraft:centrifuge/ordinary_closure/material_form": "immediate",
+    "cruciblecraft:centrifuge/ordinary_closure/multiitem": "immediate",
+    "cruciblecraft:centrifuge/ordinary_closure/singleton": "on_demand",
+    "cruciblecraft:centrifuge/ordinary_closure/unmapped": "on_demand"
+  },
+  "groups": [
+    {
+      "family_count": 72,
+      "membership_root_sha256": "fc128b2dd77bf6533f66c94266ac35f40fbaef2d1c3fd1ab61112668bd1262db",
+      "publication_group": "cruciblecraft:centrifuge/ordinary_closure/acquisition",
+      "relation_count": 149,
+      "target_map": "cruciblecraft:centrifuge",
+      "winner": "immediate"
+    },
+    {
+      "family_count": 3,
+      "membership_root_sha256": "2dfe1849e84a31d7ea6f72a39a5cc61d13dba227d23a371ec5c6d595a9e63b52",
+      "publication_group": "cruciblecraft:centrifuge/ordinary_closure/material_form",
+      "relation_count": 6,
+      "target_map": "cruciblecraft:centrifuge",
+      "winner": "immediate"
+    },
+    {
+      "family_count": 1,
+      "membership_root_sha256": "d2f99566292fb393d5f72578c4ecda55a0edbb0e17ccf496ebd1a9386ae0c01c",
+      "publication_group": "cruciblecraft:centrifuge/ordinary_closure/multiitem",
+      "relation_count": 2,
+      "target_map": "cruciblecraft:centrifuge",
+      "winner": "immediate"
+    },
+    {
+      "family_count": 22,
+      "membership_root_sha256": "460b3b8a2f5118af7d4f356128e6f548546a44b28cd02dd5c5c54a87ca34d55d",
+      "publication_group": "cruciblecraft:centrifuge/ordinary_closure/singleton",
+      "relation_count": 22,
+      "target_map": "cruciblecraft:centrifuge",
+      "winner": "on_demand"
+    },
+    {
+      "family_count": 28,
+      "membership_root_sha256": "eec6d5f94642ffa0fc06c32f28b8ee31aea13eb3adcc904755dbab0d5364c798",
+      "publication_group": "cruciblecraft:centrifuge/ordinary_closure/unmapped",
+      "relation_count": 28,
+      "target_map": "cruciblecraft:centrifuge",
+      "winner": "on_demand"
+    }
+  ],
+  "lazy_logical_rows": 50,
+  "opening_eager": 20159,
+  "opening_lazy": 53503,
+  "schema_version": 1,
+  "static_envelope": {
+    "eager_hard": 41000,
+    "eager_verified_opening": 20159,
+    "eager_with_opening": 20316,
+    "lazy_hard": 56000,
+    "lazy_with_opening": 53553,
+    "note": "Count is UNVERIFIED_SCALE telemetry, not a runtime throw. 41000 is a temporary Smelter+Mixer compatibility watermark. Mixer opening is Smelter closing, not T49 opening.",
+    "temporary_compatibility_ceiling": 41000
+  },
+  "status": "PUBLICATION_READY",
+  "wave_slug": "centrifuge/ordinary-closure"
+}

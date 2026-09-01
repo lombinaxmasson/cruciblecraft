@@ -106,11 +106,22 @@ def build() -> dict[str, Any]:
     }
 
 
+def check() -> list[str]:
+    from tools import closeout_seal
+
+    return closeout_seal.live_or_sealed_errors(
+        "T44",
+        "census",
+        lambda: common.check_document(OUTPUT, build()),
+    )
+
+
 def main(argv: list[str] | None = None) -> int:
     return common.run_managed(
         "Write the T44 storage census overlay",
         OUTPUT,
         build=build,
+        check=check,
         argv=argv,
     )
 

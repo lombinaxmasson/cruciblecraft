@@ -1,0 +1,108 @@
+[019月2026 00:53:49.192] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeserverdev, --gameDir, ., --fml.fmlVersion, 4.0.43, --fml.mcVersion, 1.21.1, --fml.neoForgeVersion, 21.1.243, --fml.neoFormVersion, 20240808.144430]
+[019月2026 00:53:49.197] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: JVM identified as Eclipse Adoptium OpenJDK 64-Bit Server VM 21.0.6+7-LTS
+[019月2026 00:53:49.198] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 11.0.5+main.901c6ea8 starting: java version 21.0.6 by Eclipse Adoptium; OS Windows 11 arch amd64 version 10.0
+[019月2026 00:53:49.324] [main/INFO] [net.neoforged.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgeserverdev
+[019月2026 00:53:49.384] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=union:/C:/Users/Jeune/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.15.2+mixin.0.8.7/2af2f021d8e02a0220dc27a7a72b4666d66d44ca/sponge-mixin-0.15.2+mixin.0.8.7.jar%2394!/ Service=ModLauncher Env=SERVER
+[019月2026 00:53:49.899] [main/INFO] [net.neoforged.fml.loading.moddiscovery.locators.JarInJarDependencyLocator/]: Found 2 dependencies adding them to mods collection
+[019月2026 00:53:49.901] [main/INFO] [net.neoforged.fml.loading.moddiscovery.ModDiscoverer/]: 
+     Mod List:
+		Name Version (Mod Id)
+
+		CrucibleCraft 0.1.0-rc.1 (cruciblecraft)
+		EMI 1.1.24+1.21.1+neoforge (emi)
+		Jade 15.10.0+neoforge (jade)
+		Minecraft 1.21.1 (minecraft)
+		NeoForge 21.1.243 (neoforge)
+[019月2026 00:53:51.147] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[019月2026 00:53:51.153] [main/INFO] [mixin/]: Compatibility level set to JAVA_21
+[019月2026 00:53:51.163] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeserverdev' with arguments [--gameDir, .]
+[019月2026 00:53:53.734] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.3).
+[019月2026 00:54:00.713] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[019月2026 00:54:00.714] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[019月2026 00:54:00.716] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[019月2026 00:54:00.717] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[019月2026 00:54:00.718] [main/WARN] [net.minecraft.commands.Commands/]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[019月2026 00:54:00.857] [modloading-worker-0/INFO] [net.neoforged.neoforge.common.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.1.243, for MC 1.21.1
+[019月2026 00:54:04.151] [modloading-worker-0/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: CrucibleCraft common setup
+[019月2026 00:54:04.216] [modloading-worker-0/INFO] [snownee.jade.Jade/]: Start loading plugin from snownee.jade.addon.vanilla.VanillaPlugin
+[019月2026 00:54:04.252] [modloading-worker-0/INFO] [snownee.jade.Jade/]: Loaded plugin from snownee.jade.addon.vanilla.VanillaPlugin in 33.70 ms
+[019月2026 00:54:04.252] [modloading-worker-0/INFO] [snownee.jade.Jade/]: Start loading plugin from snownee.jade.addon.universal.UniversalPlugin
+[019月2026 00:54:04.257] [modloading-worker-0/INFO] [snownee.jade.Jade/]: Loaded plugin from snownee.jade.addon.universal.UniversalPlugin in 4.593 ms
+[019月2026 00:54:04.257] [modloading-worker-0/INFO] [snownee.jade.Jade/]: Start loading plugin from snownee.jade.addon.debug.DebugPlugin
+[019月2026 00:54:04.258] [modloading-worker-0/INFO] [snownee.jade.Jade/]: Loaded plugin from snownee.jade.addon.debug.DebugPlugin in 6.200 μs
+[019月2026 00:54:04.259] [modloading-worker-0/INFO] [snownee.jade.Jade/]: Start loading plugin from snownee.jade.addon.core.CorePlugin
+[019月2026 00:54:04.260] [modloading-worker-0/INFO] [snownee.jade.Jade/]: Loaded plugin from snownee.jade.addon.core.CorePlugin in 33.60 μs
+[019月2026 00:54:04.260] [modloading-worker-0/INFO] [snownee.jade.Jade/]: Start loading plugin from snownee.jade.addon.access.AccessibilityPlugin
+[019月2026 00:54:04.261] [modloading-worker-0/INFO] [snownee.jade.Jade/]: Loaded plugin from snownee.jade.addon.access.AccessibilityPlugin in 5.500 μs
+[019月2026 00:54:04.261] [modloading-worker-0/INFO] [snownee.jade.Jade/]: Start loading plugin from com.masson.cruciblecraft.compat.jade.CrucibleJadePlugin
+[019月2026 00:54:04.264] [modloading-worker-0/INFO] [snownee.jade.Jade/]: Loaded plugin from com.masson.cruciblecraft.compat.jade.CrucibleJadePlugin in 2.496 ms
+[019月2026 00:54:04.350] [main/INFO] [com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService/]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[019月2026 00:54:04.404] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/D:/Baobao/projects/dev/java/cruciblecraft-template-1.21.1/build/moddev/artifacts/neoforge-21.1.243.jar%23125!/assets/.mcassetsroot' uses unexpected schema
+[019月2026 00:54:04.404] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/D:/Baobao/projects/dev/java/cruciblecraft-template-1.21.1/build/moddev/artifacts/neoforge-21.1.243.jar%23125!/data/.mcassetsroot' uses unexpected schema
+[019月2026 00:54:04.408] [main/INFO] [net.neoforged.neoforge.gametest.GameTestHooks/]: Enabled Gametest Namespaces: [cruciblecraft_wave_smelter_ordinary_closure]
+[019月2026 00:54:10.388] [main/INFO] [net.minecraft.world.item.crafting.RecipeManager/]: Loaded 7803 recipes
+[019月2026 00:54:10.521] [main/INFO] [net.minecraft.advancements.AdvancementTree/]: Loaded 1400 advancements
+[019月2026 00:54:10.523] [main/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: Loaded 6 multiblock structure definitions (revision 1)
+[019月2026 00:54:11.302] [main/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: Material unit index rebuilt after tag update (cause SERVER_DATA_LOAD, 1036 entries)
+[019月2026 00:54:11.840] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Preparing start region for dimension minecraft:overworld
+[019月2026 00:54:11.888] [worldgen/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Preparing spawn area: 2%
+[019月2026 00:54:12.060] [Server thread/INFO] [net.minecraft.server.level.progress.LoggerChunkProgressListener/]: Time elapsed: 219 ms
+[019月2026 00:54:12.107] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: Started game test server
+[019月2026 00:54:12.145] [Server thread/INFO] [net.neoforged.neoforge.server.permission.PermissionAPI/]: Successfully initialized permission handler neoforge:default_handler
+[019月2026 00:54:12.186] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: Material structure and tuning fingerprints match this world
+[019月2026 00:54:16.251] [Server thread/WARN] [com.masson.cruciblecraft.CrucibleCraft/]: UNVERIFIED_SCALE UNVERIFIED_SCALE:compact_eager:15459>14; UNVERIFIED_SCALE:eager_published:32425>16980; UNVERIFIED_SCALE:lazy_logical:53037>50652; UNVERIFIED_SCALE:cache_ceiling:1516>876
+[019月2026 00:54:16.264] [Server thread/WARN] [com.masson.cruciblecraft.CrucibleCraft/]: UNVERIFIED_SCALE recipe publication capacity: PublicationCapacityReport[concreteEager=16409, compactEager=15459, eagerPublished=32425, lazyLogical=53037, cacheCeiling=1516, authoredEntries=2828, verifiedEagerScale=16980, temporaryCompatibilityCeiling=41000, unverifiedScale=true, warnings=[UNVERIFIED_SCALE:compact_eager:15459>14, UNVERIFIED_SCALE:eager_published:32425>16980, UNVERIFIED_SCALE:lazy_logical:53037>50652, UNVERIFIED_SCALE:cache_ceiling:1516>876]]
+[019月2026 00:54:16.353] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:coke_oven - 1 recipes, 0 unindexed
+[019月2026 00:54:16.354] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:crusher - 857 recipes, 0 unindexed
+[019月2026 00:54:16.354] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:anvil - 2591 recipes, 0 unindexed
+[019月2026 00:54:16.354] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:anvil_bend_small - 0 recipes, 0 unindexed
+[019月2026 00:54:16.354] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:anvil_bend_big - 0 recipes, 0 unindexed
+[019月2026 00:54:16.354] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:sluice - 357 recipes, 0 unindexed
+[019月2026 00:54:16.354] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:bath - 49949 recipes, 0 unindexed
+[019月2026 00:54:16.354] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:centrifuge - 403 recipes, 0 unindexed
+[019月2026 00:54:16.354] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:shredder - 358 recipes, 0 unindexed
+[019月2026 00:54:16.354] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:sifter - 357 recipes, 0 unindexed
+[019月2026 00:54:16.354] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:smelter - 16871 recipes, 0 unindexed
+[019月2026 00:54:16.354] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:cooling - 0 recipes, 0 unindexed
+[019月2026 00:54:16.354] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:mortar - 698 recipes, 0 unindexed
+[019月2026 00:54:16.354] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:extruder - 3039 recipes, 0 unindexed
+[019月2026 00:54:16.354] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:cutter - 708 recipes, 0 unindexed
+[019月2026 00:54:16.354] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:lathe - 960 recipes, 0 unindexed
+[019月2026 00:54:16.354] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:rollingmill - 339 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:rollbender - 463 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:wiremill - 315 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:bender - 688 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:assembler - 4605 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:welder - 322 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:press - 1223 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:electrolyzer - 84 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:mixer - 56 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:distillery - 3 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:autoclave - 17 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:drying - 113 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:compressor - 5 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:generifier - 2 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:roaster - 74 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:coagulator - 1 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:fuels_engine - 2 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: RecipeMap cruciblecraft:fuels_gas - 1 recipes, 0 unindexed
+[019月2026 00:54:16.355] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: Published recipe epoch 1 with 8975 T3 component, 3686 T4 tool, 158 T5 chemical, 223 T7 authored, 257 T8 pipe, and 967 T10 known-form material-rule recipes; T14c Extruder 2782 logical = 557 eager + 2225 lazy (cache ceiling 512, 20 authored) (12662 live T3-map, 85462 logical total, 32425 eager total) across 34 maps in 4127 ms; indexes 85 ms (count budgets 10000/4000/13000/200/256/320/1500/21000)
+[019月2026 00:54:16.414] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: 8 tests are now running at position -13775781, -59, -2628502!
+[019月2026 00:54:17.174] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestRunner/]: Running test batch 'defaultBatch:0' (8 tests)...
+[019月2026 00:54:17.273] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: [        ]
+[019月2026 00:54:19.077] [Server thread/INFO] [com.masson.cruciblecraft.CrucibleCraft/]: smelter/ordinary-closure measured capacity=PublicationCapacityReport[concreteEager=16409, compactEager=15459, eagerPublished=32425, lazyLogical=53037, cacheCeiling=1516, authoredEntries=2828, verifiedEagerScale=16980, temporaryCompatibilityCeiling=41000, unverifiedScale=true, warnings=[UNVERIFIED_SCALE:compact_eager:15459>14, UNVERIFIED_SCALE:eager_published:32425>16980, UNVERIFIED_SCALE:lazy_logical:53037>50652, UNVERIFIED_SCALE:cache_ceiling:1516>876]] metrics=PublicationMetrics[t3ComponentRecipes=8975, t4ToolRecipes=3686, liveT3MapRecipes=12662, t5ChemicalRecipes=158, t7AuthoredMaterialRules=223, t8PipeMaterialRules=257, t10KnownFormMaterialRules=967, allPublishedRecipes=85462, eagerPublishedRecipes=32425, lazyLogicalRecipes=53037, t14ExtruderLogicalRecipes=2782, t14ExtruderEagerRecipes=557, t14ExtruderLazyRecipes=2225, t14ExtruderCacheCeiling=512, t14ExtruderSyncBytes=331124, t14ExtruderAuthoredEntries=20, t14ExtruderStableFingerprint=a1b7421a0983d8727a1a0ed72c321ab904fc0e830fb10f4de168a56431776845, compactFamilyAuthoredEntries=2828, compactFamilyLogicalRecipes=66271, compactFamilyEagerRecipes=15459, compactFamilyLazyRecipes=50812, compactFamilyCacheCeiling=1004, compactFamilyUnindexedRelations=3, compactFamilySyncBytes=6863327, compactFamilyStableFingerprint=5cf579a7e4c20febb0639b3445bd4d774a08435308f9de5cdf04687b134c624e, runtimeSide=SERVER, reloadMillis=4127, indexMillis=85] lookup=T14LookupMetrics[timingSamples=61, operations=1952, p95Nanos=304646, p95Candidates=8, maxCandidates=10]
+[019月2026 00:54:19.444] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: [++++++++]
+[019月2026 00:54:19.445] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: ========= 8 GAME TESTS COMPLETE IN 3.030 s ======================
+[019月2026 00:54:19.446] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: All 8 required tests passed :)
+[019月2026 00:54:19.446] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: ====================================================
+[019月2026 00:54:19.462] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Stopping server
+[019月2026 00:54:19.462] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving players
+[019月2026 00:54:19.462] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving worlds
+[019月2026 00:54:19.757] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Test Level]'/minecraft:overworld
+[019月2026 00:54:20.649] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Test Level]'/minecraft:the_nether
+[019月2026 00:54:20.661] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: Saving chunks for level 'ServerLevel[Test Level]'/minecraft:the_end
+[019月2026 00:54:20.685] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[019月2026 00:54:20.685] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[019月2026 00:54:20.685] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[019月2026 00:54:20.685] [Server thread/INFO] [net.minecraft.server.MinecraftServer/]: ThreadedAnvilChunkStorage: All dimensions are saved
+[019月2026 00:54:20.746] [Server thread/INFO] [net.minecraft.gametest.framework.GameTestServer/]: Game test server shutting down

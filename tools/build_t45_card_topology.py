@@ -179,7 +179,13 @@ def build() -> dict[str, Any]:
 
 
 def check() -> list[str]:
-    errors = t45.check_document(OUTPUT, build())
+    from tools import closeout_seal
+
+    errors = closeout_seal.live_or_sealed_errors(
+        "T45",
+        "topology",
+        lambda: t45.check_document(OUTPUT, build()),
+    )
     document = t35.load_json(OUTPUT) if OUTPUT.is_file() else {}
     if document.get("next_issue_id") != "T46":
         errors.append("next_issue_id must be T46")

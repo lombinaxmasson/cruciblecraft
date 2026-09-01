@@ -1,0 +1,50 @@
+{
+  "eager_publication_rows": 4577,
+  "generated_by": "python tools/build_ordinary_wave.py",
+  "group_winners": {
+    "cruciblecraft:mixer/ordinary_closure/construction_foam_matrix": "immediate",
+    "cruciblecraft:mixer/ordinary_closure/material_matrix": "on_demand",
+    "cruciblecraft:mixer/ordinary_closure/opaque": "on_demand"
+  },
+  "groups": [
+    {
+      "family_count": 240,
+      "membership_root_sha256": "91a089f8be8033418e14336b0170fd1d7c60b08f552461bf994567dae747c8cd",
+      "publication_group": "cruciblecraft:mixer/ordinary_closure/construction_foam_matrix",
+      "relation_count": 4577,
+      "target_map": "cruciblecraft:mixer",
+      "winner": "immediate"
+    },
+    {
+      "family_count": 233,
+      "membership_root_sha256": "88dec26a8bef9ccb31e4df47212e8bcd59667373b98d6f52341c7ccd9c1c58ae",
+      "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
+      "relation_count": 2410,
+      "target_map": "cruciblecraft:mixer",
+      "winner": "on_demand"
+    },
+    {
+      "family_count": 175,
+      "membership_root_sha256": "2f0e40d0ab54f57df1652241406aa08c7781afd12508fae108efc6e086d8c8f7",
+      "publication_group": "cruciblecraft:mixer/ordinary_closure/opaque",
+      "relation_count": 175,
+      "target_map": "cruciblecraft:mixer",
+      "winner": "on_demand"
+    }
+  ],
+  "lazy_logical_rows": 2585,
+  "opening_eager": 32425,
+  "opening_lazy": 53037,
+  "schema_version": 1,
+  "static_envelope": {
+    "eager_hard": 41000,
+    "eager_verified_opening": 32425,
+    "eager_with_opening": 37002,
+    "lazy_hard": 56000,
+    "lazy_with_opening": 55622,
+    "note": "Count is UNVERIFIED_SCALE telemetry, not a runtime throw. 41000 is a temporary Smelter+Mixer compatibility watermark. Mixer opening is Smelter closing, not T49 opening.",
+    "temporary_compatibility_ceiling": 41000
+  },
+  "status": "PUBLICATION_READY",
+  "wave_slug": "mixer/ordinary-closure"
+}

@@ -4,11 +4,19 @@
     "t38_source_backed_acquisition_forms",
     "t38_required_forms",
     "t39_required_forms",
-    "t40_required_forms"
+    "t40_required_forms",
+    "t48_required_forms",
+    "smelter_ordinary_closure_required_forms",
+    "mixer_ordinary_closure_required_forms",
+    "drying_ordinary_closure_required_forms",
+    "electrolyzer_ordinary_closure_required_forms",
+    "centrifuge_ordinary_closure_required_forms",
+    "autoclave_ordinary_closure_required_forms",
+    "compressor_ordinary_closure_required_forms"
   ],
-  "note": "Single overlay authority for Python gate/compare/veins/ore-chain and Java MaterialRegistrationGate. Card builders write t{N}_required_forms.json only.",
+  "note": "Single overlay authority. Card builders write required_forms.json only; they do not write material_registration_gate.json.",
   "schema_version": 1,
-  "semantic_root_sha256": "231d488fbdf17c6104b729418dfa6d1b218ba0b38cf4503d418e987733304363",
+  "semantic_root_sha256": "09ac618b70d2b963ce5a575c155dc45816aca08cfc87eeb2d7f13fb15cd3f0a3",
   "sources": [
     {
       "extra_factual_forms": [
@@ -83,6 +91,346 @@
         ]
       },
       "source_hash": "a9ac8e05cce63a82c2ec5fb0026a4f161f4127bc0bbf39c4e3268c18c9facd4f"
+    },
+    {
+      "extra_factual_forms": [
+        "arrow_gt_plastic",
+        "arrow_gt_wood",
+        "billet",
+        "block",
+        "chain",
+        "chem_tube",
+        "chunk",
+        "curved_plate",
+        "double_ingot",
+        "gem_chipped",
+        "gem_exquisite",
+        "gem_flawed",
+        "gem_flawless",
+        "gem_legendary",
+        "ingot_hot",
+        "lens",
+        "minecart_wheels",
+        "nugget",
+        "plate_gem",
+        "quadruple_ingot",
+        "quintuple_ingot",
+        "round",
+        "scrap",
+        "small_casing",
+        "storage_ingot",
+        "storage_plate",
+        "tiny_centrifuged_crushed_ore",
+        "tiny_plate",
+        "tiny_plate_gem",
+        "tiny_washed_crushed_ore",
+        "triple_ingot"
+      ],
+      "field": "required_forms",
+      "gate_section": "t48_required_forms",
+      "id": "t48_compact_required_forms",
+      "java_runtime_visible": true,
+      "owner": "T48",
+      "path": "tools/t48_required_forms.json",
+      "required_factual_prereqs": {},
+      "source_hash": "280c2eeeec636fffa39c90decb7370789742fb51bbd4101be1f4d5c07291a0a0"
+    },
+    {
+      "extra_factual_forms": [
+        "arrow_gt_wood",
+        "billet",
+        "block",
+        "bolt",
+        "boule",
+        "centrifuged_crushed_ore",
+        "chain",
+        "chunk",
+        "curved_plate",
+        "dense_plate",
+        "double_ingot",
+        "double_plate",
+        "dust",
+        "dust_div72",
+        "fine_wire",
+        "foil",
+        "gear",
+        "gem",
+        "gem_chipped",
+        "gem_exquisite",
+        "gem_flawed",
+        "gem_flawless",
+        "gem_legendary",
+        "ingot",
+        "lens",
+        "long_rod",
+        "minecart_wheels",
+        "nugget",
+        "plant_gt_berry",
+        "plant_gt_blossom",
+        "plant_gt_fiber",
+        "plant_gt_twig",
+        "plant_gt_wart",
+        "plate",
+        "plate_gem",
+        "quadruple_ingot",
+        "quadruple_plate",
+        "quintuple_ingot",
+        "quintuple_plate",
+        "rail_gt",
+        "ring",
+        "rock",
+        "rod",
+        "rotor",
+        "round",
+        "scrap",
+        "screw",
+        "small_casing",
+        "small_dust",
+        "small_gear",
+        "small_spring",
+        "spring",
+        "storage_ingot",
+        "storage_plate",
+        "tiny_centrifuged_crushed_ore",
+        "tiny_dust",
+        "tiny_plate",
+        "tiny_plate_gem",
+        "tiny_washed_crushed_ore",
+        "triple_ingot",
+        "triple_plate",
+        "washed_crushed_ore"
+      ],
+      "field": "required_forms",
+      "gate_section": "smelter_ordinary_closure_required_forms",
+      "id": "smelter_ordinary_closure_required_forms",
+      "java_runtime_visible": true,
+      "owner": "smelter/ordinary-closure",
+      "path": "tools/waves/smelter/ordinary-closure/required_forms.json",
+      "required_factual_prereqs": {
+        "dust_div72": [
+          "dust"
+        ],
+        "small_dust": [
+          "dust"
+        ]
+      },
+      "source_hash": "ea2ab4eb8be9e09ebfc3081396674db23f865f046e2b466b12cb1280b7af30c9"
+    },
+    {
+      "extra_factual_forms": [
+        "boule",
+        "centrifuged_crushed_ore",
+        "double_ingot",
+        "dust",
+        "dust_div72",
+        "gem",
+        "gem_chipped",
+        "ingot",
+        "plant_gt_berry",
+        "plant_gt_blossom",
+        "plant_gt_fiber",
+        "plant_gt_twig",
+        "plant_gt_wart",
+        "rail_gt",
+        "small_dust",
+        "tiny_dust",
+        "tiny_washed_crushed_ore",
+        "washed_crushed_ore"
+      ],
+      "field": "required_forms",
+      "gate_section": "mixer_ordinary_closure_required_forms",
+      "id": "mixer_ordinary_closure_required_forms",
+      "java_runtime_visible": true,
+      "owner": "mixer/ordinary-closure",
+      "path": "tools/waves/mixer/ordinary-closure/required_forms.json",
+      "required_factual_prereqs": {
+        "dust_div72": [
+          "dust"
+        ],
+        "small_dust": [
+          "dust"
+        ]
+      },
+      "source_hash": "df7e40cc48bcc4b7bcedd1bdab045510953e94a1f7c65f35eb29fab6cc62d60f"
+    },
+    {
+      "extra_factual_forms": [
+        "boule",
+        "centrifuged_crushed_ore",
+        "dust",
+        "gem",
+        "gem_chipped",
+        "gem_flawed",
+        "plant_gt_berry",
+        "plant_gt_blossom",
+        "plant_gt_fiber",
+        "plant_gt_twig",
+        "plant_gt_wart",
+        "rail_gt",
+        "small_dust",
+        "tiny_centrifuged_crushed_ore",
+        "tiny_dust",
+        "tiny_washed_crushed_ore",
+        "washed_crushed_ore"
+      ],
+      "field": "required_forms",
+      "gate_section": "drying_ordinary_closure_required_forms",
+      "id": "drying_ordinary_closure_required_forms",
+      "java_runtime_visible": true,
+      "owner": "drying/ordinary-closure",
+      "path": "tools/waves/drying/ordinary-closure/required_forms.json",
+      "required_factual_prereqs": {
+        "dust_div72": [
+          "dust"
+        ],
+        "small_dust": [
+          "dust"
+        ]
+      },
+      "source_hash": "c2f06506adb779188b9ed29a5c7c8cfa971f9ffde1813d2e128762224d0004fe"
+    },
+    {
+      "extra_factual_forms": [
+        "boule",
+        "dust",
+        "dust_div72",
+        "ingot",
+        "plant_gt_berry",
+        "plant_gt_blossom",
+        "plant_gt_fiber",
+        "plant_gt_twig",
+        "plant_gt_wart",
+        "rail_gt",
+        "small_dust",
+        "tiny_dust"
+      ],
+      "field": "required_forms",
+      "gate_section": "electrolyzer_ordinary_closure_required_forms",
+      "id": "electrolyzer_ordinary_closure_required_forms",
+      "java_runtime_visible": true,
+      "owner": "electrolyzer/ordinary-closure",
+      "path": "tools/waves/electrolyzer/ordinary-closure/required_forms.json",
+      "required_factual_prereqs": {
+        "dust_div72": [
+          "dust"
+        ],
+        "small_dust": [
+          "dust"
+        ]
+      },
+      "source_hash": "a399583a7d9f5341534d63851927a9e4c2bf435bcf19f2733b2cbb0749298787"
+    },
+    {
+      "extra_factual_forms": [
+        "boule",
+        "centrifuged_crushed_ore",
+        "dust",
+        "gem",
+        "nugget",
+        "plant_gt_berry",
+        "plant_gt_blossom",
+        "plant_gt_fiber",
+        "plant_gt_twig",
+        "plant_gt_wart",
+        "rail_gt",
+        "rod",
+        "small_dust",
+        "tiny_centrifuged_crushed_ore",
+        "tiny_dust"
+      ],
+      "field": "required_forms",
+      "gate_section": "centrifuge_ordinary_closure_required_forms",
+      "id": "centrifuge_ordinary_closure_required_forms",
+      "java_runtime_visible": true,
+      "owner": "centrifuge/ordinary-closure",
+      "path": "tools/waves/centrifuge/ordinary-closure/required_forms.json",
+      "required_factual_prereqs": {
+        "dust_div72": [
+          "dust"
+        ],
+        "small_dust": [
+          "dust"
+        ]
+      },
+      "source_hash": "1960ef3fac07d9dde6a75dbd529c41c5c9111277f0e4f8ba1d94194bdef2ccf4"
+    },
+    {
+      "extra_factual_forms": [
+        "boule",
+        "dust",
+        "gem",
+        "gem_chipped",
+        "gem_exquisite",
+        "gem_flawed",
+        "gem_flawless",
+        "gem_legendary",
+        "plant_gt_berry",
+        "plant_gt_blossom",
+        "plant_gt_fiber",
+        "plant_gt_twig",
+        "plant_gt_wart",
+        "rail_gt",
+        "small_dust",
+        "tiny_centrifuged_crushed_ore",
+        "tiny_dust"
+      ],
+      "field": "required_forms",
+      "gate_section": "autoclave_ordinary_closure_required_forms",
+      "id": "autoclave_ordinary_closure_required_forms",
+      "java_runtime_visible": true,
+      "owner": "autoclave/ordinary-closure",
+      "path": "tools/waves/autoclave/ordinary-closure/required_forms.json",
+      "required_factual_prereqs": {
+        "dust_div72": [
+          "dust"
+        ],
+        "small_dust": [
+          "dust"
+        ]
+      },
+      "source_hash": "6549f4848de46afc3876a35b5ba1978c11ed21d31f56ec173297d8b77ea3e88c"
+    },
+    {
+      "extra_factual_forms": [
+        "block",
+        "boule",
+        "chunk",
+        "dense_plate",
+        "dust",
+        "foil",
+        "gem",
+        "gem_chipped",
+        "gem_flawed",
+        "ingot",
+        "nugget",
+        "plant_gt_berry",
+        "plant_gt_blossom",
+        "plant_gt_fiber",
+        "plant_gt_twig",
+        "plant_gt_wart",
+        "plate",
+        "plate_gem",
+        "rail_gt",
+        "small_dust",
+        "storage_plate",
+        "tiny_dust",
+        "triple_plate"
+      ],
+      "field": "required_forms",
+      "gate_section": "compressor_ordinary_closure_required_forms",
+      "id": "compressor_ordinary_closure_required_forms",
+      "java_runtime_visible": true,
+      "owner": "compressor/ordinary-closure",
+      "path": "tools/waves/compressor/ordinary-closure/required_forms.json",
+      "required_factual_prereqs": {
+        "dust_div72": [
+          "dust"
+        ],
+        "small_dust": [
+          "dust"
+        ]
+      },
+      "source_hash": "6c5b948a6c43553df07f6060c46176ad34c76c34e5684ed8019bd2c30cb5b608"
     }
   ],
   "status": "MATERIAL_FORM_AUTHORITY",

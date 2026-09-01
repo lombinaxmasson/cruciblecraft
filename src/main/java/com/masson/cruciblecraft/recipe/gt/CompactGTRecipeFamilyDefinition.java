@@ -15,7 +15,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.neoforge.fluids.FluidStack;
 
 /**
- * Host-neutral compact family datapack contract. T37 materializes exact
+ * Host-neutral compact family datapack contract. Compact publication materializes exact
  * relations only; {@link #parameterized()} is a fail-closed extension point
  * for later Bath/Mixer/Smelter templates.
  */
@@ -31,43 +31,6 @@ public record CompactGTRecipeFamilyDefinition(
             ResourceLocation.fromNamespaceAndPath("cruciblecraft", "assembler");
     private static final ResourceLocation ROASTER_TARGET =
             ResourceLocation.fromNamespaceAndPath("cruciblecraft", "roaster");
-
-    public static final ResourceLocation T37_ASSEMBLER_PUBLICATION_GROUP =
-            ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "t37_assembler");
-    public static final ResourceLocation T38_ROASTER_PUBLICATION_GROUP =
-            ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "t38_roaster");
-    public static final ResourceLocation T39_CENTRIFUGE_SINGLETON_PUBLICATION_GROUP =
-            ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "t39_centrifuge_singleton");
-    public static final ResourceLocation T39_CENTRIFUGE_MULTI_PUBLICATION_GROUP =
-            ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "t39_centrifuge_multi");
-    public static final ResourceLocation T40_ELECTROLYZER_SINGLETON_PUBLICATION_GROUP =
-            ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "t40_electrolyzer_singleton");
-    public static final ResourceLocation T40_ELECTROLYZER_MULTI_PUBLICATION_GROUP =
-            ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "t40_electrolyzer_multi");
-    public static final ResourceLocation T41_ASSEMBLER_PLANKS_PUBLICATION_GROUP =
-            ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "t41_assembler_planks");
-    public static final ResourceLocation T41_ASSEMBLER_FIREPROOF_PUBLICATION_GROUP =
-            ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "t41_assembler_fireproof");
-    public static final ResourceLocation T41_ASSEMBLER_PLANKS2_PUBLICATION_GROUP =
-            ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "t41_assembler_planks2");
-    public static final ResourceLocation T43_SMELTER_STONE_PUBLICATION_GROUP =
-            ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "t43_smelter_stone");
-    public static final ResourceLocation T45_SMELTER_BLOCK_PUBLICATION_GROUP =
-            ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "t45_smelter_block");
-    public static final ResourceLocation T45_DRYING_BLOCK_PUBLICATION_GROUP =
-            ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "t45_drying_block");
 
     public static final MapCodec<CompactGTRecipeFamilyDefinition> MAP_CODEC =
             RecordCodecBuilder.mapCodec(instance -> instance.group(
@@ -159,10 +122,10 @@ public record CompactGTRecipeFamilyDefinition(
             ResourceLocation targetMap) {
         Objects.requireNonNull(targetMap, "targetMap");
         if (ASSEMBLER_TARGET.equals(targetMap)) {
-            return T37_ASSEMBLER_PUBLICATION_GROUP;
+            return CompactPublicationGroups.ASSEMBLER_COMPACT;
         }
         if (ROASTER_TARGET.equals(targetMap)) {
-            return T38_ROASTER_PUBLICATION_GROUP;
+            return CompactPublicationGroups.ROASTER_COMPACT;
         }
         throw new IllegalArgumentException(
                 "Compact target map " + targetMap
@@ -289,7 +252,7 @@ public record CompactGTRecipeFamilyDefinition(
     }
 
     /**
-     * Reserved parameterized family body. T37 rejects any present value so
+     * Reserved parameterized family body. Compact publication rejects any present value so
      * later cards can attach templates without changing the envelope type.
      */
     public record ParameterizedSpec(

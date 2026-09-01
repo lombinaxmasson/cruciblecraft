@@ -9,59 +9,55 @@ import net.minecraft.resources.ResourceLocation;
 final class DedupRuleFixtures {
     private DedupRuleFixtures() {}
 
-    static CompactDedupRuleDefinition t37T41PreSnapshot() {
+    static CompactDedupRuleDefinition assemblerCompactWoodPreSnapshot() {
         return new CompactDedupRuleDefinition(
-                id("t37_t41_assembler_pre_snapshot"),
-                "T37",
+                id("assembler/compact_wood_pre_snapshot"),
+                "assembler/compact",
                 CompactDedupRuleDefinition.PHASE_PRE_SNAPSHOT,
                 ModRecipeMaps.ASSEMBLER.id(),
                 CompactDedupRuleDefinition.MODE_LOGICAL,
                 true,
-                groupSelector(CompactGTRecipeFamilyDefinition
-                        .T37_ASSEMBLER_PUBLICATION_GROUP),
+                groupSelector(CompactPublicationGroups.ASSEMBLER_COMPACT),
                 groupSelector(
-                        CompactGTRecipeFamilyDefinition
-                                .T41_ASSEMBLER_PLANKS_PUBLICATION_GROUP,
-                        CompactGTRecipeFamilyDefinition
-                                .T41_ASSEMBLER_FIREPROOF_PUBLICATION_GROUP,
-                        CompactGTRecipeFamilyDefinition
-                                .T41_ASSEMBLER_PLANKS2_PUBLICATION_GROUP));
+                        CompactPublicationGroups.ASSEMBLER_PLANKS,
+                        CompactPublicationGroups.ASSEMBLER_FIREPROOF,
+                        CompactPublicationGroups.ASSEMBLER_PLANKS2));
     }
 
-    static CompactDedupRuleDefinition t37T41PostEnumeration() {
+    static CompactDedupRuleDefinition assemblerCompactWoodPostEnumeration() {
         return new CompactDedupRuleDefinition(
-                id("t37_t41_assembler_post_enumeration"),
-                "T37",
+                id("assembler/compact_wood_post_enumeration"),
+                "assembler/compact",
                 CompactDedupRuleDefinition.PHASE_POST_ENUMERATION,
                 ModRecipeMaps.ASSEMBLER.id(),
                 CompactDedupRuleDefinition.MODE_LOGICAL,
                 true,
-                prefixSelector("t37/"),
-                prefixSelector("t41/", "t41_player_path_support/"));
+                prefixSelector("assembler/compact/"),
+                prefixSelector("assembler/wood/", "player_path_support/assembler_wood/"));
     }
 
-    static CompactDedupRuleDefinition t39T5PostEnumeration() {
+    static CompactDedupRuleDefinition centrifugeChemicalPostEnumeration() {
         return new CompactDedupRuleDefinition(
-                id("t39_t5_centrifuge_post_enumeration"),
-                "T39",
+                id("centrifuge/chemical_post_enumeration"),
+                "centrifuge/compact",
                 CompactDedupRuleDefinition.PHASE_POST_ENUMERATION,
                 ModRecipeMaps.CENTRIFUGE.id(),
                 CompactDedupRuleDefinition.MODE_SIGNATURE,
                 true,
-                prefixSelector("t39/", "t39_player_path_support/"),
-                prefixSelector("t5/"));
+                prefixSelector("centrifuge/compact/", "player_path_support/centrifuge/"),
+                prefixSelector("chemical/"));
     }
 
-    static CompactDedupRuleDefinition t40T5PostEnumeration() {
+    static CompactDedupRuleDefinition electrolyzerChemicalPostEnumeration() {
         return new CompactDedupRuleDefinition(
-                id("t40_t5_electrolyzer_post_enumeration"),
-                "T40",
+                id("electrolyzer/chemical_post_enumeration"),
+                "electrolyzer/compact",
                 CompactDedupRuleDefinition.PHASE_POST_ENUMERATION,
                 ModRecipeMaps.ELECTROLYZER.id(),
                 CompactDedupRuleDefinition.MODE_SIGNATURE,
                 true,
-                prefixSelector("t40/", "t40_player_path_support/"),
-                prefixSelector("t5/"));
+                prefixSelector("electrolyzer/compact/", "player_path_support/electrolyzer/"),
+                prefixSelector("chemical/"));
     }
 
     private static CompactDedupRuleDefinition.Selector groupSelector(

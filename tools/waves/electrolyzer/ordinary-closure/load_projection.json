@@ -1,0 +1,126 @@
+{
+  "candidate": {
+    "client_index_ms": 17,
+    "client_reload_ms": 365,
+    "datapack_authored_entries": 7361,
+    "eager_publication_rows": 20159,
+    "lazy_cache_ceiling_rows": 1316,
+    "lazy_logical_rows": 53503,
+    "lookup_allocation_bytes_per_operation": 199044,
+    "lookup_candidate_count": 10,
+    "lookup_p95_ns": 76800,
+    "reload_transient_allocation_bytes": 1069307400,
+    "retained_memory_bytes": 17515840,
+    "server_index_ms": 18,
+    "server_reload_ms": 374,
+    "sync_bytes": 8660601
+  },
+  "client_index_ms": 17,
+  "client_reload_ms": 365,
+  "datapack_authored_entries": 7361,
+  "decision": {
+    "axes": {
+      "client_index_ms": {
+        "actual": 17,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "client_reload_ms": {
+        "actual": 365,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "datapack_authored_entries": {
+        "actual": 7361,
+        "eliminates": false,
+        "status": "REPORT_ONLY_REFERENCE_EXCEEDED"
+      },
+      "eager_publication_rows": {
+        "actual": 20159,
+        "eliminates": false,
+        "status": "REPORT_ONLY_REFERENCE_EXCEEDED"
+      },
+      "lazy_cache_ceiling_rows": {
+        "actual": 1316,
+        "eliminates": false,
+        "status": "REPORT_ONLY_REFERENCE_EXCEEDED"
+      },
+      "lazy_logical_rows": {
+        "actual": 53503,
+        "eliminates": false,
+        "status": "REPORT_ONLY_REFERENCE_EXCEEDED"
+      },
+      "lookup_allocation_bytes_per_operation": {
+        "actual": 199044,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "lookup_candidate_count": {
+        "actual": 10,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "lookup_p95_ns": {
+        "actual": 76800,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "reload_transient_allocation_bytes": {
+        "actual": 1069307400,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "retained_memory_bytes": {
+        "actual": 17515840,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "server_index_ms": {
+        "actual": 18,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "server_reload_ms": {
+        "actual": 374,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "sync_bytes": {
+        "actual": 8660601,
+        "eliminates": false,
+        "status": "PASS"
+      }
+    },
+    "eliminate_reasons": [],
+    "report_only_warnings": [
+      "unverified_scale:soft_budget:eager_publication_rows:20159>18000",
+      "unverified_scale:soft_budget:lazy_logical_rows:53503>16000",
+      "unverified_scale:soft_budget:lazy_cache_ceiling_rows:1316>1024",
+      "report_only:hard_ceiling:datapack_authored_entries:7361>6600",
+      "report_only:soft_budget:datapack_authored_entries:7361>6000"
+    ],
+    "soft_warnings": []
+  },
+  "eager_publication_rows": 20159,
+  "generated_by": "python tools/build_ordinary_wave.py",
+  "group_winners": {
+    "cruciblecraft:electrolyzer/ordinary_closure/acquisition": "immediate",
+    "cruciblecraft:electrolyzer/ordinary_closure/multiitem": "immediate",
+    "cruciblecraft:electrolyzer/ordinary_closure/singleton": "on_demand"
+  },
+  "integrated_not_card_sum": true,
+  "lazy_cache_ceiling_rows": 1316,
+  "lazy_logical_rows": 53503,
+  "lookup_allocation_bytes_per_operation": 199044,
+  "lookup_candidate_count": 10,
+  "lookup_p95_ns": 76800,
+  "old_metric_split": true,
+  "reload_transient_allocation_bytes": 1069307400,
+  "retained_memory_bytes": 17515840,
+  "schema_version": 1,
+  "server_index_ms": 18,
+  "server_reload_ms": 374,
+  "status": "LOAD_READY",
+  "sync_bytes": 8660601,
+  "wave_slug": "electrolyzer/ordinary-closure"
+}

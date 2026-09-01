@@ -1,0 +1,127 @@
+{
+  "candidate": {
+    "client_index_ms": 16,
+    "client_reload_ms": 403,
+    "datapack_authored_entries": 6613,
+    "eager_publication_rows": 15459,
+    "lazy_cache_ceiling_rows": 1004,
+    "lazy_logical_rows": 50862,
+    "lookup_allocation_bytes_per_operation": 125931,
+    "lookup_candidate_count": 5,
+    "lookup_p95_ns": 45580,
+    "reload_transient_allocation_bytes": 923864664,
+    "retained_memory_bytes": 14968064,
+    "server_index_ms": 18,
+    "server_reload_ms": 383,
+    "sync_bytes": 7382579
+  },
+  "client_index_ms": 16,
+  "client_reload_ms": 403,
+  "datapack_authored_entries": 6613,
+  "decision": {
+    "axes": {
+      "client_index_ms": {
+        "actual": 16,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "client_reload_ms": {
+        "actual": 403,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "datapack_authored_entries": {
+        "actual": 6613,
+        "eliminates": false,
+        "status": "REPORT_ONLY_REFERENCE_EXCEEDED"
+      },
+      "eager_publication_rows": {
+        "actual": 15459,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "lazy_cache_ceiling_rows": {
+        "actual": 1004,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "lazy_logical_rows": {
+        "actual": 50862,
+        "eliminates": false,
+        "status": "REPORT_ONLY_REFERENCE_EXCEEDED"
+      },
+      "lookup_allocation_bytes_per_operation": {
+        "actual": 125931,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "lookup_candidate_count": {
+        "actual": 5,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "lookup_p95_ns": {
+        "actual": 45580,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "reload_transient_allocation_bytes": {
+        "actual": 923864664,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "retained_memory_bytes": {
+        "actual": 14968064,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "server_index_ms": {
+        "actual": 18,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "server_reload_ms": {
+        "actual": 383,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "sync_bytes": {
+        "actual": 7382579,
+        "eliminates": false,
+        "status": "PASS"
+      }
+    },
+    "eliminate_reasons": [],
+    "report_only_warnings": [
+      "unverified_scale:soft_budget:lazy_logical_rows:50862>16000",
+      "report_only:hard_ceiling:datapack_authored_entries:6613>6600",
+      "report_only:soft_budget:datapack_authored_entries:6613>6000"
+    ],
+    "soft_warnings": []
+  },
+  "eager_publication_rows": 15459,
+  "generated_by": "python tools/build_ordinary_wave.py",
+  "group_winners": {
+    "cruciblecraft:smelter/ordinary_closure/acquisition": "immediate",
+    "cruciblecraft:smelter/ordinary_closure/gt_prefix": "immediate",
+    "cruciblecraft:smelter/ordinary_closure/material_form": "immediate",
+    "cruciblecraft:smelter/ordinary_closure/singleton": "on_demand",
+    "cruciblecraft:smelter/ordinary_closure/tool_head": "immediate",
+    "cruciblecraft:smelter/ordinary_closure/unmapped": "immediate"
+  },
+  "integrated_not_card_sum": true,
+  "lazy_cache_ceiling_rows": 1004,
+  "lazy_logical_rows": 50862,
+  "lookup_allocation_bytes_per_operation": 125931,
+  "lookup_candidate_count": 5,
+  "lookup_p95_ns": 45580,
+  "old_metric_split": true,
+  "reload_transient_allocation_bytes": 923864664,
+  "retained_memory_bytes": 14968064,
+  "schema_version": 1,
+  "server_index_ms": 18,
+  "server_reload_ms": 383,
+  "status": "LOAD_READY",
+  "sync_bytes": 7382579,
+  "wave_slug": "smelter/ordinary-closure"
+}

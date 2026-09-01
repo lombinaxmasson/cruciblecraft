@@ -166,12 +166,12 @@ READINESS = TOOLS / "t43_readiness.json"
 LOAD_PROJECTION_INPUT = TOOLS / "t43_load_projection_input.json"
 LOAD_PROJECTION = TOOLS / "t43_load_projection.json"
 GAME_TEST_ROOT = ROOT / "src/main/java/com/masson/cruciblecraft/gametest"
-GAME_TEST_JAVA = GAME_TEST_ROOT / "T43RecipeGameTests.java"
+GAME_TEST_JAVA = GAME_TEST_ROOT / "SmelterStoneGameTests.java"
 GAME_TEST_RECEIPT = TOOLS / "t43_gametest_receipt.json"
 GAME_TEST_EVIDENCE_LOG = TOOLS / "t43_gametest.log"
-GAME_TEST_NAMESPACE = "cruciblecraft_t43"
-GAME_TEST_COMMAND = ".\\gradlew.bat runGameTestServer -Pt43Recipes --no-daemon"
-GAME_TEST_COMMAND_MARKER = "-Pt43Recipes"
+GAME_TEST_NAMESPACE = "cruciblecraft_wave_smelter_stone"
+GAME_TEST_COMMAND = ".\\gradlew.bat runGameTestServer -PwaveRecipes=smelter/stone --no-daemon"
+GAME_TEST_COMMAND_MARKER = "-PwaveRecipes=smelter/stone"
 GAME_TEST_RECEIPT_SCHEMA = 3
 GAME_TEST_METHOD_RE = re.compile(
     r"public static void (\w+)\s*\(\s*GameTestHelper"
@@ -559,7 +559,7 @@ def player_gametest_source_present() -> bool:
     text = GAME_TEST_JAVA.read_text(encoding="utf-8")
     return any(
         marker in text
-        for marker in ("cruciblecraft_t43", "T43Recipe", "t43Recipes")
+        for marker in ("cruciblecraft_wave_smelter_stone", "SmelterStoneGameTests", "-PwaveRecipes=smelter/stone")
     )
 
 
@@ -669,7 +669,7 @@ def gametest_receipt_document(parsed: dict[str, Any], log_path: Path) -> dict[st
         "namespace": GAME_TEST_NAMESPACE,
         "note": (
             "Source markers are not a pass. This receipt is the isolated "
-            "-Pt43Recipes result bound to MaterialRegistrationGate, the T43 "
+            "-PwaveRecipes=smelter/stone result bound to MaterialRegistrationGate, the T43 "
             "recipe resource trees, and the committed UTF-8 evidence log. "
             "The gitignored run-t43-recipes directory is not evidence. "
             "Injecting recipe inputs still does not prove a player path."
@@ -710,7 +710,7 @@ def gametest_receipt_errors(document: dict[str, Any] | None = None) -> list[str]
     if receipt.get("status") != "PASS":
         errors.append("T43 GameTest receipt is not PASS")
     if GAME_TEST_COMMAND_MARKER not in str(receipt.get("command") or ""):
-        errors.append("T43 GameTest receipt command is missing -Pt43Recipes")
+        errors.append("T43 GameTest receipt command is missing -PwaveRecipes=smelter/stone")
     if receipt.get("namespace") != GAME_TEST_NAMESPACE:
         errors.append("T43 GameTest receipt namespace drifted")
     if receipt.get("required_tests") != GAME_TEST_REQUIRED:
@@ -766,7 +766,12 @@ def gametest_receipt_errors(document: dict[str, Any] | None = None) -> list[str]
 
 
 def player_gametest_present() -> bool:
-    return player_gametest_source_present() and not gametest_receipt_errors()
+    from tools import closeout_seal
+
+    return closeout_seal.sealed_or_live_present(
+        "T43",
+        lambda: player_gametest_source_present() and not gametest_receipt_errors(),
+    )
 
 
 def production_template_keys() -> list[str]:

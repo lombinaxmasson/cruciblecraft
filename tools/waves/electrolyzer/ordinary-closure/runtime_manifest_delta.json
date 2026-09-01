@@ -1,0 +1,64 @@
+{
+  "dedup_rules": [
+    {
+      "owner": "electrolyzer/ordinary-closure",
+      "phase": "post_enumeration",
+      "resource": "src/recipe_generated/resources/data/cruciblecraft/recipe/dedup_rule/electrolyzer_ordinary_closure_t39_support_post_enumeration.json",
+      "rule_id": "cruciblecraft:electrolyzer_ordinary_closure_t39_support_post_enumeration",
+      "target_map": "cruciblecraft:electrolyzer"
+    }
+  ],
+  "generated_by": "python tools/build_ordinary_wave.py",
+  "groups": [
+    {
+      "authored_family_count": 6,
+      "authored_relation_count": 17,
+      "cache_ceiling": 0,
+      "eager_stable_ids": [],
+      "effective_family_count": 6,
+      "effective_relation_count": 17,
+      "membership_root_sha256": "1b832b8dfa7d44e5553419df4cde1ec488acbc9c926f4333145765438abe00d1",
+      "policy_resource": "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/electrolyzer_ordinary_closure_acquisition.json",
+      "policy_type": "immediate",
+      "publication_group": "cruciblecraft:electrolyzer/ordinary_closure/acquisition",
+      "target_map": "cruciblecraft:electrolyzer",
+      "wave_slug": "electrolyzer/ordinary-closure",
+      "winner": "immediate"
+    },
+    {
+      "authored_family_count": 17,
+      "authored_relation_count": 54,
+      "cache_ceiling": 0,
+      "eager_stable_ids": [],
+      "effective_family_count": 17,
+      "effective_relation_count": 54,
+      "membership_root_sha256": "4be773c9833166ceb2a8b2d5bad3110e859fa611afcbf794434bf16e6b8336eb",
+      "policy_resource": "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/electrolyzer_ordinary_closure_multiitem.json",
+      "policy_type": "immediate",
+      "publication_group": "cruciblecraft:electrolyzer/ordinary_closure/multiitem",
+      "target_map": "cruciblecraft:electrolyzer",
+      "wave_slug": "electrolyzer/ordinary-closure",
+      "winner": "immediate"
+    },
+    {
+      "authored_family_count": 23,
+      "authored_relation_count": 23,
+      "cache_ceiling": 23,
+      "eager_stable_ids": [],
+      "effective_family_count": 23,
+      "effective_relation_count": 23,
+      "membership_root_sha256": "4ad208bc99696f20ec74cb88e80c7b898e20646caa4c0fc640152d43dd47fc8a",
+      "policy_resource": "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/electrolyzer_ordinary_closure_singleton.json",
+      "policy_type": "on_demand",
+      "publication_group": "cruciblecraft:electrolyzer/ordinary_closure/singleton",
+      "target_map": "cruciblecraft:electrolyzer",
+      "wave_slug": "electrolyzer/ordinary-closure",
+      "winner": "on_demand"
+    }
+  ],
+  "note": "Semantic runtime group delta. Frozen v2 groups stay unchanged; no T50 publication groups.",
+  "order": "electrolyzer/ordinary-closure",
+  "schema_version": 1,
+  "status": "ELECTROLYZER_ORDINARY-CLOSURE_RUNTIME_MANIFEST_DELTA",
+  "wave_slug": "electrolyzer/ordinary-closure"
+}

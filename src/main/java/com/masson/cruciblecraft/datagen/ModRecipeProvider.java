@@ -18,8 +18,8 @@ import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 import com.masson.cruciblecraft.recipe.rule.MaterialRule;
 import com.masson.cruciblecraft.recipe.rule.MaterialRuleRecipe;
-import com.masson.cruciblecraft.recipe.rule.T2ChainRules;
-import com.masson.cruciblecraft.recipe.rule.T4ToolRules;
+import com.masson.cruciblecraft.recipe.rule.MaterialChainRules;
+import com.masson.cruciblecraft.recipe.rule.ToolRules;
 import com.masson.cruciblecraft.recipe.gt.GTRecipe;
 import com.masson.cruciblecraft.recipe.gt.GTRecipeEntry;
 import com.masson.cruciblecraft.registry.ModFluids;
@@ -403,7 +403,7 @@ public final class ModRecipeProvider extends RecipeProvider {
             pattern.recipePattern().forEach(builder::pattern);
             builder.save(output, id("tools/pattern/" + pattern.id()));
         });
-        T4ToolRules.ALL.forEach(definition -> output.accept(
+        ToolRules.ALL.forEach(definition -> output.accept(
                 id(definition.path()),
                 new MaterialRuleRecipe(definition.rule()),
                 null));
@@ -439,11 +439,11 @@ public final class ModRecipeProvider extends RecipeProvider {
                 null);
         output.accept(
                 id("anvil/raw_ore_to_crushed_ore"),
-                new MaterialRuleRecipe(T2ChainRules.ANVIL_RAW_TO_CRUSHED),
+                new MaterialRuleRecipe(MaterialChainRules.ANVIL_RAW_TO_CRUSHED),
                 null);
-        T2ChainRules.ALL.stream()
+        MaterialChainRules.ALL.stream()
                 .filter(definition ->
-                        !T2ChainRules.CONCRETE_ORE_CHAIN_PATHS.contains(definition.path()))
+                        !MaterialChainRules.CONCRETE_ORE_CHAIN_PATHS.contains(definition.path()))
                 .forEach(definition -> output.accept(
                         id(definition.path()), new MaterialRuleRecipe(definition.rule()), null));
     }
@@ -466,9 +466,9 @@ public final class ModRecipeProvider extends RecipeProvider {
                     output, result, casing, material, path);
             case "sifter" -> sifterCrafting(
                     output, result, casing, material, path);
-            case "t16_kinetic" -> t16MachineCrafting(
-                    output, result, casing, material, resolved.t16Kind(), path);
-            case "t17_heat" -> t17HeatMachineCrafting(
+            case "kinetic" -> kineticMachineCrafting(
+                    output, result, casing, material, resolved.kineticKind(), path);
+            case "heat" -> heatMachineCrafting(
                     output,
                     result,
                     casing,
@@ -490,7 +490,7 @@ public final class ModRecipeProvider extends RecipeProvider {
             case "compressor" -> compressorCrafting(
                     output, result, casing, material, path);
             default -> throw new IllegalStateException(
-                    "T36 variant " + path + " has no source-backed acquisition");
+                    "Machine variant " + path + " has no source-backed acquisition");
         }
     }
 
@@ -655,7 +655,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .save(output, id("machines/" + id));
     }
 
-    private static void t16MachineCrafting(
+    private static void kineticMachineCrafting(
             RecipeOutput output,
             Item result,
             Item casing,
@@ -729,12 +729,12 @@ public final class ModRecipeProvider extends RecipeProvider {
                                     material,
                                     MaterialPrefixes.SPRING));
             default -> throw new IllegalArgumentException(
-                    "Unsupported T16 machine kind " + kind);
+                    "Unsupported kinetic machine kind " + kind);
         }
         builder.save(output, id("machines/" + id));
     }
 
-    private static void t17HeatMachineCrafting(
+    private static void heatMachineCrafting(
             RecipeOutput output,
             Item result,
             Item casing,
@@ -794,7 +794,7 @@ public final class ModRecipeProvider extends RecipeProvider {
                                     machineMaterial,
                                     MaterialPrefixes.ROD));
             default -> throw new IllegalArgumentException(
-                    "Unsupported T17 heat machine kind " + kind);
+                    "Unsupported heat machine kind " + kind);
         }
         builder.save(output, id("machines/" + id));
     }

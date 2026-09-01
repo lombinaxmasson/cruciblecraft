@@ -1,0 +1,53 @@
+{
+  "family_id": "gt.recipe.bath#1185",
+  "publication_group": "cruciblecraft:t47_bath_exact",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 32,
+      "eut": 0,
+      "fluid_inputs": [
+        {
+          "amount": 20,
+          "id": "cruciblecraft:potion_fireresistance_long"
+        }
+      ],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:gt_block/planks_m10"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:gt_block/planks_fireproof_m10"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "02bc9e5ae50a4817c4df70cb74d3c9c6ceafa2df64aaf9ab08a63b381ef5d599"
+        ],
+        "selected_source_recipe": "gt.recipe.bath#1185",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:t47/3f587580b49597ae"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:bath",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

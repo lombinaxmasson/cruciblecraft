@@ -1,0 +1,79 @@
+{
+  "dedup_rules": [
+    {
+      "owner": "drying/ordinary-closure",
+      "phase": "post_enumeration",
+      "resource": "src/recipe_generated/resources/data/cruciblecraft/recipe/dedup_rule/drying_ordinary_closure_t39_support_post_enumeration.json",
+      "rule_id": "cruciblecraft:drying_ordinary_closure_t39_support_post_enumeration",
+      "target_map": "cruciblecraft:drying"
+    }
+  ],
+  "generated_by": "python tools/build_ordinary_wave.py",
+  "groups": [
+    {
+      "authored_family_count": 8,
+      "authored_relation_count": 19,
+      "cache_ceiling": 0,
+      "eager_stable_ids": [],
+      "effective_family_count": 8,
+      "effective_relation_count": 19,
+      "membership_root_sha256": "fb3411bbab5135e035d6e0b8b559491784adcd0c8e6dd71a9a4c937f5682fc14",
+      "policy_resource": "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/drying_ordinary_closure_acquisition.json",
+      "policy_type": "immediate",
+      "publication_group": "cruciblecraft:drying/ordinary_closure/acquisition",
+      "target_map": "cruciblecraft:drying",
+      "wave_slug": "drying/ordinary-closure",
+      "winner": "immediate"
+    },
+    {
+      "authored_family_count": 2,
+      "authored_relation_count": 2,
+      "cache_ceiling": 2,
+      "eager_stable_ids": [],
+      "effective_family_count": 2,
+      "effective_relation_count": 2,
+      "membership_root_sha256": "6e139842373c56875343097b2697d9f217d101ba948fe7191a27d27f5e1f4cb4",
+      "policy_resource": "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/drying_ordinary_closure_gt_prefix.json",
+      "policy_type": "on_demand",
+      "publication_group": "cruciblecraft:drying/ordinary_closure/gt_prefix",
+      "target_map": "cruciblecraft:drying",
+      "wave_slug": "drying/ordinary-closure",
+      "winner": "on_demand"
+    },
+    {
+      "authored_family_count": 3,
+      "authored_relation_count": 33,
+      "cache_ceiling": 0,
+      "eager_stable_ids": [],
+      "effective_family_count": 3,
+      "effective_relation_count": 33,
+      "membership_root_sha256": "178f49751d78df76e9f66ce197206cbb5f3d0844232e361cbd475c9eb164140a",
+      "policy_resource": "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/drying_ordinary_closure_multiitem.json",
+      "policy_type": "immediate",
+      "publication_group": "cruciblecraft:drying/ordinary_closure/multiitem",
+      "target_map": "cruciblecraft:drying",
+      "wave_slug": "drying/ordinary-closure",
+      "winner": "immediate"
+    },
+    {
+      "authored_family_count": 31,
+      "authored_relation_count": 31,
+      "cache_ceiling": 31,
+      "eager_stable_ids": [],
+      "effective_family_count": 31,
+      "effective_relation_count": 31,
+      "membership_root_sha256": "d51f48bd05c9f44f63a73a8e3646cf86c56d3ac01f17c4ead0f692f7e775ffe5",
+      "policy_resource": "src/recipe_generated/resources/data/cruciblecraft/recipe/publication_policy/drying_ordinary_closure_singleton.json",
+      "policy_type": "on_demand",
+      "publication_group": "cruciblecraft:drying/ordinary_closure/singleton",
+      "target_map": "cruciblecraft:drying",
+      "wave_slug": "drying/ordinary-closure",
+      "winner": "on_demand"
+    }
+  ],
+  "note": "Semantic runtime group delta. Frozen v2 groups stay unchanged; no T50 publication groups.",
+  "order": "drying/ordinary-closure",
+  "schema_version": 1,
+  "status": "DRYING_ORDINARY-CLOSURE_RUNTIME_MANIFEST_DELTA",
+  "wave_slug": "drying/ordinary-closure"
+}

@@ -16,7 +16,7 @@ public record FuelDefinition(String id, long energyPerTick, int burnTicks) {
             new FuelDefinition("charcoal", 8L, 1_600);
     /**
      * Coal coke carries twice the total fuel value of charcoal and burns at the
-     * 16 HU/t rate required by source-projected T5 smelter recipes.
+     * 16 HU/t rate required by source-projected chemical smelter recipes.
      */
     public static final FuelDefinition COAL_COKE =
             new FuelDefinition("coal_coke", 16L, 1_600);

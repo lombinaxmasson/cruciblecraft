@@ -28,7 +28,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 
 /**
- * Production T14c Hybrid provider for the compact Extruder family.
+ * Production Hybrid provider for the compact Extruder family.
  *
  * <p>The immutable relation/index snapshot is installed with its RecipeMap
  * epoch. One fifth of relations are eager; the long tail materializes through
@@ -89,7 +89,7 @@ public final class ExtruderRecipeFamilyProvider {
         if (sources.size() > AUTHORED_ENTRIES) {
             String overflow = sources.get(AUTHORED_ENTRIES).id().toString();
             throw new IllegalArgumentException(
-                    "T14c compact source ceiling is 20, found "
+                    "Extruder compact source ceiling is 20, found "
                             + sources.size() + "; first overflow source "
                             + overflow);
         }
@@ -115,13 +115,13 @@ public final class ExtruderRecipeFamilyProvider {
             if (!rule.target().orElseThrow().equals(TARGET)
                     || rule.sparse().isEmpty()) {
                 throw new IllegalArgumentException(
-                        "T14c compact source " + source.id()
+                        "Extruder compact source " + source.id()
                                 + " is not an Extruder sparse rule");
             }
             MaterialRule.SparseTable table = rule.sparse().orElseThrow();
             if (BuiltInRegistries.ITEM.getOptional(table.shapeItem()).isEmpty()) {
                 throw new IllegalArgumentException(
-                        "T14c compact source " + source.id()
+                        "Extruder compact source " + source.id()
                                 + " has unknown Extruder shape item "
                                 + table.shapeItem());
             }
@@ -205,7 +205,7 @@ public final class ExtruderRecipeFamilyProvider {
                     && relation.shadowOrder()
                             <= previous.relation().shadowOrder()) {
                 throw new IllegalArgumentException(
-                        "T14c compact shadow_order must be strictly increasing "
+                        "Extruder compact shadow_order must be strictly increasing "
                                 + "after sorting: "
                                 + describe(previous) + " conflicts with "
                                 + describe(definition));
@@ -234,7 +234,7 @@ public final class ExtruderRecipeFamilyProvider {
             MaterialRule.SparseRelation relation,
             IllegalArgumentException cause) {
         return new IllegalArgumentException(
-                "Invalid T14c compact source " + source.id()
+                "Invalid Extruder compact source " + source.id()
                         + ", relation " + relation.stableId()
                         + ": " + cause.getMessage(),
                 cause);

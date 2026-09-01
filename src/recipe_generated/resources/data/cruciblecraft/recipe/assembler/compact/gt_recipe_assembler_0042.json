@@ -1,0 +1,59 @@
+{
+  "family_id": "gt.recipe.assembler#0042",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 64,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        4,
+        0
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:acacia_planks"
+        },
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 4
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:crafting_table"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "54440374a22e0684fa0938013df4407cdf1d817677d766b4c2638cd4487a39e9"
+        ],
+        "selected_source_recipe": "gt.recipe.assembler#0042",
+        "source_kind": "DESIGN_POLICY"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:assembler/compact/c7863ef657cd773e"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:assembler",
+  "type": "cruciblecraft:compact_gt_recipe_family",
+  "publication_group": "cruciblecraft:assembler/compact"
+}

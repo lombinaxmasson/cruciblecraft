@@ -368,8 +368,8 @@ def build() -> dict[str, Any]:
     known_post_t10 = current + t9 + known_t10_recipes
     t10a_publication = policy["t10a_publication"]
     t10_recipe_files = (
-        sorted((RECIPE_ROOT / "t10").rglob("*.json"))
-        if (RECIPE_ROOT / "t10").is_dir()
+        sorted((RECIPE_ROOT / "ingot_form").rglob("*.json"))
+        if (RECIPE_ROOT / "ingot_form").is_dir()
         else []
     )
     if (

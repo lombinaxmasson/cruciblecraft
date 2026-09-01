@@ -530,7 +530,13 @@ def write() -> dict[str, Any]:
 
 
 def check() -> list[str]:
-    errors = t43.check_document(OUTPUT, build())
+    from tools import closeout_seal
+
+    errors = closeout_seal.live_or_sealed_errors(
+        "T43",
+        "census",
+        lambda: t43.check_document(OUTPUT, build()),
+    )
     if errors:
         return errors
     document = t35.load_json(OUTPUT)

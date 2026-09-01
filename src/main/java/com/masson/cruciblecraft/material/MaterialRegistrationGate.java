@@ -27,7 +27,8 @@ public final class MaterialRegistrationGate {
             "t38_source_backed_acquisition_forms",
             "t38_required_forms",
             "t39_required_forms",
-            "t40_required_forms");
+            "t40_required_forms",
+            "t48_required_forms");
 
     private MaterialRegistrationGate() {}
 

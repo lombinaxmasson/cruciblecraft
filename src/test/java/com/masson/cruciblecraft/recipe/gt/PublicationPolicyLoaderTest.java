@@ -25,17 +25,17 @@ class PublicationPolicyLoaderTest {
 
     private static final ResourceLocation SMELTER =
             ResourceLocation.fromNamespaceAndPath("cruciblecraft", "smelter");
-    private static final ResourceLocation T43_GROUP =
+    private static final ResourceLocation STONE_GROUP =
             ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "t43_smelter_stone");
-    private static final ResourceLocation T37_GROUP =
+                    "cruciblecraft", "smelter/stone");
+    private static final ResourceLocation ASSEMBLER_COMPACT_GROUP =
             ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "t37_assembler");
+                    "cruciblecraft", "assembler/compact");
     private static final ResourceLocation ASSEMBLER =
             ResourceLocation.fromNamespaceAndPath("cruciblecraft", "assembler");
-    private static final ResourceLocation T41_PLANKS =
+    private static final ResourceLocation ASSEMBLER_PLANKS =
             ResourceLocation.fromNamespaceAndPath(
-                    "cruciblecraft", "t41_assembler_planks");
+                    "cruciblecraft", "assembler/planks");
 
     @Test
     void undeclaredGroupFailsClosed() {
@@ -45,10 +45,10 @@ class PublicationPolicyLoaderTest {
                         SMELTER,
                         "3703e40308c8c030763fd6297dea8b210d2a77b1",
                         List.of(),
-                        T43_GROUP);
+                        STONE_GROUP);
         CompactRecipeFamilySource source = new CompactRecipeFamilySource(
                 ResourceLocation.fromNamespaceAndPath(
-                        "cruciblecraft", "t43/smelter/gt_recipe_smelter_2438"),
+                        "cruciblecraft", "smelter/stone/gt_recipe_smelter_2438"),
                 definition);
         IllegalArgumentException thrown = assertThrows(
                 IllegalArgumentException.class,
@@ -59,7 +59,7 @@ class PublicationPolicyLoaderTest {
                         CompactRecipeFamilyProvider.RuntimeSide.SERVER,
                         Map.of()));
         assertTrue(thrown.getMessage().contains("Missing compact materialization policy"));
-        assertTrue(thrown.getMessage().contains("t43_smelter_stone"));
+        assertTrue(thrown.getMessage().contains("smelter/stone"));
     }
 
     @Test
@@ -67,7 +67,7 @@ class PublicationPolicyLoaderTest {
         CompactPublicationPolicyDefinition manifest =
                 new CompactPublicationPolicyDefinition(
                         ASSEMBLER,
-                        T37_GROUP,
+                        ASSEMBLER_COMPACT_GROUP,
                         "on_demand",
                         8,
                         List.of(),
@@ -79,7 +79,7 @@ class PublicationPolicyLoaderTest {
                 IllegalArgumentException.class,
                 () -> CompactPublicationPolicy.merge(
                         Map.of(
-                                new PublicationGroupKey(ASSEMBLER, T37_GROUP),
+                                new PublicationGroupKey(ASSEMBLER, ASSEMBLER_COMPACT_GROUP),
                                 CompactRecipeFamilyProvider.MaterializationPolicy
                                         .onDemand(8)),
                         List.of(new CompactPublicationPolicyEntry(manifest))));
@@ -107,7 +107,7 @@ class PublicationPolicyLoaderTest {
                         Map.of(),
                         List.of(new CompactPublicationPolicyEntry(onDemandManifest())));
         CompactRecipeFamilyProvider.MaterializationPolicy policy = merged.get(
-                new PublicationGroupKey(SMELTER, T43_GROUP));
+                new PublicationGroupKey(SMELTER, STONE_GROUP));
         assertEquals(
                 CompactRecipeFamilyProvider.MaterializationStrategy.ON_DEMAND,
                 policy.strategy());
@@ -115,11 +115,11 @@ class PublicationPolicyLoaderTest {
     }
 
     @Test
-    void emptyHistoricalAllowsT37DatapackPolicy() {
+    void emptyHistoricalAllowsAssemblerCompactDatapackPolicy() {
         CompactPublicationPolicyDefinition manifest =
                 new CompactPublicationPolicyDefinition(
                         ASSEMBLER,
-                        T37_GROUP,
+                        ASSEMBLER_COMPACT_GROUP,
                         "hybrid",
                         8,
                         List.of(),
@@ -132,7 +132,7 @@ class PublicationPolicyLoaderTest {
                         Map.of(),
                         List.of(new CompactPublicationPolicyEntry(manifest)));
         CompactRecipeFamilyProvider.MaterializationPolicy policy = merged.get(
-                new PublicationGroupKey(ASSEMBLER, T37_GROUP));
+                new PublicationGroupKey(ASSEMBLER, ASSEMBLER_COMPACT_GROUP));
         assertEquals(
                 CompactRecipeFamilyProvider.MaterializationStrategy.HYBRID,
                 policy.strategy());
@@ -146,18 +146,18 @@ class PublicationPolicyLoaderTest {
                 () -> new CompactDedupRuleDefinition(
                         ResourceLocation.fromNamespaceAndPath(
                                 "cruciblecraft", "bad_mode"),
-                        "T37",
+                        "assembler_compact",
                         CompactDedupRuleDefinition.PHASE_PRE_SNAPSHOT,
                         ASSEMBLER,
                         "by_family_id",
                         true,
                         new CompactDedupRuleDefinition.Selector(
                                 CompactDedupRuleDefinition.Selector.KIND_GROUP,
-                                List.of(T37_GROUP),
+                                List.of(ASSEMBLER_COMPACT_GROUP),
                                 List.of()),
                         new CompactDedupRuleDefinition.Selector(
                                 CompactDedupRuleDefinition.Selector.KIND_GROUP,
-                                List.of(T41_PLANKS),
+                                List.of(ASSEMBLER_PLANKS),
                                 List.of())));
     }
 
@@ -166,7 +166,7 @@ class PublicationPolicyLoaderTest {
         CompactPublicationPolicyDefinition definition =
                 new CompactPublicationPolicyDefinition(
                         SMELTER,
-                        T43_GROUP,
+                        STONE_GROUP,
                         "on_demand",
                         24,
                         List.of(),
@@ -176,13 +176,13 @@ class PublicationPolicyLoaderTest {
                         java.util.Optional.of(0));
         CompactRecipeFamilySource source = new CompactRecipeFamilySource(
                 ResourceLocation.fromNamespaceAndPath(
-                        "cruciblecraft", "t43/smelter/gt_recipe_smelter_2438"),
+                        "cruciblecraft", "smelter/stone/gt_recipe_smelter_2438"),
                 new CompactGTRecipeFamilyDefinition(
                         "gt.recipe.smelter#2438",
                         SMELTER,
                         "3703e40308c8c030763fd6297dea8b210d2a77b1",
                         List.of(),
-                        T43_GROUP));
+                        STONE_GROUP));
         IllegalArgumentException thrown = assertThrows(
                 IllegalArgumentException.class,
                 () -> CompactPublicationPolicy.validateLiveSources(
@@ -193,7 +193,7 @@ class PublicationPolicyLoaderTest {
     private static CompactPublicationPolicyDefinition onDemandManifest() {
         return new CompactPublicationPolicyDefinition(
                 SMELTER,
-                T43_GROUP,
+                STONE_GROUP,
                 "on_demand",
                 24,
                 List.of(),

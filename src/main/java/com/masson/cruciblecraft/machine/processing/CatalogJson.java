@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
-/** Shared bundled-JSON load helper for T36-Repair catalogs. */
+/** Shared bundled-JSON load helper for machine-tier catalogs. */
 final class CatalogJson {
     static final Gson GSON = new Gson();
     static final String SOURCE_REVISION =

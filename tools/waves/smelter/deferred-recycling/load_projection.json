@@ -1,0 +1,205 @@
+{
+  "candidate": {
+    "client_index_ms": 28,
+    "client_reload_ms": 522,
+    "datapack_authored_entries": 9489,
+    "eager_publication_rows": 21887,
+    "lazy_cache_ceiling_rows": 3245,
+    "lazy_logical_rows": 55432,
+    "lookup_allocation_bytes_per_operation": 624012,
+    "lookup_candidate_count": 10,
+    "lookup_p95_ns": 186970,
+    "reload_transient_allocation_bytes": 1163175528,
+    "retained_memory_bytes": 18668784,
+    "server_index_ms": 26,
+    "server_reload_ms": 511,
+    "sync_bytes": 9111935
+  },
+  "client_index_ms": 28,
+  "client_reload_ms": 522,
+  "datapack_authored_entries": 9489,
+  "decision": {
+    "axes": {
+      "client_index_ms": {
+        "actual": 28,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "client_reload_ms": {
+        "actual": 522,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "datapack_authored_entries": {
+        "actual": 9489,
+        "eliminates": false,
+        "status": "REPORT_ONLY_REFERENCE_EXCEEDED"
+      },
+      "eager_publication_rows": {
+        "actual": 21887,
+        "eliminates": false,
+        "status": "REPORT_ONLY_REFERENCE_EXCEEDED"
+      },
+      "lazy_cache_ceiling_rows": {
+        "actual": 3245,
+        "eliminates": false,
+        "status": "REPORT_ONLY_REFERENCE_EXCEEDED"
+      },
+      "lazy_logical_rows": {
+        "actual": 55432,
+        "eliminates": false,
+        "status": "REPORT_ONLY_REFERENCE_EXCEEDED"
+      },
+      "lookup_allocation_bytes_per_operation": {
+        "actual": 624012,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "lookup_candidate_count": {
+        "actual": 10,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "lookup_p95_ns": {
+        "actual": 186970,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "reload_transient_allocation_bytes": {
+        "actual": 1163175528,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "retained_memory_bytes": {
+        "actual": 18668784,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "server_index_ms": {
+        "actual": 26,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "server_reload_ms": {
+        "actual": 511,
+        "eliminates": false,
+        "status": "PASS"
+      },
+      "sync_bytes": {
+        "actual": 9111935,
+        "eliminates": false,
+        "status": "PASS"
+      }
+    },
+    "eliminate_reasons": [],
+    "report_only_warnings": [
+      "unverified_scale:eager_publication_rows:21887>21000",
+      "unverified_scale:soft_budget:eager_publication_rows:21887>18000",
+      "unverified_scale:soft_budget:lazy_logical_rows:55432>16000",
+      "unverified_scale:soft_budget:lazy_cache_ceiling_rows:3245>1024",
+      "report_only:hard_ceiling:datapack_authored_entries:9489>6600",
+      "report_only:soft_budget:datapack_authored_entries:9489>6000"
+    ],
+    "soft_warnings": []
+  },
+  "eager_publication_rows": 21887,
+  "generated_by": "python tools/build_ordinary_wave.py",
+  "group_winners": {
+    "cruciblecraft:smelter/deferred_recycling/adamantium": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/aluminium": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/aluminium_brass": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/angmallen": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/annealed_copper": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/antimony": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/ardite": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/arsenic_bronze": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/arsenic_copper": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/beryllium": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/bismuth": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/bismuth_bronze": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/black_bronze": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/black_steel": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/blue_alloy": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/blue_steel": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/brass": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/bronze": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/carbon": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/chromium": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/cobalt": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/cobalt_brass": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/constantan": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/copper": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/desh": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/draconium": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/draconium_awakened": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/efrine": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/electrotine_alloy": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/electrum": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/enderium": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/fiery_steel": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/germanium": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/gold": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/hslasteel": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/invar": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/iridium": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/iron": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/ironwood": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/kanthal": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/knightmetal": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/lead": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/lumium": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/magnalium": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/manganese": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/manyullyn": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/meteoric_iron": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/meteoric_steel": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/meteorite": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/molybdenum": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/naquadah": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/netherite": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/nichrome": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/nickel": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/octine": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/osmiridium": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/osmium_elemental": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/platinum": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/red_alloy": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/red_steel": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/rose_gold": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/rubber": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/signalum": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/silver": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/stainless_steel": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/steel": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/sterling_silver": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/stone": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/syrmorite": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/thaumium": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/tin": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/tin_alloy": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/titanium": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/titanium_gold": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/tungsten": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/tungstensteel": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/ultimet": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/vanadium": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/vanadium_steel": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/void_metal": "on_demand",
+    "cruciblecraft:smelter/deferred_recycling/workers_alloy": "on_demand"
+  },
+  "integrated_not_card_sum": true,
+  "lazy_cache_ceiling_rows": 3245,
+  "lazy_logical_rows": 55432,
+  "lookup_allocation_bytes_per_operation": 624012,
+  "lookup_candidate_count": 10,
+  "lookup_p95_ns": 186970,
+  "old_metric_split": true,
+  "reload_transient_allocation_bytes": 1163175528,
+  "retained_memory_bytes": 18668784,
+  "schema_version": 1,
+  "server_index_ms": 26,
+  "server_reload_ms": 511,
+  "status": "LOAD_READY",
+  "sync_bytes": 9111935,
+  "wave_slug": "smelter/deferred-recycling"
+}

@@ -434,19 +434,19 @@ def build() -> dict[str, Any]:
                 == t35.sha256_file(t35.RUNTIME_REGISTRY)
             ),
             "runtime_registry_gate_gametest_class": (
-                "com.masson.cruciblecraft.census.T35CensusGameTests"
+                "com.masson.cruciblecraft.census.RecipeCensusGameTests"
             ),
-            "runtime_registry_gate_gradle_property": "-Pt35Census",
+            "runtime_registry_gate_gradle_property": "-PrecipeCensus",
             "runtime_registry_gate_implemented": True,
             "runtime_registry_gate_namespace": "cruciblecraft_census",
             "manual_runtime_registry_gate_required": False,
             "manual_gametest_required": True,
             "note": (
                 "Bidirectional Java registry equality is implemented via "
-                "T35CensusGameTests in namespace cruciblecraft_census with "
+                "RecipeCensusGameTests in namespace cruciblecraft_census with "
                 "expected ids from the hash-locked gate fixture. Static "
                 "readiness records wiring and fixture currentness only; "
-                "runGameTestServer -Pt35Census is the runtime execution "
+                "runGameTestServer -PrecipeCensus is the runtime execution "
                 "evidence for the census integration profile."
             ),
         },

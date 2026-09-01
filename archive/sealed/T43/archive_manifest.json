@@ -1,0 +1,110 @@
+{
+  "artifacts": [
+    {
+      "archive": "archive/sealed/T43/closeout_seal.json",
+      "field": "closeout_seal",
+      "kind": "file",
+      "live": "tools/t43_closeout_seal.json",
+      "sha256": "8016433f7d0c410e2a27b70cb2a99a60c5057a9a7ded6543499f96885533f00d"
+    },
+    {
+      "archive": "archive/sealed/T43/tools/t43_census_delta.json",
+      "field": "census",
+      "kind": "file",
+      "live": "tools/t43_census_delta.json",
+      "sha256": "0c9587315d16eebf4e55ae32706e49ab7038a9361dc5929048f3af26f000e0c7"
+    },
+    {
+      "archive": "archive/sealed/T43/tools/t43_card_topology.json",
+      "field": "topology",
+      "kind": "file",
+      "live": "tools/t43_card_topology.json",
+      "sha256": "ca33a59bbe0e85edd1ef72cbde9dd395ebb6bbc1ef5f01bff12d093a54174d91"
+    },
+    {
+      "archive": "archive/sealed/T43/tools/t43_readiness.json",
+      "field": "readiness",
+      "kind": "file",
+      "live": "tools/t43_readiness.json",
+      "sha256": "ba68002e91674f44366b743c7596aca536615f0c551890240e977b61427305d4"
+    },
+    {
+      "archive": "archive/sealed/T43/tools/t43_gametest_receipt.json",
+      "field": "receipt",
+      "kind": "file",
+      "live": "tools/t43_gametest_receipt.json",
+      "sha256": "a203ac45089dbee280b152a14d847681a396f266504dd929c9b04e5bb224df2c"
+    },
+    {
+      "archive": "archive/sealed/T43/tools/t43_production_lock.json",
+      "field": "production_lock",
+      "kind": "file",
+      "live": "tools/t43_production_lock.json",
+      "sha256": "c6a63280ee036a9cad53fbbddc721480f2479d51598ef99e18d57495b48da484"
+    },
+    {
+      "archive": "archive/sealed/T43/src/t43_recipe_generated/resources/data/cruciblecraft/recipe/t43/smelter",
+      "field": "generated_recipes",
+      "kind": "tree",
+      "live": "src/t43_recipe_generated/resources/data/cruciblecraft/recipe/t43/smelter",
+      "sha256": "19a0263c6524d7322040266de03bc7d88331e254d2fb4ee5481714dc777d2e23"
+    },
+    {
+      "archive": "archive/sealed/T43/src/t43_support_generated/resources/data/cruciblecraft/t43_player_path_support",
+      "field": "locked_support",
+      "kind": "tree",
+      "live": "src/t43_support_generated/resources/data/cruciblecraft/t43_player_path_support",
+      "sha256": "6d5f90819caa005d80be89417569a3649a06ebed849c8bc35ce30cd8209f3538"
+    },
+    {
+      "archive": "archive/sealed/T43/src/main/java/com/masson/cruciblecraft/gametest/T43RecipeGameTests.java",
+      "field": "gametest_java",
+      "kind": "file",
+      "live": "src/main/java/com/masson/cruciblecraft/gametest/T43RecipeGameTests.java",
+      "sha256": "8727413d1dcadc85179c38e462dd186734497d39a540f0dd97d338656b211b22"
+    },
+    {
+      "archive": "archive/sealed/T43/tools/t43_gametest.log",
+      "field": "gametest_log",
+      "kind": "file",
+      "live": "tools/t43_gametest.log",
+      "sha256": "7d9998b1348b822a9bfac6becf233e080f0d48aae4483aea6caae28726c538a2"
+    },
+    {
+      "archive": "archive/sealed/T43/tools/t43_publication_group_manifest.json",
+      "field": "publication_group_manifest",
+      "kind": "file",
+      "live": "tools/t43_publication_group_manifest.json",
+      "sha256": "6298157ec162576ea64f783ed90d19c92c9241e8c9006e854410fab1da8111e4"
+    },
+    {
+      "archive": "archive/sealed/T43/tools/t43_shard_manifest.json",
+      "field": "shard_manifest",
+      "kind": "file",
+      "live": "tools/t43_shard_manifest.json",
+      "sha256": "5eeda10854e04b96a8d64e102d94f6a690ea0681bd0aa98253c55d98691fd169"
+    },
+    {
+      "archive": "archive/sealed/T43/tools/t43_runtime_dependency_manifest.json",
+      "field": "runtime_dependency_manifest",
+      "kind": "file",
+      "live": "tools/t43_runtime_dependency_manifest.json",
+      "sha256": "af4263d75acbfd5046b0bf4619257dc50c7a859e28dbe067acbccc24102246c8"
+    },
+    {
+      "archive": "archive/sealed/T43/tools/t43_publication_delta.json",
+      "field": "t43_publication_delta.json",
+      "kind": "file",
+      "live": "tools/t43_publication_delta.json",
+      "sha256": "60eaf896ec90221cb97f4541a32c4c868d4aff704faecdedfeb10ab57d246782"
+    }
+  ],
+  "card_id": "T43",
+  "complete_key": "t43_complete",
+  "generated_by": "python tools/legacy_seal_archive.py --write",
+  "next_issue_id": null,
+  "schema_version": 1,
+  "seal_sha256": "8016433f7d0c410e2a27b70cb2a99a60c5057a9a7ded6543499f96885533f00d",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "SEALED_ARCHIVE"
+}

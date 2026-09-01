@@ -67,7 +67,7 @@ MACHINES: dict[str, dict] = {
     "bath": {
         "gt6_map": "Bath",
         "panel": (6, 6, 1, 3),
-        "used": (1, 4, 1, 1),
+        "used": (1, 6, 1, 3),
     },
     "centrifuge": {
         "gt6_map": "Centrifuge",

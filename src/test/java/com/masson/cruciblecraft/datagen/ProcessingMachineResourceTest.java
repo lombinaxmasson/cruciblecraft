@@ -153,15 +153,15 @@ class ProcessingMachineResourceTest {
     }
 
     @Test
-    void t4ToolRecipesPersistOnlyMaterialIdentity() throws Exception {
-        Path t4Root = GENERATED.resolve(
-                "data/cruciblecraft/recipe/t4/assembler");
+    void toolRecipesPersistOnlyMaterialIdentity() throws Exception {
+        Path toolRoot = GENERATED.resolve(
+                "data/cruciblecraft/recipe/tool/assembler");
         Set<String> materialIdentityLiterals = new HashSet<>();
         Pattern materialIs = Pattern.compile("material\\.is\\(\"([^\"]+)\"\\)");
         boolean foundWear = false;
         boolean foundPreserve = false;
         int rules = 0;
-        try (var paths = Files.walk(t4Root)) {
+        try (var paths = Files.walk(toolRoot)) {
             for (Path path : paths.filter(Files::isRegularFile).toList()) {
                 rules++;
                 var recipe = JsonParser.parseString(
@@ -194,11 +194,11 @@ class ProcessingMachineResourceTest {
                 }
             }
         }
-        assertEquals(23, rules, "all T4 route rules must be generated");
+        assertEquals(23, rules, "all tool route rules must be generated");
         assertEquals(Set.of("stone", "wood"), materialIdentityLiterals,
                 "material.is literals must stay explicitly budgeted");
-        assertTrue(foundWear, "T4 rules must retain WEAR catalysts");
-        assertTrue(foundPreserve, "T4 rules must retain pattern selectors");
+        assertTrue(foundWear, "Tool rules must retain WEAR catalysts");
+        assertTrue(foundPreserve, "Tool rules must retain pattern selectors");
         var fileRecipe = JsonParser.parseString(Files.readString(GENERATED.resolve(
                 "data/cruciblecraft/recipe/tools/iron_file.json"))).getAsJsonObject();
         assertTrue(!fileRecipe.getAsJsonObject("result").has("components"),

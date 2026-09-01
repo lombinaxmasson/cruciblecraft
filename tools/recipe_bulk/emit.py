@@ -11,7 +11,9 @@ GT_PREFIXES = ("gregtech:", "gregapi:", "fixed:")
 
 
 def family_filename(template_key: str) -> str:
-    return template_key.replace(".", "_").replace("#", "_") + ".json"
+    return (
+        template_key.replace(".", "_").replace("#", "_").replace(":", "_") + ".json"
+    )
 
 
 def emit_action(action: dict[str, Any]) -> dict[str, Any]:
@@ -34,6 +36,9 @@ def _runtime_id(operand: dict[str, Any]) -> str:
 
 
 def emit_item(operand: dict[str, Any]) -> dict[str, Any]:
+    tag = operand.get("tag")
+    if tag and str(operand.get("mapping") or "") == "vanilla_wildcard_tag":
+        return {"tag": str(tag)}
     runtime = _runtime_id(operand)
     components = operand.get("_components")
     if components:
@@ -96,9 +101,15 @@ def stable_id_for(
     lock_row: dict[str, Any] | None,
 ) -> str:
     if spec is None or spec.stable_id_policy == "lock":
-        if lock_row is None or not lock_row.get("stable_id"):
+        if lock_row is None:
             raise ValueError("lock stable_id policy requires a lock row")
-        return str(lock_row["stable_id"])
+        if lock_row.get("stable_id") and not lock_row.get("stable_ids"):
+            return str(lock_row["stable_id"])
+        locked = [str(value) for value in (lock_row.get("stable_ids") or [])]
+        source_id = str(relation.get("stable_id") or "")
+        if source_id and source_id in locked:
+            return source_id
+        raise ValueError("lock stable_id policy requires a lock row")
     if spec.stable_id_policy == "hex_suffix":
         if not spec.stable_id_prefix:
             raise ValueError(f"{spec.wave_id} hex_suffix stable ids require a prefix")
@@ -135,6 +146,10 @@ def emit_resolved_relation(
         if action["kind"] in {"preserve", "wear"} and count != 0:
             raise ValueError(f"{key} preserve/wear counts must be zero")
     chances = [int(v) for v in relation.get("output_chances") or []]
+    if item_outputs and len(chances) < len(item_outputs):
+        chances = chances + [10000] * (len(item_outputs) - len(chances))
+    elif len(chances) > len(item_outputs):
+        chances = chances[: len(item_outputs)]
     classes = operand_classes or [
         str(op.get("_source_kind") or "SOURCE_BACKED")
         for field in ("item_inputs", "item_outputs", "fluid_inputs", "fluid_outputs")

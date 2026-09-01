@@ -133,11 +133,11 @@ ORE_HOSTS = ("stone", "deepslate")
 HOPPER_KIND_SUFFIXES = ("hopper", "queue_hopper")
 CHEMICAL_FLUID_GATES = (
     ROOT
-    / "src/t5_chemical_generated/resources/data/cruciblecraft/t5_chemical_fluid_gate.json",
+    / "src/chemical_recipe_generated/resources/data/cruciblecraft/chemical_fluid_gate.json",
     ROOT
-    / "src/main/resources/data/cruciblecraft/t10_container_fluid_gate.json",
+    / "src/main/resources/data/cruciblecraft/container_fluid_gate.json",
     ROOT
-    / "src/main/resources/data/cruciblecraft/t11_hydrocarbon_fluid_gate.json",
+    / "src/main/resources/data/cruciblecraft/hydrocarbon_fluid_gate.json",
 )
 MATERIAL_INDEXES = (
     DATA_SOURCES["material_index"],

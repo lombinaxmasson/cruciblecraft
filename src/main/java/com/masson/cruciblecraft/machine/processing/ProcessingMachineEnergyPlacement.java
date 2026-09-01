@@ -9,14 +9,14 @@ public final class ProcessingMachineEnergyPlacement {
     private ProcessingMachineEnergyPlacement() {}
 
     public static Connection connection(ProcessingMachineSpec spec, Direction front) {
-        if (isT17HeatMachine(spec)) {
+        if (isHeatMachine(spec)) {
             return new Connection(Direction.DOWN, Direction.UP);
         }
         Direction provider = front.getOpposite();
         return new Connection(provider, provider.getOpposite());
     }
 
-    private static boolean isT17HeatMachine(ProcessingMachineSpec spec) {
+    private static boolean isHeatMachine(ProcessingMachineSpec spec) {
         return spec.recipeMapId().equals(
                         ModProcessingMachines.DISTILLERY.recipeMapId())
                 || spec.recipeMapId().equals(

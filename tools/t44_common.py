@@ -62,11 +62,11 @@ GAME_TEST_JAVA = (
     / "masson"
     / "cruciblecraft"
     / "gametest"
-    / "T44StorageGameTests.java"
+    / "StorageGameTests.java"
 )
-GAME_TEST_NAMESPACE = "cruciblecraft_t44"
+GAME_TEST_NAMESPACE = "cruciblecraft_wave_storage"
 GAME_TEST_COMMAND = (
-    ".\\gradlew.bat runGameTestServer -Pt44Storage --no-daemon"
+    ".\\gradlew.bat runGameTestServer -PwaveRecipes=storage --no-daemon"
 )
 T43_CENSUS_DELTA = TOOLS / "t43_census_delta.json"
 T43_CARD_TOPOLOGY = TOOLS / "t43_card_topology.json"

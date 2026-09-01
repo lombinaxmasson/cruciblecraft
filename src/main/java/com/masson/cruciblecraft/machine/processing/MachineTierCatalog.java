@@ -134,7 +134,7 @@ public final class MachineTierCatalog {
                 throw new IllegalStateException(
                         "Invalid machine tier catalog schema");
             }
-            // Opening 33 ids remain in the T36 target overlay; current size is
+            // Opening 33 ids remain in the catalog target overlay; current size is
             // the frozen target, not a hard ceiling.
             List<Entry> entries = document.variants.stream()
                     .filter(row -> row.resourceProfile == null

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run auditable fast, affected, closure, or source-replay Python suites."""
+"""Run auditable fast, affected, closure, source-replay, or listed-module Python suites."""
 from __future__ import annotations
 
 import argparse
@@ -124,6 +124,18 @@ def test_module(case_or_id: unittest.TestCase | str) -> str:
     return normalized_test_id(case_or_id).split(".", 1)[0]
 
 
+def normalize_module_names(modules: Iterable[str]) -> tuple[str, ...]:
+    names: list[str] = []
+    seen: set[str] = set()
+    for raw in modules:
+        stem = Path(str(raw).replace("\\", "/")).stem
+        if not stem or stem in seen:
+            continue
+        seen.add(stem)
+        names.append(stem)
+    return tuple(names)
+
+
 def matches_any(test_id: str, patterns: Iterable[str]) -> bool:
     normalized = normalized_test_id(test_id)
     return any(fnmatch.fnmatchcase(normalized, pattern) for pattern in patterns)
@@ -171,6 +183,29 @@ def normalize_paths(paths: Iterable[str]) -> tuple[str, ...]:
         for path in paths
         if path.strip()
     }))
+
+
+def read_path_file(path: Path) -> tuple[str, ...]:
+    return normalize_paths(
+        line.strip()
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip() and not line.lstrip().startswith("#")
+    )
+
+
+def resolve_suite_paths(
+    *,
+    suite: str,
+    path_args: Iterable[str] = (),
+    path_file: Path | None = None,
+) -> tuple[str, ...]:
+    paths: list[str] = list(path_args)
+    if path_file is not None:
+        paths.extend(read_path_file(path_file))
+    normalized = normalize_paths(paths)
+    if suite == "affected" and not normalized:
+        return git_changed_paths()
+    return normalized
 
 
 def git_changed_paths() -> tuple[str, ...]:
@@ -247,6 +282,7 @@ def select_cases(
     cases: list[unittest.TestCase],
     *,
     changed_paths: Iterable[str] = (),
+    modules: Iterable[str] = (),
 ) -> Selection:
     validate_policy(policy, cases)
     closure_patterns = policy["closure_only_test_patterns"]
@@ -265,6 +301,22 @@ def select_cases(
         selected = tuple(
             case for case in cases if matches_any(case.id(), replay_patterns)
         )
+        return Selection(suite, selected)
+    if suite == "modules":
+        requested = normalize_module_names(modules)
+        if not requested:
+            raise PolicyError("modules suite requires at least one --module")
+        selected_modules = set(requested)
+        selected = tuple(
+            case for case in cases if test_module(case) in selected_modules
+        )
+        missing = sorted(
+            selected_modules - {test_module(case) for case in selected}
+        )
+        if missing:
+            raise PolicyError(
+                f"modules suite selected missing test modules: {missing}"
+            )
         return Selection(suite, selected)
     if suite != "affected":
         raise PolicyError(f"unknown suite {suite}")
@@ -436,10 +488,25 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--suite",
-        choices=("fast", "affected", "closure", "source-replay"),
+        choices=("fast", "affected", "closure", "source-replay", "modules"),
         default=None,
     )
     parser.add_argument("--path", action="append", default=[])
+    parser.add_argument(
+        "--module",
+        action="append",
+        default=[],
+        help="Test module stem for --suite modules (repeatable).",
+    )
+    parser.add_argument(
+        "--path-file",
+        type=Path,
+        default=None,
+        help=(
+            "UTF-8 file of changed paths, one per line. Use this instead of "
+            "repeating --path when the dirty tree is too large for argv."
+        ),
+    )
     parser.add_argument("--durations", type=int, default=20)
     parser.add_argument("--failfast", action="store_true")
     parser.add_argument("--list", action="store_true")
@@ -454,15 +521,25 @@ def main(argv: list[str] | None = None) -> int:
         policy = load_policy()
         suite = args.suite or policy["default_suite"]
         cases = discover_cases()
-        changed_paths = args.path
-        if suite == "affected" and not changed_paths:
-            changed_paths = list(git_changed_paths())
-        selection = select_cases(
-            suite,
-            policy,
-            cases,
-            changed_paths=changed_paths,
-        )
+        if suite == "modules":
+            selection = select_cases(
+                suite,
+                policy,
+                cases,
+                modules=args.module,
+            )
+        else:
+            changed_paths = resolve_suite_paths(
+                suite=suite,
+                path_args=args.path,
+                path_file=args.path_file,
+            )
+            selection = select_cases(
+                suite,
+                policy,
+                cases,
+                changed_paths=changed_paths,
+            )
         selected = ordered_cases(selection, policy)
         if args.exclude_slow:
             selected = [

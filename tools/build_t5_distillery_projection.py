@@ -25,12 +25,12 @@ LEDGER = TOOLS / "t5_distillery_projection.json"
 T13_RECIPE_MAPS = TOOLS / "t13_denominators/recipe_maps.json"
 T5_FLUID_GATE = (
     ROOT
-    / "src/t5_chemical_generated/resources/data/cruciblecraft/"
-    "t5_chemical_fluid_gate.json"
+    / "src/chemical_recipe_generated/resources/data/cruciblecraft/"
+    "chemical_fluid_gate.json"
 )
 RECIPE_ROOT = (
     ROOT
-    / "src/t5_chemical_generated/resources/data/cruciblecraft/recipe/t5"
+    / "src/chemical_recipe_generated/resources/data/cruciblecraft/recipe/chemical"
 )
 DISTILLERY_ROOT = RECIPE_ROOT / "distillery"
 
@@ -110,7 +110,7 @@ def _base_recipe_documents(
         except ValueError:
             continue
         recipe_id = (
-            "cruciblecraft:t5/"
+            "cruciblecraft:chemical/"
             + relative.with_suffix("").as_posix()
         )
         result[recipe_id] = json.loads(content.decode("utf-8"))
@@ -436,7 +436,7 @@ def plan(
         if slug in used_slugs:
             slug = f"{slug}_source_{index}"
         used_slugs.add(slug)
-        recipe_id = f"cruciblecraft:t5/distillery/{slug}"
+        recipe_id = f"cruciblecraft:chemical/distillery/{slug}"
         projected["provenance"]["selected_source_recipe"] = (
             f"{source_path}#recipes[{index}]"
         )

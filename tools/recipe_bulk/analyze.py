@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections import Counter
 from typing import Any
 
+from tools import recycling_candidate
 from tools import t45_common as common
 
 
@@ -33,7 +34,10 @@ def analyze() -> dict[str, Any]:
             cluster = "ready_wave_residual"
         else:
             cluster = owner or "unclassified"
-        if kinds == ("block",) and blocker_row.get("recycling_candidate"):
+        if kinds == ("block",) and recycling_candidate.effective_recycling_candidate(
+            str(row.get("family_id") or ""),
+            blocker_row,
+        ):
             cluster = "block_tagged_recycling"
         clusters[cluster] += 1
         unresolved_hosts[host] += 1

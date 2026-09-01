@@ -10,7 +10,7 @@
 
 ## 1. 背景、目标与边界
 
-[T40 闭卡拖延回顾](../../../current/t40-closeout-delay-review.md) 确认 T40 Electrolyzer
+[T40 闭卡拖延回顾](../../work-logs/t40-closeout-delay-review.md) 确认 T40 Electrolyzer
 生产内容已闭合；拖延来自材料门闸 overlay、跨卡 hash/currentness、可变权威测试夹具、
 receipt/manifest 顺序和验证 profile 的结构缺口。
 
@@ -22,7 +22,7 @@ receipt/manifest 顺序和验证 profile 的结构缺口。
 
 - [ordinary recipe wave 流程与规范](../../../current/recipe-wave-workflow.md)；
 - [验证指南](../../../current/verification.md)；
-- [T40 闭卡拖延回顾](../../../current/t40-closeout-delay-review.md)；
+- [T40 闭卡拖延回顾](../../work-logs/t40-closeout-delay-review.md)；
 - `tools/t40_readiness.json`、`tools/t40_census_delta.json`、
   `tools/t40_card_topology.json`；
 - `tools/known_issues/verification-debt.json`。

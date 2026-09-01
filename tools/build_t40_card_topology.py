@@ -302,7 +302,13 @@ def write() -> dict[str, Any]:
 
 
 def check() -> list[str]:
-    errors = t40.check_document(OUTPUT, build())
+    from tools import closeout_seal
+
+    errors = closeout_seal.live_or_sealed_errors(
+        "T40",
+        "topology",
+        lambda: t40.check_document(OUTPUT, build()),
+    )
     if errors:
         return errors
     document = t35.load_json(OUTPUT)

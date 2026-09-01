@@ -13,56 +13,56 @@
       ],
       "producer_recipe_ids": {
         "cruciblecraft:glue": [
-          "cruciblecraft:t5/centrifuge/fluid_closure_glue_and_latex"
+          "cruciblecraft:chemical/centrifuge/fluid_closure_glue_and_latex"
         ],
         "cruciblecraft:hydrochloric_acid": [
-          "cruciblecraft:t5/mixer/fluid_closure_hydrochloric_acid"
+          "cruciblecraft:chemical/mixer/fluid_closure_hydrochloric_acid"
         ],
         "cruciblecraft:hydrogen_fluoride": [
-          "cruciblecraft:t5/mixer/fluid_closure_hydrogen_fluoride"
+          "cruciblecraft:chemical/mixer/fluid_closure_hydrogen_fluoride"
         ],
         "cruciblecraft:molten_aluminium": [
-          "cruciblecraft:t5/smelter/fluid_closure_molten_aluminium"
+          "cruciblecraft:chemical/smelter/fluid_closure_molten_aluminium"
         ],
         "cruciblecraft:molten_aluminium_fluoride": [
-          "cruciblecraft:t5/mixer/fluid_closure_molten_aluminium_fluoride"
+          "cruciblecraft:chemical/mixer/fluid_closure_molten_aluminium_fluoride"
         ],
         "cruciblecraft:molten_cryolite": [
-          "cruciblecraft:t5/smelter/fluid_closure_molten_cryolite"
+          "cruciblecraft:chemical/smelter/fluid_closure_molten_cryolite"
         ]
       },
       "water_distilled": {
         "classification": "recoverable_surplus_byproduct",
         "closure_consumption_amount": 750,
         "consumer_recipe_ids": [
-          "cruciblecraft:t5/mixer/fluid_closure_hydrochloric_acid"
+          "cruciblecraft:chemical/mixer/fluid_closure_hydrochloric_acid"
         ],
         "fake_voided": false,
         "recoverable_surplus_amount": 66340,
         "terminal_output_amount": 67090,
         "terminal_producer_recipe_ids": [
-          "cruciblecraft:t5/autoclave/amber",
-          "cruciblecraft:t5/autoclave/ambrosium",
-          "cruciblecraft:t5/autoclave/bauxite",
-          "cruciblecraft:t5/autoclave/carminite",
-          "cruciblecraft:t5/autoclave/continuum",
-          "cruciblecraft:t5/autoclave/craponite",
-          "cruciblecraft:t5/autoclave/dominican_amber",
-          "cruciblecraft:t5/autoclave/firestone",
-          "cruciblecraft:t5/autoclave/forcicium",
-          "cruciblecraft:t5/autoclave/forcillium",
-          "cruciblecraft:t5/autoclave/glowstone",
-          "cruciblecraft:t5/autoclave/golden_amber",
-          "cruciblecraft:t5/autoclave/hexorium_black",
-          "cruciblecraft:t5/autoclave/hexorium_blue",
-          "cruciblecraft:t5/autoclave/hexorium_green",
-          "cruciblecraft:t5/autoclave/hexorium_red",
-          "cruciblecraft:t5/autoclave/hexorium_white",
-          "cruciblecraft:t5/drying/aluminium_hydroxide",
-          "cruciblecraft:t5/drying/bischofite",
-          "cruciblecraft:t5/drying/gypsum",
-          "cruciblecraft:t5/drying/mirabilite",
-          "cruciblecraft:t5/drying/perlite"
+          "cruciblecraft:chemical/autoclave/amber",
+          "cruciblecraft:chemical/autoclave/ambrosium",
+          "cruciblecraft:chemical/autoclave/bauxite",
+          "cruciblecraft:chemical/autoclave/carminite",
+          "cruciblecraft:chemical/autoclave/continuum",
+          "cruciblecraft:chemical/autoclave/craponite",
+          "cruciblecraft:chemical/autoclave/dominican_amber",
+          "cruciblecraft:chemical/autoclave/firestone",
+          "cruciblecraft:chemical/autoclave/forcicium",
+          "cruciblecraft:chemical/autoclave/forcillium",
+          "cruciblecraft:chemical/autoclave/glowstone",
+          "cruciblecraft:chemical/autoclave/golden_amber",
+          "cruciblecraft:chemical/autoclave/hexorium_black",
+          "cruciblecraft:chemical/autoclave/hexorium_blue",
+          "cruciblecraft:chemical/autoclave/hexorium_green",
+          "cruciblecraft:chemical/autoclave/hexorium_red",
+          "cruciblecraft:chemical/autoclave/hexorium_white",
+          "cruciblecraft:chemical/drying/aluminium_hydroxide",
+          "cruciblecraft:chemical/drying/bischofite",
+          "cruciblecraft:chemical/drying/gypsum",
+          "cruciblecraft:chemical/drying/mirabilite",
+          "cruciblecraft:chemical/drying/perlite"
         ]
       }
     }
@@ -168,7 +168,7 @@
   ],
   "distillery_routes": [
     {
-      "id": "cruciblecraft:t5/distillery/water_to_water_distilled",
+      "id": "cruciblecraft:chemical/distillery/water_to_water_distilled",
       "recipe_index": 1138,
       "source_path": "gt6_dump/gt6_recipe_dump/maps/gt.recipe.distillery.json",
       "source_row_sha256": "fe700907900b141575b1ccdbdffc5df11e5fb4489d0ffafd900104777fd2f689"
@@ -179,7 +179,7 @@
       "closes": [
         "cruciblecraft:hydrochloric_acid"
       ],
-      "id": "cruciblecraft:t5/mixer/fluid_closure_hydrochloric_acid",
+      "id": "cruciblecraft:chemical/mixer/fluid_closure_hydrochloric_acid",
       "route": "mixer",
       "source": {
         "map": "gt.recipe.mixer",
@@ -233,7 +233,7 @@
       "closes": [
         "cruciblecraft:hydrogen_fluoride"
       ],
-      "id": "cruciblecraft:t5/mixer/fluid_closure_hydrogen_fluoride",
+      "id": "cruciblecraft:chemical/mixer/fluid_closure_hydrogen_fluoride",
       "route": "mixer",
       "source": {
         "map": "gt.recipe.mixer",
@@ -279,7 +279,7 @@
       "closes": [
         "cruciblecraft:glue"
       ],
-      "id": "cruciblecraft:t5/centrifuge/fluid_closure_glue_and_latex",
+      "id": "cruciblecraft:chemical/centrifuge/fluid_closure_glue_and_latex",
       "route": "centrifuge",
       "source": {
         "map": "gt.recipe.centrifuge",
@@ -323,7 +323,7 @@
       "closes": [
         "cruciblecraft:molten_aluminium"
       ],
-      "id": "cruciblecraft:t5/smelter/fluid_closure_molten_aluminium",
+      "id": "cruciblecraft:chemical/smelter/fluid_closure_molten_aluminium",
       "route": "smelter",
       "source": {
         "map": "gt.recipe.smelter",
@@ -360,7 +360,7 @@
       "closes": [
         "cruciblecraft:molten_cryolite"
       ],
-      "id": "cruciblecraft:t5/smelter/fluid_closure_molten_cryolite",
+      "id": "cruciblecraft:chemical/smelter/fluid_closure_molten_cryolite",
       "route": "smelter",
       "source": {
         "map": "gt.recipe.smelter",
@@ -397,7 +397,7 @@
       "closes": [
         "cruciblecraft:molten_aluminium_fluoride"
       ],
-      "id": "cruciblecraft:t5/mixer/fluid_closure_molten_aluminium_fluoride",
+      "id": "cruciblecraft:chemical/mixer/fluid_closure_molten_aluminium_fluoride",
       "route": "mixer",
       "source": {
         "map": "gt.recipe.mixer",
@@ -442,7 +442,7 @@
   ],
   "generated": [
     {
-      "id": "cruciblecraft:t5/electrolyzer/almandine",
+      "id": "cruciblecraft:chemical/electrolyzer/almandine",
       "material": "almandine",
       "route": "electrolyzer",
       "source": {
@@ -500,7 +500,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/drying/aluminium_hydroxide",
+      "id": "cruciblecraft:chemical/drying/aluminium_hydroxide",
       "material": "aluminium_hydroxide",
       "route": "drying",
       "source": {
@@ -544,7 +544,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/alunite",
+      "id": "cruciblecraft:chemical/electrolyzer/alunite",
       "material": "alunite",
       "route": "electrolyzer",
       "source": {
@@ -608,7 +608,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/autoclave/amber",
+      "id": "cruciblecraft:chemical/autoclave/amber",
       "material": "amber",
       "route": "autoclave",
       "source": {
@@ -658,7 +658,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/autoclave/ambrosium",
+      "id": "cruciblecraft:chemical/autoclave/ambrosium",
       "material": "ambrosium",
       "route": "autoclave",
       "source": {
@@ -708,7 +708,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/amethyst",
+      "id": "cruciblecraft:chemical/electrolyzer/amethyst",
       "material": "amethyst",
       "route": "electrolyzer",
       "source": {
@@ -750,7 +750,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/amethyst_ender",
+      "id": "cruciblecraft:chemical/electrolyzer/amethyst_ender",
       "material": "amethyst_ender",
       "route": "electrolyzer",
       "source": {
@@ -792,7 +792,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/andradite",
+      "id": "cruciblecraft:chemical/electrolyzer/andradite",
       "material": "andradite",
       "route": "electrolyzer",
       "source": {
@@ -850,7 +850,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/anthracite",
+      "id": "cruciblecraft:chemical/electrolyzer/anthracite",
       "material": "anthracite",
       "route": "electrolyzer",
       "source": {
@@ -885,7 +885,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/autoclave/bauxite",
+      "id": "cruciblecraft:chemical/autoclave/bauxite",
       "material": "bauxite",
       "route": "autoclave",
       "source": {
@@ -956,7 +956,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/biotite",
+      "id": "cruciblecraft:chemical/electrolyzer/biotite",
       "material": "biotite",
       "route": "electrolyzer",
       "source": {
@@ -1021,7 +1021,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/drying/bischofite",
+      "id": "cruciblecraft:chemical/drying/bischofite",
       "material": "bischofite",
       "route": "drying",
       "source": {
@@ -1065,7 +1065,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/blue_diamond",
+      "id": "cruciblecraft:chemical/mixer/blue_diamond",
       "material": "blue_diamond",
       "route": "mixer",
       "source": {
@@ -1107,7 +1107,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/blue_topaz",
+      "id": "cruciblecraft:chemical/electrolyzer/blue_topaz",
       "material": "blue_topaz",
       "route": "electrolyzer",
       "source": {
@@ -1163,7 +1163,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/borax",
+      "id": "cruciblecraft:chemical/mixer/borax",
       "material": "borax",
       "route": "mixer",
       "source": {
@@ -1208,7 +1208,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/brown_limonite",
+      "id": "cruciblecraft:chemical/mixer/brown_limonite",
       "material": "brown_limonite",
       "route": "mixer",
       "source": {
@@ -1257,7 +1257,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/smelter/carbon14",
+      "id": "cruciblecraft:chemical/smelter/carbon14",
       "material": "carbon14",
       "route": "smelter",
       "source": {
@@ -1293,7 +1293,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/autoclave/carminite",
+      "id": "cruciblecraft:chemical/autoclave/carminite",
       "material": "carminite",
       "route": "autoclave",
       "source": {
@@ -1343,7 +1343,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/certus_quartz",
+      "id": "cruciblecraft:chemical/mixer/certus_quartz",
       "material": "certus_quartz",
       "route": "mixer",
       "source": {
@@ -1385,7 +1385,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/charcoal",
+      "id": "cruciblecraft:chemical/electrolyzer/charcoal",
       "material": "charcoal",
       "route": "electrolyzer",
       "source": {
@@ -1420,7 +1420,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/charged_certus_quartz",
+      "id": "cruciblecraft:chemical/mixer/charged_certus_quartz",
       "material": "charged_certus_quartz",
       "route": "mixer",
       "source": {
@@ -1462,7 +1462,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/compressor/chimerite",
+      "id": "cruciblecraft:chemical/compressor/chimerite",
       "material": "chimerite",
       "route": "compressor",
       "source": {
@@ -1497,7 +1497,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/clay_brown",
+      "id": "cruciblecraft:chemical/electrolyzer/clay_brown",
       "material": "clay_brown",
       "route": "electrolyzer",
       "source": {
@@ -1539,7 +1539,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/clay_red",
+      "id": "cruciblecraft:chemical/electrolyzer/clay_red",
       "material": "clay_red",
       "route": "electrolyzer",
       "source": {
@@ -1581,7 +1581,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/coal",
+      "id": "cruciblecraft:chemical/electrolyzer/coal",
       "material": "coal",
       "route": "electrolyzer",
       "source": {
@@ -1616,7 +1616,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/centrifuge/coltan",
+      "id": "cruciblecraft:chemical/centrifuge/coltan",
       "material": "coltan",
       "route": "centrifuge",
       "source": {
@@ -1658,7 +1658,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/columbite",
+      "id": "cruciblecraft:chemical/electrolyzer/columbite",
       "material": "columbite",
       "route": "electrolyzer",
       "source": {
@@ -1700,7 +1700,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/autoclave/continuum",
+      "id": "cruciblecraft:chemical/autoclave/continuum",
       "material": "continuum",
       "route": "autoclave",
       "source": {
@@ -1750,7 +1750,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/autoclave/craponite",
+      "id": "cruciblecraft:chemical/autoclave/craponite",
       "material": "craponite",
       "route": "autoclave",
       "source": {
@@ -1800,7 +1800,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/diamond",
+      "id": "cruciblecraft:chemical/mixer/diamond",
       "material": "diamond",
       "route": "mixer",
       "source": {
@@ -1842,7 +1842,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/diamond_industrial",
+      "id": "cruciblecraft:chemical/mixer/diamond_industrial",
       "material": "diamond_industrial",
       "route": "mixer",
       "source": {
@@ -1884,7 +1884,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/centrifuge/diatomite",
+      "id": "cruciblecraft:chemical/centrifuge/diatomite",
       "material": "diatomite",
       "route": "centrifuge",
       "source": {
@@ -1933,7 +1933,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/diduranium_trioxide",
+      "id": "cruciblecraft:chemical/electrolyzer/diduranium_trioxide",
       "material": "diduranium_trioxide",
       "route": "electrolyzer",
       "source": {
@@ -1977,7 +1977,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/dioptase",
+      "id": "cruciblecraft:chemical/electrolyzer/dioptase",
       "material": "dioptase",
       "route": "electrolyzer",
       "source": {
@@ -2033,7 +2033,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/autoclave/dominican_amber",
+      "id": "cruciblecraft:chemical/autoclave/dominican_amber",
       "material": "dominican_amber",
       "route": "autoclave",
       "source": {
@@ -2083,7 +2083,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/smelter/duranium_elemental",
+      "id": "cruciblecraft:chemical/smelter/duranium_elemental",
       "material": "duranium_elemental",
       "route": "smelter",
       "source": {
@@ -2119,7 +2119,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/duranium_hexaastatide",
+      "id": "cruciblecraft:chemical/electrolyzer/duranium_hexaastatide",
       "material": "duranium_hexaastatide",
       "route": "electrolyzer",
       "source": {
@@ -2161,7 +2161,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/duranium_hexabromide",
+      "id": "cruciblecraft:chemical/electrolyzer/duranium_hexabromide",
       "material": "duranium_hexabromide",
       "route": "electrolyzer",
       "source": {
@@ -2205,7 +2205,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/duranium_hexachloride",
+      "id": "cruciblecraft:chemical/electrolyzer/duranium_hexachloride",
       "material": "duranium_hexachloride",
       "route": "electrolyzer",
       "source": {
@@ -2249,7 +2249,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/duranium_hexafluoride",
+      "id": "cruciblecraft:chemical/electrolyzer/duranium_hexafluoride",
       "material": "duranium_hexafluoride",
       "route": "electrolyzer",
       "source": {
@@ -2293,7 +2293,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/duranium_hexaiodide",
+      "id": "cruciblecraft:chemical/electrolyzer/duranium_hexaiodide",
       "material": "duranium_hexaiodide",
       "route": "electrolyzer",
       "source": {
@@ -2335,7 +2335,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/elven_dragonstone",
+      "id": "cruciblecraft:chemical/mixer/elven_dragonstone",
       "material": "elven_dragonstone",
       "route": "mixer",
       "source": {
@@ -2377,7 +2377,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/centrifuge/energium_cyan",
+      "id": "cruciblecraft:chemical/centrifuge/energium_cyan",
       "material": "energium_cyan",
       "route": "centrifuge",
       "source": {
@@ -2419,7 +2419,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/bath/ferberite",
+      "id": "cruciblecraft:chemical/bath/ferberite",
       "material": "ferberite",
       "route": "bath",
       "source": {
@@ -2477,7 +2477,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/autoclave/firestone",
+      "id": "cruciblecraft:chemical/autoclave/firestone",
       "material": "firestone",
       "route": "autoclave",
       "source": {
@@ -2527,7 +2527,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/fluix",
+      "id": "cruciblecraft:chemical/mixer/fluix",
       "material": "fluix",
       "route": "mixer",
       "source": {
@@ -2569,7 +2569,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/autoclave/forcicium",
+      "id": "cruciblecraft:chemical/autoclave/forcicium",
       "material": "forcicium",
       "route": "autoclave",
       "source": {
@@ -2619,7 +2619,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/autoclave/forcillium",
+      "id": "cruciblecraft:chemical/autoclave/forcillium",
       "material": "forcillium",
       "route": "autoclave",
       "source": {
@@ -2669,7 +2669,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/centrifuge/garnet_sand",
+      "id": "cruciblecraft:chemical/centrifuge/garnet_sand",
       "material": "garnet_sand",
       "route": "centrifuge",
       "source": {
@@ -2739,7 +2739,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/glass",
+      "id": "cruciblecraft:chemical/mixer/glass",
       "material": "glass",
       "route": "mixer",
       "source": {
@@ -2788,7 +2788,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/glauconite",
+      "id": "cruciblecraft:chemical/electrolyzer/glauconite",
       "material": "glauconite",
       "route": "electrolyzer",
       "source": {
@@ -2851,7 +2851,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/centrifuge/gloomstone",
+      "id": "cruciblecraft:chemical/centrifuge/gloomstone",
       "material": "gloomstone",
       "route": "centrifuge",
       "source": {
@@ -2909,7 +2909,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/autoclave/glowstone",
+      "id": "cruciblecraft:chemical/autoclave/glowstone",
       "material": "glowstone",
       "route": "autoclave",
       "source": {
@@ -2959,7 +2959,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/autoclave/golden_amber",
+      "id": "cruciblecraft:chemical/autoclave/golden_amber",
       "material": "golden_amber",
       "route": "autoclave",
       "source": {
@@ -3009,7 +3009,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/graphite",
+      "id": "cruciblecraft:chemical/electrolyzer/graphite",
       "material": "graphite",
       "route": "electrolyzer",
       "source": {
@@ -3085,7 +3085,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/gravitite",
+      "id": "cruciblecraft:chemical/mixer/gravitite",
       "material": "gravitite",
       "route": "mixer",
       "source": {
@@ -3127,7 +3127,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/green_diamond",
+      "id": "cruciblecraft:chemical/mixer/green_diamond",
       "material": "green_diamond",
       "route": "mixer",
       "source": {
@@ -3169,7 +3169,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/grossular",
+      "id": "cruciblecraft:chemical/electrolyzer/grossular",
       "material": "grossular",
       "route": "electrolyzer",
       "source": {
@@ -3227,7 +3227,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/drying/gypsum",
+      "id": "cruciblecraft:chemical/drying/gypsum",
       "material": "gypsum",
       "route": "drying",
       "source": {
@@ -3271,7 +3271,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/hematite",
+      "id": "cruciblecraft:chemical/mixer/hematite",
       "material": "hematite",
       "route": "mixer",
       "source": {
@@ -3320,7 +3320,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/autoclave/hexorium_black",
+      "id": "cruciblecraft:chemical/autoclave/hexorium_black",
       "material": "hexorium_black",
       "route": "autoclave",
       "source": {
@@ -3370,7 +3370,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/autoclave/hexorium_blue",
+      "id": "cruciblecraft:chemical/autoclave/hexorium_blue",
       "material": "hexorium_blue",
       "route": "autoclave",
       "source": {
@@ -3420,7 +3420,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/autoclave/hexorium_green",
+      "id": "cruciblecraft:chemical/autoclave/hexorium_green",
       "material": "hexorium_green",
       "route": "autoclave",
       "source": {
@@ -3470,7 +3470,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/autoclave/hexorium_red",
+      "id": "cruciblecraft:chemical/autoclave/hexorium_red",
       "material": "hexorium_red",
       "route": "autoclave",
       "source": {
@@ -3520,7 +3520,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/autoclave/hexorium_white",
+      "id": "cruciblecraft:chemical/autoclave/hexorium_white",
       "material": "hexorium_white",
       "route": "autoclave",
       "source": {
@@ -3570,7 +3570,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/bath/huebnerite",
+      "id": "cruciblecraft:chemical/bath/huebnerite",
       "material": "huebnerite",
       "route": "bath",
       "source": {
@@ -3628,7 +3628,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/smelter/ilmenite",
+      "id": "cruciblecraft:chemical/smelter/ilmenite",
       "material": "ilmenite",
       "route": "smelter",
       "source": {
@@ -3664,7 +3664,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/iodine",
+      "id": "cruciblecraft:chemical/mixer/iodine",
       "material": "iodine",
       "route": "mixer",
       "source": {
@@ -3706,7 +3706,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/iodine_salt",
+      "id": "cruciblecraft:chemical/electrolyzer/iodine_salt",
       "material": "iodine_salt",
       "route": "electrolyzer",
       "source": {
@@ -3757,7 +3757,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/kyanite",
+      "id": "cruciblecraft:chemical/electrolyzer/kyanite",
       "material": "kyanite",
       "route": "electrolyzer",
       "source": {
@@ -3799,7 +3799,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/centrifuge/lapis",
+      "id": "cruciblecraft:chemical/centrifuge/lapis",
       "material": "lapis",
       "route": "centrifuge",
       "source": {
@@ -3855,7 +3855,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/lazurite",
+      "id": "cruciblecraft:chemical/electrolyzer/lazurite",
       "material": "lazurite",
       "route": "electrolyzer",
       "source": {
@@ -3911,7 +3911,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/lepidolite",
+      "id": "cruciblecraft:chemical/electrolyzer/lepidolite",
       "material": "lepidolite",
       "route": "electrolyzer",
       "source": {
@@ -3977,7 +3977,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/magnetite",
+      "id": "cruciblecraft:chemical/mixer/magnetite",
       "material": "magnetite",
       "route": "mixer",
       "source": {
@@ -4026,7 +4026,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/mana_diamond",
+      "id": "cruciblecraft:chemical/mixer/mana_diamond",
       "material": "mana_diamond",
       "route": "mixer",
       "source": {
@@ -4068,7 +4068,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/mica",
+      "id": "cruciblecraft:chemical/electrolyzer/mica",
       "material": "mica",
       "route": "electrolyzer",
       "source": {
@@ -4126,7 +4126,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/milky_quartz",
+      "id": "cruciblecraft:chemical/mixer/milky_quartz",
       "material": "milky_quartz",
       "route": "mixer",
       "source": {
@@ -4168,7 +4168,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/drying/mirabilite",
+      "id": "cruciblecraft:chemical/drying/mirabilite",
       "material": "mirabilite",
       "route": "drying",
       "source": {
@@ -4212,7 +4212,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/monazite",
+      "id": "cruciblecraft:chemical/electrolyzer/monazite",
       "material": "monazite",
       "route": "electrolyzer",
       "source": {
@@ -4254,7 +4254,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/nether_quartz",
+      "id": "cruciblecraft:chemical/mixer/nether_quartz",
       "material": "nether_quartz",
       "route": "mixer",
       "source": {
@@ -4296,7 +4296,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/nikolite",
+      "id": "cruciblecraft:chemical/mixer/nikolite",
       "material": "nikolite",
       "route": "mixer",
       "source": {
@@ -4338,7 +4338,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/bath/niobium_pentoxide",
+      "id": "cruciblecraft:chemical/bath/niobium_pentoxide",
       "material": "niobium_pentoxide",
       "route": "bath",
       "source": {
@@ -4391,7 +4391,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/centrifuge/niter",
+      "id": "cruciblecraft:chemical/centrifuge/niter",
       "material": "niter",
       "route": "centrifuge",
       "source": {
@@ -4433,7 +4433,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/centrifuge/oil_shale",
+      "id": "cruciblecraft:chemical/centrifuge/oil_shale",
       "material": "oil_shale",
       "route": "centrifuge",
       "source": {
@@ -4482,7 +4482,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/opal",
+      "id": "cruciblecraft:chemical/electrolyzer/opal",
       "material": "opal",
       "route": "electrolyzer",
       "source": {
@@ -4517,7 +4517,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/peridot",
+      "id": "cruciblecraft:chemical/electrolyzer/peridot",
       "material": "peridot",
       "route": "electrolyzer",
       "source": {
@@ -4566,7 +4566,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/drying/perlite",
+      "id": "cruciblecraft:chemical/drying/perlite",
       "material": "perlite",
       "route": "drying",
       "source": {
@@ -4610,7 +4610,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/phosphate",
+      "id": "cruciblecraft:chemical/electrolyzer/phosphate",
       "material": "phosphate",
       "route": "electrolyzer",
       "source": {
@@ -4654,7 +4654,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/assembler/phosphor",
+      "id": "cruciblecraft:chemical/assembler/phosphor",
       "material": "phosphor",
       "route": "assembler",
       "source": {
@@ -4697,7 +4697,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/phosphorite",
+      "id": "cruciblecraft:chemical/electrolyzer/phosphorite",
       "material": "phosphorite",
       "route": "electrolyzer",
       "source": {
@@ -4748,7 +4748,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/centrifuge/phosphorus",
+      "id": "cruciblecraft:chemical/centrifuge/phosphorus",
       "material": "phosphorus",
       "route": "centrifuge",
       "source": {
@@ -4790,7 +4790,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/pink_diamond",
+      "id": "cruciblecraft:chemical/mixer/pink_diamond",
       "material": "pink_diamond",
       "route": "mixer",
       "source": {
@@ -4832,7 +4832,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/centrifuge/pitchblende",
+      "id": "cruciblecraft:chemical/centrifuge/pitchblende",
       "material": "pitchblende",
       "route": "centrifuge",
       "source": {
@@ -4881,7 +4881,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/centrifuge/platinum_group_sludge",
+      "id": "cruciblecraft:chemical/centrifuge/platinum_group_sludge",
       "material": "platinum_group_sludge",
       "route": "centrifuge",
       "source": {
@@ -4951,7 +4951,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/pollucite",
+      "id": "cruciblecraft:chemical/electrolyzer/pollucite",
       "material": "pollucite",
       "route": "electrolyzer",
       "source": {
@@ -5014,7 +5014,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/potassium_feldspar",
+      "id": "cruciblecraft:chemical/electrolyzer/potassium_feldspar",
       "material": "potassium_feldspar",
       "route": "electrolyzer",
       "source": {
@@ -5072,7 +5072,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/potassium_nitrate",
+      "id": "cruciblecraft:chemical/electrolyzer/potassium_nitrate",
       "material": "potassium_nitrate",
       "route": "electrolyzer",
       "source": {
@@ -5124,7 +5124,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/purple_diamond",
+      "id": "cruciblecraft:chemical/mixer/purple_diamond",
       "material": "purple_diamond",
       "route": "mixer",
       "source": {
@@ -5166,7 +5166,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/compressor/pyrite",
+      "id": "cruciblecraft:chemical/compressor/pyrite",
       "material": "pyrite",
       "route": "compressor",
       "source": {
@@ -5201,7 +5201,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/pyrope",
+      "id": "cruciblecraft:chemical/electrolyzer/pyrope",
       "material": "pyrope",
       "route": "electrolyzer",
       "source": {
@@ -5259,7 +5259,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/centrifuge/quartz_sand",
+      "id": "cruciblecraft:chemical/centrifuge/quartz_sand",
       "material": "quartz_sand",
       "route": "centrifuge",
       "source": {
@@ -5301,7 +5301,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/quartzite",
+      "id": "cruciblecraft:chemical/mixer/quartzite",
       "material": "quartzite",
       "route": "mixer",
       "source": {
@@ -5343,7 +5343,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/centrifuge/rare_earth",
+      "id": "cruciblecraft:chemical/centrifuge/rare_earth",
       "material": "rare_earth",
       "route": "centrifuge",
       "source": {
@@ -5413,7 +5413,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/red_diamond",
+      "id": "cruciblecraft:chemical/mixer/red_diamond",
       "material": "red_diamond",
       "route": "mixer",
       "source": {
@@ -5455,7 +5455,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/redstone",
+      "id": "cruciblecraft:chemical/mixer/redstone",
       "material": "redstone",
       "route": "mixer",
       "source": {
@@ -5497,7 +5497,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/salt",
+      "id": "cruciblecraft:chemical/electrolyzer/salt",
       "material": "salt",
       "route": "electrolyzer",
       "source": {
@@ -5563,7 +5563,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/bath/scheelite",
+      "id": "cruciblecraft:chemical/bath/scheelite",
       "material": "scheelite",
       "route": "bath",
       "source": {
@@ -5621,7 +5621,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/silicon_dioxide",
+      "id": "cruciblecraft:chemical/mixer/silicon_dioxide",
       "material": "silicon_dioxide",
       "route": "mixer",
       "source": {
@@ -5670,7 +5670,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/sodalite",
+      "id": "cruciblecraft:chemical/electrolyzer/sodalite",
       "material": "sodalite",
       "route": "electrolyzer",
       "source": {
@@ -5728,7 +5728,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/sodium_nitrate",
+      "id": "cruciblecraft:chemical/electrolyzer/sodium_nitrate",
       "material": "sodium_nitrate",
       "route": "electrolyzer",
       "source": {
@@ -5780,7 +5780,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/soulsand",
+      "id": "cruciblecraft:chemical/mixer/soulsand",
       "material": "soulsand",
       "route": "mixer",
       "source": {
@@ -5828,7 +5828,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/spessartine",
+      "id": "cruciblecraft:chemical/electrolyzer/spessartine",
       "material": "spessartine",
       "route": "electrolyzer",
       "source": {
@@ -5886,7 +5886,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/spinel",
+      "id": "cruciblecraft:chemical/electrolyzer/spinel",
       "material": "spinel",
       "route": "electrolyzer",
       "source": {
@@ -5937,7 +5937,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/spodumene",
+      "id": "cruciblecraft:chemical/electrolyzer/spodumene",
       "material": "spodumene",
       "route": "electrolyzer",
       "source": {
@@ -5995,7 +5995,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/sugilite",
+      "id": "cruciblecraft:chemical/electrolyzer/sugilite",
       "material": "sugilite",
       "route": "electrolyzer",
       "source": {
@@ -6067,7 +6067,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/sulfur",
+      "id": "cruciblecraft:chemical/mixer/sulfur",
       "material": "sulfur",
       "route": "mixer",
       "source": {
@@ -6109,7 +6109,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/compressor/sunstone",
+      "id": "cruciblecraft:chemical/compressor/sunstone",
       "material": "sunstone",
       "route": "compressor",
       "source": {
@@ -6144,7 +6144,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/sylvite",
+      "id": "cruciblecraft:chemical/electrolyzer/sylvite",
       "material": "sylvite",
       "route": "electrolyzer",
       "source": {
@@ -6210,7 +6210,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/talc",
+      "id": "cruciblecraft:chemical/electrolyzer/talc",
       "material": "talc",
       "route": "electrolyzer",
       "source": {
@@ -6266,7 +6266,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/tantalite",
+      "id": "cruciblecraft:chemical/electrolyzer/tantalite",
       "material": "tantalite",
       "route": "electrolyzer",
       "source": {
@@ -6308,7 +6308,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/tantalum_pentoxide",
+      "id": "cruciblecraft:chemical/mixer/tantalum_pentoxide",
       "material": "tantalum_pentoxide",
       "route": "mixer",
       "source": {
@@ -6365,7 +6365,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/tanzanite",
+      "id": "cruciblecraft:chemical/electrolyzer/tanzanite",
       "material": "tanzanite",
       "route": "electrolyzer",
       "source": {
@@ -6428,7 +6428,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/topaz",
+      "id": "cruciblecraft:chemical/electrolyzer/topaz",
       "material": "topaz",
       "route": "electrolyzer",
       "source": {
@@ -6484,7 +6484,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/tritanium_dioxide",
+      "id": "cruciblecraft:chemical/electrolyzer/tritanium_dioxide",
       "material": "tritanium_dioxide",
       "route": "electrolyzer",
       "source": {
@@ -6528,7 +6528,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/smelter/tritanium_elemental",
+      "id": "cruciblecraft:chemical/smelter/tritanium_elemental",
       "material": "tritanium_elemental",
       "route": "smelter",
       "source": {
@@ -6564,7 +6564,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/tritanium_hexaastatide",
+      "id": "cruciblecraft:chemical/electrolyzer/tritanium_hexaastatide",
       "material": "tritanium_hexaastatide",
       "route": "electrolyzer",
       "source": {
@@ -6606,7 +6606,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/tritanium_hexabromide",
+      "id": "cruciblecraft:chemical/electrolyzer/tritanium_hexabromide",
       "material": "tritanium_hexabromide",
       "route": "electrolyzer",
       "source": {
@@ -6650,7 +6650,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/tritanium_hexachloride",
+      "id": "cruciblecraft:chemical/electrolyzer/tritanium_hexachloride",
       "material": "tritanium_hexachloride",
       "route": "electrolyzer",
       "source": {
@@ -6694,7 +6694,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/tritanium_hexafluoride",
+      "id": "cruciblecraft:chemical/electrolyzer/tritanium_hexafluoride",
       "material": "tritanium_hexafluoride",
       "route": "electrolyzer",
       "source": {
@@ -6738,7 +6738,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/tritanium_hexaiodide",
+      "id": "cruciblecraft:chemical/electrolyzer/tritanium_hexaiodide",
       "material": "tritanium_hexaiodide",
       "route": "electrolyzer",
       "source": {
@@ -6780,7 +6780,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/trona",
+      "id": "cruciblecraft:chemical/electrolyzer/trona",
       "material": "trona",
       "route": "electrolyzer",
       "source": {
@@ -6821,7 +6821,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/bath/tungstate",
+      "id": "cruciblecraft:chemical/bath/tungstate",
       "material": "tungstate",
       "route": "bath",
       "source": {
@@ -6872,7 +6872,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/uvarovite",
+      "id": "cruciblecraft:chemical/electrolyzer/uvarovite",
       "material": "uvarovite",
       "route": "electrolyzer",
       "source": {
@@ -6930,7 +6930,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/smelter/vanadium_magnetite",
+      "id": "cruciblecraft:chemical/smelter/vanadium_magnetite",
       "material": "vanadium_magnetite",
       "route": "smelter",
       "source": {
@@ -6966,7 +6966,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/vanadium_pentoxide",
+      "id": "cruciblecraft:chemical/electrolyzer/vanadium_pentoxide",
       "material": "vanadium_pentoxide",
       "route": "electrolyzer",
       "source": {
@@ -7010,7 +7010,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/vermiculite",
+      "id": "cruciblecraft:chemical/electrolyzer/vermiculite",
       "material": "vermiculite",
       "route": "electrolyzer",
       "source": {
@@ -7073,7 +7073,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/compressor/vibranium",
+      "id": "cruciblecraft:chemical/compressor/vibranium",
       "material": "vibranium",
       "route": "compressor",
       "source": {
@@ -7108,7 +7108,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/compressor/vinteum",
+      "id": "cruciblecraft:chemical/compressor/vinteum",
       "material": "vinteum",
       "route": "compressor",
       "source": {
@@ -7143,7 +7143,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/void_quartz",
+      "id": "cruciblecraft:chemical/mixer/void_quartz",
       "material": "void_quartz",
       "route": "mixer",
       "source": {
@@ -7185,7 +7185,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/bath/wolframite",
+      "id": "cruciblecraft:chemical/bath/wolframite",
       "material": "wolframite",
       "route": "bath",
       "source": {
@@ -7243,7 +7243,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/wollastonite",
+      "id": "cruciblecraft:chemical/electrolyzer/wollastonite",
       "material": "wollastonite",
       "route": "electrolyzer",
       "source": {
@@ -7294,7 +7294,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/yellow_diamond",
+      "id": "cruciblecraft:chemical/mixer/yellow_diamond",
       "material": "yellow_diamond",
       "route": "mixer",
       "source": {
@@ -7336,7 +7336,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/mixer/yellow_limonite",
+      "id": "cruciblecraft:chemical/mixer/yellow_limonite",
       "material": "yellow_limonite",
       "route": "mixer",
       "source": {
@@ -7385,7 +7385,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/zanite",
+      "id": "cruciblecraft:chemical/electrolyzer/zanite",
       "material": "zanite",
       "route": "electrolyzer",
       "source": {
@@ -7448,7 +7448,7 @@
       }
     },
     {
-      "id": "cruciblecraft:t5/electrolyzer/zeolite",
+      "id": "cruciblecraft:chemical/electrolyzer/zeolite",
       "material": "zeolite",
       "route": "electrolyzer",
       "source": {

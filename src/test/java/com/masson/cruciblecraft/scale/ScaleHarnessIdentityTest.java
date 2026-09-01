@@ -166,13 +166,13 @@ class ScaleHarnessIdentityTest {
         String gametest = Files.readString(Path.of(
                 "src/main/java/com/masson/cruciblecraft/gametest/"
                         + "CrucibleCraftGameTests.java"));
-        assertFalse(gametest.contains("t31ScaleMeasurement"));
+        assertFalse(gametest.contains("scaleMeasurement"));
         String holder = Files.readString(Path.of(
                 "src/main/java/com/masson/cruciblecraft/scale/"
-                        + "T31ScaleGameTests.java"));
+                        + "ScaleGameTests.java"));
         assertTrue(holder.contains("@GameTestHolder"));
         assertTrue(holder.contains("cruciblecraft_scale"));
-        assertTrue(holder.contains("t31ScaleMeasurement"));
+        assertTrue(holder.contains("scaleMeasurement"));
         assertFalse(holder.contains("@GameTestHolder(CrucibleCraft.MODID)"));
     }
 }

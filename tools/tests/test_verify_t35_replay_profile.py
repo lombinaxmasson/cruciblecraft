@@ -54,16 +54,32 @@ class T35ReplayProfileTest(unittest.TestCase):
             recipe_commands[0][-1:],
         )
         self.assertNotIn("--full-replay", recipe_commands[0])
+        python_commands = [
+            (name, command)
+            for name, command in commands
+            if name.startswith("python:")
+        ]
+        self.assertEqual(1, len(python_commands))
+        self.assertEqual("python:census", python_commands[0][0])
+        python_argv = python_commands[0][1]
+        self.assertEqual(
+            "modules",
+            python_argv[python_argv.index("--suite") + 1],
+        )
+        self.assertNotIn("affected", python_argv)
+        self.assertIn("--module", python_argv)
 
     def test_census_replay_runs_t36_overlay_builders(self) -> None:
         commands, output = self.integration_commands("census-replay")
         by_name = {name: command for name, command in commands}
         self.assertIn("builder:build_t36_census_delta", by_name)
         self.assertIn("builder:build_t36_readiness", by_name)
-        self.assertIn("builder:build_t37_recipe_load_benchmark", by_name)
         self.assertIn("builder:build_t37_census_delta", by_name)
         self.assertIn("builder:build_t37_card_topology", by_name)
         self.assertIn("builder:build_t37_readiness", by_name)
+        self.assertIn("builder:build_t47_recipe_load_benchmark", by_name)
+        self.assertNotIn("builder:build_t37_recipe_load_benchmark", by_name)
+        self.assertNotIn("builder:build_t46_recipe_load_benchmark", by_name)
         self.assertEqual(
             ["--check"],
             by_name["builder:build_t36_census_delta"][-1:],
@@ -89,6 +105,62 @@ class T35ReplayProfileTest(unittest.TestCase):
         self.assertIn("integration wall-time summary:", output)
         self.assertIn("builder:build_t36_census_delta: 0.125s", output)
         self.assertIn("builder:build_t36_readiness: 0.125s", output)
+        python_commands = [
+            (name, command)
+            for name, command in commands
+            if name.startswith("python:")
+        ]
+        self.assertEqual(1, len(python_commands))
+        self.assertEqual("python:census-replay", python_commands[0][0])
+        python_argv = python_commands[0][1]
+        self.assertEqual(
+            "modules",
+            python_argv[python_argv.index("--suite") + 1],
+        )
+        self.assertNotIn("affected", python_argv)
+        self.assertIn("test_build_t36_census_delta", python_argv)
+        self.assertNotIn("test_build_t46_recipe_load_benchmark", python_argv)
+
+    def test_census_replay_full_replay_restores_historical_load(self) -> None:
+        commands: list[tuple[str, list[str]]] = []
+
+        def record(
+            name: str,
+            command: list[str],
+            *,
+            timings: list[tuple[str, float]] | None = None,
+        ) -> int:
+            commands.append((name, command))
+            if timings is not None:
+                timings.append((name, 0.125))
+            return 0
+
+        output = io.StringIO()
+        with (
+            mock.patch.object(verify_entry, "run_command", side_effect=record),
+            redirect_stdout(output),
+        ):
+            self.assertEqual(
+                0,
+                verify_entry.main(
+                    ["integration", "--profile", "census-replay", "--full-replay"]
+                ),
+            )
+        by_name = {name: command for name, command in commands}
+        self.assertIn("builder:build_t37_recipe_load_benchmark", by_name)
+        self.assertIn("builder:build_t46_recipe_load_benchmark", by_name)
+        self.assertIn("builder:build_t47_recipe_load_benchmark", by_name)
+        python_commands = [
+            command
+            for name, command in commands
+            if name == "python:census-replay"
+        ]
+        self.assertEqual(1, len(python_commands))
+        self.assertEqual(
+            "modules",
+            python_commands[0][python_commands[0].index("--suite") + 1],
+        )
+        self.assertIn("test_build_t46_recipe_load_benchmark", python_commands[0])
 
     def test_command_prints_deterministic_wall_time(self) -> None:
         output = io.StringIO()

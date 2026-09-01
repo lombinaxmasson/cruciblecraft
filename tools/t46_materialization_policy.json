@@ -1,0 +1,262 @@
+{
+  "candidate_contract": {
+    "candidates": [
+      "immediate",
+      "on_demand",
+      "hybrid"
+    ],
+    "ranking_order": [
+      "eager_margin",
+      "retained_memory",
+      "reload_index",
+      "lookup",
+      "sync",
+      "implementation_complexity"
+    ]
+  },
+  "hard_ceilings": {
+    "allocation_bytes": 536870912,
+    "client_index_ms": 3000,
+    "client_reload_ms": 10000,
+    "datapack_authored_entries": 6600,
+    "eager_publication_rows": 21000,
+    "lazy_cache_ceiling_rows": 4096,
+    "lazy_logical_rows": 56000,
+    "lookup_candidate_count": 128,
+    "lookup_p95_ns": 2000000,
+    "retained_memory_bytes": 536870912,
+    "server_index_ms": 1000,
+    "server_reload_ms": 10000,
+    "sync_bytes": 67108864
+  },
+  "hard_limits_1x": {
+    "allocation_bytes": 536870912,
+    "client_index_ms": 3000,
+    "client_reload_ms": 10000,
+    "datapack_authored_entries": 6600,
+    "eager_publication_rows": 21000,
+    "lazy_cache_ceiling_rows": 4096,
+    "lazy_logical_rows": 56000,
+    "lookup_candidate_count": 128,
+    "lookup_p95_ns": 2000000,
+    "retained_memory_bytes": 536870912,
+    "server_index_ms": 1000,
+    "server_reload_ms": 10000,
+    "sync_bytes": 67108864
+  },
+  "publication_group_contract": {
+    "bath_mte": {
+      "cache_policies": {
+        "hybrid": "eager selector frozen below; bounded cache ceiling 24",
+        "immediate": "fully eager; lookup cache disabled; cache ceiling 0",
+        "on_demand": "all lazy; bounded cache ceiling 24"
+      },
+      "candidates": [
+        "immediate",
+        "on_demand",
+        "hybrid"
+      ],
+      "family_count": 803,
+      "hybrid_boundary": {
+        "cache_ceiling": 24,
+        "declared_before_measurement": true,
+        "declared_eager_count": 0,
+        "declared_lazy_count": 1517,
+        "eager_selector": {
+          "duration_ticks_lte": 0
+        },
+        "eager_stable_ids": [],
+        "forbidden_extruder_hot_modulo": 5,
+        "hot_modulo": null,
+        "justification": "T46 Bath MTE group has 1517 relations across 803 families with duration histogram {'16': 1440, '72': 10, '144': 10, '216': 1, '288': 2, '360': 1, '432': 9, '504': 1, '576': 2, '648': 1, '720': 1, '792': 1, '864': 10, '936': 1, '1008': 1, '1080': 1, '1152': 1, '1296': 8, '1728': 16}; median duration 16. duration_ticks_lte 0 freezes hybrid as zero-eager (0 eager / 1517 lazy). Cache ceiling 24 is T46's declared-before-measure bound, not T37 8, T38 16, T39 19, T40 11, or T41 16."
+      },
+      "logical_rows": 1517,
+      "partitions": {
+        "hybrid": [
+          0,
+          1517,
+          24
+        ],
+        "immediate": [
+          1517,
+          0,
+          0
+        ],
+        "on_demand": [
+          0,
+          1517,
+          24
+        ]
+      },
+      "publication_group": "cruciblecraft:t46_bath_mte"
+    },
+    "card_aggregate": {
+      "cache_policies": {
+        "hybrid": "eager selector frozen below; bounded cache ceiling 24",
+        "immediate": "fully eager; lookup cache disabled; cache ceiling 0",
+        "on_demand": "all lazy; bounded cache ceiling 24"
+      },
+      "candidates": [
+        "immediate",
+        "on_demand",
+        "hybrid"
+      ],
+      "family_count": 803,
+      "hybrid_boundary": {
+        "cache_ceiling": 24,
+        "declared_before_measurement": true,
+        "declared_eager_count": 0,
+        "declared_lazy_count": 1517,
+        "eager_selector": {
+          "duration_ticks_lte": 0
+        },
+        "eager_stable_ids": [],
+        "forbidden_extruder_hot_modulo": 5,
+        "hot_modulo": null,
+        "justification": "T46 Bath MTE group has 1517 relations across 803 families with duration histogram {'16': 1440, '72': 10, '144': 10, '216': 1, '288': 2, '360': 1, '432': 9, '504': 1, '576': 2, '648': 1, '720': 1, '792': 1, '864': 10, '936': 1, '1008': 1, '1080': 1, '1152': 1, '1296': 8, '1728': 16}; median duration 16. duration_ticks_lte 0 freezes hybrid as zero-eager (0 eager / 1517 lazy). Cache ceiling 24 is T46's declared-before-measure bound, not T37 8, T38 16, T39 19, T40 11, or T41 16."
+      },
+      "logical_rows": 1517,
+      "partitions": {
+        "hybrid": [
+          0,
+          1517,
+          24
+        ],
+        "immediate": [
+          1517,
+          0,
+          0
+        ],
+        "on_demand": [
+          0,
+          1517,
+          24
+        ]
+      },
+      "publication_group": "cruciblecraft:t46_bath_mte"
+    }
+  },
+  "schema_version": 1,
+  "scope": {
+    "does_not_modify": [
+      "T37 14/36/8",
+      "T38 0/73/16",
+      "T39 19/13",
+      "T40 cache 11",
+      "T41 cache 16"
+    ],
+    "family_count": 803,
+    "production_lock_sha256": "454a49b25ff329dbb053b9195841fe9bb51dcbc311fd293f990b354218a762f4",
+    "production_logical_rows": 1517
+  },
+  "soft_budgets_1x": {
+    "allocation_bytes": 134217728,
+    "client_index_ms": 1000,
+    "client_reload_ms": 5000,
+    "datapack_authored_entries": 6000,
+    "eager_publication_rows": 18000,
+    "lazy_cache_ceiling_rows": 1024,
+    "lazy_logical_rows": 16000,
+    "lookup_candidate_count": 64,
+    "lookup_p95_ns": 1000000,
+    "retained_memory_bytes": 134217728,
+    "server_index_ms": 500,
+    "server_reload_ms": 5000,
+    "sync_bytes": 16777216
+  },
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "T46_MATERIALIZATION_CANDIDATE_POLICY",
+  "t46_opening": {
+    "allocation_bytes": {
+      "closing": 13831160,
+      "hard_ceiling": 536870912,
+      "measured": true,
+      "pending": false
+    },
+    "client_index_ms": {
+      "closing": 7,
+      "hard_ceiling": 3000,
+      "measured": true,
+      "pending": false
+    },
+    "client_reload_ms": {
+      "closing": 40,
+      "hard_ceiling": 10000,
+      "measured": true,
+      "pending": false
+    },
+    "datapack_authored_entries": {
+      "closing": 4865,
+      "hard_ceiling": 6600,
+      "measured": true,
+      "pending": false
+    },
+    "eager_publication_rows": {
+      "closing": 16659,
+      "hard_ceiling": 21000,
+      "measured": true,
+      "pending": false
+    },
+    "lazy_cache_ceiling_rows": {
+      "closing": 174,
+      "hard_ceiling": 4096,
+      "measured": true,
+      "pending": false
+    },
+    "lazy_logical_rows": {
+      "closing": 3466,
+      "hard_ceiling": 56000,
+      "measured": true,
+      "pending": false
+    },
+    "lookup_candidate_count": {
+      "closing": 73,
+      "hard_ceiling": 128,
+      "measured": true,
+      "pending": false
+    },
+    "lookup_p95_ns": {
+      "closing": 685725,
+      "hard_ceiling": 2000000,
+      "measured": true,
+      "pending": false
+    },
+    "pending_runtime_axes_zero_fill": false,
+    "retained_memory_bytes": {
+      "closing": 125233,
+      "hard_ceiling": 536870912,
+      "measured": true,
+      "pending": false
+    },
+    "server_index_ms": {
+      "closing": 7,
+      "hard_ceiling": 1000,
+      "measured": true,
+      "pending": false
+    },
+    "server_reload_ms": {
+      "closing": 33,
+      "hard_ceiling": 10000,
+      "measured": true,
+      "pending": false
+    },
+    "source": "tools/t45_census_delta.json#t14_load.closing",
+    "sync_bytes": {
+      "closing": 125233,
+      "hard_ceiling": 67108864,
+      "measured": true,
+      "pending": false
+    }
+  },
+  "winner_algorithm": {
+    "card_aggregate_required": true,
+    "composite_score_forbidden": true,
+    "gate_order": [],
+    "implementation_complexity_order": [
+      "immediate",
+      "on_demand",
+      "hybrid"
+    ],
+    "per_group_winners_required": true
+  }
+}

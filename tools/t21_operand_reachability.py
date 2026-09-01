@@ -41,9 +41,9 @@ RESOURCE_ROOTS: tuple[Path, ...] = (
     ROOT / "src/generated/resources",
     ROOT / "src/ore_chain_generated/resources",
     ROOT / "src/component_rule_generated/resources",
-    ROOT / "src/t5_chemical_generated/resources",
-    ROOT / "src/t11_hydrocarbon_generated/resources",
-    ROOT / "src/t21_chemical_generated/resources",
+    ROOT / "src/chemical_recipe_generated/resources",
+    ROOT / "src/hydrocarbon_recipe_generated/resources",
+    ROOT / "src/chemical_recipe_generated/resources",
     ROOT / "src/t37_recipe_generated/resources",
     ROOT / "src/t38_recipe_generated/resources",
 )
@@ -1224,7 +1224,7 @@ def compute_closure(graph: ReachabilityGraph) -> dict[str, Any]:
         }
         all_unreachable.append(entry)
         if "t21" in recipe_path.lower() or recipe_path.startswith(
-            "src/t21_chemical_generated"
+            "src/chemical_recipe_generated"
         ):
             t21_unreachable.append(entry)
 

@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.registry;
 
 import com.masson.cruciblecraft.CrucibleCraft;
 import com.masson.cruciblecraft.worldgen.GtBlockObjectScatterFeature;
+import com.masson.cruciblecraft.worldgen.GtItemScatterFeature;
 import com.masson.cruciblecraft.worldgen.GtStoneScatterFeature;
 import com.masson.cruciblecraft.worldgen.LargeVeinFeature;
 import com.masson.cruciblecraft.worldgen.SubsurfaceFluidDepositFeature;
@@ -39,6 +40,36 @@ public final class ModFeatures {
                     FEATURES.register(
                             "gt_block_object_scatter",
                             GtBlockObjectScatterFeature::new);
+    public static final DeferredHolder<Feature<?>, GtItemScatterFeature>
+            BATH_MTE_SCATTER =
+                    FEATURES.register(
+                            "bath_mte_scatter",
+                            GtItemScatterFeature::new);
+    public static final DeferredHolder<Feature<?>, GtItemScatterFeature>
+            SMELTER_MTE_SCATTER =
+                    FEATURES.register(
+                            "smelter_mte_scatter",
+                            GtItemScatterFeature::new);
+    public static final DeferredHolder<Feature<?>, GtItemScatterFeature>
+            BATH_REMAINDER_SCATTER =
+                    FEATURES.register(
+                            "bath_remainder_scatter",
+                            GtItemScatterFeature::new);
+    public static final DeferredHolder<Feature<?>, GtItemScatterFeature>
+            BATH_IDENTITY_SCATTER =
+                    FEATURES.register(
+                            "bath_identity_scatter",
+                            GtItemScatterFeature::new);
+    public static final DeferredHolder<Feature<?>, GtItemScatterFeature>
+            BATH_TINY_WASHED_SCATTER =
+                    FEATURES.register(
+                            "bath_tiny_washed_scatter",
+                            GtItemScatterFeature::new);
+    public static final DeferredHolder<Feature<?>, GtItemScatterFeature>
+            SEMANTIC_OBJECT_SCATTER =
+                    FEATURES.register(
+                            "semantic_object_scatter",
+                            GtItemScatterFeature::new);
 
     private ModFeatures() {}
 }

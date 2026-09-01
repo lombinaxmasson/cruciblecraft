@@ -15,8 +15,8 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 /**
  * Bounded overworld scatter of catalog GT block-objects. Placement matches the
- * T33 surface-rock shape; the tag is {@code cruciblecraft:gt_block_objects}.
- * Empty-input worldgen drops are the T45 B1 acquisition.
+ * surface-rock shape; the tag is {@code cruciblecraft:gt_block_objects}.
+ * Empty-input worldgen drops are the block-object acquisition path.
  */
 public class GtBlockObjectScatterFeature extends Feature<SurfaceRockConfiguration> {
     public GtBlockObjectScatterFeature() {

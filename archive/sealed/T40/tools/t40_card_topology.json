@@ -1,0 +1,388 @@
+{
+  "append_only": false,
+  "epoch": "T40_PRODUCTION_LOCK",
+  "fixed_cards": [
+    "T36",
+    "T37",
+    "T38",
+    "T39",
+    "T40"
+  ],
+  "generated_by": "python tools/build_t40_card_topology.py",
+  "next_issue_id": "T41",
+  "production_lock_sha256": "26cca29698c34039cc8aa19ff8e584a0ec7a521165ec39e8dcece03cf75488e5",
+  "remaining_recipe_gap": 5597,
+  "revoked_unstarted_cards": [
+    "T42",
+    "T43",
+    "T44",
+    "T45",
+    "T46"
+  ],
+  "rule": "T36 stays complete; T37 calibration stays 50 assembler families and is complete; T38 Roaster wave is complete; T39 Centrifuge wave is complete; T40 is the Electrolyzer production-lock wave; additional recipe waves number consecutively from T41 until gap=0; storage is issued only after that; unique_active_card is T40 while incomplete and null when READY; T41 is not preassigned",
+  "schema_version": 1,
+  "sequence": [
+    {
+      "id": "T36",
+      "kind": "fixed",
+      "owner": "T36",
+      "status": "complete",
+      "track": "machines"
+    },
+    {
+      "host": "cruciblecraft:assembler",
+      "id": "T37",
+      "kind": "fixed",
+      "note": "Fixed 50-family assembler calibration. Later waves must not steal this work.",
+      "owner": "T37",
+      "size": 50,
+      "status": "complete",
+      "track": "calibration"
+    },
+    {
+      "append_rule": "this card is closed; do not append families after issuance",
+      "depends_on": [
+        "T36",
+        "T37"
+      ],
+      "exit_gate": "roaster 29 ordinary families have a live host_exact map",
+      "family_ids": [
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0000",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0001",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0003",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0004",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0005",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0006",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0007",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0008",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0009",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0010",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0011",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0012",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0013",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0014",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0015",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0016",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0017",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0018",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0019",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0020",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0021",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0022",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0023",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0024",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0025",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0026",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0027",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0028",
+        "portfolio:track_a/cruciblecraft:roaster/gt.recipe.roaster#0029"
+      ],
+      "host": "cruciblecraft:roaster",
+      "id": "T38",
+      "kind": "fixed_wave",
+      "load_closing": {
+        "source": "tools/t38_census_delta.json#t14_load"
+      },
+      "load_opening": {
+        "axis": "datapack_authored_entries",
+        "closing": {
+          "allocation_bytes": 236168,
+          "client_index_ms": 1,
+          "client_reload_ms": 1,
+          "datapack_authored_entries": 3616,
+          "eager_publication_rows": 16611,
+          "lazy_cache_ceiling_rows": 8,
+          "lazy_logical_rows": 2261,
+          "lookup_candidate_count": 42,
+          "lookup_p95_ns": 87368,
+          "retained_memory_bytes": 5150,
+          "server_index_ms": 1,
+          "server_reload_ms": 1,
+          "sync_bytes": 5150
+        },
+        "source": "tools/t37_census_delta.json#t14_load.closing"
+      },
+      "note": "T38 Roaster wave is complete; T39 continues the recipe track.",
+      "owner": "T38",
+      "size": 29,
+      "size_exception": "host_complete_small_wave",
+      "status": "complete",
+      "track": "recipe_wave",
+      "wave_size_band": [
+        50,
+        200
+      ]
+    },
+    {
+      "append_rule": "this card is closed; do not append families after issuance",
+      "catalog_fixture": {
+        "families": 157,
+        "production": false,
+        "relations": 250
+      },
+      "depends_on": [
+        "T36",
+        "T37",
+        "T38"
+      ],
+      "exit_gate": "locked Centrifuge families have a live host_exact map with shard-routed publication groups; nuclear reclassification is separate",
+      "family_ids": [
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0008",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0011",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0047",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0055",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0056",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0057",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0060",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0067",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0068",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0073",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0080",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0112",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0113",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0145",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0147",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0168",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0170",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0171",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0206",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0215",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0216",
+        "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0217"
+      ],
+      "host": "cruciblecraft:centrifuge",
+      "id": "T39",
+      "kind": "production_lock_wave",
+      "load_closing": {
+        "closing": {
+          "allocation_bytes": 808184,
+          "client_index_ms": 3,
+          "client_reload_ms": 4,
+          "datapack_authored_entries": 3720,
+          "eager_publication_rows": 16659,
+          "lazy_cache_ceiling_rows": 56,
+          "lazy_logical_rows": 2366,
+          "lookup_candidate_count": 73,
+          "lookup_p95_ns": 685725,
+          "retained_memory_bytes": 16111,
+          "server_index_ms": 3,
+          "server_reload_ms": 3,
+          "sync_bytes": 16111
+        },
+        "source": "tools/t39_census_delta.json#t14_load"
+      },
+      "load_opening": {
+        "axis": "datapack_authored_entries",
+        "closing": {
+          "allocation_bytes": 473152,
+          "client_index_ms": 2,
+          "client_reload_ms": 2,
+          "datapack_authored_entries": 3664,
+          "eager_publication_rows": 16626,
+          "lazy_cache_ceiling_rows": 24,
+          "lazy_logical_rows": 2334,
+          "lookup_candidate_count": 73,
+          "lookup_p95_ns": 685725,
+          "retained_memory_bytes": 12731,
+          "server_index_ms": 2,
+          "server_reload_ms": 2,
+          "sync_bytes": 12731
+        },
+        "source": "tools/t38_census_delta.json#t14_load.closing"
+      },
+      "note": "T39 Centrifuge production-lock wave is complete; T40 continues the recipe track.",
+      "owner": "T39",
+      "phase_reclassified": {
+        "family_ids": [
+          "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0169",
+          "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0176",
+          "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0180",
+          "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0185",
+          "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0188",
+          "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0190",
+          "portfolio:track_a/cruciblecraft:centrifuge/gt.recipe.centrifuge#0191"
+        ],
+        "owner": "post_1x:nuclear"
+      },
+      "production_lock_sha256": "b9034b2950a41b8905ef6668de793d04136432070cd238e577754148d7aa8600",
+      "relation_count": 32,
+      "replacement_recheck": "T39 closure remeasures host_exact and authored/logical counts for the production lock only",
+      "shard_architecture_start": true,
+      "size": 22,
+      "status": "complete",
+      "track": "recipe_wave",
+      "wave_size_band": [
+        50,
+        200
+      ]
+    },
+    {
+      "append_rule": "this card is closed; do not append families after issuance",
+      "catalog_fixture": {
+        "families": 61,
+        "production": false,
+        "relations": 151
+      },
+      "depends_on": [
+        "T36",
+        "T37",
+        "T38",
+        "T39"
+      ],
+      "exit_gate": "locked Electrolyzer families have a live host_exact map with shard-routed publication groups; combinatorial #0000/#0001 stay BLOCKED",
+      "family_ids": [
+        "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0002",
+        "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0005",
+        "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0031",
+        "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0041",
+        "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0053",
+        "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0056",
+        "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0060",
+        "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0067",
+        "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0079",
+        "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0090",
+        "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0098",
+        "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0101",
+        "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0103"
+      ],
+      "host": "cruciblecraft:electrolyzer",
+      "id": "T40",
+      "kind": "production_lock_wave",
+      "load_closing": {
+        "closing": {
+          "allocation_bytes": 1127272,
+          "client_index_ms": 4,
+          "client_reload_ms": 5,
+          "datapack_authored_entries": 3733,
+          "eager_publication_rows": 16659,
+          "lazy_cache_ceiling_rows": 78,
+          "lazy_logical_rows": 2388,
+          "lookup_candidate_count": 73,
+          "lookup_p95_ns": 685725,
+          "retained_memory_bytes": 18655,
+          "server_index_ms": 4,
+          "server_reload_ms": 4,
+          "sync_bytes": 18655
+        },
+        "source": "tools/t40_census_delta.json#t14_load"
+      },
+      "load_opening": {
+        "axis": "datapack_authored_entries",
+        "closing": {
+          "allocation_bytes": 808184,
+          "client_index_ms": 3,
+          "client_reload_ms": 4,
+          "datapack_authored_entries": 3720,
+          "eager_publication_rows": 16659,
+          "lazy_cache_ceiling_rows": 56,
+          "lazy_logical_rows": 2366,
+          "lookup_candidate_count": 73,
+          "lookup_p95_ns": 685725,
+          "retained_memory_bytes": 16111,
+          "server_index_ms": 3,
+          "server_reload_ms": 3,
+          "sync_bytes": 16111
+        },
+        "source": "tools/t39_readiness.json#t40_opening.t14_closing"
+      },
+      "note": "61/151 is catalog fixture-only. T40 publishes the reviewed 13/22 lock; combinatorial #0000/#0001 stay BLOCKED and do not reduce the gap.",
+      "owner": "T40",
+      "phase_deferred": {
+        "family_ids": [
+          "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0000",
+          "portfolio:track_a/cruciblecraft:electrolyzer/gt.recipe.electrolyzer#0001"
+        ],
+        "owner": "later:electrolyzer_combinatorial",
+        "reason": "combinatorial_player_path_unproven"
+      },
+      "production_lock_sha256": "26cca29698c34039cc8aa19ff8e584a0ec7a521165ec39e8dcece03cf75488e5",
+      "relation_count": 22,
+      "replacement_recheck": "T40 closure remeasures host_exact and authored/logical counts for the production lock only",
+      "shard_architecture_start": true,
+      "size": 13,
+      "status": "complete",
+      "track": "recipe_wave",
+      "wave_size_band": [
+        50,
+        200
+      ]
+    },
+    {
+      "append_rule": "Issue a new consecutive card for each additional wave. Do not renumber T38, T39, or T40. Do not pre-assign storage ids.",
+      "depends_on": [
+        "T40"
+      ],
+      "exit_gate": "wave families authored or measured; remaining gap recomputed",
+      "id_policy": "consecutive_from_T41",
+      "kind": "generated_rule",
+      "load_opening": "each wave records T14 opening + delta + closing",
+      "note": "Next recipe wave content is not preassigned. T41 has no frozen family_ids or host assignment until issued.",
+      "owner_rule": "the issued card id owns the wave",
+      "preassigned_host": false,
+      "track": "recipe_wave",
+      "until": "1.x recipe gap = 0",
+      "wave_size_band": [
+        50,
+        200
+      ]
+    },
+    {
+      "after": "1.x recipe gap = 0",
+      "depends_on": [
+        "recipe_waves_complete"
+      ],
+      "exit_gate": "canonical storage families implemented under the bundle architecture",
+      "id_policy": "consecutive_after_last_recipe_wave",
+      "kind": "generated_rule",
+      "load_opening": "each bundle records T14 opening + delta + closing",
+      "note": "Storage bundles start only after recipe waves close the 1.x gap.",
+      "owner_rule": "issued storage card id",
+      "track": "storage_bundle"
+    },
+    {
+      "after": "storage_complete",
+      "depends_on": [
+        "storage_bundles"
+      ],
+      "exit_gate": "1.x recipe gap = 0 and storage bundles complete",
+      "id_policy": "consecutive_after_storage",
+      "kind": "generated_rule",
+      "owner_rule": "issued exit-gate card id",
+      "track": "1x_exit_gate"
+    },
+    {
+      "id": "nuclear_source_physics_census",
+      "kind": "later_stage",
+      "later_stage": "post_1x",
+      "owner": "post_1x",
+      "track": "nuclear"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "t35_history_readonly": true,
+  "t36_history_readonly": true,
+  "t37_history_readonly": true,
+  "t38_history_readonly": true,
+  "t39_history_readonly": true,
+  "t40_complete": true,
+  "unique_active_card": null,
+  "validators": {
+    "recipe_before_storage": 0,
+    "remaining_gap_from_census": 0,
+    "revoked_old_storage_first_topology": 0,
+    "storage_not_preassigned": 0,
+    "t36_complete": 0,
+    "t37_complete": 0,
+    "t38_complete": 0,
+    "t38_not_stolen": 0,
+    "t39_complete": 0,
+    "t39_not_stolen": 0,
+    "t40_complete_only_if_ready": 0,
+    "t40_family_ids_locked": 0,
+    "t40_has_family_assignment": 0,
+    "t40_host_electrolyzer": 0,
+    "t40_is_recipe_wave": 0,
+    "t41_not_preassigned": 0,
+    "unique_active_t40_while_incomplete": 0
+  }
+}

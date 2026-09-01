@@ -25,7 +25,7 @@
     },
     "owner": {
       "type": "string",
-      "pattern": "^T[0-9]+$"
+      "pattern": "^(T[0-9]+|[a-z][a-z0-9]*(?:-[a-z0-9]+)*/[a-z][a-z0-9]*(?:-[a-z0-9]+)*)$"
     },
     "phase": {
       "enum": ["pre_snapshot", "post_enumeration"]

@@ -134,12 +134,12 @@
   "dependencies": {
     "T18": {
       "path": "tools/t18_readiness.json",
-      "sha256": "90fc1607c61c7e63d8d9b4a2e79a6a6fcfec363eca74f18edf1e3159ad56036e",
+      "sha256": "fe0546b0d26eb1f5db2a764de01f7b4f64f4b1233989dbf76cd3d252b727533e",
       "status": "T18_READY"
     },
     "acquisition": {
       "path": "tools/t19_cover_acquisition.json",
-      "sha256": "f22346549598fc06a44f514323683b2ff74239c8bb718b9c6d72daf33812311c",
+      "sha256": "4ee73a2645030a0694b45a5e2eeef8649b1a99bc067b45feb85c9c554e79f730",
       "status": "T19_COVER_ACQUISITION_READY"
     },
     "denominator": {
@@ -149,7 +149,7 @@
     },
     "load_projection": {
       "path": "tools/t19_load_projection.json",
-      "sha256": "2412430a758e5c0724ce5092167b75494188bf3a38d8f978ae8cd3e87caef109",
+      "sha256": "b0d3aac69b0f92b3b008ca1065d2f53b4bbf92279fb94ddd06e9936f13ae189e",
       "status": "PASS"
     },
     "pipe_acquisition": {
@@ -278,7 +278,7 @@
         }
       },
       "output": "tools/t19_load_projection.json",
-      "output_sha256": "2412430a758e5c0724ce5092167b75494188bf3a38d8f978ae8cd3e87caef109",
+      "output_sha256": "b0d3aac69b0f92b3b008ca1065d2f53b4bbf92279fb94ddd06e9936f13ae189e",
       "pending": [],
       "publication_domains": {
         "gt_authored_entries": 0,
@@ -456,11 +456,11 @@
     },
     "generated_language_chinese": {
       "path": "src/generated/resources/assets/cruciblecraft/lang/zh_cn.json",
-      "sha256": "3e11de7055dbffc68a6b72ab80d1c86609d96051c04a02550549a6f55c245e31"
+      "sha256": "e024a3fe0bb0b08bff8431cd099215e4f50b0a278fd0fdb8a108fa7625341d98"
     },
     "generated_language_english": {
       "path": "src/generated/resources/assets/cruciblecraft/lang/en_us.json",
-      "sha256": "b062e0e67e9e660908b1da67020c6363993054ce9e308b10d664fffc62214483"
+      "sha256": "e9cacb8bf0af3b6bc14148086d278af2feb075d6fbfaa3bb565cca26eb39769e"
     },
     "item_pipe_runtime": {
       "path": "src/main/java/com/masson/cruciblecraft/content/blockentity/ItemPipeBlockEntity.java",
@@ -472,19 +472,19 @@
     },
     "item_route_discovery": {
       "path": "src/main/java/com/masson/cruciblecraft/logistics/pipe/item/ItemPipeNetworkTraversal.java",
-      "sha256": "4b80e08008abb4cec9211636e187b09960a17d06c524048773507d8cddd6a20c"
+      "sha256": "333400372cf443da288d23c3aeaa6d39f4332a8b20898616cd27a332ca812c33"
     },
     "item_transfer_conservation": {
       "path": "src/main/java/com/masson/cruciblecraft/logistics/pipe/item/ItemPipeTransferPlan.java",
       "sha256": "3809ed2cdb9a966d06029d04737b592bdacbd77f974b867275dbf0be23d2d119"
     },
     "language_junit": {
-      "path": "src/test/java/com/masson/cruciblecraft/datagen/T19CoverResourceTest.java",
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/CoverResourceTest.java",
       "sha256": "0e0f237acdd88231f4a91be10b3740586cd03affe6ea5fd290577dcb1c4b9337"
     },
     "language_provider": {
       "path": "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
-      "sha256": "a1ce8033084ae7509a14ea730f66968864dc85cc1f65a73d555a84d036c6d10b"
+      "sha256": "ca5346d0dff1d18491c4307fdebba1ed5b220ba363464123b474323013f2fe54"
     },
     "material_rule_expansion": {
       "path": "src/main/java/com/masson/cruciblecraft/recipe/rule/MaterialRuleExpansion.java",
@@ -508,7 +508,7 @@
     },
     "processing_language_junit": {
       "path": "src/test/java/com/masson/cruciblecraft/datagen/ProcessingMachineResourceTest.java",
-      "sha256": "733693438e0fe7588eb47c3d84fc0e66d76a57c8d2c9b5d62723b6b1352a4fee"
+      "sha256": "c5f89e06ccc050ad5b7761a04f4180f00fd4e4df951f647ff1aef165ec2de79d"
     },
     "processing_machine_screen": {
       "path": "src/main/java/com/masson/cruciblecraft/client/screen/ProcessingMachineScreen.java",
@@ -520,7 +520,7 @@
     },
     "production_gametest": {
       "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
-      "sha256": "3786861966629c3c6a006a107eaef972f67dfe614160f852e2e4a5fffc499410"
+      "sha256": "fe3c84d0d3d6ec302d1d5e2f7865dcbe21799bc0b2282e46dd34882c624f4337"
     },
     "progress_junit": {
       "path": "src/test/java/com/masson/cruciblecraft/machine/processing/ProcessingProgressSyncTest.java",
@@ -528,11 +528,11 @@
     },
     "recipe_registry": {
       "path": "src/main/java/com/masson/cruciblecraft/registry/ModRecipes.java",
-      "sha256": "d385e23bf01ed9245ef57012e51a7a0da1bb0a9ca38411cff6cdb541d4fc8474"
+      "sha256": "60e3e643f620b0866e80ec738a6f5f1b35d713bc8735ac1765ae4662d8585ff4"
     },
     "recipe_registry_junit": {
       "path": "src/test/java/com/masson/cruciblecraft/registry/ModRecipesRegistrationTest.java",
-      "sha256": "c940448cd67ae81de7729f3bd8cbc2d003d65db7c3c6f96f9b6c2282b1d57e7b"
+      "sha256": "2d5df1768fa9e47186f5294688967c161fda602ab562b10ecad9e4585a1e9cc7"
     },
     "rule_expression": {
       "path": "src/main/java/com/masson/cruciblecraft/recipe/rule/RuleExpression.java",

@@ -1,0 +1,69 @@
+{
+  "family_id": "gt.recipe.electrolyzer#0101",
+  "publication_group": "cruciblecraft:electrolyzer/singleton",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 1752,
+      "eut": 84,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 2000,
+          "id": "cruciblecraft:oxygen"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        0,
+        6
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 0
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "cruciblecraft:zircon/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:zirconium/dust"
+        },
+        {
+          "count": 3,
+          "id": "cruciblecraft:silicon_dioxide/dust"
+        }
+      ],
+      "output_chances": [
+        10000,
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "43b7a6be190e9fcf1dfcebcc8dfd53164db4e79ca5b93bb1014e1b70efb9b989"
+        ],
+        "selected_source_recipe": "gt.recipe.electrolyzer#0101",
+        "source_kind": "DESIGN_POLICY"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:electrolyzer/compact/49042d3406ecf413"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:electrolyzer",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

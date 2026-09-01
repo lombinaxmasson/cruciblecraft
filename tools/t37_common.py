@@ -237,7 +237,7 @@ def partition_for_winner(winner: str | None) -> dict[str, int | None]:
 def player_gametest_present() -> bool:
     if not GAME_TEST_ROOT.is_dir():
         return False
-    markers = ("cruciblecraft_t37", "T37Recipe", "t37Recipes")
+    markers = ("cruciblecraft_wave_assembler_compact", "AssemblerCompactGameTests", "-PwaveRecipes=assembler/compact")
     for path in GAME_TEST_ROOT.rglob("*.java"):
         text = path.read_text(encoding="utf-8")
         if any(marker in text for marker in markers):

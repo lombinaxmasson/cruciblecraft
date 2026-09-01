@@ -93,16 +93,32 @@ public final class ModBlockTagProvider extends TagsProvider<Block> {
         ModBlocks.gtBlockObjectBlocks().forEach(holder -> {
             var variant = com.masson.cruciblecraft.content.item.GtBlockObjectCatalog
                     .require(holder.getId());
-            gtBlockObjects.add(holder.getKey());
-            if (variant.log() || variant.bale()) {
-                axe.add(holder.getKey());
-            } else if (!variant.rail()) {
-                pickaxe.add(holder.getKey());
-                stone.add(holder.getKey());
-            }
-            if (variant.rail()) {
-                rails.add(holder.getKey());
-            }
+            addGtBlockObjectTags(holder, variant, gtBlockObjects, rails, pickaxe, stone, axe);
         });
+        ModBlocks.bathRemainderBlockObjectBlocks().forEach(holder -> {
+            var variant = com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog
+                    .require(holder.getId());
+            addGtBlockObjectTags(holder, variant, gtBlockObjects, rails, pickaxe, stone, axe);
+        });
+    }
+
+    private void addGtBlockObjectTags(
+            net.neoforged.neoforge.registries.DeferredBlock<net.minecraft.world.level.block.Block> holder,
+            com.masson.cruciblecraft.content.item.GtBlockObjectCatalog.Variant variant,
+            TagAppender<Block> gtBlockObjects,
+            TagAppender<Block> rails,
+            TagAppender<Block> pickaxe,
+            TagAppender<Block> stone,
+            TagAppender<Block> axe) {
+        gtBlockObjects.add(holder.getKey());
+        if (variant.log() || variant.bale()) {
+            axe.add(holder.getKey());
+        } else if (!variant.rail()) {
+            pickaxe.add(holder.getKey());
+            stone.add(holder.getKey());
+        }
+        if (variant.rail()) {
+            rails.add(holder.getKey());
+        }
     }
 }

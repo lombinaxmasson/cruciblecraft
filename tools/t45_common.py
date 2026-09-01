@@ -127,11 +127,11 @@ LOCKED_SUPPORT_ROOT = (
 )
 GAME_TEST_JAVA = (
     ROOT
-    / "src/main/java/com/masson/cruciblecraft/gametest/T45RecipeGameTests.java"
+    / "src/main/java/com/masson/cruciblecraft/gametest/BlockObjectGameTests.java"
 )
-GAME_TEST_NAMESPACE = "cruciblecraft_t45"
-GAME_TEST_COMMAND = ".\\gradlew.bat runGameTestServer -Pt45Recipes --no-daemon"
-GAME_TEST_COMMAND_MARKER = "-Pt45Recipes"
+GAME_TEST_NAMESPACE = "cruciblecraft_wave_block_object"
+GAME_TEST_COMMAND = ".\\gradlew.bat runGameTestServer -PwaveRecipes=block/object --no-daemon"
+GAME_TEST_COMMAND_MARKER = "-PwaveRecipes=block/object"
 GAME_TEST_METHOD_RE = re.compile(r"public static void (\w+)\s*\(\s*GameTestHelper")
 ROW_CLASSIFICATION = TOOLS / "t22_5_row_classification.json"
 TEMPLATE_DENOMINATOR = TOOLS / "t21_template_denominator.json"
@@ -600,7 +600,7 @@ def player_gametest_source_present() -> bool:
     text = GAME_TEST_JAVA.read_text(encoding="utf-8")
     return any(
         marker in text
-        for marker in ("cruciblecraft_t45", "T45Recipe", "t45Recipes")
+        for marker in ("cruciblecraft_wave_block_object", "BlockObjectGameTests", "-PwaveRecipes=block/object")
     )
 
 
@@ -676,7 +676,7 @@ def gametest_receipt_document(parsed: dict[str, Any], log_path: Path) -> dict[st
         "namespace": GAME_TEST_NAMESPACE,
         "note": (
             "Source markers are not a pass. This receipt is the isolated "
-            "-Pt45Recipes result bound to MaterialRegistrationGate, the T45 "
+            "-PwaveRecipes=block/object result bound to MaterialRegistrationGate, the T45 "
             "recipe resource trees, and the committed UTF-8 evidence log. "
             "The gitignored run-t45-recipes directory is not evidence. "
             "Injecting recipe inputs still does not prove a player path."
@@ -717,7 +717,7 @@ def gametest_receipt_errors(document: dict[str, Any] | None = None) -> list[str]
     if receipt.get("status") != "PASS":
         errors.append("T45 GameTest receipt is not PASS")
     if GAME_TEST_COMMAND_MARKER not in str(receipt.get("command") or ""):
-        errors.append("T45 GameTest receipt command is missing -Pt45Recipes")
+        errors.append("T45 GameTest receipt command is missing -PwaveRecipes=block/object")
     if receipt.get("namespace") != GAME_TEST_NAMESPACE:
         errors.append("T45 GameTest receipt namespace drifted")
     if receipt.get("required_tests") != GAME_TEST_REQUIRED:
@@ -773,7 +773,12 @@ def gametest_receipt_errors(document: dict[str, Any] | None = None) -> list[str]
 
 
 def player_gametest_present() -> bool:
-    return player_gametest_source_present() and not gametest_receipt_errors()
+    from tools import closeout_seal
+
+    return closeout_seal.sealed_or_live_present(
+        "T45",
+        lambda: player_gametest_source_present() and not gametest_receipt_errors(),
+    )
 
 
 def partition_for_winner(

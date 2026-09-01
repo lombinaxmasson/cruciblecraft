@@ -70,7 +70,7 @@ def build() -> dict[str, Any]:
         "kind_counts": dict(sorted(kinds.items())),
         "schema_version": 1,
         "source_revision": common.SOURCE_REVISION,
-        "status": "T45_BLOCK_OBJECT_CATALOG",
+        "status": "BLOCK_OBJECT_CATALOG",
         "variant_count": len(identities),
     }
     return document

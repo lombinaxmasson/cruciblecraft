@@ -1,0 +1,77 @@
+{
+  "eager_publication_rows": 15445,
+  "generated_by": "python tools/build_ordinary_wave.py",
+  "group_winners": {
+    "cruciblecraft:smelter/ordinary_closure/acquisition": "immediate",
+    "cruciblecraft:smelter/ordinary_closure/gt_prefix": "immediate",
+    "cruciblecraft:smelter/ordinary_closure/material_form": "immediate",
+    "cruciblecraft:smelter/ordinary_closure/singleton": "on_demand",
+    "cruciblecraft:smelter/ordinary_closure/tool_head": "immediate",
+    "cruciblecraft:smelter/ordinary_closure/unmapped": "immediate"
+  },
+  "groups": [
+    {
+      "family_count": 7,
+      "membership_root_sha256": "de271ae10222bcd67f65c8ae836dc9379914b7a4372f53f73a66f73bccb3ecfc",
+      "publication_group": "cruciblecraft:smelter/ordinary_closure/acquisition",
+      "relation_count": 539,
+      "target_map": "cruciblecraft:smelter",
+      "winner": "immediate"
+    },
+    {
+      "family_count": 30,
+      "membership_root_sha256": "96574156e96a0f4bdaacf475fbdca24cafdb9f73846cef01c0541468e3059500",
+      "publication_group": "cruciblecraft:smelter/ordinary_closure/gt_prefix",
+      "relation_count": 4493,
+      "target_map": "cruciblecraft:smelter",
+      "winner": "immediate"
+    },
+    {
+      "family_count": 26,
+      "membership_root_sha256": "4128de8025625b537b9b7b53bf4da2b77aa704819eb9ac35a2fa1bdfd02ef4c5",
+      "publication_group": "cruciblecraft:smelter/ordinary_closure/material_form",
+      "relation_count": 4637,
+      "target_map": "cruciblecraft:smelter",
+      "winner": "immediate"
+    },
+    {
+      "family_count": 210,
+      "membership_root_sha256": "2b2b507e13d9b4c92f7734d1993bebc5ad5291449249b70ff6b6f7dca3d883b0",
+      "publication_group": "cruciblecraft:smelter/ordinary_closure/singleton",
+      "relation_count": 210,
+      "target_map": "cruciblecraft:smelter",
+      "winner": "on_demand"
+    },
+    {
+      "family_count": 36,
+      "membership_root_sha256": "87785d09f75beeb1ca8f027ddcb6fe8bacf9ce855e4ad61cf56c80c6e05269b7",
+      "publication_group": "cruciblecraft:smelter/ordinary_closure/tool_head",
+      "relation_count": 5389,
+      "target_map": "cruciblecraft:smelter",
+      "winner": "immediate"
+    },
+    {
+      "family_count": 29,
+      "membership_root_sha256": "4d9839e1bc3d8b4028bc765fde022ac4061dec2e3216a5bfeec3020c8b0b3379",
+      "publication_group": "cruciblecraft:smelter/ordinary_closure/unmapped",
+      "relation_count": 387,
+      "target_map": "cruciblecraft:smelter",
+      "winner": "immediate"
+    }
+  ],
+  "lazy_logical_rows": 210,
+  "opening_eager": 16980,
+  "opening_lazy": 50652,
+  "schema_version": 1,
+  "static_envelope": {
+    "eager_hard": 41000,
+    "eager_verified_opening": 16980,
+    "eager_with_opening": 32425,
+    "lazy_hard": 56000,
+    "lazy_with_opening": 50862,
+    "note": "Count is UNVERIFIED_SCALE telemetry, not a runtime throw. 41000 is a temporary Smelter+Mixer compatibility watermark.",
+    "temporary_compatibility_ceiling": 41000
+  },
+  "status": "PUBLICATION_READY",
+  "wave_slug": "smelter/ordinary-closure"
+}

@@ -1,0 +1,63 @@
+{
+  "family_id": "sha256:4f4e437d02b71dde0931883cfbf7629a7972558ea8a36344110b1b7a948c3e40",
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/opaque",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 5,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 3,
+          "id": "cruciblecraft:molten_annealed_copper"
+        },
+        {
+          "amount": 1,
+          "id": "cruciblecraft:molten_zinc"
+        },
+        {
+          "amount": 1,
+          "id": "cruciblecraft:molten_bismuth"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 5,
+          "id": "cruciblecraft:molten_bismuth_bronze"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 3
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "47df45b4cdafbffd6e5dd26e39c56af655b9044e2708fb5b623584e4fdbb602b"
+        ],
+        "selected_source_recipe": "sha256:4f4e437d02b71dde0931883cfbf7629a7972558ea8a36344110b1b7a948c3e40",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:mixer/ordinary_closure/7675133f15672fa7"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:mixer",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

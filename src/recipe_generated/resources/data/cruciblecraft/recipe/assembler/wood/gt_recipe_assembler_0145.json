@@ -1,0 +1,59 @@
+{
+  "family_id": "gt.recipe.assembler#0145",
+  "publication_group": "cruciblecraft:assembler/fireproof",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 32,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        8,
+        1
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:fireproof": 1
+          },
+          "items": "cruciblecraft:gt_wood/rubberwood_planks",
+          "type": "neoforge:components"
+        },
+        {
+          "item": "minecraft:redstone"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:note_block"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "cf9e44ab7f8f7453dbfe6a48317e6c1de84c23ee54aef3627e019f985478135e"
+        ],
+        "selected_source_recipe": "gt.recipe.assembler#0145",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:assembler/wood/18152cdb6836a713"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:assembler",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

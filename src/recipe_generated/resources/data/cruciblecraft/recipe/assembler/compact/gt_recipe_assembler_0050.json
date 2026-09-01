@@ -1,0 +1,59 @@
+{
+  "family_id": "gt.recipe.assembler#0050",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 48,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        3,
+        0
+      ],
+      "item_inputs": [
+        {
+          "item": "minecraft:dark_oak_planks"
+        },
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 3
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:oak_trapdoor"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "5485371b7e64ba69fbceedc4dc14cd67b7069ee3f0d5f0521c5bdef728e4377c"
+        ],
+        "selected_source_recipe": "gt.recipe.assembler#0050",
+        "source_kind": "DESIGN_POLICY"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:assembler/compact/2b05b7f4a4ea4ee0"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:assembler",
+  "type": "cruciblecraft:compact_gt_recipe_family",
+  "publication_group": "cruciblecraft:assembler/compact"
+}

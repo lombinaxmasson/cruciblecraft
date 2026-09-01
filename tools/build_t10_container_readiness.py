@@ -21,12 +21,12 @@ T5_GATE = (
 T10_FLUID_GATE = (
     ROOT
     / "src/main/resources/data/cruciblecraft"
-    / "t10_container_fluid_gate.json"
+    / "container_fluid_gate.json"
 )
 CELL_GATE = (
     ROOT
     / "src/main/resources/data/cruciblecraft"
-    / "t10_cell_content_gate.json"
+    / "cell_content_gate.json"
 )
 READINESS = ROOT / "tools/t10_container_readiness.json"
 

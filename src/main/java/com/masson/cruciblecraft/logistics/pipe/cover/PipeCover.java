@@ -19,7 +19,7 @@ public record PipeCover(
         }
     }
 
-    /** T8 source compatibility adapter; new persistence writes definition ids. */
+    /** Legacy source compatibility adapter; new persistence writes definition ids. */
     @Deprecated(forRemoval = false)
     public PipeCover(PipeCoverType type, Optional<String> matchId) {
         this(

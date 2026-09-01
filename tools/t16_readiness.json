@@ -219,10 +219,10 @@
       "stage": "T16a"
     },
     "junit_matrix": {
-      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/T16MachineTierMatrixTest.java",
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/KineticMachineTierMatrixTest.java",
       "required_tokens": [
         "independentSourceExpectedMatchesCatalogAndRuntimeVariants",
-        "t16aAndT16bBlocksAndItemsCoverExactlyFifteenSelectedVariants",
+        "selectedKineticBlocksAndItemsCoverExactlyFifteenVariants",
         "selectedKindsUseRuWithoutChangingControllerProfile",
         "variantProjectionDoesNotPublishOrCreateTierSpecificRecipeMaps",
         "assertTrue(ModMachineVariants.ALL.size() > 33)",
@@ -270,12 +270,12 @@
       "stage": "T16a"
     },
     "source_expected": {
-      "path": "src/test/resources/t16_machine_tier_expected.json",
+      "path": "src/test/resources/kinetic_machine_tier_expected.json",
       "required_tokens": [
         "\"schema_version\": 2",
         "\"tier_band\"",
-        "\"preserved_pre_t16\"",
-        "\"t16a_selected\"",
+        "\"preserved_opening\"",
+        "\"kinetic_rotation_selected\"",
         "\"controller_profile\"",
         "\"source_revision\""
       ],
@@ -323,9 +323,9 @@
     "t16b_gametest_verticals": {
       "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
       "required_tokens": [
-        "t16bRuMotorAxleGearboxPowersLathe",
-        "t16bSteamEnginePowersPressThroughKu",
-        "t16bHigherTierControlledInjection"
+        "ruMotorAxleGearboxPowersLathe",
+        "steamEnginePowersPressThroughKu",
+        "higherTierControlledInjection"
       ],
       "sha256": "b51223198d376180aec0d07b9eca039ddf558f73fc4db4e8b332cc3730fab34f",
       "stage": "T16b"
@@ -340,7 +340,7 @@
       "stage": "T16b"
     },
     "t16b_junit_execution_matrix": {
-      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/T16MachineTierMatrixTest.java",
+      "path": "src/test/java/com/masson/cruciblecraft/machine/processing/KineticMachineTierMatrixTest.java",
       "required_tokens": [
         "fiveSelectedKindsCoverEveryTierWindowParallelAndEnergyIdentity",
         "representativeRuAndKuPlansAndFailureStatesStayDistinct",
@@ -376,9 +376,9 @@
       "stage": "T16b"
     },
     "t16b_source_expected": {
-      "path": "src/test/resources/t16_machine_tier_expected.json",
+      "path": "src/test/resources/kinetic_machine_tier_expected.json",
       "required_tokens": [
-        "\"t16b_selected\"",
+        "\"kinetic_push_selected\"",
         "\"source_id\":20231",
         "\"source_id\":20233"
       ],
@@ -457,7 +457,7 @@
     "t16c_gametests": {
       "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
       "required_tokens": [
-        "t16SelectedMachineRecipesExecuteFromLiveRecipeManager",
+        "selectedMachineRecipesExecuteFromLiveRecipeManager",
         "tierProfileIdentityIsQuarantinedAcrossNbtReload",
         "cases.size() == 15"
       ],
@@ -498,8 +498,8 @@
     "t16c_language": {
       "path": "src/main/java/com/masson/cruciblecraft/datagen/ModLanguageProvider.java",
       "required_tokens": [
-        "ModMachineVariants.T16_SELECTED",
-        "t16MachineName",
+        "ModMachineVariants.SELECTED_KINETIC_VARIANTS",
+        "catalogMachineName",
         "\"青铜\"",
         "\"钛制\"",
         "\"titanium\""
@@ -519,7 +519,7 @@
     "t16c_machine_recipes": {
       "path": "src/main/java/com/masson/cruciblecraft/datagen/ModRecipeProvider.java",
       "required_tokens": [
-        "t16MachineCrafting",
+        "kineticMachineCrafting",
         "MaterialPrefixes.SMALL_GEAR",
         "MaterialPrefixes.DOUBLE_PLATE",
         "MaterialPrefixes.GEM"
@@ -528,7 +528,7 @@
       "stage": "T16c"
     },
     "t16c_resource_junit": {
-      "path": "src/test/java/com/masson/cruciblecraft/datagen/T16MachineAcquisitionResourceTest.java",
+      "path": "src/test/java/com/masson/cruciblecraft/datagen/KineticMachineAcquisitionResourceTest.java",
       "required_tokens": [
         "independentFifteenRecipeSetIsBidirectionalWithSelectedVariants",
         "selectedModelsLanguagesLootAndTagsAreCompleteWithoutFallbacks",
@@ -550,8 +550,8 @@
     "t16c_variant_registry": {
       "path": "src/main/java/com/masson/cruciblecraft/registry/ModMachineVariants.java",
       "required_tokens": [
-        "T16_SELECTED_KINDS",
-        "T16_SELECTED",
+        "SELECTED_KINETIC_KINDS",
+        "SELECTED_KINETIC_VARIANTS",
         "LATHE, ROLLINGMILL, WIREMILL, SHREDDER, PRESS"
       ],
       "sha256": "534b71b5fad0dd949063ed42c78644ee841ebbadaaaa7dc7cb785aa252478890",
@@ -581,7 +581,7 @@
     "t16d_gametest_publication": {
       "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
       "required_tokens": [
-        "t16dRecipePublicationBaselineRemainsStable",
+        "recipePublicationBaselineRemainsStable",
         "actualMapIds.containsAll(expectedMapIds)",
         "expectedEmiIds.equals(actualEmiIds)",
         "metrics.allPublishedRecipes()",
@@ -857,12 +857,12 @@
       "path": "src/main/java/com/masson/cruciblecraft/gametest/CrucibleCraftGameTests.java",
       "t16_test_count": 6,
       "tests": [
-        "t16bRuMotorAxleGearboxPowersLathe",
-        "t16bSteamEnginePowersPressThroughKu",
-        "t16bHigherTierControlledInjection",
-        "t16SelectedMachineRecipesExecuteFromLiveRecipeManager",
+        "ruMotorAxleGearboxPowersLathe",
+        "steamEnginePowersPressThroughKu",
+        "higherTierControlledInjection",
+        "selectedMachineRecipesExecuteFromLiveRecipeManager",
         "tierProfileIdentityIsQuarantinedAcrossNbtReload",
-        "t16dRecipePublicationBaselineRemainsStable"
+        "recipePublicationBaselineRemainsStable"
       ]
     },
     "identity_acquisition": {

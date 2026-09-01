@@ -2,7 +2,7 @@
 """Run a dedicated T31 scale GameTest measurement.
 
 Ordinary runGameTestServer does not register these tests. This runner
-requires physical RAM >= 16 GiB and -Pt31Scale=<small|target|stress>.
+requires physical RAM >= 16 GiB and -Pscale=<small|target|stress>.
 """
 from __future__ import annotations
 
@@ -69,7 +69,7 @@ def main(argv: list[str] | None = None) -> int:
     command = [
         str(gradle),
         "runGameTestServer",
-        f"-Pt31Scale={args.scenario}",
+        f"-Pscale={args.scenario}",
     ]
     print("physical_ram_bytes", ram)
     print("running", " ".join(command))

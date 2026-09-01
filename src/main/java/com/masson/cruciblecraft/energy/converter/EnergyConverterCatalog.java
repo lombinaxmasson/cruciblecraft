@@ -15,7 +15,7 @@ import com.google.gson.JsonSyntaxException;
 
 import net.minecraft.resources.ResourceLocation;
 
-/** Validated bundled catalog of fixed-source T18 energy converters. */
+/** Validated bundled catalog of fixed-source energy converters. */
 public final class EnergyConverterCatalog {
     private static final String RESOURCE =
             "/data/cruciblecraft/energy_converters.json";
@@ -105,11 +105,11 @@ public final class EnergyConverterCatalog {
                     .collect(java.util.stream.Collectors.toSet());
             if (!COMPLETE_PROFILES.equals(complete)) {
                 throw new IllegalStateException(
-                        "Completed T18 converter profile set drifted");
+                        "Completed converter profile set drifted");
             }
-            validateT18a(result);
-            validateT18b(result);
-            validateT18c(result);
+            validateSteamConverters(result);
+            validateKineticConverters(result);
+            validateGasGenerator(result);
             return Map.copyOf(result);
         } catch (IOException
                 | JsonIOException
@@ -120,7 +120,7 @@ public final class EnergyConverterCatalog {
         }
     }
 
-    private static void validateT18a(
+    private static void validateSteamConverters(
             Map<ResourceLocation, EnergyConverterProfile> profiles) {
         EnergyConverterProfile firebox =
                 profiles.get(ResourceLocation.parse(
@@ -169,11 +169,11 @@ public final class EnergyConverterCatalog {
                 || engineSemantics.gt6Runtime().maximumKuPerTick() != 24
                 || engineSemantics.sourceEvidencePaths().size() != 3) {
             throw new IllegalStateException(
-                    "T18a fixed-source converter rows drifted");
+                    "Steam-chain converter rows drifted");
         }
     }
 
-    private static void validateT18b(
+    private static void validateKineticConverters(
             Map<ResourceLocation, EnergyConverterProfile> profiles) {
         EnergyConverterProfile dynamo =
                 profiles.get(ResourceLocation.parse(
@@ -200,11 +200,11 @@ public final class EnergyConverterCatalog {
                 || !"RU".equals(
                         fuelEngine.outputPacket().identity())) {
             throw new IllegalStateException(
-                    "T18b fixed-source converter rows drifted");
+                    "Kinetic converter rows drifted");
         }
     }
 
-    private static void validateT18c(
+    private static void validateGasGenerator(
             Map<ResourceLocation, EnergyConverterProfile> profiles) {
         EnergyConverterProfile gasGenerator =
                 profiles.get(ResourceLocation.parse(
@@ -227,7 +227,7 @@ public final class EnergyConverterCatalog {
                 || !gasGenerator.policy().sourceResolution().contains(
                         "MISSING_PARTIAL_OR_WRONG_IDENTITY_QUARANTINED")) {
             throw new IllegalStateException(
-                    "T18c fixed-source gas-generator row drifted");
+                    "Gas-generator converter row drifted");
         }
     }
 

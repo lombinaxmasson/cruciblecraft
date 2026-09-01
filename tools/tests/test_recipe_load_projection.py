@@ -394,6 +394,38 @@ class RecipeLoadProjectionTest(unittest.TestCase):
         self.assertEqual(1, metric["soft_budget"])
         self.assertEqual(6600, metric["hard_ceiling"])
 
+    def test_v2_authored_reference_overage_is_report_only(self):
+        from tools import build_t14_load_budget_policy_v2 as policy_v2
+
+        v2 = policy_v2.build()
+        over = document(copy.deepcopy(self.immediate))
+        over["families"][0]["authored_entries"] = 6601
+        result = projection.project(
+            over,
+            t13=self.t13,
+            policy=v2,
+            schema=self.schema,
+        )
+        metric = result["budget_evaluation"]["metrics"]["datapack_authored_entries"]
+        self.assertEqual("REPORT_ONLY_REFERENCE_EXCEEDED", metric["status"])
+        self.assertNotEqual("HARD_CEILING_EXCEEDED", result["status"])
+        self.assertEqual([], result["budget_evaluation"]["hard_failures"])
+
+    def test_v2_authored_overage_is_report_only(self):
+        from tools import build_t14_load_budget_policy_v2 as policy_v2
+
+        over = document(copy.deepcopy(self.immediate))
+        over["families"][0]["authored_entries"] = 6601
+        result = projection.project(
+            over,
+            t13=self.t13,
+            policy=policy_v2.build(),
+            schema=self.schema,
+        )
+        metric = result["budget_evaluation"]["metrics"]["datapack_authored_entries"]
+        self.assertEqual("REPORT_ONLY_REFERENCE_EXCEEDED", metric["status"])
+        self.assertEqual("PASS", result["status"])
+
     def test_policy_records_measured_soft_and_hard_limits(self):
         projection.validate_policy(self.policy)
         budgets = self.policy["budgets"]

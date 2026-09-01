@@ -15,7 +15,7 @@ import com.google.gson.JsonParser;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 
 /**
- * Loads the committed T5 non-molten fluid registry projection.
+ * Loads the committed chemical non-molten fluid registry projection.
  *
  * <p>The source ledger owns selection and physical-state policy. Runtime code
  * only validates and registers the closed projection; it never guesses fluid
@@ -23,9 +23,9 @@ import com.masson.cruciblecraft.material.def.MaterialDefinition;
  */
 public final class ChemicalFluidRegistrationGate {
     private static final List<String> RESOURCES = List.of(
-            "/data/cruciblecraft/t5_chemical_fluid_gate.json",
-            "/data/cruciblecraft/t10_container_fluid_gate.json",
-            "/data/cruciblecraft/t11_hydrocarbon_fluid_gate.json");
+            "/data/cruciblecraft/chemical_fluid_gate.json",
+            "/data/cruciblecraft/container_fluid_gate.json",
+            "/data/cruciblecraft/hydrocarbon_fluid_gate.json");
 
     private ChemicalFluidRegistrationGate() {}
 

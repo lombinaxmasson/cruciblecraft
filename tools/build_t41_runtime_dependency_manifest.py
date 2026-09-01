@@ -159,7 +159,13 @@ def main(argv: list[str] | None = None) -> int:
     args = common.parse_write_check("Bind T41 runtime dependencies.", argv)
     document = build()
     if args.check:
-        errors = common.check_document(common.RUNTIME_DEPENDENCY_MANIFEST, document)
+        from tools import closeout_seal
+
+        errors = closeout_seal.live_or_sealed_errors(
+            "T41",
+            "runtime_dependency_manifest",
+            lambda: common.check_document(common.RUNTIME_DEPENDENCY_MANIFEST, document),
+        )
         if errors:
             print("T41 runtime dependency manifest is stale:")
             for error in errors:

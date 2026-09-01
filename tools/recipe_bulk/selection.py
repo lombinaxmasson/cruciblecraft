@@ -130,6 +130,18 @@ def relative_path(
     filename = family_filename(template_key)
     if spec.path_layout == "flat":
         return filename
+    if spec.path_layout == "cohort_nested":
+        prefix = spec.path_prefix
+        if not prefix:
+            raise ValueError(f"{spec.wave_id} cohort-nested path requires path_prefix")
+        cohort = ""
+        if lock_row is not None:
+            cohort = str(lock_row.get("cohort") or "")
+        if not cohort:
+            cohort = str(spec.cohort or "")
+        if cohort:
+            return f"{prefix}/{cohort}/{filename}"
+        return f"{prefix}/{filename}"
     if lock_row is None:
         raise ValueError(f"{spec.wave_id} host-nested path requires a lock row")
     host = str(lock_row["host"]).split(":", 1)[-1]

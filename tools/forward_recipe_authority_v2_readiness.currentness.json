@@ -1,0 +1,29 @@
+{
+  "artifact": "tools/forward_recipe_authority_v2_readiness.json",
+  "artifact_file_sha256": "f462eedfa06f1a563727c8a4a1a14803b8f551ca6b74bbf436a80feb56261196",
+  "builder_sha256": "2d216b9d5835fac3a1a955e72f64d1b1ed6203c0a4893723838feddae6f1d51b",
+  "dependency_semantic_roots": {
+    "tools/compact_recipe_runtime_manifest.v2.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "f9166a11efc72ed8218a56720555b2b995ea2cd42c0a88e07bd42e241ff5205e"
+    },
+    "tools/global_build_identity_ledger.v2.json": {
+      "kind": "json_ledger",
+      "semantic_projection_version": "1",
+      "semantic_root_sha256": "03287c252e60f179314f7dff3d215c90c6b5af315519bec6008694d67118b2d0"
+    }
+  },
+  "envelope_sha256": "827727773ab90dc23da536ef387d670501321104786c9935b83fefee62d09bf5",
+  "generated_by": "python tools/currentness.py",
+  "giant_body": false,
+  "schema_version": 2,
+  "semantic_projection_kind": "json_ledger",
+  "semantic_projection_version": 1,
+  "semantic_root_sha256": "47b16eebb551f68e2f1b9faac66717441f708c9cf6e7292d70977abcf1b8ecb3",
+  "source_replay_receipt": {
+    "proof_tier": "compact",
+    "status": "unavailable"
+  },
+  "status": "CURRENTNESS_SIDECAR"
+}

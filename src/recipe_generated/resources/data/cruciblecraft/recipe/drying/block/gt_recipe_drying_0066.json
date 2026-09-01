@@ -1,0 +1,53 @@
+{
+  "family_id": "gt.recipe.drying#0066",
+  "publication_group": "cruciblecraft:drying/block",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 128,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 64,
+          "id": "cruciblecraft:water_distilled"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        1
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:gt_block/log_a_m7"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "cruciblecraft:gt_block/log_1_m0"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "b5b00dd5fb9e0c770c23dbf7e02f3991c4bceae313fdc6a0509eb392af538afb"
+        ],
+        "selected_source_recipe": "gt.recipe.drying#0066",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:drying/block/f4ff20ecbd1bc2e6"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:drying",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

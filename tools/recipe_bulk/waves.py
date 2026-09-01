@@ -12,11 +12,69 @@ from tools import t43_common as t43
 from tools import t44_common as t44
 from tools import t45_common as t45
 from tools.recipe_bulk.models import WaveSpec
+from tools.recipe_bulk.slugs import WaveSlugError, parse_wave_token
 
 SHADOW_ORDER = ("T45", "T43", "T41", "T40", "T39", "T38", "T37")
 COMPILE_ORDER = ("T37", "T38", "T39", "T40", "T41", "T43", "T45")
+FORWARD_COMPILE_ORDER = COMPILE_ORDER + ("T46", "T47", "T48", "T49")
+SEMANTIC_COMPILE_ORDER = (
+    "smelter/ordinary-closure",
+    "mixer/ordinary-closure",
+    "drying/ordinary-closure",
+    "electrolyzer/ordinary-closure",
+    "centrifuge/ordinary-closure",
+    "autoclave/ordinary-closure",
+    "compressor/ordinary-closure",
+)
+RECIPE_GENERATED_ROOT = (
+    t35.ROOT / "src/recipe_generated/resources/data/cruciblecraft/recipe"
+)
+RECIPE_SUPPORT_ROOT = (
+    t35.ROOT / "src/recipe_support_generated/resources/data/cruciblecraft/recipe"
+)
 
 T37_OPERAND_MAP = t35.TOOLS / "t37_operand_runtime_map.json"
+T47_LOCK_PATH = t35.TOOLS / "t47_production_lock.json"
+T47_CANDIDATE_FAMILY_COUNT = 395
+T47_CANDIDATE_RELATION_COUNT = 13708
+T48_LOCK_PATH = t35.TOOLS / "t48_production_lock.json"
+T48_CANDIDATE_FAMILY_COUNT = 145
+T48_CANDIDATE_RELATION_COUNT = 34091
+T49_LOCK_PATH = (
+    t35.TOOLS / "waves" / "bath" / "tiny-purified" / "t49_production_lock.json"
+)
+T49_CANDIDATE_FAMILY_COUNT = 5
+T49_CANDIDATE_RELATION_COUNT = 95
+
+
+def _t47_expected_counts() -> tuple[int, int]:
+    if T47_LOCK_PATH.is_file():
+        production = t35.load_json(T47_LOCK_PATH).get("production") or {}
+        return int(production["family_count"]), int(production["relation_count"])
+    return T47_CANDIDATE_FAMILY_COUNT, T47_CANDIDATE_RELATION_COUNT
+
+
+_T47_FAMILY_COUNT, _T47_RELATION_COUNT = _t47_expected_counts()
+
+
+def _t48_expected_counts() -> tuple[int, int]:
+    if T48_LOCK_PATH.is_file():
+        production = t35.load_json(T48_LOCK_PATH).get("production") or {}
+        return int(production["family_count"]), int(production["relation_count"])
+    return T48_CANDIDATE_FAMILY_COUNT, T48_CANDIDATE_RELATION_COUNT
+
+
+_T48_FAMILY_COUNT, _T48_RELATION_COUNT = _t48_expected_counts()
+
+
+def _t49_expected_counts() -> tuple[int, int]:
+    if T49_LOCK_PATH.is_file():
+        production = t35.load_json(T49_LOCK_PATH).get("production") or {}
+        return int(production["family_count"]), int(production["relation_count"])
+    return T49_CANDIDATE_FAMILY_COUNT, T49_CANDIDATE_RELATION_COUNT
+
+
+_T49_FAMILY_COUNT, _T49_RELATION_COUNT = _t49_expected_counts()
 
 WAVES: dict[str, WaveSpec] = {
     "T37": WaveSpec(
@@ -180,6 +238,240 @@ WAVES: dict[str, WaveSpec] = {
         expected_family_count=379,
         expected_relation_count=379,
     ),
+    "T46": WaveSpec(
+        wave_id="T46",
+        archetype="lock_relation_set",
+        template_kind="exact_relation_set",
+        host="cruciblecraft:bath",
+        target_map="cruciblecraft:bath",
+        source_path=t35.TOOLS / "t46_bath_source.json",
+        generated_root=(
+            t35.ROOT / "src/t46_recipe_generated/resources/data/cruciblecraft/recipe/t46"
+        ),
+        equivalence_path=t35.TOOLS / "t46_equivalence.json",
+        selection_policy="lock_templates",
+        publication_policy="lock",
+        path_layout="host_nested",
+        compile_authority="recipe_bulk",
+        relation_sort="source_recipe_index_then_stable_id",
+        stable_id_policy="lock",
+        target_map_policy="spec",
+        source_kind_policy="relation_provenance",
+        lock_path=t35.TOOLS / "t46_production_lock.json",
+        operand_map_path=t35.TOOLS / "t46_operand_runtime_map.json",
+        default_publication_group="cruciblecraft:t46_bath_mte",
+        expected_family_count=803,
+        expected_relation_count=1517,
+    ),
+    "T47": WaveSpec(
+        wave_id="T47",
+        archetype="lock_relation_set",
+        template_kind="exact_relation_set",
+        host="cruciblecraft:bath",
+        target_map="cruciblecraft:bath",
+        source_path=t35.TOOLS / "t47_bath_source.json",
+        generated_root=(
+            t35.ROOT / "src/t47_recipe_generated/resources/data/cruciblecraft/recipe/t47"
+        ),
+        equivalence_path=t35.TOOLS / "t47_equivalence.json",
+        selection_policy="lock_templates",
+        publication_policy="lock",
+        path_layout="host_nested",
+        compile_authority="recipe_bulk",
+        relation_sort="source_recipe_index_then_stable_id",
+        stable_id_policy="lock",
+        target_map_policy="spec",
+        source_kind_policy="relation_provenance",
+        lock_path=T47_LOCK_PATH,
+        operand_map_path=t35.TOOLS / "t47_operand_runtime_map.json",
+        default_publication_group="cruciblecraft:t47_bath_exact",
+        expected_family_count=_T47_FAMILY_COUNT,
+        expected_relation_count=_T47_RELATION_COUNT,
+    ),
+    "T48": WaveSpec(
+        wave_id="T48",
+        archetype="lock_relation_set",
+        template_kind="exact_relation_set",
+        host="cruciblecraft:bath",
+        target_map="cruciblecraft:bath",
+        source_path=t35.TOOLS / "t48_bath_source.json",
+        generated_root=(
+            t35.ROOT / "src/t48_recipe_generated/resources/data/cruciblecraft/recipe/t48"
+        ),
+        equivalence_path=t35.TOOLS / "t48_equivalence.json",
+        selection_policy="lock_templates",
+        publication_policy="lock",
+        path_layout="host_nested",
+        compile_authority="recipe_bulk",
+        relation_sort="source_recipe_index_then_stable_id",
+        stable_id_policy="lock",
+        target_map_policy="spec",
+        source_kind_policy="relation_provenance",
+        lock_path=T48_LOCK_PATH,
+        operand_map_path=t35.TOOLS / "t48_operand_runtime_map.json",
+        default_publication_group="cruciblecraft:t48_bath_exact",
+        expected_family_count=_T48_FAMILY_COUNT,
+        expected_relation_count=_T48_RELATION_COUNT,
+    ),
+    "T49": WaveSpec(
+        wave_id="T49",
+        archetype="lock_relation_set",
+        template_kind="exact_relation_set",
+        host="cruciblecraft:bath",
+        target_map="cruciblecraft:bath",
+        source_path=(
+            t35.TOOLS / "waves" / "bath" / "tiny-purified" / "t49_bath_source.json"
+        ),
+        generated_root=(
+            t35.ROOT
+            / "src/recipe_generated/resources/data/cruciblecraft/recipe/bath/tiny_purified"
+        ),
+        equivalence_path=(
+            t35.TOOLS / "waves" / "bath" / "tiny-purified" / "t49_equivalence.json"
+        ),
+        selection_policy="lock_templates",
+        publication_policy="lock",
+        path_layout="host_nested",
+        compile_authority="recipe_bulk",
+        relation_sort="source_recipe_index_then_stable_id",
+        stable_id_policy="lock",
+        target_map_policy="spec",
+        source_kind_policy="relation_provenance",
+        lock_path=T49_LOCK_PATH,
+        operand_map_path=(
+            t35.TOOLS / "waves" / "bath" / "tiny-purified" / "t49_operand_runtime_map.json"
+        ),
+        default_publication_group="cruciblecraft:t49_bath_exact_multi",
+        expected_family_count=_T49_FAMILY_COUNT,
+        expected_relation_count=_T49_RELATION_COUNT,
+    ),
+}
+
+def _semantic_wave(
+    slug: str,
+    *,
+    host: str,
+    target_map: str,
+    cohort: str,
+    path_prefix: str,
+) -> WaveSpec:
+    wave_root = t35.TOOLS / "waves" / slug
+    return WaveSpec(
+        wave_id=slug,
+        archetype="lock_relation_set",
+        template_kind="exact_relation_set",
+        host=host,
+        target_map=target_map,
+        source_path=wave_root / "source.json",
+        generated_root=RECIPE_GENERATED_ROOT,
+        equivalence_path=wave_root / "equivalence.json",
+        selection_policy="lock_templates",
+        publication_policy="lock",
+        path_layout="cohort_nested",
+        compile_authority="recipe_bulk",
+        relation_sort="source_recipe_index_then_stable_id",
+        stable_id_policy="lock",
+        target_map_policy="spec",
+        source_kind_policy="relation_provenance",
+        lock_path=wave_root / "production_lock.json",
+        operand_map_path=wave_root / "operand_runtime_map.json",
+        wave_slug=slug,
+        cohort=cohort,
+        representation="exact_or_exact_multi",
+        depends_on_slugs=("runtime-load/allocation-split",),
+        path_prefix=path_prefix,
+        dry_run_without_lock=True,
+    )
+
+
+SEMANTIC_WAVES: dict[str, WaveSpec] = {
+    "smelter/ordinary-closure": _semantic_wave(
+        "smelter/ordinary-closure",
+        host="cruciblecraft:smelter",
+        target_map="cruciblecraft:smelter",
+        cohort="ordinary_closure",
+        path_prefix="smelter/ordinary_closure",
+    ),
+    "mixer/ordinary-closure": _semantic_wave(
+        "mixer/ordinary-closure",
+        host="cruciblecraft:mixer",
+        target_map="cruciblecraft:mixer",
+        cohort="ordinary_closure",
+        path_prefix="mixer/ordinary_closure",
+    ),
+    "drying/ordinary-closure": _semantic_wave(
+        "drying/ordinary-closure",
+        host="cruciblecraft:drying",
+        target_map="cruciblecraft:drying",
+        cohort="ordinary_closure",
+        path_prefix="drying/ordinary_closure",
+    ),
+    "electrolyzer/ordinary-closure": _semantic_wave(
+        "electrolyzer/ordinary-closure",
+        host="cruciblecraft:electrolyzer",
+        target_map="cruciblecraft:electrolyzer",
+        cohort="ordinary_closure",
+        path_prefix="electrolyzer/ordinary_closure",
+    ),
+    "centrifuge/ordinary-closure": _semantic_wave(
+        "centrifuge/ordinary-closure",
+        host="cruciblecraft:centrifuge",
+        target_map="cruciblecraft:centrifuge",
+        cohort="ordinary_closure",
+        path_prefix="centrifuge/ordinary_closure",
+    ),
+    "autoclave/ordinary-closure": _semantic_wave(
+        "autoclave/ordinary-closure",
+        host="cruciblecraft:autoclave",
+        target_map="cruciblecraft:autoclave",
+        cohort="ordinary_closure",
+        path_prefix="autoclave/ordinary_closure",
+    ),
+    "compressor/ordinary-closure": _semantic_wave(
+        "compressor/ordinary-closure",
+        host="cruciblecraft:compressor",
+        target_map="cruciblecraft:compressor",
+        cohort="ordinary_closure",
+        path_prefix="compressor/ordinary_closure",
+    ),
+    "smelter/deferred-recycling": WaveSpec(
+        wave_id="smelter/deferred-recycling",
+        archetype="lock_relation_set",
+        template_kind="exact_relation_set",
+        host="cruciblecraft:smelter",
+        target_map="cruciblecraft:smelter",
+        source_path=t35.TOOLS / "waves" / "smelter" / "deferred-recycling" / "source.json",
+        generated_root=RECIPE_GENERATED_ROOT,
+        equivalence_path=(
+            t35.TOOLS / "waves" / "smelter" / "deferred-recycling" / "equivalence.json"
+        ),
+        selection_policy="lock_templates",
+        publication_policy="lock",
+        path_layout="cohort_nested",
+        compile_authority="recipe_bulk",
+        relation_sort="source_recipe_index_then_stable_id",
+        stable_id_policy="lock",
+        target_map_policy="spec",
+        source_kind_policy="relation_provenance",
+        lock_path=(
+            t35.TOOLS / "waves" / "smelter" / "deferred-recycling" / "production_lock.json"
+        ),
+        operand_map_path=(
+            t35.TOOLS
+            / "waves"
+            / "smelter"
+            / "deferred-recycling"
+            / "operand_runtime_map.json"
+        ),
+        wave_slug="smelter/deferred-recycling",
+        cohort="deferred_recycling",
+        representation="exact",
+        depends_on_slugs=("recycling/smelter-mte-identity",),
+        path_prefix="smelter/deferred_recycling",
+        dry_run_without_lock=True,
+        expected_family_count=1817,
+        expected_relation_count=1817,
+    ),
 }
 
 IDENTITY_ONLY_WAVES: dict[str, WaveSpec] = {
@@ -207,7 +499,18 @@ IDENTITY_ONLY_WAVES: dict[str, WaveSpec] = {
 
 
 def recipe_wave(wave_id: str) -> WaveSpec:
-    spec = WAVES.get(wave_id)
+    if wave_id in SEMANTIC_WAVES:
+        parse_wave_token(wave_id, schema="semantic-v3")
+        return SEMANTIC_WAVES[wave_id]
+    if wave_id in WAVES:
+        return WAVES[wave_id]
+    try:
+        parsed = parse_wave_token(wave_id)
+    except WaveSlugError as error:
+        raise KeyError(f"unknown recipe wave: {wave_id}") from error
+    if parsed.wave_slug and parsed.wave_slug in SEMANTIC_WAVES:
+        return SEMANTIC_WAVES[parsed.wave_slug]
+    spec = WAVES.get(parsed.compile_key())
     if spec is None:
         raise KeyError(f"unknown recipe wave: {wave_id}")
     return spec

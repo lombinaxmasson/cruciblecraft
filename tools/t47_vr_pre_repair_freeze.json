@@ -1,0 +1,55 @@
+{
+  "artifact": "T47_VR_PRE_REPAIR_FREEZE",
+  "evidence_scope": "pre_repair",
+  "frozen_counts": {
+    "composed_runtime_groups": 15,
+    "t46_complete_families": 803,
+    "t46_remaining_gap_opening": 1894,
+    "t47_gametest_passed": 10,
+    "t47_gametest_required": 10,
+    "t47_identities": 283,
+    "t47_production_families": 395,
+    "t47_production_relations": 13708,
+    "t47_reclassification_r": 0,
+    "t47_remaining_ordinary_gap": 1499
+  },
+  "generated_by": "python tools/build_t47_vr_pre_repair_freeze.py",
+  "immutable_lock_hashes": {
+    "tools/t46_production_lock.json": "454a49b25ff329dbb053b9195841fe9bb51dcbc311fd293f990b354218a762f4",
+    "tools/t47_production_lock.json": "884643b2ba569e4eb96c9fcfe63caeebc61be6bb2df3334f85d3cf13490614db"
+  },
+  "note": "Immutable lock hashes must keep matching live T46/T47 production locks. Other snapshot hashes record pre-repair currentness and may change during T47-VR without rewriting this freeze. Untracked T47 artifacts on HEAD are a persist gap, not a T47_READY failure.",
+  "open_debt_ids": [
+    "T32-VD-002",
+    "T32-VD-004"
+  ],
+  "reference_kind": "freeze_reference",
+  "repair_prohibitions": [
+    "do_not_approve_resign_t46_or_t47_lock",
+    "do_not_change_family_gap_or_census_identity_to_pass_repair",
+    "do_not_disguise_open_upstream_debt_as_pass_skip_or_inherited_ready",
+    "do_not_issue_t48_or_prewrite_t48_host_or_family_ids"
+  ],
+  "schema_version": 1,
+  "snapshot_hashes": {
+    "docs/current/recipe-wave-workflow.md": "c5860909ecf10dca01446295d4bc71bd4177f801682caf9b1d2de4481ee8c3ba",
+    "tools/compact_recipe_runtime_manifest.v2.json": "7a7390c640d05e1c8ffee13f46965559d64a70c8b1b783bdfa9f5781d7e2bd76",
+    "tools/global_build_identity_ledger.v2.json": "b6a8981c25971d7c322ede2fdc09ef247346a0d95a50f06668796e718d660e14",
+    "tools/t46_card_topology.json": "bb5069541ccc89ff72637c96e40fa22f6f8c46118e878efebe2cdf927de04088",
+    "tools/t46_census_delta.json": "d8ccc97640fb31da94952fdb15430c5bd0a1bafd86d0c758f67aee740c349a1a",
+    "tools/t46_gametest_receipt.json": "a881d89807b8855454324bfe22e48a1d7d162ef612aff0b38cd9d6aeed39e7fa",
+    "tools/t46_production_lock.json": "454a49b25ff329dbb053b9195841fe9bb51dcbc311fd293f990b354218a762f4",
+    "tools/t46_readiness.json": "33094c58e045fb498a6e97bba6c6b0d72e59d9fa11f612459393c8204dbc6dfa",
+    "tools/t46_runtime_dependency_manifest.json": "38942e00424a17e9a0b44413cf2cdf1ca706513f6316efa04019204383c3ea40",
+    "tools/t47_card_topology.json": "fca3d4650c9f63fcb0ea89354ab016412a0920787a2de65bccda6cd55652a0b3",
+    "tools/t47_census_delta.json": "8519dcf3de2f125c9dc847e66d241ab1f094479b41440b1909153df67cb17124",
+    "tools/t47_gametest_receipt.json": "15c61ae4de65ec85d35a3a47270767ed67168d0ce39a9c0aa490ec6cb0a7d1ba",
+    "tools/t47_production_lock.json": "884643b2ba569e4eb96c9fcfe63caeebc61be6bb2df3334f85d3cf13490614db",
+    "tools/t47_readiness.json": "7c6f9fc321c78090c95b9949dc76f54f75aeefd82a785aa1902ff0b3d7b879ca",
+    "tools/t47_runtime_dependency_manifest.json": "46f7c22122a60fa3de6f0d6a33d4166fc71ab9dc9a8476da79274727bd6720d3",
+    "tools/verification_profiles.json": "1c656f26592d73ed13f2a3fea9c555c77ce0272351ebbe5e578c9957358bc9b0"
+  },
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "statement": "This is a freeze reference, not post-repair evidence.",
+  "t48_not_issued": true
+}

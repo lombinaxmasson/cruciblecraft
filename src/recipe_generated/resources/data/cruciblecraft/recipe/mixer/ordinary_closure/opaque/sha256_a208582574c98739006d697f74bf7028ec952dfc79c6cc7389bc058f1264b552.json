@@ -1,0 +1,62 @@
+{
+  "family_id": "sha256:a208582574c98739006d697f74bf7028ec952dfc79c6cc7389bc058f1264b552",
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/opaque",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 128,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 5000,
+          "id": "cruciblecraft:nitric_acid"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 1500,
+          "id": "minecraft:water"
+        },
+        {
+          "amount": 1500,
+          "id": "cruciblecraft:carbon_dioxide"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        3
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:sodium_carbonate/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 5,
+          "id": "cruciblecraft:sodium_nitrate/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "c4a0a4c37ad0d7fc80e6b0614fbaa90eb440c617441ce252498a2eb5e6fa3e6a"
+        ],
+        "selected_source_recipe": "sha256:a208582574c98739006d697f74bf7028ec952dfc79c6cc7389bc058f1264b552",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:mixer/ordinary_closure/889c47cc325b9fda"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:mixer",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

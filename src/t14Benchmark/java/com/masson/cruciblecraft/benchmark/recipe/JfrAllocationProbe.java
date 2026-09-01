@@ -27,6 +27,26 @@ final class JfrAllocationProbe {
             String candidate,
             String scale,
             Supplier<Runnable> workloadFactory) {
+        return measure(
+                samples,
+                outputDirectory,
+                repositoryRoot,
+                candidate,
+                scale,
+                "lookup",
+                "lookup-only after publication; enumeration excluded",
+                workloadFactory);
+    }
+
+    static Map<String, Object> measure(
+            int samples,
+            Path outputDirectory,
+            Path repositoryRoot,
+            String candidate,
+            String scale,
+            String window,
+            String scope,
+            Supplier<Runnable> workloadFactory) {
         try {
             Files.createDirectories(outputDirectory);
             List<Long> allocationBytes = new ArrayList<>();
@@ -34,9 +54,9 @@ final class JfrAllocationProbe {
             List<String> recordings = new ArrayList<>();
             for (int sample = 0; sample < samples; sample++) {
                 Runnable workload = Objects.requireNonNull(
-                        workloadFactory.get(), "JFR lookup workload");
+                        workloadFactory.get(), "JFR " + window + " workload");
                 Path recordingPath = outputDirectory.resolve(
-                        candidate + "-" + scale + "-" + sample + ".jfr");
+                        candidate + "-" + scale + "-" + window + "-" + sample + ".jfr");
                 Files.deleteIfExists(recordingPath);
                 try (Recording recording = new Recording()) {
                     for (String eventType : EVENT_TYPES) {
@@ -77,11 +97,11 @@ final class JfrAllocationProbe {
                     BenchmarkStatistics.sampleRange(
                             allocationBytes, "bytes"));
             result.put("measurement", "JFR observed allocation-event bytes");
+            result.put("window", window);
             result.put("zero_event_semantics",
-                    "PASS with zero bytes means the enabled JFR allocation "
-                            + "events observed no allocation in the lookup window");
-            result.put("scope",
-                    "lookup-only after publication; enumeration excluded");
+                    "Measured zero events is a real lookup-window observation, "
+                            + "not an unmeasured zero-fill");
+            result.put("scope", scope);
             result.put("event_types", EVENT_TYPES);
             result.put("raw_event_counts", eventCounts);
             result.put("recordings", recordings);
@@ -90,13 +110,13 @@ final class JfrAllocationProbe {
             return new LinkedHashMap<>(Map.of(
                     "status", "SKIP",
                     "samples", 0,
+                    "window", window,
                     "reason", failure.getClass().getName() + ": "
                             + String.valueOf(failure.getMessage()),
                     "measurement", "JFR observed allocation-event bytes",
-                    "scope", "lookup-only after publication; enumeration excluded",
+                    "scope", scope,
                     "zero_event_semantics",
-                            "PASS with zero bytes means no enabled allocation "
-                                    + "event was observed",
+                            "SKIP is fail-closed for v3; it is not a zero-fill PASS",
                     "event_types", EVENT_TYPES));
         }
     }

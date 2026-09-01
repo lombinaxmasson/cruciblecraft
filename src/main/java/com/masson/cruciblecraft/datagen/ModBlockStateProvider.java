@@ -201,6 +201,23 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 simpleBlockWithItem(block, models().cubeAll(path, texture));
             }
         }
+        for (GtBlockObjectCatalog.Variant variant : com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog.variants()) {
+            var block = ModBlocks.bathRemainderBlockObjectBlocksById().get(variant.id()).get();
+            ResourceLocation texture = variant.textureLocation();
+            String path = variant.registryPath();
+            if (variant.slab()) {
+                var doubleslab = models().cubeAll(path + "_double", texture);
+                var bottom = models().slab(path + "_bottom", texture, texture, texture);
+                var top = models().slabTop(path + "_top", texture, texture, texture);
+                slabBlock((SlabBlock) block, bottom, top, doubleslab);
+                itemModels().getBuilder(path).parent(bottom);
+            } else if (variant.log() || variant.bale()) {
+                axisBlock((RotatedPillarBlock) block, texture, texture);
+                itemModels().getBuilder(path).parent(models().cubeColumn(path, texture, texture));
+            } else {
+                simpleBlockWithItem(block, models().cubeAll(path, texture));
+            }
+        }
     }
 
     private void registerHoppers() {

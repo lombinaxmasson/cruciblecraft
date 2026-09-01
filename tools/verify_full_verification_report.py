@@ -460,9 +460,9 @@ def tooling_paths() -> list[Path]:
         ROOT
         / "src/main/java/com/masson/cruciblecraft/client/tooltip/MaterialMetadataTooltip.java",
         ROOT
-        / "src/main/resources/data/cruciblecraft/recipe/t7/mortar/ingot_to_dust.json",
+        / "src/main/resources/data/cruciblecraft/recipe/mortar/ingot_to_dust.json",
         ROOT
-        / "src/main/resources/data/cruciblecraft/recipe/t7/mortar/gem_to_dust.json",
+        / "src/main/resources/data/cruciblecraft/recipe/mortar/gem_to_dust.json",
         ROOT
         / "src/main/java/com/masson/cruciblecraft/registry/ModFluids.java",
         ROOT
@@ -476,15 +476,15 @@ def tooling_paths() -> list[Path]:
         ROOT
         / "src/main/java/com/masson/cruciblecraft/heat/HotIngotProcessing.java",
         ROOT
-        / "src/main/resources/data/cruciblecraft/t10_cell_content_gate.json",
+        / "src/main/resources/data/cruciblecraft/cell_content_gate.json",
         ROOT
-        / "src/main/resources/data/cruciblecraft/t10_container_fluid_gate.json",
+        / "src/main/resources/data/cruciblecraft/container_fluid_gate.json",
         ROOT
-        / "src/main/resources/data/cruciblecraft/t11_hydrocarbon_fluid_gate.json",
+        / "src/main/resources/data/cruciblecraft/hydrocarbon_fluid_gate.json",
         ROOT
-        / "src/main/resources/data/cruciblecraft/t11_cell_content_gate.json",
+        / "src/main/resources/data/cruciblecraft/hydrocarbon_cell_content_gate.json",
         ROOT
-        / "src/main/resources/data/cruciblecraft/t11_hydrocarbon_runtime_policy.json",
+        / "src/main/resources/data/cruciblecraft/hydrocarbon_runtime_policy.json",
         ROOT
         / "src/main/resources/data/cruciblecraft/t11_materials/natural_gas.json",
         ROOT
@@ -506,11 +506,11 @@ def tooling_paths() -> list[Path]:
         ROOT
         / "src/main/java/com/masson/cruciblecraft/energy/BronzeDynamoEnergy.java",
         ROOT
-        / "src/test/java/com/masson/cruciblecraft/material/prefix/T3ComponentDataTest.java",
+        / "src/test/java/com/masson/cruciblecraft/material/prefix/ComponentRuleDataTest.java",
         ROOT
-        / "src/test/java/com/masson/cruciblecraft/datagen/T5ChemicalResourceTest.java",
+        / "src/test/java/com/masson/cruciblecraft/datagen/ChemicalResourceTest.java",
         ROOT
-        / "src/test/java/com/masson/cruciblecraft/registry/T5ProcessingMachineSpecTest.java",
+        / "src/test/java/com/masson/cruciblecraft/registry/ChemicalProcessingMachineSpecTest.java",
         ROOT
         / "src/test/java/com/masson/cruciblecraft/machine/processing/MachineTransactionTest.java",
         ROOT
@@ -520,7 +520,7 @@ def tooling_paths() -> list[Path]:
         ROOT
         / "src/test/java/com/masson/cruciblecraft/energy/cable/CableLoadStateTest.java",
         ROOT
-        / "src/test/java/com/masson/cruciblecraft/material/prefix/T7MaterialRuleDataTest.java",
+        / "src/test/java/com/masson/cruciblecraft/material/prefix/MortarMaterialRuleDataTest.java",
         ROOT
         / "src/test/java/com/masson/cruciblecraft/recipe/rule/RuleExpressionTest.java",
         ROOT
@@ -5534,7 +5534,7 @@ def _expansion_elapsed_from_test_xml() -> int:
         values.extend(
             int(value)
             for value in re.findall(
-                r"T3_COMPONENT_EXPANSION_ELAPSED_MS=(\d+)", text
+                r"COMPONENT_RULE_EXPANSION_ELAPSED_MS=(\d+)", text
             )
         )
     if len(values) != 1:

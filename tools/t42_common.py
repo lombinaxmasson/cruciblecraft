@@ -1001,8 +1001,8 @@ def published_relation_identities_by_host() -> dict[str, set[str]]:
         t39.GENERATED_ROOT,
         t40.GENERATED_ROOT,
         t41.GENERATED_ROOT,
-        ROOT / "src/t5_chemical_generated/resources/data/cruciblecraft/recipe",
-        ROOT / "src/t21_chemical_generated/resources/data/cruciblecraft/recipe",
+        ROOT / "src/chemical_recipe_generated/resources/data/cruciblecraft/recipe",
+        ROOT / "src/chemical_recipe_generated/resources/data/cruciblecraft/recipe",
     )
     for root in roots:
         if not root.exists():

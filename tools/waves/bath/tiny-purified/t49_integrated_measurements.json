@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "status": "T49_INTEGRATED_MEASUREMENT_READY",
+  "id": "integrated",
+  "scale": "1x",
+  "group_count": 19,
+  "load_budget_policy_v2_sha256": "30a07ad20ca443d9108665157b351471ffeb45d71fdd3d4b7d75076a11cb2c35",
+  "candidates": [
+    {
+      "candidate": "immediate",
+      "eager_publication_rows": 50666,
+      "lazy_logical_rows": 0,
+      "lazy_cache_ceiling_rows": 0,
+      "logical_rows": 50666,
+      "status": "PASS",
+      "sync": {
+        "bytes": 5021175
+      },
+      "server": {
+        "index": {
+          "p50_ns": 40477700,
+          "p95_ns": 72067500
+        },
+        "reload": {
+          "p50_ns": 351919100,
+          "p95_ns": 501447800
+        }
+      },
+      "dedicated_client": {
+        "index": {
+          "p50_ns": 46912700,
+          "p95_ns": 62575200
+        },
+        "reload": {
+          "p50_ns": 392372800,
+          "p95_ns": 628961300
+        }
+      },
+      "lookup": {
+        "p95_ns": 2818700,
+        "candidates_p95": 54,
+        "p50_ns": 173375
+      },
+      "retained_memory": {
+        "p50_bytes": 5021175
+      },
+      "allocation": {
+        "p50_bytes": 776027472,
+        "p95_bytes": 776097408
+      }
+    },
+    {
+      "candidate": "on_demand",
+      "eager_publication_rows": 0,
+      "lazy_logical_rows": 50666,
+      "lazy_cache_ceiling_rows": 876,
+      "logical_rows": 50666,
+      "status": "PASS",
+      "sync": {
+        "bytes": 5021175
+      },
+      "server": {
+        "index": {
+          "p50_ns": 4506900,
+          "p95_ns": 8211700
+        },
+        "reload": {
+          "p50_ns": 310360100,
+          "p95_ns": 690590700
+        }
+      },
+      "dedicated_client": {
+        "index": {
+          "p50_ns": 3966500,
+          "p95_ns": 7414700
+        },
+        "reload": {
+          "p50_ns": 365679200,
+          "p95_ns": 655483200
+        }
+      },
+      "lookup": {
+        "p95_ns": 389600,
+        "candidates_p95": 4,
+        "p50_ns": 242587
+      },
+      "retained_memory": {
+        "p50_bytes": 5021175
+      },
+      "allocation": {
+        "p50_bytes": 687203040,
+        "p95_bytes": 687245536
+      }
+    },
+    {
+      "candidate": "hybrid",
+      "eager_publication_rows": 14,
+      "lazy_logical_rows": 50652,
+      "lazy_cache_ceiling_rows": 876,
+      "logical_rows": 50666,
+      "status": "PASS",
+      "sync": {
+        "bytes": 5021175
+      },
+      "server": {
+        "index": {
+          "p50_ns": 3879500,
+          "p95_ns": 6556000
+        },
+        "reload": {
+          "p50_ns": 290953500,
+          "p95_ns": 458554400
+        }
+      },
+      "dedicated_client": {
+        "index": {
+          "p50_ns": 3821100,
+          "p95_ns": 7190700
+        },
+        "reload": {
+          "p50_ns": 305394100,
+          "p95_ns": 428743900
+        }
+      },
+      "lookup": {
+        "p95_ns": 214887,
+        "candidates_p95": 10,
+        "p50_ns": 150962
+      },
+      "retained_memory": {
+        "p50_bytes": 5021175
+      },
+      "allocation": {
+        "p50_bytes": 687226880,
+        "p95_bytes": 687226880
+      }
+    }
+  ],
+  "note": "Measured T37-T49 compact families. group_count is 18 closed groups plus T49 once runtime manifest v2 includes T49. Closing census uses this snapshot, not opening+delta arithmetic."
+}

@@ -1,0 +1,69 @@
+{
+  "family_id": "gt.recipe.autoclave#0039",
+  "publication_group": "cruciblecraft:autoclave/ordinary_closure/singleton",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 3200,
+      "eut": 0,
+      "fluid_inputs": [
+        {
+          "amount": 409600,
+          "id": "cruciblecraft:steam"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 1920,
+          "id": "cruciblecraft:water_distilled"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        },
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        1,
+        0
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:nether_quartz/dust"
+        },
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 2
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 1,
+          "id": "minecraft:quartz"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "92c10c92df7d4a2ecd03b04757834198306f6ad7387fc8efeb80b7c53790f89e"
+        ],
+        "selected_source_recipe": "gt.recipe.autoclave#0039",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:autoclave/ordinary_closure/341c269ac9fa9f06"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:autoclave",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

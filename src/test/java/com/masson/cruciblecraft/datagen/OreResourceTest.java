@@ -374,7 +374,7 @@ class OreResourceTest {
                             .toString().replace('\\', '/'))
                     .collect(Collectors.toUnmodifiableSet());
         }
-        Set<String> t19CoverRecipes = Set.of(
+        Set<String> coverRecipes = Set.of(
                 "conveyor_cover.json",
                 "pressure_valve_cover.json",
                 "retriever_item_cover.json",
@@ -382,7 +382,7 @@ class OreResourceTest {
                 "selector_manual_cover.json");
         Set<String> t19RecipeSet = generatedRecipeSet.stream()
                 .filter(path -> path.startsWith("pipe_acquisition/")
-                        || t19CoverRecipes.contains(path))
+                        || coverRecipes.contains(path))
                 .collect(Collectors.toUnmodifiableSet());
         // Keep the pre-T19 actual set distinct and derive the new total from
         // that set plus the exact 5-cover + 25-pipe generated acquisition set.

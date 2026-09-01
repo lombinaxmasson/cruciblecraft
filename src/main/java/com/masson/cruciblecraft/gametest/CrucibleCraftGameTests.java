@@ -421,7 +421,7 @@ public final class CrucibleCraftGameTests {
         ConfiguredProcessingMachineBlockEntity machine =
                 helper.getBlockEntity(machinePos);
         GTRecipe recipe = requireRecipe(
-                ModRecipeMaps.ELECTROLYZER, "t5/electrolyzer/salt");
+                ModRecipeMaps.ELECTROLYZER, "chemical/electrolyzer/salt");
         loadRecipeInputs(machine, recipe);
         helper.assertTrue(
                 dynamo.insert(
@@ -448,7 +448,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 180)
-    public static void t18bCrudeOilFuelEngineDynamoPowersElectrolyzer(
+    public static void crudeOilFuelEngineDynamoPowersElectrolyzer(
             GameTestHelper helper) {
         BlockPos distilleryPos = new BlockPos(2, 2, 5);
         BlockPos enginePos = new BlockPos(4, 2, 5);
@@ -521,18 +521,18 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(electrolyzerPos);
         GTRecipe distillation = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
-                "t11/distillery/crude_oil_to_fuel_and_lubricant");
+                "hydrocarbon/distillery/crude_oil_to_fuel_and_lubricant");
         GTRecipe fuel = requireRecipe(
                 ModRecipeMaps.FUELS_ENGINE,
-                "t11/fuels_engine/fuel_oil");
+                "hydrocarbon/fuels_engine/fuel_oil");
         GTRecipe electrolysis = requireRecipe(
                 ModRecipeMaps.ELECTROLYZER,
-                "t5/electrolyzer/salt");
+                "chemical/electrolyzer/salt");
         loadRecipeInputs(distillery, distillation);
         loadRecipeInputs(electrolyzer, electrolysis);
         helper.assertTrue(
                 firebox.addFuel(FuelDefinition.COAL_COKE),
-                "Could not fuel the T18b HU distillery");
+                "Could not fuel the HU distillery");
         helper.assertTrue(
                 engine.outputEnergyType()
                                 == EnergyType.KINETIC_ROTATION
@@ -616,7 +616,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void t18bTransactionsAndBlockedFuelEngineStates(
+    public static void fuelEngineTransactionsAndBlockedStates(
             GameTestHelper helper) {
         BlockPos enginePos = new BlockPos(3, 2, 5);
         BlockPos fullEnginePos = new BlockPos(7, 2, 5);
@@ -645,7 +645,7 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(blockedDynamoPos);
         GTRecipe fuel = requireRecipe(
                 ModRecipeMaps.FUELS_ENGINE,
-                "t11/fuels_engine/fuel_oil");
+                "hydrocarbon/fuels_engine/fuel_oil");
         FluidStack required = fuel.fluidInputs().getFirst();
         IFluidHandler input =
                 exhaustBlocked.fluids(Direction.WEST);
@@ -749,7 +749,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void t18bFuelEngineCurrentIdentityAndCableOverload(
+    public static void fuelEngineCurrentIdentityAndCableOverload(
             GameTestHelper helper) {
         BlockPos currentPos = new BlockPos(3, 2, 5);
         BlockPos nearMissPos = new BlockPos(3, 2, 9);
@@ -794,7 +794,7 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(cablePos);
         GTRecipe fuel = requireRecipe(
                 ModRecipeMaps.FUELS_ENGINE,
-                "t11/fuels_engine/fuel_oil");
+                "hydrocarbon/fuels_engine/fuel_oil");
         var registries = helper.getLevel().registryAccess();
         CompoundTag currentTag =
                 current.saveWithoutMetadata(registries);
@@ -815,7 +815,7 @@ public final class CrucibleCraftGameTests {
         currentTag.putLong("energy", 321L);
         currentTag.putString(
                 "active_recipe",
-                "cruciblecraft:t11/fuels_engine/fuel_oil");
+                "cruciblecraft:hydrocarbon/fuels_engine/fuel_oil");
         currentTag.putInt("progress", 3);
         currentTag.putInt("duration", fuel.duration());
         currentTag.putString("status", "running");
@@ -898,7 +898,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void t17bElectrolyzerCableEndpointsRespectEveryTierWindow(
+    public static void electrolyzerCableEndpointsRespectEveryTierWindow(
             GameTestHelper helper) {
         CableBlock cable = ModBlocks.electricalConductorBlock(
                 "copper", MaterialPrefixes.CABLE).get();
@@ -1328,7 +1328,7 @@ public final class CrucibleCraftGameTests {
                 steamInput.fill(
                         new FluidStack(ModFluids.STEAM_SOURCE.get(), 16_000),
                         IFluidHandler.FluidAction.EXECUTE) == 16_000,
-                "Could not prime the T12 KU vertical");
+                "Could not prime the tier-profile KU vertical");
 
         helper.startSequence()
                 .thenIdle(40)
@@ -1349,7 +1349,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 260)
-    public static void t18aFireboxBoilerSteamEnginePowersPress(
+    public static void fireboxBoilerSteamEnginePowersPress(
             GameTestHelper helper) {
         BlockPos fireboxPos = new BlockPos(4, 1, 5);
         BlockPos boilerPos = fireboxPos.above();
@@ -1410,7 +1410,7 @@ public final class CrucibleCraftGameTests {
                                     + boiler.status());
                     helper.assertTrue(
                             firebox.addFuel(FuelDefinition.COAL_COKE),
-                            "Could not fuel the T18a source firebox");
+                            "Could not fuel the source firebox");
                 })
                 .thenIdle(100)
                 .thenExecute(() -> {
@@ -1429,7 +1429,7 @@ public final class CrucibleCraftGameTests {
                                     && firebox.outputRate() == 24L
                                     && SteamEngineBlockEntity.OUTPUT_RATE
                                             == 12L,
-                            "T18a chain did not preserve source conversion "
+                            "Steam chain did not preserve source conversion "
                                     + "rates or exhaust");
 
                     long savedHeat = firebox.storedHeat();
@@ -1460,13 +1460,13 @@ public final class CrucibleCraftGameTests {
                                             boilerStatus)
                                     && engine.status().equals(
                                             engineStatus),
-                            "T18a chain state did not survive NBT reload");
+                            "Steam chain state did not survive NBT reload");
                 })
                 .thenSucceed();
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 100)
-    public static void t18aSteamChainDiagnosticsAndTransactions(
+    public static void steamChainDiagnosticsAndTransactions(
             GameTestHelper helper) {
         BlockPos boilerPos = new BlockPos(4, 2, 10);
         BlockPos enginePos = new BlockPos(10, 2, 10);
@@ -1640,17 +1640,17 @@ public final class CrucibleCraftGameTests {
         helper.assertTrue(
                 iron != null
                         && iron.id().getPath().equals(
-                                "t7/mortar/ingot_to_dust/iron"),
+                                "mortar/ingot_to_dust/iron"),
                 "MORTAR_GRINDABLE iron did not resolve the live ingot rule");
         helper.assertTrue(
                 amber != null
                         && amber.id().getPath().equals(
-                                "t7/mortar/gem_to_dust/amber"),
+                                "mortar/gem_to_dust/amber"),
                 "MORTAR_GRINDABLE amber did not resolve the live gem rule");
         helper.assertTrue(
                 cinnabar != null
                         && cinnabar.id().getPath().equals(
-                                "t7/mortar/gem_to_dust/cinnabar"),
+                                "mortar/gem_to_dust/cinnabar"),
                 "MORTAR_GRINDABLE cinnabar did not resolve the live gem rule");
         helper.assertTrue(
                 ModRecipeMaps.MORTAR.findMatch(GTRecipeQuery.items(
@@ -1658,7 +1658,7 @@ public final class CrucibleCraftGameTests {
                 "A gem without MORTAR_GRINDABLE incorrectly matched");
         helper.assertTrue(
                 ModRecipeMaps.MORTAR.entries().size() == 691,
-                "T7 mortar publication count drifted from 691");
+                "Mortar publication count drifted from 691");
 
         BlockPos ironPos = new BlockPos(3, 2, 3);
         BlockPos amberPos = new BlockPos(8, 2, 3);
@@ -1839,7 +1839,7 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(pos);
         RecipeMap.Entry tronaSource = ModRecipeMaps.ELECTROLYZER.entries().stream()
                 .filter(entry -> entry.id().getPath().equals(
-                        "t5/electrolyzer/trona"))
+                        "chemical/electrolyzer/trona"))
                 .findFirst()
                 .orElseThrow();
         ItemStack tronaInput =
@@ -1848,8 +1848,8 @@ public final class CrucibleCraftGameTests {
         RecipeMap.Match trona = ModRecipeMaps.ELECTROLYZER.findMatch(
                 GTRecipeQuery.items(tronaInput)).orElseThrow();
         helper.assertTrue(
-                trona.id().getPath().equals("t5/electrolyzer/trona"),
-                "Trona query resolved the wrong T5 recipe");
+                trona.id().getPath().equals("chemical/electrolyzer/trona"),
+                "Trona query resolved the wrong chemical recipe");
         loadRecipeInputs(electrolyzer, trona.recipe());
         int inputSlot = electrolyzer.spec().items().inputs().getFirst();
         int originalInput = electrolyzer.inventory().getStackInSlot(inputSlot).getCount();
@@ -1880,7 +1880,7 @@ public final class CrucibleCraftGameTests {
                     helper.assertTrue(
                             electrolyzer.inventory().getStackInSlot(inputSlot).getCount()
                                     == originalInput,
-                            "Blocked fluid output consumed T5 item input");
+                            "Blocked fluid output consumed chemical item input");
                     for (int index = 0; index < blockingFluids.size(); index++) {
                         int tank = electrolyzer.spec().fluids().outputs().get(index).index();
                         helper.assertTrue(
@@ -1914,7 +1914,7 @@ public final class CrucibleCraftGameTests {
                 firebox.addFuel(FuelDefinition.COAL_COKE),
                 "Could not fuel HU drying route");
         RecipeMap.Entry source = ModRecipeMaps.DRYING.entries().stream()
-                .filter(entry -> entry.id().getPath().equals("t5/drying/mirabilite"))
+                .filter(entry -> entry.id().getPath().equals("chemical/drying/mirabilite"))
                 .findFirst()
                 .orElseThrow();
         GTRecipe recipe = source.recipe();
@@ -1984,7 +1984,7 @@ public final class CrucibleCraftGameTests {
                 "Could not fuel HU distillery route");
         GTRecipe recipe = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
-                "t5/distillery/water_to_water_distilled");
+                "chemical/distillery/water_to_water_distilled");
         ItemStack portableTank = new ItemStack(ModItems.PORTABLE_FLUID_TANK.get());
         var tankHandler =
                 portableTank.getCapability(Capabilities.FluidHandler.ITEM);
@@ -2095,10 +2095,10 @@ public final class CrucibleCraftGameTests {
                 ModBlocks.MIXER.get(),
                 ModProcessingMachines.MIXER);
         GTRecipe salt = requireRecipe(
-                ModRecipeMaps.ELECTROLYZER, "t5/electrolyzer/salt");
-        GTRecipe hydrochloricAcid = requireRecipe(
-                ModRecipeMaps.MIXER,
-                "t5/mixer/fluid_closure_hydrochloric_acid");
+                ModRecipeMaps.ELECTROLYZER, "chemical/electrolyzer/salt");
+        GTRecipe hydrochloricAcid = requireMixerRecipeWithFluids(
+                "cruciblecraft:chlorine",
+                "cruciblecraft:water_distilled");
         loadRecipeInputs(electrolyzer, salt);
         helper.assertTrue(
                 electrolyzer.insert(
@@ -2127,7 +2127,7 @@ public final class CrucibleCraftGameTests {
                                             Direction.SOUTH,
                                             false)
                                     > 0L,
-                            "Could not refill the T3 electrolyzer");
+                            "Could not refill the component electrolyzer");
                 })
                 .thenIdle(2)
                 .thenExecute(() -> {
@@ -2138,7 +2138,7 @@ public final class CrucibleCraftGameTests {
                                             .get(tank.index())
                                             .getFluid()
                                             .isEmpty()),
-                            "T3 electrolyzer produced no fluid: progress="
+                            "Component electrolyzer produced no fluid: progress="
                                     + electrolyzer.progress()
                                     + "/"
                                     + electrolyzer.duration()
@@ -2213,7 +2213,7 @@ public final class CrucibleCraftGameTests {
         helper.assertTrue(
                 ModFluids.chemicalFluids().size() == 110
                         && CellContentGate.entries().size() == 110,
-                "T11 chemical-fluid or T10 cell allowlist registry is incomplete");
+                "Hydrocarbon fluid or cell allowlist registry is incomplete");
         helper.assertTrue(
                 MaterialPrefixCatalog.values().size() == 58
                         && MaterialCatalog.startupValues().size()
@@ -2223,7 +2223,7 @@ public final class CrucibleCraftGameTests {
                                         MaterialCatalog.registeredForms(
                                                 material).size())
                                 .sum() == 16_736,
-                "T10 cell contents changed prefix, handshake, or form counts");
+                "Cell contents changed prefix, handshake, or form counts");
         List<ResourceLocation> cellItems = BuiltInRegistries.ITEM.keySet()
                 .stream()
                 .filter(id -> id.getNamespace().equals(CrucibleCraft.MODID))
@@ -2238,10 +2238,10 @@ public final class CrucibleCraftGameTests {
                         ResourceLocation.fromNamespaceAndPath(
                                 CrucibleCraft.MODID,
                                 "gas_cell"))),
-                "T10 registered per-fluid or unexpected cell item identities");
+                "Registered per-fluid or unexpected cell item identities");
         GTRecipe hydrogenFluoride = requireRecipe(
                 ModRecipeMaps.MIXER,
-                "t5/mixer/fluid_closure_hydrogen_fluoride");
+                "chemical/mixer/fluid_closure_hydrogen_fluoride");
         FluidStack hydrogen = hydrogenFluoride.fluidInputs().getFirst();
         FluidStack fluorine = hydrogenFluoride.fluidInputs().get(1);
         FluidStack chlorine = new FluidStack(
@@ -2371,7 +2371,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 100)
-    public static void reusedT5HostsExecuteExpandedOutputShapes(
+    public static void reusedChemicalHostsExecuteExpandedOutputShapes(
             GameTestHelper helper) {
         BlockPos bathPos = new BlockPos(3, 2, 5);
         BlockPos centrifugePos = new BlockPos(8, 2, 5);
@@ -2393,13 +2393,13 @@ public final class CrucibleCraftGameTests {
         FireboxBlockEntity firebox = helper.getBlockEntity(fireboxPos);
         helper.assertTrue(
                 firebox.addFuel(FuelDefinition.COAL_COKE),
-                "Could not fuel reused T5 smelter");
+                "Could not fuel reused chemical smelter");
         GTRecipe bathRecipe = requireRecipe(
-                ModRecipeMaps.BATH, "t5/bath/niobium_pentoxide");
+                ModRecipeMaps.BATH, "chemical/bath/niobium_pentoxide");
         GTRecipe centrifugeRecipe = requireRecipe(
-                ModRecipeMaps.CENTRIFUGE, "t5/centrifuge/gloomstone");
+                ModRecipeMaps.CENTRIFUGE, "chemical/centrifuge/gloomstone");
         GTRecipe smelterRecipe = requireRecipe(
-                ModRecipeMaps.SMELTER, "t5/smelter/ilmenite");
+                ModRecipeMaps.SMELTER, "chemical/smelter/ilmenite");
         loadRecipeInputs(bath, bathRecipe);
         loadRecipeInputs(centrifuge, centrifugeRecipe);
         loadRecipeInputs(smelter, smelterRecipe);
@@ -2416,7 +2416,7 @@ public final class CrucibleCraftGameTests {
                             bath.progress() > 0
                                     && centrifuge.progress() > 0
                                     && smelter.progress() > 0,
-                            "A reused T5 host did not start its expanded recipe: "
+                            "A reused chemical host did not start its expanded recipe: "
                                     + "bath="
                                     + bath.progress()
                                     + "/"
@@ -2467,10 +2467,10 @@ public final class CrucibleCraftGameTests {
                 ModProcessingMachines.ELECTROLYZER);
         GTRecipe charcoalRecipe = requireRecipe(
                 ModRecipeMaps.ELECTROLYZER,
-                "t5/electrolyzer/charcoal");
+                "chemical/electrolyzer/charcoal");
         GTRecipe coalRecipe = requireRecipe(
                 ModRecipeMaps.ELECTROLYZER,
-                "t5/electrolyzer/coal");
+                "chemical/electrolyzer/coal");
         loadRecipeInputs(charcoal, charcoalRecipe);
         loadRecipeInputs(coal, coalRecipe);
         helper.assertTrue(
@@ -2486,14 +2486,14 @@ public final class CrucibleCraftGameTests {
                                 64L,
                                 Direction.SOUTH,
                                 false) > 0L,
-                "Could not power both T21 carbon-family electrolyzers");
+                "Could not power both carbon-family electrolyzers");
 
         helper.startSequence()
                 .thenIdle(3)
                 .thenExecute(() -> {
                     helper.assertTrue(
                             charcoal.progress() > 0 && coal.progress() > 0,
-                            "T21 carbon composition family did not start");
+                            "Carbon composition family did not start");
                     forceLastTick(helper, charcoal);
                     forceLastTick(helper, coal);
                     helper.assertTrue(
@@ -2509,7 +2509,7 @@ public final class CrucibleCraftGameTests {
                                             64L,
                                             Direction.SOUTH,
                                             false) > 0L,
-                            "Could not re-power T21 carbon-family electrolyzers after force");
+                            "Could not re-power carbon-family electrolyzers after force");
                 })
                 .thenIdle(2)
                 .thenExecute(() -> {
@@ -2554,7 +2554,7 @@ public final class CrucibleCraftGameTests {
                     ModProcessingMachines.MIXER);
             GTRecipe recipe = requireRecipe(
                     ModRecipeMaps.MIXER,
-                    "t21/mixer/gunpowder/" + material);
+                    "chemical/mixer/gunpowder/" + material);
             loadRecipeInputs(mixer, recipe);
             helper.assertTrue(
                     mixer.insert(
@@ -2563,7 +2563,7 @@ public final class CrucibleCraftGameTests {
                             64L,
                             Direction.SOUTH,
                             false) > 0L,
-                    "Could not power T21 gunpowder Mixer for " + material);
+                    "Could not power gunpowder Mixer for " + material);
             mixers.add(mixer);
         }
 
@@ -2574,7 +2574,7 @@ public final class CrucibleCraftGameTests {
                             mixers) {
                         helper.assertTrue(
                                 mixer.progress() > 0,
-                                "T21 gunpowder template did not start for "
+                                "Gunpowder template did not start for "
                                         + mixer.getBlockPos());
                         forceLastTick(helper, mixer);
                     }
@@ -2590,13 +2590,13 @@ public final class CrucibleCraftGameTests {
                                         .anyMatch(stack ->
                                                 stack.is(Items.GUNPOWDER)
                                                         && stack.getCount() == 4),
-                                "T21 Mixer did not commit four gunpowder");
+                                "Gunpowder Mixer did not commit four gunpowder");
                         helper.assertTrue(
                                 mixer.spec().items().inputs().stream()
                                         .allMatch(slot -> mixer.inventory()
                                                 .getStackInSlot(slot)
                                                 .isEmpty()),
-                                "T21 Mixer retained a consumed template input");
+                                "Gunpowder Mixer retained a consumed template input");
                     }
                 })
                 .thenSucceed();
@@ -3073,7 +3073,7 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(controllerPos);
         GTRecipe recipe = requireRecipe(
                 ModRecipeMaps.CENTRIFUGE,
-                "t5/centrifuge/gloomstone");
+                "chemical/centrifuge/gloomstone");
         loadRecipeInputs(centrifuge, recipe);
         BlockPos energyPort = structure.anchor(
                 "bottom_energy_input", controllerPos, facing);
@@ -3159,7 +3159,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void t23LargeCentrifugePluginQuarantineAcrossNbtReload(
+    public static void largeCentrifugePluginQuarantineAcrossNbtReload(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -3200,7 +3200,7 @@ public final class CrucibleCraftGameTests {
 
         // Contents must survive a quarantined reload unchanged.
         GTRecipe recipe = requireRecipe(
-                ModRecipeMaps.CENTRIFUGE, "t5/centrifuge/gloomstone");
+                ModRecipeMaps.CENTRIFUGE, "chemical/centrifuge/gloomstone");
         loadRecipeInputs(centrifuge, recipe);
         int inputSlot = centrifuge.spec().items().inputs().getFirst();
         ItemStack savedInput =
@@ -3248,7 +3248,7 @@ public final class CrucibleCraftGameTests {
 
 
     @GameTest(template = TEMPLATE, timeoutTicks = 120)
-    public static void t23Tank3x3x3Formation(
+    public static void tank3x3x3Formation(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -3309,7 +3309,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void t23Tank3x3x3Fidelity(
+    public static void tank3x3x3Fidelity(
             GameTestHelper helper) {
         var structure = MultiblockStructureCatalog.require(
                 TankBlockEntity.STRUCTURE_ID);
@@ -3347,7 +3347,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void t23Tank3x3x3PortSupplySingleHost(
+    public static void tank3x3x3PortSupplySingleHost(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -3417,7 +3417,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 300)
-    public static void t23LargeBoilerFormation(
+    public static void largeBoilerFormation(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -3493,7 +3493,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void t23LargeBoilerFidelity(
+    public static void largeBoilerFidelity(
             GameTestHelper helper) {
         var structure = MultiblockStructureCatalog.require(
                 LargeBoilerBlockEntity.STRUCTURE_ID);
@@ -3549,7 +3549,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void t23LargeBoilerPortSupplySingleHost(
+    public static void largeBoilerPortSupplySingleHost(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -3611,10 +3611,10 @@ public final class CrucibleCraftGameTests {
 
 
 
-    // ===== T23 C3 lifecycle: distillation tower =====
+    // ===== C3 lifecycle: distillation tower =====
 
     @GameTest(template = TEMPLATE, timeoutTicks = 120)
-    public static void t23DistillationTowerTeardown(
+    public static void distillationTowerTeardown(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -3645,7 +3645,7 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(controllerPos);
         GTRecipe recipe = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
-                "t11/distillery/crude_oil_to_fuel_and_lubricant");
+                "hydrocarbon/distillery/crude_oil_to_fuel_and_lubricant");
         loadRecipeInputs(tower, recipe);
         BlockPos portToBreak = structure.anchor(
                 "center", controllerPos, facing);
@@ -3672,7 +3672,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 200)
-    public static void t23DistillationTowerOutputJam(
+    public static void distillationTowerOutputJam(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -3708,7 +3708,7 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(energyPort.below());
         GTRecipe recipe = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
-                "t11/distillery/crude_oil_to_fuel_and_lubricant");
+                "hydrocarbon/distillery/crude_oil_to_fuel_and_lubricant");
         loadRecipeInputs(tower, recipe);
         // Jam the outputs: both output tanks full of the products.
         int out0 = tower.spec().fluids().outputs().getFirst().index();
@@ -3749,7 +3749,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 200)
-    public static void t23DistillationTowerPowerLoss(
+    public static void distillationTowerPowerLoss(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -3785,7 +3785,7 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(energyPort.below());
         GTRecipe recipe = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
-                "t11/distillery/crude_oil_to_fuel_and_lubricant");
+                "hydrocarbon/distillery/crude_oil_to_fuel_and_lubricant");
         loadRecipeInputs(tower, recipe);
         helper.startSequence()
                 .thenIdle(25)
@@ -3823,7 +3823,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 200)
-    public static void t23DistillationTowerReload(
+    public static void distillationTowerReload(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -3859,7 +3859,7 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(energyPort.below());
         GTRecipe recipe = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
-                "t11/distillery/crude_oil_to_fuel_and_lubricant");
+                "hydrocarbon/distillery/crude_oil_to_fuel_and_lubricant");
         loadRecipeInputs(tower, recipe);
         helper.startSequence()
                 .thenIdle(25)
@@ -3897,7 +3897,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 120)
-    public static void t23DistillationTowerSaveQuarantine(
+    public static void distillationTowerSaveQuarantine(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -3928,7 +3928,7 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(controllerPos);
         GTRecipe recipe = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
-                "t11/distillery/crude_oil_to_fuel_and_lubricant");
+                "hydrocarbon/distillery/crude_oil_to_fuel_and_lubricant");
         loadRecipeInputs(tower, recipe);
         helper.startSequence()
                 .thenIdle(25)
@@ -3959,10 +3959,10 @@ public final class CrucibleCraftGameTests {
                 .thenSucceed();
     }
 
-    // ===== T23 C3 lifecycle: large boiler =====
+    // ===== C3 lifecycle: large boiler =====
 
     @GameTest(template = TEMPLATE, timeoutTicks = 120)
-    public static void t23LargeBoilerTeardown(
+    public static void largeBoilerTeardown(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -4023,7 +4023,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 160)
-    public static void t23LargeBoilerOutputJam(
+    public static void largeBoilerOutputJam(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -4090,7 +4090,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 160)
-    public static void t23LargeBoilerPowerLoss(
+    public static void largeBoilerPowerLoss(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -4161,7 +4161,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 160)
-    public static void t23LargeBoilerReload(
+    public static void largeBoilerReload(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -4228,7 +4228,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 120)
-    public static void t23LargeBoilerSaveQuarantine(
+    public static void largeBoilerSaveQuarantine(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -4285,10 +4285,10 @@ public final class CrucibleCraftGameTests {
                 .thenSucceed();
     }
 
-    // ===== T23 C3 lifecycle: 3x3x3 tank =====
+    // ===== C3 lifecycle: 3x3x3 tank =====
 
     @GameTest(template = TEMPLATE, timeoutTicks = 120)
-    public static void t23Tank3x3x3Teardown(
+    public static void tank3x3x3Teardown(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -4339,7 +4339,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void t23Tank3x3x3OutputJam(
+    public static void tank3x3x3OutputJam(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -4389,7 +4389,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void t23Tank3x3x3PowerLoss(
+    public static void tank3x3x3PowerLoss(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -4436,7 +4436,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 120)
-    public static void t23Tank3x3x3Reload(
+    public static void tank3x3x3Reload(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -4478,7 +4478,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 120)
-    public static void t23Tank3x3x3SaveQuarantine(
+    public static void tank3x3x3SaveQuarantine(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -4525,10 +4525,10 @@ public final class CrucibleCraftGameTests {
                 .thenSucceed();
     }
 
-    // ===== T29: large crucible thermal/steelmaking host =====
+    // ===== Large crucible thermal/steelmaking host =====
 
     @GameTest(template = TEMPLATE, timeoutTicks = 160)
-    public static void t29LargeCrucibleFormation(GameTestHelper helper) {
+    public static void largeCrucibleFormation(GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
         var structure = MultiblockStructureCatalog.require(
@@ -4559,7 +4559,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 120)
-    public static void t29LargeCrucibleTeardown(GameTestHelper helper) {
+    public static void largeCrucibleTeardown(GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
         var structure = MultiblockStructureCatalog.require(
@@ -4596,7 +4596,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 160)
-    public static void t29LargeCrucibleOutputJam(GameTestHelper helper) {
+    public static void largeCrucibleOutputJam(GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
         LargeCrucibleBlockEntity crucible = placeLargeCrucible(
@@ -4641,7 +4641,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 200)
-    public static void t29LargeCruciblePowerLoss(GameTestHelper helper) {
+    public static void largeCruciblePowerLoss(GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
         var structure = MultiblockStructureCatalog.require(
@@ -4686,7 +4686,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 160)
-    public static void t29LargeCrucibleReload(GameTestHelper helper) {
+    public static void largeCrucibleReload(GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
         LargeCrucibleBlockEntity crucible = placeLargeCrucible(
@@ -4718,7 +4718,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 120)
-    public static void t29LargeCrucibleSaveQuarantine(
+    public static void largeCrucibleSaveQuarantine(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -4755,7 +4755,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void t29LargeCrucibleCapacity432(GameTestHelper helper) {
+    public static void largeCrucibleCapacity432(GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
         LargeCrucibleBlockEntity crucible = placeLargeCrucible(
@@ -4784,7 +4784,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 520)
-    public static void t29LargeCrucibleSteelmaking(GameTestHelper helper) {
+    public static void largeCrucibleSteelmaking(GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
         LargeCrucibleBlockEntity crucible = placeLargeCrucible(
@@ -4829,7 +4829,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 160)
-    public static void t29LargeCrucibleMoldCast(GameTestHelper helper) {
+    public static void largeCrucibleMoldCast(GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
         LargeCrucibleBlockEntity crucible = placeLargeCrucible(
@@ -4867,7 +4867,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 160)
-    public static void t29LargeCrucibleLayerPorts(GameTestHelper helper) {
+    public static void largeCrucibleLayerPorts(GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
         var structure = MultiblockStructureCatalog.require(
@@ -4916,7 +4916,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 300)
-    public static void t23DistillationTowerFormation(
+    public static void distillationTowerFormation(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -4952,7 +4952,7 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(energyPort.below());
         GTRecipe recipe = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
-                "t11/distillery/crude_oil_to_fuel_and_lubricant");
+                "hydrocarbon/distillery/crude_oil_to_fuel_and_lubricant");
         loadRecipeInputs(tower, recipe);
 
         helper.startSequence()
@@ -5025,7 +5025,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void t23DistillationTowerFidelity(
+    public static void distillationTowerFidelity(
             GameTestHelper helper) {
         var structure = MultiblockStructureCatalog.require(
                 ModMultiblockControllers.DISTILLATION_TOWER.structureId());
@@ -5079,7 +5079,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void t23DistillationTowerPortSupplySingleHost(
+    public static void distillationTowerPortSupplySingleHost(
             GameTestHelper helper) {
         BlockPos controllerPos = new BlockPos(6, 2, 6);
         Direction facing = Direction.NORTH;
@@ -5160,7 +5160,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 140)
-    public static void t12RuAxleGearboxPowersTieredCentrifuge(
+    public static void ruAxleGearboxPowersTieredCentrifuge(
             GameTestHelper helper) {
         BlockPos motorPos = new BlockPos(3, 2, 13);
         BlockPos axlePos = motorPos.east();
@@ -5194,7 +5194,7 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(centrifugePos);
         GTRecipe recipe = requireRecipe(
                 ModRecipeMaps.CENTRIFUGE,
-                "t5/centrifuge/gloomstone");
+                "chemical/centrifuge/gloomstone");
         loadRecipeInputs(centrifuge, recipe);
         IEnergyHandler motor = helper.getLevel().getCapability(
                 ModCapabilities.ENERGY,
@@ -5213,7 +5213,7 @@ public final class CrucibleCraftGameTests {
                         && motor.handles(
                                 EnergyType.ELECTRIC,
                                 Direction.WEST),
-                "T1 electric motor exposed no EU input");
+                "Electric motor exposed no EU input");
         helper.assertTrue(
                 axle != null
                         && gearbox != null
@@ -5269,7 +5269,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 60)
-    public static void t12TierProfilesExposeDistinctFailureStates(
+    public static void tierProfilesExposeDistinctFailureStates(
             GameTestHelper helper) {
         BlockPos machinePos = new BlockPos(12, 2, 13);
         helper.setBlock(
@@ -5283,7 +5283,7 @@ public final class CrucibleCraftGameTests {
         helper.assertTrue(
                 machine.variant().tier().inputNominal() == 128L
                         && machine.variant().tier().parallelLimit() == 2,
-                "Steel centrifuge did not bind its source T2 profile");
+                "Steel centrifuge did not bind its source primary profile");
         helper.assertTrue(
                 machine.insert(
                                 EnergyType.KINETIC_PUSH,
@@ -5330,7 +5330,7 @@ public final class CrucibleCraftGameTests {
                                         Direction.WEST,
                                         false)
                                 == 1L,
-                        "T2 centrifuge rejected minimum-window RU"))
+                        "Centrifuge rejected minimum-window RU"))
                 .thenExecute(() -> helper.assertTrue(
                         windowMachine.workProgressLong() == 128L
                                 && windowMachine.progress() == 1,
@@ -5344,7 +5344,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 140)
-    public static void t16bRuMotorAxleGearboxPowersLathe(
+    public static void ruMotorAxleGearboxPowersLathe(
             GameTestHelper helper) {
         BlockPos motorPos = new BlockPos(3, 2, 13);
         BlockPos axlePos = motorPos.east();
@@ -5398,7 +5398,7 @@ public final class CrucibleCraftGameTests {
                         && !lathe.handles(
                                 EnergyType.KINETIC_PUSH,
                                 Direction.WEST),
-                "T16b RU lathe vertical did not bind the bronze source tier");
+                "RU lathe vertical did not bind the bronze source tier");
 
         helper.startSequence()
                 .thenExecuteFor(48, () -> {
@@ -5412,18 +5412,18 @@ public final class CrucibleCraftGameTests {
                             accepted == 1L
                                     || motor.stored(EnergyType.ELECTRIC)
                                             >= 32L,
-                            "T16b RU motor rejected nominal EU");
+                            "RU motor rejected nominal EU");
                 })
                 .thenExecute(() -> helper.assertTrue(
                         lathe.progress() > 0,
                         "Motor -> axle -> gearbox RU did not advance "
-                                + "the T16b selected lathe: "
+                                + "the selected lathe: "
                                 + lathe.pausedReason()))
                 .thenSucceed();
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 160)
-    public static void t16bSteamEnginePowersPressThroughKu(
+    public static void steamEnginePowersPressThroughKu(
             GameTestHelper helper) {
         BlockPos enginePos = new BlockPos(3, 2, 5);
         BlockPos pressPos = enginePos.east();
@@ -5456,7 +5456,7 @@ public final class CrucibleCraftGameTests {
                                         16_000),
                                 IFluidHandler.FluidAction.EXECUTE)
                                 == 16_000,
-                "Could not prime the T16b Press KU vertical");
+                "Could not prime the Press KU vertical");
         helper.assertTrue(
                 press.variant().kind().behavior()
                                 == ModProcessingMachines.PRESS
@@ -5480,7 +5480,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void t16bHigherTierControlledInjection(
+    public static void higherTierControlledInjection(
             GameTestHelper helper) {
         BlockPos lathePos = new BlockPos(4, 2, 5);
         BlockPos pressPos = new BlockPos(10, 2, 5);
@@ -5560,7 +5560,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 100)
-    public static void t17bFireboxesRunAllThreeHuMachineKinds(
+    public static void fireboxesRunAllThreeHuMachineKinds(
             GameTestHelper helper) {
         List<BlockPos> machinePositions = List.of(
                 new BlockPos(3, 2, 5),
@@ -5577,13 +5577,13 @@ public final class CrucibleCraftGameTests {
         List<GTRecipe> recipes = List.of(
                 requireRecipe(
                         ModRecipeMaps.DISTILLERY,
-                        "t5/distillery/water_to_water_distilled"),
+                        "chemical/distillery/water_to_water_distilled"),
                 requireRecipe(
                         ModRecipeMaps.DRYING,
-                        "t5/drying/perlite"),
+                        "chemical/drying/perlite"),
                 requireRecipe(
                         ModRecipeMaps.SMELTER,
-                        "t5/smelter/ilmenite"));
+                        "chemical/smelter/ilmenite"));
         List<ConfiguredProcessingMachineBlockEntity> machines =
                 new ArrayList<>();
         for (int index = 0; index < machinePositions.size(); index++) {
@@ -5593,7 +5593,7 @@ public final class CrucibleCraftGameTests {
                     helper.getBlockEntity(machinePos.below());
             helper.assertTrue(
                     firebox.addFuel(FuelDefinition.COAL_COKE),
-                    "Could not fuel T17b HU machine " + index);
+                    "Could not fuel HU machine " + index);
             ConfiguredProcessingMachineBlockEntity machine =
                     placeConfigured(
                             helper,
@@ -5642,7 +5642,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void t17bHigherTierHuUsesControlledAdjacentHandlers(
+    public static void higherTierHuUsesControlledAdjacentHandlers(
             GameTestHelper helper) {
         List<BlockPos> machinePositions = List.of(
                 new BlockPos(3, 2, 5),
@@ -5659,15 +5659,15 @@ public final class CrucibleCraftGameTests {
         List<GTRecipe> recipes = List.of(
                 requireRecipe(
                         ModRecipeMaps.DISTILLERY,
-                        "t5/distillery/water_to_water_distilled"),
+                        "chemical/distillery/water_to_water_distilled"),
                 requireRecipe(
                         ModRecipeMaps.DRYING,
-                        "t5/drying/perlite"),
+                        "chemical/drying/perlite"),
                 requireRecipe(
                         ModRecipeMaps.SMELTER,
-                        "t5/smelter/ilmenite"));
+                        "chemical/smelter/ilmenite"));
         FuelDefinition controlledTierThreeHeat =
-                new FuelDefinition("t17b_controlled_512_hu", 512L, 200);
+                new FuelDefinition("controlled_512_hu", 512L, 200);
         List<ConfiguredProcessingMachineBlockEntity> machines =
                 new ArrayList<>();
         for (int index = 0; index < machinePositions.size(); index++) {
@@ -5729,7 +5729,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 60)
-    public static void t17bFailureStatesExposeWrongEnergyUnderpoweredAndLimits(
+    public static void failureStatesExposeWrongEnergyUnderpoweredAndLimits(
             GameTestHelper helper) {
         BlockPos huPos = new BlockPos(3, 2, 5);
         BlockPos overchargePos = new BlockPos(8, 2, 5);
@@ -5743,7 +5743,7 @@ public final class CrucibleCraftGameTests {
                 hu,
                 requireRecipe(
                         ModRecipeMaps.DISTILLERY,
-                        "t5/distillery/water_to_water_distilled"));
+                        "chemical/distillery/water_to_water_distilled"));
         helper.assertTrue(
                 hu.insert(
                         EnergyType.ELECTRIC,
@@ -5781,7 +5781,7 @@ public final class CrucibleCraftGameTests {
                 exceeded,
                 requireRecipe(
                         ModRecipeMaps.ELECTROLYZER,
-                        "t5/electrolyzer/uvarovite"));
+                        "chemical/electrolyzer/uvarovite"));
 
         helper.startSequence()
                 .thenIdle(3)
@@ -5912,7 +5912,7 @@ public final class CrucibleCraftGameTests {
         FireboxBlockEntity firebox = helper.getBlockEntity(fireboxPos);
         helper.assertTrue(
                 firebox.addFuel(FuelDefinition.COAL_COKE),
-                "Could not fuel T10 hot-ingot smelter");
+                "Could not fuel hot-ingot smelter");
         smelter.inventory().setStackInSlot(
                 0,
                 material("copper", MaterialPrefixes.INGOT, 1));
@@ -5936,7 +5936,7 @@ public final class CrucibleCraftGameTests {
                 .thenExecute(() -> {
                     helper.assertTrue(
                             smelter.progress() > 0,
-                            "T10 hot-ingot route did not start");
+                            "Hot-ingot route did not start");
                     forceLastTick(helper, smelter);
                 })
                 .thenIdle(2)
@@ -6030,7 +6030,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 140)
-    public static void t11CrudeOilDepositExtractsThroughPipeAndDistills(
+    public static void crudeOilDepositExtractsThroughPipeAndDistills(
             GameTestHelper helper) {
         BlockPos depositPos = new BlockPos(3, 1, 4);
         BlockPos extractorPos = depositPos.above();
@@ -6095,22 +6095,22 @@ public final class CrucibleCraftGameTests {
         FluidPipeBlockEntity pipe = helper.getBlockEntity(pipePos);
         helper.assertTrue(
                 pipe.setCover(Direction.WEST, PipeCover.pump()),
-                "Could not install the T11 wellhead pump");
+                "Could not install the wellhead pump");
         ConfiguredProcessingMachineBlockEntity distillery =
                 helper.getBlockEntity(distilleryPos);
         FireboxBlockEntity firebox =
                 helper.getBlockEntity(distilleryPos.below());
         helper.assertTrue(
                 firebox.addFuel(FuelDefinition.COAL_COKE),
-                "Could not fuel the T11 HU distillery");
+                "Could not fuel the HU distillery");
         GTRecipe recipe = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
-                "t11/distillery/crude_oil_to_fuel_and_lubricant");
+                "hydrocarbon/distillery/crude_oil_to_fuel_and_lubricant");
         helper.assertTrue(
                 distillery.spec().energy().type() == EnergyType.HEAT
                         && distillery.spec().energy().mode()
                                 == ProcessingMachineSpec.EnergyMode.ADJACENT,
-                "T11 distillery did not bind the adjacent HU contract");
+                "Distillery did not bind the adjacent HU contract");
 
         helper.startSequence()
                 .thenIdle(55)
@@ -6142,13 +6142,13 @@ public final class CrucibleCraftGameTests {
                             deposit.snapshot().orElseThrow()
                                             .remainingAmountMb()
                                     == 1_000_000L,
-                            "T11 extraction consumed the legacy reserve");
+                            "Extraction consumed the legacy reserve");
                 })
                 .thenSucceed();
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 220)
-    public static void t18cNaturalGasConvertsAndHeatsBoiler(
+    public static void naturalGasConvertsAndHeatsBoiler(
             GameTestHelper helper) {
         BlockPos depositPos = new BlockPos(3, 1, 9);
         BlockPos extractorPos = depositPos.above();
@@ -6226,10 +6226,10 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(electrolyzerPos);
         GTRecipe electrolysis = requireRecipe(
                 ModRecipeMaps.ELECTROLYZER,
-                "t5/electrolyzer/salt");
+                "chemical/electrolyzer/salt");
         GTRecipe gasFuel = requireRecipe(
                 ModRecipeMaps.FUELS_GAS,
-                "t11/fuels_gas/methane");
+                "hydrocarbon/fuels_gas/methane");
         loadRecipeInputs(electrolyzer, electrolysis);
         helper.assertTrue(
                 boiler.fluids(Direction.WEST).fill(
@@ -6296,7 +6296,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 100)
-    public static void t18cGasGeneratorTransactionsIdentityAndBlockedStates(
+    public static void gasGeneratorTransactionsIdentityAndBlockedStates(
             GameTestHelper helper) {
         BlockPos consumerBlockedPos = new BlockPos(3, 1, 5);
         BlockPos exhaustFullPos = new BlockPos(7, 1, 5);
@@ -6328,7 +6328,7 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(nearMissPos);
         GTRecipe fuel = requireRecipe(
                 ModRecipeMaps.FUELS_GAS,
-                "t11/fuels_gas/methane");
+                "hydrocarbon/fuels_gas/methane");
         FluidStack methane = fuel.fluidInputs().getFirst();
         IFluidHandler blockedInput =
                 consumerBlocked.fluids(Direction.WEST);
@@ -6436,7 +6436,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 60)
-    public static void t11NaturalGasLeaksAndFlammableCloudIgnites(
+    public static void naturalGasLeaksAndFlammableCloudIgnites(
             GameTestHelper helper) {
         BlockPos pipePos = new BlockPos(14, 2, 5);
         FluidPipeBlock pipeBlock = (FluidPipeBlock) ModBlocks.pipeBlock(
@@ -6550,7 +6550,7 @@ public final class CrucibleCraftGameTests {
         }
         helper.assertTrue(
                 profileV2 == 129,
-                "Runtime registry has " + profileV2 + " / 129 T20 profiles");
+                "Runtime registry has " + profileV2 + " / 129 worldgen profiles");
 
         ResourceLocation oilId = ResourceLocation.fromNamespaceAndPath(
                 CrucibleCraft.MODID, "crude_oil_deposit");
@@ -7182,7 +7182,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void t4RepresentativePickaxesExposeMaterialComponents(
+    public static void representativePickaxesExposeMaterialComponents(
             GameTestHelper helper) {
         var pickaxeItem = ModItems.MATERIAL_PICKAXE.get();
         for (String material : List.of("iron", "diamond", "oak", "stone")) {
@@ -7195,7 +7195,7 @@ public final class CrucibleCraftGameTests {
                             == ToolMaterialRules.durability(
                                     ToolMaterialRules.ToolKind.PICKAXE,
                                     material),
-                    material + " pickaxe durability does not follow T4 policy");
+                    material + " pickaxe durability does not follow tool policy");
             helper.assertTrue(
                     pickaxe.getComponentsPatch().entrySet().stream()
                             .noneMatch(entry ->
@@ -7307,7 +7307,7 @@ public final class CrucibleCraftGameTests {
                         "cruciblecraft:material_pickaxe").isPresent()
                         && MaterialComponentPolicies.resolve(
                                 "cruciblecraft:material_file").isPresent(),
-                "T4 items are not discoverable through item-level material policy");
+                "Tool items are not discoverable through item-level material policy");
         helper.succeed();
     }
 
@@ -7322,7 +7322,7 @@ public final class CrucibleCraftGameTests {
                         ModProcessingMachines.ASSEMBLER);
         RecipeMap.Entry recipe = ModRecipeMaps.ASSEMBLER.entries().stream()
                 .filter(entry -> entry.id().getPath()
-                        .equals("t4/assembler/pickaxe/metal/iron"))
+                        .equals("tool/assembler/pickaxe/metal/iron"))
                 .findFirst()
                 .orElseThrow();
         loadRecipeInputs(assembler, recipe.recipe());
@@ -7340,7 +7340,7 @@ public final class CrucibleCraftGameTests {
                 .thenExecute(() -> {
                     helper.assertTrue(
                             assembler.duration() > 0,
-                            "T4 pickaxe recipe was not selected");
+                            "Tool pickaxe recipe was not selected");
                     assembler.inventory().setStackInSlot(
                             outputSlot, new ItemStack(Items.BEDROCK, 64));
                     forceLastTick(helper, assembler);
@@ -7393,16 +7393,16 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 360)
-    public static void everyT3PlacedMachineAdvancesRealRecipe(GameTestHelper helper) {
+    public static void everyComponentPlacedMachineAdvancesRealRecipe(GameTestHelper helper) {
         List<Block> blocks = List.of(
                 ModBlocks.EXTRUDER.get(), ModBlocks.CUTTER.get(), ModBlocks.LATHE.get(),
                 ModBlocks.ROLLINGMILL.get(), ModBlocks.ROLLBENDER.get(),
                 ModBlocks.WIREMILL.get(), ModBlocks.BENDER.get(), ModBlocks.ASSEMBLER.get(),
                 ModBlocks.WELDER.get(), ModBlocks.PRESS.get());
         List<ConfiguredProcessingMachineBlockEntity> machines = new java.util.ArrayList<>();
-        for (int i = 0; i < ModProcessingMachines.T3_MACHINES.size(); i++) {
+        for (int i = 0; i < ModProcessingMachines.COMPONENT_MACHINES.size(); i++) {
             BlockPos pos = new BlockPos(2 + (i % 5) * 4, 2, 2 + (i / 5) * 6);
-            ProcessingMachineSpec spec = ModProcessingMachines.T3_MACHINES.get(i);
+            ProcessingMachineSpec spec = ModProcessingMachines.COMPONENT_MACHINES.get(i);
             ConfiguredProcessingMachineBlockEntity machine =
                     placeConfigured(helper, pos, blocks.get(i), spec);
             GTRecipe recipe = spec.requireRecipeMap().recipes().getFirst();
@@ -7424,7 +7424,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void everyLiveT3RecipeTracesToGeneratedComponentJson(
+    public static void everyLiveComponentRecipeTracesToGeneratedComponentJson(
             GameTestHelper helper) {
         Map<RecipeMap, Integer> expected = Map.of(
                 ModRecipeMaps.EXTRUDER, 3039,
@@ -7438,7 +7438,7 @@ public final class CrucibleCraftGameTests {
                 ModRecipeMaps.WELDER, 321,
                 ModRecipeMaps.PRESS, 1191);
         int total = 0;
-        for (ProcessingMachineSpec spec : ModProcessingMachines.T3_MACHINES) {
+        for (ProcessingMachineSpec spec : ModProcessingMachines.COMPONENT_MACHINES) {
             RecipeMap map = spec.requireRecipeMap();
             helper.assertTrue(
                     map.entries().size() == expected.get(map),
@@ -7452,7 +7452,7 @@ public final class CrucibleCraftGameTests {
                 int materialSeparator = expandedPath.lastIndexOf('/');
                 helper.assertTrue(
                         materialSeparator > 0,
-                        "T3 recipe lacks expanded material suffix: " + entry.id());
+                        "Component recipe lacks expanded material suffix: " + entry.id());
                 String directPath = "data/" + entry.id().getNamespace() + "/recipe/"
                         + expandedPath + ".json";
                 String sourcePath = "data/" + entry.id().getNamespace() + "/recipe/"
@@ -7474,34 +7474,34 @@ public final class CrucibleCraftGameTests {
                                 || CrucibleCraftGameTests.class.getClassLoader()
                                         .getResource(sourcePath) != null
                                 || compactExtruderSource,
-                        "Live T3 recipe has no component-rule JSON source: "
+                        "Live component recipe has no component-rule JSON source: "
                                 + entry.id() + " -> " + sourcePath);
             }
         }
         helper.assertTrue(
                 total == 12056,
-                "Live T3-map recipe total is not 12056: " + total);
-        int t5Total = 0;
-        for (RecipeMap map : ModProcessingMachines.T5_MACHINES.stream()
+                "Live component-map recipe total is not 12056: " + total);
+        int chemicalTotal = 0;
+        for (RecipeMap map : ModProcessingMachines.CHEMICAL_HOST_MACHINES.stream()
                 .map(ProcessingMachineSpec::requireRecipeMap)
                 .distinct()
                 .toList()) {
             ProcessingMachineSpec host =
                     ModProcessingMachines.forRecipeMap(map.id()).orElseThrow();
             for (RecipeMap.Entry entry : map.entries()) {
-                if (!entry.id().getPath().startsWith("t5/")) {
+                if (!entry.id().getPath().startsWith("chemical/")) {
                     continue;
                 }
-                t5Total++;
+                chemicalTotal++;
                 String resource = "data/" + entry.id().getNamespace()
                         + "/recipe/" + entry.id().getPath() + ".json";
                 helper.assertTrue(
                         CrucibleCraftGameTests.class.getClassLoader()
                                 .getResource(resource) != null,
-                        "Live T5 recipe has no generated source JSON: " + entry.id());
+                        "Live chemical recipe has no generated source JSON: " + entry.id());
                 helper.assertTrue(
                         host.validator().validate(entry.recipe()).isEmpty(),
-                        "Live T5 recipe is published but its runtime host rejects it: "
+                        "Live chemical recipe is published but its runtime host rejects it: "
                                 + entry.id() + " host=" + host.id()
                                 + " reason="
                                 + host.validator().validate(entry.recipe()).orElse(""));
@@ -7510,7 +7510,7 @@ public final class CrucibleCraftGameTests {
                         map.findMatch(query).orElse(null);
                 helper.assertTrue(
                         resolved != null && resolved.id().equals(entry.id()),
-                        "Live T5 recipe cannot be found by its declared input: "
+                        "Live chemical recipe cannot be found by its declared input: "
                                 + entry.id()
                                 + " resolved="
                                 + (resolved == null ? null : resolved.id())
@@ -7521,9 +7521,9 @@ public final class CrucibleCraftGameTests {
             }
             helper.assertTrue(
                     map.unindexedRecipeCount() == 0,
-                    map.id() + " contains unindexed T5 recipes");
+                    map.id() + " contains unindexed chemical recipes");
         }
-        helper.assertTrue(t5Total == 152, "Live T5 recipe total is not 152: " + t5Total);
+        helper.assertTrue(chemicalTotal == 152, "Live chemical recipe total is not 152: " + chemicalTotal);
         ProcessingEmiRegistrationPlan emiPlan = ProcessingEmiRegistrationPlan.create(
                 ModProcessingMachines.CONFIGURED_MACHINES);
         int expectedEmiRecipes = ModProcessingMachines.CONFIGURED_MACHINES.stream()
@@ -7542,9 +7542,9 @@ public final class CrucibleCraftGameTests {
         var metrics = com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader
                 .lastPublicationMetrics();
         var lookup = com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader
-                .benchmarkT14LookupsForVerification();
+                .benchmarkCompactLoadLookupsForVerification();
         var onlineGate = com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader
-                .evaluateT14OnlineBudgetGate(
+                .evaluateCompactLoadOnlineBudgetGate(
                         metrics,
                         lookup,
                         ModProcessingMachines.VERIFICATION_RECIPE_RELOAD_BUDGET_MS,
@@ -7552,13 +7552,13 @@ public final class CrucibleCraftGameTests {
         CrucibleCraft.LOGGER.info(
                 "GameTest recipe publication metrics: {}", metrics);
         helper.assertTrue(
-                metrics.t3ComponentRecipes() == 8398
-                        && metrics.t4ToolRecipes() == 3657
-                        && metrics.t5ChemicalRecipes() == 158
-                        && metrics.t7AuthoredMaterialRules() == 220
-                        && metrics.t8PipeMaterialRules() == 257
-                        && metrics.t10KnownFormMaterialRules() == 967
-                        && metrics.liveT3MapRecipes() == 12056
+                metrics.componentRecipes() == 8398
+                        && metrics.toolRecipes() == 3657
+                        && metrics.chemicalPublishedRecipes() == 158
+                        && metrics.mortarAuthoredMaterialRules() == 220
+                        && metrics.pipeMaterialRules() == 257
+                        && metrics.ingotFormMaterialRules() == 967
+                        && metrics.liveComponentMapRecipes() == 12056
                         && metrics.allPublishedRecipes() == 18_766
                         && metrics.eagerPublishedRecipes() == 16_541
                         && metrics.eagerPublishedRecipes()
@@ -7568,30 +7568,30 @@ public final class CrucibleCraftGameTests {
                         && metrics.lazyLogicalRecipes()
                                 <= ModProcessingMachines
                                         .ALL_LAZY_LOGICAL_RECIPE_HARD_CEILING
-                        && metrics.t14ExtruderLogicalRecipes() == 2_782
-                        && metrics.t14ExtruderEagerRecipes() == 557
-                        && metrics.t14ExtruderLazyRecipes() == 2_225
-                        && metrics.t14ExtruderCacheCeiling() == 512
-                        && metrics.t14ExtruderSyncBytes() == 331_124L
-                        && metrics.t14ExtruderCacheCeiling()
+                        && metrics.compactLoadExtruderLogicalRecipes() == 2_782
+                        && metrics.compactLoadExtruderEagerRecipes() == 557
+                        && metrics.compactLoadExtruderLazyRecipes() == 2_225
+                        && metrics.compactLoadExtruderCacheCeiling() == 512
+                        && metrics.compactLoadExtruderSyncBytes() == 331_124L
+                        && metrics.compactLoadExtruderCacheCeiling()
                                 <= ModProcessingMachines
                                         .ALL_LAZY_RECIPE_CACHE_HARD_CEILING
-                        && metrics.t14ExtruderAuthoredEntries() == 20
-                        && metrics.t14ExtruderStableFingerprint()
+                        && metrics.compactLoadExtruderAuthoredEntries() == 20
+                        && metrics.compactLoadExtruderStableFingerprint()
                                 .matches("[0-9a-f]{64}")
                         && metrics.runtimeSide()
                                 == ExtruderRecipeFamilyProvider.RuntimeSide.SERVER
-                        && metrics.t5ChemicalRecipes()
-                                <= ModProcessingMachines.T5_CHEMICAL_RECIPE_BUDGET
-                        && metrics.t7AuthoredMaterialRules()
+                        && metrics.chemicalPublishedRecipes()
+                                <= ModProcessingMachines.CHEMICAL_RECIPE_BUDGET
+                        && metrics.mortarAuthoredMaterialRules()
                                 <= ModProcessingMachines
-                                        .T7_AUTHORED_MATERIAL_RULE_BUDGET
-                        && metrics.t8PipeMaterialRules()
+                                        .MORTAR_MATERIAL_RULE_BUDGET
+                        && metrics.pipeMaterialRules()
                                 <= ModProcessingMachines
-                                        .T8_PIPE_MATERIAL_RULE_BUDGET
-                        && metrics.t10KnownFormMaterialRules()
+                                        .PIPE_MATERIAL_RULE_BUDGET
+                        && metrics.ingotFormMaterialRules()
                                 <= ModProcessingMachines
-                                        .T10_AUTHORED_MATERIAL_RULE_BUDGET
+                                        .INGOT_FORM_MATERIAL_RULE_BUDGET
                         && metrics.allPublishedRecipes()
                                 <= ModProcessingMachines.ALL_PUBLISHED_RECIPE_BUDGET
                         && metrics.reloadMillis()
@@ -7613,7 +7613,7 @@ public final class CrucibleCraftGameTests {
                         && extruderFamily.eagerRecipeCount() == 557
                         && extruderFamily.lazyRecipeCount() == 2_225
                         && extruderFamily.cacheCeiling() == 512,
-                "T14c Extruder family snapshot shape drifted");
+                "Extruder family snapshot shape drifted");
         for (RecipeMap.Entry entry : ModRecipeMaps.EXTRUDER.entries()) {
             GTRecipe recipe = entry.recipe();
             helper.assertTrue(
@@ -7638,7 +7638,7 @@ public final class CrucibleCraftGameTests {
         }
         helper.assertTrue(
                 extruderFamily.cacheSize() <= extruderFamily.cacheCeiling(),
-                "T14c Extruder long-tail cache exceeded its epoch ceiling");
+                "Extruder long-tail cache exceeded its epoch ceiling");
         Map<String, Integer> toolCounts = Map.ofEntries(
                 Map.entry("pickaxe", 330),
                 Map.entry("shovel", 412),
@@ -7703,11 +7703,11 @@ public final class CrucibleCraftGameTests {
             String tool = toolEntry.getKey();
             List<RecipeMap.Entry> recipes = ModRecipeMaps.ASSEMBLER.entries().stream()
                     .filter(entry -> entry.id().getPath()
-                            .startsWith("t4/assembler/" + tool + "/"))
+                            .startsWith("tool/assembler/" + tool + "/"))
                     .toList();
             helper.assertTrue(
                     recipes.size() == toolEntry.getValue(),
-                    "T4 " + tool + " count drifted: " + recipes.size());
+                    "Tool " + tool + " count drifted: " + recipes.size());
             long itemEligible = MaterialCatalog.values().stream()
                     .filter(material -> ToolMaterialRules.isAllowed(
                             toolKinds.get(tool), material.id()))
@@ -7715,7 +7715,7 @@ public final class CrucibleCraftGameTests {
             helper.assertTrue(
                     itemEligible - recipes.size()
                             == eligibleWithoutRoute.get(tool),
-                    "T4 " + tool + " item-eligible/route-ready gap drifted: "
+                    "Tool " + tool + " item-eligible/route-ready gap drifted: "
                             + itemEligible + " eligible vs " + recipes.size()
                             + " recipes");
             Item expectedItem = toolItems.get(tool);
@@ -7740,13 +7740,13 @@ public final class CrucibleCraftGameTests {
                                 && MaterialComponentPolicies.resolve(expectedItemId)
                                         .orElseThrow()
                                         .isPersistedMaterialAllowed(materialId),
-                        "T4 tool batch lost bounded inputs, catalyst actions, "
+                        "Tool batch lost bounded inputs, catalyst actions, "
                                 + "or component output: " + entry.id());
             }
         }
         List<RecipeMap.Entry> pickaxes = ModRecipeMaps.ASSEMBLER.entries().stream()
                 .filter(entry -> entry.id().getPath()
-                        .startsWith("t4/assembler/pickaxe/"))
+                        .startsWith("tool/assembler/pickaxe/"))
                 .toList();
         Map.of(
                 "metal", 203L,
@@ -7755,16 +7755,16 @@ public final class CrucibleCraftGameTests {
                 .forEach((route, expectedCount) -> {
                     long actualCount = pickaxes.stream()
                             .filter(entry -> entry.id().getPath().startsWith(
-                                    "t4/assembler/pickaxe/" + route + "/"))
+                                    "tool/assembler/pickaxe/" + route + "/"))
                             .count();
                     helper.assertTrue(
                             actualCount == expectedCount,
-                            "T4 Pickaxe route count drifted for " + route
+                            "Pickaxe route count drifted for " + route
                                     + ": " + actualCount);
                 });
         helper.assertTrue(
                 pickaxes.stream().anyMatch(entry -> entry.id().getPath().equals(
-                        "t4/assembler/pickaxe/stone_rod_exception/stone")),
+                        "tool/assembler/pickaxe/stone_rod_exception/stone")),
                 "Exact GT6 Stone identity lost its declared route exception");
         helper.assertTrue(
                 ToolMaterialRules.isAllowed(
@@ -7785,48 +7785,48 @@ public final class CrucibleCraftGameTests {
 
     @GameTest(
             template = TEMPLATE,
-            batch = "t15c_machine_variant_crafting",
+            batch = "machine_variant_crafting_opening",
             timeoutTicks = 80)
     public static void machineVariantRecipesExecuteFromLiveRecipeManager(
             GameTestHelper helper) {
         List<MachineCraftingCase> cases = machineCraftingCases();
-        helper.assertTrue(cases.size() == 9, "T15c must execute all nine variants");
+        helper.assertTrue(cases.size() == 9, "Opening machines must execute all nine variants");
         executeMachineCraftingCases(helper, cases);
     }
 
     @GameTest(
             template = TEMPLATE,
-            batch = "t16c_machine_variant_crafting",
+            batch = "machine_variant_crafting_kinetic",
             timeoutTicks = 80)
-    public static void t16SelectedMachineRecipesExecuteFromLiveRecipeManager(
+    public static void selectedMachineRecipesExecuteFromLiveRecipeManager(
             GameTestHelper helper) {
-        List<MachineCraftingCase> cases = t16MachineCraftingCases();
+        List<MachineCraftingCase> cases = kineticMachineCraftingCases();
         helper.assertTrue(
                 cases.size() == 15,
-                "T16c must execute the selected five-by-three variants");
+                "Kinetic machines must execute the selected five-by-three variants");
         executeMachineCraftingCases(helper, cases);
     }
 
     @GameTest(
             template = TEMPLATE,
-            batch = "t17c_hu_machine_variant_crafting",
+            batch = "machine_variant_crafting_heat",
             timeoutTicks = 80)
-    public static void t17SelectedHuRecipesExecuteFromLiveRecipeManager(
+    public static void selectedHuRecipesExecuteFromLiveRecipeManager(
             GameTestHelper helper) {
-        List<MachineCraftingCase> cases = t17MachineCraftingCases();
+        List<MachineCraftingCase> cases = heatMachineCraftingCases();
         helper.assertTrue(
                 cases.size() == 9,
-                "T17c must execute all selected three-by-three HU variants");
+                "Heat machines must execute all selected three-by-three HU variants");
         executeMachineCraftingCases(helper, cases);
     }
 
     @GameTest(
             template = TEMPLATE,
-            batch = "t16d_zero_publication",
+            batch = "publication_baseline",
             timeoutTicks = 40)
-    public static void t16dRecipePublicationBaselineRemainsStable(
+    public static void recipePublicationBaselineRemainsStable(
             GameTestHelper helper) {
-        JsonObject baseline = t16PublicationBaseline();
+        JsonObject baseline = selectedKineticPublicationBaseline();
         Set<String> expectedMapIds = jsonStringSet(
                 baseline, "recipe_map_ids");
         Set<String> actualMapIds = ModRecipeMaps.ALL.stream()
@@ -7834,7 +7834,7 @@ public final class CrucibleCraftGameTests {
                 .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
         helper.assertTrue(
                 actualMapIds.containsAll(expectedMapIds),
-                "T16d RecipeMap stable id set drifted: expected="
+                "Kinetic RecipeMap stable id set drifted: expected="
                         + expectedMapIds + " actual=" + actualMapIds);
 
         JsonObject totals = baseline.getAsJsonObject("publication_totals");
@@ -7853,7 +7853,7 @@ public final class CrucibleCraftGameTests {
                         && metrics.lazyLogicalRecipes()
                                 == totals.get("lazy_rows").getAsInt()
                                         + lazyDelta,
-                "T16d logical/eager/lazy baseline drifted (delta +"
+                "Kinetic logical/eager/lazy baseline drifted (delta +"
                         + logicalDelta + "/+" + eagerDelta + "/+"
                         + lazyDelta + "): " + metrics);
 
@@ -7865,7 +7865,7 @@ public final class CrucibleCraftGameTests {
                 .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
         helper.assertTrue(
                 expectedEmiIds.equals(actualEmiIds),
-                "T16d EMI RecipeMap set drifted: expected=" + expectedEmiIds
+                "Kinetic EMI RecipeMap set drifted: expected=" + expectedEmiIds
                         + " actual=" + actualEmiIds);
 
         ProcessingEmiRegistrationPlan emi =
@@ -7888,12 +7888,12 @@ public final class CrucibleCraftGameTests {
                         && actualEnumeration.size()
                                 == new java.util.HashSet<>(
                                         actualEnumeration).size(),
-                "T16d EMI recipe enumeration is not exact");
+                "Kinetic EMI recipe enumeration is not exact");
 
         JsonObject acquisition = baseline.getAsJsonObject("t16_acquisition");
         Set<String> expectedCraftingIds = jsonStringSet(
                 acquisition, "vanilla_recipe_ids");
-        Set<Item> selectedResults = t16MachineCraftingCases().stream()
+        Set<Item> selectedResults = kineticMachineCraftingCases().stream()
                 .map(MachineCraftingCase::result)
                 .collect(java.util.stream.Collectors.toSet());
         Set<String> actualCraftingIds = helper.getLevel().getRecipeManager()
@@ -7904,11 +7904,11 @@ public final class CrucibleCraftGameTests {
                                 helper.getLevel().registryAccess()).getItem()))
                 .map(holder -> holder.id().toString())
                 .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
-        long t16GtRows = ModRecipeMaps.ALL.stream()
+        long kineticGtRows = ModRecipeMaps.ALL.stream()
                 .flatMap(map -> map.entries().stream())
                 .filter(entry -> entry.id().getNamespace().equals(
                         CrucibleCraft.MODID))
-                .filter(entry -> entry.id().getPath().startsWith("t16/"))
+                .filter(entry -> entry.id().getPath().startsWith("machines/"))
                 .count();
         helper.assertTrue(
                 acquisition.get("recipe_type").getAsString()
@@ -7917,17 +7917,17 @@ public final class CrucibleCraftGameTests {
                         && actualCraftingIds.size()
                                 == acquisition.get(
                                         "vanilla_crafting_rows").getAsInt()
-                        && t16GtRows
+                        && kineticGtRows
                                 == acquisition.get("gt_recipe_rows").getAsLong(),
-                "T16d acquisition is not exactly 15 vanilla crafting rows "
+                "Kinetic acquisition is not exactly 15 vanilla crafting rows "
                         + "and zero GT rows: crafting=" + actualCraftingIds
-                        + " gt=" + t16GtRows);
+                        + " gt=" + kineticGtRows);
         helper.succeed();
     }
 
     /** Return the total registered publication delta summed across all
-     *  post-T19 baseline files (currently only T21).  Each baseline may
-     *  carry a phase-specific key (t21_publication_delta) or the generic
+     *  later publication baseline files.  Each baseline may
+     *  carry a phase-specific key (publication_delta) or the generic
      *  {@code publication_delta}.  The Python side uses the same logic
      *  (see {@code _compute_registered_deltas} in build_t14_readiness.py).
      *  A missing or unparseable baseline is a hard error — it must not
@@ -7980,47 +7980,47 @@ public final class CrucibleCraftGameTests {
         return delta;
     }
 
-    private static JsonObject t16PublicationBaseline() {
+    private static JsonObject selectedKineticPublicationBaseline() {
         var stream = CrucibleCraftGameTests.class.getClassLoader()
                 .getResourceAsStream(
                         "data/cruciblecraft/t16_publication_baseline.json");
         if (stream == null) {
             throw new IllegalStateException(
-                    "Missing T16d publication baseline resource");
+                    "Missing kinetic publication baseline resource");
         }
         try (var reader = new InputStreamReader(
                 stream, StandardCharsets.UTF_8)) {
             return JsonParser.parseReader(reader).getAsJsonObject();
         } catch (IOException exception) {
             throw new IllegalStateException(
-                    "Cannot read T16d publication baseline", exception);
+                    "Cannot read kinetic publication baseline", exception);
         }
     }
 
     @GameTest(
             template = TEMPLATE,
-            batch = "t17d_zero_publication",
+            batch = "publication_delta",
             timeoutTicks = 40)
-    public static void t17dRecipePublicationMatchesT16Baseline(
+    public static void recipePublicationMatchesPriorBaseline(
             GameTestHelper helper) {
-        JsonObject baseline = t17PublicationBaseline();
-        JsonObject t16 = t16PublicationBaseline();
+        JsonObject baseline = selectedHeatPublicationBaseline();
+        JsonObject kineticBaseline = selectedKineticPublicationBaseline();
         Set<String> expectedMapIds = jsonStringSet(
                 baseline, "recipe_map_ids");
-        Set<String> t16MapIds = jsonStringSet(t16, "recipe_map_ids");
+        Set<String> kineticMapIds = jsonStringSet(kineticBaseline, "recipe_map_ids");
         Set<String> actualMapIds = ModRecipeMaps.ALL.stream()
                 .map(map -> map.id().toString())
                 .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
         helper.assertTrue(
-                expectedMapIds.equals(t16MapIds)
+                expectedMapIds.equals(kineticMapIds)
                         && actualMapIds.containsAll(expectedMapIds),
-                "T17d RecipeMap stable id set differs from T16: expected="
+                "Heat RecipeMap stable id set differs from kinetic baseline: expected="
                         + expectedMapIds + " actual=" + actualMapIds);
 
         JsonObject totals = baseline.getAsJsonObject("publication_totals");
         helper.assertTrue(
-                totals.equals(t16.getAsJsonObject("publication_totals")),
-                "T17d publication totals differ from the T16 baseline");
+                totals.equals(kineticBaseline.getAsJsonObject("publication_totals")),
+                "Heat publication totals differ from the kinetic baseline");
         var metrics = com.masson.cruciblecraft.recipe.gt.GTRecipeMapLoader
                 .lastPublicationMetrics();
         int logicalDelta = registeredPublicationDelta("logical_rows_added");
@@ -8036,21 +8036,21 @@ public final class CrucibleCraftGameTests {
                         && metrics.lazyLogicalRecipes()
                                 == totals.get("lazy_rows").getAsInt()
                                         + lazyDelta,
-                "T17d logical/eager/lazy baseline drifted (delta +"
+                "Heat logical/eager/lazy baseline drifted (delta +"
                         + logicalDelta + "/+" + eagerDelta + "/+"
                         + lazyDelta + "): " + metrics);
 
         Set<String> expectedEmiIds = jsonStringSet(
                 baseline, "emi_recipe_map_ids");
-        Set<String> t16EmiIds = jsonStringSet(t16, "emi_recipe_map_ids");
+        Set<String> kineticEmiIds = jsonStringSet(kineticBaseline, "emi_recipe_map_ids");
         Set<String> actualEmiIds = ModProcessingMachines.CONFIGURED_MACHINES
                 .stream()
                 .map(spec -> spec.requireRecipeMap().id().toString())
                 .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
         helper.assertTrue(
-                expectedEmiIds.equals(t16EmiIds)
+                expectedEmiIds.equals(kineticEmiIds)
                         && expectedEmiIds.equals(actualEmiIds),
-                "T17d EMI RecipeMap set differs from T16: expected="
+                "Heat EMI RecipeMap set differs from kinetic baseline: expected="
                         + expectedEmiIds + " actual=" + actualEmiIds);
 
         ProcessingEmiRegistrationPlan emi =
@@ -8073,12 +8073,12 @@ public final class CrucibleCraftGameTests {
                         && actualEnumeration.size()
                                 == new java.util.HashSet<>(
                                         actualEnumeration).size(),
-                "T17d EMI recipe enumeration is not exact");
+                "Heat EMI recipe enumeration is not exact");
 
         JsonObject acquisition = baseline.getAsJsonObject("t17_acquisition");
         Set<String> expectedCraftingIds = jsonStringSet(
                 acquisition, "vanilla_recipe_ids");
-        Set<Item> selectedResults = t17MachineCraftingCases().stream()
+        Set<Item> selectedResults = heatMachineCraftingCases().stream()
                 .map(MachineCraftingCase::result)
                 .collect(java.util.stream.Collectors.toSet());
         Set<String> actualCraftingIds = helper.getLevel().getRecipeManager()
@@ -8089,11 +8089,11 @@ public final class CrucibleCraftGameTests {
                                 helper.getLevel().registryAccess()).getItem()))
                 .map(holder -> holder.id().toString())
                 .collect(java.util.stream.Collectors.toCollection(TreeSet::new));
-        long t17GtRows = ModRecipeMaps.ALL.stream()
+        long heatGtRows = ModRecipeMaps.ALL.stream()
                 .flatMap(map -> map.entries().stream())
                 .filter(entry -> entry.id().getNamespace().equals(
                         CrucibleCraft.MODID))
-                .filter(entry -> entry.id().getPath().startsWith("t17/"))
+                .filter(entry -> entry.id().getPath().startsWith("machines/"))
                 .count();
         helper.assertTrue(
                 acquisition.get("recipe_type").getAsString()
@@ -8102,28 +8102,28 @@ public final class CrucibleCraftGameTests {
                         && actualCraftingIds.size()
                                 == acquisition.get(
                                         "vanilla_crafting_rows").getAsInt()
-                        && t17GtRows
+                        && heatGtRows
                                 == acquisition.get("gt_recipe_rows").getAsLong(),
-                "T17d acquisition is not exactly 9 vanilla crafting rows "
+                "Heat acquisition is not exactly 9 vanilla crafting rows "
                         + "and zero GT rows: crafting=" + actualCraftingIds
-                        + " gt=" + t17GtRows);
+                        + " gt=" + heatGtRows);
         helper.succeed();
     }
 
-    private static JsonObject t17PublicationBaseline() {
+    private static JsonObject selectedHeatPublicationBaseline() {
         var stream = CrucibleCraftGameTests.class.getClassLoader()
                 .getResourceAsStream(
                         "data/cruciblecraft/t17_publication_baseline.json");
         if (stream == null) {
             throw new IllegalStateException(
-                    "Missing T17d publication baseline resource");
+                    "Missing heat publication baseline resource");
         }
         try (var reader = new InputStreamReader(
                 stream, StandardCharsets.UTF_8)) {
             return JsonParser.parseReader(reader).getAsJsonObject();
         } catch (IOException exception) {
             throw new IllegalStateException(
-                    "Cannot read T17d publication baseline", exception);
+                    "Cannot read heat publication baseline", exception);
         }
     }
 
@@ -8182,12 +8182,12 @@ public final class CrucibleCraftGameTests {
 
     @GameTest(
             template = TEMPLATE,
-            batch = "t15d_identity_quarantine",
+            batch = "identity_quarantine",
             timeoutTicks = 80)
     public static void processingIdentityMismatchesQuarantineAcrossNbtReload(
             GameTestHelper helper) {
         GTRecipe recipe = requireRecipe(
-                ModRecipeMaps.ELECTROLYZER, "t5/electrolyzer/salt");
+                ModRecipeMaps.ELECTROLYZER, "chemical/electrolyzer/salt");
         List<IdentityReloadCase> cases = new ArrayList<>();
         for (int index = 0; index < 4; index++) {
             BlockPos pos = new BlockPos(2 + index * 3, 2, 5);
@@ -8235,7 +8235,7 @@ public final class CrucibleCraftGameTests {
                     helper.getLevel().registryAccess());
             persisted.putString(
                     "active_recipe",
-                    "cruciblecraft:t15d_identity_reload");
+                    "cruciblecraft:identity_reload");
             persisted.putInt("progress", 9);
             persisted.putInt("duration", recipe.duration());
             persisted.putString("status", "processing");
@@ -8318,7 +8318,7 @@ public final class CrucibleCraftGameTests {
 
     @GameTest(
             template = TEMPLATE,
-            batch = "t15d_blank_identity",
+            batch = "blank_identity",
             timeoutTicks = 40)
     public static void blankProcessingIdentityAdoptsCurrentAcrossNbtReload(
             GameTestHelper helper) {
@@ -8364,7 +8364,7 @@ public final class CrucibleCraftGameTests {
 
     @GameTest(
             template = TEMPLATE,
-            batch = "t16c_tier_profile_rejected",
+            batch = "tier_profile_rejected",
             timeoutTicks = 40)
     public static void tierProfileIdentityIsQuarantinedAcrossNbtReload(
             GameTestHelper helper) {
@@ -8382,7 +8382,7 @@ public final class CrucibleCraftGameTests {
                 helper.getLevel().registryAccess());
         persisted.putString(
                 "active_recipe",
-                "cruciblecraft:t16c_identity_reload");
+                "cruciblecraft:identity_reload_probe");
         persisted.putInt("progress", 9);
         persisted.putInt("duration", 40);
         persisted.putString("status", "processing");
@@ -8563,71 +8563,71 @@ public final class CrucibleCraftGameTests {
                                 1).getItem()));
     }
 
-    private static List<MachineCraftingCase> t16MachineCraftingCases() {
+    private static List<MachineCraftingCase> kineticMachineCraftingCases() {
         return List.of(
-                t16MachineCraftingCase(
+                kineticMachineCraftingCase(
                         "lathe", "bronze",
                         ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
                         ModItems.LATHE.get()),
-                t16MachineCraftingCase(
+                kineticMachineCraftingCase(
                         "steel_lathe", "steel",
                         ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
                         ModItems.STEEL_LATHE.get()),
-                t16MachineCraftingCase(
+                kineticMachineCraftingCase(
                         "titanium_lathe", "titanium",
                         ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
                         ModItems.TITANIUM_LATHE.get()),
-                t16MachineCraftingCase(
+                kineticMachineCraftingCase(
                         "rollingmill", "bronze",
                         ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
                         ModItems.ROLLINGMILL.get()),
-                t16MachineCraftingCase(
+                kineticMachineCraftingCase(
                         "steel_rollingmill", "steel",
                         ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
                         ModItems.STEEL_ROLLINGMILL.get()),
-                t16MachineCraftingCase(
+                kineticMachineCraftingCase(
                         "titanium_rollingmill", "titanium",
                         ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
                         ModItems.TITANIUM_ROLLINGMILL.get()),
-                t16MachineCraftingCase(
+                kineticMachineCraftingCase(
                         "wiremill", "bronze",
                         ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
                         ModItems.WIREMILL.get()),
-                t16MachineCraftingCase(
+                kineticMachineCraftingCase(
                         "steel_wiremill", "steel",
                         ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
                         ModItems.STEEL_WIREMILL.get()),
-                t16MachineCraftingCase(
+                kineticMachineCraftingCase(
                         "titanium_wiremill", "titanium",
                         ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
                         ModItems.TITANIUM_WIREMILL.get()),
-                t16MachineCraftingCase(
+                kineticMachineCraftingCase(
                         "shredder", "bronze",
                         ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
                         ModItems.SHREDDER.get()),
-                t16MachineCraftingCase(
+                kineticMachineCraftingCase(
                         "steel_shredder", "steel",
                         ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
                         ModItems.STEEL_SHREDDER.get()),
-                t16MachineCraftingCase(
+                kineticMachineCraftingCase(
                         "titanium_shredder", "titanium",
                         ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
                         ModItems.TITANIUM_SHREDDER.get()),
-                t16MachineCraftingCase(
+                kineticMachineCraftingCase(
                         "press", "bronze",
                         ModItems.BRONZE_DOUBLE_MACHINE_CASING.get(),
                         ModItems.PRESS.get()),
-                t16MachineCraftingCase(
+                kineticMachineCraftingCase(
                         "steel_press", "steel",
                         ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
                         ModItems.STEEL_PRESS.get()),
-                t16MachineCraftingCase(
+                kineticMachineCraftingCase(
                         "titanium_press", "titanium",
                         ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
                         ModItems.TITANIUM_PRESS.get()));
     }
 
-    private static MachineCraftingCase t16MachineCraftingCase(
+    private static MachineCraftingCase kineticMachineCraftingCase(
             String id,
             String material,
             Item casing,
@@ -8698,7 +8698,7 @@ public final class CrucibleCraftGameTests {
                                 1).getItem());
             }
             default -> throw new IllegalArgumentException(
-                    "Unsupported T16 machine " + id);
+                    "Unsupported kinetic machine " + id);
         }
         return new MachineCraftingCase(
                 ResourceLocation.fromNamespaceAndPath(
@@ -8708,62 +8708,62 @@ public final class CrucibleCraftGameTests {
                 key);
     }
 
-    private static List<MachineCraftingCase> t17MachineCraftingCases() {
+    private static List<MachineCraftingCase> heatMachineCraftingCases() {
         return List.of(
-                t17DistilleryCraftingCase(
+                heatDistilleryCraftingCase(
                         "distillery",
                         "steel",
                         "constantan",
                         MaterialPrefixes.DOUBLE_WIRE,
                         ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
                         ModItems.DISTILLERY.get()),
-                t17DistilleryCraftingCase(
+                heatDistilleryCraftingCase(
                         "invar_distillery",
                         "invar",
                         "kanthal",
                         MaterialPrefixes.QUADRUPLE_WIRE,
                         ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
                         ModItems.INVAR_DISTILLERY.get()),
-                t17DistilleryCraftingCase(
+                heatDistilleryCraftingCase(
                         "titanium_distillery",
                         "titanium",
                         "nichrome",
                         MaterialPrefixes.OCTUPLE_WIRE,
                         ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
                         ModItems.TITANIUM_DISTILLERY.get()),
-                t17HeatBodyCraftingCase(
+                heatBodyCraftingCase(
                         "drying",
                         "steel",
                         ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
                         ModItems.DRYING.get()),
-                t17HeatBodyCraftingCase(
+                heatBodyCraftingCase(
                         "invar_drying",
                         "invar",
                         ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
                         ModItems.INVAR_DRYING.get()),
-                t17HeatBodyCraftingCase(
+                heatBodyCraftingCase(
                         "titanium_drying",
                         "titanium",
                         ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
                         ModItems.TITANIUM_DRYING.get()),
-                t17HeatBodyCraftingCase(
+                heatBodyCraftingCase(
                         "smelter",
                         "steel",
                         ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
                         ModItems.SMELTER.get()),
-                t17HeatBodyCraftingCase(
+                heatBodyCraftingCase(
                         "invar_smelter",
                         "invar",
                         ModItems.STEEL_DOUBLE_MACHINE_CASING.get(),
                         ModItems.INVAR_SMELTER.get()),
-                t17HeatBodyCraftingCase(
+                heatBodyCraftingCase(
                         "titanium_smelter",
                         "titanium",
                         ModItems.TITANIUM_DOUBLE_MACHINE_CASING.get(),
                         ModItems.TITANIUM_SMELTER.get()));
     }
 
-    private static MachineCraftingCase t17DistilleryCraftingCase(
+    private static MachineCraftingCase heatDistilleryCraftingCase(
             String id,
             String material,
             String wireMaterial,
@@ -8792,7 +8792,7 @@ public final class CrucibleCraftGameTests {
                                 1).getItem()));
     }
 
-    private static MachineCraftingCase t17HeatBodyCraftingCase(
+    private static MachineCraftingCase heatBodyCraftingCase(
             String id,
             String material,
             Item casing,
@@ -9463,7 +9463,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void t19ConveyorActivelyExportsAtConfiguredRate(
+    public static void conveyorActivelyExportsAtConfiguredRate(
             GameTestHelper helper) {
         ActiveCoverRoute route = activeCoverRoute(
                 helper,
@@ -9484,7 +9484,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void t19RetrieverPullsOnlyDestinationDemand(
+    public static void retrieverPullsOnlyDestinationDemand(
             GameTestHelper helper) {
         ActiveCoverRoute route = activeCoverRoute(
                 helper,
@@ -9506,7 +9506,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 100)
-    public static void t19RobotArmRequiresExactConfiguredCount(
+    public static void robotArmRequiresExactConfiguredCount(
             GameTestHelper helper) {
         ActiveCoverRoute route = activeCoverRoute(
                 helper,
@@ -9537,7 +9537,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void t19PressureValveCapsFluidAndRetainsBackpressure(
+    public static void pressureValveCapsFluidAndRetainsBackpressure(
             GameTestHelper helper) {
         BlockPos pipePos = new BlockPos(5, 2, 5);
         FluidPipeBlock block = (FluidPipeBlock) ModBlocks.pipeBlock(
@@ -9595,7 +9595,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void t19ManualSelectorPersistsBoundedSideConfig(
+    public static void manualSelectorPersistsBoundedSideConfig(
             GameTestHelper helper) {
         ItemPipeBlock block = (ItemPipeBlock) ModBlocks.pipeBlock(
                 "copper",
@@ -9631,7 +9631,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 80)
-    public static void t19cAllNonmetalPipeRecipesMatchAndAssemble(
+    public static void allNonmetalPipeRecipesMatchAndAssemble(
             GameTestHelper helper) {
         ServerLevel level = helper.getLevel();
         Set<ResourceLocation> expectedIds =
@@ -9647,7 +9647,7 @@ public final class CrucibleCraftGameTests {
         helper.assertTrue(
                 publishedIds.equals(expectedIds)
                         && publishedIds.size() == 25,
-                "T19c did not publish exactly 25 pipe crafting recipes");
+                "Did not publish exactly 25 pipe crafting recipes");
 
         for (var spec : PipeAcquisitionRecipeCatalog.ALL) {
             List<ItemStack> slots = new ArrayList<>();
@@ -9865,7 +9865,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 200)
-    public static void t22PetroleumDistillationFuelsEngineAndCutter(
+    public static void petroleumDistillationFuelsEngineAndCutter(
             GameTestHelper helper) {
         // --- C2: End-to-end petroleum processing: oil -> distillery -> fuel -> engine -> KU ---
         //  This test deliberately does NOT use loadRecipeInputs().
@@ -9894,10 +9894,10 @@ public final class CrucibleCraftGameTests {
 
         GTRecipe distillation = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
-                "t22/distillery/oil_to_fuel_and_lubricant");
+                "petroleum/distillery/oil_to_fuel_and_lubricant");
         GTRecipe fuelCombustion = requireRecipe(
                 ModRecipeMaps.FUELS_ENGINE,
-                "t11/fuels_engine/fuel_oil");
+                "hydrocarbon/fuels_engine/fuel_oil");
 
         helper.assertTrue(
                 firebox.addFuel(FuelDefinition.COAL_COKE),
@@ -9946,11 +9946,11 @@ public final class CrucibleCraftGameTests {
     }
 
     // -----------------------------------------------------------------------
-    // C3: T22 petroleum edge-case tests
+    // C3: petroleum edge-case tests
     // -----------------------------------------------------------------------
 
     @GameTest(template = TEMPLATE, timeoutTicks = 120)
-    public static void t22DistilleryFluidConservationAfterNbtReload(
+    public static void distilleryFluidConservationAfterNbtReload(
             GameTestHelper helper) {
         // Conservation: distillery fluid state must survive NBT save/load
         // without duplicating or losing fluid.
@@ -9967,7 +9967,7 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(distilleryPos.below());
         GTRecipe distillation = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
-                "t22/distillery/oil_to_fuel_and_lubricant");
+                "petroleum/distillery/oil_to_fuel_and_lubricant");
 
         helper.assertTrue(
                 firebox.addFuel(FuelDefinition.COAL_COKE),
@@ -10036,7 +10036,7 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 100)
-    public static void t22DistilleryFireboxEmptyPreservesProgress(
+    public static void distilleryFireboxEmptyPreservesProgress(
             GameTestHelper helper) {
         // Power loss / no-fuel scenario: when firebox has no fuel, the
         // distillery must preserve its fluid contents.  Re-fueling must
@@ -10054,7 +10054,7 @@ public final class CrucibleCraftGameTests {
                 helper.getBlockEntity(distilleryPos.below());
         GTRecipe distillation = requireRecipe(
                 ModRecipeMaps.DISTILLERY,
-                "t22/distillery/oil_to_fuel_and_lubricant");
+                "petroleum/distillery/oil_to_fuel_and_lubricant");
 
         // Fuel first, then load input — the distillery needs heat to
         // bind the recipe and begin processing.
@@ -10085,13 +10085,13 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 40)
-    public static void t22_5RegisteredMapsHaveLogicalRecipes(
+    public static void registeredMapsHaveLogicalRecipes(
             GameTestHelper helper) {
-        // T22.5 C0 runtime guard: every registered RecipeMap must match
+        // Runtime guard: every registered RecipeMap must match
         // the playability audit's zero/non-zero claim.  The audit found
         // exactly two registered maps with zero logical recipes:
         // anvil_bend_big and anvil_bend_small (v1 blockers).
-        // T22.5 C0 runtime guard plus T28 cooling retirement: registered
+        // Runtime guard plus cooling retirement: registered
         // maps with zero logical recipes are the two anvil-bend blockers
         // and the retained-empty leftover cooling map.
         List<String> zeroMaps = List.of(
@@ -10328,6 +10328,21 @@ public final class CrucibleCraftGameTests {
                 .recipe();
     }
 
+    private static GTRecipe requireMixerRecipeWithFluids(String... fluidIds) {
+        Set<String> wanted = Set.of(fluidIds);
+        return ModRecipeMaps.MIXER.entries().stream()
+                .map(RecipeMap.Entry::recipe)
+                .filter(recipe -> recipe.fluidInputs().stream()
+                        .map(stack -> BuiltInRegistries.FLUID
+                                .getKey(stack.getFluid())
+                                .toString())
+                        .collect(java.util.stream.Collectors.toSet())
+                        .equals(wanted))
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException(
+                        "Missing live Mixer recipe for fluids " + wanted));
+    }
+
     private static void drainMachineIntoItem(
             GameTestHelper helper,
             IFluidHandler source,
@@ -10377,18 +10392,18 @@ public final class CrucibleCraftGameTests {
             int amount) {
         helper.assertTrue(
                 source != null && target != null && amount > 0,
-                "T11 fluid transfer endpoints are unavailable");
+                "Hydrocarbon fluid transfer endpoints are unavailable");
         FluidStack offered = source.drain(
                 amount, IFluidHandler.FluidAction.SIMULATE);
         helper.assertTrue(
                 offered.getAmount() == amount,
-                "T11 source did not expose the expected fluid amount");
+                "Source did not expose the expected fluid amount");
         helper.assertTrue(
                 target.fill(
                                 offered,
                                 IFluidHandler.FluidAction.SIMULATE)
                         == amount,
-                "T11 target rejected the simulated fluid transfer");
+                "Target rejected the simulated fluid transfer");
         FluidStack drained = source.drain(
                 offered, IFluidHandler.FluidAction.EXECUTE);
         helper.assertTrue(
@@ -10397,7 +10412,7 @@ public final class CrucibleCraftGameTests {
                                         drained,
                                         IFluidHandler.FluidAction.EXECUTE)
                                 == amount,
-                "T11 fluid transfer changed after simulation");
+                "Fluid transfer changed after simulation");
     }
 
     private static GTRecipeQuery queryFor(GTRecipe recipe) {
@@ -10638,9 +10653,9 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 400)
-    public static void t26UnknownFutureProcessingVersionQuarantinedAndPreserved(
+    public static void unknownFutureProcessingVersionQuarantinedAndPreserved(
             GameTestHelper helper) {
-        // T26b: a save written by a future version (processing_version
+        // A save written by a future version (processing_version
         // > VERSION) must load, quarantine with a diagnostic, preserve
         // energy/inventory/tanks, expose the future version to the
         // client, and write it back unchanged on the next save.
@@ -10652,7 +10667,7 @@ public final class CrucibleCraftGameTests {
                         ModBlocks.STAINLESS_STEEL_ELECTROLYZER.get(),
                         ModProcessingMachines.ELECTROLYZER);
         GTRecipe recipe = requireRecipe(
-                ModRecipeMaps.ELECTROLYZER, "t5/electrolyzer/salt");
+                ModRecipeMaps.ELECTROLYZER, "chemical/electrolyzer/salt");
         loadRecipeInputs(machine, recipe);
         int inputSlot = machine.spec().items().inputs().getFirst();
         ItemStack savedInput =
@@ -10711,34 +10726,34 @@ public final class CrucibleCraftGameTests {
         return new ItemStack(item, count);
     }
 
-    // ---- T24 small workload: declared scenario identity, deterministic
+    // ---- Small workload: declared scenario identity, deterministic
     // summary, conservation and bounded operation counts. Every placement
     // and assertion below copies a proven topology (t18a steam leg, t18b
-    // RU/EU leg, t23Tank3x3x3Formation, t19 covered pipe idioms).
+    // RU/EU leg, tank3x3x3Formation, covered pipe idioms).
 
-    private static final BlockPos T24_FIREBOX = new BlockPos(4, 1, 5);
-    private static final BlockPos T24_BOILER = T24_FIREBOX.above();
-    private static final BlockPos T24_STEAM_ENGINE = T24_BOILER.above();
-    private static final BlockPos T24_PRESS = T24_STEAM_ENGINE.east();
-    private static final BlockPos T24_FUEL_ENGINE = new BlockPos(7, 1, 5);
-    private static final BlockPos T24_AXLE = T24_FUEL_ENGINE.east();
-    private static final BlockPos T24_GEARBOX = T24_AXLE.east();
-    private static final BlockPos T24_DYNAMO = T24_GEARBOX.east();
-    private static final BlockPos T24_CABLE = T24_DYNAMO.east();
-    private static final BlockPos T24_ELECTROLYZER = T24_CABLE.east();
-    private static final BlockPos T24_CENTRIFUGE = new BlockPos(14, 1, 5);
-    private static final BlockPos T24_TANK_CONTROLLER = new BlockPos(6, 2, 9);
-    private static final Direction T24_TANK_FACING = Direction.NORTH;
-    private static final int T24_FLUID_PIPE_COUNT = 10;
-    private static final int T24_ITEM_PIPE_COUNT = 10;
-    private static final int T24_COVER_COUNT = 4;
+    private static final BlockPos SMALL_WORKLOAD_FIREBOX = new BlockPos(4, 1, 5);
+    private static final BlockPos SMALL_WORKLOAD_BOILER = SMALL_WORKLOAD_FIREBOX.above();
+    private static final BlockPos SMALL_WORKLOAD_STEAM_ENGINE = SMALL_WORKLOAD_BOILER.above();
+    private static final BlockPos SMALL_WORKLOAD_PRESS = SMALL_WORKLOAD_STEAM_ENGINE.east();
+    private static final BlockPos SMALL_WORKLOAD_FUEL_ENGINE = new BlockPos(7, 1, 5);
+    private static final BlockPos SMALL_WORKLOAD_AXLE = SMALL_WORKLOAD_FUEL_ENGINE.east();
+    private static final BlockPos SMALL_WORKLOAD_GEARBOX = SMALL_WORKLOAD_AXLE.east();
+    private static final BlockPos SMALL_WORKLOAD_DYNAMO = SMALL_WORKLOAD_GEARBOX.east();
+    private static final BlockPos SMALL_WORKLOAD_CABLE = SMALL_WORKLOAD_DYNAMO.east();
+    private static final BlockPos SMALL_WORKLOAD_ELECTROLYZER = SMALL_WORKLOAD_CABLE.east();
+    private static final BlockPos SMALL_WORKLOAD_CENTRIFUGE = new BlockPos(14, 1, 5);
+    private static final BlockPos SMALL_WORKLOAD_TANK_CONTROLLER = new BlockPos(6, 2, 9);
+    private static final Direction SMALL_WORKLOAD_TANK_FACING = Direction.NORTH;
+    private static final int SMALL_WORKLOAD_FLUID_PIPE_COUNT = 10;
+    private static final int SMALL_WORKLOAD_ITEM_PIPE_COUNT = 10;
+    private static final int SMALL_WORKLOAD_COVER_COUNT = 4;
 
     @GameTest(template = TEMPLATE, timeoutTicks = 2000)
-    public static void t24SmallWorkloadBuildsToDeclaredIdentity(
+    public static void smallWorkloadBuildsToDeclaredIdentity(
             GameTestHelper helper) {
-        t24BuildSmallScenario(helper, true);
+        buildSmallWorkloadScenario(helper, true);
         helper.assertTrue(
-                t24IdentityOk(helper, true),
+                smallWorkloadIdentityOk(helper, true),
                 "Built small workload does not match the declared "
                         + "scenario identity");
         var structure = MultiblockStructureCatalog.require(
@@ -10758,23 +10773,23 @@ public final class CrucibleCraftGameTests {
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 2000)
-    public static void t24SmallWorkloadRunsToDeterministicSummary(
+    public static void smallWorkloadRunsToDeterministicSummary(
             GameTestHelper helper) {
-        t24BuildSmallScenario(helper, true);
-        t24FuelSmallScenario(helper);
-        FireboxBlockEntity firebox = helper.getBlockEntity(T24_FIREBOX);
-        BoilerBlockEntity boiler = helper.getBlockEntity(T24_BOILER);
+        buildSmallWorkloadScenario(helper, true);
+        fuelSmallWorkloadScenario(helper);
+        FireboxBlockEntity firebox = helper.getBlockEntity(SMALL_WORKLOAD_FIREBOX);
+        BoilerBlockEntity boiler = helper.getBlockEntity(SMALL_WORKLOAD_BOILER);
         SteamEngineBlockEntity engine =
-                helper.getBlockEntity(T24_STEAM_ENGINE);
+                helper.getBlockEntity(SMALL_WORKLOAD_STEAM_ENGINE);
         ConfiguredProcessingMachineBlockEntity press =
-                helper.getBlockEntity(T24_PRESS);
-        DynamoBlockEntity dynamo = helper.getBlockEntity(T24_DYNAMO);
+                helper.getBlockEntity(SMALL_WORKLOAD_PRESS);
+        DynamoBlockEntity dynamo = helper.getBlockEntity(SMALL_WORKLOAD_DYNAMO);
         ConfiguredProcessingMachineBlockEntity electrolyzer =
-                helper.getBlockEntity(T24_ELECTROLYZER);
+                helper.getBlockEntity(SMALL_WORKLOAD_ELECTROLYZER);
         ConfiguredProcessingMachineBlockEntity centrifuge =
-                helper.getBlockEntity(T24_CENTRIFUGE);
+                helper.getBlockEntity(SMALL_WORKLOAD_CENTRIFUGE);
         FuelGeneratorBlockEntity fuelEngine =
-                helper.getBlockEntity(T24_FUEL_ENGINE);
+                helper.getBlockEntity(SMALL_WORKLOAD_FUEL_ENGINE);
 
         helper.startSequence()
                 .thenIdle(200)
@@ -10783,74 +10798,74 @@ public final class CrucibleCraftGameTests {
                             firebox.outputRate() == 24L
                                     && SteamEngineBlockEntity.OUTPUT_RATE
                                             == 12L,
-                            "T24 warmup did not reach the declared fixed "
+                            "Small-workload warmup did not reach the declared fixed "
                                     + "converter rates: firebox="
                                     + firebox.outputRate());
                     helper.assertTrue(
                             boiler.steamAmount() > 0
                                     || engine.stored() > 0L
                                     || engine.exhaustAmount() > 0,
-                            "T24 warmup produced no steam or KU");
+                            "Small-workload warmup produced no steam or KU");
                     helper.assertTrue(
                             firebox.addFuel(FuelDefinition.COAL_COKE),
-                            "Could not refuel the T24 firebox for the "
+                            "Could not refuel the small-workload firebox for the "
                                     + "sampling window");
                 })
                 .thenIdle(1200)
                 .thenExecute(() -> {
                     helper.assertTrue(
                             press.progress() > 0 || hasAnyOutput(press),
-                            "T24 press did not run: "
+                            "Small-workload press did not run: "
                                     + press.pausedReason());
                     helper.assertTrue(
                             electrolyzer.workProgressLong() > 0L,
-                            "T24 electrolyzer did not run");
+                            "Small-workload electrolyzer did not run");
                     helper.assertTrue(
                             centrifuge.progress() > 0
                                     || hasAnyOutput(centrifuge),
-                            "T24 centrifuge did not run: "
+                            "Small-workload centrifuge did not run: "
                                     + centrifuge.pausedReason());
                     helper.assertTrue(
                             dynamo.kineticConsumed()
                                     == dynamo.electricExtracted()
                                             + dynamo.conversionLoss(),
-                            "T24 dynamo RU -> EU + loss conservation "
+                            "Small-workload dynamo RU -> EU + loss conservation "
                                     + "failed");
                     long euPackets =
                             dynamo.electricExtracted() / 22L;
                     helper.assertTrue(
                             dynamo.electricExtracted() == euPackets * 22L,
-                            "T24 dynamo EU packet quantization failed");
+                            "Small-workload dynamo EU packet quantization failed");
                     helper.assertTrue(
                             boiler.waterAmount() < 10_000
                                     && fuelEngine.outputAmount(0) > 0,
-                            "T24 chain did not consume water or fuel");
+                            "Small-workload chain did not consume water or fuel");
                 })
                 .thenSucceed();
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 2000)
-    public static void t24SmallWorkloadConservesItemsFluidsEnergy(
+    public static void smallWorkloadConservesItemsFluidsEnergy(
             GameTestHelper helper) {
-        t24BuildSmallScenario(helper, true);
-        t24FuelSmallScenario(helper);
-        BoilerBlockEntity boiler = helper.getBlockEntity(T24_BOILER);
+        buildSmallWorkloadScenario(helper, true);
+        fuelSmallWorkloadScenario(helper);
+        BoilerBlockEntity boiler = helper.getBlockEntity(SMALL_WORKLOAD_BOILER);
         SteamEngineBlockEntity engine =
-                helper.getBlockEntity(T24_STEAM_ENGINE);
+                helper.getBlockEntity(SMALL_WORKLOAD_STEAM_ENGINE);
         ConfiguredProcessingMachineBlockEntity press =
-                helper.getBlockEntity(T24_PRESS);
-        DynamoBlockEntity dynamo = helper.getBlockEntity(T24_DYNAMO);
+                helper.getBlockEntity(SMALL_WORKLOAD_PRESS);
+        DynamoBlockEntity dynamo = helper.getBlockEntity(SMALL_WORKLOAD_DYNAMO);
         ConfiguredProcessingMachineBlockEntity electrolyzer =
-                helper.getBlockEntity(T24_ELECTROLYZER);
-        TankBlockEntity tank = helper.getBlockEntity(T24_TANK_CONTROLLER);
+                helper.getBlockEntity(SMALL_WORKLOAD_ELECTROLYZER);
+        TankBlockEntity tank = helper.getBlockEntity(SMALL_WORKLOAD_TANK_CONTROLLER);
         var structure = MultiblockStructureCatalog.require(
                 TankBlockEntity.STRUCTURE_ID);
         BlockPos firstPort = structure.structure().stream()
                 .filter(element -> structure.predicate(element).kind()
                         == PredicateKind.PORT)
                 .map(element -> structure.worldPosition(
-                        T24_TANK_CONTROLLER,
-                        T24_TANK_FACING,
+                        SMALL_WORKLOAD_TANK_CONTROLLER,
+                        SMALL_WORKLOAD_TANK_FACING,
                         element.offset()))
                 .findFirst()
                 .orElseThrow();
@@ -10859,7 +10874,7 @@ public final class CrucibleCraftGameTests {
                 .thenIdle(1400)
                 .thenExecute(() -> {
                     // Tank fluid conservation: exact fill and drain
-                    // through the same port (t23 formation idiom).
+                    // through the same port (tank formation idiom).
                     MultiblockPortBlockEntity port =
                             helper.getBlockEntity(firstPort);
                     int filled = port.fluidHandler().fill(
@@ -10869,14 +10884,14 @@ public final class CrucibleCraftGameTests {
                             filled == 10_000
                                     && tank.contents().getFluidAmount()
                                             == 10_000,
-                            "T24 tank fill was not exact: " + filled);
+                            "Small-workload tank fill was not exact: " + filled);
                     FluidStack drained = port.fluidHandler().drain(
                             4_000, IFluidHandler.FluidAction.EXECUTE);
                     helper.assertTrue(
                             drained.getAmount() == 4_000
                                     && tank.contents().getFluidAmount()
                                             == 6_000,
-                            "T24 tank drain was not exact: "
+                            "Small-workload tank drain was not exact: "
                                     + drained.getAmount());
 
                     // Boiler water conservation: every batch consumes
@@ -10885,17 +10900,17 @@ public final class CrucibleCraftGameTests {
                     helper.assertTrue(
                             boiler.waterAmount() < 10_000
                                     && engine.exhaustAmount() > 0,
-                            "T24 boiler did not batch water into steam");
+                            "Small-workload boiler did not batch water into steam");
 
                     // Dynamo conservation: 32 RU -> 22 EU + 10 loss.
                     helper.assertTrue(
                             dynamo.kineticConsumed()
                                     == dynamo.electricExtracted()
                                             + dynamo.conversionLoss(),
-                            "T24 dynamo conservation failed");
+                            "Small-workload dynamo conservation failed");
                     helper.assertTrue(
                             electrolyzer.workProgressLong() > 0L,
-                            "T24 electrolyzer received no EU");
+                            "Small-workload electrolyzer received no EU");
 
                     // Item conservation in the press: exactly one craft
                     // was loaded, so any completed craft drains its
@@ -10903,18 +10918,18 @@ public final class CrucibleCraftGameTests {
                     // mid-craft progress is the other valid state.
                     helper.assertTrue(
                             press.progress() > 0 || hasAnyOutput(press),
-                            "T24 press neither progressed nor produced: "
+                            "Small-workload press neither progressed nor produced: "
                                     + press.pausedReason());
                 })
                 .thenSucceed();
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 2000)
-    public static void t24SmallWorkloadRespectsDeclaredOperationCaps(
+    public static void smallWorkloadRespectsDeclaredOperationCaps(
             GameTestHelper helper) {
-        t24BuildSmallScenario(helper, true);
+        buildSmallWorkloadScenario(helper, true);
         helper.assertTrue(
-                t24IdentityOk(helper, true),
+                smallWorkloadIdentityOk(helper, true),
                 "Built small workload does not match the declared "
                         + "scenario identity");
         var structure = MultiblockStructureCatalog.require(
@@ -10925,7 +10940,7 @@ public final class CrucibleCraftGameTests {
                 .count();
         helper.assertTrue(
                 ports == 25,
-                "T24 tank port count exceeds the declared bound: "
+                "Small-workload tank port count exceeds the declared bound: "
                         + ports);
         int coverSlots = 0;
         coverSlots += helper.<FluidPipeBlockEntity>getBlockEntity(
@@ -10941,79 +10956,79 @@ public final class CrucibleCraftGameTests {
                         new BlockPos(5, 1, 2))
                 .coverSnapshot().size();
         helper.assertTrue(
-                coverSlots == T24_COVER_COUNT,
-                "T24 cover count drifted: " + coverSlots);
+                coverSlots == SMALL_WORKLOAD_COVER_COUNT,
+                "Small-workload cover count drifted: " + coverSlots);
         helper.succeed();
     }
 
     @GameTest(template = TEMPLATE, timeoutTicks = 2000)
-    public static void t24WorkloadMutationFailsStructureGate(
+    public static void workloadMutationFailsStructureGate(
             GameTestHelper helper) {
-        t24BuildSmallScenario(helper, false);
+        buildSmallWorkloadScenario(helper, false);
         helper.assertTrue(
-                !t24IdentityOk(helper, true),
+                !smallWorkloadIdentityOk(helper, true),
                 "Removing a declared machine did not fail the "
                         + "scenario identity gate");
         helper.assertTrue(
-                t24IdentityOk(helper, false),
+                smallWorkloadIdentityOk(helper, false),
                 "The partial build should match the reduced "
                         + "identity view");
         helper.succeed();
     }
 
-    private static void t24BuildSmallScenario(
+    private static void buildSmallWorkloadScenario(
             GameTestHelper helper, boolean includePress) {
-        helper.setBlock(T24_FIREBOX, ModBlocks.FIREBOX.get());
-        helper.setBlock(T24_BOILER, ModBlocks.BRONZE_BOILER.get());
+        helper.setBlock(SMALL_WORKLOAD_FIREBOX, ModBlocks.FIREBOX.get());
+        helper.setBlock(SMALL_WORKLOAD_BOILER, ModBlocks.BRONZE_BOILER.get());
         helper.setBlock(
-                T24_STEAM_ENGINE,
+                SMALL_WORKLOAD_STEAM_ENGINE,
                 ModBlocks.BRONZE_STEAM_ENGINE.get().defaultBlockState()
                         .setValue(
                                 SteamEngineBlock.FACING,
                                 Direction.EAST));
         if (includePress) {
             helper.setBlock(
-                    T24_PRESS,
+                    SMALL_WORKLOAD_PRESS,
                     ModBlocks.PRESS.get().defaultBlockState()
                             .setValue(
                                     ProcessingMachineBlock.FACING,
                                     Direction.EAST));
         }
         helper.setBlock(
-                T24_FUEL_ENGINE,
+                SMALL_WORKLOAD_FUEL_ENGINE,
                 ModBlocks.FUEL_ENGINE.get().defaultBlockState()
                         .setValue(
                                 FuelGeneratorBlock.FACING,
                                 Direction.EAST));
         helper.setBlock(
-                T24_AXLE,
+                SMALL_WORKLOAD_AXLE,
                 ModBlocks.ROTATIONAL_AXLE.get().defaultBlockState()
                         .setValue(
                                 RotationalAxleBlock.AXIS,
                                 Direction.Axis.X));
         helper.setBlock(
-                T24_GEARBOX,
+                SMALL_WORKLOAD_GEARBOX,
                 ModBlocks.ROTATIONAL_GEARBOX.get().defaultBlockState()
                         .setValue(
                                 RotationalGearboxBlock.FACING,
                                 Direction.EAST));
         helper.setBlock(
-                T24_DYNAMO,
+                SMALL_WORKLOAD_DYNAMO,
                 ModBlocks.BRONZE_DYNAMO.get().defaultBlockState()
                         .setValue(DynamoBlock.FACING, Direction.EAST));
         CableBlock cable = ModBlocks.electricalConductorBlock(
                 "tin", MaterialPrefixes.CABLE).get();
         helper.setBlock(
-                T24_CABLE,
+                SMALL_WORKLOAD_CABLE,
                 conductorState(cable, Direction.WEST, Direction.EAST));
         helper.setBlock(
-                T24_ELECTROLYZER,
+                SMALL_WORKLOAD_ELECTROLYZER,
                 ModBlocks.ELECTROLYZER.get().defaultBlockState()
                         .setValue(
                                 ProcessingMachineBlock.FACING,
                                 Direction.EAST));
         helper.setBlock(
-                T24_CENTRIFUGE,
+                SMALL_WORKLOAD_CENTRIFUGE,
                 ModBlocks.CENTRIFUGE.get().defaultBlockState()
                         .setValue(
                                 ProcessingMachineBlock.FACING,
@@ -11022,18 +11037,18 @@ public final class CrucibleCraftGameTests {
         var structure = MultiblockStructureCatalog.require(
                 TankBlockEntity.STRUCTURE_ID);
         helper.setBlock(
-                T24_TANK_CONTROLLER,
+                SMALL_WORKLOAD_TANK_CONTROLLER,
                 ModBlocks.TANK_3X3X3.get().defaultBlockState()
                         .setValue(
                                 ProcessingMachineBlock.FACING,
-                                T24_TANK_FACING));
+                                SMALL_WORKLOAD_TANK_FACING));
         structure.structure().stream()
                 .filter(element -> structure.predicate(element).kind()
                         == PredicateKind.PORT)
                 .forEach(element -> helper.setBlock(
                         structure.worldPosition(
-                                T24_TANK_CONTROLLER,
-                                T24_TANK_FACING,
+                                SMALL_WORKLOAD_TANK_CONTROLLER,
+                                SMALL_WORKLOAD_TANK_FACING,
                                 element.offset()),
                         ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get()));
 
@@ -11045,10 +11060,10 @@ public final class CrucibleCraftGameTests {
                 "copper",
                 MaterialPrefixes.ITEM_PIPE,
                 PipeCatalog.Kind.ITEM).get();
-        for (int i = 0; i < T24_FLUID_PIPE_COUNT; i++) {
+        for (int i = 0; i < SMALL_WORKLOAD_FLUID_PIPE_COUNT; i++) {
             helper.setBlock(new BlockPos(4 + i, 1, 3), fluidPipe);
         }
-        for (int i = 0; i < T24_ITEM_PIPE_COUNT; i++) {
+        for (int i = 0; i < SMALL_WORKLOAD_ITEM_PIPE_COUNT; i++) {
             helper.setBlock(new BlockPos(4 + i, 1, 2), itemPipe);
         }
 
@@ -11068,37 +11083,37 @@ public final class CrucibleCraftGameTests {
                         PipeCover.filter("minecraft:iron_ingot"));
     }
 
-    private static boolean t24IdentityOk(
+    private static boolean smallWorkloadIdentityOk(
             GameTestHelper helper, boolean includePress) {
         if (includePress
-                && !helper.getBlockState(T24_PRESS)
+                && !helper.getBlockState(SMALL_WORKLOAD_PRESS)
                         .is(ModBlocks.PRESS.get())) {
             return false;
         }
-        if (!helper.getBlockState(T24_FIREBOX).is(ModBlocks.FIREBOX.get())
-                || !helper.getBlockState(T24_BOILER)
+        if (!helper.getBlockState(SMALL_WORKLOAD_FIREBOX).is(ModBlocks.FIREBOX.get())
+                || !helper.getBlockState(SMALL_WORKLOAD_BOILER)
                         .is(ModBlocks.BRONZE_BOILER.get())
-                || !helper.getBlockState(T24_STEAM_ENGINE)
+                || !helper.getBlockState(SMALL_WORKLOAD_STEAM_ENGINE)
                         .is(ModBlocks.BRONZE_STEAM_ENGINE.get())
-                || !helper.getBlockState(T24_FUEL_ENGINE)
+                || !helper.getBlockState(SMALL_WORKLOAD_FUEL_ENGINE)
                         .is(ModBlocks.FUEL_ENGINE.get())
-                || !helper.getBlockState(T24_AXLE)
+                || !helper.getBlockState(SMALL_WORKLOAD_AXLE)
                         .is(ModBlocks.ROTATIONAL_AXLE.get())
-                || !helper.getBlockState(T24_GEARBOX)
+                || !helper.getBlockState(SMALL_WORKLOAD_GEARBOX)
                         .is(ModBlocks.ROTATIONAL_GEARBOX.get())
-                || !helper.getBlockState(T24_DYNAMO)
+                || !helper.getBlockState(SMALL_WORKLOAD_DYNAMO)
                         .is(ModBlocks.BRONZE_DYNAMO.get())
-                || !helper.getBlockState(T24_ELECTROLYZER)
+                || !helper.getBlockState(SMALL_WORKLOAD_ELECTROLYZER)
                         .is(ModBlocks.ELECTROLYZER.get())
-                || !helper.getBlockState(T24_CENTRIFUGE)
+                || !helper.getBlockState(SMALL_WORKLOAD_CENTRIFUGE)
                         .is(ModBlocks.CENTRIFUGE.get())
-                || !helper.getBlockState(T24_TANK_CONTROLLER)
+                || !helper.getBlockState(SMALL_WORKLOAD_TANK_CONTROLLER)
                         .is(ModBlocks.TANK_3X3X3.get())) {
             return false;
         }
         CableBlock cable = ModBlocks.electricalConductorBlock(
                 "tin", MaterialPrefixes.CABLE).get();
-        if (!helper.getBlockState(T24_CABLE).is(cable)) {
+        if (!helper.getBlockState(SMALL_WORKLOAD_CABLE).is(cable)) {
             return false;
         }
         var structure = MultiblockStructureCatalog.require(
@@ -11109,7 +11124,7 @@ public final class CrucibleCraftGameTests {
                 continue;
             }
             BlockPos portPos = structure.worldPosition(
-                    T24_TANK_CONTROLLER, T24_TANK_FACING, element.offset());
+                    SMALL_WORKLOAD_TANK_CONTROLLER, SMALL_WORKLOAD_TANK_FACING, element.offset());
             if (!helper.getBlockState(portPos)
                     .is(ModBlocks.MULTIBLOCK_ITEM_FLUID_PORT.get())) {
                 return false;
@@ -11123,13 +11138,13 @@ public final class CrucibleCraftGameTests {
                 "copper",
                 MaterialPrefixes.ITEM_PIPE,
                 PipeCatalog.Kind.ITEM).get();
-        for (int i = 0; i < T24_FLUID_PIPE_COUNT; i++) {
+        for (int i = 0; i < SMALL_WORKLOAD_FLUID_PIPE_COUNT; i++) {
             if (!helper.getBlockState(new BlockPos(4 + i, 1, 3))
                     .is(fluidPipe)) {
                 return false;
             }
         }
-        for (int i = 0; i < T24_ITEM_PIPE_COUNT; i++) {
+        for (int i = 0; i < SMALL_WORKLOAD_ITEM_PIPE_COUNT; i++) {
             if (!helper.getBlockState(new BlockPos(4 + i, 1, 2))
                     .is(itemPipe)) {
                 return false;
@@ -11138,17 +11153,17 @@ public final class CrucibleCraftGameTests {
         return true;
     }
 
-    private static void t24FuelSmallScenario(GameTestHelper helper) {
-        FireboxBlockEntity firebox = helper.getBlockEntity(T24_FIREBOX);
-        BoilerBlockEntity boiler = helper.getBlockEntity(T24_BOILER);
+    private static void fuelSmallWorkloadScenario(GameTestHelper helper) {
+        FireboxBlockEntity firebox = helper.getBlockEntity(SMALL_WORKLOAD_FIREBOX);
+        BoilerBlockEntity boiler = helper.getBlockEntity(SMALL_WORKLOAD_BOILER);
         FuelGeneratorBlockEntity fuelEngine =
-                helper.getBlockEntity(T24_FUEL_ENGINE);
+                helper.getBlockEntity(SMALL_WORKLOAD_FUEL_ENGINE);
         ConfiguredProcessingMachineBlockEntity press =
-                helper.getBlockEntity(T24_PRESS);
+                helper.getBlockEntity(SMALL_WORKLOAD_PRESS);
         ConfiguredProcessingMachineBlockEntity electrolyzer =
-                helper.getBlockEntity(T24_ELECTROLYZER);
+                helper.getBlockEntity(SMALL_WORKLOAD_ELECTROLYZER);
         ConfiguredProcessingMachineBlockEntity centrifuge =
-                helper.getBlockEntity(T24_CENTRIFUGE);
+                helper.getBlockEntity(SMALL_WORKLOAD_CENTRIFUGE);
 
         GTRecipe pressRecipe = ModRecipeMaps.PRESS.entries().stream()
                 .map(RecipeMap.Entry::recipe)
@@ -11157,7 +11172,7 @@ public final class CrucibleCraftGameTests {
                 .findFirst()
                 .orElseThrow();
         GTRecipe electrolysis = requireRecipe(
-                ModRecipeMaps.ELECTROLYZER, "t5/electrolyzer/salt");
+                ModRecipeMaps.ELECTROLYZER, "chemical/electrolyzer/salt");
         GTRecipe centrifugeRecipe = ModRecipeMaps.CENTRIFUGE.entries()
                 .stream()
                 .map(RecipeMap.Entry::recipe)
@@ -11165,14 +11180,14 @@ public final class CrucibleCraftGameTests {
                 .min(java.util.Comparator.comparingLong(GTRecipe::eut))
                 .orElseThrow();
         GTRecipe fuel = requireRecipe(
-                ModRecipeMaps.FUELS_ENGINE, "t11/fuels_engine/fuel_oil");
+                ModRecipeMaps.FUELS_ENGINE, "hydrocarbon/fuels_engine/fuel_oil");
         loadRecipeInputs(press, pressRecipe);
         loadRecipeInputs(electrolyzer, electrolysis);
         loadRecipeInputs(centrifuge, centrifugeRecipe);
 
         helper.assertTrue(
                 firebox.addFuel(FuelDefinition.COAL_COKE),
-                "Could not fuel the T24 firebox");
+                "Could not fuel the small-workload firebox");
         IFluidHandler water = boiler.fluids(Direction.NORTH);
         helper.assertTrue(
                 water != null
@@ -11180,7 +11195,7 @@ public final class CrucibleCraftGameTests {
                                 new FluidStack(Fluids.WATER, 10_000),
                                 IFluidHandler.FluidAction.EXECUTE)
                                 == 10_000,
-                "Could not water the T24 boiler");
+                "Could not water the small-workload boiler");
         FluidStack fuelInput = fuel.fluidInputs().getFirst();
         helper.assertTrue(
                 fuelEngine.fluids(Direction.WEST) != null
@@ -11190,7 +11205,7 @@ public final class CrucibleCraftGameTests {
                                         fuelInput.getAmount()),
                                 IFluidHandler.FluidAction.EXECUTE)
                                 == fuelInput.getAmount(),
-                "Could not fuel the T24 fuel engine");
+                "Could not fuel the small-workload fuel engine");
         // The centrifuge is the RU machine of the small scenario. A
         // fuel engine has one RU output face and the gearbox is 1:1
         // pass-through, so the harness injects RU on the back face

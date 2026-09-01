@@ -1,0 +1,32 @@
+{
+  "card_id": "T43",
+  "complete_family_count": 407,
+  "composed_identity_ledger_v2_sha256": "b6a8981c25971d7c322ede2fdc09ef247346a0d95a50f06668796e718d660e14",
+  "composed_runtime_manifest_v2_sha256": "7a7390c640d05e1c8ffee13f46965559d64a70c8b1b783bdfa9f5781d7e2bd76",
+  "gametest_status": "PASS",
+  "generated_by": "python tools/closeout_seal.py --write",
+  "hashes": {
+    "census": "0c9587315d16eebf4e55ae32706e49ab7038a9361dc5929048f3af26f000e0c7",
+    "gametest_java": "8727413d1dcadc85179c38e462dd186734497d39a540f0dd97d338656b211b22",
+    "gametest_log": "7d9998b1348b822a9bfac6becf233e080f0d48aae4483aea6caae28726c538a2",
+    "generated_recipes": "19a0263c6524d7322040266de03bc7d88331e254d2fb4ee5481714dc777d2e23",
+    "locked_support": "6d5f90819caa005d80be89417569a3649a06ebed849c8bc35ce30cd8209f3538",
+    "production_lock": "c6a63280ee036a9cad53fbbddc721480f2479d51598ef99e18d57495b48da484",
+    "publication_group_manifest": "6298157ec162576ea64f783ed90d19c92c9241e8c9006e854410fab1da8111e4",
+    "readiness": "ba68002e91674f44366b743c7596aca536615f0c551890240e977b61427305d4",
+    "receipt": "a203ac45089dbee280b152a14d847681a396f266504dd929c9b04e5bb224df2c",
+    "runtime_dependency_manifest": "af4263d75acbfd5046b0bf4619257dc50c7a859e28dbe067acbccc24102246c8",
+    "shard_manifest": "5eeda10854e04b96a8d64e102d94f6a690ea0681bd0aa98253c55d98691fd169",
+    "topology": "ca33a59bbe0e85edd1ef72cbde9dd395ebb6bbc1ef5f01bff12d093a54174d91"
+  },
+  "note": "Close-time snapshot. Closed-card --check compares these hashes and N/L/R/gap; it must not re-pin live composed v2 or verification profiles.",
+  "production_lock_sha256": "c6a63280ee036a9cad53fbbddc721480f2479d51598ef99e18d57495b48da484",
+  "receipt_sha256": "a203ac45089dbee280b152a14d847681a396f266504dd929c9b04e5bb224df2c",
+  "reclassification_delta": 0,
+  "relation_count": 407,
+  "remaining_recipe_gap": 3076,
+  "schema_version": 1,
+  "sealed_at_wave": "T47-VR",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "SEALED"
+}

@@ -1,0 +1,32 @@
+{
+  "card_id": "T44",
+  "complete_family_count": 624,
+  "composed_identity_ledger_v2_sha256": "b6a8981c25971d7c322ede2fdc09ef247346a0d95a50f06668796e718d660e14",
+  "composed_runtime_manifest_v2_sha256": "7a7390c640d05e1c8ffee13f46965559d64a70c8b1b783bdfa9f5781d7e2bd76",
+  "gametest_status": "PASS",
+  "generated_by": "python tools/closeout_seal.py --write",
+  "hashes": {
+    "census": "756f5b08d11fb23a4e5ff9d236fad8bd0e78ab2d71a3200c91828a1b0af11e53",
+    "gametest_java": "4f9ae92a114c4223f4b36a7f08da262fcf4090aff896766ac738535eb179bfc9",
+    "gametest_log": "62362acac9e8c65d7a6f83f0820cdb0d834f45f3c6283d783bd399514937c528",
+    "generated_recipes": null,
+    "locked_support": null,
+    "production_lock": "6349a69996435808e1cce0395c816d468222db9bcc76c2e85b0649ba49e7fadb",
+    "publication_group_manifest": null,
+    "readiness": "f4583b608e3a5f5923e57abc133424f916448940e866a7c5b6eda3f35e2adc02",
+    "receipt": "2b08049047a2f21d133225ac8ac6599e67e07af53dfd5bf9f038090f1737d831",
+    "runtime_dependency_manifest": "865805954720b4803c98e44f3e473b4e00f4d6233bda92bf6857cfba08e78e82",
+    "shard_manifest": null,
+    "topology": "34cdb05d8936ecd6d2defe3630178d3931ab893fdbc2b10f29a3c7a933271989"
+  },
+  "note": "Close-time snapshot. Closed-card --check compares these hashes and N/L/R/gap; it must not re-pin live composed v2 or verification profiles.",
+  "production_lock_sha256": "6349a69996435808e1cce0395c816d468222db9bcc76c2e85b0649ba49e7fadb",
+  "receipt_sha256": "2b08049047a2f21d133225ac8ac6599e67e07af53dfd5bf9f038090f1737d831",
+  "reclassification_delta": 0,
+  "relation_count": 624,
+  "remaining_recipe_gap": 3076,
+  "schema_version": 1,
+  "sealed_at_wave": "T47-VR",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "SEALED"
+}

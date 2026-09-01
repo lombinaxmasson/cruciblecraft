@@ -178,11 +178,29 @@ public final class RecipeLoadBenchmarkHarness {
                 "cache_ceiling", live.diagnostics().cacheCeiling()));
 
         AtomicLong allocationEpoch = new AtomicLong(20_000L);
+        AtomicLong reloadEpoch = new AtomicLong(30_000L);
         int allocationOperations = policy.lookupSamples
                 * policy.lookupOperationsPerSample;
         LookupWorkloads.Trace allocationTrace = LookupWorkloads.build(
                         relations, allocationOperations)
                 .traces().getFirst();
+        java.util.function.Supplier<Runnable> reloadWorkload = () -> () -> {
+            RecipeFamilyProvider provider =
+                    RecipeFamilyProviderContractTest.newProvider(candidate);
+            provider.publish(
+                    relations,
+                    reloadEpoch.incrementAndGet(),
+                    RuntimeSide.SERVER);
+        };
+        row.put("jfr_reload_transient_allocation", JfrAllocationProbe.measure(
+                policy.jfrSamples,
+                jfrDirectory,
+                repositoryRoot,
+                candidate,
+                scale.id(),
+                "reload",
+                "reload window only; lookup excluded",
+                reloadWorkload));
         java.util.function.Supplier<Runnable> allocationWorkload = () -> {
             RecipeFamilyProvider provider =
                     RecipeFamilyProviderContractTest.newProvider(candidate);
@@ -200,6 +218,8 @@ public final class RecipeLoadBenchmarkHarness {
                 repositoryRoot,
                 candidate,
                 scale.id(),
+                "lookup",
+                "lookup-only after publication; enumeration excluded",
                 allocationWorkload));
         row.put("retained_memory", RetainedMemoryProbe.measure(
                 policy, repositoryRoot, candidate, scale));

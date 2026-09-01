@@ -181,12 +181,12 @@ READINESS = TOOLS / "t41_readiness.json"
 LOAD_PROJECTION_INPUT = TOOLS / "t41_load_projection_input.json"
 LOAD_PROJECTION = TOOLS / "t41_load_projection.json"
 GAME_TEST_ROOT = ROOT / "src/main/java/com/masson/cruciblecraft/gametest"
-GAME_TEST_JAVA = GAME_TEST_ROOT / "T41RecipeGameTests.java"
+GAME_TEST_JAVA = GAME_TEST_ROOT / "AssemblerWoodGameTests.java"
 GAME_TEST_RECEIPT = TOOLS / "t41_gametest_receipt.json"
 GAME_TEST_EVIDENCE_LOG = TOOLS / "t41_gametest.log"
-GAME_TEST_NAMESPACE = "cruciblecraft_t41"
-GAME_TEST_COMMAND = ".\\gradlew.bat runGameTestServer -Pt41Recipes --no-daemon"
-GAME_TEST_COMMAND_MARKER = "-Pt41Recipes"
+GAME_TEST_NAMESPACE = "cruciblecraft_wave_assembler_wood"
+GAME_TEST_COMMAND = ".\\gradlew.bat runGameTestServer -PwaveRecipes=assembler/wood --no-daemon"
+GAME_TEST_COMMAND_MARKER = "-PwaveRecipes=assembler/wood"
 GAME_TEST_RECEIPT_SCHEMA = 3
 GAME_TEST_METHOD_RE = re.compile(
     r"public static void (\w+)\s*\(\s*GameTestHelper"
@@ -845,7 +845,7 @@ def player_gametest_source_present() -> bool:
     if not GAME_TEST_JAVA.is_file():
         return False
     text = GAME_TEST_JAVA.read_text(encoding="utf-8")
-    markers = ("cruciblecraft_t41", "T41Recipe", "t41Recipes")
+    markers = ("cruciblecraft_wave_assembler_wood", "AssemblerWoodGameTests", "-PwaveRecipes=assembler/wood")
     return any(marker in text for marker in markers)
 
 
@@ -887,7 +887,7 @@ def gametest_receipt_document(parsed: dict[str, Any], log_path: Path) -> dict[st
         "namespace": GAME_TEST_NAMESPACE,
         "note": (
             "Source markers are not a pass. This receipt is the isolated "
-            "-Pt41Recipes result bound to MaterialRegistrationGate, the T41 "
+            "-PwaveRecipes=assembler/wood result bound to MaterialRegistrationGate, the T41 "
             "recipe resource trees, and the committed UTF-8 evidence log. "
             "The gitignored run-t41-recipes directory is not evidence. "
             "Injecting recipe inputs still does not prove a player path."
@@ -925,7 +925,7 @@ def gametest_receipt_errors(document: dict[str, Any] | None = None) -> list[str]
     if receipt.get("status") != "PASS":
         errors.append("T41 GameTest receipt is not PASS")
     if GAME_TEST_COMMAND_MARKER not in str(receipt.get("command") or ""):
-        errors.append("T41 GameTest receipt command is missing -Pt41Recipes")
+        errors.append("T41 GameTest receipt command is missing -PwaveRecipes=assembler/wood")
     if receipt.get("namespace") != GAME_TEST_NAMESPACE:
         errors.append("T41 GameTest receipt namespace drifted")
     if receipt.get("required_tests") != GAME_TEST_REQUIRED:
@@ -982,7 +982,12 @@ def gametest_receipt_errors(document: dict[str, Any] | None = None) -> list[str]
 
 
 def player_gametest_present() -> bool:
-    return player_gametest_source_present() and not gametest_receipt_errors()
+    from tools import closeout_seal
+
+    return closeout_seal.sealed_or_live_present(
+        "T41",
+        lambda: player_gametest_source_present() and not gametest_receipt_errors(),
+    )
 
 
 def load_t41_catalog_family_ids(

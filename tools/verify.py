@@ -7,6 +7,7 @@ import json
 import os
 import subprocess
 import sys
+import tempfile
 import time
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -19,7 +20,27 @@ BUILDER_POLICY = TOOLS / "verification_builder_policy.json"
 REPORT = TOOLS / "full_verification_report.json"
 DEBT = TOOLS / "known_issues" / "verification-debt.json"
 TEST_RESULTS = ROOT / "build" / "test-results" / "test"
-CLOSEOUT_PROFILES = ("recipes", "census", "census-replay")
+CLOSEOUT_PROFILES = ("recipes", "census", "closeout-seals")
+CENSUS_REPLAY_DEFERRED_LOAD_BUILDERS = frozenset({
+    "build_t37_recipe_load_benchmark",
+    "build_t38_recipe_load_benchmark",
+    "build_t39_recipe_load_benchmark",
+    "build_t40_recipe_load_benchmark",
+    "build_t41_recipe_load_benchmark",
+    "build_t43_recipe_load_benchmark",
+    "build_t45_recipe_load_benchmark",
+    "build_t46_recipe_load_benchmark",
+})
+CENSUS_REPLAY_DEFERRED_PYTHON_MODULES = frozenset({
+    "test_build_t37_recipe_load_benchmark",
+    "test_build_t38_recipe_load_benchmark",
+    "test_build_t39_recipe_load_benchmark",
+    "test_build_t40_recipe_load_benchmark",
+    "test_build_t41_recipe_load_benchmark",
+    "test_build_t43_recipe_load_benchmark",
+    "test_build_t45_recipe_load_benchmark",
+    "test_build_t46_recipe_load_benchmark",
+})
 RECEIPT_SCRIPTS = {
     "recipes": (
         "tools/build_t38_gametest_receipt.py",
@@ -28,6 +49,8 @@ RECEIPT_SCRIPTS = {
         "tools/build_t41_gametest_receipt.py",
         "tools/build_t43_gametest_receipt.py",
         "tools/build_t45_gametest_receipt.py",
+        "tools/build_t46_gametest_receipt.py",
+        "tools/build_t47_gametest_receipt.py",
     ),
 }
 
@@ -115,27 +138,30 @@ def builder_rows_for_profile(
 def builder_args_for_profile(
     profile_name: str,
     row: dict[str, Any],
+    *,
+    full_replay: bool = False,
 ) -> list[str] | None:
-    if not profile_name.endswith("-replay"):
+    use_full_replay = full_replay and profile_name.endswith("-replay")
+    if not use_full_replay:
         return list(row["ordinary_args"])
-    full_replay = row.get("full_replay")
-    if not isinstance(full_replay, dict) or not full_replay.get("args"):
+    replay = row.get("full_replay")
+    if not isinstance(replay, dict) or not replay.get("args"):
         raise ValueError(
             f"replay profile {profile_name!r} requires full_replay args "
             f"for builder {row['name']!r}"
         )
     required = [
         ROOT / path
-        for path in full_replay.get("required_paths") or []
+        for path in replay.get("required_paths") or []
     ]
     if required and any(not path.is_file() for path in required):
         return None
-    return list(full_replay["args"])
+    return list(replay["args"])
 
 
 def gradle_command(task: str, *, rerun: bool = True) -> list[str]:
     wrapper = "gradlew.bat" if os.name == "nt" else "./gradlew"
-    command = [str(ROOT / wrapper), task, "--no-daemon"]
+    command = [str(ROOT / wrapper), task, "--no-daemon", "--max-workers=1"]
     if rerun:
         command.append("--rerun-tasks")
     return command
@@ -286,6 +312,19 @@ def changed_paths(explicit: list[str]) -> list[str]:
     return list(python_tests.git_changed_paths())
 
 
+def write_affected_path_file(paths: Iterable[str]) -> Path:
+    handle = tempfile.NamedTemporaryFile(
+        mode="w",
+        encoding="utf-8",
+        prefix="cruciblecraft-verify-paths-",
+        suffix=".txt",
+        delete=False,
+    )
+    with handle:
+        handle.write("\n".join(python_tests.normalize_paths(paths)) + "\n")
+    return Path(handle.name)
+
+
 def print_plan(classification: dict[str, Any], *, command: str) -> None:
     print(f"verify {command}")
     selected = classification["selected_profiles"]
@@ -314,23 +353,29 @@ def cmd_dev(args: argparse.Namespace) -> int:
         print("no owned paths changed; nothing to run")
         return 0
     selected = classification["selected_profiles"]
-    python_paths = [
-        path
-        for rows in classification["matched"].values()
-        for path in rows
-    ]
+    python_paths = list(
+        python_tests.normalize_paths(
+            path
+            for rows in classification["matched"].values()
+            for path in rows
+        )
+    )
     docs_only = set(selected) <= {"docs"}
     if not docs_only:
+        path_file = write_affected_path_file(python_paths)
         python_command = [
             sys.executable,
             "tools/run_python_tests.py",
             "--suite",
             "affected",
             "--exclude-slow",
+            "--path-file",
+            str(path_file),
         ]
-        for path in python_paths:
-            python_command.extend(["--path", path])
-        code = run_command("python:affected", python_command)
+        try:
+            code = run_command("python:affected", python_command)
+        finally:
+            path_file.unlink(missing_ok=True)
         if code != 0:
             return code
         java_changed = any(
@@ -386,11 +431,27 @@ def run_profile_steps(
     gradle_summary: dict[str, Any] | None = None
     gametest_result: dict[str, Any] = {"status": "SKIP"}
     report_all = bool(getattr(args, "report_all", False))
+    full_replay = bool(getattr(args, "full_replay", False))
     print(f"verify integration --profile {profile_name}")
     print(f"owner={profile['owner']} tier={profile['tier']}")
     try:
         for row in builder_rows_for_profile(profile_name, document, builder_policy):
-            argv = builder_args_for_profile(profile_name, row)
+            if (
+                profile_name == "census-replay"
+                and not full_replay
+                and row["name"] in CENSUS_REPLAY_DEFERRED_LOAD_BUILDERS
+            ):
+                print(
+                    f"[builder:{row['name']}] SKIP historical load replay; "
+                    "pass --full-replay to rebuild T37–T46 load decisions",
+                    flush=True,
+                )
+                continue
+            argv = builder_args_for_profile(
+                profile_name,
+                row,
+                full_replay=full_replay,
+            )
             if argv is None:
                 print(
                     f"[builder:{row['name']}] SKIP source replay "
@@ -406,21 +467,31 @@ def run_profile_steps(
             if code != 0:
                 if _record(failures, report_all, f"builder:{row['name']} failed"):
                     return _result(profile_name, failures, timings, gradle_summary, gametest_result)
+        listed_modules: list[str] = []
         for module in profile["python_modules"]:
+            if (
+                profile_name == "census-replay"
+                and not full_replay
+                and module in CENSUS_REPLAY_DEFERRED_PYTHON_MODULES
+            ):
+                continue
+            listed_modules.append(module)
+        if listed_modules:
+            python_command = [
+                sys.executable,
+                "tools/run_python_tests.py",
+                "--suite",
+                "modules",
+            ]
+            for module in listed_modules:
+                python_command.extend(["--module", module])
             code = run_command(
-                f"python:{module}",
-                [
-                    sys.executable,
-                    "tools/run_python_tests.py",
-                    "--suite",
-                    "affected",
-                    "--path",
-                    f"tools/tests/{module}.py",
-                ],
+                f"python:{profile_name}",
+                python_command,
                 timings=timings,
             )
             if code != 0:
-                if _record(failures, report_all, f"python:{module} failed"):
+                if _record(failures, report_all, f"python:{profile_name} failed"):
                     return _result(profile_name, failures, timings, gradle_summary, gametest_result)
         for task in profile["gradle_tasks"]:
             code = run_command(
@@ -523,7 +594,7 @@ def diagnostic_report() -> dict[str, Any]:
 
 
 def combine_closeout_results(subresults: list[dict[str, Any]]) -> dict[str, Any]:
-    """Keep recipes Gradle/GameTest evidence; do not let census-replay overwrite it."""
+    """Keep recipes Gradle/GameTest evidence; do not let closeout-seals overwrite it."""
     failures: list[str] = []
     timings: list[dict[str, Any]] = []
     by_name: dict[str, Any] = {}
@@ -684,6 +755,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     integration.add_argument("--profile", required=True)
     integration.add_argument("--report-all", action="store_true")
+    integration.add_argument("--full-replay", action="store_true")
     integration.add_argument("--json", dest="json_path", type=Path)
     integration.add_argument("--debt-aware", action="store_true")
     integration.set_defaults(func=cmd_integration)

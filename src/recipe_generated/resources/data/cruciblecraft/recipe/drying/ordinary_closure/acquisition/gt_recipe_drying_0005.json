@@ -1,0 +1,53 @@
+{
+  "family_id": "gt.recipe.drying#0005",
+  "publication_group": "cruciblecraft:drying/ordinary_closure/acquisition",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 18000,
+      "eut": 16,
+      "fluid_inputs": [],
+      "fluid_outputs": [
+        {
+          "amount": 9000,
+          "id": "cruciblecraft:water_distilled"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "consume"
+        }
+      ],
+      "item_input_counts": [
+        14
+      ],
+      "item_inputs": [
+        {
+          "item": "cruciblecraft:ferric_oxyhydroxide/dust"
+        }
+      ],
+      "item_outputs": [
+        {
+          "count": 5,
+          "id": "cruciblecraft:hematite/dust"
+        }
+      ],
+      "output_chances": [
+        10000
+      ],
+      "provenance": {
+        "evidence_hashes": [
+          "5a0a5c885285f7d427a02732135a4aba7b8f3ba2b7206c9e04fe313524716735"
+        ],
+        "selected_source_recipe": "gt.recipe.drying#0005",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:drying/ordinary_closure/16b08cd8938daed2"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:drying",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

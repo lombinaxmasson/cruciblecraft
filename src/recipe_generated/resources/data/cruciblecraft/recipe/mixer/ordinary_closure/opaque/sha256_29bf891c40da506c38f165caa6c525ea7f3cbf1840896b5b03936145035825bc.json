@@ -1,0 +1,67 @@
+{
+  "family_id": "sha256:29bf891c40da506c38f165caa6c525ea7f3cbf1840896b5b03936145035825bc",
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/opaque",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 10,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 1,
+          "id": "cruciblecraft:molten_annealed_copper"
+        },
+        {
+          "amount": 1,
+          "id": "cruciblecraft:molten_silver"
+        },
+        {
+          "amount": 4,
+          "id": "cruciblecraft:molten_redstone"
+        },
+        {
+          "amount": 4,
+          "id": "cruciblecraft:molten_nikolite"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 2,
+          "id": "cruciblecraft:molten_purple_alloy"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 4
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "b77d581c2182373f021dddd82854a4856254f0d43f5beca730190a8277bbad71"
+        ],
+        "selected_source_recipe": "sha256:29bf891c40da506c38f165caa6c525ea7f3cbf1840896b5b03936145035825bc",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:mixer/ordinary_closure/282452b8ccb0a31b"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:mixer",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

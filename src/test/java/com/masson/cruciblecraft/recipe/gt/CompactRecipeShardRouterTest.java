@@ -32,16 +32,15 @@ class CompactRecipeShardRouterTest {
     @BeforeAll
     static void bootstrapMinecraft() {
         MinecraftTestBootstrap.bootstrap();
-        group = CompactGTRecipeFamilyDefinition
-                .T39_CENTRIFUGE_SINGLETON_PUBLICATION_GROUP;
+        group = CompactPublicationGroups.CENTRIFUGE_SINGLETON;
     }
 
     @Test
     void rareItemsBeatSharedFluidAndRouteSelectively() {
         CompactGTRecipeFamilyDefinition.Relation iron = fluidItemRelation(
-                "t39/router_iron", Items.IRON_INGOT, 0);
+                "centrifuge/compact/router_iron", Items.IRON_INGOT, 0);
         CompactGTRecipeFamilyDefinition.Relation gold = fluidItemRelation(
-                "t39/router_gold", Items.GOLD_INGOT, 1);
+                "centrifuge/compact/router_gold", Items.GOLD_INGOT, 1);
         CompactRecipeShardRouter router = router(List.of(iron, gold));
 
         String ironShard = router.shardId(iron.stableId()).orElseThrow();
@@ -69,11 +68,11 @@ class CompactRecipeShardRouterTest {
     @Test
     void overflowIsExplicitAndSelectiveLookupSkipsOtherShards() {
         CompactGTRecipeFamilyDefinition.Relation iron = fluidItemRelation(
-                "t39/selective_iron", Items.IRON_INGOT, 0);
+                "centrifuge/compact/selective_iron", Items.IRON_INGOT, 0);
         CompactGTRecipeFamilyDefinition.Relation gold = fluidItemRelation(
-                "t39/selective_gold", Items.GOLD_INGOT, 1);
+                "centrifuge/compact/selective_gold", Items.GOLD_INGOT, 1);
         CompactGTRecipeFamilyDefinition.Relation overflow = relation(
-                "t39/selective_overflow",
+                "centrifuge/compact/selective_overflow",
                 Ingredient.of(ItemTags.PLANKS),
                 List.of(),
                 2);
@@ -128,7 +127,7 @@ class CompactRecipeShardRouterTest {
                 index <= CompactRecipeShardRouter.HARD_SHARD_CEILING;
                 index++) {
             relations.add(relation(
-                    "t39/overflow_" + index,
+                    "centrifuge/compact/overflow_" + index,
                     Ingredient.of(ItemTags.PLANKS),
                     List.of(),
                     index));

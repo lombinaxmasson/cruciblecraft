@@ -1,9 +1,14 @@
 # Ordinary Recipe Wave 流程与规范
 
-> 适用范围：T39 起的 `ordinary_optional` bounded recipe waves 与编号连续的
+> 适用范围：现行 `ordinary_optional` bounded recipe waves 与编号连续的
 > partition 诊断卡，直到 current execution gap = 0、deferred ordinary ledger
-> 已关闭或明确 scope，且 T42 后 T42-Owner 已完成 retained owner partition
+> 已关闭或明确 scope，且 owner-partition gate 已完成 retained owner partition
 > 状态：现行流程；每张卡可增加更严格的门，不得弱化本文件的底线
+> 当前已签发、尚未实现的机制 program：
+> [通用 Source Pack 导入器](../history/card-plans/active/通用Source-Pack导入器详细计划.md)
+> （slug `portfolio/generic-recipe-generator`）。它 `owns_families = 0`，
+> 不签 production lock，不发布配方。`portfolio/source-capability-map` 已
+> `SOURCE_CAPABILITY_MAP_READY`；对照检查在已关闭的 inventory child。
 > 不适用：并行内容卡、核能阶段、玩家发行
 
 ## 1. 固定顺序与权威
@@ -24,30 +29,36 @@ previous wave READY
   -> next card stays unassigned
 ```
 
-同一时刻只允许一张 active 内容卡。T40-VR 是验证 repair gate，不是内容卡：
-`owns_families=0`，不占用内容卡编号。T42 是编号连续的 partition 诊断卡：
-`owns_families=0`、`publication_delta=0`、`completion_delta=0`，已达到
-`T42_PARTITION_READY`。T42-Repair 是内部 fidelity gate：`owns_families=0`，不占用
-T43，已达到 `T42_REPAIR_READY`。T42-Owner 已达到 `T42_OWNER_READY`：1,817 个
-proven Smelter recovery family 已作为 `later:recycling` 进入 deferred ordinary ledger，
-current execution gap 为 3,483。T43 Smelter stone bulk production lock 已达到
-`T43_READY`：407 complete families / 407 relations，closing gap 3,076。T44 Storage
-bundle 已达到 `T44_STORAGE_READY`（28/624 + logistics 1/1，`completion_delta=0`）。
-T45 Recipe Bulk Compiler + block-object 生产波已达到 `T45_READY`：379 complete
-families / 379 relations，closing current execution gap 为 2,697。统一导入第三阶段
-compile authority cutover 已关闭：`UNIFIED_RECIPE_COMPILE_READY`（`owns_families=0`）。
-T46 未签发，不预写 host 或 family IDs。无 unique active 内容卡。Circuit 映射、
-unique 残差族（空 `unique_kinds`）、autoclave/mixer circuit 槽都不是可关闭证明。
-`t42_gap_partition.json` 的 `partial_family_count: 0` 表示未从 gap 扣除 partial。
-新卡只写 `t{N}_required_forms.json`，由
+同一时刻只允许一张 active 内容卡。验证 repair gate 可以 `owns_families=0`，
+不占用内容卡编号。当前没有 active content child；已签发的 importer 是零 family
+机制计划，R0 artifact 尚未生成。已关闭的
+[源能力对照图](../history/card-plans/closed/源能力对照图详细计划.md)
+（slug `portfolio/source-capability-map`）为 `SOURCE_CAPABILITY_MAP_READY`。
+已关闭的
+[1.x 联合退出门](../history/card-plans/closed/1.x联合退出门详细计划.md)
+（slug `portfolio/one-x-joint-exit`）把已声明的 1.x portfolio 联合验收为
+`ONE_X_JOINT_EXIT_READY`。已关闭的
+[回收运行时与 Deferred 账本收口](../history/card-plans/closed/回收运行时与Deferred账本收口详细计划.md)
+（slug `recycling/deferred-ordinary-runtime`）把 deferred ordinary ledger 收到 0。
+已关闭的
+[Ordinary 尾账收口与封板修复](../history/card-plans/closed/Ordinary尾账收口与封板修复详细计划.md)
+把 current execution gap 收到 0；
+[Smelter / Mixer 收口与语义命名迁移](../history/card-plans/closed/Smelter-Mixer收口与语义命名迁移详细计划.md)
+以及 compact 波、storage bundle、census 与验证修复的证据只在
+[docs/history](../history/INDEX.md)。
+
+semantic-wave bootstrap 关闭后，新工作改用 `wave_slug + next_unassigned`。
+Circuit 映射、unique 残差族（空 `unique_kinds`）、autoclave/mixer circuit 槽都不是
+可关闭证明。gap overlay 的 `partial_family_count: 0` 表示未从 gap 扣除 partial。
+新卡只写 `tools/waves/<slug>/required_forms.json`，由
 `tools/material_form_authority.py` 与 gate builder 汇总；card recipe builder 不得直写
 material registration gate。hash-only currentness 走 sidecar / `--rebind-currentness-only`，
 compact `--check` 绑 versioned semantic root，禁止 `git checkout` 或 64-byte hash patch 当 closeout。
 
-T42 关闭后采用三本互不替代的账：
+owner-partition 关闭后采用三本互不替代的账：
 
 ```text
-ordinary family universe     = T35 5,718 historical source-backed families
+ordinary family universe     = census foundation 5,718 historical source-backed families
 current recipe execution gap = families still waiting for a content lock
 deferred ordinary ledger     = phase-reclassified families with future_owner + recheck
 ```
@@ -55,11 +66,11 @@ deferred ordinary ledger     = phase-reclassified families with future_owner + r
 `already_expressed` 从 execution gap 扣除，但不是 recipe completion。
 `later:combinatorial/<host>` / `later:recycling` / `later:object_expression/<kind>`
 进入 deferred ledger，同样不是 completion。storage / presentation / multiblock 只有在
-`T42_OWNER_READY` 且完整 owner partition 已锁定后才能串行交错，仍只有一张 active 内容卡。
+owner partition 已锁定后才能串行交错，仍只有一张 active 内容卡。
 
-每张卡的 opening 只能取前一张 closing artifact；T35 的 78,682 rows / 5,718 families
-foundation 保持只读。Gap 的扣减单位是**完整关闭的 family**，不是文件数、模板数或已生成
-relation 数。
+每张卡的 opening 只能取前一张 closing artifact；census foundation 的
+78,682 rows / 5,718 families 保持只读。Gap 的扣减单位是**完整关闭的 family**，不是
+文件数、模板数或已生成 relation 数。
 
 后续 recipe runtime 固定区分四类边界：
 
@@ -80,10 +91,10 @@ Shard
 一张 Card 可以拥有多个 Publication Groups；一个 Group 可以拥有多个 Shards。Shard 不是
 另一张小卡，也不是 source-row 文件分卷。
 
-T39 的 concrete proof 把 157-family / 250-row withdrawn catalog 留作 test fixture，
-生产锁定 22 families / 32 relations，拥有 `t39_centrifuge_singleton`（19 / 19）与
-`t39_centrifuge_multi`（3 / 13）两个同-target Groups。两组各自派生 policy/cache，
-内部 shard routing 后原子 publish；fixture 测量不能成为生产 winner。
+Centrifuge compact 的 concrete proof 把 157-family / 250-row withdrawn catalog 留作
+test fixture，生产锁定 22 families / 32 relations，拥有 `centrifuge/singleton`
+（19 / 19）与 `centrifuge/multi`（3 / 13）两个同-target Groups。两组各自派生
+policy/cache，内部 shard routing 后原子 publish；fixture 测量不能成为生产 winner。
 
 ## 2. 签发规则
 
@@ -91,21 +102,25 @@ T39 的 concrete proof 把 157-family / 250-row withdrawn catalog 留作 test fi
 
 统一导入第三阶段（Compile Authority Cutover）已关闭：
 `UNIFIED_RECIPE_COMPILE_READY`。`tools/build_recipe_bulk.py compile --wave all`
-是七个历史 recipe wave 的唯一 production family generate/check 入口。T46 仍未签发；
-Shadow 账本与 runtime compatibility manifest 必须保持 READY。恢复导入后按以下顺序选择，
-不再把“host 已可运行”放在 capability/dependency closure 之前：
+是历史 recipe wave 的唯一 production family generate/check 入口。Bath compact
+各波、Smelter / Mixer ordinary-closure 与 Ordinary 尾账五 host 已关闭。
+current execution gap = 0。不签发新的里程碑编号。
+compact-load policy、global identity ledger 与 runtime manifest 的 v1
+base 保持 byte-identical，后续波通过长期 forward-v2 和逐波 delta 组合。Shadow 账本与
+runtime compatibility manifest 必须保持 READY。后续仍按以下顺序选择，不再把“host
+已可运行”放在 capability/dependency closure 之前：
 
 1. capability / dependency closure 可闭合（输入获得、供能、输出消费或明确终端用途）；
 2. family 结构相似，能复用已验收的 exact-relation / parameterized runtime；
 3. host 已注册且可运行；
-4. current T14 opening 下可形成有界、可实测 workload。
+4. current compact-load opening 下可形成有界、可实测 workload。
 
-T39 是 catalog/candidate/production-lock 三集合与 shard 架构启动卡。其 157/250
-catalog 不属于生产，22/32 production lock 才是 closure/load 分母。T40 起不再使用固定
-“50–200 source rows = 一张卡”的上限；Card 大小由结构分类、玩家路径与上张卡实测得到的
-capacity envelope 决定。普通 singleton card 可以包含数百 families；parameterized card
-可以覆盖数千 source rows，只要所有 logical relations 都完成等价验证，integrated load
-也通过。
+Centrifuge compact 是 catalog/candidate/production-lock 三集合与 shard 架构启动卡。
+其 157/250 catalog 不属于生产，22/32 production lock 才是 closure/load 分母。
+此后不再使用固定“50–200 source rows = 一张卡”的上限；Card 大小由结构分类、玩家路径与
+上张卡实测得到的 capacity envelope 决定。普通 singleton card 可以包含数百 families；
+parameterized card 可以覆盖数千 source rows，只要所有 logical relations 都完成等价验证，
+integrated load 也通过。
 
 除非本文件明确的例外适用，普通 recipe wave 的 production lock 默认不得少于 **300 个
 complete families**。不足 300 的 ready、material-form、B0 或同 host 小切片必须保留在
@@ -144,7 +159,7 @@ Shard 的 admission gate 不是“最多 N 行”，而是：
 query can derive shard keys without scanning every shard
 AND every relation belongs to at least one deterministic shard
 AND global shadow order is preserved
-AND worst routed candidate interval passes T14 soft/hard interpretation
+AND worst routed candidate interval passes compact-load soft/hard interpretation
 AND overflow/unindexed shard stays explicitly bounded
 ```
 
@@ -187,51 +202,52 @@ Catalog fixture 必须位于 test-only resources。Fixture source replay、codec
 capacity 是有效测试，但不是 production equivalence、player path、load winner 或 census
 证据。
 
-T39 原 157/250 host-complete 签发已撤回为上述 test fixture。`T39_REPAIR_READY` 只恢复
-T39 closing 资格，不拥有 family、不扣 gap；生产分母仍是不可自动漂移的 production lock。
+Centrifuge compact 原 157/250 host-complete 签发已撤回为上述 test fixture。验证
+repair gate 只恢复 closing 资格，不拥有 family、不扣 gap；生产分母仍是不可自动漂移的
+production lock。
 
 ### 2.4 后继不预分配
 
-Closing topology 只写连续 `next_issue_id`。下一张卡的 host/families 必须在 current gap、
-player path 和 load closing 上重新选择。即使同一 host 有明显余量，也只能记录为诊断，
-不能提前成为 T{N+1} assignment。
+Closing topology 只写 `next_unassigned = true`。下一张卡的 host/families 必须在
+current gap、player path 和 load closing 上重新选择。即使同一 host 有明显余量，也只能
+记录为诊断，不能提前成为下一张 assignment。
 
 ## 3. 每波 artifacts
 
-以 T{N} / `<host>` 表示：
+以 `<slug>` / `<host>` 表示现行语义波：
 
 ```text
-docs/history/card-plans/active/T{N}详细计划.md
+docs/history/card-plans/active/<slug>详细计划.md
 
-tools/t{N}_common.py
-tools/t{N}_work_set.json
-tools/t{N}_source_pack_manifest.json
-tools/t{N}_<host>_source.json
-tools/t{N}_<host>_source_receipt.json
-tools/t{N}_<host>_source_review.json
-tools/t{N}_runtime_dependency_manifest.json
-tools/t{N}_publication_group_manifest.json
-tools/t{N}_shard_manifest.json
-tools/t{N}_operand_runtime_map.json
-tools/t{N}_player_path.json
-tools/t{N}_required_forms.json
-tools/t{N}_<host>_equivalence.json
-tools/t{N}_materialization_policy.json
-tools/t{N}_materialization_measurements.json
-tools/t{N}_materialization_decision.json
-tools/t{N}_publication_delta.json
-tools/t{N}_load_projection.json
-tools/t{N}_gametest.log
-tools/t{N}_gametest_receipt.json
-tools/t{N}_census_delta.json
-tools/t{N}_card_topology.json
-tools/t{N}_readiness.json
+tools/waves/<slug>/common.py
+tools/waves/<slug>/work_set.json
+tools/waves/<slug>/source_pack_manifest.json
+tools/waves/<slug>/<host>_source.json
+tools/waves/<slug>/<host>_source_receipt.json
+tools/waves/<slug>/<host>_source_review.json
+tools/waves/<slug>/runtime_dependency_manifest.json
+tools/waves/<slug>/publication_group_manifest.json
+tools/waves/<slug>/shard_manifest.json
+tools/waves/<slug>/operand_runtime_map.json
+tools/waves/<slug>/player_path.json
+tools/waves/<slug>/required_forms.json
+tools/waves/<slug>/<host>_equivalence.json
+tools/waves/<slug>/materialization_policy.json
+tools/waves/<slug>/materialization_measurements.json
+tools/waves/<slug>/materialization_decision.json
+tools/waves/<slug>/publication_delta.json
+tools/waves/<slug>/load_projection.json
+tools/waves/<slug>/gametest.log
+tools/waves/<slug>/gametest_receipt.json
+tools/waves/<slug>/census_delta.json
+tools/waves/<slug>/card_topology.json
+tools/waves/<slug>/readiness.json
 
-src/t{N}_recipe_generated/resources/**
-tools/build_t{N}_*.py
-tools/tests/test_build_t{N}_*.py
+src/recipe_generated/resources/**
+tools/build_recipe_bulk.py
 ```
 
+历史编号波的 builder 与 JSON 仍留在 `tools/` 原路径，只作 sealed archive / replay。
 Builder 使用 `--write` / `--check` 对称接口；JSON 由 builder 生成，不为“变绿”手改。
 连续两次 `--write` 和连续两次 datagen 必须确定性零漂移。
 
@@ -246,7 +262,7 @@ id 与 hash，并生成 aggregate root。人工不为每个 shard 写独立 plan
 - 首次生成、source/mapping 变化、闭卡必须 full replay；
 - full replay 缺 dump、revision mismatch 或 skip 都是失败；
 - ordinary CI 可使用 committed compact source + receipt；
-- template 必须与 T22.5 row classification 交叉，不能把 `template_total_rows` 当作
+- template 必须与历史 row classification 交叉，不能把 `template_total_rows` 当作
   ordinary rows；
 - inputs/outputs/actions/chances/duration/energy/special/buffering/shadow order 全字段冻结；
 - unmapped 或 runtime 无法表达时 fail closed。
@@ -270,31 +286,32 @@ Receipt、load decision、readiness 必须引用同一 manifest。Dependency 漂
 `currentness`：已归档的 closed receipt 不被改写，后续 ABI 变化由 §11 compatibility
 regression / migration gate 接管。
 
-### 4.2.1 共享面 pin（T45 起强制，第一轮 recipes 之前付清）
+### 4.2.1 共享面 pin（block-object 波起强制，第一轮 recipes 之前付清）
 
-T45 闭卡证明：本卡 N / lock / generated root 可以已经齐，`recipes` / `census` /
-`census-replay` 仍会因**已关闭卡的 `--check`** 失败。那不是 gap 单位错了，而是新卡改了
-live 共享面，旧卡冻结 JSON 仍钉旧哈希。禁止把第一轮
-`python tools/verify.py integration --profile recipes` 当作发现器。
+closeout-seal 修复之后，已关闭波的 census / topology / readiness / GameTest receipt /
+runtime dependency manifest `--check` 只比 **closeout seal** 字节与 N/L/R/gap，不再
+live rebuild，也不再 pin live composed v2 或 `verification_profiles.json`。改
+profiles 或后波 composed v2 **不会**把已关闭卡 `complete_family_count` 打成 0。
 
-碰了下表任一路径，必须在第一轮 recipes **之前**，对所有仍把该路径写进 runtime
-manifest / load projection / GameTest receipt / census overlay 的已关闭卡做 `--write`
-（hash-only currentness），再用已有 PASS log 重绑收据。这不是重写 T37–T{N-1}
-generated roots，也不是把 T45 group 写进 Java historical `compactPolicies.put`。
+当前内容卡仍走 live closeout。碰了下表中仍被**当前波** live pin 的路径，必须在第一轮
+recipes **之前**付清当前卡的 hash-only currentness；不要把第一轮
+`python tools/verify.py integration --profile recipes` 当作发现器。这不是重写
+已关闭 generated roots，也不是把新 group 写进 Java historical `compactPolicies.put`。
 
 | 本卡改了什么 | 会咬谁 | 闭卡前怎么付 |
 | --- | --- | --- |
-| `GTRecipeMapLoader`、publication codec/policy definition、`CompactRecipeFamilyProvider` | 仍 hash 这些 Java 的 `t{N}_runtime_dependency_manifest.json` 及其 GameTest receipt | `--write` 各卡 manifest，再 `--write --from-log` 已提交 PASS log |
-| `tools/recipe_load_projection.py`（`DELIVERY_PHASES` / `STRATEGIES` / schema digest） | `t14_readiness.json`；已在 tuple 里的 `t{N}_load_projection.json` 的 `currentness.projection_schema_sha256` | 不重写 T15–T21 投影语义；只刷新 schema digest pin。把新 phase 写进 tuple 后立刻 `--check` 已关闭 T38+ 投影 |
+| `GTRecipeMapLoader`、publication codec/policy definition、`CompactRecipeFamilyProvider` | 仍 hash 这些 Java 的 runtime dependency manifest 及其 GameTest receipt | `--write` 各卡 manifest，再 `--write --from-log` 已提交 PASS log |
+| `tools/recipe_load_projection.py`（`DELIVERY_PHASES` / `STRATEGIES` / schema digest） | compact-load readiness 与已在 tuple 里的 load projection 的 `currentness.projection_schema_sha256` | 不重写历史投影语义；只刷新 schema digest pin。把新 phase 写进 tuple 后立刻 `--check` 已关闭投影 |
 | `verification_profiles.json`、`verification_builder_policy.json`、本 workflow | 钉了这些文件的 runtime manifest | 同上，manifest + receipt |
-| `ModBlockTagProvider` / `ModLanguageProvider` / `src/generated` tags 与 lang | `OreResourceTest` 静态 tag 白名单；`ProcessingMachineResourceTest` 的 `en_us`/`zh_cn` 计数 | 全量 `.\gradlew.bat test` 早于 recipes；isolated `-Pt{N}Recipes` 覆盖不到这些断言 |
-| `worldgen/configured_feature` 或 `placed_feature` 新 JSON | T35 `test_worldgen_source_dirs_are_hashed` | 冻结样本必须是 freeze 里已有的文件（主资源树用 `surface_rock_scatter.json`），禁止 `sorted(glob)[0]`；不得为加 scatter 重开 T35 `20553` id freeze |
-| `ModBlockEntities` 新 `register` | `t36_census_delta.json` 的 `delta.evidence.block_entity_types` 是 live 扫描 | `census-replay` 前 `--write` T36 census delta。T36-Repair freeze 不比对 live 文件哈希，但 delta `--check` 会 rebuild |
+| `ModBlockTagProvider` / `ModLanguageProvider` / `src/generated` tags 与 lang | `OreResourceTest` 静态 tag 白名单；`ProcessingMachineResourceTest` 的 `en_us`/`zh_cn` 计数 | 全量 `.\gradlew.bat test` 早于 recipes；isolated `-PwaveRecipes=<slug>` 覆盖不到这些断言 |
+| `worldgen/configured_feature` 或 `placed_feature` 新 JSON | census `test_worldgen_source_dirs_are_hashed` | 冻结样本必须是 freeze 里已有的文件（主资源树用 `surface_rock_scatter.json`），禁止 `sorted(glob)[0]`；不得为加 scatter 重开 census id freeze |
+| `ModBlockEntities` 新 `register` | 机器 census delta 的 `delta.evidence.block_entity_types` 是 live 扫描 | `census-replay` 前 `--write` 机器 census delta。repair freeze 不比对 live 文件哈希，但 delta `--check` 会 rebuild |
 
-另外三条操作约束：
+另外四条操作约束：
 
-- 禁止 recipes 与 census / census-replay **并行**：它们会抢 `tools/t{N}_*.json` 的原子替换。
-- 全量 `.\gradlew.bat test` 是 recipes 前置，不是“本卡 GameTest 绿了就够”。
+- 禁止 recipes 与 census / census-replay **并行**：它们会抢 `tools/waves/<slug>/*.json` 的原子替换。
+- 全量 `.\gradlew.bat test` 只在 **recipes** 支付；census 与 closeout-seals 的 `gradle_tasks` 为空。`verify.py` 调用 Gradle 时固定 `--rerun-tasks --no-daemon --max-workers=1`。
+- `integration --profile` 对 listed Python modules 一次跑完（`--suite modules`），不按文件走 `affected` glob；`dev` 仍按脏路径 `affected`。
 - `python tools/verify.py dev` 默认吃整个 dirty tree。文档扫应用 `--path` 限定 docs；不要让未认领的 `src/generated` loot / `hs_err_*.log` 把 docs 扫打成 unmatched。
 
 ### 4.3 同 host 多波次
@@ -307,7 +324,32 @@ Production policy identity 必须是：
 
 不能继续假设一个 target 永远只有一张 wave。每张波次独立测量，显式声明稳定 group；
 文件路径不是 runtime policy。多个 group 在同一 target 下必须原子 reload、确定性
-enumerate/lookup，并分别记录 cache 后按 T14 policy 聚合。
+enumerate/lookup，并分别记录 cache 后按 compact-load policy 聚合。
+
+#### 4.3.1 注意事项：卡号不是运行时类型（待重构）
+
+签发 epoch 只应出现在 production lock、census、topology、seal 和 `wave_id`。
+它们不是机器种类、配方格式或校验信封。
+
+现状把卡号漏进了生成器和运行时：历史配方路径、按卡号复制的 compile 分支、
+consume-identity 特例。换人读会把卡号当成类型。
+
+Bath 是已发生的例子。同一台 host 上叠了两套信封：青铜化学 1×4 / 1×1（4000/8000 mB），
+与 GT6 面板 6 物出 / 3 液出。remainder compact 走后者；青铜化学专用配方仍走前者。
+`isBathRemainderCompactRecipe` 才是类型名。代表关系必须按 live host 槽与罐筛选，
+不能按青铜信封或组内第一条碰运气。
+
+重构方向（未开工；closeout seal 钉了路径，不在普通 recipe wave 里顺手改）：
+
+```text
+runtime / compile 主键 = host + cohort + representation
+  例：bath / remainder / exact_multi
+envelope class          = bronze_chemical | gt6_panel
+card id                 = lock / census / seal / wave_id only
+```
+
+下一张卡（含 Mixer 新切片）不得再新增按卡号的运行时类型。新豁免、
+新 compile 分支和新配方路径用 cohort / envelope，不用签发编号。
 
 ### 4.4 Query-addressable shard
 
@@ -393,7 +435,7 @@ Shard 额外验证：
 
 ### 5.2 玩家路径
 
-Current T21 typed closure 是 opening input reachability 权威。每张生产波次固定三层：
+Current typed closure 是 opening input reachability 权威。每张生产波次固定三层：
 
 ```text
 B0 = previous typed closure without current production/support
@@ -405,8 +447,8 @@ Support 的输入必须在加入前的 closure 可达，且属于 production loc
 target recipe 不得自证输入。每条 production relation 要求 B1 输入可达、输出已注册并
 进入 B2。
 
-T21 扫描必须包含已关闭
-compact wave 的 generated root（当前 T37/T38），并解析
+typed closure 扫描必须包含已关闭 compact wave 的 generated root（当前
+assembler compact / roaster compact），并解析
 `cruciblecraft:compact_gt_recipe_family` 的每条 relation。当前卡的 generated tree
 与 support generated tree 不得进入 B0，避免 support 自引用。
 
@@ -431,7 +473,7 @@ boxinator 冒充。
 
 材料形态注册门禁（`material_registration_gate.json` + `MaterialRegistrationGate`）
 保持 fail closed：`materials[id]` ⊆ 该材料 factual forms ∪ 已声明 extras。Extras 只能来自
-本卡 `tools/t{N}_required_forms.json`、前序 wave 的 required forms，或 source-backed
+本卡 `tools/waves/<slug>/required_forms.json`、前序 wave 的 required forms，或 source-backed
 acquisition overlay。不得把 Java 门禁改成“gate 里写了就算数”，也不得为过门禁而清空
 `exclude_prefixes`。
 
@@ -450,15 +492,17 @@ Overlay 按材料逐条写入，禁止按 `octuple_cable` 一类共享形态对�
 对 data-driven variants 验证 energy window、item/fluid capacity、catalyst/preserve、
 成功与 reject path。每条 relation 至少被 data-driven harness 覆盖；isolated GameTest
 选择代表关系、reload、stable id 与 EMI，而不是用少量样本代替全 relation harness。
+代表必须按 **live host 槽与罐** 筛选，不能按青铜化学信封或组内第一条碰运气。共享
+Bath 的青铜信封与 GT6 remainder 分界见 §4.3.1。
 
 ## 6. Receipt 与 clean-checkout 规则
 
 ### 6.1 GameTest receipt
 
 ```text
-run-t{N}-recipes/        # gitignored scratch，不是证据
-tools/t{N}_gametest.log  # committed UTF-8 LF evidence
-tools/t{N}_gametest_receipt.json
+run-wave-<slug>/                 # gitignored scratch，不是证据
+tools/waves/<slug>/gametest.log  # committed UTF-8 LF evidence
+tools/waves/<slug>/gametest_receipt.json
 ```
 
 `--write --from-log` 接受平台日志并规范化 committed log，再生成 receipt。`--check` 必须：
@@ -516,7 +560,7 @@ Lookup 证据同时记录：
 - shard count 增长对 router 自身的成本。
 
 Card 的 source-row 总数可以大于 200，但任何 query 的 routed candidate interval 仍必须
-满足 current T14 hard ceiling。
+满足 current compact-load hard ceiling。
 
 ### 7.3 Winner 与 ledger
 
@@ -527,8 +571,11 @@ correctness/equivalence
   -> predeclared tie-break
 ```
 
-不使用事后 composite score。T14 13 轴按各自 `sum`、`sum_interval` 或 `max_interval`
-聚合，不能机械全相加。
+forward-v2 解释是：非 authored hard ceiling 淘汰；`datapack_authored_entries`
+始终 REPORT_ONLY；其余 soft 超线只警告、不淘汰。共用实现是
+`tools/forward_v2_budget_decision.py`。历史 builder 与 artifacts 保持冻结。
+不使用事后 composite score。compact-load 各轴按各自 `sum`、`sum_interval` 或
+`max_interval` 聚合，不能机械全相加。
 
 Publication delta 分开列出 compact 与 support：
 
@@ -552,14 +599,14 @@ planned / incomplete / fidelity / pending
 只有全部 required identities 完成才扣 gap。Closing artifacts 必须满足：
 
 ```text
-t{N}_census_delta.status = T{N}_CENSUS_DELTA_READY
+census_delta.status = CENSUS_DELTA_READY
 remaining_recipe_gap = prior closing - complete_family_count
-t{N}_card_topology.next_issue_id = T{N+1}
+card_topology.next_unassigned = true
 preassigned_host = false
 preassigned_family_ids = false
 unique_active_card = null
-t{N}_readiness.status = T{N}_READY
-t{N}_readiness.failed_gates = []
+readiness.status = WAVE_READY
+readiness.failed_gates = []
 ```
 
 关闭后：
@@ -577,14 +624,16 @@ t{N}_readiness.failed_gates = []
 碰过 §4.2.1 共享面时，先付清历史 pin，再跑下面的矩阵。矩阵本身按顺序、单进程执行。
 
 ```powershell
-python -m unittest discover -s tools/tests -p "test_build_t{N}*.py"
+python -m unittest discover -s tools/tests -p "test_build_recipe_bulk.py"
 .\gradlew.bat test --no-daemon
 python tools/verify.py integration --profile recipes
 python tools/verify.py integration --profile census
-python tools/verify.py integration --profile census-replay
-.\gradlew.bat runGameTestServer -Pt{N}Recipes --no-daemon
-python tools/build_t{N}_gametest_receipt.py --write --from-log <fresh-log>
-python tools/build_t{N}_gametest_receipt.py --check
+python tools/verify.py integration --profile closeout-seals
+# 或闭卡组合（顶层 Gradle/GameTest 来自 recipes；Python 为 listed modules 一次，Gradle --max-workers=1）：
+python tools/verify.py integration --profile card-closeout
+.\gradlew.bat runGameTestServer -PwaveRecipes=<slug> --no-daemon
+python tools/build_recipe_bulk.py gametest-receipt --wave <slug> --write --from-log <fresh-log>
+python tools/build_recipe_bulk.py gametest-receipt --wave <slug> --check
 ```
 
 按实际 owned paths 追加 materials/worldgen/machines/presentation 等 profile。一个 profile
@@ -604,6 +653,8 @@ python tools/build_t{N}_gametest_receipt.py --check
 - receipt 依赖 ignored run log；
 - receipt 未绑定 live runtime dependencies；
 - 新卡覆盖同 target 的旧 production policy；
+- 把签发卡号当成运行时类型（新卡号谓词、新编号配方路径当信封）；
+- GameTest 代表按组内第一条或青铜化学信封挑选，而不是 live host 槽/罐；
 - 把 shard 当成 Card，导致每 100–200 rows 一套人工收据；
 - 按文件序号或 stable-id hash 分 shard，query 最终仍全扫；
 - 只验证 shard hash，不验证全部 logical relations；
@@ -614,8 +665,8 @@ python tools/build_t{N}_gametest_receipt.py --check
 - 为让 READY 变绿手改旧 hash、提高 hard ceiling 或 zero-fill pending；
 - 改共享 loader/codec/projection/datagen 后靠第一轮 recipes 发现历史 pin 漂移；
 - 只跑 isolated GameTest，跳过全量 JUnit 里的 datagen tag/语言断言；
-- recipes 与 census 并行写同一批 `tools/t{N}_*.json`；
-- 为通过 T35/T36 冻结测试而重开 T35 id freeze 或改写 T36-Repair write-once snapshot。
+- recipes 与 census 并行写同一批 `tools/waves/<slug>/*.json`；
+- 为通过历史冻结测试而重开 census id freeze 或改写 write-once snapshot。
 
 出现上述情况时撤回 READY，修复后从原始 evidence 重建，不在叙述中把旧失败改写成“当时
 已通过”。
@@ -631,7 +682,7 @@ python tools/build_t{N}_gametest_receipt.py --check
 4. 是否进入当前 1.x gap：由新 census delta 明确决定，不追溯改写旧 gap。
 
 Closed receipt 证明“该 source revision 在当时 runtime ABI 下关闭”。新增 GT6U recipe
-tree 不要求重签 T37–T{N}；核心 runtime ABI 变化走集中 compatibility regression /
+tree 不要求重签已关闭波；核心 runtime ABI 变化走集中 compatibility regression /
 migration gate。Dependency manifest 绑定相关 Source Pack、publication groups 与 runtime
 ABI，不绑定未来整个全局 recipe tree。
 
@@ -640,40 +691,60 @@ publication group 且没有 migration gate，才形成债务。
 
 ## 12. Partition 之后与 Gap = 0
 
-T42 已把剩余 ordinary families 划入五桶并锁定 deferred ledger。T42-Repair 是内部
-fidelity gate（`owns_families=0`，不占用内容卡编号），已达到 `T42_REPAIR_READY`。
-T42-Owner 是第二个内部 gate，已达到 `T42_OWNER_READY`：它为 post-repair 5,300 families
-锁定 current owner，并且只将经 family-atomic evidence 证明的 1,817 个 Smelter recovery
-family 移入 `later:recycling`。因此 current execution gap 为 3,483，reclassification 不等于
-recipe completion。后续 storage 与 bounded wave 必须从 T43 closing artifact
-重算 remaining gap。Circuit 映射、unique
-残差族、gap `partial_family_count=0` 都不是 closure。此后顺序是：
+owner-partition 已把剩余 ordinary families 划入明确 owner，并将经 family-atomic
+evidence 证明的 Smelter recovery 移入 `later:recycling`。reclassification 不等于
+recipe completion。后续 storage 与 bounded wave 必须从当时 closing artifact
+重算 remaining gap。Circuit 映射、unique 残差族、gap `partial_family_count=0`
+都不是 closure。此后顺序是：
 
 ```text
-T42 partition
-  -> T42-Repair (internal fidelity gate; not a content card)
-  -> T42-Owner (internal owner-partition gate; not a content card)
-  -> T43 Smelter stone bulk wave complete (407 families)
-  -> T36-Repair (internal machine-tier extensibility gate; `T36_REPAIR_READY`; not a content card)
-  -> T44 Storage bundle complete (28/624 + logistics 1/1; recipe gap unchanged)
-  -> T45 block-object production-lock wave complete (379 families; compiler reusable)
-  -> subsequent cohort-sized recipe waves
-  -> deferred recycling / object-expression / combinatorial owner tracks
-  -> 1.x joint exit gate
-  -> nuclear source/physics census
+gap partition
+  -> snapshot/inventory/classifier fidelity gate
+  -> owner-partition gate
+  -> smelter/stone
+  -> machine-tier extensibility gate
+  -> storage bundle
+  -> block-object
+  -> bath/mte
+  -> bath/remainder
+  -> closeout-verification repair
+  -> bath/identity
+  -> bath/tiny-purified
+  -> smelter/ordinary-closure
+  -> mixer/ordinary-closure
+  -> ordinary-wave closeout-integrity repair
+  -> ordinary-remainder shared operand foundation
+  -> drying/ordinary-closure
+  -> electrolyzer/ordinary-closure
+  -> centrifuge/ordinary-closure
+  -> autoclave/ordinary-closure
+  -> compressor/ordinary-closure
+  -> recipe-portfolio/ordinary-remainder-closure
+  -> recycling/deferred-ordinary-runtime
+  -> portfolio/one-x-joint-exit
+  -> portfolio/source-capability-map
+  -> tracks chosen from the capability map
+  -> nuclear only if that map assigns it an owner
 ```
 
-T43 已关闭 407 Smelter stone singleton families。Drying singleton 以及其它 Smelter
-unmapped/object/form/B0/multi-axis family 不得混入或回填 T43。
+Smelter stone 已关闭 407 singleton families。Drying singleton 以及其它 Smelter
+unmapped/object/form/B0/multi-axis family 不得混入或回填该波。
 
-Storage 不再要求 current execution gap 先到 0。T44 已关闭 Storage 28/624 +
-logistics 1/1（不计 ordinary recipe completion）。T45 已关闭跨 host block-object
-生产锁（379 complete families）并留下可复用 bulk compiler；Bath MTE 审计保持只读、
-未改写 owner。Mixer acquisition/source-fluid 排在其后。仍只允许一张 active 内容卡。
-T46 未签发，不预写 host 或 family IDs；下一波选择规则见
-[T45 详细计划](../history/card-plans/closed/T45详细计划.md)。
+Storage 不再要求 current execution gap 先到 0。Storage 28/624 + logistics 1/1
+已关闭（不计 ordinary recipe completion）。block-object、Bath 各波与
+Smelter / Mixer ordinary-closure 与 Ordinary 尾账五 host 已关闭。closeout-integrity
+repair 修复了两波 load pending 与 seal/readiness 矛盾。current execution gap = 0。
+deferred ordinary ledger 已关闭：1,817 Smelter MTE recovery complete + 28
+independent post-1.x scope；hanging `later:*` = 0。语义命名残留见
+[semantic-naming.md](semantic-naming.md)，不阻塞后继内容波。
 
-当且仅当 current closing artifact 报告 execution gap = 0，并且 deferred ordinary
-ledger 中每一项均已关闭或经独立 post-1.x scope decision 处理，才停止签发 recipe
-waves 并进入 1.x joint exit gate。Storage 完成后才进入核能 source/physics census。
-`later:*` 不能当成 exit gate 已满足。
+execution gap = 0 不等于 1.x joint exit。`recycling/deferred-ordinary-runtime` 已
+`DEFERRED_ORDINARY_RUNTIME_READY`。`portfolio/one-x-joint-exit` 已
+`ONE_X_JOINT_EXIT_READY`：六条退出条件 GREEN，load 口径 A，capability-map
+seed 交给已关闭的 `portfolio/source-capability-map`。对照检查在该 program 的
+inventory child（113 行），不是 1.x seed。`SOURCE_CAPABILITY_MAP_READY`。
+growth-order 指定的 `next_major = portfolio/generic-recipe-generator` 已签发为
+通用 Source Pack 导入器计划，尚未实现且没有 production lock。
+1.x 已认领的关闭工作仍然成立，但不把它写成 GT6 终点。核能 Track C 保持
+`started = false`。`later:*` 四条 combinatorial 已并入 next_major 建议；7 条
+nuclear 与 28 条 recycling 仍独立。`unique_active_wave = null`。

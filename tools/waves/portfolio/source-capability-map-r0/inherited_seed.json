@@ -1,0 +1,209 @@
+{
+  "generated_by": "python tools/build_source_capability_map_r0.py",
+  "row_count": 22,
+  "rows": [
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "src/main/java/com/masson/cruciblecraft/material/prefix/MaterialPrefixCatalog.java + data/cruciblecraft/material_prefixes/",
+      "correspondence_class": "equivalent",
+      "growth_blocker": "none",
+      "gt6_anchor": "gregapi/oredict",
+      "gt6_domain": "oredict",
+      "recheck_condition": "Prefix catalog is startup-only; datapacks cannot add rows at runtime."
+    },
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "compact exact / exact_multi + per-wave Python builders",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "gt.recipe.* ordinary rows",
+      "gt6_domain": "loader",
+      "recheck_condition": "Import path exists; no generic dump-to-arbitrary-map generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "machine_tiers.json -> MachineTierCatalog -> ModMachineVariants -> registerTieredProcessingBlocks",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "none",
+      "gt6_anchor": "Loader_MultiTileEntities.java selected processing variants",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Explicit catalog rows register. automaticKindTierCompletion=false is not no_generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "data/cruciblecraft/worldgen_catalog/ore_veins.json + T20 129 identities",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "none",
+      "gt6_anchor": "T20 ore vein / fluid deposit identities",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Does not claim GT6-complete worldgen."
+    },
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "independent pipe/cable/hopper runtime + partial catalog",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "none",
+      "gt6_anchor": "GT6 pipes / cables / hopper",
+      "gt6_domain": "cover",
+      "recheck_condition": "1.x logistics main chain. Full GT6 cover net is a later seed row."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "storage_variants.json + T44 624+1 lock",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "none",
+      "gt6_anchor": "Storage MTE 28 source sites",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Recovered exclusion-table subset. Do not reopen storage behavior."
+    },
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "BathMteIdentityCatalog + SmelterMteIdentityCatalog",
+      "correspondence_class": "identity_only",
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "Bath / Smelter MTE holdable identity",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Identity is not a behavior generator."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "add an explicit machine_tiers.json row; registerTieredProcessingBlocks walks the catalog",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "none",
+      "gt6_anchor": "new tier for an existing kind",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Not a missing generator. Cartesian kind x material completion stays false."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "ModProcessingMachines slot/tank/GUI Java spec",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "hardcoded_spec",
+      "gt6_anchor": "new processing kind / envelope",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "CompactRecipeFamilyProvider parameterized() fail-closed",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "fail_closed_runtime",
+      "gt6_anchor": "ParameterizedSpec",
+      "gt6_domain": "loader",
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "tools/build_ordinary_wave.py and specialized copies such as build_smelter_deferred_recycling.py",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "no_generator",
+      "gt6_anchor": "per-wave recipe builders",
+      "gt6_domain": "loader",
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "in_1x_closed",
+      "cc_mechanism": "still referenced by loader and tests; closeout reports UNVERIFIED_SCALE",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "count_ceiling",
+      "gt6_anchor": "ALL_PUBLISHED_RECIPE_BUDGET / lazy 56k / cache 4096 / shard 128",
+      "gt6_domain": "loader",
+      "recheck_condition": "Successor count_ceiling row. 1.x exit interpretation A does not raise the Java constants."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "filter / shutter / pump / conveyor / retriever / robot_arm / pressure_valve / selector",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "cover_definitions.json selected covers",
+      "gt6_domain": "cover",
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "in_1x_selected",
+      "cc_mechanism": "EnergyConverterCatalog bronze firebox/boiler/steam_engine/dynamo/fuel_engine/gas_generator",
+      "correspondence_class": "selected_subset",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "selected energy conversion chain",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "capability_missing",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "T13c exclusion tables without 1.x owner",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Panels 348 / Sensors 21 / Portals 19 / Batteries 37 / Reactors 46 never entered the 1.x denominator. Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "GT6 Vanilla replace loaders",
+      "gt6_domain": "loader",
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "selected_only",
+      "gt6_anchor": "GT6 full cover / logistics-net remainder",
+      "gt6_domain": "cover",
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "crops / food / bees",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "energy remainder (batteries, transformers, reactors)",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "non-ore worldgen (trees, dungeons, item scatter remainder)",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "building blocks",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "misc systems (Display CPU and remaining unowned GT6 domains)",
+      "gt6_domain": "tileentity",
+      "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+    }
+  ],
+  "schema_version": 1,
+  "source_artifact": "tools/waves/portfolio/one-x-joint-exit/capability_map_seed.json",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "INHERITED_SEED_READY",
+  "wave_slug": "portfolio/source-capability-map-r0"
+}

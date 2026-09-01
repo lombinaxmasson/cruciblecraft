@@ -1,0 +1,69 @@
+{
+  "evidence": {
+    "autoclave_tagged_recycling": 0,
+    "centrifuge_cross_mod": 1,
+    "centrifuge_execution_envelope": 1,
+    "complete_family_count": 0,
+    "completion_delta": 0,
+    "enumerated": true,
+    "enumerated_recycling": 1843,
+    "identity_unique_meta_count": 1817,
+    "inherited_recycling": 1819,
+    "ledger_total": 1845,
+    "mislabeled_needs_reclass": 24,
+    "n300_exceptions": [
+      {
+        "child": "recycling/deferred-ordinary-ledger-r0",
+        "exception_kind": "infrastructure_ledger_enumeration",
+        "owns_families": 0,
+        "padding_forbidden": true,
+        "reason": "infrastructure: enumerate and partition the deferred ledger"
+      },
+      {
+        "child": "recycling/smelter-mte-identity",
+        "exception_kind": "infrastructure_identity_catalog",
+        "owns_families": 0,
+        "padding_forbidden": true,
+        "reason": "infrastructure: holdable Smelter MTE identity and acquisition"
+      },
+      {
+        "child": "smelter/deferred-recycling-edge",
+        "exception_kind": "independent_evidence_incomplete_cohort",
+        "owns_families": 2,
+        "padding_forbidden": true,
+        "reason": "independent evidence-incomplete cohort; not the 1817 builder"
+      },
+      {
+        "child": "autoclave/deferred-recycling",
+        "exception_kind": "different_host_operand_shape",
+        "owns_families": 24,
+        "padding_forbidden": true,
+        "reason": "different host and operand shape from Smelter MTE recovery"
+      },
+      {
+        "child": "recycling/non-recycling-scope",
+        "exception_kind": "envelope_and_cross_mod_scope",
+        "owns_families": 2,
+        "padding_forbidden": true,
+        "reason": "centrifuge envelope / cross-mod; not a recycling production lock"
+      }
+    ],
+    "one_x_joint_exit": false,
+    "partial_family_count": 0,
+    "program_status": "RECYCLING_DEFERRED_LEDGER_R0_READY",
+    "recipe_files_generated": false,
+    "reclassification_delta": 24,
+    "remaining_recipe_gap": 0,
+    "smelter_proven_mte_recovery": 1817,
+    "smelter_recovery_edge": 2,
+    "unique_meta_equals_proven_family_count": true
+  },
+  "generated_by": "python tools/build_deferred_ordinary_ledger_r0.py",
+  "next_unassigned": false,
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "RECYCLING_DEFERRED_LEDGER_R0_READY",
+  "unique_active_wave": "recycling/smelter-mte-identity",
+  "wave_complete": true,
+  "wave_slug": "recycling/deferred-ordinary-ledger-r0"
+}

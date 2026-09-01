@@ -27,7 +27,7 @@ RAW_ELECTROLYZER = (
 )
 RUNTIME_RECIPE_ROOT = (
     ROOT
-    / "src/t5_chemical_generated/resources/data/cruciblecraft/recipe/t5"
+    / "src/chemical_recipe_generated/resources/data/cruciblecraft/recipe/chemical"
 )
 AXIS_OUTPUT = TOOLS / "t21_chemical_axis.json"
 EXPECTED_OUTPUT = TOOLS / "t21_composition_expected.json"
@@ -484,7 +484,7 @@ def build_expansion(
             )
         rows.append({
             "material": material,
-            "runtime_recipe_id": f"cruciblecraft:t5/electrolyzer/{material}",
+            "runtime_recipe_id": f"cruciblecraft:chemical/electrolyzer/{material}",
             "runtime_path": relative(runtime_path),
             "recipe": production,
         })

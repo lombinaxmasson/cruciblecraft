@@ -1,0 +1,47 @@
+{
+  "counts": {
+    "mapped": 3
+  },
+  "frozen_hydrocarbon_fluid_mapping_sha256": "293014581378f98b1545ebc53e7aba3e7e6b25cc2009310c6456dc4996a0a82c",
+  "frozen_bath_mte_fluid_mapping_sha256": "f7099446f74c94b4d3059c5dcc23ca58c0e3e076d648a29b04ba4c615ed93da5",
+  "generated_by": "python tools/build_bath_remainder_fluid_mapping.py",
+  "mapping": [
+    {
+      "b0_reachability": "needs_b1_support",
+      "cc_fluid_id": "cruciblecraft:potion_fireresistance_long",
+      "color_rgb": 14981690,
+      "container_source_path": null,
+      "english_name": "Long Fire Resistance potion",
+      "mapping_evidence": "no_legal_hydrocarbon_or_bath_mte_equivalent; explicit CC fluid",
+      "registration_state": "bath_remainder_fluid_catalog",
+      "semantic_category": "potion",
+      "source_fluid": "potion.fireresistance.long"
+    },
+    {
+      "b0_reachability": "needs_b1_support",
+      "cc_fluid_id": "cruciblecraft:water_geothermal",
+      "color_rgb": 4025226,
+      "container_source_path": null,
+      "english_name": "Geothermal water",
+      "mapping_evidence": "no_legal_hydrocarbon_or_bath_mte_equivalent; explicit CC fluid",
+      "registration_state": "bath_remainder_fluid_catalog",
+      "semantic_category": "water",
+      "source_fluid": "watergeothermal"
+    },
+    {
+      "b0_reachability": "needs_b1_support",
+      "cc_fluid_id": "cruciblecraft:rainbow_sap",
+      "color_rgb": 12868308,
+      "container_source_path": null,
+      "english_name": "Rainbow sap",
+      "mapping_evidence": "no_legal_hydrocarbon_or_bath_mte_equivalent; explicit CC fluid",
+      "registration_state": "bath_remainder_fluid_catalog",
+      "semantic_category": "sap",
+      "source_fluid": "rainbowsap"
+    }
+  ],
+  "note": "Overlay only. Does not rewrite hydrocarbon or bath/mte fluid mapping.",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "BATH_REMAINDER_FLUID_MAPPING"
+}

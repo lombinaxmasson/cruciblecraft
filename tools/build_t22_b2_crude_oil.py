@@ -50,8 +50,8 @@ SOURCE_ROW_705: dict[str, Any] = {
 # Authored recipe path
 AUTHORED_RECIPE = (
     ROOT
-    / "src/t22_petroleum_generated/resources/data/cruciblecraft/recipe"
-    / "t22/distillery/oil_to_fuel_and_lubricant.json"
+    / "src/petroleum_recipe_generated/resources/data/cruciblecraft/recipe"
+    / "petroleum/distillery/oil_to_fuel_and_lubricant.json"
 )
 
 T22_BASELINE = ROOT / "src/main/resources/data/cruciblecraft/t22_publication_baseline.json"
@@ -173,7 +173,7 @@ def build() -> dict[str, Any]:
         "lazy_rows_added": 0,
         "authored_files": 1,
         "recipe_ids": [
-            "cruciblecraft:t22/distillery/oil_to_fuel_and_lubricant"
+            "cruciblecraft:petroleum/distillery/oil_to_fuel_and_lubricant"
         ],
     }
 

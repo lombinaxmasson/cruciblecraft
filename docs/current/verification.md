@@ -3,14 +3,13 @@
 日常入口是 `tools/verify.py`。不要把历史 `full_verification_report.json` 或
 Markdown 叙述当作当前代码必须匹配的证明。
 
-T40 闭卡期间门闸 overlay、跨卡哈希链、Gradle UP-TO-DATE 假绿灯与超大 JSON
-写失败的现场记录见 [T40 闭卡拖延回顾](../history/work-logs/t40-closeout-delay-review.md)
-与 [current 入口](t40-closeout-delay-review.md)。T40-VR 已把这些缺口收成
+早期 Electrolyzer 闭卡期间的门闸 overlay、跨卡哈希链、Gradle UP-TO-DATE 假绿灯与
+超大 JSON 写失败记录在 `docs/history/work-logs/`。后续验证修复把这些缺口收成
 `material_form_authority`、atomic writer、versioned semantic projection、
 currentness sidecar、verification DAG 与 `--report-all`/`--json` runner。
 compact `--check` 绑 semantic root，不因 envelope/builder 整文件 SHA 要求重写巨型正文。
 
-T39 起的 bounded recipe waves 还必须遵守
+现行 bounded recipe waves 还必须遵守
 [ordinary recipe wave 流程与规范](recipe-wave-workflow.md)：每波先区分 catalog、
 动态 candidate 与不可自动漂移的 production lock，并完成 operand disposition / phase-owner
 审计；随后生成 publication-group / query-addressable-shard manifests，提交规范化 GameTest
@@ -18,30 +17,50 @@ T39 起的 bounded recipe waves 还必须遵守
 load，并在 clean checkout 复核 closing artifacts。Test-only catalog fixture 不能成为
 production winner、player-path、census 或 READY 证据。
 
+`recycling/deferred-ordinary-runtime` 已 `DEFERRED_ORDINARY_RUNTIME_READY`。
+`portfolio/one-x-joint-exit` 已 `ONE_X_JOINT_EXIT_READY`。
+`portfolio/source-capability-map` 已 `SOURCE_CAPABILITY_MAP_READY`。
+growth-order 建议的 `next_major = portfolio/generic-recipe-generator` 已按
+[通用 Source Pack 导入器详细计划](../history/card-plans/active/通用Source-Pack导入器详细计划.md)
+签发为零 family 机制 program，尚未实现，没有 production lock 或 nuclear census。
+R0 artifact 生成前，上一 closing 的 `unique_active_wave = null` /
+`next_unassigned = true` 仍是机器可读事实。pending / missing-event /
+zero-filled load 仍不得 `WAVE_READY`。count telemetry 超旧参考只报
+`UNVERIFIED_SCALE` / `REPORT_ONLY`，不是 1.x exit 硬顶。
+
 ## 改了什么，跑什么
 
 | 改动 | 命令 | 何时升级 |
 | --- | --- | --- |
 | Markdown / `docs/` / 历史档案 | `python tools/verify.py dev` | 不升级 |
-| `tools/` 验证入口、profile、policy | `python tools/verify.py dev` | 关闭验证卡时再跑 integration `--profile verification` |
+| `tools/` 验证入口、profile、policy | `python tools/verify.py dev` | 关闭验证工作时再跑 integration `--profile verification` |
 | 材料 / 前缀 / oredict | `python tools/verify.py integration --profile materials` | 内容卡闭合 |
 | 配方 / 化学 / 石油 | `python tools/verify.py integration --profile recipes` | 内容卡闭合 |
 | 世界生成 / 矿脉 / 石子 | `python tools/verify.py integration --profile worldgen` | 内容卡闭合 |
 | 机器 / 能量 / 容器 | `python tools/verify.py integration --profile machines` | 内容卡闭合 |
 | 管道 / 覆盖板 / hopper | `python tools/verify.py integration --profile logistics` | 内容卡闭合 |
 | 贴图 / 语言 / 客户端外观 | `python tools/verify.py integration --profile presentation` | 内容卡闭合 |
-| T35 census currentness / topology | `python tools/verify.py integration --profile census` | T35 范围内闭卡；历史分母只读 |
-| T36 census overlay / T37–T44 overlay | `python tools/verify.py integration --profile census-replay` | T36 机器闭合后、T37 校准闭合后、T38 Roaster / T39 Centrifuge / T40 Electrolyzer / T41 Assembler / T42 partition / T42-Repair / T42-Owner / T43 Smelter stone 闭合后、T36-Repair 扩展闭环后、T44 Storage bundle 闭合后；delta/readiness/load decision / `t42_repair_readiness` / `t42_owner_readiness` / `t43_readiness` / `t36_repair_readiness` / `t44_readiness`，不重跑 GT6 inventory |
-| T42 remaining-family partition / internal repairs | `python tools/verify.py integration --profile recipe-partition` | T42 freeze / snapshot / inventory / B0 / overlay / lock / gap / T42-Repair pre-freeze，以及 T42-Owner pre-freeze / owner tracks / recovery evidence / owner lock / effective gap / readiness；不跑 datagen、GameTest 或 T14 load benchmark |
-| T40-VR 验证基础设施 | `python tools/verify.py integration --profile recipes --report-all --json build/verification/t40-vr-recipes.json` | `T40_VR_READY`；不占用 T41。hash-only 用 `python tools/verify.py currentness --mode plan --scope card-closeout` |
-| T40-VR 卡级诊断 | `python tools/verify.py integration --profile card-diagnostic-T40 --json build/verification/t40-vr-diagnostic.json` | 报告上游 stale/debt 与 sidecar hash-only；状态 `DIAGNOSTIC`，不是 closeout PASS |
-| T40-VR 闭卡 | `python tools/verify.py integration --profile card-closeout --report-all --json build/verification/t40-vr-closeout.json` | recipes + census + census-replay；顶层 JSON 保留 recipes 的 Gradle XML 与 GameTest receipt，不被最后一个 profile 覆盖 |
-| T44 Storage runtime 隔离 | `.\gradlew.bat runGameTestServer -Pt44Storage --no-daemon` | T44 storage suite 验证 624+1 catalog、bookshelf/crate/locker/charging/mass/inserter/logistics 与 T36 85 catalog 行未扩张。Receipt 使用 committed UTF-8 log，并绑定 production lock 与 bundled catalog；被忽略的 `run-t44-storage/` 不是证据 |
-| T43 Smelter stone runtime 隔离 | `.\gradlew.bat runGameTestServer -Pt43Recipes --no-daemon` | T43 production suite 验证 407 authored Smelter stone families。Catalog fixture 只进 JUnit。Receipt 使用 committed UTF-8 log，并绑定 production lock、worldgen support tree、publication-group/shard aggregate root 与 runtime dependency manifest；被忽略的 `run-t43-recipes/` 不是证据 |
-| T39 Centrifuge runtime 隔离 | `.\gradlew.bat runGameTestServer -Pt39Recipes --no-daemon` | T39 production suite 精确验证 production lock 22/32 与 34 locked support；157/250 catalog 只进 JUnit test fixture。Receipt 使用 committed UTF-8 log，并绑定 production lock、minimal support、publication-group/shard aggregate root 与 runtime dependency manifest；被忽略的 `run-t39-recipes/` 不是证据 |
-| T38 配方 runtime 隔离 | `.\gradlew.bat runGameTestServer -Pt38Recipes --no-daemon` | R3 起；namespace `cruciblecraft_t38`，不进日常网格。`--write --from-log` 把运行日志规范成 UTF-8 证据 `tools/t38_gametest.log`；收据指向该文件并绑定 `MaterialRegistrationGate` 与 T38 资源树。`--check` 不得依赖被忽略的 `run-t38-recipes/`，也不得只对照 receipt 自保存指纹 |
-| T37 配方 runtime 隔离 | `.\gradlew.bat runGameTestServer -Pt37Recipes --no-daemon` | R5 起；namespace `cruciblecraft_t37`，不进日常网格 |
-| T36 机器 runtime 隔离 | `.\gradlew.bat runGameTestServer -Pt36Machines --no-daemon` | R7 起；namespace `cruciblecraft_t36`，不进日常 137 网格 |
+| census currentness / topology | `python tools/verify.py integration --profile census` | 历史分母只读 |
+| census overlay / 已关闭波 overlay | `python tools/verify.py integration --profile census-replay` | hash/seal `--check` 与当前波 load decision；历史 load 重跑用 `--full-replay` 或 `release`。不重跑 GT6 inventory，也不付 Gradle |
+| remaining-family partition / internal repairs | `python tools/verify.py integration --profile recipe-partition` | freeze / snapshot / inventory / B0 / overlay / lock / gap / owner tracks；不跑 datagen、GameTest 或 compact-load benchmark |
+| 现行闭卡 | `python tools/verify.py integration --profile card-closeout --report-all` | 现行支付：recipes（唯一 Gradle/`test` + 本波 GameTest）→ census（无 Gradle）→ closeout-seals（无 Gradle）。已关闭卡 `--check` 只比 seal，不因 composed v2 / profiles 把 `complete_family_count` 打成 0 |
+| Bath identity 尾账复核 | `python tools/verify.py integration --profile card-closeout`；isolated `.\gradlew.bat runGameTestServer -PwaveRecipes=bath/identity --no-daemon` | 145/34091/3532；remaining 1354；receipt 走 seal 绑定面，不 live-pin composed v2 |
+| Bath identity runtime 隔离 | `.\gradlew.bat runGameTestServer -PwaveRecipes=bath/identity --no-daemon` | 验证 145/34091/3532 与 2 条真实 B1 support。Receipt 使用 committed UTF-8 log；被忽略的 `run-wave-bath-identity/` 不是证据 |
+| Bath tiny-purified 复核 | `python tools/verify.py integration --profile card-closeout`；isolated `.\gradlew.bat runGameTestServer -PwaveRecipes=bath/tiny-purified --no-daemon` | 5/95；remaining 1349；Bath ordinary 0；receipt 走 seal 绑定面 |
+| Bath tiny-purified runtime 隔离 | `.\gradlew.bat runGameTestServer -PwaveRecipes=bath/tiny-purified --no-daemon` | 验证 5/95 与 tiny-washed B1 scatter。被忽略的 `run-wave-bath-tiny-purified/` 不是证据 |
+| Storage runtime 隔离 | `.\gradlew.bat runGameTestServer -PwaveRecipes=storage --no-daemon` | Storage suite 验证 624+1 catalog 与 85 台机器 catalog 行未扩张。被忽略的 `run-wave-storage/` 不是证据 |
+| Smelter stone runtime 隔离 | `.\gradlew.bat runGameTestServer -PwaveRecipes=smelter/stone --no-daemon` | 验证 407 authored families。Catalog fixture 只进 JUnit |
+| Smelter ordinary-closure 隔离 | `.\gradlew.bat runGameTestServer -PwaveRecipes=smelter/ordinary-closure --no-daemon` | 已关闭 ordinary-closure 波 |
+| Mixer ordinary-closure 隔离 | `.\gradlew.bat runGameTestServer -PwaveRecipes=mixer/ordinary-closure --no-daemon` | 已关闭 ordinary-closure 波 |
+| Drying ordinary-closure 隔离 | `.\gradlew.bat runGameTestServer -PwaveRecipes=drying/ordinary-closure --no-daemon` | 已关闭 ordinary-closure 波；44/85 |
+| Electrolyzer ordinary-closure 隔离 | `.\gradlew.bat runGameTestServer -PwaveRecipes=electrolyzer/ordinary-closure --no-daemon` | 已关闭 ordinary-closure 波；46/94 |
+| Centrifuge ordinary-closure 隔离 | `.\gradlew.bat runGameTestServer -PwaveRecipes=centrifuge/ordinary-closure --no-daemon` | 已关闭 ordinary-closure 波；126 complete + 2 reclass |
+| Autoclave ordinary-closure 隔离 | `.\gradlew.bat runGameTestServer -PwaveRecipes=autoclave/ordinary-closure --no-daemon` | 已关闭 ordinary-closure 波；36 complete + 24 later:recycling |
+| Compressor ordinary-closure 隔离 | `.\gradlew.bat runGameTestServer -PwaveRecipes=compressor/ordinary-closure --no-daemon` | 已关闭 ordinary-closure 波；56/1284；remaining gap 0 |
+| Centrifuge compact runtime 隔离 | `.\gradlew.bat runGameTestServer -PwaveRecipes=centrifuge/compact --no-daemon` | 精确验证 production lock 22/32 与 34 locked support；157/250 catalog 只进 JUnit |
+| Roaster compact runtime 隔离 | `.\gradlew.bat runGameTestServer -PwaveRecipes=roaster/compact --no-daemon` | namespace `cruciblecraft_wave_roaster_compact`，不进日常网格 |
+| Assembler compact runtime 隔离 | `.\gradlew.bat runGameTestServer -PwaveRecipes=assembler/compact --no-daemon` | namespace `cruciblecraft_wave_assembler_compact`，不进日常网格 |
+| 机器 runtime 隔离 | `.\gradlew.bat runGameTestServer -PwaveRecipes=machines --no-daemon` | namespace `cruciblecraft_wave_machines`，不进日常网格 |
 | 历史 READY 收据 | `python tools/verify.py archive-inspect` | 不改写、不按未来全局 recipe tree 重算；核心 runtime ABI 变化由 compatibility/migration profile 统一回归 |
 | 玩家发行 | `python tools/verify.py release` | 仅未来发行卡 |
 
@@ -52,35 +71,37 @@ python tools/verify.py dev
 python tools/verify.py integration --profile worldgen
 python tools/verify.py integration --profile census
 python tools/verify.py integration --profile census-replay
+python tools/verify.py integration --profile closeout-seals
+python tools/verify.py integration --profile card-closeout
 python tools/verify.py integration --profile recipe-partition
 python tools/verify.py archive-inspect
 ```
 
 `dev` 根据 `git diff` 或 `--path` 选择 profile。无法映射的代码路径会列出需要声明的
-scope，既不静默通过，也不升级到 110 个 builder。纯文档改动只跑 Markdown 链接和
+scope，既不静默通过，也不升级到全部 builder。纯文档改动只跑 Markdown 链接和
 profile 静态检查。
 
 `census` 使用 compact/reference currentness；不会在 census、topology 与 readiness 层
-重复读取 recipe source dump。`census-replay` 在 T36 之后校验 `t36_census_delta` / `t36_readiness`，在 T37 之后校验
-`t37_census_delta` / `t37_readiness` overlay，在 T38 之后校验 `t38_recipe_load_benchmark` 与 T38 load
-decision，在 T41 之后校验 `t41_recipe_load_benchmark` 与 T41 GameTest receipt，在 T42 之后校验
-`t42_census_delta` / `t42_card_topology` / `t42_readiness`，在 T42-Repair 之后校验
-`t42_repair_readiness`，在 T42-Owner 之后校验 owner gap / `t42_owner_readiness`，在 T43 之后校验
-`t43_census_delta` / `t43_card_topology` / `t43_readiness` 与 T43 GameTest receipt / load
-decision，在 T44 之后校验 `t44_storage_census_delta` / `t44_card_topology` /
-`t44_readiness` 与 T44 GameTest receipt / load projection，不再重跑 T35 machine/recipe full inventory。`recipe-partition` 校验 T42 freeze 到 gap 的诊断链与
-T42-Repair pre-freeze 与 T42-Owner owner-track / evidence / lock 链，不拥有原 T42
-census/readiness builders（含 repair-readiness），也不跑 GameTest。
-T36 机器 runtime 用 `-Pt36Machines`，T37 配方 runtime 用 `-Pt37Recipes`，T38 配方 runtime 用
-`-Pt38Recipes`，T41 配方 runtime 用 `-Pt41Recipes`，T43 配方 runtime 用 `-Pt43Recipes`，T44 仓储 runtime 用 `-Pt44Storage`，都不要混进日常 `cruciblecraft` 网格或
-`-Pt35Census`。
+重复读取 recipe source dump，也不再调用 `gradlew test`。`census-replay` 默认做 hash/seal
+`--check` 与当前波 load decision；全历史 load builder 重跑需要 `--full-replay`。
+`closeout-seals` 校验已关闭波的封板。`card-closeout` 串行
+`recipes → census → closeout-seals`，顶层 JSON 保留 recipes 的 Gradle XML 与 GameTest；
+census-replay 不再是每张卡必付。`integration --profile` 对每个 profile 的 listed
+Python modules **只跑一次**
+（`run_python_tests.py --suite modules --module …`），不按文件走 `affected` glob 扩族。
+`dev` / 无 `--profile` 仍按 git 脏路径走 `affected`。Gradle 任务（profile 全量 `test`
+与 `dev` 因 Java 变更触发的 `test`）为 `--rerun-tasks --no-daemon --max-workers=1`。
+`recipe-partition` 校验 freeze 到 gap 的诊断链与 owner-track / evidence / lock 链，
+不拥有原 census/readiness builders，也不跑 GameTest。
+历史隔离 GameTest 用 `-PwaveRecipes=<slug>` 或 `-PrecipeCensus`，都不要混进日常
+`cruciblecraft` 网格。
 
 ## 硬门与非门
 
 硬门：GT6 compact evidence、JSON schema、生成树一致性、内容卡 load budget。
 
 非门：README、总体规划、阶段档案、工作日志、历史 READY 快照的 live currentness。
-T35 census 只把 `docs/current/roadmap.md` 记为 narrative 引用（文件必须存在），
+census 只把 `docs/current/roadmap.md` 记为 narrative 引用（文件必须存在），
 不把它的内容 hash 纳入 `census` currentness 或 stale 门禁。
 
 已知未修债务见 [`tools/known_issues/verification-debt.json`](../../tools/known_issues/verification-debt.json)。
@@ -98,10 +119,11 @@ profile 已通过。
 2. 债务条目保持 `open`，闭卡记录写明失败 profile、债务 id 与其 scope-external 身份；
 3. 不增加 bypass / allow-failure 开关，也不把“债务存在”改写成“验证通过”。
 
-`T32-VD-001` 是上述规则的当前实例：T33 只以 worldgen profile 闭卡；严格 recipes
-integration 仍是红灯，必须在 T35 的 recipe-debt preflight 修复后重跑并关闭该债务。
+历史 recipes-profile ledger 债务是上述规则的实例：worldgen 卡只以 worldgen profile
+闭卡；严格 recipes integration 仍是红灯，必须在 census 的 recipe-debt preflight
+修复后重跑并关闭该债务。
 
 ## 历史全量入口
 
 `python tools/run_full_verification.py --check` 仍可手工运行，但它校验的是历史
-单一 READY 证明，不是 T32 之后的日常开发门。CI 的 PR 路径使用 `verify.py dev`。
+单一 READY 证明，不是分层验证之后的日常开发门。CI 的 PR 路径使用 `verify.py dev`。

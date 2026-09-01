@@ -52,7 +52,7 @@ public final class MachineAcquisition {
                 : kind.acquisitionTemplate();
         if (!CatalogJson.nonBlank(template) || "none".equals(template)) {
             throw new IllegalStateException(
-                    "T36 variant " + variantId.getPath()
+                    "Machine variant " + variantId.getPath()
                             + " has no source-backed acquisition");
         }
         if ("machine_generic".equals(template)) {
@@ -84,7 +84,7 @@ public final class MachineAcquisition {
                     casings.requireCasing(casingItem).materialId().toString());
             cable = casings.electrolyzerCableMaterial(casingMaterial);
         }
-        if ("t17_heat".equals(template) && "distillery".equals(kindId.getPath())) {
+        if ("heat".equals(template) && "distillery".equals(kindId.getPath())) {
             wire = casings.distilleryWire(materialPath);
         }
         return new Resolved(
@@ -112,7 +112,7 @@ public final class MachineAcquisition {
             Objects.requireNonNull(materialPath, "materialPath");
         }
 
-        public String t16Kind() {
+        public String kineticKind() {
             String kind = kindId.getPath();
             if ("bronze_crusher".equals(kind)) {
                 return "shredder";

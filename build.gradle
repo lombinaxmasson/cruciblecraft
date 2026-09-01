@@ -28,48 +28,26 @@ sourceSets.main.resources {
     srcDir('src/worldgen_catalog_generated/resources')
     // Compact component sources compile to runtime material-rule recipes offline.
     srcDir('src/component_rule_generated/resources')
-    // Audited T5 chemical fluids and recipes are generated from pinned GT6 data.
-    srcDir('src/t5_chemical_generated/resources')
-    // T21 template-backed ordinary chemistry families.
-    srcDir('src/t21_chemical_generated/resources')
-    // T11 hydrocarbon processing and fuel rows are fixed-source projections.
-    srcDir('src/t11_hydrocarbon_generated/resources')
-    // T22 petroleum processing rows from distillery + T21 denominator families.
-    srcDir('src/t22_petroleum_generated/resources')
-    // T37 Assembler compact families from the frozen R0 source.
-    srcDir('src/t37_recipe_generated/resources')
-    // T38 Roaster compact families from the frozen R0 source.
-    srcDir('src/t38_recipe_generated/resources')
-    // T39 Centrifuge compact families from the immutable production lock.
-    srcDir('src/t39_recipe_generated/resources')
-    // T39 production-lock support slice; the withdrawn broad recovery tree is excluded.
-    srcDir('src/t39_support_generated/resources')
-    // T40 Electrolyzer compact families from the immutable production lock.
-    srcDir('src/t40_recipe_generated/resources')
-    // T40 production-lock support slice; catalog fixture is excluded.
-    srcDir('src/t40_support_generated/resources')
-    // T41 Assembler compact families from the immutable production lock.
-    srcDir('src/t41_recipe_generated/resources')
-    // T41 production-lock support slice; catalog fixture is excluded.
-    srcDir('src/t41_support_generated/resources')
-    // T43 Smelter stone compact families from the immutable production lock.
-    srcDir('src/t43_recipe_generated/resources')
-    // T43 B1 worldgen support declaration; catalog fixture is excluded.
-    srcDir('src/t43_support_generated/resources')
-    // T45 block-object compact families from the immutable production lock.
-    srcDir('src/t45_recipe_generated/resources')
-    // T45 B1 worldgen support declaration; catalog fixture is excluded.
-    srcDir('src/t45_support_generated/resources')
+    // Audited chemical fluids and recipes are generated from pinned GT6 data.
+    srcDir('src/chemical_recipe_generated/resources')
+    // Hydrocarbon processing and fuel rows are fixed-source projections.
+    srcDir('src/hydrocarbon_recipe_generated/resources')
+    // Petroleum processing rows from distillery and chemical denominator families.
+    srcDir('src/petroleum_recipe_generated/resources')
     // Shared compact publication/dedup datapack resources (not family JSON).
     srcDir('src/compact_recipe_policy_generated/resources')
+    // Semantic-wave compact families (slug paths, not tXX).
+    srcDir('src/recipe_generated/resources')
+    srcDir('src/recipe_support_generated/resources')
 
     // Exclude common development only resources from finalized outputs
     exclude("**/*.bbmodel") // BlockBench project files
-    exclude("data/cruciblecraft/recipe/t39_player_path_recovery/**")
+    exclude("data/cruciblecraft/recipe/player_path_recovery/roaster/**")
     // HashCache lives at <resourcesSrcDir>/.cache; the old src/generated/**/.cache
     // pattern never matched that relative path, so cache files shipped in the jar.
     exclude("**/.cache")
     exclude("**/.cache/**")
+    exclude("**/.gitkeep")
 }
 
 tasks.withType(ProcessResources).configureEach {
@@ -160,50 +138,24 @@ neoForge {
         // The gametest system is also enabled by default for other run configs under the /test command.
         gameTestServer {
             type = "gameTestServer"
-            if (providers.gradleProperty('t31Scale').isPresent()) {
-                // Isolate the T31 harness from the daily 137-test grid.
+            jvmArgument '-Xmx4G'
+            if (providers.gradleProperty('scale').isPresent()) {
+                // Isolate the scale harness from the daily GameTest grid.
                 systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_scale'
-                gameDirectory = project.file('run-t31-scale')
-            } else if (providers.gradleProperty('t35Census').isPresent()) {
-                // Isolate the T35 runtime registry gate from the daily grid.
+                gameDirectory = project.file('run-scale')
+            } else if (providers.gradleProperty('recipeCensus').isPresent()) {
+                // Isolate the runtime registry census gate from the daily grid.
                 systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_census'
-                gameDirectory = project.file('run-t35-census')
-            } else if (providers.gradleProperty('t36Machines').isPresent()) {
-                // Isolate the T36 machine runtime gate from the daily grid.
-                systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_t36'
-                gameDirectory = project.file('run-t36-machines')
-            } else if (providers.gradleProperty('t37Recipes').isPresent()) {
-                // Isolate the T37 compact-family player-path gate from the daily grid.
-                systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_t37'
-                gameDirectory = project.file('run-t37-recipes')
-            } else if (providers.gradleProperty('t38Recipes').isPresent()) {
-                // Isolate the T38 compact-family player-path gate from the daily grid.
-                systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_t38'
-                gameDirectory = project.file('run-t38-recipes')
-            } else if (providers.gradleProperty('t39Recipes').isPresent()) {
-                // Isolate the T39 compact-family player-path gate from the daily grid.
-                systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_t39'
-                gameDirectory = project.file('run-t39-recipes')
-            } else if (providers.gradleProperty('t40Recipes').isPresent()) {
-                // Isolate the T40 compact-family player-path gate from the daily grid.
-                systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_t40'
-                gameDirectory = project.file('run-t40-recipes')
-            } else if (providers.gradleProperty('t41Recipes').isPresent()) {
-                // Isolate the T41 compact-family player-path gate from the daily grid.
-                systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_t41'
-                gameDirectory = project.file('run-t41-recipes')
-            } else if (providers.gradleProperty('t43Recipes').isPresent()) {
-                // Isolate the T43 compact-family player-path gate from the daily grid.
-                systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_t43'
-                gameDirectory = project.file('run-t43-recipes')
-            } else if (providers.gradleProperty('t45Recipes').isPresent()) {
-                // Isolate the T45 compact-family player-path gate from the daily grid.
-                systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_t45'
-                gameDirectory = project.file('run-t45-recipes')
-            } else if (providers.gradleProperty('t44Storage').isPresent()) {
-                // Isolate the T44 storage bundle gate from the daily grid.
-                systemProperty 'neoforge.enabledGameTestNamespaces', 'cruciblecraft_t44'
-                gameDirectory = project.file('run-t44-storage')
+                gameDirectory = project.file('run-recipe-census')
+            } else if (providers.gradleProperty('waveRecipes').isPresent()) {
+                def waveSlug = providers.gradleProperty('waveRecipes').get()
+                if (waveSlug ==~ /(?i)t\d{1,2}.*/) {
+                    throw new GradleException(
+                            "semantic -PwaveRecipes rejects milestone token ${waveSlug}")
+                }
+                def waveNs = 'cruciblecraft_wave_' + waveSlug.replace('/', '_').replace('-', '_')
+                systemProperty 'neoforge.enabledGameTestNamespaces', waveNs
+                gameDirectory = project.file('run-wave-' + waveSlug.replace('/', '-'))
             } else {
                 systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
             }
@@ -238,10 +190,10 @@ neoForge {
                 systemProperty 'cruciblecraft.materialStressCount',
                         providers.gradleProperty('materialStressCount').getOrElse('20000')
             }
-            if (providers.gradleProperty('t31Scale').isPresent()) {
-                systemProperty 'cruciblecraft.t31.scale',
-                        providers.gradleProperty('t31Scale').get()
-                systemProperty 'cruciblecraft.t31.scale.output',
+            if (providers.gradleProperty('scale').isPresent()) {
+                systemProperty 'cruciblecraft.scale',
+                        providers.gradleProperty('scale').get()
+                systemProperty 'cruciblecraft.scale.output',
                         project.file('tools/t31_scale_samples').absolutePath
             }
         }
@@ -326,6 +278,10 @@ sourceSets {
 
 tasks.named('test', Test).configure {
     useJUnitPlatform()
+    maxHeapSize = '6g'
+    filter {
+        excludeTestsMatching 'com.masson.cruciblecraft.recipe.gt.OrdinaryCloseoutIntegratedMeasurementHarness'
+    }
 }
 
 tasks.register('materialRegistryStress', JavaExec) {
@@ -440,6 +396,186 @@ tasks.register('t45MaterializationMeasurements', Test) {
     filter {
         includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT45MeasurementHarness'
     }
+}
+
+tasks.register('t46MaterializationMeasurements', Test) {
+    group = 'verification'
+    description = 'Writes tools/t46_materialization_measurements.json from the production-lock harness.'
+    dependsOn tasks.named('testClasses')
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    systemProperty 'cruciblecraft.writeT46Measurements', 'true'
+    filter {
+        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT46MeasurementHarness'
+    }
+}
+
+tasks.register('t46IntegratedMeasurements', Test) {
+    group = 'verification'
+    description = 'Writes tools/t46_integrated_measurements.json from the T37-T46 co-load harness.'
+    dependsOn tasks.named('testClasses')
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    systemProperty 'cruciblecraft.writeT46Measurements', 'true'
+    filter {
+        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT46IntegratedMeasurementHarness'
+    }
+}
+
+tasks.register('t47MaterializationMeasurements', Test) {
+    group = 'verification'
+    description = 'Writes tools/t47_materialization_measurements.json from the production-lock harness.'
+    dependsOn tasks.named('testClasses')
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    systemProperty 'cruciblecraft.writeT47Measurements', 'true'
+    filter {
+        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT47MeasurementHarness'
+    }
+}
+
+tasks.register('t47IntegratedMeasurements', Test) {
+    group = 'verification'
+    description = 'Writes tools/t47_integrated_measurements.json from the T37-T47 co-load harness.'
+    dependsOn tasks.named('testClasses')
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    systemProperty 'cruciblecraft.writeT47Measurements', 'true'
+    filter {
+        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT47IntegratedMeasurementHarness'
+    }
+}
+
+tasks.register('t48MaterializationMeasurements', Test) {
+    group = 'verification'
+    description = 'Writes tools/t48_materialization_measurements.json from the production-lock harness.'
+    dependsOn tasks.named('testClasses')
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    maxHeapSize = '6g'
+    systemProperty 'cruciblecraft.writeT48Measurements', 'true'
+    filter {
+        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT48MeasurementHarness'
+    }
+}
+
+tasks.register('t48IntegratedMeasurements', Test) {
+    group = 'verification'
+    description = 'Writes tools/t48_integrated_measurements.json from the T37-T48 co-load harness.'
+    dependsOn tasks.named('testClasses')
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    maxHeapSize = '6g'
+    systemProperty 'cruciblecraft.writeT48Measurements', 'true'
+    filter {
+        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT48IntegratedMeasurementHarness'
+    }
+}
+
+tasks.register('t49MaterializationMeasurements', Test) {
+    group = 'verification'
+    description = 'Writes tools/t49_materialization_measurements.json from the production-lock harness.'
+    dependsOn tasks.named('testClasses')
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    systemProperty 'cruciblecraft.writeT49Measurements', 'true'
+    filter {
+        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT49MeasurementHarness'
+    }
+}
+
+tasks.register('t49IntegratedMeasurements', Test) {
+    group = 'verification'
+    description = 'Writes tools/t49_integrated_measurements.json from the T37-T49 co-load harness.'
+    dependsOn tasks.named('testClasses')
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    maxHeapSize = '6g'
+    systemProperty 'cruciblecraft.writeT49Measurements', 'true'
+    filter {
+        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.CompactRecipeFamilyT49IntegratedMeasurementHarness'
+    }
+}
+
+tasks.register('ordinaryCloseoutSmelterIntegratedMeasurements', Test) {
+    group = 'verification'
+    description = 'Writes Smelter closeout-integrity integrated measurements (compact + Smelter).'
+    dependsOn tasks.named('testClasses')
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    maxHeapSize = '6g'
+    jvmArgs '-XX:+UseG1GC'
+    systemProperty 'cruciblecraft.writeOrdinaryCloseoutMeasurements', 'true'
+    systemProperty 'cruciblecraft.ordinaryCloseoutMix', 'smelter'
+    filter {
+        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.OrdinaryCloseoutIntegratedMeasurementHarness'
+    }
+}
+
+tasks.register('ordinaryCloseoutMixerIntegratedMeasurements', Test) {
+    group = 'verification'
+    description = 'Writes Mixer closeout-integrity integrated measurements (compact + Smelter + Mixer).'
+    dependsOn tasks.named('testClasses')
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    maxHeapSize = '6g'
+    jvmArgs '-XX:+UseG1GC'
+    systemProperty 'cruciblecraft.writeOrdinaryCloseoutMeasurements', 'true'
+    systemProperty 'cruciblecraft.ordinaryCloseoutMix', 'mixer'
+    filter {
+        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.OrdinaryCloseoutIntegratedMeasurementHarness'
+    }
+}
+
+['drying', 'electrolyzer', 'centrifuge', 'autoclave', 'compressor'].each { host ->
+    tasks.register("ordinaryCloseout${host.capitalize()}IntegratedMeasurements", Test) {
+        group = 'verification'
+        description = "Writes ${host} ordinary-closure full-mix integrated measurements."
+        dependsOn tasks.named('testClasses')
+        testClassesDirs = sourceSets.test.output.classesDirs
+        classpath = sourceSets.test.runtimeClasspath
+        useJUnitPlatform()
+        maxHeapSize = '6g'
+        jvmArgs '-XX:+UseG1GC'
+        systemProperty 'cruciblecraft.writeOrdinaryCloseoutMeasurements', 'true'
+        systemProperty 'cruciblecraft.ordinaryCloseoutMix', host
+        filter {
+            includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.OrdinaryCloseoutIntegratedMeasurementHarness'
+        }
+    }
+}
+
+tasks.register('ordinaryCloseoutDeferredRecyclingIntegratedMeasurements', Test) {
+    group = 'verification'
+    description = 'Writes Smelter deferred-recycling full-mix integrated measurements.'
+    dependsOn tasks.named('testClasses')
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    useJUnitPlatform()
+    maxHeapSize = '6g'
+    jvmArgs '-XX:+UseG1GC'
+    systemProperty 'cruciblecraft.writeOrdinaryCloseoutMeasurements', 'true'
+    systemProperty 'cruciblecraft.ordinaryCloseoutMix', 'deferred_recycling'
+    filter {
+        includeTestsMatching 'com.masson.cruciblecraft.recipe.gt.OrdinaryCloseoutIntegratedMeasurementHarness'
+    }
+}
+
+tasks.register('ordinaryCloseoutIntegratedMeasurements') {
+    group = 'verification'
+    description = 'Writes both closeout-integrity integrated measurement artifacts.'
+    dependsOn tasks.named('ordinaryCloseoutSmelterIntegratedMeasurements'),
+            tasks.named('ordinaryCloseoutMixerIntegratedMeasurements')
 }
 
 def t14RecipeLoadBenchmarkArtifact = tasks.register(

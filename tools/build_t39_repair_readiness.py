@@ -15,6 +15,7 @@ from tools import build_t39_layered_player_path as layered_builder  # noqa: E402
 from tools import build_t39_operand_disposition as operand_builder  # noqa: E402
 from tools import build_t39_production_lock as lock_builder  # noqa: E402
 from tools import build_t39_runtime_dependency_manifest as dependency_builder  # noqa: E402
+from tools import closeout_seal  # noqa: E402
 from tools import t35_common as t35  # noqa: E402
 from tools import t39_common as t39  # noqa: E402
 
@@ -49,7 +50,6 @@ def build() -> dict[str, Any]:
     candidate = t39.load_json(t39.CANDIDATE_SELECTION)
     operand = operand_builder.build()
     layered = layered_builder.build()
-    dependency = dependency_builder.build()
     production_files = t39.generated_family_files(scope="production")
     catalog_files = t39.generated_family_files(scope="catalog")
     support = t39.support_recipe_ledger()
@@ -153,8 +153,13 @@ def build() -> dict[str, Any]:
                 for path in BOOTSTRAP_CONSUMERS
             )
         ),
-        "runtime_dependencies_current": _document_current(
-            t39.RUNTIME_DEPENDENCY_MANIFEST, dependency
+        "runtime_dependencies_current": not closeout_seal.live_or_sealed_errors(
+            "T39",
+            "runtime_dependency_manifest",
+            lambda: t39.check_document(
+                t39.RUNTIME_DEPENDENCY_MANIFEST,
+                dependency_builder.build(),
+            ),
         ),
         "publication_uses_lock": (
             publication.get("status") == "T39_PUBLICATION_DELTA_READY"

@@ -15,8 +15,8 @@ from tools import t42_common as common
 
 OUTPUT = common.READINESS
 JAVA_TESTS = (
-    ROOT / "src/test/java/com/masson/cruciblecraft/recipe/gt/T42LogicalRelationIdentityTest.java",
-    ROOT / "src/test/java/com/masson/cruciblecraft/census/T42RuntimeInventoryClassifierTest.java",
+    ROOT / "src/test/java/com/masson/cruciblecraft/recipe/gt/RecipeLogicalRelationIdentityTest.java",
+    ROOT / "src/test/java/com/masson/cruciblecraft/census/CensusRuntimeInventoryClassifierTest.java",
 )
 
 

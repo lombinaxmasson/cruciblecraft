@@ -233,7 +233,13 @@ def write() -> dict[str, Any]:
 
 
 def check() -> list[str]:
-    errors = t38.check_document(OUTPUT, build())
+    from tools import closeout_seal
+
+    errors = closeout_seal.live_or_sealed_errors(
+        "T38",
+        "topology",
+        lambda: t38.check_document(OUTPUT, build()),
+    )
     if errors:
         return errors
     document = t35.load_json(OUTPUT)

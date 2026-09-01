@@ -1,0 +1,50 @@
+{
+  "eager_publication_rows": 71,
+  "generated_by": "python tools/build_ordinary_wave.py",
+  "group_winners": {
+    "cruciblecraft:electrolyzer/ordinary_closure/acquisition": "immediate",
+    "cruciblecraft:electrolyzer/ordinary_closure/multiitem": "immediate",
+    "cruciblecraft:electrolyzer/ordinary_closure/singleton": "on_demand"
+  },
+  "groups": [
+    {
+      "family_count": 6,
+      "membership_root_sha256": "1b832b8dfa7d44e5553419df4cde1ec488acbc9c926f4333145765438abe00d1",
+      "publication_group": "cruciblecraft:electrolyzer/ordinary_closure/acquisition",
+      "relation_count": 17,
+      "target_map": "cruciblecraft:electrolyzer",
+      "winner": "immediate"
+    },
+    {
+      "family_count": 17,
+      "membership_root_sha256": "4be773c9833166ceb2a8b2d5bad3110e859fa611afcbf794434bf16e6b8336eb",
+      "publication_group": "cruciblecraft:electrolyzer/ordinary_closure/multiitem",
+      "relation_count": 54,
+      "target_map": "cruciblecraft:electrolyzer",
+      "winner": "immediate"
+    },
+    {
+      "family_count": 23,
+      "membership_root_sha256": "4ad208bc99696f20ec74cb88e80c7b898e20646caa4c0fc640152d43dd47fc8a",
+      "publication_group": "cruciblecraft:electrolyzer/ordinary_closure/singleton",
+      "relation_count": 23,
+      "target_map": "cruciblecraft:electrolyzer",
+      "winner": "on_demand"
+    }
+  ],
+  "lazy_logical_rows": 23,
+  "opening_eager": 20088,
+  "opening_lazy": 53480,
+  "schema_version": 1,
+  "static_envelope": {
+    "eager_hard": 41000,
+    "eager_verified_opening": 20088,
+    "eager_with_opening": 20159,
+    "lazy_hard": 56000,
+    "lazy_with_opening": 53503,
+    "note": "Count is UNVERIFIED_SCALE telemetry, not a runtime throw. 41000 is a temporary Smelter+Mixer compatibility watermark. Mixer opening is Smelter closing, not T49 opening.",
+    "temporary_compatibility_ceiling": 41000
+  },
+  "status": "PUBLICATION_READY",
+  "wave_slug": "electrolyzer/ordinary-closure"
+}

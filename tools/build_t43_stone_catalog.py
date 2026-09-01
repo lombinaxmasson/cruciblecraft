@@ -102,7 +102,7 @@ def build_catalog(
         "identities": identities,
         "schema_version": 1,
         "source_revision": common.SOURCE_REVISION,
-        "status": "T43_STONE_CATALOG",
+        "status": "STONE_CATALOG",
         "variant_count": variant_count,
     }
     return {
@@ -122,7 +122,7 @@ def build_catalog(
         "schema_version": 1,
         "slab_identity_count": slab_count,
         "source_revision": common.SOURCE_REVISION,
-        "status": "T43_STONE_CATALOG_FROZEN",
+        "status": "STONE_CATALOG_FROZEN",
         "variant_count": variant_count,
         "work_set_selection_sha256": work_set["selection_sha256"],
         "bundled": bundled,

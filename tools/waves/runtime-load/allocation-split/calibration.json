@@ -1,0 +1,26 @@
+{
+  "generated_by": "python tools/build_runtime_load_allocation_split.py",
+  "lookup_allocation_bytes_per_operation": {
+    "hard_ceiling": 16777216,
+    "measured_20x_lookup_only": 0,
+    "measured_zero_events": true,
+    "soft_budget": 1048576,
+    "unmeasured_zero_fill": false
+  },
+  "proof": {
+    "lookup_hard_gate_remains_blocking": true,
+    "no_recipe_candidate_measurement": true,
+    "old_metric_was_split_not_silently_weakened": true,
+    "reload_transient_independently_measured": true,
+    "retained_memory_hard_gate_remains_blocking": true,
+    "v2_allocation_bytes_hard_ceiling_unchanged": 536870912
+  },
+  "reload_transient_allocation_bytes": {
+    "hard_ceiling": 1610612736,
+    "opening_19_group_p95": 687226880,
+    "scaled_80k": 1085109351,
+    "soft_budget": 1342177280
+  },
+  "schema_version": 1,
+  "wave_slug": "runtime-load/allocation-split"
+}

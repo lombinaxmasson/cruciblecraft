@@ -35,7 +35,7 @@ OUTPUT_ROOT = t39.LOCKED_SUPPORT_ROOT
 MATERIALS_DIR = ROOT / "src/main/resources/data/cruciblecraft/materials"
 CHEMICAL_FLUID_GATES = (
     ROOT / "src/t5_chemical_generated/resources/data/cruciblecraft/t5_chemical_fluid_gate.json",
-    ROOT / "src/main/resources/data/cruciblecraft/t10_container_fluid_gate.json",
+    ROOT / "src/main/resources/data/cruciblecraft/container_fluid_gate.json",
     ROOT / "src/main/resources/data/cruciblecraft/t11_hydrocarbon_fluid_gate.json",
 )
 

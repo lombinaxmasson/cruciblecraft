@@ -25,8 +25,8 @@ EXPECTED = TOOLS / "t21_mixer_gunpowder_expected.json"
 MANIFEST = TOOLS / "t21_mixer_gunpowder_manifest.json"
 OUTPUT_ROOT = (
     ROOT
-    / "src/t21_chemical_generated/resources/data/cruciblecraft/"
-    "recipe/t21/mixer/gunpowder"
+    / "src/chemical_recipe_generated/resources/data/cruciblecraft/"
+    "recipe/chemical/mixer/gunpowder"
 )
 RAW_MIXER = (
     ROOT / "gt6_dump/gt6_recipe_dump/maps/gt.recipe.mixer.json"
@@ -287,7 +287,7 @@ def build_documents() -> tuple[dict[str, Any], dict[str, Any], dict[Path, str]]:
             "recipe": expected,
         })
         manifest_rows.append({
-            "id": f"cruciblecraft:t21/mixer/gunpowder/{material}",
+            "id": f"cruciblecraft:chemical/mixer/gunpowder/{material}",
             "material": material,
             "recipe_index": recipe_index,
             "path": relative(path),

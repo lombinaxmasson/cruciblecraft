@@ -28,7 +28,10 @@ DELIVERY_PHASES = (
     "T15", "T16", "T17", "T18", "T19", "T21",
     "T37", "T38", "T39", "T40", "T41", "T43", "T45",
 )
+# T46+ stays off DELIVERY_PHASES so v1 schema/currentness is unchanged.
+FORWARD_DELIVERY_PHASES = ("T46", "T47", "T48", "T49")
 PROJECTION_PHASES = ("T14",) + DELIVERY_PHASES
+FORWARD_PROJECTION_PHASES = PROJECTION_PHASES + FORWARD_DELIVERY_PHASES
 # T13 still classifies these maps deferred_with_reason. Later cards reissued
 # the live host without rewriting the historical T13 denominator.
 REISSUED_IN_SCOPE_CANONICAL_IDS = {
@@ -505,9 +508,9 @@ def validate_input(
         or not re.fullmatch(r"[a-z0-9][a-z0-9._/-]*", projection_id)
     ):
         raise ProjectionError("projection_id is not a stable lowercase id")
-    if document["delivery_phase"] not in PROJECTION_PHASES:
+    if document["delivery_phase"] not in FORWARD_PROJECTION_PHASES:
         raise ProjectionError(
-            "delivery_phase must be a declared T14–T21 or T37–T45 projection phase"
+            "delivery_phase must be a declared T14–T21, T37–T45, or forward T46+ phase"
         )
     families = document["families"]
     if not isinstance(families, list) or not families:
@@ -531,9 +534,20 @@ def validate_input(
     return validated
 
 
+FORWARD_POLICY_STATUS = "FORWARD_LOAD_BUDGET_POLICY_V2"
+
+
 def validate_policy(policy: dict[str, Any]) -> None:
-    if (
-        policy.get("schema_version") != 1
+    schema_version = policy.get("schema_version")
+    if schema_version == 2:
+        if (
+            policy.get("status") != FORWARD_POLICY_STATUS
+            or policy.get("pending_token") != PENDING
+            or policy.get("ratio_input_allowed") is not False
+        ):
+            raise ProjectionError("forward-v2 load budget policy header drifted")
+    elif (
+        schema_version != 1
         or policy.get("status") not in POLICY_STATUSES
         or policy.get("pending_token") != PENDING
         or policy.get("ratio_input_allowed") is not False
@@ -548,17 +562,33 @@ def validate_policy(policy: dict[str, Any]) -> None:
         spec = budgets[metric]
         if not isinstance(spec, dict):
             raise ProjectionError(f"budget {metric}: expected an object")
-        _exact_fields(
-            spec,
-            (
-                "unit",
-                "aggregation",
-                "soft_budget",
-                "hard_ceiling",
-                "source",
-            ),
-            f"budgets.{metric}",
-        )
+        allowed = {
+            "unit",
+            "aggregation",
+            "soft_budget",
+            "hard_ceiling",
+            "source",
+        }
+        extra = set(spec) - allowed
+        if extra - {"readiness_verdict"}:
+            raise ProjectionError(
+                f"budgets.{metric}: extra fields {sorted(extra - {'readiness_verdict'})}"
+            )
+        missing = allowed - set(spec)
+        if missing:
+            raise ProjectionError(
+                f"budgets.{metric}: missing fields {sorted(missing)}"
+            )
+        verdict = spec.get("readiness_verdict")
+        if verdict is not None:
+            if verdict not in {"HARD", "REPORT_ONLY"}:
+                raise ProjectionError(
+                    f"budget {metric}: readiness_verdict must be HARD or REPORT_ONLY"
+                )
+            if metric != "datapack_authored_entries" and verdict != "HARD":
+                raise ProjectionError(
+                    f"budget {metric}: REPORT_ONLY is only legal for datapack_authored_entries"
+                )
         if spec["unit"] != unit or spec["aggregation"] != aggregation:
             raise ProjectionError(f"budget {metric}: unit or aggregation drifted")
         if not isinstance(spec["source"], str) or not spec["source"].strip():
@@ -757,17 +787,24 @@ def evaluate_budgets(
             }
             continue
         comparison_value = actual["max"] if isinstance(actual, dict) else actual
+        verdict = spec.get("readiness_verdict") or "HARD"
         if soft == PENDING:
             status = PENDING
             pending.append(metric)
         elif comparison_value > hard:
-            status = "HARD_CEILING_EXCEEDED"
-            hard_failures.append(
-                f"{metric}:{comparison_value}>{hard}"
-            )
+            if verdict == "REPORT_ONLY":
+                status = "REPORT_ONLY_REFERENCE_EXCEEDED"
+            else:
+                status = "HARD_CEILING_EXCEEDED"
+                hard_failures.append(
+                    f"{metric}:{comparison_value}>{hard}"
+                )
         elif comparison_value > soft:
-            status = "SOFT_BUDGET_EXCEEDED"
-            soft_exceeded.append(metric)
+            if verdict == "REPORT_ONLY":
+                status = "REPORT_ONLY_REFERENCE_EXCEEDED"
+            else:
+                status = "SOFT_BUDGET_EXCEEDED"
+                soft_exceeded.append(metric)
         else:
             status = "PASS"
         metrics[metric] = {

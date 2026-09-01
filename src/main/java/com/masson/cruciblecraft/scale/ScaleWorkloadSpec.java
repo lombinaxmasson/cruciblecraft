@@ -12,7 +12,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 /**
- * T31 workload identity. Counts, seed and ticks come only from
+ * Scale workload identity. Counts, seed and ticks come only from
  * {@code tools/t24_workload_manifest.json}; this class does not keep a
  * second 500/2,000 constant table.
  */
@@ -48,7 +48,7 @@ public final class ScaleWorkloadSpec {
             return new ScaleWorkloadSpec(identity, scenarios);
         } catch (IOException failure) {
             throw new IllegalStateException(
-                    "Cannot read T24 workload manifest at " + manifest, failure);
+                    "Cannot read scale workload manifest at " + manifest, failure);
         }
     }
 

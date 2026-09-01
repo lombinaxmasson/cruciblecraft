@@ -64,13 +64,13 @@ READINESS = TOOLS / "t38_readiness.json"
 LOAD_PROJECTION_INPUT = TOOLS / "t38_load_projection_input.json"
 LOAD_PROJECTION = TOOLS / "t38_load_projection.json"
 GAME_TEST_ROOT = ROOT / "src/main/java/com/masson/cruciblecraft/gametest"
-GAME_TEST_JAVA = GAME_TEST_ROOT / "T38RecipeGameTests.java"
+GAME_TEST_JAVA = GAME_TEST_ROOT / "RoasterCompactGameTests.java"
 GAME_TEST_RECEIPT = TOOLS / "t38_gametest_receipt.json"
 GAME_TEST_EVIDENCE_LOG = TOOLS / "t38_gametest.log"
-GAME_TEST_NAMESPACE = "cruciblecraft_t38"
+GAME_TEST_NAMESPACE = "cruciblecraft_wave_roaster_compact"
 GAME_TEST_REQUIRED = 5
-GAME_TEST_COMMAND = ".\\gradlew.bat runGameTestServer -Pt38Recipes --no-daemon"
-GAME_TEST_COMMAND_MARKER = "-Pt38Recipes"
+GAME_TEST_COMMAND = ".\\gradlew.bat runGameTestServer -PwaveRecipes=roaster/compact --no-daemon"
+GAME_TEST_COMMAND_MARKER = "-PwaveRecipes=roaster/compact"
 GAME_TEST_PASS_MARKER = "All 5 required tests passed :)"
 GAME_TEST_RECEIPT_SCHEMA = 3
 GAME_TEST_METHOD_RE = re.compile(
@@ -350,7 +350,7 @@ def player_gametest_source_present() -> bool:
     if not GAME_TEST_JAVA.is_file():
         return False
     text = GAME_TEST_JAVA.read_text(encoding="utf-8")
-    markers = ("cruciblecraft_t38", "T38Recipe", "t38Recipes")
+    markers = ("cruciblecraft_wave_roaster_compact", "RoasterCompactGameTests", "-PwaveRecipes=roaster/compact")
     return any(marker in text for marker in markers)
 
 
@@ -401,7 +401,7 @@ def gametest_receipt_document(parsed: dict[str, Any], log_path: Path) -> dict[st
         "namespace": GAME_TEST_NAMESPACE,
         "note": (
             "Source markers are not a pass. This receipt is the isolated "
-            "-Pt38Recipes result bound to MaterialRegistrationGate, the T38 "
+            "-PwaveRecipes=roaster/compact result bound to MaterialRegistrationGate, the T38 "
             "recipe resource trees, and the committed UTF-8 evidence log. "
             "The gitignored run-t38-recipes directory is not evidence. "
             "Injecting recipe inputs still does not prove a player path."
@@ -439,7 +439,7 @@ def gametest_receipt_errors(document: dict[str, Any] | None = None) -> list[str]
     if receipt.get("status") != "PASS":
         errors.append("T38 GameTest receipt is not PASS")
     if GAME_TEST_COMMAND_MARKER not in str(receipt.get("command") or ""):
-        errors.append("T38 GameTest receipt command is missing -Pt38Recipes")
+        errors.append("T38 GameTest receipt command is missing -PwaveRecipes=roaster/compact")
     if receipt.get("namespace") != GAME_TEST_NAMESPACE:
         errors.append("T38 GameTest receipt namespace drifted")
     if receipt.get("required_tests") != GAME_TEST_REQUIRED:
@@ -492,7 +492,12 @@ def gametest_receipt_errors(document: dict[str, Any] | None = None) -> list[str]
 
 
 def player_gametest_present() -> bool:
-    return player_gametest_source_present() and not gametest_receipt_errors()
+    from tools import closeout_seal
+
+    return closeout_seal.sealed_or_live_present(
+        "T38",
+        lambda: player_gametest_source_present() and not gametest_receipt_errors(),
+    )
 
 
 def production_strategy(decision: dict[str, Any] | None = None) -> dict[str, Any]:

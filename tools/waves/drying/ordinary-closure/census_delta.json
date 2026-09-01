@@ -1,0 +1,307 @@
+{
+  "complete_family_count": 44,
+  "completion_delta": 44,
+  "exception": {
+    "exception_kind": "final_execution_gap_host_partition",
+    "padding_forbidden": true,
+    "partition_rule": "target host",
+    "program_denominator": 334
+  },
+  "generated_by": "python tools/build_ordinary_wave.py",
+  "host": "cruciblecraft:drying",
+  "load": {
+    "candidate": {
+      "client_index_ms": 27,
+      "client_reload_ms": 402,
+      "datapack_authored_entries": 7312,
+      "eager_publication_rows": 20088,
+      "lazy_cache_ceiling_rows": 1293,
+      "lazy_logical_rows": 53480,
+      "lookup_allocation_bytes_per_operation": 174594,
+      "lookup_candidate_count": 10,
+      "lookup_p95_ns": 90145,
+      "reload_transient_allocation_bytes": 1071928160,
+      "retained_memory_bytes": 17479728,
+      "server_index_ms": 18,
+      "server_reload_ms": 434,
+      "sync_bytes": 8647429
+    },
+    "client_index_ms": 27,
+    "client_reload_ms": 402,
+    "datapack_authored_entries": 7312,
+    "decision": {
+      "axes": {
+        "client_index_ms": {
+          "actual": 27,
+          "eliminates": false,
+          "status": "PASS"
+        },
+        "client_reload_ms": {
+          "actual": 402,
+          "eliminates": false,
+          "status": "PASS"
+        },
+        "datapack_authored_entries": {
+          "actual": 7312,
+          "eliminates": false,
+          "status": "REPORT_ONLY_REFERENCE_EXCEEDED"
+        },
+        "eager_publication_rows": {
+          "actual": 20088,
+          "eliminates": false,
+          "status": "REPORT_ONLY_REFERENCE_EXCEEDED"
+        },
+        "lazy_cache_ceiling_rows": {
+          "actual": 1293,
+          "eliminates": false,
+          "status": "REPORT_ONLY_REFERENCE_EXCEEDED"
+        },
+        "lazy_logical_rows": {
+          "actual": 53480,
+          "eliminates": false,
+          "status": "REPORT_ONLY_REFERENCE_EXCEEDED"
+        },
+        "lookup_allocation_bytes_per_operation": {
+          "actual": 174594,
+          "eliminates": false,
+          "status": "PASS"
+        },
+        "lookup_candidate_count": {
+          "actual": 10,
+          "eliminates": false,
+          "status": "PASS"
+        },
+        "lookup_p95_ns": {
+          "actual": 90145,
+          "eliminates": false,
+          "status": "PASS"
+        },
+        "reload_transient_allocation_bytes": {
+          "actual": 1071928160,
+          "eliminates": false,
+          "status": "PASS"
+        },
+        "retained_memory_bytes": {
+          "actual": 17479728,
+          "eliminates": false,
+          "status": "PASS"
+        },
+        "server_index_ms": {
+          "actual": 18,
+          "eliminates": false,
+          "status": "PASS"
+        },
+        "server_reload_ms": {
+          "actual": 434,
+          "eliminates": false,
+          "status": "PASS"
+        },
+        "sync_bytes": {
+          "actual": 8647429,
+          "eliminates": false,
+          "status": "PASS"
+        }
+      },
+      "eliminate_reasons": [],
+      "report_only_warnings": [
+        "unverified_scale:soft_budget:eager_publication_rows:20088>18000",
+        "unverified_scale:soft_budget:lazy_logical_rows:53480>16000",
+        "unverified_scale:soft_budget:lazy_cache_ceiling_rows:1293>1024",
+        "report_only:hard_ceiling:datapack_authored_entries:7312>6600",
+        "report_only:soft_budget:datapack_authored_entries:7312>6000"
+      ],
+      "soft_warnings": []
+    },
+    "eager_publication_rows": 20088,
+    "generated_by": "python tools/build_ordinary_wave.py",
+    "group_winners": {
+      "cruciblecraft:drying/ordinary_closure/acquisition": "immediate",
+      "cruciblecraft:drying/ordinary_closure/gt_prefix": "on_demand",
+      "cruciblecraft:drying/ordinary_closure/multiitem": "immediate",
+      "cruciblecraft:drying/ordinary_closure/singleton": "on_demand"
+    },
+    "integrated_not_card_sum": true,
+    "lazy_cache_ceiling_rows": 1293,
+    "lazy_logical_rows": 53480,
+    "lookup_allocation_bytes_per_operation": 174594,
+    "lookup_candidate_count": 10,
+    "lookup_p95_ns": 90145,
+    "old_metric_split": true,
+    "reload_transient_allocation_bytes": 1071928160,
+    "retained_memory_bytes": 17479728,
+    "schema_version": 1,
+    "server_index_ms": 18,
+    "server_reload_ms": 434,
+    "status": "LOAD_READY",
+    "sync_bytes": 8647429,
+    "wave_slug": "drying/ordinary-closure"
+  },
+  "opening_execution_gap": 334,
+  "partial_family_count": 0,
+  "reclassification_delta": 0,
+  "remaining_ordinary": {
+    "complete_family_count": 44,
+    "completion_delta": 44,
+    "deferred_recycling_count": 1819,
+    "opening_execution_gap": 334,
+    "partial_family_count": 0,
+    "reclassification_delta": 0,
+    "remaining_ordinary_families": 290
+  },
+  "remaining_recipe_gap": 290,
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "CENSUS_DELTA_READY",
+  "t14_load": {
+    "axes": [
+      {
+        "axis": "datapack_authored_entries",
+        "closing": 7312,
+        "delta": 48,
+        "evidence": "Authored compact families plus publication policies; REPORT_ONLY.",
+        "hard_ceiling": 6600,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 7264,
+        "pending": false
+      },
+      {
+        "axis": "eager_publication_rows",
+        "closing": 20088,
+        "delta": 52,
+        "evidence": "Previous-wave closing eager plus this wave's immediate groups. Count is UNVERIFIED_SCALE.",
+        "hard_ceiling": 41000,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 20036,
+        "pending": false
+      },
+      {
+        "axis": "lazy_logical_rows",
+        "closing": 53480,
+        "delta": 33,
+        "evidence": "Previous-wave closing lazy plus this wave's on_demand groups. Count is UNVERIFIED_SCALE.",
+        "hard_ceiling": 56000,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 53447,
+        "pending": false
+      },
+      {
+        "axis": "lazy_cache_ceiling_rows",
+        "closing": 1293,
+        "delta": 33,
+        "evidence": "Declared on_demand cache ceilings. Count is UNVERIFIED_SCALE.",
+        "hard_ceiling": 4096,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 1260,
+        "pending": false
+      },
+      {
+        "axis": "sync_bytes",
+        "closing": 8647429,
+        "delta": 10104,
+        "evidence": "Measured card sync; opening fallback is not a measurement.",
+        "hard_ceiling": 67108864,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": 8637325,
+        "pending": false
+      },
+      {
+        "axis": "reload_transient_allocation_bytes",
+        "closing": 1071928160,
+        "delta": null,
+        "evidence": "v3 reload window; do not reuse opening 687226880 as measured.",
+        "hard_ceiling": 1610612736,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": null,
+        "pending": false
+      },
+      {
+        "axis": "lookup_allocation_bytes_per_operation",
+        "closing": 174594,
+        "delta": null,
+        "evidence": "v3 lookup window; unmeasured is pending, not a zero-fill.",
+        "hard_ceiling": 16777216,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": null,
+        "pending": false
+      },
+      {
+        "axis": "retained_memory_bytes",
+        "closing": 17479728,
+        "delta": null,
+        "evidence": "Retained remains a CI hard door; unmeasured stays pending.",
+        "hard_ceiling": 536870912,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": null,
+        "pending": false
+      },
+      {
+        "axis": "server_reload_ms",
+        "closing": 434,
+        "delta": null,
+        "evidence": "Card-only and integrated measurement harness.",
+        "hard_ceiling": 10000,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": null,
+        "pending": false
+      },
+      {
+        "axis": "client_reload_ms",
+        "closing": 402,
+        "delta": null,
+        "evidence": "Dedicated-client reload from measurement harness.",
+        "hard_ceiling": 10000,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": null,
+        "pending": false
+      },
+      {
+        "axis": "client_index_ms",
+        "closing": 27,
+        "delta": null,
+        "evidence": "Dedicated-client index from measurement harness.",
+        "hard_ceiling": 10000,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": null,
+        "pending": false
+      },
+      {
+        "axis": "lookup_p95_ns",
+        "closing": 90145,
+        "delta": null,
+        "evidence": "Lookup p95 from measurement harness.",
+        "hard_ceiling": 2000000,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": null,
+        "pending": false
+      },
+      {
+        "axis": "lookup_candidate_count",
+        "closing": 10,
+        "delta": null,
+        "evidence": "Lookup candidates p95.",
+        "hard_ceiling": 128,
+        "hard_ceiling_raised": false,
+        "measured": true,
+        "opening": null,
+        "pending": false
+      }
+    ]
+  },
+  "wave_slug": "drying/ordinary-closure",
+  "work_set": {
+    "family_count": 44,
+    "source_rows": 85
+  }
+}

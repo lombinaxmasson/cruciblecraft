@@ -34,10 +34,10 @@ POLICY = TOOLS / "t5_chemical_policy.json"
 FIXED_ITEM_PROJECTION = TOOLS / "t5_source_item_projection.json"
 OUTPUT_ROOT = (
     ROOT
-    / "src/t5_chemical_generated/resources/data/cruciblecraft"
+    / "src/chemical_recipe_generated/resources/data/cruciblecraft"
 )
-RECIPE_ROOT = OUTPUT_ROOT / "recipe/t5"
-FLUID_GATE = OUTPUT_ROOT / "t5_chemical_fluid_gate.json"
+RECIPE_ROOT = OUTPUT_ROOT / "recipe/chemical"
+FLUID_GATE = OUTPUT_ROOT / "chemical_fluid_gate.json"
 MANIFEST = TOOLS / "t5_chemical_recipe_manifest.json"
 WRAPPER_BUILDER = TOOLS / "build_t5_chemical_recipes.py"
 
@@ -768,7 +768,7 @@ def build(
         output = RECIPE_ROOT / route / f"{material}.json"
         planned[output] = stable(candidate["recipe"]).encode("utf-8")
         map_counts[route] += 1
-        recipe_id = f"cruciblecraft:t5/{route}/{material}"
+        recipe_id = f"cruciblecraft:chemical/{route}/{material}"
         for stack in candidate["recipe"].get("fluid_inputs", []):
             fluid_id = stack["id"]
             terminal_fluid_inputs.add(fluid_id)
@@ -897,7 +897,7 @@ def build(
             raise ValueError(f"duplicate generated recipe path: {output}")
         planned[output] = stable(projected).encode("utf-8")
         recipe_id = (
-            f"cruciblecraft:t5/{route}/fluid_closure_{closure_id}"
+            f"cruciblecraft:chemical/{route}/fluid_closure_{closure_id}"
         )
         map_counts[route] += 1
         fluid_closure_map_counts[route] += 1

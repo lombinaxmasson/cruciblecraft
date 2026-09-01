@@ -1,0 +1,1549 @@
+{
+  "authored_support_entries": 37,
+  "b0_already_reachable": [
+    "fluid:cruciblecraft:creosote",
+    "fluid:cruciblecraft:molten_zinc",
+    "item:cruciblecraft:lead/dodecuple_wire",
+    "item:cruciblecraft:lead/double_wire",
+    "item:cruciblecraft:lead/hexadecuple_wire",
+    "item:cruciblecraft:lead/octuple_wire",
+    "item:cruciblecraft:lead/quadruple_wire",
+    "item:cruciblecraft:lead/wire"
+  ],
+  "fluid_route_count": 37,
+  "item_route_count": 77,
+  "item_tag": "cruciblecraft:t46_bath_mte_items",
+  "kind": "layered_b1",
+  "note": "B1 item acquisition is empty-input worldgen_drop scatter. B1 fluids are TIME Bath support recipes driven by B0 harvestables. T46 production outputs are not reused as B1 inputs.",
+  "oil_b1_count": 7,
+  "route_count": 114,
+  "routes": [
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_flower_black.json",
+      "input_identities": [
+        "item:minecraft:wither_rose",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: overlay flower dye from vanilla harvestable + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_flower_black"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_flower_black",
+      "runtime_id": "cruciblecraft:dye_flower_black",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_flower_black"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_flower_blue.json",
+      "input_identities": [
+        "item:minecraft:cornflower",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: overlay flower dye from vanilla harvestable + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_flower_blue"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_flower_blue",
+      "runtime_id": "cruciblecraft:dye_flower_blue",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_flower_blue"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_flower_brown.json",
+      "input_identities": [
+        "item:minecraft:cocoa_beans",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: overlay flower dye from vanilla harvestable + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_flower_brown"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_flower_brown",
+      "runtime_id": "cruciblecraft:dye_flower_brown",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_flower_brown"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_flower_cyan.json",
+      "input_identities": [
+        "item:minecraft:pitcher_plant",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: overlay flower dye from vanilla harvestable + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_flower_cyan"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_flower_cyan",
+      "runtime_id": "cruciblecraft:dye_flower_cyan",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_flower_cyan"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_flower_gray.json",
+      "input_identities": [
+        "item:minecraft:flint",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: overlay flower dye from vanilla harvestable + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_flower_gray"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_flower_gray",
+      "runtime_id": "cruciblecraft:dye_flower_gray",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_flower_gray"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_flower_green.json",
+      "input_identities": [
+        "item:minecraft:cactus",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: overlay flower dye from vanilla harvestable + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_flower_green"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_flower_green",
+      "runtime_id": "cruciblecraft:dye_flower_green",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_flower_green"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_flower_lightblue.json",
+      "input_identities": [
+        "item:minecraft:blue_orchid",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: overlay flower dye from vanilla harvestable + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_flower_lightblue"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_flower_lightblue",
+      "runtime_id": "cruciblecraft:dye_flower_lightblue",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_flower_lightblue"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_flower_lightgray.json",
+      "input_identities": [
+        "item:minecraft:azure_bluet",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: overlay flower dye from vanilla harvestable + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_flower_lightgray"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_flower_lightgray",
+      "runtime_id": "cruciblecraft:dye_flower_lightgray",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_flower_lightgray"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_flower_lime.json",
+      "input_identities": [
+        "item:minecraft:sea_pickle",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: overlay flower dye from vanilla harvestable + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_flower_lime"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_flower_lime",
+      "runtime_id": "cruciblecraft:dye_flower_lime",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_flower_lime"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_flower_magenta.json",
+      "input_identities": [
+        "item:minecraft:allium",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: overlay flower dye from vanilla harvestable + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_flower_magenta"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_flower_magenta",
+      "runtime_id": "cruciblecraft:dye_flower_magenta",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_flower_magenta"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_flower_orange.json",
+      "input_identities": [
+        "item:minecraft:orange_tulip",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: overlay flower dye from vanilla harvestable + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_flower_orange"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_flower_orange",
+      "runtime_id": "cruciblecraft:dye_flower_orange",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_flower_orange"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_flower_pink.json",
+      "input_identities": [
+        "item:minecraft:pink_tulip",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: overlay flower dye from vanilla harvestable + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_flower_pink"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_flower_pink",
+      "runtime_id": "cruciblecraft:dye_flower_pink",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_flower_pink"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_flower_purple.json",
+      "input_identities": [
+        "item:minecraft:lilac",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: overlay flower dye from vanilla harvestable + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_flower_purple"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_flower_purple",
+      "runtime_id": "cruciblecraft:dye_flower_purple",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_flower_purple"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_flower_red.json",
+      "input_identities": [
+        "item:minecraft:poppy",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: overlay flower dye from vanilla harvestable + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_flower_red"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_flower_red",
+      "runtime_id": "cruciblecraft:dye_flower_red",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_flower_red"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_flower_white.json",
+      "input_identities": [
+        "item:minecraft:lily_of_the_valley",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: overlay flower dye from vanilla harvestable + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_flower_white"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_flower_white",
+      "runtime_id": "cruciblecraft:dye_flower_white",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_flower_white"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_flower_yellow.json",
+      "input_identities": [
+        "item:minecraft:dandelion",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: overlay flower dye from vanilla harvestable + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_flower_yellow"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_flower_yellow",
+      "runtime_id": "cruciblecraft:dye_flower_yellow",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_flower_yellow"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_watermixed_black.json",
+      "input_identities": [
+        "item:minecraft:wither_rose",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: watermixed overlay uses two of the same harvestable + extra water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_watermixed_black"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_watermixed_black",
+      "runtime_id": "cruciblecraft:dye_watermixed_black",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_watermixed_black"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_watermixed_gray.json",
+      "input_identities": [
+        "item:minecraft:flint",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: watermixed overlay uses two of the same harvestable + extra water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_watermixed_gray"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_watermixed_gray",
+      "runtime_id": "cruciblecraft:dye_watermixed_gray",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_watermixed_gray"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_watermixed_green.json",
+      "input_identities": [
+        "item:minecraft:cactus",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: watermixed overlay uses two of the same harvestable + extra water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_watermixed_green"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_watermixed_green",
+      "runtime_id": "cruciblecraft:dye_watermixed_green",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_watermixed_green"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_watermixed_lightblue.json",
+      "input_identities": [
+        "item:minecraft:blue_orchid",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: watermixed overlay uses two of the same harvestable + extra water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_watermixed_lightblue"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_watermixed_lightblue",
+      "runtime_id": "cruciblecraft:dye_watermixed_lightblue",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_watermixed_lightblue"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_watermixed_lightgray.json",
+      "input_identities": [
+        "item:minecraft:azure_bluet",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: watermixed overlay uses two of the same harvestable + extra water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_watermixed_lightgray"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_watermixed_lightgray",
+      "runtime_id": "cruciblecraft:dye_watermixed_lightgray",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_watermixed_lightgray"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_watermixed_lime.json",
+      "input_identities": [
+        "item:minecraft:sea_pickle",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: watermixed overlay uses two of the same harvestable + extra water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_watermixed_lime"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_watermixed_lime",
+      "runtime_id": "cruciblecraft:dye_watermixed_lime",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_watermixed_lime"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_watermixed_magenta.json",
+      "input_identities": [
+        "item:minecraft:allium",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: watermixed overlay uses two of the same harvestable + extra water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_watermixed_magenta"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_watermixed_magenta",
+      "runtime_id": "cruciblecraft:dye_watermixed_magenta",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_watermixed_magenta"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_watermixed_orange.json",
+      "input_identities": [
+        "item:minecraft:orange_tulip",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: watermixed overlay uses two of the same harvestable + extra water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_watermixed_orange"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_watermixed_orange",
+      "runtime_id": "cruciblecraft:dye_watermixed_orange",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_watermixed_orange"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_watermixed_pink.json",
+      "input_identities": [
+        "item:minecraft:pink_tulip",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: watermixed overlay uses two of the same harvestable + extra water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_watermixed_pink"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_watermixed_pink",
+      "runtime_id": "cruciblecraft:dye_watermixed_pink",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_watermixed_pink"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_watermixed_purple.json",
+      "input_identities": [
+        "item:minecraft:lilac",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: watermixed overlay uses two of the same harvestable + extra water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_watermixed_purple"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_watermixed_purple",
+      "runtime_id": "cruciblecraft:dye_watermixed_purple",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_watermixed_purple"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_watermixed_red.json",
+      "input_identities": [
+        "item:minecraft:poppy",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: watermixed overlay uses two of the same harvestable + extra water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_watermixed_red"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_watermixed_red",
+      "runtime_id": "cruciblecraft:dye_watermixed_red",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_watermixed_red"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_dye_watermixed_white.json",
+      "input_identities": [
+        "item:minecraft:lily_of_the_valley",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: watermixed overlay uses two of the same harvestable + extra water.",
+      "output_identities": [
+        "fluid:cruciblecraft:dye_watermixed_white"
+      ],
+      "output_identity": "fluid:cruciblecraft:dye_watermixed_white",
+      "runtime_id": "cruciblecraft:dye_watermixed_white",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_dye_watermixed_white"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_hemp_oil.json",
+      "input_identities": [
+        "item:minecraft:wheat",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: vanilla wheat stands in for hemp fiber; no CC hemp crop.",
+      "output_identities": [
+        "fluid:cruciblecraft:hemp_oil"
+      ],
+      "output_identity": "fluid:cruciblecraft:hemp_oil",
+      "runtime_id": "cruciblecraft:hemp_oil",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_hemp_oil"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_indigo.json",
+      "input_identities": [
+        "item:minecraft:lapis_lazuli",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: indigo uses B0 lapis + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:indigo"
+      ],
+      "output_identity": "fluid:cruciblecraft:indigo",
+      "runtime_id": "cruciblecraft:indigo",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_indigo"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_lin_oil.json",
+      "input_identities": [
+        "item:minecraft:wheat_seeds",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "SOURCE_DERIVED: linseed analog uses wheat seeds already in the overworld.",
+      "output_identities": [
+        "fluid:cruciblecraft:lin_oil"
+      ],
+      "output_identity": "fluid:cruciblecraft:lin_oil",
+      "runtime_id": "cruciblecraft:lin_oil",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_lin_oil"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_molten_midasium.json",
+      "input_identities": [
+        "item:cruciblecraft:midasium/rock"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "SOURCE_BACKED: midasium rock is already in T45 typed B0.",
+      "output_identities": [
+        "fluid:cruciblecraft:molten_midasium"
+      ],
+      "output_identity": "fluid:cruciblecraft:molten_midasium",
+      "runtime_id": "cruciblecraft:molten_midasium",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_molten_midasium"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_nut_oil.json",
+      "input_identities": [
+        "item:minecraft:cocoa_beans",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "SOURCE_DERIVED: cocoa beans are the legal B0 nut crop.",
+      "output_identities": [
+        "fluid:cruciblecraft:nut_oil"
+      ],
+      "output_identity": "fluid:cruciblecraft:nut_oil",
+      "runtime_id": "cruciblecraft:nut_oil",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_nut_oil"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_olive_oil.json",
+      "input_identities": [
+        "item:minecraft:apple",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "DESIGN_POLICY: vanilla has no olive; oak apples are the overworld fruit analog.",
+      "output_identities": [
+        "fluid:cruciblecraft:olive_oil"
+      ],
+      "output_identity": "fluid:cruciblecraft:olive_oil",
+      "runtime_id": "cruciblecraft:olive_oil",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_olive_oil"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_seed_oil.json",
+      "input_identities": [
+        "item:minecraft:wheat_seeds",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "SOURCE_DERIVED: wheat seeds are the legal B0 seed crop.",
+      "output_identities": [
+        "fluid:cruciblecraft:seed_oil"
+      ],
+      "output_identity": "fluid:cruciblecraft:seed_oil",
+      "runtime_id": "cruciblecraft:seed_oil",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_seed_oil"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_squid_ink.json",
+      "input_identities": [
+        "item:minecraft:ink_sac",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "SOURCE_DERIVED: squid ink from vanilla ink sac + water.",
+      "output_identities": [
+        "fluid:cruciblecraft:squid_ink"
+      ],
+      "output_identity": "fluid:cruciblecraft:squid_ink",
+      "runtime_id": "cruciblecraft:squid_ink",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_squid_ink"
+    },
+    {
+      "authored_path": "src/t46_support_generated/resources/data/cruciblecraft/recipe/t46_player_path_support/cruciblecraft_sunflower_oil.json",
+      "input_identities": [
+        "item:minecraft:sunflower",
+        "fluid:minecraft:water"
+      ],
+      "kind": "mixer_gt_recipe",
+      "note": "SOURCE_BACKED: vanilla sunflower is an overworld harvestable.",
+      "output_identities": [
+        "fluid:cruciblecraft:sunflower_oil"
+      ],
+      "output_identity": "fluid:cruciblecraft:sunflower_oil",
+      "runtime_id": "cruciblecraft:sunflower_oil",
+      "source_map": "cruciblecraft:bath",
+      "source_recipe": "t46_player_path_support/cruciblecraft_sunflower_oil"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_26005"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_26005",
+      "runtime_id": "cruciblecraft:gt_mte/mte_26005",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_26005"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_26006"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_26006",
+      "runtime_id": "cruciblecraft:gt_mte/mte_26006",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_26006"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_26145"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_26145",
+      "runtime_id": "cruciblecraft:gt_mte/mte_26145",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_26145"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_26146"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_26146",
+      "runtime_id": "cruciblecraft:gt_mte/mte_26146",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_26146"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_28102"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_28102",
+      "runtime_id": "cruciblecraft:gt_mte/mte_28102",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_28102"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_28104"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_28104",
+      "runtime_id": "cruciblecraft:gt_mte/mte_28104",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_28104"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_28105"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_28105",
+      "runtime_id": "cruciblecraft:gt_mte/mte_28105",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_28105"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_28106"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_28106",
+      "runtime_id": "cruciblecraft:gt_mte/mte_28106",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_28106"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_28108"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_28108",
+      "runtime_id": "cruciblecraft:gt_mte/mte_28108",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_28108"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_28109"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_28109",
+      "runtime_id": "cruciblecraft:gt_mte/mte_28109",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_28109"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_28110"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_28110",
+      "runtime_id": "cruciblecraft:gt_mte/mte_28110",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_28110"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_28112"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_28112",
+      "runtime_id": "cruciblecraft:gt_mte/mte_28112",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_28112"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_28113"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_28113",
+      "runtime_id": "cruciblecraft:gt_mte/mte_28113",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_28113"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_28114"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_28114",
+      "runtime_id": "cruciblecraft:gt_mte/mte_28114",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_28114"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32452"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32452",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32452",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32452"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32453"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32453",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32453",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32453"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32454"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32454",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32454",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32454"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32455"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32455",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32455",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32455"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32456"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32456",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32456",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32456"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32457"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32457",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32457",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32457"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32458"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32458",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32458",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32458"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32459"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32459",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32459",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32459"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32460"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32460",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32460",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32460"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32461"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32461",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32461",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32461"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32462"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32462",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32462",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32462"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32463"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32463",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32463",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32463"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32464"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32464",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32464",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32464"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32465"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32465",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32465",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32465"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32466"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32466",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32466",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32466"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32467"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32467",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32467",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32467"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32468"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32468",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32468",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32468"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32469"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32469",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32469",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32469"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32470"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32470",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32470",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32470"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32471"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32471",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32471",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32471"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32472"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32472",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32472",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32472"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32473"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32473",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32473",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32473"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32474"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32474",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32474",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32474"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32475"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32475",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32475",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32475"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32476"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32476",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32476",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32476"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32477"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32477",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32477",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32477"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32478"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32478",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32478",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32478"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32479"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32479",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32479",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32479"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32480"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32480",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32480",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32480"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32481"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32481",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32481",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32481"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32482"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32482",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32482",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32482"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32483"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32483",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32483",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32483"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32484"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32484",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32484",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32484"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32485"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32485",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32485",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32485"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32486"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32486",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32486",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32486"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32487"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32487",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32487",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32487"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32488"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32488",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32488",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32488"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32489"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32489",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32489",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32489"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32490"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32490",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32490",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32490"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32491"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32491",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32491",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32491"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32492"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32492",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32492",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32492"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32493"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32493",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32493",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32493"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32494"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32494",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32494",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32494"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32495"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32495",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32495",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32495"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32496"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32496",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32496",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32496"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32497"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32497",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32497",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32497"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32498"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32498",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32498",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32498"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:gt_mte/mte_32499"
+      ],
+      "output_identity": "item:cruciblecraft:gt_mte/mte_32499",
+      "runtime_id": "cruciblecraft:gt_mte/mte_32499",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_gt_mte_mte_32499"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:lead/cable"
+      ],
+      "output_identity": "item:cruciblecraft:lead/cable",
+      "runtime_id": "cruciblecraft:lead/cable",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_lead_cable"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:lead/dodecuple_cable"
+      ],
+      "output_identity": "item:cruciblecraft:lead/dodecuple_cable",
+      "runtime_id": "cruciblecraft:lead/dodecuple_cable",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_lead_dodecuple_cable"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:lead/double_cable"
+      ],
+      "output_identity": "item:cruciblecraft:lead/double_cable",
+      "runtime_id": "cruciblecraft:lead/double_cable",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_lead_double_cable"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:lead/octuple_cable"
+      ],
+      "output_identity": "item:cruciblecraft:lead/octuple_cable",
+      "runtime_id": "cruciblecraft:lead/octuple_cable",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_lead_octuple_cable"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:lead/quadruple_cable"
+      ],
+      "output_identity": "item:cruciblecraft:lead/quadruple_cable",
+      "runtime_id": "cruciblecraft:lead/quadruple_cable",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_lead_quadruple_cable"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:steel/fluid_pipe"
+      ],
+      "output_identity": "item:cruciblecraft:steel/fluid_pipe",
+      "runtime_id": "cruciblecraft:steel/fluid_pipe",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_steel_fluid_pipe"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:steel/huge_fluid_pipe"
+      ],
+      "output_identity": "item:cruciblecraft:steel/huge_fluid_pipe",
+      "runtime_id": "cruciblecraft:steel/huge_fluid_pipe",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_steel_huge_fluid_pipe"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:steel/large_fluid_pipe"
+      ],
+      "output_identity": "item:cruciblecraft:steel/large_fluid_pipe",
+      "runtime_id": "cruciblecraft:steel/large_fluid_pipe",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_steel_large_fluid_pipe"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:steel/small_fluid_pipe"
+      ],
+      "output_identity": "item:cruciblecraft:steel/small_fluid_pipe",
+      "runtime_id": "cruciblecraft:steel/small_fluid_pipe",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_steel_small_fluid_pipe"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:steel/tiny_fluid_pipe"
+      ],
+      "output_identity": "item:cruciblecraft:steel/tiny_fluid_pipe",
+      "runtime_id": "cruciblecraft:steel/tiny_fluid_pipe",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_steel_tiny_fluid_pipe"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:wood/fluid_pipe"
+      ],
+      "output_identity": "item:cruciblecraft:wood/fluid_pipe",
+      "runtime_id": "cruciblecraft:wood/fluid_pipe",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_wood_fluid_pipe"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:wood/huge_fluid_pipe"
+      ],
+      "output_identity": "item:cruciblecraft:wood/huge_fluid_pipe",
+      "runtime_id": "cruciblecraft:wood/huge_fluid_pipe",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_wood_huge_fluid_pipe"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:wood/large_fluid_pipe"
+      ],
+      "output_identity": "item:cruciblecraft:wood/large_fluid_pipe",
+      "runtime_id": "cruciblecraft:wood/large_fluid_pipe",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_wood_large_fluid_pipe"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:wood/small_fluid_pipe"
+      ],
+      "output_identity": "item:cruciblecraft:wood/small_fluid_pipe",
+      "runtime_id": "cruciblecraft:wood/small_fluid_pipe",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_wood_small_fluid_pipe"
+    },
+    {
+      "input_identities": [],
+      "kind": "worldgen_drop",
+      "note": "Empty-input overworld item scatter; not a block or BE.",
+      "output_identities": [
+        "item:cruciblecraft:wood/tiny_fluid_pipe"
+      ],
+      "output_identity": "item:cruciblecraft:wood/tiny_fluid_pipe",
+      "runtime_id": "cruciblecraft:wood/tiny_fluid_pipe",
+      "source_map": "cruciblecraft:t46_bath_mte_scatter",
+      "source_recipe": "item_cruciblecraft_wood_tiny_fluid_pipe"
+    }
+  ],
+  "scatter_feature": "cruciblecraft:t46_bath_mte_scatter",
+  "scatter_item_count": 77,
+  "schema_version": 1,
+  "source_map": "cruciblecraft:t46_bath_mte_scatter",
+  "status": "T46_PLAYER_PATH_SUPPORT",
+  "worldgen": {
+    "biome_modifier": "src/main/resources/data/cruciblecraft/neoforge/biome_modifier/add_t46_bath_mte_scatter.json",
+    "catalog": "src/main/resources/data/cruciblecraft/worldgen_catalog/t46_bath_mte_scatter.json",
+    "configured_feature": "src/main/resources/data/cruciblecraft/worldgen/configured_feature/t46_bath_mte_scatter.json",
+    "item_tag": "src/main/resources/data/cruciblecraft/tags/item/t46_bath_mte_items.json",
+    "placed_feature": "src/main/resources/data/cruciblecraft/worldgen/placed_feature/t46_bath_mte_scatter.json"
+  }
+}

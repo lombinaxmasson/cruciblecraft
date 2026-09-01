@@ -302,6 +302,25 @@ public class ClientSetup {
                 }
             }, entry.type().get());
         });
+        ModFluids.bathOverlayFluids().forEach(entry -> {
+            int tintColor = 0xFF000000 | entry.colorRgb();
+            event.registerFluidType(new IClientFluidTypeExtensions() {
+                @Override
+                public ResourceLocation getStillTexture() {
+                    return ResourceLocation.withDefaultNamespace("block/water_still");
+                }
+
+                @Override
+                public ResourceLocation getFlowingTexture() {
+                    return ResourceLocation.withDefaultNamespace("block/water_flow");
+                }
+
+                @Override
+                public int getTintColor() {
+                    return tintColor;
+                }
+            }, entry.type().get());
+        });
     }
 
     private static int machineColor(String materialId) {

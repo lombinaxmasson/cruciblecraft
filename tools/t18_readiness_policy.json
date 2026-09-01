@@ -332,7 +332,7 @@
       "stage": "T18b",
       "path": "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java",
       "required_tokens": [
-        "validateT18b",
+        "validateKineticConverters",
         "source().sourceId() != 10111",
         "inputWindow().minimum() != 16L",
         "outputPacket().size() != 16L"
@@ -493,10 +493,10 @@
       "stage": "T18c",
       "path": "src/main/java/com/masson/cruciblecraft/energy/converter/EnergyConverterCatalog.java",
       "required_tokens": [
-        "validateT18c",
+        "validateGasGenerator",
         "source().sourceId() != 1602",
         "conservation().outputUnits() != 1152",
-        "T18c fixed-source gas-generator row drifted"
+        "Gas-generator converter row drifted"
       ]
     },
     "t18c_converter_tests": {

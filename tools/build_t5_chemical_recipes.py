@@ -28,10 +28,10 @@ ORE_CHAIN_CLOSURE = TOOLS / "gt6_ore_chain_closure.json"
 READINESS = TOOLS / "t5_chemical_readiness.json"
 OUTPUT_ROOT = (
     ROOT
-    / "src/t5_chemical_generated/resources/data/cruciblecraft"
+    / "src/chemical_recipe_generated/resources/data/cruciblecraft"
 )
-RECIPE_ROOT = OUTPUT_ROOT / "recipe/t5"
-FLUID_GATE = OUTPUT_ROOT / "t5_chemical_fluid_gate.json"
+RECIPE_ROOT = OUTPUT_ROOT / "recipe/chemical"
+FLUID_GATE = OUTPUT_ROOT / "chemical_fluid_gate.json"
 MANIFEST = TOOLS / "t5_chemical_recipe_manifest.json"
 DISTILLERY_LEDGER = TOOLS / "t5_distillery_projection.json"
 SOURCE_PROJECTION = TOOLS / "build_t5_source_projection.py"
@@ -390,7 +390,7 @@ def _build_loader_decomp(
                 output.write_bytes(encoded)
             generated.append(
                 {
-                    "id": f"cruciblecraft:t5/{route}/{material_id}",
+                    "id": f"cruciblecraft:chemical/{route}/{material_id}",
                     "material": material_id,
                     "route": route,
                 }

@@ -1,0 +1,59 @@
+{
+  "family_id": "sha256:a603d343f237fa4fa2b87bad810392150723f40d4030369a82f41d330a4411be",
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/opaque",
+  "relations": [
+    {
+      "can_be_buffered": true,
+      "duration": 3,
+      "eut": 16,
+      "fluid_inputs": [
+        {
+          "amount": 1,
+          "id": "cruciblecraft:molten_magnesium"
+        },
+        {
+          "amount": 2,
+          "id": "cruciblecraft:molten_aluminium"
+        }
+      ],
+      "fluid_outputs": [
+        {
+          "amount": 3,
+          "id": "cruciblecraft:molten_magnalium"
+        }
+      ],
+      "item_input_actions": [
+        {
+          "kind": "preserve"
+        }
+      ],
+      "item_input_counts": [
+        0
+      ],
+      "item_inputs": [
+        {
+          "components": {
+            "cruciblecraft:circuit_config": 2
+          },
+          "items": "cruciblecraft:programmed_circuit",
+          "type": "neoforge:components"
+        }
+      ],
+      "item_outputs": [],
+      "output_chances": [],
+      "provenance": {
+        "evidence_hashes": [
+          "b98449b05ed36dfd7bec2167da0830bfd6a8e8c10f57bd814ba2f60546374cdd"
+        ],
+        "selected_source_recipe": "sha256:a603d343f237fa4fa2b87bad810392150723f40d4030369a82f41d330a4411be",
+        "source_kind": "SOURCE_DERIVED"
+      },
+      "shadow_order": 0,
+      "special_value": 0,
+      "stable_id": "cruciblecraft:mixer/ordinary_closure/a2f3a65d2bb77692"
+    }
+  ],
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "target_map": "cruciblecraft:mixer",
+  "type": "cruciblecraft:compact_gt_recipe_family"
+}

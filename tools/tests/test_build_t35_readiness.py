@@ -67,7 +67,7 @@ class T35ReadinessTest(unittest.TestCase):
         self.assertTrue(runtime["runtime_registry_gate_fixture_hash_locked"])
         self.assertTrue(runtime["manual_gametest_required"])
         self.assertEqual(
-            "com.masson.cruciblecraft.census.T35CensusGameTests",
+            "com.masson.cruciblecraft.census.RecipeCensusGameTests",
             runtime["runtime_registry_gate_gametest_class"],
         )
         self.assertEqual("cruciblecraft_census", runtime["runtime_registry_gate_namespace"])

@@ -11,7 +11,13 @@ class T14ReadinessTest(unittest.TestCase):
 
         self.assertEqual(
             [],
-            currentness.check_rebuilt(readiness.OUTPUT, document),
+            currentness.check_sidecar(readiness.OUTPUT),
+        )
+        self.assertEqual(
+            [],
+            readiness.verify_metadata_rebase(
+                readiness.load(readiness.OUTPUT), document
+            ),
         )
         self.assertIn(
             "tools/t12_closure_readiness.json",

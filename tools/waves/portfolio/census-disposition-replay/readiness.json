@@ -1,0 +1,26 @@
+{
+  "evidence": {
+    "census_current": true,
+    "completion_delta": 0,
+    "disposition_counts": {
+      "implemented": 5679,
+      "phase_deferred": 11,
+      "post_1x_scope": 28
+    },
+    "execution_gap": 0,
+    "family_count": 5718,
+    "nuclear_track_c_started": false,
+    "owns_families": 0,
+    "post_1x_scope_count": 28,
+    "recipe_files_generated": false
+  },
+  "generated_by": "python tools/build_census_disposition_replay.py",
+  "next_unassigned": false,
+  "note": "Replayed 5718 historical families from immutable T35 plus sealed overlays. t42_owner_readiness is checkpoint only.",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "CENSUS_DISPOSITION_REPLAY_READY",
+  "unique_active_wave": "portfolio/energy-matrix-replay",
+  "wave_complete": true,
+  "wave_slug": "portfolio/census-disposition-replay"
+}

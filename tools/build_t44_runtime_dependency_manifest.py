@@ -46,10 +46,17 @@ def build() -> dict[str, Any]:
 
 
 def main(argv: list[str] | None = None) -> int:
+    from tools import closeout_seal
+
     return common.run_managed(
         "Write the T44 runtime dependency manifest",
         OUTPUT,
         build=build,
+        check=lambda: closeout_seal.live_or_sealed_errors(
+            "T44",
+            "runtime_dependency_manifest",
+            lambda: common.check_document(OUTPUT, build()),
+        ),
         argv=argv,
     )
 

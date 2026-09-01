@@ -158,10 +158,17 @@ def build() -> dict[str, Any]:
 
 
 def main(argv: list[str] | None = None) -> int:
+    from tools import closeout_seal
+
     return common.run_managed(
         "Bind T43 runtime dependencies",
         common.RUNTIME_DEPENDENCY_MANIFEST,
         build=build,
+        check=lambda: closeout_seal.live_or_sealed_errors(
+            "T43",
+            "runtime_dependency_manifest",
+            lambda: common.check_document(common.RUNTIME_DEPENDENCY_MANIFEST, build()),
+        ),
         argv=argv,
     )
 

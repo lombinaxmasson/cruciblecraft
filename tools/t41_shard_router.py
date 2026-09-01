@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Python twin of CompactRecipeShardRouter (schema t39-shard-v1)."""
+"""Python twin of CompactRecipeShardRouter (schema compact-shard-v1)."""
 from __future__ import annotations
 
 import hashlib
 from collections import defaultdict
 from typing import Any, Iterable
 
-ROUTING_SCHEMA_VERSION = "t39-shard-v1"
+ROUTING_SCHEMA_VERSION = "compact-shard-v1"
 HARD_SHARD_CEILING = 128
 OVERFLOW_ROUTE_KEY = "overflow"
 PAIR_SEPARATOR = "\0"

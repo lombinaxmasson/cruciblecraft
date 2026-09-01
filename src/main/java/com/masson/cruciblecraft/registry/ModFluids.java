@@ -9,12 +9,16 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 
 import com.masson.cruciblecraft.CrucibleCraft;
+import com.masson.cruciblecraft.content.item.BathMteFluidCatalog;
+import com.masson.cruciblecraft.content.item.BathRemainderFluidCatalog;
+import com.masson.cruciblecraft.content.item.SemanticFluidCatalog;
 import com.masson.cruciblecraft.material.ChemicalFluidRegistrationGate;
 import com.masson.cruciblecraft.material.GT6ImportUnits;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.material.def.MaterialDefinition;
 
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.neoforged.neoforge.fluids.BaseFlowingFluid;
@@ -57,6 +61,8 @@ public final class ModFluids {
             FLUIDS.register("steam", () -> new BaseFlowingFluid.Source(steamProperties()));
     public static final DeferredHolder<Fluid, FlowingFluid> STEAM_FLOWING =
             FLUIDS.register("flowing_steam", () -> new BaseFlowingFluid.Flowing(steamProperties()));
+    private static final Map<ResourceLocation, BathOverlayFluidEntry> BATH_OVERLAY_FLUIDS =
+            registerBathOverlayFluids();
 
     private static BaseFlowingFluid.Properties properties() {
         return new BaseFlowingFluid.Properties(
@@ -242,6 +248,121 @@ public final class ModFluids {
         return chemicalRegistration.entries();
     }
 
+    public static Collection<BathOverlayFluidEntry> bathOverlayFluids() {
+        return BATH_OVERLAY_FLUIDS.values();
+    }
+
+    private static Map<ResourceLocation, BathOverlayFluidEntry> registerBathOverlayFluids() {
+        LinkedHashMap<ResourceLocation, BathOverlayFluidEntry> registered =
+                new LinkedHashMap<>();
+        for (BathMteFluidCatalog.FluidSpec spec : BathMteFluidCatalog.fluids()) {
+            String sourceId = spec.id().getPath();
+            String flowingId = "flowing_" + sourceId;
+            Supplier<FluidType> type = FLUID_TYPES.register(
+                    sourceId,
+                    () -> new FluidType(FluidType.Properties.create()
+                            .density(1_000)
+                            .viscosity(1_000)));
+            AtomicReference<DeferredHolder<Fluid, FlowingFluid>> source =
+                    new AtomicReference<>();
+            AtomicReference<DeferredHolder<Fluid, FlowingFluid>> flowing =
+                    new AtomicReference<>();
+            Supplier<BaseFlowingFluid.Properties> properties =
+                    () -> new BaseFlowingFluid.Properties(
+                            type,
+                            () -> source.get().get(),
+                            () -> flowing.get().get());
+            source.set(FLUIDS.register(
+                    sourceId,
+                    () -> new BaseFlowingFluid.Source(properties.get())));
+            flowing.set(FLUIDS.register(
+                    flowingId,
+                    () -> new BaseFlowingFluid.Flowing(properties.get())));
+            if (registered.put(
+                    spec.id(),
+                    new BathOverlayFluidEntry(
+                            spec.id(),
+                            spec.colorRgb(),
+                            type,
+                            source.get(),
+                            flowing.get())) != null) {
+                throw new IllegalStateException(
+                        "Duplicate Bath MTE overlay fluid " + spec.id());
+            }
+        }
+        for (BathMteFluidCatalog.FluidSpec spec : BathRemainderFluidCatalog.fluids()) {
+            String sourceId = spec.id().getPath();
+            String flowingId = "flowing_" + sourceId;
+            Supplier<FluidType> type = FLUID_TYPES.register(
+                    sourceId,
+                    () -> new FluidType(FluidType.Properties.create()
+                            .density(1_000)
+                            .viscosity(1_000)));
+            AtomicReference<DeferredHolder<Fluid, FlowingFluid>> source =
+                    new AtomicReference<>();
+            AtomicReference<DeferredHolder<Fluid, FlowingFluid>> flowing =
+                    new AtomicReference<>();
+            Supplier<BaseFlowingFluid.Properties> properties =
+                    () -> new BaseFlowingFluid.Properties(
+                            type,
+                            () -> source.get().get(),
+                            () -> flowing.get().get());
+            source.set(FLUIDS.register(
+                    sourceId,
+                    () -> new BaseFlowingFluid.Source(properties.get())));
+            flowing.set(FLUIDS.register(
+                    flowingId,
+                    () -> new BaseFlowingFluid.Flowing(properties.get())));
+            if (registered.put(
+                    spec.id(),
+                    new BathOverlayFluidEntry(
+                            spec.id(),
+                            spec.colorRgb(),
+                            type,
+                            source.get(),
+                            flowing.get())) != null) {
+                throw new IllegalStateException(
+                        "Duplicate Bath remainder overlay fluid " + spec.id());
+            }
+        }
+        for (BathMteFluidCatalog.FluidSpec spec : SemanticFluidCatalog.fluids()) {
+            if (registered.containsKey(spec.id())) {
+                continue;
+            }
+            String sourceId = spec.id().getPath();
+            String flowingId = "flowing_" + sourceId;
+            Supplier<FluidType> type = FLUID_TYPES.register(
+                    sourceId,
+                    () -> new FluidType(FluidType.Properties.create()
+                            .density(1_000)
+                            .viscosity(1_000)));
+            AtomicReference<DeferredHolder<Fluid, FlowingFluid>> source =
+                    new AtomicReference<>();
+            AtomicReference<DeferredHolder<Fluid, FlowingFluid>> flowing =
+                    new AtomicReference<>();
+            Supplier<BaseFlowingFluid.Properties> properties =
+                    () -> new BaseFlowingFluid.Properties(
+                            type,
+                            () -> source.get().get(),
+                            () -> flowing.get().get());
+            source.set(FLUIDS.register(
+                    sourceId,
+                    () -> new BaseFlowingFluid.Source(properties.get())));
+            flowing.set(FLUIDS.register(
+                    flowingId,
+                    () -> new BaseFlowingFluid.Flowing(properties.get())));
+            registered.put(
+                    spec.id(),
+                    new BathOverlayFluidEntry(
+                            spec.id(),
+                            spec.colorRgb(),
+                            type,
+                            source.get(),
+                            flowing.get()));
+        }
+        return java.util.Collections.unmodifiableMap(registered);
+    }
+
     public record MoltenFluidEntry(
             String materialId,
             Supplier<FluidType> type,
@@ -251,6 +372,13 @@ public final class ModFluids {
             return MaterialCatalog.require(materialId);
         }
     }
+
+    public record BathOverlayFluidEntry(
+            ResourceLocation id,
+            int colorRgb,
+            Supplier<FluidType> type,
+            DeferredHolder<Fluid, FlowingFluid> source,
+            DeferredHolder<Fluid, FlowingFluid> flowing) {}
 
     public record ChemicalFluidEntry(
             String id,

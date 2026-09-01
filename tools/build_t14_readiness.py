@@ -474,7 +474,8 @@ def main() -> int:
         if args.check:
             from tools import currentness
 
-            errors = currentness.check_rebuilt(OUTPUT, document)
+            errors = list(currentness.check_sidecar(OUTPUT))
+            errors.extend(verify_metadata_rebase(load(OUTPUT), document))
             if errors:
                 raise ValueError("; ".join(errors))
         else:
