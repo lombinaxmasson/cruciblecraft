@@ -118,6 +118,6 @@ Do not bulk-rename these without a dedicated migration card. Do not start new re
 
 ## License
 
-Source and original assets are [LGPL-3.0-or-later](LICENSE). GT6/GTM source data, default CC0 assets, the logo CC-BY-NC exception, TFC anvil geometry, and the MDK template are in [CREDITS.md](CREDITS.md) and [NOTICE](NOTICE).
+Source and original assets are [LGPL-3.0-or-later](LICENSE). GT6/GTM source data, default CC0 assets, the logo CC-BY-NC exception, GT6 anvil geometry, and the MDK template are in [CREDITS.md](CREDITS.md) and [NOTICE](NOTICE).
 
 Jade, EMI, and KubeJS are optional unbundled integrations. See [`neoforge.mods.toml`](src/main/templates/META-INF/neoforge.mods.toml).

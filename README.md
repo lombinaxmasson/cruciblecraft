@@ -118,6 +118,6 @@ tools/waves/<slug>/     某一张卡的 lock / census / seal
 
 ## 许可证
 
-源码与自有资源采用 [LGPL-3.0-or-later](LICENSE)。GT6/GTM 来源数据、默认 CC0 资产、logo 的 CC-BY-NC 例外、TFC 砧几何和 MDK 模板见 [CREDITS.md](CREDITS.md) 与 [NOTICE](NOTICE)。
+源码与自有资源采用 [LGPL-3.0-or-later](LICENSE)。GT6/GTM 来源数据、默认 CC0 资产、logo 的 CC-BY-NC 例外、GT6 砧几何和 MDK 模板见 [CREDITS.md](CREDITS.md) 与 [NOTICE](NOTICE)。
 
 Jade、EMI 与 KubeJS 是可选且不捆绑的集成，见 [`neoforge.mods.toml`](src/main/templates/META-INF/neoforge.mods.toml)。
