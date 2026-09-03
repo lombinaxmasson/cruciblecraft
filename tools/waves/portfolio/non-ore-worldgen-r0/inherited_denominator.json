@@ -1,0 +1,417 @@
+{
+  "already_closed_elsewhere": {
+    "fluid_deposits": {
+      "catalog_entries": 2,
+      "dump_fluid_springs": 16,
+      "ids": [
+        "crude_oil_deposit",
+        "natural_gas_deposit"
+      ],
+      "owner_here": false,
+      "status": "selected_subset"
+    },
+    "item_scatter": {
+      "owner_here": false,
+      "t33": "T33_READY",
+      "t45": "T45_READY",
+      "t48": "T48_READY"
+    },
+    "ore_veins": {
+      "catalog_entries": 129,
+      "owner_here": false,
+      "status": "T20 selected_subset"
+    },
+    "surface_scatter": {
+      "dump_worldgen_rocks": 4,
+      "id": "surface_rock_scatter",
+      "owner_here": false,
+      "status": "T33_READY"
+    }
+  },
+  "authority_hashes": {
+    "capability_map": "afd2c54ad8737e18474f85a11de86af5e0fe94a0332a2d2dd2b01e758ced6719",
+    "growth_order": "159dde552217dba3e23fcc82d9209ec6c6510fde51de834a6e24dafbae857e0e",
+    "logistics_cover_net_r0_seal": "a6432d9f65070e52e679964bf9319abc47d88237a373b8626e3673689a5ea47b",
+    "other_features": "af58bb23fe9be024176ba81cee784fe1c91748a3aedd72bc28a286b42968af23",
+    "t13c_exclusion_reclaim_r0_seal": "9dd40d0e7fafc383fac68017f6aa05dd199ff417469a0b62f9180be74d99bf17",
+    "t20_worldgen_source_policy": "585b365382554323e557b9ce44eb68414e2b50748a0882dd398f0722095f7414"
+  },
+  "categories": [
+    {
+      "category": "Trees",
+      "feature_count": 9,
+      "features": [
+        {
+          "category": "worldgenerator.tree.rubber",
+          "enabled": true,
+          "invalid": false,
+          "name": "tree.rubber",
+          "type": "WorldgenTreeRubber"
+        },
+        {
+          "category": "worldgenerator.tree.maple",
+          "enabled": true,
+          "invalid": false,
+          "name": "tree.maple",
+          "type": "WorldgenTreeMaple"
+        },
+        {
+          "category": "worldgenerator.tree.willow",
+          "enabled": true,
+          "invalid": false,
+          "name": "tree.willow",
+          "type": "WorldgenTreeWillow"
+        },
+        {
+          "category": "worldgenerator.tree.bluemahoe",
+          "enabled": true,
+          "invalid": false,
+          "name": "tree.bluemahoe",
+          "type": "WorldgenTreeBlueMahoe"
+        },
+        {
+          "category": "worldgenerator.tree.hazel",
+          "enabled": true,
+          "invalid": false,
+          "name": "tree.hazel",
+          "type": "WorldgenTreeHazel"
+        },
+        {
+          "category": "worldgenerator.tree.cinnamon",
+          "enabled": true,
+          "invalid": false,
+          "name": "tree.cinnamon",
+          "type": "WorldgenTreeCinnamon"
+        },
+        {
+          "category": "worldgenerator.tree.coconut",
+          "enabled": true,
+          "invalid": false,
+          "name": "tree.coconut",
+          "type": "WorldgenTreeCoconut"
+        },
+        {
+          "category": "worldgenerator.tree.rainbowood",
+          "enabled": true,
+          "invalid": false,
+          "name": "tree.rainbowood",
+          "type": "WorldgenTreeRainbowood"
+        },
+        {
+          "category": "worldgenerator.tree.bluespruce",
+          "enabled": true,
+          "invalid": false,
+          "name": "tree.bluespruce",
+          "type": "WorldgenTreeBlueSpruce"
+        }
+      ],
+      "names": [
+        "tree.rubber",
+        "tree.maple",
+        "tree.willow",
+        "tree.bluemahoe",
+        "tree.hazel",
+        "tree.cinnamon",
+        "tree.coconut",
+        "tree.rainbowood",
+        "tree.bluespruce"
+      ],
+      "types": [
+        "WorldgenTreeRubber",
+        "WorldgenTreeMaple",
+        "WorldgenTreeWillow",
+        "WorldgenTreeBlueMahoe",
+        "WorldgenTreeHazel",
+        "WorldgenTreeCinnamon",
+        "WorldgenTreeCoconut",
+        "WorldgenTreeRainbowood",
+        "WorldgenTreeBlueSpruce"
+      ]
+    },
+    {
+      "category": "Dungeons",
+      "feature_count": 1,
+      "features": [
+        {
+          "category": "worldgenerator.overworld.structure.dungeon.large",
+          "enabled": true,
+          "invalid": false,
+          "name": "overworld.structure.dungeon.large",
+          "type": "WorldgenDungeonGT"
+        }
+      ],
+      "names": [
+        "overworld.structure.dungeon.large"
+      ],
+      "types": [
+        "WorldgenDungeonGT"
+      ]
+    },
+    {
+      "category": "Planets",
+      "feature_count": 3,
+      "features": [
+        {
+          "category": "worldgenerator.moon.rocks",
+          "enabled": true,
+          "invalid": false,
+          "name": "moon.rocks",
+          "type": "WorldgenMoonRocks"
+        },
+        {
+          "category": "worldgenerator.mars.rocks",
+          "enabled": true,
+          "invalid": false,
+          "name": "mars.rocks",
+          "type": "WorldgenMarsRocks"
+        },
+        {
+          "category": "worldgenerator.planet.rocks",
+          "enabled": true,
+          "invalid": false,
+          "name": "planet.rocks",
+          "type": "WorldgenPlanetRocks"
+        }
+      ],
+      "names": [
+        "moon.rocks",
+        "mars.rocks",
+        "planet.rocks"
+      ],
+      "types": [
+        "WorldgenMoonRocks",
+        "WorldgenMarsRocks",
+        "WorldgenPlanetRocks"
+      ]
+    },
+    {
+      "category": "Center",
+      "feature_count": 5,
+      "features": [
+        {
+          "category": "worldgenerator.center.biomes",
+          "enabled": false,
+          "invalid": false,
+          "name": "center.biomes",
+          "type": "WorldgenCenterBiomes"
+        },
+        {
+          "category": "worldgenerator.center.streets",
+          "enabled": false,
+          "invalid": false,
+          "name": "center.streets",
+          "type": "WorldgenStreets"
+        },
+        {
+          "category": "worldgenerator.center.nexus",
+          "enabled": false,
+          "invalid": false,
+          "name": "center.nexus",
+          "type": "WorldgenNexus"
+        },
+        {
+          "category": "worldgenerator.center.beacon",
+          "enabled": false,
+          "invalid": false,
+          "name": "center.beacon",
+          "type": "WorldgenBeacon"
+        },
+        {
+          "category": "worldgenerator.center.testing",
+          "enabled": false,
+          "invalid": false,
+          "name": "center.testing",
+          "type": "WorldgenTesting"
+        }
+      ],
+      "names": [
+        "center.biomes",
+        "center.streets",
+        "center.nexus",
+        "center.beacon",
+        "center.testing"
+      ],
+      "types": [
+        "WorldgenCenterBiomes",
+        "WorldgenStreets",
+        "WorldgenNexus",
+        "WorldgenBeacon",
+        "WorldgenTesting"
+      ]
+    }
+  ],
+  "dump": {
+    "feature_count": 190,
+    "path": "gt6_dump/gt6_recipe_dump/worldgen/other_features.json",
+    "sha256": "af58bb23fe9be024176ba81cee784fe1c91748a3aedd72bc28a286b42968af23"
+  },
+  "feature_count": 18,
+  "features": [
+    {
+      "category": "worldgenerator.tree.rubber",
+      "enabled": true,
+      "invalid": false,
+      "name": "tree.rubber",
+      "type": "WorldgenTreeRubber"
+    },
+    {
+      "category": "worldgenerator.tree.maple",
+      "enabled": true,
+      "invalid": false,
+      "name": "tree.maple",
+      "type": "WorldgenTreeMaple"
+    },
+    {
+      "category": "worldgenerator.tree.willow",
+      "enabled": true,
+      "invalid": false,
+      "name": "tree.willow",
+      "type": "WorldgenTreeWillow"
+    },
+    {
+      "category": "worldgenerator.tree.bluemahoe",
+      "enabled": true,
+      "invalid": false,
+      "name": "tree.bluemahoe",
+      "type": "WorldgenTreeBlueMahoe"
+    },
+    {
+      "category": "worldgenerator.tree.hazel",
+      "enabled": true,
+      "invalid": false,
+      "name": "tree.hazel",
+      "type": "WorldgenTreeHazel"
+    },
+    {
+      "category": "worldgenerator.tree.cinnamon",
+      "enabled": true,
+      "invalid": false,
+      "name": "tree.cinnamon",
+      "type": "WorldgenTreeCinnamon"
+    },
+    {
+      "category": "worldgenerator.tree.coconut",
+      "enabled": true,
+      "invalid": false,
+      "name": "tree.coconut",
+      "type": "WorldgenTreeCoconut"
+    },
+    {
+      "category": "worldgenerator.tree.rainbowood",
+      "enabled": true,
+      "invalid": false,
+      "name": "tree.rainbowood",
+      "type": "WorldgenTreeRainbowood"
+    },
+    {
+      "category": "worldgenerator.tree.bluespruce",
+      "enabled": true,
+      "invalid": false,
+      "name": "tree.bluespruce",
+      "type": "WorldgenTreeBlueSpruce"
+    },
+    {
+      "category": "worldgenerator.center.biomes",
+      "enabled": false,
+      "invalid": false,
+      "name": "center.biomes",
+      "type": "WorldgenCenterBiomes"
+    },
+    {
+      "category": "worldgenerator.center.streets",
+      "enabled": false,
+      "invalid": false,
+      "name": "center.streets",
+      "type": "WorldgenStreets"
+    },
+    {
+      "category": "worldgenerator.center.nexus",
+      "enabled": false,
+      "invalid": false,
+      "name": "center.nexus",
+      "type": "WorldgenNexus"
+    },
+    {
+      "category": "worldgenerator.center.beacon",
+      "enabled": false,
+      "invalid": false,
+      "name": "center.beacon",
+      "type": "WorldgenBeacon"
+    },
+    {
+      "category": "worldgenerator.center.testing",
+      "enabled": false,
+      "invalid": false,
+      "name": "center.testing",
+      "type": "WorldgenTesting"
+    },
+    {
+      "category": "worldgenerator.overworld.structure.dungeon.large",
+      "enabled": true,
+      "invalid": false,
+      "name": "overworld.structure.dungeon.large",
+      "type": "WorldgenDungeonGT"
+    },
+    {
+      "category": "worldgenerator.moon.rocks",
+      "enabled": true,
+      "invalid": false,
+      "name": "moon.rocks",
+      "type": "WorldgenMoonRocks"
+    },
+    {
+      "category": "worldgenerator.mars.rocks",
+      "enabled": true,
+      "invalid": false,
+      "name": "mars.rocks",
+      "type": "WorldgenMarsRocks"
+    },
+    {
+      "category": "worldgenerator.planet.rocks",
+      "enabled": true,
+      "invalid": false,
+      "name": "planet.rocks",
+      "type": "WorldgenPlanetRocks"
+    }
+  ],
+  "full_other_features": 190,
+  "generated_by": "python tools/build_non_ore_worldgen_r0.py",
+  "remainder_after_slice": {
+    "feature_count": 172,
+    "type_histogram": {
+      "WorldgenAetherRocks": 1,
+      "WorldgenAlfheimRocks": 1,
+      "WorldgenBlackSand": 1,
+      "WorldgenBushes": 1,
+      "WorldgenColtan": 1,
+      "WorldgenDeepOcean": 1,
+      "WorldgenErebusRocks": 1,
+      "WorldgenFluidSpring": 16,
+      "WorldgenGlowtus": 1,
+      "WorldgenHives": 10,
+      "WorldgenLogDry": 1,
+      "WorldgenLogFrozen": 1,
+      "WorldgenLogMossy": 1,
+      "WorldgenLogRotten": 1,
+      "WorldgenNetherClay": 1,
+      "WorldgenNetherCrystals": 1,
+      "WorldgenNetherQuartz": 1,
+      "WorldgenOcean": 1,
+      "WorldgenOresVanilla": 24,
+      "WorldgenPit": 6,
+      "WorldgenRacks": 1,
+      "WorldgenRiver": 1,
+      "WorldgenRocks": 4,
+      "WorldgenSticks": 1,
+      "WorldgenStone": 90,
+      "WorldgenStoneLayers": 1,
+      "WorldgenSwamp": 1,
+      "WorldgenTurf": 1
+    }
+  },
+  "schema_version": 1,
+  "source_artifact": "gt6_dump/gt6_recipe_dump/worldgen/other_features.json",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "INHERITED_DENOMINATOR_READY",
+  "wave_slug": "portfolio/non-ore-worldgen-r0"
+}

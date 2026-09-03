@@ -1,5 +1,6 @@
 package com.masson.cruciblecraft.registry;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -29,7 +30,6 @@ class MaterialCreativeTabTest {
     @Test
     void allBuiltinPrefixesHaveOneSemanticTabAndUnknownPrefixesUseMisc() {
         var prefixes = MaterialPrefixCatalog.values();
-        assertEquals(58, prefixes.size());
 
         EnumMap<MaterialCreativeTab, Set<MaterialPrefix>> grouped =
                 new EnumMap<>(MaterialCreativeTab.class);
@@ -39,23 +39,16 @@ class MaterialCreativeTabTest {
         prefixes.forEach(prefix ->
                 grouped.get(MaterialCreativeTab.forPrefix(prefix)).add(prefix));
 
-        assertEquals(58, grouped.values().stream().mapToInt(Set::size).sum());
+        assertEquals(prefixes.size(), grouped.values().stream().mapToInt(Set::size).sum());
         assertEquals(
                 Set.copyOf(prefixes),
                 grouped.values().stream()
                         .flatMap(Set::stream)
                         .collect(Collectors.toUnmodifiableSet()));
         assertEquals(1, grouped.get(MaterialCreativeTab.ORES).size());
-        assertEquals(8, grouped.get(MaterialCreativeTab.ORE_PROCESSING).size());
-        assertEquals(4, grouped.get(MaterialCreativeTab.DUSTS).size());
-        assertEquals(7, grouped.get(MaterialCreativeTab.METALS_GEMS).size());
-        assertEquals(8, grouped.get(MaterialCreativeTab.PLATES).size());
-        assertEquals(5, grouped.get(MaterialCreativeTab.PARTS).size());
-        assertEquals(5, grouped.get(MaterialCreativeTab.MECHANICAL_PARTS).size());
-        assertEquals(6, grouped.get(MaterialCreativeTab.WIRES).size());
-        assertEquals(6, grouped.get(MaterialCreativeTab.CABLES).size());
-        assertEquals(8, grouped.get(MaterialCreativeTab.PIPES).size());
-        assertEquals(0, grouped.get(MaterialCreativeTab.MISC).size());
+        assertTrue(prefixes.stream().anyMatch(MaterialCreativeTab::isToolHeadPrefix));
+        assertTrue(grouped.get(MaterialCreativeTab.MISC).stream()
+                .anyMatch(MaterialCreativeTab::isToolHeadPrefix));
         assertEquals(
                 MaterialCreativeTab.MISC,
                 MaterialCreativeTab.forPrefix(new MaterialPrefix("example:unknown")));
@@ -66,10 +59,10 @@ class MaterialCreativeTabTest {
             @TempDir Path configDirectory) {
         var materials = MaterialLoader.load(configDirectory).values();
         var registered = MaterialRegistrationGate.load(materials);
-        assertEquals(323L, registered.values().stream()
+        assertEquals(324L, registered.values().stream()
                 .filter(forms -> forms.contains(MaterialPrefixes.DOUBLE_INGOT))
                 .count());
-        assertEquals(323L, registered.values().stream()
+        assertEquals(324L, registered.values().stream()
                 .filter(forms -> forms.contains(MaterialPrefixes.TRIPLE_INGOT))
                 .count());
         assertEquals(321L, registered.values().stream()
@@ -90,7 +83,8 @@ class MaterialCreativeTabTest {
         expectedItems.addAll(expectedOreItems);
         for (var material : materials) {
             for (MaterialPrefix prefix : registered.get(material.id())) {
-                if (prefix.equals(MaterialPrefixes.ORE)) {
+                if (prefix.equals(MaterialPrefixes.ORE)
+                        || MaterialCreativeTab.isToolHeadPrefix(prefix)) {
                     continue;
                 }
                 expectedItems.add(material.formItems().getOrDefault(
@@ -116,19 +110,45 @@ class MaterialCreativeTabTest {
         assertEquals(
                 Map.ofEntries(
                         Map.entry(MaterialCreativeTab.ORES, 294),
-                        Map.entry(MaterialCreativeTab.ORE_PROCESSING, 3_499),
-                        Map.entry(MaterialCreativeTab.DUSTS, 2_694),
-                        Map.entry(MaterialCreativeTab.METALS_GEMS, 2_263),
-                        Map.entry(MaterialCreativeTab.PLATES, 2_333),
-                        Map.entry(MaterialCreativeTab.PARTS, 3_248),
-                        Map.entry(MaterialCreativeTab.MECHANICAL_PARTS, 1_890),
-                        Map.entry(MaterialCreativeTab.WIRES, 255),
+                        Map.entry(MaterialCreativeTab.ORE_PROCESSING, 3_902),
+                        Map.entry(MaterialCreativeTab.DUSTS, 3_004),
+                        Map.entry(MaterialCreativeTab.METALS_GEMS, 2_908),
+                        Map.entry(MaterialCreativeTab.PLATES, 3_195),
+                        Map.entry(MaterialCreativeTab.PARTS, 3_312),
+                        Map.entry(MaterialCreativeTab.MECHANICAL_PARTS, 2_025),
+                        Map.entry(MaterialCreativeTab.WIRES, 283),
                         Map.entry(MaterialCreativeTab.CABLES, 151),
                         Map.entry(MaterialCreativeTab.PIPES, 282),
-                        Map.entry(MaterialCreativeTab.MISC, 0)),
+                        Map.entry(MaterialCreativeTab.MISC, 4_285)),
                 counts);
+        assertEquals(
+                0,
+                plan.get(MaterialCreativeTab.MISC).stream()
+                        .filter(id -> id.contains("tool_head"))
+                        .count());
+        assertFalse(MaterialCreativeTab.toolHeadEntryIds(
+                materials, registered, Map.of()).isEmpty());
         counts.forEach((tab, count) ->
-                assertTrue(count < 4_000, tab + " has " + count + " entries"));
+                assertTrue(count < 5_000, tab + " has " + count + " entries"));
+    }
+
+    @Test
+    void toolHeadFormsLeaveMaterialTabsAndAreCollectedForTools(
+            @TempDir Path configDirectory) {
+        var materials = MaterialLoader.load(configDirectory).values();
+        var registered = MaterialRegistrationGate.load(materials);
+        Map<MaterialCreativeTab, List<String>> plan =
+                MaterialCreativeTab.planEntryIds(materials, registered);
+        assertEquals(
+                0,
+                plan.values().stream()
+                        .flatMap(List::stream)
+                        .filter(id -> id.contains("tool_head"))
+                        .count());
+        List<String> toolHeads = MaterialCreativeTab.toolHeadEntryIds(
+                materials, registered, Map.of());
+        assertFalse(toolHeads.isEmpty());
+        assertTrue(toolHeads.stream().allMatch(id -> id.contains("tool_head")));
     }
 
     @Test

@@ -1,65 +1,121 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:2bec71709ee55ce3e2c22c4ddbca52e9189c548906b9887da6ec2b0c14181273",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 144,
-          "id": "cruciblecraft:spectral_dew"
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:spectral_dew"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_green"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_green"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "minecraft:water"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_green"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:potion_mineralwater"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_green"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_green"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "7df5106f9f12e9c822990ec5e4a1bd3675a2519ea528ff4e7a725c4ba1446587",
+        "76dc3ec8788eb37a12c1eaf05aadb2939c5840e0c91c0be3811b0fa4ca1c87a8",
+        "a1c69aa5cccdc5178cae8e22a40b89f0a0871fc2ff2b5896063803e57d2193d7",
+        "cdb111a596542d13f82f37eded6b69ddae46c12811fe7c1b25174d833c4d4604"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:malachite/gem"
-        }
+        [
+          {
+            "item": "cruciblecraft:malachite/gem"
+          }
+        ]
       ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "7df5106f9f12e9c822990ec5e4a1bd3675a2519ea528ff4e7a725c4ba1446587"
-        ],
-        "selected_source_recipe": "sha256:2bec71709ee55ce3e2c22c4ddbca52e9189c548906b9887da6ec2b0c14181273",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/6ebe6bdab319a301"
+      "item_outputs": [
+        []
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/6ebe6bdab319a301",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:mixer/ordinary_closure/b83788348a93f677",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:mixer/ordinary_closure/25b9a58128fe7104",
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        "cruciblecraft:mixer/ordinary_closure/ea35c4949f713bff",
+        3,
+        3
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_green"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -68,109 +124,13 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:malachite/gem"
-        }
-      ],
-      "item_outputs": [],
       "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "76dc3ec8788eb37a12c1eaf05aadb2939c5840e0c91c0be3811b0fa4ca1c87a8"
-        ],
-        "selected_source_recipe": "sha256:2bec71709ee55ce3e2c22c4ddbca52e9189c548906b9887da6ec2b0c14181273",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/b83788348a93f677"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_green"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:malachite/gem"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "a1c69aa5cccdc5178cae8e22a40b89f0a0871fc2ff2b5896063803e57d2193d7"
-        ],
-        "selected_source_recipe": "sha256:2bec71709ee55ce3e2c22c4ddbca52e9189c548906b9887da6ec2b0c14181273",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/25b9a58128fe7104"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:potion_mineralwater"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_green"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:malachite/gem"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "cdb111a596542d13f82f37eded6b69ddae46c12811fe7c1b25174d833c4d4604"
-        ],
-        "selected_source_recipe": "sha256:2bec71709ee55ce3e2c22c4ddbca52e9189c548906b9887da6ec2b0c14181273",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/ea35c4949f713bff"
+      "selected_source_recipe": "sha256:2bec71709ee55ce3e2c22c4ddbca52e9189c548906b9887da6ec2b0c14181273",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

@@ -1,0 +1,129 @@
+{
+  "generated_by": "python tools/build_logistics_cover_net_r0.py",
+  "kinds": [
+    {
+      "canonical_id": "logistics_fluid_storage",
+      "direction_collapse": null,
+      "evidence_class": "SOURCE_BACKED",
+      "medium": "fluid",
+      "normalization_reason": "Fluid storage policy is distinct from directional transfer.",
+      "raw_members": [
+        "CoverLogisticsFluidStorage"
+      ],
+      "role": "storage",
+      "scope_reason": "GT6 logistics-network storage policy requires a later network runtime."
+    },
+    {
+      "canonical_id": "logistics_fluid_transfer",
+      "direction_collapse": {
+        "id": "cover-collapse-direction-logistics-fluid",
+        "raw_members": [
+          "CoverLogisticsFluidExport",
+          "CoverLogisticsFluidImport"
+        ],
+        "source_evidence": "Both concrete classes inherit AbstractCoverAttachmentLogistics and differ in their import/export direction hooks.",
+        "statement": "Import and export use the same fluid logistics transfer behavior with opposite direction.",
+        "variant_dimensions": [
+          "direction"
+        ]
+      },
+      "evidence_class": "SOURCE_BACKED",
+      "medium": "fluid",
+      "normalization_reason": "Fluid import/export direction is data on one logistics transfer behavior.",
+      "raw_members": [
+        "CoverLogisticsFluidExport",
+        "CoverLogisticsFluidImport"
+      ],
+      "role": "transfer",
+      "scope_reason": "GT6 logistics-network fluid routing exceeds adjacent T19 transfer scope."
+    },
+    {
+      "canonical_id": "logistics_generic_dump",
+      "direction_collapse": null,
+      "evidence_class": "SOURCE_BACKED",
+      "medium": "generic",
+      "normalization_reason": "Generic dump semantics are distinct from import/export and storage.",
+      "raw_members": [
+        "CoverLogisticsGenericDump"
+      ],
+      "role": "dump",
+      "scope_reason": "GT6 generic logistics dumping requires a later network runtime."
+    },
+    {
+      "canonical_id": "logistics_generic_storage",
+      "direction_collapse": null,
+      "evidence_class": "SOURCE_BACKED",
+      "medium": "generic",
+      "normalization_reason": "Generic storage policy is distinct from directional transfer.",
+      "raw_members": [
+        "CoverLogisticsGenericStorage"
+      ],
+      "role": "storage",
+      "scope_reason": "GT6 generic logistics storage requires a later network runtime."
+    },
+    {
+      "canonical_id": "logistics_generic_transfer",
+      "direction_collapse": {
+        "id": "cover-collapse-direction-logistics-generic",
+        "raw_members": [
+          "CoverLogisticsGenericExport",
+          "CoverLogisticsGenericImport"
+        ],
+        "source_evidence": "The two concrete wrappers select opposite transfer direction on the shared logistics base.",
+        "statement": "Import and export use the same generic logistics transfer behavior with opposite direction.",
+        "variant_dimensions": [
+          "direction"
+        ]
+      },
+      "evidence_class": "SOURCE_BACKED",
+      "medium": "generic",
+      "normalization_reason": "Generic import/export direction is data on one logistics transfer behavior.",
+      "raw_members": [
+        "CoverLogisticsGenericExport",
+        "CoverLogisticsGenericImport"
+      ],
+      "role": "transfer",
+      "scope_reason": "GT6 generic logistics routing requires a later network runtime."
+    },
+    {
+      "canonical_id": "logistics_item_storage",
+      "direction_collapse": null,
+      "evidence_class": "SOURCE_BACKED",
+      "medium": "item",
+      "normalization_reason": "Item storage policy is distinct from directional transfer.",
+      "raw_members": [
+        "CoverLogisticsItemStorage"
+      ],
+      "role": "storage",
+      "scope_reason": "GT6 logistics-network item storage requires a later network runtime."
+    },
+    {
+      "canonical_id": "logistics_item_transfer",
+      "direction_collapse": {
+        "id": "cover-collapse-direction-logistics-item",
+        "raw_members": [
+          "CoverLogisticsItemExport",
+          "CoverLogisticsItemImport"
+        ],
+        "source_evidence": "Both concrete classes share item logistics matching and differ in import/export direction hooks.",
+        "statement": "Import and export use the same item logistics transfer behavior with opposite direction.",
+        "variant_dimensions": [
+          "direction"
+        ]
+      },
+      "evidence_class": "SOURCE_BACKED",
+      "medium": "item",
+      "normalization_reason": "Item import/export direction is data on one logistics transfer behavior.",
+      "raw_members": [
+        "CoverLogisticsItemExport",
+        "CoverLogisticsItemImport"
+      ],
+      "role": "transfer",
+      "scope_reason": "GT6 logistics-network item routing exceeds adjacent T19 transfer scope."
+    }
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "SOURCE_SEMANTICS_READY",
+  "wave_slug": "portfolio/logistics-cover-net-r0"
+}

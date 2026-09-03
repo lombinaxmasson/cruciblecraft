@@ -1,0 +1,102 @@
+#!/usr/bin/env python3
+"""Capability ledger schema, adapter, and impact graph."""
+from __future__ import annotations
+
+import json
+import unittest
+from pathlib import Path
+
+from tools import capability_ledger as ledger
+from tools import t35_common as t35
+
+ROOT = t35.ROOT
+SCHEMA = t35.TOOLS / "capabilities" / "schema.json"
+FLUID = "logistics/fluid-network/basic-transfer"
+
+
+class CapabilityLedgerTest(unittest.TestCase):
+    def test_schema_and_slugs_are_loadable(self) -> None:
+        schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+        self.assertEqual(2, schema["properties"]["schema_version"]["const"])
+        self.assertNotIn("evidence", schema["properties"])
+        documents = [
+            ledger.load_capability(path) for path in ledger.capability_files()
+        ]
+        self.assertTrue(all("evidence" not in row for row in documents))
+        slugs = [row["slug"] for row in documents]
+        self.assertIn(FLUID, slugs)
+        self.assertIn("logistics/cover-net-r0", slugs)
+        self.assertIn("logistics/item-network-core", slugs)
+        self.assertIn("registry/tool-head-remainder", slugs)
+        fluid = next(row for row in documents if row["slug"] == FLUID)
+        self.assertEqual("player_complete", fluid["maturity"])
+        self.assertEqual("accepted", fluid["workflow"])
+        cover = next(
+            row for row in documents if row["slug"] == "logistics/cover-net-r0"
+        )
+        self.assertEqual("frozen", cover["maturity"])
+        item = next(
+            row for row in documents if row["slug"] == "logistics/item-network-core"
+        )
+        self.assertEqual("runtime_ready", item["maturity"])
+
+    def test_compiled_ledger_has_no_legacy_progress_adapter(self) -> None:
+        compiled = ledger.compile_ledger()
+        self.assertNotIn("legacy_readiness", compiled)
+        for row in compiled["capabilities"]:
+            self.assertNotIn("legacy_readiness", row)
+            self.assertNotIn("wave_slug", row)
+        self.assertEqual([FLUID], compiled["declared_player_complete"])
+        self.assertEqual(
+            "declaration is not proof; player_complete requires fresh "
+            "GameTestServer and runClient execution",
+            compiled["progress_rule"],
+        )
+
+    def test_ledger_contains_profiles_and_impact_without_proof_fields(self) -> None:
+        compiled = ledger.compile_ledger()
+        self.assertEqual(
+            [FLUID],
+            compiled["profiles"]["player-complete"],
+        )
+        self.assertEqual(
+            {
+                "logistics/cover-net-r0",
+                "logistics/item-network-core",
+                FLUID,
+            },
+            set(compiled["impact"]["logistics/cover-net-r0"]),
+        )
+        for capability in compiled["capabilities"]:
+            self.assertNotIn("evidence", capability)
+            self.assertNotIn("evidence_root", capability)
+            self.assertNotIn("owned_hash_count", capability)
+
+    def test_committed_ledger_is_deterministic(self) -> None:
+        committed = (t35.TOOLS / "capabilities" / "ledger.json").read_bytes()
+        self.assertEqual(ledger.dumps(ledger.compile_ledger()), committed)
+
+    def test_shared_cover_code_hits_cover_and_dependents(self) -> None:
+        hit = ledger.affected_slugs(
+            [
+                "src/main/java/com/masson/cruciblecraft/logistics/pipe/cover/"
+                "PipeCoverSet.java"
+            ]
+        )
+        self.assertIn("logistics/cover-net-r0", hit)
+        self.assertIn("logistics/item-network-core", hit)
+        self.assertIn(FLUID, hit)
+        self.assertNotIn("registry/tool-head-remainder", hit)
+
+    def test_fluid_pipe_does_not_stale_tool_head_remainder(self) -> None:
+        hit = ledger.affected_slugs(
+            [
+                "src/main/java/com/masson/cruciblecraft/content/blockentity/"
+                "FluidPipeBlockEntity.java"
+            ]
+        )
+        self.assertEqual([FLUID], hit)
+
+
+if __name__ == "__main__":
+    unittest.main()

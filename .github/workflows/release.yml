@@ -28,8 +28,5 @@ jobs:
       - name: Make Gradle wrapper executable
         run: chmod +x ./gradlew
 
-      - name: Inspect historical receipt
-        run: python3 tools/verify.py archive-inspect
-
-      - name: Reserved player-release verification
-        run: python3 tools/verify.py release
+      - name: Run fresh release verification
+        run: xvfb-run -a python3 tools/verify.py release

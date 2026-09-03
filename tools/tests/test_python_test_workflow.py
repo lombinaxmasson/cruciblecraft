@@ -13,141 +13,135 @@ class PythonTestWorkflowTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.policy = workflow.load_policy()
-        cls.cases = workflow.discover_cases()
+        cls.cases = workflow.discover_cases(policy=cls.policy)
 
-    def test_closure_contains_every_discovered_test_exactly_once(self) -> None:
-        selection = workflow.select_cases(
-            "closure",
-            self.policy,
-            self.cases,
-        )
-        discovered = [case.id() for case in self.cases]
-        selected = [case.id() for case in selection.cases]
-        self.assertEqual(discovered, selected)
-        self.assertEqual(len(selected), len(set(selected)))
-
-    def test_fast_excludes_closure_and_source_replay_tests(self) -> None:
-        selection = workflow.select_cases("fast", self.policy, self.cases)
-        for case in selection.cases:
-            with self.subTest(test=case.id()):
-                self.assertFalse(workflow.matches_any(
-                    case.id(),
-                    self.policy["closure_only_test_patterns"],
-                ))
-                self.assertFalse(workflow.matches_any(
-                    case.id(),
-                    self.policy["source_replay_test_patterns"],
-                ))
-        self.assertLess(len(selection.cases), len(self.cases))
-
-    def test_known_affected_path_selects_declared_modules(self) -> None:
-        selection = workflow.select_cases(
-            "affected",
-            self.policy,
-            self.cases,
-            changed_paths=["tools/compare_gt6_recipes.py"],
-        )
-        modules = {workflow.test_module(case) for case in selection.cases}
-        self.assertFalse(selection.escalated_to_closure)
+    def test_active_modules_match_profiles_exactly(self) -> None:
+        declared = workflow.active_module_names(self.policy)
+        profiled = workflow.profile_test_modules()
+        self.assertEqual(set(profiled), set(declared))
+        self.assertLess(len(declared), 50)
         self.assertEqual(
-            {
-                "test_compare_gt6_recipes",
-                "test_build_gt6_ore_chain",
-                "test_full_verification_report",
-            },
-            modules,
+            set(declared),
+            {workflow.test_module(case) for case in self.cases},
         )
 
-    def test_changed_test_file_selects_its_own_module(self) -> None:
-        selection = workflow.select_cases(
-            "affected",
-            self.policy,
-            self.cases,
-            changed_paths=["tools/tests/test_python_test_workflow.py"],
-        )
+    def test_loading_never_uses_directory_discovery(self) -> None:
+        with mock.patch.object(
+            workflow.unittest.defaultTestLoader,
+            "discover",
+            side_effect=AssertionError("historical directory discovery is forbidden"),
+        ):
+            cases = workflow.discover_cases(
+                ["test_registry_identity"],
+                policy=self.policy,
+            )
         self.assertEqual(
-            {"test_python_test_workflow"},
-            {workflow.test_module(case) for case in selection.cases},
+            {"test_registry_identity"},
+            {workflow.test_module(case) for case in cases},
         )
 
-    def test_modules_suite_does_not_expand_t46_affected_glob(self) -> None:
+    def test_retired_test_cases_are_not_active(self) -> None:
+        lowered = [workflow.test_module(case).lower() for case in self.cases]
+        for token in ("currentness", "closeout", "seal", "snapshot", "archive"):
+            self.assertFalse(
+                any(token in test_id for test_id in lowered),
+                token,
+            )
+
+    def test_inactive_module_is_rejected_before_import(self) -> None:
+        with mock.patch.object(
+            workflow.unittest.defaultTestLoader,
+            "loadTestsFromNames",
+        ) as loader:
+            with self.assertRaisesRegex(
+                workflow.PolicyError,
+                "will not be imported",
+            ):
+                workflow.discover_cases(
+                    ["test_build_t46_work_set"],
+                    policy=self.policy,
+                )
+        loader.assert_not_called()
+
+    def test_modules_suite_stays_within_requested_active_module(self) -> None:
+        cases = workflow.discover_cases(
+            ["test_capability_ledger"],
+            policy=self.policy,
+        )
         selection = workflow.select_cases(
             "modules",
             self.policy,
-            self.cases,
-            modules=["test_build_t46_work_set"],
+            cases,
+            modules=["test_capability_ledger"],
         )
-        selected_modules = {workflow.test_module(case) for case in selection.cases}
-        self.assertEqual({"test_build_t46_work_set"}, selected_modules)
         self.assertTrue(selection.cases)
-        self.assertNotIn("test_build_t46_production_lock", selected_modules)
-        with self.assertRaises(workflow.PolicyError) as ctx:
-            workflow.select_cases(
-                "modules",
-                self.policy,
-                self.cases,
-                modules=[],
-            )
-        self.assertIn("at least one --module", str(ctx.exception))
-
-    def test_t16_artifacts_select_full_t16_closure_modules(self) -> None:
-        selection = workflow.select_cases(
-            "affected",
-            self.policy,
-            self.cases,
-            changed_paths=[
-                "tools/t16_load_projection_input.json",
-                "src/main/resources/data/cruciblecraft/"
-                "t16_publication_baseline.json",
-            ],
-        )
-        self.assertFalse(selection.escalated_to_closure)
         self.assertEqual(
-            {
-                "test_build_processing_machine_energy_audit",
-                "test_build_t16_machine_acquisition",
-                "test_build_t16_machine_denominator",
-                "test_build_t16_readiness",
-                "test_full_verification_report",
-                "test_recipe_load_projection",
-            },
+            {"test_capability_ledger"},
             {workflow.test_module(case) for case in selection.cases},
         )
 
-    def test_profile_owned_path_without_python_rule_is_not_unmatched(self) -> None:
-        selection = workflow.select_cases(
-            "affected",
-            self.policy,
-            self.cases,
-            changed_paths=["tools/build_t26_readiness.py"],
-        )
-        self.assertFalse(selection.escalated_to_closure)
-        self.assertEqual((), selection.unmatched_paths)
-        selection = workflow.select_cases(
-            "affected",
-            self.policy,
-            self.cases,
-            changed_paths=["unexpected/new_domain.json"],
-        )
-        self.assertFalse(selection.escalated_to_closure)
-        self.assertEqual((), selection.cases)
+    def test_known_semantic_path_selects_declared_modules(self) -> None:
+        paths = ["tools/build_semantic_recipes.py"]
+        names, unmatched = workflow.affected_module_names(self.policy, paths)
+        self.assertEqual((), unmatched)
         self.assertEqual(
-            ("unexpected/new_domain.json",),
-            selection.unmatched_paths,
+            ("test_material_form_authority", "test_build_semantic_recipes"),
+            names,
         )
+        cases = workflow.discover_cases(names, policy=self.policy)
+        selection = workflow.select_cases(
+            "affected",
+            self.policy,
+            cases,
+            changed_paths=paths,
+        )
+        self.assertEqual(
+            set(names),
+            {workflow.test_module(case) for case in selection.cases},
+        )
+
+    def test_changed_active_test_selects_only_its_declared_group(self) -> None:
+        paths = ["tools/tests/test_python_test_workflow.py"]
+        names, unmatched = workflow.affected_module_names(self.policy, paths)
+        self.assertEqual((), unmatched)
+        self.assertEqual(
+            (
+                "test_verification_profiles",
+                "test_python_test_workflow",
+                "test_check_no_workflow_hashes",
+                "test_tree_compare",
+            ),
+            names,
+        )
+
+    def test_historical_test_path_is_unmatched(self) -> None:
+        names, unmatched = workflow.affected_module_names(
+            self.policy,
+            ["tools/tests/test_build_t46_work_set.py"],
+        )
+        self.assertEqual((), names)
+        self.assertEqual(
+            ("tools/tests/test_build_t46_work_set.py",),
+            unmatched,
+        )
+
+    def test_unknown_code_path_is_unmatched(self) -> None:
+        names, unmatched = workflow.affected_module_names(
+            self.policy,
+            ["unexpected/new_domain.json"],
+        )
+        self.assertEqual((), names)
+        self.assertEqual(("unexpected/new_domain.json",), unmatched)
 
     def test_markdown_path_selects_documentation_modules(self) -> None:
-        selection = workflow.select_cases(
-            "affected",
+        names, unmatched = workflow.affected_module_names(
             self.policy,
-            self.cases,
-            changed_paths=["docs/history/INDEX.md"],
+            ["docs/current/verification.md"],
         )
-        self.assertFalse(selection.escalated_to_closure)
-        self.assertEqual((), selection.unmatched_paths)
+        self.assertEqual((), unmatched)
         self.assertEqual(
-            {"test_check_markdown_links", "test_verification_profiles"},
-            {workflow.test_module(case) for case in selection.cases},
+            ("test_check_markdown_links", "test_verification_profiles"),
+            names,
         )
 
     def test_path_file_and_explicit_paths_are_merged(self) -> None:
@@ -158,123 +152,34 @@ class PythonTestWorkflowTest(unittest.TestCase):
             delete=False,
         ) as handle:
             handle.write("# comment\n")
-            handle.write("src/t46_recipe_generated/example.json\n")
-            handle.write("tools/t46_readiness.json\n")
+            handle.write("tools/build_capability_ledger.py\n")
             path_file = Path(handle.name)
         try:
             paths = workflow.resolve_suite_paths(
                 suite="affected",
-                path_args=["tools/t46_census_delta.json"],
+                path_args=["tools/build_registry_identity.py"],
                 path_file=path_file,
             )
         finally:
             path_file.unlink(missing_ok=True)
         self.assertEqual(
             (
-                "src/t46_recipe_generated/example.json",
-                "tools/t46_census_delta.json",
-                "tools/t46_readiness.json",
+                "tools/build_capability_ledger.py",
+                "tools/build_registry_identity.py",
             ),
             paths,
         )
 
-    def test_policy_rejects_overlapping_slow_tiers(self) -> None:
+    def test_policy_rejects_inactive_rule_module(self) -> None:
         changed = copy.deepcopy(self.policy)
-        changed["source_replay_test_patterns"].append(
-            "test_full_verification_report.*"
+        changed["affected_rules"][0]["test_modules"].append(
+            "test_full_verification_report"
         )
         with self.assertRaisesRegex(
             workflow.PolicyError,
-            "both closure-only and source-replay",
+            "inactive test modules",
         ):
-            workflow.validate_policy(changed, self.cases)
-
-    def test_prechecked_stage_skips_only_declared_positive_currentness(self) -> None:
-        class SampleTest(unittest.TestCase):
-            def test_currentness_duplicate(self) -> None:
-                pass
-
-            def test_mutation_still_runs(self) -> None:
-                pass
-
-        currentness = SampleTest("test_currentness_duplicate")
-        mutation = SampleTest("test_mutation_still_runs")
-        policy = {
-            "prechecked_stage_test_patterns": {
-                "CRUCIBLECRAFT_BUILDER_STAGE_PASSED": [
-                    "*.test_currentness_duplicate"
-                ]
-            }
-        }
-        method = getattr(SampleTest, "test_currentness_duplicate")
-        try:
-            with mock.patch.dict(
-                workflow.os.environ,
-                {"CRUCIBLECRAFT_BUILDER_STAGE_PASSED": "1"},
-                clear=False,
-            ):
-                workflow.apply_prechecked_stage_skips(
-                    [currentness, mutation],
-                    policy,
-                )
-            self.assertTrue(method.__unittest_skip__)
-            self.assertFalse(
-                getattr(
-                    SampleTest.test_mutation_still_runs,
-                    "__unittest_skip__",
-                    False,
-                )
-            )
-        finally:
-            for attribute in ("__unittest_skip__", "__unittest_skip_why__"):
-                if hasattr(method, attribute):
-                    delattr(method, attribute)
-
-    def test_source_replay_tests_are_skipped_outside_replay_suite(self) -> None:
-        class SampleTest(unittest.TestCase):
-            def test_raw_replay(self) -> None:
-                pass
-
-        case = SampleTest("test_raw_replay")
-        method = SampleTest.test_raw_replay
-        policy = {"source_replay_test_patterns": ["*.test_raw_replay"]}
-        try:
-            workflow.apply_source_replay_skips([case], policy, "closure")
-            self.assertTrue(method.__unittest_skip__)
-            delattr(method, "__unittest_skip__")
-            delattr(method, "__unittest_skip_why__")
-            workflow.apply_source_replay_skips(
-                [case],
-                policy,
-                "source-replay",
-            )
-            self.assertFalse(
-                getattr(method, "__unittest_skip__", False)
-            )
-        finally:
-            for attribute in ("__unittest_skip__", "__unittest_skip_why__"):
-                if hasattr(method, attribute):
-                    delattr(method, attribute)
-
-    def test_source_replay_commands_are_derived_from_builder_policy(self) -> None:
-        records = workflow.source_replay_records(self.policy)
-        commands = [record["command"] for record in records]
-        self.assertIn(
-            [
-                "$PYTHON",
-                "tools/build_t13_recipe_map_denominator.py",
-                "--check",
-                "--full-replay",
-            ],
-            commands,
-        )
-        self.assertEqual(
-            1,
-            sum(
-                command[1] == "tools/compare_gt6_recipes.py"
-                for command in commands
-            ),
-        )
+            workflow.validate_policy(changed)
 
 
 if __name__ == "__main__":

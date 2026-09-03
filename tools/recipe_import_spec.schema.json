@@ -1,0 +1,181 @@
+{
+  "$defs": {
+    "authority": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "data",
+            "source_dialect"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://cruciblecraft.invalid/schema/recipe_import_spec.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "compare_corpus": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "family_membership_source": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "work_set",
+            "frozen_ledger"
+          ],
+          "type": "string"
+        },
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "path"
+      ],
+      "type": "object"
+    },
+    "host": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "import_slug": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "operand_authorities": {
+      "items": {
+        "$ref": "#/$defs/authority"
+      },
+      "type": "array"
+    },
+    "output_paths": {
+      "additionalProperties": false,
+      "properties": {
+        "lock_candidate": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "receipt": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "review": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "receipt",
+        "review",
+        "lock_candidate"
+      ],
+      "type": "object"
+    },
+    "representation_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed": {
+          "items": {
+            "enum": [
+              "exact",
+              "exact_multi"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "allowed"
+      ],
+      "type": "object"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "selection_rule": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "work_set_members"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "type": "object"
+    },
+    "source_maps": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "source_pack": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "stable_id_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "const": "source_system_revision_family_relation"
+        },
+        "include_card_number": {
+          "const": false
+        }
+      },
+      "required": [
+        "algorithm",
+        "include_card_number"
+      ],
+      "type": "object"
+    },
+    "target_map": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "import_slug",
+    "source_pack",
+    "source_maps",
+    "target_map",
+    "host",
+    "family_membership_source",
+    "selection_rule",
+    "operand_authorities",
+    "representation_policy",
+    "stable_id_policy",
+    "output_paths"
+  ],
+  "type": "object"
+}

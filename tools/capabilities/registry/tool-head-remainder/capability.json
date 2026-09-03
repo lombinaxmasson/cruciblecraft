@@ -1,0 +1,26 @@
+{
+  "schema_version": 2,
+  "slug": "registry/tool-head-remainder",
+  "title": "Tool-head remainder identities",
+  "maturity": "frozen",
+  "workflow": "accepted",
+  "owned_paths": [
+    "tools/tool_head_prefix.py",
+    "src/main/resources/data/cruciblecraft/bath_identity_catalog.json",
+    "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
+  ],
+  "depends_on": [],
+  "profiles": ["capability-runtime"],
+  "wave_slug": null,
+  "legacy_readiness": null,
+  "player_signoff": null,
+  "identity_disposition": [
+    {
+      "semantic_key": "extruder_shape/low_heat/",
+      "disposition": "new_distinct",
+      "runtime_ids": [],
+      "reason": "Low Heat Extruder Shape is a temperature-tier identity, not a duplicate of ExtruderShapeCatalog."
+    }
+  ],
+  "note": "Accepted divergence. Prefix new_distinct, not a merge candidate."
+}

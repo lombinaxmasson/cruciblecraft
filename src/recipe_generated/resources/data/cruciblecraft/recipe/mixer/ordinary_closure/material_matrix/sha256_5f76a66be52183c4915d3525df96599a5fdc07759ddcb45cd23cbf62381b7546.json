@@ -1,65 +1,121 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:5f76a66be52183c4915d3525df96599a5fdc07759ddcb45cd23cbf62381b7546",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 144,
-          "id": "cruciblecraft:water_distilled"
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_gray"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:spectral_dew"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_gray"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:potion_mineralwater"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_gray"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "minecraft:water"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_gray"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_gray"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "cf1c60217f3659020d6917e00450888cf5be906fa19097587396c8d425727aa6",
+        "8c4b7f3fa0776160d8f7b28a5aba3d61a31902daa8f56395c855e9aaa08a2eed",
+        "4f5d888fe0aa8d43e3f88999b1fc1b46e8db1d80f693b906ed9820608ae7c0f4",
+        "4f1f560a7487e2ef5561ac46f3331bb2aea71bda21ac81caa6553c1adf226dde"
       ],
       "item_inputs": [
-        {
-          "item": "minecraft:gray_dye"
-        }
+        [
+          {
+            "item": "minecraft:gray_dye"
+          }
+        ]
       ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "cf1c60217f3659020d6917e00450888cf5be906fa19097587396c8d425727aa6"
-        ],
-        "selected_source_recipe": "sha256:5f76a66be52183c4915d3525df96599a5fdc07759ddcb45cd23cbf62381b7546",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/c6b0840f376809a3"
+      "item_outputs": [
+        []
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/c6b0840f376809a3",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:mixer/ordinary_closure/e46c4202422d71ac",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:mixer/ordinary_closure/fa72dfd61b7953df",
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        "cruciblecraft:mixer/ordinary_closure/c2fc79e0c1fbfc01",
+        3,
+        3
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:spectral_dew"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_gray"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -68,109 +124,13 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "minecraft:gray_dye"
-        }
-      ],
-      "item_outputs": [],
       "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "8c4b7f3fa0776160d8f7b28a5aba3d61a31902daa8f56395c855e9aaa08a2eed"
-        ],
-        "selected_source_recipe": "sha256:5f76a66be52183c4915d3525df96599a5fdc07759ddcb45cd23cbf62381b7546",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/e46c4202422d71ac"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:potion_mineralwater"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_gray"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:gray_dye"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "4f5d888fe0aa8d43e3f88999b1fc1b46e8db1d80f693b906ed9820608ae7c0f4"
-        ],
-        "selected_source_recipe": "sha256:5f76a66be52183c4915d3525df96599a5fdc07759ddcb45cd23cbf62381b7546",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/fa72dfd61b7953df"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_gray"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:gray_dye"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "4f1f560a7487e2ef5561ac46f3331bb2aea71bda21ac81caa6553c1adf226dde"
-        ],
-        "selected_source_recipe": "sha256:5f76a66be52183c4915d3525df96599a5fdc07759ddcb45cd23cbf62381b7546",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/c2fc79e0c1fbfc01"
+      "selected_source_recipe": "sha256:5f76a66be52183c4915d3525df96599a5fdc07759ddcb45cd23cbf62381b7546",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

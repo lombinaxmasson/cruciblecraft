@@ -1,35 +1,53 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "verification_profiles.schema.json",
-  "title": "CrucibleCraft verification profiles",
+  "title": "CrucibleCraft active verification profiles",
   "type": "object",
   "required": [
     "schema_version",
     "status",
     "unmatched_policy",
+    "active_profiles",
+    "release_profiles",
     "profiles"
   ],
   "additionalProperties": false,
   "properties": {
     "schema_version": {
-      "const": 1
+      "const": 2
     },
     "status": {
       "type": "string"
     },
     "unmatched_policy": {
-      "enum": [
-        "report"
-      ]
+      "const": "report"
     },
     "documentation_path_patterns": {
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "uniqueItems": true
+    },
+    "active_profiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "release_profiles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
     },
     "profiles": {
       "type": "object",
+      "minProperties": 1,
       "additionalProperties": {
         "type": "object",
         "required": [
@@ -39,13 +57,13 @@
           "gradle_tasks",
           "python_modules",
           "builders",
-          "gametest",
           "owned_paths"
         ],
         "additionalProperties": false,
         "properties": {
           "owner": {
-            "type": "string"
+            "type": "string",
+            "minLength": 1
           },
           "tier": {
             "enum": [
@@ -61,45 +79,31 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "uniqueItems": true
           },
           "python_modules": {
             "type": "array",
             "items": {
-              "type": "string"
-            }
+              "type": "string",
+              "pattern": "^test_[A-Za-z0-9_]+$"
+            },
+            "uniqueItems": true
           },
           "builders": {
             "type": "array",
             "items": {
               "type": "string"
-            }
-          },
-          "gametest": {
-            "type": "object",
-            "required": [
-              "receipt_check",
-              "run_isolated",
-              "manual_deferred"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "receipt_check": {
-                "type": "boolean"
-              },
-              "run_isolated": {
-                "type": "boolean"
-              },
-              "manual_deferred": {
-                "type": "boolean"
-              }
-            }
+            },
+            "uniqueItems": true
           },
           "owned_paths": {
             "type": "array",
+            "minItems": 1,
             "items": {
               "type": "string"
-            }
+            },
+            "uniqueItems": true
           }
         }
       }

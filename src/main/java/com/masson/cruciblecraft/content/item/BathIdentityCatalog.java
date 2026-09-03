@@ -16,8 +16,8 @@ import com.masson.cruciblecraft.CrucibleCraft;
 import net.minecraft.resources.ResourceLocation;
 
 /**
- * Bath identity catalog. Each (source item, exact meta) is a distinct
- * player-holdable item. Tool heads are not folded into material prefixes.
+ * Bath identity catalog. Each remaining (source item, exact meta) is a
+ * distinct player-holdable item. Mapped tool heads are material prefixes.
  */
 public final class BathIdentityCatalog {
     private static final String RESOURCE =

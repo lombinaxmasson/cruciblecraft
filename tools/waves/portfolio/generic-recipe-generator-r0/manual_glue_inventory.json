@@ -1,0 +1,120 @@
+{
+  "generated_by": "python tools/build_generic_recipe_import_r0.py",
+  "items": [
+    {
+      "disposition": "extract_to_source_dialect",
+      "id": "t37_dump_read_map_fingerprint_receipt",
+      "path": "tools/build_t37_assembler_source.py",
+      "replacement_boundary": "GT6 dialect adapter owned by source_system=gt6",
+      "responsibility": "dump read, operand mapping, fingerprint, receipt, review"
+    },
+    {
+      "disposition": "extract_to_source_dialect",
+      "id": "t40_electrolyzer_source_builder",
+      "path": "tools/build_t40_electrolyzer_source.py",
+      "replacement_boundary": "same GT6 dialect; no host-copied adapter",
+      "responsibility": "per-wave dump replay and source pack pin"
+    },
+    {
+      "disposition": "extract_to_source_dialect",
+      "id": "t41_assembler_source_builder",
+      "path": "tools/build_t41_assembler_source.py",
+      "replacement_boundary": "same GT6 dialect; no host-copied adapter",
+      "responsibility": "per-wave dump replay and source pack pin"
+    },
+    {
+      "disposition": "legacy_frozen",
+      "id": "remaining_per_wave_source_builders",
+      "path": "tools/build_t38_roaster_source.py through tools/build_t49_bath_source.py",
+      "replacement_boundary": "archive/replay keeps them; new imports must not copy them",
+      "responsibility": "historical host-specific source builders"
+    },
+    {
+      "disposition": "replace_with_declarative_spec",
+      "id": "semantic_wave_python_registry",
+      "path": "tools/recipe_bulk/waves.py",
+      "replacement_boundary": "spec_registry discovers recipe_import.json; existing WAVES/SEMANTIC_WAVES stay frozen",
+      "responsibility": "SEMANTIC_WAVES / SEMANTIC_COMPILE_ORDER / handwritten WaveSpec"
+    },
+    {
+      "disposition": "replace_with_declarative_spec",
+      "id": "build_recipe_bulk_wave_choices",
+      "path": "tools/build_recipe_bulk.py",
+      "replacement_boundary": "import-source uses --spec; WAVE_CHOICES stays legacy compile only",
+      "responsibility": "static semantic wave choices for compile"
+    },
+    {
+      "disposition": "extract_to_source_dialect",
+      "id": "ordinary_source_generic_mapping",
+      "path": "tools/recipe_bulk/ordinary_source.py",
+      "replacement_boundary": "gt6 dialect calls map_item_operand/map_fluid_operand/fingerprint",
+      "responsibility": "already-generic dump-to-relation mapping"
+    },
+    {
+      "disposition": "out_of_scope",
+      "id": "ordinary_source_host_special_cases",
+      "path": "tools/recipe_bulk/ordinary_source.py",
+      "replacement_boundary": "content cards keep envelope/Mixer/TXX special cases",
+      "responsibility": "Mixer membership, publication groups, host envelopes"
+    },
+    {
+      "disposition": "out_of_scope",
+      "id": "ordinary_wave_production_orchestration",
+      "path": "tools/recipe_bulk/ordinary_wave.py",
+      "replacement_boundary": "future content cards still own lock/census/GameTest",
+      "responsibility": "production lock, compile, census, closeout"
+    },
+    {
+      "disposition": "replace_with_declarative_spec",
+      "id": "legacy_source_pack_manifest_gap",
+      "path": "tools/t40_source_pack_manifest.json",
+      "replacement_boundary": "tools/source_pack_manifest.schema.json describes import identity",
+      "responsibility": "old manifests pin counts/files/revision only"
+    },
+    {
+      "disposition": "reuse_as_is",
+      "id": "recipe_bulk_compile",
+      "path": "tools/recipe_bulk/compile.py",
+      "replacement_boundary": "importer never reimplements compile",
+      "responsibility": "reviewed source + production lock to planned documents"
+    },
+    {
+      "disposition": "reuse_as_is",
+      "id": "recipe_bulk_emit",
+      "path": "tools/recipe_bulk/emit.py",
+      "replacement_boundary": "importer never reimplements emit",
+      "responsibility": "compact GT family emission"
+    },
+    {
+      "disposition": "reuse_as_is",
+      "id": "recipe_bulk_selection",
+      "path": "tools/recipe_bulk/selection.py",
+      "replacement_boundary": "importer never reimplements selection",
+      "responsibility": "lock/source selection and grouping"
+    },
+    {
+      "disposition": "reuse_as_is",
+      "id": "recipe_bulk_resolver",
+      "path": "tools/recipe_bulk/resolver.py",
+      "replacement_boundary": "importer reuses identity resolution, does not copy vocabularies",
+      "responsibility": "operand identity ledger lookup"
+    },
+    {
+      "disposition": "out_of_scope",
+      "id": "count_ceiling_kind_envelope",
+      "path": "portfolio/count-ceiling-kind-envelope",
+      "replacement_boundary": "re-evaluate after this program; do not pre-assign",
+      "responsibility": "21000 telemetry / new kind Java envelope"
+    },
+    {
+      "disposition": "out_of_scope",
+      "id": "nuclear_track_c",
+      "path": "tools/phase5_portfolio_contract.json",
+      "replacement_boundary": "nuclear_started stays false",
+      "responsibility": "nuclear Track C"
+    }
+  ],
+  "note": "inventory is responsibility and replacement boundary, not line counts",
+  "schema_version": 1,
+  "status": "MANUAL_GLUE_INVENTORY_READY"
+}

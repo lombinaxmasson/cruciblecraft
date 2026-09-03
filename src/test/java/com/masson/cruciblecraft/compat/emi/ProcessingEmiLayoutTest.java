@@ -64,6 +64,48 @@ class ProcessingEmiLayoutTest {
     }
 
     @Test
+    void bathCircuitRecipesOverflowInsteadOfThrowing() {
+        ProcessingEmiRecipeData data = ProcessingEmiRecipeData.from(
+                ModProcessingMachines.BATH,
+                new GTRecipe(
+                        List.of(
+                                Ingredient.of(Items.PAPER),
+                                Ingredient.of(Items.COMPASS)),
+                        List.of(2, 0),
+                        List.of(
+                                ItemInputAction.CONSUME,
+                                ItemInputAction.PRESERVE),
+                        List.of(new ItemStack(Items.MAP)),
+                        List.of(new FluidStack(Fluids.WATER, 125)),
+                        List.of(),
+                        List.of(GTRecipe.GUARANTEED_CHANCE),
+                        16,
+                        0L,
+                        0L,
+                        true,
+                        java.util.Optional.empty()));
+        ProcessingEmiLayout layout =
+                ProcessingEmiLayout.create(ModProcessingMachines.BATH, data);
+        assertEquals(1, data.consumedInputs().size());
+        assertEquals(1, data.catalysts().size());
+        long inputSlots = layout.itemSlots().stream()
+                .filter(slot -> slot.kind() != ProcessingEmiLayout.ItemKind.OUTPUT)
+                .count();
+        assertEquals(2, inputSlots);
+        assertTrue(layout.itemSlots().stream().anyMatch(slot ->
+                slot.kind() == ProcessingEmiLayout.ItemKind.CATALYST
+                        && slot.machineSlot() >= ModProcessingMachines.BATH.items().slotCount()));
+        List<ProcessingEmiLayout.Rect> bounds = layout.visibleBounds();
+        for (int left = 0; left < bounds.size(); left++) {
+            for (int right = left + 1; right < bounds.size(); right++) {
+                assertFalse(
+                        bounds.get(left).overlaps(bounds.get(right)),
+                        bounds.get(left) + " / " + bounds.get(right));
+            }
+        }
+    }
+
+    @Test
     void layoutRetainsSpecCoordinatesAndToolRoles() {
         for (ProcessingMachineSpec spec
                 : ModProcessingMachines.CONFIGURED_MACHINES) {
@@ -72,6 +114,9 @@ class ProcessingEmiLayoutTest {
             assertEquals(spec.ui().progress().x(), layout.progress().x());
             assertEquals(spec.ui().progress().y(), layout.progress().y());
             for (ProcessingEmiLayout.ItemSlot slot : layout.itemSlots()) {
+                if (slot.machineSlot() >= spec.items().slotCount()) {
+                    continue;
+                }
                 ProcessingMachineSpec.SlotPosition source =
                         spec.ui().machineSlots().get(slot.machineSlot());
                 assertEquals(source.x(), slot.bounds().x(), spec.id().toString());
@@ -84,6 +129,9 @@ class ProcessingEmiLayoutTest {
                 }
             }
             for (ProcessingEmiLayout.FluidTank tank : layout.fluidTanks()) {
+                if (tank.tank() >= spec.fluids().tankCount()) {
+                    continue;
+                }
                 ProcessingMachineSpec.TankPosition source = spec.ui().tanks().stream()
                         .filter(candidate -> candidate.tank() == tank.tank())
                         .findFirst()

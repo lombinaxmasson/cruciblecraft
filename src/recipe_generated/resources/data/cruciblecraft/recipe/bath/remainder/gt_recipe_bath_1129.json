@@ -1,62 +1,70 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.bath#1129",
-  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 0,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 9,
-          "id": "cruciblecraft:dye_flower_green"
+          "fluid_inputs": [
+            {
+              "amount": 9,
+              "id": "cruciblecraft:dye_flower_green"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 9,
+              "id": "cruciblecraft:dye_watermixed_green"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "0b3790004f8caba120ec9de73223e1d9b1a58b668587537dd959007828a14f23",
+        "4d8de99cc3ef99cbeab99931d0b9de13dc06166c5237c1a7cca693174b686066"
       ],
       "item_inputs": [
-        {
-          "item": "minecraft:white_wool"
-        }
+        [
+          {
+            "item": "minecraft:white_wool"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "minecraft:green_wool"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "0b3790004f8caba120ec9de73223e1d9b1a58b668587537dd959007828a14f23"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#1129",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/904de30e0bee3173"
+        [
+          {
+            "count": 1,
+            "id": "minecraft:green_wool"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/904de30e0bee3173",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:bath/remainder/38840ff25952b742",
+        1,
+        1
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 9,
-          "id": "cruciblecraft:dye_watermixed_green"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -65,32 +73,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "minecraft:white_wool"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "minecraft:green_wool"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "4d8de99cc3ef99cbeab99931d0b9de13dc06166c5237c1a7cca693174b686066"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#1129",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/38840ff25952b742"
+      "selected_source_recipe": "gt.recipe.bath#1129",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:bath",
   "type": "cruciblecraft:compact_gt_recipe_family"

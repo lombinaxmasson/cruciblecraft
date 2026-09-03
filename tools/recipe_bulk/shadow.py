@@ -9,6 +9,7 @@ from tools import t27_common as t27
 from tools import t35_common as t35
 from tools.recipe_bulk.adapters import adapt_wave, consume_identity
 from tools.recipe_bulk.emit import semantic_replay_key
+from tools.recipe_bulk.matrix import authored_relation_count, authored_relations
 from tools.recipe_bulk.ir import validate_ir_document
 from tools.recipe_bulk.write_guard import (
     SHADOW_IR_ROOT,
@@ -36,7 +37,7 @@ def consume_collisions(documents: dict[str, dict[str, Any]]) -> dict[str, list[s
     seen: dict[str, list[str]] = {}
     for relative, document in documents.items():
         target = str(document.get("target_map") or "")
-        for relation in document.get("relations") or []:
+        for relation in authored_relations(document):
             key = f"{target}:{consume_identity(relation)}"
             seen.setdefault(key, []).append(
                 f"{relative}:{relation.get('stable_id')}"
@@ -75,18 +76,18 @@ def compare_wave(wave_id: str, persist_ir: bool = False) -> dict[str, Any]:
         if semantic_replay_key(shadow_docs[name]) != semantic_replay_key(production[name]):
             semantic_mismatches += 1
         shadow_ids = [
-            str(row.get("stable_id")) for row in shadow_docs[name].get("relations") or []
+            str(row.get("stable_id")) for row in authored_relations(shadow_docs[name])
         ]
         produced_ids = [
-            str(row.get("stable_id")) for row in production[name].get("relations") or []
+            str(row.get("stable_id")) for row in authored_relations(production[name])
         ]
         if shadow_ids != produced_ids:
             stable_mismatches += 1
         shadow_orders = [
-            row.get("shadow_order") for row in shadow_docs[name].get("relations") or []
+            row.get("shadow_order") for row in authored_relations(shadow_docs[name])
         ]
         produced_orders = [
-            row.get("shadow_order") for row in production[name].get("relations") or []
+            row.get("shadow_order") for row in authored_relations(production[name])
         ]
         if shadow_orders != produced_orders:
             order_mismatches += 1
@@ -105,17 +106,17 @@ def compare_wave(wave_id: str, persist_ir: bool = False) -> dict[str, Any]:
     shadow_ids = [
         str(relation.get("stable_id"))
         for document in shadow_docs.values()
-        for relation in document.get("relations") or []
+        for relation in authored_relations(document)
     ]
     production_ids = [
         str(relation.get("stable_id"))
         for document in production.values()
-        for relation in document.get("relations") or []
+        for relation in authored_relations(document)
     ]
     relation_fingerprints = {
         str(relation.get("stable_id")): fingerprint(relation)
         for document in shadow_docs.values()
-        for relation in document.get("relations") or []
+        for relation in authored_relations(document)
     }
     if persist_ir:
         destination = shadow_ir_path(wave_id)
@@ -130,7 +131,7 @@ def compare_wave(wave_id: str, persist_ir: bool = False) -> dict[str, Any]:
         "mismatches": mismatches,
         "ok": not mismatches,
         "relation_count": sum(
-            len(document.get("relations") or []) for document in shadow_docs.values()
+            authored_relation_count(document) for document in shadow_docs.values()
         ),
         "relation_fingerprint_sha256": fingerprint(relation_fingerprints),
         "semantic_root_sha256": fingerprint(

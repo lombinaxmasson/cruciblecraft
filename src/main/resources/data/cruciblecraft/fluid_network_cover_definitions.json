@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "definitions": [
+    {
+      "id": "cruciblecraft:logistics_fluid_storage",
+      "behavior": "cruciblecraft:logistics_fluid_storage",
+      "medium": "fluid",
+      "values": {
+        "rate": 1000,
+        "pressureThreshold": 0,
+        "exactCount": 0,
+        "mode": "up_to",
+        "selector": 0
+      },
+      "configurable": ["match_id", "network_id"]
+    },
+    {
+      "id": "cruciblecraft:logistics_fluid_import",
+      "behavior": "cruciblecraft:logistics_fluid_transfer",
+      "medium": "fluid",
+      "values": {
+        "rate": 1000,
+        "pressureThreshold": 0,
+        "exactCount": 0,
+        "mode": "up_to",
+        "selector": 0
+      },
+      "configurable": ["match_id", "network_id", "rate"]
+    },
+    {
+      "id": "cruciblecraft:logistics_fluid_export",
+      "behavior": "cruciblecraft:logistics_fluid_transfer",
+      "medium": "fluid",
+      "values": {
+        "rate": 1000,
+        "pressureThreshold": 0,
+        "exactCount": 0,
+        "mode": "up_to",
+        "selector": 0
+      },
+      "configurable": ["match_id", "network_id", "rate"]
+    }
+  ]
+}

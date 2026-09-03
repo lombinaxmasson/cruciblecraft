@@ -394,6 +394,7 @@ public final class GTRecipeMapLoader {
         if (candidateMetrics.reloadMillis() > sideReloadBudget
                 || candidateMetrics.indexMillis() > sideIndexBudget
                 || candidateMetrics.compactLoadExtruderSyncBytes()
+                        + candidateMetrics.compactFamilySyncBytes()
                         > ModProcessingMachines.RECIPE_SYNC_BUDGET_BYTES) {
             CrucibleCraft.LOGGER.warn(
                     "Recipe publication exceeded an online compact-load budget: {}",
@@ -603,6 +604,7 @@ public final class GTRecipeMapLoader {
                 metrics.reloadMillis() <= reloadBudget,
                 metrics.indexMillis() <= indexBudget,
                 metrics.compactLoadExtruderSyncBytes()
+                        + metrics.compactFamilySyncBytes()
                         <= ModProcessingMachines.RECIPE_SYNC_BUDGET_BYTES,
                 lookup.p95Nanos()
                         <= lookupP95Budget,

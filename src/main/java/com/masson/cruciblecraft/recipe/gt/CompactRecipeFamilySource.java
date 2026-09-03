@@ -1,5 +1,6 @@
 package com.masson.cruciblecraft.recipe.gt;
 
+import java.util.List;
 import java.util.Objects;
 
 import net.minecraft.resources.ResourceLocation;
@@ -11,5 +12,9 @@ public record CompactRecipeFamilySource(
     public CompactRecipeFamilySource {
         Objects.requireNonNull(id, "id");
         Objects.requireNonNull(definition, "definition");
+    }
+
+    public List<CompactGTRecipeFamilyDefinition.Relation> authoredRelations() {
+        return CompactAuthoredMatrix.expand(definition);
     }
 }

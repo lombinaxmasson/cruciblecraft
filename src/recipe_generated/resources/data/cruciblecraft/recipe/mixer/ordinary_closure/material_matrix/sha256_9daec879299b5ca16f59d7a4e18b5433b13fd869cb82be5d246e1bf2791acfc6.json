@@ -1,66 +1,93 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:9daec879299b5ca16f59d7a4e18b5433b13fd869cb82be5d246e1bf2791acfc6",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
+          "fluid_inputs": [],
+          "fluid_outputs": []
         }
       ],
-      "item_input_counts": [
-        1,
-        1,
-        1
+      "hashes": [
+        "f48d34bad5c00656f0a7ef08f84e7f47304170c0251c8f3060066f1ce392a27f",
+        "0c0c82682a620c1c124c40a8cabc8bc22e03f114a54d528ba05ef5f2e99b0fb4",
+        "6c3479d99c4c0f1b7fc0e947f1ee24d2469ca16f892c24fb6c8765e3ee8a08db"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:peat/dust"
-        },
-        {
-          "item": "cruciblecraft:ashes/dust"
-        },
-        {
-          "item": "cruciblecraft:gt_multiitem/multiitem_food_m12050"
-        }
+        [
+          {
+            "item": "cruciblecraft:peat/dust"
+          },
+          {
+            "item": "cruciblecraft:ashes/dust"
+          },
+          {
+            "item": "cruciblecraft:gt_multiitem/multiitem_food_m12050"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:peat/dust"
+          },
+          {
+            "item": "cruciblecraft:dark_ashes/dust"
+          },
+          {
+            "item": "cruciblecraft:gt_multiitem/multiitem_food_m12050"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:peat/dust"
+          },
+          {
+            "item": "cruciblecraft:volcanic_ashes/dust"
+          },
+          {
+            "item": "cruciblecraft:gt_multiitem/multiitem_food_m12050"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:peat_bituminous/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "f48d34bad5c00656f0a7ef08f84e7f47304170c0251c8f3060066f1ce392a27f"
-        ],
-        "selected_source_recipe": "sha256:9daec879299b5ca16f59d7a4e18b5433b13fd869cb82be5d246e1bf2791acfc6",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/72fccd52cd35cb4e"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:peat_bituminous/dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/72fccd52cd35cb4e",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/33133d3a38b0861f",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/0d20e37a6025a37e",
+        2,
+        2
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -77,91 +104,15 @@
         1,
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:peat/dust"
-        },
-        {
-          "item": "cruciblecraft:dark_ashes/dust"
-        },
-        {
-          "item": "cruciblecraft:gt_multiitem/multiitem_food_m12050"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:peat_bituminous/dust"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "0c0c82682a620c1c124c40a8cabc8bc22e03f114a54d528ba05ef5f2e99b0fb4"
-        ],
-        "selected_source_recipe": "sha256:9daec879299b5ca16f59d7a4e18b5433b13fd869cb82be5d246e1bf2791acfc6",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/33133d3a38b0861f"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:peat/dust"
-        },
-        {
-          "item": "cruciblecraft:volcanic_ashes/dust"
-        },
-        {
-          "item": "cruciblecraft:gt_multiitem/multiitem_food_m12050"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:peat_bituminous/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "6c3479d99c4c0f1b7fc0e947f1ee24d2469ca16f892c24fb6c8765e3ee8a08db"
-        ],
-        "selected_source_recipe": "sha256:9daec879299b5ca16f59d7a4e18b5433b13fd869cb82be5d246e1bf2791acfc6",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/0d20e37a6025a37e"
+      "selected_source_recipe": "sha256:9daec879299b5ca16f59d7a4e18b5433b13fd869cb82be5d246e1bf2791acfc6",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

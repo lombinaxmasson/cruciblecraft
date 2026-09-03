@@ -12,8 +12,17 @@ Minecraft 1.21.1 NeoForge 上的 GT6 **风格**工业模组。常规材料、配
 
 - **1.x 已声明的 portfolio 已联合退出**（`ONE_X_JOINT_EXIT_READY`）。current execution gap = 0；deferred ledger = 0（1,817 条 Smelter MTE recovery 完成 + 28 条独立 post-1.x scope）。
 - **源能力对照图已关闭**（`SOURCE_CAPABILITY_MAP_READY`）。113 行机制对照（22 行 seed + 91 行展开），不是 recipe census。
-- **下一张已签发、尚未实现**： [通用 Source Pack 导入器](docs/history/card-plans/active/通用Source-Pack导入器详细计划.md)（slug `portfolio/generic-recipe-generator`）。它只收掉「新 Source Pack → canonical source / compile spec」之间的手工胶水，不重造已经完成的 `recipe_bulk` 编译器，不发配方。
+- **通用 Source Pack 导入器已关闭**（`GENERIC_RECIPE_IMPORT_READY`）。见 [关闭计划](docs/history/card-plans/closed/通用Source-Pack导入器详细计划.md)。现有 host 接新 Source Pack 不再需要 per-wave builder 或手写 `WaveSpec`；production 仍要单独的内容卡。不发配方。
+- **物流封面网络 R0 已关闭**（`LOGISTICS_COVER_NET_R0_READY`）。见 [关闭计划](docs/history/card-plans/closed/物流封面网络R0详细计划.md)。7 个 T13 logistics cover kind 的语义与 T19/T44 适配面已冻结；可行性 `requires_new_runtime`；不实现网络运行时，不预分配 core。
+- **T13c 排除表收回 R0 已关闭**（`T13C_EXCLUSION_RECLAIM_R0_READY`）。见 [关闭计划](docs/history/card-plans/closed/T13c排除表收回R0详细计划.md)。五类 129/471 lineage 与现有机制适配面已冻结；不实现 MTE，不预分配 implementation child。
+- **非矿世界生成 R0 已关闭**（`NON_ORE_WORLDGEN_R0_READY`）。见 [关闭计划](docs/history/card-plans/closed/非矿世界生成R0详细计划.md)。capability map 点名的四类非矿 worldgen dump 特征（18/190）与现有 T20 catalog 适配面已冻结；四类可行性均为 `requires_new_runtime`；不实现世界生成，不预分配 implementation child。
+- **原版替换 R0 已关闭**（`VANILLA_REPLACE_R0_READY`）。见 [关闭计划](docs/history/card-plans/closed/原版替换R0详细计划.md)。capability map 点名的两类 vanilla replace loader 与现有 datapack / 导入器适配面已冻结；两类可行性均为 `requires_new_runtime`；不替换原版配方，不预分配 implementation child。
+- **作物食物蜜蜂 R0 已关闭**（`CROPS_FOOD_BEES_R0_READY`）。见 [关闭计划](docs/history/card-plans/closed/作物食物蜜蜂R0详细计划.md)。capability map 点名的三类 crops / food / bees 与现有机制适配面已冻结；三类可行性均为 `requires_new_runtime`；不实现作物、食物图或蜂箱，不预分配 implementation child。
+- **首小时表现与阶段账本已关闭**（`FIRST_HOUR_PRESENTATION_READY`）。见 [关闭计划](docs/history/card-plans/closed/首小时表现与阶段账本详细计划.md)。mortar / sifter / bath 迁入 GT6 工具贴图；`smelter` 改走立方机，不再与坩埚共用小锅。阶段账本三态与后续顺序见 [冻结与未实现账本](docs/current/unimplemented-gap.md)。不预分配下一张实现 child。
+- **原版替换 MVP 已关闭**（`VANILLA_REPLACE_MVP_READY`）。见 [关闭计划](docs/history/card-plans/closed/原版替换MVP详细计划.md)。纸 3 甘蔗 → 1 纸；熔炉 / 骨头 deferred（无铁前点火物）；R0 seal 未改写。账本 Vanilla / Replace 为部分实现，余量仍 frozen。不预分配下一张实现 child。
+- **物品网络核心已关闭**（`ITEM_NETWORK_CORE_READY`）。见 [关闭计划](docs/history/card-plans/closed/物品网络核心详细计划.md)。物品两行封面网 `runtime_ready`；T19 9/8 仍活锁、目录在 sidecar；排除 Fluid / Generic / Dump 与 `MultiTileEntityLogisticsCore`。不是七 kind `player_complete`。机器可读 `unique_active_wave = null`；`next_unassigned = true`。
 - 核能 Track C 仍 `started = false`。不签发新的里程碑编号。不进行玩家发行、RC soak 或 GA。
+- **机制卡 `*_READY` 不是内容完成。** 对照图之后的 R0 只冻结分母和可行性。缺口总账：[冻结与未实现账本](docs/current/unimplemented-gap.md)。
 
 历史卡的 `_READY` 只证明当时那张卡的分母成立，不证明模组已完整可玩或 GT6 做完了。路线与规则以 [总体规划](docs/current/roadmap.md) 为准。
 
@@ -95,14 +104,17 @@ tools/waves/<slug>/     某一张卡的 lock / census / seal
 
 早期用 T7、T20、T45 这种编号卡推进。后来证明编号会漏进路径、测试名和运行时 ID，新工作又很难从旧特例复用，所以活代码表层改成了语义路径：`recipe/mortar/`、`recipe/pipe/`、`recipe/ingot_form/`、wave slug。
 
-剩下的 `TXX` **不是没看见，是故意留下的**：
+剩下的 `TXX` 是未做完的迁移，不是永久豁免。唯一计划保留处是
+`docs/history/card-plans/`。完整批次、数量和验证见
+[语义命名长期清单](docs/current/semantic-naming.md)。不要在内容卡里顺手改名。
+`GT6` / `gt6_*` 是 GregTech 6，不是卡号。
+
+当前仍能看见的大块：
 
 - 绑定 ID（NBT、family id、闸门字段，例如 `t14_extruder`、`t11_materials/`）
-- 约 396 个 `tools/build_t*.py` 和对应收据
-- 测试夹具 `t39_*_fixture` … `t45_*_fixture`（和 seal 字节绑在一起）
-- 贴图目录 `t34_gt6/`、部分 GameTest 方法名
-
-没有专门的迁移卡，不要整批改名。新配方、新机器、新工具不要从这些 T 号文件抄起步。完整清单和再动手顺序见 [语义命名残留](docs/current/semantic-naming.md)。`GT6` / `gt6_*` 是 GregTech 6，不是卡号。
+- 约 397 个 `tools/build_t*.py` 和对应收据
+- 测试夹具 6 目录、1321 文件（`t39_*` … `t45_*`，含 `t39_withdrawn_recovery`）
+- 贴图目录 `t34_gt6/`；GameTest T18 方法名已改，readiness token 未改
 
 ## 文档地图
 

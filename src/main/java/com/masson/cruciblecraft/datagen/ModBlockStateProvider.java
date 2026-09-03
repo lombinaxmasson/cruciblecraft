@@ -157,67 +157,99 @@ public class ModBlockStateProvider extends BlockStateProvider {
             ResourceLocation texture = variant.textureLocation();
             if (variant.slab()) {
                 String path = variant.registryPath();
-                var doubleslab = models().cubeAll(path + "_double", texture);
-                var bottom = models().slab(path + "_bottom", texture, texture, texture);
-                var top = models().slabTop(path + "_top", texture, texture, texture);
+                var doubleslab = cubeAll(path + "_double", texture, false);
+                var bottom = slabBottom(path + "_bottom", texture, false);
+                var top = slabTop(path + "_top", texture, false);
                 slabBlock((SlabBlock) block, bottom, top, doubleslab);
                 itemModels().getBuilder(path).parent(bottom);
             } else {
-                simpleBlockWithItem(
-                        block,
-                        models().cubeAll(variant.registryPath(), texture));
+                ModelFile cube = cubeAll(variant.registryPath(), texture, false);
+                simpleBlock(block, cube);
+                itemModels().getBuilder(variant.registryPath()).parent(cube);
             }
         }
     }
 
     private void registerGtBlockObjects() {
         for (GtBlockObjectCatalog.Variant variant : GtBlockObjectCatalog.variants()) {
-            var block = ModBlocks.gtBlockObjectBlocksById().get(variant.id()).get();
-            ResourceLocation texture = variant.textureLocation();
-            String path = variant.registryPath();
-            if (variant.slab()) {
-                var doubleslab = models().cubeAll(path + "_double", texture);
-                var bottom = models().slab(path + "_bottom", texture, texture, texture);
-                var top = models().slabTop(path + "_top", texture, texture, texture);
-                slabBlock((SlabBlock) block, bottom, top, doubleslab);
-                itemModels().getBuilder(path).parent(bottom);
-            } else if (variant.log() || variant.bale()) {
-                axisBlock((RotatedPillarBlock) block, texture, texture);
-                itemModels().getBuilder(path).parent(models().cubeColumn(path, texture, texture));
-            } else if (variant.bars()) {
-                paneBlockWithRenderType(
-                        (IronBarsBlock) block, texture, texture, "cutout");
-                itemModels().getBuilder(path).parent(
-                        models().getExistingFile(mcLoc("item/generated")))
-                        .texture("layer0", texture);
-            } else if (variant.rail()) {
-                ModelFile rail = models().getExistingFile(mcLoc("block/rail"));
-                getVariantBuilder(block).forAllStates(state ->
-                        ConfiguredModel.builder().modelFile(rail).build());
-                itemModels().getBuilder(path).parent(
-                        models().getExistingFile(mcLoc("item/generated")))
-                        .texture("layer0", texture);
-            } else {
-                simpleBlockWithItem(block, models().cubeAll(path, texture));
-            }
+            registerGtBlockObject(
+                    variant,
+                    ModBlocks.gtBlockObjectBlocksById().get(variant.id()).get());
         }
-        for (GtBlockObjectCatalog.Variant variant : com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog.variants()) {
-            var block = ModBlocks.bathRemainderBlockObjectBlocksById().get(variant.id()).get();
-            ResourceLocation texture = variant.textureLocation();
-            String path = variant.registryPath();
-            if (variant.slab()) {
-                var doubleslab = models().cubeAll(path + "_double", texture);
-                var bottom = models().slab(path + "_bottom", texture, texture, texture);
-                var top = models().slabTop(path + "_top", texture, texture, texture);
-                slabBlock((SlabBlock) block, bottom, top, doubleslab);
-                itemModels().getBuilder(path).parent(bottom);
-            } else if (variant.log() || variant.bale()) {
-                axisBlock((RotatedPillarBlock) block, texture, texture);
-                itemModels().getBuilder(path).parent(models().cubeColumn(path, texture, texture));
-            } else {
-                simpleBlockWithItem(block, models().cubeAll(path, texture));
-            }
+        for (GtBlockObjectCatalog.Variant variant :
+                com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog.variants()) {
+            registerGtBlockObject(
+                    variant,
+                    ModBlocks.bathRemainderBlockObjectBlocksById().get(variant.id()).get());
         }
+    }
+
+    private void registerGtBlockObject(
+            GtBlockObjectCatalog.Variant variant,
+            net.minecraft.world.level.block.Block block) {
+        ResourceLocation texture = variant.textureLocation();
+        ResourceLocation side = variant.sideTextureLocation();
+        String path = variant.registryPath();
+        boolean tinted = variant.dyeTint();
+        if (variant.slab()) {
+            var doubleslab = cubeAll(path + "_double", texture, tinted);
+            var bottom = slabBottom(path + "_bottom", texture, tinted);
+            var top = slabTop(path + "_top", texture, tinted);
+            slabBlock((SlabBlock) block, bottom, top, doubleslab);
+            itemModels().getBuilder(path).parent(bottom);
+        } else if (variant.log() || variant.bale()) {
+            axisBlock((RotatedPillarBlock) block, side, texture);
+            itemModels().getBuilder(path).parent(
+                    models().getExistingFile(modLoc(path)));
+        } else if (variant.bars()) {
+            paneBlockWithRenderType(
+                    (IronBarsBlock) block, texture, texture, "cutout");
+            itemModels().getBuilder(path).parent(
+                    models().getExistingFile(mcLoc("item/generated")))
+                    .texture("layer0", texture);
+        } else if (variant.rail()) {
+            ModelFile rail = models().getExistingFile(mcLoc("block/rail"));
+            getVariantBuilder(block).forAllStates(state ->
+                    ConfiguredModel.builder().modelFile(rail).build());
+            itemModels().getBuilder(path).parent(
+                    models().getExistingFile(mcLoc("item/generated")))
+                    .texture("layer0", texture);
+        } else {
+            ModelFile cube = cubeAll(path, texture, tinted);
+            simpleBlock(block, cube);
+            itemModels().getBuilder(path).parent(cube);
+        }
+    }
+
+    private ModelFile cubeAll(
+            String path, ResourceLocation texture, boolean tinted) {
+        if (tinted) {
+            return models().withExistingParent(path, modLoc("block/tinted_cube_all"))
+                    .texture("all", texture);
+        }
+        return models().cubeAll(path, texture);
+    }
+
+    private ModelFile slabBottom(
+            String path, ResourceLocation texture, boolean tinted) {
+        if (tinted) {
+            return models().withExistingParent(path, modLoc("block/tinted_slab"))
+                    .texture("bottom", texture)
+                    .texture("top", texture)
+                    .texture("side", texture);
+        }
+        return models().slab(path, texture, texture, texture);
+    }
+
+    private ModelFile slabTop(
+            String path, ResourceLocation texture, boolean tinted) {
+        if (tinted) {
+            return models().withExistingParent(path, modLoc("block/tinted_slab_top"))
+                    .texture("bottom", texture)
+                    .texture("top", texture)
+                    .texture("side", texture);
+        }
+        return models().slabTop(path, texture, texture, texture);
     }
 
     private void registerHoppers() {
@@ -637,7 +669,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private static String shapedMachineModel(String textureId) {
         return switch (textureId) {
-            case "mortar", "sifter", "bath", "smelter" -> textureId;
+            case "mortar", "sifter", "bath" -> textureId;
             default -> null;
         };
     }

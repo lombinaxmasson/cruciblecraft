@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from tools.recipe_bulk import identity as identity_mod
+from tools import tool_head_prefix as thp
 
 MAPPING_CLASSES = (
     "exact_runtime",
@@ -50,6 +51,7 @@ def _legacy_resolve(
     meta = source.get("meta")
     existing = str(operand.get("runtime_id") or "")
     if existing.startswith(PUBLISHED_PREFIXES):
+        existing = thp.rewrite_published_runtime(existing, item, meta)
         return {
             "class": "exact_runtime",
             "disposition": "proven_equivalent",
@@ -97,12 +99,15 @@ def _legacy_resolve(
 
 
 def _existing_runtime(operand: dict[str, Any]) -> str:
+    source = operand.get("source") or {}
+    item = str(source.get("item") or operand.get("item") or "")
+    meta = source.get("meta")
     runtime = str(operand.get("runtime_id") or "")
     if runtime.startswith(PUBLISHED_PREFIXES):
-        return runtime
+        return thp.rewrite_published_runtime(runtime, item, meta)
     alias = operand.get("alias")
     if isinstance(alias, str) and alias.startswith(PUBLISHED_PREFIXES):
-        return alias
+        return thp.rewrite_published_runtime(alias, item, meta)
     return ""
 
 

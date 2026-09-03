@@ -1,0 +1,47 @@
+{
+  "categories": [
+    {
+      "category": "Vanilla",
+      "contrast": {
+        "adds_vanilla_adjacent_recipes": true,
+        "empty_dump_maps_are_not_census": true,
+        "furnace_dump_recipe_count": 0,
+        "not_a_recipe_json_census": true
+      },
+      "evidence_class": "SOURCE_BACKED",
+      "gt6_anchor": "gregtech.loaders.c.Loader_Recipes_Vanilla",
+      "source_file_count": 1,
+      "source_files": [
+        "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java"
+      ]
+    },
+    {
+      "category": "Replace",
+      "contrast": {
+        "asm_replacements_is_bytecode": true,
+        "empty_dump_maps_are_not_census": true,
+        "nested_helpers_same_file": [
+          "RecipeReplacement",
+          "RecipeReplacer"
+        ],
+        "not_recipe_json": true,
+        "removes_or_substitutes": true,
+        "replacements_class": [
+          "Replacements"
+        ]
+      },
+      "evidence_class": "SOURCE_BACKED",
+      "gt6_anchor": "gregtech.loaders.c.Loader_Recipes_Replace + gregtech.asm.transformers.minecraft.Replacements",
+      "source_file_count": 2,
+      "source_files": [
+        "src/main/java/gregtech/loaders/c/Loader_Recipes_Replace.java",
+        "src/main/java/gregtech/asm/transformers/minecraft/Replacements.java"
+      ]
+    }
+  ],
+  "generated_by": "python tools/build_vanilla_replace_r0.py",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "SOURCE_SEMANTICS_READY",
+  "wave_slug": "portfolio/vanilla-replace-r0"
+}

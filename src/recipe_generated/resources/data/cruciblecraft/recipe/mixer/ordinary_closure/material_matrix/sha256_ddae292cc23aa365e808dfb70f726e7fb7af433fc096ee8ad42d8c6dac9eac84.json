@@ -1,69 +1,109 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:ddae292cc23aa365e808dfb70f726e7fb7af433fc096ee8ad42d8c6dac9eac84",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 500,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
+          "fluid_inputs": [
+            {
+              "amount": 500,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ],
+          "fluid_outputs": []
         },
         {
-          "kind": "consume"
+          "fluid_inputs": [
+            {
+              "amount": 500,
+              "id": "cruciblecraft:spectral_dew"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 500,
+              "id": "cruciblecraft:potion_mineralwater"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 500,
+              "id": "minecraft:water"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "item_input_counts": [
-        1,
-        1
+      "hashes": [
+        "d179bd0ea32cdb7a16619316f724656a0e33eec4cdf221b7a0cda1467091a097",
+        "e8d6eb6e8aada7a0e42d96cc5d236133fd0621712b38462c55700dd5e7c8aaec",
+        "288bdc3ab732fde90a64ed08f0d58f0065bfeea8a33cb8845d51a98ba92986f4",
+        "51778ac882728bacbbd6a5bea9b9d8a19f1b34d10120e883a95ce5c0e967c9ae"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:charged_certus_quartz/gem"
-        },
-        {
-          "item": "cruciblecraft:void_quartz/gem"
-        }
+        [
+          {
+            "item": "cruciblecraft:charged_certus_quartz/gem"
+          },
+          {
+            "item": "cruciblecraft:void_quartz/gem"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:fluix/gem"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "d179bd0ea32cdb7a16619316f724656a0e33eec4cdf221b7a0cda1467091a097"
-        ],
-        "selected_source_recipe": "sha256:ddae292cc23aa365e808dfb70f726e7fb7af433fc096ee8ad42d8c6dac9eac84",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/011b95f62d29e0b2"
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:fluix/gem"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/011b95f62d29e0b2",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:mixer/ordinary_closure/57760d024e1c8aec",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:mixer/ordinary_closure/bdcac0b976beccba",
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        "cruciblecraft:mixer/ordinary_closure/441e59f6d184f38a",
+        3,
+        3
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 64,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 500,
-          "id": "cruciblecraft:spectral_dew"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -76,137 +116,15 @@
         1,
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:charged_certus_quartz/gem"
-        },
-        {
-          "item": "cruciblecraft:void_quartz/gem"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:fluix/gem"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "e8d6eb6e8aada7a0e42d96cc5d236133fd0621712b38462c55700dd5e7c8aaec"
-        ],
-        "selected_source_recipe": "sha256:ddae292cc23aa365e808dfb70f726e7fb7af433fc096ee8ad42d8c6dac9eac84",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/57760d024e1c8aec"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 500,
-          "id": "cruciblecraft:potion_mineralwater"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:charged_certus_quartz/gem"
-        },
-        {
-          "item": "cruciblecraft:void_quartz/gem"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:fluix/gem"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "288bdc3ab732fde90a64ed08f0d58f0065bfeea8a33cb8845d51a98ba92986f4"
-        ],
-        "selected_source_recipe": "sha256:ddae292cc23aa365e808dfb70f726e7fb7af433fc096ee8ad42d8c6dac9eac84",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/bdcac0b976beccba"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 500,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:charged_certus_quartz/gem"
-        },
-        {
-          "item": "cruciblecraft:void_quartz/gem"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:fluix/gem"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "51778ac882728bacbbd6a5bea9b9d8a19f1b34d10120e883a95ce5c0e967c9ae"
-        ],
-        "selected_source_recipe": "sha256:ddae292cc23aa365e808dfb70f726e7fb7af433fc096ee8ad42d8c6dac9eac84",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/441e59f6d184f38a"
+      "selected_source_recipe": "sha256:ddae292cc23aa365e808dfb70f726e7fb7af433fc096ee8ad42d8c6dac9eac84",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

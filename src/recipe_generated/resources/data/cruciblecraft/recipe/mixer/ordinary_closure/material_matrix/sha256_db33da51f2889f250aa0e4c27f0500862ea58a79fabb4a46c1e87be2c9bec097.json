@@ -1,66 +1,413 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
+          "fluid_inputs": [],
+          "fluid_outputs": []
         }
       ],
-      "item_input_counts": [
-        2,
-        1,
-        1
+      "hashes": [
+        "8209523c5a1288abe7d9f2703f088cb1b2fadb5953aa74515817ff15214751b3",
+        "ce28b4c921ae922f29c2e2d6e1533414cbd0a9eb5b6b63639c556802218a9b16",
+        "c275c7e5df599b1d0d20d87155e947f4574b055ee7e8c809b86dcdd6fb8131c3",
+        "b15049527e24296f6e38c05056f6d391dd56218eb92349d08d0d3da52efd180e",
+        "3bc22219d596cfb2fb90a586b687bcb59ad3c6c58b19721c91f81c51d98b4063",
+        "ffca86cdff01910d23c5b4cbe478f8af77110cdb20b22313bb8fe2e9e13a9fc9",
+        "e482f5186337719ba6fd9a0d30332e52610077d61042300daa679a6940495c39",
+        "aeb5cdd1d7c170a7ed9d8053e98e36d2d3733d3241d76c232ec95c670b570d95",
+        "735686f3fefff2c3bec1ee18048192ac58704f50572ceb337b81d42a9115bf13",
+        "e1c70ea6004de57e6f074c7a4a8dfe824579de1f4e90780f0cc86cd1392c3f3b",
+        "fe4045aeb5a3ea69199ceacf0da2b56693a00f2b65273293cf641a08f7f443fc",
+        "992541197bc2b0c3c5cc05f53e1d0597646a687564e45b92054a7d62c473ffdc",
+        "3a3e1e99554fd95eb6a6f9798db88d76fdc456bfc1e315882afb2f86af09e57f",
+        "257b362ac148163b2d5ec1e9d3ce762166f1f1146084790715ca96f58ea1cff8",
+        "70671aa439a79a0a90c1bb5cf080023317e56d0455b5d0243dc142c2e681f9ad",
+        "950e5344f2ca74b86c7f1e804fe9998a6e811e52ae038059bcc0b7beb3240781",
+        "f27aaeedfac3f87d731ddaa41c29fd1462a210b9db8a7c3f59f70ec2ca34f90f",
+        "b2f7d48328355a41743bce36ee2077988b77a15edbf312513556a83766e8ad19",
+        "2ae5dd07e7ac38af524b351e636b973fdaf06d2be807ad94223f96e7c740a771"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:mana_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:mana_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:sand/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:sunny_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:charged_certus_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:white_end_sand/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:quartz_black/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:smokey_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:blaze_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:certus_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:fluix/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:quartzite/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:nether_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:lavender_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:black_end_sand/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:red_sand/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:red_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:elven_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:flint/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kaolinite/dust"
+          },
+          {
+            "item": "cruciblecraft:void_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_feldspar/dust"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "8209523c5a1288abe7d9f2703f088cb1b2fadb5953aa74515817ff15214751b3"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/04b5d9dd5a280211"
+        [
+          {
+            "count": 4,
+            "id": "cruciblecraft:porcelain/dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/04b5d9dd5a280211",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/0797a30c0592cad2",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/d85730d72aef4a70",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/2b3a5b85378e43f9",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/fc575016f95a8b72",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/532b9f411a74e272",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/259400bf0730ee95",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/09d6289c516a8249",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/4f3366ecfe24e8c9",
+        8,
+        8
+      ],
+      [
+        9,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/2199fcad68659728",
+        9,
+        9
+      ],
+      [
+        10,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/8a6278505cc31a4c",
+        10,
+        10
+      ],
+      [
+        11,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/100e08d646e11d0e",
+        11,
+        11
+      ],
+      [
+        12,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/bbf7d8f9071efc9b",
+        12,
+        12
+      ],
+      [
+        13,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/6bca47c589077138",
+        13,
+        13
+      ],
+      [
+        14,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/09d0adaa2f4a530d",
+        14,
+        14
+      ],
+      [
+        15,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/358e3e909019c791",
+        15,
+        15
+      ],
+      [
+        16,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/6bc7a772ee81dd45",
+        16,
+        16
+      ],
+      [
+        17,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/6e0a3792f24a7253",
+        17,
+        17
+      ],
+      [
+        18,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/938650b3bb1a3358",
+        18,
+        18
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 64,
       "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -77,939 +424,15 @@
         1,
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:sand/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "ce28b4c921ae922f29c2e2d6e1533414cbd0a9eb5b6b63639c556802218a9b16"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/0797a30c0592cad2"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        2,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:sunny_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "c275c7e5df599b1d0d20d87155e947f4574b055ee7e8c809b86dcdd6fb8131c3"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/d85730d72aef4a70"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        2,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:charged_certus_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "b15049527e24296f6e38c05056f6d391dd56218eb92349d08d0d3da52efd180e"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/2b3a5b85378e43f9"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        2,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:white_end_sand/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "3bc22219d596cfb2fb90a586b687bcb59ad3c6c58b19721c91f81c51d98b4063"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/fc575016f95a8b72"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        2,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:quartz_black/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "ffca86cdff01910d23c5b4cbe478f8af77110cdb20b22313bb8fe2e9e13a9fc9"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/532b9f411a74e272"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        2,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:smokey_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "e482f5186337719ba6fd9a0d30332e52610077d61042300daa679a6940495c39"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 6,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/259400bf0730ee95"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        2,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:blaze_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "aeb5cdd1d7c170a7ed9d8053e98e36d2d3733d3241d76c232ec95c670b570d95"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 7,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/09d6289c516a8249"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        2,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:certus_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "735686f3fefff2c3bec1ee18048192ac58704f50572ceb337b81d42a9115bf13"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 8,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/4f3366ecfe24e8c9"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        2,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:fluix/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "e1c70ea6004de57e6f074c7a4a8dfe824579de1f4e90780f0cc86cd1392c3f3b"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 9,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/2199fcad68659728"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        2,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:quartzite/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "fe4045aeb5a3ea69199ceacf0da2b56693a00f2b65273293cf641a08f7f443fc"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 10,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/8a6278505cc31a4c"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        2,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:nether_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "992541197bc2b0c3c5cc05f53e1d0597646a687564e45b92054a7d62c473ffdc"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 11,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/100e08d646e11d0e"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        2,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:lavender_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "3a3e1e99554fd95eb6a6f9798db88d76fdc456bfc1e315882afb2f86af09e57f"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 12,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/bbf7d8f9071efc9b"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        2,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:black_end_sand/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "257b362ac148163b2d5ec1e9d3ce762166f1f1146084790715ca96f58ea1cff8"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 13,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/6bca47c589077138"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        2,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:red_sand/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "70671aa439a79a0a90c1bb5cf080023317e56d0455b5d0243dc142c2e681f9ad"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 14,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/09d0adaa2f4a530d"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        2,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:red_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "950e5344f2ca74b86c7f1e804fe9998a6e811e52ae038059bcc0b7beb3240781"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 15,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/358e3e909019c791"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        2,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:elven_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "f27aaeedfac3f87d731ddaa41c29fd1462a210b9db8a7c3f59f70ec2ca34f90f"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 16,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/6bc7a772ee81dd45"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        2,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:flint/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "b2f7d48328355a41743bce36ee2077988b77a15edbf312513556a83766e8ad19"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 17,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/6e0a3792f24a7253"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        2,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kaolinite/dust"
-        },
-        {
-          "item": "cruciblecraft:void_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_feldspar/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:porcelain/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "2ae5dd07e7ac38af524b351e636b973fdaf06d2be807ad94223f96e7c740a771"
-        ],
-        "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 18,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/938650b3bb1a3358"
+      "selected_source_recipe": "sha256:db33da51f2889f250aa0e4c27f0500862ea58a79fabb4a46c1e87be2c9bec097",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

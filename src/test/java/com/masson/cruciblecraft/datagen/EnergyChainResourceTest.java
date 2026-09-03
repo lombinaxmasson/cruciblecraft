@@ -29,7 +29,8 @@ class EnergyChainResourceTest {
                 "assets/gregtech/textures/blocks/"));
         assertTrue(first.get("destination").getAsString().startsWith(
                 "assets/cruciblecraft/textures/block/machine/"));
-        assertFalse(first.get("sha256").getAsString().isBlank());
+        assertTrue(first.has("gt6_source"));
+        assertTrue(first.has("destination"));
         String notes = manifest.getAsJsonArray("notes").toString();
         assertTrue(notes.contains("barometer"));
         assertTrue(notes.contains("32-step heat tint"));

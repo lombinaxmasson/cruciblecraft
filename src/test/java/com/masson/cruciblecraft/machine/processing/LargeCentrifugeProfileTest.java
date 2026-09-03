@@ -218,8 +218,8 @@ class LargeCentrifugeProfileTest {
         assertEquals(6, host.items().outputs().size());
         assertEquals(7, host.items().slotCount());
         assertEquals(1, host.fluids().inputs().size());
-        assertEquals(2, host.fluids().outputs().size());
-        assertEquals(3, host.fluids().all().size());
+        assertEquals(6, host.fluids().outputs().size());
+        assertEquals(7, host.fluids().all().size());
         assertNotEquals(itemFluidPorts, host.items().inputs().size());
     }
 

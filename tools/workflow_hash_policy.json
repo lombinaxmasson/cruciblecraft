@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "status": "ENFORCED",
+  "description": "Active development workflow state must not depend on self-authored hashes, currentness sidecars, or closeout seals.",
+  "reachability_sources": {
+    "verification_profiles": "tools/verification_profiles.json",
+    "verification_builder_policy": "tools/verification_builder_policy.json",
+    "python_test_policy": "tools/python_test_policy.json"
+  },
+  "excluded_profile_names": [
+    "archive"
+  ],
+  "scannable_suffixes": [
+    ".py",
+    ".json",
+    ".java",
+    ".yml",
+    ".yaml"
+  ],
+  "always_active_patterns": [
+    ".github/workflows/**",
+    "tools/check_no_workflow_hashes.py",
+    "tools/workflow_hash_policy.json",
+    "tools/tests/test_check_no_workflow_hashes.py"
+  ],
+  "forbidden_patterns": [
+    {
+      "id": "workflow_sha_field_or_api",
+      "regex": "(?i)(?:\\b(?:hashlib\\.)?sha256\\b|\\bsha256_file\\b|\\b[A-Za-z_][A-Za-z0-9_]*(?:sha256|_hash|_hashes|_digest|_checksum)\\b|\"[^\"]*(?:sha256|hash|digest|checksum)[^\"]*\"\\s*:)"
+    },
+    {
+      "id": "workflow_currentness_field_or_api",
+      "regex": "(?i)(?:\\.currentness\\.json\\b|\\bcurrentness(?:\\.[A-Za-z_][A-Za-z0-9_]*)?\\b|\\b(?:check_sidecar|write_sidecar|rebind_sidecar|semantic_root_sha256|envelope_sha256)\\b)"
+    },
+    {
+      "id": "workflow_seal_field_or_api",
+      "regex": "(?i)(?:\\bcloseout_seal(?:\\.[A-Za-z_][A-Za-z0-9_]*)?\\b|\\b(?:check_wave_seal|load_seal|is_sealed|live_or_sealed_errors|sealed_or_live_present|seal_sha256)\\b|\"[^\"]*seal[^\"]*\"\\s*:)"
+    }
+  ],
+  "whole_path_exemptions": [
+    {
+      "id": "archive_and_history",
+      "path_patterns": [
+        "archive/**",
+        "docs/history/**",
+        "tools/contracts/narrative_archive.json",
+        "tools/legacy_verification_index.json"
+      ]
+    },
+    {
+      "id": "boundary_control_plane",
+      "path_patterns": [
+        "tools/check_no_workflow_hashes.py",
+        "tools/workflow_hash_policy.json",
+        "tools/tests/test_check_no_workflow_hashes.py",
+        "tools/python_test_policy.json",
+        "tools/verification_profiles.json",
+        "tools/verification_builder_policy.json"
+      ]
+    },
+    {
+      "id": "retirement_contract_tests",
+      "path_patterns": [
+        "tools/tests/test_verification_profiles.py",
+        "tools/tests/test_python_test_workflow.py",
+        "tools/tests/test_build_semantic_recipes.py"
+      ]
+    },
+    {
+      "id": "retired_recipe_bulk_helpers",
+      "path_patterns": [
+        "tools/recipe_bulk/deferred_recycling.py",
+        "tools/recipe_bulk/ordinary_r0.py",
+        "tools/recipe_bulk/write_guard.py",
+        "tools/recipe_bulk/slugs.py"
+      ]
+    },
+    {
+      "id": "generated_runtime_content",
+      "path_patterns": [
+        "src/generated/**",
+        "src/recipe_generated/**"
+      ]
+    }
+  ],
+  "token_exemptions": [
+    {
+      "id": "scanner_self_reference",
+      "path_patterns": [
+        ".github/workflows/build.yml",
+        ".github/workflows/release.yml"
+      ],
+      "token_regex": "(?i)(?:check_no_workflow_hashes|test_check_no_workflow_hashes|workflow_hash)"
+    },
+    {
+      "id": "external_source_integrity_implementation",
+      "path_patterns": [
+        "tools/recipe_bulk/source_pack.py"
+      ],
+      "token_regex": "(?i)(?:sha256|hash|digest|checksum)"
+    },
+    {
+      "id": "external_source_manifest_schema",
+      "path_patterns": [
+        "tools/source_pack_manifest.schema.json",
+        "tools/*source_pack_manifest.schema.json",
+        "tools/*external_source_manifest.schema.json",
+        "tools/*external-source-manifest.schema.json",
+        "tools/**/source_pack_manifest.json",
+        "src/test/resources/**/source_pack_manifest.json"
+      ],
+      "token_regex": "(?i)(?:sha256|hash|digest|checksum)"
+    },
+    {
+      "id": "release_artifact_checksums",
+      "path_patterns": [
+        "tools/*release_manifest*.json",
+        "tools/build_*release_manifest*.py"
+      ],
+      "token_regex": "(?i)(?:sha256|hash|digest|checksum)"
+    },
+    {
+      "id": "functional_recipe_compiler_identities",
+      "path_patterns": [
+        "tools/recipe_bulk/**"
+      ],
+      "token_regex": "(?i)(?:sha256|hash|digest|checksum)"
+    },
+    {
+      "id": "functional_java_runtime_cache_protocol_hashes",
+      "path_patterns": [
+        "src/main/java/com/masson/cruciblecraft/material/MaterialFingerprint.java",
+        "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPack.java",
+        "src/main/java/com/masson/cruciblecraft/material/gen/GeneratedMaterialPackCache.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/RegistryCodecHash.java",
+        "src/main/java/com/masson/cruciblecraft/machine/processing/GTRecipeFingerprint.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/rule/MaterialRule.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactGTRecipeFamilyStreamCodec.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactPublicationPolicy.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactPublicationPolicyDefinition.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeFamilyProvider.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/CompactRecipeShardRouter.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/ExtruderRecipeFamilyProvider.java",
+        "src/main/java/com/masson/cruciblecraft/recipe/gt/GTRecipeMapLoader.java",
+        "src/main/resources/data/cruciblecraft/schema/compact_publication_policy.schema.json",
+        "src/test/java/com/masson/cruciblecraft/recipe/gt/PublicationPolicyLoaderTest.java",
+        "src/test/java/com/masson/cruciblecraft/recipe/gt/ExtruderRecipeFamilyProviderTest.java"
+      ],
+      "token_regex": "(?i)(?:sha256|hash|digest|checksum)"
+    },
+    {
+      "id": "generated_compact_publication_policy_hashes",
+      "path_patterns": [
+        "src/compact_recipe_policy_generated/**"
+      ],
+      "token_regex": "(?i)(?:sha256|hash|digest|checksum)"
+    }
+  ]
+}

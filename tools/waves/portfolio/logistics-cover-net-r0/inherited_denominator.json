@@ -1,0 +1,292 @@
+{
+  "authority_hashes": {
+    "growth_order": "c61cc0da1d5091e4a2a5414fe2e8dcd9cc72475a9b3be5ae01c06b10d5f7c863",
+    "t13_cover_kinds": "33971ea6eee93dbc1685a40a1446ec9d63af53b3da45f4f7dc3b0950343e3644",
+    "t13_cover_multiblock_policy": "f41fe98cde84b730de4562d2c43e2eaaf65454fe6d9fc830fad40d385b502a9d",
+    "t27_cover_kinds": "82533621b8f3db4fc642d6b2f1355135f347485064c8a4f072c4ea39bb333bf6"
+  },
+  "display_cpu_out_of_scope": [
+    {
+      "canonical_id": "logistics_display_cpu_control",
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
+      "roadmap_bucket": "third_stage_excluded"
+    },
+    {
+      "canonical_id": "logistics_display_cpu_conversion",
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
+      "roadmap_bucket": "third_stage_excluded"
+    },
+    {
+      "canonical_id": "logistics_display_cpu_logic",
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
+      "roadmap_bucket": "third_stage_excluded"
+    },
+    {
+      "canonical_id": "logistics_display_cpu_storage",
+      "disposition": "out_of_scope",
+      "implementation_status": "out_of_scope",
+      "roadmap_bucket": "third_stage_excluded"
+    }
+  ],
+  "generated_by": "python tools/build_logistics_cover_net_r0.py",
+  "kind_count": 7,
+  "kinds": [
+    {
+      "canonical_id": "logistics_fluid_storage",
+      "canonical_rule_id": "cover-canonical-logistics-fluid-storage",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-logistics-fluid-storage",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "Fluid storage policy is distinct from directional transfer.",
+      "raw_members": [
+        "CoverLogisticsFluidStorage"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "GT6 logistics-network storage policy requires a later network runtime."
+    },
+    {
+      "canonical_id": "logistics_fluid_transfer",
+      "canonical_rule_id": "cover-collapse-logistics-fluid-direction",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-logistics-fluid-transfer",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "Fluid import/export direction is data on one logistics transfer behavior.",
+      "raw_members": [
+        "CoverLogisticsFluidExport",
+        "CoverLogisticsFluidImport"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "GT6 logistics-network fluid routing exceeds adjacent T19 transfer scope."
+    },
+    {
+      "canonical_id": "logistics_generic_dump",
+      "canonical_rule_id": "cover-canonical-logistics-generic-dump",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-logistics-generic-dump",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "Generic dump semantics are distinct from import/export and storage.",
+      "raw_members": [
+        "CoverLogisticsGenericDump"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "GT6 generic logistics dumping requires a later network runtime."
+    },
+    {
+      "canonical_id": "logistics_generic_storage",
+      "canonical_rule_id": "cover-canonical-logistics-generic-storage",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-logistics-generic-storage",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "Generic storage policy is distinct from directional transfer.",
+      "raw_members": [
+        "CoverLogisticsGenericStorage"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "GT6 generic logistics storage requires a later network runtime."
+    },
+    {
+      "canonical_id": "logistics_generic_transfer",
+      "canonical_rule_id": "cover-collapse-logistics-generic-direction",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-logistics-generic-transfer",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "Generic import/export direction is data on one logistics transfer behavior.",
+      "raw_members": [
+        "CoverLogisticsGenericExport",
+        "CoverLogisticsGenericImport"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "GT6 generic logistics routing requires a later network runtime."
+    },
+    {
+      "canonical_id": "logistics_item_storage",
+      "canonical_rule_id": "cover-canonical-logistics-item-storage",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-logistics-item-storage",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "Item storage policy is distinct from directional transfer.",
+      "raw_members": [
+        "CoverLogisticsItemStorage"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "GT6 logistics-network item storage requires a later network runtime."
+    },
+    {
+      "canonical_id": "logistics_item_transfer",
+      "canonical_rule_id": "cover-collapse-logistics-item-direction",
+      "cc_behavior": null,
+      "cc_multiblock": null,
+      "classification_rule_id": "cover-defer-logistics-item-transfer",
+      "deferred": {
+        "owner": "POST_T19",
+        "reason": "The behavior is source-valid but is outside the selected T19 implementation batch.",
+        "recheck_point": "Post-T19 roadmap intake for the next cover behavior batch.",
+        "replacement_condition": "A later cover batch selects the exact canonical behavior and closes acquisition, configuration, sync and end-to-end automation."
+      },
+      "disposition": "deferred_with_reason",
+      "implementation_status": "deferred_with_reason",
+      "normalization_reason": "Item import/export direction is data on one logistics transfer behavior.",
+      "raw_members": [
+        "CoverLogisticsItemExport",
+        "CoverLogisticsItemImport"
+      ],
+      "roadmap_bucket": "POST_T19",
+      "scope_reason": "GT6 logistics-network item routing exceeds adjacent T19 transfer scope."
+    }
+  ],
+  "logistics_core": {
+    "canonical_id": "logistics_core",
+    "canonical_rule_id": "multiblock-canonical-logistics-core",
+    "classification_rule_id": "multiblock-post-logistics-core",
+    "disposition": "deferred_with_reason",
+    "domain": "multiblock_kinds",
+    "implementation_status": "post_t19",
+    "reason": "GT6 logistics-core runtime is outside T19 adjacent-pipe automation.",
+    "roadmap_bucket": "POST_T19",
+    "source_symbols": [
+      "MultiTileEntityLogisticsCore"
+    ]
+  },
+  "schema_version": 1,
+  "source_artifact": "tools/t13_denominators/cover_kinds.json",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "INHERITED_DENOMINATOR_READY",
+  "t27_overlays": [
+    {
+      "axes_load": {
+        "status": "pending",
+        "verdict": "BLOCKED_PENDING_MEASUREMENT"
+      },
+      "canonical_id": "logistics_fluid_storage",
+      "cc_implementation": "none",
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "t13_classification": "deferred_with_reason"
+    },
+    {
+      "axes_load": {
+        "status": "pending",
+        "verdict": "BLOCKED_PENDING_MEASUREMENT"
+      },
+      "canonical_id": "logistics_fluid_transfer",
+      "cc_implementation": "none",
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "t13_classification": "deferred_with_reason"
+    },
+    {
+      "axes_load": {
+        "status": "pending",
+        "verdict": "BLOCKED_PENDING_MEASUREMENT"
+      },
+      "canonical_id": "logistics_generic_dump",
+      "cc_implementation": "none",
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "t13_classification": "deferred_with_reason"
+    },
+    {
+      "axes_load": {
+        "status": "pending",
+        "verdict": "BLOCKED_PENDING_MEASUREMENT"
+      },
+      "canonical_id": "logistics_generic_storage",
+      "cc_implementation": "none",
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "t13_classification": "deferred_with_reason"
+    },
+    {
+      "axes_load": {
+        "status": "pending",
+        "verdict": "BLOCKED_PENDING_MEASUREMENT"
+      },
+      "canonical_id": "logistics_generic_transfer",
+      "cc_implementation": "none",
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "t13_classification": "deferred_with_reason"
+    },
+    {
+      "axes_load": {
+        "status": "pending",
+        "verdict": "BLOCKED_PENDING_MEASUREMENT"
+      },
+      "canonical_id": "logistics_item_storage",
+      "cc_implementation": "none",
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "t13_classification": "deferred_with_reason"
+    },
+    {
+      "axes_load": {
+        "status": "pending",
+        "verdict": "BLOCKED_PENDING_MEASUREMENT"
+      },
+      "canonical_id": "logistics_item_transfer",
+      "cc_implementation": "none",
+      "disposition": "post_1_0",
+      "owner": "portfolio:post_1_0/covers",
+      "replacement_condition": "A later logistics cover card measures player acquisition, network/save and server behavior separately; it cannot share a machine or energy owner.",
+      "t13_classification": "deferred_with_reason"
+    }
+  ],
+  "wave_slug": "portfolio/logistics-cover-net-r0"
+}

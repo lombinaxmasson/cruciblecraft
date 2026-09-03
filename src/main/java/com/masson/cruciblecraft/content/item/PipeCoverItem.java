@@ -131,7 +131,8 @@ public final class PipeCoverItem extends Item {
                 current.pressureThreshold(),
                 current.exactCount(),
                 current.mode(),
-                current.selector());
+                current.selector(),
+                current.networkId());
     }
 
     private boolean cycleExistingSelector(
@@ -145,29 +146,37 @@ public final class PipeCoverItem extends Item {
                     .coverSnapshot().get(context.getClickedFace());
         }
         if (current == null
-                || !current.definitionId().equals(definitionId)
-                || !CoverDefinitionCatalog.require(definitionId)
-                        .configurable().contains(
-                                CoverDefinition.ConfigField.SELECTOR)) {
+                || !current.definitionId().equals(definitionId)) {
             return false;
         }
-        int next = Math.floorMod(
-                CoverDefinitionCatalog.require(definitionId)
-                        .resolve(current.config()).selector() + 1,
-                CoverDefinition.MAX_SELECTOR + 1);
+        CoverDefinition definition =
+                CoverDefinitionCatalog.require(definitionId);
+        CoverDefinition.ConfigField field;
+        int max;
+        int currentValue;
+        if (definition.configurable().contains(
+                CoverDefinition.ConfigField.NETWORK_ID)) {
+            field = CoverDefinition.ConfigField.NETWORK_ID;
+            max = CoverDefinition.MAX_NETWORK_ID;
+            currentValue = current.config().networkId().orElse(0);
+        } else if (definition.configurable().contains(
+                CoverDefinition.ConfigField.SELECTOR)) {
+            field = CoverDefinition.ConfigField.SELECTOR;
+            max = CoverDefinition.MAX_SELECTOR;
+            currentValue = definition.resolve(current.config()).selector();
+        } else {
+            return false;
+        }
+        int next = Math.floorMod(currentValue + 1, max + 1);
         if (context.getLevel().isClientSide) {
             return true;
         }
         if (blockEntity instanceof FluidPipeBlockEntity pipe) {
             return pipe.configureCover(
-                    context.getClickedFace(),
-                    CoverDefinition.ConfigField.SELECTOR,
-                    next);
+                    context.getClickedFace(), field, next);
         }
         return ((ItemPipeBlockEntity) blockEntity).configureCover(
-                context.getClickedFace(),
-                CoverDefinition.ConfigField.SELECTOR,
-                next);
+                context.getClickedFace(), field, next);
     }
 
     @Override

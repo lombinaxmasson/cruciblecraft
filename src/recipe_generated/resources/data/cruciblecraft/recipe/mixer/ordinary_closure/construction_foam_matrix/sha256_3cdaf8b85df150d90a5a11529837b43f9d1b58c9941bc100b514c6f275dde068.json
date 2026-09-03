@@ -1,79 +1,458 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/construction_foam_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 1000,
-          "id": "minecraft:water"
+          "fluid_inputs": [
+            {
+              "amount": 1000,
+              "id": "minecraft:water"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:construction_foam"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
+      "hashes": [
+        "8ad6e15d95a0b8e0016d246f4678ac39335f9da1bb90f8a811a4e5ef65932c6d",
+        "b214820e78d4260c637d6e39bd0a3fd67cff2dac8150e9bb99a844e7c304b21a",
+        "5ff9a7954f95511d19cecd6f6395962f563d3a4671202942981c604d37b9b373",
+        "87544e3b7c9ba0f4186260438c1e497e6ba7f38457ffea55a57a69ee857601f3",
+        "beaea429c877dcd2600c2118fdee8d38001bc79764ff02853030748553813b69",
+        "b08644035658253c9f12e75e0d16177d50b7934190ef47445d3ba53257bd9540",
+        "6845ccf2d763d793da8bd8bb4888c8eafc45323fd0de4bfafe3d86b8908171e2",
+        "90d7c4fd08f9916091ae617af199b72ffc7b056a91a84ccb22bdd4290268a294",
+        "c1fc15a6c35f3e70a9a758bc1e95f2cf296d603e6a5ccb3d6034a802eae779df",
+        "3e84a056184df995dc0a3715efd95a2a7590117a4b0839b80df7ee852f5bae0f",
+        "ff4a52071fd0937d785bff718bbf7f1dc1ed989bddcd11a6eb8382f98e4c298a",
+        "aabc71bdfa8e623974be5fcae6378517205067fa37d2c3fc3ec12a8ca1e56b99",
+        "f44b56ae553723b567c52406226eca16ce0edd2a4a03d3a8974141e874ba838f",
+        "14e298631568eef36d915084deb7ce1914a65524c6a2cf53086261ea29f9ff1e",
+        "0ce467b1496295855ceab0f9dd32b0ef5d00c0f0e697be8b2c813290df3f420f",
+        "a1d6ce25437d93da6cffbf0be34acb7c0f18d10ce5e54d1af0cc61792b2c9fcf",
+        "20756eed71116873c47b85ac91445bc48dd2a1d83b548c26f8f92a0a58752c72",
+        "9e36f180fc361038daade53c5d95a9e60b90e785cfccb7c90f78f1904306f1e0",
+        "f3606d471052ca5e9372c254db3dc2b3ad2a232dbaac8e5919095fe80ef5e7c1",
+        "84fc17420820de91e346d543d4f0150703f7e43b27ff8c0084ed479483659b6a",
+        "aa7713ff34a67bf8bdab23881c029797918a493e30528ebb0e7e402f4fe0c37f"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:silicon_dioxide/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "8ad6e15d95a0b8e0016d246f4678ac39335f9da1bb90f8a811a4e5ef65932c6d"
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:silicon_dioxide/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
         ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/2051e4616da24205"
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:sand/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:fluix/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:red_sand/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:white_end_sand/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:quartz_black/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:nether_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:certus_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:mana_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:black_end_sand/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:flint/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:charged_certus_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:smokey_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:sunny_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:glass/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:lavender_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:void_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:elven_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:blaze_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:red_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:concrete/dust"
+          },
+          {
+            "item": "cruciblecraft:quartzite/dust"
+          },
+          {
+            "item": "cruciblecraft:palygorskite/small_dust"
+          }
+        ]
+      ],
+      "item_outputs": [
+        []
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/2051e4616da24205",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/902e262ef7630ea0",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/d60b866c32b9f075",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/9477d59184b9a4eb",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/09481b1c8b5b59fc",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/ec859e8d5ee710bd",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/17c82fe2e25b7d28",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/7e57fd63dcd82627",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/94fc6d0c541ee800",
+        8,
+        8
+      ],
+      [
+        9,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/d58769c5d0b8e507",
+        9,
+        9
+      ],
+      [
+        10,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/2682193d924108c6",
+        10,
+        10
+      ],
+      [
+        11,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/d8dc00e90cb81c61",
+        11,
+        11
+      ],
+      [
+        12,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/feaae5de3a5f3638",
+        12,
+        12
+      ],
+      [
+        13,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/f62c701d25a99f7b",
+        13,
+        13
+      ],
+      [
+        14,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/e2cd458702bb2e90",
+        14,
+        14
+      ],
+      [
+        15,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/9c7eeb72ebad74fc",
+        15,
+        15
+      ],
+      [
+        16,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/01619a2023a50244",
+        16,
+        16
+      ],
+      [
+        17,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/bd7e582be061d386",
+        17,
+        17
+      ],
+      [
+        18,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/9ab74c38b0c802cf",
+        18,
+        18
+      ],
+      [
+        19,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/5d64d6c5f5e8da76",
+        19,
+        19
+      ],
+      [
+        20,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/9f3fae4da4fac6e2",
+        20,
+        20
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 128,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -90,1095 +469,13 @@
         2,
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:sand/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
       "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "b214820e78d4260c637d6e39bd0a3fd67cff2dac8150e9bb99a844e7c304b21a"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/902e262ef7630ea0"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:fluix/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "5ff9a7954f95511d19cecd6f6395962f563d3a4671202942981c604d37b9b373"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/d60b866c32b9f075"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:red_sand/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "87544e3b7c9ba0f4186260438c1e497e6ba7f38457ffea55a57a69ee857601f3"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/9477d59184b9a4eb"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:white_end_sand/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "beaea429c877dcd2600c2118fdee8d38001bc79764ff02853030748553813b69"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/09481b1c8b5b59fc"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:quartz_black/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "b08644035658253c9f12e75e0d16177d50b7934190ef47445d3ba53257bd9540"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/ec859e8d5ee710bd"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:nether_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "6845ccf2d763d793da8bd8bb4888c8eafc45323fd0de4bfafe3d86b8908171e2"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 6,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/17c82fe2e25b7d28"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:certus_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "90d7c4fd08f9916091ae617af199b72ffc7b056a91a84ccb22bdd4290268a294"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 7,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/7e57fd63dcd82627"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:mana_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "c1fc15a6c35f3e70a9a758bc1e95f2cf296d603e6a5ccb3d6034a802eae779df"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 8,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/94fc6d0c541ee800"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:black_end_sand/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "3e84a056184df995dc0a3715efd95a2a7590117a4b0839b80df7ee852f5bae0f"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 9,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/d58769c5d0b8e507"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:flint/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "ff4a52071fd0937d785bff718bbf7f1dc1ed989bddcd11a6eb8382f98e4c298a"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 10,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/2682193d924108c6"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:charged_certus_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "aabc71bdfa8e623974be5fcae6378517205067fa37d2c3fc3ec12a8ca1e56b99"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 11,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/d8dc00e90cb81c61"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:smokey_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "f44b56ae553723b567c52406226eca16ce0edd2a4a03d3a8974141e874ba838f"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 12,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/feaae5de3a5f3638"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:sunny_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "14e298631568eef36d915084deb7ce1914a65524c6a2cf53086261ea29f9ff1e"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 13,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/f62c701d25a99f7b"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:glass/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "0ce467b1496295855ceab0f9dd32b0ef5d00c0f0e697be8b2c813290df3f420f"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 14,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/e2cd458702bb2e90"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:lavender_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "a1d6ce25437d93da6cffbf0be34acb7c0f18d10ce5e54d1af0cc61792b2c9fcf"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 15,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/9c7eeb72ebad74fc"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:void_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "20756eed71116873c47b85ac91445bc48dd2a1d83b548c26f8f92a0a58752c72"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 16,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/01619a2023a50244"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:elven_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "9e36f180fc361038daade53c5d95a9e60b90e785cfccb7c90f78f1904306f1e0"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 17,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/bd7e582be061d386"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:blaze_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "f3606d471052ca5e9372c254db3dc2b3ad2a232dbaac8e5919095fe80ef5e7c1"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 18,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/9ab74c38b0c802cf"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:red_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "84fc17420820de91e346d543d4f0150703f7e43b27ff8c0084ed479483659b6a"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 19,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/5d64d6c5f5e8da76"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:concrete/dust"
-        },
-        {
-          "item": "cruciblecraft:quartzite/dust"
-        },
-        {
-          "item": "cruciblecraft:palygorskite/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "aa7713ff34a67bf8bdab23881c029797918a493e30528ebb0e7e402f4fe0c37f"
-        ],
-        "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 20,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/9f3fae4da4fac6e2"
+      "selected_source_recipe": "sha256:3cdaf8b85df150d90a5a11529837b43f9d1b58c9941bc100b514c6f275dde068",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/construction_foam_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

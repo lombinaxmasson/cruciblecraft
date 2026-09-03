@@ -1,77 +1,141 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:640c4b9100ca48f29ab48edfba0daef97992806a465ee43e5a717af695de455f",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 9,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 1,
-          "id": "cruciblecraft:molten_meteoric_iron"
+          "fluid_inputs": [
+            {
+              "amount": 1,
+              "id": "cruciblecraft:molten_meteoric_iron"
+            },
+            {
+              "amount": 8,
+              "id": "cruciblecraft:molten_nikolite"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1,
+              "id": "cruciblecraft:molten_electrotine_alloy"
+            }
+          ]
         },
         {
-          "amount": 8,
-          "id": "cruciblecraft:molten_nikolite"
-        }
-      ],
-      "fluid_outputs": [
+          "fluid_inputs": [
+            {
+              "amount": 1,
+              "id": "cruciblecraft:molten_iron"
+            },
+            {
+              "amount": 8,
+              "id": "cruciblecraft:molten_nikolite"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1,
+              "id": "cruciblecraft:molten_electrotine_alloy"
+            }
+          ]
+        },
         {
-          "amount": 1,
-          "id": "cruciblecraft:molten_electrotine_alloy"
-        }
-      ],
-      "item_input_actions": [
+          "fluid_inputs": [
+            {
+              "amount": 1,
+              "id": "cruciblecraft:molten_pig_iron"
+            },
+            {
+              "amount": 8,
+              "id": "cruciblecraft:molten_nikolite"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1,
+              "id": "cruciblecraft:molten_electrotine_alloy"
+            }
+          ]
+        },
         {
-          "kind": "preserve"
+          "fluid_inputs": [
+            {
+              "amount": 1,
+              "id": "cruciblecraft:molten_wrought_iron"
+            },
+            {
+              "amount": 8,
+              "id": "cruciblecraft:molten_nikolite"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1,
+              "id": "cruciblecraft:molten_electrotine_alloy"
+            }
+          ]
         }
       ],
-      "item_input_counts": [
-        0
+      "hashes": [
+        "d5ebcbbd4c5d50b6569f3655f874220422c4d0f7a3ec3c8730a941de562e9a24",
+        "73f162305a42a99390c3faa183fb644e7e1277beadd7c40c5a98df9739b9347a",
+        "c7faafb7520a37e6b9a33a7d61557976ac074a6cec62e692b3691b2f3dc06467",
+        "2e4cb6ff7869f582b23a64d79c92c5ebacec725c6c6f095fe560d19ab6c010d9"
       ],
       "item_inputs": [
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 2
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
+        [
+          {
+            "components": {
+              "cruciblecraft:circuit_config": 2
+            },
+            "items": "cruciblecraft:programmed_circuit",
+            "type": "neoforge:components"
+          }
+        ]
       ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "d5ebcbbd4c5d50b6569f3655f874220422c4d0f7a3ec3c8730a941de562e9a24"
-        ],
-        "selected_source_recipe": "sha256:640c4b9100ca48f29ab48edfba0daef97992806a465ee43e5a717af695de455f",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/2ad3c55db05ce17b"
+      "item_outputs": [
+        []
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/2ad3c55db05ce17b",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:mixer/ordinary_closure/094981f05f745642",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:mixer/ordinary_closure/6edc219c16f2ed2f",
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        "cruciblecraft:mixer/ordinary_closure/3796bc4f88b1ec1b",
+        3,
+        3
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 9,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1,
-          "id": "cruciblecraft:molten_iron"
-        },
-        {
-          "amount": 8,
-          "id": "cruciblecraft:molten_nikolite"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1,
-          "id": "cruciblecraft:molten_electrotine_alloy"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "preserve"
@@ -80,129 +144,13 @@
       "item_input_counts": [
         0
       ],
-      "item_inputs": [
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 2
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [],
       "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "73f162305a42a99390c3faa183fb644e7e1277beadd7c40c5a98df9739b9347a"
-        ],
-        "selected_source_recipe": "sha256:640c4b9100ca48f29ab48edfba0daef97992806a465ee43e5a717af695de455f",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/094981f05f745642"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 9,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1,
-          "id": "cruciblecraft:molten_pig_iron"
-        },
-        {
-          "amount": 8,
-          "id": "cruciblecraft:molten_nikolite"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1,
-          "id": "cruciblecraft:molten_electrotine_alloy"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        0
-      ],
-      "item_inputs": [
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 2
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "c7faafb7520a37e6b9a33a7d61557976ac074a6cec62e692b3691b2f3dc06467"
-        ],
-        "selected_source_recipe": "sha256:640c4b9100ca48f29ab48edfba0daef97992806a465ee43e5a717af695de455f",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/6edc219c16f2ed2f"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 9,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1,
-          "id": "cruciblecraft:molten_wrought_iron"
-        },
-        {
-          "amount": 8,
-          "id": "cruciblecraft:molten_nikolite"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1,
-          "id": "cruciblecraft:molten_electrotine_alloy"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        0
-      ],
-      "item_inputs": [
-        {
-          "components": {
-            "cruciblecraft:circuit_config": 2
-          },
-          "items": "cruciblecraft:programmed_circuit",
-          "type": "neoforge:components"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "2e4cb6ff7869f582b23a64d79c92c5ebacec725c6c6f095fe560d19ab6c010d9"
-        ],
-        "selected_source_recipe": "sha256:640c4b9100ca48f29ab48edfba0daef97992806a465ee43e5a717af695de455f",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/3796bc4f88b1ec1b"
+      "selected_source_recipe": "sha256:640c4b9100ca48f29ab48edfba0daef97992806a465ee43e5a717af695de455f",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

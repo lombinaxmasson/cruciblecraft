@@ -340,16 +340,24 @@ final class CompactGTRecipeFamilyGeneratedSupport {
                 "cruciblecraft",
                 authoredPrefix(generatedPath) + "/" + filename);
         var ops = RegistryOps.create(JsonOps.INSTANCE, registries);
-        List<CompactGTRecipeFamilyDefinition.Relation> relations = new ArrayList<>();
-        for (JsonElement element : document.getAsJsonArray("relations")) {
-            relations.add(relationFromGenerated(element.getAsJsonObject(), ops));
-        }
         ResourceLocation targetMap = ResourceLocation.parse(
                 document.get("target_map").getAsString());
         Optional<ResourceLocation> publicationGroup = document.has("publication_group")
-                ? Optional.of(ResourceLocation.parse(
-                        document.get("publication_group").getAsString()))
+                ? Optional.of(SemanticIdMap.remapPublicationGroup(
+                        ResourceLocation.parse(
+                                document.get("publication_group").getAsString())))
                 : Optional.empty();
+        Optional<CompactGTRecipeFamilyDefinition.AuthoredMatrixV1> matrix =
+                Optional.empty();
+        List<CompactGTRecipeFamilyDefinition.Relation> relations = new ArrayList<>();
+        if (document.has("matrix") && document.get("matrix").isJsonObject()) {
+            matrix = Optional.of(matrixFromGenerated(
+                    document.getAsJsonObject("matrix"), ops));
+        } else if (document.has("relations") && document.get("relations").isJsonArray()) {
+            for (JsonElement element : document.getAsJsonArray("relations")) {
+                relations.add(relationFromGenerated(element.getAsJsonObject(), ops));
+            }
+        }
         return new CompactRecipeFamilySource(
                 authoredId,
                 new CompactGTRecipeFamilyDefinition(
@@ -358,7 +366,118 @@ final class CompactGTRecipeFamilyGeneratedSupport {
                         document.get("source_revision").getAsString(),
                         relations,
                         parameterizedFromGenerated(document),
-                        publicationGroup));
+                        publicationGroup,
+                        matrix));
+    }
+
+    static List<JsonObject> authoredRelationJsons(JsonObject document) {
+        if (document.has("matrix") && document.get("matrix").isJsonObject()) {
+            return expandMatrixJson(document.getAsJsonObject("matrix"));
+        }
+        List<JsonObject> relations = new ArrayList<>();
+        if (document.has("relations") && document.get("relations").isJsonArray()) {
+            for (JsonElement element : document.getAsJsonArray("relations")) {
+                relations.add(element.getAsJsonObject());
+            }
+        }
+        return relations;
+    }
+
+    private static List<JsonObject> expandMatrixJson(JsonObject matrix) {
+        JsonObject shared = matrix.getAsJsonObject("shared");
+        JsonObject dicts = matrix.getAsJsonObject("dicts");
+        JsonArray itemInputs = dicts.getAsJsonArray("item_inputs");
+        JsonArray itemOutputs = dicts.getAsJsonArray("item_outputs");
+        JsonArray fluids = dicts.getAsJsonArray("fluids");
+        List<JsonObject> relations = new ArrayList<>();
+        for (JsonElement element : matrix.getAsJsonArray("rows")) {
+            JsonArray row = element.getAsJsonArray();
+            JsonObject fluid = fluids.get(row.get(2).getAsInt()).getAsJsonObject();
+            JsonObject relation = new JsonObject();
+            relation.addProperty("stable_id", row.get(3).getAsString());
+            relation.add("item_inputs", itemInputs.get(row.get(0).getAsInt()));
+            relation.add("item_input_counts", shared.get("item_input_counts"));
+            relation.add("item_input_actions", shared.get("item_input_actions"));
+            relation.add("item_outputs", itemOutputs.get(row.get(1).getAsInt()));
+            relation.add("fluid_inputs", fluid.get("fluid_inputs"));
+            relation.add("fluid_outputs", fluid.get("fluid_outputs"));
+            relation.add("output_chances", shared.get("output_chances"));
+            relation.add("duration", shared.get("duration"));
+            relation.add("eut", shared.get("eut"));
+            relation.add("special_value", shared.get("special_value"));
+            relation.add("can_be_buffered", shared.get("can_be_buffered"));
+            relation.addProperty("shadow_order", row.size() == 6
+                    ? row.get(5).getAsInt() : row.get(4).getAsInt());
+            JsonObject provenance = new JsonObject();
+            provenance.add("source_kind", shared.get("source_kind"));
+            provenance.add("selected_source_recipe", shared.get("selected_source_recipe"));
+            relation.add("provenance", provenance);
+            relations.add(relation);
+        }
+        return relations;
+    }
+
+    private static CompactGTRecipeFamilyDefinition.AuthoredMatrixV1 matrixFromGenerated(
+            JsonObject matrixJson,
+            RegistryOps<JsonElement> ops) {
+        JsonObject sharedJson = matrixJson.getAsJsonObject("shared");
+        CompactGTRecipeFamilyDefinition.SharedSpec shared =
+                new CompactGTRecipeFamilyDefinition.SharedSpec(
+                        sharedJson.get("duration").getAsInt(),
+                        sharedJson.get("eut").getAsLong(),
+                        sharedJson.get("special_value").getAsLong(),
+                        sharedJson.get("can_be_buffered").getAsBoolean(),
+                        ints(sharedJson.getAsJsonArray("item_input_counts")),
+                        actions(sharedJson.getAsJsonArray("item_input_actions")),
+                        ints(sharedJson.getAsJsonArray("output_chances")),
+                        sharedJson.get("source_kind").getAsString(),
+                        sharedJson.get("selected_source_recipe").getAsString());
+        JsonObject dictsJson = matrixJson.getAsJsonObject("dicts");
+        List<List<Ingredient>> itemInputs = new ArrayList<>();
+        for (JsonElement config : dictsJson.getAsJsonArray("item_inputs")) {
+            List<Ingredient> inputs = new ArrayList<>();
+            for (JsonElement element : config.getAsJsonArray()) {
+                inputs.add(ingredientFromGenerated(element.getAsJsonObject(), ops));
+            }
+            itemInputs.add(List.copyOf(inputs));
+        }
+        List<List<ItemStack>> itemOutputs = new ArrayList<>();
+        for (JsonElement config : dictsJson.getAsJsonArray("item_outputs")) {
+            List<ItemStack> outputs = new ArrayList<>();
+            for (JsonElement element : config.getAsJsonArray()) {
+                outputs.add(itemStackFromGenerated(element.getAsJsonObject(), ops));
+            }
+            itemOutputs.add(List.copyOf(outputs));
+        }
+        List<CompactGTRecipeFamilyDefinition.FluidIo> fluids = new ArrayList<>();
+        for (JsonElement config : dictsJson.getAsJsonArray("fluids")) {
+            JsonObject fluidJson = config.getAsJsonObject();
+            fluids.add(new CompactGTRecipeFamilyDefinition.FluidIo(
+                    fluidStacks(fluidJson.getAsJsonArray("fluid_inputs"), ops),
+                    fluidStacks(fluidJson.getAsJsonArray("fluid_outputs"), ops)));
+        }
+        List<CompactGTRecipeFamilyDefinition.MatrixRow> rows = new ArrayList<>();
+        for (JsonElement element : matrixJson.getAsJsonArray("rows")) {
+            JsonArray row = element.getAsJsonArray();
+            int shadowOrder = row.size() == 6 ? row.get(5).getAsInt() : row.get(4).getAsInt();
+            rows.add(new CompactGTRecipeFamilyDefinition.MatrixRow(
+                    row.get(0).getAsInt(),
+                    row.get(1).getAsInt(),
+                    row.get(2).getAsInt(),
+                    ResourceLocation.parse(row.get(3).getAsString()),
+                    shadowOrder));
+        }
+        return new CompactGTRecipeFamilyDefinition.AuthoredMatrixV1(
+                shared,
+                new CompactGTRecipeFamilyDefinition.MatrixDicts(
+                        itemInputs, itemOutputs, fluids),
+                rows);
+    }
+
+    private static List<ItemInputAction> actions(JsonArray array) {
+        List<ItemInputAction> values = new ArrayList<>();
+        array.forEach(element -> values.add(actionFromGenerated(element.getAsJsonObject())));
+        return values;
     }
 
     private static Optional<CompactGTRecipeFamilyDefinition.ParameterizedSpec>
@@ -393,10 +512,6 @@ final class CompactGTRecipeFamilyGeneratedSupport {
         List<FluidStack> fluidOutputs = fluidStacks(
                 relationJson.getAsJsonArray("fluid_outputs"), ops);
         JsonObject provenanceJson = relationJson.getAsJsonObject("provenance");
-        List<String> hashes = new ArrayList<>();
-        for (JsonElement element : provenanceJson.getAsJsonArray("evidence_hashes")) {
-            hashes.add(element.getAsString());
-        }
         return new CompactGTRecipeFamilyDefinition.Relation(
                 ResourceLocation.parse(relationJson.get("stable_id").getAsString()),
                 inputs,
@@ -415,8 +530,7 @@ final class CompactGTRecipeFamilyGeneratedSupport {
                         provenanceJson.get("source_kind").getAsString(),
                         Optional.of(provenanceJson
                                 .get("selected_source_recipe")
-                                .getAsString()),
-                        hashes));
+                                .getAsString())));
     }
 
     private static JsonObject readJson(Path path) {

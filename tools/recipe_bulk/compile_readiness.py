@@ -14,6 +14,7 @@ from tools.recipe_bulk.resolver import ResolutionError, resolve_operand
 from tools.recipe_bulk.selection import select_source_relations
 from tools.recipe_bulk.waves import COMPILE_ORDER, WAVES, recipe_wave
 from tools.recipe_bulk.write_guard import ProductionWriteError
+from tools.recipe_bulk.matrix import authored_relation_count, authored_relations
 
 TOOLS = t35.TOOLS
 STATUS_READY = "UNIFIED_RECIPE_COMPILE_READY"
@@ -148,9 +149,9 @@ def _byte_parity(planned_by_wave: dict[str, list[tuple[Path, dict[str, Any]]]]) 
         if produced != expected:
             return False
         for relative, document in expected.items():
-            ids = [row.get("stable_id") for row in document.get("relations") or []]
+            ids = [row.get("stable_id") for row in authored_relations(document)]
             produced_ids = [
-                row.get("stable_id") for row in produced[relative].get("relations") or []
+                row.get("stable_id") for row in authored_relations(produced[relative])
             ]
             if ids != produced_ids:
                 return False
@@ -164,7 +165,7 @@ def _relation_cardinality_order(
     for wave_id, planned in planned_by_wave.items():
         spec = recipe_wave(wave_id)
         base = (baseline.get("waves") or {}).get(wave_id) or {}
-        relation_count = sum(len(doc.get("relations") or []) for _path, doc in planned)
+        relation_count = sum(authored_relation_count(doc) for _path, doc in planned)
         if len(planned) != int(base.get("file_count") or -1):
             return False
         if relation_count != int(base.get("stable_id_count") or -1):
@@ -173,7 +174,7 @@ def _relation_cardinality_order(
             return False
         if spec.expected_relation_count not in {None, relation_count}:
             return False
-        if any(not document.get("relations") for _path, document in planned):
+        if any(authored_relation_count(document) == 0 for _path, document in planned):
             return False
     return True
 

@@ -101,5 +101,13 @@ public interface CoverBehavior {
                 int amount,
                 Optional<String> matchId,
                 CoverDefinition.TransferMode mode);
+
+        default net.minecraft.world.level.Level world() {
+            return null;
+        }
+
+        default net.minecraft.core.BlockPos hostPos() {
+            return null;
+        }
     }
 }

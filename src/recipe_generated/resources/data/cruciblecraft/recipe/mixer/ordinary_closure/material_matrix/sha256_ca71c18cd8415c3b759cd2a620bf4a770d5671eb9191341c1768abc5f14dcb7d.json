@@ -1,73 +1,102 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:ca71c18cd8415c3b759cd2a620bf4a770d5671eb9191341c1768abc5f14dcb7d",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
+          "fluid_inputs": [],
+          "fluid_outputs": []
         }
       ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
+      "hashes": [
+        "ec65ca2b9bf036aa886bb28fcb37d6d68434f3dad543f20b69cacc954b9917d8",
+        "db2fcde85f53bf423ffbc911233dc0c89895ff4ef9465e90d4614a877b0ff930",
+        "e3d2e5517ccbf7c9935794b64ce9a719b2d8a7539eb24ea5a269c1832953065c"
       ],
       "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blizz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:snow/small_dust"
-        }
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blizz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:snow/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:potassium_nitrate/dust"
+          },
+          {
+            "item": "cruciblecraft:blizz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:snow/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:sodium_nitrate/dust"
+          },
+          {
+            "item": "cruciblecraft:blizz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:snow/small_dust"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:cryotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "ec65ca2b9bf036aa886bb28fcb37d6d68434f3dad543f20b69cacc954b9917d8"
-        ],
-        "selected_source_recipe": "sha256:ca71c18cd8415c3b759cd2a620bf4a770d5671eb9191341c1768abc5f14dcb7d",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/0dc32abe1acddb1a"
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:cryotheum/dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/0dc32abe1acddb1a",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/69faca767d937c75",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/02b2f975c687bfb0",
+        2,
+        2
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -88,101 +117,15 @@
         1,
         1
       ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:potassium_nitrate/dust"
-        },
-        {
-          "item": "cruciblecraft:blizz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:snow/small_dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:cryotheum/dust"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "db2fcde85f53bf423ffbc911233dc0c89895ff4ef9465e90d4614a877b0ff930"
-        ],
-        "selected_source_recipe": "sha256:ca71c18cd8415c3b759cd2a620bf4a770d5671eb9191341c1768abc5f14dcb7d",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/69faca767d937c75"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:sodium_nitrate/dust"
-        },
-        {
-          "item": "cruciblecraft:blizz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:snow/small_dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:cryotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "e3d2e5517ccbf7c9935794b64ce9a719b2d8a7539eb24ea5a269c1832953065c"
-        ],
-        "selected_source_recipe": "sha256:ca71c18cd8415c3b759cd2a620bf4a770d5671eb9191341c1768abc5f14dcb7d",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/02b2f975c687bfb0"
+      "selected_source_recipe": "sha256:ca71c18cd8415c3b759cd2a620bf4a770d5671eb9191341c1768abc5f14dcb7d",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

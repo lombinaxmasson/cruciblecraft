@@ -1,79 +1,129 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:ae1c63cada15e5d0a8b6730858e367a6387ad4340ecffdd4851288fa9268b491",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 208,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 18000,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 24000,
-          "id": "cruciblecraft:salted_water"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
+          "fluid_inputs": [
+            {
+              "amount": 18000,
+              "id": "minecraft:water"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 24000,
+              "id": "cruciblecraft:salted_water"
+            }
+          ]
         },
         {
-          "kind": "consume"
+          "fluid_inputs": [
+            {
+              "amount": 18000,
+              "id": "cruciblecraft:spectral_dew"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 24000,
+              "id": "cruciblecraft:salted_water"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 18000,
+              "id": "cruciblecraft:potion_mineralwater"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 24000,
+              "id": "cruciblecraft:salted_water"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 18000,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 24000,
+              "id": "cruciblecraft:salted_water"
+            }
+          ]
         }
       ],
-      "item_input_counts": [
-        4,
-        9
+      "hashes": [
+        "95b63d0abba4c61b7b5353bdcef033c7887d7c1fbea8c23bfd4d01b0b5fb4f1f",
+        "88143cbc71f084bbb88e01a79fa1c1371f9adf1395aa36547b559c503b54fce6",
+        "850b7cc78a87f9bfcc528971b419596c4722cd7feb87e4bb8a0016bdf170b079",
+        "38ef8a66eb6f55c4c74326b56becac8b3558f001320651047467909be3c365e4"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:ferric_chloride/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_hydroxide/dust"
-        }
+        [
+          {
+            "item": "cruciblecraft:ferric_chloride/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_hydroxide/dust"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 7,
-          "id": "cruciblecraft:ferric_oxyhydroxide/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "95b63d0abba4c61b7b5353bdcef033c7887d7c1fbea8c23bfd4d01b0b5fb4f1f"
-        ],
-        "selected_source_recipe": "sha256:ae1c63cada15e5d0a8b6730858e367a6387ad4340ecffdd4851288fa9268b491",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/d23be1dae7521a88"
+        [
+          {
+            "count": 7,
+            "id": "cruciblecraft:ferric_oxyhydroxide/dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/d23be1dae7521a88",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:mixer/ordinary_closure/2605be1d259462ce",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:mixer/ordinary_closure/9ed83838425e7fc1",
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        "cruciblecraft:mixer/ordinary_closure/5d68df072a8d913e",
+        3,
+        3
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 208,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 18000,
-          "id": "cruciblecraft:spectral_dew"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 24000,
-          "id": "cruciblecraft:salted_water"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -86,147 +136,15 @@
         4,
         9
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:ferric_chloride/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_hydroxide/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 7,
-          "id": "cruciblecraft:ferric_oxyhydroxide/dust"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "88143cbc71f084bbb88e01a79fa1c1371f9adf1395aa36547b559c503b54fce6"
-        ],
-        "selected_source_recipe": "sha256:ae1c63cada15e5d0a8b6730858e367a6387ad4340ecffdd4851288fa9268b491",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/2605be1d259462ce"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 208,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 18000,
-          "id": "cruciblecraft:potion_mineralwater"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 24000,
-          "id": "cruciblecraft:salted_water"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        4,
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:ferric_chloride/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_hydroxide/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 7,
-          "id": "cruciblecraft:ferric_oxyhydroxide/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "850b7cc78a87f9bfcc528971b419596c4722cd7feb87e4bb8a0016bdf170b079"
-        ],
-        "selected_source_recipe": "sha256:ae1c63cada15e5d0a8b6730858e367a6387ad4340ecffdd4851288fa9268b491",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/9ed83838425e7fc1"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 208,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 18000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 24000,
-          "id": "cruciblecraft:salted_water"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        4,
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:ferric_chloride/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_hydroxide/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 7,
-          "id": "cruciblecraft:ferric_oxyhydroxide/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "38ef8a66eb6f55c4c74326b56becac8b3558f001320651047467909be3c365e4"
-        ],
-        "selected_source_recipe": "sha256:ae1c63cada15e5d0a8b6730858e367a6387ad4340ecffdd4851288fa9268b491",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/5d68df072a8d913e"
+      "selected_source_recipe": "sha256:ae1c63cada15e5d0a8b6730858e367a6387ad4340ecffdd4851288fa9268b491",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

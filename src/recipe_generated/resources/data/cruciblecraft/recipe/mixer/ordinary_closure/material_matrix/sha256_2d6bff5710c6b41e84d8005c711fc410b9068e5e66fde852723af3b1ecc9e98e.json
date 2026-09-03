@@ -1,152 +1,142 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:2d6bff5710c6b41e84d8005c711fc410b9068e5e66fde852723af3b1ecc9e98e",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 22,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 300,
-          "id": "cruciblecraft:water_distilled"
+          "fluid_inputs": [
+            {
+              "amount": 300,
+              "id": "cruciblecraft:water_distilled"
+            },
+            {
+              "amount": 1100,
+              "id": "cruciblecraft:disulfuric_acid"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1400,
+              "id": "cruciblecraft:sulfuric_acid"
+            }
+          ]
         },
         {
-          "amount": 1100,
-          "id": "cruciblecraft:disulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
+          "fluid_inputs": [
+            {
+              "amount": 300,
+              "id": "cruciblecraft:potion_mineralwater"
+            },
+            {
+              "amount": 1100,
+              "id": "cruciblecraft:disulfuric_acid"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1400,
+              "id": "cruciblecraft:sulfuric_acid"
+            }
+          ]
+        },
         {
-          "amount": 1400,
-          "id": "cruciblecraft:sulfuric_acid"
+          "fluid_inputs": [
+            {
+              "amount": 300,
+              "id": "cruciblecraft:spectral_dew"
+            },
+            {
+              "amount": 1100,
+              "id": "cruciblecraft:disulfuric_acid"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1400,
+              "id": "cruciblecraft:sulfuric_acid"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 300,
+              "id": "minecraft:water"
+            },
+            {
+              "amount": 1100,
+              "id": "cruciblecraft:disulfuric_acid"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1400,
+              "id": "cruciblecraft:sulfuric_acid"
+            }
+          ]
         }
       ],
-      "item_input_actions": [],
-      "item_input_counts": [],
-      "item_inputs": [],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "aeb7b15a145db3f0649faad77854b88e09a181978a7d831a629b79d477277051"
-        ],
-        "selected_source_recipe": "sha256:2d6bff5710c6b41e84d8005c711fc410b9068e5e66fde852723af3b1ecc9e98e",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/406dbdb5de82dcee"
+      "hashes": [
+        "aeb7b15a145db3f0649faad77854b88e09a181978a7d831a629b79d477277051",
+        "928a5a401af32956d9dd436471e56f684b52bfc0373f4ce9ff09045c152eacbd",
+        "222cc8a45eae6b1adc359843ce9750153ec4f9f10b4420c15238efb135ebf095",
+        "034c8f4970540739d04532f4f679098fe8a353a994c26547d3b85855e8bb80eb"
+      ],
+      "item_inputs": [
+        []
+      ],
+      "item_outputs": [
+        []
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/406dbdb5de82dcee",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:mixer/ordinary_closure/0c5a23f232993550",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:mixer/ordinary_closure/5d70095d278af15e",
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        "cruciblecraft:mixer/ordinary_closure/2dd457d43e7939c3",
+        3,
+        3
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 22,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 300,
-          "id": "cruciblecraft:potion_mineralwater"
-        },
-        {
-          "amount": 1100,
-          "id": "cruciblecraft:disulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1400,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
       "item_input_actions": [],
       "item_input_counts": [],
-      "item_inputs": [],
-      "item_outputs": [],
       "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "928a5a401af32956d9dd436471e56f684b52bfc0373f4ce9ff09045c152eacbd"
-        ],
-        "selected_source_recipe": "sha256:2d6bff5710c6b41e84d8005c711fc410b9068e5e66fde852723af3b1ecc9e98e",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/0c5a23f232993550"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 22,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 300,
-          "id": "cruciblecraft:spectral_dew"
-        },
-        {
-          "amount": 1100,
-          "id": "cruciblecraft:disulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1400,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "item_input_actions": [],
-      "item_input_counts": [],
-      "item_inputs": [],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "222cc8a45eae6b1adc359843ce9750153ec4f9f10b4420c15238efb135ebf095"
-        ],
-        "selected_source_recipe": "sha256:2d6bff5710c6b41e84d8005c711fc410b9068e5e66fde852723af3b1ecc9e98e",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/5d70095d278af15e"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 22,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 300,
-          "id": "minecraft:water"
-        },
-        {
-          "amount": 1100,
-          "id": "cruciblecraft:disulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1400,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "item_input_actions": [],
-      "item_input_counts": [],
-      "item_inputs": [],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "034c8f4970540739d04532f4f679098fe8a353a994c26547d3b85855e8bb80eb"
-        ],
-        "selected_source_recipe": "sha256:2d6bff5710c6b41e84d8005c711fc410b9068e5e66fde852723af3b1ecc9e98e",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/2dd457d43e7939c3"
+      "selected_source_recipe": "sha256:2d6bff5710c6b41e84d8005c711fc410b9068e5e66fde852723af3b1ecc9e98e",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

@@ -52,7 +52,7 @@ class SmelterStoneCatalogFixtureTest {
     void catalogFixtureHoldsFourHundredSevenExactSingletons() {
         assertEquals(CATALOG_FAMILIES, catalogFamilies.size());
         int relations = sources.stream()
-                .mapToInt(source -> source.definition().relations().size())
+                .mapToInt(source -> source.authoredRelations().size())
                 .sum();
         long parameterized = sources.stream()
                 .filter(source -> source.definition().parameterized().isPresent())
@@ -71,7 +71,7 @@ class SmelterStoneCatalogFixtureTest {
     void catalogFixtureRouterStaysInsideHardCeiling() {
         List<CompactGTRecipeFamilyDefinition.Relation> relations = new ArrayList<>();
         for (CompactRecipeFamilySource source : sources) {
-            relations.addAll(source.definition().relations());
+            relations.addAll(source.authoredRelations());
         }
         CompactRecipeShardRouter router = new CompactRecipeShardRouter(
                 ModRecipeMaps.SMELTER.id(),

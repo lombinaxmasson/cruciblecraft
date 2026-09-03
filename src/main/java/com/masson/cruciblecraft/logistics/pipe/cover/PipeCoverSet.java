@@ -1,6 +1,7 @@
 package com.masson.cruciblecraft.logistics.pipe.cover;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.StringJoiner;
@@ -30,6 +31,27 @@ public final class PipeCoverSet {
 
     public Map<Direction, PipeCover> snapshot() {
         return Map.copyOf(covers);
+    }
+
+    public List<ItemStack> removeAllAsItems() {
+        java.util.ArrayList<ItemStack> stacks = new java.util.ArrayList<>();
+        for (Direction side : Direction.values()) {
+            PipeCover cover = covers.remove(side);
+            if (cover == null) {
+                continue;
+            }
+            ItemStack stack = PipeCoverItems.stackFor(cover);
+            if (!stack.isEmpty()) {
+                stacks.add(stack);
+            }
+        }
+        return List.copyOf(stacks);
+    }
+
+    public Optional<PipeCover> take(Direction side) {
+        java.util.Objects.requireNonNull(side, "side");
+        PipeCover previous = covers.remove(side);
+        return Optional.ofNullable(previous);
     }
 
     public boolean set(Direction side, PipeCover cover) {
@@ -223,6 +245,8 @@ public final class PipeCoverSet {
                                     java.util.Locale.ROOT)));
             cover.config().selector().ifPresent(
                     value -> row.putInt("selector", value));
+            cover.config().networkId().ifPresent(
+                    value -> row.putInt("network_id", value));
             rows.add(row);
         }
         target.put("covers", rows);
@@ -306,8 +330,11 @@ public final class PipeCoverSet {
         Optional<Integer> selector = row.contains("selector", Tag.TAG_INT)
                 ? Optional.of(row.getInt("selector"))
                 : Optional.empty();
+        Optional<Integer> networkId = row.contains("network_id", Tag.TAG_INT)
+                ? Optional.of(row.getInt("network_id"))
+                : Optional.empty();
         return new PipeCoverConfig(
-                match, rate, pressure, exact, mode, selector);
+                match, rate, pressure, exact, mode, selector, networkId);
     }
 
     private static PipeCover invalid() {

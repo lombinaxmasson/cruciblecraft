@@ -52,6 +52,13 @@ class CoverConfigurationPayloadTest {
                 0,
                 CoverDefinition.ConfigField.values().length,
                 0));
+        int networkId = CoverDefinition.ConfigField.NETWORK_ID.ordinal();
+        assertTrue(CoverConfigurationPayload.withinBounds(
+                0, networkId, 0));
+        assertTrue(CoverConfigurationPayload.withinBounds(
+                0, networkId, CoverDefinition.MAX_NETWORK_ID));
+        assertFalse(CoverConfigurationPayload.withinBounds(
+                0, networkId, CoverDefinition.MAX_NETWORK_ID + 1));
     }
 
     @Test

@@ -1,62 +1,106 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:dcd6649eece58a8f139f9ef46f1c0c6c28c92de5e5b48a2b177393af25ee9c69",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 1000,
-          "id": "minecraft:water"
+          "fluid_inputs": [
+            {
+              "amount": 1000,
+              "id": "minecraft:water"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:potion_mineralwater"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:spectral_dew"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "0e804a9e602d4cc704d05269407a567696a87557e76a4215da9ee541a8de1153",
+        "557e518177834d4a379e744f34ea97f79c0f91769beb33f9cab4fe967534bb0f",
+        "1e5d7ecaedefa635da7f21fc3768f87054b7636677d0cc745995ab1b1b57a0e4",
+        "75f1412e4bcd0d6f3c38d66c40fbb59f9cbae3f72967b8bf367fd95ac3983a96"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:sodium_carbonate/dust"
-        }
+        [
+          {
+            "item": "cruciblecraft:sodium_carbonate/dust"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:trona/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "0e804a9e602d4cc704d05269407a567696a87557e76a4215da9ee541a8de1153"
-        ],
-        "selected_source_recipe": "sha256:dcd6649eece58a8f139f9ef46f1c0c6c28c92de5e5b48a2b177393af25ee9c69",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/b760a37195a0a97b"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:trona/dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/b760a37195a0a97b",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:mixer/ordinary_closure/366979912475d39f",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:mixer/ordinary_closure/98e877550c65b5b9",
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        "cruciblecraft:mixer/ordinary_closure/b90080a9596b58ff",
+        3,
+        3
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -65,120 +109,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:sodium_carbonate/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:trona/dust"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "557e518177834d4a379e744f34ea97f79c0f91769beb33f9cab4fe967534bb0f"
-        ],
-        "selected_source_recipe": "sha256:dcd6649eece58a8f139f9ef46f1c0c6c28c92de5e5b48a2b177393af25ee9c69",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/366979912475d39f"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:potion_mineralwater"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:sodium_carbonate/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:trona/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "1e5d7ecaedefa635da7f21fc3768f87054b7636677d0cc745995ab1b1b57a0e4"
-        ],
-        "selected_source_recipe": "sha256:dcd6649eece58a8f139f9ef46f1c0c6c28c92de5e5b48a2b177393af25ee9c69",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/98e877550c65b5b9"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:spectral_dew"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:sodium_carbonate/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:trona/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "75f1412e4bcd0d6f3c38d66c40fbb59f9cbae3f72967b8bf367fd95ac3983a96"
-        ],
-        "selected_source_recipe": "sha256:dcd6649eece58a8f139f9ef46f1c0c6c28c92de5e5b48a2b177393af25ee9c69",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/b90080a9596b58ff"
+      "selected_source_recipe": "sha256:dcd6649eece58a8f139f9ef46f1c0c6c28c92de5e5b48a2b177393af25ee9c69",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

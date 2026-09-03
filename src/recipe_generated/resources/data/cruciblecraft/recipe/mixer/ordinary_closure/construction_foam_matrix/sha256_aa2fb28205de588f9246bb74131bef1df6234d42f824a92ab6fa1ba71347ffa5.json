@@ -1,79 +1,458 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/construction_foam_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
+          "fluid_inputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:construction_foam"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
+      "hashes": [
+        "0ff4eb5fb4d320f500cdb19a82faa7d58941754dece081f54beb977c02d7fbb9",
+        "9ae15e87fed9d76f3e3dae38a217cee63d7fff7d282ff9bf3f8b173f66a40702",
+        "0e19706a0c019ba680ee0485e4ce2ed6ccf93b085943c88af399bddc68920e58",
+        "68c71115d9e939e54d5d347721c180ba5a3b42ab905cd13d5836afb616ef52f2",
+        "98b868e0f800b7177faa1f76adb36f80d5cd2ba4fa97f3abfd2cf2c837488209",
+        "2bb5938f74477b6c12ca2d9c9fbd58fd7a9b77668eb72eb99f907c34a6e65b48",
+        "d19b322484003e12ac81366e420d62c6401e6dab13549227e78827af68b65cd5",
+        "4cba9d3ecd6756e2bdefcdd199857f1f0c49b6470834f824269a2bdd9c867d2b",
+        "2cd7cac32acd84414f572cd5e098bfb36b42a61a2b8cd320e7a8465ff63195fc",
+        "4a2b979ff22d4ac10476cb5a141d9237401643fbf55d1830529149a0b6ae2044",
+        "25c55ffd4ac0a031db7c07031ed6b347b19af60780b0c89c5abb93132b451122",
+        "63c2560931b84a088c51bfc0cca22f3a41833ee6015575e5d1b418192a61754b",
+        "4383af61c87f27e52b2b38a2083aa04834d2c99fea4e202284167d11b99bbffa",
+        "cfa3af028415bedeb66955233c3003f175f9b4e4d6a9f12a9d40648dfcb2b993",
+        "fa35b5e18b22c2d859d1b6d3d4d4887b0dcb7987f869d50e36e0826b5bd2b4e6",
+        "63802db0b8e4591c7f43f34666cc6fa41ec79aa0a2f0ee1cc323e99daebabdae",
+        "394ae1ea5635d002b3295a88b4b4601b455ef6a1b127d693165db4bcde65470b",
+        "052966c5f49b98556933fe4aa116688e54e154bf9c53c9d1ab08786366d3bf5c",
+        "465945565664be056acea0f0feea062487c390dab619a0149426ff7559312308",
+        "882a15a591f2eaa2811a5b1aa53a6d006a0059d00b0844963e442c569592b5c4",
+        "c3cced7f926eb1aff0cb799e1bacfbdf58ba0d44198880daaf64314fc035250a"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:void_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "0ff4eb5fb4d320f500cdb19a82faa7d58941754dece081f54beb977c02d7fbb9"
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:void_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
         ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/7102cec04fb15f9f"
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:silicon_dioxide/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:smokey_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:nether_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:fluix/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:elven_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:blaze_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:certus_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:quartzite/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:red_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:glass/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:white_end_sand/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:charged_certus_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:lavender_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:flint/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:sand/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:red_sand/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:mana_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:quartz_black/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:black_end_sand/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dolomite/dust"
+          },
+          {
+            "item": "cruciblecraft:sunny_quartz/dust"
+          },
+          {
+            "item": "cruciblecraft:clay_brown/small_dust"
+          }
+        ]
+      ],
+      "item_outputs": [
+        []
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/7102cec04fb15f9f",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/9d11916b780b4e9a",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/b42e65da14bca1c4",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/083be5a3d28b1ad0",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/17bb00bb4c680c3c",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/cd520b795e96199c",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/3e3dec07f837a504",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/ca2e1089e036d288",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/ef4c528ef787359d",
+        8,
+        8
+      ],
+      [
+        9,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/e6f3c1106ce20962",
+        9,
+        9
+      ],
+      [
+        10,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/f39c087eab3f3e08",
+        10,
+        10
+      ],
+      [
+        11,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/697ab93af8004331",
+        11,
+        11
+      ],
+      [
+        12,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/6bfb2f92208b0628",
+        12,
+        12
+      ],
+      [
+        13,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/41cc630ff035aca9",
+        13,
+        13
+      ],
+      [
+        14,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/243e9c096c62a4b6",
+        14,
+        14
+      ],
+      [
+        15,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/43e7936f35af1895",
+        15,
+        15
+      ],
+      [
+        16,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/c5f10f499d3a5b33",
+        16,
+        16
+      ],
+      [
+        17,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/caf5b10f2f3fc284",
+        17,
+        17
+      ],
+      [
+        18,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/ac58ba60e0c62efb",
+        18,
+        18
+      ],
+      [
+        19,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/d59ba1e71fc3dbbe",
+        19,
+        19
+      ],
+      [
+        20,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/d7f4e5c0ed0ab347",
+        20,
+        20
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 128,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -90,1095 +469,13 @@
         2,
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:silicon_dioxide/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
       "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "9ae15e87fed9d76f3e3dae38a217cee63d7fff7d282ff9bf3f8b173f66a40702"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/9d11916b780b4e9a"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:smokey_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "0e19706a0c019ba680ee0485e4ce2ed6ccf93b085943c88af399bddc68920e58"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/b42e65da14bca1c4"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:nether_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "68c71115d9e939e54d5d347721c180ba5a3b42ab905cd13d5836afb616ef52f2"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/083be5a3d28b1ad0"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:fluix/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "98b868e0f800b7177faa1f76adb36f80d5cd2ba4fa97f3abfd2cf2c837488209"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/17bb00bb4c680c3c"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:elven_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "2bb5938f74477b6c12ca2d9c9fbd58fd7a9b77668eb72eb99f907c34a6e65b48"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/cd520b795e96199c"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:blaze_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "d19b322484003e12ac81366e420d62c6401e6dab13549227e78827af68b65cd5"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 6,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/3e3dec07f837a504"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:certus_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "4cba9d3ecd6756e2bdefcdd199857f1f0c49b6470834f824269a2bdd9c867d2b"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 7,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/ca2e1089e036d288"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:quartzite/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "2cd7cac32acd84414f572cd5e098bfb36b42a61a2b8cd320e7a8465ff63195fc"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 8,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/ef4c528ef787359d"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:red_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "4a2b979ff22d4ac10476cb5a141d9237401643fbf55d1830529149a0b6ae2044"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 9,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/e6f3c1106ce20962"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:glass/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "25c55ffd4ac0a031db7c07031ed6b347b19af60780b0c89c5abb93132b451122"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 10,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/f39c087eab3f3e08"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:white_end_sand/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "63c2560931b84a088c51bfc0cca22f3a41833ee6015575e5d1b418192a61754b"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 11,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/697ab93af8004331"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:charged_certus_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "4383af61c87f27e52b2b38a2083aa04834d2c99fea4e202284167d11b99bbffa"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 12,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/6bfb2f92208b0628"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:lavender_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "cfa3af028415bedeb66955233c3003f175f9b4e4d6a9f12a9d40648dfcb2b993"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 13,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/41cc630ff035aca9"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:flint/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "fa35b5e18b22c2d859d1b6d3d4d4887b0dcb7987f869d50e36e0826b5bd2b4e6"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 14,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/243e9c096c62a4b6"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:sand/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "63802db0b8e4591c7f43f34666cc6fa41ec79aa0a2f0ee1cc323e99daebabdae"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 15,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/43e7936f35af1895"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:red_sand/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "394ae1ea5635d002b3295a88b4b4601b455ef6a1b127d693165db4bcde65470b"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 16,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/c5f10f499d3a5b33"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:mana_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "052966c5f49b98556933fe4aa116688e54e154bf9c53c9d1ab08786366d3bf5c"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 17,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/caf5b10f2f3fc284"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:quartz_black/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "465945565664be056acea0f0feea062487c390dab619a0149426ff7559312308"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 18,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/ac58ba60e0c62efb"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:black_end_sand/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "882a15a591f2eaa2811a5b1aa53a6d006a0059d00b0844963e442c569592b5c4"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 19,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/d59ba1e71fc3dbbe"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 128,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:construction_foam"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        6,
-        2,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dolomite/dust"
-        },
-        {
-          "item": "cruciblecraft:sunny_quartz/dust"
-        },
-        {
-          "item": "cruciblecraft:clay_brown/small_dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "c3cced7f926eb1aff0cb799e1bacfbdf58ba0d44198880daaf64314fc035250a"
-        ],
-        "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 20,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/d7f4e5c0ed0ab347"
+      "selected_source_recipe": "sha256:aa2fb28205de588f9246bb74131bef1df6234d42f824a92ab6fa1ba71347ffa5",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/construction_foam_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

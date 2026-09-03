@@ -1,52 +1,187 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.compressor#0007",
-  "publication_group": "cruciblecraft:compressor/ordinary_closure/material_form",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "kind": "consume"
+          "fluid_inputs": [],
+          "fluid_outputs": []
         }
       ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "a5bbec7d45b5d6274fc6411133be081c2c1280b7cd0441f9ff91228e8f7cfdcb",
+        "1594bcc527b867d3dbbb39527a2e9e021665942ac1c338e560e7a6f8bf8f2e1d",
+        "fe052db3eb5cbf16885e94b40f820855f0c0d1a796d82654634ed88c75d811ca",
+        "4c934efdbb9e2a9a20b19b2ee8892d9011eb5977e7ad8709fff97649e6403220",
+        "3cac2106324a9a1e2db22dc9e44a4c34f5a575ca256a14f8478f3e3ae558ca1e",
+        "0bf94f1f9fce70e46567143de3cd58faf8f96b173af049fe04846d6162638ad0",
+        "5d7d240a6bcaa0068db43569c861ab49973c172f5ef9a29039be8c350f12acef",
+        "1cb9585f754320f6ccce40d450f17fe94e50a61258d59d41da25a19b033bc6bf"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:wax_magic/small_dust"
-        }
+        [
+          {
+            "item": "cruciblecraft:wax_magic/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:wax/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:wax_paraffin/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:wax_bee/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:wax_soulful/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:wax_refractory/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:wax_amnesic/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:wax_plant/small_dust"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:wax_magic/foil"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "a5bbec7d45b5d6274fc6411133be081c2c1280b7cd0441f9ff91228e8f7cfdcb"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:wax_magic/foil"
+          }
         ],
-        "selected_source_recipe": "gt.recipe.compressor#0007",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:compressor/ordinary_closure/e636cdb4b2f47965"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:wax/foil"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:wax_paraffin/foil"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:wax_bee/foil"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:wax_soulful/foil"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:wax_refractory/foil"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:wax_amnesic/foil"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:wax_plant/foil"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:compressor/ordinary_closure/e636cdb4b2f47965",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:compressor/ordinary_closure/5f3de532282e3b3d",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:compressor/ordinary_closure/5a5f33e473c7f3b0",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:compressor/ordinary_closure/230a58f0cd5ea3c8",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:compressor/ordinary_closure/924bd2a54335441d",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:compressor/ordinary_closure/adc7263562415b8e",
+        5,
+        5
+      ],
+      [
+        6,
+        6,
+        0,
+        "cruciblecraft:compressor/ordinary_closure/450255a43dc0d53f",
+        6,
+        6
+      ],
+      [
+        7,
+        7,
+        0,
+        "cruciblecraft:compressor/ordinary_closure/d5e42bab3348e161",
+        7,
+        7
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -55,266 +190,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:wax/small_dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:wax/foil"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "1594bcc527b867d3dbbb39527a2e9e021665942ac1c338e560e7a6f8bf8f2e1d"
-        ],
-        "selected_source_recipe": "gt.recipe.compressor#0007",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:compressor/ordinary_closure/5f3de532282e3b3d"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:wax_paraffin/small_dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:wax_paraffin/foil"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "fe052db3eb5cbf16885e94b40f820855f0c0d1a796d82654634ed88c75d811ca"
-        ],
-        "selected_source_recipe": "gt.recipe.compressor#0007",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:compressor/ordinary_closure/5a5f33e473c7f3b0"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:wax_bee/small_dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:wax_bee/foil"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "4c934efdbb9e2a9a20b19b2ee8892d9011eb5977e7ad8709fff97649e6403220"
-        ],
-        "selected_source_recipe": "gt.recipe.compressor#0007",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:compressor/ordinary_closure/230a58f0cd5ea3c8"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:wax_soulful/small_dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:wax_soulful/foil"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "3cac2106324a9a1e2db22dc9e44a4c34f5a575ca256a14f8478f3e3ae558ca1e"
-        ],
-        "selected_source_recipe": "gt.recipe.compressor#0007",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:compressor/ordinary_closure/924bd2a54335441d"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:wax_refractory/small_dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:wax_refractory/foil"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "0bf94f1f9fce70e46567143de3cd58faf8f96b173af049fe04846d6162638ad0"
-        ],
-        "selected_source_recipe": "gt.recipe.compressor#0007",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:compressor/ordinary_closure/adc7263562415b8e"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:wax_amnesic/small_dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:wax_amnesic/foil"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "5d7d240a6bcaa0068db43569c861ab49973c172f5ef9a29039be8c350f12acef"
-        ],
-        "selected_source_recipe": "gt.recipe.compressor#0007",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 6,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:compressor/ordinary_closure/450255a43dc0d53f"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:wax_plant/small_dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:wax_plant/foil"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "1cb9585f754320f6ccce40d450f17fe94e50a61258d59d41da25a19b033bc6bf"
-        ],
-        "selected_source_recipe": "gt.recipe.compressor#0007",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 7,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:compressor/ordinary_closure/d5e42bab3348e161"
+      "selected_source_recipe": "gt.recipe.compressor#0007",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:compressor/ordinary_closure/material_form",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:compressor",
   "type": "cruciblecraft:compact_gt_recipe_family"

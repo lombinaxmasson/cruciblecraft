@@ -1,62 +1,70 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.bath#0751",
-  "publication_group": "cruciblecraft:bath/mte",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 0,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 1,
-          "id": "cruciblecraft:dye_flower_lightblue"
+          "fluid_inputs": [
+            {
+              "amount": 1,
+              "id": "cruciblecraft:dye_flower_lightblue"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 1,
+              "id": "cruciblecraft:dye_watermixed_lightblue"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "577e8392f34c7ce17e39b9add193ccf53d87922282a006a40fb3b9e07acdc32f",
+        "bf9afed5ae42d585ee29a982ff8e2552dbaa4540506e789cd8adcf6b3a78dfaa"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_mte/mte_32475"
-        }
+        [
+          {
+            "item": "cruciblecraft:gt_mte/mte_32475"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_mte/mte_32480"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "577e8392f34c7ce17e39b9add193ccf53d87922282a006a40fb3b9e07acdc32f"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0751",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/mte/ae5fd6822f1edca8"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gt_mte/mte_32480"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/mte/ae5fd6822f1edca8",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:bath/mte/d7d2b0005329e7ba",
+        1,
+        1
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 1,
-          "id": "cruciblecraft:dye_watermixed_lightblue"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -65,32 +73,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_mte/mte_32475"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_mte/mte_32480"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "bf9afed5ae42d585ee29a982ff8e2552dbaa4540506e789cd8adcf6b3a78dfaa"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0751",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/mte/d7d2b0005329e7ba"
+      "selected_source_recipe": "gt.recipe.bath#0751",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:bath/mte",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:bath",
   "type": "cruciblecraft:compact_gt_recipe_family"

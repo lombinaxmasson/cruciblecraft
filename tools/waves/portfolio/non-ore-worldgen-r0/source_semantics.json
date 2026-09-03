@@ -1,0 +1,138 @@
+{
+  "categories": [
+    {
+      "category": "Trees",
+      "contrast": {
+        "nine_tree_features_are_not_wood_recipes": true,
+        "placement_not_identity": true,
+        "streets_are_center_not_trees": true,
+        "wood_material_ids": [
+          "cinnamon",
+          "cinnamonwood",
+          "coconutwood",
+          "hazel",
+          "hazelnut",
+          "japanese_maple",
+          "maple",
+          "rainbowood",
+          "rubber",
+          "willow",
+          "wood_rubber"
+        ]
+      },
+      "evidence_class": "SOURCE_BACKED",
+      "feature_count": 9,
+      "names": [
+        "tree.rubber",
+        "tree.maple",
+        "tree.willow",
+        "tree.bluemahoe",
+        "tree.hazel",
+        "tree.cinnamon",
+        "tree.coconut",
+        "tree.rainbowood",
+        "tree.bluespruce"
+      ],
+      "types": [
+        "WorldgenTreeRubber",
+        "WorldgenTreeMaple",
+        "WorldgenTreeWillow",
+        "WorldgenTreeBlueMahoe",
+        "WorldgenTreeHazel",
+        "WorldgenTreeCinnamon",
+        "WorldgenTreeCoconut",
+        "WorldgenTreeRainbowood",
+        "WorldgenTreeBlueSpruce"
+      ]
+    },
+    {
+      "category": "Dungeons",
+      "contrast": {
+        "is_structure": true,
+        "not_ore_vein": true,
+        "not_scatter": true,
+        "type": "WorldgenDungeonGT"
+      },
+      "evidence_class": "SOURCE_BACKED",
+      "feature_count": 1,
+      "names": [
+        "overworld.structure.dungeon.large"
+      ],
+      "types": [
+        "WorldgenDungeonGT"
+      ]
+    },
+    {
+      "category": "Planets",
+      "contrast": {
+        "extra_dimension_rocks_not_in_slice": [
+          "aether.rocks",
+          "alfheim.rocks",
+          "erebus.rocks"
+        ],
+        "in_overworld_catalog": false,
+        "overworld_access_policy": "The existing overworld acquisition contract is retained as DESIGN_POLICY_OVERWORLD_ACCESS; GT6 dimensions are recorded as source facts but are not represented as direct parity."
+      },
+      "evidence_class": "SOURCE_BACKED",
+      "feature_count": 3,
+      "names": [
+        "moon.rocks",
+        "mars.rocks",
+        "planet.rocks"
+      ],
+      "types": [
+        "WorldgenMoonRocks",
+        "WorldgenMarsRocks",
+        "WorldgenPlanetRocks"
+      ]
+    },
+    {
+      "category": "Center",
+      "contrast": {
+        "dump_enabled": [
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "enabled_false_is_not_skip": true,
+        "open_questions": [
+          "biomes",
+          "streets",
+          "nexus",
+          "beacon",
+          "testing"
+        ],
+        "types": [
+          "WorldgenCenterBiomes",
+          "WorldgenStreets",
+          "WorldgenNexus",
+          "WorldgenBeacon",
+          "WorldgenTesting"
+        ]
+      },
+      "evidence_class": "SOURCE_BACKED",
+      "feature_count": 5,
+      "names": [
+        "center.biomes",
+        "center.streets",
+        "center.nexus",
+        "center.beacon",
+        "center.testing"
+      ],
+      "types": [
+        "WorldgenCenterBiomes",
+        "WorldgenStreets",
+        "WorldgenNexus",
+        "WorldgenBeacon",
+        "WorldgenTesting"
+      ]
+    }
+  ],
+  "generated_by": "python tools/build_non_ore_worldgen_r0.py",
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "SOURCE_SEMANTICS_READY",
+  "wave_slug": "portfolio/non-ore-worldgen-r0"
+}

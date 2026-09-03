@@ -25,9 +25,9 @@ public interface MaterialFormItem {
         Component materialName = material.nameKey()
                 .<Component>map(Component::translatable)
                 .orElseGet(() -> Component.literal(title(material.id())));
-        return Component.translatable(
-                "item.cruciblecraft.material_form." + form().serializedName(),
-                materialName);
+        String formKey = "item.cruciblecraft.material_form." + form().serializedName();
+        String fallback = "%s " + title(form().serializedName());
+        return Component.translatableWithFallback(formKey, fallback, materialName);
     }
 
     private static String title(String id) {

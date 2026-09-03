@@ -90,10 +90,11 @@ class AssemblerWoodHarnessTest {
                             || group.equals(CompactPublicationGroups.ASSEMBLER_FIREPROOF)
                             || group.equals(CompactPublicationGroups.ASSEMBLER_PLANKS2),
                     () -> "unexpected production group " + group);
-            JsonArray relations = document.getAsJsonArray("relations");
+            java.util.List<JsonObject> relations =
+                    CompactGTRecipeFamilyGeneratedSupport.authoredRelationJsons(document);
             for (int index = 0; index < relations.size(); index++) {
                 relationCount++;
-                JsonObject relationJson = relations.get(index).getAsJsonObject();
+                JsonObject relationJson = relations.get(index);
                 ResourceLocation stableId = ResourceLocation.parse(
                         relationJson.get("stable_id").getAsString());
                 GTRecipe recipe = map.entry(stableId).orElseThrow().recipe();
@@ -239,7 +240,7 @@ class AssemblerWoodHarnessTest {
         Map<String, List<ResourceLocation>> grouped = new HashMap<>();
         for (CompactRecipeFamilySource source : sources) {
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 String signature = GTRecipeMapLoader.inputSignature(
                         relation.materialize());
                 grouped.computeIfAbsent(signature, ignored -> new ArrayList<>())
@@ -351,7 +352,7 @@ class AssemblerWoodHarnessTest {
         List<CompactGTRecipeFamilyDefinition.Relation> relations = new ArrayList<>();
         for (CompactRecipeFamilySource source : sources) {
             if (source.definition().resolvedPublicationGroup().equals(publicationGroup)) {
-                relations.addAll(source.definition().relations());
+                relations.addAll(source.authoredRelations());
             }
         }
         return relations;

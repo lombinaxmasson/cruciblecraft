@@ -1,96 +1,101 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.centrifuge#0046",
-  "publication_group": "cruciblecraft:centrifuge/ordinary_closure/acquisition",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 1460,
-      "eut": 70,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 720,
-          "id": "cruciblecraft:molten_black_steel"
+          "fluid_inputs": [
+            {
+              "amount": 720,
+              "id": "cruciblecraft:molten_black_steel"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 720,
+              "id": "cruciblecraft:molten_meteoric_black_steel"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "fluid_outputs": [],
-      "item_input_actions": [],
-      "item_input_counts": [],
-      "item_inputs": [],
+      "hashes": [
+        "ca33fd8f4d4a9fab1a4bc01b77e81d9aaeabbd52d874f2bd825d44a01335a627",
+        "9224a66807dc9781824094cfa781fcf70441fa964b75d805301d8a376e6c2dcb"
+      ],
+      "item_inputs": [
+        []
+      ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:nickel/dust"
-        },
-        {
-          "count": 1,
-          "id": "cruciblecraft:black_bronze/dust"
-        },
-        {
-          "count": 3,
-          "id": "cruciblecraft:steel/dust"
-        }
-      ],
-      "output_chances": [
-        10000,
-        10000,
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "ca33fd8f4d4a9fab1a4bc01b77e81d9aaeabbd52d874f2bd825d44a01335a627"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:nickel/dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:black_bronze/dust"
+          },
+          {
+            "count": 3,
+            "id": "cruciblecraft:steel/dust"
+          }
         ],
-        "selected_source_recipe": "gt.recipe.centrifuge#0046",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:centrifuge/ordinary_closure/e6bb93c7c2162a27"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:nickel/dust"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:black_bronze/dust"
+          },
+          {
+            "count": 3,
+            "id": "cruciblecraft:meteoric_steel/dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:centrifuge/ordinary_closure/e6bb93c7c2162a27",
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        "cruciblecraft:centrifuge/ordinary_closure/7fc8664551a23024",
+        1,
+        1
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 1460,
       "eut": 70,
-      "fluid_inputs": [
-        {
-          "amount": 720,
-          "id": "cruciblecraft:molten_meteoric_black_steel"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [],
       "item_input_counts": [],
-      "item_inputs": [],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:nickel/dust"
-        },
-        {
-          "count": 1,
-          "id": "cruciblecraft:black_bronze/dust"
-        },
-        {
-          "count": 3,
-          "id": "cruciblecraft:meteoric_steel/dust"
-        }
-      ],
       "output_chances": [
         10000,
         10000,
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "9224a66807dc9781824094cfa781fcf70441fa964b75d805301d8a376e6c2dcb"
-        ],
-        "selected_source_recipe": "gt.recipe.centrifuge#0046",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:centrifuge/ordinary_closure/7fc8664551a23024"
+      "selected_source_recipe": "gt.recipe.centrifuge#0046",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:centrifuge/ordinary_closure/acquisition",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:centrifuge",
   "type": "cruciblecraft:compact_gt_recipe_family"

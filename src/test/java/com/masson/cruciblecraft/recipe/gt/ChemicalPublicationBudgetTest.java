@@ -150,7 +150,7 @@ class ChemicalPublicationBudgetTest {
                 List.of(),
                 List.of(new net.neoforged.neoforge.fluids.FluidStack(
                         net.minecraft.world.level.material.Fluids.LAVA, 13032)),
-                List.of(GTRecipe.GUARANTEED_CHANCE),
+                List.of(),
                 64,
                 16L,
                 0L);
@@ -530,8 +530,7 @@ class ChemicalPublicationBudgetTest {
                 0,
                 new GTRecipeProvenance(
                         "SOURCE_BACKED",
-                        Optional.of("gt.recipe.assembler#0002"),
-                        List.of("abc")));
+                        Optional.of("gt.recipe.assembler#0002")));
     }
 
     private static RecipeMap.Entry entry(String path) {

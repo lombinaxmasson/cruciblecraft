@@ -128,7 +128,17 @@ public final class GtBlockObjectCatalog {
         }
 
         public ResourceLocation textureLocation() {
-            return ResourceLocation.parse(texture);
+            ResourceLocation sourced = BlockArtIndex.texture(registryPath);
+            return sourced != null ? sourced : ResourceLocation.parse(texture);
+        }
+
+        public ResourceLocation sideTextureLocation() {
+            ResourceLocation side = BlockArtIndex.sideTexture(registryPath);
+            return side != null ? side : textureLocation();
+        }
+
+        public boolean dyeTint() {
+            return BlockArtIndex.dyeTint(registryPath);
         }
 
         public boolean slab() {

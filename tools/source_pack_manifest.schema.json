@@ -1,0 +1,111 @@
+{
+  "$defs": {
+    "file_entry": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "dump_slice",
+            "work_set",
+            "authority",
+            "compare_corpus",
+            "other"
+          ],
+          "type": "string"
+        },
+        "sha256": {
+          "maxLength": 64,
+          "minLength": 64,
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "role"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://cruciblecraft.invalid/schema/source_pack_manifest.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "files": {
+      "items": {
+        "$ref": "#/$defs/file_entry"
+      },
+      "type": "array"
+    },
+    "full_replay": {
+      "additionalProperties": false,
+      "properties": {
+        "required_for_first_generation": {
+          "type": "boolean"
+        },
+        "skip_is_not_pass": {
+          "const": true
+        }
+      },
+      "required": [
+        "required_for_first_generation",
+        "skip_is_not_pass"
+      ],
+      "type": "object"
+    },
+    "provenance_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "append_only": {
+          "const": true
+        },
+        "forbid_gt6u": {
+          "const": true
+        }
+      },
+      "required": [
+        "append_only",
+        "forbid_gt6u"
+      ],
+      "type": "object"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "source_dialect": {
+      "enum": [
+        "gt6"
+      ],
+      "type": "string"
+    },
+    "source_pack_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "source_revision": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "source_system": {
+      "enum": [
+        "gt6"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "source_pack_id",
+    "source_system",
+    "source_revision",
+    "source_dialect",
+    "files",
+    "provenance_policy",
+    "full_replay"
+  ],
+  "type": "object"
+}

@@ -1,65 +1,121 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:0cae91ecd296db9ba05d6104d5fb3866dcd27e5a3523f6191ea7c8e90ff9747c",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 144,
-          "id": "minecraft:water"
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "minecraft:water"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_magenta"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:spectral_dew"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_magenta"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_magenta"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:potion_mineralwater"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_magenta"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_magenta"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "be2b1a741e5479f6db073dddcaa15b72880abf3c5f596935d9dd1cf1ed2baaf6",
+        "7c211f0b69cf0a93ad3cb5b4d8566226882ba1b99817077662be8b0f86652023",
+        "0f5a6ed21f0d7fa5f422dc0ecec303c14f40e16b5eaf95039b05b44013c582d2",
+        "5afacac2da88854cb4e472d25565ac373f8027e53ea9f50ae05d50d52e95d61d"
       ],
       "item_inputs": [
-        {
-          "item": "minecraft:magenta_dye"
-        }
+        [
+          {
+            "item": "minecraft:magenta_dye"
+          }
+        ]
       ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "be2b1a741e5479f6db073dddcaa15b72880abf3c5f596935d9dd1cf1ed2baaf6"
-        ],
-        "selected_source_recipe": "sha256:0cae91ecd296db9ba05d6104d5fb3866dcd27e5a3523f6191ea7c8e90ff9747c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/76969a7c4fe65736"
+      "item_outputs": [
+        []
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/76969a7c4fe65736",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:mixer/ordinary_closure/32eaeda5105cca69",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:mixer/ordinary_closure/d4fa66be9fc26914",
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        "cruciblecraft:mixer/ordinary_closure/ca249be5afd41f73",
+        3,
+        3
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:spectral_dew"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_magenta"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -68,109 +124,13 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "minecraft:magenta_dye"
-        }
-      ],
-      "item_outputs": [],
       "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "7c211f0b69cf0a93ad3cb5b4d8566226882ba1b99817077662be8b0f86652023"
-        ],
-        "selected_source_recipe": "sha256:0cae91ecd296db9ba05d6104d5fb3866dcd27e5a3523f6191ea7c8e90ff9747c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/32eaeda5105cca69"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_magenta"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:magenta_dye"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "0f5a6ed21f0d7fa5f422dc0ecec303c14f40e16b5eaf95039b05b44013c582d2"
-        ],
-        "selected_source_recipe": "sha256:0cae91ecd296db9ba05d6104d5fb3866dcd27e5a3523f6191ea7c8e90ff9747c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/d4fa66be9fc26914"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:potion_mineralwater"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_magenta"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:magenta_dye"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "5afacac2da88854cb4e472d25565ac373f8027e53ea9f50ae05d50d52e95d61d"
-        ],
-        "selected_source_recipe": "sha256:0cae91ecd296db9ba05d6104d5fb3866dcd27e5a3523f6191ea7c8e90ff9747c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/ca249be5afd41f73"
+      "selected_source_recipe": "sha256:0cae91ecd296db9ba05d6104d5fb3866dcd27e5a3523f6191ea7c8e90ff9747c",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

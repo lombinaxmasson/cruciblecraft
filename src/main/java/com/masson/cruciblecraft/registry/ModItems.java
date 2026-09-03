@@ -2,6 +2,7 @@ package com.masson.cruciblecraft.registry;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.masson.cruciblecraft.CrucibleCraft;
@@ -10,6 +11,8 @@ import com.masson.cruciblecraft.api.material.MaterialPrefixes;
 import com.masson.cruciblecraft.content.item.MaterialItem;
 import com.masson.cruciblecraft.content.item.MaterialStorageBlockItem;
 import com.masson.cruciblecraft.content.item.CableBlockItem;
+import com.masson.cruciblecraft.content.item.CatalogNamedBlockItem;
+import com.masson.cruciblecraft.content.item.CatalogNamedItem;
 import com.masson.cruciblecraft.content.item.CellItem;
 import com.masson.cruciblecraft.content.item.CeramicMoldBlockItem;
 import com.masson.cruciblecraft.content.item.ExtruderShapeCatalog;
@@ -266,6 +269,42 @@ public final class ModItems {
                     () -> new PipeCoverItem(
                             "cruciblecraft:selector_manual",
                             new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> LOGISTICS_ITEM_STORAGE_COVER =
+            ITEMS.register(
+                    "logistics_item_storage_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:logistics_item_storage",
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> LOGISTICS_ITEM_IMPORT_COVER =
+            ITEMS.register(
+                    "logistics_item_import_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:logistics_item_import",
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> LOGISTICS_ITEM_EXPORT_COVER =
+            ITEMS.register(
+                    "logistics_item_export_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:logistics_item_export",
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> LOGISTICS_FLUID_STORAGE_COVER =
+            ITEMS.register(
+                    "logistics_fluid_storage_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:logistics_fluid_storage",
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> LOGISTICS_FLUID_IMPORT_COVER =
+            ITEMS.register(
+                    "logistics_fluid_import_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:logistics_fluid_import",
+                            new Item.Properties()));
+    public static final DeferredItem<PipeCoverItem> LOGISTICS_FLUID_EXPORT_COVER =
+            ITEMS.register(
+                    "logistics_fluid_export_cover",
+                    () -> new PipeCoverItem(
+                            "cruciblecraft:logistics_fluid_export",
+                            new Item.Properties()));
     public static final DeferredItem<BlockItem> BRONZE_BOILER =
             ITEMS.registerSimpleBlockItem("bronze_boiler", ModBlocks.BRONZE_BOILER);
     public static final DeferredItem<BlockItem> BRONZE_STEAM_ENGINE =
@@ -473,6 +512,8 @@ public final class ModItems {
                     () -> new FlintKnifeItem(new Item.Properties()));
     public static final DeferredItem<UnknownMaterialItem> UNKNOWN_MATERIAL =
             ITEMS.register("unknown_material", () -> new UnknownMaterialItem(new Item.Properties()));
+    public static final Map<String, DeferredItem<Item>> EMPTY_TOOL_HEADS =
+            registerEmptyToolHeads();
     public static void registerMaterials(Collection<MaterialDefinition> definitions) {
         if (!MATERIAL_ITEMS.isEmpty() || !MATERIAL_ORE_ITEMS.isEmpty()) {
             throw new IllegalStateException("Material items or ore items already registered");
@@ -767,9 +808,13 @@ public final class ModItems {
         LinkedHashMap<ResourceLocation, DeferredItem<BlockItem>> items =
                 new LinkedHashMap<>();
         for (GtBlockObjectCatalog.Variant variant : GtBlockObjectCatalog.variants()) {
-            DeferredItem<BlockItem> item = ITEMS.registerSimpleBlockItem(
+            DeferredItem<BlockItem> item = ITEMS.register(
                     variant.registryPath(),
-                    ModBlocks.gtBlockObjectBlocksById().get(variant.id()));
+                    () -> new CatalogNamedBlockItem(
+                            ModBlocks.gtBlockObjectBlocksById().get(variant.id()).get(),
+                            new Item.Properties(),
+                            variant.englishName(),
+                            variant.chineseName()));
             if (items.put(variant.id(), item) != null) {
                 throw new IllegalStateException(
                         "Duplicate GT block-object item " + variant.id());
@@ -789,9 +834,13 @@ public final class ModItems {
         LinkedHashMap<ResourceLocation, DeferredItem<BlockItem>> items =
                 new LinkedHashMap<>();
         for (GtBlockObjectCatalog.Variant variant : BathRemainderBlockObjectCatalog.variants()) {
-            DeferredItem<BlockItem> item = ITEMS.registerSimpleBlockItem(
+            DeferredItem<BlockItem> item = ITEMS.register(
                     variant.registryPath(),
-                    ModBlocks.bathRemainderBlockObjectBlocksById().get(variant.id()));
+                    () -> new CatalogNamedBlockItem(
+                            ModBlocks.bathRemainderBlockObjectBlocksById().get(variant.id()).get(),
+                            new Item.Properties(),
+                            variant.englishName(),
+                            variant.chineseName()));
             if (items.put(variant.id(), item) != null) {
                 throw new IllegalStateException(
                         "Duplicate bath remainder block-object item " + variant.id());
@@ -860,6 +909,18 @@ public final class ModItems {
         return SEMANTIC_IDENTITY_ITEMS;
     }
 
+    private static Map<String, DeferredItem<Item>> registerEmptyToolHeads() {
+        LinkedHashMap<String, DeferredItem<Item>> items = new LinkedHashMap<>();
+        for (String path : List.of(
+                "empty/tool_head_chainsaw",
+                "empty/tool_head_drill",
+                "empty/tool_head_pickaxe_gem",
+                "empty/tool_head_wrench")) {
+            items.put(path, ITEMS.registerSimpleItem(path, new Item.Properties()));
+        }
+        return java.util.Collections.unmodifiableMap(items);
+    }
+
     private static Map<ResourceLocation, DeferredItem<Item>> registerMachineCasings() {
         LinkedHashMap<ResourceLocation, DeferredItem<Item>> items =
                 new LinkedHashMap<>();
@@ -878,8 +939,12 @@ public final class ModItems {
         LinkedHashMap<ResourceLocation, DeferredItem<Item>> items =
                 new LinkedHashMap<>();
         for (BathMteIdentityCatalog.Identity identity : BathMteIdentityCatalog.newItems()) {
-            DeferredItem<Item> item = ITEMS.registerSimpleItem(
-                    identity.registryPath(), new Item.Properties());
+            DeferredItem<Item> item = ITEMS.register(
+                    identity.registryPath(),
+                    () -> new CatalogNamedItem(
+                            new Item.Properties(),
+                            identity.englishName(),
+                            identity.chineseName()));
             if (items.put(identity.id(), item) != null) {
                 throw new IllegalStateException(
                         "Duplicate Bath MTE item " + identity.id());
@@ -892,8 +957,12 @@ public final class ModItems {
         LinkedHashMap<ResourceLocation, DeferredItem<Item>> items =
                 new LinkedHashMap<>();
         for (SmelterMteIdentityCatalog.Identity identity : SmelterMteIdentityCatalog.newItems()) {
-            DeferredItem<Item> item = ITEMS.registerSimpleItem(
-                    identity.registryPath(), new Item.Properties());
+            DeferredItem<Item> item = ITEMS.register(
+                    identity.registryPath(),
+                    () -> new CatalogNamedItem(
+                            new Item.Properties(),
+                            identity.englishName(),
+                            identity.chineseName()));
             if (items.put(identity.id(), item) != null) {
                 throw new IllegalStateException(
                         "Duplicate Smelter MTE item " + identity.id());
@@ -906,8 +975,12 @@ public final class ModItems {
         LinkedHashMap<ResourceLocation, DeferredItem<Item>> items =
                 new LinkedHashMap<>();
         for (BathIdentityCatalog.Identity identity : BathIdentityCatalog.identities()) {
-            DeferredItem<Item> item = ITEMS.registerSimpleItem(
-                    identity.registryPath(), new Item.Properties());
+            DeferredItem<Item> item = ITEMS.register(
+                    identity.registryPath(),
+                    () -> new CatalogNamedItem(
+                            new Item.Properties(),
+                            identity.englishName(),
+                            identity.chineseName()));
             if (items.put(identity.id(), item) != null) {
                 throw new IllegalStateException(
                         "Duplicate bath identity item " + identity.id());
@@ -925,8 +998,12 @@ public final class ModItems {
         LinkedHashMap<ResourceLocation, DeferredItem<Item>> items =
                 new LinkedHashMap<>();
         for (SemanticObjectCatalog.Identity identity : SemanticObjectCatalog.identities()) {
-            DeferredItem<Item> item = ITEMS.registerSimpleItem(
-                    identity.registryPath(), new Item.Properties());
+            DeferredItem<Item> item = ITEMS.register(
+                    identity.registryPath(),
+                    () -> new CatalogNamedItem(
+                            new Item.Properties(),
+                            identity.englishName(),
+                            identity.chineseName()));
             if (items.put(identity.id(), item) != null) {
                 throw new IllegalStateException(
                         "Duplicate semantic identity item " + identity.id());

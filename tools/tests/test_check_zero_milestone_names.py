@@ -50,6 +50,25 @@ class ZeroMilestoneNameScannerTest(unittest.TestCase):
                 f"{line!r} -> {found!r}, expected {expected!r}",
             )
 
+    def test_letter_suffix_tokens_are_detected(self) -> None:
+        self.assertTrue(
+            any("t18b" in token or token.endswith("b") for token in scanner.line_findings("void t18bDynamo()"))
+        )
+        self.assertTrue(
+            any("T13c" in token or "13c" in token.lower() for token in scanner.line_findings("build_t13c_exclusion"))
+        )
+
+    def test_quick_mode_scans_live_java_not_generated_trees(self) -> None:
+        self.assertTrue(scanner.is_quick_target("src/main/java/com/masson/cruciblecraft/logistics/fluidnet/FluidLogisticsNetwork.java"))
+        self.assertTrue(scanner.is_quick_target("tools/capabilities/logistics/cover-net-r0/capability.json"))
+        self.assertFalse(scanner.is_quick_target("src/main/java/com/masson/cruciblecraft/CrucibleCraft.java"))
+        self.assertFalse(scanner.is_quick_target("src/recipe_generated/resources/data/cruciblecraft/recipe/t49.json"))
+        self.assertFalse(scanner.is_quick_target("tools/build_t35_runtime_registry.py"))
+        self.assertFalse(scanner.is_quick_target("src/t14Benchmark/java/example.java"))
+        self.assertIn("src/t14Benchmark", {root.replace("\\", "/") for root in scanner.SCAN_ROOTS})
+        self.assertIn("docs/decisions", scanner.SCAN_ROOTS)
+        self.assertIn("README.md", scanner.SCAN_FILES)
+
     def test_archive_and_history_are_exempt(self) -> None:
         self.assertTrue(scanner.is_exempt("archive/sealed/T49/closeout_seal.json"))
         self.assertTrue(scanner.is_exempt("docs/history/INDEX.md"))

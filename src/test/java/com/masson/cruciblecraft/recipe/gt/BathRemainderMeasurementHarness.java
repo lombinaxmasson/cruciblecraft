@@ -99,7 +99,7 @@ class BathRemainderMeasurementHarness {
         Set<ResourceLocation> eagerStableIds = new HashSet<>();
         for (CompactRecipeFamilySource source : sources) {
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 if (relation.duration() <= HYBRID_DURATION_CUTOFF) {
                     eagerStableIds.add(relation.stableId());
                 }
@@ -158,7 +158,7 @@ class BathRemainderMeasurementHarness {
     private static int countLogicalRows(List<CompactRecipeFamilySource> familySources) {
         int total = 0;
         for (CompactRecipeFamilySource source : familySources) {
-            total += source.definition().relations().size();
+            total += source.authoredRelations().size();
         }
         return total;
     }
@@ -169,7 +169,7 @@ class BathRemainderMeasurementHarness {
         int total = 0;
         for (CompactRecipeFamilySource source : familySources) {
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 if (eagerStableIds.contains(relation.stableId())) {
                     total++;
                 }
@@ -615,7 +615,7 @@ class BathRemainderMeasurementHarness {
         List<GTRecipeQuery> queries = new ArrayList<>();
         for (CompactRecipeFamilySource source : familySources) {
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 List<ItemStack> offered = new ArrayList<>();
                 List<Ingredient> inputs = relation.itemInputs();
                 List<Integer> counts = relation.itemInputCounts();

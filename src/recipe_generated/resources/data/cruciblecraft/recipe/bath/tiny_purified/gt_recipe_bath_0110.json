@@ -1,113 +1,485 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.bath#0110",
-  "publication_group": "cruciblecraft:bath/tiny_purified/exact_multi",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 9750,
-          "id": "cruciblecraft:aqua_regia"
+          "fluid_inputs": [
+            {
+              "amount": 9750,
+              "id": "cruciblecraft:aqua_regia"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 4500,
+              "id": "cruciblecraft:chloroplatinic_acid"
+            },
+            {
+              "amount": 1500,
+              "id": "cruciblecraft:nitrogen_monoxide"
+            },
+            {
+              "amount": 4125,
+              "id": "minecraft:water"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 4500,
-          "id": "cruciblecraft:chloroplatinic_acid"
-        },
-        {
-          "amount": 1500,
-          "id": "cruciblecraft:nitrogen_monoxide"
-        },
-        {
-          "amount": 4125,
-          "id": "minecraft:water"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
+      "hashes": [
+        "1544bdb1041941fb8a83d1cb9eae4da3547e33311a728892a03a75b130ce6105",
+        "02c8674bdda8f91849bfb493b6d0ea73556e53356de6ca4cea1abb62d46c01d7",
+        "f714d15cb7ec00d437b659777323b19347167f2d475bf79b79ad27d06c4d45d0",
+        "91afb292ad06c1a1386955e0353433b66eec23a3662b644fe07e3bb2c72036e8",
+        "f5cff5a5509e0ff02aba52d02661856028b93e43c253212b914fe40870c41009",
+        "08a627b90a9c8630c0c0f51411ec636bf3c1f561c22495fc731d7e99575f85d9",
+        "c32c3fa61e30e2b2e4da2d651b916235b8d14bd1e28bd6add655e19734d99383",
+        "3cf5ccbcd26360918607c40a9a62f0fd5dd04c891a08f4e02495c4387b2b1e81",
+        "8118f99c678bee3127b57a832fffe77da66d2edf593a67b2d27cfe409b3cbab9",
+        "1a3618b89b65755b229ab5263262d736079c8aed923663161c28526741a0e065",
+        "adfd86be1d0407ff062a0c01cfb8043e9c266691b33734defe093135ede5e4c3"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:meteoric_iron/tiny_washed_crushed_ore"
-        }
+        [
+          {
+            "item": "cruciblecraft:meteoric_iron/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:sperrylite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iridium/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:platinum/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:palladium/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:osmium_elemental/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nickel/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:rhodium/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ruthenium/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cooperite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:mithril/tiny_washed_crushed_ore"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:meteoric_iron/centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "1544bdb1041941fb8a83d1cb9eae4da3547e33311a728892a03a75b130ce6105"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteoric_iron/centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          }
         ],
-        "selected_source_recipe": "gt.recipe.bath#0110",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/e5b8ea1b04d47c38"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:sperrylite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:iridium/centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:platinum/centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:palladium/centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:osmium_elemental/centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:nickel/centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:rhodium/centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ruthenium/centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:cooperite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:mithril/centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 8,
+            "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/tiny_purified/e5b8ea1b04d47c38",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:bath/tiny_purified/4125df8c198931fa",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:bath/tiny_purified/ec68c8e36ad99249",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        0,
+        "cruciblecraft:bath/tiny_purified/4b59abddc746b147",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        0,
+        "cruciblecraft:bath/tiny_purified/fa857121259d2758",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        0,
+        "cruciblecraft:bath/tiny_purified/2fab51e1a1a1c012",
+        5,
+        5
+      ],
+      [
+        6,
+        6,
+        0,
+        "cruciblecraft:bath/tiny_purified/f32fda4ee5f2ff47",
+        6,
+        6
+      ],
+      [
+        7,
+        7,
+        0,
+        "cruciblecraft:bath/tiny_purified/16462654d91590c5",
+        7,
+        7
+      ],
+      [
+        8,
+        8,
+        0,
+        "cruciblecraft:bath/tiny_purified/8ae0b1d46a479b95",
+        8,
+        8
+      ],
+      [
+        9,
+        9,
+        0,
+        "cruciblecraft:bath/tiny_purified/c6e0c563fccd792d",
+        9,
+        9
+      ],
+      [
+        10,
+        10,
+        0,
+        "cruciblecraft:bath/tiny_purified/22812b95b053fb60",
+        10,
+        10
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 256,
       "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 9750,
-          "id": "cruciblecraft:aqua_regia"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4500,
-          "id": "cruciblecraft:chloroplatinic_acid"
-        },
-        {
-          "amount": 1500,
-          "id": "cruciblecraft:nitrogen_monoxide"
-        },
-        {
-          "amount": 4125,
-          "id": "minecraft:water"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -115,37 +487,6 @@
       ],
       "item_input_counts": [
         9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:sperrylite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:sperrylite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        }
       ],
       "output_chances": [
         10000,
@@ -155,756 +496,12 @@
         5000,
         5000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "02c8674bdda8f91849bfb493b6d0ea73556e53356de6ca4cea1abb62d46c01d7"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0110",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/4125df8c198931fa"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 9750,
-          "id": "cruciblecraft:aqua_regia"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4500,
-          "id": "cruciblecraft:chloroplatinic_acid"
-        },
-        {
-          "amount": 1500,
-          "id": "cruciblecraft:nitrogen_monoxide"
-        },
-        {
-          "amount": 4125,
-          "id": "minecraft:water"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:iridium/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:iridium/centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "f714d15cb7ec00d437b659777323b19347167f2d475bf79b79ad27d06c4d45d0"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0110",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/ec68c8e36ad99249"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 9750,
-          "id": "cruciblecraft:aqua_regia"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4500,
-          "id": "cruciblecraft:chloroplatinic_acid"
-        },
-        {
-          "amount": 1500,
-          "id": "cruciblecraft:nitrogen_monoxide"
-        },
-        {
-          "amount": 4125,
-          "id": "minecraft:water"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:platinum/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:platinum/centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "91afb292ad06c1a1386955e0353433b66eec23a3662b644fe07e3bb2c72036e8"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0110",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/4b59abddc746b147"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 9750,
-          "id": "cruciblecraft:aqua_regia"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4500,
-          "id": "cruciblecraft:chloroplatinic_acid"
-        },
-        {
-          "amount": 1500,
-          "id": "cruciblecraft:nitrogen_monoxide"
-        },
-        {
-          "amount": 4125,
-          "id": "minecraft:water"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:palladium/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:palladium/centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "f5cff5a5509e0ff02aba52d02661856028b93e43c253212b914fe40870c41009"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0110",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/fa857121259d2758"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 9750,
-          "id": "cruciblecraft:aqua_regia"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4500,
-          "id": "cruciblecraft:chloroplatinic_acid"
-        },
-        {
-          "amount": 1500,
-          "id": "cruciblecraft:nitrogen_monoxide"
-        },
-        {
-          "amount": 4125,
-          "id": "minecraft:water"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:osmium_elemental/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:osmium_elemental/centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "08a627b90a9c8630c0c0f51411ec636bf3c1f561c22495fc731d7e99575f85d9"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0110",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/2fab51e1a1a1c012"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 9750,
-          "id": "cruciblecraft:aqua_regia"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4500,
-          "id": "cruciblecraft:chloroplatinic_acid"
-        },
-        {
-          "amount": 1500,
-          "id": "cruciblecraft:nitrogen_monoxide"
-        },
-        {
-          "amount": 4125,
-          "id": "minecraft:water"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:nickel/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:nickel/centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "c32c3fa61e30e2b2e4da2d651b916235b8d14bd1e28bd6add655e19734d99383"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0110",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 6,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/f32fda4ee5f2ff47"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 9750,
-          "id": "cruciblecraft:aqua_regia"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4500,
-          "id": "cruciblecraft:chloroplatinic_acid"
-        },
-        {
-          "amount": 1500,
-          "id": "cruciblecraft:nitrogen_monoxide"
-        },
-        {
-          "amount": 4125,
-          "id": "minecraft:water"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:rhodium/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:rhodium/centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "3cf5ccbcd26360918607c40a9a62f0fd5dd04c891a08f4e02495c4387b2b1e81"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0110",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 7,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/16462654d91590c5"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 9750,
-          "id": "cruciblecraft:aqua_regia"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4500,
-          "id": "cruciblecraft:chloroplatinic_acid"
-        },
-        {
-          "amount": 1500,
-          "id": "cruciblecraft:nitrogen_monoxide"
-        },
-        {
-          "amount": 4125,
-          "id": "minecraft:water"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:ruthenium/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:ruthenium/centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "8118f99c678bee3127b57a832fffe77da66d2edf593a67b2d27cfe409b3cbab9"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0110",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 8,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/8ae0b1d46a479b95"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 9750,
-          "id": "cruciblecraft:aqua_regia"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4500,
-          "id": "cruciblecraft:chloroplatinic_acid"
-        },
-        {
-          "amount": 1500,
-          "id": "cruciblecraft:nitrogen_monoxide"
-        },
-        {
-          "amount": 4125,
-          "id": "minecraft:water"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:cooperite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:cooperite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "1a3618b89b65755b229ab5263262d736079c8aed923663161c28526741a0e065"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0110",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 9,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/c6e0c563fccd792d"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 9750,
-          "id": "cruciblecraft:aqua_regia"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4500,
-          "id": "cruciblecraft:chloroplatinic_acid"
-        },
-        {
-          "amount": 1500,
-          "id": "cruciblecraft:nitrogen_monoxide"
-        },
-        {
-          "amount": 4125,
-          "id": "minecraft:water"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:mithril/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:mithril/centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 8,
-          "id": "cruciblecraft:platinum_group_sludge/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "adfd86be1d0407ff062a0c01cfb8043e9c266691b33734defe093135ede5e4c3"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0110",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 10,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/22812b95b053fb60"
+      "selected_source_recipe": "gt.recipe.bath#0110",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:bath/tiny_purified/exact_multi",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:bath",
   "type": "cruciblecraft:compact_gt_recipe_family"

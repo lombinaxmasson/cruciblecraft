@@ -25,6 +25,10 @@ TOOLS = t35.TOOLS
 SCHEMA = TOOLS / "closeout_seal.schema.json"
 IDENTITY_LEDGER_V2 = TOOLS / "global_build_identity_ledger.v2.json"
 RUNTIME_MANIFEST_V2 = TOOLS / "compact_recipe_runtime_manifest.v2.json"
+T48_LIVE_GENERATED = (
+    t35.ROOT
+    / "src/recipe_generated/resources/data/cruciblecraft/recipe/bath/identity"
+)
 
 REQUIRED_SEAL_FIELDS = (
     "schema_version",
@@ -207,6 +211,11 @@ def _validate_seal_shape(document: dict[str, Any], card_id: str) -> list[str]:
             errors.append(f"{card_id} seal schema_version must be 1 or 2")
         if version == 2 and not document.get("supersedes_sha256"):
             errors.append(f"{card_id} schema v2 seal missing supersedes_sha256")
+    elif version == 2:
+        if not document.get("supersedes_sha256"):
+            errors.append(f"{card_id} schema v2 seal missing supersedes_sha256")
+        if not document.get("repair_wave"):
+            errors.append(f"{card_id} schema v2 seal missing repair_wave")
     elif version != 1:
         errors.append(f"{card_id} seal schema_version must be 1")
     if document.get("status") != "SEALED":
@@ -326,6 +335,23 @@ def _file_bytes_sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def live_reseal_supersedes_archive(card_id: str) -> bool:
+    """True when live is a v2 reseal of the archived v1 snapshot."""
+    live = seal_path(card_id)
+    archived = seal_resolver.seal_snapshot_path(card_id)
+    if not live.is_file() or not archived.is_file():
+        return False
+    if live.read_bytes() == archived.read_bytes():
+        return False
+    try:
+        document = _load_json(live)
+    except (OSError, json.JSONDecodeError, ValueError):
+        return False
+    if document.get("schema_version") != 2:
+        return False
+    return document.get("supersedes_sha256") == _file_bytes_sha256(archived)
+
+
 def _evaluate_wave_ready_or_raise(slug: str) -> dict[str, Any]:
     from tools.recipe_bulk import ordinary_wave as ordinary
     from tools.wave_closeout import spec_for as wave_spec_for
@@ -439,9 +465,49 @@ def write_wave_seal(
     return document
 
 
-def write_seal(card_id: str) -> dict[str, Any]:
+def write_seal(
+    card_id: str,
+    *,
+    supersedes_sha256: str | None = None,
+    repair_wave: str | None = None,
+) -> dict[str, Any]:
     document = build_seal(card_id)
     output = seal_path(card_id)
+    if supersedes_sha256:
+        if not repair_wave:
+            raise ValueError("--supersedes requires --repair-wave")
+        spec = spec_for(card_id)
+        if (
+            card_id == "T48"
+            and (spec.generated_root is None or not spec.generated_root.exists())
+            and T48_LIVE_GENERATED.exists()
+        ):
+            document["hashes"]["generated_recipes"] = _tree_hash(T48_LIVE_GENERATED)
+        document["schema_version"] = 2
+        document["supersedes_sha256"] = supersedes_sha256
+        document["repair_wave"] = repair_wave
+        document["generated_by"] = (
+            "python tools/closeout_seal.py --write --card --supersedes"
+        )
+        document["note"] = (
+            "Live reseal. Archive snapshot stays the superseded v1 seal. "
+            "Closed-card --check still reads archive hashes."
+        )
+        if output.is_file():
+            existing_text = output.read_text(encoding="utf-8")
+            if existing_text == t35.stable_json(document):
+                return _load_json(output)
+            existing_sha = _file_bytes_sha256(output)
+            existing_doc = _load_json(output)
+            if (
+                existing_sha != supersedes_sha256
+                and existing_doc.get("supersedes_sha256") != supersedes_sha256
+            ):
+                raise ValueError(
+                    f"--supersedes does not match current {t35.relative(output)}"
+                )
+        t35.write_stable(output, document)
+        return document
     if output.is_file():
         existing = output.read_text(encoding="utf-8")
         if existing != t35.stable_json(document):
@@ -498,6 +564,8 @@ def check_seal_document(card_id: str) -> list[str]:
             return live_errors
         errors = _parse_seal_file(archived, card_id)
         if live.is_file() and archived.is_file() and live.read_bytes() != archived.read_bytes():
+            if live_reseal_supersedes_archive(card_id):
+                return live_errors
             errors.append(
                 f"{card_id} live seal is not byte-identical to archive snapshot"
             )
@@ -801,14 +869,53 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--card", action="append", dest="cards")
     parser.add_argument("--wave", action="append", dest="waves")
+    parser.add_argument(
+        "--waves-only",
+        action="store_true",
+        help="Check semantic wave seals only; skip numbered card seals.",
+    )
+    parser.add_argument(
+        "--supersedes",
+        default=None,
+        help="Existing seal file sha256 for a v2 reseal. Requires --repair-wave.",
+    )
+    parser.add_argument(
+        "--repair-wave",
+        default=None,
+        help="Repair slug recorded on a v2 reseal. Do not omit when --supersedes is set.",
+    )
     args = parser.parse_args(argv)
+    if args.waves_only and args.write:
+        parser.error("--waves-only is check-only")
     if args.write == args.check:
         parser.error("choose exactly one of --write or --check")
+    if args.supersedes and not args.repair_wave:
+        parser.error("--supersedes requires --repair-wave")
+    if args.repair_wave and not args.supersedes:
+        parser.error("--repair-wave requires --supersedes")
+    if args.supersedes and not args.waves and not args.cards:
+        parser.error("--supersedes requires --card or --wave")
+    if args.waves_only and not args.waves:
+        from tools.wave_closeout import known_slugs
+        from tools.wave_closeout import seal_path as wave_seal_path
+
+        args.waves = [
+            slug
+            for slug in known_slugs()
+            if wave_seal_path(slug).is_file()
+        ]
+        if not args.waves:
+            print("no semantic closeout seals on disk")
+            return 0
     if args.waves:
         try:
             if args.write:
                 for slug in args.waves:
-                    write_wave_seal(slug)
+                    write_wave_seal(
+                        slug,
+                        supersedes_sha256=args.supersedes,
+                        repair_wave=args.repair_wave,
+                    )
                     from tools.wave_closeout import seal_path as wave_seal_path
 
                     print(f"Wrote {t35.relative(wave_seal_path(slug))}")
@@ -828,7 +935,11 @@ def main(argv: list[str] | None = None) -> int:
     try:
         if args.write:
             for card_id in cards:
-                write_seal(card_id)
+                write_seal(
+                    card_id,
+                    supersedes_sha256=args.supersedes,
+                    repair_wave=args.repair_wave,
+                )
                 print(f"Wrote {t35.relative(seal_path(card_id))}")
             return 0
         errors: list[str] = []

@@ -1,105 +1,2305 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.bath#0072",
-  "publication_group": "cruciblecraft:bath/tiny_purified/exact_multi",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:green_vitriol"
+          "fluid_inputs": [
+            {
+              "amount": 3500,
+              "id": "cruciblecraft:sulfuric_acid"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 3000,
+              "id": "cruciblecraft:green_vitriol"
+            },
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:hydrogen"
+            }
+          ]
         },
         {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
+          "fluid_inputs": [
+            {
+              "amount": 3500,
+              "id": "cruciblecraft:sulfuric_acid"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 3000,
+              "id": "cruciblecraft:pink_vitriol"
+            },
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:hydrogen"
+            }
+          ]
+        },
         {
-          "kind": "consume"
+          "fluid_inputs": [
+            {
+              "amount": 3500,
+              "id": "cruciblecraft:sulfuric_acid"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 3000,
+              "id": "cruciblecraft:gray_vitriol"
+            },
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:hydrogen"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 3500,
+              "id": "cruciblecraft:sulfuric_acid"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 3000,
+              "id": "cruciblecraft:white_vitriol"
+            },
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:hydrogen"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 3500,
+              "id": "cruciblecraft:sulfuric_acid"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 3000,
+              "id": "cruciblecraft:blue_vitriol"
+            },
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:hydrogen"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 3500,
+              "id": "cruciblecraft:sulfuric_acid"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 3000,
+              "id": "cruciblecraft:martian_vitriol"
+            },
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:hydrogen"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 3500,
+              "id": "cruciblecraft:sulfuric_acid"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 3000,
+              "id": "cruciblecraft:cyan_vitriol"
+            },
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:hydrogen"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 10500,
+              "id": "cruciblecraft:sulfuric_acid"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 8500,
+              "id": "cruciblecraft:vitriol_of_clay"
+            },
+            {
+              "amount": 3000,
+              "id": "cruciblecraft:hydrogen"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 3500,
+              "id": "cruciblecraft:sulfuric_acid"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 3000,
+              "id": "cruciblecraft:red_vitriol"
+            },
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:hydrogen"
+            }
+          ]
         }
       ],
-      "item_input_counts": [
-        9
+      "hashes": [
+        "9606c366f4c8e0bb969ae7e38b1a886644c030045892ee1dcd3d15f6bb61de3c",
+        "fc1b1497c4acb5b18dbdf5a08900eae15e38d50f0484964cacaa917daabfb71f",
+        "1e6d4c250e598146ee939c4065e13567eb711c10f59ef3ea4ed0c8f42c508ce7",
+        "4009522ad7db636f3ccf1548d9778232f0d491c45565f274ab81ce81d0588c95",
+        "71c54d99081b94b1136f3134969591f7c13940f550cda67d5180fce134ed03b0",
+        "ccb9a6204b81dd04b15150c5a2d2505631fb3529722aba0a3155f8e940056a04",
+        "050bf4d58eba4234f398edffbae6394866a38d328e188be68ebe97a2af3e1bfe",
+        "d15b5fb8db1047b42b1eb9d094e13ab58a9ca83baaefc765591b866005fc415d",
+        "d107632d2f585daebb12680aec119d0e4cd921e3a932cd351a8f08c99ea054bd",
+        "15027e5d0dc83f159f75ec3ed9c2e5199f7ee719f2506aa7bb2cad663317724d",
+        "e1474f2685fca00bc7b2d1f9a4f29f83b61cf7f7f3f46b17bd156131081ea38d",
+        "beae2125bb30f3621457b8f4a53094795696f18dc0dcffd564af4e7a9b4d1d2c",
+        "4c8c07d2f63de80c0d34fc12e8076d89e8bfb84fb4d28fdfe41023e46c6a0ce7",
+        "da6db46db406bde2604f7bb0d51d63b5dd985b95c5997fbee2cc8e33355f6db1",
+        "11fc4c07b873ae548d9b06159cb75ac0e4475202a389f6d86f1a2f3e0c1a2fe1",
+        "7a12da4385eb98791724598411eb6b05d796f3c019a25d4f99f9f70f4796ec48",
+        "9c0c70b6d27d11bdc0a3801241d9b0d0f5d33ce732ef69e7d15f84e25f9fa9c3",
+        "24b8fddd1f4271d2b07cbcb1a6d3b7f475729fd330e08155995dea0d41bd8d79",
+        "bc854cd91a42afb796d42b52691db30f55f86b0128479ebe59373e9d7c8d87dc",
+        "495257c7ea271ae13cdaa1e5b7475787f2e8f5b2d1da5f04c66a80bef30a3236",
+        "30cbcd48c3402c18e2edfef14c559fe0b93826a9bd73e52ad8b9c2555b5b0f3a",
+        "38f2d5b319662556d412c8f83508e3517176a7b5b2701736ba5f2861bcc51ff1",
+        "4b560f33eded44c3a9deeca7390a4f2b7e0de5d1aa4adf36727b925a45195aeb",
+        "3580c59f88e5b16d817ace3b134e02160f4bcb295e700eada05c2f255d9ff22b",
+        "f58b84d50e18cb4deb26654b5784a24b103acd6334bf51f5bfe208ee5471fab2",
+        "d992333eb378855e302d1f746e2135036a62a8385e7ca6b0a037f69a77073e63",
+        "88f591e2fb99bcae7074b39cdd722f59d07b2ce54e7367990d94a588f4eddf42",
+        "2ecd0f86f8e69b1184dab13c4fb0684bba62e041f1e67038e5a947a232106507",
+        "c68d9217ffe58aea48a57aef5be449d0784850fd70bebd909087c18abfcb2d4b",
+        "ca5e995d76420fb8dc4fe21b3d371a8a24b87d35bcf14b4504204b77e8400235",
+        "987f044cf32de06840be721291f382ea76434fb9479d64858beb1ecc85cebec8",
+        "af3e78820bee6f74fa61a70c5087c1ea17e21fe8db1d74c913b3be17511e2483",
+        "8ec9683a391eb72777afa30e506e1b501b84ab1676b41d984a749a38c38a3eb1",
+        "a79b96f26ee7b7dad8fa592222d25b3142befea27ab1b00dc065fff969b9774b",
+        "9d648560b977bdbaa208cf531406afb7b5bac47697507f10e0f411ccfca6f1ad",
+        "2df91a90144a628e7b50b186228285cabcb0ca072c7e218bdc167cadf99249be",
+        "5a861c63b9aceedbdb154a5f8d3cdcda05d5733790b77742395498fc1af9549e",
+        "f91f4948a18aa67e43f5b4d2c03f56597fe660a48354da7eb4152936be7d7b35",
+        "68700bea4f41b000684a7e69abd5fe06fbf20ab2d617f44bb88e16aae59ebae4",
+        "22556b1fc8dc0c6d49efbe8fe4c5f7007fe802aaab2119fdcdd530abbaad66e5",
+        "b7a85fa9d5a003ab4d835e1da8aacc8628ff7387c4513358badb6f9b8a9b89ba",
+        "7309ec5b177a1f89ad983268bf6b920aa1212b555d5a81d3da5f6109cca8a5f2",
+        "622709680a095cc52fd9253ba3baf809e4ccd320824f4bc9d36d53d3f14f241e",
+        "adf822b848e764c66c663cf1a2864aa07292d3b9bb16c6e76a8bf2aa132818b1",
+        "21f03991a7fc33575d826422cae78ad9f3ccbc5b00b3575327d4ac9c347be147",
+        "3ae8bc9479805e2f6ea33d51e7af0ffe835a0cd010233777e9ead37fb12e24eb",
+        "0a3447b1ae5699907d018c780865372e566908affec8ccc55e9a02f9509a5045",
+        "9ad65b1010337a2e1824c09b222bf8571ada12e487bae4428a9fe795156f820c",
+        "aa637bf29fe11b632402fbbd49a07f1aa1f96e21e8b3677587b109ac75150685",
+        "0f00573728a6741e67cd39af441febe4362381fbbe601d74ddcda875da60e7f6",
+        "7dbc530c670419dc6d46614d13ebe174cb13cee686ca3cedfa4762aa2fa41cf2",
+        "638e204e9428118763f1f060ef9b59daa9c285c52233afb9069191356ce4bd5f",
+        "b14449d6db13f78a1f6021f270d52042b3b3b4318f58d8dd0a1631776a03b8a4"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:pig_iron/tiny_washed_crushed_ore"
-        }
+        [
+          {
+            "item": "cruciblecraft:pig_iron/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:peridot/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ilmenite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:scheelite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tin/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:copper/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tungstate/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cooperite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:deep_iron/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:stannite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:chromite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:chromium/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:tetrahedrite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:pyrite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:dark_iron/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:granitic_mineral_sand/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:kesterite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:shadow_iron/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:garnierite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:smithsonite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gold/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:bauxite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nickel/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:pentlandite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:huebnerite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:basaltic_mineral_sand/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_iron/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cobalt/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:malachite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:desh/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:azurite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cobalt60/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:antimony/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:magnesium_carbonate/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:platinum/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:magnetite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:wolframite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:andradite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:nikolite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:steel/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:zinc/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:spessartine/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:manganese/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:cobaltite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:almandine/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:sphalerite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:chalcopyrite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:pyrope/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:pyrolusite/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:magnesium/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:adamantine/tiny_washed_crushed_ore"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:hematite/tiny_washed_crushed_ore"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:pig_iron/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pig_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pig_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pig_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pig_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pig_iron/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "9606c366f4c8e0bb969ae7e38b1a886644c030045892ee1dcd3d15f6bb61de3c"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:pig_iron/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pig_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pig_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pig_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pig_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pig_iron/tiny_centrifuged_crushed_ore"
+          }
         ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/5e51fa465021ebce"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:peridot/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:peridot/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:peridot/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:peridot/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:peridot/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:peridot/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:ilmenite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:ilmenite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:ilmenite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:ilmenite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:ilmenite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:ilmenite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:scheelite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:scheelite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:scheelite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:scheelite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:scheelite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:scheelite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tin/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:tin/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:tin/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:tin/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:tin/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:tin/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:copper/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:copper/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:copper/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:copper/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:copper/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:copper/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:adamantite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:adamantite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:adamantite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:adamantite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:adamantite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:adamantite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tungstate/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:tungstate/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:tungstate/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:tungstate/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:tungstate/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:tungstate/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:cooperite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cooperite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cooperite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cooperite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cooperite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cooperite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:deep_iron/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:deep_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:deep_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:deep_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:deep_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:deep_iron/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:stannite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:stannite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:stannite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:stannite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:stannite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:stannite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:chromite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:chromite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:chromite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:chromite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:chromite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:chromite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:chromium/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:chromium/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:chromium/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:chromium/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:chromium/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:chromium/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:tetrahedrite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:tetrahedrite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:tetrahedrite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:tetrahedrite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:tetrahedrite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:tetrahedrite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:pyrite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pyrite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pyrite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pyrite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pyrite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pyrite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:dark_iron/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:dark_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:dark_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:dark_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:dark_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:dark_iron/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:granitic_mineral_sand/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:granitic_mineral_sand/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:granitic_mineral_sand/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:granitic_mineral_sand/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:granitic_mineral_sand/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:granitic_mineral_sand/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:kesterite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:kesterite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:kesterite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:kesterite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:kesterite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:kesterite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:shadow_iron/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:shadow_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:shadow_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:shadow_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:shadow_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:shadow_iron/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:garnierite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:garnierite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:garnierite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:garnierite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:garnierite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:garnierite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:smithsonite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:smithsonite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:smithsonite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:smithsonite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:smithsonite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:smithsonite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gold/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:gold/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:gold/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:gold/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:gold/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:gold/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:bauxite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:bauxite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:bauxite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:bauxite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:bauxite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:bauxite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:nickel/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:nickel/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:nickel/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:nickel/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:nickel/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:nickel/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:pentlandite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pentlandite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pentlandite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pentlandite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pentlandite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pentlandite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:huebnerite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:huebnerite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:huebnerite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:huebnerite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:huebnerite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:huebnerite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:basaltic_mineral_sand/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:basaltic_mineral_sand/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:basaltic_mineral_sand/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:basaltic_mineral_sand/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:basaltic_mineral_sand/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:basaltic_mineral_sand/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:meteoric_iron/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:meteoric_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:meteoric_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:meteoric_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:meteoric_iron/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:meteoric_iron/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:cobalt/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cobalt/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cobalt/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cobalt/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cobalt/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cobalt/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:malachite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:malachite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:malachite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:malachite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:malachite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:malachite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:desh/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:desh/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:desh/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:desh/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:desh/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:desh/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:azurite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:azurite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:azurite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:azurite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:azurite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:azurite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:cobalt60/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cobalt60/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cobalt60/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cobalt60/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cobalt60/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cobalt60/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:antimony/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:antimony/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:antimony/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:antimony/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:antimony/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:antimony/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:magnesium_carbonate/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:magnesium_carbonate/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:magnesium_carbonate/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:magnesium_carbonate/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:magnesium_carbonate/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:magnesium_carbonate/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:platinum/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:platinum/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:platinum/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:platinum/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:platinum/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:platinum/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:magnetite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:magnetite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:magnetite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:magnetite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:magnetite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:magnetite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:wolframite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:wolframite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:wolframite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:wolframite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:wolframite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:wolframite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:andradite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:andradite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:andradite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:andradite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:andradite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:andradite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:nikolite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:nikolite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:nikolite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:nikolite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:nikolite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:nikolite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:steel/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:steel/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:steel/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:steel/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:steel/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:steel/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:zinc/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:zinc/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:zinc/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:zinc/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:zinc/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:zinc/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:spessartine/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:spessartine/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:spessartine/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:spessartine/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:spessartine/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:spessartine/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:manganese/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:manganese/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:manganese/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:manganese/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:manganese/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:manganese/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:cobaltite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cobaltite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cobaltite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cobaltite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cobaltite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:cobaltite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:almandine/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:almandine/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:almandine/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:almandine/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:almandine/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:almandine/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:sphalerite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:sphalerite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:sphalerite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:sphalerite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:sphalerite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:sphalerite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:chalcopyrite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:chalcopyrite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:chalcopyrite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:chalcopyrite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:chalcopyrite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:chalcopyrite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:pyrope/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pyrope/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pyrope/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pyrope/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pyrope/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pyrope/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:pyrolusite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pyrolusite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pyrolusite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pyrolusite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pyrolusite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:pyrolusite/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:magnesium/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:magnesium/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:magnesium/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:magnesium/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:magnesium/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:magnesium/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:adamantine/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:adamantine/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:adamantine/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:adamantine/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:adamantine/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:adamantine/tiny_centrifuged_crushed_ore"
+          }
+        ],
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:hematite/centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:hematite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:hematite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:hematite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:hematite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:hematite/tiny_centrifuged_crushed_ore"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/tiny_purified/5e51fa465021ebce",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        "cruciblecraft:bath/tiny_purified/1aec14afa88fdd06",
+        1,
+        1
+      ],
+      [
+        2,
+        2,
+        0,
+        "cruciblecraft:bath/tiny_purified/96a9d32383263037",
+        2,
+        2
+      ],
+      [
+        3,
+        3,
+        2,
+        "cruciblecraft:bath/tiny_purified/1953eabb6673056e",
+        3,
+        3
+      ],
+      [
+        4,
+        4,
+        3,
+        "cruciblecraft:bath/tiny_purified/511d5b8944e39167",
+        4,
+        4
+      ],
+      [
+        5,
+        5,
+        4,
+        "cruciblecraft:bath/tiny_purified/450b1d59931af13d",
+        5,
+        5
+      ],
+      [
+        6,
+        6,
+        5,
+        "cruciblecraft:bath/tiny_purified/d061cd4b8be02566",
+        6,
+        6
+      ],
+      [
+        7,
+        7,
+        2,
+        "cruciblecraft:bath/tiny_purified/a43c206670c7b7db",
+        7,
+        7
+      ],
+      [
+        8,
+        8,
+        6,
+        "cruciblecraft:bath/tiny_purified/6f5834b1f2840ac5",
+        8,
+        8
+      ],
+      [
+        9,
+        9,
+        0,
+        "cruciblecraft:bath/tiny_purified/1a71e985fef9feaf",
+        9,
+        9
+      ],
+      [
+        10,
+        10,
+        4,
+        "cruciblecraft:bath/tiny_purified/0584e94b5146bfd2",
+        10,
+        10
+      ],
+      [
+        11,
+        11,
+        0,
+        "cruciblecraft:bath/tiny_purified/df2ebac2713377bd",
+        11,
+        11
+      ],
+      [
+        12,
+        12,
+        0,
+        "cruciblecraft:bath/tiny_purified/71b68bf3f9994524",
+        12,
+        12
+      ],
+      [
+        13,
+        13,
+        4,
+        "cruciblecraft:bath/tiny_purified/986c139b359d5386",
+        13,
+        13
+      ],
+      [
+        14,
+        14,
+        0,
+        "cruciblecraft:bath/tiny_purified/d447d913da3c5bd0",
+        14,
+        14
+      ],
+      [
+        15,
+        15,
+        0,
+        "cruciblecraft:bath/tiny_purified/8b38a76509d6adcd",
+        15,
+        15
+      ],
+      [
+        16,
+        16,
+        0,
+        "cruciblecraft:bath/tiny_purified/891ead4247d0a2f9",
+        16,
+        16
+      ],
+      [
+        17,
+        17,
+        4,
+        "cruciblecraft:bath/tiny_purified/f82dc3264e3e1eb1",
+        17,
+        17
+      ],
+      [
+        18,
+        18,
+        0,
+        "cruciblecraft:bath/tiny_purified/cc358ff4004b86e3",
+        18,
+        18
+      ],
+      [
+        19,
+        19,
+        6,
+        "cruciblecraft:bath/tiny_purified/07591e29107694a4",
+        19,
+        19
+      ],
+      [
+        20,
+        20,
+        3,
+        "cruciblecraft:bath/tiny_purified/754c7cbc3c623b70",
+        20,
+        20
+      ],
+      [
+        21,
+        21,
+        4,
+        "cruciblecraft:bath/tiny_purified/6f716b586df3c101",
+        21,
+        21
+      ],
+      [
+        22,
+        22,
+        7,
+        "cruciblecraft:bath/tiny_purified/fc00196361ac0b19",
+        22,
+        22
+      ],
+      [
+        23,
+        23,
+        6,
+        "cruciblecraft:bath/tiny_purified/f60ab6114620ca8d",
+        23,
+        23
+      ],
+      [
+        24,
+        24,
+        6,
+        "cruciblecraft:bath/tiny_purified/5587374608d44839",
+        24,
+        24
+      ],
+      [
+        25,
+        25,
+        2,
+        "cruciblecraft:bath/tiny_purified/24294fca1cfdb17d",
+        25,
+        25
+      ],
+      [
+        26,
+        26,
+        0,
+        "cruciblecraft:bath/tiny_purified/36b129b197da1dd8",
+        26,
+        26
+      ],
+      [
+        27,
+        27,
+        0,
+        "cruciblecraft:bath/tiny_purified/7f7130d787bad455",
+        27,
+        27
+      ],
+      [
+        28,
+        28,
+        8,
+        "cruciblecraft:bath/tiny_purified/a6a35fe3bf9fb4df",
+        28,
+        28
+      ],
+      [
+        29,
+        29,
+        4,
+        "cruciblecraft:bath/tiny_purified/697a3f2c458fb44e",
+        29,
+        29
+      ],
+      [
+        30,
+        30,
+        5,
+        "cruciblecraft:bath/tiny_purified/cae8cf163a28d639",
+        30,
+        30
+      ],
+      [
+        31,
+        31,
+        4,
+        "cruciblecraft:bath/tiny_purified/6ccf23ff4936dfa5",
+        31,
+        31
+      ],
+      [
+        32,
+        32,
+        8,
+        "cruciblecraft:bath/tiny_purified/d679857c3bdd7340",
+        32,
+        32
+      ],
+      [
+        33,
+        33,
+        3,
+        "cruciblecraft:bath/tiny_purified/1027c81abecdb283",
+        33,
+        33
+      ],
+      [
+        34,
+        34,
+        1,
+        "cruciblecraft:bath/tiny_purified/0143c5a546a700a6",
+        34,
+        34
+      ],
+      [
+        35,
+        35,
+        6,
+        "cruciblecraft:bath/tiny_purified/a84744a2b28ca4db",
+        35,
+        35
+      ],
+      [
+        36,
+        36,
+        0,
+        "cruciblecraft:bath/tiny_purified/f64320305f0af1b9",
+        36,
+        36
+      ],
+      [
+        37,
+        37,
+        0,
+        "cruciblecraft:bath/tiny_purified/920b465d8fa04f3a",
+        37,
+        37
+      ],
+      [
+        38,
+        38,
+        0,
+        "cruciblecraft:bath/tiny_purified/a271e7485ee7718c",
+        38,
+        38
+      ],
+      [
+        39,
+        39,
+        4,
+        "cruciblecraft:bath/tiny_purified/9cd6970109e4c14c",
+        39,
+        39
+      ],
+      [
+        40,
+        40,
+        0,
+        "cruciblecraft:bath/tiny_purified/8632f580087d0fe3",
+        40,
+        40
+      ],
+      [
+        41,
+        41,
+        3,
+        "cruciblecraft:bath/tiny_purified/d5d5a715814a111f",
+        41,
+        41
+      ],
+      [
+        42,
+        42,
+        2,
+        "cruciblecraft:bath/tiny_purified/2a6b448b34a81b53",
+        42,
+        42
+      ],
+      [
+        43,
+        43,
+        2,
+        "cruciblecraft:bath/tiny_purified/69e57ba88b0ef413",
+        43,
+        43
+      ],
+      [
+        44,
+        44,
+        8,
+        "cruciblecraft:bath/tiny_purified/bcda8484cf130682",
+        44,
+        44
+      ],
+      [
+        45,
+        45,
+        7,
+        "cruciblecraft:bath/tiny_purified/06cec1b999e87193",
+        45,
+        45
+      ],
+      [
+        46,
+        46,
+        3,
+        "cruciblecraft:bath/tiny_purified/513aafd8c2892d17",
+        46,
+        46
+      ],
+      [
+        47,
+        47,
+        4,
+        "cruciblecraft:bath/tiny_purified/c982eb2ba432ac54",
+        47,
+        47
+      ],
+      [
+        48,
+        48,
+        1,
+        "cruciblecraft:bath/tiny_purified/4c77403e04212090",
+        48,
+        48
+      ],
+      [
+        49,
+        49,
+        2,
+        "cruciblecraft:bath/tiny_purified/c38565503bde55b6",
+        49,
+        49
+      ],
+      [
+        50,
+        50,
+        1,
+        "cruciblecraft:bath/tiny_purified/5b319ea2453bb44a",
+        50,
+        50
+      ],
+      [
+        51,
+        51,
+        5,
+        "cruciblecraft:bath/tiny_purified/d5b136cc099f4738",
+        51,
+        51
+      ],
+      [
+        52,
+        52,
+        0,
+        "cruciblecraft:bath/tiny_purified/29a1d2eaf706e920",
+        52,
+        52
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 256,
       "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:pink_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -107,37 +2307,6 @@
       ],
       "item_input_counts": [
         9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:peridot/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:peridot/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:peridot/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:peridot/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:peridot/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:peridot/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:peridot/tiny_centrifuged_crushed_ore"
-        }
       ],
       "output_chances": [
         10000,
@@ -147,3996 +2316,12 @@
         5000,
         5000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "fc1b1497c4acb5b18dbdf5a08900eae15e38d50f0484964cacaa917daabfb71f"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/1aec14afa88fdd06"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:green_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:ilmenite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:ilmenite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:ilmenite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:ilmenite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:ilmenite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:ilmenite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:ilmenite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "1e6d4c250e598146ee939c4065e13567eb711c10f59ef3ea4ed0c8f42c508ce7"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/96a9d32383263037"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:gray_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:scheelite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:scheelite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:scheelite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:scheelite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:scheelite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:scheelite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:scheelite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "4009522ad7db636f3ccf1548d9778232f0d491c45565f274ab81ce81d0588c95"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/1953eabb6673056e"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:white_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:tin/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:tin/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:tin/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:tin/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:tin/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:tin/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:tin/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "71c54d99081b94b1136f3134969591f7c13940f550cda67d5180fce134ed03b0"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/511d5b8944e39167"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:blue_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:copper/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:copper/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:copper/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:copper/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:copper/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:copper/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:copper/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "ccb9a6204b81dd04b15150c5a2d2505631fb3529722aba0a3155f8e940056a04"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/450b1d59931af13d"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:martian_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:adamantite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:adamantite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:adamantite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:adamantite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:adamantite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:adamantite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:adamantite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "050bf4d58eba4234f398edffbae6394866a38d328e188be68ebe97a2af3e1bfe"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 6,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/d061cd4b8be02566"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:gray_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:tungstate/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:tungstate/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:tungstate/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:tungstate/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:tungstate/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:tungstate/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:tungstate/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "d15b5fb8db1047b42b1eb9d094e13ab58a9ca83baaefc765591b866005fc415d"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 7,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/a43c206670c7b7db"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:cyan_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:cooperite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:cooperite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cooperite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cooperite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cooperite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cooperite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cooperite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "d107632d2f585daebb12680aec119d0e4cd921e3a932cd351a8f08c99ea054bd"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 8,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/6f5834b1f2840ac5"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:green_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:deep_iron/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:deep_iron/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:deep_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:deep_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:deep_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:deep_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:deep_iron/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "15027e5d0dc83f159f75ec3ed9c2e5199f7ee719f2506aa7bb2cad663317724d"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 9,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/1a71e985fef9feaf"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:blue_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:stannite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:stannite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:stannite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:stannite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:stannite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:stannite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:stannite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "e1474f2685fca00bc7b2d1f9a4f29f83b61cf7f7f3f46b17bd156131081ea38d"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 10,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/0584e94b5146bfd2"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:green_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:chromite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:chromite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:chromite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:chromite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:chromite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:chromite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:chromite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "beae2125bb30f3621457b8f4a53094795696f18dc0dcffd564af4e7a9b4d1d2c"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 11,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/df2ebac2713377bd"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:green_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:chromium/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:chromium/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:chromium/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:chromium/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:chromium/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:chromium/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:chromium/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "4c8c07d2f63de80c0d34fc12e8076d89e8bfb84fb4d28fdfe41023e46c6a0ce7"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 12,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/71b68bf3f9994524"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:blue_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:tetrahedrite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:tetrahedrite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:tetrahedrite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:tetrahedrite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:tetrahedrite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:tetrahedrite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:tetrahedrite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "da6db46db406bde2604f7bb0d51d63b5dd985b95c5997fbee2cc8e33355f6db1"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 13,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/986c139b359d5386"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:green_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:pyrite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:pyrite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pyrite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pyrite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pyrite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pyrite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pyrite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "11fc4c07b873ae548d9b06159cb75ac0e4475202a389f6d86f1a2f3e0c1a2fe1"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 14,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/d447d913da3c5bd0"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:green_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:dark_iron/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:dark_iron/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:dark_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:dark_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:dark_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:dark_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:dark_iron/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "7a12da4385eb98791724598411eb6b05d796f3c019a25d4f99f9f70f4796ec48"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 15,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/8b38a76509d6adcd"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:green_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:granitic_mineral_sand/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:granitic_mineral_sand/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:granitic_mineral_sand/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:granitic_mineral_sand/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:granitic_mineral_sand/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:granitic_mineral_sand/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:granitic_mineral_sand/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "9c0c70b6d27d11bdc0a3801241d9b0d0f5d33ce732ef69e7d15f84e25f9fa9c3"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 16,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/891ead4247d0a2f9"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:blue_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:kesterite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:kesterite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:kesterite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:kesterite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:kesterite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:kesterite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:kesterite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "24b8fddd1f4271d2b07cbcb1a6d3b7f475729fd330e08155995dea0d41bd8d79"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 17,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/f82dc3264e3e1eb1"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:green_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:shadow_iron/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:shadow_iron/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:shadow_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:shadow_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:shadow_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:shadow_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:shadow_iron/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "bc854cd91a42afb796d42b52691db30f55f86b0128479ebe59373e9d7c8d87dc"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 18,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/cc358ff4004b86e3"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:cyan_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:garnierite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:garnierite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:garnierite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:garnierite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:garnierite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:garnierite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:garnierite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "495257c7ea271ae13cdaa1e5b7475787f2e8f5b2d1da5f04c66a80bef30a3236"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 19,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/07591e29107694a4"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:white_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:smithsonite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:smithsonite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:smithsonite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:smithsonite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:smithsonite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:smithsonite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:smithsonite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "30cbcd48c3402c18e2edfef14c559fe0b93826a9bd73e52ad8b9c2555b5b0f3a"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 20,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/754c7cbc3c623b70"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:blue_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gold/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gold/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:gold/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:gold/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:gold/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:gold/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:gold/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "38f2d5b319662556d412c8f83508e3517176a7b5b2701736ba5f2861bcc51ff1"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 21,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/6f716b586df3c101"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 10500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 8500,
-          "id": "cruciblecraft:vitriol_of_clay"
-        },
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:bauxite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:bauxite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:bauxite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:bauxite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:bauxite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:bauxite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:bauxite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "4b560f33eded44c3a9deeca7390a4f2b7e0de5d1aa4adf36727b925a45195aeb"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 22,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/fc00196361ac0b19"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:cyan_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:nickel/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:nickel/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:nickel/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:nickel/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:nickel/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:nickel/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:nickel/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "3580c59f88e5b16d817ace3b134e02160f4bcb295e700eada05c2f255d9ff22b"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 23,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/f60ab6114620ca8d"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:cyan_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:pentlandite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:pentlandite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pentlandite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pentlandite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pentlandite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pentlandite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pentlandite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "f58b84d50e18cb4deb26654b5784a24b103acd6334bf51f5bfe208ee5471fab2"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 24,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/5587374608d44839"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:gray_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:huebnerite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:huebnerite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:huebnerite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:huebnerite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:huebnerite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:huebnerite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:huebnerite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "d992333eb378855e302d1f746e2135036a62a8385e7ca6b0a037f69a77073e63"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 25,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/24294fca1cfdb17d"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:green_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:basaltic_mineral_sand/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:basaltic_mineral_sand/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:basaltic_mineral_sand/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:basaltic_mineral_sand/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:basaltic_mineral_sand/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:basaltic_mineral_sand/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:basaltic_mineral_sand/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "88f591e2fb99bcae7074b39cdd722f59d07b2ce54e7367990d94a588f4eddf42"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 26,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/36b129b197da1dd8"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:green_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:meteoric_iron/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:meteoric_iron/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:meteoric_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:meteoric_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:meteoric_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:meteoric_iron/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:meteoric_iron/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "2ecd0f86f8e69b1184dab13c4fb0684bba62e041f1e67038e5a947a232106507"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 27,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/7f7130d787bad455"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:red_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:cobalt/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:cobalt/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cobalt/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cobalt/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cobalt/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cobalt/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cobalt/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "c68d9217ffe58aea48a57aef5be449d0784850fd70bebd909087c18abfcb2d4b"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 28,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/a6a35fe3bf9fb4df"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:blue_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:malachite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:malachite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:malachite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:malachite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:malachite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:malachite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:malachite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "ca5e995d76420fb8dc4fe21b3d371a8a24b87d35bcf14b4504204b77e8400235"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 29,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/697a3f2c458fb44e"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:martian_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:desh/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:desh/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:desh/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:desh/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:desh/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:desh/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:desh/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "987f044cf32de06840be721291f382ea76434fb9479d64858beb1ecc85cebec8"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 30,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/cae8cf163a28d639"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:blue_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:azurite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:azurite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:azurite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:azurite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:azurite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:azurite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:azurite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "af3e78820bee6f74fa61a70c5087c1ea17e21fe8db1d74c913b3be17511e2483"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 31,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/6ccf23ff4936dfa5"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:red_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:cobalt60/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:cobalt60/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cobalt60/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cobalt60/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cobalt60/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cobalt60/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cobalt60/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "8ec9683a391eb72777afa30e506e1b501b84ab1676b41d984a749a38c38a3eb1"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 32,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/d679857c3bdd7340"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:white_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:antimony/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:antimony/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:antimony/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:antimony/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:antimony/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:antimony/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:antimony/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "a79b96f26ee7b7dad8fa592222d25b3142befea27ab1b00dc065fff969b9774b"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 33,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/1027c81abecdb283"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:pink_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:magnesium_carbonate/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:magnesium_carbonate/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:magnesium_carbonate/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:magnesium_carbonate/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:magnesium_carbonate/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:magnesium_carbonate/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:magnesium_carbonate/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "9d648560b977bdbaa208cf531406afb7b5bac47697507f10e0f411ccfca6f1ad"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 34,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/0143c5a546a700a6"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:cyan_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:platinum/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:platinum/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:platinum/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:platinum/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:platinum/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:platinum/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:platinum/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "2df91a90144a628e7b50b186228285cabcb0ca072c7e218bdc167cadf99249be"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 35,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/a84744a2b28ca4db"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:green_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:magnetite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:magnetite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:magnetite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:magnetite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:magnetite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:magnetite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:magnetite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "5a861c63b9aceedbdb154a5f8d3cdcda05d5733790b77742395498fc1af9549e"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 36,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/f64320305f0af1b9"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:green_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:wolframite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:wolframite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:wolframite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:wolframite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:wolframite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:wolframite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:wolframite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "f91f4948a18aa67e43f5b4d2c03f56597fe660a48354da7eb4152936be7d7b35"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 37,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/920b465d8fa04f3a"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:green_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:andradite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:andradite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:andradite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:andradite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:andradite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:andradite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:andradite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "68700bea4f41b000684a7e69abd5fe06fbf20ab2d617f44bb88e16aae59ebae4"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 38,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/a271e7485ee7718c"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:blue_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:nikolite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:nikolite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:nikolite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:nikolite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:nikolite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:nikolite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:nikolite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "22556b1fc8dc0c6d49efbe8fe4c5f7007fe802aaab2119fdcdd530abbaad66e5"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 39,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/9cd6970109e4c14c"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:green_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:steel/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:steel/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:steel/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:steel/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:steel/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:steel/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:steel/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "b7a85fa9d5a003ab4d835e1da8aacc8628ff7387c4513358badb6f9b8a9b89ba"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 40,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/8632f580087d0fe3"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:white_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:zinc/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:zinc/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:zinc/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:zinc/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:zinc/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:zinc/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:zinc/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "7309ec5b177a1f89ad983268bf6b920aa1212b555d5a81d3da5f6109cca8a5f2"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 41,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/d5d5a715814a111f"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:gray_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:spessartine/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:spessartine/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:spessartine/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:spessartine/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:spessartine/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:spessartine/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:spessartine/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "622709680a095cc52fd9253ba3baf809e4ccd320824f4bc9d36d53d3f14f241e"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 42,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/2a6b448b34a81b53"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:gray_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:manganese/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:manganese/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:manganese/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:manganese/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:manganese/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:manganese/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:manganese/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "adf822b848e764c66c663cf1a2864aa07292d3b9bb16c6e76a8bf2aa132818b1"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 43,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/69e57ba88b0ef413"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:red_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:cobaltite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:cobaltite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cobaltite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cobaltite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cobaltite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cobaltite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:cobaltite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "21f03991a7fc33575d826422cae78ad9f3ccbc5b00b3575327d4ac9c347be147"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 44,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/bcda8484cf130682"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 10500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 8500,
-          "id": "cruciblecraft:vitriol_of_clay"
-        },
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:almandine/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:almandine/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:almandine/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:almandine/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:almandine/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:almandine/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:almandine/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "3ae8bc9479805e2f6ea33d51e7af0ffe835a0cd010233777e9ead37fb12e24eb"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 45,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/06cec1b999e87193"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:white_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:sphalerite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:sphalerite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:sphalerite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:sphalerite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:sphalerite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:sphalerite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:sphalerite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "0a3447b1ae5699907d018c780865372e566908affec8ccc55e9a02f9509a5045"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 46,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/513aafd8c2892d17"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:blue_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:chalcopyrite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:chalcopyrite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:chalcopyrite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:chalcopyrite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:chalcopyrite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:chalcopyrite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:chalcopyrite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "9ad65b1010337a2e1824c09b222bf8571ada12e487bae4428a9fe795156f820c"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 47,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/c982eb2ba432ac54"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:pink_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:pyrope/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:pyrope/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pyrope/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pyrope/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pyrope/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pyrope/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pyrope/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "aa637bf29fe11b632402fbbd49a07f1aa1f96e21e8b3677587b109ac75150685"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 48,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/4c77403e04212090"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:gray_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:pyrolusite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:pyrolusite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pyrolusite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pyrolusite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pyrolusite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pyrolusite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:pyrolusite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "0f00573728a6741e67cd39af441febe4362381fbbe601d74ddcda875da60e7f6"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 49,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/c38565503bde55b6"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:pink_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:magnesium/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:magnesium/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:magnesium/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:magnesium/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:magnesium/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:magnesium/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:magnesium/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "7dbc530c670419dc6d46614d13ebe174cb13cee686ca3cedfa4762aa2fa41cf2"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 50,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/5b319ea2453bb44a"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:martian_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:adamantine/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:adamantine/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:adamantine/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:adamantine/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:adamantine/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:adamantine/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:adamantine/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "638e204e9428118763f1f060ef9b59daa9c285c52233afb9069191356ce4bd5f"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 51,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/d5b136cc099f4738"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 256,
-      "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 3500,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:green_vitriol"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:hydrogen"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        9
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:hematite/tiny_washed_crushed_ore"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:hematite/centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:hematite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:hematite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:hematite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:hematite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:hematite/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000,
-        5000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "b14449d6db13f78a1f6021f270d52042b3b3b4318f58d8dd0a1631776a03b8a4"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0072",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 52,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/tiny_purified/29a1d2eaf706e920"
+      "selected_source_recipe": "gt.recipe.bath#0072",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:bath/tiny_purified/exact_multi",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:bath",
   "type": "cruciblecraft:compact_gt_recipe_family"

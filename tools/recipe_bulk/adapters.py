@@ -16,13 +16,14 @@ from tools.recipe_bulk.selection import (
 )
 from tools.recipe_bulk.templates import expand_family
 from tools.recipe_bulk.waves import recipe_wave
+from tools.recipe_bulk.matrix import authored_relation_count, authored_relations
 
 SOURCE_REVISION = t35.SOURCE_REVISION
 
 
 def _resolved_operands(document: dict[str, Any]) -> list[dict[str, Any]]:
     operands: list[dict[str, Any]] = []
-    for relation in document.get("relations") or []:
+    for relation in authored_relations(document):
         for item in relation.get("item_inputs") or []:
             operands.append({"direction": "item_input", "value": item})
         for item in relation.get("item_outputs") or []:
@@ -65,7 +66,7 @@ def _package_family(
         cardinality_proof={
             "lock_template_key": template_key if lock_row is not None else None,
             "ordered_by": spec.relation_sort,
-            "relation_count": len(document.get("relations") or []),
+            "relation_count": authored_relation_count(document),
         },
         provenance={
             "archetype": spec.archetype,
@@ -123,7 +124,7 @@ def adapt_wave(spec: WaveSpec | str) -> WaveIR:
         raise ValueError(
             f"{spec.wave_id} family count {len(families)} != {spec.expected_family_count}"
         )
-    relation_count = sum(len(family.document.get("relations") or []) for family in families)
+    relation_count = sum(authored_relation_count(family.document) for family in families)
     if (
         spec.expected_relation_count is not None
         and relation_count != spec.expected_relation_count

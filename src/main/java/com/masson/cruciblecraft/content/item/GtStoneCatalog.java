@@ -165,7 +165,8 @@ public final class GtStoneCatalog {
         }
 
         public ResourceLocation textureLocation() {
-            return ResourceLocation.parse(texture);
+            ResourceLocation sourced = BlockArtIndex.texture(registryPath);
+            return sourced != null ? sourced : ResourceLocation.parse(texture);
         }
     }
 

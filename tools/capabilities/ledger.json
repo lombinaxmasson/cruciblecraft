@@ -1,0 +1,130 @@
+{
+  "capabilities": [
+    {
+      "depends_on": [],
+      "maturity": "frozen",
+      "owned_paths": [
+        "src/main/resources/data/cruciblecraft/cover_definitions.json",
+        "src/main/java/com/masson/cruciblecraft/logistics/pipe/cover/**",
+        "tools/waves/portfolio/logistics-cover-net-r0/**",
+        "tools/portfolio_logistics_cover_net.py",
+        "tools/build_logistics_cover_net_r0.py"
+      ],
+      "path": "tools/capabilities/logistics/cover-net-r0/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "logistics/cover-net-r0",
+      "title": "Logistics cover network R0",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "logistics/cover-net-r0",
+        "logistics/item-network-core"
+      ],
+      "maturity": "player_complete",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/logistics/fluidnet/**",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/FluidPipeBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/FluidNetworkCoreGameTests.java",
+        "src/main/java/com/masson/cruciblecraft/verification/PlayerCompleteSmoke.java",
+        "src/main/java/com/masson/cruciblecraft/client/ClientSmoke.java",
+        "src/main/resources/data/cruciblecraft/fluid_network_cover_definitions.json",
+        "src/main/resources/data/cruciblecraft_wave_runtime_fluid_network_basic_transfer/**",
+        "src/generated/resources/data/cruciblecraft/recipe/logistics_fluid_*_cover.json",
+        "src/generated/resources/assets/cruciblecraft/models/item/logistics_fluid_*_cover.json",
+        "tools/capabilities/logistics/fluid-network/basic-transfer/**",
+        "tools/waves/runtime/fluid-network-basic-transfer/**",
+        "tools/tests/test_fluid_network_core.py",
+        "tools/player_complete.py",
+        "tools/build_player_complete.py"
+      ],
+      "path": "tools/capabilities/logistics/fluid-network/basic-transfer/capability.json",
+      "player_signoff": "tools/capabilities/logistics/fluid-network/basic-transfer/player_signoff.json",
+      "profiles": [
+        "capability-runtime",
+        "player-complete"
+      ],
+      "slug": "logistics/fluid-network/basic-transfer",
+      "title": "Fluid network basic transfer",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [
+        "logistics/cover-net-r0"
+      ],
+      "maturity": "runtime_ready",
+      "owned_paths": [
+        "src/main/java/com/masson/cruciblecraft/logistics/itemnet/**",
+        "src/main/java/com/masson/cruciblecraft/content/blockentity/ItemPipeBlockEntity.java",
+        "src/main/java/com/masson/cruciblecraft/gametest/ItemNetworkCoreGameTests.java",
+        "src/main/resources/data/cruciblecraft/item_network_cover_definitions.json",
+        "src/main/resources/data/cruciblecraft_wave_runtime_item_network_core/**",
+        "tools/waves/runtime/item-network-core/**",
+        "tools/tests/test_item_network_core.py"
+      ],
+      "path": "tools/capabilities/logistics/item-network-core/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "logistics/item-network-core",
+      "title": "Item network core",
+      "workflow": "accepted"
+    },
+    {
+      "depends_on": [],
+      "maturity": "frozen",
+      "owned_paths": [
+        "tools/tool_head_prefix.py",
+        "src/main/resources/data/cruciblecraft/bath_identity_catalog.json",
+        "src/main/resources/data/cruciblecraft/semantic_object_catalog.json"
+      ],
+      "path": "tools/capabilities/registry/tool-head-remainder/capability.json",
+      "player_signoff": null,
+      "profiles": [
+        "capability-runtime"
+      ],
+      "slug": "registry/tool-head-remainder",
+      "title": "Tool-head remainder identities",
+      "workflow": "accepted"
+    }
+  ],
+  "capability_count": 4,
+  "declared_player_complete": [
+    "logistics/fluid-network/basic-transfer"
+  ],
+  "generated_by": "tools/build_capability_ledger.py",
+  "impact": {
+    "logistics/cover-net-r0": [
+      "logistics/cover-net-r0",
+      "logistics/fluid-network/basic-transfer",
+      "logistics/item-network-core"
+    ],
+    "logistics/fluid-network/basic-transfer": [
+      "logistics/fluid-network/basic-transfer"
+    ],
+    "logistics/item-network-core": [
+      "logistics/fluid-network/basic-transfer",
+      "logistics/item-network-core"
+    ],
+    "registry/tool-head-remainder": [
+      "registry/tool-head-remainder"
+    ]
+  },
+  "profiles": {
+    "capability-runtime": [
+      "logistics/cover-net-r0",
+      "logistics/fluid-network/basic-transfer",
+      "logistics/item-network-core",
+      "registry/tool-head-remainder"
+    ],
+    "player-complete": [
+      "logistics/fluid-network/basic-transfer"
+    ]
+  },
+  "progress_rule": "declaration is not proof; player_complete requires fresh GameTestServer and runClient execution",
+  "schema_version": 2
+}

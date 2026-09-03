@@ -48,6 +48,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         generatedCc("robot_arm_cover");
         generatedCc("pressure_valve_cover");
         generatedCc("selector_manual_cover");
+        generatedCcAlias("logistics_item_storage_cover", "conveyor_cover");
+        generatedCcAlias("logistics_item_import_cover", "retriever_item_cover");
+        generatedCcAlias("logistics_item_export_cover", "robot_arm_cover");
+        generatedCcAlias("logistics_fluid_storage_cover", "pipe_pump_cover");
+        generatedCcAlias("logistics_fluid_import_cover", "pressure_valve_cover");
+        generatedCcAlias("logistics_fluid_export_cover", "pipe_filter_cover");
         generatedCc("unknown_material");
         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                 generatedCc(shape.registryPath()));
@@ -103,6 +109,11 @@ public class ModItemModelProvider extends ItemModelProvider {
     private void generatedCc(String name) {
         withExistingParent(name, mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/" + name));
+    }
+
+    private void generatedCcAlias(String name, String texture) {
+        withExistingParent(name, mcLoc("item/generated"))
+                .texture("layer0", modLoc("item/" + texture));
     }
 
     private void generatedImportedGt6(String name) {

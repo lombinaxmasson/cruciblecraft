@@ -88,8 +88,8 @@ class MortarMaterialRuleDataTest {
 
         assertEquals(expected, actual);
         assertEquals(129, actual.get("ingot_to_dust").size());
-        assertEquals(95, actual.get("gem_to_dust").size());
-        assertEquals(224, signatures.size());
+        assertEquals(96, actual.get("gem_to_dust").size());
+        assertEquals(225, signatures.size());
         assertTrue(actual.get("ingot_to_dust").contains("iron"));
         assertTrue(actual.get("gem_to_dust").contains("amber"));
     }

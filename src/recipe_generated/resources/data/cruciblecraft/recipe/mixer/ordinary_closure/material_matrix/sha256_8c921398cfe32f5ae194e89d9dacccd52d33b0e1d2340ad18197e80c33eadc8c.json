@@ -1,73 +1,516 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
+          "fluid_inputs": [],
+          "fluid_outputs": []
         }
       ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
+      "hashes": [
+        "d23dd3dd6cb8af46c066d96bb831def5abe0387beeef9e775624e20169058c5f",
+        "3b1f35dac2ed310e0f4f06ce1f55ed1075c27d376c1d13afb29b50b8e0ab8f03",
+        "6221de262e0e483d2d55afe0f96bf4dc8c949dd86ddbe714cfa313838d3243bd",
+        "40ab69c741cf1989729bc30d5e7b739f1f5c91b81fc4345a115d6e75f0e80120",
+        "fbbedace04607508b671f5c9a3488afb20837d26b76e3b2c9d2e62c9bd7a2081",
+        "d19861b38d8a2778a202964a0bda9f3fdbf0793427e01a6996247da8e2cf1bef",
+        "8d27dba6c6ad00b2251defc78438eb2800a300c81722365794a542b23a006e62",
+        "d4d88b2dc0f920e822db06e8e9572a5d553617494541aa9b543140e6e44aaa67",
+        "d516fbebbbcffc620db9548be339c88b719086965a340a4fbbd99831638d5e09",
+        "1ececbfb38863f42c8cbdda0b61d6e10e476c547e6e77d32ff85b54d8fd5c960",
+        "7dab131a43770d0c9f154f82ade10090bc4e46757ede6ded6393276e856a06d4",
+        "49f3418ceafc627e3dff4a0cac89ba8c76515cae03de38e5dc5edc5c8ec5ad43",
+        "90e20bd3a2ae0a572ea4ee021715351c287526705622fd03f224b9590a12721d",
+        "191d831aa9c40e09523600bf8430a776ea827b47957c71a373beaa84ccb7cd0b",
+        "136b939515496f8b3542bbc85cc976cfce8068c86471d98ca50ad8cc55a114e5",
+        "75a844ab0372cf4e6e00dc0619fa429cfead7f7b5d4d54dae4fcb31bd672270a",
+        "cba4531d43c15f3d2c91fe40f12faaf6418777382634b3ff237ef30b3dec85c5",
+        "0f22953588081cbd2ba4c2ed2f816c321b38f4d7643a4f4473fd356bb1886419",
+        "0f1eeead2d52d36366f0323830f6031a42464ffc79b85807c70004f407e5256f",
+        "0b87f0d74d069a18cc13c6218a13f64474515b289ab429bc7011adf057c7ac8b",
+        "c274d953f26413c7f1fa4c9414c15b53a3ae55d36f005fbce15cabf4e8f44c7d"
       ],
       "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:charged_certus_quartz/dust"
-        }
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:charged_certus_quartz/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:silicon_dioxide/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:sunny_quartz/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:void_quartz/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:quartz_black/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:red_quartz/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:fluix/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:lavender_quartz/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:smokey_quartz/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:mana_quartz/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:white_end_sand/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:black_end_sand/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:certus_quartz/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:sand/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:nether_quartz/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:flint/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:quartzite/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:elven_quartz/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:glass/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:red_sand/dust"
+          }
+        ],
+        [
+          {
+            "item": "minecraft:redstone"
+          },
+          {
+            "item": "cruciblecraft:niter/dust"
+          },
+          {
+            "item": "cruciblecraft:blitz/tiny_dust"
+          },
+          {
+            "item": "cruciblecraft:blaze_quartz/dust"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "d23dd3dd6cb8af46c066d96bb831def5abe0387beeef9e775624e20169058c5f"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/3b50fbdd234ab843"
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:aerotheum/dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/3b50fbdd234ab843",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/9ea675553d2d6996",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/1a40885735cca987",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/18b9f95744acbf5d",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/9587a3325d63b2f1",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/5233a86b01f3e5a5",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/686e17c2e45db5f3",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/94e94d93b6734eb4",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/91d56277468012b5",
+        8,
+        8
+      ],
+      [
+        9,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/45dd0a766de4acea",
+        9,
+        9
+      ],
+      [
+        10,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/4706b31956a8a2aa",
+        10,
+        10
+      ],
+      [
+        11,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/8847e225575117fe",
+        11,
+        11
+      ],
+      [
+        12,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/f1e60dff391e0bff",
+        12,
+        12
+      ],
+      [
+        13,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/6e8b7847c5562fe2",
+        13,
+        13
+      ],
+      [
+        14,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/4704ccd3b5de760e",
+        14,
+        14
+      ],
+      [
+        15,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/3684e726d4de8c46",
+        15,
+        15
+      ],
+      [
+        16,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/83fa1f25a8744d38",
+        16,
+        16
+      ],
+      [
+        17,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/971577de64178dd8",
+        17,
+        17
+      ],
+      [
+        18,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/0955c91da011c83d",
+        18,
+        18
+      ],
+      [
+        19,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/50d3ed4d795b50d0",
+        19,
+        19
+      ],
+      [
+        20,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/0fe072865a00abaf",
+        20,
+        20
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -88,1181 +531,15 @@
         1,
         1
       ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:silicon_dioxide/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "3b1f35dac2ed310e0f4f06ce1f55ed1075c27d376c1d13afb29b50b8e0ab8f03"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/9ea675553d2d6996"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:sunny_quartz/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "6221de262e0e483d2d55afe0f96bf4dc8c949dd86ddbe714cfa313838d3243bd"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/1a40885735cca987"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:void_quartz/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "40ab69c741cf1989729bc30d5e7b739f1f5c91b81fc4345a115d6e75f0e80120"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/18b9f95744acbf5d"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:quartz_black/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "fbbedace04607508b671f5c9a3488afb20837d26b76e3b2c9d2e62c9bd7a2081"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/9587a3325d63b2f1"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:red_quartz/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "d19861b38d8a2778a202964a0bda9f3fdbf0793427e01a6996247da8e2cf1bef"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/5233a86b01f3e5a5"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:fluix/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "8d27dba6c6ad00b2251defc78438eb2800a300c81722365794a542b23a006e62"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 6,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/686e17c2e45db5f3"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:lavender_quartz/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "d4d88b2dc0f920e822db06e8e9572a5d553617494541aa9b543140e6e44aaa67"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 7,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/94e94d93b6734eb4"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:smokey_quartz/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "d516fbebbbcffc620db9548be339c88b719086965a340a4fbbd99831638d5e09"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 8,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/91d56277468012b5"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:mana_quartz/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "1ececbfb38863f42c8cbdda0b61d6e10e476c547e6e77d32ff85b54d8fd5c960"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 9,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/45dd0a766de4acea"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:white_end_sand/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "7dab131a43770d0c9f154f82ade10090bc4e46757ede6ded6393276e856a06d4"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 10,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/4706b31956a8a2aa"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:black_end_sand/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "49f3418ceafc627e3dff4a0cac89ba8c76515cae03de38e5dc5edc5c8ec5ad43"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 11,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/8847e225575117fe"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:certus_quartz/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "90e20bd3a2ae0a572ea4ee021715351c287526705622fd03f224b9590a12721d"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 12,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/f1e60dff391e0bff"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:sand/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "191d831aa9c40e09523600bf8430a776ea827b47957c71a373beaa84ccb7cd0b"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 13,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/6e8b7847c5562fe2"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:nether_quartz/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "136b939515496f8b3542bbc85cc976cfce8068c86471d98ca50ad8cc55a114e5"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 14,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/4704ccd3b5de760e"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:flint/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "75a844ab0372cf4e6e00dc0619fa429cfead7f7b5d4d54dae4fcb31bd672270a"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 15,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/3684e726d4de8c46"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:quartzite/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "cba4531d43c15f3d2c91fe40f12faaf6418777382634b3ff237ef30b3dec85c5"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 16,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/83fa1f25a8744d38"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:elven_quartz/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "0f22953588081cbd2ba4c2ed2f816c321b38f4d7643a4f4473fd356bb1886419"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 17,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/971577de64178dd8"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:glass/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "0f1eeead2d52d36366f0323830f6031a42464ffc79b85807c70004f407e5256f"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 18,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/0955c91da011c83d"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:red_sand/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "0b87f0d74d069a18cc13c6218a13f64474515b289ab429bc7011adf057c7ac8b"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 19,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/50d3ed4d795b50d0"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:redstone"
-        },
-        {
-          "item": "cruciblecraft:niter/dust"
-        },
-        {
-          "item": "cruciblecraft:blitz/tiny_dust"
-        },
-        {
-          "item": "cruciblecraft:blaze_quartz/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:aerotheum/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "c274d953f26413c7f1fa4c9414c15b53a3ae55d36f005fbce15cabf4e8f44c7d"
-        ],
-        "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 20,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/0fe072865a00abaf"
+      "selected_source_recipe": "sha256:8c921398cfe32f5ae194e89d9dacccd52d33b0e1d2340ad18197e80c33eadc8c",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

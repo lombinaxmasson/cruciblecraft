@@ -88,6 +88,27 @@ class AtomicIoTest(unittest.TestCase):
         self.assertEqual("HASH_ONLY_DRIFT", class_)
         self.assertIn("rebuilt_sha256=", message)
 
+    def test_check_compact_passes_envelope_hash_only_drift(self) -> None:
+        import tempfile
+        from pathlib import Path
+
+        root = Path(tempfile.mkdtemp(prefix="compact_check_"))
+        path = root / "ledger.json"
+        path.write_text(
+            '{"counts":{"n":1},"input_sha256":{"a":"old"},"status":"READY"}\n',
+            encoding="utf-8",
+        )
+        rebuilt = {
+            "counts": {"n": 1},
+            "input_sha256": {"a": "new"},
+            "status": "READY",
+        }
+        self.assertEqual([], t35.check_compact(path, rebuilt))
+        rebuilt["counts"] = {"n": 2}
+        errors = t35.check_compact(path, rebuilt)
+        self.assertTrue(errors)
+        self.assertTrue(errors[0].startswith("SEMANTIC_DRIFT"))
+
     def _tmp(self) -> str:
         import tempfile
 

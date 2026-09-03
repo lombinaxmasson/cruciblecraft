@@ -18,6 +18,7 @@ from tools import t45_common as t45
 from tools import t47_identities as t47_ids
 from tools import t48_common as t48
 from tools import t48_identities as identities
+from tools import tool_head_prefix as thp
 from tools.recipe_bulk.ordinary_r0 import (
     publication_group_for,
     remaining_owner_rows,
@@ -254,6 +255,8 @@ def load_ledger_item_runtime() -> dict[tuple[str, int], str]:
     if path.is_file():
         for row in t35.load_json(path).get("records") or []:
             key = str(row.get("source_key") or "")
+            if "|" in key:
+                key = key.split("|", 1)[1]
             target = str(row.get("target_identity") or "")
             if not target.startswith(("minecraft:", "cruciblecraft:")):
                 continue
@@ -395,6 +398,7 @@ def map_item_operand(
     overlay = item_overlay.get((item_id, meta_key))
     if overlay and overlay.get("runtime_id"):
         runtime = str(overlay["runtime_id"])
+        runtime = thp.rewrite_published_runtime(runtime, item_id, meta_key)
         diagnostic_prefix = item_id.startswith("gregtech:gt.meta.") and (
             "/gt_object/" in f"/{runtime.split(':', 1)[-1]}"
         )

@@ -67,9 +67,9 @@ class AssemblerCompactHarnessTest {
         }
 
         for (JsonObject document : generatedFamilies) {
-            JsonObject relationJson = document.getAsJsonArray("relations")
-                    .get(0)
-                    .getAsJsonObject();
+            JsonObject relationJson =
+                    CompactGTRecipeFamilyGeneratedSupport.authoredRelationJsons(document)
+                            .get(0);
             ResourceLocation stableId = ResourceLocation.parse(
                     relationJson.get("stable_id").getAsString());
             GTRecipe recipe = map.entry(stableId).orElseThrow().recipe();

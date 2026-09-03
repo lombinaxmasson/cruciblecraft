@@ -1,72 +1,183 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:5a4794bce7643882ecc09a04af90e9a4889d2e2b1e56e54931a1a6fcb092787c",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/construction_foam_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 160,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 7000,
-          "id": "cruciblecraft:sulfuric_acid"
+          "fluid_inputs": [
+            {
+              "amount": 7000,
+              "id": "cruciblecraft:sulfuric_acid"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 4000,
+              "id": "cruciblecraft:hydrogen_fluoride"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 4000,
-          "id": "cruciblecraft:hydrogen_fluoride"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        3
+      "hashes": [
+        "96fa29bc686256f16f954e64ddbb6ed1d3a9928657cd1baa1f7c82d84a5da3c3",
+        "c5c671222c91703273e15342f4e9c08f0a797968ce3fb92af180ba9c3210f9b3",
+        "c1cc5977115b7f4946290d10dd65ca9cf179f233c24031a0b729566ccd7fba8f",
+        "560e4646e514bbd40b73ca2649dbc5e7c0a42f3d8718567e472c4502d6eb8e55",
+        "630b08612f8e353d21877d3c8752192fea5bfee9c515c098c98da61f422a7065",
+        "30fa6da583ba63f23e1bb546a8798601a511135f58e8506d05bc9698397aba1d",
+        "18d68508dbbb3acc5549572ddf66926feefe23166404fed5b619aa4b4eaa7384",
+        "acb2ffa994461253762aa80a492fa1bc8dd159e02527537225beb61ba1061e00",
+        "406fa5fd914b73ab0f1a5f861eee102e05b06d7f26f99497827b601d3a24ad5a",
+        "c5a952469cdf08766af4a06eb12109c2ac1c9d62012d606e30f3a1b378e22bfd"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:blue_fluorite/dust"
-        }
+        [
+          {
+            "item": "cruciblecraft:blue_fluorite/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:fluorite/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:orange_fluorite/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:white_fluorite/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:magenta_fluorite/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:red_fluorite/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:green_fluorite/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:black_fluorite/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:yellow_fluorite/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:pink_fluorite/dust"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 6,
-          "id": "cruciblecraft:calcium_sulfate/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "96fa29bc686256f16f954e64ddbb6ed1d3a9928657cd1baa1f7c82d84a5da3c3"
-        ],
-        "selected_source_recipe": "sha256:5a4794bce7643882ecc09a04af90e9a4889d2e2b1e56e54931a1a6fcb092787c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/7e88e4a51b66406f"
+        [
+          {
+            "count": 6,
+            "id": "cruciblecraft:calcium_sulfate/dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/7e88e4a51b66406f",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/9c34bc1adec6e3a9",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/c35e933e8c2ad666",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/99f3b0aade096a53",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/2c1edd7c1ac7550e",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/d7cc4d9be961a79e",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/f2279a1d7ce41042",
+        6,
+        6
+      ],
+      [
+        7,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/d7fcecbdadc9b9ba",
+        7,
+        7
+      ],
+      [
+        8,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/8e97b11055781fd4",
+        8,
+        8
+      ],
+      [
+        9,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/0f32954ac498b7ab",
+        9,
+        9
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 160,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 7000,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4000,
-          "id": "cruciblecraft:hydrogen_fluoride"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -75,424 +186,15 @@
       "item_input_counts": [
         3
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:fluorite/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 6,
-          "id": "cruciblecraft:calcium_sulfate/dust"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "c5c671222c91703273e15342f4e9c08f0a797968ce3fb92af180ba9c3210f9b3"
-        ],
-        "selected_source_recipe": "sha256:5a4794bce7643882ecc09a04af90e9a4889d2e2b1e56e54931a1a6fcb092787c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/9c34bc1adec6e3a9"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 160,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 7000,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4000,
-          "id": "cruciblecraft:hydrogen_fluoride"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        3
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:orange_fluorite/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 6,
-          "id": "cruciblecraft:calcium_sulfate/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "c1cc5977115b7f4946290d10dd65ca9cf179f233c24031a0b729566ccd7fba8f"
-        ],
-        "selected_source_recipe": "sha256:5a4794bce7643882ecc09a04af90e9a4889d2e2b1e56e54931a1a6fcb092787c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/c35e933e8c2ad666"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 160,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 7000,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4000,
-          "id": "cruciblecraft:hydrogen_fluoride"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        3
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:white_fluorite/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 6,
-          "id": "cruciblecraft:calcium_sulfate/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "560e4646e514bbd40b73ca2649dbc5e7c0a42f3d8718567e472c4502d6eb8e55"
-        ],
-        "selected_source_recipe": "sha256:5a4794bce7643882ecc09a04af90e9a4889d2e2b1e56e54931a1a6fcb092787c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/99f3b0aade096a53"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 160,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 7000,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4000,
-          "id": "cruciblecraft:hydrogen_fluoride"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        3
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:magenta_fluorite/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 6,
-          "id": "cruciblecraft:calcium_sulfate/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "630b08612f8e353d21877d3c8752192fea5bfee9c515c098c98da61f422a7065"
-        ],
-        "selected_source_recipe": "sha256:5a4794bce7643882ecc09a04af90e9a4889d2e2b1e56e54931a1a6fcb092787c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/2c1edd7c1ac7550e"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 160,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 7000,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4000,
-          "id": "cruciblecraft:hydrogen_fluoride"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        3
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:red_fluorite/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 6,
-          "id": "cruciblecraft:calcium_sulfate/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "30fa6da583ba63f23e1bb546a8798601a511135f58e8506d05bc9698397aba1d"
-        ],
-        "selected_source_recipe": "sha256:5a4794bce7643882ecc09a04af90e9a4889d2e2b1e56e54931a1a6fcb092787c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/d7cc4d9be961a79e"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 160,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 7000,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4000,
-          "id": "cruciblecraft:hydrogen_fluoride"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        3
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:green_fluorite/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 6,
-          "id": "cruciblecraft:calcium_sulfate/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "18d68508dbbb3acc5549572ddf66926feefe23166404fed5b619aa4b4eaa7384"
-        ],
-        "selected_source_recipe": "sha256:5a4794bce7643882ecc09a04af90e9a4889d2e2b1e56e54931a1a6fcb092787c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 6,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/f2279a1d7ce41042"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 160,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 7000,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4000,
-          "id": "cruciblecraft:hydrogen_fluoride"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        3
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:black_fluorite/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 6,
-          "id": "cruciblecraft:calcium_sulfate/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "acb2ffa994461253762aa80a492fa1bc8dd159e02527537225beb61ba1061e00"
-        ],
-        "selected_source_recipe": "sha256:5a4794bce7643882ecc09a04af90e9a4889d2e2b1e56e54931a1a6fcb092787c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 7,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/d7fcecbdadc9b9ba"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 160,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 7000,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4000,
-          "id": "cruciblecraft:hydrogen_fluoride"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        3
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:yellow_fluorite/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 6,
-          "id": "cruciblecraft:calcium_sulfate/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "406fa5fd914b73ab0f1a5f861eee102e05b06d7f26f99497827b601d3a24ad5a"
-        ],
-        "selected_source_recipe": "sha256:5a4794bce7643882ecc09a04af90e9a4889d2e2b1e56e54931a1a6fcb092787c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 8,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/8e97b11055781fd4"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 160,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 7000,
-          "id": "cruciblecraft:sulfuric_acid"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 4000,
-          "id": "cruciblecraft:hydrogen_fluoride"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        3
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:pink_fluorite/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 6,
-          "id": "cruciblecraft:calcium_sulfate/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "c5a952469cdf08766af4a06eb12109c2ac1c9d62012d606e30f3a1b378e22bfd"
-        ],
-        "selected_source_recipe": "sha256:5a4794bce7643882ecc09a04af90e9a4889d2e2b1e56e54931a1a6fcb092787c",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 9,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/0f32954ac498b7ab"
+      "selected_source_recipe": "sha256:5a4794bce7643882ecc09a04af90e9a4889d2e2b1e56e54931a1a6fcb092787c",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/construction_foam_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

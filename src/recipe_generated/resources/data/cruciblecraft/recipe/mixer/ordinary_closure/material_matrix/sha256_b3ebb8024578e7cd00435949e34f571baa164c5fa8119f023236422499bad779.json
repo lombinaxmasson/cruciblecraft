@@ -1,59 +1,152 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:b3ebb8024578e7cd00435949e34f571baa164c5fa8119f023236422499bad779",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
+          "fluid_inputs": [],
+          "fluid_outputs": []
         }
       ],
-      "item_input_counts": [
-        1,
-        1
+      "hashes": [
+        "600a1f4396db7b88c68bdf548bb422a9d59b1302539f9b343457b40edb73a5a0",
+        "488b9a432dce72f3c4d284f8eb45b8b585e46db1d648738fea10634f839b0ecd",
+        "853582b034030566974c296aae27c4cd6e4ac0f75a0d7d35dd3f58052bfd53a3",
+        "07d767418e93de2513fbbef92f465a0b6a69ecd33459593aafde51896946c3b2",
+        "bd404a49da8bd3cdbe43e26f4bf9d0de3b94385ee26b8c9330b8866bdb80339f",
+        "38930fe184bb3c2fb948630230c36dc86af4267169671453d6ad24e458713722",
+        "58e38b6521d295118d486af30006ea80bd3805e9a543ac724a9d39993d833329"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_multiitem/multiitem_food_m1071"
-        },
-        {
-          "item": "cruciblecraft:rye/dust"
-        }
+        [
+          {
+            "item": "cruciblecraft:gt_multiitem/multiitem_food_m1071"
+          },
+          {
+            "item": "cruciblecraft:rye/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gt_multiitem/multiitem_food_m1071"
+          },
+          {
+            "item": "cruciblecraft:abyssal_oat/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gt_multiitem/multiitem_food_m1071"
+          },
+          {
+            "item": "cruciblecraft:barley/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gt_multiitem/multiitem_food_m1071"
+          },
+          {
+            "item": "cruciblecraft:wheat/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gt_multiitem/multiitem_food_m1071"
+          },
+          {
+            "item": "cruciblecraft:oat/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gt_multiitem/multiitem_food_m1071"
+          },
+          {
+            "item": "cruciblecraft:potato/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:gt_multiitem/multiitem_food_m1071"
+          },
+          {
+            "item": "cruciblecraft:corn/dust"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_multiitem/multiitem_food_m32003"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "600a1f4396db7b88c68bdf548bb422a9d59b1302539f9b343457b40edb73a5a0"
-        ],
-        "selected_source_recipe": "sha256:b3ebb8024578e7cd00435949e34f571baa164c5fa8119f023236422499bad779",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/c498dbd2658c4942"
+        [
+          {
+            "count": 1,
+            "id": "cruciblecraft:gt_multiitem/multiitem_food_m32003"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/c498dbd2658c4942",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/ef4c6d24d2696367",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/841086f83ca6d031",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/0c4b652382956bc1",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/a2776403fdcb08cf",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/a609ed657f5ca60f",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/d97f43983f91d253",
+        6,
+        6
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -66,265 +159,15 @@
         1,
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_multiitem/multiitem_food_m1071"
-        },
-        {
-          "item": "cruciblecraft:abyssal_oat/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_multiitem/multiitem_food_m32003"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "488b9a432dce72f3c4d284f8eb45b8b585e46db1d648738fea10634f839b0ecd"
-        ],
-        "selected_source_recipe": "sha256:b3ebb8024578e7cd00435949e34f571baa164c5fa8119f023236422499bad779",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/ef4c6d24d2696367"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_multiitem/multiitem_food_m1071"
-        },
-        {
-          "item": "cruciblecraft:barley/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_multiitem/multiitem_food_m32003"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "853582b034030566974c296aae27c4cd6e4ac0f75a0d7d35dd3f58052bfd53a3"
-        ],
-        "selected_source_recipe": "sha256:b3ebb8024578e7cd00435949e34f571baa164c5fa8119f023236422499bad779",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/841086f83ca6d031"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_multiitem/multiitem_food_m1071"
-        },
-        {
-          "item": "cruciblecraft:wheat/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_multiitem/multiitem_food_m32003"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "07d767418e93de2513fbbef92f465a0b6a69ecd33459593aafde51896946c3b2"
-        ],
-        "selected_source_recipe": "sha256:b3ebb8024578e7cd00435949e34f571baa164c5fa8119f023236422499bad779",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/0c4b652382956bc1"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_multiitem/multiitem_food_m1071"
-        },
-        {
-          "item": "cruciblecraft:oat/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_multiitem/multiitem_food_m32003"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "bd404a49da8bd3cdbe43e26f4bf9d0de3b94385ee26b8c9330b8866bdb80339f"
-        ],
-        "selected_source_recipe": "sha256:b3ebb8024578e7cd00435949e34f571baa164c5fa8119f023236422499bad779",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/a2776403fdcb08cf"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_multiitem/multiitem_food_m1071"
-        },
-        {
-          "item": "cruciblecraft:potato/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_multiitem/multiitem_food_m32003"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "38930fe184bb3c2fb948630230c36dc86af4267169671453d6ad24e458713722"
-        ],
-        "selected_source_recipe": "sha256:b3ebb8024578e7cd00435949e34f571baa164c5fa8119f023236422499bad779",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/a609ed657f5ca60f"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_multiitem/multiitem_food_m1071"
-        },
-        {
-          "item": "cruciblecraft:corn/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "cruciblecraft:gt_multiitem/multiitem_food_m32003"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "58e38b6521d295118d486af30006ea80bd3805e9a543ac724a9d39993d833329"
-        ],
-        "selected_source_recipe": "sha256:b3ebb8024578e7cd00435949e34f571baa164c5fa8119f023236422499bad779",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 6,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/d97f43983f91d253"
+      "selected_source_recipe": "sha256:b3ebb8024578e7cd00435949e34f571baa164c5fa8119f023236422499bad779",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

@@ -78,6 +78,15 @@ public final class CrucibleCraftEmiPlugin implements EmiPlugin {
         registerCrusherRecipes(registry);
         registerProcessingMachines(registry);
         registerDisplayStacks(registry);
+        for (var cover : List.of(
+                ModItems.LOGISTICS_ITEM_STORAGE_COVER,
+                ModItems.LOGISTICS_ITEM_IMPORT_COVER,
+                ModItems.LOGISTICS_ITEM_EXPORT_COVER,
+                ModItems.LOGISTICS_FLUID_STORAGE_COVER,
+                ModItems.LOGISTICS_FLUID_IMPORT_COVER,
+                ModItems.LOGISTICS_FLUID_EXPORT_COVER)) {
+            registry.addEmiStack(EmiStack.of(cover.get()));
+        }
     }
 
     /** Item-list polish layers: routed tool variants join the index as

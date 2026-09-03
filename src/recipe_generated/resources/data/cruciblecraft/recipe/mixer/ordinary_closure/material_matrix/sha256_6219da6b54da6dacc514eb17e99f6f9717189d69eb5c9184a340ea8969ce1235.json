@@ -1,65 +1,121 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:6219da6b54da6dacc514eb17e99f6f9717189d69eb5c9184a340ea8969ce1235",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 144,
-          "id": "cruciblecraft:potion_mineralwater"
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:potion_mineralwater"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_pink"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:spectral_dew"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_pink"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "minecraft:water"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_pink"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_pink"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_pink"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "206d8c419ef4a2362e8f5bf8962131d9c2ecb6f9559c86703158ae063bc092c0",
+        "44930db389f2e43ec62163231fad194e6c59edc7336553bbdda987eb2de69475",
+        "f3112697dd8fdc4c0ef4aa812f1e5a0afe1daa7f2ca1b18fdfc5984fb05263de",
+        "7f6f269b6c36b2043b6ddbc9295f73b89e48a1a6b8ecd88f635073d91a0fd703"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:pink/dust"
-        }
+        [
+          {
+            "item": "cruciblecraft:pink/dust"
+          }
+        ]
       ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "206d8c419ef4a2362e8f5bf8962131d9c2ecb6f9559c86703158ae063bc092c0"
-        ],
-        "selected_source_recipe": "sha256:6219da6b54da6dacc514eb17e99f6f9717189d69eb5c9184a340ea8969ce1235",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/7aa3d97c4f3a1852"
+      "item_outputs": [
+        []
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/7aa3d97c4f3a1852",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:mixer/ordinary_closure/41fda415ed3008a3",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:mixer/ordinary_closure/6dceb12c433f10f7",
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        "cruciblecraft:mixer/ordinary_closure/b6f590a4c4cfaa67",
+        3,
+        3
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:spectral_dew"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_pink"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -68,109 +124,13 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:pink/dust"
-        }
-      ],
-      "item_outputs": [],
       "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "44930db389f2e43ec62163231fad194e6c59edc7336553bbdda987eb2de69475"
-        ],
-        "selected_source_recipe": "sha256:6219da6b54da6dacc514eb17e99f6f9717189d69eb5c9184a340ea8969ce1235",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/41fda415ed3008a3"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_pink"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:pink/dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "f3112697dd8fdc4c0ef4aa812f1e5a0afe1daa7f2ca1b18fdfc5984fb05263de"
-        ],
-        "selected_source_recipe": "sha256:6219da6b54da6dacc514eb17e99f6f9717189d69eb5c9184a340ea8969ce1235",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/6dceb12c433f10f7"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_pink"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:pink/dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "7f6f269b6c36b2043b6ddbc9295f73b89e48a1a6b8ecd88f635073d91a0fd703"
-        ],
-        "selected_source_recipe": "sha256:6219da6b54da6dacc514eb17e99f6f9717189d69eb5c9184a340ea8969ce1235",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/b6f590a4c4cfaa67"
+      "selected_source_recipe": "sha256:6219da6b54da6dacc514eb17e99f6f9717189d69eb5c9184a340ea8969ce1235",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

@@ -373,6 +373,66 @@ public final class ModRecipeProvider extends RecipeProvider {
                 .define('C', Items.COMPARATOR)
                 .unlockedBy("has_comparator", has(Items.COMPARATOR))
                 .save(output, id("selector_manual_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_ITEM_STORAGE_COVER.get())
+                .pattern(" I ")
+                .pattern("CHC")
+                .define('I', Items.IRON_INGOT)
+                .define('C', Items.CHEST)
+                .define('H', Items.HOPPER)
+                .unlockedBy("has_hopper", has(Items.HOPPER))
+                .save(output, id("logistics_item_storage_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_ITEM_IMPORT_COVER.get())
+                .pattern(" I ")
+                .pattern("CHC")
+                .define('I', Items.IRON_INGOT)
+                .define('C', Items.COMPARATOR)
+                .define('H', Items.HOPPER)
+                .unlockedBy("has_hopper", has(Items.HOPPER))
+                .save(output, id("logistics_item_import_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_ITEM_EXPORT_COVER.get())
+                .pattern(" I ")
+                .pattern("DHD")
+                .define('I', Items.IRON_INGOT)
+                .define('D', Items.DROPPER)
+                .define('H', Items.HOPPER)
+                .unlockedBy("has_hopper", has(Items.HOPPER))
+                .save(output, id("logistics_item_export_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_FLUID_STORAGE_COVER.get())
+                .pattern(" I ")
+                .pattern("BHB")
+                .define('I', Items.IRON_INGOT)
+                .define('B', Items.BUCKET)
+                .define('H', Items.HOPPER)
+                .unlockedBy("has_hopper", has(Items.HOPPER))
+                .save(output, id("logistics_fluid_storage_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_FLUID_IMPORT_COVER.get())
+                .pattern(" I ")
+                .pattern("CHC")
+                .define('I', Items.IRON_INGOT)
+                .define('C', Items.CAULDRON)
+                .define('H', Items.HOPPER)
+                .unlockedBy("has_hopper", has(Items.HOPPER))
+                .save(output, id("logistics_fluid_import_cover"));
+        ShapedRecipeBuilder.shaped(
+                        RecipeCategory.MISC,
+                        ModItems.LOGISTICS_FLUID_EXPORT_COVER.get())
+                .pattern(" I ")
+                .pattern("DHD")
+                .define('I', Items.IRON_INGOT)
+                .define('D', Items.DISPENSER)
+                .define('H', Items.HOPPER)
+                .unlockedBy("has_hopper", has(Items.HOPPER))
+                .save(output, id("logistics_fluid_export_cover"));
         addNonmetalPipeAcquisitionRecipes(output);
         ShapedRecipeBuilder.shaped(
                         RecipeCategory.TOOLS, ModItems.MATERIAL_FILE.get())

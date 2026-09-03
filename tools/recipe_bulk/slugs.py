@@ -52,6 +52,17 @@ KNOWN_SEMANTIC_SLUGS = (
     "portfolio/source-capability-inventory",
     "portfolio/source-capability-growth-order",
     "portfolio/source-capability-map",
+    "portfolio/generic-recipe-generator-r0",
+    "portfolio/generic-recipe-import-core",
+    "portfolio/generic-recipe-import-proof",
+    "portfolio/generic-recipe-generator",
+    "portfolio/logistics-cover-net-r0",
+    "portfolio/t13c-exclusion-reclaim-r0",
+    "portfolio/non-ore-worldgen-r0",
+    "portfolio/vanilla-replace-r0",
+    "portfolio/crops-food-bees-r0",
+    "runtime/item-network-core",
+    "runtime/fluid-network-basic-transfer",
 )
 
 

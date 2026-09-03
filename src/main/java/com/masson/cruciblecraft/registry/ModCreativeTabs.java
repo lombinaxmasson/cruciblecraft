@@ -13,6 +13,7 @@ import com.masson.cruciblecraft.content.item.BathMteIdentityCatalog;
 import com.masson.cruciblecraft.content.item.BathIdentityCatalog;
 import com.masson.cruciblecraft.content.item.SemanticObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtBlockObjectCatalog;
+import com.masson.cruciblecraft.content.item.BathRemainderBlockObjectCatalog;
 import com.masson.cruciblecraft.content.item.GtStoneCatalog;
 import com.masson.cruciblecraft.material.MaterialCatalog;
 import com.masson.cruciblecraft.machine.MachineDurabilityComponent;
@@ -94,6 +95,12 @@ public final class ModCreativeTabs {
                         output.accept(ModItems.ROBOT_ARM_COVER.get());
                         output.accept(ModItems.PRESSURE_VALVE_COVER.get());
                         output.accept(ModItems.SELECTOR_MANUAL_COVER.get());
+                        output.accept(ModItems.LOGISTICS_ITEM_STORAGE_COVER.get());
+                        output.accept(ModItems.LOGISTICS_ITEM_IMPORT_COVER.get());
+                        output.accept(ModItems.LOGISTICS_ITEM_EXPORT_COVER.get());
+                        output.accept(ModItems.LOGISTICS_FLUID_STORAGE_COVER.get());
+                        output.accept(ModItems.LOGISTICS_FLUID_IMPORT_COVER.get());
+                        output.accept(ModItems.LOGISTICS_FLUID_EXPORT_COVER.get());
                         MachineCasingCatalog.casings().stream()
                                 .filter(MachineCasingCatalog.Casing::creativeVisible)
                                 .forEach(casing -> output.accept(
@@ -164,14 +171,20 @@ public final class ModCreativeTabs {
                                 output.accept(ModItems.bathMteItemsById()
                                         .get(identity.id())
                                         .get()));
-                        BathIdentityCatalog.identities().forEach(identity ->
+                        BathIdentityCatalog.identities().forEach(identity -> {
+                            if (!"tool_head".equals(identity.kind())) {
                                 output.accept(ModItems.bathIdentityItemsById()
                                         .get(identity.id())
-                                        .get()));
-                        SemanticObjectCatalog.identities().forEach(identity ->
+                                        .get());
+                            }
+                        });
+                        SemanticObjectCatalog.identities().forEach(identity -> {
+                            if (!"tool_head".equals(identity.kind())) {
                                 output.accept(ModItems.semanticIdentityItemsById()
                                         .get(identity.id())
-                                        .get()));
+                                        .get());
+                            }
+                        });
                         output.accept(ModItems.FLINT_KNIFE.get());
                         // Tool patterns and material-tool variants live in the
                         // dedicated TOOLS tab; MAIN only keeps the bootstrap knife.
@@ -192,6 +205,12 @@ public final class ModCreativeTabs {
                                 com.masson.cruciblecraft.content.item
                                         .ToolDisplayPlan.routedVariantStacks()
                                         .forEach(output::accept);
+                                MaterialCreativeTab.toolHeadEntryIds(
+                                                MaterialCatalog.startupValues(),
+                                                registeredFormsForPlan(),
+                                                MaterialCatalog.runtimePreferences())
+                                        .forEach(itemId ->
+                                                output.accept(requirePlannedItem(itemId)));
                             })
                             .build());
 
@@ -309,15 +328,18 @@ public final class ModCreativeTabs {
     }
 
     private static Map<MaterialCreativeTab, List<String>> buildMaterialEntryPlan() {
-        var materials = MaterialCatalog.startupValues();
+        return MaterialCreativeTab.planEntryIds(
+                MaterialCatalog.startupValues(),
+                registeredFormsForPlan(),
+                MaterialCatalog.runtimePreferences());
+    }
+
+    private static Map<String, List<MaterialPrefix>> registeredFormsForPlan() {
         Map<String, List<MaterialPrefix>> registeredForms = new LinkedHashMap<>();
-        materials.forEach(material -> registeredForms.put(
+        MaterialCatalog.startupValues().forEach(material -> registeredForms.put(
                 material.id(),
                 MaterialCatalog.registeredForms(material)));
-        return MaterialCreativeTab.planEntryIds(
-                materials,
-                registeredForms,
-                MaterialCatalog.runtimePreferences());
+        return registeredForms;
     }
 
     static Item requirePlannedItem(String itemId) {

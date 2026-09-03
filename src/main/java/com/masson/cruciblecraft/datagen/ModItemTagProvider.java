@@ -8,8 +8,11 @@ import com.masson.cruciblecraft.registry.ModItemTags;
 import com.masson.cruciblecraft.registry.ModItems;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
@@ -31,5 +34,15 @@ public final class ModItemTagProvider extends TagsProvider<Item> {
         var shapes = tag(ModItemTags.EXTRUDER_SHAPES);
         ExtruderShapeCatalog.DEFINITIONS.forEach(shape ->
                 shapes.add(ModItems.extruderShape(shape.id()).getKey()));
+        tag(ModItemTags.CRAFTING_FIRESTARTER)
+                .add(vanillaItem("flint_and_steel"))
+                .add(vanillaItem("fire_charge"))
+                .add(ModItems.MATCH.getKey());
+    }
+
+    private static ResourceKey<Item> vanillaItem(String path) {
+        return ResourceKey.create(
+                Registries.ITEM,
+                ResourceLocation.withDefaultNamespace(path));
     }
 }

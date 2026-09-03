@@ -1,65 +1,121 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:5e5fb6658d96015986310be4bd0b0ef0c065fa9daeb4ac90d83df5f12d2cd5a0",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 144,
-          "id": "minecraft:water"
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "minecraft:water"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_lime"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:potion_mineralwater"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_lime"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:spectral_dew"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_lime"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 144,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 216,
+              "id": "cruciblecraft:dye_watermixed_lime"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_lime"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "88c86daf3eacb9008ac7a5a141e2649c538f04ec0351717b882e0eb5e376c0ba",
+        "6c259ab57223c15c7b3dda240feef31412230136f5461c75d0d8ce886240174c",
+        "ce9f70ad940ab52faf1bb8ca10ce514936ef945af2d37ab7e920897b809319ea",
+        "224f5fb3acd18996d8d246fc64320b726f85fa35d4b86d4fbf0303d2a1907568"
       ],
       "item_inputs": [
-        {
-          "item": "minecraft:lime_dye"
-        }
+        [
+          {
+            "item": "minecraft:lime_dye"
+          }
+        ]
       ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "88c86daf3eacb9008ac7a5a141e2649c538f04ec0351717b882e0eb5e376c0ba"
-        ],
-        "selected_source_recipe": "sha256:5e5fb6658d96015986310be4bd0b0ef0c065fa9daeb4ac90d83df5f12d2cd5a0",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/8b936f045d772550"
+      "item_outputs": [
+        []
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/8b936f045d772550",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:mixer/ordinary_closure/15c54e558b4811b1",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:mixer/ordinary_closure/80255e92dc277451",
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        "cruciblecraft:mixer/ordinary_closure/fa0b7f96a8f5ca79",
+        3,
+        3
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:potion_mineralwater"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_lime"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -68,109 +124,13 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "minecraft:lime_dye"
-        }
-      ],
-      "item_outputs": [],
       "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "6c259ab57223c15c7b3dda240feef31412230136f5461c75d0d8ce886240174c"
-        ],
-        "selected_source_recipe": "sha256:5e5fb6658d96015986310be4bd0b0ef0c065fa9daeb4ac90d83df5f12d2cd5a0",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/15c54e558b4811b1"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:spectral_dew"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_lime"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:lime_dye"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "ce9f70ad940ab52faf1bb8ca10ce514936ef945af2d37ab7e920897b809319ea"
-        ],
-        "selected_source_recipe": "sha256:5e5fb6658d96015986310be4bd0b0ef0c065fa9daeb4ac90d83df5f12d2cd5a0",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/80255e92dc277451"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 144,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 216,
-          "id": "cruciblecraft:dye_watermixed_lime"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "minecraft:lime_dye"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "224f5fb3acd18996d8d246fc64320b726f85fa35d4b86d4fbf0303d2a1907568"
-        ],
-        "selected_source_recipe": "sha256:5e5fb6658d96015986310be4bd0b0ef0c065fa9daeb4ac90d83df5f12d2cd5a0",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/fa0b7f96a8f5ca79"
+      "selected_source_recipe": "sha256:5e5fb6658d96015986310be4bd0b0ef0c065fa9daeb4ac90d83df5f12d2cd5a0",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

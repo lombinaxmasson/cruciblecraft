@@ -79,8 +79,22 @@ class CoverResourceTest {
                         + "cover_definitions.schema.json");
         JsonObject catalogJson = json(catalog);
         assertEquals(9, catalogJson.getAsJsonArray("definitions").size());
-        catalogJson.getAsJsonArray("definitions").forEach(row ->
-                assertFalse(row.getAsJsonObject().has("translationKey")));
+        catalogJson.getAsJsonArray("definitions").forEach(row -> {
+            JsonObject object = row.getAsJsonObject();
+            assertFalse(object.has("translationKey"));
+            assertFalse(object.get("id").getAsString().contains("logistics_"));
+        });
+        Path sidecar = Path.of(
+                "src/main/resources/data/cruciblecraft/"
+                        + "item_network_cover_definitions.json");
+        JsonObject sidecarJson = json(sidecar);
+        assertEquals(3, sidecarJson.getAsJsonArray("definitions").size());
+        sidecarJson.getAsJsonArray("definitions").forEach(row -> {
+            JsonObject object = row.getAsJsonObject();
+            assertFalse(object.has("translationKey"));
+            assertTrue(object.get("id").getAsString()
+                    .startsWith("cruciblecraft:logistics_item_"));
+        });
         JsonObject schemaJson = json(schema);
         JsonObject definitionSchema = schemaJson.getAsJsonObject("$defs")
                 .getAsJsonObject("definition");
@@ -94,6 +108,85 @@ class CoverResourceTest {
         assertTrue(schemaText.contains("\"maximum\": 8000"));
         assertTrue(schemaText.contains("\"maximum\": 1000000"));
         assertTrue(schemaText.contains("\"maximum\": 64"));
+        assertTrue(schemaText.contains("\"network_id\""));
+    }
+
+    @Test
+    void itemNetworkCoversHaveRecipeModelAndBothLanguages() throws Exception {
+        JsonObject english = json(
+                GENERATED.resolve(
+                        "assets/cruciblecraft/lang/en_us.json"));
+        JsonObject chinese = json(
+                GENERATED.resolve(
+                        "assets/cruciblecraft/lang/zh_cn.json"));
+        Map<String, String> names = Map.of(
+                "logistics_item_storage_cover", "物品网络仓储盖板",
+                "logistics_item_import_cover", "物品网络导入盖板",
+                "logistics_item_export_cover", "物品网络导出盖板");
+        for (var entry : names.entrySet()) {
+            String item = entry.getKey();
+            Path recipe = GENERATED.resolve(
+                    "data/cruciblecraft/recipe/" + item + ".json");
+            Path model = GENERATED.resolve(
+                    "assets/cruciblecraft/models/item/" + item + ".json");
+            assertTrue(Files.isRegularFile(recipe), recipe.toString());
+            assertTrue(Files.isRegularFile(model), model.toString());
+            assertEquals(
+                    "cruciblecraft:" + item,
+                    json(recipe).getAsJsonObject("result")
+                            .get("id").getAsString());
+            assertTrue(english.has("item.cruciblecraft." + item));
+            assertEquals(
+                    entry.getValue(),
+                    chinese.get("item.cruciblecraft." + item).getAsString());
+        }
+        String ns = "src/main/resources/data/"
+                + "cruciblecraft_wave_runtime_item_network_core";
+        assertTrue(Files.isRegularFile(Path.of(ns + "/structure/empty.nbt")));
+        assertTrue(Files.isRegularFile(Path.of(
+                ns + "/gametest/structure/empty.nbt")));
+    }
+
+    @Test
+    void fluidNetworkCoversHaveRecipeModelAndBothLanguages() throws Exception {
+        JsonObject english = json(
+                GENERATED.resolve(
+                        "assets/cruciblecraft/lang/en_us.json"));
+        JsonObject chinese = json(
+                GENERATED.resolve(
+                        "assets/cruciblecraft/lang/zh_cn.json"));
+        Map<String, String> names = Map.of(
+                "logistics_fluid_storage_cover", "流体网络仓储盖板",
+                "logistics_fluid_import_cover", "流体网络导入盖板",
+                "logistics_fluid_export_cover", "流体网络导出盖板");
+        for (var entry : names.entrySet()) {
+            String item = entry.getKey();
+            Path recipe = GENERATED.resolve(
+                    "data/cruciblecraft/recipe/" + item + ".json");
+            Path model = GENERATED.resolve(
+                    "assets/cruciblecraft/models/item/" + item + ".json");
+            assertTrue(Files.isRegularFile(recipe), recipe.toString());
+            assertTrue(Files.isRegularFile(model), model.toString());
+            assertEquals(
+                    "cruciblecraft:" + item,
+                    json(recipe).getAsJsonObject("result")
+                            .get("id").getAsString());
+            assertTrue(english.has("item.cruciblecraft." + item));
+            assertEquals(
+                    entry.getValue(),
+                    chinese.get("item.cruciblecraft." + item).getAsString());
+            assertFalse(entry.getValue().contains("Cover"));
+        }
+        Path sidecar = Path.of(
+                "src/main/resources/data/cruciblecraft/"
+                        + "fluid_network_cover_definitions.json");
+        JsonObject sidecarJson = json(sidecar);
+        assertEquals(3, sidecarJson.getAsJsonArray("definitions").size());
+        String ns = "src/main/resources/data/"
+                + "cruciblecraft_wave_runtime_fluid_network_basic_transfer";
+        assertTrue(Files.isRegularFile(Path.of(ns + "/structure/empty.nbt")));
+        assertTrue(Files.isRegularFile(Path.of(
+                ns + "/gametest/structure/empty.nbt")));
     }
 
     private static JsonObject json(Path path) throws Exception {

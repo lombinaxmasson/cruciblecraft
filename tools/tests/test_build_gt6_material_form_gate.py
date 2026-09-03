@@ -84,20 +84,14 @@ class MaterialFormGateTest(unittest.TestCase):
             t10_forms = set(
                 self.gate["t10_known_forms"].get(material["id"], ())
             )
-            t38_forms = T38_REQUIRED_FORMS.get(material["id"], set())
-            t38_acquisition_forms = T38_ACQUISITION_FORMS.get(
-                material["id"], set()
-            )
-            t39_forms = T39_REQUIRED_FORMS.get(material["id"], set())
-            t40_forms = T40_REQUIRED_FORMS.get(material["id"], set())
+            extra = set(T8_PIPE_FORMS) | t10_forms
+            for section in self.gate.get("java_overlay_sections") or []:
+                extra.update(
+                    (self.gate.get(section) or {}).get(material["id"], ())
+                )
             self.assertLessEqual(
                 registered - factual,
-                T8_PIPE_FORMS
-                | t10_forms
-                | t38_forms
-                | t38_acquisition_forms
-                | t39_forms
-                | t40_forms,
+                extra,
                 material["id"],
             )
             if material.get("metadata_only"):
@@ -110,8 +104,13 @@ class MaterialFormGateTest(unittest.TestCase):
         self.assertEqual(282, self.gate["counts"]["t8_pipe_forms"])
         self.assertEqual(967, self.gate["counts"]["t10_known_forms"])
         self.assertEqual(12, self.gate["counts"]["t38_required_forms"])
-        self.assertEqual(18, self.gate["counts"]["t39_required_forms"])
+        self.assertEqual(
+            sum(map(len, T39_REQUIRED_FORMS.values())),
+            self.gate["counts"]["t39_required_forms"],
+        )
         self.assertEqual(3, self.gate["counts"]["t40_required_forms"])
+        self.assertEqual(7990, self.gate["counts"]["tool_head_required_forms"])
+        self.assertIn("tool_head_required_forms", self.gate["java_overlay_sections"])
         self.assertEqual(
             sum(map(len, T38_ACQUISITION_FORMS.values())),
             self.gate["counts"]["t38_acquisition_forms"],

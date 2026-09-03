@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cruciblecraft.dev/schema/compact_authored_matrix_v1.schema.json",
+  "title": "Compact authored matrix v1",
+  "description": "Shared-shape compact family body: shared fields, IO dictionaries, allowed tuple rows.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["shared", "dicts", "rows"],
+  "properties": {
+    "shared": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "duration",
+        "eut",
+        "special_value",
+        "can_be_buffered",
+        "item_input_counts",
+        "item_input_actions",
+        "output_chances",
+        "source_kind",
+        "selected_source_recipe"
+      ],
+      "properties": {
+        "duration": { "type": "integer" },
+        "eut": { "type": "integer" },
+        "special_value": { "type": "integer" },
+        "can_be_buffered": { "type": "boolean" },
+        "item_input_counts": {
+          "type": "array",
+          "maxItems": 16,
+          "items": { "type": "integer" }
+        },
+        "item_input_actions": {
+          "type": "array",
+          "maxItems": 16
+        },
+        "output_chances": {
+          "type": "array",
+          "maxItems": 16,
+          "items": { "type": "integer" }
+        },
+        "source_kind": { "type": "string", "minLength": 1 },
+        "selected_source_recipe": { "type": "string", "minLength": 1 }
+      }
+    },
+    "dicts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["item_inputs", "item_outputs", "fluids", "hashes"],
+      "properties": {
+        "item_inputs": { "type": "array", "maxItems": 8192 },
+        "item_outputs": { "type": "array", "maxItems": 8192 },
+        "fluids": { "type": "array", "maxItems": 8192 },
+        "hashes": {
+          "type": "array",
+          "maxItems": 8192,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "rows": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 4096,
+      "items": {
+        "type": "array",
+        "minItems": 6,
+        "maxItems": 6
+      }
+    }
+  }
+}

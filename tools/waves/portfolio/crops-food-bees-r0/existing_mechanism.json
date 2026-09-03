@@ -1,0 +1,228 @@
+{
+  "already_closed_elsewhere": {
+    "count_ceiling_kind_envelope": {
+      "owner_here": false,
+      "status": "COUNT_CEILING_REFS_READY",
+      "telemetry_report_only": true
+    },
+    "generic_recipe_import": {
+      "creates_recipe_maps": false,
+      "owner_here": false,
+      "status": "GENERIC_RECIPE_IMPORT_READY"
+    },
+    "non_ore_worldgen_r0": {
+      "feature_count": 18,
+      "full_other_features": 190,
+      "owner_here": false,
+      "remainder_after_slice": 172,
+      "status": "NON_ORE_WORLDGEN_R0_READY"
+    },
+    "t20_worldgen_catalog": {
+      "fluid_deposit_count": 2,
+      "ore_vein_count": 129,
+      "owner_here": false,
+      "surface_scatter_id": "surface_rock_scatter"
+    },
+    "vanilla_replace_r0": {
+      "owner_here": false,
+      "status": "VANILLA_REPLACE_R0_READY"
+    }
+  },
+  "capability_map_crops_food_bees": [
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "GT6 crops / plants (dump worldgen plant.* + gt.recipe.squeezer)",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Crops/food/bees remain none. Anchor is the GT6 plant/crop source, not 'later'."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "GT6 food maps (gt.recipe.juicer / gt.recipe.fermenter)",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Food processing maps are none in CC."
+    },
+    {
+      "1x_disposition": "not_in_1x",
+      "cc_mechanism": "none",
+      "correspondence_class": "out_of_scope_historical",
+      "growth_blocker": "no_owner",
+      "gt6_anchor": "gt.recipe.bumblequeen / gt.recipe.bumblelyzer + WorldgenHives",
+      "gt6_domain": "worldgen",
+      "recheck_condition": "Bee/hive source maps and worldgen hives. CC mechanism is none."
+    }
+  ],
+  "capability_map_seed": {
+    "1x_disposition": "not_in_1x",
+    "cc_mechanism": "none",
+    "correspondence_class": "out_of_scope_historical",
+    "growth_blocker": "no_owner",
+    "gt6_anchor": "crops / food / bees",
+    "gt6_domain": "worldgen",
+    "inherited_from_seed": true,
+    "recheck_condition": "Hand to portfolio/source-capability-map. Not a 1.x failure and not a forever ban."
+  },
+  "count_ceiling_status": "COUNT_CEILING_REFS_READY",
+  "dimension_policy": "The existing overworld acquisition contract is retained as DESIGN_POLICY_OVERWORLD_ACCESS; GT6 dimensions are recorded as source facts but are not represented as direct parity.",
+  "generated_by": "python tools/build_crops_food_bees_r0.py",
+  "generic_importer_creates_recipe_maps": false,
+  "generic_importer_status": "GENERIC_RECIPE_IMPORT_READY",
+  "kinds": [
+    {
+      "adjacent_analog": "T20 ore/fluid/scatter catalogs and authored scatter JSON are not plant.glowtus / plant.bush growth, and there is no squeezer host",
+      "category": "Crops",
+      "cc_mechanism": "none",
+      "gap": "mechanism",
+      "named_runtime_hits": [],
+      "t35_excluded_mtes": [
+        {
+          "behavior_class": "MultiTileEntitySqueezer",
+          "canonical_family": "multiblock/multi_tile_entity_squeezer",
+          "historical_exclusion_reasons": [
+            "multiblock_owned_by_t13d"
+          ],
+          "owner_here": false,
+          "source_sites": 1
+        }
+      ]
+    },
+    {
+      "adjacent_analog": "Existing smelter / mixer RecipeMaps and the generic importer are not juicer or fermenter maps",
+      "category": "Food",
+      "cc_mechanism": "none",
+      "gap": "mechanism",
+      "named_runtime_hits": [],
+      "t35_excluded_mtes": [
+        {
+          "behavior_class": "MultiTileEntityJuicer",
+          "canonical_family": "misc_tool_blocks/multi_tile_entity_juicer",
+          "historical_exclusion_reasons": [
+            "outside_fixed_machine_energy_behavior_tree"
+          ],
+          "owner_here": false,
+          "source_sites": 1
+        },
+        {
+          "behavior_class": "MultiTileEntityFermenter",
+          "canonical_family": "multiblock/multi_tile_entity_fermenter",
+          "historical_exclusion_reasons": [
+            "multiblock_owned_by_t13d"
+          ],
+          "owner_here": false,
+          "source_sites": 1
+        }
+      ]
+    },
+    {
+      "adjacent_analog": "T20 DESIGN_POLICY_OVERWORLD_ACCESS is not ten-dimension WorldgenHives, and there is no bumble host",
+      "category": "Bees",
+      "cc_mechanism": "none",
+      "gap": "mechanism",
+      "named_runtime_hits": [],
+      "t35_excluded_mtes": [
+        {
+          "behavior_class": "MultiTileEntityBumbleHive",
+          "canonical_family": "untyped/multi_tile_entity_bumble_hive",
+          "historical_exclusion_reasons": [
+            "outside_fixed_machine_energy_behavior_tree"
+          ],
+          "owner_here": false,
+          "source_sites": 1
+        }
+      ]
+    }
+  ],
+  "machine_tier_kind_count": 27,
+  "note": "The gap is a missing mechanism, not a missing smelter recipe. T35 already excluded juicer / fermenter / squeezer / bumble hive MTEs from the 1.x machine tree. Generic importer READY and T20 ore/fluid/scatter catalogs do not cover plant.*, juicer / fermenter, or WorldgenHives. WorldgenHives were non-ore remainder and are owned here as Bees. Count-ceiling / kind envelope stays report-only.",
+  "nuclear_started": false,
+  "recipe_map_ids": [
+    "coke_oven",
+    "crusher",
+    "anvil",
+    "anvil_bend_small",
+    "anvil_bend_big",
+    "sluice",
+    "bath",
+    "centrifuge",
+    "shredder",
+    "sifter",
+    "smelter",
+    "cooling",
+    "mortar",
+    "extruder",
+    "cutter",
+    "lathe",
+    "rollingmill",
+    "rollbender",
+    "wiremill",
+    "bender",
+    "assembler",
+    "welder",
+    "press",
+    "electrolyzer",
+    "mixer",
+    "distillery",
+    "autoclave",
+    "drying",
+    "compressor",
+    "generifier",
+    "roaster",
+    "coagulator",
+    "fuels_engine",
+    "fuels_gas"
+  ],
+  "schema_version": 1,
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "EXISTING_MECHANISM_READY",
+  "t20_worldgen_catalog": {
+    "fluid_deposit_count": 2,
+    "ore_vein_count": 129,
+    "owner_here": false,
+    "surface_scatter_id": "surface_rock_scatter"
+  },
+  "t35_excluded_mtes": {
+    "misc_tool_blocks/multi_tile_entity_juicer": {
+      "behavior_class": "MultiTileEntityJuicer",
+      "canonical_family": "misc_tool_blocks/multi_tile_entity_juicer",
+      "historical_exclusion_reasons": [
+        "outside_fixed_machine_energy_behavior_tree"
+      ],
+      "owner_here": false,
+      "source_sites": 1
+    },
+    "multiblock/multi_tile_entity_fermenter": {
+      "behavior_class": "MultiTileEntityFermenter",
+      "canonical_family": "multiblock/multi_tile_entity_fermenter",
+      "historical_exclusion_reasons": [
+        "multiblock_owned_by_t13d"
+      ],
+      "owner_here": false,
+      "source_sites": 1
+    },
+    "multiblock/multi_tile_entity_squeezer": {
+      "behavior_class": "MultiTileEntitySqueezer",
+      "canonical_family": "multiblock/multi_tile_entity_squeezer",
+      "historical_exclusion_reasons": [
+        "multiblock_owned_by_t13d"
+      ],
+      "owner_here": false,
+      "source_sites": 1
+    },
+    "untyped/multi_tile_entity_bumble_hive": {
+      "behavior_class": "MultiTileEntityBumbleHive",
+      "canonical_family": "untyped/multi_tile_entity_bumble_hive",
+      "historical_exclusion_reasons": [
+        "outside_fixed_machine_energy_behavior_tree"
+      ],
+      "owner_here": false,
+      "source_sites": 1
+    }
+  },
+  "wave_slug": "portfolio/crops-food-bees-r0",
+  "worldgen_catalog_slice_hits": []
+}

@@ -1,0 +1,32 @@
+{
+  "files": [
+    {
+      "path": "src/test/resources/generic_recipe_import/mixer_exact_multi/source_pack/dump_slice.json",
+      "role": "dump_slice",
+      "sha256": "997e469af4fbb6dc0034c53095d14988e4117c0b23c80c73dc54bc2d48e02378"
+    },
+    {
+      "path": "src/test/resources/generic_recipe_import/mixer_exact_multi/source_pack/work_set.json",
+      "role": "work_set",
+      "sha256": "1508076e087acbe9953d0ef37c4cf99ad9baea4559a978155efdb8105cfc5382"
+    },
+    {
+      "path": "src/test/resources/generic_recipe_import/mixer_exact_multi/compare_corpus.json",
+      "role": "compare_corpus",
+      "sha256": "95b41ee98a91e283fa68db01a54ea3580e13700f9e64a51c41c87d866cbdb647"
+    }
+  ],
+  "full_replay": {
+    "required_for_first_generation": true,
+    "skip_is_not_pass": true
+  },
+  "provenance_policy": {
+    "append_only": true,
+    "forbid_gt6u": true
+  },
+  "schema_version": 1,
+  "source_dialect": "gt6",
+  "source_pack_id": "generic-import/mixer-exact-multi",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "source_system": "gt6"
+}

@@ -1,0 +1,25 @@
+{
+  "command": ".\\gradlew.bat runGameTestServer -PwaveRecipes=runtime/fluid-network-basic-transfer -PclientSmoke=player-complete --offline",
+  "failed": 0,
+  "java_source": "src/main/java/com/masson/cruciblecraft/gametest/FluidNetworkCoreGameTests.java",
+  "log_path": "tools/waves/runtime/fluid-network-basic-transfer/gametest.log",
+  "namespace": "cruciblecraft_wave_runtime_fluid_network_basic_transfer",
+  "note": "Isolated dedicated GameTestServer. Skip is not pass. Logistics fluid covers claim their face so local pipe distribute cannot swallow the source/dest tanks. --offline uses the existing Gradle dist.",
+  "passed": 9,
+  "required_tests": 9,
+  "schema_version": 1,
+  "skip_is_not_pass": true,
+  "status": "PASS",
+  "test_ids": [
+    "coveridentitysurvivesblockentityreload",
+    "coversaresurvivalcraftable",
+    "differentidentityisinvisible",
+    "disconnectedpipesarenotonenetwork",
+    "importpullsfromstorage",
+    "loadaxiscapsarerecorded",
+    "notargetdoesnotswallowfluids",
+    "playersurfaceisregistered",
+    "sameidentityconnectedexportsintostorage"
+  ],
+  "wave_slug": "runtime/fluid-network-basic-transfer"
+}

@@ -1,73 +1,137 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:4630aa28d654251cd3df4c7c3a77e04d894e019c3ca8b2d21a819dacc6b09b89",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 750,
-          "id": "cruciblecraft:sulfur_dioxide"
+          "fluid_inputs": [
+            {
+              "amount": 750,
+              "id": "cruciblecraft:sulfur_dioxide"
+            },
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:netherair"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:sulfur_trioxide"
+            }
+          ]
         },
         {
-          "amount": 1000,
-          "id": "cruciblecraft:netherair"
-        }
-      ],
-      "fluid_outputs": [
+          "fluid_inputs": [
+            {
+              "amount": 750,
+              "id": "cruciblecraft:sulfur_dioxide"
+            },
+            {
+              "amount": 250,
+              "id": "cruciblecraft:oxygen"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:sulfur_trioxide"
+            }
+          ]
+        },
         {
-          "amount": 1000,
-          "id": "cruciblecraft:sulfur_trioxide"
-        }
-      ],
-      "item_input_actions": [
+          "fluid_inputs": [
+            {
+              "amount": 750,
+              "id": "cruciblecraft:sulfur_dioxide"
+            },
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:air"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:sulfur_trioxide"
+            }
+          ]
+        },
         {
-          "kind": "preserve"
+          "fluid_inputs": [
+            {
+              "amount": 750,
+              "id": "cruciblecraft:sulfur_dioxide"
+            },
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:enderair"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1000,
+              "id": "cruciblecraft:sulfur_trioxide"
+            }
+          ]
         }
       ],
-      "item_input_counts": [
-        0
+      "hashes": [
+        "d9084dfd9a50c88fe5c286ceeb193bc669276ec2cfae71ec9c4aeed022c8e5ce",
+        "8f916ea501594c8f89f8685ab92569a24b389116f92e263ffee6ba5990d052a0",
+        "b69debba4a4833a0ea94700e67fa042824c4137fbf44a50f10346dac84caaafc",
+        "273e7c6cb7314c43f820df1663270e50f01a5e78f55970262c9c03e276483723"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:platinum/dust"
-        }
+        [
+          {
+            "item": "cruciblecraft:platinum/dust"
+          }
+        ]
       ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "d9084dfd9a50c88fe5c286ceeb193bc669276ec2cfae71ec9c4aeed022c8e5ce"
-        ],
-        "selected_source_recipe": "sha256:4630aa28d654251cd3df4c7c3a77e04d894e019c3ca8b2d21a819dacc6b09b89",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/966b954076af6b95"
+      "item_outputs": [
+        []
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/966b954076af6b95",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:mixer/ordinary_closure/4c393d1f3f4f3d69",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:mixer/ordinary_closure/2b6351bdfd2d619e",
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        "cruciblecraft:mixer/ordinary_closure/59d8f3f9573be961",
+        3,
+        3
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 750,
-          "id": "cruciblecraft:sulfur_dioxide"
-        },
-        {
-          "amount": 250,
-          "id": "cruciblecraft:oxygen"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:sulfur_trioxide"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "preserve"
@@ -76,117 +140,13 @@
       "item_input_counts": [
         0
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:platinum/dust"
-        }
-      ],
-      "item_outputs": [],
       "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "8f916ea501594c8f89f8685ab92569a24b389116f92e263ffee6ba5990d052a0"
-        ],
-        "selected_source_recipe": "sha256:4630aa28d654251cd3df4c7c3a77e04d894e019c3ca8b2d21a819dacc6b09b89",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/4c393d1f3f4f3d69"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 750,
-          "id": "cruciblecraft:sulfur_dioxide"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:air"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:sulfur_trioxide"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:platinum/dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "b69debba4a4833a0ea94700e67fa042824c4137fbf44a50f10346dac84caaafc"
-        ],
-        "selected_source_recipe": "sha256:4630aa28d654251cd3df4c7c3a77e04d894e019c3ca8b2d21a819dacc6b09b89",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/2b6351bdfd2d619e"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 750,
-          "id": "cruciblecraft:sulfur_dioxide"
-        },
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:enderair"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1000,
-          "id": "cruciblecraft:sulfur_trioxide"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "preserve"
-        }
-      ],
-      "item_input_counts": [
-        0
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:platinum/dust"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "273e7c6cb7314c43f820df1663270e50f01a5e78f55970262c9c03e276483723"
-        ],
-        "selected_source_recipe": "sha256:4630aa28d654251cd3df4c7c3a77e04d894e019c3ca8b2d21a819dacc6b09b89",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/59d8f3f9573be961"
+      "selected_source_recipe": "sha256:4630aa28d654251cd3df4c7c3a77e04d894e019c3ca8b2d21a819dacc6b09b89",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

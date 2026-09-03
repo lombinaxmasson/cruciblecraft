@@ -511,9 +511,17 @@ def recipe_wave(wave_id: str) -> WaveSpec:
     if parsed.wave_slug and parsed.wave_slug in SEMANTIC_WAVES:
         return SEMANTIC_WAVES[parsed.wave_slug]
     spec = WAVES.get(parsed.compile_key())
-    if spec is None:
-        raise KeyError(f"unknown recipe wave: {wave_id}")
-    return spec
+    if spec is not None:
+        return spec
+    from tools.recipe_bulk.spec_registry import SpecRegistryError, try_derive_wave_spec
+
+    try:
+        derived = try_derive_wave_spec(wave_id)
+    except SpecRegistryError as error:
+        raise ValueError(str(error)) from error
+    if derived is not None:
+        return derived
+    raise KeyError(f"unknown recipe wave: {wave_id}")
 
 
 def shadow_waves() -> tuple[WaveSpec, ...]:

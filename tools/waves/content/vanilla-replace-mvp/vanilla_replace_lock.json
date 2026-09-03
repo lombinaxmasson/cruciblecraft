@@ -1,0 +1,254 @@
+{
+  "added": [],
+  "deferred": [
+    {
+      "action": "deferred",
+      "gt6_pointer": {
+        "calls": [
+          "CR.delate(Blocks.furnace)",
+          "CR.shaped(furnace, cobblestone + OD.craftingFirestarter)",
+          "CR.shaped(furnace, basalt stone + OD.craftingFirestarter)",
+          "CR.shaped(furnace, rockGt ANY.Stone + OD.craftingFirestarter)"
+        ],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [55, 56, 57, 63]
+      },
+      "reason": "Removing minecraft:furnace requires a pre-iron OD.craftingFirestarter member. LoaderItemData only oredicts flint_and_steel and fire_charge. MultiItemRandomTools Fire Starter needs OD.itemGrassDry / OD.itemBarkDry (no 1.21 item). Match shaped recipes need phosphorus dust plus wood bolts (not first-hour). Iron-gating the furnace would cut 节点 1-2 (firebox, mortar, ceramic firing). §7 shrink: furnace stays vanilla until a later card owns dry-grass Fire Starter.",
+      "recipe_ids": [
+        "minecraft:furnace",
+        "cruciblecraft:furnace",
+        "cruciblecraft:furnace_from_rocks",
+        "cruciblecraft:furnace_from_basalt"
+      ]
+    },
+    {
+      "action": "deferred",
+      "gt6_pointer": {
+        "calls": [
+          "CR.remove(Items.bone)",
+          "CR.shaped(IL.Dye_Bonemeal, h + bone)"
+        ],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [48, 136]
+      },
+      "reason": "L136 uses the GT crafting-tool hammer slot (durability, not consumed). CC has no vanilla-shaped serializer for that. Do not delete minecraft:bone_meal without a substitute.",
+      "recipe_ids": ["minecraft:bone_meal"]
+    },
+    {
+      "action": "deferred",
+      "gt6_pointer": {
+        "calls": ["CR.shapeless(dust White, bone)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [51]
+      },
+      "reason": "MT.White dust is not a first-hour 1.21 identity in this card.",
+      "recipe_ids": []
+    },
+    {
+      "action": "deferred",
+      "gt6_pointer": {
+        "calls": ["CR.shapeless(book, leather + paper x3)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [53]
+      },
+      "reason": "Not a named first-hour neighbor.",
+      "recipe_ids": ["minecraft:book"]
+    },
+    {
+      "action": "deferred",
+      "gt6_pointer": {
+        "calls": [
+          "CR.delate(enchanting_table)",
+          "CR.delate(ender_chest)",
+          "CR.delate(saddle)",
+          "CR.delate(magma_cream)"
+        ],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [61, 62, 64, 65]
+      },
+      "reason": "Named deferred non-first-hour Vanilla.java entries.",
+      "recipe_ids": [
+        "minecraft:enchanting_table",
+        "minecraft:ender_chest",
+        "minecraft:saddle",
+        "minecraft:magma_cream"
+      ]
+    },
+    {
+      "action": "deferred",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(IL.Tool_Matches, phosphorus dust + wood bolt)"],
+        "file": "src/main/java/gregtech/items/MultiItemRandomTools.java",
+        "lines": [352, 353, 354, 355]
+      },
+      "reason": "SOURCE_BACKED Match crafting exists, but phosphorus + bolt is not first-hour. Assembler phosphor→match already exists. Not this card's furnace unlock.",
+      "recipe_ids": ["cruciblecraft:match"]
+    },
+    {
+      "action": "deferred",
+      "gt6_pointer": {
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [344],
+        "note": "Second half begins at RM.generify / boxunbox / Lathe / Extruder / smash"
+      },
+      "reason": "Vanilla.java second half is GT RecipeMap content, not vanilla replace.",
+      "recipe_ids": []
+    },
+    {
+      "action": "deferred",
+      "gt6_pointer": {
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Replace.java"
+      },
+      "reason": "Replace full scanner (ingot tools → plates) is not this card.",
+      "recipe_ids": []
+    }
+  ],
+  "generated_by": "hand-authored lock for content/vanilla-replace-mvp",
+  "generated_recipe_count": 0,
+  "identical_1_21": [
+    {
+      "action": "identical_1_21",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(glass_bottle x3, OD.glassColorless)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [59]
+      },
+      "reason": "1.21.1 minecraft:glass_bottle already uses the same V pattern and minecraft:glass, which is the colorless glass block. No overlay.",
+      "recipe_id": "minecraft:glass_bottle"
+    }
+  ],
+  "no_1_21_equivalent": [
+    {
+      "action": "no_1_21_equivalent",
+      "gt6_pointer": {
+        "calls": ["RM.rem_smelting(bone, slime_ball)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [40]
+      },
+      "reason": "1.21.1 vanilla has no bone→slimeball smelting. Do not delete a neighboring smelting id.",
+      "source_io": "Items.bone → Items.slime_ball"
+    },
+    {
+      "action": "no_1_21_equivalent",
+      "gt6_pointer": {
+        "calls": ["RM.rem_smelting(dye, slime_ball)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [41]
+      },
+      "reason": "1.21.1 vanilla has no dye→slimeball smelting. Do not delete a neighboring smelting id.",
+      "source_io": "Items.dye wildcard → Items.slime_ball"
+    },
+    {
+      "action": "no_1_21_equivalent",
+      "gt6_pointer": {
+        "calls": ["CR.remove(IL.WiMo_Thick_Bone)", "CR.shaped(Dye_Bonemeal x2, thick bone)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [49, 137]
+      },
+      "reason": "Witchery thick bone has no 1.21.1 identity."
+    },
+    {
+      "action": "no_1_21_equivalent",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(IL.Tool_Fire_Starter, stick + OD.itemGrassDry)"],
+        "file": "src/main/java/gregtech/items/MultiItemRandomTools.java",
+        "lines": [394, 395]
+      },
+      "reason": "OD.itemGrassDry has no 1.21.1 item. This card does not invent a neighboring grass id or port grass-cutting worldgen."
+    },
+    {
+      "action": "no_1_21_equivalent",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(IL.Tool_Fire_Starter_Bark, stick + OD.itemBarkDry)"],
+        "file": "src/main/java/gregtech/items/MultiItemRandomTools.java",
+        "lines": [397, 398]
+      },
+      "reason": "OD.itemBarkDry has no 1.21.1 item."
+    },
+    {
+      "action": "no_1_21_equivalent",
+      "gt6_pointer": {
+        "calls": ["CR.shaped(furnace, stone.dat(MT.STONES.Basalt) + firestarter)"],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [56]
+      },
+      "reason": "GT basalt stone is not minecraft:basalt and is not first-hour gt_stone/basalt_m8. Do not guess a neighboring id. Furnace row is deferred anyway."
+    }
+  ],
+  "nuclear_started": false,
+  "out_of_scope": [
+    {
+      "action": "out_of_scope",
+      "gt6_pointer": {
+        "file": "src/main/java/gregtech/asm/transformers/minecraft/Replacements.java"
+      },
+      "reason": "ASM zombie villager / lava tick. Not recipes."
+    },
+    {
+      "action": "out_of_scope",
+      "reason": "T30 hopper 121 and five authored mold-firing minecraft:smelting recipes already have owners."
+    },
+    {
+      "action": "out_of_scope",
+      "reason": "WorldgenOresVanilla 24 is not this card."
+    }
+  ],
+  "owns_families": 0,
+  "production_lock": null,
+  "removed": [],
+  "schema_version": 1,
+  "source_blob_sha1": "4c459acd2c7729d4186c5ada9ccd76181745bacf",
+  "source_file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+  "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
+  "status": "VANILLA_REPLACE_MVP_READY",
+  "substituted": [
+    {
+      "action": "substitute",
+      "datapack_path": "src/main/resources/data/minecraft/recipe/paper.json",
+      "gt6_pointer": {
+        "calls": [
+          "CR.remove(Items.reeds)",
+          "CR.remove(reeds x3)",
+          "CR.shaped(paper, XXX, reeds)"
+        ],
+        "file": "src/main/java/gregtech/loaders/c/Loader_Recipes_Vanilla.java",
+        "lines": [43, 44, 52]
+      },
+      "io": {
+        "key": {
+          "X": "minecraft:sugar_cane"
+        },
+        "pattern": ["XXX"],
+        "result": {
+          "count": 1,
+          "id": "minecraft:paper"
+        }
+      },
+      "recipe_id": "minecraft:paper"
+    }
+  ],
+  "supporting_tags": [
+    {
+      "datapack_path": "src/main/resources/data/cruciblecraft/tags/item/crafting_firestarter.json",
+      "gt6_pointer": {
+        "calls": [
+          "OM.reg(OD.craftingFirestarter, fire_charge)",
+          "OM.reg(OD.craftingFirestarter, flint_and_steel)",
+          "IL.Tool_Matches ... OD.craftingFirestarter"
+        ],
+        "files": [
+          "src/main/java/gregapi/load/LoaderItemData.java",
+          "src/main/java/gregtech/items/MultiItemRandomTools.java"
+        ],
+        "lines": [517, 518, 343]
+      },
+      "members": [
+        "minecraft:flint_and_steel",
+        "minecraft:fire_charge",
+        "cruciblecraft:match"
+      ],
+      "tag_id": "cruciblecraft:crafting_firestarter"
+    }
+  ],
+  "wave_slug": "content/vanilla-replace-mvp"
+}

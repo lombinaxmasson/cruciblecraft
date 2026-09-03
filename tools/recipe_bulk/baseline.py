@@ -9,6 +9,7 @@ from typing import Any
 from tools import t27_common as t27
 from tools import t35_common as t35
 from tools.recipe_bulk.waves import SHADOW_ORDER, recipe_wave
+from tools.recipe_bulk.matrix import authored_relations
 
 STATUS = "RECIPE_WAVE_PRODUCTION_BASELINE"
 
@@ -36,7 +37,7 @@ def stable_ids_from_tree(root: Path) -> list[str]:
     ids: list[str] = []
     for path in sorted(p for p in root.rglob("gt_recipe_*.json") if p.is_file()):
         document = t35.load_json(path)
-        for relation in document.get("relations") or []:
+        for relation in authored_relations(document):
             stable_id = relation.get("stable_id")
             if stable_id:
                 ids.append(str(stable_id))

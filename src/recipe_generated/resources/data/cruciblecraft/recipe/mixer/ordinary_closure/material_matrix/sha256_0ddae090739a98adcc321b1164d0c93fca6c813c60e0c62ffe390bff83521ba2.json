@@ -1,59 +1,152 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:0ddae090739a98adcc321b1164d0c93fca6c813c60e0c62ffe390bff83521ba2",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 144,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
+          "fluid_inputs": [],
+          "fluid_outputs": []
         }
       ],
-      "item_input_counts": [
-        4,
-        5
+      "hashes": [
+        "e4f00bf305336efffd495ea5b5c45cd6604e0e2fcd89c2e0da15c130d5f1ef93",
+        "9f20c4698402765854f2bc7fe1d0c965b0c0e7d23f9bce1fc9ebd15f3ef10cfb",
+        "0ce165e7b10ce4262c081d7b61e7ea9d0594434f1a03b3a2b4d2d473372375a2",
+        "1b26d1a16bc1579c18fe4197439df1c03258fc2a34ce4aeff761586bc9cc1660",
+        "cf74398a2f762fd127418f83530b27fe84b74cd5ce2e98cfc55a1586bf750f4d",
+        "4963d6ad0d00b658d175f2c2c7450829120cf57392925c1c17f95eba201e6e65",
+        "2d0c5cd014d8d0db905123a499cfb8e1d0db429f15d5006ccde7d0074fa96a11"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:sapphire/dust"
-        },
-        {
-          "item": "minecraft:redstone"
-        }
+        [
+          {
+            "item": "cruciblecraft:sapphire/dust"
+          },
+          {
+            "item": "minecraft:redstone"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:purple_sapphire/dust"
+          },
+          {
+            "item": "minecraft:redstone"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:ruby/dust"
+          },
+          {
+            "item": "minecraft:redstone"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:yellow_sapphire/dust"
+          },
+          {
+            "item": "minecraft:redstone"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:blue_sapphire/dust"
+          },
+          {
+            "item": "minecraft:redstone"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:orange_sapphire/dust"
+          },
+          {
+            "item": "minecraft:redstone"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:green_sapphire/dust"
+          },
+          {
+            "item": "minecraft:redstone"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 9,
-          "id": "cruciblecraft:energium_red/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "e4f00bf305336efffd495ea5b5c45cd6604e0e2fcd89c2e0da15c130d5f1ef93"
-        ],
-        "selected_source_recipe": "sha256:0ddae090739a98adcc321b1164d0c93fca6c813c60e0c62ffe390bff83521ba2",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/b59aec6e927b3413"
+        [
+          {
+            "count": 9,
+            "id": "cruciblecraft:energium_red/dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/b59aec6e927b3413",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/8516849e54e01314",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/720bbb598914d37a",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/99c0fbb954b5436e",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/e8a6eb8b0db28b69",
+        4,
+        4
+      ],
+      [
+        5,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/1376cd0fed9765d0",
+        5,
+        5
+      ],
+      [
+        6,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/ce2539f0374b67b9",
+        6,
+        6
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 144,
       "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -66,265 +159,15 @@
         4,
         5
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:purple_sapphire/dust"
-        },
-        {
-          "item": "minecraft:redstone"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 9,
-          "id": "cruciblecraft:energium_red/dust"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "9f20c4698402765854f2bc7fe1d0c965b0c0e7d23f9bce1fc9ebd15f3ef10cfb"
-        ],
-        "selected_source_recipe": "sha256:0ddae090739a98adcc321b1164d0c93fca6c813c60e0c62ffe390bff83521ba2",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/8516849e54e01314"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 144,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        4,
-        5
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:ruby/dust"
-        },
-        {
-          "item": "minecraft:redstone"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 9,
-          "id": "cruciblecraft:energium_red/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "0ce165e7b10ce4262c081d7b61e7ea9d0594434f1a03b3a2b4d2d473372375a2"
-        ],
-        "selected_source_recipe": "sha256:0ddae090739a98adcc321b1164d0c93fca6c813c60e0c62ffe390bff83521ba2",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/720bbb598914d37a"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 144,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        4,
-        5
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:yellow_sapphire/dust"
-        },
-        {
-          "item": "minecraft:redstone"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 9,
-          "id": "cruciblecraft:energium_red/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "1b26d1a16bc1579c18fe4197439df1c03258fc2a34ce4aeff761586bc9cc1660"
-        ],
-        "selected_source_recipe": "sha256:0ddae090739a98adcc321b1164d0c93fca6c813c60e0c62ffe390bff83521ba2",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/99c0fbb954b5436e"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 144,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        4,
-        5
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:blue_sapphire/dust"
-        },
-        {
-          "item": "minecraft:redstone"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 9,
-          "id": "cruciblecraft:energium_red/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "cf74398a2f762fd127418f83530b27fe84b74cd5ce2e98cfc55a1586bf750f4d"
-        ],
-        "selected_source_recipe": "sha256:0ddae090739a98adcc321b1164d0c93fca6c813c60e0c62ffe390bff83521ba2",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/e8a6eb8b0db28b69"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 144,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        4,
-        5
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:orange_sapphire/dust"
-        },
-        {
-          "item": "minecraft:redstone"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 9,
-          "id": "cruciblecraft:energium_red/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "4963d6ad0d00b658d175f2c2c7450829120cf57392925c1c17f95eba201e6e65"
-        ],
-        "selected_source_recipe": "sha256:0ddae090739a98adcc321b1164d0c93fca6c813c60e0c62ffe390bff83521ba2",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 5,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/1376cd0fed9765d0"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 144,
-      "eut": 16,
-      "fluid_inputs": [],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        4,
-        5
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:green_sapphire/dust"
-        },
-        {
-          "item": "minecraft:redstone"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 9,
-          "id": "cruciblecraft:energium_red/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "2d0c5cd014d8d0db905123a499cfb8e1d0db429f15d5006ccde7d0074fa96a11"
-        ],
-        "selected_source_recipe": "sha256:0ddae090739a98adcc321b1164d0c93fca6c813c60e0c62ffe390bff83521ba2",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 6,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/ce2539f0374b67b9"
+      "selected_source_recipe": "sha256:0ddae090739a98adcc321b1164d0c93fca6c813c60e0c62ffe390bff83521ba2",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

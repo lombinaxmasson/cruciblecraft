@@ -81,10 +81,11 @@ class RoasterCompactHarnessTest {
 
         int relationCount = 0;
         for (JsonObject document : generatedFamilies) {
-            JsonArray relations = document.getAsJsonArray("relations");
+            java.util.List<JsonObject> relations =
+                    CompactGTRecipeFamilyGeneratedSupport.authoredRelationJsons(document);
             for (int index = 0; index < relations.size(); index++) {
                 relationCount++;
-                JsonObject relationJson = relations.get(index).getAsJsonObject();
+                JsonObject relationJson = relations.get(index);
                 ResourceLocation stableId = ResourceLocation.parse(
                         relationJson.get("stable_id").getAsString());
                 GTRecipe recipe = map.entry(stableId).orElseThrow().recipe();

@@ -1,62 +1,70 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.bath#0183",
-  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 0,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 4,
-          "id": "cruciblecraft:dye_flower_blue"
+          "fluid_inputs": [
+            {
+              "amount": 4,
+              "id": "cruciblecraft:dye_flower_blue"
+            }
+          ],
+          "fluid_outputs": []
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 4,
+              "id": "cruciblecraft:indigo"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "df1f4c4d13ff70894fed5a7f5a1bc207ab2acb90eab262c606265b4e18d5ef85",
+        "a60c819040582b5b583e5814a931638a552b3127447ce27f021a8539dff921c8"
       ],
       "item_inputs": [
-        {
-          "item": "minecraft:glass_pane"
-        }
+        [
+          {
+            "item": "minecraft:glass_pane"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 1,
-          "id": "minecraft:blue_stained_glass_pane"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "df1f4c4d13ff70894fed5a7f5a1bc207ab2acb90eab262c606265b4e18d5ef85"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0183",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/4e1a8aadc4902e83"
+        [
+          {
+            "count": 1,
+            "id": "minecraft:blue_stained_glass_pane"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:bath/remainder/4e1a8aadc4902e83",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:bath/remainder/9482646d688f67f7",
+        1,
+        1
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 4,
-          "id": "cruciblecraft:indigo"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -65,32 +73,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "minecraft:glass_pane"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 1,
-          "id": "minecraft:blue_stained_glass_pane"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "a60c819040582b5b583e5814a931638a552b3127447ce27f021a8539dff921c8"
-        ],
-        "selected_source_recipe": "gt.recipe.bath#0183",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:bath/remainder/9482646d688f67f7"
+      "selected_source_recipe": "gt.recipe.bath#0183",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:bath/remainder/exact_multi",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:bath",
   "type": "cruciblecraft:compact_gt_recipe_family"

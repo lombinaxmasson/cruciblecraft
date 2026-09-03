@@ -8,21 +8,83 @@
 | 历史入口 | 当前文件 | 状态 |
 | --- | --- | --- |
 | `CrucibleCraft-总体规划.md` | [docs/current/roadmap.md](../current/roadmap.md) | 现行 |
+| （无历史入口；现行缺口总账） | [docs/current/unimplemented-gap.md](../current/unimplemented-gap.md) | 现行；机制卡 READY ≠ 已实现 |
 | `docs/CrucibleCraft-玩家指南.md` | [docs/current/player-guide.md](../current/player-guide.md) | 现行 |
 | `.plans/` | [card-plans/active](card-plans/active/) | 历史卡计划 |
 | `plans/` | [card-plans/closed](card-plans/closed/) | 关闭计划 |
 | `tools/full_verification_report.json` | 同路径，只读收据 | 历史 READY |
+| numbered builders / currentness / sessions / DAG / seals | [`tools/legacy_verification_index.json`](../../tools/legacy_verification_index.json) | 原字节只读；不参与 active verification |
 
 ## 当前 active 卡
 
-[通用 Source Pack 导入器](card-plans/active/通用Source-Pack导入器详细计划.md)
-（slug `portfolio/generic-recipe-generator`）已签发，尚未实现。它是
-`owns_families = 0` 的机制 program，不签 production lock，不发布配方，也不把
-四条 combinatorial family 记成完成。R0 artifact 尚未生成，所以上一
-[源能力对照图](card-plans/closed/源能力对照图详细计划.md) closing 的
-`unique_active_wave = null` / `next_unassigned = true` 仍是当前机器可读事实。
-1.x joint exit 已 `ONE_X_JOINT_EXIT_READY`。不自动启动核能。语义命名不占用
-内容卡，见 [semantic-naming.md](../current/semantic-naming.md)。
+当前无 human-readable unique active plan。已关闭的
+[物品网络核心](card-plans/closed/物品网络核心详细计划.md)
+（slug `runtime/item-network-core`）为
+`ITEM_NETWORK_CORE_READY`。机器可读
+`unique_active_wave = null`；`next_unassigned = true`。
+物品两行 `runtime_ready`；排除 Fluid / Generic / Dump 与
+`MultiTileEntityLogisticsCore`。账本下一张仍是未签发的 Fluid /
+Generic Network。
+已关闭的
+[工具头前缀折回](card-plans/closed/工具头前缀折回详细计划.md)
+（slug `registry/tool-head-prefix`）为
+`TOOL_HEAD_PREFIX_READY`。mapped tool head 折回 `材料 × 前缀`；
+bath identity `71`，semantic `244`；T48 `145 / 34091` 未改。
+已关闭的
+[紧凑配方作者矩阵](card-plans/closed/紧凑配方作者矩阵详细计划.md)
+（slug `runtime/compact-recipe-authored-matrix`）为
+`COMPACT_RECIPE_AUTHORED_MATRIX_READY`。改的是作者写法 + 线上矩阵
+正文，不是 Holder 粒度或开放 tag；JSON >1 MiB 从 39 降到 0；T48
+seal 未改。
+已关闭的
+[紧凑配方传输编解码](card-plans/closed/紧凑配方传输编解码详细计划.md)
+（slug `runtime/compact-recipe-wire-codec`）为
+`COMPACT_RECIPE_WIRE_CODEC_READY`。修的是线上写法，不是 Holder
+粒度；dedicated 进世界不再撞 `NbtAccounter`；T48 seal 未改。
+已关闭的
+[原版替换 MVP](card-plans/closed/原版替换MVP详细计划.md)
+（slug `content/vanilla-replace-mvp`）为 `VANILLA_REPLACE_MVP_READY`。
+纸 3 甘蔗 → 1 纸；熔炉 / 骨头 deferred；R0 seal 未改写。
+已关闭的
+[首小时表现与阶段账本](card-plans/closed/首小时表现与阶段账本详细计划.md)
+（slug `presentation/first-hour-and-stage-ledger`）为
+`FIRST_HOUR_PRESENTATION_READY`。mortar / sifter / bath 迁入 GT6 工具贴图；
+`smelter` 改走立方机，不再与坩埚共用小锅。阶段账本三态与后续顺序见
+[冻结与未实现账本](../current/unimplemented-gap.md)。
+机制卡 `*_READY` 不是内容完成。已关闭的
+[作物食物蜜蜂 R0](card-plans/closed/作物食物蜜蜂R0详细计划.md)
+（slug `portfolio/crops-food-bees-r0`）为 `CROPS_FOOD_BEES_R0_READY`。
+冻结 capability map 点名的三类 crops / food / bees 与现有机制适配面；
+三类可行性均为 `requires_new_runtime`；不实现作物、食物图或蜂箱，
+不签 production lock，不预分配 implementation child。
+已关闭的
+[原版替换 R0](card-plans/closed/原版替换R0详细计划.md)
+（slug `portfolio/vanilla-replace-r0`）为 `VANILLA_REPLACE_R0_READY`。
+冻结 capability map 点名的两类 vanilla replace loader 与现有 datapack /
+导入器适配面；两类可行性均为 `requires_new_runtime`；不替换原版配方，
+不签 production lock，不预分配 implementation child。
+已关闭的
+[非矿世界生成 R0](card-plans/closed/非矿世界生成R0详细计划.md)
+（slug `portfolio/non-ore-worldgen-r0`）为 `NON_ORE_WORLDGEN_R0_READY`。
+冻结 capability map 点名的四类非矿 worldgen dump 特征（18/190）与现有 T20
+catalog 适配面；四类可行性均为 `requires_new_runtime`；不实现世界生成，
+不签 production lock，不预分配 implementation child。
+已关闭的
+[T13c 排除表收回 R0](card-plans/closed/T13c排除表收回R0详细计划.md)
+（slug `portfolio/t13c-exclusion-reclaim-r0`）为 `T13C_EXCLUSION_RECLAIM_R0_READY`。
+冻结五类 T13c exclusion（129 source sites / 471 expanded）的 lineage 与现有机制
+适配面；不实现 MTE，不签 production lock，不预分配 implementation child。
+已关闭的
+[物流封面网络 R0](card-plans/closed/物流封面网络R0详细计划.md)
+（slug `portfolio/logistics-cover-net-r0`）为 `LOGISTICS_COVER_NET_R0_READY`。
+可行性 `requires_new_runtime`；不预分配 core。
+[通用 Source Pack 导入器](card-plans/closed/通用Source-Pack导入器详细计划.md)
+（slug `portfolio/generic-recipe-generator`）为 `GENERIC_RECIPE_IMPORT_READY`。
+[源能力对照图](card-plans/closed/源能力对照图详细计划.md) 的 growth-order
+JSON 保持 sealed，不重写。1.x joint exit 已 `ONE_X_JOINT_EXIT_READY`。
+不自动启动核能。不自动签发 `portfolio/count-ceiling-kind-envelope`、
+combinatorial。语义命名不占用内容卡，见
+[semantic-naming.md](../current/semantic-naming.md)。
 
 ## 阶段档案
 
@@ -71,6 +133,18 @@
 | [回收运行时与 Deferred 账本收口](stage-archives/CrucibleCraft-阶段档案-回收运行时与Deferred账本收口.md) | 阶段档案 | 关闭（`DEFERRED_ORDINARY_RUNTIME_READY`） |
 | [1.x 联合退出门](stage-archives/CrucibleCraft-阶段档案-1.x联合退出门.md) | 阶段档案 | 关闭（`ONE_X_JOINT_EXIT_READY`） |
 | [源能力对照图](stage-archives/CrucibleCraft-阶段档案-源能力对照图.md) | 阶段档案 | 关闭（`SOURCE_CAPABILITY_MAP_READY`） |
+| [通用 Source Pack 导入器](stage-archives/CrucibleCraft-阶段档案-通用Source-Pack导入器.md) | 阶段档案 | 关闭（`GENERIC_RECIPE_IMPORT_READY`） |
+| [物流封面网络 R0](stage-archives/CrucibleCraft-阶段档案-物流封面网络R0.md) | 阶段档案 | 关闭（`LOGISTICS_COVER_NET_R0_READY`） |
+| [T13c 排除表收回 R0](stage-archives/CrucibleCraft-阶段档案-T13c排除表收回R0.md) | 阶段档案 | 关闭（`T13C_EXCLUSION_RECLAIM_R0_READY`） |
+| [非矿世界生成 R0](stage-archives/CrucibleCraft-阶段档案-非矿世界生成R0.md) | 阶段档案 | 关闭（`NON_ORE_WORLDGEN_R0_READY`） |
+| [原版替换 R0](stage-archives/CrucibleCraft-阶段档案-原版替换R0.md) | 阶段档案 | 关闭（`VANILLA_REPLACE_R0_READY`） |
+| [作物食物蜜蜂 R0](stage-archives/CrucibleCraft-阶段档案-作物食物蜜蜂R0.md) | 阶段档案 | 关闭（`CROPS_FOOD_BEES_R0_READY`） |
+| [首小时表现与阶段账本](stage-archives/CrucibleCraft-阶段档案-首小时表现与阶段账本.md) | 阶段档案 | 关闭（`FIRST_HOUR_PRESENTATION_READY`） |
+| [原版替换 MVP](stage-archives/CrucibleCraft-阶段档案-原版替换MVP.md) | 阶段档案 | 关闭（`VANILLA_REPLACE_MVP_READY`） |
+| [紧凑配方传输编解码](stage-archives/CrucibleCraft-阶段档案-紧凑配方传输编解码.md) | 阶段档案 | 关闭（`COMPACT_RECIPE_WIRE_CODEC_READY`） |
+| [紧凑配方作者矩阵](stage-archives/CrucibleCraft-阶段档案-紧凑配方作者矩阵.md) | 阶段档案 | 关闭（`COMPACT_RECIPE_AUTHORED_MATRIX_READY`） |
+| [工具头前缀折回](stage-archives/CrucibleCraft-阶段档案-工具头前缀折回.md) | 阶段档案 | 关闭（`TOOL_HEAD_PREFIX_READY`） |
+| [物品网络核心](stage-archives/CrucibleCraft-阶段档案-物品网络核心.md) | 阶段档案 | 关闭（`ITEM_NETWORK_CORE_READY`） |
 
 ## 工作日志
 
@@ -110,6 +184,18 @@
 | [回收运行时与 Deferred 账本收口 工作日志](work-logs/回收运行时与Deferred账本收口-工作日志.md) | 工作日志 | 关闭（`DEFERRED_ORDINARY_RUNTIME_READY`） |
 | [1.x 联合退出门 工作日志](work-logs/1.x联合退出门-工作日志.md) | 工作日志 | 关闭（`ONE_X_JOINT_EXIT_READY`） |
 | [源能力对照图 工作日志](work-logs/源能力对照图-工作日志.md) | 工作日志 | 关闭（`SOURCE_CAPABILITY_MAP_READY`） |
+| [通用 Source Pack 导入器 工作日志](work-logs/通用Source-Pack导入器-工作日志.md) | 工作日志 | 关闭（`GENERIC_RECIPE_IMPORT_READY`） |
+| [物流封面网络 R0 工作日志](work-logs/物流封面网络R0-工作日志.md) | 工作日志 | 关闭（`LOGISTICS_COVER_NET_R0_READY`） |
+| [T13c 排除表收回 R0 工作日志](work-logs/T13c排除表收回R0-工作日志.md) | 工作日志 | 关闭（`T13C_EXCLUSION_RECLAIM_R0_READY`） |
+| [非矿世界生成 R0 工作日志](work-logs/非矿世界生成R0-工作日志.md) | 工作日志 | 关闭（`NON_ORE_WORLDGEN_R0_READY`） |
+| [原版替换 R0 工作日志](work-logs/原版替换R0-工作日志.md) | 工作日志 | 关闭（`VANILLA_REPLACE_R0_READY`） |
+| [作物食物蜜蜂 R0 工作日志](work-logs/作物食物蜜蜂R0-工作日志.md) | 工作日志 | 关闭（`CROPS_FOOD_BEES_R0_READY`） |
+| [首小时表现与阶段账本 工作日志](work-logs/首小时表现与阶段账本-工作日志.md) | 工作日志 | 关闭（`FIRST_HOUR_PRESENTATION_READY`） |
+| [原版替换 MVP 工作日志](work-logs/原版替换MVP-工作日志.md) | 工作日志 | 关闭（`VANILLA_REPLACE_MVP_READY`） |
+| [紧凑配方传输编解码 工作日志](work-logs/紧凑配方传输编解码-工作日志.md) | 工作日志 | 关闭（`COMPACT_RECIPE_WIRE_CODEC_READY`） |
+| [紧凑配方作者矩阵 工作日志](work-logs/紧凑配方作者矩阵-工作日志.md) | 工作日志 | 关闭（`COMPACT_RECIPE_AUTHORED_MATRIX_READY`） |
+| [工具头前缀折回 工作日志](work-logs/工具头前缀折回-工作日志.md) | 工作日志 | 关闭（`TOOL_HEAD_PREFIX_READY`） |
+| [物品网络核心 工作日志](work-logs/物品网络核心-工作日志.md) | 工作日志 | 关闭（`ITEM_NETWORK_CORE_READY`） |
 | [T31 RC soak](work-logs/T31-RC-soak.md) | 发行实验 | 关闭，非玩家 GA |
 
 ## 决策与关闭计划
@@ -147,5 +233,17 @@
 | [Ordinary 尾账收口与封板修复](card-plans/closed/Ordinary尾账收口与封板修复详细计划.md) | 关闭计划（slug `recipe-portfolio/ordinary-remainder-closure`） | execution gap = 0；后继已签发 `recycling/deferred-ordinary-runtime` |
 | [回收运行时与 Deferred 账本收口](card-plans/closed/回收运行时与Deferred账本收口详细计划.md) | 关闭计划（slug `recycling/deferred-ordinary-runtime`） | 1,817 complete + 28 post-1.x；deferred ledger = 0；后继已关闭 `portfolio/one-x-joint-exit` |
 | [1.x 联合退出门](card-plans/closed/1.x联合退出门详细计划.md) | 关闭计划（slug `portfolio/one-x-joint-exit`） | 六条 GREEN；load 口径 A；后继已关闭 `portfolio/source-capability-map` |
-| [源能力对照图](card-plans/closed/源能力对照图详细计划.md) | 关闭计划（slug `portfolio/source-capability-map`） | 113 行对照；leftover 39；后继已签发 `portfolio/generic-recipe-generator` |
+| [源能力对照图](card-plans/closed/源能力对照图详细计划.md) | 关闭计划（slug `portfolio/source-capability-map`） | 113 行对照；leftover 39；后继已关闭 `portfolio/generic-recipe-generator` |
+| [通用 Source Pack 导入器](card-plans/closed/通用Source-Pack导入器详细计划.md) | 关闭计划（slug `portfolio/generic-recipe-generator`） | 声明式导入 READY；四条 combinatorial accounted 且 completed=0；无 production lock |
+| [物流封面网络 R0](card-plans/closed/物流封面网络R0详细计划.md) | 关闭计划（slug `portfolio/logistics-cover-net-r0`） | 7-kind 分母冻结；可行性 `requires_new_runtime`；无 core 后继 |
+| [T13c 排除表收回 R0](card-plans/closed/T13c排除表收回R0详细计划.md) | 关闭计划（slug `portfolio/t13c-exclusion-reclaim-r0`） | 五类 129/471 分母冻结；逐类 feasibility；无 MTE 实现；无 implementation child |
+| [非矿世界生成 R0](card-plans/closed/非矿世界生成R0详细计划.md) | 关闭计划（slug `portfolio/non-ore-worldgen-r0`） | 四类 18/190 分母冻结；逐类 `requires_new_runtime`；无世界生成实现；无 implementation child |
+| [原版替换 R0](card-plans/closed/原版替换R0详细计划.md) | 关闭计划（slug `portfolio/vanilla-replace-r0`） | 两类 loader + 三份 T13 blob 分母冻结；逐类 `requires_new_runtime`；无原版配方替换；无 implementation child |
+| [作物食物蜜蜂 R0](card-plans/closed/作物食物蜜蜂R0详细计划.md) | 关闭计划（slug `portfolio/crops-food-bees-r0`） | 三类 12/190 dump 特征 + 13,373 recipeCount 规模冻结；逐类 `requires_new_runtime`；无作物 / 食物图 / 蜂箱实现；无 implementation child |
+| [首小时表现与阶段账本](card-plans/closed/首小时表现与阶段账本详细计划.md) | 关闭计划（slug `presentation/first-hour-and-stage-ledger`） | 四台 host 脱离 `metal_surface`；smelter 立方机纠正；三态账本；无 production lock；无 implementation child |
+| [原版替换 MVP](card-plans/closed/原版替换MVP详细计划.md) | 关闭计划（slug `content/vanilla-replace-mvp`） | 纸 3→1；熔炉 / 骨头 deferred；firestarter 标签；R0 seal 未改；无 production lock；无 implementation child |
+| [紧凑配方传输编解码](card-plans/closed/紧凑配方传输编解码详细计划.md) | 关闭计划（slug `runtime/compact-recipe-wire-codec`） | 线上有界字典 StreamCodec，Holder 仍是 1 family；5651 encode ≤ 512 KiB；dedicated 不再撞 NbtAccounter；整包靠 splitter；T48 seal 未改；无 production lock；无 implementation child |
+| [紧凑配方作者矩阵](card-plans/closed/紧凑配方作者矩阵详细计划.md) | 关闭计划（slug `runtime/compact-recipe-authored-matrix`） | 作者矩阵 `matrix_v1` + StreamCodec v2 编矩阵；1394/5651 写矩阵，其余 inline；JSON >1 MiB 0；dedicated 进世界无 NbtAccounter / Packet too large；T48 seal 未改；无 production lock；无 implementation child |
+| [工具头前缀折回](card-plans/closed/工具头前缀折回详细计划.md) | 关闭计划（slug `registry/tool-head-prefix`） | mapped tool head 折回材料 × 前缀；remap 7990/0；bath 71 / semantic 244；T48 145/34091 未改；B 项留下；无 production lock；无 implementation child |
+| [物品网络核心](card-plans/closed/物品网络核心详细计划.md) | 关闭计划（slug `runtime/item-network-core`） | 物品两行封面网 `runtime_ready`；sidecar 3 定义；T19 9/8 仍活锁；排除 Fluid / Generic / Dump 与 `MultiTileEntityLogisticsCore`；无 production lock；无七 kind `player_complete` |
 | [交接说明](handoffs/CrucibleCraft-交接说明.md) | 交接 | 以 README 为准 |

@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 /**
  * tiny-purified Bath remainder compact-family harness. Mirrors
  * {@link BathMteHarnessTest} for namespace {@code t49}.
- * Locked equivalence fields: {@code shadow_order}, {@code source_row_sha256}.
+ * Locked equivalence fields: {@code shadow_order}, selected source recipe.
  */
 class BathTinyPurifiedHarnessTest {
     static {
@@ -76,7 +76,7 @@ class BathTinyPurifiedHarnessTest {
                     BATH_EXACT_MULTI_GROUP.equals(group),
                     () -> "unexpected tiny-purified publication group " + group);
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 assertEquals(
                         null,
                         liveRelations.put(relation.stableId(), relation),
@@ -133,10 +133,11 @@ class BathTinyPurifiedHarnessTest {
 
         int relationCount = 0;
         for (JsonObject document : generatedFamilies) {
-            JsonArray relations = document.getAsJsonArray("relations");
+            java.util.List<JsonObject> relations =
+                    CompactGTRecipeFamilyGeneratedSupport.authoredRelationJsons(document);
             for (int index = 0; index < relations.size(); index++) {
                 relationCount++;
-                JsonObject relationJson = relations.get(index).getAsJsonObject();
+                JsonObject relationJson = relations.get(index);
                 ResourceLocation stableId = ResourceLocation.parse(
                         relationJson.get("stable_id").getAsString());
                 GTRecipe recipe = bath.entry(stableId).orElseThrow().recipe();
@@ -301,7 +302,7 @@ class BathTinyPurifiedHarnessTest {
             Map<String, List<ResourceLocation>> grouped =
                     byHost.computeIfAbsent(host, ignored -> new HashMap<>());
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 String signature = GTRecipeMapLoader.inputSignature(
                         relation.materialize());
                 grouped.computeIfAbsent(signature, ignored -> new ArrayList<>())
@@ -336,7 +337,7 @@ class BathTinyPurifiedHarnessTest {
                 1L).publish();
         List<CompactGTRecipeFamilyDefinition.Relation> multiRelations = new ArrayList<>();
         for (CompactRecipeFamilySource source : sources) {
-            multiRelations.addAll(source.definition().relations());
+            multiRelations.addAll(source.authoredRelations());
         }
         assertEquals(EXACT_MULTI_RELATIONS, multiRelations.size());
         assertShardRouting(
@@ -419,14 +420,11 @@ class BathTinyPurifiedHarnessTest {
                 && relationJson.get("provenance").isJsonObject()
                 ? relationJson.getAsJsonObject("provenance")
                 : new JsonObject();
-        boolean hasSourceRow = relationJson.has("source_row_sha256")
-                || provenance.has("source_row_sha256")
-                || (provenance.has("evidence_hashes")
-                        && provenance.get("evidence_hashes").isJsonArray()
-                        && provenance.getAsJsonArray("evidence_hashes").size() > 0);
+        boolean hasSource = provenance.has("selected_source_recipe")
+                && !provenance.get("selected_source_recipe").getAsString().isBlank();
         assertTrue(
-                hasSourceRow,
-                () -> stableId + " missing locked field source_row_sha256");
+                hasSource,
+                () -> stableId + " missing selected_source_recipe");
     }
 
     private static void assertFluidStacks(

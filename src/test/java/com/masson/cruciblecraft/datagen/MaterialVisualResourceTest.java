@@ -31,7 +31,7 @@ class MaterialVisualResourceTest {
                 .filter(material ->
                         !material.formItems().containsKey(MaterialPrefixes.BLOCK))
                 .count();
-        assertEquals(471, storage);
+        assertEquals(483, storage);
 
         assertTrue(clientFiles.containsKey(
                 "assets/cruciblecraft/blockstates/aluminium/block.json"));
@@ -63,9 +63,9 @@ class MaterialVisualResourceTest {
                 .getAsString()
                 .equals("铝块"));
 
-        assertFalse(clientFiles.containsKey(
+        assertTrue(clientFiles.containsKey(
                 "assets/cruciblecraft/blockstates/copper/block.json"));
-        assertFalse(serverFiles.containsKey(
+        assertTrue(serverFiles.containsKey(
                 "data/cruciblecraft/loot_table/blocks/copper/block.json"));
     }
 
@@ -133,6 +133,31 @@ class MaterialVisualResourceTest {
         });
         assertTrue(serverFiles.containsKey(
                 "data/c/tags/block/wires/copper.json"));
+    }
+
+    @Test
+    void generatedClientPackPublishesIdentityAndToolHeadFormNames(
+            @TempDir Path configDirectory) {
+        var materials = MaterialLoader.load(configDirectory).values();
+        var registered = MaterialRegistrationGate.load(materials);
+        var clientFiles = GeneratedMaterialPack.planClientFiles(materials, registered);
+        JsonObject english = json(clientFiles.get(
+                "assets/cruciblecraft/lang/en_us.json"));
+        JsonObject chinese = json(clientFiles.get(
+                "assets/cruciblecraft/lang/zh_cn.json"));
+        assertEquals(
+                "Lighter (Empty)",
+                english.get(
+                        "item.cruciblecraft.gt_multiitem.multiitem_randomtools_m5004")
+                        .getAsString());
+        assertEquals(
+                "%s 斧头",
+                chinese.get("item.cruciblecraft.material_form.tool_head_axe")
+                        .getAsString());
+        assertTrue(english.has("block.cruciblecraft.gt_block.planks2_m11"));
+        assertTrue(chinese.has("block.cruciblecraft.gt_block.planks2_m11"));
+        assertTrue(clientFiles.containsKey(
+                "assets/cruciblecraft/models/item/gt_block/planks2_m11.json"));
     }
 
     private static JsonObject json(String document) {

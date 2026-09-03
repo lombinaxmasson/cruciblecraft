@@ -1,62 +1,108 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:df0a4f282534e3b9534754ee576a469c54cc10b9d325e2c4553f10c267e314f8",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 3000,
-          "id": "cruciblecraft:chlorine"
+          "fluid_inputs": [
+            {
+              "amount": 3000,
+              "id": "cruciblecraft:chlorine"
+            }
+          ],
+          "fluid_outputs": []
         }
       ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "be5dfbb789eee1a8b1d7e080da56b0ac9eb9ec9a733346f1aba81bd423aa0ae8",
+        "7018c7a6d1e9eb44ee6fa5da6301544cddde28e2aec702515caad036743b0d3f",
+        "829456b5f7b25afbdcf173f97f2226855d50aedf0576d99676a6ec4fbe08341d",
+        "bf779f8ca470abaf521da93688579955eb26b663bd0c8e6cd2075f5afb529e46",
+        "bd4a28f653376fc05bb91b94fd615868979261eb7d3022c5a76c00eb26b6b79a"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:pig_iron/dust"
-        }
+        [
+          {
+            "item": "cruciblecraft:pig_iron/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:iron/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteorite/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:meteoric_iron/dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:enori/dust"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:ferric_chloride/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "be5dfbb789eee1a8b1d7e080da56b0ac9eb9ec9a733346f1aba81bd423aa0ae8"
-        ],
-        "selected_source_recipe": "sha256:df0a4f282534e3b9534754ee576a469c54cc10b9d325e2c4553f10c267e314f8",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/0b393a3cee87b2d3"
+        [
+          {
+            "count": 4,
+            "id": "cruciblecraft:ferric_chloride/dust"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/0b393a3cee87b2d3",
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/ff4ebbdb0ce86a99",
+        1,
+        1
+      ],
+      [
+        2,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/67e3d145cd3d4af2",
+        2,
+        2
+      ],
+      [
+        3,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/6536359f65c8fadc",
+        3,
+        3
+      ],
+      [
+        4,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/cca8c70c4536a6e2",
+        4,
+        4
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 64,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:chlorine"
-        }
-      ],
-      "fluid_outputs": [],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -65,164 +111,15 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:iron/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:ferric_chloride/dust"
-        }
-      ],
       "output_chances": [
         10000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "7018c7a6d1e9eb44ee6fa5da6301544cddde28e2aec702515caad036743b0d3f"
-        ],
-        "selected_source_recipe": "sha256:df0a4f282534e3b9534754ee576a469c54cc10b9d325e2c4553f10c267e314f8",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/ff4ebbdb0ce86a99"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:chlorine"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:meteorite/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:ferric_chloride/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "829456b5f7b25afbdcf173f97f2226855d50aedf0576d99676a6ec4fbe08341d"
-        ],
-        "selected_source_recipe": "sha256:df0a4f282534e3b9534754ee576a469c54cc10b9d325e2c4553f10c267e314f8",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/67e3d145cd3d4af2"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:chlorine"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:meteoric_iron/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:ferric_chloride/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "bf779f8ca470abaf521da93688579955eb26b663bd0c8e6cd2075f5afb529e46"
-        ],
-        "selected_source_recipe": "sha256:df0a4f282534e3b9534754ee576a469c54cc10b9d325e2c4553f10c267e314f8",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/6536359f65c8fadc"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 64,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 3000,
-          "id": "cruciblecraft:chlorine"
-        }
-      ],
-      "fluid_outputs": [],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:enori/dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 4,
-          "id": "cruciblecraft:ferric_chloride/dust"
-        }
-      ],
-      "output_chances": [
-        10000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "bd4a28f653376fc05bb91b94fd615868979261eb7d3022c5a76c00eb26b6b79a"
-        ],
-        "selected_source_recipe": "sha256:df0a4f282534e3b9534754ee576a469c54cc10b9d325e2c4553f10c267e314f8",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 4,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/cca8c70c4536a6e2"
+      "selected_source_recipe": "sha256:df0a4f282534e3b9534754ee576a469c54cc10b9d325e2c4553f10c267e314f8",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

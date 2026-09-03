@@ -13,6 +13,8 @@ import com.masson.cruciblecraft.material.prefix.MaterialPrefixCatalog;
 import com.masson.cruciblecraft.network.MaterialConfigurationHandshake;
 import com.masson.cruciblecraft.network.CoverConfigurationPayload;
 import com.masson.cruciblecraft.logistics.pipe.cover.CoverBehaviorRegistry;
+import com.masson.cruciblecraft.logistics.fluidnet.FluidNetworkCovers;
+import com.masson.cruciblecraft.logistics.itemnet.ItemNetworkCovers;
 import com.masson.cruciblecraft.registry.ModBlocks;
 import com.masson.cruciblecraft.registry.ModBlockEntities;
 import com.masson.cruciblecraft.registry.ModComponents;
@@ -94,6 +96,8 @@ public class CrucibleCraft {
             MaterialCatalog.validateFormItemMappings();
             ModFluids.finalizeMaterialLookup();
             MissingMaterialStackCodec.verifyInstalled();
+            ItemNetworkCovers.bootstrap();
+            FluidNetworkCovers.bootstrap();
             CoverBehaviorRegistry.validateDefinitions();
         });
         LOGGER.info("CrucibleCraft common setup");

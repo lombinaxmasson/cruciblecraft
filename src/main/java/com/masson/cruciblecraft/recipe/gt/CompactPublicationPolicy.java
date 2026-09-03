@@ -51,7 +51,7 @@ public final class CompactPublicationPolicy {
                 .sorted()
                 .toList();
         List<String> stableIds = sources.stream()
-                .flatMap(source -> source.definition().relations().stream())
+                .flatMap(source -> source.authoredRelations().stream())
                 .map(relation -> relation.stableId().toString())
                 .sorted()
                 .toList();
@@ -92,7 +92,7 @@ public final class CompactPublicationPolicy {
                             + familyCount);
         }
         int liveRelations = sources.stream()
-                .mapToInt(source -> source.definition().relations().size())
+                .mapToInt(source -> source.authoredRelations().size())
                 .sum();
         if (liveRelations != relationCount) {
             throw new IllegalArgumentException(

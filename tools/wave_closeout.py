@@ -40,6 +40,8 @@ def wave_dir(slug: str) -> Path:
 
 
 def seal_path(slug: str) -> Path:
+    if slug == "semantic-wave-bootstrap":
+        return WAVES_ROOT / slug / "closeout_seal.json"
     return wave_dir(slug) / "closeout_seal.json"
 
 
@@ -423,6 +425,101 @@ def _wave_specs() -> dict[str, WaveCloseoutSpec]:
             "portfolio/source-capability-map",
             None,
             True,
+        ),
+        "portfolio/generic-recipe-generator-r0": _portfolio(
+            "portfolio/generic-recipe-generator-r0",
+            "portfolio/generic-recipe-import-core",
+            False,
+        ),
+        "portfolio/generic-recipe-import-core": _portfolio(
+            "portfolio/generic-recipe-import-core",
+            "portfolio/generic-recipe-import-proof",
+            False,
+        ),
+        "portfolio/generic-recipe-import-proof": _portfolio(
+            "portfolio/generic-recipe-import-proof",
+            "portfolio/generic-recipe-generator",
+            False,
+        ),
+        "portfolio/generic-recipe-generator": _portfolio(
+            "portfolio/generic-recipe-generator",
+            None,
+            True,
+        ),
+        "portfolio/logistics-cover-net-r0": _portfolio(
+            "portfolio/logistics-cover-net-r0",
+            None,
+            True,
+        ),
+        "portfolio/t13c-exclusion-reclaim-r0": _portfolio(
+            "portfolio/t13c-exclusion-reclaim-r0",
+            None,
+            True,
+        ),
+        "portfolio/non-ore-worldgen-r0": _portfolio(
+            "portfolio/non-ore-worldgen-r0",
+            None,
+            True,
+        ),
+        "portfolio/vanilla-replace-r0": _portfolio(
+            "portfolio/vanilla-replace-r0",
+            None,
+            True,
+        ),
+        "portfolio/crops-food-bees-r0": _portfolio(
+            "portfolio/crops-food-bees-r0",
+            None,
+            True,
+        ),
+        "runtime/item-network-core": WaveCloseoutSpec(
+            wave_slug="runtime/item-network-core",
+            census=WAVES_ROOT / "runtime" / "item-network-core" / "census_delta.json",
+            topology=WAVES_ROOT / "runtime" / "item-network-core" / "topology.json",
+            readiness=WAVES_ROOT / "runtime" / "item-network-core" / "readiness.json",
+            receipt=WAVES_ROOT / "runtime" / "item-network-core" / "gametest_receipt.json",
+            production_lock=None,
+            generated_root=None,
+            support_root=None,
+            gametest_java=(
+                t35.ROOT
+                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "ItemNetworkCoreGameTests.java"
+            ),
+            gametest_log=(
+                WAVES_ROOT / "runtime" / "item-network-core" / "gametest.log"
+            ),
+            publication_group_manifest=None,
+            shard_manifest=None,
+            runtime_dependency_manifest=None,
+            complete_key="wave_complete",
+            unique_active_wave=None,
+            next_unassigned=True,
+            owns_families=0,
+        ),
+        "runtime/fluid-network-basic-transfer": WaveCloseoutSpec(
+            wave_slug="runtime/fluid-network-basic-transfer",
+            census=WAVES_ROOT / "runtime" / "fluid-network-basic-transfer" / "census_delta.json",
+            topology=WAVES_ROOT / "runtime" / "fluid-network-basic-transfer" / "topology.json",
+            readiness=WAVES_ROOT / "runtime" / "fluid-network-basic-transfer" / "readiness.json",
+            receipt=WAVES_ROOT / "runtime" / "fluid-network-basic-transfer" / "gametest_receipt.json",
+            production_lock=None,
+            generated_root=None,
+            support_root=None,
+            gametest_java=(
+                t35.ROOT
+                / "src/main/java/com/masson/cruciblecraft/gametest"
+                / "FluidNetworkCoreGameTests.java"
+            ),
+            gametest_log=(
+                WAVES_ROOT / "runtime" / "fluid-network-basic-transfer" / "gametest.log"
+            ),
+            publication_group_manifest=None,
+            shard_manifest=None,
+            runtime_dependency_manifest=None,
+            complete_key="wave_complete",
+            unique_active_wave=None,
+            next_unassigned=True,
+            owns_families=0,
         ),
         "drying/ordinary-closure": _ordinary("drying"),
         "electrolyzer/ordinary-closure": _ordinary("electrolyzer"),

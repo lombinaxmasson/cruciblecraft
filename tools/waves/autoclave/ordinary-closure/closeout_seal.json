@@ -1,7 +1,7 @@
 {
   "card_id": "autoclave/ordinary-closure",
   "complete_family_count": 36,
-  "composed_identity_ledger_v2_sha256": "6b2f7d395c74f68ecf84244a113b28fba38de6c9752be7f50b12c2ee21805adb",
+  "composed_identity_ledger_v2_sha256": "d3f177129d38c474978743e00b8277c35dff79dfe2d9dd881d5b4be9526b78bc",
   "composed_runtime_manifest_v2_sha256": "821e4a6ef8d4246811ec6411d81f634bf9552ded68e5a53b9c64757bc8bd376f",
   "gametest_status": "PASS",
   "generated_by": "python tools/closeout_seal.py --write --wave",
@@ -9,7 +9,7 @@
     "census": "a478293d13fb35147ba5033b27b385c54e1c188997b6d51d67a9aa2769c2fec6",
     "gametest_java": "4868a4b693bcfe67885f3581cede2d0647b5bf956b75cd9cdc25430254cbfbe6",
     "gametest_log": "182dc35f117f166375dc8c65d621e06ef043c5bab68d06159e9fb030cd279e83",
-    "generated_recipes": "ff843614e25b75e16e945e82e3357f109e684568e0d9afc3889217d66cc64749",
+    "generated_recipes": "ba51358c373918159fd91ab213b52aac65b924e12e98dc9f1819f8f43e824f2e",
     "locked_support": null,
     "production_lock": "74e44a6e808882a067ccfcafc9d560c86603019837f6ffe59067e45b9fd1172d",
     "publication_group_manifest": "3ab3a5ec71a33e8072e26bbb426e07dba7ccfe1e8ba7b2a9734a19d699d84923",
@@ -25,8 +25,10 @@
   "reclassification_delta": 24,
   "relation_count": 349,
   "remaining_recipe_gap": 56,
-  "schema_version": 1,
+  "repair_wave": "registry/tool-head-prefix",
+  "schema_version": 2,
   "sealed_at_wave": "autoclave/ordinary-closure",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
-  "status": "SEALED"
+  "status": "SEALED",
+  "supersedes_sha256": "1159e696b84104c871470b6f08535863e7b598ccd5658ae06c2f541cdb223352"
 }

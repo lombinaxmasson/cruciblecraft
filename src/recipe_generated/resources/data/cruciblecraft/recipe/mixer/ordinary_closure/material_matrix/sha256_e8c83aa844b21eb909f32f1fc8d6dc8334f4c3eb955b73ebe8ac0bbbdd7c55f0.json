@@ -1,65 +1,121 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "sha256:e8c83aa844b21eb909f32f1fc8d6dc8334f4c3eb955b73ebe8ac0bbbdd7c55f0",
-  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 250,
-          "id": "cruciblecraft:potion_mineralwater"
+          "fluid_inputs": [
+            {
+              "amount": 250,
+              "id": "cruciblecraft:potion_mineralwater"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 250,
+              "id": "cruciblecraft:glue"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 250,
+              "id": "minecraft:water"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 250,
+              "id": "cruciblecraft:glue"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 250,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 250,
+              "id": "cruciblecraft:glue"
+            }
+          ]
+        },
+        {
+          "fluid_inputs": [
+            {
+              "amount": 250,
+              "id": "cruciblecraft:spectral_dew"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 250,
+              "id": "cruciblecraft:glue"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 250,
-          "id": "cruciblecraft:glue"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
+      "hashes": [
+        "d7d8909a1940c0ff712801c4ccc2b483ae7835cd616fde220ad88b7745955f4e",
+        "5a556a49bdb04d365217b3902eb5431276bd05133d5378ab1e102ae0850b293c",
+        "b2cd977c9b50fec73af02fd5ea7931e5e43a4e962b497547579fc1304a056aaf",
+        "9ada34a2067d9119bd6e661aa1e73ed2625e6c5d98144ca08b2d47b1a2cedc8f"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_multiitem/multiitem_food_m12050"
-        }
+        [
+          {
+            "item": "cruciblecraft:gt_multiitem/multiitem_food_m12050"
+          }
+        ]
       ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "d7d8909a1940c0ff712801c4ccc2b483ae7835cd616fde220ad88b7745955f4e"
-        ],
-        "selected_source_recipe": "sha256:e8c83aa844b21eb909f32f1fc8d6dc8334f4c3eb955b73ebe8ac0bbbdd7c55f0",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/c6c5af395f437570"
+      "item_outputs": [
+        []
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:mixer/ordinary_closure/c6c5af395f437570",
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        "cruciblecraft:mixer/ordinary_closure/a418831afbb2c49e",
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        2,
+        "cruciblecraft:mixer/ordinary_closure/4873401af8b05aab",
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        3,
+        "cruciblecraft:mixer/ordinary_closure/e524804671b84b88",
+        3,
+        3
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 16,
       "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 250,
-          "id": "minecraft:water"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 250,
-          "id": "cruciblecraft:glue"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -68,109 +124,13 @@
       "item_input_counts": [
         1
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_multiitem/multiitem_food_m12050"
-        }
-      ],
-      "item_outputs": [],
       "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "5a556a49bdb04d365217b3902eb5431276bd05133d5378ab1e102ae0850b293c"
-        ],
-        "selected_source_recipe": "sha256:e8c83aa844b21eb909f32f1fc8d6dc8334f4c3eb955b73ebe8ac0bbbdd7c55f0",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/a418831afbb2c49e"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 250,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 250,
-          "id": "cruciblecraft:glue"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_multiitem/multiitem_food_m12050"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "b2cd977c9b50fec73af02fd5ea7931e5e43a4e962b497547579fc1304a056aaf"
-        ],
-        "selected_source_recipe": "sha256:e8c83aa844b21eb909f32f1fc8d6dc8334f4c3eb955b73ebe8ac0bbbdd7c55f0",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 2,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/4873401af8b05aab"
-    },
-    {
-      "can_be_buffered": true,
-      "duration": 16,
-      "eut": 16,
-      "fluid_inputs": [
-        {
-          "amount": 250,
-          "id": "cruciblecraft:spectral_dew"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 250,
-          "id": "cruciblecraft:glue"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1
-      ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:gt_multiitem/multiitem_food_m12050"
-        }
-      ],
-      "item_outputs": [],
-      "output_chances": [],
-      "provenance": {
-        "evidence_hashes": [
-          "9ada34a2067d9119bd6e661aa1e73ed2625e6c5d98144ca08b2d47b1a2cedc8f"
-        ],
-        "selected_source_recipe": "sha256:e8c83aa844b21eb909f32f1fc8d6dc8334f4c3eb955b73ebe8ac0bbbdd7c55f0",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 3,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:mixer/ordinary_closure/e524804671b84b88"
+      "selected_source_recipe": "sha256:e8c83aa844b21eb909f32f1fc8d6dc8334f4c3eb955b73ebe8ac0bbbdd7c55f0",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:mixer/ordinary_closure/material_matrix",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:mixer",
   "type": "cruciblecraft:compact_gt_recipe_family"

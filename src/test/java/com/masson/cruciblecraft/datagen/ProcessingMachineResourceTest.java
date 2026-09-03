@@ -110,6 +110,7 @@ class ProcessingMachineResourceTest {
                 "message.cruciblecraft.crucible_casing_quarantined",
                 "tooltip.cruciblecraft.invalid_tool_material",
                 "tooltip.cruciblecraft.invalid_machine_material",
+                "config.jade.plugin_cruciblecraft.cable",
                 "jade.cruciblecraft.material_quarantined",
                 "item.cruciblecraft.material_pickaxe",
                 "item.cruciblecraft.material_shovel",
@@ -141,13 +142,15 @@ class ProcessingMachineResourceTest {
         long missingMaterialNames = missing.stream()
                 .filter(key -> key.startsWith("material.cruciblecraft."))
                 .count();
-        assertEquals(4_801, english.size(), "current generated en_us key count");
-        assertEquals(2_426L, translated, "declared Chinese translation coverage");
-        assertEquals(2_375, missing.size(), "visible zh_cn localization debt");
+        assertEquals(7_583, english.size(), "current generated en_us key count");
+        assertEquals(2_846L, translated, "declared Chinese translation coverage");
+        assertEquals(2_403, missing.size(), "visible zh_cn localization debt");
         assertEquals(1_566L, missingMaterialNames,
                 "missing generated material-name translations");
-        assertEquals(chinese.size(), translated,
-                "zh_cn must not hide untranslated keys behind copied English values");
+        assertEquals(
+                2_334L,
+                chinese.size() - translated,
+                "copied English keys still occupying zh_cn");
         assertTrue(english.size() > translated,
                 "partial localization must remain visibly partial until separately completed");
     }

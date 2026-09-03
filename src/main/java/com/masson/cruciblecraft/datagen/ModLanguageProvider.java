@@ -105,6 +105,8 @@ public class ModLanguageProvider extends LanguageProvider {
                     "罐 %s：%s，%s/%s mB");
             add("jade.cruciblecraft.cable",
                     "%s / %s：%s V，%s A，损耗 %s EU/方块，负载 %s A，烧毁 %s/16");
+            addJadePluginConfig();
+            addEmptyToolHeadNames();
             add("tooltip.cruciblecraft.electrical.specification",
                     "GT6 规格：%s");
             add("tooltip.cruciblecraft.electrical.rating",
@@ -145,6 +147,12 @@ public class ModLanguageProvider extends LanguageProvider {
             addItem(ModItems.ROBOT_ARM_COVER, "机械臂盖板");
             addItem(ModItems.PRESSURE_VALVE_COVER, "压力阀盖板");
             addItem(ModItems.SELECTOR_MANUAL_COVER, "手动选择器盖板");
+            addItem(ModItems.LOGISTICS_ITEM_STORAGE_COVER, "物品网络仓储盖板");
+            addItem(ModItems.LOGISTICS_ITEM_IMPORT_COVER, "物品网络导入盖板");
+            addItem(ModItems.LOGISTICS_ITEM_EXPORT_COVER, "物品网络导出盖板");
+            addItem(ModItems.LOGISTICS_FLUID_STORAGE_COVER, "流体网络仓储盖板");
+            addItem(ModItems.LOGISTICS_FLUID_IMPORT_COVER, "流体网络导入盖板");
+            addItem(ModItems.LOGISTICS_FLUID_EXPORT_COVER, "流体网络导出盖板");
             add("tooltip.cruciblecraft.portable_fluid_tank.empty",
                     "空（容量 %s mB）");
             add("tooltip.cruciblecraft.portable_fluid_tank.contents",
@@ -528,6 +536,8 @@ public class ModLanguageProvider extends LanguageProvider {
                 "Tank %s: %s, %s/%s mB");
         add("jade.cruciblecraft.cable",
                 "%s / %s: %s V, %s A, loss %s EU/block, load %s A, burn %s/16");
+        addJadePluginConfig();
+        addEmptyToolHeadNames();
         add("tooltip.cruciblecraft.electrical.specification",
                 "GT6 specification: %s");
         add("tooltip.cruciblecraft.electrical.rating",
@@ -563,6 +573,12 @@ public class ModLanguageProvider extends LanguageProvider {
         addItem(ModItems.ROBOT_ARM_COVER, "Robot Arm Cover");
         addItem(ModItems.PRESSURE_VALVE_COVER, "Pressure Valve Cover");
         addItem(ModItems.SELECTOR_MANUAL_COVER, "Manual Selector Cover");
+        addItem(ModItems.LOGISTICS_ITEM_STORAGE_COVER, "Item Network Storage Cover");
+        addItem(ModItems.LOGISTICS_ITEM_IMPORT_COVER, "Item Network Import Cover");
+        addItem(ModItems.LOGISTICS_ITEM_EXPORT_COVER, "Item Network Export Cover");
+        addItem(ModItems.LOGISTICS_FLUID_STORAGE_COVER, "Fluid Network Storage Cover");
+        addItem(ModItems.LOGISTICS_FLUID_IMPORT_COVER, "Fluid Network Import Cover");
+        addItem(ModItems.LOGISTICS_FLUID_EXPORT_COVER, "Fluid Network Export Cover");
         add("item.cruciblecraft.smithing_hammer", "%s Smithing Hammer");
         addItem(ModItems.FLINT_KNIFE, "Flint Knife");
         add("item.cruciblecraft.material_pickaxe", "%s Pickaxe");
@@ -797,6 +813,46 @@ public class ModLanguageProvider extends LanguageProvider {
             add("message.cruciblecraft.hopper.queue_no_exact", "Queue hoppers have no exact mode");
             add("message.cruciblecraft.dust_funnel.mode", "Dust funnel output: %s");
         }
+    }
+
+    private void addJadePluginConfig() {
+        add("config.jade.plugin_cruciblecraft",
+                chinese ? "坩埚工艺" : "CrucibleCraft");
+        add("config.jade.plugin_cruciblecraft.anvil",
+                chinese ? "锻造砧" : "Anvil");
+        add("config.jade.plugin_cruciblecraft.bronze_boiler",
+                chinese ? "青铜锅炉" : "Bronze Boiler");
+        add("config.jade.plugin_cruciblecraft.bronze_crusher",
+                chinese ? "青铜破碎机" : "Bronze Crusher");
+        add("config.jade.plugin_cruciblecraft.bronze_steam_engine",
+                chinese ? "青铜蒸汽机" : "Bronze Steam Engine");
+        add("config.jade.plugin_cruciblecraft.cable",
+                chinese ? "电缆" : "Cable");
+        add("config.jade.plugin_cruciblecraft.ceramic_mold",
+                chinese ? "陶瓷模具" : "Ceramic Mold");
+        add("config.jade.plugin_cruciblecraft.coke_oven",
+                chinese ? "焦炉" : "Coke Oven");
+        add("config.jade.plugin_cruciblecraft.crucible",
+                chinese ? "坩埚" : "Crucible");
+        add("config.jade.plugin_cruciblecraft.firebox",
+                chinese ? "燃烧室" : "Firebox");
+        add("config.jade.plugin_cruciblecraft.fluid_pipe",
+                chinese ? "流体管道" : "Fluid Pipe");
+        add("config.jade.plugin_cruciblecraft.item_pipe",
+                chinese ? "物品管道" : "Item Pipe");
+        add("config.jade.plugin_cruciblecraft.processing_machine",
+                chinese ? "加工机" : "Processing Machine");
+    }
+
+    private void addEmptyToolHeadNames() {
+        addItem(ModItems.EMPTY_TOOL_HEADS.get("empty/tool_head_chainsaw"),
+                chinese ? "空 链锯头" : "Empty Chainsaw Head");
+        addItem(ModItems.EMPTY_TOOL_HEADS.get("empty/tool_head_drill"),
+                chinese ? "空 钻头" : "Empty Drill Head");
+        addItem(ModItems.EMPTY_TOOL_HEADS.get("empty/tool_head_pickaxe_gem"),
+                chinese ? "空 宝石镐头" : "Empty Gem Pickaxe Head");
+        addItem(ModItems.EMPTY_TOOL_HEADS.get("empty/tool_head_wrench"),
+                chinese ? "空 扳手头" : "Empty Wrench Head");
     }
 
     private static String title(String value) {

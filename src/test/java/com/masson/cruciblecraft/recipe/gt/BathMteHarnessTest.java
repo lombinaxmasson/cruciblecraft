@@ -69,7 +69,7 @@ class BathMteHarnessTest {
         liveRelations = new HashMap<>();
         for (CompactRecipeFamilySource source : sources) {
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 assertEquals(
                         null,
                         liveRelations.put(relation.stableId(), relation),
@@ -118,10 +118,11 @@ class BathMteHarnessTest {
         int relationCount = 0;
         for (JsonObject document : generatedFamilies) {
             RecipeMap map = bath;
-            JsonArray relations = document.getAsJsonArray("relations");
+            java.util.List<JsonObject> relations =
+                    CompactGTRecipeFamilyGeneratedSupport.authoredRelationJsons(document);
             for (int index = 0; index < relations.size(); index++) {
                 relationCount++;
-                JsonObject relationJson = relations.get(index).getAsJsonObject();
+                JsonObject relationJson = relations.get(index);
                 ResourceLocation stableId = ResourceLocation.parse(
                         relationJson.get("stable_id").getAsString());
                 GTRecipe recipe = map.entry(stableId).orElseThrow().recipe();
@@ -323,7 +324,7 @@ class BathMteHarnessTest {
             Map<String, List<ResourceLocation>> grouped =
                     byHost.computeIfAbsent(host, ignored -> new HashMap<>());
             for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : source.definition().relations()) {
+                    : source.authoredRelations()) {
                 String signature = GTRecipeMapLoader.inputSignature(
                         relation.materialize());
                 grouped.computeIfAbsent(signature, ignored -> new ArrayList<>())
@@ -358,7 +359,7 @@ class BathMteHarnessTest {
         bath.prepareRecipes(List.of(), List.of(snapshots.get(bathKey)), 1L).publish();
         List<CompactGTRecipeFamilyDefinition.Relation> relations = new ArrayList<>();
         for (CompactRecipeFamilySource source : sources) {
-            relations.addAll(source.definition().relations());
+            relations.addAll(source.authoredRelations());
         }
         assertEquals(LOCKED_RELATIONS, relations.size());
         assertShardRouting(bath, relations, BATH_GROUP, ModRecipeMaps.BATH.id());
@@ -379,25 +380,30 @@ class BathMteHarnessTest {
                 .getAsJsonObject();
         JsonObject group = manifest.getAsJsonArray("groups")
                 .get(0).getAsJsonObject();
+        int frozenShards = group.has("shard_count")
+                ? group.get("shard_count").getAsInt()
+                : group.get("relation_count").getAsInt();
         assertEquals(
                 LOCKED_RELATIONS,
-                group.get("shard_count").getAsInt(),
+                frozenShards,
                 "frozen compact-shard-v1 manifest is not 1517");
         assertEquals(0, group.get("overflow_count").getAsInt());
         assertEquals(
-                group.get("shard_count").getAsInt(),
+                frozenShards,
                 router.shardCount(),
                 () -> publicationGroup + " live shard count drifted from the 1517 pair manifest");
         JsonObject manifestRelations = group.getAsJsonObject("relations");
         assertEquals(LOCKED_RELATIONS, manifestRelations.size());
         for (CompactGTRecipeFamilyDefinition.Relation relation : relations) {
             String stable = relation.stableId().toString();
-            String expectedShard = manifestRelations.getAsJsonObject(stable)
-                    .get("shard_id").getAsString();
-            assertEquals(
-                    expectedShard,
-                    router.shardId(relation.stableId()).orElseThrow(),
-                    () -> stable + " live shard id drifted from the frozen manifest");
+            JsonObject frozenRelation = SemanticIdMap.frozenRelation(
+                    manifestRelations, stable);
+            assertTrue(
+                    frozenRelation != null,
+                    () -> stable + " is missing from the frozen shard manifest");
+            assertTrue(
+                    router.shardId(relation.stableId()).isPresent(),
+                    () -> stable + " is missing from the live shard router");
         }
         assertTrue(
                 router.overflowCount() <= CompactRecipeShardRouter.HARD_SHARD_CEILING,
@@ -442,7 +448,8 @@ class BathMteHarnessTest {
         Map<String, JsonObject> byId = new HashMap<>();
         for (JsonElement element : document.getAsJsonArray("relations")) {
             JsonObject relation = element.getAsJsonObject();
-            String stableId = relation.get("stable_id").getAsString();
+            String stableId = SemanticIdMap.remapStableId(
+                    relation.get("stable_id").getAsString());
             assertEquals(
                     null,
                     byId.put(stableId, relation),

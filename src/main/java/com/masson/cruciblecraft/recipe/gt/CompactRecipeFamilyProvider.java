@@ -250,16 +250,15 @@ public final class CompactRecipeFamilyProvider {
                                 + " targets " + definition.targetMap()
                                 + " instead of " + mapId);
             }
-            if (definition.parameterized().isPresent()) {
+            try {
+                for (CompactGTRecipeFamilyDefinition.Relation relation
+                        : CompactAuthoredMatrix.expand(definition)) {
+                    relations.add(new IndexedRelation(source, relation));
+                }
+            } catch (IllegalArgumentException failure) {
                 throw new IllegalArgumentException(
-                        "Parameterized compact families are not implemented: source "
-                                + source.id()
-                                + ", template "
-                                + definition.parameterized().orElseThrow().template());
-            }
-            for (CompactGTRecipeFamilyDefinition.Relation relation
-                    : definition.relations()) {
-                relations.add(new IndexedRelation(source, relation));
+                        "Compact source " + source.id() + ": " + failure.getMessage(),
+                        failure);
             }
         }
         relations.sort(Comparator
@@ -344,7 +343,7 @@ public final class CompactRecipeFamilyProvider {
                                     + " on target " + key.targetMap());
                 }
                 for (CompactGTRecipeFamilyDefinition.Relation relation
-                        : source.definition().relations()) {
+                        : source.authoredRelations()) {
                     PublicationGroupKey stablePrevious =
                             targetStable.putIfAbsent(relation.stableId(), key);
                     if (stablePrevious != null && !stablePrevious.equals(key)) {
@@ -515,7 +514,7 @@ public final class CompactRecipeFamilyProvider {
             this.unindexedRelationCount = shardRouter.overflowCount();
             this.stableFingerprint = fingerprint(
                     mapId, publicationGroup, this.relations);
-            this.syncPayloadBytes = payloadBytes(this.relations);
+            this.syncPayloadBytes = estimateStubPayloadBytes(this.relations);
             this.cache = new LinkedHashMap<>(16, 0.75F, true);
         }
 
@@ -559,6 +558,11 @@ public final class CompactRecipeFamilyProvider {
             return unindexedRelationCount;
         }
 
+        /**
+         * Stub size estimate used by publication telemetry. This is <strong>not</strong>
+         * compact family wire size; per-entry proof is
+         * {@link CompactGTRecipeFamilySerializer#streamCodec()}.
+         */
         public long syncPayloadBytes() {
             return syncPayloadBytes;
         }
@@ -748,7 +752,12 @@ public final class CompactRecipeFamilyProvider {
         }
     }
 
-    private static long payloadBytes(List<IndexedRelation> relations) {
+    /**
+     * Counts ids, list lengths, and a few fixed numbers. It does not encode
+     * Ingredient, ItemStack, FluidStack, or provenance and must not be used as
+     * sync proof.
+     */
+    private static long estimateStubPayloadBytes(List<IndexedRelation> relations) {
         long bytes = 0L;
         for (IndexedRelation indexed : relations) {
             CompactGTRecipeFamilyDefinition.Relation relation = indexed.relation();

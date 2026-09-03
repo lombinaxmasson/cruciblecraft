@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.OptionalInt;
 import java.util.Set;
 
 import com.masson.cruciblecraft.machine.processing.ProcessingMachineSpec;
@@ -97,37 +98,53 @@ public record ProcessingEmiLayout(
             ProcessingEmiRecipeData data) {
         Set<Integer> available = new LinkedHashSet<>(spec.items().inputs());
         List<ItemSlot> result = new ArrayList<>();
+        int overflow = 0;
         for (ProcessingEmiRecipeData.ItemInput input : data.consumedInputs()) {
-            int machineSlot = takeSlot(
+            OptionalInt machineSlot = takeSlot(
                     spec,
                     available,
                     ProcessingMachineSpec.SlotRole.MATERIAL);
-            result.add(itemSlot(spec, ItemKind.INPUT, input.recipeIndex(), machineSlot));
+            if (machineSlot.isPresent()) {
+                result.add(itemSlot(
+                        spec, ItemKind.INPUT, input.recipeIndex(), machineSlot.getAsInt()));
+            } else {
+                result.add(overflowItemSlot(
+                        spec, ItemKind.INPUT, input.recipeIndex(), overflow++));
+            }
         }
         for (ProcessingEmiRecipeData.ItemInput catalyst : data.catalysts()) {
-            int machineSlot = takeSlot(
+            OptionalInt machineSlot = takeSlot(
                     spec,
                     available,
                     ProcessingMachineSpec.SlotRole.TOOL);
-            result.add(itemSlot(
-                    spec, ItemKind.CATALYST, catalyst.recipeIndex(), machineSlot));
-        }
-        if (data.itemOutputs().size() > spec.items().outputs().size()) {
-            throw new IllegalArgumentException(
-                    "Recipe has more item outputs than " + spec.id() + " can display");
+            if (machineSlot.isPresent()) {
+                result.add(itemSlot(
+                        spec,
+                        ItemKind.CATALYST,
+                        catalyst.recipeIndex(),
+                        machineSlot.getAsInt()));
+            } else {
+                result.add(overflowItemSlot(
+                        spec, ItemKind.CATALYST, catalyst.recipeIndex(), overflow++));
+            }
         }
         for (int index = 0; index < data.itemOutputs().size(); index++) {
             ProcessingEmiRecipeData.ItemOutput output = data.itemOutputs().get(index);
-            result.add(itemSlot(
-                    spec,
-                    ItemKind.OUTPUT,
-                    output.recipeIndex(),
-                    spec.items().outputs().get(index)));
+            if (index < spec.items().outputs().size()) {
+                result.add(itemSlot(
+                        spec,
+                        ItemKind.OUTPUT,
+                        output.recipeIndex(),
+                        spec.items().outputs().get(index)));
+            } else {
+                result.add(overflowItemSlot(
+                        spec, ItemKind.OUTPUT, output.recipeIndex(), overflow++));
+            }
         }
         return List.copyOf(result);
     }
 
-    private static int takeSlot(
+    private static OptionalInt takeSlot(
             ProcessingMachineSpec spec,
             Set<Integer> available,
             ProcessingMachineSpec.SlotRole preferredRole) {
@@ -140,15 +157,14 @@ public record ProcessingEmiLayout(
         }
         if (preferred != null) {
             available.remove(preferred);
-            return preferred;
+            return OptionalInt.of(preferred);
         }
         if (available.isEmpty()) {
-            throw new IllegalArgumentException(
-                    "Recipe has more item inputs than " + spec.id() + " can display");
+            return OptionalInt.empty();
         }
         int fallback = available.iterator().next();
         available.remove(fallback);
-        return fallback;
+        return OptionalInt.of(fallback);
     }
 
     private static ItemSlot itemSlot(
@@ -165,33 +181,71 @@ public record ProcessingEmiLayout(
                 new Rect(position.x(), position.y(), ITEM_SLOT_SIZE, ITEM_SLOT_SIZE));
     }
 
+    private static ItemSlot overflowItemSlot(
+            ProcessingMachineSpec spec,
+            ItemKind kind,
+            int recipeIndex,
+            int overflowIndex) {
+        int gap = 2;
+        int columns = 9;
+        int col = overflowIndex % columns;
+        int row = overflowIndex / columns;
+        int baseY = spec.ui().machineSlots().stream()
+                .mapToInt(slot -> slot.y() + ITEM_SLOT_SIZE)
+                .max()
+                .orElse(0);
+        int x = PADDING + col * (ITEM_SLOT_SIZE + gap);
+        int y = baseY + PADDING + row * (ITEM_SLOT_SIZE + gap);
+        return new ItemSlot(
+                kind,
+                recipeIndex,
+                spec.items().slotCount() + overflowIndex,
+                new Rect(x, y, ITEM_SLOT_SIZE, ITEM_SLOT_SIZE));
+    }
+
     private static List<FluidTank> positionFluids(
             ProcessingMachineSpec spec,
             ProcessingEmiRecipeData data,
             List<Rect> occupied) {
-        if (data.fluidInputs().size() > spec.fluids().inputs().size()
-                || data.fluidOutputs().size() > spec.fluids().outputs().size()) {
-            throw new IllegalArgumentException(
-                    "Recipe has more fluid resources than " + spec.id() + " can display");
-        }
         List<FluidTank> result = new ArrayList<>();
+        int overflow = 0;
         for (int index = 0; index < data.fluidInputs().size(); index++) {
-            addTank(
-                    spec,
-                    FluidKind.INPUT,
-                    data.fluidInputs().get(index).recipeIndex(),
-                    spec.fluids().inputs().get(index),
-                    occupied,
-                    result);
+            if (index < spec.fluids().inputs().size()) {
+                addTank(
+                        spec,
+                        FluidKind.INPUT,
+                        data.fluidInputs().get(index).recipeIndex(),
+                        spec.fluids().inputs().get(index),
+                        occupied,
+                        result);
+            } else {
+                addOverflowTank(
+                        spec,
+                        FluidKind.INPUT,
+                        data.fluidInputs().get(index).recipeIndex(),
+                        overflow++,
+                        occupied,
+                        result);
+            }
         }
         for (int index = 0; index < data.fluidOutputs().size(); index++) {
-            addTank(
-                    spec,
-                    FluidKind.OUTPUT,
-                    data.fluidOutputs().get(index).recipeIndex(),
-                    spec.fluids().outputs().get(index),
-                    occupied,
-                    result);
+            if (index < spec.fluids().outputs().size()) {
+                addTank(
+                        spec,
+                        FluidKind.OUTPUT,
+                        data.fluidOutputs().get(index).recipeIndex(),
+                        spec.fluids().outputs().get(index),
+                        occupied,
+                        result);
+            } else {
+                addOverflowTank(
+                        spec,
+                        FluidKind.OUTPUT,
+                        data.fluidOutputs().get(index).recipeIndex(),
+                        overflow++,
+                        occupied,
+                        result);
+            }
         }
         return List.copyOf(result);
     }
@@ -220,6 +274,44 @@ public record ProcessingEmiLayout(
                 recipeIndex,
                 tank.index(),
                 tank.capacity(),
+                bounds));
+    }
+
+    private static void addOverflowTank(
+            ProcessingMachineSpec spec,
+            FluidKind kind,
+            int recipeIndex,
+            int overflowIndex,
+            List<Rect> occupied,
+            List<FluidTank> result) {
+        int width = ITEM_SLOT_SIZE;
+        int height = ITEM_SLOT_SIZE;
+        long capacity = 1_000L;
+        if (!spec.ui().tanks().isEmpty()) {
+            ProcessingMachineSpec.TankPosition source = spec.ui().tanks().getFirst();
+            width = source.width();
+            height = source.height();
+        }
+        if (!spec.fluids().all().isEmpty()) {
+            capacity = spec.fluids().all().getFirst().capacity();
+        }
+        int gap = 2;
+        int baseX = occupied.stream().mapToInt(Rect::right).max().orElse(PADDING);
+        Rect bounds = new Rect(
+                baseX + PADDING + overflowIndex * (width + gap),
+                PADDING,
+                width,
+                height);
+        while (occupied.stream().anyMatch(bounds::overlaps)) {
+            bounds = new Rect(
+                    bounds.x() + 1, bounds.y(), bounds.width(), bounds.height());
+        }
+        occupied.add(bounds);
+        result.add(new FluidTank(
+                kind,
+                recipeIndex,
+                spec.fluids().tankCount() + overflowIndex,
+                capacity,
                 bounds));
     }
 

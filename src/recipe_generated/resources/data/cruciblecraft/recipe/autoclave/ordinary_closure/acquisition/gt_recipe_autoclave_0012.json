@@ -1,89 +1,99 @@
 {
+  "authored_form": "matrix_v1",
   "family_id": "gt.recipe.autoclave#0012",
-  "publication_group": "cruciblecraft:autoclave/ordinary_closure/acquisition",
-  "relations": [
-    {
-      "can_be_buffered": true,
-      "duration": 1500,
-      "eut": 0,
-      "fluid_inputs": [
+  "matrix": {
+    "dicts": {
+      "fluids": [
         {
-          "amount": 48000,
-          "id": "cruciblecraft:steam"
+          "fluid_inputs": [
+            {
+              "amount": 48000,
+              "id": "cruciblecraft:steam"
+            }
+          ],
+          "fluid_outputs": [
+            {
+              "amount": 1050,
+              "id": "cruciblecraft:water_distilled"
+            }
+          ]
         }
       ],
-      "fluid_outputs": [
-        {
-          "amount": 1050,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
-      "item_input_actions": [
-        {
-          "kind": "consume"
-        },
-        {
-          "kind": "consume"
-        }
-      ],
-      "item_input_counts": [
-        1,
-        6
+      "hashes": [
+        "da10843c5bee7167943a6499e30ded658947e10af57d750dd85502d19fe37033",
+        "36bd4f2f87e4afcb1edc68cabadab8de2e7473bbea1dec62c1d1d466dd9bc1b0"
       ],
       "item_inputs": [
-        {
-          "item": "cruciblecraft:bauxite/dust"
-        },
-        {
-          "item": "cruciblecraft:sodium_hydroxide/small_dust"
-        }
+        [
+          {
+            "item": "cruciblecraft:bauxite/dust"
+          },
+          {
+            "item": "cruciblecraft:sodium_hydroxide/small_dust"
+          }
+        ],
+        [
+          {
+            "item": "cruciblecraft:bauxite/dust"
+          },
+          {
+            "item": "cruciblecraft:potassium_hydroxide/small_dust"
+          }
+        ]
       ],
       "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:sodium_aluminate/dust"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:ilmenite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 1,
-          "id": "cruciblecraft:rutile/tiny_centrifuged_crushed_ore"
-        }
-      ],
-      "output_chances": [
-        10000,
-        5000,
-        5000
-      ],
-      "provenance": {
-        "evidence_hashes": [
-          "da10843c5bee7167943a6499e30ded658947e10af57d750dd85502d19fe37033"
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:sodium_aluminate/dust"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:ilmenite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:rutile/tiny_centrifuged_crushed_ore"
+          }
         ],
-        "selected_source_recipe": "gt.recipe.autoclave#0012",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 0,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/5dfb5cc7ef3f9a54"
+        [
+          {
+            "count": 2,
+            "id": "cruciblecraft:potassium_aluminate/dust"
+          },
+          {
+            "count": 2,
+            "id": "cruciblecraft:ilmenite/tiny_centrifuged_crushed_ore"
+          },
+          {
+            "count": 1,
+            "id": "cruciblecraft:rutile/tiny_centrifuged_crushed_ore"
+          }
+        ]
+      ]
     },
-    {
+    "rows": [
+      [
+        0,
+        0,
+        0,
+        "cruciblecraft:autoclave/ordinary_closure/5dfb5cc7ef3f9a54",
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        "cruciblecraft:autoclave/ordinary_closure/0cb614f580715eb5",
+        1,
+        1
+      ]
+    ],
+    "shared": {
       "can_be_buffered": true,
       "duration": 1500,
       "eut": 0,
-      "fluid_inputs": [
-        {
-          "amount": 48000,
-          "id": "cruciblecraft:steam"
-        }
-      ],
-      "fluid_outputs": [
-        {
-          "amount": 1050,
-          "id": "cruciblecraft:water_distilled"
-        }
-      ],
       "item_input_actions": [
         {
           "kind": "consume"
@@ -96,45 +106,17 @@
         1,
         6
       ],
-      "item_inputs": [
-        {
-          "item": "cruciblecraft:bauxite/dust"
-        },
-        {
-          "item": "cruciblecraft:potassium_hydroxide/small_dust"
-        }
-      ],
-      "item_outputs": [
-        {
-          "count": 2,
-          "id": "cruciblecraft:potassium_aluminate/dust"
-        },
-        {
-          "count": 2,
-          "id": "cruciblecraft:ilmenite/tiny_centrifuged_crushed_ore"
-        },
-        {
-          "count": 1,
-          "id": "cruciblecraft:rutile/tiny_centrifuged_crushed_ore"
-        }
-      ],
       "output_chances": [
         10000,
         5000,
         5000
       ],
-      "provenance": {
-        "evidence_hashes": [
-          "36bd4f2f87e4afcb1edc68cabadab8de2e7473bbea1dec62c1d1d466dd9bc1b0"
-        ],
-        "selected_source_recipe": "gt.recipe.autoclave#0012",
-        "source_kind": "SOURCE_DERIVED"
-      },
-      "shadow_order": 1,
-      "special_value": 0,
-      "stable_id": "cruciblecraft:autoclave/ordinary_closure/0cb614f580715eb5"
+      "selected_source_recipe": "gt.recipe.autoclave#0012",
+      "source_kind": "SOURCE_DERIVED",
+      "special_value": 0
     }
-  ],
+  },
+  "publication_group": "cruciblecraft:autoclave/ordinary_closure/acquisition",
   "source_revision": "3703e40308c8c030763fd6297dea8b210d2a77b1",
   "target_map": "cruciblecraft:autoclave",
   "type": "cruciblecraft:compact_gt_recipe_family"

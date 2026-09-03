@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-"""Layered verification entry: dev, integration, release, and archive inspect."""
+"""Run fresh, profile-driven verification and write the latest local receipt."""
 from __future__ import annotations
 
 import argparse
+import fnmatch
 import json
 import os
+import platform
+import shutil
 import subprocess
 import sys
-import tempfile
 import time
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -17,47 +19,18 @@ ROOT = Path(__file__).resolve().parents[1]
 TOOLS = ROOT / "tools"
 PROFILES = TOOLS / "verification_profiles.json"
 BUILDER_POLICY = TOOLS / "verification_builder_policy.json"
-REPORT = TOOLS / "full_verification_report.json"
-DEBT = TOOLS / "known_issues" / "verification-debt.json"
+LATEST = ROOT / "build" / "verification" / "latest.json"
 TEST_RESULTS = ROOT / "build" / "test-results" / "test"
-CLOSEOUT_PROFILES = ("recipes", "census", "closeout-seals")
-CENSUS_REPLAY_DEFERRED_LOAD_BUILDERS = frozenset({
-    "build_t37_recipe_load_benchmark",
-    "build_t38_recipe_load_benchmark",
-    "build_t39_recipe_load_benchmark",
-    "build_t40_recipe_load_benchmark",
-    "build_t41_recipe_load_benchmark",
-    "build_t43_recipe_load_benchmark",
-    "build_t45_recipe_load_benchmark",
-    "build_t46_recipe_load_benchmark",
-})
-CENSUS_REPLAY_DEFERRED_PYTHON_MODULES = frozenset({
-    "test_build_t37_recipe_load_benchmark",
-    "test_build_t38_recipe_load_benchmark",
-    "test_build_t39_recipe_load_benchmark",
-    "test_build_t40_recipe_load_benchmark",
-    "test_build_t41_recipe_load_benchmark",
-    "test_build_t43_recipe_load_benchmark",
-    "test_build_t45_recipe_load_benchmark",
-    "test_build_t46_recipe_load_benchmark",
-})
-RECEIPT_SCRIPTS = {
-    "recipes": (
-        "tools/build_t38_gametest_receipt.py",
-        "tools/build_t39_gametest_receipt.py",
-        "tools/build_t40_gametest_receipt.py",
-        "tools/build_t41_gametest_receipt.py",
-        "tools/build_t43_gametest_receipt.py",
-        "tools/build_t45_gametest_receipt.py",
-        "tools/build_t46_gametest_receipt.py",
-        "tools/build_t47_gametest_receipt.py",
-    ),
-}
 
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from tools import run_python_tests as python_tests
+from tools import tree_compare
+
+
+class VerificationError(ValueError):
+    """Active verification configuration is inconsistent."""
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -66,28 +39,87 @@ def load_json(path: Path) -> dict[str, Any]:
 
 def load_profiles() -> dict[str, Any]:
     document = load_json(PROFILES)
-    if document.get("schema_version") != 1:
-        raise ValueError("unsupported verification profile schema")
+    if document.get("schema_version") != 2:
+        raise VerificationError("unsupported verification profile schema")
     if document.get("unmatched_policy") != "report":
-        raise ValueError("unmatched paths must be reported, not escalated")
+        raise VerificationError("unmatched paths must be reported")
+    profiles = document.get("profiles")
+    if not isinstance(profiles, dict) or not profiles:
+        raise VerificationError("verification profiles are missing")
+    for field in ("active_profiles", "release_profiles"):
+        names = document.get(field)
+        if not isinstance(names, list) or not names:
+            raise VerificationError(f"{field} must name at least one profile")
+        missing = sorted(set(names) - set(profiles))
+        if missing:
+            raise VerificationError(f"{field} names missing profiles: {missing}")
     return document
 
 
+def load_builder_policy() -> dict[str, Any]:
+    document = load_json(BUILDER_POLICY)
+    if document.get("schema_version") != 2:
+        raise VerificationError("unsupported active builder policy schema")
+    rows = document.get("builders")
+    if not isinstance(rows, list):
+        raise VerificationError("active builder policy omits builders")
+    names = [str(row.get("name") or "") for row in rows]
+    if any(not name for name in names) or len(names) != len(set(names)):
+        raise VerificationError("active builder names must be non-empty and unique")
+    for row in rows:
+        if not row.get("script") or not isinstance(row.get("ordinary_args"), list):
+            raise VerificationError(
+                f"builder {row.get('name')!r} needs script and ordinary_args"
+            )
+        for binding in row.get("environment_args") or []:
+            if not binding.get("option") or not binding.get("variable"):
+                raise VerificationError(
+                    f"builder {row.get('name')!r} has an invalid environment binding"
+                )
+    return document
+
+
+def validate_configuration(
+    profiles: dict[str, Any],
+    builder_policy: dict[str, Any],
+) -> None:
+    owned: dict[str, str] = {}
+    active = set(profiles["active_profiles"])
+    for profile_name in active:
+        for builder in profiles["profiles"][profile_name]["builders"]:
+            if builder in owned:
+                raise VerificationError(
+                    f"builder {builder!r} belongs to both "
+                    f"{owned[builder]!r} and {profile_name!r}"
+                )
+            owned[builder] = profile_name
+    policy_names = {row["name"] for row in builder_policy["builders"]}
+    if set(owned) != policy_names:
+        missing = sorted(policy_names - set(owned))
+        extra = sorted(set(owned) - policy_names)
+        raise VerificationError(
+            f"profiles and builder policy disagree; missing={missing}, extra={extra}"
+        )
+
+
 def normalize_paths(paths: Iterable[str]) -> tuple[str, ...]:
-    return tuple(sorted({
-        path.replace("\\", "/").removeprefix("./")
-        for path in paths
-        if path.strip()
-    }))
+    return tuple(
+        sorted(
+            {
+                path.replace("\\", "/").removeprefix("./")
+                for path in paths
+                if path.strip()
+            }
+        )
+    )
 
 
 def path_matches(path: str, pattern: str) -> bool:
-    import fnmatch
     return fnmatch.fnmatchcase(path, pattern)
 
 
 def is_documentation_path(document: dict[str, Any], path: str) -> bool:
-    patterns = document.get("documentation_path_patterns") or ["*.md"]
+    patterns = document.get("documentation_path_patterns") or ["*.md", "docs/**"]
     return any(path_matches(path, pattern) for pattern in patterns)
 
 
@@ -96,204 +128,77 @@ def classify_paths(
     paths: Iterable[str],
 ) -> dict[str, Any]:
     profiles = document["profiles"]
-    matched: dict[str, list[str]] = {name: [] for name in profiles}
+    active = set(document["active_profiles"])
+    matched: dict[str, list[str]] = {name: [] for name in profiles if name in active}
     unmatched: list[str] = []
     documentation: list[str] = []
     for path in normalize_paths(paths):
         hits = [
             name
             for name, profile in profiles.items()
-            if any(path_matches(path, pattern) for pattern in profile["owned_paths"])
+            if name in active
+            and any(path_matches(path, pattern) for pattern in profile["owned_paths"])
         ]
         if hits:
             for name in hits:
                 matched[name].append(path)
-            continue
-        if is_documentation_path(document, path):
+        elif is_documentation_path(document, path) and "docs" in matched:
             documentation.append(path)
             matched["docs"].append(path)
-            continue
-        unmatched.append(path)
-    selected = sorted(name for name, rows in matched.items() if rows)
+        else:
+            unmatched.append(path)
     return {
         "matched": {name: rows for name, rows in matched.items() if rows},
-        "selected_profiles": selected,
+        "selected_profiles": [name for name in document["active_profiles"] if matched[name]],
         "documentation_paths": documentation,
         "unmatched_paths": unmatched,
     }
 
 
-def builder_rows_for_profile(
-    profile_name: str,
-    profiles: dict[str, Any],
-    builder_policy: dict[str, Any],
-) -> list[dict[str, Any]]:
-    wanted = set(profiles["profiles"][profile_name]["builders"])
-    return [
-        row for row in builder_policy["builders"]
-        if row["name"] in wanted
-    ]
-
-
-def builder_args_for_profile(
-    profile_name: str,
-    row: dict[str, Any],
-    *,
-    full_replay: bool = False,
-) -> list[str] | None:
-    use_full_replay = full_replay and profile_name.endswith("-replay")
-    if not use_full_replay:
-        return list(row["ordinary_args"])
-    replay = row.get("full_replay")
-    if not isinstance(replay, dict) or not replay.get("args"):
-        raise ValueError(
-            f"replay profile {profile_name!r} requires full_replay args "
-            f"for builder {row['name']!r}"
-        )
-    required = [
-        ROOT / path
-        for path in replay.get("required_paths") or []
-    ]
-    if required and any(not path.is_file() for path in required):
-        return None
-    return list(replay["args"])
-
-
-def gradle_command(task: str, *, rerun: bool = True) -> list[str]:
-    wrapper = "gradlew.bat" if os.name == "nt" else "./gradlew"
-    command = [str(ROOT / wrapper), task, "--no-daemon", "--max-workers=1"]
-    if rerun:
-        command.append("--rerun-tasks")
-    return command
-
-
-def parse_gradle_test_xml(results_dir: Path = TEST_RESULTS) -> dict[str, Any]:
-    if not results_dir.is_dir():
-        return {
-            "xml_present": False,
-            "tests": 0,
-            "failures": 0,
-            "errors": 0,
-            "skipped": 0,
-            "rerun_tasks": True,
-        }
-    tests = failures = errors = skipped = 0
-    xml_present = False
-    for path in sorted(results_dir.glob("TEST-*.xml")):
-        xml_present = True
-        root = ET.parse(path).getroot()
-        tests += int(root.attrib.get("tests") or 0)
-        failures += int(root.attrib.get("failures") or 0)
-        errors += int(root.attrib.get("errors") or 0)
-        skipped += int(root.attrib.get("skipped") or 0)
-    return {
-        "xml_present": xml_present,
-        "tests": tests,
-        "failures": failures,
-        "errors": errors,
-        "skipped": skipped,
-        "rerun_tasks": True,
-    }
-
-
-def gradle_full_suite_errors(summary: dict[str, Any]) -> list[str]:
-    errors: list[str] = []
-    if not summary.get("xml_present"):
-        errors.append("Gradle TEST-*.xml is missing; filtered or UP-TO-DATE run is not a full-suite PASS")
-    if int(summary.get("tests") or 0) < 1:
-        errors.append("Gradle test count is insufficient for a full-suite PASS")
-    if int(summary.get("failures") or 0) or int(summary.get("errors") or 0):
-        errors.append("Gradle test XML records failures or errors")
-    if summary.get("rerun_tasks") is not True:
-        errors.append("Gradle full suite must set rerun_tasks=true")
-    return errors
-
-
-def gametest_spec(profile: dict[str, Any]) -> dict[str, Any]:
-    raw = profile.get("gametest")
-    if isinstance(raw, bool):
-        return {
-            "receipt_check": False,
-            "run_isolated": False,
-            "manual_deferred": bool(raw),
-        }
-    if not isinstance(raw, dict):
-        raise ValueError("profile gametest must be an object")
-    return {
-        "receipt_check": bool(raw.get("receipt_check")),
-        "run_isolated": bool(raw.get("run_isolated")),
-        "manual_deferred": bool(raw.get("manual_deferred")),
-    }
-
-
-def debt_rows(*, debt_aware: bool, profile_name: str) -> tuple[list[dict[str, Any]], list[str]]:
-    if not DEBT.is_file():
-        return [], []
-    document = load_json(DEBT)
-    open_rows = [
-        row for row in document.get("issues") or [] if row.get("status") == "open"
-    ]
-    notes: list[str] = []
-    if not debt_aware:
-        return open_rows, notes
-    for row in open_rows:
-        blocks = row.get("blocks_profiles") or []
-        scope = row.get("scope") or "external"
-        if profile_name in blocks:
-            continue
-        if scope == "external" or profile_name not in (blocks or []):
-            notes.append(str(row.get("id") or ""))
-    return open_rows, notes
-
-
-def write_result_json(path: Path, document: dict[str, Any]) -> None:
-    from tools import atomic_io
-
-    payload = json.dumps(document, indent=2, sort_keys=True) + "\n"
-    atomic_io.write_text(path, payload)
-
-
-def run_command(
-    name: str,
-    command: list[str],
-    *,
-    timings: list[tuple[str, float]] | None = None,
-) -> int:
-    print(f"[{name}] {subprocess.list2cmdline(command)}", flush=True)
-    started = time.perf_counter()
-    try:
-        completed = subprocess.run(command, cwd=ROOT, check=False)
-    finally:
-        wall_seconds = time.perf_counter() - started
-        if timings is not None:
-            timings.append((name, wall_seconds))
-        print(f"[{name}] wall-time: {wall_seconds:.3f}s", flush=True)
-    if completed.returncode == 0:
-        print(f"[{name}] PASS", flush=True)
-    else:
-        print(f"[{name}] FAIL exit {completed.returncode}", flush=True)
-    return completed.returncode
-
-
-def git_diff_names(*rev_args: str) -> tuple[str, ...]:
+def _git_output(arguments: list[str]) -> bytes:
     completed = subprocess.run(
-        ["git", "diff", "--name-only", "-z", *rev_args],
+        ["git", *arguments],
         cwd=ROOT,
         capture_output=True,
         check=False,
     )
-    if completed.returncode != 0:
-        return ()
-    return python_tests.normalize_paths(
-        item.decode("utf-8")
-        for item in completed.stdout.split(b"\0")
+    return completed.stdout if completed.returncode == 0 else b""
+
+
+def git_revision() -> str:
+    return _git_output(["rev-parse", "HEAD"]).decode(
+        "utf-8", errors="replace"
+    ).strip()
+
+
+def git_dirty_paths() -> tuple[str, ...]:
+    payload = _git_output(
+        ["status", "--porcelain=v1", "-z", "--untracked-files=all"]
+    )
+    paths: list[str] = []
+    for record in payload.split(b"\0"):
+        if not record:
+            continue
+        text = record.decode("utf-8", errors="replace")
+        path = text[3:] if len(text) >= 3 else text
+        if " -> " in path:
+            path = path.split(" -> ", 1)[1]
+        paths.append(path)
+    return normalize_paths(paths)
+
+
+def git_diff_names(*rev_args: str) -> tuple[str, ...]:
+    payload = _git_output(["diff", "--name-only", "-z", *rev_args])
+    return normalize_paths(
+        item.decode("utf-8", errors="replace")
+        for item in payload.split(b"\0")
         if item
     )
 
 
 def changed_paths(explicit: list[str]) -> list[str]:
     if explicit:
-        return list(explicit)
+        return list(normalize_paths(explicit))
     base = os.environ.get("CRUCIBLECRAFT_DIFF_BASE", "").strip()
     if base:
         names = git_diff_names(base)
@@ -312,477 +217,322 @@ def changed_paths(explicit: list[str]) -> list[str]:
     return list(python_tests.git_changed_paths())
 
 
-def write_affected_path_file(paths: Iterable[str]) -> Path:
-    handle = tempfile.NamedTemporaryFile(
-        mode="w",
+def gradle_command(task: str) -> list[str]:
+    wrapper = "gradlew.bat" if os.name == "nt" else "./gradlew"
+    return [
+        str(ROOT / wrapper),
+        task,
+        "--no-daemon",
+        "--max-workers=1",
+        "--rerun-tasks",
+    ]
+
+
+def parse_gradle_test_xml(results_dir: Path = TEST_RESULTS) -> dict[str, Any]:
+    tests = failures = errors = skipped = 0
+    files = sorted(results_dir.glob("TEST-*.xml")) if results_dir.is_dir() else []
+    for path in files:
+        root = ET.parse(path).getroot()
+        tests += int(root.attrib.get("tests") or 0)
+        failures += int(root.attrib.get("failures") or 0)
+        errors += int(root.attrib.get("errors") or 0)
+        skipped += int(root.attrib.get("skipped") or 0)
+    return {
+        "xml_present": bool(files),
+        "tests": tests,
+        "failures": failures,
+        "errors": errors,
+        "skipped": skipped,
+    }
+
+
+def run_datagen(
+    profile_name: str,
+    receipt: dict[str, Any],
+) -> tuple[int, dict[str, Any]]:
+    root = ROOT / "build" / "verification" / "datagen" / profile_name
+    first = root / "first"
+    second = root / "second"
+    for directory in (first, second):
+        shutil.rmtree(directory, ignore_errors=True)
+    for label, directory in (("first", first), ("second", second)):
+        command = gradle_command("runData")
+        command.append(f"-PdatagenOutput={directory}")
+        code = run_command(f"datagen:{label}", command, receipt)
+        if code:
+            return code, {"status": "FAIL", "failed_run": label}
+    deterministic_errors = tree_compare.compare_trees(first, second)
+    committed_errors = tree_compare.compare_trees(
+        ROOT / "src" / "generated" / "resources",
+        first,
+    )
+    result = {
+        "status": (
+            "PASS"
+            if not deterministic_errors and not committed_errors
+            else "FAIL"
+        ),
+        "generated_files": len(tree_compare.file_map(first)),
+        "deterministic_errors": deterministic_errors[:50],
+        "committed_errors": committed_errors[:50],
+    }
+    if result["status"] == "FAIL":
+        for error in deterministic_errors:
+            print(f"datagen repeat mismatch: {error}", file=sys.stderr)
+        for error in committed_errors:
+            print(f"datagen committed mismatch: {error}", file=sys.stderr)
+        return 1, result
+    return 0, result
+
+
+def _receipt(argv: list[str]) -> dict[str, Any]:
+    return {
+        "schema_version": 1,
+        "status": "RUNNING",
+        "git_revision": git_revision(),
+        "dirty_paths": list(git_dirty_paths()),
+        "command": [sys.executable, "tools/verify.py", *argv],
+        "commands": [],
+        "results": [],
+        "profiles": [],
+        "environment": {
+            "ci": os.environ.get("CI", ""),
+            "cwd": str(ROOT),
+            "operating_system": platform.platform(),
+            "python_executable": sys.executable,
+            "python_version": platform.python_version(),
+        },
+    }
+
+
+def write_latest_receipt(document: dict[str, Any]) -> None:
+    LATEST.parent.mkdir(parents=True, exist_ok=True)
+    LATEST.write_text(
+        json.dumps(document, indent=2, sort_keys=True) + "\n",
         encoding="utf-8",
-        prefix="cruciblecraft-verify-paths-",
-        suffix=".txt",
-        delete=False,
+        newline="\n",
     )
-    with handle:
-        handle.write("\n".join(python_tests.normalize_paths(paths)) + "\n")
-    return Path(handle.name)
 
 
-def print_plan(classification: dict[str, Any], *, command: str) -> None:
-    print(f"verify {command}")
-    selected = classification["selected_profiles"]
-    print("selected profiles: " + (", ".join(selected) if selected else "(none)"))
-    if classification["documentation_paths"]:
-        print("documentation paths: " + ", ".join(classification["documentation_paths"]))
-    if classification["unmatched_paths"]:
-        print(
-            "unmatched paths (declare a profile or pass --scope): "
-            + ", ".join(classification["unmatched_paths"])
+def run_command(
+    name: str,
+    command: list[str],
+    receipt: dict[str, Any],
+) -> int:
+    print(f"[{name}] {subprocess.list2cmdline(command)}", flush=True)
+    receipt["commands"].append({"name": name, "argv": list(command)})
+    started = time.perf_counter()
+    try:
+        completed = subprocess.run(command, cwd=ROOT, check=False)
+        code = completed.returncode
+    except OSError as error:
+        print(f"[{name}] failed to start: {error}", file=sys.stderr, flush=True)
+        code = 127
+    seconds = round(time.perf_counter() - started, 3)
+    result = {
+        "name": name,
+        "exit_code": code,
+        "seconds": seconds,
+        "status": "PASS" if code == 0 else "FAIL",
+    }
+    receipt["results"].append(result)
+    print(f"[{name}] {result['status']} ({seconds:.3f}s)", flush=True)
+    return code
+
+
+def builder_rows_for_profile(
+    profile_name: str,
+    profiles: dict[str, Any],
+    builder_policy: dict[str, Any],
+) -> list[dict[str, Any]]:
+    wanted = set(profiles["profiles"][profile_name]["builders"])
+    return [row for row in builder_policy["builders"] if row["name"] in wanted]
+
+
+def builder_command(row: dict[str, Any]) -> list[str]:
+    command = [sys.executable, row["script"], *row["ordinary_args"]]
+    for binding in row.get("environment_args") or []:
+        variable = str(binding.get("variable") or "")
+        option = str(binding.get("option") or "")
+        value = os.environ.get(variable, "").strip()
+        if value:
+            command.extend([option, value])
+        elif binding.get("required"):
+            raise VerificationError(
+                f"builder {row['name']!r} requires environment variable {variable}"
+            )
+    return command
+
+
+def run_profile(
+    profile_name: str,
+    profiles: dict[str, Any],
+    builder_policy: dict[str, Any],
+    receipt: dict[str, Any],
+) -> int:
+    profile = profiles["profiles"][profile_name]
+    profile_result: dict[str, Any] = {
+        "name": profile_name,
+        "status": "RUNNING",
+    }
+    receipt["profiles"].append(profile_result)
+    print(f"verify profile {profile_name} (owner={profile['owner']})")
+    for row in builder_rows_for_profile(profile_name, profiles, builder_policy):
+        code = run_command(
+            f"builder:{row['name']}",
+            builder_command(row),
+            receipt,
         )
-        print(
-            "available profiles: "
-            + ", ".join(sorted(load_profiles()["profiles"]))
+        if code:
+            profile_result["status"] = "FAIL"
+            return code
+    modules = profile["python_modules"]
+    if modules:
+        result_path = (
+            ROOT
+            / "build"
+            / "verification"
+            / "python"
+            / f"{profile_name}.json"
         )
-
-
-def cmd_dev(args: argparse.Namespace) -> int:
-    document = load_profiles()
-    paths = args.path or changed_paths([])
-    classification = classify_paths(document, paths)
-    print_plan(classification, command="dev")
-    if classification["unmatched_paths"]:
-        return 2
-    if not classification["selected_profiles"]:
-        print("no owned paths changed; nothing to run")
-        return 0
-    selected = classification["selected_profiles"]
-    python_paths = list(
-        python_tests.normalize_paths(
-            path
-            for rows in classification["matched"].values()
-            for path in rows
-        )
-    )
-    docs_only = set(selected) <= {"docs"}
-    if not docs_only:
-        path_file = write_affected_path_file(python_paths)
-        python_command = [
+        result_path.unlink(missing_ok=True)
+        command = [
             sys.executable,
             "tools/run_python_tests.py",
             "--suite",
-            "affected",
-            "--exclude-slow",
-            "--path-file",
-            str(path_file),
+            "modules",
+            "--result-json",
+            str(result_path),
         ]
-        try:
-            code = run_command("python:affected", python_command)
-        finally:
-            path_file.unlink(missing_ok=True)
-        if code != 0:
+        for module in modules:
+            command.extend(["--module", module])
+        code = run_command(f"python:{profile_name}", command, receipt)
+        if result_path.is_file():
+            profile_result["python_test"] = load_json(result_path)
+        if code:
+            profile_result["status"] = "FAIL"
             return code
-        java_changed = any(
-            path.startswith("src/main/java/") or path.startswith("src/test/java/")
-            for path in python_paths
-        )
-        if java_changed:
-            code = run_command("gradle:test", gradle_command("test"))
-            if code != 0:
-                return code
-    if "docs" in selected or classification["documentation_paths"] or docs_only:
-        code = run_command(
-            "markdown-links",
-            [sys.executable, "tools/check_markdown_links.py"],
-        )
-        if code != 0:
+    for task in profile["gradle_tasks"]:
+        code = run_command(f"gradle:{task}", gradle_command(task), receipt)
+        if task == "test":
+            summary = parse_gradle_test_xml()
+            profile_result["gradle_test"] = summary
+            if (
+                code == 0
+                and (
+                    not summary["xml_present"]
+                    or summary["tests"] < 1
+                    or summary["failures"]
+                    or summary["errors"]
+                )
+            ):
+                code = 1
+        if code:
+            profile_result["status"] = "FAIL"
             return code
-        code = run_command(
-            "python:docs",
-            [
-                sys.executable,
-                "tools/run_python_tests.py",
-                "--suite",
-                "affected",
-                "--exclude-slow",
-                "--path",
-                "docs/history/INDEX.md",
-            ],
-        )
-        if code != 0:
+    if profile.get("datagen"):
+        code, datagen_result = run_datagen(profile_name, receipt)
+        profile_result["datagen"] = datagen_result
+        if code:
+            profile_result["status"] = "FAIL"
             return code
-    print("dev complete. Upgrade to integration --profile <name> before closing a content card.")
+    profile_result["status"] = "PASS"
     return 0
 
 
-def _record(failures: list[str], report_all: bool, message: str) -> int:
-    print(message, file=sys.stderr, flush=True)
-    failures.append(message)
-    return 0 if report_all else 1
+def _configuration() -> tuple[dict[str, Any], dict[str, Any]]:
+    profiles = load_profiles()
+    builders = load_builder_policy()
+    validate_configuration(profiles, builders)
+    return profiles, builders
 
 
-def run_profile_steps(
-    profile_name: str,
-    args: argparse.Namespace,
-    *,
-    document: dict[str, Any] | None = None,
-) -> dict[str, Any]:
-    document = document if document is not None else load_profiles()
-    profile = document["profiles"][profile_name]
-    builder_policy = load_json(BUILDER_POLICY)
-    timings: list[tuple[str, float]] = []
-    failures: list[str] = []
-    gradle_summary: dict[str, Any] | None = None
-    gametest_result: dict[str, Any] = {"status": "SKIP"}
-    report_all = bool(getattr(args, "report_all", False))
-    full_replay = bool(getattr(args, "full_replay", False))
-    print(f"verify integration --profile {profile_name}")
-    print(f"owner={profile['owner']} tier={profile['tier']}")
-    try:
-        for row in builder_rows_for_profile(profile_name, document, builder_policy):
-            if (
-                profile_name == "census-replay"
-                and not full_replay
-                and row["name"] in CENSUS_REPLAY_DEFERRED_LOAD_BUILDERS
-            ):
-                print(
-                    f"[builder:{row['name']}] SKIP historical load replay; "
-                    "pass --full-replay to rebuild T37–T46 load decisions",
-                    flush=True,
-                )
-                continue
-            argv = builder_args_for_profile(
-                profile_name,
-                row,
-                full_replay=full_replay,
-            )
-            if argv is None:
-                print(
-                    f"[builder:{row['name']}] SKIP source replay "
-                    "(required input missing); compact pass is not a source pass",
-                    flush=True,
-                )
-                continue
-            code = run_command(
-                f"builder:{row['name']}",
-                [sys.executable, row["script"], *argv],
-                timings=timings,
-            )
-            if code != 0:
-                if _record(failures, report_all, f"builder:{row['name']} failed"):
-                    return _result(profile_name, failures, timings, gradle_summary, gametest_result)
-        listed_modules: list[str] = []
-        for module in profile["python_modules"]:
-            if (
-                profile_name == "census-replay"
-                and not full_replay
-                and module in CENSUS_REPLAY_DEFERRED_PYTHON_MODULES
-            ):
-                continue
-            listed_modules.append(module)
-        if listed_modules:
-            python_command = [
-                sys.executable,
-                "tools/run_python_tests.py",
-                "--suite",
-                "modules",
-            ]
-            for module in listed_modules:
-                python_command.extend(["--module", module])
-            code = run_command(
-                f"python:{profile_name}",
-                python_command,
-                timings=timings,
-            )
-            if code != 0:
-                if _record(failures, report_all, f"python:{profile_name} failed"):
-                    return _result(profile_name, failures, timings, gradle_summary, gametest_result)
-        for task in profile["gradle_tasks"]:
-            code = run_command(
-                f"gradle:{task}",
-                gradle_command(task, rerun=True),
-                timings=timings,
-            )
-            if task == "test":
-                gradle_summary = parse_gradle_test_xml()
-                gradle_summary["exit_code"] = code
-                for error in gradle_full_suite_errors(gradle_summary):
-                    if _record(failures, report_all, error):
-                        return _result(profile_name, failures, timings, gradle_summary, gametest_result)
-            elif code != 0:
-                if _record(failures, report_all, f"gradle:{task} failed"):
-                    return _result(profile_name, failures, timings, gradle_summary, gametest_result)
-        if profile["datagen"]:
-            print("datagen required: run .\\gradlew.bat runData twice and compare generated trees")
-        spec = gametest_spec(profile)
-        if spec["receipt_check"]:
-            scripts = RECEIPT_SCRIPTS.get(profile_name, ())
-            if not scripts:
-                # Alias profiles (card-closeout) expand elsewhere; diagnostic
-                # must not report a receipt PASS without running --check.
-                gametest_result = {"status": "SKIP", "receipt_check": True}
-            else:
-                gametest_result = {"status": "PASS", "receipt_check": True}
-                for script in scripts:
-                    code = run_command(
-                        f"gametest-receipt:{script}",
-                        [sys.executable, script, "--check"],
-                        timings=timings,
-                    )
-                    if code != 0:
-                        gametest_result["status"] = "FAIL"
-                        if _record(failures, report_all, f"gametest receipt failed: {script}"):
-                            return _result(profile_name, failures, timings, gradle_summary, gametest_result)
-        elif spec["run_isolated"]:
-            gametest_result = {"status": "FAIL", "run_isolated": True}
-            if _record(failures, report_all, "isolated GameTest requested but not executed by verify.py"):
-                return _result(profile_name, failures, timings, gradle_summary, gametest_result)
-        elif spec["manual_deferred"]:
-            gametest_result = {"status": "DEFERRED", "manual_deferred": True}
-            print("GameTest status: DEFERRED (manual_deferred; not a PASS)")
-        else:
-            gametest_result = {"status": "SKIP"}
-        open_debt, scoped = debt_rows(
-            debt_aware=bool(getattr(args, "debt_aware", False)),
-            profile_name=profile_name,
-        )
-        if scoped:
-            print("debt-aware external notes: " + ", ".join(scoped))
-        if open_debt and not getattr(args, "debt_aware", False):
-            print("open verification debt: " + ", ".join(row.get("id") or "?" for row in open_debt))
-        return _result(profile_name, failures, timings, gradle_summary, gametest_result)
-    finally:
-        print("integration wall-time summary:")
-        for name, wall_seconds in timings:
-            print(f"  {name}: {wall_seconds:.3f}s")
-
-
-def diagnostic_report() -> dict[str, Any]:
-    """Structured stale/debt report. Never upgrades required failures to PASS."""
-    from tools import currentness
-    from tools import run_verification_dag as dag
-
-    open_debt, _notes = debt_rows(debt_aware=False, profile_name="card-diagnostic-T40")
-    sidecars: list[dict[str, Any]] = []
-    for row in currentness.TARGETS:
-        artifact = ROOT / row["artifact"]
-        if not artifact.is_file():
-            sidecars.append(
-                {
-                    "artifact": row["artifact"],
-                    "scope": row["scope"],
-                    "compact": ["MISSING"],
-                    "hash_only": [],
-                }
-            )
-            continue
-        compact = currentness.check_sidecar(artifact, include_hash_only=False)
-        hash_only = [
-            error
-            for error in currentness.check_sidecar(artifact, include_hash_only=True)
-            if error not in compact
-        ]
-        sidecars.append(
-            {
-                "artifact": row["artifact"],
-                "scope": row["scope"],
-                "compact": compact,
-                "hash_only": hash_only,
-            }
-        )
-    return {
-        "open_debt": [str(row.get("id") or "?") for row in open_debt],
-        "dag": dag.plan(),
-        "sidecars": sidecars,
-    }
-
-
-def combine_closeout_results(subresults: list[dict[str, Any]]) -> dict[str, Any]:
-    """Keep recipes Gradle/GameTest evidence; do not let closeout-seals overwrite it."""
-    failures: list[str] = []
-    timings: list[dict[str, Any]] = []
-    by_name: dict[str, Any] = {}
-    for row in subresults:
-        failures.extend(row.get("failures") or [])
-        timings.extend(row.get("timings") or [])
-        by_name[str(row.get("profile"))] = {
-            "status": row.get("status"),
-            "failures": list(row.get("failures") or []),
-            "gradle": row.get("gradle"),
-            "gametest": row.get("gametest"),
-        }
-    recipes = by_name.get("recipes") or {}
-    return {
-        "schema_version": 1,
-        "command": "integration",
-        "profile": "card-closeout",
-        "status": "FAIL" if failures else "PASS",
-        "failures": failures,
-        "profiles": by_name,
-        "gradle": recipes.get("gradle"),
-        "gametest": recipes.get("gametest") or {"status": "SKIP"},
-        "timings": timings,
-    }
-
-
-def _result(
-    profile_name: str,
-    failures: list[str],
-    timings: list[tuple[str, float]],
-    gradle_summary: dict[str, Any] | None,
-    gametest_result: dict[str, Any],
-) -> dict[str, Any]:
-    diagnostic = profile_name == "card-diagnostic-T40"
-    if failures:
-        status = "FAIL"
-    elif diagnostic:
-        status = "DIAGNOSTIC"
-    else:
-        status = "PASS"
-    if profile_name != "card-diagnostic-T40" and not failures:
-        print("integration profile complete. Do not treat this as a player release.")
-    elif diagnostic and not failures:
-        print("card-diagnostic-T40 complete. This is not a closeout PASS.")
-    result = {
-        "schema_version": 1,
-        "command": "integration",
-        "profile": profile_name,
-        "status": status,
-        "failures": failures,
-        "gradle": gradle_summary,
-        "gametest": gametest_result,
-        "timings": [{"name": name, "seconds": seconds} for name, seconds in timings],
-    }
-    if diagnostic:
-        report = diagnostic_report()
-        result["diagnostic"] = report
+def cmd_dev(args: argparse.Namespace, receipt: dict[str, Any]) -> int:
+    profiles, builders = _configuration()
+    classification = classify_paths(profiles, changed_paths(args.path))
+    if classification["unmatched_paths"]:
         print(
-            "diagnostic open debt: "
-            + (", ".join(report["open_debt"]) or "(none)")
+            "unmatched paths: " + ", ".join(classification["unmatched_paths"]),
+            file=sys.stderr,
         )
-        stale = (report.get("dag") or {}).get("stale") or []
-        print(f"diagnostic DAG stale nodes: {len(stale)}")
-    return result
-
-
-def cmd_integration(args: argparse.Namespace) -> int:
-    document = load_profiles()
-    names = list(CLOSEOUT_PROFILES) if args.profile == "card-closeout" else [args.profile]
-    subresults: list[dict[str, Any]] = []
-    for name in names:
-        if name not in document["profiles"]:
-            print(
-                f"unknown profile {name!r}; available: "
-                + ", ".join(sorted(document["profiles"])),
-                file=sys.stderr,
-            )
-            return 2
-        last = run_profile_steps(name, args, document=document)
-        subresults.append(last)
-        if last["status"] == "FAIL" and not getattr(args, "report_all", False):
-            break
-    if args.profile == "card-closeout":
-        result = combine_closeout_results(subresults)
-    else:
-        result = subresults[-1] if subresults else {
-            "schema_version": 1,
-            "command": "integration",
-            "profile": args.profile,
-            "status": "FAIL",
-            "failures": ["no profile ran"],
-        }
-    if getattr(args, "json_path", None):
-        write_result_json(Path(args.json_path), result)
-    return 0 if result["status"] in {"PASS", "DIAGNOSTIC"} else 1
-
-
-def cmd_currentness(args: argparse.Namespace) -> int:
-    command = [sys.executable, "tools/rebind_currentness.py", f"--{args.mode}", "--scope", args.scope]
-    code = run_command("currentness:rebind", command)
-    dag_mode = "--plan" if args.mode == "plan" else "--check"
-    dag_code = run_command(
-        "currentness:dag",
-        [sys.executable, "tools/run_verification_dag.py", dag_mode],
-    )
-    return code or dag_code
-
-
-def cmd_release(args: argparse.Namespace) -> int:
-    print("verify release")
-    print(
-        "Player-facing release verification is deferred. "
-        "This command inspects the historical receipt and debt ledger; "
-        "it does not rebind READY or run soak/provenance."
-    )
-    if DEBT.is_file():
-        debt = load_json(DEBT)
-        open_rows = [
-            row["id"] for row in debt.get("issues", [])
-            if row.get("status") == "open"
-        ]
-        print("open verification debt: " + (", ".join(open_rows) or "(none)"))
-    if args.run_historical:
-        return run_command(
-            "historical-full-check",
-            [sys.executable, "tools/run_full_verification.py", "--check"],
-        )
-    print("pass --run-historical to invoke tools/run_full_verification.py --check")
-    return 0
-
-
-def cmd_archive_inspect(_args: argparse.Namespace) -> int:
-    print("verify archive-inspect")
-    if not REPORT.is_file():
-        print("missing tools/full_verification_report.json", file=sys.stderr)
         return 2
-    document = load_json(REPORT)
-    print(f"historical status: {document.get('status')}")
-    binding = document.get("ready_binding") or {}
-    print(f"tooling_snapshot_sha256: {binding.get('tooling_snapshot_sha256')}")
-    t31 = document.get("t31_readiness_acceptance") or {}
-    print(f"t31_readiness_acceptance.status: {t31.get('status')}")
-    print("This receipt is historical. It is not a live currentness proof.")
+    selected = classification["selected_profiles"]
+    if not selected:
+        print("no active profile owns the changed paths")
+        return 0
+    for profile_name in selected:
+        code = run_profile(profile_name, profiles, builders, receipt)
+        if code:
+            return code
     return 0
 
 
-def main(argv: list[str] | None = None) -> int:
+def cmd_integration(args: argparse.Namespace, receipt: dict[str, Any]) -> int:
+    profiles, builders = _configuration()
+    if args.profile not in profiles["active_profiles"]:
+        print(
+            f"inactive or unknown profile {args.profile!r}; available: "
+            + ", ".join(profiles["active_profiles"]),
+            file=sys.stderr,
+        )
+        return 2
+    return run_profile(args.profile, profiles, builders, receipt)
+
+
+def cmd_release(_args: argparse.Namespace, receipt: dict[str, Any]) -> int:
+    profiles, builders = _configuration()
+    for profile_name in profiles["release_profiles"]:
+        code = run_profile(profile_name, profiles, builders, receipt)
+        if code:
+            return code
+    return 0
+
+
+def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
 
-    dev = sub.add_parser("dev", help="Run tests owned by changed paths")
+    dev = sub.add_parser("dev", help="Fresh verification for changed paths")
     dev.add_argument("--path", action="append", default=[])
     dev.set_defaults(func=cmd_dev)
 
     integration = sub.add_parser(
         "integration",
-        help="Run one explicit profile before closing a content card",
+        help="Fresh verification for one active profile",
     )
     integration.add_argument("--profile", required=True)
-    integration.add_argument("--report-all", action="store_true")
-    integration.add_argument("--full-replay", action="store_true")
-    integration.add_argument("--json", dest="json_path", type=Path)
-    integration.add_argument("--debt-aware", action="store_true")
     integration.set_defaults(func=cmd_integration)
-
-    currentness = sub.add_parser(
-        "currentness",
-        help="Plan or check DAG/currentness sidecars without a full profile run",
-    )
-    currentness.add_argument("--mode", choices=("plan", "check", "write"), default="plan")
-    currentness.add_argument("--scope", choices=("t35", "card-closeout", "recipes", "all"), default="all")
-    currentness.set_defaults(func=cmd_currentness)
 
     release = sub.add_parser(
         "release",
-        help="Reserved for a future player-facing release card",
+        help="Fresh verification for all release profiles",
     )
-    release.add_argument("--run-historical", action="store_true")
     release.set_defaults(func=cmd_release)
+    return parser
 
-    inspect = sub.add_parser(
-        "archive-inspect",
-        help="Read the historical full verification receipt",
-    )
-    inspect.set_defaults(func=cmd_archive_inspect)
 
-    args = parser.parse_args(argv)
-    return args.func(args)
+def main(argv: list[str] | None = None) -> int:
+    actual = list(sys.argv[1:] if argv is None else argv)
+    parser = build_parser()
+    args = parser.parse_args(actual)
+    receipt = _receipt(actual)
+    try:
+        code = args.func(args, receipt)
+    except (OSError, json.JSONDecodeError, VerificationError) as error:
+        print(f"verification configuration failed: {error}", file=sys.stderr)
+        receipt["results"].append(
+            {
+                "name": "configuration",
+                "exit_code": 2,
+                "status": "FAIL",
+                "error": str(error),
+            }
+        )
+        code = 2
+    receipt["status"] = "PASS" if code == 0 else "FAIL"
+    receipt["exit_code"] = code
+    write_latest_receipt(receipt)
+    return code
 
 
 if __name__ == "__main__":

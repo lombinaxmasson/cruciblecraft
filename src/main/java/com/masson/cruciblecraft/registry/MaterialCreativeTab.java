@@ -120,6 +120,10 @@ public enum MaterialCreativeTab {
         };
     }
 
+    public static boolean isToolHeadPrefix(MaterialPrefix prefix) {
+        return prefix.serializedName().startsWith("tool_head");
+    }
+
     /**
      * Pure registry-id plan used to verify the same first-owner de-duplication
      * policy as the runtime tabs.
@@ -158,7 +162,7 @@ public enum MaterialCreativeTab {
         }
         for (MaterialDefinition material : materials) {
             for (MaterialPrefix prefix : requireForms(material, registeredForms)) {
-                if (prefix.equals(MaterialPrefixes.ORE)) {
+                if (prefix.equals(MaterialPrefixes.ORE) || isToolHeadPrefix(prefix)) {
                     continue;
                 }
                 claim(
@@ -176,6 +180,29 @@ public enum MaterialCreativeTab {
                 new EnumMap<>(MaterialCreativeTab.class);
         entries.forEach((tab, ids) -> frozen.put(tab, List.copyOf(ids)));
         return Collections.unmodifiableMap(frozen);
+    }
+
+    public static List<String> toolHeadEntryIds(
+            Collection<MaterialDefinition> materials,
+            Map<String, List<MaterialPrefix>> registeredForms,
+            Map<String, String> unificationPreferences) {
+        LinkedHashSet<String> claimed = new LinkedHashSet<>();
+        List<String> ids = new ArrayList<>();
+        for (MaterialDefinition material : materials) {
+            for (MaterialPrefix prefix : requireForms(material, registeredForms)) {
+                if (!isToolHeadPrefix(prefix)) {
+                    continue;
+                }
+                String itemId = MaterialLookup.resolveItemId(
+                        material,
+                        prefix,
+                        unificationPreferences).toString();
+                if (claimed.add(itemId)) {
+                    ids.add(itemId);
+                }
+            }
+        }
+        return List.copyOf(ids);
     }
 
     private static List<MaterialPrefix> requireForms(
